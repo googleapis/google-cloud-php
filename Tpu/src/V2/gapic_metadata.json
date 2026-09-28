@@ -8,7 +8,7 @@
         "Tpu": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TpuGapicClient",
+                    "libraryClient": "TpuClient",
                     "rpcs": {
                         "CreateNode": {
                             "methods": [

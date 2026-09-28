@@ -16,10 +16,11 @@ use Google\Protobuf\RepeatedField;
 class SemanticSearch extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The query text, which is used to generate an embedding according
+     * Optional. The query text, which is used to generate an embedding according
      * to the embedding model specified in the collection config.
+     * Required when using the text search mode.
      *
-     * Generated from protobuf field <code>string search_text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string search_text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $search_text = '';
     /**
@@ -29,9 +30,13 @@ class SemanticSearch extends \Google\Protobuf\Internal\Message
      */
     protected $search_field = '';
     /**
-     * Required. The task type of the query embedding.
+     * Optional. The task type of the query embedding. Must be specified for
+     * text-only embedding models, see
+     * <https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/embeddings/task-types>
+     * Not needed for multi modal embedding models, see
+     * <https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/embeddings/get-multimodal-embeddings#specify-task-instructions>
      *
-     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.EmbeddingTaskType task_type = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.EmbeddingTaskType task_type = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $task_type = 0;
     /**
@@ -69,12 +74,17 @@ class SemanticSearch extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $search_text
-     *           Required. The query text, which is used to generate an embedding according
+     *           Optional. The query text, which is used to generate an embedding according
      *           to the embedding model specified in the collection config.
+     *           Required when using the text search mode.
      *     @type string $search_field
      *           Required. The vector field to search.
      *     @type int $task_type
-     *           Required. The task type of the query embedding.
+     *           Optional. The task type of the query embedding. Must be specified for
+     *           text-only embedding models, see
+     *           <https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/embeddings/task-types>
+     *           Not needed for multi modal embedding models, see
+     *           <https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/embeddings/get-multimodal-embeddings#specify-task-instructions>
      *     @type \Google\Cloud\VectorSearch\V1\OutputFields $output_fields
      *           Optional. The fields to return in the search results.
      *     @type \Google\Protobuf\Struct $filter
@@ -94,10 +104,11 @@ class SemanticSearch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The query text, which is used to generate an embedding according
+     * Optional. The query text, which is used to generate an embedding according
      * to the embedding model specified in the collection config.
+     * Required when using the text search mode.
      *
-     * Generated from protobuf field <code>string search_text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string search_text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSearchText()
@@ -106,10 +117,11 @@ class SemanticSearch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The query text, which is used to generate an embedding according
+     * Optional. The query text, which is used to generate an embedding according
      * to the embedding model specified in the collection config.
+     * Required when using the text search mode.
      *
-     * Generated from protobuf field <code>string search_text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string search_text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -148,9 +160,13 @@ class SemanticSearch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The task type of the query embedding.
+     * Optional. The task type of the query embedding. Must be specified for
+     * text-only embedding models, see
+     * <https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/embeddings/task-types>
+     * Not needed for multi modal embedding models, see
+     * <https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/embeddings/get-multimodal-embeddings#specify-task-instructions>
      *
-     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.EmbeddingTaskType task_type = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.EmbeddingTaskType task_type = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getTaskType()
@@ -159,9 +175,13 @@ class SemanticSearch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The task type of the query embedding.
+     * Optional. The task type of the query embedding. Must be specified for
+     * text-only embedding models, see
+     * <https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/embeddings/task-types>
+     * Not needed for multi modal embedding models, see
+     * <https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/embeddings/get-multimodal-embeddings#specify-task-instructions>
      *
-     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.EmbeddingTaskType task_type = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.EmbeddingTaskType task_type = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

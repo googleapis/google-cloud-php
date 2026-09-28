@@ -2,198 +2,250 @@
     "interfaces": {
         "google.bigtable.admin.v2.BigtableTableAdmin": {
             "retry_codes": {
-                "idempotent": [
-                    "DEADLINE_EXCEEDED",
-                    "UNAVAILABLE"
+                "no_retry_codes": [],
+                "no_retry_1_codes": [],
+                "no_retry_2_codes": [],
+                "retry_policy_1_codes": [
+                    "UNAVAILABLE",
+                    "DEADLINE_EXCEEDED"
                 ],
-                "non_idempotent": []
+                "retry_policy_2_codes": [
+                    "UNAVAILABLE",
+                    "DEADLINE_EXCEEDED"
+                ],
+                "no_retry_3_codes": []
             },
             "retry_params": {
-                "default": {
-                    "initial_retry_delay_millis": 100,
-                    "retry_delay_multiplier": 1.3,
-                    "max_retry_delay_millis": 60000,
-                    "initial_rpc_timeout_millis": 20000,
+                "no_retry_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 0,
                     "rpc_timeout_multiplier": 1.0,
-                    "max_rpc_timeout_millis": 20000,
-                    "total_timeout_millis": 600000
+                    "max_rpc_timeout_millis": 0,
+                    "total_timeout_millis": 0
+                },
+                "no_retry_1_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 300000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 300000,
+                    "total_timeout_millis": 300000
+                },
+                "no_retry_2_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
+                },
+                "retry_policy_1_params": {
+                    "initial_retry_delay_millis": 1000,
+                    "retry_delay_multiplier": 2.0,
+                    "max_retry_delay_millis": 60000,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
+                },
+                "retry_policy_2_params": {
+                    "initial_retry_delay_millis": 1000,
+                    "retry_delay_multiplier": 2.0,
+                    "max_retry_delay_millis": 60000,
+                    "initial_rpc_timeout_millis": 3600000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 3600000,
+                    "total_timeout_millis": 3600000
+                },
+                "no_retry_3_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 3600000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 3600000,
+                    "total_timeout_millis": 3600000
                 }
             },
             "methods": {
                 "CheckConsistency": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "timeout_millis": 3600000,
+                    "retry_codes_name": "retry_policy_2_codes",
+                    "retry_params_name": "retry_policy_2_params"
                 },
                 "CopyBackup": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "CreateAuthorizedView": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "CreateBackup": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
                 },
                 "CreateSchemaBundle": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "CreateTable": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
                 },
                 "CreateTableFromSnapshot": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "DeleteAuthorizedView": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "DeleteBackup": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
                 },
                 "DeleteSchemaBundle": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "DeleteSnapshot": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
                 },
                 "DeleteTable": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
                 },
                 "DropRowRange": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "timeout_millis": 3600000,
+                    "retry_codes_name": "no_retry_3_codes",
+                    "retry_params_name": "no_retry_3_params"
                 },
                 "GenerateConsistencyToken": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
                 },
                 "GetAuthorizedView": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "GetBackup": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
                 },
                 "GetIamPolicy": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
                 },
                 "GetSchemaBundle": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "GetSnapshot": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
                 },
                 "GetTable": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
                 },
                 "ListAuthorizedViews": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "ListBackups": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
                 },
                 "ListSchemaBundles": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "ListSnapshots": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
                 },
                 "ListTables": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
                 },
                 "ModifyColumnFamilies": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
                 },
                 "RestoreTable": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
                 },
                 "SetIamPolicy": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
                 },
                 "SnapshotTable": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "TestIamPermissions": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
                 },
                 "UndeleteTable": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "UpdateAuthorizedView": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "UpdateBackup": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
                 },
                 "UpdateSchemaBundle": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "UpdateTable": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 }
             }
         }

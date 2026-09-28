@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,8 @@ use Google\Apps\Meet\V2beta\TranscriptEntry;
  *
  * Note: The transcript entries returned by the Google Meet API might not
  * match the transcription found in the Google Docs transcript file. This can
- * occur when the Google Docs transcript file is modified after generation.
+ * occur when 1) we have interleaved speakers within milliseconds, or
+ * 2) the Google Docs transcript file is modified after generation.
  *
  * @param string $formattedName Resource name of the `TranscriptEntry`. Please see
  *                              {@see ConferenceRecordsServiceClient::transcriptEntryName()} for help formatting this field.

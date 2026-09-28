@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * The evaluation details for a control.
+ * Evaluation details for a control.
  *
  * Generated from protobuf message <code>google.cloud.auditmanager.v1.ControlDetails</code>
  */
 class ControlDetails extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The control for which the findings are being reported.
+     * Control that the findings are being reported for.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.Control control = 1;</code>
      */
@@ -28,7 +28,8 @@ class ControlDetails extends \Google\Protobuf\Internal\Message
      */
     protected $compliance_state = 0;
     /**
-     * Report summary with compliance, violation counts etc.
+     * A control report summary that provides a high-level overview of the
+     * compliance controls and the assessment status.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.ReportSummary control_report_summary = 3;</code>
      */
@@ -41,11 +42,12 @@ class ControlDetails extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AuditManager\V1\Control $control
-     *           The control for which the findings are being reported.
+     *           Control that the findings are being reported for.
      *     @type int $compliance_state
      *           Output only. Overall status of the findings for the control.
      *     @type \Google\Cloud\AuditManager\V1\ReportSummary $control_report_summary
-     *           Report summary with compliance, violation counts etc.
+     *           A control report summary that provides a high-level overview of the
+     *           compliance controls and the assessment status.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +56,7 @@ class ControlDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The control for which the findings are being reported.
+     * Control that the findings are being reported for.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.Control control = 1;</code>
      * @return \Google\Cloud\AuditManager\V1\Control|null
@@ -75,7 +77,7 @@ class ControlDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The control for which the findings are being reported.
+     * Control that the findings are being reported for.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.Control control = 1;</code>
      * @param \Google\Cloud\AuditManager\V1\Control $var
@@ -116,7 +118,8 @@ class ControlDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Report summary with compliance, violation counts etc.
+     * A control report summary that provides a high-level overview of the
+     * compliance controls and the assessment status.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.ReportSummary control_report_summary = 3;</code>
      * @return \Google\Cloud\AuditManager\V1\ReportSummary|null
@@ -137,7 +140,8 @@ class ControlDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Report summary with compliance, violation counts etc.
+     * A control report summary that provides a high-level overview of the
+     * compliance controls and the assessment status.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.ReportSummary control_report_summary = 3;</code>
      * @param \Google\Cloud\AuditManager\V1\ReportSummary $var

@@ -82,17 +82,29 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      */
     protected $subject_to_thresholding = null;
     /**
-     * If this report's results are
+     * If this report results is
      * [sampled](https://support.google.com/analytics/answer/13331292), this
      * describes the percentage of events used in this report. One
      * `samplingMetadatas` is populated for each date range. Each
-     * `samplingMetadatas` corresponds to a date range in the order that date
-     * ranges were specified in the request.
+     * `samplingMetadatas` corresponds to a date range in order that date ranges
+     * were specified in the request.
      * However if the results are not sampled, this field will not be defined.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.SamplingMetadata sampling_metadatas = 9;</code>
      */
     private $sampling_metadatas;
+    /**
+     * Identifies the type of data in the report.
+     *
+     * Generated from protobuf field <code>.google.analytics.data.v1alpha.Section section = 10;</code>
+     */
+    protected $section = 0;
+    /**
+     * If set, indicate there is data truncation in the report.
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.ResponseMetaData.DataTruncationReason data_truncation_reasons = 11;</code>
+     */
+    private $data_truncation_reasons;
 
     /**
      * Constructor.
@@ -143,13 +155,17 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      *           Demographics and
      *           Interests](https://support.google.com/analytics/answer/2799357).
      *     @type \Google\Analytics\Data\V1alpha\SamplingMetadata[] $sampling_metadatas
-     *           If this report's results are
+     *           If this report results is
      *           [sampled](https://support.google.com/analytics/answer/13331292), this
      *           describes the percentage of events used in this report. One
      *           `samplingMetadatas` is populated for each date range. Each
-     *           `samplingMetadatas` corresponds to a date range in the order that date
-     *           ranges were specified in the request.
+     *           `samplingMetadatas` corresponds to a date range in order that date ranges
+     *           were specified in the request.
      *           However if the results are not sampled, this field will not be defined.
+     *     @type int $section
+     *           Identifies the type of data in the report.
+     *     @type \Google\Analytics\Data\V1alpha\ResponseMetaData\DataTruncationReason[] $data_truncation_reasons
+     *           If set, indicate there is data truncation in the report.
      * }
      */
     public function __construct($data = NULL) {
@@ -424,12 +440,12 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If this report's results are
+     * If this report results is
      * [sampled](https://support.google.com/analytics/answer/13331292), this
      * describes the percentage of events used in this report. One
      * `samplingMetadatas` is populated for each date range. Each
-     * `samplingMetadatas` corresponds to a date range in the order that date
-     * ranges were specified in the request.
+     * `samplingMetadatas` corresponds to a date range in order that date ranges
+     * were specified in the request.
      * However if the results are not sampled, this field will not be defined.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.SamplingMetadata sampling_metadatas = 9;</code>
@@ -441,12 +457,12 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If this report's results are
+     * If this report results is
      * [sampled](https://support.google.com/analytics/answer/13331292), this
      * describes the percentage of events used in this report. One
      * `samplingMetadatas` is populated for each date range. Each
-     * `samplingMetadatas` corresponds to a date range in the order that date
-     * ranges were specified in the request.
+     * `samplingMetadatas` corresponds to a date range in order that date ranges
+     * were specified in the request.
      * However if the results are not sampled, this field will not be defined.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.SamplingMetadata sampling_metadatas = 9;</code>
@@ -457,6 +473,58 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Analytics\Data\V1alpha\SamplingMetadata::class);
         $this->sampling_metadatas = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Identifies the type of data in the report.
+     *
+     * Generated from protobuf field <code>.google.analytics.data.v1alpha.Section section = 10;</code>
+     * @return int
+     */
+    public function getSection()
+    {
+        return $this->section;
+    }
+
+    /**
+     * Identifies the type of data in the report.
+     *
+     * Generated from protobuf field <code>.google.analytics.data.v1alpha.Section section = 10;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSection($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Analytics\Data\V1alpha\Section::class);
+        $this->section = $var;
+
+        return $this;
+    }
+
+    /**
+     * If set, indicate there is data truncation in the report.
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.ResponseMetaData.DataTruncationReason data_truncation_reasons = 11;</code>
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\ResponseMetaData\DataTruncationReason>
+     */
+    public function getDataTruncationReasons()
+    {
+        return $this->data_truncation_reasons;
+    }
+
+    /**
+     * If set, indicate there is data truncation in the report.
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.ResponseMetaData.DataTruncationReason data_truncation_reasons = 11;</code>
+     * @param \Google\Analytics\Data\V1alpha\ResponseMetaData\DataTruncationReason[] $var
+     * @return $this
+     */
+    public function setDataTruncationReasons($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Analytics\Data\V1alpha\ResponseMetaData\DataTruncationReason::class);
+        $this->data_truncation_reasons = $arr;
 
         return $this;
     }

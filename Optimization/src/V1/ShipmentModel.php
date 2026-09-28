@@ -1028,7 +1028,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      */
     public function getBreakRules()
     {
-        if ($this->break_rules->count() !== 0) {
+        if (count($this->break_rules) !== 0) {
             @trigger_error('break_rules is deprecated.', E_USER_DEPRECATED);
         }
         return $this->break_rules;

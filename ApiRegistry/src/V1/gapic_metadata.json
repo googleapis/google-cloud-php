@@ -8,7 +8,7 @@
         "CloudApiRegistry": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CloudApiRegistryGapicClient",
+                    "libraryClient": "CloudApiRegistryClient",
                     "rpcs": {
                         "GetMcpServer": {
                             "methods": [

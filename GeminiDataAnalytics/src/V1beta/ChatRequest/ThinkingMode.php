@@ -14,7 +14,8 @@ use UnexpectedValueException;
 class ThinkingMode
 {
     /**
-     * Unspecified thinking mode, agent will use THINKING mode by default.
+     * Unspecified thinking mode, agent will use THINKING mode by default except
+     * for BigQuery user defaulting to FAST mode by default.
      *
      * Generated from protobuf enum <code>THINKING_MODE_UNSPECIFIED = 0;</code>
      */

@@ -16,16 +16,16 @@ use Google\Protobuf\RepeatedField;
 class GetQuotaInfoRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the quota info.
+     * Required. Identifier. The resource name of the quota info.
      * An example name:
      * `projects/123/locations/global/services/compute.googleapis.com/quotaInfos/CpusPerProjectPerRegion`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
 
     /**
-     * @param string $name Required. The resource name of the quota info.
+     * @param string $name Required. Identifier. The resource name of the quota info.
      *
      *                     An example name:
      *                     `projects/123/locations/global/services/compute.googleapis.com/quotaInfos/CpusPerProjectPerRegion`
@@ -48,7 +48,7 @@ class GetQuotaInfoRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the quota info.
+     *           Required. Identifier. The resource name of the quota info.
      *           An example name:
      *           `projects/123/locations/global/services/compute.googleapis.com/quotaInfos/CpusPerProjectPerRegion`
      * }
@@ -59,11 +59,11 @@ class GetQuotaInfoRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the quota info.
+     * Required. Identifier. The resource name of the quota info.
      * An example name:
      * `projects/123/locations/global/services/compute.googleapis.com/quotaInfos/CpusPerProjectPerRegion`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -72,11 +72,11 @@ class GetQuotaInfoRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the quota info.
+     * Required. Identifier. The resource name of the quota info.
      * An example name:
      * `projects/123/locations/global/services/compute.googleapis.com/quotaInfos/CpusPerProjectPerRegion`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

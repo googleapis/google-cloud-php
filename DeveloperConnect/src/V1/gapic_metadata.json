@@ -8,7 +8,7 @@
         "DeveloperConnect": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DeveloperConnectGapicClient",
+                    "libraryClient": "DeveloperConnectClient",
                     "rpcs": {
                         "CreateAccountConnector": {
                             "methods": [
@@ -157,7 +157,7 @@
         "InsightsConfigService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InsightsConfigServiceGapicClient",
+                    "libraryClient": "InsightsConfigServiceClient",
                     "rpcs": {
                         "CreateInsightsConfig": {
                             "methods": [

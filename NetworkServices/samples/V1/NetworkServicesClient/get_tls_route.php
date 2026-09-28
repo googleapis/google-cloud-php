@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ use Google\Cloud\NetworkServices\V1\TlsRoute;
  * Gets details of a single TlsRoute.
  *
  * @param string $formattedName A name of the TlsRoute to get. Must be in the format
- *                              `projects/&#42;/locations/global/tlsRoutes/*`. Please see
+ *                              `projects/&#42;/locations/&#42;/tlsRoutes/*`. Please see
  *                              {@see NetworkServicesClient::tlsRouteName()} for help formatting this field.
  */
 function get_tls_route_sample(string $formattedName): void

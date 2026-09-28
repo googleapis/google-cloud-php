@@ -51,7 +51,7 @@ class VideoStreamInputConfig extends \Google\Protobuf\Internal\Message
      */
     public function getStreams()
     {
-        if ($this->streams->count() !== 0) {
+        if (count($this->streams) !== 0) {
             @trigger_error('streams is deprecated.', E_USER_DEPRECATED);
         }
         return $this->streams;
@@ -66,7 +66,7 @@ class VideoStreamInputConfig extends \Google\Protobuf\Internal\Message
     public function setStreams($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('streams is deprecated.', E_USER_DEPRECATED);
         }
         $this->streams = $arr;
@@ -81,7 +81,7 @@ class VideoStreamInputConfig extends \Google\Protobuf\Internal\Message
      */
     public function getStreamsWithAnnotation()
     {
-        if ($this->streams_with_annotation->count() !== 0) {
+        if (count($this->streams_with_annotation) !== 0) {
             @trigger_error('streams_with_annotation is deprecated.', E_USER_DEPRECATED);
         }
         return $this->streams_with_annotation;
@@ -96,7 +96,7 @@ class VideoStreamInputConfig extends \Google\Protobuf\Internal\Message
     public function setStreamsWithAnnotation($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VisionAI\V1\StreamWithAnnotation::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('streams_with_annotation is deprecated.', E_USER_DEPRECATED);
         }
         $this->streams_with_annotation = $arr;

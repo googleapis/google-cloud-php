@@ -29,6 +29,72 @@ class SourceConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool automatic_backups_replication_enabled = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $automatic_backups_replication_enabled = false;
+    /**
+     * Optional. The source type of the Autonomous Database.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.SourceConfig.SourceType source_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $source_type = 0;
+    /**
+     * Optional. The clone type of the Autonomous Database. This field is only
+     * applicable in case of cloning
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.SourceConfig.CloneType clone_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $clone_type = 0;
+    /**
+     * Optional. The refresh mode of the clone.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.SourceConfig.RefreshableMode refreshable_mode = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $refreshable_mode = 0;
+    /**
+     * Optional. The frequency in seconds a refreshable clone is refreshed after
+     * auto-refresh is enabled.
+     *
+     * Generated from protobuf field <code>int32 auto_refresh_frequency_seconds = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $auto_refresh_frequency_seconds = 0;
+    /**
+     * Optional. The time, in seconds, the data of the automatic refreshable clone
+     * lags the primary database at the point of refresh.
+     *
+     * Generated from protobuf field <code>optional int32 auto_refresh_point_lag_seconds = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $auto_refresh_point_lag_seconds = null;
+    /**
+     * Optional. The date and time that auto-refreshing will begin for an
+     * Autonomous Database refreshable clone. This value controls only the start
+     * time for the first refresh operation.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp auto_refresh_start_time = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $auto_refresh_start_time = null;
+    /**
+     * Optional. The name of the Autonomous Database Backup resource with the
+     * format:
+     * projects/{project}/locations/{region}/autonomousDatabaseBackups/{autonomous_database_backup}
+     * Required when source_type is BACKUP_FROM_ID.
+     *
+     * Generated from protobuf field <code>string autonomous_database_backup = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $autonomous_database_backup = '';
+    /**
+     * Optional. The timestamp specified for the point-in-time clone of the source
+     * Autonomous Database. This field is only applicable
+     * in case of BACKUP_FROM_TIMESTAMP source type and when
+     * use_latest_available_backup is false.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp backup_time = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $backup_time = null;
+    /**
+     * Optional. Clone from latest available backup timestamp. This field is only
+     * applicable in case of BACKUP_FROM_TIMESTAMP source type.
+     *
+     * Generated from protobuf field <code>bool use_latest_available_backup = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $use_latest_available_backup = false;
 
     /**
      * Constructor.
@@ -42,6 +108,36 @@ class SourceConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $automatic_backups_replication_enabled
      *           Optional. This field specifies if the replication of automatic backups is
      *           enabled when creating a Data Guard.
+     *     @type int $source_type
+     *           Optional. The source type of the Autonomous Database.
+     *     @type int $clone_type
+     *           Optional. The clone type of the Autonomous Database. This field is only
+     *           applicable in case of cloning
+     *     @type int $refreshable_mode
+     *           Optional. The refresh mode of the clone.
+     *     @type int $auto_refresh_frequency_seconds
+     *           Optional. The frequency in seconds a refreshable clone is refreshed after
+     *           auto-refresh is enabled.
+     *     @type int $auto_refresh_point_lag_seconds
+     *           Optional. The time, in seconds, the data of the automatic refreshable clone
+     *           lags the primary database at the point of refresh.
+     *     @type \Google\Protobuf\Timestamp $auto_refresh_start_time
+     *           Optional. The date and time that auto-refreshing will begin for an
+     *           Autonomous Database refreshable clone. This value controls only the start
+     *           time for the first refresh operation.
+     *     @type string $autonomous_database_backup
+     *           Optional. The name of the Autonomous Database Backup resource with the
+     *           format:
+     *           projects/{project}/locations/{region}/autonomousDatabaseBackups/{autonomous_database_backup}
+     *           Required when source_type is BACKUP_FROM_ID.
+     *     @type \Google\Protobuf\Timestamp $backup_time
+     *           Optional. The timestamp specified for the point-in-time clone of the source
+     *           Autonomous Database. This field is only applicable
+     *           in case of BACKUP_FROM_TIMESTAMP source type and when
+     *           use_latest_available_backup is false.
+     *     @type bool $use_latest_available_backup
+     *           Optional. Clone from latest available backup timestamp. This field is only
+     *           applicable in case of BACKUP_FROM_TIMESTAMP source type.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,6 +197,294 @@ class SourceConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->automatic_backups_replication_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The source type of the Autonomous Database.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.SourceConfig.SourceType source_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getSourceType()
+    {
+        return $this->source_type;
+    }
+
+    /**
+     * Optional. The source type of the Autonomous Database.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.SourceConfig.SourceType source_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSourceType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\OracleDatabase\V1\SourceConfig\SourceType::class);
+        $this->source_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The clone type of the Autonomous Database. This field is only
+     * applicable in case of cloning
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.SourceConfig.CloneType clone_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getCloneType()
+    {
+        return $this->clone_type;
+    }
+
+    /**
+     * Optional. The clone type of the Autonomous Database. This field is only
+     * applicable in case of cloning
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.SourceConfig.CloneType clone_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCloneType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\OracleDatabase\V1\SourceConfig\CloneType::class);
+        $this->clone_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The refresh mode of the clone.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.SourceConfig.RefreshableMode refreshable_mode = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getRefreshableMode()
+    {
+        return $this->refreshable_mode;
+    }
+
+    /**
+     * Optional. The refresh mode of the clone.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.SourceConfig.RefreshableMode refreshable_mode = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRefreshableMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\OracleDatabase\V1\SourceConfig\RefreshableMode::class);
+        $this->refreshable_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The frequency in seconds a refreshable clone is refreshed after
+     * auto-refresh is enabled.
+     *
+     * Generated from protobuf field <code>int32 auto_refresh_frequency_seconds = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getAutoRefreshFrequencySeconds()
+    {
+        return $this->auto_refresh_frequency_seconds;
+    }
+
+    /**
+     * Optional. The frequency in seconds a refreshable clone is refreshed after
+     * auto-refresh is enabled.
+     *
+     * Generated from protobuf field <code>int32 auto_refresh_frequency_seconds = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAutoRefreshFrequencySeconds($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->auto_refresh_frequency_seconds = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The time, in seconds, the data of the automatic refreshable clone
+     * lags the primary database at the point of refresh.
+     *
+     * Generated from protobuf field <code>optional int32 auto_refresh_point_lag_seconds = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getAutoRefreshPointLagSeconds()
+    {
+        return isset($this->auto_refresh_point_lag_seconds) ? $this->auto_refresh_point_lag_seconds : 0;
+    }
+
+    public function hasAutoRefreshPointLagSeconds()
+    {
+        return isset($this->auto_refresh_point_lag_seconds);
+    }
+
+    public function clearAutoRefreshPointLagSeconds()
+    {
+        unset($this->auto_refresh_point_lag_seconds);
+    }
+
+    /**
+     * Optional. The time, in seconds, the data of the automatic refreshable clone
+     * lags the primary database at the point of refresh.
+     *
+     * Generated from protobuf field <code>optional int32 auto_refresh_point_lag_seconds = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAutoRefreshPointLagSeconds($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->auto_refresh_point_lag_seconds = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The date and time that auto-refreshing will begin for an
+     * Autonomous Database refreshable clone. This value controls only the start
+     * time for the first refresh operation.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp auto_refresh_start_time = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getAutoRefreshStartTime()
+    {
+        return $this->auto_refresh_start_time;
+    }
+
+    public function hasAutoRefreshStartTime()
+    {
+        return isset($this->auto_refresh_start_time);
+    }
+
+    public function clearAutoRefreshStartTime()
+    {
+        unset($this->auto_refresh_start_time);
+    }
+
+    /**
+     * Optional. The date and time that auto-refreshing will begin for an
+     * Autonomous Database refreshable clone. This value controls only the start
+     * time for the first refresh operation.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp auto_refresh_start_time = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setAutoRefreshStartTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->auto_refresh_start_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the Autonomous Database Backup resource with the
+     * format:
+     * projects/{project}/locations/{region}/autonomousDatabaseBackups/{autonomous_database_backup}
+     * Required when source_type is BACKUP_FROM_ID.
+     *
+     * Generated from protobuf field <code>string autonomous_database_backup = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getAutonomousDatabaseBackup()
+    {
+        return $this->autonomous_database_backup;
+    }
+
+    /**
+     * Optional. The name of the Autonomous Database Backup resource with the
+     * format:
+     * projects/{project}/locations/{region}/autonomousDatabaseBackups/{autonomous_database_backup}
+     * Required when source_type is BACKUP_FROM_ID.
+     *
+     * Generated from protobuf field <code>string autonomous_database_backup = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAutonomousDatabaseBackup($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->autonomous_database_backup = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The timestamp specified for the point-in-time clone of the source
+     * Autonomous Database. This field is only applicable
+     * in case of BACKUP_FROM_TIMESTAMP source type and when
+     * use_latest_available_backup is false.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp backup_time = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getBackupTime()
+    {
+        return $this->backup_time;
+    }
+
+    public function hasBackupTime()
+    {
+        return isset($this->backup_time);
+    }
+
+    public function clearBackupTime()
+    {
+        unset($this->backup_time);
+    }
+
+    /**
+     * Optional. The timestamp specified for the point-in-time clone of the source
+     * Autonomous Database. This field is only applicable
+     * in case of BACKUP_FROM_TIMESTAMP source type and when
+     * use_latest_available_backup is false.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp backup_time = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setBackupTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->backup_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Clone from latest available backup timestamp. This field is only
+     * applicable in case of BACKUP_FROM_TIMESTAMP source type.
+     *
+     * Generated from protobuf field <code>bool use_latest_available_backup = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getUseLatestAvailableBackup()
+    {
+        return $this->use_latest_available_backup;
+    }
+
+    /**
+     * Optional. Clone from latest available backup timestamp. This field is only
+     * applicable in case of BACKUP_FROM_TIMESTAMP source type.
+     *
+     * Generated from protobuf field <code>bool use_latest_available_backup = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseLatestAvailableBackup($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_latest_available_backup = $var;
 
         return $this;
     }

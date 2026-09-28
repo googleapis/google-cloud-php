@@ -57,6 +57,22 @@ class SearchLinksRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DataCatalog\Lineage\V1\EntityReference $target
      *           Optional. Send asset information in the **target** field to retrieve all
      *           links that lead from upstream assets to the specified asset.
+     *     @type \Google\Cloud\DataCatalog\Lineage\V1\MultipleEntityReference $sources
+     *           Optional. Send a list of asset information in the **sources** field to
+     *           retrieve all links that lead from the specified assets to downstream
+     *           assets. This field is similar to the `source`
+     *           [source][google.cloud.datacatalog.lineage.v1.SearchLinksRequest.source]
+     *           field but allows providing multiple entities.
+     *           All entities within the `MultipleEntityReference` must have the same
+     *           `fully_qualified_name`.
+     *     @type \Google\Cloud\DataCatalog\Lineage\V1\MultipleEntityReference $targets
+     *           Optional. Send a list of asset information in the **targets** field to
+     *           retrieve all links that lead from upstream assets to the specified
+     *           assets. This field is similar to the `target`
+     *           [target][google.cloud.datacatalog.lineage.v1.SearchLinksRequest.target]
+     *           field but allows providing multiple entities.
+     *           All entities within the `MultipleEntityReference` must have the same
+     *           `fully_qualified_name`.
      *     @type int $page_size
      *           Optional. The maximum number of links to return in a single page of the
      *           response. A page may contain fewer links than this value. If unspecified,
@@ -163,6 +179,92 @@ class SearchLinksRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\Lineage\V1\EntityReference::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Send a list of asset information in the **sources** field to
+     * retrieve all links that lead from the specified assets to downstream
+     * assets. This field is similar to the `source`
+     * [source][google.cloud.datacatalog.lineage.v1.SearchLinksRequest.source]
+     * field but allows providing multiple entities.
+     * All entities within the `MultipleEntityReference` must have the same
+     * `fully_qualified_name`.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.lineage.v1.MultipleEntityReference sources = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DataCatalog\Lineage\V1\MultipleEntityReference|null
+     */
+    public function getSources()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasSources()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Optional. Send a list of asset information in the **sources** field to
+     * retrieve all links that lead from the specified assets to downstream
+     * assets. This field is similar to the `source`
+     * [source][google.cloud.datacatalog.lineage.v1.SearchLinksRequest.source]
+     * field but allows providing multiple entities.
+     * All entities within the `MultipleEntityReference` must have the same
+     * `fully_qualified_name`.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.lineage.v1.MultipleEntityReference sources = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DataCatalog\Lineage\V1\MultipleEntityReference $var
+     * @return $this
+     */
+    public function setSources($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\Lineage\V1\MultipleEntityReference::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Send a list of asset information in the **targets** field to
+     * retrieve all links that lead from upstream assets to the specified
+     * assets. This field is similar to the `target`
+     * [target][google.cloud.datacatalog.lineage.v1.SearchLinksRequest.target]
+     * field but allows providing multiple entities.
+     * All entities within the `MultipleEntityReference` must have the same
+     * `fully_qualified_name`.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.lineage.v1.MultipleEntityReference targets = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DataCatalog\Lineage\V1\MultipleEntityReference|null
+     */
+    public function getTargets()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasTargets()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Optional. Send a list of asset information in the **targets** field to
+     * retrieve all links that lead from upstream assets to the specified
+     * assets. This field is similar to the `target`
+     * [target][google.cloud.datacatalog.lineage.v1.SearchLinksRequest.target]
+     * field but allows providing multiple entities.
+     * All entities within the `MultipleEntityReference` must have the same
+     * `fully_qualified_name`.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.lineage.v1.MultipleEntityReference targets = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DataCatalog\Lineage\V1\MultipleEntityReference $var
+     * @return $this
+     */
+    public function setTargets($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\Lineage\V1\MultipleEntityReference::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

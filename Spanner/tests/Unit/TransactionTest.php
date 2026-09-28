@@ -141,6 +141,38 @@ class TransactionTest extends TestCase
         $rows = iterator_to_array($res->rows());
         $this->assertEquals(10, $rows[0]['ID']);
     }
+    public function testExecuteWithOptions()
+    {
+        $sql = 'SELECT * FROM Table';
+        $options = [
+            'requestOptions' => ['priority' => 1],
+            'headers' => ['custom-header' => 'value'],
+            'retrySettings' => ['retriesEnabled' => false],
+            'timeoutMillis' => 1234,
+            'transportOptions' => ['grpc' => ['timeout' => 100]],
+        ];
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function (ExecuteSqlRequest $request) use ($sql) {
+                $this->assertEquals($request->getTransaction()->getId(), self::TRANSACTION);
+                $this->assertEquals($request->getSql(), $sql);
+                $this->assertEquals($request->getRequestOptions()->getPriority(), 1);
+                return true;
+            }),
+            Argument::that(function (array $callOptions) {
+                $this->assertEquals($callOptions['route-to-leader'], true);
+                $this->assertEquals($callOptions['headers']['custom-header'], 'value');
+                $this->assertEquals($callOptions['retrySettings'], ['retriesEnabled' => false]);
+                $this->assertEquals($callOptions['timeoutMillis'], 1234);
+                $this->assertEquals($callOptions['transportOptions'], ['grpc' => ['timeout' => 100]]);
+                return true;
+            })
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream());
+
+        $res = $this->transaction->execute($sql, $options);
+        $this->assertInstanceOf(Result::class, $res);
+    }
 
     public function testExecuteUpdate()
     {
@@ -474,6 +506,42 @@ class TransactionTest extends TestCase
         $transaction->commit(['requestOptions' => ['requestTag' => 'unused']]);
     }
 
+    public function testCommitWithOptions()
+    {
+        $options = [
+            'requestOptions' => ['priority' => 1],
+            'headers' => ['custom-header' => 'value'],
+            'retrySettings' => ['retriesEnabled' => false],
+            'timeoutMillis' => 1234,
+            'transportOptions' => ['grpc' => ['timeout' => 100]],
+        ];
+        
+        $expectedOptions = $options;
+        $expectedOptions['requestOptions']['transactionTag'] = self::TRANSACTION_TAG;
+        $expectedOptions['transactionId'] = self::TRANSACTION;
+
+        $operation = $this->prophesize(Operation::class);
+        $operation->commit(
+            $this->session->reveal(),
+            Argument::any(),
+            $expectedOptions
+        )
+            ->shouldBeCalled()
+            ->willReturn($this->commitResponseWithCommitStats());
+
+        $transaction = new Transaction(
+            $operation->reveal(),
+            $this->session->reveal(),
+            self::TRANSACTION,
+            ['tag' => self::TRANSACTION_TAG]
+        );
+
+        $transaction->insert('Posts', ['foo' => 'bar']);
+        $optionsPassed = $options;
+        $optionsPassed['requestOptions']['requestTag'] = 'unused';
+        $transaction->commit($optionsPassed);
+    }
+
     public function testCommitWithReturnCommitStats()
     {
         $operation = $this->prophesize(Operation::class);
@@ -550,6 +618,57 @@ class TransactionTest extends TestCase
         ]);
 
         $this->assertEquals(1, $transaction->getCommitStats()->getMutationCount());
+    }
+
+    public function testCommitSetsPrecommitTokenFromInlineBegin()
+    {
+        $precommitToken = new MultiplexedSessionPrecommitToken([
+            'precommit_token' => 'my-precommit-token',
+        ]);
+
+        $operation = $this->prophesize(Operation::class);
+
+        // Create the transaction returned by Operation::transaction()
+        $returnedTransaction = new Transaction(
+            $operation->reveal(),
+            $this->session->reveal(),
+            self::TRANSACTION,
+            []
+        );
+        $returnedTransaction->setPrecommitToken($precommitToken);
+
+        $operation->transaction($this->session->reveal(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($returnedTransaction);
+
+        // Verify that commit() receives the precommit token in options
+        $operation->commit(
+            $this->session->reveal(),
+            Argument::any(),
+            Argument::that(function ($options) use ($precommitToken) {
+                $this->assertArrayHasKey('precommitToken', $options);
+                $this->assertEquals($precommitToken, $options['precommitToken']);
+                return true;
+            })
+        )
+            ->shouldBeCalled()
+            ->willReturn($this->commitResponseWithCommitStats());
+
+        $transaction = new Transaction(
+            $operation->reveal(),
+            $this->session->reveal(),
+            null, // Null transaction ID to trigger inline begin
+            [
+                'begin' => ['readWrite' => []]
+            ]
+        );
+
+        $transaction->insert('Posts', ['foo' => 'bar']);
+        $transaction->commit();
+
+        $ref = new \ReflectionClass(Transaction::class);
+        $prop = $ref->getProperty('precommitToken');
+        $this->assertNull($prop->getValue($transaction));
     }
 
     public function testCommitInvalidState()

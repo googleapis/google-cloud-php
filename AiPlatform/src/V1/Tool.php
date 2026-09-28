@@ -72,6 +72,22 @@ class Tool extends \Google\Protobuf\Internal\Message
      */
     protected $enterprise_web_search = null;
     /**
+     * Optional. If specified, Vertex AI will use Parallel.ai to search for
+     * information to answer user queries. The search results will be grounded on
+     * Parallel.ai and presented to the model for response generation
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.ParallelAiSearch parallel_ai_search = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $parallel_ai_search = null;
+    /**
+     * Optional. Uses Exa.ai to search for information to
+     * answer user queries. The search results will be grounded on Exa.ai
+     * and presented to the model for response generation
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.ExaAiSearch exa_ai_search = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $exa_ai_search = null;
+    /**
      * Optional. CodeExecution tool type.
      * Enables the model to execute code as part of generation.
      *
@@ -126,6 +142,14 @@ class Tool extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\EnterpriseWebSearch $enterprise_web_search
      *           Optional. Tool to support searching public web data, powered by Vertex AI
      *           Search and Sec4 compliance.
+     *     @type \Google\Cloud\AIPlatform\V1\Tool\ParallelAiSearch $parallel_ai_search
+     *           Optional. If specified, Vertex AI will use Parallel.ai to search for
+     *           information to answer user queries. The search results will be grounded on
+     *           Parallel.ai and presented to the model for response generation
+     *     @type \Google\Cloud\AIPlatform\V1\Tool\ExaAiSearch $exa_ai_search
+     *           Optional. Uses Exa.ai to search for information to
+     *           answer user queries. The search results will be grounded on Exa.ai
+     *           and presented to the model for response generation
      *     @type \Google\Cloud\AIPlatform\V1\Tool\CodeExecution $code_execution
      *           Optional. CodeExecution tool type.
      *           Enables the model to execute code as part of generation.
@@ -374,6 +398,86 @@ class Tool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EnterpriseWebSearch::class);
         $this->enterprise_web_search = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If specified, Vertex AI will use Parallel.ai to search for
+     * information to answer user queries. The search results will be grounded on
+     * Parallel.ai and presented to the model for response generation
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.ParallelAiSearch parallel_ai_search = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\Tool\ParallelAiSearch|null
+     */
+    public function getParallelAiSearch()
+    {
+        return $this->parallel_ai_search;
+    }
+
+    public function hasParallelAiSearch()
+    {
+        return isset($this->parallel_ai_search);
+    }
+
+    public function clearParallelAiSearch()
+    {
+        unset($this->parallel_ai_search);
+    }
+
+    /**
+     * Optional. If specified, Vertex AI will use Parallel.ai to search for
+     * information to answer user queries. The search results will be grounded on
+     * Parallel.ai and presented to the model for response generation
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.ParallelAiSearch parallel_ai_search = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\Tool\ParallelAiSearch $var
+     * @return $this
+     */
+    public function setParallelAiSearch($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Tool\ParallelAiSearch::class);
+        $this->parallel_ai_search = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Uses Exa.ai to search for information to
+     * answer user queries. The search results will be grounded on Exa.ai
+     * and presented to the model for response generation
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.ExaAiSearch exa_ai_search = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\Tool\ExaAiSearch|null
+     */
+    public function getExaAiSearch()
+    {
+        return $this->exa_ai_search;
+    }
+
+    public function hasExaAiSearch()
+    {
+        return isset($this->exa_ai_search);
+    }
+
+    public function clearExaAiSearch()
+    {
+        unset($this->exa_ai_search);
+    }
+
+    /**
+     * Optional. Uses Exa.ai to search for information to
+     * answer user queries. The search results will be grounded on Exa.ai
+     * and presented to the model for response generation
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.ExaAiSearch exa_ai_search = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\Tool\ExaAiSearch $var
+     * @return $this
+     */
+    public function setExaAiSearch($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Tool\ExaAiSearch::class);
+        $this->exa_ai_search = $var;
 
         return $this;
     }

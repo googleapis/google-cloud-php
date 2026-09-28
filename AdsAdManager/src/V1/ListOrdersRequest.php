@@ -42,8 +42,31 @@ class ListOrdersRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
     /**
      * Optional. Expression to filter the response.
-     * See syntax details at
-     * https://developers.google.com/ad-manager/api/beta/filters
+     *  See syntax details at
+     *  https://developers.google.com/ad-manager/api/beta/filters
+     * **Filterable fields:**
+     * * `advertiser`
+     * * `agency`
+     * * `appliedTeams`
+     * * `archived`
+     * * `creator`
+     * * `displayName`
+     * * `endTime`
+     * * `externalOrderId`
+     * * `impressionsDelivered`
+     * * `name`
+     * * `orderId`
+     * * `poNumber`
+     * * `programmatic`
+     * * `salesperson`
+     * * `secondarySalespeople`
+     * * `secondaryTraffickers`
+     * * `startTime`
+     * * `status`
+     * * `totalClicksDelivered`
+     * * `totalViewableImpressionsDelivered`
+     * * `trafficker`
+     * * `updateTime`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -99,8 +122,31 @@ class ListOrdersRequest extends \Google\Protobuf\Internal\Message
      *           the call that provided the page token.
      *     @type string $filter
      *           Optional. Expression to filter the response.
-     *           See syntax details at
-     *           https://developers.google.com/ad-manager/api/beta/filters
+     *            See syntax details at
+     *            https://developers.google.com/ad-manager/api/beta/filters
+     *           **Filterable fields:**
+     *           * `advertiser`
+     *           * `agency`
+     *           * `appliedTeams`
+     *           * `archived`
+     *           * `creator`
+     *           * `displayName`
+     *           * `endTime`
+     *           * `externalOrderId`
+     *           * `impressionsDelivered`
+     *           * `name`
+     *           * `orderId`
+     *           * `poNumber`
+     *           * `programmatic`
+     *           * `salesperson`
+     *           * `secondarySalespeople`
+     *           * `secondaryTraffickers`
+     *           * `startTime`
+     *           * `status`
+     *           * `totalClicksDelivered`
+     *           * `totalViewableImpressionsDelivered`
+     *           * `trafficker`
+     *           * `updateTime`
      *     @type string $order_by
      *           Optional. Expression to specify sorting order.
      *           See syntax details at
@@ -208,8 +254,31 @@ class ListOrdersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Expression to filter the response.
-     * See syntax details at
-     * https://developers.google.com/ad-manager/api/beta/filters
+     *  See syntax details at
+     *  https://developers.google.com/ad-manager/api/beta/filters
+     * **Filterable fields:**
+     * * `advertiser`
+     * * `agency`
+     * * `appliedTeams`
+     * * `archived`
+     * * `creator`
+     * * `displayName`
+     * * `endTime`
+     * * `externalOrderId`
+     * * `impressionsDelivered`
+     * * `name`
+     * * `orderId`
+     * * `poNumber`
+     * * `programmatic`
+     * * `salesperson`
+     * * `secondarySalespeople`
+     * * `secondaryTraffickers`
+     * * `startTime`
+     * * `status`
+     * * `totalClicksDelivered`
+     * * `totalViewableImpressionsDelivered`
+     * * `trafficker`
+     * * `updateTime`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -221,8 +290,31 @@ class ListOrdersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Expression to filter the response.
-     * See syntax details at
-     * https://developers.google.com/ad-manager/api/beta/filters
+     *  See syntax details at
+     *  https://developers.google.com/ad-manager/api/beta/filters
+     * **Filterable fields:**
+     * * `advertiser`
+     * * `agency`
+     * * `appliedTeams`
+     * * `archived`
+     * * `creator`
+     * * `displayName`
+     * * `endTime`
+     * * `externalOrderId`
+     * * `impressionsDelivered`
+     * * `name`
+     * * `orderId`
+     * * `poNumber`
+     * * `programmatic`
+     * * `salesperson`
+     * * `secondarySalespeople`
+     * * `secondaryTraffickers`
+     * * `startTime`
+     * * `status`
+     * * `totalClicksDelivered`
+     * * `totalViewableImpressionsDelivered`
+     * * `trafficker`
+     * * `updateTime`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

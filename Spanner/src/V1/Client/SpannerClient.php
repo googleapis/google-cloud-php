@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,6 +41,7 @@ use Google\Cloud\Spanner\V1\BatchCreateSessionsResponse;
 use Google\Cloud\Spanner\V1\BatchWriteRequest;
 use Google\Cloud\Spanner\V1\BatchWriteResponse;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
+use Google\Cloud\Spanner\V1\CacheUpdate;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
@@ -49,6 +50,7 @@ use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\FetchCacheUpdateRequest;
 use Google\Cloud\Spanner\V1\GetSessionRequest;
 use Google\Cloud\Spanner\V1\ListSessionsRequest;
 use Google\Cloud\Spanner\V1\Mutation;
@@ -117,7 +119,11 @@ final class SpannerClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/spanner.data',
@@ -321,8 +327,10 @@ final class SpannerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreateSessions(BatchCreateSessionsRequest $request, array $callOptions = []): BatchCreateSessionsResponse
-    {
+    public function batchCreateSessions(
+        BatchCreateSessionsRequest $request,
+        array $callOptions = []
+    ): BatchCreateSessionsResponse {
         return $this->startApiCall('BatchCreateSessions', $request, $callOptions)->wait();
     }
 
@@ -606,6 +614,36 @@ final class SpannerClient
     public function executeStreamingSql(ExecuteSqlRequest $request, array $callOptions = []): ServerStream
     {
         return $this->startApiCall('ExecuteStreamingSql', $request, $callOptions);
+    }
+
+    /**
+     * Retrieves a cache update for a given database.
+     *
+     * This RPC can be used to warm up the client cache by fetching key recipes
+     * and server information for a given database. It is recommended to call
+     * this RPC at the beginning of the client's lifecycle, prior to any other
+     * data plane operations.
+     *
+     * The cache update is returned as a stream because the response can be too
+     * large to fit into a single `CacheUpdate` message.
+     *
+     * @example samples/V1/SpannerClient/fetch_cache_update.php
+     *
+     * @param FetchCacheUpdateRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return ServerStream<CacheUpdate>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchCacheUpdate(FetchCacheUpdateRequest $request, array $callOptions = []): ServerStream
+    {
+        return $this->startApiCall('FetchCacheUpdate', $request, $callOptions);
     }
 
     /**

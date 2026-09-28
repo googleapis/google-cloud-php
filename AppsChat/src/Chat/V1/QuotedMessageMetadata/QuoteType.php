@@ -20,20 +20,28 @@ class QuoteType
      */
     const QUOTE_TYPE_UNSPECIFIED = 0;
     /**
-     * If quote_type is `REPLY`, you can do the following:
+     * When `quote_type` is `REPLY`, you can do the following:
      * * If you're replying in a thread, you can quote another message in that
      * thread.
      * * If you're creating a root message, you can quote another root message
      * in that space.
-     * You can't quote a message reply from a different thread.
      *
      * Generated from protobuf enum <code>REPLY = 1;</code>
      */
     const REPLY = 1;
+    /**
+     * When `quote_type` is `FORWARD`, you can quote a:
+     * * Message from a different space.
+     * * Message reply from a different thread in the same space.
+     *
+     * Generated from protobuf enum <code>FORWARD = 2;</code>
+     */
+    const FORWARD = 2;
 
     private static $valueToName = [
         self::QUOTE_TYPE_UNSPECIFIED => 'QUOTE_TYPE_UNSPECIFIED',
         self::REPLY => 'REPLY',
+        self::FORWARD => 'FORWARD',
     ];
 
     public static function name($value)

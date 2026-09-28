@@ -270,7 +270,7 @@ class CalculateStatsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getIssueMatches()
     {
-        if ($this->issue_matches->count() !== 0) {
+        if (count($this->issue_matches) !== 0) {
             @trigger_error('issue_matches is deprecated.', E_USER_DEPRECATED);
         }
         return $this->issue_matches;

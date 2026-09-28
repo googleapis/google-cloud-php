@@ -8,7 +8,7 @@
         "RecaptchaEnterpriseService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RecaptchaEnterpriseServiceGapicClient",
+                    "libraryClient": "RecaptchaEnterpriseServiceClient",
                     "rpcs": {
                         "AddIpOverride": {
                             "methods": [
@@ -58,6 +58,11 @@
                         "GetMetrics": {
                             "methods": [
                                 "getMetrics"
+                            ]
+                        },
+                        "GetPolicy": {
+                            "methods": [
+                                "getPolicy"
                             ]
                         },
                         "ListFirewallPolicies": {
@@ -118,6 +123,11 @@
                         "UpdateKey": {
                             "methods": [
                                 "updateKey"
+                            ]
+                        },
+                        "UpdatePolicy": {
+                            "methods": [
+                                "updatePolicy"
                             ]
                         }
                     }

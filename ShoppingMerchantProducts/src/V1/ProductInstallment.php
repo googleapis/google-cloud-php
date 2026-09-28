@@ -39,6 +39,18 @@ class ProductInstallment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.shopping.merchant.products.v1.CreditType credit_type = 4;</code>
      */
     protected $credit_type = null;
+    /**
+     * Optional. Annual percentage rate for `credit_type` finance
+     *
+     * Generated from protobuf field <code>optional double annual_percentage_rate = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $annual_percentage_rate = null;
+    /**
+     * Optional. Total amount the buyer has to pay, including interest.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.type.Price total_amount = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $total_amount = null;
 
     /**
      * Constructor.
@@ -54,6 +66,10 @@ class ProductInstallment extends \Google\Protobuf\Internal\Message
      *           The up-front down payment amount the buyer has to pay.
      *     @type int $credit_type
      *           Type of installment payments.
+     *     @type float $annual_percentage_rate
+     *           Optional. Annual percentage rate for `credit_type` finance
+     *     @type \Google\Shopping\Type\Price $total_amount
+     *           Optional. Total amount the buyer has to pay, including interest.
      * }
      */
     public function __construct($data = NULL) {
@@ -191,6 +207,78 @@ class ProductInstallment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Products\V1\CreditType::class);
         $this->credit_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Annual percentage rate for `credit_type` finance
+     *
+     * Generated from protobuf field <code>optional double annual_percentage_rate = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
+     */
+    public function getAnnualPercentageRate()
+    {
+        return isset($this->annual_percentage_rate) ? $this->annual_percentage_rate : 0.0;
+    }
+
+    public function hasAnnualPercentageRate()
+    {
+        return isset($this->annual_percentage_rate);
+    }
+
+    public function clearAnnualPercentageRate()
+    {
+        unset($this->annual_percentage_rate);
+    }
+
+    /**
+     * Optional. Annual percentage rate for `credit_type` finance
+     *
+     * Generated from protobuf field <code>optional double annual_percentage_rate = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setAnnualPercentageRate($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->annual_percentage_rate = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Total amount the buyer has to pay, including interest.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.type.Price total_amount = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Shopping\Type\Price|null
+     */
+    public function getTotalAmount()
+    {
+        return $this->total_amount;
+    }
+
+    public function hasTotalAmount()
+    {
+        return isset($this->total_amount);
+    }
+
+    public function clearTotalAmount()
+    {
+        unset($this->total_amount);
+    }
+
+    /**
+     * Optional. Total amount the buyer has to pay, including interest.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.type.Price total_amount = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Shopping\Type\Price $var
+     * @return $this
+     */
+    public function setTotalAmount($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Type\Price::class);
+        $this->total_amount = $var;
 
         return $this;
     }

@@ -49,6 +49,46 @@ class Item extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.ItemParameter additional_item_parameters = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $additional_item_parameters;
+    /**
+     * Optional. The Merchant Center ID associated with the item. For Store Sales
+     * events this will override the value set at the cart level.  This field is
+     * ignored for other events.
+     *
+     * Generated from protobuf field <code>string merchant_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $merchant_id = '';
+    /**
+     * Optional. The feed label of the Merchant Center feed. If countries are
+     * still being used, the 2-letter country code in ISO-3166-1 alpha-2 can be
+     * used instead. For Store Sales events this will override the value set at
+     * the cart level. This field is ignored for other events.
+     *
+     * Generated from protobuf field <code>string merchant_feed_label = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $merchant_feed_label = '';
+    /**
+     * Optional. The language code in ISO 639-1 associated with the Merchant
+     * Center feed where your items are uploaded.
+     *
+     * Generated from protobuf field <code>string merchant_feed_language_code = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $merchant_feed_language_code = '';
+    /**
+     * Optional. The conversion value associated with this item within the event,
+     * for cases where the conversion value is different for each item.
+     *
+     * Generated from protobuf field <code>optional double conversion_value = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $conversion_value = null;
+    /**
+     * Optional. Additional key/value pair information to send to the conversion
+     * containers (conversion action or Floodlight activity), when tracking
+     * per-item
+     *  conversions.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.ItemCustomVariable custom_variables = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $custom_variables;
 
     /**
      * Constructor.
@@ -70,6 +110,26 @@ class Item extends \Google\Protobuf\Internal\Message
      *           item](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events)
      *           to be included within the event that were not already specified using other
      *           structured fields.
+     *     @type string $merchant_id
+     *           Optional. The Merchant Center ID associated with the item. For Store Sales
+     *           events this will override the value set at the cart level.  This field is
+     *           ignored for other events.
+     *     @type string $merchant_feed_label
+     *           Optional. The feed label of the Merchant Center feed. If countries are
+     *           still being used, the 2-letter country code in ISO-3166-1 alpha-2 can be
+     *           used instead. For Store Sales events this will override the value set at
+     *           the cart level. This field is ignored for other events.
+     *     @type string $merchant_feed_language_code
+     *           Optional. The language code in ISO 639-1 associated with the Merchant
+     *           Center feed where your items are uploaded.
+     *     @type float $conversion_value
+     *           Optional. The conversion value associated with this item within the event,
+     *           for cases where the conversion value is different for each item.
+     *     @type \Google\Ads\DataManager\V1\ItemCustomVariable[] $custom_variables
+     *           Optional. Additional key/value pair information to send to the conversion
+     *           containers (conversion action or Floodlight activity), when tracking
+     *           per-item
+     *            conversions.
      * }
      */
     public function __construct($data = NULL) {
@@ -211,6 +271,166 @@ class Item extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\DataManager\V1\ItemParameter::class);
         $this->additional_item_parameters = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Merchant Center ID associated with the item. For Store Sales
+     * events this will override the value set at the cart level.  This field is
+     * ignored for other events.
+     *
+     * Generated from protobuf field <code>string merchant_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getMerchantId()
+    {
+        return $this->merchant_id;
+    }
+
+    /**
+     * Optional. The Merchant Center ID associated with the item. For Store Sales
+     * events this will override the value set at the cart level.  This field is
+     * ignored for other events.
+     *
+     * Generated from protobuf field <code>string merchant_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMerchantId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->merchant_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The feed label of the Merchant Center feed. If countries are
+     * still being used, the 2-letter country code in ISO-3166-1 alpha-2 can be
+     * used instead. For Store Sales events this will override the value set at
+     * the cart level. This field is ignored for other events.
+     *
+     * Generated from protobuf field <code>string merchant_feed_label = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getMerchantFeedLabel()
+    {
+        return $this->merchant_feed_label;
+    }
+
+    /**
+     * Optional. The feed label of the Merchant Center feed. If countries are
+     * still being used, the 2-letter country code in ISO-3166-1 alpha-2 can be
+     * used instead. For Store Sales events this will override the value set at
+     * the cart level. This field is ignored for other events.
+     *
+     * Generated from protobuf field <code>string merchant_feed_label = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMerchantFeedLabel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->merchant_feed_label = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The language code in ISO 639-1 associated with the Merchant
+     * Center feed where your items are uploaded.
+     *
+     * Generated from protobuf field <code>string merchant_feed_language_code = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getMerchantFeedLanguageCode()
+    {
+        return $this->merchant_feed_language_code;
+    }
+
+    /**
+     * Optional. The language code in ISO 639-1 associated with the Merchant
+     * Center feed where your items are uploaded.
+     *
+     * Generated from protobuf field <code>string merchant_feed_language_code = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMerchantFeedLanguageCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->merchant_feed_language_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The conversion value associated with this item within the event,
+     * for cases where the conversion value is different for each item.
+     *
+     * Generated from protobuf field <code>optional double conversion_value = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
+     */
+    public function getConversionValue()
+    {
+        return isset($this->conversion_value) ? $this->conversion_value : 0.0;
+    }
+
+    public function hasConversionValue()
+    {
+        return isset($this->conversion_value);
+    }
+
+    public function clearConversionValue()
+    {
+        unset($this->conversion_value);
+    }
+
+    /**
+     * Optional. The conversion value associated with this item within the event,
+     * for cases where the conversion value is different for each item.
+     *
+     * Generated from protobuf field <code>optional double conversion_value = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setConversionValue($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->conversion_value = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Additional key/value pair information to send to the conversion
+     * containers (conversion action or Floodlight activity), when tracking
+     * per-item
+     *  conversions.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.ItemCustomVariable custom_variables = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Ads\DataManager\V1\ItemCustomVariable>
+     */
+    public function getCustomVariables()
+    {
+        return $this->custom_variables;
+    }
+
+    /**
+     * Optional. Additional key/value pair information to send to the conversion
+     * containers (conversion action or Floodlight activity), when tracking
+     * per-item
+     *  conversions.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.ItemCustomVariable custom_variables = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\DataManager\V1\ItemCustomVariable[] $var
+     * @return $this
+     */
+    public function setCustomVariables($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\DataManager\V1\ItemCustomVariable::class);
+        $this->custom_variables = $arr;
 
         return $this;
     }

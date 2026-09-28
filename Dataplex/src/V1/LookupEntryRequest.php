@@ -25,6 +25,9 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. View to control which parts of an entry the service should
      * return.
+     * **Please check the limitations on returned aspects in the Entry view
+     * documentation. Amount of returned aspects depends on the selected Entry
+     * View.**
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntryView view = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -63,6 +66,9 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
      *     @type int $view
      *           Optional. View to control which parts of an entry the service should
      *           return.
+     *           **Please check the limitations on returned aspects in the Entry view
+     *           documentation. Amount of returned aspects depends on the selected Entry
+     *           View.**
      *     @type string[] $aspect_types
      *           Optional. Limits the aspects returned to the provided aspect types.
      *           It only works for CUSTOM view.
@@ -110,6 +116,9 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. View to control which parts of an entry the service should
      * return.
+     * **Please check the limitations on returned aspects in the Entry view
+     * documentation. Amount of returned aspects depends on the selected Entry
+     * View.**
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntryView view = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -122,6 +131,9 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. View to control which parts of an entry the service should
      * return.
+     * **Please check the limitations on returned aspects in the Entry view
+     * documentation. Amount of returned aspects depends on the selected Entry
+     * View.**
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntryView view = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

@@ -198,7 +198,7 @@ class ConversationalSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getAdditionalFilters()
     {
-        if ($this->additional_filters->count() !== 0) {
+        if (count($this->additional_filters) !== 0) {
             @trigger_error('additional_filters is deprecated.', E_USER_DEPRECATED);
         }
         return $this->additional_filters;

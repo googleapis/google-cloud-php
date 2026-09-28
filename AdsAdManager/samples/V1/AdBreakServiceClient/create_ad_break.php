@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ use Google\ApiCore\ApiException;
 use Google\Protobuf\Duration;
 
 /**
- * API to create an `AdBreak` object.
+ * Creates an `AdBreak` object.
  *
  * Informs DAI of an upcoming ad break for a live stream event, with an
  * optional expected start time. DAI will begin decisioning ads for the break

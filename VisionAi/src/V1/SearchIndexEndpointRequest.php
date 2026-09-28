@@ -18,7 +18,7 @@ class SearchIndexEndpointRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The index endpoint to search.
      * Format:
-     * `projects/{project_id}/locations/{location_id}/indexEndpoints/{index_endpoint_id}'
+     * `projects/{project_id}/locations/{location_id}/indexEndpoints/{index_endpoint_id}`
      *
      * Generated from protobuf field <code>string index_endpoint = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -68,7 +68,7 @@ class SearchIndexEndpointRequest extends \Google\Protobuf\Internal\Message
      *     @type string $index_endpoint
      *           Required. The index endpoint to search.
      *           Format:
-     *           `projects/{project_id}/locations/{location_id}/indexEndpoints/{index_endpoint_id}'
+     *           `projects/{project_id}/locations/{location_id}/indexEndpoints/{index_endpoint_id}`
      *     @type \Google\Cloud\VisionAI\V1\Criteria[] $criteria
      *           Criteria applied to search results.
      *     @type \Google\Cloud\VisionAI\V1\Criteria[] $exclusion_criteria
@@ -155,7 +155,7 @@ class SearchIndexEndpointRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The index endpoint to search.
      * Format:
-     * `projects/{project_id}/locations/{location_id}/indexEndpoints/{index_endpoint_id}'
+     * `projects/{project_id}/locations/{location_id}/indexEndpoints/{index_endpoint_id}`
      *
      * Generated from protobuf field <code>string index_endpoint = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -168,7 +168,7 @@ class SearchIndexEndpointRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The index endpoint to search.
      * Format:
-     * `projects/{project_id}/locations/{location_id}/indexEndpoints/{index_endpoint_id}'
+     * `projects/{project_id}/locations/{location_id}/indexEndpoints/{index_endpoint_id}`
      *
      * Generated from protobuf field <code>string index_endpoint = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

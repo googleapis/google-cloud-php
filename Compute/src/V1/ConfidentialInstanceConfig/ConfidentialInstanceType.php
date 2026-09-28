@@ -20,6 +20,18 @@ class ConfidentialInstanceType
      */
     const UNDEFINED_CONFIDENTIAL_INSTANCE_TYPE = 0;
     /**
+     * Bare Metal Secure AI.
+     *
+     * Generated from protobuf enum <code>BMSAI = 63328144;</code>
+     */
+    const BMSAI = 63328144;
+    /**
+     * Arm Confidential Compute Architecture.
+     *
+     * Generated from protobuf enum <code>CCA = 66529;</code>
+     */
+    const CCA = 66529;
+    /**
      * No type specified. Do not use this value.
      *
      * Generated from protobuf enum <code>CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED = 115021829;</code>
@@ -46,6 +58,8 @@ class ConfidentialInstanceType
 
     private static $valueToName = [
         self::UNDEFINED_CONFIDENTIAL_INSTANCE_TYPE => 'UNDEFINED_CONFIDENTIAL_INSTANCE_TYPE',
+        self::BMSAI => 'BMSAI',
+        self::CCA => 'CCA',
         self::CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED => 'CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED',
         self::SEV => 'SEV',
         self::SEV_SNP => 'SEV_SNP',

@@ -44,6 +44,13 @@ class PropertySummary extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string parent = 4;</code>
      */
     protected $parent = '';
+    /**
+     * If true, then the user has a Google Analytics role that permits them to
+     * edit the property.
+     *
+     * Generated from protobuf field <code>bool can_edit = 5;</code>
+     */
+    protected $can_edit = false;
 
     /**
      * Constructor.
@@ -64,6 +71,9 @@ class PropertySummary extends \Google\Protobuf\Internal\Message
      *           Note: The Property-Moving UI can be used to change the parent.
      *           Format: accounts/{account}, properties/{property}
      *           Example: "accounts/100", "properties/200"
+     *     @type bool $can_edit
+     *           If true, then the user has a Google Analytics role that permits them to
+     *           edit the property.
      * }
      */
     public function __construct($data = NULL) {
@@ -181,6 +191,34 @@ class PropertySummary extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, then the user has a Google Analytics role that permits them to
+     * edit the property.
+     *
+     * Generated from protobuf field <code>bool can_edit = 5;</code>
+     * @return bool
+     */
+    public function getCanEdit()
+    {
+        return $this->can_edit;
+    }
+
+    /**
+     * If true, then the user has a Google Analytics role that permits them to
+     * edit the property.
+     *
+     * Generated from protobuf field <code>bool can_edit = 5;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCanEdit($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->can_edit = $var;
 
         return $this;
     }

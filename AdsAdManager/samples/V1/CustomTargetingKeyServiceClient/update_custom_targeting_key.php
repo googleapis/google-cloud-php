@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,10 +29,9 @@ use Google\Ads\AdManager\V1\CustomTargetingKeyReportableTypeEnum\CustomTargeting
 use Google\Ads\AdManager\V1\CustomTargetingKeyTypeEnum\CustomTargetingKeyType;
 use Google\Ads\AdManager\V1\UpdateCustomTargetingKeyRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
- * API to update a `CustomTargetingKey` object.
+ * Updates a `CustomTargetingKey` object.
  *
  * @param int $customTargetingKeyType           Indicates whether users will select from predefined values or
  *                                              create new targeting values, while specifying targeting criteria for a line
@@ -50,10 +49,8 @@ function update_custom_targeting_key_sample(
     $customTargetingKey = (new CustomTargetingKey())
         ->setType($customTargetingKeyType)
         ->setReportableType($customTargetingKeyReportableType);
-    $updateMask = new FieldMask();
     $request = (new UpdateCustomTargetingKeyRequest())
-        ->setCustomTargetingKey($customTargetingKey)
-        ->setUpdateMask($updateMask);
+        ->setCustomTargetingKey($customTargetingKey);
 
     // Call the API and handle any network failures.
     try {

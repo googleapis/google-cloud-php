@@ -37,7 +37,7 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * Output only. [Output Only] Provisioned capacities for each SKU for this Exapool in GiB
+     * Provisioned capacities for each SKU for this Exapool in GiB
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.StoragePoolExapoolProvisionedCapacityGb exapool_provisioned_capacity_gb = 345174240;</code>
      */
@@ -143,6 +143,12 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      */
     protected $self_link_with_id = null;
     /**
+     * Share settings for the storage pool.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StoragePoolShareSettings share_settings = 266668163;</code>
+     */
+    protected $share_settings = null;
+    /**
      * Output only. [Output Only] The status of storage pool creation.
      *      - CREATING: Storage pool is provisioning.
      *      storagePool.
@@ -191,7 +197,7 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
      *     @type \Google\Cloud\Compute\V1\StoragePoolExapoolProvisionedCapacityGb $exapool_provisioned_capacity_gb
-     *           Output only. [Output Only] Provisioned capacities for each SKU for this Exapool in GiB
+     *           Provisioned capacities for each SKU for this Exapool in GiB
      *     @type int|string $id
      *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
@@ -240,6 +246,8 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      *           Output only. [Output Only] Server-defined fully-qualified URL for this resource.
      *     @type string $self_link_with_id
      *           Output only. [Output Only] Server-defined URL for this resource's resource id.
+     *     @type \Google\Cloud\Compute\V1\StoragePoolShareSettings $share_settings
+     *           Share settings for the storage pool.
      *     @type string $state
      *           Output only. [Output Only] The status of storage pool creation.
      *                - CREATING: Storage pool is provisioning.
@@ -378,7 +386,7 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output Only] Provisioned capacities for each SKU for this Exapool in GiB
+     * Provisioned capacities for each SKU for this Exapool in GiB
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.StoragePoolExapoolProvisionedCapacityGb exapool_provisioned_capacity_gb = 345174240;</code>
      * @return \Google\Cloud\Compute\V1\StoragePoolExapoolProvisionedCapacityGb|null
@@ -399,7 +407,7 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output Only] Provisioned capacities for each SKU for this Exapool in GiB
+     * Provisioned capacities for each SKU for this Exapool in GiB
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.StoragePoolExapoolProvisionedCapacityGb exapool_provisioned_capacity_gb = 345174240;</code>
      * @param \Google\Cloud\Compute\V1\StoragePoolExapoolProvisionedCapacityGb $var
@@ -911,6 +919,42 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->self_link_with_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Share settings for the storage pool.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StoragePoolShareSettings share_settings = 266668163;</code>
+     * @return \Google\Cloud\Compute\V1\StoragePoolShareSettings|null
+     */
+    public function getShareSettings()
+    {
+        return $this->share_settings;
+    }
+
+    public function hasShareSettings()
+    {
+        return isset($this->share_settings);
+    }
+
+    public function clearShareSettings()
+    {
+        unset($this->share_settings);
+    }
+
+    /**
+     * Share settings for the storage pool.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StoragePoolShareSettings share_settings = 266668163;</code>
+     * @param \Google\Cloud\Compute\V1\StoragePoolShareSettings $var
+     * @return $this
+     */
+    public function setShareSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\StoragePoolShareSettings::class);
+        $this->share_settings = $var;
 
         return $this;
     }

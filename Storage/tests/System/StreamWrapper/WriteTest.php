@@ -80,4 +80,30 @@ class WriteTest extends StreamWrapperTestCase
 
         $this->assertFileExists($this->fileUrl);
     }
+
+    public function testFwriteWithXMode()
+    {
+        $this->assertFileDoesNotExist($this->fileUrl);
+
+        $output = 'This is a test with x mode';
+        $fd = fopen($this->fileUrl, 'x');
+        $this->assertIsResource($fd);
+        $this->assertEquals(strlen($output), fwrite($fd, $output));
+        $this->assertTrue(fclose($fd));
+
+        $this->assertFileExists($this->fileUrl);
+    }
+
+    public function testFwriteWithXModeFailsIfExists()
+    {
+        $this->assertFileDoesNotExist($this->fileUrl);
+
+        // Create the file first
+        touch($this->fileUrl);
+        $this->assertFileExists($this->fileUrl);
+
+        // Try to open with 'x' mode, should fail
+        $fd = @fopen($this->fileUrl, 'x');
+        $this->assertFalse($fd);
+    }
 }

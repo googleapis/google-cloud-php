@@ -14,7 +14,7 @@ use Google\Protobuf\RepeatedField;
  * or project.
  * The generated data profiles are retained according to the
  * [data retention policy]
- * (https://cloud.google.com/sensitive-data-protection/docs/data-profiles#retention).
+ * (https://docs.cloud.google.com/sensitive-data-protection/docs/data-profiles#retention).
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DataProfileJobConfig</code>
  */
@@ -53,7 +53,7 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      * template is provided for a region with data, that region's data will not be
      * scanned.
      * For more information, see
-     * https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
      *
      * Generated from protobuf field <code>repeated string inspect_templates = 7;</code>
      */
@@ -92,7 +92,7 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      *           template is provided for a region with data, that region's data will not be
      *           scanned.
      *           For more information, see
-     *           https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
+     *           https://docs.cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
      *     @type \Google\Cloud\Dlp\V2\DataProfileAction[] $data_profile_actions
      *           Actions to execute at the completion of the job.
      * }
@@ -217,7 +217,7 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      * template is provided for a region with data, that region's data will not be
      * scanned.
      * For more information, see
-     * https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
      *
      * Generated from protobuf field <code>repeated string inspect_templates = 7;</code>
      * @return RepeatedField<string>
@@ -240,7 +240,7 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      * template is provided for a region with data, that region's data will not be
      * scanned.
      * For more information, see
-     * https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
      *
      * Generated from protobuf field <code>repeated string inspect_templates = 7;</code>
      * @param string[] $var

@@ -36,6 +36,12 @@ class AdaptiveMtTranslateRequest extends \Google\Protobuf\Internal\Message
      */
     private $content;
     /**
+     * The format of the source text.
+     *
+     * Generated from protobuf field <code>string mime_type = 4;</code>
+     */
+    protected $mime_type = '';
+    /**
      * Configuration for caller provided reference sentences.
      *
      * Generated from protobuf field <code>optional .google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentenceConfig reference_sentence_config = 6;</code>
@@ -82,6 +88,8 @@ class AdaptiveMtTranslateRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location-id}/adaptiveMtDatasets/{dataset}`
      *     @type string[] $content
      *           Required. The content of the input in string format.
+     *     @type string $mime_type
+     *           The format of the source text.
      *     @type \Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\ReferenceSentenceConfig $reference_sentence_config
      *           Configuration for caller provided reference sentences.
      *     @type \Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\GlossaryConfig $glossary_config
@@ -173,6 +181,32 @@ class AdaptiveMtTranslateRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->content = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The format of the source text.
+     *
+     * Generated from protobuf field <code>string mime_type = 4;</code>
+     * @return string
+     */
+    public function getMimeType()
+    {
+        return $this->mime_type;
+    }
+
+    /**
+     * The format of the source text.
+     *
+     * Generated from protobuf field <code>string mime_type = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMimeType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->mime_type = $var;
 
         return $this;
     }

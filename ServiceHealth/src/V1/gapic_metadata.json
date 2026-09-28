@@ -8,7 +8,7 @@
         "ServiceHealth": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ServiceHealthGapicClient",
+                    "libraryClient": "ServiceHealthClient",
                     "rpcs": {
                         "GetEvent": {
                             "methods": [

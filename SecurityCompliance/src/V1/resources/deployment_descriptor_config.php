@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -161,8 +161,16 @@ return [
             ],
             'templateMap' => [
                 'cloudControlDeployment' => 'organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}',
+                'framework' => 'organizations/{organization}/locations/{location}/frameworks/{framework}',
                 'frameworkDeployment' => 'organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment}',
+                'location' => 'projects/{project}/locations/{location}',
                 'organizationLocation' => 'organizations/{organization}/locations/{location}',
+                'organizationLocationCloudControlDeployment' => 'organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}',
+                'organizationLocationFramework' => 'organizations/{organization}/locations/{location}/frameworks/{framework}',
+                'organizationLocationFrameworkDeployment' => 'organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment}',
+                'projectLocationCloudControlDeployment' => 'projects/{project}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}',
+                'projectLocationFramework' => 'projects/{project}/locations/{location}/frameworks/{framework}',
+                'projectLocationFrameworkDeployment' => 'projects/{project}/locations/{location}/frameworkDeployments/{framework_deployment}',
             ],
         ],
     ],

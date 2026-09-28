@@ -7,9 +7,6 @@ namespace Google\Cloud\Compute\V1\NetworkProfileNetworkFeatures;
 use UnexpectedValueException;
 
 /**
- * 
- * Additional supported values which may be not listed in the enum directly due to technical reasons:
- * PRIVATE_SERVICE_CONNECT
  *
  * Protobuf type <code>google.cloud.compute.v1.NetworkProfileNetworkFeatures.AddressPurposes</code>
  */
@@ -40,7 +37,7 @@ class AddressPurposes
      * of subnet/route in the VPC network and its peering networks. After the
      * VLAN attachment is created with the reserved IP address range, when
      * creating a new VPN gateway, its interface IP address is allocated
-     * from the associated VLAN attachment’s IP address range.
+     * from the associated VLAN attachment's IP address range.
      *
      * Generated from protobuf enum <code>IPSEC_INTERCONNECT = 340437251;</code>
      */
@@ -52,6 +49,9 @@ class AddressPurposes
      */
     const NAT_AUTO = 163666477;
     /**
+     * A private network IP address that can be used to configure Private
+     * Service Connect. This purpose can be specified only forGLOBAL addresses of Type INTERNAL
+     *
      * Generated from protobuf enum <code>PRIVATE_SERVICE_CONNECT = 48134724;</code>
      */
     const PRIVATE_SERVICE_CONNECT = 48134724;

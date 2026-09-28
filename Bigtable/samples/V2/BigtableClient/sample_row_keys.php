@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,6 +34,9 @@ use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
  * delimit contiguous sections of the table of approximately equal size,
  * which can be used to break up the data for distributed tasks like
  * mapreduces.
+ *
+ * If a `row_range` is provided in the request, the returned samples will be
+ * restricted to the specified range.
  *
  * @param string $formattedTableName Optional. The unique name of the table from which to sample row keys.
  *

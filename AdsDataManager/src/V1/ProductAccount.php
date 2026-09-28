@@ -31,11 +31,11 @@ class ProductAccount extends \Google\Protobuf\Internal\Message
      */
     protected $account_id = '';
     /**
-     * Optional. The type of the account. For example, `GOOGLE_ADS`.
+     * Required. The type of the account. For example, `GOOGLE_ADS`.
      * Either `account_type` or the deprecated `product` is required.
      * If both are set, the values must match.
      *
-     * Generated from protobuf field <code>.google.ads.datamanager.v1.ProductAccount.AccountType account_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.ProductAccount.AccountType account_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $account_type = 0;
 
@@ -52,7 +52,7 @@ class ProductAccount extends \Google\Protobuf\Internal\Message
      *     @type string $account_id
      *           Required. The ID of the account. For example, your Google Ads account ID.
      *     @type int $account_type
-     *           Optional. The type of the account. For example, `GOOGLE_ADS`.
+     *           Required. The type of the account. For example, `GOOGLE_ADS`.
      *           Either `account_type` or the deprecated `product` is required.
      *           If both are set, the values must match.
      * }
@@ -125,11 +125,11 @@ class ProductAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The type of the account. For example, `GOOGLE_ADS`.
+     * Required. The type of the account. For example, `GOOGLE_ADS`.
      * Either `account_type` or the deprecated `product` is required.
      * If both are set, the values must match.
      *
-     * Generated from protobuf field <code>.google.ads.datamanager.v1.ProductAccount.AccountType account_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.ProductAccount.AccountType account_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getAccountType()
@@ -138,11 +138,11 @@ class ProductAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The type of the account. For example, `GOOGLE_ADS`.
+     * Required. The type of the account. For example, `GOOGLE_ADS`.
      * Either `account_type` or the deprecated `product` is required.
      * If both are set, the values must match.
      *
-     * Generated from protobuf field <code>.google.ads.datamanager.v1.ProductAccount.AccountType account_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.ProductAccount.AccountType account_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */

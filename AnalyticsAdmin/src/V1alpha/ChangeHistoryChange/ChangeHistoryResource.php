@@ -85,6 +85,8 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
      *           A snapshot of a SubpropertySyncConfig resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\ReportingIdentitySettings $reporting_identity_settings
      *           A snapshot of a ReportingIdentitySettings resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\UserProvidedDataSettings $user_provided_data_settings
+     *           A snapshot of a UserProvidedDataSettings resource in change history.
      * }
      */
     public function __construct($data = NULL) {
@@ -993,6 +995,37 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\ReportingIdentitySettings::class);
         $this->writeOneof(34, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of a UserProvidedDataSettings resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.UserProvidedDataSettings user_provided_data_settings = 35;</code>
+     * @return \Google\Analytics\Admin\V1alpha\UserProvidedDataSettings|null
+     */
+    public function getUserProvidedDataSettings()
+    {
+        return $this->readOneof(35);
+    }
+
+    public function hasUserProvidedDataSettings()
+    {
+        return $this->hasOneof(35);
+    }
+
+    /**
+     * A snapshot of a UserProvidedDataSettings resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.UserProvidedDataSettings user_provided_data_settings = 35;</code>
+     * @param \Google\Analytics\Admin\V1alpha\UserProvidedDataSettings $var
+     * @return $this
+     */
+    public function setUserProvidedDataSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\UserProvidedDataSettings::class);
+        $this->writeOneof(35, $var);
 
         return $this;
     }

@@ -36,6 +36,12 @@ class LayoutTextBlock extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock blocks = 3;</code>
      */
     private $blocks;
+    /**
+     * Annotation of the text block.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Annotations annotations = 4;</code>
+     */
+    protected $annotations = null;
 
     /**
      * Constructor.
@@ -52,6 +58,8 @@ class LayoutTextBlock extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock[] $blocks
      *           A text block could further have child blocks.
      *           Repeated blocks support further hierarchies and nested blocks.
+     *     @type \Google\Cloud\DocumentAI\V1\Document\Annotations $annotations
+     *           Annotation of the text block.
      * }
      */
     public function __construct($data = NULL) {
@@ -139,6 +147,42 @@ class LayoutTextBlock extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock::class);
         $this->blocks = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Annotation of the text block.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Annotations annotations = 4;</code>
+     * @return \Google\Cloud\DocumentAI\V1\Document\Annotations|null
+     */
+    public function getAnnotations()
+    {
+        return $this->annotations;
+    }
+
+    public function hasAnnotations()
+    {
+        return isset($this->annotations);
+    }
+
+    public function clearAnnotations()
+    {
+        unset($this->annotations);
+    }
+
+    /**
+     * Annotation of the text block.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Annotations annotations = 4;</code>
+     * @param \Google\Cloud\DocumentAI\V1\Document\Annotations $var
+     * @return $this
+     */
+    public function setAnnotations($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\Document\Annotations::class);
+        $this->annotations = $var;
 
         return $this;
     }

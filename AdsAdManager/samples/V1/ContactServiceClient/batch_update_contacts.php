@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,10 +29,9 @@ use Google\Ads\AdManager\V1\Client\ContactServiceClient;
 use Google\Ads\AdManager\V1\Contact;
 use Google\Ads\AdManager\V1\UpdateContactRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
- * API to batch update `Contact` objects.
+ * Batch updates `Contact` objects.
  *
  * @param string $formattedParent                 The parent resource where `Contacts` will be updated.
  *                                                Format: `networks/{network_code}`
@@ -57,10 +56,8 @@ function batch_update_contacts_sample(
     $requestsContact = (new Contact())
         ->setDisplayName($requestsContactDisplayName)
         ->setCompany($formattedRequestsContactCompany);
-    $requestsUpdateMask = new FieldMask();
     $updateContactRequest = (new UpdateContactRequest())
-        ->setContact($requestsContact)
-        ->setUpdateMask($requestsUpdateMask);
+        ->setContact($requestsContact);
     $requests = [$updateContactRequest,];
     $request = (new BatchUpdateContactsRequest())
         ->setParent($formattedParent)

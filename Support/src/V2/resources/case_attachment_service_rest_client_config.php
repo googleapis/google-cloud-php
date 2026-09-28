@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,17 @@
 return [
     'interfaces' => [
         'google.cloud.support.v2.CaseAttachmentService' => [
+            'GetAttachment' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=*/*/cases/*/attachments/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListAttachments' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/cases/*}/attachments',

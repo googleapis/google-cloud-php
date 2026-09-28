@@ -10,10 +10,10 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * If set, attaches the [tags]
- * (https://cloud.google.com/resource-manager/docs/tags/tags-overview)
+ * (https://docs.cloud.google.com/resource-manager/docs/tags/tags-overview)
  * provided to profiled resources. Tags support [access
- * control](https://cloud.google.com/iam/docs/tags-access-control). You can
- * conditionally grant or deny access to a resource based on whether the
+ * control](https://docs.cloud.google.com/iam/docs/tags-access-control). You
+ * can conditionally grant or deny access to a resource based on whether the
  * resource has a specific tag.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DataProfileAction.TagResources</code>
@@ -40,11 +40,11 @@ class TagResources extends \Google\Protobuf\Internal\Message
     /**
      * Whether applying a tag to a resource should lower the risk of the profile
      * for that resource. For example, in conjunction with an [IAM deny
-     * policy](https://cloud.google.com/iam/docs/deny-overview), you can deny
-     * all principals a permission if a tag value is present, mitigating the
-     * risk of the resource. This also lowers the data risk of resources at the
-     * lower levels of the resource hierarchy. For example, reducing the data
-     * risk of a table data profile also reduces the data risk of the
+     * policy](https://docs.cloud.google.com/iam/docs/deny-overview), you can
+     * deny all principals a permission if a tag value is present, mitigating
+     * the risk of the resource. This also lowers the data risk of resources at
+     * the lower levels of the resource hierarchy. For example, reducing the
+     * data risk of a table data profile also reduces the data risk of the
      * constituent column data profiles.
      *
      * Generated from protobuf field <code>bool lower_data_risk_to_low = 3;</code>
@@ -69,11 +69,11 @@ class TagResources extends \Google\Protobuf\Internal\Message
      *     @type bool $lower_data_risk_to_low
      *           Whether applying a tag to a resource should lower the risk of the profile
      *           for that resource. For example, in conjunction with an [IAM deny
-     *           policy](https://cloud.google.com/iam/docs/deny-overview), you can deny
-     *           all principals a permission if a tag value is present, mitigating the
-     *           risk of the resource. This also lowers the data risk of resources at the
-     *           lower levels of the resource hierarchy. For example, reducing the data
-     *           risk of a table data profile also reduces the data risk of the
+     *           policy](https://docs.cloud.google.com/iam/docs/deny-overview), you can
+     *           deny all principals a permission if a tag value is present, mitigating
+     *           the risk of the resource. This also lowers the data risk of resources at
+     *           the lower levels of the resource hierarchy. For example, reducing the
+     *           data risk of a table data profile also reduces the data risk of the
      *           constituent column data profiles.
      * }
      */
@@ -147,11 +147,11 @@ class TagResources extends \Google\Protobuf\Internal\Message
     /**
      * Whether applying a tag to a resource should lower the risk of the profile
      * for that resource. For example, in conjunction with an [IAM deny
-     * policy](https://cloud.google.com/iam/docs/deny-overview), you can deny
-     * all principals a permission if a tag value is present, mitigating the
-     * risk of the resource. This also lowers the data risk of resources at the
-     * lower levels of the resource hierarchy. For example, reducing the data
-     * risk of a table data profile also reduces the data risk of the
+     * policy](https://docs.cloud.google.com/iam/docs/deny-overview), you can
+     * deny all principals a permission if a tag value is present, mitigating
+     * the risk of the resource. This also lowers the data risk of resources at
+     * the lower levels of the resource hierarchy. For example, reducing the
+     * data risk of a table data profile also reduces the data risk of the
      * constituent column data profiles.
      *
      * Generated from protobuf field <code>bool lower_data_risk_to_low = 3;</code>
@@ -165,11 +165,11 @@ class TagResources extends \Google\Protobuf\Internal\Message
     /**
      * Whether applying a tag to a resource should lower the risk of the profile
      * for that resource. For example, in conjunction with an [IAM deny
-     * policy](https://cloud.google.com/iam/docs/deny-overview), you can deny
-     * all principals a permission if a tag value is present, mitigating the
-     * risk of the resource. This also lowers the data risk of resources at the
-     * lower levels of the resource hierarchy. For example, reducing the data
-     * risk of a table data profile also reduces the data risk of the
+     * policy](https://docs.cloud.google.com/iam/docs/deny-overview), you can
+     * deny all principals a permission if a tag value is present, mitigating
+     * the risk of the resource. This also lowers the data risk of resources at
+     * the lower levels of the resource hierarchy. For example, reducing the
+     * data risk of a table data profile also reduces the data risk of the
      * constituent column data profiles.
      *
      * Generated from protobuf field <code>bool lower_data_risk_to_low = 3;</code>

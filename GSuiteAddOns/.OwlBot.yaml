@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/gsuiteaddons/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/GSuiteAddOns/$1/$2
-api-name: GSuiteAddOns

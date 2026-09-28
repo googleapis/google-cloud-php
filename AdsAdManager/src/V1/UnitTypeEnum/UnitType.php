@@ -8,9 +8,9 @@ use UnexpectedValueException;
 
 /**
  * Indicates the type of unit used for defining a reservation. The
- * [LineItem.cost_type][] can differ from the UnitType - an
- * ad can have an impression goal, but be billed by its click. Usually
- * CostType and UnitType will refer to the same unit.
+ * [LineItem.cost_type][google.ads.admanager.v1.LineItem.cost_type] can differ
+ * from the UnitType - an ad can have an impression goal, but be billed by its
+ * click. Usually CostType and UnitType will refer to the same unit.
  *
  * Protobuf type <code>google.ads.admanager.v1.UnitTypeEnum.UnitType</code>
  */
@@ -43,7 +43,8 @@ class UnitType
     /**
      * The number of click-through Cost-Per-Action (CPA) conversions from
      * creatives associated with the line item. This is only supported as
-     * secondary goal and the [LineItem.cost_type][] must be
+     * secondary goal and the
+     * [LineItem.cost_type][google.ads.admanager.v1.LineItem.cost_type] must be
      * [CostTypeEnum.CostType.CPA][].
      *
      * Generated from protobuf enum <code>CLICK_THROUGH_CPA_CONVERSIONS = 3;</code>
@@ -52,7 +53,8 @@ class UnitType
     /**
      * The number of view-through Cost-Per-Action (CPA) conversions from
      * creatives associated with the line item. This is only supported as
-     * secondary goal and the [LineItem.cost_type][] must be
+     * secondary goal and the
+     * [LineItem.cost_type][google.ads.admanager.v1.LineItem.cost_type] must be
      * [CostTypeEnum.CostType.CPA}.
      *
      * Generated from protobuf enum <code>VIEW_THROUGH_CPA_CONVERSIONS = 4;</code>
@@ -86,6 +88,18 @@ class UnitType
      * Generated from protobuf enum <code>IN_TARGET_IMPRESSIONS = 7;</code>
      */
     const IN_TARGET_IMPRESSIONS = 7;
+    /**
+     * The number of completed views reported by creatives associated with the
+     * line item. A completed view is defined as having watched the entirety of
+     * the in-stream video ad and is only supported for standard reservation
+     * video line items. The
+     * [LineItem.line_item_type][google.ads.admanager.v1.LineItem.line_item_type]
+     * must be
+     * [LineItemTypeEnum.LineItemType.STANDARD][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD].
+     *
+     * Generated from protobuf enum <code>COMPLETED_VIEWS = 8;</code>
+     */
+    const COMPLETED_VIEWS = 8;
 
     private static $valueToName = [
         self::UNIT_TYPE_UNSPECIFIED => 'UNIT_TYPE_UNSPECIFIED',
@@ -96,6 +110,7 @@ class UnitType
         self::TOTAL_CPA_CONVERSIONS => 'TOTAL_CPA_CONVERSIONS',
         self::VIEWABLE_IMPRESSIONS => 'VIEWABLE_IMPRESSIONS',
         self::IN_TARGET_IMPRESSIONS => 'IN_TARGET_IMPRESSIONS',
+        self::COMPLETED_VIEWS => 'COMPLETED_VIEWS',
     ];
 
     public static function name($value)

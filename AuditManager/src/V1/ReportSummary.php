@@ -9,14 +9,15 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * The additional information for an audit operation.
+ * Additional information about the number of checks that were made during an
+ * audit operation.
  *
  * Generated from protobuf message <code>google.cloud.auditmanager.v1.ReportSummary</code>
  */
 class ReportSummary extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Total number of checks.
+     * Total number of evaluated checks.
      *
      * Generated from protobuf field <code>int32 total_count = 1;</code>
      */
@@ -34,13 +35,13 @@ class ReportSummary extends \Google\Protobuf\Internal\Message
      */
     protected $violation_count = 0;
     /**
-     * Number of checks with "manual review needed" status.
+     * Number of checks that require a manual review.
      *
      * Generated from protobuf field <code>int32 manual_review_needed_count = 4;</code>
      */
     protected $manual_review_needed_count = 0;
     /**
-     * Number of checks that could not be performed due to errors.
+     * Number of checks that can't be performed due to errors.
      *
      * Generated from protobuf field <code>int32 error_count = 5;</code>
      */
@@ -53,15 +54,15 @@ class ReportSummary extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $total_count
-     *           Total number of checks.
+     *           Total number of evaluated checks.
      *     @type int $compliant_count
      *           Number of compliant checks.
      *     @type int $violation_count
      *           Number of checks with violations.
      *     @type int $manual_review_needed_count
-     *           Number of checks with "manual review needed" status.
+     *           Number of checks that require a manual review.
      *     @type int $error_count
-     *           Number of checks that could not be performed due to errors.
+     *           Number of checks that can't be performed due to errors.
      * }
      */
     public function __construct($data = NULL) {
@@ -70,7 +71,7 @@ class ReportSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Total number of checks.
+     * Total number of evaluated checks.
      *
      * Generated from protobuf field <code>int32 total_count = 1;</code>
      * @return int
@@ -81,7 +82,7 @@ class ReportSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Total number of checks.
+     * Total number of evaluated checks.
      *
      * Generated from protobuf field <code>int32 total_count = 1;</code>
      * @param int $var
@@ -148,7 +149,7 @@ class ReportSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of checks with "manual review needed" status.
+     * Number of checks that require a manual review.
      *
      * Generated from protobuf field <code>int32 manual_review_needed_count = 4;</code>
      * @return int
@@ -159,7 +160,7 @@ class ReportSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of checks with "manual review needed" status.
+     * Number of checks that require a manual review.
      *
      * Generated from protobuf field <code>int32 manual_review_needed_count = 4;</code>
      * @param int $var
@@ -174,7 +175,7 @@ class ReportSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of checks that could not be performed due to errors.
+     * Number of checks that can't be performed due to errors.
      *
      * Generated from protobuf field <code>int32 error_count = 5;</code>
      * @return int
@@ -185,7 +186,7 @@ class ReportSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of checks that could not be performed due to errors.
+     * Number of checks that can't be performed due to errors.
      *
      * Generated from protobuf field <code>int32 error_count = 5;</code>
      * @param int $var

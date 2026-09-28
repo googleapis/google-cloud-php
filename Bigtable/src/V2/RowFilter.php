@@ -186,6 +186,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
      *           an Interleave to contain multiple `apply_label_transformers`, as they
      *           will be applied to separate copies of the input. This may be relaxed in
      *           the future.
+     *     @type \Google\Cloud\Bigtable\V2\ValueBitmask $value_bitmask_filter
+     *           Matches only cells with values that satisfy the condition `(value & mask)
+     *           == mask`.
+     *           The mask length must exactly match the value length, otherwise the cell
+     *           is not considered a match.
      * }
      */
     public function __construct($data = NULL) {
@@ -974,6 +979,43 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(19, $var);
+
+        return $this;
+    }
+
+    /**
+     * Matches only cells with values that satisfy the condition `(value & mask)
+     * == mask`.
+     * The mask length must exactly match the value length, otherwise the cell
+     * is not considered a match.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.ValueBitmask value_bitmask_filter = 20;</code>
+     * @return \Google\Cloud\Bigtable\V2\ValueBitmask|null
+     */
+    public function getValueBitmaskFilter()
+    {
+        return $this->readOneof(20);
+    }
+
+    public function hasValueBitmaskFilter()
+    {
+        return $this->hasOneof(20);
+    }
+
+    /**
+     * Matches only cells with values that satisfy the condition `(value & mask)
+     * == mask`.
+     * The mask length must exactly match the value length, otherwise the cell
+     * is not considered a match.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.ValueBitmask value_bitmask_filter = 20;</code>
+     * @param \Google\Cloud\Bigtable\V2\ValueBitmask $var
+     * @return $this
+     */
+    public function setValueBitmaskFilter($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\ValueBitmask::class);
+        $this->writeOneof(20, $var);
 
         return $this;
     }

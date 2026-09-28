@@ -16,6 +16,11 @@ use UnexpectedValueException;
  *    capacity, backends in this layer would be used and traffic would be
  *    assigned based on the load balancing algorithm you use. This is the
  *    default
+ * For global external Passthrough Network Load Balancers, the following
+ * restrictions apply:
+ *    - At most one backend can be marked as PREFERRED.
+ *    - PREFERRED and DEFAULT backends cannot reside
+ *    in the same Cloud region.
  *
  * Protobuf type <code>google.cloud.compute.v1.Backend.Preference</code>
  */

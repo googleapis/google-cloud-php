@@ -8,7 +8,7 @@
         "TelcoAutomation": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TelcoAutomationGapicClient",
+                    "libraryClient": "TelcoAutomationClient",
                     "rpcs": {
                         "ApplyDeployment": {
                             "methods": [

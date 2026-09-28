@@ -65,6 +65,15 @@ class ExascaleDbStorageVault extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
+    /**
+     * Optional. The Exadata Infrastructure resource on which
+     * ExascaleDbStorageVault
+     * resource is created, in the following format:
+     * projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}
+     *
+     * Generated from protobuf field <code>string exadata_infrastructure = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $exadata_infrastructure = '';
 
     /**
      * Constructor.
@@ -93,6 +102,11 @@ class ExascaleDbStorageVault extends \Google\Protobuf\Internal\Message
      *           ExascaleDbStorageVault.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels or tags associated with the ExascaleDbStorageVault.
+     *     @type string $exadata_infrastructure
+     *           Optional. The Exadata Infrastructure resource on which
+     *           ExascaleDbStorageVault
+     *           resource is created, in the following format:
+     *           projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}
      * }
      */
     public function __construct($data = NULL) {
@@ -312,6 +326,38 @@ class ExascaleDbStorageVault extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Exadata Infrastructure resource on which
+     * ExascaleDbStorageVault
+     * resource is created, in the following format:
+     * projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}
+     *
+     * Generated from protobuf field <code>string exadata_infrastructure = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getExadataInfrastructure()
+    {
+        return $this->exadata_infrastructure;
+    }
+
+    /**
+     * Optional. The Exadata Infrastructure resource on which
+     * ExascaleDbStorageVault
+     * resource is created, in the following format:
+     * projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}
+     *
+     * Generated from protobuf field <code>string exadata_infrastructure = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setExadataInfrastructure($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->exadata_infrastructure = $var;
 
         return $this;
     }

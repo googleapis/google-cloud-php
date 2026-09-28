@@ -16,14 +16,15 @@ use Google\Protobuf\RepeatedField;
 class Extension extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name for this extension.
+     * Optional. The name for this extension.
      * The name is logged as part of the HTTP request logs.
      * The name must conform with RFC-1034, is restricted to lower-cased
      * letters, numbers and hyphens, and can have a maximum length of 63
      * characters. Additionally, the first character must be a letter and the
      * last a letter or a number.
+     * This field is required except for AuthzExtension.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $name = '';
     /**
@@ -68,6 +69,9 @@ class Extension extends \Google\Protobuf\Internal\Message
      * unspecified, `REQUEST_HEADERS` event is assumed as supported.
      * For the `LbEdgeExtension` resource, this field is required and must only
      * contain `REQUEST_HEADERS` event.
+     * For the `AuthzExtension` resource, this field is optional.
+     * `REQUEST_HEADERS` is the only supported event. If unspecified,
+     * `REQUEST_HEADERS` event is assumed as supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.EventType supported_events = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -107,10 +111,27 @@ class Extension extends \Google\Protobuf\Internal\Message
      */
     private $forward_headers;
     /**
+     * Optional. List of the Envoy attributes to forward to the extension
+     * server. The attributes provided here are included as part of the
+     * `ProcessingRequest.attributes` field (of type
+     * `map<string, google.protobuf.Struct>`), where the keys are the attribute
+     * names. Refer to the
+     * [documentation](https://cloud.google.com/service-extensions/docs/cel-matcher-language-reference#attributes)
+     * for the names of attributes that can be forwarded. If omitted, no
+     * attributes are sent. Each element is a string indicating the
+     * attribute name.
+     *
+     * Generated from protobuf field <code>repeated string forward_attributes = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $forward_attributes;
+    /**
      * Optional. The metadata provided here is included as part of the
      * `metadata_context` (of type `google.protobuf.Struct`) in the
      * `ProcessingRequest` message sent to the extension server.
-     * The metadata is available under the namespace
+     * For `AuthzExtension` resources, the metadata is available under the
+     * namespace `com.google.authz_extension.<resource_name>`.
+     * For other types of extensions, the metadata is available under the
+     * namespace
      * `com.google.<extension_type>.<resource_name>.<extension_chain_name>.<extension_name>`.
      * For example:
      * `com.google.lb_traffic_extension.lbtrafficextension1.chain1.ext1`.
@@ -132,6 +153,47 @@ class Extension extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Struct metadata = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $metadata = null;
+    /**
+     * Optional. Configures the send mode for request body processing.
+     * The field can only be set if `supported_events` includes `REQUEST_BODY`.
+     * If `supported_events` includes `REQUEST_BODY`,
+     * but `request_body_send_mode` is unset, the default value `STREAMED` is
+     * used.
+     * When this field is set to `FULL_DUPLEX_STREAMED`, `supported_events`
+     * must include both `REQUEST_BODY` and `REQUEST_TRAILERS`.
+     * This field can be set only for `LbTrafficExtension` and
+     * `LbRouteExtension` resources, and only when the `service` field of the
+     * extension points to a `BackendService`. Only `FULL_DUPLEX_STREAMED` mode
+     * is supported for `LbRouteExtension` resources.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.BodySendMode request_body_send_mode = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $request_body_send_mode = 0;
+    /**
+     * Optional. Configures the send mode for response processing. If
+     * unspecified, the default value `STREAMED` is used.
+     * The field can only be set if `supported_events` includes `RESPONSE_BODY`.
+     * If `supported_events` includes `RESPONSE_BODY`, but
+     * `response_body_send_mode` is unset, the default value `STREAMED` is used.
+     * When this field is set to `FULL_DUPLEX_STREAMED`, `supported_events`
+     * must include both `RESPONSE_BODY` and `RESPONSE_TRAILERS`.
+     * This field can be set only for `LbTrafficExtension` resources, and only
+     * when the `service` field of the extension points to a `BackendService`.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.BodySendMode response_body_send_mode = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $response_body_send_mode = 0;
+    /**
+     * Optional. When set to `true`, the calls to the extension backend are
+     * performed asynchronously, without pausing the processing of the ongoing
+     * request. In this mode, only `STREAMED` (default) body processing is
+     * supported. Responses, if any, are ignored.
+     * Supported by regional `LbTrafficExtension` and `LbRouteExtension`
+     * resources.
+     *
+     * Generated from protobuf field <code>bool observability_mode = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $observability_mode = false;
 
     /**
      * Constructor.
@@ -140,12 +202,13 @@ class Extension extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name for this extension.
+     *           Optional. The name for this extension.
      *           The name is logged as part of the HTTP request logs.
      *           The name must conform with RFC-1034, is restricted to lower-cased
      *           letters, numbers and hyphens, and can have a maximum length of 63
      *           characters. Additionally, the first character must be a letter and the
      *           last a letter or a number.
+     *           This field is required except for AuthzExtension.
      *     @type string $authority
      *           Optional. The `:authority` header in the gRPC request sent from Envoy
      *           to the extension service.
@@ -180,6 +243,9 @@ class Extension extends \Google\Protobuf\Internal\Message
      *           unspecified, `REQUEST_HEADERS` event is assumed as supported.
      *           For the `LbEdgeExtension` resource, this field is required and must only
      *           contain `REQUEST_HEADERS` event.
+     *           For the `AuthzExtension` resource, this field is optional.
+     *           `REQUEST_HEADERS` is the only supported event. If unspecified,
+     *           `REQUEST_HEADERS` event is assumed as supported.
      *     @type \Google\Protobuf\Duration $timeout
      *           Optional. Specifies the timeout for each individual message on the
      *           stream. The timeout must be between `10`-`10000` milliseconds. Required
@@ -202,11 +268,24 @@ class Extension extends \Google\Protobuf\Internal\Message
      *           Optional. List of the HTTP headers to forward to the extension
      *           (from the client or backend). If omitted, all headers are sent.
      *           Each element is a string indicating the header name.
+     *     @type string[] $forward_attributes
+     *           Optional. List of the Envoy attributes to forward to the extension
+     *           server. The attributes provided here are included as part of the
+     *           `ProcessingRequest.attributes` field (of type
+     *           `map<string, google.protobuf.Struct>`), where the keys are the attribute
+     *           names. Refer to the
+     *           [documentation](https://cloud.google.com/service-extensions/docs/cel-matcher-language-reference#attributes)
+     *           for the names of attributes that can be forwarded. If omitted, no
+     *           attributes are sent. Each element is a string indicating the
+     *           attribute name.
      *     @type \Google\Protobuf\Struct $metadata
      *           Optional. The metadata provided here is included as part of the
      *           `metadata_context` (of type `google.protobuf.Struct`) in the
      *           `ProcessingRequest` message sent to the extension server.
-     *           The metadata is available under the namespace
+     *           For `AuthzExtension` resources, the metadata is available under the
+     *           namespace `com.google.authz_extension.<resource_name>`.
+     *           For other types of extensions, the metadata is available under the
+     *           namespace
      *           `com.google.<extension_type>.<resource_name>.<extension_chain_name>.<extension_name>`.
      *           For example:
      *           `com.google.lb_traffic_extension.lbtrafficextension1.chain1.ext1`.
@@ -224,6 +303,35 @@ class Extension extends \Google\Protobuf\Internal\Message
      *           * The length of each key must be less than 64 characters.
      *           * The length of each value must be less than 1024 characters.
      *           * All values must be strings.
+     *     @type int $request_body_send_mode
+     *           Optional. Configures the send mode for request body processing.
+     *           The field can only be set if `supported_events` includes `REQUEST_BODY`.
+     *           If `supported_events` includes `REQUEST_BODY`,
+     *           but `request_body_send_mode` is unset, the default value `STREAMED` is
+     *           used.
+     *           When this field is set to `FULL_DUPLEX_STREAMED`, `supported_events`
+     *           must include both `REQUEST_BODY` and `REQUEST_TRAILERS`.
+     *           This field can be set only for `LbTrafficExtension` and
+     *           `LbRouteExtension` resources, and only when the `service` field of the
+     *           extension points to a `BackendService`. Only `FULL_DUPLEX_STREAMED` mode
+     *           is supported for `LbRouteExtension` resources.
+     *     @type int $response_body_send_mode
+     *           Optional. Configures the send mode for response processing. If
+     *           unspecified, the default value `STREAMED` is used.
+     *           The field can only be set if `supported_events` includes `RESPONSE_BODY`.
+     *           If `supported_events` includes `RESPONSE_BODY`, but
+     *           `response_body_send_mode` is unset, the default value `STREAMED` is used.
+     *           When this field is set to `FULL_DUPLEX_STREAMED`, `supported_events`
+     *           must include both `RESPONSE_BODY` and `RESPONSE_TRAILERS`.
+     *           This field can be set only for `LbTrafficExtension` resources, and only
+     *           when the `service` field of the extension points to a `BackendService`.
+     *     @type bool $observability_mode
+     *           Optional. When set to `true`, the calls to the extension backend are
+     *           performed asynchronously, without pausing the processing of the ongoing
+     *           request. In this mode, only `STREAMED` (default) body processing is
+     *           supported. Responses, if any, are ignored.
+     *           Supported by regional `LbTrafficExtension` and `LbRouteExtension`
+     *           resources.
      * }
      */
     public function __construct($data = NULL) {
@@ -232,14 +340,15 @@ class Extension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name for this extension.
+     * Optional. The name for this extension.
      * The name is logged as part of the HTTP request logs.
      * The name must conform with RFC-1034, is restricted to lower-cased
      * letters, numbers and hyphens, and can have a maximum length of 63
      * characters. Additionally, the first character must be a letter and the
      * last a letter or a number.
+     * This field is required except for AuthzExtension.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getName()
@@ -248,14 +357,15 @@ class Extension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name for this extension.
+     * Optional. The name for this extension.
      * The name is logged as part of the HTTP request logs.
      * The name must conform with RFC-1034, is restricted to lower-cased
      * letters, numbers and hyphens, and can have a maximum length of 63
      * characters. Additionally, the first character must be a letter and the
      * last a letter or a number.
+     * This field is required except for AuthzExtension.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -371,6 +481,9 @@ class Extension extends \Google\Protobuf\Internal\Message
      * unspecified, `REQUEST_HEADERS` event is assumed as supported.
      * For the `LbEdgeExtension` resource, this field is required and must only
      * contain `REQUEST_HEADERS` event.
+     * For the `AuthzExtension` resource, this field is optional.
+     * `REQUEST_HEADERS` is the only supported event. If unspecified,
+     * `REQUEST_HEADERS` event is assumed as supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.EventType supported_events = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<int>
@@ -388,6 +501,9 @@ class Extension extends \Google\Protobuf\Internal\Message
      * unspecified, `REQUEST_HEADERS` event is assumed as supported.
      * For the `LbEdgeExtension` resource, this field is required and must only
      * contain `REQUEST_HEADERS` event.
+     * For the `AuthzExtension` resource, this field is optional.
+     * `REQUEST_HEADERS` is the only supported event. If unspecified,
+     * `REQUEST_HEADERS` event is assumed as supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.EventType supported_events = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int[] $var
@@ -522,10 +638,55 @@ class Extension extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. List of the Envoy attributes to forward to the extension
+     * server. The attributes provided here are included as part of the
+     * `ProcessingRequest.attributes` field (of type
+     * `map<string, google.protobuf.Struct>`), where the keys are the attribute
+     * names. Refer to the
+     * [documentation](https://cloud.google.com/service-extensions/docs/cel-matcher-language-reference#attributes)
+     * for the names of attributes that can be forwarded. If omitted, no
+     * attributes are sent. Each element is a string indicating the
+     * attribute name.
+     *
+     * Generated from protobuf field <code>repeated string forward_attributes = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getForwardAttributes()
+    {
+        return $this->forward_attributes;
+    }
+
+    /**
+     * Optional. List of the Envoy attributes to forward to the extension
+     * server. The attributes provided here are included as part of the
+     * `ProcessingRequest.attributes` field (of type
+     * `map<string, google.protobuf.Struct>`), where the keys are the attribute
+     * names. Refer to the
+     * [documentation](https://cloud.google.com/service-extensions/docs/cel-matcher-language-reference#attributes)
+     * for the names of attributes that can be forwarded. If omitted, no
+     * attributes are sent. Each element is a string indicating the
+     * attribute name.
+     *
+     * Generated from protobuf field <code>repeated string forward_attributes = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setForwardAttributes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->forward_attributes = $arr;
+
+        return $this;
+    }
+
+    /**
      * Optional. The metadata provided here is included as part of the
      * `metadata_context` (of type `google.protobuf.Struct`) in the
      * `ProcessingRequest` message sent to the extension server.
-     * The metadata is available under the namespace
+     * For `AuthzExtension` resources, the metadata is available under the
+     * namespace `com.google.authz_extension.<resource_name>`.
+     * For other types of extensions, the metadata is available under the
+     * namespace
      * `com.google.<extension_type>.<resource_name>.<extension_chain_name>.<extension_name>`.
      * For example:
      * `com.google.lb_traffic_extension.lbtrafficextension1.chain1.ext1`.
@@ -566,7 +727,10 @@ class Extension extends \Google\Protobuf\Internal\Message
      * Optional. The metadata provided here is included as part of the
      * `metadata_context` (of type `google.protobuf.Struct`) in the
      * `ProcessingRequest` message sent to the extension server.
-     * The metadata is available under the namespace
+     * For `AuthzExtension` resources, the metadata is available under the
+     * namespace `com.google.authz_extension.<resource_name>`.
+     * For other types of extensions, the metadata is available under the
+     * namespace
      * `com.google.<extension_type>.<resource_name>.<extension_chain_name>.<extension_name>`.
      * For example:
      * `com.google.lb_traffic_extension.lbtrafficextension1.chain1.ext1`.
@@ -593,6 +757,130 @@ class Extension extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
         $this->metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configures the send mode for request body processing.
+     * The field can only be set if `supported_events` includes `REQUEST_BODY`.
+     * If `supported_events` includes `REQUEST_BODY`,
+     * but `request_body_send_mode` is unset, the default value `STREAMED` is
+     * used.
+     * When this field is set to `FULL_DUPLEX_STREAMED`, `supported_events`
+     * must include both `REQUEST_BODY` and `REQUEST_TRAILERS`.
+     * This field can be set only for `LbTrafficExtension` and
+     * `LbRouteExtension` resources, and only when the `service` field of the
+     * extension points to a `BackendService`. Only `FULL_DUPLEX_STREAMED` mode
+     * is supported for `LbRouteExtension` resources.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.BodySendMode request_body_send_mode = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getRequestBodySendMode()
+    {
+        return $this->request_body_send_mode;
+    }
+
+    /**
+     * Optional. Configures the send mode for request body processing.
+     * The field can only be set if `supported_events` includes `REQUEST_BODY`.
+     * If `supported_events` includes `REQUEST_BODY`,
+     * but `request_body_send_mode` is unset, the default value `STREAMED` is
+     * used.
+     * When this field is set to `FULL_DUPLEX_STREAMED`, `supported_events`
+     * must include both `REQUEST_BODY` and `REQUEST_TRAILERS`.
+     * This field can be set only for `LbTrafficExtension` and
+     * `LbRouteExtension` resources, and only when the `service` field of the
+     * extension points to a `BackendService`. Only `FULL_DUPLEX_STREAMED` mode
+     * is supported for `LbRouteExtension` resources.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.BodySendMode request_body_send_mode = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRequestBodySendMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkServices\V1\BodySendMode::class);
+        $this->request_body_send_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configures the send mode for response processing. If
+     * unspecified, the default value `STREAMED` is used.
+     * The field can only be set if `supported_events` includes `RESPONSE_BODY`.
+     * If `supported_events` includes `RESPONSE_BODY`, but
+     * `response_body_send_mode` is unset, the default value `STREAMED` is used.
+     * When this field is set to `FULL_DUPLEX_STREAMED`, `supported_events`
+     * must include both `RESPONSE_BODY` and `RESPONSE_TRAILERS`.
+     * This field can be set only for `LbTrafficExtension` resources, and only
+     * when the `service` field of the extension points to a `BackendService`.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.BodySendMode response_body_send_mode = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getResponseBodySendMode()
+    {
+        return $this->response_body_send_mode;
+    }
+
+    /**
+     * Optional. Configures the send mode for response processing. If
+     * unspecified, the default value `STREAMED` is used.
+     * The field can only be set if `supported_events` includes `RESPONSE_BODY`.
+     * If `supported_events` includes `RESPONSE_BODY`, but
+     * `response_body_send_mode` is unset, the default value `STREAMED` is used.
+     * When this field is set to `FULL_DUPLEX_STREAMED`, `supported_events`
+     * must include both `RESPONSE_BODY` and `RESPONSE_TRAILERS`.
+     * This field can be set only for `LbTrafficExtension` resources, and only
+     * when the `service` field of the extension points to a `BackendService`.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.BodySendMode response_body_send_mode = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setResponseBodySendMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkServices\V1\BodySendMode::class);
+        $this->response_body_send_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. When set to `true`, the calls to the extension backend are
+     * performed asynchronously, without pausing the processing of the ongoing
+     * request. In this mode, only `STREAMED` (default) body processing is
+     * supported. Responses, if any, are ignored.
+     * Supported by regional `LbTrafficExtension` and `LbRouteExtension`
+     * resources.
+     *
+     * Generated from protobuf field <code>bool observability_mode = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getObservabilityMode()
+    {
+        return $this->observability_mode;
+    }
+
+    /**
+     * Optional. When set to `true`, the calls to the extension backend are
+     * performed asynchronously, without pausing the processing of the ongoing
+     * request. In this mode, only `STREAMED` (default) body processing is
+     * supported. Responses, if any, are ignored.
+     * Supported by regional `LbTrafficExtension` and `LbRouteExtension`
+     * resources.
+     *
+     * Generated from protobuf field <code>bool observability_mode = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setObservabilityMode($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->observability_mode = $var;
 
         return $this;
     }

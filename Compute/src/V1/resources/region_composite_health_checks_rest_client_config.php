@@ -76,6 +76,27 @@ return [
                     ],
                 ],
             ],
+            'GetHealth' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks/{composite_health_check}/getHealth',
+                'placeholders' => [
+                    'composite_health_check' => [
+                        'getters' => [
+                            'getCompositeHealthCheck',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
             'Insert' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks',

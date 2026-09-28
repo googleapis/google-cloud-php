@@ -8,8 +8,13 @@
         "OracleDatabase": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "OracleDatabaseGapicClient",
+                    "libraryClient": "OracleDatabaseClient",
                     "rpcs": {
+                        "ConfigureExascaleCloudExadataInfrastructure": {
+                            "methods": [
+                                "configureExascaleCloudExadataInfrastructure"
+                            ]
+                        },
                         "CreateAutonomousDatabase": {
                             "methods": [
                                 "createAutonomousDatabase"
@@ -38,6 +43,21 @@
                         "CreateExascaleDbStorageVault": {
                             "methods": [
                                 "createExascaleDbStorageVault"
+                            ]
+                        },
+                        "CreateGoldengateConnection": {
+                            "methods": [
+                                "createGoldengateConnection"
+                            ]
+                        },
+                        "CreateGoldengateConnectionAssignment": {
+                            "methods": [
+                                "createGoldengateConnectionAssignment"
+                            ]
+                        },
+                        "CreateGoldengateDeployment": {
+                            "methods": [
+                                "createGoldengateDeployment"
                             ]
                         },
                         "CreateOdbNetwork": {
@@ -80,6 +100,21 @@
                                 "deleteExascaleDbStorageVault"
                             ]
                         },
+                        "DeleteGoldengateConnection": {
+                            "methods": [
+                                "deleteGoldengateConnection"
+                            ]
+                        },
+                        "DeleteGoldengateConnectionAssignment": {
+                            "methods": [
+                                "deleteGoldengateConnectionAssignment"
+                            ]
+                        },
+                        "DeleteGoldengateDeployment": {
+                            "methods": [
+                                "deleteGoldengateDeployment"
+                            ]
+                        },
                         "DeleteOdbNetwork": {
                             "methods": [
                                 "deleteOdbNetwork"
@@ -103,6 +138,11 @@
                         "GetAutonomousDatabase": {
                             "methods": [
                                 "getAutonomousDatabase"
+                            ]
+                        },
+                        "GetAutonomousDatabaseRefreshableClones": {
+                            "methods": [
+                                "getAutonomousDatabaseRefreshableClones"
                             ]
                         },
                         "GetCloudExadataInfrastructure": {
@@ -133,6 +173,21 @@
                         "GetExascaleDbStorageVault": {
                             "methods": [
                                 "getExascaleDbStorageVault"
+                            ]
+                        },
+                        "GetGoldengateConnection": {
+                            "methods": [
+                                "getGoldengateConnection"
+                            ]
+                        },
+                        "GetGoldengateConnectionAssignment": {
+                            "methods": [
+                                "getGoldengateConnectionAssignment"
+                            ]
+                        },
+                        "GetGoldengateDeployment": {
+                            "methods": [
+                                "getGoldengateDeployment"
                             ]
                         },
                         "GetOdbNetwork": {
@@ -240,6 +295,41 @@
                                 "listGiVersions"
                             ]
                         },
+                        "ListGoldengateConnectionAssignments": {
+                            "methods": [
+                                "listGoldengateConnectionAssignments"
+                            ]
+                        },
+                        "ListGoldengateConnectionTypes": {
+                            "methods": [
+                                "listGoldengateConnectionTypes"
+                            ]
+                        },
+                        "ListGoldengateConnections": {
+                            "methods": [
+                                "listGoldengateConnections"
+                            ]
+                        },
+                        "ListGoldengateDeploymentEnvironments": {
+                            "methods": [
+                                "listGoldengateDeploymentEnvironments"
+                            ]
+                        },
+                        "ListGoldengateDeploymentTypes": {
+                            "methods": [
+                                "listGoldengateDeploymentTypes"
+                            ]
+                        },
+                        "ListGoldengateDeploymentVersions": {
+                            "methods": [
+                                "listGoldengateDeploymentVersions"
+                            ]
+                        },
+                        "ListGoldengateDeployments": {
+                            "methods": [
+                                "listGoldengateDeployments"
+                            ]
+                        },
                         "ListMinorVersions": {
                             "methods": [
                                 "listMinorVersions"
@@ -258,6 +348,11 @@
                         "ListPluggableDatabases": {
                             "methods": [
                                 "listPluggableDatabases"
+                            ]
+                        },
+                        "RefreshAutonomousDatabase": {
+                            "methods": [
+                                "refreshAutonomousDatabase"
                             ]
                         },
                         "RemoveVirtualMachineExadbVmCluster": {
@@ -280,14 +375,29 @@
                                 "startAutonomousDatabase"
                             ]
                         },
+                        "StartGoldengateDeployment": {
+                            "methods": [
+                                "startGoldengateDeployment"
+                            ]
+                        },
                         "StopAutonomousDatabase": {
                             "methods": [
                                 "stopAutonomousDatabase"
                             ]
                         },
+                        "StopGoldengateDeployment": {
+                            "methods": [
+                                "stopGoldengateDeployment"
+                            ]
+                        },
                         "SwitchoverAutonomousDatabase": {
                             "methods": [
                                 "switchoverAutonomousDatabase"
+                            ]
+                        },
+                        "TestGoldengateConnectionAssignment": {
+                            "methods": [
+                                "testGoldengateConnectionAssignment"
                             ]
                         },
                         "UpdateAutonomousDatabase": {

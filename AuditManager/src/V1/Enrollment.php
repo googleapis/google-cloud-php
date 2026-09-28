@@ -9,21 +9,24 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * The enrollment resource.
+ * Organization, folder, or project to enroll for audit reports.
  *
  * Generated from protobuf message <code>google.cloud.auditmanager.v1.Enrollment</code>
  */
 class Enrollment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. The name of this Enrollment, in the format of scope given in
-     * request.
+     * Identifier. Name of the enrollment, in one of the following formats:
+     * * `projects/{project}/locations/{location}/enrollments/{enrollment}`
+     * * `folders/{folder}/locations/{location}/enrollments/{enrollment}`
+     * * `organizations/{organization}/locations/{location}/enrollments/{enrollment}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * Output only. The locations where the generated reports can be uploaded.
+     * Output only. Cloud Storage buckets where you want to upload the audit
+     * reports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.DestinationDetails destination_details = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -36,10 +39,13 @@ class Enrollment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. The name of this Enrollment, in the format of scope given in
-     *           request.
+     *           Identifier. Name of the enrollment, in one of the following formats:
+     *           * `projects/{project}/locations/{location}/enrollments/{enrollment}`
+     *           * `folders/{folder}/locations/{location}/enrollments/{enrollment}`
+     *           * `organizations/{organization}/locations/{location}/enrollments/{enrollment}`
      *     @type \Google\Cloud\AuditManager\V1\DestinationDetails[] $destination_details
-     *           Output only. The locations where the generated reports can be uploaded.
+     *           Output only. Cloud Storage buckets where you want to upload the audit
+     *           reports.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,8 +54,10 @@ class Enrollment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The name of this Enrollment, in the format of scope given in
-     * request.
+     * Identifier. Name of the enrollment, in one of the following formats:
+     * * `projects/{project}/locations/{location}/enrollments/{enrollment}`
+     * * `folders/{folder}/locations/{location}/enrollments/{enrollment}`
+     * * `organizations/{organization}/locations/{location}/enrollments/{enrollment}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -60,8 +68,10 @@ class Enrollment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The name of this Enrollment, in the format of scope given in
-     * request.
+     * Identifier. Name of the enrollment, in one of the following formats:
+     * * `projects/{project}/locations/{location}/enrollments/{enrollment}`
+     * * `folders/{folder}/locations/{location}/enrollments/{enrollment}`
+     * * `organizations/{organization}/locations/{location}/enrollments/{enrollment}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -76,7 +86,8 @@ class Enrollment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The locations where the generated reports can be uploaded.
+     * Output only. Cloud Storage buckets where you want to upload the audit
+     * reports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.DestinationDetails destination_details = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return RepeatedField<\Google\Cloud\AuditManager\V1\DestinationDetails>
@@ -87,7 +98,8 @@ class Enrollment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The locations where the generated reports can be uploaded.
+     * Output only. Cloud Storage buckets where you want to upload the audit
+     * reports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.DestinationDetails destination_details = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\AuditManager\V1\DestinationDetails[] $var

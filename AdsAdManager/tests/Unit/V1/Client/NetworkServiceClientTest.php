@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,10 +23,14 @@
 namespace Google\Ads\AdManager\Tests\Unit\V1\Client;
 
 use Google\Ads\AdManager\V1\Client\NetworkServiceClient;
+use Google\Ads\AdManager\V1\DefaultThirdPartyDataDeclaration;
+use Google\Ads\AdManager\V1\GetDefaultThirdPartyDataDeclarationRequest;
 use Google\Ads\AdManager\V1\GetNetworkRequest;
 use Google\Ads\AdManager\V1\ListNetworksRequest;
 use Google\Ads\AdManager\V1\ListNetworksResponse;
 use Google\Ads\AdManager\V1\Network;
+use Google\Ads\AdManager\V1\ProvisionTestNetworkRequest;
+use Google\Ads\AdManager\V1\UpdateNetworkRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
@@ -62,6 +66,74 @@ class NetworkServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new NetworkServiceClient($options);
+    }
+
+    /** @test */
+    public function getDefaultThirdPartyDataDeclarationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new DefaultThirdPartyDataDeclaration();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->defaultThirdPartyDataDeclarationName('[NETWORK_CODE]');
+        $request = (new GetDefaultThirdPartyDataDeclarationRequest())->setName($formattedName);
+        $response = $gapicClient->getDefaultThirdPartyDataDeclaration($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.ads.admanager.v1.NetworkService/GetDefaultThirdPartyDataDeclaration',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getDefaultThirdPartyDataDeclarationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->defaultThirdPartyDataDeclarationName('[NETWORK_CODE]');
+        $request = (new GetDefaultThirdPartyDataDeclarationRequest())->setName($formattedName);
+        try {
+            $gapicClient->getDefaultThirdPartyDataDeclaration($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -213,7 +285,7 @@ class NetworkServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getNetworkAsyncTest()
+    public function provisionTestNetworkTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -221,7 +293,7 @@ class NetworkServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $name2 = 'name2-1052831874';
+        $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $networkCode = 'networkCode-19973794';
         $propertyCode = 'propertyCode-1019877865';
@@ -231,7 +303,82 @@ class NetworkServiceClientTest extends GeneratedTest
         $testNetwork = false;
         $networkId = 478232372;
         $expectedResponse = new Network();
-        $expectedResponse->setName($name2);
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setNetworkCode($networkCode);
+        $expectedResponse->setPropertyCode($propertyCode);
+        $expectedResponse->setTimeZone($timeZone);
+        $expectedResponse->setCurrencyCode($currencyCode);
+        $expectedResponse->setEffectiveRootAdUnit($effectiveRootAdUnit);
+        $expectedResponse->setTestNetwork($testNetwork);
+        $expectedResponse->setNetworkId($networkId);
+        $transport->addResponse($expectedResponse);
+        $request = new ProvisionTestNetworkRequest();
+        $response = $gapicClient->provisionTestNetwork($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.NetworkService/ProvisionTestNetwork', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function provisionTestNetworkExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        $request = new ProvisionTestNetworkRequest();
+        try {
+            $gapicClient->provisionTestNetwork($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateNetworkTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $networkCode = 'networkCode-19973794';
+        $propertyCode = 'propertyCode-1019877865';
+        $timeZone = 'timeZone36848094';
+        $currencyCode = 'currencyCode1108728155';
+        $effectiveRootAdUnit = 'effectiveRootAdUnit98840923';
+        $testNetwork = false;
+        $networkId = 478232372;
+        $expectedResponse = new Network();
+        $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setNetworkCode($networkCode);
         $expectedResponse->setPropertyCode($propertyCode);
@@ -242,15 +389,83 @@ class NetworkServiceClientTest extends GeneratedTest
         $expectedResponse->setNetworkId($networkId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->networkName('[NETWORK_CODE]');
-        $request = (new GetNetworkRequest())->setName($formattedName);
-        $response = $gapicClient->getNetworkAsync($request)->wait();
+        $network = new Network();
+        $request = (new UpdateNetworkRequest())->setNetwork($network);
+        $response = $gapicClient->updateNetwork($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.ads.admanager.v1.NetworkService/GetNetwork', $actualFuncCall);
+        $this->assertSame('/google.ads.admanager.v1.NetworkService/UpdateNetwork', $actualFuncCall);
+        $actualValue = $actualRequestObject->getNetwork();
+        $this->assertProtobufEquals($network, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateNetworkExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $network = new Network();
+        $request = (new UpdateNetworkRequest())->setNetwork($network);
+        try {
+            $gapicClient->updateNetwork($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getDefaultThirdPartyDataDeclarationAsyncTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new DefaultThirdPartyDataDeclaration();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->defaultThirdPartyDataDeclarationName('[NETWORK_CODE]');
+        $request = (new GetDefaultThirdPartyDataDeclarationRequest())->setName($formattedName);
+        $response = $gapicClient->getDefaultThirdPartyDataDeclarationAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.ads.admanager.v1.NetworkService/GetDefaultThirdPartyDataDeclaration',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());

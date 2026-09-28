@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ use Google\Rpc\Status;
  *
  * @param int $gatewayPortsElement One or more port numbers (1-65535), on which the Gateway will
  *                                 receive traffic. The proxy binds to the specified ports.
- *                                 Gateways of type 'SECURE_WEB_GATEWAY' are limited to 1 port.
+ *                                 Gateways of type 'SECURE_WEB_GATEWAY' are limited to 5 ports.
  *                                 Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6 and
  *                                 support multiple ports.
  */

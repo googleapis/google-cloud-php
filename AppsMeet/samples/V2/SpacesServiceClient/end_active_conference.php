@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ use Google\Apps\Meet\V2\EndActiveConferenceRequest;
  * Ends an active conference (if there's one).
  *
  * For an example, see [End active
- * conference](https://developers.google.com/meet/api/guides/meeting-spaces#end-active-conference).
+ * conference](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#end-active-conference).
  *
  * @param string $formattedName Resource name of the space.
  *
@@ -41,7 +41,7 @@ use Google\Apps\Meet\V2\EndActiveConferenceRequest;
  *                              server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`.
  *
  *                              For more information, see [How Meet identifies a meeting
- *                              space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space). Please see
+ *                              space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space). Please see
  *                              {@see SpacesServiceClient::spaceName()} for help formatting this field.
  */
 function end_active_conference_sample(string $formattedName): void

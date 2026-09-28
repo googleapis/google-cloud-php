@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,8 +26,10 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Dataform\V1beta1\BranchMetadata;
 use Google\Cloud\Dataform\V1beta1\CancelWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\CancelWorkflowInvocationResponse;
+use Google\Cloud\Dataform\V1beta1\CheckoutWorkspaceBranchRequest;
 use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
 use Google\Cloud\Dataform\V1beta1\CommitAuthor;
 use Google\Cloud\Dataform\V1beta1\CommitLogEntry;
@@ -49,14 +51,22 @@ use Google\Cloud\Dataform\V1beta1\CreateTeamFolderRequest;
 use Google\Cloud\Dataform\V1beta1\CreateWorkflowConfigRequest;
 use Google\Cloud\Dataform\V1beta1\CreateWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\CreateWorkspaceRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteBranchRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteBranchResponse;
 use Google\Cloud\Dataform\V1beta1\DeleteFolderRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteFolderTreeRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteReleaseConfigRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteRepositoryLongRunningRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteRepositoryLongRunningResponse;
 use Google\Cloud\Dataform\V1beta1\DeleteRepositoryRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteTeamFolderRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteTeamFolderTreeRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteWorkflowConfigRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteWorkspaceRequest;
 use Google\Cloud\Dataform\V1beta1\DirectoryEntry;
+use Google\Cloud\Dataform\V1beta1\FetchCurrentWorkspaceBranchRequest;
+use Google\Cloud\Dataform\V1beta1\FetchCurrentWorkspaceBranchResponse;
 use Google\Cloud\Dataform\V1beta1\FetchFileDiffRequest;
 use Google\Cloud\Dataform\V1beta1\FetchFileDiffResponse;
 use Google\Cloud\Dataform\V1beta1\FetchFileGitStatusesRequest;
@@ -67,6 +77,8 @@ use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesRequest;
 use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesResponse;
 use Google\Cloud\Dataform\V1beta1\FetchRepositoryHistoryRequest;
 use Google\Cloud\Dataform\V1beta1\FetchRepositoryHistoryResponse;
+use Google\Cloud\Dataform\V1beta1\FetchWorkspaceBranchesRequest;
+use Google\Cloud\Dataform\V1beta1\FetchWorkspaceBranchesResponse;
 use Google\Cloud\Dataform\V1beta1\Folder;
 use Google\Cloud\Dataform\V1beta1\GetCompilationResultRequest;
 use Google\Cloud\Dataform\V1beta1\GetConfigRequest;
@@ -138,6 +150,8 @@ use Google\Cloud\Dataform\V1beta1\SearchResult;
 use Google\Cloud\Dataform\V1beta1\SearchTeamFoldersRequest;
 use Google\Cloud\Dataform\V1beta1\SearchTeamFoldersResponse;
 use Google\Cloud\Dataform\V1beta1\SearchTeamFoldersResponse\TeamFolderSearchResult;
+use Google\Cloud\Dataform\V1beta1\SyncWorkspaceRefsRequest;
+use Google\Cloud\Dataform\V1beta1\SyncWorkspaceRefsResponse;
 use Google\Cloud\Dataform\V1beta1\TeamFolder;
 use Google\Cloud\Dataform\V1beta1\UpdateConfigRequest;
 use Google\Cloud\Dataform\V1beta1\UpdateFolderRequest;
@@ -264,6 +278,72 @@ class DataformClientTest extends GeneratedTest
         $request = (new CancelWorkflowInvocationRequest())->setName($formattedName);
         try {
             $gapicClient->cancelWorkflowInvocation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function checkoutWorkspaceBranchTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $branch = 'branch-1381030494';
+        $request = (new CheckoutWorkspaceBranchRequest())->setName($formattedName)->setBranch($branch);
+        $gapicClient->checkoutWorkspaceBranch($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/CheckoutWorkspaceBranch', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getBranch();
+        $this->assertProtobufEquals($branch, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function checkoutWorkspaceBranchExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $branch = 'branch-1381030494';
+        $request = (new CheckoutWorkspaceBranchRequest())->setName($formattedName)->setBranch($branch);
+        try {
+            $gapicClient->checkoutWorkspaceBranch($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1124,10 +1204,18 @@ class DataformClientTest extends GeneratedTest
         $name = 'name3373707';
         $internalMetadata = 'internalMetadata-1087755663';
         $disableMoves = false;
+        $originalBranch = 'originalBranch-796517424';
+        $enableBranchManagement = true;
+        $depth = 95472323;
+        $shallow = true;
         $expectedResponse = new Workspace();
         $expectedResponse->setName($name);
         $expectedResponse->setInternalMetadata($internalMetadata);
         $expectedResponse->setDisableMoves($disableMoves);
+        $expectedResponse->setOriginalBranch($originalBranch);
+        $expectedResponse->setEnableBranchManagement($enableBranchManagement);
+        $expectedResponse->setDepth($depth);
+        $expectedResponse->setShallow($shallow);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -1184,6 +1272,73 @@ class DataformClientTest extends GeneratedTest
             ->setWorkspaceId($workspaceId);
         try {
             $gapicClient->createWorkspace($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteBranchTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new DeleteBranchResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $branch = 'branch-1381030494';
+        $request = (new DeleteBranchRequest())->setName($formattedName)->setBranch($branch);
+        $response = $gapicClient->deleteBranch($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/DeleteBranch', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getBranch();
+        $this->assertProtobufEquals($branch, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteBranchExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $branch = 'branch-1381030494';
+        $request = (new DeleteBranchRequest())->setName($formattedName)->setBranch($branch);
+        try {
+            $gapicClient->deleteBranch($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1255,6 +1410,128 @@ class DataformClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteFolderTreeTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteFolderTreeTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteFolderTreeTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->folderName('[PROJECT]', '[LOCATION]', '[FOLDER]');
+        $request = (new DeleteFolderTreeRequest())->setName($formattedName);
+        $response = $gapicClient->deleteFolderTree($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/DeleteFolderTree', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteFolderTreeTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteFolderTreeExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteFolderTreeTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->folderName('[PROJECT]', '[LOCATION]', '[FOLDER]');
+        $request = (new DeleteFolderTreeRequest())->setName($formattedName);
+        $response = $gapicClient->deleteFolderTree($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteFolderTreeTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -1382,6 +1659,128 @@ class DataformClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteRepositoryLongRunningTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteRepositoryLongRunningTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new DeleteRepositoryLongRunningResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteRepositoryLongRunningTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $request = (new DeleteRepositoryLongRunningRequest())->setName($formattedName);
+        $response = $gapicClient->deleteRepositoryLongRunning($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/DeleteRepositoryLongRunning', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteRepositoryLongRunningTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteRepositoryLongRunningExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteRepositoryLongRunningTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $request = (new DeleteRepositoryLongRunningRequest())->setName($formattedName);
+        $response = $gapicClient->deleteRepositoryLongRunning($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteRepositoryLongRunningTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function deleteTeamFolderTest()
     {
         $transport = $this->createTransport();
@@ -1441,6 +1840,128 @@ class DataformClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteTeamFolderTreeTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteTeamFolderTreeTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteTeamFolderTreeTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->teamFolderName('[PROJECT]', '[LOCATION]', '[TEAM_FOLDER]');
+        $request = (new DeleteTeamFolderTreeRequest())->setName($formattedName);
+        $response = $gapicClient->deleteTeamFolderTree($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/DeleteTeamFolderTree', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteTeamFolderTreeTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteTeamFolderTreeExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteTeamFolderTreeTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->teamFolderName('[PROJECT]', '[LOCATION]', '[TEAM_FOLDER]');
+        $request = (new DeleteTeamFolderTreeRequest())->setName($formattedName);
+        $response = $gapicClient->deleteTeamFolderTree($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteTeamFolderTreeTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -1638,6 +2159,71 @@ class DataformClientTest extends GeneratedTest
         $request = (new DeleteWorkspaceRequest())->setName($formattedName);
         try {
             $gapicClient->deleteWorkspace($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchCurrentWorkspaceBranchTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $branchName = 'branchName-992001272';
+        $expectedResponse = new FetchCurrentWorkspaceBranchResponse();
+        $expectedResponse->setBranchName($branchName);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $request = (new FetchCurrentWorkspaceBranchRequest())->setName($formattedName);
+        $response = $gapicClient->fetchCurrentWorkspaceBranch($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/FetchCurrentWorkspaceBranch', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchCurrentWorkspaceBranchExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $request = (new FetchCurrentWorkspaceBranchRequest())->setName($formattedName);
+        try {
+            $gapicClient->fetchCurrentWorkspaceBranch($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1971,6 +2557,77 @@ class DataformClientTest extends GeneratedTest
         $request = (new FetchRepositoryHistoryRequest())->setName($formattedName);
         try {
             $gapicClient->fetchRepositoryHistory($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchWorkspaceBranchesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $branchesElement = new BranchMetadata();
+        $branches = [$branchesElement];
+        $expectedResponse = new FetchWorkspaceBranchesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setBranches($branches);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $request = (new FetchWorkspaceBranchesRequest())->setName($formattedName);
+        $response = $gapicClient->fetchWorkspaceBranches($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getBranches()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/FetchWorkspaceBranches', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchWorkspaceBranchesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $request = (new FetchWorkspaceBranchesRequest())->setName($formattedName);
+        try {
+            $gapicClient->fetchWorkspaceBranches($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2683,10 +3340,18 @@ class DataformClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $internalMetadata = 'internalMetadata-1087755663';
         $disableMoves = false;
+        $originalBranch = 'originalBranch-796517424';
+        $enableBranchManagement = true;
+        $depth = 95472323;
+        $shallow = true;
         $expectedResponse = new Workspace();
         $expectedResponse->setName($name2);
         $expectedResponse->setInternalMetadata($internalMetadata);
         $expectedResponse->setDisableMoves($disableMoves);
+        $expectedResponse->setOriginalBranch($originalBranch);
+        $expectedResponse->setEnableBranchManagement($enableBranchManagement);
+        $expectedResponse->setDepth($depth);
+        $expectedResponse->setShallow($shallow);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
@@ -4886,6 +5551,69 @@ class DataformClientTest extends GeneratedTest
         $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function syncWorkspaceRefsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new SyncWorkspaceRefsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $request = (new SyncWorkspaceRefsRequest())->setName($formattedName);
+        $response = $gapicClient->syncWorkspaceRefs($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/SyncWorkspaceRefs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function syncWorkspaceRefsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $request = (new SyncWorkspaceRefsRequest())->setName($formattedName);
+        try {
+            $gapicClient->syncWorkspaceRefs($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

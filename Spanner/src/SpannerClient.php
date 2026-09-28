@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2016 Google Inc.
  *
@@ -17,11 +18,17 @@
 
 namespace Google\Cloud\Spanner;
 
+use Exception;
 use Google\ApiCore\ClientOptionsTrait;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\ValidationException;
+use Google\Auth\Credentials\GCECredentials;
+use Google\Auth\FetchAuthTokenInterface;
+use Google\Auth\GetUniverseDomainInterface;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\Compute\Metadata;
 use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\Exception\GoogleException;
@@ -38,14 +45,26 @@ use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\Batch\BatchClient;
+use Google\Cloud\Spanner\Middleware\MetricsAttemptMiddleware;
+use Google\Cloud\Spanner\Middleware\MetricsOperationMiddleware;
 use Google\Cloud\Spanner\Middleware\RequestIdHeaderMiddleware;
 use Google\Cloud\Spanner\Middleware\SpannerMiddleware;
+use Google\Cloud\Spanner\OpenTelemetry\OtlpMetricsExporter;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode;
 use Google\LongRunning\Operation as OperationProto;
 use Google\Protobuf\Duration;
+use OpenTelemetry\API\Metrics\MeterInterface;
+use OpenTelemetry\API\Metrics\MeterProviderInterface;
+use OpenTelemetry\SDK\Common\Attribute\Attributes;
+use OpenTelemetry\SDK\Common\Util\ShutdownHandler;
+use OpenTelemetry\SDK\Metrics\MeterProvider;
+use OpenTelemetry\SDK\Metrics\MetricReader\ExportingReader;
+use OpenTelemetry\SDK\Resource\ResourceInfo;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
+use Ramsey\Uuid\Uuid as RUUID;
 
 /**
  * Cloud Spanner is a highly scalable, transactional, managed, NewSQL
@@ -114,10 +133,9 @@ class SpannerClient
     use ApiHelperTrait;
     use RequestTrait;
 
-    const VERSION = '2.0.0-RC1';
-
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
+    private const MONITORING_WRITE_SCOPE = 'https://www.googleapis.com/auth/monitoring.write';
     private const GRPC_KEEPALIVE_MILLISECONDS = 120 * 1000;
 
     private const SERVICE_NAME = 'google.spanner.v1.Spanner';
@@ -132,7 +150,10 @@ class SpannerClient
     private bool $routeToLeader;
     private array $defaultQueryOptions;
     private int $isolationLevel;
+    private int $readLockMode;
     private CacheItemPoolInterface|null $cacheItemPool;
+    private MeterInterface $meter;
+    private MeterProviderInterface $meterProvider;
     private static array $activeChannels = [];
     private static int $totalActiveChannels = 0;
 
@@ -187,6 +208,12 @@ class SpannerClient
      *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
      *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      *     @type CacheItemPoolInterface $cacheItemPool
+     *     @type bool $enableBuiltInMetrics If true, built-in metrics collection will be enabled.
+     *           **Defaults to** false.
+     *     @type int $metricsTimeoutMillis The timeout in milliseconds for exporting metrics.
+     *           **Defaults to** 100.
+     *     @type MetricServiceClient $metricServiceClient **[DEPRECATED]** An explicit instance of
+     *           `MetricServiceClient` to use for exporting metrics.
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
@@ -204,8 +231,11 @@ class SpannerClient
             'queryOptions' => [],
             'directedReadOptions' => [],
             'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED,
+            'readLockMode' => ReadLockMode::READ_LOCK_MODE_UNSPECIFIED,
             'routeToLeader' => true,
-            'cacheItemPool' => null
+            'cacheItemPool' => null,
+            'enableBuiltInMetrics' => false,
+            'metricsTimeoutMillis' => 100,
         ];
 
         $this->returnInt64AsObject = $options['returnInt64AsObject'];
@@ -213,6 +243,7 @@ class SpannerClient
         $this->routeToLeader = $options['routeToLeader'];
         $this->defaultQueryOptions = $options['queryOptions'];
         $this->isolationLevel = $options['isolationLevel'];
+        $this->readLockMode = $options['readLockMode'];
 
         $options = $this->configureKeepAlive($options);
 
@@ -226,6 +257,8 @@ class SpannerClient
         } else {
             $options['credentialsConfig']['scopes'] = $scopes;
         }
+
+        $rawCredentials = $options['credentials'] ?? null;
 
         if ($emulatorHost) {
             $emulatorConfig = $this->emulatorGapicConfig($emulatorHost);
@@ -273,6 +306,8 @@ class SpannerClient
         $this->spannerClient->addMiddleware($middleware);
         $this->instanceAdminClient->addMiddleware($middleware);
         $this->databaseAdminClient->addMiddleware($middleware);
+
+        $this->configureMetrics($options, $rawCredentials);
 
         $this->projectName = InstanceAdminClient::projectName($this->projectId);
         $this->cacheItemPool = $options['cacheItemPool'];
@@ -521,10 +556,10 @@ class SpannerClient
                     $operation->getName(),
                     [
                         'type.googleapis.com/google.spanner.admin.instance.v1.ListInstanceConfigMetadata' =>
-                            fn (InstanceConfig $config) => $this->instanceConfiguration(
-                                $config->getName(),
-                                $this->handleResponse($config)
-                            ),
+                        fn (InstanceConfig $config) => $this->instanceConfiguration(
+                            $config->getName(),
+                            $this->handleResponse($config)
+                        ),
                     ],
                     $this->handleResponse($operation)
                 );
@@ -591,6 +626,7 @@ class SpannerClient
                 'defaultQueryOptions' => $this->defaultQueryOptions,
                 'returnInt64AsObject' => $this->returnInt64AsObject,
                 'isolationLevel' => $this->isolationLevel,
+                'readLockMode' => $this->readLockMode,
                 'cacheItemPool' => $this->cacheItemPool,
                 'instance' => $instance,
             ],
@@ -960,8 +996,8 @@ class SpannerClient
         if (!$this->isGrpcLoaded()) {
             throw new GoogleException(
                 'The requested client requires the gRPC extension. '
-                . 'Please see https://cloud.google.com/php/grpc for installation '
-                . 'instructions.'
+                    . 'Please see https://cloud.google.com/php/grpc for installation '
+                    . 'instructions.'
             );
         }
     }
@@ -1023,5 +1059,145 @@ class SpannerClient
         ];
 
         return $config;
+    }
+
+    private function configureMetrics(
+        array $options,
+        string|array|FetchAuthTokenInterface|CredentialsWrapper|null $rawCredentials = null
+    ): void {
+        $timeoutMillis = $this->pluck('metricsTimeoutMillis', $options, false) ?? 100;
+
+        if (!$this->pluck('enableBuiltInMetrics', $options, false)) {
+            return;
+        }
+
+        $location = $this->getLocation();
+        $metricsClientId = RUUID::uuid4()->toString() . '-' . getmypid();
+        $clientHash = $this->generateClientHash($metricsClientId);
+
+        $resource = ResourceInfo::create(Attributes::create([
+            'gcp.resource_type' => 'spanner_instance_client',
+            'gcp.project_id'    => $this->projectId,
+            'project_id'        => $this->projectId,
+            'client_hash'       => $clientHash,
+            'location'          => $location !== 'global' ? $location : 'us-central1',
+        ]));
+
+        $credentialsWrapper = $this->buildMetricsCredentials($rawCredentials, $options);
+
+        $exporter = new OtlpMetricsExporter($credentialsWrapper, $timeoutMillis, $options);
+        $reader = new ExportingReader($exporter);
+        $this->meterProvider = MeterProvider::builder()
+            ->setResource($resource)
+            ->addReader($reader)
+            ->build();
+
+        $this->meter = $this->meterProvider->getMeter('google-cloud-spanner');
+        ShutdownHandler::register([$this->meterProvider, 'shutdown']);
+
+        $attemptMetricsMiddleware = function (MiddlewareInterface $handler) use ($metricsClientId) {
+            return new MetricsAttemptMiddleware(
+                $handler,
+                $this->meter,
+                $metricsClientId,
+                $this->clientVersion()
+            );
+        };
+
+        $operationMetricsMiddleware = function (MiddlewareInterface $handler) use ($metricsClientId) {
+            return new MetricsOperationMiddleware(
+                $handler,
+                $this->meter,
+                $metricsClientId,
+                $this->clientVersion()
+            );
+        };
+
+        $this->spannerClient->prependMiddleware($attemptMetricsMiddleware);
+        $this->spannerClient->addMiddleware($operationMetricsMiddleware);
+    }
+
+    /**
+     * Returns the current client version.
+     *
+     * @return string
+     */
+    private function clientVersion(): string
+    {
+        return trim(file_get_contents(__DIR__ . '/../VERSION'));
+    }
+
+    /**
+     * Gets the current location for the client for GCP or 'global' as a fallback.
+     *
+     * @return string
+     */
+    private function getLocation(): string
+    {
+        $location = 'global';
+        if (!GCECredentials::onGce()) {
+            return $location;
+        }
+
+        try {
+            $metadata = new Metadata();
+
+            $location = $metadata->get('instance/attributes/cluster-location');
+            if ($location) {
+                return $location;
+            }
+
+            $region = $metadata->get('instance/region');
+            if ($region) {
+                // Region is returned as "projects/[NUM]/regions/[REGION-NAME]"
+                return substr($region, strrpos($region, '/') + 1);
+            }
+
+            $zone = $metadata->get('instance/zone');
+            if ($zone) {
+                // Zone is "projects/[NUM]/zones/[ZONE-NAME]"
+                $zoneName = substr($zone, strrpos($zone, '/') + 1);
+                $lastHyphen = strrpos($zoneName, '-');
+                return ($lastHyphen !== false) ? substr($zoneName, 0, $lastHyphen) : $zoneName;
+            }
+        } catch (Exception $e) {
+            // avoid crashing the client in case of a metadata error
+        }
+
+        return $location;
+    }
+
+    /**
+     * Returns a hash of the client UUID for the metrics.
+     *
+     * @param string $clientUid
+     * @return string
+     */
+    private function generateClientHash(string $clientUid): string
+    {
+        if ($clientUid === '') {
+            return '000000';
+        }
+
+        $hashHex = hash('fnv1a64', $clientUid);
+        $firstFour = substr($hashHex, 0, 4);
+        $intVal = hexdec($firstFour);
+        $tenBits = $intVal >> 6;
+        return sprintf('%06x', $tenBits);
+    }
+
+    private function buildMetricsCredentials(
+        string|array|FetchAuthTokenInterface|CredentialsWrapper|null $credentials,
+        array $options
+    ): CredentialsWrapper {
+        $credentialsConfig = [
+            'scopes' => [
+                self::MONITORING_WRITE_SCOPE
+            ]
+        ];
+
+        $universeDomain = $options['universeDomain'] ?? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
+
+        return $this->createCredentialsWrapper($credentials, $credentialsConfig, $universeDomain);
     }
 }

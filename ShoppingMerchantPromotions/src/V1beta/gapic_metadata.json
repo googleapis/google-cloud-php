@@ -8,7 +8,7 @@
         "PromotionsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PromotionsServiceGapicClient",
+                    "libraryClient": "PromotionsServiceClient",
                     "rpcs": {
                         "GetPromotion": {
                             "methods": [

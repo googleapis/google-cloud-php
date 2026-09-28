@@ -8,7 +8,7 @@
         "SearchService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SearchServiceGapicClient",
+                    "libraryClient": "SearchServiceClient",
                     "rpcs": {
                         "Search": {
                             "methods": [
@@ -27,7 +27,7 @@
         "AssistantService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AssistantServiceGapicClient",
+                    "libraryClient": "AssistantServiceClient",
                     "rpcs": {
                         "StreamAssist": {
                             "methods": [
@@ -41,7 +41,7 @@
         "CmekConfigService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CmekConfigServiceGapicClient",
+                    "libraryClient": "CmekConfigServiceClient",
                     "rpcs": {
                         "DeleteCmekConfig": {
                             "methods": [
@@ -70,7 +70,7 @@
         "CompletionService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CompletionServiceGapicClient",
+                    "libraryClient": "CompletionServiceClient",
                     "rpcs": {
                         "CompleteQuery": {
                             "methods": [
@@ -104,7 +104,7 @@
         "ControlService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ControlServiceGapicClient",
+                    "libraryClient": "ControlServiceClient",
                     "rpcs": {
                         "CreateControl": {
                             "methods": [
@@ -138,7 +138,7 @@
         "ConversationalSearchService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ConversationalSearchServiceGapicClient",
+                    "libraryClient": "ConversationalSearchServiceClient",
                     "rpcs": {
                         "AnswerQuery": {
                             "methods": [
@@ -217,7 +217,7 @@
         "DataStoreService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataStoreServiceGapicClient",
+                    "libraryClient": "DataStoreServiceClient",
                     "rpcs": {
                         "CreateDataStore": {
                             "methods": [
@@ -251,7 +251,7 @@
         "DocumentService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DocumentServiceGapicClient",
+                    "libraryClient": "DocumentServiceClient",
                     "rpcs": {
                         "BatchGetDocumentsMetadata": {
                             "methods": [
@@ -300,7 +300,7 @@
         "EngineService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "EngineServiceGapicClient",
+                    "libraryClient": "EngineServiceClient",
                     "rpcs": {
                         "CreateEngine": {
                             "methods": [
@@ -334,7 +334,7 @@
         "GroundedGenerationService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GroundedGenerationServiceGapicClient",
+                    "libraryClient": "GroundedGenerationServiceClient",
                     "rpcs": {
                         "CheckGrounding": {
                             "methods": [
@@ -358,7 +358,7 @@
         "IdentityMappingStoreService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "IdentityMappingStoreServiceGapicClient",
+                    "libraryClient": "IdentityMappingStoreServiceClient",
                     "rpcs": {
                         "CreateIdentityMappingStore": {
                             "methods": [
@@ -402,7 +402,7 @@
         "ProjectService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ProjectServiceGapicClient",
+                    "libraryClient": "ProjectServiceClient",
                     "rpcs": {
                         "ProvisionProject": {
                             "methods": [
@@ -416,7 +416,7 @@
         "RankService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RankServiceGapicClient",
+                    "libraryClient": "RankServiceClient",
                     "rpcs": {
                         "Rank": {
                             "methods": [
@@ -430,7 +430,7 @@
         "RecommendationService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RecommendationServiceGapicClient",
+                    "libraryClient": "RecommendationServiceClient",
                     "rpcs": {
                         "Recommend": {
                             "methods": [
@@ -444,7 +444,7 @@
         "SchemaService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SchemaServiceGapicClient",
+                    "libraryClient": "SchemaServiceClient",
                     "rpcs": {
                         "CreateSchema": {
                             "methods": [
@@ -478,7 +478,7 @@
         "SearchTuningService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SearchTuningServiceGapicClient",
+                    "libraryClient": "SearchTuningServiceClient",
                     "rpcs": {
                         "ListCustomModels": {
                             "methods": [
@@ -497,7 +497,7 @@
         "ServingConfigService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ServingConfigServiceGapicClient",
+                    "libraryClient": "ServingConfigServiceClient",
                     "rpcs": {
                         "UpdateServingConfig": {
                             "methods": [
@@ -511,7 +511,7 @@
         "SessionService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SessionServiceGapicClient",
+                    "libraryClient": "SessionServiceClient",
                     "rpcs": {
                         "CreateSession": {
                             "methods": [
@@ -545,7 +545,7 @@
         "SiteSearchEngineService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SiteSearchEngineServiceGapicClient",
+                    "libraryClient": "SiteSearchEngineServiceClient",
                     "rpcs": {
                         "BatchCreateTargetSites": {
                             "methods": [
@@ -629,7 +629,7 @@
         "UserEventService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "UserEventServiceGapicClient",
+                    "libraryClient": "UserEventServiceClient",
                     "rpcs": {
                         "CollectUserEvent": {
                             "methods": [
@@ -658,7 +658,7 @@
         "UserLicenseService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "UserLicenseServiceGapicClient",
+                    "libraryClient": "UserLicenseServiceClient",
                     "rpcs": {
                         "BatchUpdateUserLicenses": {
                             "methods": [

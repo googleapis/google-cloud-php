@@ -40,7 +40,6 @@ use Google\Cloud\Spanner\V1\Mutation\Write;
 use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly;
 use Google\Cloud\Spanner\V1\Type;
-use Google\Protobuf\Internal\RepeatedField as DeprecatedRepeatedField;
 use Google\Protobuf\ListValue;
 use Google\Protobuf\RepeatedField;
 use Google\Protobuf\Struct;
@@ -216,11 +215,11 @@ class Serializer extends ApiCoreSerializer
      * The type is converted from a string like INT64 to ["code" => 2, "typeAnnotation" => 0]
      * conforming with the Google\Cloud\Spanner\V1\TypeCode class.
      *
-     * @param RepeatedField|DeprecatedRepeatedField|null $fields The array contain list of fields.
+     * @param RepeatedField|null $fields The array contain list of fields.
      *
      * @return array The formatted fields data.
      */
-    private function getFieldDataFromRepeatedFields(RepeatedField|DeprecatedRepeatedField|null $fields): array
+    private function getFieldDataFromRepeatedFields(RepeatedField|null $fields): array
     {
         if (is_null($fields)) {
             return [];

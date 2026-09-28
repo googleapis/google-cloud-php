@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,6 +47,7 @@ use Google\Cloud\GeminiDataAnalytics\V1beta\ListMessagesRequest;
 use Google\Cloud\GeminiDataAnalytics\V1beta\Message;
 use Google\Cloud\GeminiDataAnalytics\V1beta\QueryDataRequest;
 use Google\Cloud\GeminiDataAnalytics\V1beta\QueryDataResponse;
+use Google\Cloud\GeminiDataAnalytics\V1beta\UpdateConversationRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
@@ -74,6 +75,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<QueryDataResponse> queryDataAsync(QueryDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Conversation> updateConversationAsync(UpdateConversationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
@@ -101,7 +103,11 @@ final class DataChatServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
@@ -141,6 +147,29 @@ final class DataChatServiceClient
             'project' => $project,
             'location' => $location,
             'conversation' => $conversation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     *
+     * @experimental
+     */
+    public static function cryptoKeyName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
+        return self::getPathTemplate('cryptoKey')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
         ]);
     }
 
@@ -206,6 +235,7 @@ final class DataChatServiceClient
      * The following name formats are supported:
      * Template: Pattern
      * - conversation: projects/{project}/locations/{location}/conversations/{conversation}
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - dataAgent: projects/{project}/locations/{location}/dataAgents/{data_agent}
      * - location: projects/{project}/locations/{location}
      * - project: projects/{project}
@@ -319,7 +349,7 @@ final class DataChatServiceClient
 
     /**
      * Answers a data question by generating a stream of
-     * [Message][google.cloud.geminidataanalytics.v1alpha.Message] objects.
+     * [Message][google.cloud.geminidataanalytics.v1.Message] objects.
      *
      * @example samples/V1beta/DataChatServiceClient/chat.php
      *
@@ -510,6 +540,34 @@ final class DataChatServiceClient
     }
 
     /**
+     * Updates a conversation.
+     *
+     * The async variant is {@see DataChatServiceClient::updateConversationAsync()} .
+     *
+     * @example samples/V1beta/DataChatServiceClient/update_conversation.php
+     *
+     * @param UpdateConversationRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Conversation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateConversation(UpdateConversationRequest $request, array $callOptions = []): Conversation
+    {
+        return $this->startApiCall('UpdateConversation', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets information about a location.
      *
      * The async variant is {@see DataChatServiceClient::getLocationAsync()} .
@@ -539,13 +597,21 @@ final class DataChatServiceClient
 
     /**
      * Lists information about the supported locations for this service.
-    This method can be called in two ways:
-
-    *   **List all public locations:** Use the path `GET /v1/locations`.
-    *   **List project-visible locations:** Use the path
-    `GET /v1/projects/{project_id}/locations`. This may include public
-    locations as well as private or other locations specifically visible
-    to the project.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see DataChatServiceClient::listLocationsAsync()} .
      *

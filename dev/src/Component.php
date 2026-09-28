@@ -28,6 +28,12 @@ use DateTime;
 class Component
 {
     const VERSION_REGEX = '/^V([0-9])?(p[0-9])?(beta|alpha)?[0-9]?$/';
+    private const PROTOBUF = 'google/protobuf';
+    /**
+     * Components whose repositories existed before they were migrated into this
+     * monorepo, and which therefore have issues and pull requests of their own.
+     */
+    private const MIGRATED_COMPONENTS = ['Auth', 'Gax', 'Jwt'];
     public const ROOT_DIR = __DIR__ . '/../../';
     private string $path;
     private string $releaseLevel;
@@ -72,12 +78,26 @@ class Component
 
     public function getId(): string
     {
-        return str_replace(['google/', 'googleads/'], '', $this->getPackageName());
+        // Strip the vendor prefix (e.g. "google/", "googleads/", "firebase/")
+        $packageName = $this->getPackageName();
+        return false === ($pos = strpos($packageName, '/'))
+            ? $packageName
+            : substr($packageName, $pos + 1);
     }
 
     public function getName(): string
     {
         return $this->name;
+    }
+
+    /**
+     * Whether this component's repository existed before it was migrated into
+     * this monorepo. Those repositories have issues and pull requests which our
+     * commit history links to, so they keep both tabs visible.
+     */
+    public function isMigratedRepo(): bool
+    {
+        return in_array($this->name, self::MIGRATED_COMPONENTS, true);
     }
 
     public function getPath(): string
@@ -188,7 +208,10 @@ class Component
         $this->description = $composerJson['description'];
         $this->composerVersion = $composerJson['version'] ?? null;
 
-        if (!$repoName = $composerJson['extra']['component']['target'] ?? null) {
+        if ($this->packageName === Component::PROTOBUF) {
+            // special handling for protobuf "virtual" package
+            $repoName = 'protocolbuffers/protobuf';
+        } elseif (!$repoName = $composerJson['extra']['component']['target'] ?? null) {
             if (!str_starts_with($composerJson['homepage'], 'https://github.com/')) {
                 throw new RuntimeException(
                     'composer does not contain extra.component.target, and homepage is not a github URL'
@@ -204,6 +227,13 @@ class Component
             $repoMetadataJson = $repoMetadataFullJson[$this->name];
         } elseif (file_exists($repoMetadataPath = $this->path . '/.repo-metadata.json')) {
             $repoMetadataJson = json_decode(file_get_contents($repoMetadataPath), true);
+        } elseif ($this->packageName === Component::PROTOBUF) {
+            // special handling for protobuf "virtual" package
+            $repoMetadataJson = [
+                'release_level' => 'stable',
+                'client_documentation' => 'https://cloud.google.com/php/docs/reference/auth/latest',
+                'library_type' => 'CORE',
+            ];
         } else {
             throw new RuntimeException(sprintf(
                 'repo metadata not found for component "%s" and no .repo-metadata.json file found in %s',
@@ -218,16 +248,22 @@ class Component
                 $this->name
             ));
         }
-        if (empty($repoMetadataJson['release_level'])) {
+        if (empty($repoMetadataJson['client_documentation'])) {
             throw new RuntimeException(sprintf(
                 'repo metadata does not contain "client_documentation" for component "%s"',
                 $this->name
             ));
         }
+        if (empty($repoMetadataJson['library_type'])) {
+            throw new RuntimeException(sprintf(
+                'repo metadata does not contain "library_type" for component "%s"',
+                $this->name
+            ));
+        }
         $this->releaseLevel = $repoMetadataJson['release_level'];
         $this->clientDocumentation = $repoMetadataJson['client_documentation'];
-        $this->productDocumentation = $repoMetadataJson['product_documentation'] ?? '';
         $this->libraryType = $repoMetadataJson['library_type'];
+        $this->productDocumentation = $repoMetadataJson['product_documentation'] ?? '';
 
         $namespaces = [];
         foreach ($composerJson['autoload']['psr-4'] as $namespace => $dir) {
@@ -241,10 +277,12 @@ class Component
         $this->namespaces = $namespaces;
 
         $this->componentDependencies = [];
-        // All components depend on google/auth
-        if ($this->name !== 'auth') {
-            $this->componentDependencies[] = new Component('auth', self::ROOT_DIR . '/dev/vendor/google/auth');
+
+        // Skip if Auth to avoid recursion, skip if Jwt because Jwt does not rely on Auth
+        if ($this->name !== 'Auth' && $this->name !== 'Jwt') {
+            $this->componentDependencies[] = new Component('Auth');
         }
+
         // find dependencies which are google/cloud components
         foreach ($composerJson['require'] ?? [] as $name => $version) {
             if ($componentName = key(array_filter(
@@ -254,12 +292,13 @@ class Component
                 $this->componentDependencies[] = new Component($componentName);
             }
         }
-        // add gax if it's required
+        // GAX depend on google/common-protos
         if (isset($composerJson['require']['google/gax'])) {
-            $this->componentDependencies[] = new Component('gax', self::ROOT_DIR . '/dev/vendor/google/gax');
-            if (!isset($composerJson['require']['google/common-protos'])) {
-                $this->componentDependencies[] = new Component('CommonProtos');
-            }
+            $this->componentDependencies[] = new Component('CommonProtos');
+        }
+        // add protobuf if it's required
+        if (isset($composerJson['require']['google/protobuf'])) {
+            $this->componentDependencies[] = new Component('protobuf', self::ROOT_DIR . '/dev/vendor/google/protobuf');
         }
     }
 
@@ -268,6 +307,9 @@ class Component
      */
     public function getPackageVersion(): string
     {
+        if (!file_exists(sprintf('%s/VERSION', $this->path))) {
+            return '';
+        }
         return trim(file_get_contents(sprintf('%s/VERSION', $this->path)));
     }
 

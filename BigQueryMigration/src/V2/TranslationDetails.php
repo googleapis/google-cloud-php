@@ -51,6 +51,12 @@ class TranslationDetails extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string target_types = 5;</code>
      */
     private $target_types;
+    /**
+     * The configuration for the suggestion if requested as a target type.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.SuggestionConfig suggestion_config = 6;</code>
+     */
+    protected $suggestion_config = null;
 
     /**
      * Constructor.
@@ -73,6 +79,8 @@ class TranslationDetails extends \Google\Protobuf\Internal\Message
      *           lineage_from_sql_scripts, etc. If not specified, a default set of
      *           targets will be generated. Some additional target types may be slower to
      *           generate. See the documentation for the set of available target types.
+     *     @type \Google\Cloud\BigQuery\Migration\V2\SuggestionConfig $suggestion_config
+     *           The configuration for the suggestion if requested as a target type.
      * }
      */
     public function __construct($data = NULL) {
@@ -226,6 +234,42 @@ class TranslationDetails extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->target_types = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The configuration for the suggestion if requested as a target type.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.SuggestionConfig suggestion_config = 6;</code>
+     * @return \Google\Cloud\BigQuery\Migration\V2\SuggestionConfig|null
+     */
+    public function getSuggestionConfig()
+    {
+        return $this->suggestion_config;
+    }
+
+    public function hasSuggestionConfig()
+    {
+        return isset($this->suggestion_config);
+    }
+
+    public function clearSuggestionConfig()
+    {
+        unset($this->suggestion_config);
+    }
+
+    /**
+     * The configuration for the suggestion if requested as a target type.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.SuggestionConfig suggestion_config = 6;</code>
+     * @param \Google\Cloud\BigQuery\Migration\V2\SuggestionConfig $var
+     * @return $this
+     */
+    public function setSuggestionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Migration\V2\SuggestionConfig::class);
+        $this->suggestion_config = $var;
 
         return $this;
     }

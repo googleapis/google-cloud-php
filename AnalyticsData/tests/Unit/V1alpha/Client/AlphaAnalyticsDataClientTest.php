@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,11 +23,14 @@
 namespace Google\Analytics\Data\Tests\Unit\V1alpha\Client;
 
 use Google\Analytics\Data\V1alpha\AudienceList;
+use Google\Analytics\Data\V1alpha\ChatRequest;
+use Google\Analytics\Data\V1alpha\ChatResponse;
 use Google\Analytics\Data\V1alpha\Client\AlphaAnalyticsDataClient;
 use Google\Analytics\Data\V1alpha\CreateAudienceListRequest;
 use Google\Analytics\Data\V1alpha\CreateRecurringAudienceListRequest;
 use Google\Analytics\Data\V1alpha\CreateReportTaskRequest;
 use Google\Analytics\Data\V1alpha\GetAudienceListRequest;
+use Google\Analytics\Data\V1alpha\GetMetadataRequest;
 use Google\Analytics\Data\V1alpha\GetPropertyQuotasSnapshotRequest;
 use Google\Analytics\Data\V1alpha\GetRecurringAudienceListRequest;
 use Google\Analytics\Data\V1alpha\GetReportTaskRequest;
@@ -37,6 +40,7 @@ use Google\Analytics\Data\V1alpha\ListRecurringAudienceListsRequest;
 use Google\Analytics\Data\V1alpha\ListRecurringAudienceListsResponse;
 use Google\Analytics\Data\V1alpha\ListReportTasksRequest;
 use Google\Analytics\Data\V1alpha\ListReportTasksResponse;
+use Google\Analytics\Data\V1alpha\Metadata;
 use Google\Analytics\Data\V1alpha\PropertyQuotasSnapshot;
 use Google\Analytics\Data\V1alpha\QueryAudienceListRequest;
 use Google\Analytics\Data\V1alpha\QueryAudienceListResponse;
@@ -46,8 +50,8 @@ use Google\Analytics\Data\V1alpha\RecurringAudienceList;
 use Google\Analytics\Data\V1alpha\ReportTask;
 use Google\Analytics\Data\V1alpha\RunFunnelReportRequest;
 use Google\Analytics\Data\V1alpha\RunFunnelReportResponse;
-use Google\Analytics\Data\V1alpha\SheetExportAudienceListRequest;
-use Google\Analytics\Data\V1alpha\SheetExportAudienceListResponse;
+use Google\Analytics\Data\V1alpha\RunReportRequest;
+use Google\Analytics\Data\V1alpha\RunReportResponse;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
@@ -87,6 +91,75 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new AlphaAnalyticsDataClient($options);
+    }
+
+    /** @test */
+    public function chatTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $sessionId2 = 'sessionId2-686579177';
+        $expectedResponse = new ChatResponse();
+        $expectedResponse->setSessionId($sessionId2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedProperty = $gapicClient->propertyName('[PROPERTY]');
+        $userQuery = 'userQuery1932993364';
+        $request = (new ChatRequest())->setProperty($formattedProperty)->setUserQuery($userQuery);
+        $response = $gapicClient->chat($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/Chat', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProperty();
+        $this->assertProtobufEquals($formattedProperty, $actualValue);
+        $actualValue = $actualRequestObject->getUserQuery();
+        $this->assertProtobufEquals($userQuery, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function chatExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedProperty = $gapicClient->propertyName('[PROPERTY]');
+        $userQuery = 'userQuery1932993364';
+        $request = (new ChatRequest())->setProperty($formattedProperty)->setUserQuery($userQuery);
+        try {
+            $gapicClient->chat($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -525,6 +598,71 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $request = (new GetAudienceListRequest())->setName($formattedName);
         try {
             $gapicClient->getAudienceList($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getMetadataTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new Metadata();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->metadataName('[PROPERTY]');
+        $request = (new GetMetadataRequest())->setName($formattedName);
+        $response = $gapicClient->getMetadata($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/GetMetadata', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getMetadataExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->metadataName('[PROPERTY]');
+        $request = (new GetMetadataRequest())->setName($formattedName);
+        try {
+            $gapicClient->getMetadata($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1149,7 +1287,7 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function sheetExportAudienceListTest()
+    public function runReportTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -1157,31 +1295,31 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $spreadsheetUri = 'spreadsheetUri-1521055111';
-        $spreadsheetId = 'spreadsheetId1336406638';
         $rowCount = 1340416618;
-        $expectedResponse = new SheetExportAudienceListResponse();
-        $expectedResponse->setSpreadsheetUri($spreadsheetUri);
-        $expectedResponse->setSpreadsheetId($spreadsheetId);
+        $kind = 'kind3292052';
+        $nextPageToken = 'nextPageToken-1530815211';
+        $expectedResponse = new RunReportResponse();
         $expectedResponse->setRowCount($rowCount);
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setNextPageToken($nextPageToken);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->audienceListName('[PROPERTY]', '[AUDIENCE_LIST]');
-        $request = (new SheetExportAudienceListRequest())->setName($formattedName);
-        $response = $gapicClient->sheetExportAudienceList($request);
+        $property = 'property-993141291';
+        $request = (new RunReportRequest())->setProperty($property);
+        $response = $gapicClient->runReport($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/SheetExportAudienceList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/RunReport', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProperty();
+        $this->assertProtobufEquals($property, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function sheetExportAudienceListExceptionTest()
+    public function runReportExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -1202,10 +1340,10 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->audienceListName('[PROPERTY]', '[AUDIENCE_LIST]');
-        $request = (new SheetExportAudienceListRequest())->setName($formattedName);
+        $property = 'property-993141291';
+        $request = (new RunReportRequest())->setProperty($property);
         try {
-            $gapicClient->sheetExportAudienceList($request);
+            $gapicClient->runReport($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1218,88 +1356,33 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createAudienceListAsyncTest()
+    public function chatAsyncTest()
     {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
             'transport' => $transport,
-            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createAudienceListTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $name = 'name3373707';
-        $audience = 'audience975628804';
-        $audienceDisplayName = 'audienceDisplayName406858307';
-        $creationQuotaTokensCharged = 1232901266;
-        $rowCount = 1340416618;
-        $errorMessage = 'errorMessage-1938755376';
-        $percentageCompleted = -1.29204764e8;
-        $recurringAudienceList = 'recurringAudienceList2056789015';
-        $expectedResponse = new AudienceList();
-        $expectedResponse->setName($name);
-        $expectedResponse->setAudience($audience);
-        $expectedResponse->setAudienceDisplayName($audienceDisplayName);
-        $expectedResponse->setCreationQuotaTokensCharged($creationQuotaTokensCharged);
-        $expectedResponse->setRowCount($rowCount);
-        $expectedResponse->setErrorMessage($errorMessage);
-        $expectedResponse->setPercentageCompleted($percentageCompleted);
-        $expectedResponse->setRecurringAudienceList($recurringAudienceList);
-        $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serializeToString());
-        $completeOperation = new Operation();
-        $completeOperation->setName('operations/createAudienceListTest');
-        $completeOperation->setDone(true);
-        $completeOperation->setResponse($anyResponse);
-        $operationsTransport->addResponse($completeOperation);
+        $sessionId2 = 'sessionId2-686579177';
+        $expectedResponse = new ChatResponse();
+        $expectedResponse->setSessionId($sessionId2);
+        $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $audienceList = new AudienceList();
-        $audienceListAudience = 'audienceListAudience867162342';
-        $audienceList->setAudience($audienceListAudience);
-        $audienceListDimensions = [];
-        $audienceList->setDimensions($audienceListDimensions);
-        $request = (new CreateAudienceListRequest())->setParent($formattedParent)->setAudienceList($audienceList);
-        $response = $gapicClient->createAudienceListAsync($request)->wait();
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/CreateAudienceList', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getAudienceList();
-        $this->assertProtobufEquals($audienceList, $actualValue);
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createAudienceListTest');
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $formattedProperty = $gapicClient->propertyName('[PROPERTY]');
+        $userQuery = 'userQuery1932993364';
+        $request = (new ChatRequest())->setProperty($formattedProperty)->setUserQuery($userQuery);
+        $response = $gapicClient->chatAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/Chat', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProperty();
+        $this->assertProtobufEquals($formattedProperty, $actualValue);
+        $actualValue = $actualRequestObject->getUserQuery();
+        $this->assertProtobufEquals($userQuery, $actualValue);
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
     }
 }

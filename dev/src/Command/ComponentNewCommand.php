@@ -52,8 +52,6 @@ class ComponentNewCommand extends Command
         'VERSION',
     ];
     private const TEMPLATE_FILES = [
-        '.github/pull_request_template.md.twig',
-        '.OwlBot.yaml.twig',
         'owlbot.py.twig',
         'phpunit.xml.dist.twig',
         'README.md.twig',
@@ -61,15 +59,18 @@ class ComponentNewCommand extends Command
 
     private $rootPath;
     private $httpClient;
+    private RunProcess $runProcess;
 
     /**
      * @param string $rootPath The path to the repository root directory.
-     * @param Client $httpClient specify the HTTP client, useful for tests.
+     * @param Client|null $httpClient specify the HTTP client, useful for tests.
+     * @param RunProcess|null $runProcess Instance to execute Symfony Process commands, useful for tests.
      */
-    public function __construct($rootPath, ?Client $httpClient = null)
+    public function __construct($rootPath, ?Client $httpClient = null, ?RunProcess $runProcess = null)
     {
         $this->rootPath = realpath($rootPath);
         $this->httpClient = $httpClient ?: new Client();
+        $this->runProcess = $runProcess ?: new RunProcess();
         parent::__construct();
     }
 
@@ -77,7 +78,49 @@ class ComponentNewCommand extends Command
     {
         $this->setName('component:new')
             ->setDescription('Add a new Component')
-            ->addArgument('proto', InputArgument::REQUIRED, 'Path to service proto.')
+            ->addArgument('proto', InputArgument::OPTIONAL, 'Path to service proto.')
+            ->addOption(
+                'component-name',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The component name (e.g. Speech)'
+            )
+            ->addOption(
+                'php-namespace',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The PHP namespace (e.g. Google\Cloud\Speech\V2)'
+            )
+            ->addOption(
+                'proto-package',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The proto package (e.g. google.cloud.speech.v2)'
+            )
+            ->addOption(
+                'api-short-name',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The API short name (e.g. speech)'
+            )
+            ->addOption(
+                'api-version',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The API version (e.g. v2)'
+            )
+            ->addOption(
+                'product-docs',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The product documentation URL'
+            )
+            ->addOption(
+                'product-homepage',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The product homepage URL'
+            )
             ->addOption(
                 'no-update',
                 null,
@@ -95,12 +138,45 @@ class ComponentNewCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $componentName = $input->getOption('component-name');
+        $phpNamespace = $input->getOption('php-namespace');
+        $protoPackage = $input->getOption('proto-package');
+        $apiShortName = $input->getOption('api-short-name');
+        $apiVersion = $input->getOption('api-version');
+        $productDocumentation = $input->getOption('product-docs');
+        $productHomePage = $input->getOption('product-homepage');
+
+        $options = array_filter([
+            'component-name' => $componentName,
+            'php-namespace' => $phpNamespace,
+            'proto-package' => $protoPackage,
+            'api-short-name' => $apiShortName,
+            'api-version' => $apiVersion,
+            'product-docs' => $productDocumentation,
+            'product-homepage' => $productHomePage,
+        ], 'is_string');
+
+        $allOptionsProvided = count($options) === 7;
+
         $proto = $input->getArgument('proto');
-        $protoFile = file_exists($proto) ? substr($proto, strpos($proto, 'google/')) : $proto;
-        $new = NewComponent::fromProto($this->loadProtoContent($proto), $protoFile);
+        if ($proto && $allOptionsProvided) {
+            // When all 7 options are supplied, the proto path is unused.
+            throw new RuntimeException('Error: Cannot provide both a proto file path and all 7 component options.');
+        }
+        if (!$proto && !$allOptionsProvided) {
+            throw new RuntimeException('Error: You must provide a proto file path or all 7 component options.');
+        }
+
+        if ($proto) {
+            $protoFile = file_exists($proto) ? substr($proto, strpos($proto, 'google/')) : $proto;
+            $protoContents = $this->loadProtoContent($proto);
+            $new = NewComponent::fromProto($protoContents, $protoFile, $options);
+        } else {
+            $new = NewComponent::fromOptions($options);
+        }
         $new->componentPath = $this->rootPath;
 
-        if (is_dir($this->rootPath . '/' . $new->componentName)) {
+        if ($input->isInteractive() && is_dir($this->rootPath . '/' . $new->componentName)) {
             // component already exists
             $output->writeln(''); // blank line
             if (!$this->getHelper('question')->ask($input, $output, new ConfirmationQuestion(
@@ -120,7 +196,7 @@ class ComponentNewCommand extends Command
         $timeout = (int) $unsafeTimeout;
 
         $output->writeln(''); // blank line
-        $output->writeln(sprintf('Your package (%s) will have the following info:', $protoFile));
+        $output->writeln(sprintf('Your package (%s) will have the following info:', $new->componentName));
 
         $f = fn($f, $v) => ["<info>$f</info>", $v];
         $newArray = (array) $new;
@@ -129,40 +205,50 @@ class ComponentNewCommand extends Command
             ->setRows(array_map($f, array_keys($newArray), $newArray))
             ->render();
 
-        while (
-            !$this->getHelper('question')->ask(
-                $input,
-                $output,
-                new ConfirmationQuestion('Does this information look correct? ("n" to customize) [Y/n] ', 'Y')
-            )
-        ) {
-            foreach ($new as $field => $val) {
-                $new->$field = $this->getHelper('question')->ask(
+        if ($input->isInteractive()) {
+            while (
+                !$this->getHelper('question')->ask(
                     $input,
                     $output,
-                    new Question(sprintf('What is the %s? (ENTER for "%s") ', $field, $val), $val)
-                );
+                    new ConfirmationQuestion('Does this information look correct? ("n" to customize) [Y/n] ', 'Y')
+                )
+            ) {
+                foreach ($new as $field => $val) {
+                    $new->$field = $this->getHelper('question')->ask(
+                        $input,
+                        $output,
+                        new Question(sprintf('What is the %s? (ENTER for "%s") ', $field, $val), $val)
+                    );
+                }
+                $newArray = (array) $new;
+                (new Table($output))
+                    ->setRows(array_map($f, array_keys($newArray), $newArray))
+                    ->render();
             }
-            $newArray = (array) $new;
-            (new Table($output))
-                ->setRows(array_map($f, array_keys($newArray), $newArray))
-                ->render();
         }
 
-        $productDocumentation = null;
-        $yamlFileContent = $this->loadYamlConfigContent($new, dirname($proto));
-        $productDocumentation = $yamlFileContent['publishing']['documentation_uri'] ?? null;
-        $productDocumentation = $productDocumentation ?: $this->getHelper('question')->ask(
-            $input,
-            $output,
-            new Question('What is the product documentation URL? ')
-        );
-        $productHomePage = $this->getHomePageFromDocsUrl($productDocumentation);
-        $productHomePage = $productHomePage ?: $this->getHelper('question')->ask(
-            $input,
-            $output,
-            new Question('What is the product homepage? ')
-        );
+        if (!$productDocumentation && $proto) {
+            $yamlFileContent = $this->loadYamlConfigContent($new, dirname($proto));
+            $productDocumentation = $yamlFileContent['publishing']['documentation_uri'] ?? null;
+        }
+        if (!$productDocumentation && $input->isInteractive()) {
+            $productDocumentation = $this->getHelper('question')->ask(
+                $input,
+                $output,
+                new Question('What is the product documentation URL? ')
+            );
+        }
+
+        if (!$productHomePage && $productDocumentation) {
+            $productHomePage = $this->getHomePageFromDocsUrl($productDocumentation);
+        }
+        if (!$productHomePage && $input->isInteractive()) {
+            $productHomePage = $this->getHelper('question')->ask(
+                $input,
+                $output,
+                new Question('What is the product homepage? ')
+            );
+        }
 
         $documentationUrl = $new->getDocumentationUrl();
 
@@ -192,7 +278,6 @@ class ComponentNewCommand extends Command
                 'component' => $new->componentName,
                 'package' => $new->composerPackage,
                 'repo' => $new->githubRepo,
-                'proto_path' => $new->protoPath,
                 'version' => $new->version,
                 'github_repo' => $new->githubRepo,
                 'documentation' => $documentationUrl,
@@ -208,7 +293,7 @@ class ComponentNewCommand extends Command
             'distribution_name' => $new->composerPackage,
             'release_level' => 'preview',
             'client_documentation' => $documentationUrl,
-            'library_type' => 'GAPIC_AUTO',
+            'library_type' => str_ends_with($new->componentName, 'CommonProtos') ? 'CORE' : 'GAPIC_AUTO',
             'api_shortname' => $new->shortName
         ];
         $repoMetadataFullPath = $this->rootPath . '/.repo-metadata-full.json';
@@ -232,8 +317,12 @@ class ComponentNewCommand extends Command
         $composer->createComponentComposer($new->displayName, $new->githubRepo);
 
         if (!$input->getOption('no-update')) {
+            if ($new->protoPath) {
+                $output->writeln(sprintf('<info>Librarian</info> Adding %s to librarian.yaml', $new->protoPath));
+                $this->runProcess->execute(['librarian', 'add', $new->protoPath], $this->rootPath, $timeout);
+            }
             $args = [
-                'component' => $new->componentName,
+                '--component' => [$new->componentName],
                 '--timeout' => $timeout,
             ];
             if (!$this->getApplication()->has('component:update')) {
@@ -302,13 +391,5 @@ class ComponentNewCommand extends Command
         $productHomePage = !empty($url) ? preg_replace('~(?<!/)/(docs)(/.*)?$~', '', $url) : null;
         $response = $this->httpClient->get($productHomePage, ['http_errors' => false]);
         return $response->getStatusCode() >= 400 ? null : $productHomePage;
-    }
-
-    private function getUserAndGroupId(): array
-    {
-        // Get the user ID and group ID
-        $userId = posix_getuid();
-        $groupId = posix_getgid();
-        return [$userId, $groupId];
     }
 }

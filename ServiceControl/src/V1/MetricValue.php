@@ -17,9 +17,10 @@ class MetricValue extends \Google\Protobuf\Internal\Message
 {
     /**
      * The labels describing the metric value.
-     * See comments on [google.api.servicecontrol.v1.Operation.labels][google.api.servicecontrol.v1.Operation.labels] for
-     * the overriding relationship.
-     * Note that this map must not contain monitored resource labels.
+     * See comments on
+     * [google.api.servicecontrol.v1.Operation.labels][google.api.servicecontrol.v1.Operation.labels]
+     * for the overriding relationship. Note that this map must not contain
+     * monitored resource labels.
      *
      * Generated from protobuf field <code>map<string, string> labels = 1;</code>
      */
@@ -29,7 +30,8 @@ class MetricValue extends \Google\Protobuf\Internal\Message
      * applies. The time period has different semantics for different metric
      * types (cumulative, delta, and gauge). See the metric definition
      * documentation in the service configuration for details. If not specified,
-     * [google.api.servicecontrol.v1.Operation.start_time][google.api.servicecontrol.v1.Operation.start_time] will be used.
+     * [google.api.servicecontrol.v1.Operation.start_time][google.api.servicecontrol.v1.Operation.start_time]
+     * will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
@@ -37,7 +39,8 @@ class MetricValue extends \Google\Protobuf\Internal\Message
     /**
      * The end of the time period over which this metric value's measurement
      * applies.  If not specified,
-     * [google.api.servicecontrol.v1.Operation.end_time][google.api.servicecontrol.v1.Operation.end_time] will be used.
+     * [google.api.servicecontrol.v1.Operation.end_time][google.api.servicecontrol.v1.Operation.end_time]
+     * will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      */
@@ -52,19 +55,22 @@ class MetricValue extends \Google\Protobuf\Internal\Message
      *
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           The labels describing the metric value.
-     *           See comments on [google.api.servicecontrol.v1.Operation.labels][google.api.servicecontrol.v1.Operation.labels] for
-     *           the overriding relationship.
-     *           Note that this map must not contain monitored resource labels.
+     *           See comments on
+     *           [google.api.servicecontrol.v1.Operation.labels][google.api.servicecontrol.v1.Operation.labels]
+     *           for the overriding relationship. Note that this map must not contain
+     *           monitored resource labels.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           The start of the time period over which this metric value's measurement
      *           applies. The time period has different semantics for different metric
      *           types (cumulative, delta, and gauge). See the metric definition
      *           documentation in the service configuration for details. If not specified,
-     *           [google.api.servicecontrol.v1.Operation.start_time][google.api.servicecontrol.v1.Operation.start_time] will be used.
+     *           [google.api.servicecontrol.v1.Operation.start_time][google.api.servicecontrol.v1.Operation.start_time]
+     *           will be used.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           The end of the time period over which this metric value's measurement
      *           applies.  If not specified,
-     *           [google.api.servicecontrol.v1.Operation.end_time][google.api.servicecontrol.v1.Operation.end_time] will be used.
+     *           [google.api.servicecontrol.v1.Operation.end_time][google.api.servicecontrol.v1.Operation.end_time]
+     *           will be used.
      *     @type bool $bool_value
      *           A boolean value.
      *     @type int|string $int64_value
@@ -84,9 +90,10 @@ class MetricValue extends \Google\Protobuf\Internal\Message
 
     /**
      * The labels describing the metric value.
-     * See comments on [google.api.servicecontrol.v1.Operation.labels][google.api.servicecontrol.v1.Operation.labels] for
-     * the overriding relationship.
-     * Note that this map must not contain monitored resource labels.
+     * See comments on
+     * [google.api.servicecontrol.v1.Operation.labels][google.api.servicecontrol.v1.Operation.labels]
+     * for the overriding relationship. Note that this map must not contain
+     * monitored resource labels.
      *
      * Generated from protobuf field <code>map<string, string> labels = 1;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -98,9 +105,10 @@ class MetricValue extends \Google\Protobuf\Internal\Message
 
     /**
      * The labels describing the metric value.
-     * See comments on [google.api.servicecontrol.v1.Operation.labels][google.api.servicecontrol.v1.Operation.labels] for
-     * the overriding relationship.
-     * Note that this map must not contain monitored resource labels.
+     * See comments on
+     * [google.api.servicecontrol.v1.Operation.labels][google.api.servicecontrol.v1.Operation.labels]
+     * for the overriding relationship. Note that this map must not contain
+     * monitored resource labels.
      *
      * Generated from protobuf field <code>map<string, string> labels = 1;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -119,7 +127,8 @@ class MetricValue extends \Google\Protobuf\Internal\Message
      * applies. The time period has different semantics for different metric
      * types (cumulative, delta, and gauge). See the metric definition
      * documentation in the service configuration for details. If not specified,
-     * [google.api.servicecontrol.v1.Operation.start_time][google.api.servicecontrol.v1.Operation.start_time] will be used.
+     * [google.api.servicecontrol.v1.Operation.start_time][google.api.servicecontrol.v1.Operation.start_time]
+     * will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -144,7 +153,8 @@ class MetricValue extends \Google\Protobuf\Internal\Message
      * applies. The time period has different semantics for different metric
      * types (cumulative, delta, and gauge). See the metric definition
      * documentation in the service configuration for details. If not specified,
-     * [google.api.servicecontrol.v1.Operation.start_time][google.api.servicecontrol.v1.Operation.start_time] will be used.
+     * [google.api.servicecontrol.v1.Operation.start_time][google.api.servicecontrol.v1.Operation.start_time]
+     * will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -161,7 +171,8 @@ class MetricValue extends \Google\Protobuf\Internal\Message
     /**
      * The end of the time period over which this metric value's measurement
      * applies.  If not specified,
-     * [google.api.servicecontrol.v1.Operation.end_time][google.api.servicecontrol.v1.Operation.end_time] will be used.
+     * [google.api.servicecontrol.v1.Operation.end_time][google.api.servicecontrol.v1.Operation.end_time]
+     * will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -184,7 +195,8 @@ class MetricValue extends \Google\Protobuf\Internal\Message
     /**
      * The end of the time period over which this metric value's measurement
      * applies.  If not specified,
-     * [google.api.servicecontrol.v1.Operation.end_time][google.api.servicecontrol.v1.Operation.end_time] will be used.
+     * [google.api.servicecontrol.v1.Operation.end_time][google.api.servicecontrol.v1.Operation.end_time]
+     * will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      * @param \Google\Protobuf\Timestamp $var

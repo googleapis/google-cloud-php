@@ -14,7 +14,7 @@ use Google\Protobuf\RepeatedField;
  * AppendRowsRequest need only be specified for the first request before
  * switching table destinations. You can also switch table destinations within
  * the same connection for the default stream.
- * The size of a single AppendRowsRequest must be less than 10 MB in size.
+ * The size of a single AppendRowsRequest must be less than 20 MB in size.
  * Requests larger than this return an error, typically `INVALID_ARGUMENT`.
  *
  * Generated from protobuf message <code>google.cloud.bigquery.storage.v1.AppendRowsRequest</code>
@@ -94,6 +94,12 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AppendRowsRequest.MissingValueInterpretation default_missing_value_interpretation = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $default_missing_value_interpretation = 0;
+    /**
+     * Optional. Stats and telemetry data gathered on the client side.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ClientStats client_stats = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $client_stats = null;
     protected $rows;
 
     /**
@@ -204,6 +210,8 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      *           `NULL` instead of using default values for some columns, you can set
      *           `default_missing_value_interpretation` to `DEFAULT_VALUE` and at the same
      *           time, set `missing_value_interpretations` to `NULL_VALUE` on those columns.
+     *     @type \Google\Cloud\BigQuery\Storage\V1\ClientStats $client_stats
+     *           Optional. Stats and telemetry data gathered on the client side.
      * }
      */
     public function __construct($data = NULL) {
@@ -528,6 +536,42 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\MissingValueInterpretation::class);
         $this->default_missing_value_interpretation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Stats and telemetry data gathered on the client side.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ClientStats client_stats = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\BigQuery\Storage\V1\ClientStats|null
+     */
+    public function getClientStats()
+    {
+        return $this->client_stats;
+    }
+
+    public function hasClientStats()
+    {
+        return isset($this->client_stats);
+    }
+
+    public function clearClientStats()
+    {
+        unset($this->client_stats);
+    }
+
+    /**
+     * Optional. Stats and telemetry data gathered on the client side.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ClientStats client_stats = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\BigQuery\Storage\V1\ClientStats $var
+     * @return $this
+     */
+    public function setClientStats($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Storage\V1\ClientStats::class);
+        $this->client_stats = $var;
 
         return $this;
     }

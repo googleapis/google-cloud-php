@@ -34,6 +34,12 @@ class SanitizationMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool ignore_partial_invocation_failures = 3;</code>
      */
     protected $ignore_partial_invocation_failures = false;
+    /**
+     * Output only. The stream chunk processed by the Sanitization service.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.DataItem stream_chunk_processed = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $stream_chunk_processed = null;
 
     /**
      * Constructor.
@@ -48,6 +54,8 @@ class SanitizationMetadata extends \Google\Protobuf\Internal\Message
      *     @type bool $ignore_partial_invocation_failures
      *           Passthrough field defined in TemplateMetadata to indicate whether to
      *           ignore partial invocation failures.
+     *     @type \Google\Cloud\ModelArmor\V1\DataItem $stream_chunk_processed
+     *           Output only. The stream chunk processed by the Sanitization service.
      * }
      */
     public function __construct($data = NULL) {
@@ -131,6 +139,42 @@ class SanitizationMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->ignore_partial_invocation_failures = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The stream chunk processed by the Sanitization service.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.DataItem stream_chunk_processed = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\ModelArmor\V1\DataItem|null
+     */
+    public function getStreamChunkProcessed()
+    {
+        return $this->stream_chunk_processed;
+    }
+
+    public function hasStreamChunkProcessed()
+    {
+        return isset($this->stream_chunk_processed);
+    }
+
+    public function clearStreamChunkProcessed()
+    {
+        unset($this->stream_chunk_processed);
+    }
+
+    /**
+     * Output only. The stream chunk processed by the Sanitization service.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.DataItem stream_chunk_processed = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\ModelArmor\V1\DataItem $var
+     * @return $this
+     */
+    public function setStreamChunkProcessed($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ModelArmor\V1\DataItem::class);
+        $this->stream_chunk_processed = $var;
 
         return $this;
     }

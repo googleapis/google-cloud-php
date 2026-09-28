@@ -49,6 +49,12 @@ class DatabaseVersion
      * Generated from protobuf enum <code>POSTGRES_17 = 5;</code>
      */
     const POSTGRES_17 = 5;
+    /**
+     * The database version is Postgres 18.
+     *
+     * Generated from protobuf enum <code>POSTGRES_18 = 6;</code>
+     */
+    const POSTGRES_18 = 6;
 
     private static $valueToName = [
         self::DATABASE_VERSION_UNSPECIFIED => 'DATABASE_VERSION_UNSPECIFIED',
@@ -57,6 +63,7 @@ class DatabaseVersion
         self::POSTGRES_15 => 'POSTGRES_15',
         self::POSTGRES_16 => 'POSTGRES_16',
         self::POSTGRES_17 => 'POSTGRES_17',
+        self::POSTGRES_18 => 'POSTGRES_18',
     ];
 
     public static function name($value)

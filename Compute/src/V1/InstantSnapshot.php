@@ -165,6 +165,23 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
      */
     protected $source_disk_id = null;
     /**
+     * Output only. [Output Only] URL of the source instant snapshot this instant snapshot is
+     * part of. Note that the source instant snapshot group must be in the same
+     * zone/region as the instant snapshot to be created. This can be a full or
+     * valid partial URL.
+     *
+     * Generated from protobuf field <code>optional string source_instant_snapshot_group = 525991686;</code>
+     */
+    protected $source_instant_snapshot_group = null;
+    /**
+     * Output only. [Output Only] The ID value of the source instant snapshot group this
+     * InstantSnapshot is part of. This value may be used to determine whether the
+     * InstantSnapshot was created as part of an InstantSnapshotGroup creation.
+     *
+     * Generated from protobuf field <code>optional string source_instant_snapshot_group_id = 167103732;</code>
+     */
+    protected $source_instant_snapshot_group_id = null;
+    /**
      * Output only. [Output Only] The status of the instantSnapshot. This can beCREATING, DELETING, FAILED, orREADY.
      * Check the Status enum for the list of possible values.
      *
@@ -262,6 +279,15 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
      *           Output only. [Output Only] The ID value of the disk used to create this InstantSnapshot.
      *           This value may be used to determine whether the InstantSnapshot
      *           was taken from the current or a previous instance of a given disk name.
+     *     @type string $source_instant_snapshot_group
+     *           Output only. [Output Only] URL of the source instant snapshot this instant snapshot is
+     *           part of. Note that the source instant snapshot group must be in the same
+     *           zone/region as the instant snapshot to be created. This can be a full or
+     *           valid partial URL.
+     *     @type string $source_instant_snapshot_group_id
+     *           Output only. [Output Only] The ID value of the source instant snapshot group this
+     *           InstantSnapshot is part of. This value may be used to determine whether the
+     *           InstantSnapshot was created as part of an InstantSnapshotGroup creation.
      *     @type string $status
      *           Output only. [Output Only] The status of the instantSnapshot. This can beCREATING, DELETING, FAILED, orREADY.
      *           Check the Status enum for the list of possible values.
@@ -990,6 +1016,88 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->source_disk_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] URL of the source instant snapshot this instant snapshot is
+     * part of. Note that the source instant snapshot group must be in the same
+     * zone/region as the instant snapshot to be created. This can be a full or
+     * valid partial URL.
+     *
+     * Generated from protobuf field <code>optional string source_instant_snapshot_group = 525991686;</code>
+     * @return string
+     */
+    public function getSourceInstantSnapshotGroup()
+    {
+        return isset($this->source_instant_snapshot_group) ? $this->source_instant_snapshot_group : '';
+    }
+
+    public function hasSourceInstantSnapshotGroup()
+    {
+        return isset($this->source_instant_snapshot_group);
+    }
+
+    public function clearSourceInstantSnapshotGroup()
+    {
+        unset($this->source_instant_snapshot_group);
+    }
+
+    /**
+     * Output only. [Output Only] URL of the source instant snapshot this instant snapshot is
+     * part of. Note that the source instant snapshot group must be in the same
+     * zone/region as the instant snapshot to be created. This can be a full or
+     * valid partial URL.
+     *
+     * Generated from protobuf field <code>optional string source_instant_snapshot_group = 525991686;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceInstantSnapshotGroup($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_instant_snapshot_group = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] The ID value of the source instant snapshot group this
+     * InstantSnapshot is part of. This value may be used to determine whether the
+     * InstantSnapshot was created as part of an InstantSnapshotGroup creation.
+     *
+     * Generated from protobuf field <code>optional string source_instant_snapshot_group_id = 167103732;</code>
+     * @return string
+     */
+    public function getSourceInstantSnapshotGroupId()
+    {
+        return isset($this->source_instant_snapshot_group_id) ? $this->source_instant_snapshot_group_id : '';
+    }
+
+    public function hasSourceInstantSnapshotGroupId()
+    {
+        return isset($this->source_instant_snapshot_group_id);
+    }
+
+    public function clearSourceInstantSnapshotGroupId()
+    {
+        unset($this->source_instant_snapshot_group_id);
+    }
+
+    /**
+     * Output only. [Output Only] The ID value of the source instant snapshot group this
+     * InstantSnapshot is part of. This value may be used to determine whether the
+     * InstantSnapshot was created as part of an InstantSnapshotGroup creation.
+     *
+     * Generated from protobuf field <code>optional string source_instant_snapshot_group_id = 167103732;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceInstantSnapshotGroupId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_instant_snapshot_group_id = $var;
 
         return $this;
     }

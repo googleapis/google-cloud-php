@@ -8,7 +8,7 @@
         "VmMigration": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "VmMigrationGapicClient",
+                    "libraryClient": "VmMigrationClient",
                     "rpcs": {
                         "AddGroupMigration": {
                             "methods": [

@@ -43,6 +43,12 @@ class State
      * Generated from protobuf enum <code>DELETING = 4;</code>
      */
     const DELETING = 4;
+    /**
+     * Instance is being migrated.
+     *
+     * Generated from protobuf enum <code>MIGRATING = 6;</code>
+     */
+    const MIGRATING = 6;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -50,6 +56,7 @@ class State
         self::ACTIVE => 'ACTIVE',
         self::UPDATING => 'UPDATING',
         self::DELETING => 'DELETING',
+        self::MIGRATING => 'MIGRATING',
     ];
 
     public static function name($value)

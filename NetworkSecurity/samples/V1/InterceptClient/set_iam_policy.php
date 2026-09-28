@@ -30,10 +30,10 @@ use Google\Cloud\NetworkSecurity\V1\Client\InterceptClient;
 
 /**
  * Sets the access control policy on the specified resource. Replaces
-any existing policy.
-
-Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
-errors.
+ * any existing policy.
+ *
+ * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+ * errors.
  *
  * @param string $resource REQUIRED: The resource for which the policy is being specified.
  *                         See the operation documentation for the appropriate value for this field.

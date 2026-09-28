@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ use Google\Cloud\Notebooks\V1\Client\NotebookServiceClient;
 
 /**
  * Gets the access control policy for a resource. Returns an empty policy
-if the resource exists and does not have a policy set.
+ * if the resource exists and does not have a policy set.
  *
  * @param string $resource REQUIRED: The resource for which the policy is being requested.
  *                         See the operation documentation for the appropriate value for this field.

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Account defender risk assessment.
+ * Account defense risk assessment.
  *
  * Generated from protobuf message <code>google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment</code>
  */
@@ -21,6 +21,12 @@ class AccountDefenderAssessment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment.AccountDefenderLabel labels = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $labels;
+    /**
+     * Output only. Account takeover risk assessment for this request.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment.AccountTakeoverVerdict account_takeover_verdict = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $account_takeover_verdict = null;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class AccountDefenderAssessment extends \Google\Protobuf\Internal\Message
      *
      *     @type int[] $labels
      *           Output only. Labels for this request.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment\AccountTakeoverVerdict $account_takeover_verdict
+     *           Output only. Account takeover risk assessment for this request.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +67,42 @@ class AccountDefenderAssessment extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment\AccountDefenderLabel::class);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Account takeover risk assessment for this request.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment.AccountTakeoverVerdict account_takeover_verdict = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment\AccountTakeoverVerdict|null
+     */
+    public function getAccountTakeoverVerdict()
+    {
+        return $this->account_takeover_verdict;
+    }
+
+    public function hasAccountTakeoverVerdict()
+    {
+        return isset($this->account_takeover_verdict);
+    }
+
+    public function clearAccountTakeoverVerdict()
+    {
+        unset($this->account_takeover_verdict);
+    }
+
+    /**
+     * Output only. Account takeover risk assessment for this request.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment.AccountTakeoverVerdict account_takeover_verdict = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment\AccountTakeoverVerdict $var
+     * @return $this
+     */
+    public function setAccountTakeoverVerdict($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment\AccountTakeoverVerdict::class);
+        $this->account_takeover_verdict = $var;
 
         return $this;
     }

@@ -16,11 +16,11 @@ use Google\Protobuf\RepeatedField;
 class CreateQuotaPreferenceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Value for parent.
+     * Required. Identifier. Value for parent.
      * Example:
      * `projects/123/locations/global`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
@@ -44,7 +44,7 @@ class CreateQuotaPreferenceRequest extends \Google\Protobuf\Internal\Message
     private $ignore_safety_checks;
 
     /**
-     * @param string                                       $parent            Required. Value for parent.
+     * @param string                                       $parent            Required. Identifier. Value for parent.
      *
      *                                                                        Example:
      *                                                                        `projects/123/locations/global`
@@ -66,7 +66,7 @@ class CreateQuotaPreferenceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * @param string                                       $parent          Required. Value for parent.
+     * @param string                                       $parent          Required. Identifier. Value for parent.
      *
      *                                                                      Example:
      *                                                                      `projects/123/locations/global`
@@ -91,7 +91,7 @@ class CreateQuotaPreferenceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Value for parent.
+     *           Required. Identifier. Value for parent.
      *           Example:
      *           `projects/123/locations/global`
      *     @type string $quota_preference_id
@@ -109,11 +109,11 @@ class CreateQuotaPreferenceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Value for parent.
+     * Required. Identifier. Value for parent.
      * Example:
      * `projects/123/locations/global`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -122,11 +122,11 @@ class CreateQuotaPreferenceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Value for parent.
+     * Required. Identifier. Value for parent.
      * Example:
      * `projects/123/locations/global`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

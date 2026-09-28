@@ -55,6 +55,12 @@ class State
      * Generated from protobuf enum <code>PENDING = 7;</code>
      */
     const PENDING = 7;
+    /**
+     * The DataScanJob succeeded with errors.
+     *
+     * Generated from protobuf enum <code>SUCCEEDED_WITH_ERRORS = 8;</code>
+     */
+    const SUCCEEDED_WITH_ERRORS = 8;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -64,6 +70,7 @@ class State
         self::SUCCEEDED => 'SUCCEEDED',
         self::FAILED => 'FAILED',
         self::PENDING => 'PENDING',
+        self::SUCCEEDED_WITH_ERRORS => 'SUCCEEDED_WITH_ERRORS',
     ];
 
     public static function name($value)

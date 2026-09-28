@@ -8,7 +8,7 @@
         "AutoscalingPolicyService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AutoscalingPolicyServiceGapicClient",
+                    "libraryClient": "AutoscalingPolicyServiceClient",
                     "rpcs": {
                         "CreateAutoscalingPolicy": {
                             "methods": [
@@ -57,7 +57,7 @@
         "BatchController": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BatchControllerGapicClient",
+                    "libraryClient": "BatchControllerClient",
                     "rpcs": {
                         "CreateBatch": {
                             "methods": [
@@ -101,7 +101,7 @@
         "ClusterController": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ClusterControllerGapicClient",
+                    "libraryClient": "ClusterControllerClient",
                     "rpcs": {
                         "CreateCluster": {
                             "methods": [
@@ -165,7 +165,7 @@
         "JobController": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "JobControllerGapicClient",
+                    "libraryClient": "JobControllerClient",
                     "rpcs": {
                         "CancelJob": {
                             "methods": [
@@ -224,7 +224,7 @@
         "NodeGroupController": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NodeGroupControllerGapicClient",
+                    "libraryClient": "NodeGroupControllerClient",
                     "rpcs": {
                         "CreateNodeGroup": {
                             "methods": [
@@ -263,7 +263,7 @@
         "SessionController": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SessionControllerGapicClient",
+                    "libraryClient": "SessionControllerClient",
                     "rpcs": {
                         "CreateSession": {
                             "methods": [
@@ -312,7 +312,7 @@
         "SessionTemplateController": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SessionTemplateControllerGapicClient",
+                    "libraryClient": "SessionTemplateControllerClient",
                     "rpcs": {
                         "CreateSessionTemplate": {
                             "methods": [
@@ -361,7 +361,7 @@
         "WorkflowTemplateService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "WorkflowTemplateServiceGapicClient",
+                    "libraryClient": "WorkflowTemplateServiceClient",
                     "rpcs": {
                         "CreateWorkflowTemplate": {
                             "methods": [

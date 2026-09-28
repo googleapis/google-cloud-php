@@ -55,6 +55,24 @@ class SourceType
      * Generated from protobuf enum <code>DATAPROC = 6;</code>
      */
     const DATAPROC = 6;
+    /**
+     * Vertex AI
+     *
+     * Generated from protobuf enum <code>VERTEX_AI = 7;</code>
+     */
+    const VERTEX_AI = 7;
+    /**
+     * Dataflow
+     *
+     * Generated from protobuf enum <code>DATAFLOW = 8;</code>
+     */
+    const DATAFLOW = 8;
+    /**
+     * Looker Core
+     *
+     * Generated from protobuf enum <code>LOOKER_CORE = 9;</code>
+     */
+    const LOOKER_CORE = 9;
 
     private static $valueToName = [
         self::SOURCE_TYPE_UNSPECIFIED => 'SOURCE_TYPE_UNSPECIFIED',
@@ -64,6 +82,9 @@ class SourceType
         self::COMPOSER => 'COMPOSER',
         self::LOOKER_STUDIO => 'LOOKER_STUDIO',
         self::DATAPROC => 'DATAPROC',
+        self::VERTEX_AI => 'VERTEX_AI',
+        self::DATAFLOW => 'DATAFLOW',
+        self::LOOKER_CORE => 'LOOKER_CORE',
     ];
 
     public static function name($value)

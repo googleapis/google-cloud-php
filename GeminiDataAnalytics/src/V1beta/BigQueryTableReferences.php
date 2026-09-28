@@ -10,8 +10,8 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Message representing references to BigQuery tables and property graphs.
- * At least one of `table_references` or `property_graph_references` must be
- * populated.
+ * At least one of `table_references`, `property_graph_references`, or
+ * `search_scope` must be populated.
  *
  * Generated from protobuf message <code>google.cloud.geminidataanalytics.v1beta.BigQueryTableReferences</code>
  */
@@ -23,6 +23,21 @@ class BigQueryTableReferences extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.BigQueryTableReference table_references = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $table_references;
+    /**
+     * Optional. References to BigQuery graphs.
+     * Note: "property graph" is the former name for BigQuery Graph. The field and
+     * message names retain the original term for backward compatibility; both
+     * refer to the same resource.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.BigQueryPropertyGraphReference property_graph_references = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $property_graph_references;
+    /**
+     * Optional. Parameters for retrieving data from Agent Context.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.AgentContextReference agent_context_reference = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $agent_context_reference = null;
 
     /**
      * Constructor.
@@ -32,6 +47,13 @@ class BigQueryTableReferences extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryTableReference[] $table_references
      *           Optional. References to BigQuery tables.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryPropertyGraphReference[] $property_graph_references
+     *           Optional. References to BigQuery graphs.
+     *           Note: "property graph" is the former name for BigQuery Graph. The field and
+     *           message names retain the original term for backward compatibility; both
+     *           refer to the same resource.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\AgentContextReference $agent_context_reference
+     *           Optional. Parameters for retrieving data from Agent Context.
      * }
      */
     public function __construct($data = NULL) {
@@ -61,6 +83,74 @@ class BigQueryTableReferences extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryTableReference::class);
         $this->table_references = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. References to BigQuery graphs.
+     * Note: "property graph" is the former name for BigQuery Graph. The field and
+     * message names retain the original term for backward compatibility; both
+     * refer to the same resource.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.BigQueryPropertyGraphReference property_graph_references = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryPropertyGraphReference>
+     */
+    public function getPropertyGraphReferences()
+    {
+        return $this->property_graph_references;
+    }
+
+    /**
+     * Optional. References to BigQuery graphs.
+     * Note: "property graph" is the former name for BigQuery Graph. The field and
+     * message names retain the original term for backward compatibility; both
+     * refer to the same resource.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.BigQueryPropertyGraphReference property_graph_references = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryPropertyGraphReference[] $var
+     * @return $this
+     */
+    public function setPropertyGraphReferences($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryPropertyGraphReference::class);
+        $this->property_graph_references = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Parameters for retrieving data from Agent Context.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.AgentContextReference agent_context_reference = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GeminiDataAnalytics\V1beta\AgentContextReference|null
+     */
+    public function getAgentContextReference()
+    {
+        return $this->agent_context_reference;
+    }
+
+    public function hasAgentContextReference()
+    {
+        return isset($this->agent_context_reference);
+    }
+
+    public function clearAgentContextReference()
+    {
+        unset($this->agent_context_reference);
+    }
+
+    /**
+     * Optional. Parameters for retrieving data from Agent Context.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.AgentContextReference agent_context_reference = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\AgentContextReference $var
+     * @return $this
+     */
+    public function setAgentContextReference($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\AgentContextReference::class);
+        $this->agent_context_reference = $var;
 
         return $this;
     }

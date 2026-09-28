@@ -16,11 +16,11 @@ use Google\Protobuf\RepeatedField;
 class RecommenderConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of recommender config.
+     * Identifier. Name of recommender config.
      * Eg,
      * projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -79,7 +79,7 @@ class RecommenderConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name of recommender config.
+     *           Identifier. Name of recommender config.
      *           Eg,
      *           projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
      *     @type \Google\Cloud\Recommender\V1\RecommenderGenerationConfig $recommender_generation_config
@@ -114,11 +114,11 @@ class RecommenderConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of recommender config.
+     * Identifier. Name of recommender config.
      * Eg,
      * projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -127,11 +127,11 @@ class RecommenderConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of recommender config.
+     * Identifier. Name of recommender config.
      * Eg,
      * projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

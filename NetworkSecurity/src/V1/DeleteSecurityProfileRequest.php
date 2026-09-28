@@ -33,7 +33,7 @@ class DeleteSecurityProfileRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. A name of the SecurityProfile to delete. Must be in the format
      *                     `projects|organizations/&#42;/locations/{location}/securityProfiles/{security_profile_id}`. Please see
-     *                     {@see OrganizationSecurityProfileGroupServiceClient::securityProfileName()} for help formatting this field.
+     *                     {@see SecurityProfileGroupServiceClient::securityProfileName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetworkSecurity\V1\DeleteSecurityProfileRequest
      *

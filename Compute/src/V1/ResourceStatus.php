@@ -52,6 +52,12 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
      */
     protected $scheduling = null;
     /**
+     * Output only. [Output Only] Details about the instance stopping state.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusShutdownDetails shutdown_details = 15198553;</code>
+     */
+    protected $shutdown_details = null;
+    /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.UpcomingMaintenance upcoming_maintenance = 227348592;</code>
      */
     protected $upcoming_maintenance = null;
@@ -77,6 +83,8 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\ResourceStatusReservationConsumptionInfo $reservation_consumption_info
      *           Output only. [Output Only] Reservation information that the instance is consuming from.
      *     @type \Google\Cloud\Compute\V1\ResourceStatusScheduling $scheduling
+     *     @type \Google\Cloud\Compute\V1\ResourceStatusShutdownDetails $shutdown_details
+     *           Output only. [Output Only] Details about the instance stopping state.
      *     @type \Google\Cloud\Compute\V1\UpcomingMaintenance $upcoming_maintenance
      * }
      */
@@ -269,6 +277,42 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ResourceStatusScheduling::class);
         $this->scheduling = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] Details about the instance stopping state.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusShutdownDetails shutdown_details = 15198553;</code>
+     * @return \Google\Cloud\Compute\V1\ResourceStatusShutdownDetails|null
+     */
+    public function getShutdownDetails()
+    {
+        return $this->shutdown_details;
+    }
+
+    public function hasShutdownDetails()
+    {
+        return isset($this->shutdown_details);
+    }
+
+    public function clearShutdownDetails()
+    {
+        unset($this->shutdown_details);
+    }
+
+    /**
+     * Output only. [Output Only] Details about the instance stopping state.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusShutdownDetails shutdown_details = 15198553;</code>
+     * @param \Google\Cloud\Compute\V1\ResourceStatusShutdownDetails $var
+     * @return $this
+     */
+    public function setShutdownDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ResourceStatusShutdownDetails::class);
+        $this->shutdown_details = $var;
 
         return $this;
     }

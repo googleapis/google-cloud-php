@@ -23,10 +23,11 @@ use Google\Protobuf\RepeatedField;
  * * Data discovery: scans data in Cloud Storage buckets to extract and then
  *   catalog metadata. For more information, see [Discover and catalog Cloud
  *   Storage data](https://cloud.google.com/bigquery/docs/automatic-discovery).
- * * Data documentation: analyzes the table details and generates insights
- * including descriptions and sample SQL queries for the table. For more
- * information, see [Generate data insights in
- * BigQuery](https://cloud.google.com/bigquery/docs/data-insights).
+ * * Data documentation: analyzes the table or dataset metadata and generates
+ *   insights. For tables, insights include descriptions and sample SQL
+ *   queries. For datasets, insights include descriptions, schema relationships
+ *   and sample SQL queries. For more information, see [Generate data insights
+ *   in BigQuery](https://cloud.google.com/bigquery/docs/data-insights).
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataScan</code>
  */
@@ -111,6 +112,13 @@ class DataScan extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanType type = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $type = 0;
+    /**
+     * Optional. Immutable. The identity to run the datascan.
+     * If not specified, defaults to the Dataplex Service Agent.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.ExecutionIdentity execution_identity = 300 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $execution_identity = null;
     protected $spec;
     protected $result;
 
@@ -167,6 +175,9 @@ class DataScan extends \Google\Protobuf\Internal\Message
      *           Output only. The result of a data discovery scan.
      *     @type \Google\Cloud\Dataplex\V1\DataDocumentationResult $data_documentation_result
      *           Output only. The result of a data documentation scan.
+     *     @type \Google\Cloud\Dataplex\V1\ExecutionIdentity $execution_identity
+     *           Optional. Immutable. The identity to run the datascan.
+     *           If not specified, defaults to the Dataplex Service Agent.
      * }
      */
     public function __construct($data = NULL) {
@@ -794,6 +805,44 @@ class DataScan extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataDocumentationResult::class);
         $this->writeOneof(203, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. The identity to run the datascan.
+     * If not specified, defaults to the Dataplex Service Agent.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.ExecutionIdentity execution_identity = 300 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Cloud\Dataplex\V1\ExecutionIdentity|null
+     */
+    public function getExecutionIdentity()
+    {
+        return $this->execution_identity;
+    }
+
+    public function hasExecutionIdentity()
+    {
+        return isset($this->execution_identity);
+    }
+
+    public function clearExecutionIdentity()
+    {
+        unset($this->execution_identity);
+    }
+
+    /**
+     * Optional. Immutable. The identity to run the datascan.
+     * If not specified, defaults to the Dataplex Service Agent.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.ExecutionIdentity execution_identity = 300 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Cloud\Dataplex\V1\ExecutionIdentity $var
+     * @return $this
+     */
+    public function setExecutionIdentity($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\ExecutionIdentity::class);
+        $this->execution_identity = $var;
 
         return $this;
     }

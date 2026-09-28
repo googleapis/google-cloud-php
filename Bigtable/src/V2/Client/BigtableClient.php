@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@
 namespace Google\Cloud\Bigtable\V2\Client;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\InsecureCredentialsWrapper;
@@ -37,10 +38,12 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowRequest;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
+use Google\Cloud\Bigtable\V2\ClientConfiguration;
 use Google\Cloud\Bigtable\V2\ExecuteQueryRequest;
 use Google\Cloud\Bigtable\V2\ExecuteQueryResponse;
 use Google\Cloud\Bigtable\V2\GenerateInitialChangeStreamPartitionsRequest;
 use Google\Cloud\Bigtable\V2\GenerateInitialChangeStreamPartitionsResponse;
+use Google\Cloud\Bigtable\V2\GetClientConfigurationRequest;
 use Google\Cloud\Bigtable\V2\MutateRowRequest;
 use Google\Cloud\Bigtable\V2\MutateRowResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest;
@@ -75,6 +78,7 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<CheckAndMutateRowResponse> checkAndMutateRowAsync(CheckAndMutateRowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ClientConfiguration> getClientConfigurationAsync(GetClientConfigurationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<MutateRowResponse> mutateRowAsync(MutateRowRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PingAndWarmResponse> pingAndWarmAsync(PingAndWarmRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PrepareQueryResponse> prepareQueryAsync(PrepareQueryRequest $request, array $optionalArgs = [])
@@ -104,7 +108,11 @@ final class BigtableClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/bigtable.data',
         'https://www.googleapis.com/auth/bigtable.data.readonly',
@@ -144,8 +152,12 @@ final class BigtableClient
      *
      * @return string The formatted authorized_view resource.
      */
-    public static function authorizedViewName(string $project, string $instance, string $table, string $authorizedView): string
-    {
+    public static function authorizedViewName(
+        string $project,
+        string $instance,
+        string $table,
+        string $authorizedView
+    ): string {
         return self::getPathTemplate('authorizedView')->render([
             'project' => $project,
             'instance' => $instance,
@@ -347,8 +359,10 @@ final class BigtableClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function checkAndMutateRow(CheckAndMutateRowRequest $request, array $callOptions = []): CheckAndMutateRowResponse
-    {
+    public function checkAndMutateRow(
+        CheckAndMutateRowRequest $request,
+        array $callOptions = []
+    ): CheckAndMutateRowResponse {
         return $this->startApiCall('CheckAndMutateRow', $request, $callOptions)->wait();
     }
 
@@ -394,9 +408,41 @@ final class BigtableClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateInitialChangeStreamPartitions(GenerateInitialChangeStreamPartitionsRequest $request, array $callOptions = []): ServerStream
-    {
+    public function generateInitialChangeStreamPartitions(
+        GenerateInitialChangeStreamPartitionsRequest $request,
+        array $callOptions = []
+    ): ServerStream {
         return $this->startApiCall('GenerateInitialChangeStreamPartitions', $request, $callOptions);
+    }
+
+    /**
+     * This RPC is only intended to be used by the official Cloud Bigtable client
+     * libraries to implement the Bigtable Session based protocol. It is subject
+     * to change without notice.
+     *
+     * The async variant is {@see BigtableClient::getClientConfigurationAsync()} .
+     *
+     * @example samples/V2/BigtableClient/get_client_configuration.php
+     *
+     * @param GetClientConfigurationRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ClientConfiguration
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getClientConfiguration(
+        GetClientConfigurationRequest $request,
+        array $callOptions = []
+    ): ClientConfiguration {
+        return $this->startApiCall('GetClientConfiguration', $request, $callOptions)->wait();
     }
 
     /**
@@ -448,6 +494,75 @@ final class BigtableClient
     public function mutateRows(MutateRowsRequest $request, array $callOptions = []): ServerStream
     {
         return $this->startApiCall('MutateRows', $request, $callOptions);
+    }
+
+    /**
+     * This RPC is only intended to be used by the official Cloud Bigtable client
+     * libraries to implement the Bigtable Session based protocol. It is subject
+     * to change without notice.
+     *
+     * @example samples/V2/BigtableClient/open_authorized_view.php
+     *
+     * @param array $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return BidiStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function openAuthorizedView(array $callOptions = []): BidiStream
+    {
+        return $this->startApiCall('OpenAuthorizedView', null, $callOptions);
+    }
+
+    /**
+     * This RPC is only intended to be used by the official Cloud Bigtable client
+     * libraries to implement the Bigtable Session based protocol. It is subject
+     * to change without notice.
+     *
+     * @example samples/V2/BigtableClient/open_materialized_view.php
+     *
+     * @param array $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return BidiStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function openMaterializedView(array $callOptions = []): BidiStream
+    {
+        return $this->startApiCall('OpenMaterializedView', null, $callOptions);
+    }
+
+    /**
+     * This RPC is only intended to be used by the official Cloud Bigtable client
+     * libraries to implement the Bigtable Session based protocol. It is subject
+     * to change without notice.
+     *
+     * @example samples/V2/BigtableClient/open_table.php
+     *
+     * @param array $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return BidiStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function openTable(array $callOptions = []): BidiStream
+    {
+        return $this->startApiCall('OpenTable', null, $callOptions);
     }
 
     /**
@@ -553,8 +668,10 @@ final class BigtableClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function readModifyWriteRow(ReadModifyWriteRowRequest $request, array $callOptions = []): ReadModifyWriteRowResponse
-    {
+    public function readModifyWriteRow(
+        ReadModifyWriteRowRequest $request,
+        array $callOptions = []
+    ): ReadModifyWriteRowResponse {
         return $this->startApiCall('ReadModifyWriteRow', $request, $callOptions)->wait();
     }
 
@@ -589,6 +706,9 @@ final class BigtableClient
      * delimit contiguous sections of the table of approximately equal size,
      * which can be used to break up the data for distributed tasks like
      * mapreduces.
+     *
+     * If a `row_range` is provided in the request, the returned samples will be
+     * restricted to the specified range.
      *
      * @example samples/V2/BigtableClient/sample_row_keys.php
      *

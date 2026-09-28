@@ -10,19 +10,26 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Confidential Instance Config for clusters using [Confidential
- * VMs](https://cloud.google.com/compute/confidential-vm/docs)
+ * VMs](https://cloud.google.com/confidential-computing/confidential-vm/docs)
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.ConfidentialInstanceConfig</code>
  */
 class ConfidentialInstanceConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Defines whether the instance should have confidential compute
-     * enabled.
+     * Optional. Deprecated: Use 'confidential_instance_type' instead.
+     * Defines whether the instance should have confidential compute enabled.
      *
-     * Generated from protobuf field <code>bool enable_confidential_compute = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enable_confidential_compute = 1 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $enable_confidential_compute = false;
+    /**
+     * Optional. Defines the type of Confidential Compute technology to use.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ConfidentialInstanceConfig.ConfidentialInstanceType confidential_instance_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $confidential_instance_type = 0;
 
     /**
      * Constructor.
@@ -31,8 +38,10 @@ class ConfidentialInstanceConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enable_confidential_compute
-     *           Optional. Defines whether the instance should have confidential compute
-     *           enabled.
+     *           Optional. Deprecated: Use 'confidential_instance_type' instead.
+     *           Defines whether the instance should have confidential compute enabled.
+     *     @type int $confidential_instance_type
+     *           Optional. Defines the type of Confidential Compute technology to use.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,29 +50,61 @@ class ConfidentialInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Defines whether the instance should have confidential compute
-     * enabled.
+     * Optional. Deprecated: Use 'confidential_instance_type' instead.
+     * Defines whether the instance should have confidential compute enabled.
      *
-     * Generated from protobuf field <code>bool enable_confidential_compute = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enable_confidential_compute = 1 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
+     * @deprecated
      */
     public function getEnableConfidentialCompute()
     {
+        if ($this->enable_confidential_compute !== false) {
+            @trigger_error('enable_confidential_compute is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->enable_confidential_compute;
     }
 
     /**
-     * Optional. Defines whether the instance should have confidential compute
-     * enabled.
+     * Optional. Deprecated: Use 'confidential_instance_type' instead.
+     * Defines whether the instance should have confidential compute enabled.
      *
-     * Generated from protobuf field <code>bool enable_confidential_compute = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enable_confidential_compute = 1 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setEnableConfidentialCompute($var)
     {
+        @trigger_error('enable_confidential_compute is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->enable_confidential_compute = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Defines the type of Confidential Compute technology to use.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ConfidentialInstanceConfig.ConfidentialInstanceType confidential_instance_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getConfidentialInstanceType()
+    {
+        return $this->confidential_instance_type;
+    }
+
+    /**
+     * Optional. Defines the type of Confidential Compute technology to use.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ConfidentialInstanceConfig.ConfidentialInstanceType confidential_instance_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setConfidentialInstanceType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\ConfidentialInstanceConfig\ConfidentialInstanceType::class);
+        $this->confidential_instance_type = $var;
 
         return $this;
     }

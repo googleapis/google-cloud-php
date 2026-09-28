@@ -515,7 +515,7 @@ class Company extends \Google\Protobuf\Internal\Message
      */
     public function getKeywordSearchableJobCustomAttributes()
     {
-        if ($this->keyword_searchable_job_custom_attributes->count() !== 0) {
+        if (count($this->keyword_searchable_job_custom_attributes) !== 0) {
             @trigger_error('keyword_searchable_job_custom_attributes is deprecated.', E_USER_DEPRECATED);
         }
         return $this->keyword_searchable_job_custom_attributes;

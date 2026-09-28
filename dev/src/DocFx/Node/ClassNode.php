@@ -24,6 +24,7 @@ use SimpleXMLElement;
  */
 class ClassNode
 {
+    use DeprecatedTrait;
     use DocblockTrait;
     use NameTrait;
 
@@ -115,9 +116,6 @@ class ClassNode
     {
         if ($this->xmlNode->docblock) {
             foreach ($this->xmlNode->docblock->tag as $tag) {
-                if ((string) $tag['name'] === 'deprecated') {
-                    return 'deprecated';
-                }
                 if ((string) $tag['name'] === 'experimental') {
                     return 'beta';
                 }
@@ -175,7 +173,7 @@ class ClassNode
     {
         $methods = [];
         foreach ($this->xmlNode->method as $methodNode) {
-            $method = new MethodNode($methodNode, $this->namespace, $this->protoPackages);
+            $method = new MethodNode($methodNode, $this->namespace, $this->protoPackages, $this->getFullname());
             if ($method->isPublic() && !$method->isInherited() && !$method->isExcludedMethod()) {
                 // This is to fix an issue in phpdocumentor where magic methods do not have
                 // "inhereted_from" set as expected.
@@ -257,5 +255,41 @@ class ClassNode
     public function setTocName(string $tocName)
     {
         $this->tocName = $tocName;
+    }
+
+    public function excludeFromDocs(): bool
+    {
+        // Skip the protobuf classes with underscores, they're all deprecated
+        // @TODO: Do not generate them in V2
+        if (false !== strpos($this->getName(), '_')) {
+            return true;
+        }
+
+        // Skip deprecated classes
+        if ($this->isDeprecated()) {
+            return true;
+        }
+
+        // Manually skip GAPIC base clients
+        if ($this->isServiceBaseClass()) {
+
+            return true;
+        }
+
+        // Skip internal classes
+        if ($this->isInternal()) {
+            return true;
+        }
+
+        // Manually skip Grpc classes
+        // @TODO: remove this once we no longer have V2 classes
+        if (
+            'GrpcClient' === substr($this->getFullName(), -10)
+            && '\Grpc\BaseStub' === $this->getExtends()
+        ) {
+            return true;
+        }
+
+        return false;
     }
 }

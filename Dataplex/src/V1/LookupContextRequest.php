@@ -23,16 +23,29 @@ class LookupContextRequest extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Required. The entry names to lookup context for. The request should have
-     * max 10 of those.
+     * Required. The entry names to look up the context for. The maximum number of
+     * resources for a request is limited to 10.
      * ## Examples:
-     * projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}
+     * `projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}`
      *
      * Generated from protobuf field <code>repeated string resources = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $resources;
     /**
+     * Optional. The text representing contextual information for which metadata
+     * context is being requested.
+     *
+     * Generated from protobuf field <code>string context = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $context = '';
+    /**
      * Optional. Allows to configure the context.
+     * Supported options:
+     * - `format` - The format of the context (one of `yaml`,
+     * `xml`, `json`, default is `yaml`).
+     * - `context_budget` - If provided, the output will be intelligently
+     * truncated on a best-effort basis to contain approximately the desired
+     * amount of characters. There is no guarantee to achieve the specific amount.
      *
      * Generated from protobuf field <code>map<string, string> options = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -48,12 +61,21 @@ class LookupContextRequest extends \Google\Protobuf\Internal\Message
      *           Required. The project to which the request should be attributed in the
      *           following form: `projects/{project}/locations/{location}`.
      *     @type string[] $resources
-     *           Required. The entry names to lookup context for. The request should have
-     *           max 10 of those.
+     *           Required. The entry names to look up the context for. The maximum number of
+     *           resources for a request is limited to 10.
      *           ## Examples:
-     *           projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}
+     *           `projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}`
+     *     @type string $context
+     *           Optional. The text representing contextual information for which metadata
+     *           context is being requested.
      *     @type array|\Google\Protobuf\Internal\MapField $options
      *           Optional. Allows to configure the context.
+     *           Supported options:
+     *           - `format` - The format of the context (one of `yaml`,
+     *           `xml`, `json`, default is `yaml`).
+     *           - `context_budget` - If provided, the output will be intelligently
+     *           truncated on a best-effort basis to contain approximately the desired
+     *           amount of characters. There is no guarantee to achieve the specific amount.
      * }
      */
     public function __construct($data = NULL) {
@@ -90,10 +112,10 @@ class LookupContextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The entry names to lookup context for. The request should have
-     * max 10 of those.
+     * Required. The entry names to look up the context for. The maximum number of
+     * resources for a request is limited to 10.
      * ## Examples:
-     * projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}
+     * `projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}`
      *
      * Generated from protobuf field <code>repeated string resources = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return RepeatedField<string>
@@ -104,10 +126,10 @@ class LookupContextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The entry names to lookup context for. The request should have
-     * max 10 of those.
+     * Required. The entry names to look up the context for. The maximum number of
+     * resources for a request is limited to 10.
      * ## Examples:
-     * projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}
+     * `projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}`
      *
      * Generated from protobuf field <code>repeated string resources = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string[] $var
@@ -122,7 +144,41 @@ class LookupContextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The text representing contextual information for which metadata
+     * context is being requested.
+     *
+     * Generated from protobuf field <code>string context = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getContext()
+    {
+        return $this->context;
+    }
+
+    /**
+     * Optional. The text representing contextual information for which metadata
+     * context is being requested.
+     *
+     * Generated from protobuf field <code>string context = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setContext($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->context = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Allows to configure the context.
+     * Supported options:
+     * - `format` - The format of the context (one of `yaml`,
+     * `xml`, `json`, default is `yaml`).
+     * - `context_budget` - If provided, the output will be intelligently
+     * truncated on a best-effort basis to contain approximately the desired
+     * amount of characters. There is no guarantee to achieve the specific amount.
      *
      * Generated from protobuf field <code>map<string, string> options = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -134,6 +190,12 @@ class LookupContextRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Allows to configure the context.
+     * Supported options:
+     * - `format` - The format of the context (one of `yaml`,
+     * `xml`, `json`, default is `yaml`).
+     * - `context_budget` - If provided, the output will be intelligently
+     * truncated on a best-effort basis to contain approximately the desired
+     * amount of characters. There is no guarantee to achieve the specific amount.
      *
      * Generated from protobuf field <code>map<string, string> options = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

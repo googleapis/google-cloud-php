@@ -22,6 +22,13 @@ class TerraformBlueprint extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.config.v1.TerraformVariable> input_values = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $input_values;
+    /**
+     * Optional. Map of input variable names in this blueprint to configurations
+     * for importing values from external sources.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.config.v1.ExternalValueSource> external_values = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $external_values;
     protected $source;
 
     /**
@@ -39,6 +46,9 @@ class TerraformBlueprint extends \Google\Protobuf\Internal\Message
      *           URI of a public Git repo.
      *     @type array|\Google\Protobuf\Internal\MapField $input_values
      *           Optional. Input variable values for the Terraform blueprint.
+     *     @type array|\Google\Protobuf\Internal\MapField $external_values
+     *           Optional. Map of input variable names in this blueprint to configurations
+     *           for importing values from external sources.
      * }
      */
     public function __construct($data = NULL) {
@@ -136,6 +146,34 @@ class TerraformBlueprint extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Config\V1\TerraformVariable::class);
         $this->input_values = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Map of input variable names in this blueprint to configurations
+     * for importing values from external sources.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.config.v1.ExternalValueSource> external_values = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getExternalValues()
+    {
+        return $this->external_values;
+    }
+
+    /**
+     * Optional. Map of input variable names in this blueprint to configurations
+     * for importing values from external sources.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.config.v1.ExternalValueSource> external_values = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setExternalValues($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Config\V1\ExternalValueSource::class);
+        $this->external_values = $arr;
 
         return $this;
     }

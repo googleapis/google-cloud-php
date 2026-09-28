@@ -17,13 +17,14 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\ApiCore\ApiException;
+
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
-use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
+use Google\Rpc\Code;
 
 /**
  * @group spanner
@@ -31,10 +32,11 @@ use Google\Cloud\Spanner\KeySet;
  */
 class BatchTest extends SystemTestCase
 {
+    const TABLE_NAME = 'BatchTest';
     use SystemTestCaseTrait;
     use DatabaseRoleTrait;
 
-    private static $tableName;
+    
     private static $isSetup = false;
 
     /**
@@ -42,44 +44,11 @@ class BatchTest extends SystemTestCase
      */
     public static function setUpTestFixtures(): void
     {
+        self::setUpTestDatabase();
         if (self::$isSetup) {
             return;
         }
-        self::setUpTestDatabase();
-
-        self::$tableName = uniqid(self::TESTING_PREFIX);
-
-        self::$database->updateDdl(sprintf(
-            'CREATE TABLE %s (
-                    id INT64 NOT NULL,
-                    decade INT64 NOT NULL
-                ) PRIMARY KEY (id)',
-            self::$tableName
-        ))->pollUntilComplete();
-
-        if (self::$database->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
-            $statements = [
-                sprintf('CREATE ROLE %s', self::$dbRole),
-                sprintf('CREATE ROLE %s', self::$restrictiveDbRole),
-            ];
-
-            if (!self::isEmulatorUsed()) {
-                $statements[] = sprintf(
-                    'GRANT SELECT(id) ON TABLE %s TO ROLE %s',
-                    self::$tableName,
-                    self::$restrictiveDbRole
-                );
-            }
-
-            $statements[] = sprintf(
-                'GRANT SELECT ON TABLE %s TO ROLE %s',
-                self::$tableName,
-                self::$dbRole
-            );
-
-            self::$database->updateDdlBatch($statements)->pollUntilComplete();
-        }
-
+        self::$database->delete(self::TABLE_NAME, new KeySet(['all' => true]));
         self::seedTable();
         self::$isSetup = true;
     }
@@ -87,14 +56,20 @@ class BatchTest extends SystemTestCase
     private static function seedTable()
     {
         $decades = [1950, 1960, 1970, 1980, 1990, 2000];
+        $mutations = [];
+
         for ($i = 0; $i < 250; $i++) {
-            self::$database->insert(self::$tableName, [
+            $mutations[] = [
                 'id' => self::randId(),
-                'decade' => array_rand($decades)
-            ], [
-                'timeoutMillis' => 50000
-            ]);
+                'decade' => $decades[array_rand($decades)]
+            ];
         }
+
+        self::$database->insertOrUpdateBatch(
+            self::TABLE_NAME,
+            $mutations,
+            ['timeoutMillis' => 50000]
+        );
     }
 
     public function testBatch()
@@ -102,7 +77,7 @@ class BatchTest extends SystemTestCase
         $query = 'SELECT
                 id,
                 decade
-            FROM ' . self::$tableName . '
+            FROM ' . self::TABLE_NAME . '
             WHERE
                 decade > @earlyBound
             AND
@@ -120,22 +95,25 @@ class BatchTest extends SystemTestCase
 
         $snapshot = $batch->snapshotFromString($string);
 
-        $partitions = $snapshot->partitionQuery($query, ['parameters' => $parameters]);
+        $partitions = null;
+        for ($i = 0; $i < 3; $i++) {
+            try {
+                $partitions = $snapshot->partitionQuery($query, ['parameters' => $parameters]);
+                break;
+            } catch (ServiceException | ApiException $ex) {
+                $allowed = [Code::UNAVAILABLE, Code::DEADLINE_EXCEEDED];
+                if ($i === 2 || !in_array($ex->getCode(), $allowed)) {
+                    throw $ex;
+                }
+                sleep(2);
+            }
+        }
         $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
 
-        $keySet = new KeySet([
-            'ranges' => [
-                new KeyRange([
-                    'start' => $parameters['earlyBound'],
-                    'startType' => KeyRange::TYPE_OPEN,
-                    'end' => $parameters['lateBound'],
-                    'endType' => KeyRange::TYPE_OPEN
-                ])
-            ]
-        ]);
+        $keySet = new KeySet(['all' => true]);
 
-        $partitions = $snapshot->partitionRead(self::$tableName, $keySet, ['id', 'decade']);
-        $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
+        $partitions = $snapshot->partitionRead(self::TABLE_NAME, $keySet, ['id', 'decade']);
+        $this->assertEquals(250, $this->executePartitions($batch, $snapshot, $partitions));
     }
 
     /**
@@ -149,7 +127,7 @@ class BatchTest extends SystemTestCase
         $query = 'SELECT
                     id,
                     decade
-                FROM ' . self::$tableName . '
+                FROM ' . self::TABLE_NAME . '
                 WHERE
                     decade > @earlyBound
                 AND

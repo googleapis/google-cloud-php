@@ -18,7 +18,8 @@ class AudienceSegment extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name of the `AudienceSegment`.
      * Format: `networks/{network_code}/audienceSegments/{audience_segment_id}`
-     * The `audience_segment_id` may have up to 1 of the following suffixes:
+     * The `audience_segment_id` is not always numerical and may have one of
+     * the following suffixes:
      *   - `~direct` for directly licensed third-party segments
      *   - `~global` for globally licensed third-party segments
      *
@@ -26,12 +27,92 @@ class AudienceSegment extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
+     * Output only. The ID of the `AudienceSegment`. Up to two resources may share
+     * this ID.
+     *
+     * Generated from protobuf field <code>int64 shared_id = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $shared_id = 0;
+    /**
      * Required. Display name of the `AudienceSegment`. The attribute has a
      * maximum length of 255 characters.
      *
      * Generated from protobuf field <code>optional string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $display_name = null;
+    /**
+     * Optional. Unordered list. IDs of the categories that this audience segment
+     * belongs to. See `segment_categories` for additional information about the
+     * categories.
+     *
+     * Generated from protobuf field <code>repeated int64 category_ids = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = UNORDERED_LIST];</code>
+     */
+    private $category_ids;
+    /**
+     * Optional. Description of the `AudienceSegment`. This has a maximum length
+     * of 8192 characters.
+     *
+     * Generated from protobuf field <code>optional string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $description = null;
+    /**
+     * Output only. Non-empty default. Status of the `AudienceSegment` used to
+     * determine whether the segment is available for targeting. Defaults to
+     * `ACTIVE` if not set.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.AudienceSegmentStatusEnum.AudienceSegmentStatus status = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     */
+    protected $status = null;
+    /**
+     * Output only. Number of unique identifiers in the `AudienceSegment`.
+     *
+     * Generated from protobuf field <code>optional int64 size = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $size = null;
+    /**
+     * Output only. Number of unique mobile web identifiers in the
+     * `AudienceSegment`.
+     *
+     * Generated from protobuf field <code>optional int64 mobile_web_size = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $mobile_web_size = null;
+    /**
+     * Output only. Number of unique Identifier for Advertisers (IDFA) identifiers
+     * in the `AudienceSegment`.
+     *
+     * Generated from protobuf field <code>optional int64 idfa_size = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $idfa_size = null;
+    /**
+     * Output only. Number of unique AdID identifiers in the `AudienceSegment`.
+     *
+     * Generated from protobuf field <code>optional int64 ad_id_size = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $ad_id_size = null;
+    /**
+     * Output only. Number of unique publisher-provided (PPID) identifiers in the
+     * `AudienceSegment`.
+     *
+     * Generated from protobuf field <code>optional int64 ppid_size = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $ppid_size = null;
+    /**
+     * Output only. Display name of the owner data provider. For a first-party
+     * audience segment, this is the display name of the publisher network.
+     * Otherwise, this is the display name of the entity providing the audience
+     * segment.
+     *
+     * Generated from protobuf field <code>optional string data_provider_display_name = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $data_provider_display_name = null;
+    /**
+     * Output only. Non-empty default. Type of the `AudienceSegment`. Every
+     * `AudienceSegment` is either `FIRST_PARTY` or `THIRD_PARTY`.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.AudienceSegmentTypeEnum.AudienceSegmentType segment_type = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     */
+    protected $segment_type = null;
+    protected $sub_type;
 
     /**
      * Constructor.
@@ -39,15 +120,61 @@ class AudienceSegment extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Ads\AdManager\V1\AudienceSegment\NonRuleBasedFirstPartyAudienceSegment $non_rule_based_first_party_audience_segment
+     *           Optional. An `AudienceSegment` owned by the publisher network that does
+     *           not contain a rule. Cookies are usually added to these segments through
+     *           cookie upload.
+     *     @type \Google\Ads\AdManager\V1\AudienceSegment\RuleBasedFirstPartyAudienceSegment $rule_based_first_party_audience_segment
+     *           Optional. An `AudienceSegment` owned by the publisher network that
+     *           contains a rule.
+     *     @type \Google\Ads\AdManager\V1\AudienceSegment\ThirdPartyAudienceSegment $third_party_audience_segment
+     *           Output only. An `AudienceSegment` owned by a data provider and licensed
+     *           to the Ad Manager publisher network.
      *     @type string $name
      *           Identifier. The resource name of the `AudienceSegment`.
      *           Format: `networks/{network_code}/audienceSegments/{audience_segment_id}`
-     *           The `audience_segment_id` may have up to 1 of the following suffixes:
+     *           The `audience_segment_id` is not always numerical and may have one of
+     *           the following suffixes:
      *             - `~direct` for directly licensed third-party segments
      *             - `~global` for globally licensed third-party segments
+     *     @type int|string $shared_id
+     *           Output only. The ID of the `AudienceSegment`. Up to two resources may share
+     *           this ID.
      *     @type string $display_name
      *           Required. Display name of the `AudienceSegment`. The attribute has a
      *           maximum length of 255 characters.
+     *     @type int[]|string[] $category_ids
+     *           Optional. Unordered list. IDs of the categories that this audience segment
+     *           belongs to. See `segment_categories` for additional information about the
+     *           categories.
+     *     @type string $description
+     *           Optional. Description of the `AudienceSegment`. This has a maximum length
+     *           of 8192 characters.
+     *     @type int $status
+     *           Output only. Non-empty default. Status of the `AudienceSegment` used to
+     *           determine whether the segment is available for targeting. Defaults to
+     *           `ACTIVE` if not set.
+     *     @type int|string $size
+     *           Output only. Number of unique identifiers in the `AudienceSegment`.
+     *     @type int|string $mobile_web_size
+     *           Output only. Number of unique mobile web identifiers in the
+     *           `AudienceSegment`.
+     *     @type int|string $idfa_size
+     *           Output only. Number of unique Identifier for Advertisers (IDFA) identifiers
+     *           in the `AudienceSegment`.
+     *     @type int|string $ad_id_size
+     *           Output only. Number of unique AdID identifiers in the `AudienceSegment`.
+     *     @type int|string $ppid_size
+     *           Output only. Number of unique publisher-provided (PPID) identifiers in the
+     *           `AudienceSegment`.
+     *     @type string $data_provider_display_name
+     *           Output only. Display name of the owner data provider. For a first-party
+     *           audience segment, this is the display name of the publisher network.
+     *           Otherwise, this is the display name of the entity providing the audience
+     *           segment.
+     *     @type int $segment_type
+     *           Output only. Non-empty default. Type of the `AudienceSegment`. Every
+     *           `AudienceSegment` is either `FIRST_PARTY` or `THIRD_PARTY`.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,9 +183,111 @@ class AudienceSegment extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. An `AudienceSegment` owned by the publisher network that does
+     * not contain a rule. Cookies are usually added to these segments through
+     * cookie upload.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AudienceSegment.NonRuleBasedFirstPartyAudienceSegment non_rule_based_first_party_audience_segment = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\AudienceSegment\NonRuleBasedFirstPartyAudienceSegment|null
+     */
+    public function getNonRuleBasedFirstPartyAudienceSegment()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasNonRuleBasedFirstPartyAudienceSegment()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * Optional. An `AudienceSegment` owned by the publisher network that does
+     * not contain a rule. Cookies are usually added to these segments through
+     * cookie upload.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AudienceSegment.NonRuleBasedFirstPartyAudienceSegment non_rule_based_first_party_audience_segment = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\AudienceSegment\NonRuleBasedFirstPartyAudienceSegment $var
+     * @return $this
+     */
+    public function setNonRuleBasedFirstPartyAudienceSegment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\AudienceSegment\NonRuleBasedFirstPartyAudienceSegment::class);
+        $this->writeOneof(13, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. An `AudienceSegment` owned by the publisher network that
+     * contains a rule.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AudienceSegment.RuleBasedFirstPartyAudienceSegment rule_based_first_party_audience_segment = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\AudienceSegment\RuleBasedFirstPartyAudienceSegment|null
+     */
+    public function getRuleBasedFirstPartyAudienceSegment()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasRuleBasedFirstPartyAudienceSegment()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * Optional. An `AudienceSegment` owned by the publisher network that
+     * contains a rule.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AudienceSegment.RuleBasedFirstPartyAudienceSegment rule_based_first_party_audience_segment = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\AudienceSegment\RuleBasedFirstPartyAudienceSegment $var
+     * @return $this
+     */
+    public function setRuleBasedFirstPartyAudienceSegment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\AudienceSegment\RuleBasedFirstPartyAudienceSegment::class);
+        $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. An `AudienceSegment` owned by a data provider and licensed
+     * to the Ad Manager publisher network.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AudienceSegment.ThirdPartyAudienceSegment third_party_audience_segment = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Ads\AdManager\V1\AudienceSegment\ThirdPartyAudienceSegment|null
+     */
+    public function getThirdPartyAudienceSegment()
+    {
+        return $this->readOneof(16);
+    }
+
+    public function hasThirdPartyAudienceSegment()
+    {
+        return $this->hasOneof(16);
+    }
+
+    /**
+     * Output only. An `AudienceSegment` owned by a data provider and licensed
+     * to the Ad Manager publisher network.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AudienceSegment.ThirdPartyAudienceSegment third_party_audience_segment = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Ads\AdManager\V1\AudienceSegment\ThirdPartyAudienceSegment $var
+     * @return $this
+     */
+    public function setThirdPartyAudienceSegment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\AudienceSegment\ThirdPartyAudienceSegment::class);
+        $this->writeOneof(16, $var);
+
+        return $this;
+    }
+
+    /**
      * Identifier. The resource name of the `AudienceSegment`.
      * Format: `networks/{network_code}/audienceSegments/{audience_segment_id}`
-     * The `audience_segment_id` may have up to 1 of the following suffixes:
+     * The `audience_segment_id` is not always numerical and may have one of
+     * the following suffixes:
      *   - `~direct` for directly licensed third-party segments
      *   - `~global` for globally licensed third-party segments
      *
@@ -73,7 +302,8 @@ class AudienceSegment extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name of the `AudienceSegment`.
      * Format: `networks/{network_code}/audienceSegments/{audience_segment_id}`
-     * The `audience_segment_id` may have up to 1 of the following suffixes:
+     * The `audience_segment_id` is not always numerical and may have one of
+     * the following suffixes:
      *   - `~direct` for directly licensed third-party segments
      *   - `~global` for globally licensed third-party segments
      *
@@ -85,6 +315,34 @@ class AudienceSegment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The ID of the `AudienceSegment`. Up to two resources may share
+     * this ID.
+     *
+     * Generated from protobuf field <code>int64 shared_id = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getSharedId()
+    {
+        return $this->shared_id;
+    }
+
+    /**
+     * Output only. The ID of the `AudienceSegment`. Up to two resources may share
+     * this ID.
+     *
+     * Generated from protobuf field <code>int64 shared_id = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setSharedId($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->shared_id = $var;
 
         return $this;
     }
@@ -125,6 +383,388 @@ class AudienceSegment extends \Google\Protobuf\Internal\Message
         $this->display_name = $var;
 
         return $this;
+    }
+
+    /**
+     * Optional. Unordered list. IDs of the categories that this audience segment
+     * belongs to. See `segment_categories` for additional information about the
+     * categories.
+     *
+     * Generated from protobuf field <code>repeated int64 category_ids = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = UNORDERED_LIST];</code>
+     * @return RepeatedField<int>|RepeatedField<string>
+     */
+    public function getCategoryIds()
+    {
+        return $this->category_ids;
+    }
+
+    /**
+     * Optional. Unordered list. IDs of the categories that this audience segment
+     * belongs to. See `segment_categories` for additional information about the
+     * categories.
+     *
+     * Generated from protobuf field <code>repeated int64 category_ids = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = UNORDERED_LIST];</code>
+     * @param int[]|string[] $var
+     * @return $this
+     */
+    public function setCategoryIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT64);
+        $this->category_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Description of the `AudienceSegment`. This has a maximum length
+     * of 8192 characters.
+     *
+     * Generated from protobuf field <code>optional string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDescription()
+    {
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
+    }
+
+    /**
+     * Optional. Description of the `AudienceSegment`. This has a maximum length
+     * of 8192 characters.
+     *
+     * Generated from protobuf field <code>optional string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDescription($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Non-empty default. Status of the `AudienceSegment` used to
+     * determine whether the segment is available for targeting. Defaults to
+     * `ACTIVE` if not set.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.AudienceSegmentStatusEnum.AudienceSegmentStatus status = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @return int
+     */
+    public function getStatus()
+    {
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
+    }
+
+    /**
+     * Output only. Non-empty default. Status of the `AudienceSegment` used to
+     * determine whether the segment is available for targeting. Defaults to
+     * `ACTIVE` if not set.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.AudienceSegmentStatusEnum.AudienceSegmentStatus status = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\AudienceSegmentStatusEnum\AudienceSegmentStatus::class);
+        $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Number of unique identifiers in the `AudienceSegment`.
+     *
+     * Generated from protobuf field <code>optional int64 size = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getSize()
+    {
+        return isset($this->size) ? $this->size : 0;
+    }
+
+    public function hasSize()
+    {
+        return isset($this->size);
+    }
+
+    public function clearSize()
+    {
+        unset($this->size);
+    }
+
+    /**
+     * Output only. Number of unique identifiers in the `AudienceSegment`.
+     *
+     * Generated from protobuf field <code>optional int64 size = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setSize($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->size = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Number of unique mobile web identifiers in the
+     * `AudienceSegment`.
+     *
+     * Generated from protobuf field <code>optional int64 mobile_web_size = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getMobileWebSize()
+    {
+        return isset($this->mobile_web_size) ? $this->mobile_web_size : 0;
+    }
+
+    public function hasMobileWebSize()
+    {
+        return isset($this->mobile_web_size);
+    }
+
+    public function clearMobileWebSize()
+    {
+        unset($this->mobile_web_size);
+    }
+
+    /**
+     * Output only. Number of unique mobile web identifiers in the
+     * `AudienceSegment`.
+     *
+     * Generated from protobuf field <code>optional int64 mobile_web_size = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMobileWebSize($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->mobile_web_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Number of unique Identifier for Advertisers (IDFA) identifiers
+     * in the `AudienceSegment`.
+     *
+     * Generated from protobuf field <code>optional int64 idfa_size = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getIdfaSize()
+    {
+        return isset($this->idfa_size) ? $this->idfa_size : 0;
+    }
+
+    public function hasIdfaSize()
+    {
+        return isset($this->idfa_size);
+    }
+
+    public function clearIdfaSize()
+    {
+        unset($this->idfa_size);
+    }
+
+    /**
+     * Output only. Number of unique Identifier for Advertisers (IDFA) identifiers
+     * in the `AudienceSegment`.
+     *
+     * Generated from protobuf field <code>optional int64 idfa_size = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setIdfaSize($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->idfa_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Number of unique AdID identifiers in the `AudienceSegment`.
+     *
+     * Generated from protobuf field <code>optional int64 ad_id_size = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getAdIdSize()
+    {
+        return isset($this->ad_id_size) ? $this->ad_id_size : 0;
+    }
+
+    public function hasAdIdSize()
+    {
+        return isset($this->ad_id_size);
+    }
+
+    public function clearAdIdSize()
+    {
+        unset($this->ad_id_size);
+    }
+
+    /**
+     * Output only. Number of unique AdID identifiers in the `AudienceSegment`.
+     *
+     * Generated from protobuf field <code>optional int64 ad_id_size = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setAdIdSize($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->ad_id_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Number of unique publisher-provided (PPID) identifiers in the
+     * `AudienceSegment`.
+     *
+     * Generated from protobuf field <code>optional int64 ppid_size = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getPpidSize()
+    {
+        return isset($this->ppid_size) ? $this->ppid_size : 0;
+    }
+
+    public function hasPpidSize()
+    {
+        return isset($this->ppid_size);
+    }
+
+    public function clearPpidSize()
+    {
+        unset($this->ppid_size);
+    }
+
+    /**
+     * Output only. Number of unique publisher-provided (PPID) identifiers in the
+     * `AudienceSegment`.
+     *
+     * Generated from protobuf field <code>optional int64 ppid_size = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setPpidSize($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->ppid_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Display name of the owner data provider. For a first-party
+     * audience segment, this is the display name of the publisher network.
+     * Otherwise, this is the display name of the entity providing the audience
+     * segment.
+     *
+     * Generated from protobuf field <code>optional string data_provider_display_name = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getDataProviderDisplayName()
+    {
+        return isset($this->data_provider_display_name) ? $this->data_provider_display_name : '';
+    }
+
+    public function hasDataProviderDisplayName()
+    {
+        return isset($this->data_provider_display_name);
+    }
+
+    public function clearDataProviderDisplayName()
+    {
+        unset($this->data_provider_display_name);
+    }
+
+    /**
+     * Output only. Display name of the owner data provider. For a first-party
+     * audience segment, this is the display name of the publisher network.
+     * Otherwise, this is the display name of the entity providing the audience
+     * segment.
+     *
+     * Generated from protobuf field <code>optional string data_provider_display_name = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDataProviderDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->data_provider_display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Non-empty default. Type of the `AudienceSegment`. Every
+     * `AudienceSegment` is either `FIRST_PARTY` or `THIRD_PARTY`.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.AudienceSegmentTypeEnum.AudienceSegmentType segment_type = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @return int
+     */
+    public function getSegmentType()
+    {
+        return isset($this->segment_type) ? $this->segment_type : 0;
+    }
+
+    public function hasSegmentType()
+    {
+        return isset($this->segment_type);
+    }
+
+    public function clearSegmentType()
+    {
+        unset($this->segment_type);
+    }
+
+    /**
+     * Output only. Non-empty default. Type of the `AudienceSegment`. Every
+     * `AudienceSegment` is either `FIRST_PARTY` or `THIRD_PARTY`.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.AudienceSegmentTypeEnum.AudienceSegmentType segment_type = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSegmentType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\AudienceSegmentTypeEnum\AudienceSegmentType::class);
+        $this->segment_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSubType()
+    {
+        return $this->whichOneof("sub_type");
     }
 
 }

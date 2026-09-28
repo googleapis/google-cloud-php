@@ -24,6 +24,7 @@ use SimpleXMLElement;
  */
 class MethodNode
 {
+    use DeprecatedTrait;
     use DocblockTrait {
         getContent as getDocblockContent;
     }
@@ -36,6 +37,7 @@ class MethodNode
         private SimpleXMLElement $xmlNode,
         private string $namespace,
         private array $protoPackages,
+        private string $className,
     ) {}
 
     public function getReturnType(): string
@@ -138,7 +140,8 @@ class MethodNode
                 $parameterName,
                 (string) $parameterNode->type,
                 $this->replaceSeeTag($this->replaceProtoRef($description)),
-                $this->namespace
+                $this->namespace,
+                $this->className,
             );
 
             $parameters[] = $parameter;

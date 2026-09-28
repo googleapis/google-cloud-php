@@ -177,6 +177,13 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     protected $params = null;
     /**
+     * Output only. [Output Only] URL of the region where the snapshot resides. Only applicable
+     * for regional snapshots.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     */
+    protected $region = null;
+    /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
@@ -210,6 +217,20 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey snapshot_encryption_key = 43334526;</code>
      */
     protected $snapshot_encryption_key = null;
+    /**
+     * Output only. [Output Only] The unique ID of the snapshot group that this snapshot
+     * belongs to. The usage of snapshot group feature is restricted.
+     *
+     * Generated from protobuf field <code>optional string snapshot_group_id = 255004406;</code>
+     */
+    protected $snapshot_group_id = null;
+    /**
+     * Output only. [Output only] The snapshot group that this snapshot belongs to. The usage
+     * of snapshot group feature is restricted.
+     *
+     * Generated from protobuf field <code>optional string snapshot_group_name = 246247846;</code>
+     */
+    protected $snapshot_group_name = null;
     /**
      * Indicates the type of the snapshot.
      * Check the SnapshotType enum for the list of possible values.
@@ -305,11 +326,13 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     protected $storage_bytes = null;
     /**
-     * Output only. [Output Only] An indicator whether storageBytes is in a
+     * Output only. [Deprecated] Instead, check the storageBytes field. After
+     * snapshot creation, the storageBytesStatus field is alwaysUP_TO_DATE.
+     * [Output Only] An indicator whether storageBytes is in a
      * stable state or it is being adjusted as a result of shared storage
-     * reallocation. This status can either be UPDATING, meaning
-     * the size of the snapshot is being updated, or UP_TO_DATE,
-     * meaning the size of the snapshot is up-to-date.
+     * reallocation. This status can either be unset, meaning the snapshot is
+     * being created, or UP_TO_DATE, meaning the size of the snapshot
+     * is up-to-date.
      * Check the StorageBytesStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string storage_bytes_status = 490739082;</code>
@@ -407,6 +430,9 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\SnapshotParams $params
      *           Input only. [Input Only] Additional params passed with the request, but not persisted
      *           as part of resource payload.
+     *     @type string $region
+     *           Output only. [Output Only] URL of the region where the snapshot resides. Only applicable
+     *           for regional snapshots.
      *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzs
@@ -425,6 +451,12 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           If you do not provide an encryption key when creating the snapshot, then
      *           the snapshot will be encrypted using an automatically generated key and you
      *           do not need to provide a key to use the snapshot later.
+     *     @type string $snapshot_group_id
+     *           Output only. [Output Only] The unique ID of the snapshot group that this snapshot
+     *           belongs to. The usage of snapshot group feature is restricted.
+     *     @type string $snapshot_group_name
+     *           Output only. [Output only] The snapshot group that this snapshot belongs to. The usage
+     *           of snapshot group feature is restricted.
      *     @type string $snapshot_type
      *           Indicates the type of the snapshot.
      *           Check the SnapshotType enum for the list of possible values.
@@ -472,11 +504,13 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           share storage, this number is expected to change with snapshot
      *           creation/deletion.
      *     @type string $storage_bytes_status
-     *           Output only. [Output Only] An indicator whether storageBytes is in a
+     *           Output only. [Deprecated] Instead, check the storageBytes field. After
+     *           snapshot creation, the storageBytesStatus field is alwaysUP_TO_DATE.
+     *           [Output Only] An indicator whether storageBytes is in a
      *           stable state or it is being adjusted as a result of shared storage
-     *           reallocation. This status can either be UPDATING, meaning
-     *           the size of the snapshot is being updated, or UP_TO_DATE,
-     *           meaning the size of the snapshot is up-to-date.
+     *           reallocation. This status can either be unset, meaning the snapshot is
+     *           being created, or UP_TO_DATE, meaning the size of the snapshot
+     *           is up-to-date.
      *           Check the StorageBytesStatus enum for the list of possible values.
      *     @type string[] $storage_locations
      *           Cloud Storage bucket storage location of the snapshot (regional or
@@ -1245,6 +1279,44 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. [Output Only] URL of the region where the snapshot resides. Only applicable
+     * for regional snapshots.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * @return string
+     */
+    public function getRegion()
+    {
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
+    }
+
+    /**
+     * Output only. [Output Only] URL of the region where the snapshot resides. Only applicable
+     * for regional snapshots.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRegion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->region = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
@@ -1404,6 +1476,82 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\CustomerEncryptionKey::class);
         $this->snapshot_encryption_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] The unique ID of the snapshot group that this snapshot
+     * belongs to. The usage of snapshot group feature is restricted.
+     *
+     * Generated from protobuf field <code>optional string snapshot_group_id = 255004406;</code>
+     * @return string
+     */
+    public function getSnapshotGroupId()
+    {
+        return isset($this->snapshot_group_id) ? $this->snapshot_group_id : '';
+    }
+
+    public function hasSnapshotGroupId()
+    {
+        return isset($this->snapshot_group_id);
+    }
+
+    public function clearSnapshotGroupId()
+    {
+        unset($this->snapshot_group_id);
+    }
+
+    /**
+     * Output only. [Output Only] The unique ID of the snapshot group that this snapshot
+     * belongs to. The usage of snapshot group feature is restricted.
+     *
+     * Generated from protobuf field <code>optional string snapshot_group_id = 255004406;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSnapshotGroupId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->snapshot_group_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output only] The snapshot group that this snapshot belongs to. The usage
+     * of snapshot group feature is restricted.
+     *
+     * Generated from protobuf field <code>optional string snapshot_group_name = 246247846;</code>
+     * @return string
+     */
+    public function getSnapshotGroupName()
+    {
+        return isset($this->snapshot_group_name) ? $this->snapshot_group_name : '';
+    }
+
+    public function hasSnapshotGroupName()
+    {
+        return isset($this->snapshot_group_name);
+    }
+
+    public function clearSnapshotGroupName()
+    {
+        unset($this->snapshot_group_name);
+    }
+
+    /**
+     * Output only. [Output only] The snapshot group that this snapshot belongs to. The usage
+     * of snapshot group feature is restricted.
+     *
+     * Generated from protobuf field <code>optional string snapshot_group_name = 246247846;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSnapshotGroupName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->snapshot_group_name = $var;
 
         return $this;
     }
@@ -1885,11 +2033,13 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output Only] An indicator whether storageBytes is in a
+     * Output only. [Deprecated] Instead, check the storageBytes field. After
+     * snapshot creation, the storageBytesStatus field is alwaysUP_TO_DATE.
+     * [Output Only] An indicator whether storageBytes is in a
      * stable state or it is being adjusted as a result of shared storage
-     * reallocation. This status can either be UPDATING, meaning
-     * the size of the snapshot is being updated, or UP_TO_DATE,
-     * meaning the size of the snapshot is up-to-date.
+     * reallocation. This status can either be unset, meaning the snapshot is
+     * being created, or UP_TO_DATE, meaning the size of the snapshot
+     * is up-to-date.
      * Check the StorageBytesStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string storage_bytes_status = 490739082;</code>
@@ -1911,11 +2061,13 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output Only] An indicator whether storageBytes is in a
+     * Output only. [Deprecated] Instead, check the storageBytes field. After
+     * snapshot creation, the storageBytesStatus field is alwaysUP_TO_DATE.
+     * [Output Only] An indicator whether storageBytes is in a
      * stable state or it is being adjusted as a result of shared storage
-     * reallocation. This status can either be UPDATING, meaning
-     * the size of the snapshot is being updated, or UP_TO_DATE,
-     * meaning the size of the snapshot is up-to-date.
+     * reallocation. This status can either be unset, meaning the snapshot is
+     * being created, or UP_TO_DATE, meaning the size of the snapshot
+     * is up-to-date.
      * Check the StorageBytesStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string storage_bytes_status = 490739082;</code>

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,18 +36,25 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Config\V1\AutoMigrationConfig;
+use Google\Cloud\Config\V1\CreateDeploymentGroupRequest;
 use Google\Cloud\Config\V1\CreateDeploymentRequest;
 use Google\Cloud\Config\V1\CreatePreviewRequest;
+use Google\Cloud\Config\V1\DeleteDeploymentGroupRequest;
 use Google\Cloud\Config\V1\DeleteDeploymentRequest;
 use Google\Cloud\Config\V1\DeletePreviewRequest;
 use Google\Cloud\Config\V1\DeleteStatefileRequest;
 use Google\Cloud\Config\V1\Deployment;
+use Google\Cloud\Config\V1\DeploymentGroup;
+use Google\Cloud\Config\V1\DeploymentGroupRevision;
+use Google\Cloud\Config\V1\DeprovisionDeploymentGroupRequest;
 use Google\Cloud\Config\V1\ExportDeploymentStatefileRequest;
 use Google\Cloud\Config\V1\ExportLockInfoRequest;
 use Google\Cloud\Config\V1\ExportPreviewResultRequest;
 use Google\Cloud\Config\V1\ExportPreviewResultResponse;
 use Google\Cloud\Config\V1\ExportRevisionStatefileRequest;
 use Google\Cloud\Config\V1\GetAutoMigrationConfigRequest;
+use Google\Cloud\Config\V1\GetDeploymentGroupRequest;
+use Google\Cloud\Config\V1\GetDeploymentGroupRevisionRequest;
 use Google\Cloud\Config\V1\GetDeploymentRequest;
 use Google\Cloud\Config\V1\GetPreviewRequest;
 use Google\Cloud\Config\V1\GetResourceChangeRequest;
@@ -56,6 +63,8 @@ use Google\Cloud\Config\V1\GetResourceRequest;
 use Google\Cloud\Config\V1\GetRevisionRequest;
 use Google\Cloud\Config\V1\GetTerraformVersionRequest;
 use Google\Cloud\Config\V1\ImportStatefileRequest;
+use Google\Cloud\Config\V1\ListDeploymentGroupRevisionsRequest;
+use Google\Cloud\Config\V1\ListDeploymentGroupsRequest;
 use Google\Cloud\Config\V1\ListDeploymentsRequest;
 use Google\Cloud\Config\V1\ListPreviewsRequest;
 use Google\Cloud\Config\V1\ListResourceChangesRequest;
@@ -66,6 +75,7 @@ use Google\Cloud\Config\V1\ListTerraformVersionsRequest;
 use Google\Cloud\Config\V1\LockDeploymentRequest;
 use Google\Cloud\Config\V1\LockInfo;
 use Google\Cloud\Config\V1\Preview;
+use Google\Cloud\Config\V1\ProvisionDeploymentGroupRequest;
 use Google\Cloud\Config\V1\Resource;
 use Google\Cloud\Config\V1\ResourceChange;
 use Google\Cloud\Config\V1\ResourceDrift;
@@ -74,6 +84,7 @@ use Google\Cloud\Config\V1\Statefile;
 use Google\Cloud\Config\V1\TerraformVersion;
 use Google\Cloud\Config\V1\UnlockDeploymentRequest;
 use Google\Cloud\Config\V1\UpdateAutoMigrationConfigRequest;
+use Google\Cloud\Config\V1\UpdateDeploymentGroupRequest;
 use Google\Cloud\Config\V1\UpdateDeploymentRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
@@ -101,16 +112,21 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<OperationResponse> createDeploymentAsync(CreateDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDeploymentGroupAsync(CreateDeploymentGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createPreviewAsync(CreatePreviewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteDeploymentAsync(DeleteDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDeploymentGroupAsync(DeleteDeploymentGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deletePreviewAsync(DeletePreviewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteStatefileAsync(DeleteStatefileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deprovisionDeploymentGroupAsync(DeprovisionDeploymentGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Statefile> exportDeploymentStatefileAsync(ExportDeploymentStatefileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<LockInfo> exportLockInfoAsync(ExportLockInfoRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ExportPreviewResultResponse> exportPreviewResultAsync(ExportPreviewResultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Statefile> exportRevisionStatefileAsync(ExportRevisionStatefileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AutoMigrationConfig> getAutoMigrationConfigAsync(GetAutoMigrationConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Deployment> getDeploymentAsync(GetDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeploymentGroup> getDeploymentGroupAsync(GetDeploymentGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeploymentGroupRevision> getDeploymentGroupRevisionAsync(GetDeploymentGroupRevisionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Preview> getPreviewAsync(GetPreviewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Resource> getResourceAsync(GetResourceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ResourceChange> getResourceChangeAsync(GetResourceChangeRequest $request, array $optionalArgs = [])
@@ -118,6 +134,8 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Revision> getRevisionAsync(GetRevisionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TerraformVersion> getTerraformVersionAsync(GetTerraformVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Statefile> importStatefileAsync(ImportStatefileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDeploymentGroupRevisionsAsync(ListDeploymentGroupRevisionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDeploymentGroupsAsync(ListDeploymentGroupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listDeploymentsAsync(ListDeploymentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listPreviewsAsync(ListPreviewsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listResourceChangesAsync(ListResourceChangesRequest $request, array $optionalArgs = [])
@@ -126,9 +144,11 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listRevisionsAsync(ListRevisionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listTerraformVersionsAsync(ListTerraformVersionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> lockDeploymentAsync(LockDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> provisionDeploymentGroupAsync(ProvisionDeploymentGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> unlockDeploymentAsync(UnlockDeploymentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAutoMigrationConfigAsync(UpdateAutoMigrationConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateDeploymentAsync(UpdateDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDeploymentGroupAsync(UpdateDeploymentGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
@@ -159,7 +179,11 @@ final class ConfigClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
@@ -206,7 +230,10 @@ final class ConfigClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -264,6 +291,50 @@ final class ConfigClient
             'project' => $project,
             'location' => $location,
             'deployment' => $deployment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * deployment_group resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $deploymentGroup
+     *
+     * @return string The formatted deployment_group resource.
+     */
+    public static function deploymentGroupName(string $project, string $location, string $deploymentGroup): string
+    {
+        return self::getPathTemplate('deploymentGroup')->render([
+            'project' => $project,
+            'location' => $location,
+            'deployment_group' => $deploymentGroup,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * deployment_group_revision resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $deploymentGroup
+     * @param string $revision
+     *
+     * @return string The formatted deployment_group_revision resource.
+     */
+    public static function deploymentGroupRevisionName(
+        string $project,
+        string $location,
+        string $deploymentGroup,
+        string $revision
+    ): string {
+        return self::getPathTemplate('deploymentGroupRevision')->render([
+            'project' => $project,
+            'location' => $location,
+            'deployment_group' => $deploymentGroup,
+            'revision' => $revision,
         ]);
     }
 
@@ -463,6 +534,8 @@ final class ConfigClient
      * Template: Pattern
      * - autoMigrationConfig: projects/{project}/locations/{location}/autoMigrationConfig
      * - deployment: projects/{project}/locations/{location}/deployments/{deployment}
+     * - deploymentGroup: projects/{project}/locations/{location}/deploymentGroups/{deployment_group}
+     * - deploymentGroupRevision: projects/{project}/locations/{location}/deploymentGroups/{deployment_group}/revisions/{revision}
      * - location: projects/{project}/locations/{location}
      * - preview: projects/{project}/locations/{location}/previews/{preview}
      * - resource: projects/{project}/locations/{location}/deployments/{deployment}/revisions/{revision}/resources/{resource}
@@ -604,6 +677,36 @@ final class ConfigClient
     }
 
     /**
+     * Creates a [DeploymentGroup][google.cloud.config.v1.DeploymentGroup]
+     * The newly created DeploymentGroup will be in the `CREATING` state
+     * and can be retrieved via Get and List calls.
+     *
+     * The async variant is {@see ConfigClient::createDeploymentGroupAsync()} .
+     *
+     * @example samples/V1/ConfigClient/create_deployment_group.php
+     *
+     * @param CreateDeploymentGroupRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<DeploymentGroup>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createDeploymentGroup(
+        CreateDeploymentGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateDeploymentGroup', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a [Preview][google.cloud.config.v1.Preview].
      *
      * The async variant is {@see ConfigClient::createPreviewAsync()} .
@@ -656,6 +759,34 @@ final class ConfigClient
     }
 
     /**
+     * Deletes a [DeploymentGroup][google.cloud.config.v1.DeploymentGroup]
+     *
+     * The async variant is {@see ConfigClient::deleteDeploymentGroupAsync()} .
+     *
+     * @example samples/V1/ConfigClient/delete_deployment_group.php
+     *
+     * @param DeleteDeploymentGroupRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<DeploymentGroup>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteDeploymentGroup(
+        DeleteDeploymentGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteDeploymentGroup', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a [Preview][google.cloud.config.v1.Preview].
      *
      * The async variant is {@see ConfigClient::deletePreviewAsync()} .
@@ -703,6 +834,43 @@ final class ConfigClient
     public function deleteStatefile(DeleteStatefileRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteStatefile', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deprovisions a deployment group.
+     *
+     * NOTE: As a first step of this operation, Infra Manager will
+     * automatically delete any Deployments that were part of the
+     * *last successful*
+     * [DeploymentGroupRevision][google.cloud.config.v1.DeploymentGroupRevision]
+     * but are *no longer* included in the *current*
+     * [DeploymentGroup][google.cloud.config.v1.DeploymentGroup] definition (e.g.,
+     * following an `UpdateDeploymentGroup` call), along with their actuated
+     * resources.
+     *
+     * The async variant is {@see ConfigClient::deprovisionDeploymentGroupAsync()} .
+     *
+     * @example samples/V1/ConfigClient/deprovision_deployment_group.php
+     *
+     * @param DeprovisionDeploymentGroupRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<DeploymentGroup>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deprovisionDeploymentGroup(
+        DeprovisionDeploymentGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeprovisionDeploymentGroup', $request, $callOptions)->wait();
     }
 
     /**
@@ -865,6 +1033,61 @@ final class ConfigClient
     public function getDeployment(GetDeploymentRequest $request, array $callOptions = []): Deployment
     {
         return $this->startApiCall('GetDeployment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Get a DeploymentGroup for a given project and location.
+     *
+     * The async variant is {@see ConfigClient::getDeploymentGroupAsync()} .
+     *
+     * @example samples/V1/ConfigClient/get_deployment_group.php
+     *
+     * @param GetDeploymentGroupRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DeploymentGroup
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getDeploymentGroup(GetDeploymentGroupRequest $request, array $callOptions = []): DeploymentGroup
+    {
+        return $this->startApiCall('GetDeploymentGroup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details about a
+     * [DeploymentGroupRevision][google.cloud.config.v1.DeploymentGroupRevision].
+     *
+     * The async variant is {@see ConfigClient::getDeploymentGroupRevisionAsync()} .
+     *
+     * @example samples/V1/ConfigClient/get_deployment_group_revision.php
+     *
+     * @param GetDeploymentGroupRevisionRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DeploymentGroupRevision
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getDeploymentGroupRevision(
+        GetDeploymentGroupRevisionRequest $request,
+        array $callOptions = []
+    ): DeploymentGroupRevision {
+        return $this->startApiCall('GetDeploymentGroupRevision', $request, $callOptions)->wait();
     }
 
     /**
@@ -1050,6 +1273,64 @@ final class ConfigClient
     public function importStatefile(ImportStatefileRequest $request, array $callOptions = []): Statefile
     {
         return $this->startApiCall('ImportStatefile', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists
+     * [DeploymentGroupRevision][google.cloud.config.v1.DeploymentGroupRevision]s
+     * in a given [DeploymentGroup][google.cloud.config.v1.DeploymentGroup].
+     *
+     * The async variant is {@see ConfigClient::listDeploymentGroupRevisionsAsync()} .
+     *
+     * @example samples/V1/ConfigClient/list_deployment_group_revisions.php
+     *
+     * @param ListDeploymentGroupRevisionsRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listDeploymentGroupRevisions(
+        ListDeploymentGroupRevisionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListDeploymentGroupRevisions', $request, $callOptions);
+    }
+
+    /**
+     * List DeploymentGroups for a given project and location.
+     *
+     * The async variant is {@see ConfigClient::listDeploymentGroupsAsync()} .
+     *
+     * @example samples/V1/ConfigClient/list_deployment_groups.php
+     *
+     * @param ListDeploymentGroupsRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listDeploymentGroups(
+        ListDeploymentGroupsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListDeploymentGroups', $request, $callOptions);
     }
 
     /**
@@ -1266,6 +1547,43 @@ final class ConfigClient
     }
 
     /**
+     * Provisions a deployment group.
+     *
+     * NOTE: As a first step of this operation, Infra Manager will
+     * automatically delete any Deployments that were part of the
+     * *last successful*
+     * [DeploymentGroupRevision][google.cloud.config.v1.DeploymentGroupRevision]
+     * but are *no longer* included in the *current*
+     * [DeploymentGroup][google.cloud.config.v1.DeploymentGroup] definition (e.g.,
+     * following an `UpdateDeploymentGroup` call), along with their actuated
+     * resources.
+     *
+     * The async variant is {@see ConfigClient::provisionDeploymentGroupAsync()} .
+     *
+     * @example samples/V1/ConfigClient/provision_deployment_group.php
+     *
+     * @param ProvisionDeploymentGroupRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<DeploymentGroup>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function provisionDeploymentGroup(
+        ProvisionDeploymentGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('ProvisionDeploymentGroup', $request, $callOptions)->wait();
+    }
+
+    /**
      * Unlocks a locked deployment.
      *
      * The async variant is {@see ConfigClient::unlockDeploymentAsync()} .
@@ -1346,6 +1664,34 @@ final class ConfigClient
     }
 
     /**
+     * Updates a [DeploymentGroup][google.cloud.config.v1.DeploymentGroup]
+     *
+     * The async variant is {@see ConfigClient::updateDeploymentGroupAsync()} .
+     *
+     * @example samples/V1/ConfigClient/update_deployment_group.php
+     *
+     * @param UpdateDeploymentGroupRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<DeploymentGroup>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateDeploymentGroup(
+        UpdateDeploymentGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateDeploymentGroup', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets information about a location.
      *
      * The async variant is {@see ConfigClient::getLocationAsync()} .
@@ -1374,6 +1720,21 @@ final class ConfigClient
     /**
      * Lists information about the supported locations for this service.
      *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
+     *
      * The async variant is {@see ConfigClient::listLocationsAsync()} .
      *
      * @example samples/V1/ConfigClient/list_locations.php
@@ -1399,7 +1760,7 @@ final class ConfigClient
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy
-    if the resource exists and does not have a policy set.
+     * if the resource exists and does not have a policy set.
      *
      * The async variant is {@see ConfigClient::getIamPolicyAsync()} .
      *
@@ -1426,10 +1787,10 @@ final class ConfigClient
 
     /**
      * Sets the access control policy on the specified resource. Replaces
-    any existing policy.
-
-    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
-    errors.
+     * any existing policy.
+     *
+     * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+     * errors.
      *
      * The async variant is {@see ConfigClient::setIamPolicyAsync()} .
      *
@@ -1456,12 +1817,12 @@ final class ConfigClient
 
     /**
      * Returns permissions that a caller has on the specified resource. If the
-    resource does not exist, this will return an empty set of
-    permissions, not a `NOT_FOUND` error.
-
-    Note: This operation is designed to be used for building
-    permission-aware UIs and command-line tools, not for authorization
-    checking. This operation may "fail open" without warning.
+     * resource does not exist, this will return an empty set of
+     * permissions, not a `NOT_FOUND` error.
+     *
+     * Note: This operation is designed to be used for building
+     * permission-aware UIs and command-line tools, not for authorization
+     * checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see ConfigClient::testIamPermissionsAsync()} .
      *

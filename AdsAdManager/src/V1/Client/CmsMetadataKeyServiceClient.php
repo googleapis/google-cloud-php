@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,10 @@
 
 namespace Google\Ads\AdManager\V1\Client;
 
+use Google\Ads\AdManager\V1\BatchActivateCmsMetadataKeysRequest;
+use Google\Ads\AdManager\V1\BatchActivateCmsMetadataKeysResponse;
+use Google\Ads\AdManager\V1\BatchDeactivateCmsMetadataKeysRequest;
+use Google\Ads\AdManager\V1\BatchDeactivateCmsMetadataKeysResponse;
 use Google\Ads\AdManager\V1\CmsMetadataKey;
 use Google\Ads\AdManager\V1\GetCmsMetadataKeyRequest;
 use Google\Ads\AdManager\V1\ListCmsMetadataKeysRequest;
@@ -51,6 +55,8 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<BatchActivateCmsMetadataKeysResponse> batchActivateCmsMetadataKeysAsync(BatchActivateCmsMetadataKeysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchDeactivateCmsMetadataKeysResponse> batchDeactivateCmsMetadataKeysAsync(BatchDeactivateCmsMetadataKeysRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CmsMetadataKey> getCmsMetadataKeyAsync(GetCmsMetadataKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCmsMetadataKeysAsync(ListCmsMetadataKeysRequest $request, array $optionalArgs = [])
  */
@@ -78,8 +84,15 @@ final class CmsMetadataKeyServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/admanager',
+        'https://www.googleapis.com/auth/admanager.readonly',
+    ];
 
     private static function getClientDefaults()
     {
@@ -252,7 +265,65 @@ final class CmsMetadataKeyServiceClient
     }
 
     /**
-     * API to retrieve a `CmsMetadataKey` object.
+     * Activates a list of `CmsMetadataKey` objects.
+     *
+     * The async variant is
+     * {@see CmsMetadataKeyServiceClient::batchActivateCmsMetadataKeysAsync()} .
+     *
+     * @example samples/V1/CmsMetadataKeyServiceClient/batch_activate_cms_metadata_keys.php
+     *
+     * @param BatchActivateCmsMetadataKeysRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchActivateCmsMetadataKeysResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchActivateCmsMetadataKeys(
+        BatchActivateCmsMetadataKeysRequest $request,
+        array $callOptions = []
+    ): BatchActivateCmsMetadataKeysResponse {
+        return $this->startApiCall('BatchActivateCmsMetadataKeys', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deactivates a list of `CmsMetadataKey` objects.
+     *
+     * The async variant is
+     * {@see CmsMetadataKeyServiceClient::batchDeactivateCmsMetadataKeysAsync()} .
+     *
+     * @example samples/V1/CmsMetadataKeyServiceClient/batch_deactivate_cms_metadata_keys.php
+     *
+     * @param BatchDeactivateCmsMetadataKeysRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchDeactivateCmsMetadataKeysResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchDeactivateCmsMetadataKeys(
+        BatchDeactivateCmsMetadataKeysRequest $request,
+        array $callOptions = []
+    ): BatchDeactivateCmsMetadataKeysResponse {
+        return $this->startApiCall('BatchDeactivateCmsMetadataKeys', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Retrieves a `CmsMetadataKey` object.
      *
      * The async variant is
      * {@see CmsMetadataKeyServiceClient::getCmsMetadataKeyAsync()} .
@@ -279,7 +350,7 @@ final class CmsMetadataKeyServiceClient
     }
 
     /**
-     * API to retrieve a list of `CmsMetadataKey` objects.
+     * Lists `CmsMetadataKey` objects.
      *
      * The async variant is
      * {@see CmsMetadataKeyServiceClient::listCmsMetadataKeysAsync()} .

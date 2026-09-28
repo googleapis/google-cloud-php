@@ -76,6 +76,27 @@ return [
                     ],
                 ],
             ],
+            'GetHealth' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/healthSources/{health_source}/getHealth',
+                'placeholders' => [
+                    'health_source' => [
+                        'getters' => [
+                            'getHealthSource',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
             'Insert' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/healthSources',

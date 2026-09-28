@@ -194,7 +194,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      */
     public function getParent()
     {
-        if ($this->parent->count() !== 0) {
+        if (count($this->parent) !== 0) {
             @trigger_error('parent is deprecated.', E_USER_DEPRECATED);
         }
         return $this->parent;

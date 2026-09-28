@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,6 +32,7 @@ use Google\Cloud\Spanner\V1\BatchCreateSessionsResponse;
 use Google\Cloud\Spanner\V1\BatchWriteRequest;
 use Google\Cloud\Spanner\V1\BatchWriteResponse;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
+use Google\Cloud\Spanner\V1\CacheUpdate;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
@@ -40,6 +41,7 @@ use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\FetchCacheUpdateRequest;
 use Google\Cloud\Spanner\V1\GetSessionRequest;
 use Google\Cloud\Spanner\V1\KeySet;
 use Google\Cloud\Spanner\V1\ListSessionsRequest;
@@ -75,7 +77,9 @@ class SpannerClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return SpannerClient */
@@ -101,9 +105,7 @@ class SpannerClientTest extends GeneratedTest
         // Mock request
         $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
         $sessionCount = 185691686;
-        $request = (new BatchCreateSessionsRequest())
-            ->setDatabase($formattedDatabase)
-            ->setSessionCount($sessionCount);
+        $request = (new BatchCreateSessionsRequest())->setDatabase($formattedDatabase)->setSessionCount($sessionCount);
         $response = $gapicClient->batchCreateSessions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -129,19 +131,20 @@ class SpannerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
         $sessionCount = 185691686;
-        $request = (new BatchCreateSessionsRequest())
-            ->setDatabase($formattedDatabase)
-            ->setSessionCount($sessionCount);
+        $request = (new BatchCreateSessionsRequest())->setDatabase($formattedDatabase)->setSessionCount($sessionCount);
         try {
             $gapicClient->batchCreateSessions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -173,9 +176,7 @@ class SpannerClientTest extends GeneratedTest
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $mutationGroups = [];
-        $request = (new BatchWriteRequest())
-            ->setSession($formattedSession)
-            ->setMutationGroups($mutationGroups);
+        $request = (new BatchWriteRequest())->setSession($formattedSession)->setMutationGroups($mutationGroups);
         $serverStream = $gapicClient->batchWrite($request);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
@@ -206,20 +207,21 @@ class SpannerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $mutationGroups = [];
-        $request = (new BatchWriteRequest())
-            ->setSession($formattedSession)
-            ->setMutationGroups($mutationGroups);
+        $request = (new BatchWriteRequest())->setSession($formattedSession)->setMutationGroups($mutationGroups);
         $serverStream = $gapicClient->batchWrite($request);
         $results = $serverStream->readAll();
         try {
@@ -251,9 +253,7 @@ class SpannerClientTest extends GeneratedTest
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $options = new TransactionOptions();
-        $request = (new BeginTransactionRequest())
-            ->setSession($formattedSession)
-            ->setOptions($options);
+        $request = (new BeginTransactionRequest())->setSession($formattedSession)->setOptions($options);
         $response = $gapicClient->beginTransaction($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -279,19 +279,20 @@ class SpannerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $options = new TransactionOptions();
-        $request = (new BeginTransactionRequest())
-            ->setSession($formattedSession)
-            ->setOptions($options);
+        $request = (new BeginTransactionRequest())->setSession($formattedSession)->setOptions($options);
         try {
             $gapicClient->beginTransaction($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -319,9 +320,7 @@ class SpannerClientTest extends GeneratedTest
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $mutations = [];
-        $request = (new CommitRequest())
-            ->setSession($formattedSession)
-            ->setMutations($mutations);
+        $request = (new CommitRequest())->setSession($formattedSession)->setMutations($mutations);
         $response = $gapicClient->commit($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -347,19 +346,20 @@ class SpannerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $mutations = [];
-        $request = (new CommitRequest())
-            ->setSession($formattedSession)
-            ->setMutations($mutations);
+        $request = (new CommitRequest())->setSession($formattedSession)->setMutations($mutations);
         try {
             $gapicClient->commit($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -392,8 +392,7 @@ class SpannerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
-        $request = (new CreateSessionRequest())
-            ->setDatabase($formattedDatabase);
+        $request = (new CreateSessionRequest())->setDatabase($formattedDatabase);
         $response = $gapicClient->createSession($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -417,17 +416,19 @@ class SpannerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
-        $request = (new CreateSessionRequest())
-            ->setDatabase($formattedDatabase);
+        $request = (new CreateSessionRequest())->setDatabase($formattedDatabase);
         try {
             $gapicClient->createSession($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -454,8 +455,7 @@ class SpannerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
-        $request = (new DeleteSessionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSessionRequest())->setName($formattedName);
         $gapicClient->deleteSession($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -478,17 +478,19 @@ class SpannerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
-        $request = (new DeleteSessionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSessionRequest())->setName($formattedName);
         try {
             $gapicClient->deleteSession($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -552,12 +554,15 @@ class SpannerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
@@ -596,9 +601,7 @@ class SpannerClientTest extends GeneratedTest
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $sql = 'sql114126';
-        $request = (new ExecuteSqlRequest())
-            ->setSession($formattedSession)
-            ->setSql($sql);
+        $request = (new ExecuteSqlRequest())->setSession($formattedSession)->setSql($sql);
         $response = $gapicClient->executeSql($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -624,19 +627,20 @@ class SpannerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $sql = 'sql114126';
-        $request = (new ExecuteSqlRequest())
-            ->setSession($formattedSession)
-            ->setSql($sql);
+        $request = (new ExecuteSqlRequest())->setSession($formattedSession)->setSql($sql);
         try {
             $gapicClient->executeSql($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -686,9 +690,7 @@ class SpannerClientTest extends GeneratedTest
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $sql = 'sql114126';
-        $request = (new ExecuteSqlRequest())
-            ->setSession($formattedSession)
-            ->setSql($sql);
+        $request = (new ExecuteSqlRequest())->setSession($formattedSession)->setSql($sql);
         $serverStream = $gapicClient->executeStreamingSql($request);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
@@ -719,21 +721,103 @@ class SpannerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $sql = 'sql114126';
-        $request = (new ExecuteSqlRequest())
-            ->setSession($formattedSession)
-            ->setSql($sql);
+        $request = (new ExecuteSqlRequest())->setSession($formattedSession)->setSql($sql);
         $serverStream = $gapicClient->executeStreamingSql($request);
+        $results = $serverStream->readAll();
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchCacheUpdateTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $databaseId = 816491103;
+        $expectedResponse = new CacheUpdate();
+        $expectedResponse->setDatabaseId($databaseId);
+        $transport->addResponse($expectedResponse);
+        $databaseId2 = 1331062190;
+        $expectedResponse2 = new CacheUpdate();
+        $expectedResponse2->setDatabaseId($databaseId2);
+        $transport->addResponse($expectedResponse2);
+        $databaseId3 = 1331062189;
+        $expectedResponse3 = new CacheUpdate();
+        $expectedResponse3->setDatabaseId($databaseId3);
+        $transport->addResponse($expectedResponse3);
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $request = (new FetchCacheUpdateRequest())->setDatabase($formattedDatabase);
+        $serverStream = $gapicClient->fetchCacheUpdate($request);
+        $this->assertInstanceOf(ServerStream::class, $serverStream);
+        $responses = iterator_to_array($serverStream->readAll());
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.v1.Spanner/FetchCacheUpdate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDatabase();
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchCacheUpdateExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->setStreamingStatus($status);
+        $this->assertTrue($transport->isExhausted());
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $request = (new FetchCacheUpdateRequest())->setDatabase($formattedDatabase);
+        $serverStream = $gapicClient->fetchCacheUpdate($request);
         $results = $serverStream->readAll();
         try {
             iterator_to_array($results);
@@ -767,8 +851,7 @@ class SpannerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
-        $request = (new GetSessionRequest())
-            ->setName($formattedName);
+        $request = (new GetSessionRequest())->setName($formattedName);
         $response = $gapicClient->getSession($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -792,17 +875,19 @@ class SpannerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
-        $request = (new GetSessionRequest())
-            ->setName($formattedName);
+        $request = (new GetSessionRequest())->setName($formattedName);
         try {
             $gapicClient->getSession($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -827,17 +912,14 @@ class SpannerClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $sessionsElement = new Session();
-        $sessions = [
-            $sessionsElement,
-        ];
+        $sessions = [$sessionsElement];
         $expectedResponse = new ListSessionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSessions($sessions);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
-        $request = (new ListSessionsRequest())
-            ->setDatabase($formattedDatabase);
+        $request = (new ListSessionsRequest())->setDatabase($formattedDatabase);
         $response = $gapicClient->listSessions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -864,17 +946,19 @@ class SpannerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
-        $request = (new ListSessionsRequest())
-            ->setDatabase($formattedDatabase);
+        $request = (new ListSessionsRequest())->setDatabase($formattedDatabase);
         try {
             $gapicClient->listSessions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -902,9 +986,7 @@ class SpannerClientTest extends GeneratedTest
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $sql = 'sql114126';
-        $request = (new PartitionQueryRequest())
-            ->setSession($formattedSession)
-            ->setSql($sql);
+        $request = (new PartitionQueryRequest())->setSession($formattedSession)->setSql($sql);
         $response = $gapicClient->partitionQuery($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -930,19 +1012,20 @@ class SpannerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $sql = 'sql114126';
-        $request = (new PartitionQueryRequest())
-            ->setSession($formattedSession)
-            ->setSql($sql);
+        $request = (new PartitionQueryRequest())->setSession($formattedSession)->setSql($sql);
         try {
             $gapicClient->partitionQuery($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1002,12 +1085,15 @@ class SpannerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
@@ -1080,12 +1166,15 @@ class SpannerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
@@ -1124,9 +1213,7 @@ class SpannerClientTest extends GeneratedTest
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $transactionId = '28';
-        $request = (new RollbackRequest())
-            ->setSession($formattedSession)
-            ->setTransactionId($transactionId);
+        $request = (new RollbackRequest())->setSession($formattedSession)->setTransactionId($transactionId);
         $gapicClient->rollback($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1151,19 +1238,20 @@ class SpannerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $transactionId = '28';
-        $request = (new RollbackRequest())
-            ->setSession($formattedSession)
-            ->setTransactionId($transactionId);
+        $request = (new RollbackRequest())->setSession($formattedSession)->setTransactionId($transactionId);
         try {
             $gapicClient->rollback($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1254,12 +1342,15 @@ class SpannerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
@@ -1301,9 +1392,7 @@ class SpannerClientTest extends GeneratedTest
         // Mock request
         $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
         $sessionCount = 185691686;
-        $request = (new BatchCreateSessionsRequest())
-            ->setDatabase($formattedDatabase)
-            ->setSessionCount($sessionCount);
+        $request = (new BatchCreateSessionsRequest())->setDatabase($formattedDatabase)->setSessionCount($sessionCount);
         $response = $gapicClient->batchCreateSessionsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

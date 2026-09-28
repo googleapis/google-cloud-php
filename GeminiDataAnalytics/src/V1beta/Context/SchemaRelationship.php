@@ -36,16 +36,16 @@ class SchemaRelationship extends \Google\Protobuf\Internal\Message
      */
     protected $right_schema_paths = null;
     /**
-     * Sources which generated the schema relation edge.
+     * Optional. Sources which generated the schema relation edge.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Context.SchemaRelationship.Source sources = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Context.SchemaRelationship.Source sources = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $sources;
     /**
-     * A confidence score for the suggested relationship.
+     * Optional. A confidence score for the suggested relationship.
      * Manually added edges have the highest confidence score.
      *
-     * Generated from protobuf field <code>float confidence_score = 4;</code>
+     * Generated from protobuf field <code>float confidence_score = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $confidence_score = 0.0;
 
@@ -66,9 +66,9 @@ class SchemaRelationship extends \Google\Protobuf\Internal\Message
      *           Each field at index i in this list must correspond to a field at the same
      *           index in the `left_schema_paths` list.
      *     @type int[] $sources
-     *           Sources which generated the schema relation edge.
+     *           Optional. Sources which generated the schema relation edge.
      *     @type float $confidence_score
-     *           A confidence score for the suggested relationship.
+     *           Optional. A confidence score for the suggested relationship.
      *           Manually added edges have the highest confidence score.
      * }
      */
@@ -162,9 +162,9 @@ class SchemaRelationship extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Sources which generated the schema relation edge.
+     * Optional. Sources which generated the schema relation edge.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Context.SchemaRelationship.Source sources = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Context.SchemaRelationship.Source sources = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<int>
      */
     public function getSources()
@@ -173,9 +173,9 @@ class SchemaRelationship extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Sources which generated the schema relation edge.
+     * Optional. Sources which generated the schema relation edge.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Context.SchemaRelationship.Source sources = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Context.SchemaRelationship.Source sources = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int[] $var
      * @return $this
      */
@@ -188,10 +188,10 @@ class SchemaRelationship extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A confidence score for the suggested relationship.
+     * Optional. A confidence score for the suggested relationship.
      * Manually added edges have the highest confidence score.
      *
-     * Generated from protobuf field <code>float confidence_score = 4;</code>
+     * Generated from protobuf field <code>float confidence_score = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
      */
     public function getConfidenceScore()
@@ -200,10 +200,10 @@ class SchemaRelationship extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A confidence score for the suggested relationship.
+     * Optional. A confidence score for the suggested relationship.
      * Manually added edges have the highest confidence score.
      *
-     * Generated from protobuf field <code>float confidence_score = 4;</code>
+     * Generated from protobuf field <code>float confidence_score = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
      * @return $this
      */

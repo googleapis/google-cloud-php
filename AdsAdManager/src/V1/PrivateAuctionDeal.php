@@ -24,9 +24,10 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. `PrivateAuctionDeal` ID.
+     * Output only. Deprecated: `PrivateAuctionDeal` ID.
      *
-     * Generated from protobuf field <code>optional int64 private_auction_deal_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 private_auction_deal_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $private_auction_deal_id = null;
     /**
@@ -61,6 +62,15 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.Targeting targeting = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $targeting = null;
+    /**
+     * Optional. Non-empty default. The start time of the `PrivateAuctionDeal`.
+     * If unset, the `startTime` will default as follows:
+     * On create: To the deal's `create_time`.
+     * On update: To the deal's existing `start_time`, which can be null.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp start_time = 26 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     */
+    protected $start_time = null;
     /**
      * Optional. The end time of the `PrivateAuctionDeal`.
      *
@@ -98,6 +108,12 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
      */
     protected $block_override_enabled = null;
     /**
+     * Optional. Whether the deal is exempt from publisher floor price.
+     *
+     * Generated from protobuf field <code>optional bool publisher_floor_exempt = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $publisher_floor_exempt = null;
+    /**
      * Optional. The buyer permission model defining how the deal would transact
      * among all buyers under the same bidder.
      *
@@ -110,6 +126,18 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.PrivateAuctionDeal.BuyerData buyer_data = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $buyer_data = null;
+    /**
+     * Optional. The priority of the deal across all non-guaranteed deals.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.NonGuaranteedDealPriority deal_priority = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $deal_priority = null;
+    /**
+     * Output only. Whether the deal is archived.
+     *
+     * Generated from protobuf field <code>optional bool archived = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $archived = null;
     /**
      * Output only. The instant at which the `PrivateAuctionDeal` was created.
      *
@@ -135,7 +163,7 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
      *           Format:
      *           `networks/{network_code}/privateAuctionDeals/{private_auction_deal_id}`
      *     @type int|string $private_auction_deal_id
-     *           Output only. `PrivateAuctionDeal` ID.
+     *           Output only. Deprecated: `PrivateAuctionDeal` ID.
      *     @type int|string $private_auction_id
      *           Immutable. The ID of the
      *           [PrivateAuction](google.ads.admanager.v1.PrivateAuction).
@@ -148,6 +176,11 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
      *           Output only. The external ID of the `PrivateAuctionDeal`.
      *     @type \Google\Ads\AdManager\V1\Targeting $targeting
      *           Optional. The targeting of the `PrivateAuctionDeal`.
+     *     @type \Google\Protobuf\Timestamp $start_time
+     *           Optional. Non-empty default. The start time of the `PrivateAuctionDeal`.
+     *           If unset, the `startTime` will default as follows:
+     *           On create: To the deal's `create_time`.
+     *           On update: To the deal's existing `start_time`, which can be null.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Optional. The end time of the `PrivateAuctionDeal`.
      *     @type \Google\Type\Money $floor_price
@@ -160,11 +193,17 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
      *           Optional. Whether the deal is enabled with priority over open auction.
      *     @type bool $block_override_enabled
      *           Optional. Whether the deal has block override enabled.
+     *     @type bool $publisher_floor_exempt
+     *           Optional. Whether the deal is exempt from publisher floor price.
      *     @type int $buyer_permission_type
      *           Optional. The buyer permission model defining how the deal would transact
      *           among all buyers under the same bidder.
      *     @type \Google\Ads\AdManager\V1\PrivateAuctionDeal\BuyerData $buyer_data
      *           Optional. The buyer data required by the Marketplace API.
+     *     @type \Google\Ads\AdManager\V1\NonGuaranteedDealPriority $deal_priority
+     *           Optional. The priority of the deal across all non-guaranteed deals.
+     *     @type bool $archived
+     *           Output only. Whether the deal is archived.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The instant at which the `PrivateAuctionDeal` was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -208,35 +247,45 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `PrivateAuctionDeal` ID.
+     * Output only. Deprecated: `PrivateAuctionDeal` ID.
      *
-     * Generated from protobuf field <code>optional int64 private_auction_deal_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 private_auction_deal_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
+     * @deprecated
      */
     public function getPrivateAuctionDealId()
     {
+        if (isset($this->private_auction_deal_id)) {
+            @trigger_error('private_auction_deal_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->private_auction_deal_id) ? $this->private_auction_deal_id : 0;
     }
 
     public function hasPrivateAuctionDealId()
     {
+        if (isset($this->private_auction_deal_id)) {
+            @trigger_error('private_auction_deal_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->private_auction_deal_id);
     }
 
     public function clearPrivateAuctionDealId()
     {
+        @trigger_error('private_auction_deal_id is deprecated.', E_USER_DEPRECATED);
         unset($this->private_auction_deal_id);
     }
 
     /**
-     * Output only. `PrivateAuctionDeal` ID.
+     * Output only. Deprecated: `PrivateAuctionDeal` ID.
      *
-     * Generated from protobuf field <code>optional int64 private_auction_deal_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 private_auction_deal_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setPrivateAuctionDealId($var)
     {
+        @trigger_error('private_auction_deal_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->private_auction_deal_id = $var;
 
@@ -423,6 +472,48 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\Targeting::class);
         $this->targeting = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Non-empty default. The start time of the `PrivateAuctionDeal`.
+     * If unset, the `startTime` will default as follows:
+     * On create: To the deal's `create_time`.
+     * On update: To the deal's existing `start_time`, which can be null.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp start_time = 26 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getStartTime()
+    {
+        return $this->start_time;
+    }
+
+    public function hasStartTime()
+    {
+        return isset($this->start_time);
+    }
+
+    public function clearStartTime()
+    {
+        unset($this->start_time);
+    }
+
+    /**
+     * Optional. Non-empty default. The start time of the `PrivateAuctionDeal`.
+     * If unset, the `startTime` will default as follows:
+     * On create: To the deal's `create_time`.
+     * On update: To the deal's existing `start_time`, which can be null.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp start_time = 26 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setStartTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->start_time = $var;
 
         return $this;
     }
@@ -634,6 +725,42 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Whether the deal is exempt from publisher floor price.
+     *
+     * Generated from protobuf field <code>optional bool publisher_floor_exempt = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getPublisherFloorExempt()
+    {
+        return isset($this->publisher_floor_exempt) ? $this->publisher_floor_exempt : false;
+    }
+
+    public function hasPublisherFloorExempt()
+    {
+        return isset($this->publisher_floor_exempt);
+    }
+
+    public function clearPublisherFloorExempt()
+    {
+        unset($this->publisher_floor_exempt);
+    }
+
+    /**
+     * Optional. Whether the deal is exempt from publisher floor price.
+     *
+     * Generated from protobuf field <code>optional bool publisher_floor_exempt = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPublisherFloorExempt($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->publisher_floor_exempt = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. The buyer permission model defining how the deal would transact
      * among all buyers under the same bidder.
      *
@@ -703,6 +830,78 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\PrivateAuctionDeal\BuyerData::class);
         $this->buyer_data = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The priority of the deal across all non-guaranteed deals.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.NonGuaranteedDealPriority deal_priority = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\NonGuaranteedDealPriority|null
+     */
+    public function getDealPriority()
+    {
+        return $this->deal_priority;
+    }
+
+    public function hasDealPriority()
+    {
+        return isset($this->deal_priority);
+    }
+
+    public function clearDealPriority()
+    {
+        unset($this->deal_priority);
+    }
+
+    /**
+     * Optional. The priority of the deal across all non-guaranteed deals.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.NonGuaranteedDealPriority deal_priority = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\NonGuaranteedDealPriority $var
+     * @return $this
+     */
+    public function setDealPriority($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\NonGuaranteedDealPriority::class);
+        $this->deal_priority = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Whether the deal is archived.
+     *
+     * Generated from protobuf field <code>optional bool archived = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getArchived()
+    {
+        return isset($this->archived) ? $this->archived : false;
+    }
+
+    public function hasArchived()
+    {
+        return isset($this->archived);
+    }
+
+    public function clearArchived()
+    {
+        unset($this->archived);
+    }
+
+    /**
+     * Output only. Whether the deal is archived.
+     *
+     * Generated from protobuf field <code>optional bool archived = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setArchived($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->archived = $var;
 
         return $this;
     }

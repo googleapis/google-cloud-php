@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,6 +50,18 @@ return [
             'CreateConnection' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dlp\V2\Connection',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateContentPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dlp\V2\ContentPolicy',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -144,6 +156,18 @@ return [
                 ],
             ],
             'DeleteConnection' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteContentPolicy' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
                 'headerParams' => [
@@ -278,6 +302,18 @@ return [
             'GetConnection' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dlp\V2\Connection',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetContentPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dlp\V2\ContentPolicy',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -462,6 +498,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Dlp\V2\ListConnectionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListContentPolicies' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getContentPolicies',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Dlp\V2\ListContentPoliciesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -719,6 +775,18 @@ return [
                     ],
                 ],
             ],
+            'UpdateContentPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dlp\V2\ContentPolicy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateDeidentifyTemplate' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dlp\V2\DeidentifyTemplate',
@@ -782,6 +850,7 @@ return [
             'templateMap' => [
                 'columnDataProfile' => 'organizations/{organization}/locations/{location}/columnDataProfiles/{column_data_profile}',
                 'connection' => 'projects/{project}/locations/{location}/connections/{connection}',
+                'contentPolicy' => 'projects/{project}/locations/{location}/contentPolicies/{content_policy}',
                 'deidentifyTemplate' => 'organizations/{organization}/deidentifyTemplates/{deidentify_template}',
                 'discoveryConfig' => 'projects/{project}/locations/{location}/discoveryConfigs/{discovery_config}',
                 'dlpJob' => 'projects/{project}/dlpJobs/{dlp_job}',

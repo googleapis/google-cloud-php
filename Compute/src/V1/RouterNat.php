@@ -38,6 +38,15 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      */
     private $drain_nat_ips;
     /**
+     * Output only. Effective timeout (in seconds) for TCP connections that are in TIME_WAIT
+     * state. This value is equal to tcp_time_wait_timeout_sec.
+     * If tcp_time_wait_timeout_sec isn't set, the effective timeout is 30s or
+     * 120s. The field is output only.
+     *
+     * Generated from protobuf field <code>optional int32 effective_tcp_time_wait_timeout_sec = 248089957;</code>
+     */
+    protected $effective_tcp_time_wait_timeout_sec = null;
+    /**
      * Enable Dynamic Port Allocation.
      * If not specified, it is disabled by default.
      * If set to true,
@@ -236,6 +245,11 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *           A list of URLs of the IP resources to be drained. These IPs
      *           must be valid static external IPs that have been assigned to the NAT.
      *           These IPs should be used for updating/patching a NAT only.
+     *     @type int $effective_tcp_time_wait_timeout_sec
+     *           Output only. Effective timeout (in seconds) for TCP connections that are in TIME_WAIT
+     *           state. This value is equal to tcp_time_wait_timeout_sec.
+     *           If tcp_time_wait_timeout_sec isn't set, the effective timeout is 30s or
+     *           120s. The field is output only.
      *     @type bool $enable_dynamic_port_allocation
      *           Enable Dynamic Port Allocation.
      *           If not specified, it is disabled by default.
@@ -416,6 +430,48 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->drain_nat_ips = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Effective timeout (in seconds) for TCP connections that are in TIME_WAIT
+     * state. This value is equal to tcp_time_wait_timeout_sec.
+     * If tcp_time_wait_timeout_sec isn't set, the effective timeout is 30s or
+     * 120s. The field is output only.
+     *
+     * Generated from protobuf field <code>optional int32 effective_tcp_time_wait_timeout_sec = 248089957;</code>
+     * @return int
+     */
+    public function getEffectiveTcpTimeWaitTimeoutSec()
+    {
+        return isset($this->effective_tcp_time_wait_timeout_sec) ? $this->effective_tcp_time_wait_timeout_sec : 0;
+    }
+
+    public function hasEffectiveTcpTimeWaitTimeoutSec()
+    {
+        return isset($this->effective_tcp_time_wait_timeout_sec);
+    }
+
+    public function clearEffectiveTcpTimeWaitTimeoutSec()
+    {
+        unset($this->effective_tcp_time_wait_timeout_sec);
+    }
+
+    /**
+     * Output only. Effective timeout (in seconds) for TCP connections that are in TIME_WAIT
+     * state. This value is equal to tcp_time_wait_timeout_sec.
+     * If tcp_time_wait_timeout_sec isn't set, the effective timeout is 30s or
+     * 120s. The field is output only.
+     *
+     * Generated from protobuf field <code>optional int32 effective_tcp_time_wait_timeout_sec = 248089957;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEffectiveTcpTimeWaitTimeoutSec($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->effective_tcp_time_wait_timeout_sec = $var;
 
         return $this;
     }

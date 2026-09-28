@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request for [ListBackupCollections]
+ * Request for `ListBackupCollections`.
  *
  * Generated from protobuf message <code>google.cloud.memorystore.v1.ListBackupCollectionsRequest</code>
  */
@@ -29,7 +29,7 @@ class ListBackupCollectionsRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 1000 will be used by the service.
      * Regardless of the page_size value, the response may include a partial list
      * and a caller should only rely on response's
-     * [`next_page_token`][google.cloud.memorystore.v1.ListBackupCollectionsResponse.next_page_token]
+     * `next_page_token`
      * to determine if there are more clusters left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -37,7 +37,7 @@ class ListBackupCollectionsRequest extends \Google\Protobuf\Internal\Message
     protected $page_size = 0;
     /**
      * Optional. The `next_page_token` value returned from a previous
-     * [ListBackupCollections] request, if any.
+     * `ListBackupCollections` request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -76,11 +76,11 @@ class ListBackupCollectionsRequest extends \Google\Protobuf\Internal\Message
      *           If not specified, a default value of 1000 will be used by the service.
      *           Regardless of the page_size value, the response may include a partial list
      *           and a caller should only rely on response's
-     *           [`next_page_token`][google.cloud.memorystore.v1.ListBackupCollectionsResponse.next_page_token]
+     *           `next_page_token`
      *           to determine if there are more clusters left to be queried.
      *     @type string $page_token
      *           Optional. The `next_page_token` value returned from a previous
-     *           [ListBackupCollections] request, if any.
+     *           `ListBackupCollections` request, if any.
      * }
      */
     public function __construct($data = NULL) {
@@ -125,7 +125,7 @@ class ListBackupCollectionsRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 1000 will be used by the service.
      * Regardless of the page_size value, the response may include a partial list
      * and a caller should only rely on response's
-     * [`next_page_token`][google.cloud.memorystore.v1.ListBackupCollectionsResponse.next_page_token]
+     * `next_page_token`
      * to determine if there are more clusters left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -141,7 +141,7 @@ class ListBackupCollectionsRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 1000 will be used by the service.
      * Regardless of the page_size value, the response may include a partial list
      * and a caller should only rely on response's
-     * [`next_page_token`][google.cloud.memorystore.v1.ListBackupCollectionsResponse.next_page_token]
+     * `next_page_token`
      * to determine if there are more clusters left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -158,7 +158,7 @@ class ListBackupCollectionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The `next_page_token` value returned from a previous
-     * [ListBackupCollections] request, if any.
+     * `ListBackupCollections` request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -170,7 +170,7 @@ class ListBackupCollectionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The `next_page_token` value returned from a previous
-     * [ListBackupCollections] request, if any.
+     * `ListBackupCollections` request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

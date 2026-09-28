@@ -1,0 +1,36 @@
+<class final="false" abstract="false" namespace="\Test" line="59">
+    <name>DeprecatedClass</name>
+    <full_name>\Test\DeprecatedClass</full_name>
+    <docblock line="59">
+        <description>Some class we no longer use.</description>
+        <long-description></long-description>
+        <tag
+            name="deprecated"
+            description="this is now deprecated"
+        />
+        <tag
+            name="package"
+            description="Application"
+        />
+    </docblock>
+    <method final="false" abstract="false" static="false" namespace="\Test" line="85" visibility="public" returnByReference="false">
+        <name>__construct</name>
+        <full_name>\Test\DeprecatedClass::__construct()</full_name>
+        <value></value>
+        <argument line="85" by_reference="false">
+            <name>scope</name>
+            <default>[]</default>
+            <type>string|string[]</type>
+        </argument>
+        <docblock line="85">
+            <description></description>
+            <long-description></long-description>
+            <tag
+                name="param"
+                description="[DEPRECATED] One or more scopes."
+                variable="scope"
+                type="string|string[]"
+            />
+        </docblock>
+    </method>
+</class>

@@ -33,6 +33,12 @@ class CitedChunk extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string text = 3;</code>
      */
     protected $text = '';
+    /**
+     * Whether this citation requires attribution to be shown to the end users.
+     *
+     * Generated from protobuf field <code>bool requires_attribution = 4;</code>
+     */
+    protected $requires_attribution = false;
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class CitedChunk extends \Google\Protobuf\Internal\Message
      *           Title of the cited document.
      *     @type string $text
      *           Text used for citation.
+     *     @type bool $requires_attribution
+     *           Whether this citation requires attribution to be shown to the end users.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +135,32 @@ class CitedChunk extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->text = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether this citation requires attribution to be shown to the end users.
+     *
+     * Generated from protobuf field <code>bool requires_attribution = 4;</code>
+     * @return bool
+     */
+    public function getRequiresAttribution()
+    {
+        return $this->requires_attribution;
+    }
+
+    /**
+     * Whether this citation requires attribution to be shown to the end users.
+     *
+     * Generated from protobuf field <code>bool requires_attribution = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRequiresAttribution($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->requires_attribution = $var;
 
         return $this;
     }

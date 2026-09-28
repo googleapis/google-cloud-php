@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,6 +34,10 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\CalendarModeAdviceResponse;
 use Google\Cloud\Compute\V1\CalendarModeAdviceRpcRequest;
+use Google\Cloud\Compute\V1\CapacityAdviceResponse;
+use Google\Cloud\Compute\V1\CapacityAdviceRpcRequest;
+use Google\Cloud\Compute\V1\CapacityHistoryAdviceRequest;
+use Google\Cloud\Compute\V1\CapacityHistoryResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -44,6 +48,8 @@ use Psr\Log\LoggerInterface;
  * calls that map to API methods.
  *
  * @method PromiseInterface<CalendarModeAdviceResponse> calendarModeAsync(CalendarModeAdviceRpcRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CapacityAdviceResponse> capacityAsync(CapacityAdviceRpcRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CapacityHistoryResponse> capacityHistoryAsync(CapacityHistoryAdviceRequest $request, array $optionalArgs = [])
  */
 final class AdviceClient
 {
@@ -68,7 +74,11 @@ final class AdviceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/compute',
         'https://www.googleapis.com/auth/cloud-platform',
@@ -216,5 +226,61 @@ final class AdviceClient
         array $callOptions = []
     ): CalendarModeAdviceResponse {
         return $this->startApiCall('CalendarMode', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Advice on making real-time decisions (such as choosing zone or
+     * machine types) during deployment to maximize your chances of obtaining
+     * capacity.
+     *
+     * The async variant is {@see AdviceClient::capacityAsync()} .
+     *
+     * @example samples/V1/AdviceClient/capacity.php
+     *
+     * @param CapacityAdviceRpcRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CapacityAdviceResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function capacity(CapacityAdviceRpcRequest $request, array $callOptions = []): CapacityAdviceResponse
+    {
+        return $this->startApiCall('Capacity', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the capacity history.
+     *
+     * The async variant is {@see AdviceClient::capacityHistoryAsync()} .
+     *
+     * @example samples/V1/AdviceClient/capacity_history.php
+     *
+     * @param CapacityHistoryAdviceRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CapacityHistoryResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function capacityHistory(
+        CapacityHistoryAdviceRequest $request,
+        array $callOptions = []
+    ): CapacityHistoryResponse {
+        return $this->startApiCall('CapacityHistory', $request, $callOptions)->wait();
     }
 }

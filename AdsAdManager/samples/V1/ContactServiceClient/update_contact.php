@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,9 @@ use Google\Ads\AdManager\V1\Client\ContactServiceClient;
 use Google\Ads\AdManager\V1\Contact;
 use Google\Ads\AdManager\V1\UpdateContactRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
- * API to update a `Contact` object.
+ * Updates a `Contact` object.
  *
  * @param string $contactDisplayName      The name of the contact. This attribute has a maximum length of
  *                                        127 characters.
@@ -47,10 +46,8 @@ function update_contact_sample(string $contactDisplayName, string $formattedCont
     $contact = (new Contact())
         ->setDisplayName($contactDisplayName)
         ->setCompany($formattedContactCompany);
-    $updateMask = new FieldMask();
     $request = (new UpdateContactRequest())
-        ->setContact($contact)
-        ->setUpdateMask($updateMask);
+        ->setContact($contact);
 
     // Call the API and handle any network failures.
     try {

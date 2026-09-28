@@ -17,9 +17,16 @@ use Google\Protobuf\RepeatedField;
 class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the location associated with the
+     * Required. The resource name of the parent associated with the
      * [Certificates][google.cloud.security.privateca.v1.Certificate], in the
-     * format `projects/{@*}locations/{@*}caPools/*`.
+     * format `projects/{@*}locations/{@*}caPools/*`. The parent resource name can be
+     * in one of two forms:
+     * 1.  **Specific CA Pool:** To list certificates within a single CA Pool:
+     *     `projects/{@*}locations/{@*}caPools/*`
+     * 2.  **All CA Pools in a Location:** To list certificates across *all* CA
+     *     Pools in a given project and location, use the wildcard character (`-`)
+     *     in place of the CA Pool ID.
+     *     Example: `projects/{@*}locations/{@*}caPools/-`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -62,10 +69,19 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
     protected $order_by = '';
 
     /**
-     * @param string $parent Required. The resource name of the location associated with the
+     * @param string $parent Required. The resource name of the parent associated with the
      *                       [Certificates][google.cloud.security.privateca.v1.Certificate], in the
-     *                       format `projects/&#42;/locations/&#42;/caPools/*`. Please see
-     *                       {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
+     *                       format `projects/&#42;/locations/&#42;/caPools/*`. The parent resource name can be
+     *                       in one of two forms:
+     *
+     *                       1.  **Specific CA Pool:** To list certificates within a single CA Pool:
+     *                       `projects/&#42;/locations/&#42;/caPools/*`
+     *
+     *                       2.  **All CA Pools in a Location:** To list certificates across *all* CA
+     *                       Pools in a given project and location, use the wildcard character (`-`)
+     *                       in place of the CA Pool ID.
+     *                       Example: `projects/&#42;/locations/&#42;/caPools/-`
+     *                       Please see {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
      *
      * @return \Google\Cloud\Security\PrivateCA\V1\ListCertificatesRequest
      *
@@ -84,9 +100,16 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the location associated with the
+     *           Required. The resource name of the parent associated with the
      *           [Certificates][google.cloud.security.privateca.v1.Certificate], in the
-     *           format `projects/{@*}locations/{@*}caPools/*`.
+     *           format `projects/{@*}locations/{@*}caPools/*`. The parent resource name can be
+     *           in one of two forms:
+     *           1.  **Specific CA Pool:** To list certificates within a single CA Pool:
+     *               `projects/{@*}locations/{@*}caPools/*`
+     *           2.  **All CA Pools in a Location:** To list certificates across *all* CA
+     *               Pools in a given project and location, use the wildcard character (`-`)
+     *               in place of the CA Pool ID.
+     *               Example: `projects/{@*}locations/{@*}caPools/-`
      *     @type int $page_size
      *           Optional. Limit on the number of
      *           [Certificates][google.cloud.security.privateca.v1.Certificate] to include
@@ -115,9 +138,16 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the location associated with the
+     * Required. The resource name of the parent associated with the
      * [Certificates][google.cloud.security.privateca.v1.Certificate], in the
-     * format `projects/{@*}locations/{@*}caPools/*`.
+     * format `projects/{@*}locations/{@*}caPools/*`. The parent resource name can be
+     * in one of two forms:
+     * 1.  **Specific CA Pool:** To list certificates within a single CA Pool:
+     *     `projects/{@*}locations/{@*}caPools/*`
+     * 2.  **All CA Pools in a Location:** To list certificates across *all* CA
+     *     Pools in a given project and location, use the wildcard character (`-`)
+     *     in place of the CA Pool ID.
+     *     Example: `projects/{@*}locations/{@*}caPools/-`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -128,9 +158,16 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the location associated with the
+     * Required. The resource name of the parent associated with the
      * [Certificates][google.cloud.security.privateca.v1.Certificate], in the
-     * format `projects/{@*}locations/{@*}caPools/*`.
+     * format `projects/{@*}locations/{@*}caPools/*`. The parent resource name can be
+     * in one of two forms:
+     * 1.  **Specific CA Pool:** To list certificates within a single CA Pool:
+     *     `projects/{@*}locations/{@*}caPools/*`
+     * 2.  **All CA Pools in a Location:** To list certificates across *all* CA
+     *     Pools in a given project and location, use the wildcard character (`-`)
+     *     in place of the CA Pool ID.
+     *     Example: `projects/{@*}locations/{@*}caPools/-`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

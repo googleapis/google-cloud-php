@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,9 @@ use Google\Ads\AdManager\V1\Client\PlacementServiceClient;
 use Google\Ads\AdManager\V1\Placement;
 use Google\Ads\AdManager\V1\UpdatePlacementRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
- * API to update an `Placement` object.
+ * Updates an `Placement` object.
  *
  * @param string $placementDisplayName The display name of the placement. This attribute has a maximum
  *                                     length of 255 characters.
@@ -43,10 +42,8 @@ function update_placement_sample(string $placementDisplayName): void
     // Prepare the request message.
     $placement = (new Placement())
         ->setDisplayName($placementDisplayName);
-    $updateMask = new FieldMask();
     $request = (new UpdatePlacementRequest())
-        ->setPlacement($placement)
-        ->setUpdateMask($updateMask);
+        ->setPlacement($placement);
 
     // Call the API and handle any network failures.
     try {

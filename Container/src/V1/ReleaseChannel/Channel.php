@@ -14,9 +14,10 @@ use UnexpectedValueException;
 class Channel
 {
     /**
-     * No channel specified.
+     * Deprecated: No channel specified. it will be removed in the future, use
+     * RAPID, REGULAR, STABLE or EXTENDED instead.
      *
-     * Generated from protobuf enum <code>UNSPECIFIED = 0;</code>
+     * Generated from protobuf enum <code>UNSPECIFIED = 0 [deprecated = true];</code>
      */
     const UNSPECIFIED = 0;
     /**

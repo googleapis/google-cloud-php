@@ -47,7 +47,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ServerException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -180,6 +180,56 @@ class BigQueryClientTest extends TestCase
         $this->assertInstanceOf(QueryResults::class, $queryResults);
         $this->assertEquals('', $queryResults->identity()['jobId']);
         $this->assertTrue($queryResults->isComplete());
+    }
+
+    public function testRunQueryStatelessWithPagination()
+    {
+        $client = $this->getClient();
+        $query = $client->query(self::QUERY_STRING);
+
+        $this->connection->query(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('query', self::QUERY_STRING),
+            Argument::withEntry('jobCreationMode', 'JOB_CREATION_OPTIONAL')
+        ))
+            ->willReturn([
+                'jobComplete' => true,
+                'jobReference' => [
+                    'jobId' => self::JOB_ID,
+                    'projectId' => self::PROJECT_ID
+                ],
+                'schema' => [
+                    'fields' => [
+                        ['name' => 'col1', 'type' => 'STRING']
+                    ]
+                ],
+                'rows' => [
+                    ['f' => [['v' => 'val1']]]
+                ],
+                'pageToken' => 'next-page-token'
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $this->connection->getQueryResults(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('jobId', self::JOB_ID),
+            Argument::withEntry('pageToken', 'next-page-token')
+        ))
+            ->willReturn([
+                'jobComplete' => true,
+                'rows' => [
+                    ['f' => [['v' => 'val2']]]
+                ]
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $client->___setProperty('connection', $this->connection->reveal());
+        $results = $client->runQuery($query);
+        $rows = iterator_to_array($results);
+
+        $this->assertCount(2, $rows);
+        $this->assertEquals('val1', $rows[0]['col1']);
+        $this->assertEquals('val2', $rows[1]['col1']);
     }
 
     public function testRunQueryJobQueryEndpointReturnsAJob()
@@ -983,7 +1033,7 @@ class BigQueryClientTest extends TestCase
         $doneJobResponse['status']['state'] = 'DONE';
 
         $apiMockHandler = new MockHandler([
-            new RequestException(
+            new ServerException(
                 'Transient error',
                 new Request('POST', ''),
                 new Response(502)

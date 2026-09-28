@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,6 +61,18 @@ return [
                     ],
                 ],
             ],
+            'Chat' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Data\V1alpha\ChatResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'property',
+                        'fieldAccessors' => [
+                            'getProperty',
+                        ],
+                    ],
+                ],
+            ],
             'CreateRecurringAudienceList' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Data\V1alpha\RecurringAudienceList',
@@ -76,6 +88,18 @@ return [
             'GetAudienceList' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Data\V1alpha\AudienceList',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetMetadata' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Data\V1alpha\Metadata',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -217,20 +241,21 @@ return [
                     ],
                 ],
             ],
-            'SheetExportAudienceList' => [
+            'RunReport' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Analytics\Data\V1alpha\SheetExportAudienceListResponse',
+                'responseType' => 'Google\Analytics\Data\V1alpha\RunReportResponse',
                 'headerParams' => [
                     [
-                        'keyName' => 'name',
+                        'keyName' => 'property',
                         'fieldAccessors' => [
-                            'getName',
+                            'getProperty',
                         ],
                     ],
                 ],
             ],
             'templateMap' => [
                 'audienceList' => 'properties/{property}/audienceLists/{audience_list}',
+                'metadata' => 'properties/{property}/metadata',
                 'property' => 'properties/{property}',
                 'propertyQuotasSnapshot' => 'properties/{property}/propertyQuotasSnapshot',
                 'recurringAudienceList' => 'properties/{property}/recurringAudienceLists/{recurring_audience_list}',

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -127,8 +127,17 @@ final class BusinessGlossaryServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/cloud-platform.read-only',
+        'https://www.googleapis.com/auth/dataplex.read-write',
+        'https://www.googleapis.com/auth/dataplex.readonly',
+    ];
 
     private $operationsClient;
 
@@ -175,7 +184,10 @@ final class BusinessGlossaryServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -836,13 +848,21 @@ final class BusinessGlossaryServiceClient
 
     /**
      * Lists information about the supported locations for this service.
-    This method can be called in two ways:
-
-    *   **List all public locations:** Use the path `GET /v1/locations`.
-    *   **List project-visible locations:** Use the path
-    `GET /v1/projects/{project_id}/locations`. This may include public
-    locations as well as private or other locations specifically visible
-    to the project.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see BusinessGlossaryServiceClient::listLocationsAsync()}
      * .
@@ -870,7 +890,7 @@ final class BusinessGlossaryServiceClient
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy
-    if the resource exists and does not have a policy set.
+     * if the resource exists and does not have a policy set.
      *
      * The async variant is {@see BusinessGlossaryServiceClient::getIamPolicyAsync()} .
      *
@@ -897,10 +917,10 @@ final class BusinessGlossaryServiceClient
 
     /**
      * Sets the access control policy on the specified resource. Replaces
-    any existing policy.
-
-    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
-    errors.
+     * any existing policy.
+     *
+     * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+     * errors.
      *
      * The async variant is {@see BusinessGlossaryServiceClient::setIamPolicyAsync()} .
      *
@@ -927,12 +947,12 @@ final class BusinessGlossaryServiceClient
 
     /**
      * Returns permissions that a caller has on the specified resource. If the
-    resource does not exist, this will return an empty set of
-    permissions, not a `NOT_FOUND` error.
-
-    Note: This operation is designed to be used for building
-    permission-aware UIs and command-line tools, not for authorization
-    checking. This operation may "fail open" without warning.
+     * resource does not exist, this will return an empty set of
+     * permissions, not a `NOT_FOUND` error.
+     *
+     * Note: This operation is designed to be used for building
+     * permission-aware UIs and command-line tools, not for authorization
+     * checking. This operation may "fail open" without warning.
      *
      * The async variant is
      * {@see BusinessGlossaryServiceClient::testIamPermissionsAsync()} .

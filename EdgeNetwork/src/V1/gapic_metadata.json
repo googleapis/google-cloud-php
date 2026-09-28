@@ -8,7 +8,7 @@
         "EdgeNetwork": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "EdgeNetworkGapicClient",
+                    "libraryClient": "EdgeNetworkClient",
                     "rpcs": {
                         "CreateInterconnectAttachment": {
                             "methods": [

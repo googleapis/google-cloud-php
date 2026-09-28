@@ -8,7 +8,7 @@
         "StorageTransferService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "StorageTransferServiceGapicClient",
+                    "libraryClient": "StorageTransferServiceClient",
                     "rpcs": {
                         "CreateAgentPool": {
                             "methods": [

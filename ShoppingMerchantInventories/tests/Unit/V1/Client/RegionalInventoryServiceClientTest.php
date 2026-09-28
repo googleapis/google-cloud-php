@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,7 +52,9 @@ class RegionalInventoryServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return RegionalInventoryServiceClient */
@@ -77,14 +79,16 @@ class RegionalInventoryServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->regionalInventoryName('[ACCOUNT]', '[PRODUCT]', '[REGION]');
-        $request = (new DeleteRegionalInventoryRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRegionalInventoryRequest())->setName($formattedName);
         $gapicClient->deleteRegionalInventory($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.shopping.merchant.inventories.v1.RegionalInventoryService/DeleteRegionalInventory', $actualFuncCall);
+        $this->assertSame(
+            '/google.shopping.merchant.inventories.v1.RegionalInventoryService/DeleteRegionalInventory',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -101,17 +105,19 @@ class RegionalInventoryServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->regionalInventoryName('[ACCOUNT]', '[PRODUCT]', '[REGION]');
-        $request = (new DeleteRegionalInventoryRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRegionalInventoryRequest())->setName($formattedName);
         try {
             $gapicClient->deleteRegionalInventory($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -135,10 +141,12 @@ class RegionalInventoryServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $base64EncodedName = 'base64EncodedName-1315189748';
         $account = 1177318867;
         $region = 'region-934795532';
         $expectedResponse = new RegionalInventory();
         $expectedResponse->setName($name);
+        $expectedResponse->setBase64EncodedName($base64EncodedName);
         $expectedResponse->setAccount($account);
         $expectedResponse->setRegion($region);
         $transport->addResponse($expectedResponse);
@@ -156,7 +164,10 @@ class RegionalInventoryServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.shopping.merchant.inventories.v1.RegionalInventoryService/InsertRegionalInventory', $actualFuncCall);
+        $this->assertSame(
+            '/google.shopping.merchant.inventories.v1.RegionalInventoryService/InsertRegionalInventory',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getRegionalInventory();
@@ -175,12 +186,15 @@ class RegionalInventoryServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->productName('[ACCOUNT]', '[PRODUCT]');
@@ -214,17 +228,14 @@ class RegionalInventoryServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $regionalInventoriesElement = new RegionalInventory();
-        $regionalInventories = [
-            $regionalInventoriesElement,
-        ];
+        $regionalInventories = [$regionalInventoriesElement];
         $expectedResponse = new ListRegionalInventoriesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRegionalInventories($regionalInventories);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->productName('[ACCOUNT]', '[PRODUCT]');
-        $request = (new ListRegionalInventoriesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRegionalInventoriesRequest())->setParent($formattedParent);
         $response = $gapicClient->listRegionalInventories($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -234,7 +245,10 @@ class RegionalInventoryServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.shopping.merchant.inventories.v1.RegionalInventoryService/ListRegionalInventories', $actualFuncCall);
+        $this->assertSame(
+            '/google.shopping.merchant.inventories.v1.RegionalInventoryService/ListRegionalInventories',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -251,17 +265,19 @@ class RegionalInventoryServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->productName('[ACCOUNT]', '[PRODUCT]');
-        $request = (new ListRegionalInventoriesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRegionalInventoriesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRegionalInventories($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -288,14 +304,16 @@ class RegionalInventoryServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->regionalInventoryName('[ACCOUNT]', '[PRODUCT]', '[REGION]');
-        $request = (new DeleteRegionalInventoryRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRegionalInventoryRequest())->setName($formattedName);
         $gapicClient->deleteRegionalInventoryAsync($request)->wait();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.shopping.merchant.inventories.v1.RegionalInventoryService/DeleteRegionalInventory', $actualFuncCall);
+        $this->assertSame(
+            '/google.shopping.merchant.inventories.v1.RegionalInventoryService/DeleteRegionalInventory',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());

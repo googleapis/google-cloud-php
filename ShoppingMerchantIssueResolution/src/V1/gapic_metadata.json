@@ -8,7 +8,7 @@
         "AggregateProductStatusesService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AggregateProductStatusesServiceGapicClient",
+                    "libraryClient": "AggregateProductStatusesServiceClient",
                     "rpcs": {
                         "ListAggregateProductStatuses": {
                             "methods": [
@@ -22,7 +22,7 @@
         "IssueResolutionService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "IssueResolutionServiceGapicClient",
+                    "libraryClient": "IssueResolutionServiceClient",
                     "rpcs": {
                         "RenderAccountIssues": {
                             "methods": [

@@ -15,14 +15,15 @@ use Google\Protobuf\RepeatedField;
 class InstanceGroupManagersListErrorsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. [Output Only] The list of errors of the managed instance group.
+     * Output only. The list of errors of the managed instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceManagedByIgmError items = 100526016;</code>
      */
     private $items;
     /**
-     * Output only. [Output Only] This token allows you to get the next page of results for
-     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * Output only. This token allows you to get the next page of results for list requests.
+     * If the number of results is larger than maxResults
+     * , then use the nextPageToken as a value for
      * the query parameter pageToken in the next list request.
      * Subsequent list requests will have their own nextPageToken to
      * continue paging through the results.
@@ -38,10 +39,11 @@ class InstanceGroupManagersListErrorsResponse extends \Google\Protobuf\Internal\
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\InstanceManagedByIgmError[] $items
-     *           Output only. [Output Only] The list of errors of the managed instance group.
+     *           Output only. The list of errors of the managed instance group.
      *     @type string $next_page_token
-     *           Output only. [Output Only] This token allows you to get the next page of results for
-     *           list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     *           Output only. This token allows you to get the next page of results for list requests.
+     *           If the number of results is larger than maxResults
+     *           , then use the nextPageToken as a value for
      *           the query parameter pageToken in the next list request.
      *           Subsequent list requests will have their own nextPageToken to
      *           continue paging through the results.
@@ -53,7 +55,7 @@ class InstanceGroupManagersListErrorsResponse extends \Google\Protobuf\Internal\
     }
 
     /**
-     * Output only. [Output Only] The list of errors of the managed instance group.
+     * Output only. The list of errors of the managed instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceManagedByIgmError items = 100526016;</code>
      * @return RepeatedField<\Google\Cloud\Compute\V1\InstanceManagedByIgmError>
@@ -64,7 +66,7 @@ class InstanceGroupManagersListErrorsResponse extends \Google\Protobuf\Internal\
     }
 
     /**
-     * Output only. [Output Only] The list of errors of the managed instance group.
+     * Output only. The list of errors of the managed instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceManagedByIgmError items = 100526016;</code>
      * @param \Google\Cloud\Compute\V1\InstanceManagedByIgmError[] $var
@@ -79,8 +81,9 @@ class InstanceGroupManagersListErrorsResponse extends \Google\Protobuf\Internal\
     }
 
     /**
-     * Output only. [Output Only] This token allows you to get the next page of results for
-     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * Output only. This token allows you to get the next page of results for list requests.
+     * If the number of results is larger than maxResults
+     * , then use the nextPageToken as a value for
      * the query parameter pageToken in the next list request.
      * Subsequent list requests will have their own nextPageToken to
      * continue paging through the results.
@@ -104,8 +107,9 @@ class InstanceGroupManagersListErrorsResponse extends \Google\Protobuf\Internal\
     }
 
     /**
-     * Output only. [Output Only] This token allows you to get the next page of results for
-     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * Output only. This token allows you to get the next page of results for list requests.
+     * If the number of results is larger than maxResults
+     * , then use the nextPageToken as a value for
      * the query parameter pageToken in the next list request.
      * Subsequent list requests will have their own nextPageToken to
      * continue paging through the results.

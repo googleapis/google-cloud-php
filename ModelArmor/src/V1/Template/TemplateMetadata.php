@@ -74,6 +74,13 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1.Template.TemplateMetadata.MultiLanguageDetection multi_language_detection = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $multi_language_detection = null;
+    /**
+     * Optional. Specifies the modalities to scan.
+     * If empty, only text modality will be scanned.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.Modality modalities = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $modalities;
 
     /**
      * Constructor.
@@ -104,6 +111,9 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
      *           Optional. Enforcement type for Model Armor filters.
      *     @type \Google\Cloud\ModelArmor\V1\Template\TemplateMetadata\MultiLanguageDetection $multi_language_detection
      *           Optional. Metadata for multi language detection.
+     *     @type int[] $modalities
+     *           Optional. Specifies the modalities to scan.
+     *           If empty, only text modality will be scanned.
      * }
      */
     public function __construct($data = NULL) {
@@ -361,6 +371,34 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ModelArmor\V1\Template\TemplateMetadata\MultiLanguageDetection::class);
         $this->multi_language_detection = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the modalities to scan.
+     * If empty, only text modality will be scanned.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.Modality modalities = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<int>
+     */
+    public function getModalities()
+    {
+        return $this->modalities;
+    }
+
+    /**
+     * Optional. Specifies the modalities to scan.
+     * If empty, only text modality will be scanned.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.Modality modalities = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int[] $var
+     * @return $this
+     */
+    public function setModalities($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\ModelArmor\V1\Modality::class);
+        $this->modalities = $arr;
 
         return $this;
     }

@@ -64,12 +64,30 @@ class Gateway extends \Google\Protobuf\Internal\Message
      */
     protected $state = 0;
     /**
-     * Output only. The default API Gateway host name of the form
-     * `{gateway_id}-{hash}.{region_code}.gateway.dev`.
+     * Output only. The default hostname that serves traffic for this Gateway.
      *
      * Generated from protobuf field <code>string default_hostname = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $default_hostname = '';
+    /**
+     * Optional. Immutable. Requests streaming for a new gateway. An attempt to
+     * change it on update is rejected. If unset, the service selects the mode.
+     * This field records only what was requested and is never modified by the
+     * service; read `effective_streaming_mode` for the mode the gateway is served
+     * with.
+     *
+     * Generated from protobuf field <code>.google.cloud.apigateway.v1.Gateway.StreamingMode streaming_mode = 11 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $streaming_mode = 0;
+    /**
+     * Output only. The streaming mode this gateway is actually served with, which
+     * the service resolves at creation from `streaming_mode`, the referenced API
+     * Config, and the platform default at the time. Read this rather than
+     * `streaming_mode` to determine whether a gateway supports streaming.
+     *
+     * Generated from protobuf field <code>.google.cloud.apigateway.v1.Gateway.EffectiveStreamingMode effective_streaming_mode = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $effective_streaming_mode = 0;
 
     /**
      * Constructor.
@@ -96,8 +114,18 @@ class Gateway extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. The current state of the Gateway.
      *     @type string $default_hostname
-     *           Output only. The default API Gateway host name of the form
-     *           `{gateway_id}-{hash}.{region_code}.gateway.dev`.
+     *           Output only. The default hostname that serves traffic for this Gateway.
+     *     @type int $streaming_mode
+     *           Optional. Immutable. Requests streaming for a new gateway. An attempt to
+     *           change it on update is rejected. If unset, the service selects the mode.
+     *           This field records only what was requested and is never modified by the
+     *           service; read `effective_streaming_mode` for the mode the gateway is served
+     *           with.
+     *     @type int $effective_streaming_mode
+     *           Output only. The streaming mode this gateway is actually served with, which
+     *           the service resolves at creation from `streaming_mode`, the referenced API
+     *           Config, and the platform default at the time. Read this rather than
+     *           `streaming_mode` to determine whether a gateway supports streaming.
      * }
      */
     public function __construct($data = NULL) {
@@ -316,8 +344,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The default API Gateway host name of the form
-     * `{gateway_id}-{hash}.{region_code}.gateway.dev`.
+     * Output only. The default hostname that serves traffic for this Gateway.
      *
      * Generated from protobuf field <code>string default_hostname = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -328,8 +355,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The default API Gateway host name of the form
-     * `{gateway_id}-{hash}.{region_code}.gateway.dev`.
+     * Output only. The default hostname that serves traffic for this Gateway.
      *
      * Generated from protobuf field <code>string default_hostname = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -339,6 +365,72 @@ class Gateway extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->default_hostname = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. Requests streaming for a new gateway. An attempt to
+     * change it on update is rejected. If unset, the service selects the mode.
+     * This field records only what was requested and is never modified by the
+     * service; read `effective_streaming_mode` for the mode the gateway is served
+     * with.
+     *
+     * Generated from protobuf field <code>.google.cloud.apigateway.v1.Gateway.StreamingMode streaming_mode = 11 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getStreamingMode()
+    {
+        return $this->streaming_mode;
+    }
+
+    /**
+     * Optional. Immutable. Requests streaming for a new gateway. An attempt to
+     * change it on update is rejected. If unset, the service selects the mode.
+     * This field records only what was requested and is never modified by the
+     * service; read `effective_streaming_mode` for the mode the gateway is served
+     * with.
+     *
+     * Generated from protobuf field <code>.google.cloud.apigateway.v1.Gateway.StreamingMode streaming_mode = 11 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStreamingMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\ApiGateway\V1\Gateway\StreamingMode::class);
+        $this->streaming_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The streaming mode this gateway is actually served with, which
+     * the service resolves at creation from `streaming_mode`, the referenced API
+     * Config, and the platform default at the time. Read this rather than
+     * `streaming_mode` to determine whether a gateway supports streaming.
+     *
+     * Generated from protobuf field <code>.google.cloud.apigateway.v1.Gateway.EffectiveStreamingMode effective_streaming_mode = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getEffectiveStreamingMode()
+    {
+        return $this->effective_streaming_mode;
+    }
+
+    /**
+     * Output only. The streaming mode this gateway is actually served with, which
+     * the service resolves at creation from `streaming_mode`, the referenced API
+     * Config, and the platform default at the time. Read this rather than
+     * `streaming_mode` to determine whether a gateway supports streaming.
+     *
+     * Generated from protobuf field <code>.google.cloud.apigateway.v1.Gateway.EffectiveStreamingMode effective_streaming_mode = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEffectiveStreamingMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\ApiGateway\V1\Gateway\EffectiveStreamingMode::class);
+        $this->effective_streaming_mode = $var;
 
         return $this;
     }

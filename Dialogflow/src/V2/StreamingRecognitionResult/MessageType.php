@@ -26,6 +26,12 @@ class MessageType
      */
     const TRANSCRIPT = 1;
     /**
+     * Message contains DTMF digits.
+     *
+     * Generated from protobuf enum <code>DTMF_DIGITS = 3;</code>
+     */
+    const DTMF_DIGITS = 3;
+    /**
      * This event indicates that the server has detected the end of the user's
      * speech utterance and expects no additional inputs.
      * Therefore, the server will not process additional audio (although it may
@@ -38,11 +44,39 @@ class MessageType
      * Generated from protobuf enum <code>END_OF_SINGLE_UTTERANCE = 2;</code>
      */
     const END_OF_SINGLE_UTTERANCE = 2;
+    /**
+     * Message contains DTMF digits. Before a message with DTMF_DIGITS is sent,
+     * a message with PARTIAL_DTMF_DIGITS may be sent with DTMF digits collected
+     * up to the time of sending, which represents an intermediate result.
+     *
+     * Generated from protobuf enum <code>PARTIAL_DTMF_DIGITS = 4;</code>
+     */
+    const PARTIAL_DTMF_DIGITS = 4;
+    /**
+     * This event indicates that the server has detected the beginning of human
+     * voice activity in the stream. This event can be returned multiple times
+     * if speech starts and stops repeatedly throughout the stream.
+     *
+     * Generated from protobuf enum <code>SPEECH_ACTIVITY_BEGIN = 5;</code>
+     */
+    const SPEECH_ACTIVITY_BEGIN = 5;
+    /**
+     * This event indicates that the server has detected the end of human voice
+     * activity in the stream. This event can be returned multiple times if
+     * speech starts and stops repeatedly throughout the stream.
+     *
+     * Generated from protobuf enum <code>SPEECH_ACTIVITY_END = 6;</code>
+     */
+    const SPEECH_ACTIVITY_END = 6;
 
     private static $valueToName = [
         self::MESSAGE_TYPE_UNSPECIFIED => 'MESSAGE_TYPE_UNSPECIFIED',
         self::TRANSCRIPT => 'TRANSCRIPT',
+        self::DTMF_DIGITS => 'DTMF_DIGITS',
         self::END_OF_SINGLE_UTTERANCE => 'END_OF_SINGLE_UTTERANCE',
+        self::PARTIAL_DTMF_DIGITS => 'PARTIAL_DTMF_DIGITS',
+        self::SPEECH_ACTIVITY_BEGIN => 'SPEECH_ACTIVITY_BEGIN',
+        self::SPEECH_ACTIVITY_END => 'SPEECH_ACTIVITY_END',
     ];
 
     public static function name($value)

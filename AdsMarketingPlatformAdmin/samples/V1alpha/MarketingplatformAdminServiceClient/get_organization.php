@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ use Google\Ads\MarketingPlatform\Admin\V1alpha\Organization;
 use Google\ApiCore\ApiException;
 
 /**
- * Lookup for a single organization.
+ * Looks up a single organization.
  *
  * @param string $formattedName The name of the Organization to retrieve.
  *                              Format: organizations/{org_id}

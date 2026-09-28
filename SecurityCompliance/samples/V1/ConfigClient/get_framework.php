@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,8 +35,12 @@ use Google\Cloud\CloudSecurityCompliance\V1\GetFrameworkRequest;
  * To retrieve a specific major version, include `major_revision_id` in
  * the request.
  *
- * @param string $formattedName The name of the framework to retrieve, in the format
- *                              `organizations/{organization}/locations/{location}/frameworks/{framework_id}`
+ * @param string $formattedName The name of the framework to retrieve, in one of the following
+ *                              formats:
+ *                              `organizations/{organization}/locations/{location}/frameworks/{framework}`
+ *                              or
+ *                              `projects/{project}/locations/{location}/frameworks/{framework}`.
+ *
  *                              The only supported location is `global`. Please see
  *                              {@see ConfigClient::frameworkName()} for help formatting this field.
  */

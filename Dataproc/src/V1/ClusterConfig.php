@@ -28,6 +28,12 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     protected $cluster_tier = 0;
     /**
+     * Optional. The cluster engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig.Engine engine = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $engine = 0;
+    /**
      * Optional. A Cloud Storage bucket used to stage job
      * dependencies, config files, and job driver console output.
      * If you do not specify a staging bucket, Cloud
@@ -170,6 +176,8 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The type of the cluster.
      *     @type int $cluster_tier
      *           Optional. The cluster tier.
+     *     @type int $engine
+     *           Optional. The cluster engine.
      *     @type string $config_bucket
      *           Optional. A Cloud Storage bucket used to stage job
      *           dependencies, config files, and job driver console output.
@@ -293,6 +301,32 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\ClusterConfig\ClusterTier::class);
         $this->cluster_tier = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The cluster engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig.Engine engine = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getEngine()
+    {
+        return $this->engine;
+    }
+
+    /**
+     * Optional. The cluster engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig.Engine engine = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEngine($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\ClusterConfig\Engine::class);
+        $this->engine = $var;
 
         return $this;
     }

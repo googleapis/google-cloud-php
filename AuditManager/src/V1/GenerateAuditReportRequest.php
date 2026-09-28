@@ -9,53 +9,77 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Message for requesting the Audit Report.
+ * Request message for
+ * [GenerateAuditReport][google.cloud.auditmanager.v1.AuditManager.GenerateAuditReport].
  *
  * Generated from protobuf message <code>google.cloud.auditmanager.v1.GenerateAuditReportRequest</code>
  */
 class GenerateAuditReportRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Scope for which the AuditScopeReport is required. Must be of
-     * format resource_type/resource_identifier Eg:
-     * projects/{project}/locations/{location},
-     * folders/{folder}/locations/{location}
+     * Required. Organization, folder, or project that the audit applies to, in
+     * one of the following formats:
+     * * `projects/{project}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `organizations/{organization}/locations/{location}`
      *
      * Generated from protobuf field <code>string scope = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $scope = '';
     /**
-     * Required. Compliance Standard against which the Scope Report must be
-     * generated. Eg: FEDRAMP_MODERATE
+     * Optional. Deprecated. Compliance standard for the audit report.
+     * Use the `compliance_framework` field instead.
      *
-     * Generated from protobuf field <code>string compliance_standard = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string compliance_standard = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $compliance_standard = '';
     /**
-     * Required. The format in which the audit report should be created.
+     * Required. Format for the audit report.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.GenerateAuditReportRequest.AuditReportFormat report_format = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $report_format = 0;
     /**
-     * Required. Compliance framework against which the Report must be generated.
+     * Required. The framework that's used for the audit report. For example,
+     * `NIST_800_53`.
      *
      * Generated from protobuf field <code>string compliance_framework = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $compliance_framework = '';
+    /**
+     * Optional. If `true`, only validates the request and does not generate the
+     * audit report. This executes standard request validation (such as schema,
+     * framework existence, scope, and IAM checks) and skips the apply phase.
+     * Use this field for the following purposes:
+     * * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run
+     *   dry-run mutations (e.g., `terraform plan`) without creating real
+     *   resources or incurring costs.
+     * * **User Interface Validation**: Enable real-time form and permission
+     *   validation in custom UIs before submitting requests.
+     * * **CI/CD & Automation**: Test your scripts, permissions, and parameters
+     *   safely without triggering expensive Long-Running Operations (LROs) or
+     *   consuming resource quotas.
+     *
+     * Generated from protobuf field <code>bool validate_only = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $validate_only = false;
     protected $destination;
 
     /**
-     * @param string $scope              Required. Scope for which the AuditScopeReport is required. Must be of
-     *                                   format resource_type/resource_identifier Eg:
-     *                                   projects/{project}/locations/{location},
-     *                                   folders/{folder}/locations/{location}
-     * @param string $gcsUri             Destination Cloud storage bucket where report and evidence must be
-     *                                   uploaded. The Cloud storage bucket provided here must be selected among
-     *                                   the buckets entered during the enrollment process.
-     * @param string $complianceStandard Required. Compliance Standard against which the Scope Report must be
-     *                                   generated. Eg: FEDRAMP_MODERATE
-     * @param int    $reportFormat       Required. The format in which the audit report should be created.
+     * @param string $scope              Required. Organization, folder, or project that the audit applies to, in
+     *                                   one of the following formats:
+     *
+     *                                   * `projects/{project}/locations/{location}`
+     *                                   * `folders/{folder}/locations/{location}`
+     *                                   * `organizations/{organization}/locations/{location}`
+     * @param string $gcsUri             URL for the Cloud Storage bucket where the report and evidence is
+     *                                   uploaded. You must select a bucket that was provided during the
+     *                                   enrollment process.
+     * @param string $complianceStandard Optional. Deprecated. Compliance standard for the audit report.
+     *
+     *                                   Use the `compliance_framework` field instead.
+     * @param int    $reportFormat       Required. Format for the audit report.
      *                                   For allowed values, use constants defined on {@see \Google\Cloud\AuditManager\V1\GenerateAuditReportRequest\AuditReportFormat}
      *
      * @return \Google\Cloud\AuditManager\V1\GenerateAuditReportRequest
@@ -78,21 +102,36 @@ class GenerateAuditReportRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $gcs_uri
-     *           Destination Cloud storage bucket where report and evidence must be
-     *           uploaded. The Cloud storage bucket provided here must be selected among
-     *           the buckets entered during the enrollment process.
+     *           URL for the Cloud Storage bucket where the report and evidence is
+     *           uploaded. You must select a bucket that was provided during the
+     *           enrollment process.
      *     @type string $scope
-     *           Required. Scope for which the AuditScopeReport is required. Must be of
-     *           format resource_type/resource_identifier Eg:
-     *           projects/{project}/locations/{location},
-     *           folders/{folder}/locations/{location}
+     *           Required. Organization, folder, or project that the audit applies to, in
+     *           one of the following formats:
+     *           * `projects/{project}/locations/{location}`
+     *           * `folders/{folder}/locations/{location}`
+     *           * `organizations/{organization}/locations/{location}`
      *     @type string $compliance_standard
-     *           Required. Compliance Standard against which the Scope Report must be
-     *           generated. Eg: FEDRAMP_MODERATE
+     *           Optional. Deprecated. Compliance standard for the audit report.
+     *           Use the `compliance_framework` field instead.
      *     @type int $report_format
-     *           Required. The format in which the audit report should be created.
+     *           Required. Format for the audit report.
      *     @type string $compliance_framework
-     *           Required. Compliance framework against which the Report must be generated.
+     *           Required. The framework that's used for the audit report. For example,
+     *           `NIST_800_53`.
+     *     @type bool $validate_only
+     *           Optional. If `true`, only validates the request and does not generate the
+     *           audit report. This executes standard request validation (such as schema,
+     *           framework existence, scope, and IAM checks) and skips the apply phase.
+     *           Use this field for the following purposes:
+     *           * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run
+     *             dry-run mutations (e.g., `terraform plan`) without creating real
+     *             resources or incurring costs.
+     *           * **User Interface Validation**: Enable real-time form and permission
+     *             validation in custom UIs before submitting requests.
+     *           * **CI/CD & Automation**: Test your scripts, permissions, and parameters
+     *             safely without triggering expensive Long-Running Operations (LROs) or
+     *             consuming resource quotas.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,9 +140,9 @@ class GenerateAuditReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination Cloud storage bucket where report and evidence must be
-     * uploaded. The Cloud storage bucket provided here must be selected among
-     * the buckets entered during the enrollment process.
+     * URL for the Cloud Storage bucket where the report and evidence is
+     * uploaded. You must select a bucket that was provided during the
+     * enrollment process.
      *
      * Generated from protobuf field <code>string gcs_uri = 2;</code>
      * @return string
@@ -119,9 +158,9 @@ class GenerateAuditReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination Cloud storage bucket where report and evidence must be
-     * uploaded. The Cloud storage bucket provided here must be selected among
-     * the buckets entered during the enrollment process.
+     * URL for the Cloud Storage bucket where the report and evidence is
+     * uploaded. You must select a bucket that was provided during the
+     * enrollment process.
      *
      * Generated from protobuf field <code>string gcs_uri = 2;</code>
      * @param string $var
@@ -136,10 +175,11 @@ class GenerateAuditReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Scope for which the AuditScopeReport is required. Must be of
-     * format resource_type/resource_identifier Eg:
-     * projects/{project}/locations/{location},
-     * folders/{folder}/locations/{location}
+     * Required. Organization, folder, or project that the audit applies to, in
+     * one of the following formats:
+     * * `projects/{project}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `organizations/{organization}/locations/{location}`
      *
      * Generated from protobuf field <code>string scope = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -150,10 +190,11 @@ class GenerateAuditReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Scope for which the AuditScopeReport is required. Must be of
-     * format resource_type/resource_identifier Eg:
-     * projects/{project}/locations/{location},
-     * folders/{folder}/locations/{location}
+     * Required. Organization, folder, or project that the audit applies to, in
+     * one of the following formats:
+     * * `projects/{project}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `organizations/{organization}/locations/{location}`
      *
      * Generated from protobuf field <code>string scope = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -168,27 +209,33 @@ class GenerateAuditReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Compliance Standard against which the Scope Report must be
-     * generated. Eg: FEDRAMP_MODERATE
+     * Optional. Deprecated. Compliance standard for the audit report.
+     * Use the `compliance_framework` field instead.
      *
-     * Generated from protobuf field <code>string compliance_standard = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string compliance_standard = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
+     * @deprecated
      */
     public function getComplianceStandard()
     {
+        if ($this->compliance_standard !== '') {
+            @trigger_error('compliance_standard is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->compliance_standard;
     }
 
     /**
-     * Required. Compliance Standard against which the Scope Report must be
-     * generated. Eg: FEDRAMP_MODERATE
+     * Optional. Deprecated. Compliance standard for the audit report.
+     * Use the `compliance_framework` field instead.
      *
-     * Generated from protobuf field <code>string compliance_standard = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string compliance_standard = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setComplianceStandard($var)
     {
+        @trigger_error('compliance_standard is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->compliance_standard = $var;
 
@@ -196,7 +243,7 @@ class GenerateAuditReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The format in which the audit report should be created.
+     * Required. Format for the audit report.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.GenerateAuditReportRequest.AuditReportFormat report_format = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -207,7 +254,7 @@ class GenerateAuditReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The format in which the audit report should be created.
+     * Required. Format for the audit report.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.GenerateAuditReportRequest.AuditReportFormat report_format = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -222,7 +269,8 @@ class GenerateAuditReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Compliance framework against which the Report must be generated.
+     * Required. The framework that's used for the audit report. For example,
+     * `NIST_800_53`.
      *
      * Generated from protobuf field <code>string compliance_framework = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -233,7 +281,8 @@ class GenerateAuditReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Compliance framework against which the Report must be generated.
+     * Required. The framework that's used for the audit report. For example,
+     * `NIST_800_53`.
      *
      * Generated from protobuf field <code>string compliance_framework = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -243,6 +292,54 @@ class GenerateAuditReportRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->compliance_framework = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If `true`, only validates the request and does not generate the
+     * audit report. This executes standard request validation (such as schema,
+     * framework existence, scope, and IAM checks) and skips the apply phase.
+     * Use this field for the following purposes:
+     * * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run
+     *   dry-run mutations (e.g., `terraform plan`) without creating real
+     *   resources or incurring costs.
+     * * **User Interface Validation**: Enable real-time form and permission
+     *   validation in custom UIs before submitting requests.
+     * * **CI/CD & Automation**: Test your scripts, permissions, and parameters
+     *   safely without triggering expensive Long-Running Operations (LROs) or
+     *   consuming resource quotas.
+     *
+     * Generated from protobuf field <code>bool validate_only = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getValidateOnly()
+    {
+        return $this->validate_only;
+    }
+
+    /**
+     * Optional. If `true`, only validates the request and does not generate the
+     * audit report. This executes standard request validation (such as schema,
+     * framework existence, scope, and IAM checks) and skips the apply phase.
+     * Use this field for the following purposes:
+     * * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run
+     *   dry-run mutations (e.g., `terraform plan`) without creating real
+     *   resources or incurring costs.
+     * * **User Interface Validation**: Enable real-time form and permission
+     *   validation in custom UIs before submitting requests.
+     * * **CI/CD & Automation**: Test your scripts, permissions, and parameters
+     *   safely without triggering expensive Long-Running Operations (LROs) or
+     *   consuming resource quotas.
+     *
+     * Generated from protobuf field <code>bool validate_only = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setValidateOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->validate_only = $var;
 
         return $this;
     }

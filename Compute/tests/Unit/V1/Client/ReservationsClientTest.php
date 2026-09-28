@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -305,6 +305,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $commitment = 'commitment1019005717';
+        $confidentialComputeType = 'confidentialComputeType-1761036391';
         $creationTimestamp = 'creationTimestamp567396278';
         $deleteAtTime = 'deleteAtTime-453576507';
         $deploymentType = 'deploymentType2007335028';
@@ -323,6 +324,7 @@ class ReservationsClientTest extends GeneratedTest
         $zone2 = 'zone2-696322977';
         $expectedResponse = new Reservation();
         $expectedResponse->setCommitment($commitment);
+        $expectedResponse->setConfidentialComputeType($confidentialComputeType);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDeleteAtTime($deleteAtTime);
         $expectedResponse->setDeploymentType($deploymentType);

@@ -8,7 +8,7 @@
         "Spanner": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SpannerGapicClient",
+                    "libraryClient": "SpannerClient",
                     "rpcs": {
                         "BatchCreateSessions": {
                             "methods": [
@@ -53,6 +53,11 @@
                         "ExecuteStreamingSql": {
                             "methods": [
                                 "executeStreamingSql"
+                            ]
+                        },
+                        "FetchCacheUpdate": {
+                            "methods": [
+                                "fetchCacheUpdate"
                             ]
                         },
                         "GetSession": {

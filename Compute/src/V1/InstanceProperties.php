@@ -75,6 +75,14 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
+     * Specifies which method should be used for encrypting the
+     * Local SSDs attached to the VM.
+     * Check the LocalSsdEncryptionMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string local_ssd_encryption_mode = 121582032;</code>
+     */
+    protected $local_ssd_encryption_mode = null;
+    /**
      * The machine type to use for instances that are created from these
      * properties.
      * This field only accepts a machine type name, for example `n2-standard-4`.
@@ -135,8 +143,10 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * Input only. Resource manager tags to be bound to the instance. Tag keys and values
      * have the same definition as resource
-     * manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and
-     * values are in the format `tagValues/456`. The field is ignored (both PUT &
+     * manager tags. Keys and values can be either in numeric format,
+     * such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+     * namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
+     * `{tag_value_short_name}`. The field is ignored (both PUT &
      * PATCH) when empty.
      *
      * Generated from protobuf field <code>map<string, string> resource_manager_tags = 377671164;</code>
@@ -220,6 +230,10 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      *           Check the KeyRevocationActionType enum for the list of possible values.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels to apply to instances that are created from these properties.
+     *     @type string $local_ssd_encryption_mode
+     *           Specifies which method should be used for encrypting the
+     *           Local SSDs attached to the VM.
+     *           Check the LocalSsdEncryptionMode enum for the list of possible values.
      *     @type string $machine_type
      *           The machine type to use for instances that are created from these
      *           properties.
@@ -253,8 +267,10 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $resource_manager_tags
      *           Input only. Resource manager tags to be bound to the instance. Tag keys and values
      *           have the same definition as resource
-     *           manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and
-     *           values are in the format `tagValues/456`. The field is ignored (both PUT &
+     *           manager tags. Keys and values can be either in numeric format,
+     *           such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+     *           namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
+     *           `{tag_value_short_name}`. The field is ignored (both PUT &
      *           PATCH) when empty.
      *     @type string[] $resource_policies
      *           Resource policies (names, not URLs) applied to instances created from
@@ -566,6 +582,46 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Specifies which method should be used for encrypting the
+     * Local SSDs attached to the VM.
+     * Check the LocalSsdEncryptionMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string local_ssd_encryption_mode = 121582032;</code>
+     * @return string
+     */
+    public function getLocalSsdEncryptionMode()
+    {
+        return isset($this->local_ssd_encryption_mode) ? $this->local_ssd_encryption_mode : '';
+    }
+
+    public function hasLocalSsdEncryptionMode()
+    {
+        return isset($this->local_ssd_encryption_mode);
+    }
+
+    public function clearLocalSsdEncryptionMode()
+    {
+        unset($this->local_ssd_encryption_mode);
+    }
+
+    /**
+     * Specifies which method should be used for encrypting the
+     * Local SSDs attached to the VM.
+     * Check the LocalSsdEncryptionMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string local_ssd_encryption_mode = 121582032;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocalSsdEncryptionMode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->local_ssd_encryption_mode = $var;
+
+        return $this;
+    }
+
+    /**
      * The machine type to use for instances that are created from these
      * properties.
      * This field only accepts a machine type name, for example `n2-standard-4`.
@@ -842,8 +898,10 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * Input only. Resource manager tags to be bound to the instance. Tag keys and values
      * have the same definition as resource
-     * manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and
-     * values are in the format `tagValues/456`. The field is ignored (both PUT &
+     * manager tags. Keys and values can be either in numeric format,
+     * such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+     * namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
+     * `{tag_value_short_name}`. The field is ignored (both PUT &
      * PATCH) when empty.
      *
      * Generated from protobuf field <code>map<string, string> resource_manager_tags = 377671164;</code>
@@ -857,8 +915,10 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * Input only. Resource manager tags to be bound to the instance. Tag keys and values
      * have the same definition as resource
-     * manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and
-     * values are in the format `tagValues/456`. The field is ignored (both PUT &
+     * manager tags. Keys and values can be either in numeric format,
+     * such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+     * namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
+     * `{tag_value_short_name}`. The field is ignored (both PUT &
      * PATCH) when empty.
      *
      * Generated from protobuf field <code>map<string, string> resource_manager_tags = 377671164;</code>

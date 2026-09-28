@@ -41,12 +41,6 @@ class PartitionedDmlTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->updateDdl('CREATE TABLE ' . self::PDML_TABLE . '(
-            id INT64 NOT NULL,
-            stringField STRING(MAX),
-            boolField BOOL
-        ) PRIMARY KEY(id)')->pollUntilComplete();
-
         $this->seedTable();
 
         $opts = [
@@ -88,7 +82,7 @@ class PartitionedDmlTest extends SystemTestCase
     private function executeInsert(array $rows)
     {
         self::$database->runTransaction(function ($t) use ($rows) {
-            $t->insertBatch(self::PDML_TABLE, $rows);
+            $t->insertOrUpdateBatch(self::PDML_TABLE, $rows);
 
             $t->commit();
         });

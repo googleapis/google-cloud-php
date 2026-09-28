@@ -35,6 +35,17 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      */
     protected $availability_domain = null;
     /**
+     * This optional flag exposes the hashed physical host ID in the
+     * ResourceStatus resource of the VM.
+     *
+     * Generated from protobuf field <code>optional bool expose_host_topology = 428530155;</code>
+     */
+    protected $expose_host_topology = null;
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SchedulingGracefulShutdown graceful_shutdown = 226325136;</code>
+     */
+    protected $graceful_shutdown = null;
+    /**
      * Specify the time in seconds for host error detection, the value must be
      * within the range of [90, 330] with the increment of 30, if unset, the
      * default behavior of host error recovery will be used.
@@ -115,6 +126,14 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      */
     protected $preemptible = null;
     /**
+     * Specifies the Metadata Service preemption notice duration before the GCE ACPI G2
+     * Soft Off signal is triggered for Spot VMs only. If not specified,
+     * there will be no wait before the G2 Soft Off signal is triggered.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration preemption_notice_duration = 486176437;</code>
+     */
+    protected $preemption_notice_duration = null;
+    /**
      * Specifies the provisioning model of the instance.
      * Check the ProvisioningModel enum for the list of possible values.
      *
@@ -154,6 +173,10 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *           Specifies the availability domain to place the instance in. The value
      *           must be a number between 1 and the number of availability domains
      *           specified in the spread placement policy attached to the instance.
+     *     @type bool $expose_host_topology
+     *           This optional flag exposes the hashed physical host ID in the
+     *           ResourceStatus resource of the VM.
+     *     @type \Google\Cloud\Compute\V1\SchedulingGracefulShutdown $graceful_shutdown
      *     @type int $host_error_timeout_seconds
      *           Specify the time in seconds for host error detection, the value must be
      *           within the range of [90, 330] with the increment of 30, if unset, the
@@ -195,6 +218,10 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *           instance creation or while the instance isstopped and
      *           therefore, in a `TERMINATED` state. SeeInstance Life
      *           Cycle for more information on the possible instance states.
+     *     @type \Google\Cloud\Compute\V1\Duration $preemption_notice_duration
+     *           Specifies the Metadata Service preemption notice duration before the GCE ACPI G2
+     *           Soft Off signal is triggered for Spot VMs only. If not specified,
+     *           there will be no wait before the G2 Soft Off signal is triggered.
      *     @type string $provisioning_model
      *           Specifies the provisioning model of the instance.
      *           Check the ProvisioningModel enum for the list of possible values.
@@ -294,6 +321,76 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->availability_domain = $var;
+
+        return $this;
+    }
+
+    /**
+     * This optional flag exposes the hashed physical host ID in the
+     * ResourceStatus resource of the VM.
+     *
+     * Generated from protobuf field <code>optional bool expose_host_topology = 428530155;</code>
+     * @return bool
+     */
+    public function getExposeHostTopology()
+    {
+        return isset($this->expose_host_topology) ? $this->expose_host_topology : false;
+    }
+
+    public function hasExposeHostTopology()
+    {
+        return isset($this->expose_host_topology);
+    }
+
+    public function clearExposeHostTopology()
+    {
+        unset($this->expose_host_topology);
+    }
+
+    /**
+     * This optional flag exposes the hashed physical host ID in the
+     * ResourceStatus resource of the VM.
+     *
+     * Generated from protobuf field <code>optional bool expose_host_topology = 428530155;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setExposeHostTopology($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->expose_host_topology = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SchedulingGracefulShutdown graceful_shutdown = 226325136;</code>
+     * @return \Google\Cloud\Compute\V1\SchedulingGracefulShutdown|null
+     */
+    public function getGracefulShutdown()
+    {
+        return $this->graceful_shutdown;
+    }
+
+    public function hasGracefulShutdown()
+    {
+        return isset($this->graceful_shutdown);
+    }
+
+    public function clearGracefulShutdown()
+    {
+        unset($this->graceful_shutdown);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SchedulingGracefulShutdown graceful_shutdown = 226325136;</code>
+     * @param \Google\Cloud\Compute\V1\SchedulingGracefulShutdown $var
+     * @return $this
+     */
+    public function setGracefulShutdown($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\SchedulingGracefulShutdown::class);
+        $this->graceful_shutdown = $var;
 
         return $this;
     }
@@ -684,6 +781,46 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->preemptible = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the Metadata Service preemption notice duration before the GCE ACPI G2
+     * Soft Off signal is triggered for Spot VMs only. If not specified,
+     * there will be no wait before the G2 Soft Off signal is triggered.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration preemption_notice_duration = 486176437;</code>
+     * @return \Google\Cloud\Compute\V1\Duration|null
+     */
+    public function getPreemptionNoticeDuration()
+    {
+        return $this->preemption_notice_duration;
+    }
+
+    public function hasPreemptionNoticeDuration()
+    {
+        return isset($this->preemption_notice_duration);
+    }
+
+    public function clearPreemptionNoticeDuration()
+    {
+        unset($this->preemption_notice_duration);
+    }
+
+    /**
+     * Specifies the Metadata Service preemption notice duration before the GCE ACPI G2
+     * Soft Off signal is triggered for Spot VMs only. If not specified,
+     * there will be no wait before the G2 Soft Off signal is triggered.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration preemption_notice_duration = 486176437;</code>
+     * @param \Google\Cloud\Compute\V1\Duration $var
+     * @return $this
+     */
+    public function setPreemptionNoticeDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\Duration::class);
+        $this->preemption_notice_duration = $var;
 
         return $this;
     }

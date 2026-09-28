@@ -17,9 +17,9 @@ use Google\Protobuf\RepeatedField;
 class Recommendation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of recommendation.
+     * Identifier. Name of recommendation.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -104,6 +104,12 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string xor_group_id = 18;</code>
      */
     protected $xor_group_id = '';
+    /**
+     * Fully qualified resource names that this recommendation is targeting.
+     *
+     * Generated from protobuf field <code>repeated string target_resources = 19;</code>
+     */
+    private $target_resources;
 
     /**
      * Constructor.
@@ -112,7 +118,7 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name of recommendation.
+     *           Identifier. Name of recommendation.
      *     @type string $description
      *           Free-form human readable summary in English. The maximum length is 500
      *           characters.
@@ -151,6 +157,8 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      *           A non-empty ID indicates that the recommendation belongs to a mutually
      *           exclusive group. This means that only one recommendation within the group
      *           is suggested to be applied.
+     *     @type string[] $target_resources
+     *           Fully qualified resource names that this recommendation is targeting.
      * }
      */
     public function __construct($data = NULL) {
@@ -159,9 +167,9 @@ class Recommendation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of recommendation.
+     * Identifier. Name of recommendation.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -170,9 +178,9 @@ class Recommendation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of recommendation.
+     * Identifier. Name of recommendation.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -538,6 +546,32 @@ class Recommendation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->xor_group_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Fully qualified resource names that this recommendation is targeting.
+     *
+     * Generated from protobuf field <code>repeated string target_resources = 19;</code>
+     * @return RepeatedField<string>
+     */
+    public function getTargetResources()
+    {
+        return $this->target_resources;
+    }
+
+    /**
+     * Fully qualified resource names that this recommendation is targeting.
+     *
+     * Generated from protobuf field <code>repeated string target_resources = 19;</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setTargetResources($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->target_resources = $arr;
 
         return $this;
     }

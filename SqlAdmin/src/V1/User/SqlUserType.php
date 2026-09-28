@@ -51,6 +51,13 @@ class SqlUserType
      */
     const CLOUD_IAM_GROUP_SERVICE_ACCOUNT = 5;
     /**
+     * Cloud IAM workforce identity user managed via workforce identity
+     * federation.
+     *
+     * Generated from protobuf enum <code>CLOUD_IAM_WORKFORCE_IDENTITY = 6;</code>
+     */
+    const CLOUD_IAM_WORKFORCE_IDENTITY = 6;
+    /**
      * Microsoft Entra ID user.
      *
      * Generated from protobuf enum <code>ENTRAID_USER = 7;</code>
@@ -64,6 +71,7 @@ class SqlUserType
         self::CLOUD_IAM_GROUP => 'CLOUD_IAM_GROUP',
         self::CLOUD_IAM_GROUP_USER => 'CLOUD_IAM_GROUP_USER',
         self::CLOUD_IAM_GROUP_SERVICE_ACCOUNT => 'CLOUD_IAM_GROUP_SERVICE_ACCOUNT',
+        self::CLOUD_IAM_WORKFORCE_IDENTITY => 'CLOUD_IAM_WORKFORCE_IDENTITY',
         self::ENTRAID_USER => 'ENTRAID_USER',
     ];
 

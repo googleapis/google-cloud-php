@@ -44,8 +44,24 @@ class ListPrivateAuctionDealsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
     /**
      * Optional. Expression to filter the response.
-     * See syntax details at
-     * https://developers.google.com/ad-manager/api/beta/filters
+     *  See syntax details at
+     *  https://developers.google.com/ad-manager/api/beta/filters
+     * **Filterable fields:**
+     * * `archived`
+     * * `auctionPriorityEnabled`
+     * * `blockOverrideEnabled`
+     * * `buyerAccountId`
+     * * `buyerPermissionType`
+     * * `endTime`
+     * * `externalDealId`
+     * * `floorPrice`
+     * * `name`
+     * * `privateAuctionDealId`
+     * * `privateAuctionDisplayName`
+     * * `privateAuctionId`
+     * * `publisherFloorExempt`
+     * * `status`
+     * * `updateTime`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -104,8 +120,24 @@ class ListPrivateAuctionDealsRequest extends \Google\Protobuf\Internal\Message
      *           token.
      *     @type string $filter
      *           Optional. Expression to filter the response.
-     *           See syntax details at
-     *           https://developers.google.com/ad-manager/api/beta/filters
+     *            See syntax details at
+     *            https://developers.google.com/ad-manager/api/beta/filters
+     *           **Filterable fields:**
+     *           * `archived`
+     *           * `auctionPriorityEnabled`
+     *           * `blockOverrideEnabled`
+     *           * `buyerAccountId`
+     *           * `buyerPermissionType`
+     *           * `endTime`
+     *           * `externalDealId`
+     *           * `floorPrice`
+     *           * `name`
+     *           * `privateAuctionDealId`
+     *           * `privateAuctionDisplayName`
+     *           * `privateAuctionId`
+     *           * `publisherFloorExempt`
+     *           * `status`
+     *           * `updateTime`
      *     @type string $order_by
      *           Optional. Expression to specify sorting order.
      *           See syntax details at
@@ -217,8 +249,24 @@ class ListPrivateAuctionDealsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Expression to filter the response.
-     * See syntax details at
-     * https://developers.google.com/ad-manager/api/beta/filters
+     *  See syntax details at
+     *  https://developers.google.com/ad-manager/api/beta/filters
+     * **Filterable fields:**
+     * * `archived`
+     * * `auctionPriorityEnabled`
+     * * `blockOverrideEnabled`
+     * * `buyerAccountId`
+     * * `buyerPermissionType`
+     * * `endTime`
+     * * `externalDealId`
+     * * `floorPrice`
+     * * `name`
+     * * `privateAuctionDealId`
+     * * `privateAuctionDisplayName`
+     * * `privateAuctionId`
+     * * `publisherFloorExempt`
+     * * `status`
+     * * `updateTime`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -230,8 +278,24 @@ class ListPrivateAuctionDealsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Expression to filter the response.
-     * See syntax details at
-     * https://developers.google.com/ad-manager/api/beta/filters
+     *  See syntax details at
+     *  https://developers.google.com/ad-manager/api/beta/filters
+     * **Filterable fields:**
+     * * `archived`
+     * * `auctionPriorityEnabled`
+     * * `blockOverrideEnabled`
+     * * `buyerAccountId`
+     * * `buyerPermissionType`
+     * * `endTime`
+     * * `externalDealId`
+     * * `floorPrice`
+     * * `name`
+     * * `privateAuctionDealId`
+     * * `privateAuctionDisplayName`
+     * * `privateAuctionId`
+     * * `publisherFloorExempt`
+     * * `status`
+     * * `updateTime`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

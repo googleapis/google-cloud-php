@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ use Google\Cloud\NetworkServices\V1\GrpcRoute;
  * Gets details of a single GrpcRoute.
  *
  * @param string $formattedName A name of the GrpcRoute to get. Must be in the format
- *                              `projects/&#42;/locations/global/grpcRoutes/*`. Please see
+ *                              `projects/&#42;/locations/&#42;/grpcRoutes/*`. Please see
  *                              {@see NetworkServicesClient::grpcRouteName()} for help formatting this field.
  */
 function get_grpc_route_sample(string $formattedName): void

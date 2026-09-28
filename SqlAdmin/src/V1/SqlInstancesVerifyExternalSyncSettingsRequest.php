@@ -67,6 +67,12 @@ class SqlInstancesVerifyExternalSyncSettingsRequest extends \Google\Protobuf\Int
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ExternalSyncSelectedObject selected_objects = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $selected_objects;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $location = '';
     protected $sync_config;
 
     /**
@@ -97,6 +103,8 @@ class SqlInstancesVerifyExternalSyncSettingsRequest extends \Google\Protobuf\Int
      *     @type \Google\Cloud\Sql\V1\ExternalSyncSelectedObject[] $selected_objects
      *           Optional. Migrate only the specified objects from the source instance. If
      *           this field is empty, then migrate all objects.
+     *     @type string $location
+     *           Optional. Region of the Cloud SQL instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -347,6 +355,32 @@ class SqlInstancesVerifyExternalSyncSettingsRequest extends \Google\Protobuf\Int
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Sql\V1\ExternalSyncSelectedObject::class);
         $this->selected_objects = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location = $var;
 
         return $this;
     }

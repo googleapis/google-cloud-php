@@ -16,14 +16,19 @@ use Google\Protobuf\RepeatedField;
 class SearchSpacesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A page of the requested spaces.
+     * Deprecated: Please use the new `results` field instead.
+     * A page of the requested spaces. This field will be populated only when
+     * `useAdminAccess` is set to `true` and deprecated in favor of the new
+     * `results` field.
      *
-     * Generated from protobuf field <code>repeated .google.chat.v1.Space spaces = 1;</code>
+     * Generated from protobuf field <code>repeated .google.chat.v1.Space spaces = 1 [deprecated = true];</code>
+     * @deprecated
      */
     private $spaces;
     /**
      * A token that can be used to retrieve the next page. If this field is empty,
      * there are no subsequent pages.
+     * Only populated when `useAdminAccess` is set to `true`.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -31,10 +36,17 @@ class SearchSpacesResponse extends \Google\Protobuf\Internal\Message
     /**
      * The total number of spaces that match the query, across all pages. If the
      * result is over 10,000 spaces, this value is an estimate.
+     * Only populated when `useAdminAccess` is set to `true`.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      */
     protected $total_size = 0;
+    /**
+     * Output only. The list of search results that matched the query.
+     *
+     * Generated from protobuf field <code>repeated .google.chat.v1.SearchSpacesResponse.SearchSpaceResult results = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $results;
 
     /**
      * Constructor.
@@ -43,13 +55,20 @@ class SearchSpacesResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Apps\Chat\V1\Space[] $spaces
-     *           A page of the requested spaces.
+     *           Deprecated: Please use the new `results` field instead.
+     *           A page of the requested spaces. This field will be populated only when
+     *           `useAdminAccess` is set to `true` and deprecated in favor of the new
+     *           `results` field.
      *     @type string $next_page_token
      *           A token that can be used to retrieve the next page. If this field is empty,
      *           there are no subsequent pages.
+     *           Only populated when `useAdminAccess` is set to `true`.
      *     @type int $total_size
      *           The total number of spaces that match the query, across all pages. If the
      *           result is over 10,000 spaces, this value is an estimate.
+     *           Only populated when `useAdminAccess` is set to `true`.
+     *     @type \Google\Apps\Chat\V1\SearchSpacesResponse\SearchSpaceResult[] $results
+     *           Output only. The list of search results that matched the query.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,26 +77,40 @@ class SearchSpacesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page of the requested spaces.
+     * Deprecated: Please use the new `results` field instead.
+     * A page of the requested spaces. This field will be populated only when
+     * `useAdminAccess` is set to `true` and deprecated in favor of the new
+     * `results` field.
      *
-     * Generated from protobuf field <code>repeated .google.chat.v1.Space spaces = 1;</code>
+     * Generated from protobuf field <code>repeated .google.chat.v1.Space spaces = 1 [deprecated = true];</code>
      * @return RepeatedField<\Google\Apps\Chat\V1\Space>
+     * @deprecated
      */
     public function getSpaces()
     {
+        if (count($this->spaces) !== 0) {
+            @trigger_error('spaces is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->spaces;
     }
 
     /**
-     * A page of the requested spaces.
+     * Deprecated: Please use the new `results` field instead.
+     * A page of the requested spaces. This field will be populated only when
+     * `useAdminAccess` is set to `true` and deprecated in favor of the new
+     * `results` field.
      *
-     * Generated from protobuf field <code>repeated .google.chat.v1.Space spaces = 1;</code>
+     * Generated from protobuf field <code>repeated .google.chat.v1.Space spaces = 1 [deprecated = true];</code>
      * @param \Google\Apps\Chat\V1\Space[] $var
      * @return $this
+     * @deprecated
      */
     public function setSpaces($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Apps\Chat\V1\Space::class);
+        if (count($arr) !== 0) {
+            @trigger_error('spaces is deprecated.', E_USER_DEPRECATED);
+        }
         $this->spaces = $arr;
 
         return $this;
@@ -86,6 +119,7 @@ class SearchSpacesResponse extends \Google\Protobuf\Internal\Message
     /**
      * A token that can be used to retrieve the next page. If this field is empty,
      * there are no subsequent pages.
+     * Only populated when `useAdminAccess` is set to `true`.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -98,6 +132,7 @@ class SearchSpacesResponse extends \Google\Protobuf\Internal\Message
     /**
      * A token that can be used to retrieve the next page. If this field is empty,
      * there are no subsequent pages.
+     * Only populated when `useAdminAccess` is set to `true`.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
@@ -114,6 +149,7 @@ class SearchSpacesResponse extends \Google\Protobuf\Internal\Message
     /**
      * The total number of spaces that match the query, across all pages. If the
      * result is over 10,000 spaces, this value is an estimate.
+     * Only populated when `useAdminAccess` is set to `true`.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      * @return int
@@ -126,6 +162,7 @@ class SearchSpacesResponse extends \Google\Protobuf\Internal\Message
     /**
      * The total number of spaces that match the query, across all pages. If the
      * result is over 10,000 spaces, this value is an estimate.
+     * Only populated when `useAdminAccess` is set to `true`.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      * @param int $var
@@ -135,6 +172,32 @@ class SearchSpacesResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->total_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The list of search results that matched the query.
+     *
+     * Generated from protobuf field <code>repeated .google.chat.v1.SearchSpacesResponse.SearchSpaceResult results = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<\Google\Apps\Chat\V1\SearchSpacesResponse\SearchSpaceResult>
+     */
+    public function getResults()
+    {
+        return $this->results;
+    }
+
+    /**
+     * Output only. The list of search results that matched the query.
+     *
+     * Generated from protobuf field <code>repeated .google.chat.v1.SearchSpacesResponse.SearchSpaceResult results = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Apps\Chat\V1\SearchSpacesResponse\SearchSpaceResult[] $var
+     * @return $this
+     */
+    public function setResults($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Apps\Chat\V1\SearchSpacesResponse\SearchSpaceResult::class);
+        $this->results = $arr;
 
         return $this;
     }

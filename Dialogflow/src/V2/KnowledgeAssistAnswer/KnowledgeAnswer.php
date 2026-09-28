@@ -36,6 +36,10 @@ class KnowledgeAnswer extends \Google\Protobuf\Internal\Message
      *           Populated if the prediction came from FAQ.
      *     @type \Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\KnowledgeAnswer\GenerativeSource $generative_source
      *           Populated if the prediction was Generative.
+     *     @type \Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\KnowledgeAnswer\GenerativeSource $playbook_source
+     *           Populated if the prediction was from Playbook.
+     *     @type \Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\KnowledgeAnswer\EventSource $event_source
+     *           Populated if the prediction was from an event.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +131,68 @@ class KnowledgeAnswer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\KnowledgeAnswer\GenerativeSource::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Populated if the prediction was from Playbook.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.KnowledgeAssistAnswer.KnowledgeAnswer.GenerativeSource playbook_source = 7;</code>
+     * @return \Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\KnowledgeAnswer\GenerativeSource|null
+     */
+    public function getPlaybookSource()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasPlaybookSource()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Populated if the prediction was from Playbook.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.KnowledgeAssistAnswer.KnowledgeAnswer.GenerativeSource playbook_source = 7;</code>
+     * @param \Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\KnowledgeAnswer\GenerativeSource $var
+     * @return $this
+     */
+    public function setPlaybookSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\KnowledgeAnswer\GenerativeSource::class);
+        $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Populated if the prediction was from an event.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.KnowledgeAssistAnswer.KnowledgeAnswer.EventSource event_source = 8;</code>
+     * @return \Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\KnowledgeAnswer\EventSource|null
+     */
+    public function getEventSource()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasEventSource()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * Populated if the prediction was from an event.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.KnowledgeAssistAnswer.KnowledgeAnswer.EventSource event_source = 8;</code>
+     * @param \Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\KnowledgeAnswer\EventSource $var
+     * @return $this
+     */
+    public function setEventSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\KnowledgeAnswer\EventSource::class);
+        $this->writeOneof(8, $var);
 
         return $this;
     }

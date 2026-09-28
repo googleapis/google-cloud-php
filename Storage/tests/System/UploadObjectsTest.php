@@ -142,4 +142,57 @@ class UploadObjectsTest extends StorageTestCase
             ]
         ]);
     }
+
+    public function testCrc32cChecksumFailsWithTopLevelOption()
+    {
+        $this->expectException(BadRequestException::class);
+
+        $data = 'somedata';
+        $badChecksum = base64_encode(hash('crc32c', 'bad-data', true));
+
+        self::$bucket->upload($data, [
+            'name' => uniqid(self::TESTING_PREFIX),
+            'crc32c' => $badChecksum
+        ]);
+    }
+
+    public function testCrc32cChecksumSucceedsWithTopLevelOption()
+    {
+        $data = 'somedata';
+        $goodChecksum = base64_encode(hash('crc32c', $data, true));
+
+        $object = self::$bucket->upload($data, [
+            'name' => uniqid(self::TESTING_PREFIX),
+            'crc32c' => $goodChecksum
+        ]);
+        $this->assertEquals(strlen($data), $object->info()['size']);
+        $object->delete();
+    }
+
+    public function testMd5ChecksumFailsWithTopLevelOption()
+    {
+        $this->expectException(BadRequestException::class);
+
+        $data = 'somedata';
+        $badChecksum = base64_encode(hash('md5', 'bad-data', true));
+
+        self::$bucket->upload($data, [
+            'name' => uniqid(self::TESTING_PREFIX),
+            'md5' => $badChecksum
+        ]);
+    }
+
+    public function testMd5ChecksumSucceedsWithTopLevelOption()
+    {
+        $data = 'somedata';
+        $goodChecksum = base64_encode(hash('md5', $data, true));
+
+        $object = self::$bucket->upload($data, [
+            'name' => uniqid(self::TESTING_PREFIX),
+            'md5' => $goodChecksum
+        ]);
+
+        $this->assertEquals(strlen($data), $object->info()['size']);
+        $object->delete();
+    }
 }

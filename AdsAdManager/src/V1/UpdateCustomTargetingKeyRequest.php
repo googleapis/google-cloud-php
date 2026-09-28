@@ -24,9 +24,9 @@ class UpdateCustomTargetingKeyRequest extends \Google\Protobuf\Internal\Message
      */
     protected $custom_targeting_key = null;
     /**
-     * Required. The list of fields to update.
+     * Optional. The list of fields to update.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $update_mask = null;
 
@@ -35,7 +35,7 @@ class UpdateCustomTargetingKeyRequest extends \Google\Protobuf\Internal\Message
      *
      *                                                                        The `CustomTargetingKey`'s `name` is used to identify the
      *                                                                        `CustomTargetingKey` to update.
-     * @param \Google\Protobuf\FieldMask                  $updateMask         Required. The list of fields to update.
+     * @param \Google\Protobuf\FieldMask                  $updateMask         Optional. The list of fields to update.
      *
      * @return \Google\Ads\AdManager\V1\UpdateCustomTargetingKeyRequest
      *
@@ -59,7 +59,7 @@ class UpdateCustomTargetingKeyRequest extends \Google\Protobuf\Internal\Message
      *           The `CustomTargetingKey`'s `name` is used to identify the
      *           `CustomTargetingKey` to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. The list of fields to update.
+     *           Optional. The list of fields to update.
      * }
      */
     public function __construct($data = NULL) {
@@ -108,9 +108,9 @@ class UpdateCustomTargetingKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The list of fields to update.
+     * Optional. The list of fields to update.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
@@ -129,9 +129,9 @@ class UpdateCustomTargetingKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The list of fields to update.
+     * Optional. The list of fields to update.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

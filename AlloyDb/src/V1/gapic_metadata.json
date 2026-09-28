@@ -8,7 +8,7 @@
         "AlloyDBAdmin": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AlloyDBAdminGapicClient",
+                    "libraryClient": "AlloyDBAdminClient",
                     "rpcs": {
                         "BatchCreateInstances": {
                             "methods": [
@@ -212,7 +212,7 @@
         "AlloyDBCSQLAdmin": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AlloyDBCSQLAdminGapicClient",
+                    "libraryClient": "AlloyDBCSQLAdminClient",
                     "rpcs": {
                         "RestoreFromCloudSQL": {
                             "methods": [

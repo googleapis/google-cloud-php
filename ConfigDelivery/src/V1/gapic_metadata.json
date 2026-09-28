@@ -8,7 +8,7 @@
         "ConfigDelivery": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ConfigDeliveryGapicClient",
+                    "libraryClient": "ConfigDeliveryClient",
                     "rpcs": {
                         "AbortRollout": {
                             "methods": [

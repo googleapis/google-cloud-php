@@ -14,6 +14,9 @@ Update your `google/cloud-spanner` dependency to `^2.0`:
 
 ## Changes
 
+### Version constant removed
+Removed `SpannerClient::VERSION`, use the `VERSION` file in the library root instead.
+
 ### Client Options changes
 
 The following client options are removed/replaced with other options present in
@@ -133,4 +136,3 @@ $lro->delete();
  - `Session\CacheSessionPool` => removed in favor of `SessionCache`
  - `Session\SessionPoolInterface` => removed in favor of `SessionCache`
  - `Operation` - this class is marked `@internal`, and should not be used directly.
-

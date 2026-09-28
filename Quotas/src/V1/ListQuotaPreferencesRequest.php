@@ -16,7 +16,7 @@ use Google\Protobuf\RepeatedField;
 class ListQuotaPreferencesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Parent value of QuotaPreference resources.
+     * Required. Identifier. Parent value of QuotaPreference resources.
      * Listing across different resource containers (such as 'projects/-') is not
      * allowed.
      * When the value starts with 'folders' or 'organizations', it lists the
@@ -25,7 +25,7 @@ class ListQuotaPreferencesRequest extends \Google\Protobuf\Internal\Message
      * Example parents:
      * `projects/123/locations/global`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
@@ -63,7 +63,7 @@ class ListQuotaPreferencesRequest extends \Google\Protobuf\Internal\Message
     protected $order_by = '';
 
     /**
-     * @param string $parent Required. Parent value of QuotaPreference resources.
+     * @param string $parent Required. Identifier. Parent value of QuotaPreference resources.
      *                       Listing across different resource containers (such as 'projects/-') is not
      *                       allowed.
      *
@@ -92,7 +92,7 @@ class ListQuotaPreferencesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Parent value of QuotaPreference resources.
+     *           Required. Identifier. Parent value of QuotaPreference resources.
      *           Listing across different resource containers (such as 'projects/-') is not
      *           allowed.
      *           When the value starts with 'folders' or 'organizations', it lists the
@@ -125,7 +125,7 @@ class ListQuotaPreferencesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Parent value of QuotaPreference resources.
+     * Required. Identifier. Parent value of QuotaPreference resources.
      * Listing across different resource containers (such as 'projects/-') is not
      * allowed.
      * When the value starts with 'folders' or 'organizations', it lists the
@@ -134,7 +134,7 @@ class ListQuotaPreferencesRequest extends \Google\Protobuf\Internal\Message
      * Example parents:
      * `projects/123/locations/global`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -143,7 +143,7 @@ class ListQuotaPreferencesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Parent value of QuotaPreference resources.
+     * Required. Identifier. Parent value of QuotaPreference resources.
      * Listing across different resource containers (such as 'projects/-') is not
      * allowed.
      * When the value starts with 'folders' or 'organizations', it lists the
@@ -152,7 +152,7 @@ class ListQuotaPreferencesRequest extends \Google\Protobuf\Internal\Message
      * Example parents:
      * `projects/123/locations/global`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -8,7 +8,7 @@
         "DeliveryService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DeliveryServiceGapicClient",
+                    "libraryClient": "DeliveryServiceClient",
                     "rpcs": {
                         "BatchCreateTasks": {
                             "methods": [

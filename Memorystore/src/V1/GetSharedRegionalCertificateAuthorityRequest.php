@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request for
- * [GetSharedRegionalCertificateAuthority][google.cloud.memorystore.v1.Memorystore.GetSharedRegionalCertificateAuthority].
+ * Request for `GetSharedRegionalCertificateAuthority`.
  *
  * Generated from protobuf message <code>google.cloud.memorystore.v1.GetSharedRegionalCertificateAuthorityRequest</code>
  */

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -92,8 +92,16 @@ final class SessionTemplateControllerClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/dataproc',
+        'https://www.googleapis.com/auth/dataproc.read-only',
+    ];
 
     private static function getClientDefaults()
     {
@@ -113,6 +121,27 @@ final class SessionTemplateControllerClient
                 ],
             ],
         ];
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
+        return self::getPathTemplate('cryptoKey')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
     }
 
     /**
@@ -174,6 +203,7 @@ final class SessionTemplateControllerClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - location: projects/{project}/locations/{location}
      * - service: projects/{project}/locations/{location}/services/{service}
      * - sessionTemplate: projects/{project}/locations/{location}/sessionTemplates/{template}
@@ -422,7 +452,7 @@ final class SessionTemplateControllerClient
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy
-    if the resource exists and does not have a policy set.
+     * if the resource exists and does not have a policy set.
      *
      * The async variant is {@see SessionTemplateControllerClient::getIamPolicyAsync()}
      * .
@@ -450,10 +480,10 @@ final class SessionTemplateControllerClient
 
     /**
      * Sets the access control policy on the specified resource. Replaces
-    any existing policy.
-
-    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
-    errors.
+     * any existing policy.
+     *
+     * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+     * errors.
      *
      * The async variant is {@see SessionTemplateControllerClient::setIamPolicyAsync()}
      * .
@@ -481,12 +511,12 @@ final class SessionTemplateControllerClient
 
     /**
      * Returns permissions that a caller has on the specified resource. If the
-    resource does not exist, this will return an empty set of
-    permissions, not a `NOT_FOUND` error.
-
-    Note: This operation is designed to be used for building
-    permission-aware UIs and command-line tools, not for authorization
-    checking. This operation may "fail open" without warning.
+     * resource does not exist, this will return an empty set of
+     * permissions, not a `NOT_FOUND` error.
+     *
+     * Note: This operation is designed to be used for building
+     * permission-aware UIs and command-line tools, not for authorization
+     * checking. This operation may "fail open" without warning.
      *
      * The async variant is
      * {@see SessionTemplateControllerClient::testIamPermissionsAsync()} .

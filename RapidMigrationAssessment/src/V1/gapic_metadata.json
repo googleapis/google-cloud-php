@@ -8,7 +8,7 @@
         "RapidMigrationAssessment": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RapidMigrationAssessmentGapicClient",
+                    "libraryClient": "RapidMigrationAssessmentClient",
                     "rpcs": {
                         "CreateAnnotation": {
                             "methods": [

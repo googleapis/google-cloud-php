@@ -50,6 +50,12 @@ class SqlInstancesListRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string project = 4;</code>
      */
     protected $project = '';
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $location = '';
 
     /**
      * Constructor.
@@ -76,6 +82,8 @@ class SqlInstancesListRequest extends \Google\Protobuf\Internal\Message
      *           results to view.
      *     @type string $project
      *           Project ID of the project for which to list Cloud SQL instances.
+     *     @type string $location
+     *           Optional. Region of the Cloud SQL instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -205,6 +213,32 @@ class SqlInstancesListRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->project = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location = $var;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ use Google\Rpc\Status;
 /**
  * Creates a policy binding and returns a long-running operation.
  * Callers will need the IAM permissions on both the policy and target.
- * Once the binding is created, the policy is applied to the target.
+ * After the binding is created, the policy is applied to the target.
  *
  * @param string $formattedParent     The parent resource where this policy binding will be created.
  *                                    The binding parent is the closest Resource Manager resource (project,

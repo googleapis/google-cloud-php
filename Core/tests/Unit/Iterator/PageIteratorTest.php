@@ -137,6 +137,33 @@ class PageIteratorTest extends TestCase
         ];
     }
 
+    public function testCurrentWithoutRewindUsesFirstPage()
+    {
+        $hasCalledNetwork = false;
+        $call = function (array $options) use (&$hasCalledNetwork) {
+            $hasCalledNetwork = true;
+            return ['items' => ['should-not-reach-here']];
+        };
+
+        $pages = new PageIterator(
+            function ($result) {
+                return strtoupper($result);
+            },
+            $call,
+            ['itemsKey' => 'items'],
+            [
+                'firstPage' => [
+                    'items' => self::$page1
+                ]
+            ]
+        );
+
+        $currentPage = $pages->current();
+
+        $this->assertFalse($hasCalledNetwork);
+        $this->assertEquals(array_map('strtoupper', self::$page1), $currentPage);
+    }
+
     public function theCall(array $options)
     {
         $options += [

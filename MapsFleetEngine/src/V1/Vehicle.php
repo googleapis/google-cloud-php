@@ -609,7 +609,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      */
     public function getRoute()
     {
-        if ($this->route->count() !== 0) {
+        if (count($this->route) !== 0) {
             @trigger_error('route is deprecated.', E_USER_DEPRECATED);
         }
         return $this->route;

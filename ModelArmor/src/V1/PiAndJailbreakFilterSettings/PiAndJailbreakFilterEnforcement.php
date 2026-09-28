@@ -27,7 +27,7 @@ class PiAndJailbreakFilterEnforcement
      */
     const ENABLED = 1;
     /**
-     * Enabled
+     * Disabled
      *
      * Generated from protobuf enum <code>DISABLED = 2;</code>
      */

@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/datastream/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/Datastream/$1/$2
-api-name: Datastream

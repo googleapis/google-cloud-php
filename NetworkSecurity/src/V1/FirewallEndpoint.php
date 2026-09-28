@@ -60,10 +60,10 @@ class FirewallEndpoint extends \Google\Protobuf\Internal\Message
      */
     protected $reconciling = false;
     /**
-     * Output only. List of networks that are associated with this endpoint in the
-     * local zone. This is a projection of the FirewallEndpointAssociations
-     * pointing at this endpoint. A network will only appear in this list after
-     * traffic routing is fully configured. Format:
+     * Output only. Deprecated: List of networks that are associated with this
+     * endpoint in the local zone. This is a projection of the
+     * FirewallEndpointAssociations pointing at this endpoint. A network will only
+     * appear in this list after traffic routing is fully configured. Format:
      * projects/{project}/global/networks/{name}.
      *
      * Generated from protobuf field <code>repeated string associated_networks = 7 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -128,10 +128,10 @@ class FirewallEndpoint extends \Google\Protobuf\Internal\Message
      *           Output only. Whether reconciling is in progress, recommended per
      *           https://google.aip.dev/128.
      *     @type string[] $associated_networks
-     *           Output only. List of networks that are associated with this endpoint in the
-     *           local zone. This is a projection of the FirewallEndpointAssociations
-     *           pointing at this endpoint. A network will only appear in this list after
-     *           traffic routing is fully configured. Format:
+     *           Output only. Deprecated: List of networks that are associated with this
+     *           endpoint in the local zone. This is a projection of the
+     *           FirewallEndpointAssociations pointing at this endpoint. A network will only
+     *           appear in this list after traffic routing is fully configured. Format:
      *           projects/{project}/global/networks/{name}.
      *     @type \Google\Cloud\NetworkSecurity\V1\FirewallEndpoint\AssociationReference[] $associations
      *           Output only. List of FirewallEndpointAssociations that are associated to
@@ -361,10 +361,10 @@ class FirewallEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. List of networks that are associated with this endpoint in the
-     * local zone. This is a projection of the FirewallEndpointAssociations
-     * pointing at this endpoint. A network will only appear in this list after
-     * traffic routing is fully configured. Format:
+     * Output only. Deprecated: List of networks that are associated with this
+     * endpoint in the local zone. This is a projection of the
+     * FirewallEndpointAssociations pointing at this endpoint. A network will only
+     * appear in this list after traffic routing is fully configured. Format:
      * projects/{project}/global/networks/{name}.
      *
      * Generated from protobuf field <code>repeated string associated_networks = 7 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -373,17 +373,17 @@ class FirewallEndpoint extends \Google\Protobuf\Internal\Message
      */
     public function getAssociatedNetworks()
     {
-        if ($this->associated_networks->count() !== 0) {
+        if (count($this->associated_networks) !== 0) {
             @trigger_error('associated_networks is deprecated.', E_USER_DEPRECATED);
         }
         return $this->associated_networks;
     }
 
     /**
-     * Output only. List of networks that are associated with this endpoint in the
-     * local zone. This is a projection of the FirewallEndpointAssociations
-     * pointing at this endpoint. A network will only appear in this list after
-     * traffic routing is fully configured. Format:
+     * Output only. Deprecated: List of networks that are associated with this
+     * endpoint in the local zone. This is a projection of the
+     * FirewallEndpointAssociations pointing at this endpoint. A network will only
+     * appear in this list after traffic routing is fully configured. Format:
      * projects/{project}/global/networks/{name}.
      *
      * Generated from protobuf field <code>repeated string associated_networks = 7 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -394,7 +394,7 @@ class FirewallEndpoint extends \Google\Protobuf\Internal\Message
     public function setAssociatedNetworks($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('associated_networks is deprecated.', E_USER_DEPRECATED);
         }
         $this->associated_networks = $arr;

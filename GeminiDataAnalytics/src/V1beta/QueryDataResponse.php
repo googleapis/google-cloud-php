@@ -55,6 +55,23 @@ class QueryDataResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string disambiguation_question = 5;</code>
      */
     private $disambiguation_question;
+    /**
+     * Detailed step-by-step pipeline execution information.
+     * Populated only if generation_options.generate_debug_info was true.
+     * Provided for debugging and transparency purposes only.
+     * The structure and content of this object is not guaranteed and may
+     * change at any time without notice. Do not write production code or
+     * business logic depending on the fields in this object.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct pipeline_debug_info = 9;</code>
+     */
+    protected $pipeline_debug_info = null;
+    /**
+     * Overall token usage for the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.TokenUsage token_usage = 10;</code>
+     */
+    protected $token_usage = null;
 
     /**
      * Constructor.
@@ -82,6 +99,15 @@ class QueryDataResponse extends \Google\Protobuf\Internal\Message
      *           options.generate_disambiguation_question was true, this field contains a
      *           question to the user for clarification. The returned represents the
      *           service's best effort based on the ambiguous input.
+     *     @type \Google\Protobuf\Struct $pipeline_debug_info
+     *           Detailed step-by-step pipeline execution information.
+     *           Populated only if generation_options.generate_debug_info was true.
+     *           Provided for debugging and transparency purposes only.
+     *           The structure and content of this object is not guaranteed and may
+     *           change at any time without notice. Do not write production code or
+     *           business logic depending on the fields in this object.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\TokenUsage $token_usage
+     *           Overall token usage for the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -245,6 +271,88 @@ class QueryDataResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->disambiguation_question = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Detailed step-by-step pipeline execution information.
+     * Populated only if generation_options.generate_debug_info was true.
+     * Provided for debugging and transparency purposes only.
+     * The structure and content of this object is not guaranteed and may
+     * change at any time without notice. Do not write production code or
+     * business logic depending on the fields in this object.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct pipeline_debug_info = 9;</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getPipelineDebugInfo()
+    {
+        return $this->pipeline_debug_info;
+    }
+
+    public function hasPipelineDebugInfo()
+    {
+        return isset($this->pipeline_debug_info);
+    }
+
+    public function clearPipelineDebugInfo()
+    {
+        unset($this->pipeline_debug_info);
+    }
+
+    /**
+     * Detailed step-by-step pipeline execution information.
+     * Populated only if generation_options.generate_debug_info was true.
+     * Provided for debugging and transparency purposes only.
+     * The structure and content of this object is not guaranteed and may
+     * change at any time without notice. Do not write production code or
+     * business logic depending on the fields in this object.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct pipeline_debug_info = 9;</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setPipelineDebugInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->pipeline_debug_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Overall token usage for the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.TokenUsage token_usage = 10;</code>
+     * @return \Google\Cloud\GeminiDataAnalytics\V1beta\TokenUsage|null
+     */
+    public function getTokenUsage()
+    {
+        return $this->token_usage;
+    }
+
+    public function hasTokenUsage()
+    {
+        return isset($this->token_usage);
+    }
+
+    public function clearTokenUsage()
+    {
+        unset($this->token_usage);
+    }
+
+    /**
+     * Overall token usage for the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.TokenUsage token_usage = 10;</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\TokenUsage $var
+     * @return $this
+     */
+    public function setTokenUsage($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\TokenUsage::class);
+        $this->token_usage = $var;
 
         return $this;
     }

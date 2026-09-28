@@ -21,21 +21,33 @@ use Google\Protobuf\RepeatedField;
 class ExternalProtectionLevelOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The URI for an external resource that this
+     * Optional. The URI for an external resource that this
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents.
      *
-     * Generated from protobuf field <code>string external_key_uri = 1;</code>
+     * Generated from protobuf field <code>string external_key_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $external_key_uri = '';
     /**
-     * The path to the external key material on the EKM when using
+     * Optional. The path to the external key material on the EKM when using
      * [EkmConnection][google.cloud.kms.v1.EkmConnection] e.g., "v0/my/key". Set
      * this field instead of external_key_uri when using an
      * [EkmConnection][google.cloud.kms.v1.EkmConnection].
      *
-     * Generated from protobuf field <code>string ekm_connection_key_path = 2;</code>
+     * Generated from protobuf field <code>string ekm_connection_key_path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $ekm_connection_key_path = '';
+    /**
+     * Optional. The resource name of the backend environment where the key
+     * material of [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] is
+     * associated with. Setting this field overrides the [CryptoKeyBackend][].
+     * This field may be set when
+     * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] is set to
+     * [EXTERNAL_VPC][google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC]. Format:
+     * `projects/{@*}locations/{@*}ekmConnections/*`.
+     *
+     * Generated from protobuf field <code>string ekm_connection_backend_override = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $ekm_connection_backend_override = '';
 
     /**
      * Constructor.
@@ -44,13 +56,21 @@ class ExternalProtectionLevelOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $external_key_uri
-     *           The URI for an external resource that this
+     *           Optional. The URI for an external resource that this
      *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents.
      *     @type string $ekm_connection_key_path
-     *           The path to the external key material on the EKM when using
+     *           Optional. The path to the external key material on the EKM when using
      *           [EkmConnection][google.cloud.kms.v1.EkmConnection] e.g., "v0/my/key". Set
      *           this field instead of external_key_uri when using an
      *           [EkmConnection][google.cloud.kms.v1.EkmConnection].
+     *     @type string $ekm_connection_backend_override
+     *           Optional. The resource name of the backend environment where the key
+     *           material of [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] is
+     *           associated with. Setting this field overrides the [CryptoKeyBackend][].
+     *           This field may be set when
+     *           [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] is set to
+     *           [EXTERNAL_VPC][google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC]. Format:
+     *           `projects/{@*}locations/{@*}ekmConnections/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,10 +79,10 @@ class ExternalProtectionLevelOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI for an external resource that this
+     * Optional. The URI for an external resource that this
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents.
      *
-     * Generated from protobuf field <code>string external_key_uri = 1;</code>
+     * Generated from protobuf field <code>string external_key_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getExternalKeyUri()
@@ -71,10 +91,10 @@ class ExternalProtectionLevelOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI for an external resource that this
+     * Optional. The URI for an external resource that this
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents.
      *
-     * Generated from protobuf field <code>string external_key_uri = 1;</code>
+     * Generated from protobuf field <code>string external_key_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -87,12 +107,12 @@ class ExternalProtectionLevelOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path to the external key material on the EKM when using
+     * Optional. The path to the external key material on the EKM when using
      * [EkmConnection][google.cloud.kms.v1.EkmConnection] e.g., "v0/my/key". Set
      * this field instead of external_key_uri when using an
      * [EkmConnection][google.cloud.kms.v1.EkmConnection].
      *
-     * Generated from protobuf field <code>string ekm_connection_key_path = 2;</code>
+     * Generated from protobuf field <code>string ekm_connection_key_path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getEkmConnectionKeyPath()
@@ -101,12 +121,12 @@ class ExternalProtectionLevelOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path to the external key material on the EKM when using
+     * Optional. The path to the external key material on the EKM when using
      * [EkmConnection][google.cloud.kms.v1.EkmConnection] e.g., "v0/my/key". Set
      * this field instead of external_key_uri when using an
      * [EkmConnection][google.cloud.kms.v1.EkmConnection].
      *
-     * Generated from protobuf field <code>string ekm_connection_key_path = 2;</code>
+     * Generated from protobuf field <code>string ekm_connection_key_path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -114,6 +134,44 @@ class ExternalProtectionLevelOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->ekm_connection_key_path = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The resource name of the backend environment where the key
+     * material of [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] is
+     * associated with. Setting this field overrides the [CryptoKeyBackend][].
+     * This field may be set when
+     * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] is set to
+     * [EXTERNAL_VPC][google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC]. Format:
+     * `projects/{@*}locations/{@*}ekmConnections/*`.
+     *
+     * Generated from protobuf field <code>string ekm_connection_backend_override = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getEkmConnectionBackendOverride()
+    {
+        return $this->ekm_connection_backend_override;
+    }
+
+    /**
+     * Optional. The resource name of the backend environment where the key
+     * material of [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] is
+     * associated with. Setting this field overrides the [CryptoKeyBackend][].
+     * This field may be set when
+     * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] is set to
+     * [EXTERNAL_VPC][google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC]. Format:
+     * `projects/{@*}locations/{@*}ekmConnections/*`.
+     *
+     * Generated from protobuf field <code>string ekm_connection_backend_override = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEkmConnectionBackendOverride($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ekm_connection_backend_override = $var;
 
         return $this;
     }

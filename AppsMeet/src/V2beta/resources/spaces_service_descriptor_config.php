@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.apps.meet.v2beta.SpacesService' => [
+            'BatchUpdateMembers' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Meet\V2beta\BatchUpdateMembersResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ConnectActiveConference' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Meet\V2beta\ConnectActiveConferenceResponse',
@@ -115,6 +127,19 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateMember' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Meet\V2beta\Member',
+                'headerParams' => [
+                    [
+                        'keyName' => 'member.name',
+                        'fieldAccessors' => [
+                            'getMember',
+                            'getName',
                         ],
                     ],
                 ],

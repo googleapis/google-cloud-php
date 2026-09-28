@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -163,6 +163,25 @@ return [
                     ],
                 ],
             ],
+            'EnableManagedRotation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/secrets/*}:enableManagedRotation',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/secrets/*}:enableManagedRotation',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'EnableSecretVersion' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/secrets/*/versions/*}:enable',
@@ -257,6 +276,25 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{parent=projects/*/locations/*}/secrets',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RotateSecret' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/secrets/*}:rotateSecret',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/secrets/*}:rotateSecret',
+                        'body' => '*',
                     ],
                 ],
                 'placeholders' => [

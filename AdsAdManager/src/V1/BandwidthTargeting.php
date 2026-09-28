@@ -10,8 +10,8 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Bandwidth Targeting.
- * Reach users accessing the internet via various means of connection, such as
- * cable, DSL, or dial-up. Can be useful to target campaigns using
+ * Reach users accessing the internet through various means of connection, such
+ * as cable, DSL, or dial-up. Can be useful to target campaigns using
  * low-resolution creatives or text ads for users with low bandwidth.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.BandwidthTargeting</code>

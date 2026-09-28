@@ -31,14 +31,15 @@ class CreateDataScanRequest extends \Google\Protobuf\Internal\Message
      */
     protected $data_scan = null;
     /**
-     * Required. DataScan identifier.
+     * Optional. DataScan identifier. If not provided, a unique ID will be
+     * generated with the prefix "data-scan-".
      * * Must contain only lowercase letters, numbers and hyphens.
      * * Must start with a letter.
      * * Must end with a number or a letter.
      * * Must be between 1-63 characters.
      * * Must be unique within the customer project / location.
      *
-     * Generated from protobuf field <code>string data_scan_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string data_scan_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $data_scan_id = '';
     /**
@@ -56,7 +57,8 @@ class CreateDataScanRequest extends \Google\Protobuf\Internal\Message
      *                                                       `location_id` refers to a Google Cloud region. Please see
      *                                                       {@see DataScanServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Dataplex\V1\DataScan $dataScan   Required. DataScan resource.
-     * @param string                             $dataScanId Required. DataScan identifier.
+     * @param string                             $dataScanId Optional. DataScan identifier. If not provided, a unique ID will be
+     *                                                       generated with the prefix "data-scan-".
      *
      *                                                       * Must contain only lowercase letters, numbers and hyphens.
      *                                                       * Must start with a letter.
@@ -90,7 +92,8 @@ class CreateDataScanRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataplex\V1\DataScan $data_scan
      *           Required. DataScan resource.
      *     @type string $data_scan_id
-     *           Required. DataScan identifier.
+     *           Optional. DataScan identifier. If not provided, a unique ID will be
+     *           generated with the prefix "data-scan-".
      *           * Must contain only lowercase letters, numbers and hyphens.
      *           * Must start with a letter.
      *           * Must end with a number or a letter.
@@ -175,14 +178,15 @@ class CreateDataScanRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. DataScan identifier.
+     * Optional. DataScan identifier. If not provided, a unique ID will be
+     * generated with the prefix "data-scan-".
      * * Must contain only lowercase letters, numbers and hyphens.
      * * Must start with a letter.
      * * Must end with a number or a letter.
      * * Must be between 1-63 characters.
      * * Must be unique within the customer project / location.
      *
-     * Generated from protobuf field <code>string data_scan_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string data_scan_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDataScanId()
@@ -191,14 +195,15 @@ class CreateDataScanRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. DataScan identifier.
+     * Optional. DataScan identifier. If not provided, a unique ID will be
+     * generated with the prefix "data-scan-".
      * * Must contain only lowercase letters, numbers and hyphens.
      * * Must start with a letter.
      * * Must end with a number or a letter.
      * * Must be between 1-63 characters.
      * * Must be unique within the customer project / location.
      *
-     * Generated from protobuf field <code>string data_scan_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string data_scan_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

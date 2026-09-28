@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,6 +57,25 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'SetAgentOpsObservability' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\GeminiDataAnalytics\V1beta\SetAgentOpsObservabilityResponse',
+                    'metadataReturnType' => '\Google\Cloud\GeminiDataAnalytics\V1beta\SetAgentOpsObservabilityMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -169,6 +188,18 @@ return [
                     ],
                 ],
             ],
+            'RetrieveAgentOpsObservability' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GeminiDataAnalytics\V1beta\RetrieveAgentOpsObservabilityResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'SetIamPolicy' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Iam\V1\Policy',
@@ -229,6 +260,7 @@ return [
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'templateMap' => [
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'dataAgent' => 'projects/{project}/locations/{location}/dataAgents/{data_agent}',
                 'location' => 'projects/{project}/locations/{location}',
             ],

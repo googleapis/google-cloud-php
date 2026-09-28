@@ -8,7 +8,7 @@
         "CloudDeploy": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CloudDeployGapicClient",
+                    "libraryClient": "CloudDeployClient",
                     "rpcs": {
                         "AbandonRelease": {
                             "methods": [

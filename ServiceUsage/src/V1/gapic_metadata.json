@@ -8,7 +8,7 @@
         "ServiceUsage": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ServiceUsageGapicClient",
+                    "libraryClient": "ServiceUsageClient",
                     "rpcs": {
                         "BatchEnableServices": {
                             "methods": [

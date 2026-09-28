@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,8 +36,11 @@ use Google\Cloud\CloudSecurityCompliance\V1\DeleteFrameworkRequest;
  * - You can't delete frameworks that are deployed to a resource.
  * - You can't restore a deleted framework. This action is permanent.
  *
- * @param string $formattedName The name of the resource, in the format
- *                              `organizations/{organization}/locations/{location}/frameworks/{framework}`.
+ * @param string $formattedName The name of the resource, in one of the following formats:
+ *                              `organizations/{organization}/locations/{location}/frameworks/{framework}`
+ *                              or
+ *                              `projects/{project}/locations/{location}/frameworks/{framework}`.
+ *
  *                              The only supported location is `global`. Please see
  *                              {@see ConfigClient::frameworkName()} for help formatting this field.
  */

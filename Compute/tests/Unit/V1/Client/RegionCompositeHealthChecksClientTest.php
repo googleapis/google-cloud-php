@@ -31,9 +31,11 @@ use Google\Cloud\Compute\V1\Client\RegionCompositeHealthChecksClient;
 use Google\Cloud\Compute\V1\Client\RegionOperationsClient;
 use Google\Cloud\Compute\V1\CompositeHealthCheck;
 use Google\Cloud\Compute\V1\CompositeHealthCheckAggregatedList;
+use Google\Cloud\Compute\V1\CompositeHealthCheckHealth;
 use Google\Cloud\Compute\V1\CompositeHealthCheckList;
 use Google\Cloud\Compute\V1\CompositeHealthChecksScopedList;
 use Google\Cloud\Compute\V1\DeleteRegionCompositeHealthCheckRequest;
+use Google\Cloud\Compute\V1\GetHealthRegionCompositeHealthCheckRequest;
 use Google\Cloud\Compute\V1\GetRegionCompositeHealthCheckRequest;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
 use Google\Cloud\Compute\V1\InsertRegionCompositeHealthCheckRequest;
@@ -373,6 +375,87 @@ class RegionCompositeHealthChecksClientTest extends GeneratedTest
             ->setRegion($region);
         try {
             $gapicClient->get($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getHealthTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $healthState = 'healthState860878062';
+        $kind = 'kind3292052';
+        $expectedResponse = new CompositeHealthCheckHealth();
+        $expectedResponse->setHealthState($healthState);
+        $expectedResponse->setKind($kind);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $compositeHealthCheck = 'compositeHealthCheck-1680498659';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new GetHealthRegionCompositeHealthCheckRequest())
+            ->setCompositeHealthCheck($compositeHealthCheck)
+            ->setProject($project)
+            ->setRegion($region);
+        $response = $gapicClient->getHealth($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionCompositeHealthChecks/GetHealth', $actualFuncCall);
+        $actualValue = $actualRequestObject->getCompositeHealthCheck();
+        $this->assertProtobufEquals($compositeHealthCheck, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getHealthExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $compositeHealthCheck = 'compositeHealthCheck-1680498659';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new GetHealthRegionCompositeHealthCheckRequest())
+            ->setCompositeHealthCheck($compositeHealthCheck)
+            ->setProject($project)
+            ->setRegion($region);
+        try {
+            $gapicClient->getHealth($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * NodePoolUpgradeInfo contains the upgrade information of a nodepool.
+ * NodePoolUpgradeInfo contains the upgrade information of a node pool.
  *
  * Generated from protobuf message <code>google.container.v1.NodePoolUpgradeInfo</code>
  */
@@ -46,17 +46,24 @@ class NodePoolUpgradeInfo extends \Google\Protobuf\Internal\Message
      */
     private $upgrade_details;
     /**
-     * The nodepool's current minor version's end of standard support timestamp.
+     * The node pool's current minor version's end of standard support timestamp.
      *
      * Generated from protobuf field <code>optional string end_of_standard_support_timestamp = 6;</code>
      */
     protected $end_of_standard_support_timestamp = null;
     /**
-     * The nodepool's current minor version's end of extended support timestamp.
+     * The node pool's current minor version's end of extended support timestamp.
      *
      * Generated from protobuf field <code>optional string end_of_extended_support_timestamp = 7;</code>
      */
     protected $end_of_extended_support_timestamp = null;
+    /**
+     * Output only. Upgrade info for the node pool specific to the usage of custom
+     * images.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CustomImageInfo custom_image_info = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $custom_image_info = null;
 
     /**
      * Constructor.
@@ -75,9 +82,12 @@ class NodePoolUpgradeInfo extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\UpgradeDetails[] $upgrade_details
      *           The list of past auto upgrades.
      *     @type string $end_of_standard_support_timestamp
-     *           The nodepool's current minor version's end of standard support timestamp.
+     *           The node pool's current minor version's end of standard support timestamp.
      *     @type string $end_of_extended_support_timestamp
-     *           The nodepool's current minor version's end of extended support timestamp.
+     *           The node pool's current minor version's end of extended support timestamp.
+     *     @type \Google\Cloud\Container\V1\CustomImageInfo $custom_image_info
+     *           Output only. Upgrade info for the node pool specific to the usage of custom
+     *           images.
      * }
      */
     public function __construct($data = NULL) {
@@ -236,7 +246,7 @@ class NodePoolUpgradeInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The nodepool's current minor version's end of standard support timestamp.
+     * The node pool's current minor version's end of standard support timestamp.
      *
      * Generated from protobuf field <code>optional string end_of_standard_support_timestamp = 6;</code>
      * @return string
@@ -257,7 +267,7 @@ class NodePoolUpgradeInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The nodepool's current minor version's end of standard support timestamp.
+     * The node pool's current minor version's end of standard support timestamp.
      *
      * Generated from protobuf field <code>optional string end_of_standard_support_timestamp = 6;</code>
      * @param string $var
@@ -272,7 +282,7 @@ class NodePoolUpgradeInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The nodepool's current minor version's end of extended support timestamp.
+     * The node pool's current minor version's end of extended support timestamp.
      *
      * Generated from protobuf field <code>optional string end_of_extended_support_timestamp = 7;</code>
      * @return string
@@ -293,7 +303,7 @@ class NodePoolUpgradeInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The nodepool's current minor version's end of extended support timestamp.
+     * The node pool's current minor version's end of extended support timestamp.
      *
      * Generated from protobuf field <code>optional string end_of_extended_support_timestamp = 7;</code>
      * @param string $var
@@ -303,6 +313,44 @@ class NodePoolUpgradeInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->end_of_extended_support_timestamp = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Upgrade info for the node pool specific to the usage of custom
+     * images.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CustomImageInfo custom_image_info = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Container\V1\CustomImageInfo|null
+     */
+    public function getCustomImageInfo()
+    {
+        return $this->custom_image_info;
+    }
+
+    public function hasCustomImageInfo()
+    {
+        return isset($this->custom_image_info);
+    }
+
+    public function clearCustomImageInfo()
+    {
+        unset($this->custom_image_info);
+    }
+
+    /**
+     * Output only. Upgrade info for the node pool specific to the usage of custom
+     * images.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CustomImageInfo custom_image_info = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Container\V1\CustomImageInfo $var
+     * @return $this
+     */
+    public function setCustomImageInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\CustomImageInfo::class);
+        $this->custom_image_info = $var;
 
         return $this;
     }

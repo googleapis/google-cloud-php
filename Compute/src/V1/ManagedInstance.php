@@ -110,6 +110,28 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
      */
     protected $properties_from_flexibility_policy = null;
     /**
+     * Output only. Information about the termination timestamp of the instance, if applicable.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceScheduling scheduling = 386688404;</code>
+     */
+    protected $scheduling = null;
+    /**
+     * Output only. Specifies the graceful shutdown details if the instance is in
+     * `PENDING_STOP` state or there is a programmed stop scheduled.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceShutdownDetails shutdown_details = 15198553;</code>
+     */
+    protected $shutdown_details = null;
+    /**
+     * Output only. The eventual status of the instance. The instance group
+     * manager will not be identified as stable till each managed instance reaches
+     * its targetStatus.
+     * Check the TargetStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string target_status = 307799648;</code>
+     */
+    protected $target_status = null;
+    /**
      * Output only. [Output Only] Intended version of this instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceVersion version = 351608024;</code>
@@ -176,6 +198,16 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\ManagedInstancePropertiesFromFlexibilityPolicy $properties_from_flexibility_policy
      *           Output only. [Output Only] Instance properties selected for this instance resulting from
      *           InstanceFlexibilityPolicy.
+     *     @type \Google\Cloud\Compute\V1\ManagedInstanceScheduling $scheduling
+     *           Output only. Information about the termination timestamp of the instance, if applicable.
+     *     @type \Google\Cloud\Compute\V1\ManagedInstanceShutdownDetails $shutdown_details
+     *           Output only. Specifies the graceful shutdown details if the instance is in
+     *           `PENDING_STOP` state or there is a programmed stop scheduled.
+     *     @type string $target_status
+     *           Output only. The eventual status of the instance. The instance group
+     *           manager will not be identified as stable till each managed instance reaches
+     *           its targetStatus.
+     *           Check the TargetStatus enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\ManagedInstanceVersion $version
      *           Output only. [Output Only] Intended version of this instance.
      * }
@@ -599,6 +631,122 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ManagedInstancePropertiesFromFlexibilityPolicy::class);
         $this->properties_from_flexibility_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Information about the termination timestamp of the instance, if applicable.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceScheduling scheduling = 386688404;</code>
+     * @return \Google\Cloud\Compute\V1\ManagedInstanceScheduling|null
+     */
+    public function getScheduling()
+    {
+        return $this->scheduling;
+    }
+
+    public function hasScheduling()
+    {
+        return isset($this->scheduling);
+    }
+
+    public function clearScheduling()
+    {
+        unset($this->scheduling);
+    }
+
+    /**
+     * Output only. Information about the termination timestamp of the instance, if applicable.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceScheduling scheduling = 386688404;</code>
+     * @param \Google\Cloud\Compute\V1\ManagedInstanceScheduling $var
+     * @return $this
+     */
+    public function setScheduling($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ManagedInstanceScheduling::class);
+        $this->scheduling = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Specifies the graceful shutdown details if the instance is in
+     * `PENDING_STOP` state or there is a programmed stop scheduled.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceShutdownDetails shutdown_details = 15198553;</code>
+     * @return \Google\Cloud\Compute\V1\ManagedInstanceShutdownDetails|null
+     */
+    public function getShutdownDetails()
+    {
+        return $this->shutdown_details;
+    }
+
+    public function hasShutdownDetails()
+    {
+        return isset($this->shutdown_details);
+    }
+
+    public function clearShutdownDetails()
+    {
+        unset($this->shutdown_details);
+    }
+
+    /**
+     * Output only. Specifies the graceful shutdown details if the instance is in
+     * `PENDING_STOP` state or there is a programmed stop scheduled.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceShutdownDetails shutdown_details = 15198553;</code>
+     * @param \Google\Cloud\Compute\V1\ManagedInstanceShutdownDetails $var
+     * @return $this
+     */
+    public function setShutdownDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ManagedInstanceShutdownDetails::class);
+        $this->shutdown_details = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The eventual status of the instance. The instance group
+     * manager will not be identified as stable till each managed instance reaches
+     * its targetStatus.
+     * Check the TargetStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string target_status = 307799648;</code>
+     * @return string
+     */
+    public function getTargetStatus()
+    {
+        return isset($this->target_status) ? $this->target_status : '';
+    }
+
+    public function hasTargetStatus()
+    {
+        return isset($this->target_status);
+    }
+
+    public function clearTargetStatus()
+    {
+        unset($this->target_status);
+    }
+
+    /**
+     * Output only. The eventual status of the instance. The instance group
+     * manager will not be identified as stable till each managed instance reaches
+     * its targetStatus.
+     * Check the TargetStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string target_status = 307799648;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTargetStatus($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->target_status = $var;
 
         return $this;
     }

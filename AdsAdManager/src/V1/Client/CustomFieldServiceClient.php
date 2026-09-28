@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -94,8 +94,15 @@ final class CustomFieldServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/admanager',
+        'https://www.googleapis.com/auth/admanager.readonly',
+    ];
 
     private static function getClientDefaults()
     {
@@ -297,7 +304,7 @@ final class CustomFieldServiceClient
     }
 
     /**
-     * API to batch create `CustomField` objects.
+     * Creates `CustomField` objects.
      *
      * The async variant is
      * {@see CustomFieldServiceClient::batchCreateCustomFieldsAsync()} .
@@ -355,7 +362,7 @@ final class CustomFieldServiceClient
     }
 
     /**
-     * API to batch update `CustomField` objects.
+     * Batch updates `CustomField` objects.
      *
      * The async variant is
      * {@see CustomFieldServiceClient::batchUpdateCustomFieldsAsync()} .
@@ -384,7 +391,7 @@ final class CustomFieldServiceClient
     }
 
     /**
-     * API to create a `CustomField` object.
+     * Creates a `CustomField` object.
      *
      * The async variant is {@see CustomFieldServiceClient::createCustomFieldAsync()} .
      *
@@ -410,7 +417,7 @@ final class CustomFieldServiceClient
     }
 
     /**
-     * API to retrieve a `CustomField` object.
+     * Retrieves a `CustomField` object.
      *
      * The async variant is {@see CustomFieldServiceClient::getCustomFieldAsync()} .
      *
@@ -436,7 +443,7 @@ final class CustomFieldServiceClient
     }
 
     /**
-     * API to retrieve a list of `CustomField` objects.
+     * Lists `CustomField` objects.
      *
      * The async variant is {@see CustomFieldServiceClient::listCustomFieldsAsync()} .
      *
@@ -462,7 +469,7 @@ final class CustomFieldServiceClient
     }
 
     /**
-     * API to update a `CustomField` object.
+     * Updates a `CustomField` object.
      *
      * The async variant is {@see CustomFieldServiceClient::updateCustomFieldAsync()} .
      *

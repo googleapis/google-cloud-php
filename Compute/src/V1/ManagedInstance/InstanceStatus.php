@@ -9,9 +9,6 @@ use UnexpectedValueException;
 /**
  * Output only. [Output Only] The status of the instance. This field is empty when
  * the instance does not exist.
- * Additional supported values which may be not listed in the enum directly due to technical reasons:
- * STOPPING
- * SUSPENDING
  *
  * Protobuf type <code>google.cloud.compute.v1.ManagedInstance.InstanceStatus</code>
  */
@@ -37,6 +34,12 @@ class InstanceStatus
      * Generated from protobuf enum <code>PENDING = 35394935;</code>
      */
     const PENDING = 35394935;
+    /**
+     * The instance is gracefully shutting down.
+     *
+     * Generated from protobuf enum <code>PENDING_STOP = 362509770;</code>
+     */
+    const PENDING_STOP = 362509770;
     /**
      * Resources are being allocated for the instance.
      *
@@ -69,6 +72,8 @@ class InstanceStatus
      */
     const STOPPED = 444276141;
     /**
+     * The instance is currently stopping (either being deleted or killed).
+     *
      * Generated from protobuf enum <code>STOPPING = 350791796;</code>
      */
     const STOPPING = 350791796;
@@ -79,6 +84,8 @@ class InstanceStatus
      */
     const SUSPENDED = 51223995;
     /**
+     * The instance is suspending.
+     *
      * Generated from protobuf enum <code>SUSPENDING = 514206246;</code>
      */
     const SUSPENDING = 514206246;
@@ -94,6 +101,7 @@ class InstanceStatus
         self::UNDEFINED_INSTANCE_STATUS => 'UNDEFINED_INSTANCE_STATUS',
         self::DEPROVISIONING => 'DEPROVISIONING',
         self::PENDING => 'PENDING',
+        self::PENDING_STOP => 'PENDING_STOP',
         self::PROVISIONING => 'PROVISIONING',
         self::REPAIRING => 'REPAIRING',
         self::RUNNING => 'RUNNING',

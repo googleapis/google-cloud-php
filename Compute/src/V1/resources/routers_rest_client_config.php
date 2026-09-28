@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,6 +55,27 @@ return [
                     ],
                 ],
             ],
+            'DeleteNamedSet' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}/deleteNamedSet',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'router' => [
+                        'getters' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteRoutePolicy' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}/deleteRoutePolicy',
@@ -79,6 +100,27 @@ return [
             'Get' => [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'router' => [
+                        'getters' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
+            ],
+            'GetNamedSet' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}/getNamedSet',
                 'placeholders' => [
                     'project' => [
                         'getters' => [
@@ -235,6 +277,27 @@ return [
                     ],
                 ],
             ],
+            'ListNamedSets' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}/listNamedSets',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'router' => [
+                        'getters' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
+            ],
             'ListRoutePolicies' => [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}/listRoutePolicies',
@@ -260,6 +323,28 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}',
                 'body' => 'router_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'router' => [
+                        'getters' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
+            ],
+            'PatchNamedSet' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}/patchNamedSet',
+                'body' => 'named_set_resource',
                 'placeholders' => [
                     'project' => [
                         'getters' => [
@@ -326,6 +411,28 @@ return [
                 'method' => 'put',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}',
                 'body' => 'router_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'router' => [
+                        'getters' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateNamedSet' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}/updateNamedSet',
+                'body' => 'named_set_resource',
                 'placeholders' => [
                     'project' => [
                         'getters' => [

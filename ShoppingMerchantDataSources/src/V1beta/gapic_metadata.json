@@ -8,7 +8,7 @@
         "DataSourcesService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataSourcesServiceGapicClient",
+                    "libraryClient": "DataSourcesServiceClient",
                     "rpcs": {
                         "CreateDataSource": {
                             "methods": [
@@ -47,7 +47,7 @@
         "FileUploadsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FileUploadsServiceGapicClient",
+                    "libraryClient": "FileUploadsServiceClient",
                     "rpcs": {
                         "GetFileUpload": {
                             "methods": [

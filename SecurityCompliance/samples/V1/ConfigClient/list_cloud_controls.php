@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,8 +35,10 @@ use Google\Cloud\CloudSecurityCompliance\V1\ListCloudControlsRequest;
  * is returned.
  * This method supports pagination.
  *
- * @param string $formattedParent The parent resource name, in the format
- *                                `organizations/{organization}/locations/{location}`.
+ * @param string $formattedParent The parent resource name, in one of the following formats:
+ *                                - `organizations/{organization}/locations/{location}`
+ *                                - `projects/{project}/locations/{location}`.
+ *
  *                                The only supported location is `global`. Please see
  *                                {@see ConfigClient::organizationLocationName()} for help formatting this field.
  */

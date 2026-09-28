@@ -8,8 +8,8 @@ use UnexpectedValueException;
 
 /**
  * Specifies the forwarding rule type.
- * For more information about forwarding rules, refer to
- * Forwarding rule concepts.
+ * For more information, refer to
+ * Forwarding rule product and scheme table.
  *
  * Protobuf type <code>google.cloud.compute.v1.ForwardingRule.LoadBalancingScheme</code>
  */

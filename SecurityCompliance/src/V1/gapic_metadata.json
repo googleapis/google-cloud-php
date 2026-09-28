@@ -8,7 +8,7 @@
         "Audit": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AuditGapicClient",
+                    "libraryClient": "AuditClient",
                     "rpcs": {
                         "CreateFrameworkAudit": {
                             "methods": [
@@ -47,7 +47,7 @@
         "CmEnrollmentService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CmEnrollmentServiceGapicClient",
+                    "libraryClient": "CmEnrollmentServiceClient",
                     "rpcs": {
                         "CalculateEffectiveCmEnrollment": {
                             "methods": [
@@ -76,7 +76,7 @@
         "Config": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ConfigGapicClient",
+                    "libraryClient": "ConfigClient",
                     "rpcs": {
                         "CreateCloudControl": {
                             "methods": [
@@ -145,7 +145,7 @@
         "Deployment": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DeploymentGapicClient",
+                    "libraryClient": "DeploymentClient",
                     "rpcs": {
                         "CreateFrameworkDeployment": {
                             "methods": [
@@ -194,7 +194,7 @@
         "Monitoring": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MonitoringGapicClient",
+                    "libraryClient": "MonitoringClient",
                     "rpcs": {
                         "AggregateFrameworkComplianceReport": {
                             "methods": [

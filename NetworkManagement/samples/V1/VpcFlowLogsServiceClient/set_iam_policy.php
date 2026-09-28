@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,10 +30,10 @@ use Google\Cloud\NetworkManagement\V1\Client\VpcFlowLogsServiceClient;
 
 /**
  * Sets the access control policy on the specified resource. Replaces
-any existing policy.
-
-Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
-errors.
+ * any existing policy.
+ *
+ * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+ * errors.
  *
  * @param string $resource REQUIRED: The resource for which the policy is being specified.
  *                         See the operation documentation for the appropriate value for this field.

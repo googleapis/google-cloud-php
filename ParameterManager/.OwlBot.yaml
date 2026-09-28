@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/parametermanager/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/ParameterManager/$1/$2
-api-name: ParameterManager

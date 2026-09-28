@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -126,7 +126,7 @@ class DeploymentClientTest extends GeneratedTest
         $frameworkDeploymentTargetResourceConfig = new TargetResourceConfig();
         $frameworkDeployment->setTargetResourceConfig($frameworkDeploymentTargetResourceConfig);
         $frameworkDeploymentFramework = new FrameworkReference();
-        $frameworkFramework = 'frameworkFramework1248820640';
+        $frameworkFramework = $gapicClient->frameworkName('[ORGANIZATION]', '[LOCATION]', '[FRAMEWORK]');
         $frameworkDeploymentFramework->setFramework($frameworkFramework);
         $frameworkDeployment->setFramework($frameworkDeploymentFramework);
         $frameworkDeploymentCloudControlMetadata = [];
@@ -210,7 +210,7 @@ class DeploymentClientTest extends GeneratedTest
         $frameworkDeploymentTargetResourceConfig = new TargetResourceConfig();
         $frameworkDeployment->setTargetResourceConfig($frameworkDeploymentTargetResourceConfig);
         $frameworkDeploymentFramework = new FrameworkReference();
-        $frameworkFramework = 'frameworkFramework1248820640';
+        $frameworkFramework = $gapicClient->frameworkName('[ORGANIZATION]', '[LOCATION]', '[FRAMEWORK]');
         $frameworkDeploymentFramework->setFramework($frameworkFramework);
         $frameworkDeployment->setFramework($frameworkDeploymentFramework);
         $frameworkDeploymentCloudControlMetadata = [];
@@ -862,7 +862,7 @@ class DeploymentClientTest extends GeneratedTest
         $frameworkDeploymentTargetResourceConfig = new TargetResourceConfig();
         $frameworkDeployment->setTargetResourceConfig($frameworkDeploymentTargetResourceConfig);
         $frameworkDeploymentFramework = new FrameworkReference();
-        $frameworkFramework = 'frameworkFramework1248820640';
+        $frameworkFramework = $gapicClient->frameworkName('[ORGANIZATION]', '[LOCATION]', '[FRAMEWORK]');
         $frameworkDeploymentFramework->setFramework($frameworkFramework);
         $frameworkDeployment->setFramework($frameworkDeploymentFramework);
         $frameworkDeploymentCloudControlMetadata = [];

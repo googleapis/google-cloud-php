@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1/{name=organizations/*/locations/*}',
+                        'uriTemplate' => '/v1/{name=organizations/*}/locations',
                     ],
                 ],
                 'placeholders' => [
@@ -179,10 +179,6 @@ return [
                     ],
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1/{resource=organizations/*/locations/*/addressGroups/*}:getIamPolicy',
-                    ],
-                    [
-                        'method' => 'get',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/serverTlsPolicies/*}:getIamPolicy',
                     ],
                     [
@@ -210,11 +206,6 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/authorizationPolicies/*}:setIamPolicy',
-                        'body' => '*',
-                    ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=organizations/*/locations/*/addressGroups/*}:setIamPolicy',
                         'body' => '*',
                     ],
                     [
@@ -248,12 +239,12 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/authorizationPolicies/*}:testIamPermissions',
+                        'uriTemplate' => '/v1/{resource=organizations/*/locations/*/addressGroups/*}:testIamPermissions',
                         'body' => '*',
                     ],
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=organizations/*/locations/*/addressGroups/*}:testIamPermissions',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/authorizationPolicies/*}:testIamPermissions',
                         'body' => '*',
                     ],
                     [

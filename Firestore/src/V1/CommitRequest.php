@@ -35,6 +35,12 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes transaction = 3;</code>
      */
     private $transaction = '';
+    /**
+     * Optional. Any additional options for the request.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.RequestOptions request_options = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $request_options = null;
 
     /**
      * @param string                             $database Required. The database name. In the format:
@@ -68,6 +74,8 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      *           Always executed atomically and in order.
      *     @type string $transaction
      *           If set, applies all writes in this transaction, and commits it.
+     *     @type \Google\Cloud\Firestore\V1\RequestOptions $request_options
+     *           Optional. Any additional options for the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -153,6 +161,42 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->transaction = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Any additional options for the request.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.RequestOptions request_options = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Firestore\V1\RequestOptions|null
+     */
+    public function getRequestOptions()
+    {
+        return $this->request_options;
+    }
+
+    public function hasRequestOptions()
+    {
+        return isset($this->request_options);
+    }
+
+    public function clearRequestOptions()
+    {
+        unset($this->request_options);
+    }
+
+    /**
+     * Optional. Any additional options for the request.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.RequestOptions request_options = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Firestore\V1\RequestOptions $var
+     * @return $this
+     */
+    public function setRequestOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\RequestOptions::class);
+        $this->request_options = $var;
 
         return $this;
     }

@@ -46,6 +46,8 @@ class SchemaBundle extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/instances/{instance}/tables/{table}/schemaBundles/{schema_bundle}`
      *     @type \Google\Cloud\Bigtable\Admin\V2\ProtoSchema $proto_schema
      *           Schema for Protobufs.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\AvroSchema $avro_schema
+     *           Optional. Schema for Avros.
      *     @type string $etag
      *           Optional. The etag for this schema bundle.
      *           This may be sent on update and delete requests to ensure the
@@ -115,6 +117,37 @@ class SchemaBundle extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\ProtoSchema::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Schema for Avros.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.AvroSchema avro_schema = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\AvroSchema|null
+     */
+    public function getAvroSchema()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasAvroSchema()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Optional. Schema for Avros.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.AvroSchema avro_schema = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\AvroSchema $var
+     * @return $this
+     */
+    public function setAvroSchema($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\AvroSchema::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

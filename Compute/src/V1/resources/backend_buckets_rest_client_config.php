@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,6 +33,17 @@ return [
                             'getBackendBucket',
                         ],
                     ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'AggregatedList' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/aggregated/backendBuckets',
+                'placeholders' => [
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -122,6 +133,17 @@ return [
             'List' => [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/backendBuckets',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'ListUsable' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/backendBuckets/listUsable',
                 'placeholders' => [
                     'project' => [
                         'getters' => [

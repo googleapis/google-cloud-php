@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ use Google\Rpc\Status;
  * Creates a new TlsRoute in a given project and location.
  *
  * @param string $formattedParent                                     The parent resource of the TlsRoute. Must be in the
- *                                                                    format `projects/&#42;/locations/global`. Please see
+ *                                                                    format `projects/&#42;/locations/*`. Please see
  *                                                                    {@see NetworkServicesClient::locationName()} for help formatting this field.
  * @param string $tlsRouteId                                          Short name of the TlsRoute resource to be created.
  * @param string $formattedTlsRouteRulesActionDestinationsServiceName The URL of a BackendService to route traffic to. Please see

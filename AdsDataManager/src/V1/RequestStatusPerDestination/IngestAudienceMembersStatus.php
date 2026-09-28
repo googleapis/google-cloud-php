@@ -33,6 +33,13 @@ class IngestAudienceMembersStatus extends \Google\Protobuf\Internal\Message
      *           The status of the user id data ingestion to the destination.
      *     @type \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestPpidDataStatus $ppid_data_ingestion_status
      *           The status of the ppid data ingestion to the destination.
+     *     @type \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestCompositeDataStatus $composite_data_ingestion_status
+     *           The status of the composite data ingestion to the destination.
+     *     @type \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestGoogleUserIdDataStatus $google_user_id_data_ingestion_status
+     *           The status of the google user id data ingestion to the destination.
+     *     @type \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestPartnerProvidedIdDataStatus $partner_provided_id_data_ingestion_status
+     *           The status of the partner provided id data ingestion to the
+     *           destination.
      * }
      */
     public function __construct($data = NULL) {
@@ -191,6 +198,101 @@ class IngestAudienceMembersStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestPpidDataStatus::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * The status of the composite data ingestion to the destination.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.RequestStatusPerDestination.IngestCompositeDataStatus composite_data_ingestion_status = 6;</code>
+     * @return \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestCompositeDataStatus|null
+     */
+    public function getCompositeDataIngestionStatus()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasCompositeDataIngestionStatus()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * The status of the composite data ingestion to the destination.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.RequestStatusPerDestination.IngestCompositeDataStatus composite_data_ingestion_status = 6;</code>
+     * @param \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestCompositeDataStatus $var
+     * @return $this
+     */
+    public function setCompositeDataIngestionStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestCompositeDataStatus::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * The status of the google user id data ingestion to the destination.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.RequestStatusPerDestination.IngestGoogleUserIdDataStatus google_user_id_data_ingestion_status = 7;</code>
+     * @return \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestGoogleUserIdDataStatus|null
+     */
+    public function getGoogleUserIdDataIngestionStatus()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasGoogleUserIdDataIngestionStatus()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * The status of the google user id data ingestion to the destination.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.RequestStatusPerDestination.IngestGoogleUserIdDataStatus google_user_id_data_ingestion_status = 7;</code>
+     * @param \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestGoogleUserIdDataStatus $var
+     * @return $this
+     */
+    public function setGoogleUserIdDataIngestionStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestGoogleUserIdDataStatus::class);
+        $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * The status of the partner provided id data ingestion to the
+     * destination.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.RequestStatusPerDestination.IngestPartnerProvidedIdDataStatus partner_provided_id_data_ingestion_status = 8;</code>
+     * @return \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestPartnerProvidedIdDataStatus|null
+     */
+    public function getPartnerProvidedIdDataIngestionStatus()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasPartnerProvidedIdDataIngestionStatus()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * The status of the partner provided id data ingestion to the
+     * destination.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.RequestStatusPerDestination.IngestPartnerProvidedIdDataStatus partner_provided_id_data_ingestion_status = 8;</code>
+     * @param \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestPartnerProvidedIdDataStatus $var
+     * @return $this
+     */
+    public function setPartnerProvidedIdDataIngestionStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestPartnerProvidedIdDataStatus::class);
+        $this->writeOneof(8, $var);
 
         return $this;
     }

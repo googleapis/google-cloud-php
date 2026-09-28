@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START memorystore_v1_generated_Memorystore_ListBackups_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Memorystore\V1\Backup;
 use Google\Cloud\Memorystore\V1\Client\MemorystoreClient;
 use Google\Cloud\Memorystore\V1\ListBackupsRequest;
 
@@ -49,6 +50,7 @@ function list_backups_sample(string $formattedParent): void
         /** @var PagedListResponse $response */
         $response = $memorystoreClient->listBackups($request);
 
+        /** @var Backup $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

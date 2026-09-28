@@ -21,6 +21,13 @@ class ConversationLoggingSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool disable_conversation_logging = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $disable_conversation_logging = false;
+    /**
+     * Optional. Controls the retention window for the conversation.
+     * If not set, the conversation will be retained for 365 days.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration retention_window = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $retention_window = null;
 
     /**
      * Constructor.
@@ -30,6 +37,9 @@ class ConversationLoggingSettings extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $disable_conversation_logging
      *           Optional. Whether to disable conversation logging for the sessions.
+     *     @type \Google\Protobuf\Duration $retention_window
+     *           Optional. Controls the retention window for the conversation.
+     *           If not set, the conversation will be retained for 365 days.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +69,44 @@ class ConversationLoggingSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->disable_conversation_logging = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Controls the retention window for the conversation.
+     * If not set, the conversation will be retained for 365 days.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration retention_window = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getRetentionWindow()
+    {
+        return $this->retention_window;
+    }
+
+    public function hasRetentionWindow()
+    {
+        return isset($this->retention_window);
+    }
+
+    public function clearRetentionWindow()
+    {
+        unset($this->retention_window);
+    }
+
+    /**
+     * Optional. Controls the retention window for the conversation.
+     * If not set, the conversation will be retained for 365 days.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration retention_window = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setRetentionWindow($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->retention_window = $var;
 
         return $this;
     }

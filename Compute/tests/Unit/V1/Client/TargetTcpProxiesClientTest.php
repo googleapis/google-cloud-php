@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -292,6 +292,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $id = 3355;
         $kind = 'kind3292052';
+        $loadBalancingScheme = 'loadBalancingScheme1974502980';
         $name = 'name3373707';
         $proxyBind = true;
         $proxyHeader = 'proxyHeader-1987109506';
@@ -303,6 +304,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
+        $expectedResponse->setLoadBalancingScheme($loadBalancingScheme);
         $expectedResponse->setName($name);
         $expectedResponse->setProxyBind($proxyBind);
         $expectedResponse->setProxyHeader($proxyHeader);

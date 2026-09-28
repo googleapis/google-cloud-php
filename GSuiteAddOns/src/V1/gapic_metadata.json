@@ -8,7 +8,7 @@
         "GSuiteAddOns": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GSuiteAddOnsGapicClient",
+                    "libraryClient": "GSuiteAddOnsClient",
                     "rpcs": {
                         "CreateDeployment": {
                             "methods": [

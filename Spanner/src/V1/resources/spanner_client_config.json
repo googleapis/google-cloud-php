@@ -106,6 +106,9 @@
                 "ExecuteStreamingSql": {
                     "timeout_millis": 3600000
                 },
+                "FetchCacheUpdate": {
+                    "timeout_millis": 60000
+                },
                 "GetSession": {
                     "timeout_millis": 30000,
                     "retry_codes_name": "retry_policy_3_codes",

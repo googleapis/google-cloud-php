@@ -16,11 +16,11 @@ use Google\Protobuf\RepeatedField;
 class SearchAds360Link extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name for this SearchAds360Link resource.
+     * Identifier. The resource name for this SearchAds360Link resource.
      * Format: properties/{propertyId}/searchAds360Links/{linkId}
      * Note: linkId is not the Search Ads 360 advertiser ID
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -78,7 +78,7 @@ class SearchAds360Link extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name for this SearchAds360Link resource.
+     *           Identifier. The resource name for this SearchAds360Link resource.
      *           Format: properties/{propertyId}/searchAds360Links/{linkId}
      *           Note: linkId is not the Search Ads 360 advertiser ID
      *     @type string $advertiser_id
@@ -112,11 +112,11 @@ class SearchAds360Link extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this SearchAds360Link resource.
+     * Identifier. The resource name for this SearchAds360Link resource.
      * Format: properties/{propertyId}/searchAds360Links/{linkId}
      * Note: linkId is not the Search Ads 360 advertiser ID
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -125,11 +125,11 @@ class SearchAds360Link extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this SearchAds360Link resource.
+     * Identifier. The resource name for this SearchAds360Link resource.
      * Format: properties/{propertyId}/searchAds360Links/{linkId}
      * Note: linkId is not the Search Ads 360 advertiser ID
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

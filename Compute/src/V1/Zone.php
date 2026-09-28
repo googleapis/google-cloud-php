@@ -70,6 +70,10 @@ class Zone extends \Google\Protobuf\Internal\Message
      */
     protected $region = null;
     /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ZoneResourceStatus resource_status = 249429315;</code>
+     */
+    protected $resource_status = null;
+    /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -114,6 +118,7 @@ class Zone extends \Google\Protobuf\Internal\Message
      *           [Output Only] Name of the resource.
      *     @type string $region
      *           [Output Only] Full URL reference to the region which hosts the zone.
+     *     @type \Google\Cloud\Compute\V1\ZoneResourceStatus $resource_status
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $status
@@ -408,6 +413,38 @@ class Zone extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->region = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ZoneResourceStatus resource_status = 249429315;</code>
+     * @return \Google\Cloud\Compute\V1\ZoneResourceStatus|null
+     */
+    public function getResourceStatus()
+    {
+        return $this->resource_status;
+    }
+
+    public function hasResourceStatus()
+    {
+        return isset($this->resource_status);
+    }
+
+    public function clearResourceStatus()
+    {
+        unset($this->resource_status);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ZoneResourceStatus resource_status = 249429315;</code>
+     * @param \Google\Cloud\Compute\V1\ZoneResourceStatus $var
+     * @return $this
+     */
+    public function setResourceStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ZoneResourceStatus::class);
+        $this->resource_status = $var;
 
         return $this;
     }

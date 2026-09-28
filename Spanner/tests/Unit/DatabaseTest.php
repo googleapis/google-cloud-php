@@ -701,6 +701,21 @@ class DatabaseTest extends TestCase
         $this->assertInstanceOf(Snapshot::class, $res);
     }
 
+    public function testSnapshotForwardsCallOptions()
+    {
+        $this->spannerClient->beginTransaction(
+            Argument::type(BeginTransactionRequest::class),
+            Argument::that(function (array $callOptions) {
+                $this->assertEquals(1234, $callOptions['timeoutMillis']);
+                return true;
+            })
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
+
+        $this->database->snapshot(['timeoutMillis' => 1234]);
+    }
+
     public function testSnapshotMinReadTimestamp()
     {
         $this->expectException(\BadMethodCallException::class);
@@ -790,6 +805,20 @@ class DatabaseTest extends TestCase
         $this->spannerClient->rollback(Argument::cetera())->shouldNotBeCalled();
 
         $this->database->runTransaction($this->noop());
+    }
+
+    public function testRunTransactionNoCommitWithTag()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Transactions must be rolled back or committed.');
+
+        $sql = $this->createStreamingAPIArgs()['sql'];
+        $this->stubExecuteStreamingSql();
+        $this->spannerClient->rollback(Argument::cetera())->shouldBeCalled();
+
+        $this->database->runTransaction(function (Transaction $t) use ($sql) {
+            $t->execute($sql);
+        }, ['tag' => self::TRANSACTION_TAG]);
     }
 
     public function testRunTransactionNestedTransaction()
@@ -1067,6 +1096,36 @@ class DatabaseTest extends TestCase
         $res = $this->database->insertBatch($table, [$row]);
         $this->assertInstanceOf(Timestamp::class, $res);
         $this->assertTimestampIsCorrect($res);
+    }
+
+    public function testInsertBatchWithOptions()
+    {
+        $table = 'foo';
+        $row = ['col' => 'val'];
+        $options = [
+            'requestOptions' => ['priority' => 1],
+            'headers' => ['custom-header' => 'value'],
+            'retrySettings' => ['retriesEnabled' => false],
+            'timeoutMillis' => 1234,
+            'transportOptions' => ['grpc' => ['timeout' => 100]],
+        ];
+
+        $this->spannerClient->commit(
+            Argument::that(function ($request) {
+                return $request->getRequestOptions()->getPriority() === 1;
+            }),
+            Argument::that(function (array $callOptions) {
+                $this->assertEquals('value', $callOptions['headers']['custom-header']);
+                $this->assertEquals(['retriesEnabled' => false], $callOptions['retrySettings']);
+                $this->assertEquals(1234, $callOptions['timeoutMillis']);
+                $this->assertEquals(['grpc' => ['timeout' => 100]], $callOptions['transportOptions']);
+                return true;
+            })
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->commitResponse());
+
+        $this->database->insertBatch($table, [$row], $options);
     }
 
     public function testUpdate()
@@ -2258,6 +2317,28 @@ class DatabaseTest extends TestCase
         }, ['tag' => self::TRANSACTION_TAG]);
     }
 
+    public function testRunTransactionRollsBackOnException()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Callback exception');
+
+        $sql = $this->createStreamingAPIArgs()['sql'];
+
+        $this->stubExecuteStreamingSql();
+        $this->spannerClient->rollback(
+            Argument::that(function ($request) use ($sql) {
+                return $request->getTransactionId() == self::TRANSACTION;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce();
+
+        $this->database->runTransaction(function (Transaction $t) use ($sql) {
+            $t->execute($sql);
+            throw new \RuntimeException('Callback exception');
+        }, ['tag' => self::TRANSACTION_TAG]);
+    }
+
     public function testRunTransactionWithExcludeTxnFromChangeStreams()
     {
         $sql = 'SELECT example FROM sql_query';
@@ -2378,6 +2459,99 @@ class DatabaseTest extends TestCase
         );
     }
 
+    public function testRunTransactionWithClientLevelIsolationLevel()
+    {
+        $sql = 'SELECT example FROM sql_query';
+        $stream = $this->prophesize(ServerStream::class);
+        $stream->readAll()
+            ->shouldBeCalledOnce()
+            ->willReturn([new ResultSet(['stats' => new ResultSetStats(['row_count_exact' => 0])])]);
+
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function (ExecuteSqlRequest $request) {
+                $txnOptions = $request->getTransaction()->getBegin();
+                $this->assertNotNull($txnOptions);
+                $this->assertEquals(IsolationLevel::SERIALIZABLE, $txnOptions->getIsolationLevel());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($stream->reveal());
+
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn($this->sessionName);
+
+        $database = new Database(
+            $this->spannerClient->reveal(),
+            $this->databaseAdminClient->reveal(),
+            $this->serializer,
+            $this->instance,
+            self::PROJECT,
+            self::DATABASE,
+            $session->reveal(),
+            ['isolationLevel' => IsolationLevel::SERIALIZABLE]
+        );
+
+        $database->runTransaction(
+            function (Transaction $t) use ($sql) {
+                // Run a fake query
+                $t->executeUpdate($sql);
+
+                // Simulate calling Transaction::commmit()
+                $prop = new \ReflectionProperty($t, 'state');
+                $prop->setValue($t, Transaction::STATE_COMMITTED);
+            }
+        );
+    }
+
+    public function testRunTransactionWithClientLevelIsolationLevelOverride()
+    {
+        $sql = 'SELECT example FROM sql_query';
+        $stream = $this->prophesize(ServerStream::class);
+        $stream->readAll()
+            ->shouldBeCalledOnce()
+            ->willReturn([new ResultSet(['stats' => new ResultSetStats(['row_count_exact' => 0])])]);
+
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function (ExecuteSqlRequest $request) {
+                $txnOptions = $request->getTransaction()->getBegin();
+                $this->assertNotNull($txnOptions);
+                $this->assertEquals(IsolationLevel::REPEATABLE_READ, $txnOptions->getIsolationLevel());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($stream->reveal());
+
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn($this->sessionName);
+
+        $database = new Database(
+            $this->spannerClient->reveal(),
+            $this->databaseAdminClient->reveal(),
+            $this->serializer,
+            $this->instance,
+            self::PROJECT,
+            self::DATABASE,
+            $session->reveal(),
+            ['isolationLevel' => IsolationLevel::SERIALIZABLE]
+        );
+
+        $database->runTransaction(
+            function (Transaction $t) use ($sql) {
+                // Run a fake query
+                $t->executeUpdate($sql);
+
+                // Simulate calling Transaction::commmit()
+                $prop = new \ReflectionProperty($t, 'state');
+                $prop->setValue($t, Transaction::STATE_COMMITTED);
+            },
+            ['transactionOptions' => ['isolationLevel' => IsolationLevel::REPEATABLE_READ]]
+        );
+    }
+
     public function testRunTransactionWithReadLockMode()
     {
         $sql = 'SELECT example FROM sql_query';
@@ -2403,6 +2577,101 @@ class DatabaseTest extends TestCase
         // This helps test proper formating by the library to the format expected by Spanner backend
         // (i.e. readLockMode should be inside readWrite)
         $this->database->runTransaction(
+            function (Transaction $t) use ($sql) {
+                // Run a fake query
+                $t->executeUpdate($sql);
+
+                // Simulate calling Transaction::commmit()
+                $prop = new \ReflectionProperty($t, 'state');
+                $prop->setValue($t, Transaction::STATE_COMMITTED);
+            },
+            ['transactionOptions' => ['readLockMode' => ReadLockMode::OPTIMISTIC]]
+        );
+    }
+
+    public function testRunTransactionWithClientLevelReadLockMode()
+    {
+        $sql = 'SELECT example FROM sql_query';
+        $stream = $this->prophesize(ServerStream::class);
+        $stream->readAll()
+            ->shouldBeCalledOnce()
+            ->willReturn([new ResultSet(['stats' => new ResultSetStats(['row_count_exact' => 0])])]);
+
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function (ExecuteSqlRequest $request) {
+                $txnOptions = $request->getTransaction()->getBegin();
+                $this->assertNotNull($txnOptions);
+                $this->assertNotNull($readWriteTxnOptions = $txnOptions->getReadWrite());
+                $this->assertEquals(ReadLockMode::PESSIMISTIC, $readWriteTxnOptions->getReadLockMode());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($stream->reveal());
+
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn($this->sessionName);
+
+        $database = new Database(
+            $this->spannerClient->reveal(),
+            $this->databaseAdminClient->reveal(),
+            $this->serializer,
+            $this->instance,
+            self::PROJECT,
+            self::DATABASE,
+            $session->reveal(),
+            ['readLockMode' => ReadLockMode::PESSIMISTIC]
+        );
+
+        $database->runTransaction(
+            function (Transaction $t) use ($sql) {
+                // Run a fake query
+                $t->executeUpdate($sql);
+
+                // Simulate calling Transaction::commmit()
+                $prop = new \ReflectionProperty($t, 'state');
+                $prop->setValue($t, Transaction::STATE_COMMITTED);
+            }
+        );
+    }
+
+    public function testRunTransactionWithClientLevelReadLockModeOverride()
+    {
+        $sql = 'SELECT example FROM sql_query';
+        $stream = $this->prophesize(ServerStream::class);
+        $stream->readAll()
+            ->shouldBeCalledOnce()
+            ->willReturn([new ResultSet(['stats' => new ResultSetStats(['row_count_exact' => 0])])]);
+
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function (ExecuteSqlRequest $request) {
+                $txnOptions = $request->getTransaction()->getBegin();
+                $this->assertNotNull($txnOptions);
+                $this->assertNotNull($readWriteTxnOptions = $txnOptions->getReadWrite());
+                $this->assertEquals(ReadLockMode::OPTIMISTIC, $readWriteTxnOptions->getReadLockMode());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($stream->reveal());
+
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn($this->sessionName);
+
+        $database = new Database(
+            $this->spannerClient->reveal(),
+            $this->databaseAdminClient->reveal(),
+            $this->serializer,
+            $this->instance,
+            self::PROJECT,
+            self::DATABASE,
+            $session->reveal(),
+            ['readLockMode' => ReadLockMode::PESSIMISTIC]
+        );
+
+        $database->runTransaction(
             function (Transaction $t) use ($sql) {
                 // Run a fake query
                 $t->executeUpdate($sql);

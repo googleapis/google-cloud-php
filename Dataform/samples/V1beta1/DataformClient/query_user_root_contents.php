@@ -34,7 +34,7 @@ use Google\Cloud\Dataform\V1beta1\QueryUserRootContentsResponse\RootContentsEntr
  * The root folder contains all resources that are created by the user and not
  * contained in any other folder.
  *
- * @param string $formattedLocation Location of the user root folder whose contents to list.
+ * @param string $formattedLocation Location of the user root folder to list contents for.
  *                                  Format: projects/&#42;/locations/*
  *                                  Please see {@see DataformClient::locationName()} for help formatting this field.
  */

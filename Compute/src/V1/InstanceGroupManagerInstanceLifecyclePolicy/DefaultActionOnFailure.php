@@ -7,18 +7,14 @@ namespace Google\Cloud\Compute\V1\InstanceGroupManagerInstanceLifecyclePolicy;
 use UnexpectedValueException;
 
 /**
- * The action that a MIG performs on a failed or an unhealthy VM.
- * A VM is marked as unhealthy when the application running on that
- * VM fails a health check.
+ * The action that a MIG performs on a failed VM. If the value of the
+ * onFailedHealthCheck field is `DEFAULT_ACTION`, then the same action also
+ * applies to the VMs on which your application fails a health check.
  * Valid values are
- *    - REPAIR (default): MIG automatically repairs a failed or
- *    an unhealthy VM by recreating it. For more information, see About
+ *    - REPAIR (default): MIG automatically repairs a failed VM
+ *    by recreating it. For more information, see About
  *    repairing VMs in a MIG.
- *    - DO_NOTHING: MIG does not repair a failed or an unhealthy
- *    VM.
- * Additional supported values which may be not listed in the enum directly due to technical reasons:
- * DO_NOTHING
- * REPAIR
+ *    - DO_NOTHING: MIG does not repair a failed VM.
  *
  * Protobuf type <code>google.cloud.compute.v1.InstanceGroupManagerInstanceLifecyclePolicy.DefaultActionOnFailure</code>
  */
@@ -31,10 +27,16 @@ class DefaultActionOnFailure
      */
     const UNDEFINED_DEFAULT_ACTION_ON_FAILURE = 0;
     /**
+     * MIG does not repair a failed VM.
+     *
      * Generated from protobuf enum <code>DO_NOTHING = 451307513;</code>
      */
     const DO_NOTHING = 451307513;
     /**
+     * (default): MIG automatically repairs a failed VM by recreating it.
+     * For more information, see About
+     * repairing VMs in a MIG.
+     *
      * Generated from protobuf enum <code>REPAIR = 266277773;</code>
      */
     const REPAIR = 266277773;

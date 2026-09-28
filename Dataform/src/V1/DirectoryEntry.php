@@ -30,9 +30,11 @@ class DirectoryEntry extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $file
-     *           A file in the directory.
+     *           A file in the directory. The path is returned including the full
+     *           folder structure from the root.
      *     @type string $directory
-     *           A child directory in the directory.
+     *           A child directory in the directory. The path is returned including
+     *           the full folder structure from the root.
      *     @type \Google\Cloud\Dataform\V1\FilesystemEntryMetadata $metadata
      *           Entry with metadata.
      * }
@@ -43,7 +45,8 @@ class DirectoryEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A file in the directory.
+     * A file in the directory. The path is returned including the full
+     * folder structure from the root.
      *
      * Generated from protobuf field <code>string file = 1;</code>
      * @return string
@@ -59,7 +62,8 @@ class DirectoryEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A file in the directory.
+     * A file in the directory. The path is returned including the full
+     * folder structure from the root.
      *
      * Generated from protobuf field <code>string file = 1;</code>
      * @param string $var
@@ -74,7 +78,8 @@ class DirectoryEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A child directory in the directory.
+     * A child directory in the directory. The path is returned including
+     * the full folder structure from the root.
      *
      * Generated from protobuf field <code>string directory = 2;</code>
      * @return string
@@ -90,7 +95,8 @@ class DirectoryEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A child directory in the directory.
+     * A child directory in the directory. The path is returned including
+     * the full folder structure from the root.
      *
      * Generated from protobuf field <code>string directory = 2;</code>
      * @param string $var

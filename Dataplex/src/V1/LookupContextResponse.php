@@ -16,7 +16,8 @@ use Google\Protobuf\RepeatedField;
 class LookupContextResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * LLM generated context for the resources.
+     * Pre-formatted block of text containing the context for the requested
+     * resources.
      *
      * Generated from protobuf field <code>string context = 1;</code>
      */
@@ -29,7 +30,8 @@ class LookupContextResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $context
-     *           LLM generated context for the resources.
+     *           Pre-formatted block of text containing the context for the requested
+     *           resources.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +40,8 @@ class LookupContextResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * LLM generated context for the resources.
+     * Pre-formatted block of text containing the context for the requested
+     * resources.
      *
      * Generated from protobuf field <code>string context = 1;</code>
      * @return string
@@ -49,7 +52,8 @@ class LookupContextResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * LLM generated context for the resources.
+     * Pre-formatted block of text containing the context for the requested
+     * resources.
      *
      * Generated from protobuf field <code>string context = 1;</code>
      * @param string $var

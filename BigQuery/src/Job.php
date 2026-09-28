@@ -33,6 +33,7 @@ class Job
     use JobWaitTrait;
 
     const MAX_RETRIES = PHP_INT_MAX;
+    const DONE = 'DONE';
 
     /**
      * @var ConnectionInterface Represents a connection to BigQuery.
@@ -266,7 +267,7 @@ class Job
      */
     public function isComplete(array $options = [])
     {
-        return $this->info($options)['status']['state'] === 'DONE';
+        return $this->info($options)['status']['state'] === self::DONE;
     }
 
     /**

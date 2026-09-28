@@ -50,6 +50,20 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool skip_initial_version_creation = 5;</code>
      */
     protected $skip_initial_version_creation = false;
+    /**
+     * Optional. Whether trusted wrapping will be enabled on the first
+     * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] created for this
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey]. This field is only supported
+     * for keys with
+     * [CryptoKeyVersionTemplate.protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
+     * [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT].
+     * This field is supported for all
+     * [CryptoKeyPurposes][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose] except
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
+     *
+     * Generated from protobuf field <code>bool trusted_wrapping_enabled = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $trusted_wrapping_enabled = false;
 
     /**
      * @param string                         $parent      Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing
@@ -96,6 +110,16 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
      *           or
      *           [ImportCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion]
      *           before you can use this [CryptoKey][google.cloud.kms.v1.CryptoKey].
+     *     @type bool $trusted_wrapping_enabled
+     *           Optional. Whether trusted wrapping will be enabled on the first
+     *           [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] created for this
+     *           [CryptoKey][google.cloud.kms.v1.CryptoKey]. This field is only supported
+     *           for keys with
+     *           [CryptoKeyVersionTemplate.protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
+     *           [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT].
+     *           This field is supported for all
+     *           [CryptoKeyPurposes][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose] except
+     *           [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
      * }
      */
     public function __construct($data = NULL) {
@@ -233,6 +257,48 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->skip_initial_version_creation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether trusted wrapping will be enabled on the first
+     * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] created for this
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey]. This field is only supported
+     * for keys with
+     * [CryptoKeyVersionTemplate.protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
+     * [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT].
+     * This field is supported for all
+     * [CryptoKeyPurposes][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose] except
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
+     *
+     * Generated from protobuf field <code>bool trusted_wrapping_enabled = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getTrustedWrappingEnabled()
+    {
+        return $this->trusted_wrapping_enabled;
+    }
+
+    /**
+     * Optional. Whether trusted wrapping will be enabled on the first
+     * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] created for this
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey]. This field is only supported
+     * for keys with
+     * [CryptoKeyVersionTemplate.protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
+     * [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT].
+     * This field is supported for all
+     * [CryptoKeyPurposes][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose] except
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
+     *
+     * Generated from protobuf field <code>bool trusted_wrapping_enabled = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setTrustedWrappingEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->trusted_wrapping_enabled = $var;
 
         return $this;
     }

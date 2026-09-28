@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,6 +59,8 @@ use Google\Cloud\Kms\V1\DeleteCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\EncryptRequest;
 use Google\Cloud\Kms\V1\EncryptResponse;
+use Google\Cloud\Kms\V1\ExportTrustedKeyWrappedCryptoKeyVersionRequest;
+use Google\Cloud\Kms\V1\ExportTrustedKeyWrappedCryptoKeyVersionResponse;
 use Google\Cloud\Kms\V1\GenerateRandomBytesRequest;
 use Google\Cloud\Kms\V1\GenerateRandomBytesResponse;
 use Google\Cloud\Kms\V1\GetCryptoKeyRequest;
@@ -69,6 +71,7 @@ use Google\Cloud\Kms\V1\GetPublicKeyRequest;
 use Google\Cloud\Kms\V1\GetRetiredResourceRequest;
 use Google\Cloud\Kms\V1\ImportCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\ImportJob;
+use Google\Cloud\Kms\V1\ImportTrustedKeyWrappedCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\KeyRing;
 use Google\Cloud\Kms\V1\ListCryptoKeyVersionsRequest;
 use Google\Cloud\Kms\V1\ListCryptoKeysRequest;
@@ -131,6 +134,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deleteCryptoKeyVersionAsync(DeleteCryptoKeyVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CryptoKeyVersion> destroyCryptoKeyVersionAsync(DestroyCryptoKeyVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<EncryptResponse> encryptAsync(EncryptRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExportTrustedKeyWrappedCryptoKeyVersionResponse> exportTrustedKeyWrappedCryptoKeyVersionAsync(ExportTrustedKeyWrappedCryptoKeyVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GenerateRandomBytesResponse> generateRandomBytesAsync(GenerateRandomBytesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CryptoKey> getCryptoKeyAsync(GetCryptoKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CryptoKeyVersion> getCryptoKeyVersionAsync(GetCryptoKeyVersionRequest $request, array $optionalArgs = [])
@@ -139,6 +143,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PublicKey> getPublicKeyAsync(GetPublicKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RetiredResource> getRetiredResourceAsync(GetRetiredResourceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CryptoKeyVersion> importCryptoKeyVersionAsync(ImportCryptoKeyVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CryptoKeyVersion> importTrustedKeyWrappedCryptoKeyVersionAsync(ImportTrustedKeyWrappedCryptoKeyVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCryptoKeyVersionsAsync(ListCryptoKeyVersionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCryptoKeysAsync(ListCryptoKeysRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listImportJobsAsync(ListImportJobsRequest $request, array $optionalArgs = [])
@@ -182,7 +187,11 @@ final class KeyManagementServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/cloudkms',
@@ -232,7 +241,10 @@ final class KeyManagementServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -303,6 +315,25 @@ final class KeyManagementServiceClient
             'key_ring' => $keyRing,
             'crypto_key' => $cryptoKey,
             'crypto_key_version' => $cryptoKeyVersion,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * ekm_connection resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $ekmConnection
+     *
+     * @return string The formatted ekm_connection resource.
+     */
+    public static function ekmConnectionName(string $project, string $location, string $ekmConnection): string
+    {
+        return self::getPathTemplate('ekmConnection')->render([
+            'project' => $project,
+            'location' => $location,
+            'ekm_connection' => $ekmConnection,
         ]);
     }
 
@@ -388,6 +419,7 @@ final class KeyManagementServiceClient
      * Template: Pattern
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
+     * - ekmConnection: projects/{project}/locations/{location}/ekmConnections/{ekm_connection}
      * - importJob: projects/{project}/locations/{location}/keyRings/{key_ring}/importJobs/{import_job}
      * - keyRing: projects/{project}/locations/{location}/keyRings/{key_ring}
      * - location: projects/{project}/locations/{location}
@@ -890,6 +922,46 @@ final class KeyManagementServiceClient
     }
 
     /**
+     * Exports a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with a
+     * trusted key.
+     *
+     * The [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] must have
+     * trusted_wrapping_enabled set to true. The
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] of the
+     * [wrapping_key] must have the
+     * [AES_WRAPPING][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.AES_WRAPPING]
+     * purpose. The [wrapping_key] must have the
+     * [AES_256_KWP][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm.AES_256_KWP]
+     * algorithm.
+     *
+     * The async variant is
+     * {@see KeyManagementServiceClient::exportTrustedKeyWrappedCryptoKeyVersionAsync()}
+     * .
+     *
+     * @example samples/V1/KeyManagementServiceClient/export_trusted_key_wrapped_crypto_key_version.php
+     *
+     * @param ExportTrustedKeyWrappedCryptoKeyVersionRequest $request     A request to house fields associated with the call.
+     * @param array                                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ExportTrustedKeyWrappedCryptoKeyVersionResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function exportTrustedKeyWrappedCryptoKeyVersion(
+        ExportTrustedKeyWrappedCryptoKeyVersionRequest $request,
+        array $callOptions = []
+    ): ExportTrustedKeyWrappedCryptoKeyVersionResponse {
+        return $this->startApiCall('ExportTrustedKeyWrappedCryptoKeyVersion', $request, $callOptions)->wait();
+    }
+
+    /**
      * Generate random bytes using the Cloud KMS randomness source in the provided
      * location.
      *
@@ -1121,6 +1193,47 @@ final class KeyManagementServiceClient
         array $callOptions = []
     ): CryptoKeyVersion {
         return $this->startApiCall('ImportCryptoKeyVersion', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Import wrapped key material into a
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with a trusted
+     * key.
+     *
+     * All requests must specify a [CryptoKey][google.cloud.kms.v1.CryptoKey]. If
+     * a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] is additionally
+     * specified in the request, key material will be reimported into that
+     * version. Otherwise, a new version will be created, and will be assigned the
+     * next sequential id within the [CryptoKey][google.cloud.kms.v1.CryptoKey].
+     *
+     * The [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] will have
+     * trusted_wrapping_enabled set to true.
+     *
+     * The async variant is
+     * {@see KeyManagementServiceClient::importTrustedKeyWrappedCryptoKeyVersionAsync()}
+     * .
+     *
+     * @example samples/V1/KeyManagementServiceClient/import_trusted_key_wrapped_crypto_key_version.php
+     *
+     * @param ImportTrustedKeyWrappedCryptoKeyVersionRequest $request     A request to house fields associated with the call.
+     * @param array                                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CryptoKeyVersion
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function importTrustedKeyWrappedCryptoKeyVersion(
+        ImportTrustedKeyWrappedCryptoKeyVersionRequest $request,
+        array $callOptions = []
+    ): CryptoKeyVersion {
+        return $this->startApiCall('ImportTrustedKeyWrappedCryptoKeyVersion', $request, $callOptions)->wait();
     }
 
     /**
@@ -1543,13 +1656,21 @@ final class KeyManagementServiceClient
 
     /**
      * Lists information about the supported locations for this service.
-    This method can be called in two ways:
-
-    *   **List all public locations:** Use the path `GET /v1/locations`.
-    *   **List project-visible locations:** Use the path
-    `GET /v1/projects/{project_id}/locations`. This may include public
-    locations as well as private or other locations specifically visible
-    to the project.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see KeyManagementServiceClient::listLocationsAsync()} .
      *
@@ -1576,7 +1697,7 @@ final class KeyManagementServiceClient
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy
-    if the resource exists and does not have a policy set.
+     * if the resource exists and does not have a policy set.
      *
      * The async variant is {@see KeyManagementServiceClient::getIamPolicyAsync()} .
      *
@@ -1603,10 +1724,10 @@ final class KeyManagementServiceClient
 
     /**
      * Sets the access control policy on the specified resource. Replaces
-    any existing policy.
-
-    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
-    errors.
+     * any existing policy.
+     *
+     * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+     * errors.
      *
      * The async variant is {@see KeyManagementServiceClient::setIamPolicyAsync()} .
      *
@@ -1633,12 +1754,12 @@ final class KeyManagementServiceClient
 
     /**
      * Returns permissions that a caller has on the specified resource. If the
-    resource does not exist, this will return an empty set of
-    permissions, not a `NOT_FOUND` error.
-
-    Note: This operation is designed to be used for building
-    permission-aware UIs and command-line tools, not for authorization
-    checking. This operation may "fail open" without warning.
+     * resource does not exist, this will return an empty set of
+     * permissions, not a `NOT_FOUND` error.
+     *
+     * Note: This operation is designed to be used for building
+     * permission-aware UIs and command-line tools, not for authorization
+     * checking. This operation may "fail open" without warning.
      *
      * The async variant is
      * {@see KeyManagementServiceClient::testIamPermissionsAsync()} .

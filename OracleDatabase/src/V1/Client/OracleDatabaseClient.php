@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,14 +39,19 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use Google\Cloud\OracleDatabase\V1\AutonomousDatabase;
+use Google\Cloud\OracleDatabase\V1\AutonomousDatabaseRefreshableClones;
 use Google\Cloud\OracleDatabase\V1\CloudExadataInfrastructure;
 use Google\Cloud\OracleDatabase\V1\CloudVmCluster;
+use Google\Cloud\OracleDatabase\V1\ConfigureExascaleCloudExadataInfrastructureRequest;
 use Google\Cloud\OracleDatabase\V1\CreateAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\CreateCloudExadataInfrastructureRequest;
 use Google\Cloud\OracleDatabase\V1\CreateCloudVmClusterRequest;
 use Google\Cloud\OracleDatabase\V1\CreateDbSystemRequest;
 use Google\Cloud\OracleDatabase\V1\CreateExadbVmClusterRequest;
 use Google\Cloud\OracleDatabase\V1\CreateExascaleDbStorageVaultRequest;
+use Google\Cloud\OracleDatabase\V1\CreateGoldengateConnectionAssignmentRequest;
+use Google\Cloud\OracleDatabase\V1\CreateGoldengateConnectionRequest;
+use Google\Cloud\OracleDatabase\V1\CreateGoldengateDeploymentRequest;
 use Google\Cloud\OracleDatabase\V1\CreateOdbNetworkRequest;
 use Google\Cloud\OracleDatabase\V1\CreateOdbSubnetRequest;
 use Google\Cloud\OracleDatabase\V1\Database;
@@ -57,6 +62,9 @@ use Google\Cloud\OracleDatabase\V1\DeleteCloudVmClusterRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteDbSystemRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteExadbVmClusterRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteExascaleDbStorageVaultRequest;
+use Google\Cloud\OracleDatabase\V1\DeleteGoldengateConnectionAssignmentRequest;
+use Google\Cloud\OracleDatabase\V1\DeleteGoldengateConnectionRequest;
+use Google\Cloud\OracleDatabase\V1\DeleteGoldengateDeploymentRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteOdbNetworkRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteOdbSubnetRequest;
 use Google\Cloud\OracleDatabase\V1\ExadbVmCluster;
@@ -64,6 +72,7 @@ use Google\Cloud\OracleDatabase\V1\ExascaleDbStorageVault;
 use Google\Cloud\OracleDatabase\V1\FailoverAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\GenerateAutonomousDatabaseWalletRequest;
 use Google\Cloud\OracleDatabase\V1\GenerateAutonomousDatabaseWalletResponse;
+use Google\Cloud\OracleDatabase\V1\GetAutonomousDatabaseRefreshableClonesRequest;
 use Google\Cloud\OracleDatabase\V1\GetAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\GetCloudExadataInfrastructureRequest;
 use Google\Cloud\OracleDatabase\V1\GetCloudVmClusterRequest;
@@ -71,9 +80,15 @@ use Google\Cloud\OracleDatabase\V1\GetDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\GetDbSystemRequest;
 use Google\Cloud\OracleDatabase\V1\GetExadbVmClusterRequest;
 use Google\Cloud\OracleDatabase\V1\GetExascaleDbStorageVaultRequest;
+use Google\Cloud\OracleDatabase\V1\GetGoldengateConnectionAssignmentRequest;
+use Google\Cloud\OracleDatabase\V1\GetGoldengateConnectionRequest;
+use Google\Cloud\OracleDatabase\V1\GetGoldengateDeploymentRequest;
 use Google\Cloud\OracleDatabase\V1\GetOdbNetworkRequest;
 use Google\Cloud\OracleDatabase\V1\GetOdbSubnetRequest;
 use Google\Cloud\OracleDatabase\V1\GetPluggableDatabaseRequest;
+use Google\Cloud\OracleDatabase\V1\GoldengateConnection;
+use Google\Cloud\OracleDatabase\V1\GoldengateConnectionAssignment;
+use Google\Cloud\OracleDatabase\V1\GoldengateDeployment;
 use Google\Cloud\OracleDatabase\V1\ListAutonomousDatabaseBackupsRequest;
 use Google\Cloud\OracleDatabase\V1\ListAutonomousDatabaseCharacterSetsRequest;
 use Google\Cloud\OracleDatabase\V1\ListAutonomousDatabasesRequest;
@@ -92,6 +107,13 @@ use Google\Cloud\OracleDatabase\V1\ListEntitlementsRequest;
 use Google\Cloud\OracleDatabase\V1\ListExadbVmClustersRequest;
 use Google\Cloud\OracleDatabase\V1\ListExascaleDbStorageVaultsRequest;
 use Google\Cloud\OracleDatabase\V1\ListGiVersionsRequest;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateConnectionAssignmentsRequest;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateConnectionTypesRequest;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateConnectionsRequest;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateDeploymentEnvironmentsRequest;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateDeploymentTypesRequest;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateDeploymentVersionsRequest;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateDeploymentsRequest;
 use Google\Cloud\OracleDatabase\V1\ListMinorVersionsRequest;
 use Google\Cloud\OracleDatabase\V1\ListOdbNetworksRequest;
 use Google\Cloud\OracleDatabase\V1\ListOdbSubnetsRequest;
@@ -99,12 +121,17 @@ use Google\Cloud\OracleDatabase\V1\ListPluggableDatabasesRequest;
 use Google\Cloud\OracleDatabase\V1\OdbNetwork;
 use Google\Cloud\OracleDatabase\V1\OdbSubnet;
 use Google\Cloud\OracleDatabase\V1\PluggableDatabase;
+use Google\Cloud\OracleDatabase\V1\RefreshAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\RemoveVirtualMachineExadbVmClusterRequest;
 use Google\Cloud\OracleDatabase\V1\RestartAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\RestoreAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\StartAutonomousDatabaseRequest;
+use Google\Cloud\OracleDatabase\V1\StartGoldengateDeploymentRequest;
 use Google\Cloud\OracleDatabase\V1\StopAutonomousDatabaseRequest;
+use Google\Cloud\OracleDatabase\V1\StopGoldengateDeploymentRequest;
 use Google\Cloud\OracleDatabase\V1\SwitchoverAutonomousDatabaseRequest;
+use Google\Cloud\OracleDatabase\V1\TestGoldengateConnectionAssignmentRequest;
+use Google\Cloud\OracleDatabase\V1\TestGoldengateConnectionAssignmentResponse;
 use Google\Cloud\OracleDatabase\V1\UpdateAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\UpdateExadbVmClusterRequest;
 use Google\LongRunning\Client\OperationsClient;
@@ -123,12 +150,16 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<OperationResponse> configureExascaleCloudExadataInfrastructureAsync(ConfigureExascaleCloudExadataInfrastructureRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createAutonomousDatabaseAsync(CreateAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createCloudExadataInfrastructureAsync(CreateCloudExadataInfrastructureRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createCloudVmClusterAsync(CreateCloudVmClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createDbSystemAsync(CreateDbSystemRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createExadbVmClusterAsync(CreateExadbVmClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createExascaleDbStorageVaultAsync(CreateExascaleDbStorageVaultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createGoldengateConnectionAsync(CreateGoldengateConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createGoldengateConnectionAssignmentAsync(CreateGoldengateConnectionAssignmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createGoldengateDeploymentAsync(CreateGoldengateDeploymentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createOdbNetworkAsync(CreateOdbNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createOdbSubnetAsync(CreateOdbSubnetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAutonomousDatabaseAsync(DeleteAutonomousDatabaseRequest $request, array $optionalArgs = [])
@@ -137,17 +168,24 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deleteDbSystemAsync(DeleteDbSystemRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteExadbVmClusterAsync(DeleteExadbVmClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteExascaleDbStorageVaultAsync(DeleteExascaleDbStorageVaultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteGoldengateConnectionAsync(DeleteGoldengateConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteGoldengateConnectionAssignmentAsync(DeleteGoldengateConnectionAssignmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteGoldengateDeploymentAsync(DeleteGoldengateDeploymentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteOdbNetworkAsync(DeleteOdbNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteOdbSubnetAsync(DeleteOdbSubnetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> failoverAutonomousDatabaseAsync(FailoverAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GenerateAutonomousDatabaseWalletResponse> generateAutonomousDatabaseWalletAsync(GenerateAutonomousDatabaseWalletRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AutonomousDatabase> getAutonomousDatabaseAsync(GetAutonomousDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AutonomousDatabaseRefreshableClones> getAutonomousDatabaseRefreshableClonesAsync(GetAutonomousDatabaseRefreshableClonesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CloudExadataInfrastructure> getCloudExadataInfrastructureAsync(GetCloudExadataInfrastructureRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CloudVmCluster> getCloudVmClusterAsync(GetCloudVmClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Database> getDatabaseAsync(GetDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DbSystem> getDbSystemAsync(GetDbSystemRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ExadbVmCluster> getExadbVmClusterAsync(GetExadbVmClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ExascaleDbStorageVault> getExascaleDbStorageVaultAsync(GetExascaleDbStorageVaultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GoldengateConnection> getGoldengateConnectionAsync(GetGoldengateConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GoldengateConnectionAssignment> getGoldengateConnectionAssignmentAsync(GetGoldengateConnectionAssignmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GoldengateDeployment> getGoldengateDeploymentAsync(GetGoldengateDeploymentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OdbNetwork> getOdbNetworkAsync(GetOdbNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OdbSubnet> getOdbSubnetAsync(GetOdbSubnetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PluggableDatabase> getPluggableDatabaseAsync(GetPluggableDatabaseRequest $request, array $optionalArgs = [])
@@ -169,16 +207,27 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listExadbVmClustersAsync(ListExadbVmClustersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listExascaleDbStorageVaultsAsync(ListExascaleDbStorageVaultsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listGiVersionsAsync(ListGiVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGoldengateConnectionAssignmentsAsync(ListGoldengateConnectionAssignmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGoldengateConnectionTypesAsync(ListGoldengateConnectionTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGoldengateConnectionsAsync(ListGoldengateConnectionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGoldengateDeploymentEnvironmentsAsync(ListGoldengateDeploymentEnvironmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGoldengateDeploymentTypesAsync(ListGoldengateDeploymentTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGoldengateDeploymentVersionsAsync(ListGoldengateDeploymentVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGoldengateDeploymentsAsync(ListGoldengateDeploymentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listMinorVersionsAsync(ListMinorVersionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listOdbNetworksAsync(ListOdbNetworksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listOdbSubnetsAsync(ListOdbSubnetsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listPluggableDatabasesAsync(ListPluggableDatabasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> refreshAutonomousDatabaseAsync(RefreshAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> removeVirtualMachineExadbVmClusterAsync(RemoveVirtualMachineExadbVmClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> restartAutonomousDatabaseAsync(RestartAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> restoreAutonomousDatabaseAsync(RestoreAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> startAutonomousDatabaseAsync(StartAutonomousDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startGoldengateDeploymentAsync(StartGoldengateDeploymentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> stopAutonomousDatabaseAsync(StopAutonomousDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> stopGoldengateDeploymentAsync(StopGoldengateDeploymentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> switchoverAutonomousDatabaseAsync(SwitchoverAutonomousDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestGoldengateConnectionAssignmentResponse> testGoldengateConnectionAssignmentAsync(TestGoldengateConnectionAssignmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAutonomousDatabaseAsync(UpdateAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateExadbVmClusterAsync(UpdateExadbVmClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -208,7 +257,11 @@ final class OracleDatabaseClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
@@ -255,7 +308,10 @@ final class OracleDatabaseClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -296,6 +352,28 @@ final class OracleDatabaseClient
             'project' => $project,
             'location' => $location,
             'autonomous_database' => $autonomousDatabase,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * autonomous_database_backup resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $autonomousDatabaseBackup
+     *
+     * @return string The formatted autonomous_database_backup resource.
+     */
+    public static function autonomousDatabaseBackupName(
+        string $project,
+        string $location,
+        string $autonomousDatabaseBackup
+    ): string {
+        return self::getPathTemplate('autonomousDatabaseBackup')->render([
+            'project' => $project,
+            'location' => $location,
+            'autonomous_database_backup' => $autonomousDatabaseBackup,
         ]);
     }
 
@@ -460,6 +538,72 @@ final class OracleDatabaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * goldengate_connection resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $goldengateConnection
+     *
+     * @return string The formatted goldengate_connection resource.
+     */
+    public static function goldengateConnectionName(
+        string $project,
+        string $location,
+        string $goldengateConnection
+    ): string {
+        return self::getPathTemplate('goldengateConnection')->render([
+            'project' => $project,
+            'location' => $location,
+            'goldengate_connection' => $goldengateConnection,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * goldengate_connection_assignment resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $goldengateConnectionAssignment
+     *
+     * @return string The formatted goldengate_connection_assignment resource.
+     */
+    public static function goldengateConnectionAssignmentName(
+        string $project,
+        string $location,
+        string $goldengateConnectionAssignment
+    ): string {
+        return self::getPathTemplate('goldengateConnectionAssignment')->render([
+            'project' => $project,
+            'location' => $location,
+            'goldengate_connection_assignment' => $goldengateConnectionAssignment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * goldengate_deployment resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $goldengateDeployment
+     *
+     * @return string The formatted goldengate_deployment resource.
+     */
+    public static function goldengateDeploymentName(
+        string $project,
+        string $location,
+        string $goldengateDeployment
+    ): string {
+        return self::getPathTemplate('goldengateDeployment')->render([
+            'project' => $project,
+            'location' => $location,
+            'goldengate_deployment' => $goldengateDeployment,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -557,10 +701,30 @@ final class OracleDatabaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * secret_version resource.
+     *
+     * @param string $project
+     * @param string $secret
+     * @param string $secretVersion
+     *
+     * @return string The formatted secret_version resource.
+     */
+    public static function secretVersionName(string $project, string $secret, string $secretVersion): string
+    {
+        return self::getPathTemplate('secretVersion')->render([
+            'project' => $project,
+            'secret' => $secret,
+            'secret_version' => $secretVersion,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - autonomousDatabase: projects/{project}/locations/{location}/autonomousDatabases/{autonomous_database}
+     * - autonomousDatabaseBackup: projects/{project}/locations/{location}/autonomousDatabaseBackups/{autonomous_database_backup}
      * - cloudExadataInfrastructure: projects/{project}/locations/{location}/cloudExadataInfrastructures/{cloud_exadata_infrastructure}
      * - cloudVmCluster: projects/{project}/locations/{location}/cloudVmClusters/{cloud_vm_cluster}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
@@ -569,11 +733,15 @@ final class OracleDatabaseClient
      * - exadbVmCluster: projects/{project}/locations/{location}/exadbVmClusters/{exadb_vm_cluster}
      * - exascaleDbStorageVault: projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}
      * - giVersion: projects/{project}/locations/{location}/giVersions/{gi_version}
+     * - goldengateConnection: projects/{project}/locations/{location}/goldengateConnections/{goldengate_connection}
+     * - goldengateConnectionAssignment: projects/{project}/locations/{location}/goldengateConnectionAssignments/{goldengate_connection_assignment}
+     * - goldengateDeployment: projects/{project}/locations/{location}/goldengateDeployments/{goldengate_deployment}
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
      * - odbNetwork: projects/{project}/locations/{location}/odbNetworks/{odb_network}
      * - odbSubnet: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      * - pluggableDatabase: projects/{project}/locations/{location}/pluggableDatabases/{pluggable_database}
+     * - secretVersion: projects/{project}/secrets/{secret}/versions/{secret_version}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -677,6 +845,36 @@ final class OracleDatabaseClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Configures Exascale for a single Exadata Infrastructure.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::configureExascaleCloudExadataInfrastructureAsync()}
+     * .
+     *
+     * @example samples/V1/OracleDatabaseClient/configure_exascale_cloud_exadata_infrastructure.php
+     *
+     * @param ConfigureExascaleCloudExadataInfrastructureRequest $request     A request to house fields associated with the call.
+     * @param array                                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<CloudExadataInfrastructure>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function configureExascaleCloudExadataInfrastructure(
+        ConfigureExascaleCloudExadataInfrastructureRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('ConfigureExascaleCloudExadataInfrastructure', $request, $callOptions)->wait();
     }
 
     /**
@@ -846,6 +1044,94 @@ final class OracleDatabaseClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('CreateExascaleDbStorageVault', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new GoldengateConnection in a given project and location.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::createGoldengateConnectionAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/create_goldengate_connection.php
+     *
+     * @param CreateGoldengateConnectionRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<GoldengateConnection>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createGoldengateConnection(
+        CreateGoldengateConnectionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateGoldengateConnection', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new GoldengateConnectionAssignment in a given project and
+     * location.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::createGoldengateConnectionAssignmentAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/create_goldengate_connection_assignment.php
+     *
+     * @param CreateGoldengateConnectionAssignmentRequest $request     A request to house fields associated with the call.
+     * @param array                                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<GoldengateConnectionAssignment>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createGoldengateConnectionAssignment(
+        CreateGoldengateConnectionAssignmentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateGoldengateConnectionAssignment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new GoldengateDeployment in a given project and location.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::createGoldengateDeploymentAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/create_goldengate_deployment.php
+     *
+     * @param CreateGoldengateDeploymentRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<GoldengateDeployment>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createGoldengateDeployment(
+        CreateGoldengateDeploymentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateGoldengateDeployment', $request, $callOptions)->wait();
     }
 
     /**
@@ -1070,6 +1356,93 @@ final class OracleDatabaseClient
     }
 
     /**
+     * Deletes a single GoldengateConnection.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::deleteGoldengateConnectionAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/delete_goldengate_connection.php
+     *
+     * @param DeleteGoldengateConnectionRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteGoldengateConnection(
+        DeleteGoldengateConnectionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteGoldengateConnection', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single GoldengateConnectionAssignment.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::deleteGoldengateConnectionAssignmentAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/delete_goldengate_connection_assignment.php
+     *
+     * @param DeleteGoldengateConnectionAssignmentRequest $request     A request to house fields associated with the call.
+     * @param array                                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteGoldengateConnectionAssignment(
+        DeleteGoldengateConnectionAssignmentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteGoldengateConnectionAssignment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single GoldengateDeployment.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::deleteGoldengateDeploymentAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/delete_goldengate_deployment.php
+     *
+     * @param DeleteGoldengateDeploymentRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteGoldengateDeployment(
+        DeleteGoldengateDeploymentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteGoldengateDeployment', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single ODB Network.
      *
      * The async variant is {@see OracleDatabaseClient::deleteOdbNetworkAsync()} .
@@ -1206,6 +1579,35 @@ final class OracleDatabaseClient
         array $callOptions = []
     ): AutonomousDatabase {
         return $this->startApiCall('GetAutonomousDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the refreshable clones for a given Autonomous Database.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::getAutonomousDatabaseRefreshableClonesAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/get_autonomous_database_refreshable_clones.php
+     *
+     * @param GetAutonomousDatabaseRefreshableClonesRequest $request     A request to house fields associated with the call.
+     * @param array                                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AutonomousDatabaseRefreshableClones
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAutonomousDatabaseRefreshableClones(
+        GetAutonomousDatabaseRefreshableClonesRequest $request,
+        array $callOptions = []
+    ): AutonomousDatabaseRefreshableClones {
+        return $this->startApiCall('GetAutonomousDatabaseRefreshableClones', $request, $callOptions)->wait();
     }
 
     /**
@@ -1368,6 +1770,93 @@ final class OracleDatabaseClient
         array $callOptions = []
     ): ExascaleDbStorageVault {
         return $this->startApiCall('GetExascaleDbStorageVault', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single GoldengateConnection.
+     *
+     * The async variant is {@see OracleDatabaseClient::getGoldengateConnectionAsync()}
+     * .
+     *
+     * @example samples/V1/OracleDatabaseClient/get_goldengate_connection.php
+     *
+     * @param GetGoldengateConnectionRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GoldengateConnection
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getGoldengateConnection(
+        GetGoldengateConnectionRequest $request,
+        array $callOptions = []
+    ): GoldengateConnection {
+        return $this->startApiCall('GetGoldengateConnection', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single GoldengateConnectionAssignment.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::getGoldengateConnectionAssignmentAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/get_goldengate_connection_assignment.php
+     *
+     * @param GetGoldengateConnectionAssignmentRequest $request     A request to house fields associated with the call.
+     * @param array                                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GoldengateConnectionAssignment
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getGoldengateConnectionAssignment(
+        GetGoldengateConnectionAssignmentRequest $request,
+        array $callOptions = []
+    ): GoldengateConnectionAssignment {
+        return $this->startApiCall('GetGoldengateConnectionAssignment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single GoldengateDeployment.
+     *
+     * The async variant is {@see OracleDatabaseClient::getGoldengateDeploymentAsync()}
+     * .
+     *
+     * @example samples/V1/OracleDatabaseClient/get_goldengate_deployment.php
+     *
+     * @param GetGoldengateDeploymentRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GoldengateDeployment
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getGoldengateDeployment(
+        GetGoldengateDeploymentRequest $request,
+        array $callOptions = []
+    ): GoldengateDeployment {
+        return $this->startApiCall('GetGoldengateDeployment', $request, $callOptions)->wait();
     }
 
     /**
@@ -1948,6 +2437,209 @@ final class OracleDatabaseClient
     }
 
     /**
+     * Lists GoldengateConnectionAssignments in a given project and location.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::listGoldengateConnectionAssignmentsAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/list_goldengate_connection_assignments.php
+     *
+     * @param ListGoldengateConnectionAssignmentsRequest $request     A request to house fields associated with the call.
+     * @param array                                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listGoldengateConnectionAssignments(
+        ListGoldengateConnectionAssignmentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListGoldengateConnectionAssignments', $request, $callOptions);
+    }
+
+    /**
+     * Lists GoldengateConnectionTypes in a given project and location.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::listGoldengateConnectionTypesAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/list_goldengate_connection_types.php
+     *
+     * @param ListGoldengateConnectionTypesRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listGoldengateConnectionTypes(
+        ListGoldengateConnectionTypesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListGoldengateConnectionTypes', $request, $callOptions);
+    }
+
+    /**
+     * Lists all the GoldengateConnections for the given project and location.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::listGoldengateConnectionsAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/list_goldengate_connections.php
+     *
+     * @param ListGoldengateConnectionsRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listGoldengateConnections(
+        ListGoldengateConnectionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListGoldengateConnections', $request, $callOptions);
+    }
+
+    /**
+     * Lists GoldengateDeploymentEnvironments in a given project and location.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::listGoldengateDeploymentEnvironmentsAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/list_goldengate_deployment_environments.php
+     *
+     * @param ListGoldengateDeploymentEnvironmentsRequest $request     A request to house fields associated with the call.
+     * @param array                                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listGoldengateDeploymentEnvironments(
+        ListGoldengateDeploymentEnvironmentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListGoldengateDeploymentEnvironments', $request, $callOptions);
+    }
+
+    /**
+     * Lists GoldenGateDeploymentTypes in a given project and location.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::listGoldengateDeploymentTypesAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/list_goldengate_deployment_types.php
+     *
+     * @param ListGoldengateDeploymentTypesRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listGoldengateDeploymentTypes(
+        ListGoldengateDeploymentTypesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListGoldengateDeploymentTypes', $request, $callOptions);
+    }
+
+    /**
+     * Lists GoldengateDeploymentVersions in a given project and location.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::listGoldengateDeploymentVersionsAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/list_goldengate_deployment_versions.php
+     *
+     * @param ListGoldengateDeploymentVersionsRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listGoldengateDeploymentVersions(
+        ListGoldengateDeploymentVersionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListGoldengateDeploymentVersions', $request, $callOptions);
+    }
+
+    /**
+     * Lists all the GoldengateDeployments for the given project and location.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::listGoldengateDeploymentsAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/list_goldengate_deployments.php
+     *
+     * @param ListGoldengateDeploymentsRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listGoldengateDeployments(
+        ListGoldengateDeploymentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListGoldengateDeployments', $request, $callOptions);
+    }
+
+    /**
      * Lists all the valid minor versions for the given
      * project, location, gi version and shape family.
      *
@@ -2054,6 +2746,35 @@ final class OracleDatabaseClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListPluggableDatabases', $request, $callOptions);
+    }
+
+    /**
+     * Refreshes the refreshable clone of an Autonomous Database.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::refreshAutonomousDatabaseAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/refresh_autonomous_database.php
+     *
+     * @param RefreshAutonomousDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<AutonomousDatabase>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function refreshAutonomousDatabase(
+        RefreshAutonomousDatabaseRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('RefreshAutonomousDatabase', $request, $callOptions)->wait();
     }
 
     /**
@@ -2173,6 +2894,35 @@ final class OracleDatabaseClient
     }
 
     /**
+     * Starts a single GoldengateDeployment.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::startGoldengateDeploymentAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/start_goldengate_deployment.php
+     *
+     * @param StartGoldengateDeploymentRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<GoldengateDeployment>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function startGoldengateDeployment(
+        StartGoldengateDeploymentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('StartGoldengateDeployment', $request, $callOptions)->wait();
+    }
+
+    /**
      * Stops an Autonomous Database.
      *
      * The async variant is {@see OracleDatabaseClient::stopAutonomousDatabaseAsync()}
@@ -2199,6 +2949,35 @@ final class OracleDatabaseClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('StopAutonomousDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Stops a single GoldengateDeployment.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::stopGoldengateDeploymentAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/stop_goldengate_deployment.php
+     *
+     * @param StopGoldengateDeploymentRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<GoldengateDeployment>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function stopGoldengateDeployment(
+        StopGoldengateDeploymentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('StopGoldengateDeployment', $request, $callOptions)->wait();
     }
 
     /**
@@ -2229,6 +3008,35 @@ final class OracleDatabaseClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('SwitchoverAutonomousDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Tests a single GoldengateConnectionAssignment.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::testGoldengateConnectionAssignmentAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/test_goldengate_connection_assignment.php
+     *
+     * @param TestGoldengateConnectionAssignmentRequest $request     A request to house fields associated with the call.
+     * @param array                                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestGoldengateConnectionAssignmentResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testGoldengateConnectionAssignment(
+        TestGoldengateConnectionAssignmentRequest $request,
+        array $callOptions = []
+    ): TestGoldengateConnectionAssignmentResponse {
+        return $this->startApiCall('TestGoldengateConnectionAssignment', $request, $callOptions)->wait();
     }
 
     /**
@@ -2317,6 +3125,21 @@ final class OracleDatabaseClient
 
     /**
      * Lists information about the supported locations for this service.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see OracleDatabaseClient::listLocationsAsync()} .
      *

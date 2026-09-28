@@ -109,6 +109,30 @@ class CloudControlCategory
      * Generated from protobuf enum <code>CC_CATEGORY_BCDR = 15;</code>
      */
     const CC_CATEGORY_BCDR = 15;
+    /**
+     * The admin access category.
+     *
+     * Generated from protobuf enum <code>CC_CATEGORY_ADMIN_ACCESS = 16;</code>
+     */
+    const CC_CATEGORY_ADMIN_ACCESS = 16;
+    /**
+     * DRZ (Data Residency).
+     *
+     * Generated from protobuf enum <code>CC_CATEGORY_DATA_RESIDENCY = 17;</code>
+     */
+    const CC_CATEGORY_DATA_RESIDENCY = 17;
+    /**
+     * RUR (Resource Usage Restriction).
+     *
+     * Generated from protobuf enum <code>CC_CATEGORY_RESOURCE_USAGE_RESTRICTION = 18;</code>
+     */
+    const CC_CATEGORY_RESOURCE_USAGE_RESTRICTION = 18;
+    /**
+     * SERVICE SPECIFIC
+     *
+     * Generated from protobuf enum <code>CC_CATEGORY_SERVICE_SPECIFIC = 19;</code>
+     */
+    const CC_CATEGORY_SERVICE_SPECIFIC = 19;
 
     private static $valueToName = [
         self::CLOUD_CONTROL_CATEGORY_UNSPECIFIED => 'CLOUD_CONTROL_CATEGORY_UNSPECIFIED',
@@ -127,6 +151,10 @@ class CloudControlCategory
         self::CC_CATEGORY_VULNERABILITY_MANAGEMENT => 'CC_CATEGORY_VULNERABILITY_MANAGEMENT',
         self::CC_CATEGORY_PRIVACY => 'CC_CATEGORY_PRIVACY',
         self::CC_CATEGORY_BCDR => 'CC_CATEGORY_BCDR',
+        self::CC_CATEGORY_ADMIN_ACCESS => 'CC_CATEGORY_ADMIN_ACCESS',
+        self::CC_CATEGORY_DATA_RESIDENCY => 'CC_CATEGORY_DATA_RESIDENCY',
+        self::CC_CATEGORY_RESOURCE_USAGE_RESTRICTION => 'CC_CATEGORY_RESOURCE_USAGE_RESTRICTION',
+        self::CC_CATEGORY_SERVICE_SPECIFIC => 'CC_CATEGORY_SERVICE_SPECIFIC',
     ];
 
     public static function name($value)

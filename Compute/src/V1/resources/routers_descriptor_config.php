@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,47 @@ return [
     'interfaces' => [
         'google.cloud.compute.v1.Routers' => [
             'Delete' => [
+                'longRunning' => [
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getRegion',
+                    ],
+                    'getOperationMethod' => 'get',
+                    'cancelOperationMethod' => null,
+                    'deleteOperationMethod' => 'delete',
+                    'operationErrorCodeMethod' => 'getHttpErrorStatusCode',
+                    'operationErrorMessageMethod' => 'getHttpErrorMessage',
+                    'operationNameMethod' => 'getName',
+                    'operationStatusMethod' => 'getStatus',
+                    'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                    'getOperationRequest' => '\Google\Cloud\Compute\V1\GetRegionOperationRequest',
+                    'cancelOperationRequest' => null,
+                    'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteRegionOperationRequest',
+                ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'router',
+                        'fieldAccessors' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteNamedSet' => [
                 'longRunning' => [
                     'additionalArgumentMethods' => [
                         'getProject',
@@ -181,6 +222,47 @@ return [
                     ],
                 ],
             ],
+            'PatchNamedSet' => [
+                'longRunning' => [
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getRegion',
+                    ],
+                    'getOperationMethod' => 'get',
+                    'cancelOperationMethod' => null,
+                    'deleteOperationMethod' => 'delete',
+                    'operationErrorCodeMethod' => 'getHttpErrorStatusCode',
+                    'operationErrorMessageMethod' => 'getHttpErrorMessage',
+                    'operationNameMethod' => 'getName',
+                    'operationStatusMethod' => 'getStatus',
+                    'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                    'getOperationRequest' => '\Google\Cloud\Compute\V1\GetRegionOperationRequest',
+                    'cancelOperationRequest' => null,
+                    'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteRegionOperationRequest',
+                ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'router',
+                        'fieldAccessors' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
+            ],
             'PatchRoutePolicy' => [
                 'longRunning' => [
                     'additionalArgumentMethods' => [
@@ -223,6 +305,47 @@ return [
                 ],
             ],
             'Update' => [
+                'longRunning' => [
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getRegion',
+                    ],
+                    'getOperationMethod' => 'get',
+                    'cancelOperationMethod' => null,
+                    'deleteOperationMethod' => 'delete',
+                    'operationErrorCodeMethod' => 'getHttpErrorStatusCode',
+                    'operationErrorMessageMethod' => 'getHttpErrorMessage',
+                    'operationNameMethod' => 'getName',
+                    'operationStatusMethod' => 'getStatus',
+                    'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                    'getOperationRequest' => '\Google\Cloud\Compute\V1\GetRegionOperationRequest',
+                    'cancelOperationRequest' => null,
+                    'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteRegionOperationRequest',
+                ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'router',
+                        'fieldAccessors' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateNamedSet' => [
                 'longRunning' => [
                     'additionalArgumentMethods' => [
                         'getProject',
@@ -327,6 +450,30 @@ return [
             'Get' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Compute\V1\Router',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'router',
+                        'fieldAccessors' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
+            ],
+            'GetNamedSet' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\RoutersGetNamedSetResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'project',
@@ -489,6 +636,38 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Compute\V1\RoutersListBgpRoutes',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'router',
+                        'fieldAccessors' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
+            ],
+            'ListNamedSets' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getMaxResults',
+                    'requestPageSizeSetMethod' => 'setMaxResults',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getResult',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\RoutersListNamedSets',
                 'headerParams' => [
                     [
                         'keyName' => 'project',

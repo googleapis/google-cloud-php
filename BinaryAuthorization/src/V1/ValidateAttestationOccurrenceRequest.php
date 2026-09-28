@@ -17,7 +17,8 @@ use Google\Protobuf\RepeatedField;
 class ValidateAttestationOccurrenceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the [Attestor][google.cloud.binaryauthorization.v1.Attestor] of the
+     * Required. The resource name of the
+     * [Attestor][google.cloud.binaryauthorization.v1.Attestor] of the
      * [occurrence][grafeas.v1.Occurrence], in the format
      * `projects/{@*}attestors/*`.
      *
@@ -26,9 +27,9 @@ class ValidateAttestationOccurrenceRequest extends \Google\Protobuf\Internal\Mes
     protected $attestor = '';
     /**
      * Required. An [AttestationOccurrence][grafeas.v1.AttestationOccurrence] to
-     * be checked that it can be verified by the Attestor. It does not have to be
-     * an existing entity in Container Analysis. It must otherwise be a valid
-     * AttestationOccurrence.
+     * be checked that it can be verified by the `Attestor`. It does not have to
+     * be an existing entity in Container Analysis. It must otherwise be a valid
+     * `AttestationOccurrence`.
      *
      * Generated from protobuf field <code>.grafeas.v1.AttestationOccurrence attestation = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -55,14 +56,15 @@ class ValidateAttestationOccurrenceRequest extends \Google\Protobuf\Internal\Mes
      *     Optional. Data for populating the Message object.
      *
      *     @type string $attestor
-     *           Required. The resource name of the [Attestor][google.cloud.binaryauthorization.v1.Attestor] of the
+     *           Required. The resource name of the
+     *           [Attestor][google.cloud.binaryauthorization.v1.Attestor] of the
      *           [occurrence][grafeas.v1.Occurrence], in the format
      *           `projects/{@*}attestors/*`.
      *     @type \Grafeas\V1\AttestationOccurrence $attestation
      *           Required. An [AttestationOccurrence][grafeas.v1.AttestationOccurrence] to
-     *           be checked that it can be verified by the Attestor. It does not have to be
-     *           an existing entity in Container Analysis. It must otherwise be a valid
-     *           AttestationOccurrence.
+     *           be checked that it can be verified by the `Attestor`. It does not have to
+     *           be an existing entity in Container Analysis. It must otherwise be a valid
+     *           `AttestationOccurrence`.
      *     @type string $occurrence_note
      *           Required. The resource name of the [Note][grafeas.v1.Note] to which the
      *           containing [Occurrence][grafeas.v1.Occurrence] is associated.
@@ -77,7 +79,8 @@ class ValidateAttestationOccurrenceRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Required. The resource name of the [Attestor][google.cloud.binaryauthorization.v1.Attestor] of the
+     * Required. The resource name of the
+     * [Attestor][google.cloud.binaryauthorization.v1.Attestor] of the
      * [occurrence][grafeas.v1.Occurrence], in the format
      * `projects/{@*}attestors/*`.
      *
@@ -90,7 +93,8 @@ class ValidateAttestationOccurrenceRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Required. The resource name of the [Attestor][google.cloud.binaryauthorization.v1.Attestor] of the
+     * Required. The resource name of the
+     * [Attestor][google.cloud.binaryauthorization.v1.Attestor] of the
      * [occurrence][grafeas.v1.Occurrence], in the format
      * `projects/{@*}attestors/*`.
      *
@@ -108,9 +112,9 @@ class ValidateAttestationOccurrenceRequest extends \Google\Protobuf\Internal\Mes
 
     /**
      * Required. An [AttestationOccurrence][grafeas.v1.AttestationOccurrence] to
-     * be checked that it can be verified by the Attestor. It does not have to be
-     * an existing entity in Container Analysis. It must otherwise be a valid
-     * AttestationOccurrence.
+     * be checked that it can be verified by the `Attestor`. It does not have to
+     * be an existing entity in Container Analysis. It must otherwise be a valid
+     * `AttestationOccurrence`.
      *
      * Generated from protobuf field <code>.grafeas.v1.AttestationOccurrence attestation = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Grafeas\V1\AttestationOccurrence|null
@@ -132,9 +136,9 @@ class ValidateAttestationOccurrenceRequest extends \Google\Protobuf\Internal\Mes
 
     /**
      * Required. An [AttestationOccurrence][grafeas.v1.AttestationOccurrence] to
-     * be checked that it can be verified by the Attestor. It does not have to be
-     * an existing entity in Container Analysis. It must otherwise be a valid
-     * AttestationOccurrence.
+     * be checked that it can be verified by the `Attestor`. It does not have to
+     * be an existing entity in Container Analysis. It must otherwise be a valid
+     * `AttestationOccurrence`.
      *
      * Generated from protobuf field <code>.grafeas.v1.AttestationOccurrence attestation = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Grafeas\V1\AttestationOccurrence $var

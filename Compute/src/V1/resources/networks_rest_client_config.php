@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,23 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/networks/{network}/addPeering',
                 'body' => 'networks_add_peering_request_resource',
+                'placeholders' => [
+                    'network' => [
+                        'getters' => [
+                            'getNetwork',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'CancelRequestRemovePeering' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/networks/{network}/cancelRequestRemovePeering',
+                'body' => 'networks_cancel_request_remove_peering_request_resource',
                 'placeholders' => [
                     'network' => [
                         'getters' => [

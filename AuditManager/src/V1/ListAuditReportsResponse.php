@@ -9,20 +9,23 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Response message with all the audit reports.
+ * Response message for
+ * [ListAuditReports][google.cloud.auditmanager.v1.AuditManager.ListAuditReports].
  *
  * Generated from protobuf message <code>google.cloud.auditmanager.v1.ListAuditReportsResponse</code>
  */
 class ListAuditReportsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The audit reports.
+     * Output only. Audit reports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.AuditReport audit_reports = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $audit_reports;
     /**
-     * Output only. The token to retrieve the next page of results.
+     * Output only. A token that you can send as the `page_token` in a subsequent
+     * request to retrieve the next page of results. If this field is empty, there
+     * are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -35,9 +38,11 @@ class ListAuditReportsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AuditManager\V1\AuditReport[] $audit_reports
-     *           Output only. The audit reports.
+     *           Output only. Audit reports.
      *     @type string $next_page_token
-     *           Output only. The token to retrieve the next page of results.
+     *           Output only. A token that you can send as the `page_token` in a subsequent
+     *           request to retrieve the next page of results. If this field is empty, there
+     *           are no subsequent pages.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +51,7 @@ class ListAuditReportsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The audit reports.
+     * Output only. Audit reports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.AuditReport audit_reports = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return RepeatedField<\Google\Cloud\AuditManager\V1\AuditReport>
@@ -57,7 +62,7 @@ class ListAuditReportsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The audit reports.
+     * Output only. Audit reports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.AuditReport audit_reports = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\AuditManager\V1\AuditReport[] $var
@@ -72,7 +77,9 @@ class ListAuditReportsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The token to retrieve the next page of results.
+     * Output only. A token that you can send as the `page_token` in a subsequent
+     * request to retrieve the next page of results. If this field is empty, there
+     * are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -83,7 +90,9 @@ class ListAuditReportsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The token to retrieve the next page of results.
+     * Output only. A token that you can send as the `page_token` in a subsequent
+     * request to retrieve the next page of results. If this field is empty, there
+     * are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

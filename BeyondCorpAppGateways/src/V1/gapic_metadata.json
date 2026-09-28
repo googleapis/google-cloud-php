@@ -8,7 +8,7 @@
         "AppGatewaysService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AppGatewaysServiceGapicClient",
+                    "libraryClient": "AppGatewaysServiceClient",
                     "rpcs": {
                         "CreateAppGateway": {
                             "methods": [

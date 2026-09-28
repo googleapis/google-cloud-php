@@ -47,6 +47,15 @@ class CartData extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.Item items = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $items;
+    /**
+     * Optional. The list of coupon codes that were applied to the cart.
+     * Cart-level and item-level coupon codes are independent.
+     * If the event is for a Google Analytics destination, only provide a single
+     * coupon code. Google Analytics ignores additional coupon codes.
+     *
+     * Generated from protobuf field <code>repeated string coupon_codes = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $coupon_codes;
 
     /**
      * Constructor.
@@ -66,6 +75,11 @@ class CartData extends \Google\Protobuf\Internal\Message
      *           Optional. The sum of all discounts associated with the transaction.
      *     @type \Google\Ads\DataManager\V1\Item[] $items
      *           Optional. The list of items associated with the event.
+     *     @type string[] $coupon_codes
+     *           Optional. The list of coupon codes that were applied to the cart.
+     *           Cart-level and item-level coupon codes are independent.
+     *           If the event is for a Google Analytics destination, only provide a single
+     *           coupon code. Google Analytics ignores additional coupon codes.
      * }
      */
     public function __construct($data = NULL) {
@@ -203,6 +217,38 @@ class CartData extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\DataManager\V1\Item::class);
         $this->items = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The list of coupon codes that were applied to the cart.
+     * Cart-level and item-level coupon codes are independent.
+     * If the event is for a Google Analytics destination, only provide a single
+     * coupon code. Google Analytics ignores additional coupon codes.
+     *
+     * Generated from protobuf field <code>repeated string coupon_codes = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getCouponCodes()
+    {
+        return $this->coupon_codes;
+    }
+
+    /**
+     * Optional. The list of coupon codes that were applied to the cart.
+     * Cart-level and item-level coupon codes are independent.
+     * If the event is for a Google Analytics destination, only provide a single
+     * coupon code. Google Analytics ignores additional coupon codes.
+     *
+     * Generated from protobuf field <code>repeated string coupon_codes = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setCouponCodes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->coupon_codes = $arr;
 
         return $this;
     }

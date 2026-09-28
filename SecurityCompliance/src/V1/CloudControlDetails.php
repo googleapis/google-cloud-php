@@ -16,8 +16,10 @@ use Google\Protobuf\RepeatedField;
 class CloudControlDetails extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the cloud control, in the format
-     * `organizations/{organization}/locations/{location}/cloudControls/{cloud-control}`.
+     * Required. The name of the cloud control, in one of the following formats:
+     * `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`
+     * or
+     * `projects/{project}/locations/{location}/cloudControls/{cloud_control}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -46,8 +48,10 @@ class CloudControlDetails extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the cloud control, in the format
-     *           `organizations/{organization}/locations/{location}/cloudControls/{cloud-control}`.
+     *           Required. The name of the cloud control, in one of the following formats:
+     *           `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`
+     *           or
+     *           `projects/{project}/locations/{location}/cloudControls/{cloud_control}`.
      *           The only supported location is `global`.
      *     @type int|string $major_revision_id
      *           Required. The major version of the cloud control.
@@ -64,8 +68,10 @@ class CloudControlDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the cloud control, in the format
-     * `organizations/{organization}/locations/{location}/cloudControls/{cloud-control}`.
+     * Required. The name of the cloud control, in one of the following formats:
+     * `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`
+     * or
+     * `projects/{project}/locations/{location}/cloudControls/{cloud_control}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -77,8 +83,10 @@ class CloudControlDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the cloud control, in the format
-     * `organizations/{organization}/locations/{location}/cloudControls/{cloud-control}`.
+     * Required. The name of the cloud control, in one of the following formats:
+     * `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`
+     * or
+     * `projects/{project}/locations/{location}/cloudControls/{cloud_control}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>

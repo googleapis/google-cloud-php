@@ -44,6 +44,12 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
      */
     private $nat_status;
     /**
+     * URI of the ncc_gateway to which this router associated.
+     *
+     * Generated from protobuf field <code>optional string ncc_gateway = 174876755;</code>
+     */
+    protected $ncc_gateway = null;
+    /**
      * URI of the network to which this router belongs.
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
@@ -71,6 +77,8 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
      *           prefix than a route learned by this Cloud Router.
      *     @type \Google\Cloud\Compute\V1\RouterStatusBgpPeerStatus[] $bgp_peer_status
      *     @type \Google\Cloud\Compute\V1\RouterStatusNatStatus[] $nat_status
+     *     @type string $ncc_gateway
+     *           URI of the ncc_gateway to which this router associated.
      *     @type string $network
      *           URI of the network to which this router belongs.
      * }
@@ -190,6 +198,42 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\RouterStatusNatStatus::class);
         $this->nat_status = $arr;
+
+        return $this;
+    }
+
+    /**
+     * URI of the ncc_gateway to which this router associated.
+     *
+     * Generated from protobuf field <code>optional string ncc_gateway = 174876755;</code>
+     * @return string
+     */
+    public function getNccGateway()
+    {
+        return isset($this->ncc_gateway) ? $this->ncc_gateway : '';
+    }
+
+    public function hasNccGateway()
+    {
+        return isset($this->ncc_gateway);
+    }
+
+    public function clearNccGateway()
+    {
+        unset($this->ncc_gateway);
+    }
+
+    /**
+     * URI of the ncc_gateway to which this router associated.
+     *
+     * Generated from protobuf field <code>optional string ncc_gateway = 174876755;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNccGateway($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ncc_gateway = $var;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ use Google\Analytics\Admin\V1alpha\ReportingIdentitySettings;
 use Google\ApiCore\ApiException;
 
 /**
- * Returns the singleton data retention settings for this property.
+ * Returns the reporting identity settings for this property.
  *
  * @param string $formattedName The name of the settings to lookup.
  *                              Format:

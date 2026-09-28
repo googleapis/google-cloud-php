@@ -453,7 +453,9 @@ class RequestWrapper
      */
     private function getExceptionMessage(\Exception $ex)
     {
-        if ($ex instanceof RequestException && $ex->hasResponse()) {
+        // Guzzle 7 carries the response on RequestException, Guzzle 8 only on
+        // its ResponseException subclass, hence the method_exists() check.
+        if ($ex instanceof RequestException && method_exists($ex, 'getResponse') && $ex->getResponse()) {
             return (string) $ex->getResponse()->getBody();
         }
 

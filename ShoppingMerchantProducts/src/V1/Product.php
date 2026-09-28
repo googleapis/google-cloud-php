@@ -42,6 +42,21 @@ class Product extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
+     * Output only. The **unpadded base64url encoded name** of the product.
+     * Format:
+     * `accounts/{account}/products/{product}` where the last
+     * section `product` is the unpadded base64url encoding of the
+     * `content_language~feed_label~offer_id` name.
+     * Example: `accounts/123/products/ZW5-VVN-c2t1LzEyMw` for the decoded product
+     * name `accounts/123/products/en~US~sku/123`. This field can be used directly
+     * as input to the API methods that require the product name to be encoded if
+     * it contains special characters, for example
+     * [`GetProduct`](https://developers.google.com/merchant/api/reference/rest/products_v1/accounts.products/get).
+     *
+     * Generated from protobuf field <code>string base64_encoded_name = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $base64_encoded_name = '';
+    /**
      * Output only. Determines whether the product is **only** targeting
      * local destinations and whether the product name should be distinguished
      * with a `local~` prefix. For example,
@@ -130,6 +145,16 @@ class Product extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.shopping.merchant.products.v1.AutomatedDiscounts automated_discounts = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $automated_discounts = null;
+    /**
+     * Output only. Determines whether the product is
+     * [archived](https://support.google.com/merchants/answer/11909930).
+     * To archive or restore your product, visit Merchant Center products page.
+     * Learn also more about [offer
+     * visibility](https://support.google.com/merchants/answer/12488713).
+     *
+     * Generated from protobuf field <code>bool archived = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $archived = false;
 
     /**
      * Constructor.
@@ -148,6 +173,17 @@ class Product extends \Google\Protobuf\Internal\Message
      *           Note: For calls to the v1beta version, the `product` section consists
      *           of: `channel~content_language~feed_label~offer_id`, for example:
      *           `accounts/123/products/online~en~US~sku123`.
+     *     @type string $base64_encoded_name
+     *           Output only. The **unpadded base64url encoded name** of the product.
+     *           Format:
+     *           `accounts/{account}/products/{product}` where the last
+     *           section `product` is the unpadded base64url encoding of the
+     *           `content_language~feed_label~offer_id` name.
+     *           Example: `accounts/123/products/ZW5-VVN-c2t1LzEyMw` for the decoded product
+     *           name `accounts/123/products/en~US~sku/123`. This field can be used directly
+     *           as input to the API methods that require the product name to be encoded if
+     *           it contains special characters, for example
+     *           [`GetProduct`](https://developers.google.com/merchant/api/reference/rest/products_v1/accounts.products/get).
      *     @type bool $legacy_local
      *           Output only. Determines whether the product is **only** targeting
      *           local destinations and whether the product name should be distinguished
@@ -197,6 +233,12 @@ class Product extends \Google\Protobuf\Internal\Message
      *           information about a product computed asynchronously.
      *     @type \Google\Shopping\Merchant\Products\V1\AutomatedDiscounts $automated_discounts
      *           Output only. The automated discounts information for the product.
+     *     @type bool $archived
+     *           Output only. Determines whether the product is
+     *           [archived](https://support.google.com/merchants/answer/11909930).
+     *           To archive or restore your product, visit Merchant Center products page.
+     *           Learn also more about [offer
+     *           visibility](https://support.google.com/merchants/answer/12488713).
      * }
      */
     public function __construct($data = NULL) {
@@ -244,6 +286,50 @@ class Product extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The **unpadded base64url encoded name** of the product.
+     * Format:
+     * `accounts/{account}/products/{product}` where the last
+     * section `product` is the unpadded base64url encoding of the
+     * `content_language~feed_label~offer_id` name.
+     * Example: `accounts/123/products/ZW5-VVN-c2t1LzEyMw` for the decoded product
+     * name `accounts/123/products/en~US~sku/123`. This field can be used directly
+     * as input to the API methods that require the product name to be encoded if
+     * it contains special characters, for example
+     * [`GetProduct`](https://developers.google.com/merchant/api/reference/rest/products_v1/accounts.products/get).
+     *
+     * Generated from protobuf field <code>string base64_encoded_name = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getBase64EncodedName()
+    {
+        return $this->base64_encoded_name;
+    }
+
+    /**
+     * Output only. The **unpadded base64url encoded name** of the product.
+     * Format:
+     * `accounts/{account}/products/{product}` where the last
+     * section `product` is the unpadded base64url encoding of the
+     * `content_language~feed_label~offer_id` name.
+     * Example: `accounts/123/products/ZW5-VVN-c2t1LzEyMw` for the decoded product
+     * name `accounts/123/products/en~US~sku/123`. This field can be used directly
+     * as input to the API methods that require the product name to be encoded if
+     * it contains special characters, for example
+     * [`GetProduct`](https://developers.google.com/merchant/api/reference/rest/products_v1/accounts.products/get).
+     *
+     * Generated from protobuf field <code>string base64_encoded_name = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBase64EncodedName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->base64_encoded_name = $var;
 
         return $this;
     }
@@ -602,6 +688,40 @@ class Product extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Products\V1\AutomatedDiscounts::class);
         $this->automated_discounts = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Determines whether the product is
+     * [archived](https://support.google.com/merchants/answer/11909930).
+     * To archive or restore your product, visit Merchant Center products page.
+     * Learn also more about [offer
+     * visibility](https://support.google.com/merchants/answer/12488713).
+     *
+     * Generated from protobuf field <code>bool archived = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getArchived()
+    {
+        return $this->archived;
+    }
+
+    /**
+     * Output only. Determines whether the product is
+     * [archived](https://support.google.com/merchants/answer/11909930).
+     * To archive or restore your product, visit Merchant Center products page.
+     * Learn also more about [offer
+     * visibility](https://support.google.com/merchants/answer/12488713).
+     *
+     * Generated from protobuf field <code>bool archived = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setArchived($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->archived = $var;
 
         return $this;
     }

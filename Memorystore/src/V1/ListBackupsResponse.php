@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Response for [ListBackups].
+ * Response for `ListBackups`.
  *
  * Generated from protobuf message <code>google.cloud.memorystore.v1.ListBackupsResponse</code>
  */

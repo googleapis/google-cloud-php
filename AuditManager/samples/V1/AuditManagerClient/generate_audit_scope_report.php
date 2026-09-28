@@ -30,23 +30,27 @@ use Google\Cloud\AuditManager\V1\GenerateAuditScopeReportRequest;
 use Google\Cloud\AuditManager\V1\GenerateAuditScopeReportRequest\AuditScopeReportFormat;
 
 /**
- * Generates a demo report highlighting different responsibilities
- * (Google/Customer/ shared) required to be fulfilled for the customer's
- * workload to be compliant with the given standard.
+ * Generates an audit scope report for the given standard.
  *
- * @param string $scope               Scope for which the AuditScopeReport is required. Must be of
- *                                    format resource_type/resource_identifier Eg:
- *                                    projects/{project}/locations/{location},
- *                                    folders/{folder}/locations/{location}
- * @param string $complianceStandard  Compliance Standard against which the Scope Report must be
- *                                    generated. Eg: FEDRAMP_MODERATE
- * @param int    $reportFormat        The format in which the Scope report bytes should be returned.
- * @param string $complianceFramework Compliance framework against which the Scope Report must be
- *                                    generated.
+ * The report includes the following:
+ *
+ * * The technical attributes and constraints that Audit Manager uses to
+ * verify your compliance with a framework.
+ * * A list of Google Cloud services and resources that are within the
+ * scope of the framework.
+ *
+ * @param string $scope               Project or folder that the audit scope report is generated for,
+ *                                    in one of the following formats:
+ *
+ *                                    * `projects/{project}/locations/{location}`
+ *                                    * `folders/{folder}/locations/{location}`
+ *                                    * `organizations/{organization}/locations/{location}`
+ * @param int    $reportFormat        Format for the audit scope report.
+ * @param string $complianceFramework Framework (set of controls) that the audit scope report is
+ *                                    generated against. For example, `NIST_800_53`.
  */
 function generate_audit_scope_report_sample(
     string $scope,
-    string $complianceStandard,
     int $reportFormat,
     string $complianceFramework
 ): void {
@@ -56,7 +60,6 @@ function generate_audit_scope_report_sample(
     // Prepare the request message.
     $request = (new GenerateAuditScopeReportRequest())
         ->setScope($scope)
-        ->setComplianceStandard($complianceStandard)
         ->setReportFormat($reportFormat)
         ->setComplianceFramework($complianceFramework);
 
@@ -82,15 +85,9 @@ function generate_audit_scope_report_sample(
 function callSample(): void
 {
     $scope = '[SCOPE]';
-    $complianceStandard = '[COMPLIANCE_STANDARD]';
     $reportFormat = AuditScopeReportFormat::AUDIT_SCOPE_REPORT_FORMAT_UNSPECIFIED;
     $complianceFramework = '[COMPLIANCE_FRAMEWORK]';
 
-    generate_audit_scope_report_sample(
-        $scope,
-        $complianceStandard,
-        $reportFormat,
-        $complianceFramework
-    );
+    generate_audit_scope_report_sample($scope, $reportFormat, $complianceFramework);
 }
 // [END auditmanager_v1_generated_AuditManager_GenerateAuditScopeReport_sync]

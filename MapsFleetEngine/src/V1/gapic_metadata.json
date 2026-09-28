@@ -8,7 +8,7 @@
         "TripService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TripServiceGapicClient",
+                    "libraryClient": "TripServiceClient",
                     "rpcs": {
                         "CreateTrip": {
                             "methods": [
@@ -47,7 +47,7 @@
         "VehicleService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "VehicleServiceGapicClient",
+                    "libraryClient": "VehicleServiceClient",
                     "rpcs": {
                         "CreateVehicle": {
                             "methods": [

@@ -75,6 +75,13 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.PrivateResourceMetadata private_resource_metadata = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $private_resource_metadata = null;
+    /**
+     * Output only. Metadata about the repository snapshot used by scheduled
+     * notebooks.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.GcsRepositorySnapshotMetadata gcs_repository_snapshot_metadata = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $gcs_repository_snapshot_metadata = null;
     protected $source;
 
     /**
@@ -119,6 +126,9 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
      *           Output only. Metadata indicating whether this resource is user-scoped.
      *           `CompilationResult` resource is `user_scoped` only if it is sourced
      *           from a workspace.
+     *     @type \Google\Cloud\Dataform\V1beta1\GcsRepositorySnapshotMetadata $gcs_repository_snapshot_metadata
+     *           Output only. Metadata about the repository snapshot used by scheduled
+     *           notebooks.
      * }
      */
     public function __construct($data = NULL) {
@@ -523,6 +533,44 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\PrivateResourceMetadata::class);
         $this->private_resource_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Metadata about the repository snapshot used by scheduled
+     * notebooks.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.GcsRepositorySnapshotMetadata gcs_repository_snapshot_metadata = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataform\V1beta1\GcsRepositorySnapshotMetadata|null
+     */
+    public function getGcsRepositorySnapshotMetadata()
+    {
+        return $this->gcs_repository_snapshot_metadata;
+    }
+
+    public function hasGcsRepositorySnapshotMetadata()
+    {
+        return isset($this->gcs_repository_snapshot_metadata);
+    }
+
+    public function clearGcsRepositorySnapshotMetadata()
+    {
+        unset($this->gcs_repository_snapshot_metadata);
+    }
+
+    /**
+     * Output only. Metadata about the repository snapshot used by scheduled
+     * notebooks.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.GcsRepositorySnapshotMetadata gcs_repository_snapshot_metadata = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataform\V1beta1\GcsRepositorySnapshotMetadata $var
+     * @return $this
+     */
+    public function setGcsRepositorySnapshotMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\GcsRepositorySnapshotMetadata::class);
+        $this->gcs_repository_snapshot_metadata = $var;
 
         return $this;
     }

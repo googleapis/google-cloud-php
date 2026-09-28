@@ -8,7 +8,7 @@
         "LocalInventoryService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LocalInventoryServiceGapicClient",
+                    "libraryClient": "LocalInventoryServiceClient",
                     "rpcs": {
                         "DeleteLocalInventory": {
                             "methods": [
@@ -32,7 +32,7 @@
         "RegionalInventoryService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionalInventoryServiceGapicClient",
+                    "libraryClient": "RegionalInventoryServiceClient",
                     "rpcs": {
                         "DeleteRegionalInventory": {
                             "methods": [

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -74,20 +74,24 @@ class ProductsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $base64EncodedName = 'base64EncodedName-1315189748';
         $legacyLocal = false;
         $offerId = 'offerId-768546338';
         $contentLanguage = 'contentLanguage-1408137122';
         $feedLabel = 'feedLabel574920979';
         $dataSource = 'dataSource-1333894576';
         $versionNumber = 135927952;
+        $archived = true;
         $expectedResponse = new Product();
         $expectedResponse->setName($name2);
+        $expectedResponse->setBase64EncodedName($base64EncodedName);
         $expectedResponse->setLegacyLocal($legacyLocal);
         $expectedResponse->setOfferId($offerId);
         $expectedResponse->setContentLanguage($contentLanguage);
         $expectedResponse->setFeedLabel($feedLabel);
         $expectedResponse->setDataSource($dataSource);
         $expectedResponse->setVersionNumber($versionNumber);
+        $expectedResponse->setArchived($archived);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->productName('[ACCOUNT]', '[PRODUCT]');
@@ -222,20 +226,24 @@ class ProductsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $base64EncodedName = 'base64EncodedName-1315189748';
         $legacyLocal = false;
         $offerId = 'offerId-768546338';
         $contentLanguage = 'contentLanguage-1408137122';
         $feedLabel = 'feedLabel574920979';
         $dataSource = 'dataSource-1333894576';
         $versionNumber = 135927952;
+        $archived = true;
         $expectedResponse = new Product();
         $expectedResponse->setName($name2);
+        $expectedResponse->setBase64EncodedName($base64EncodedName);
         $expectedResponse->setLegacyLocal($legacyLocal);
         $expectedResponse->setOfferId($offerId);
         $expectedResponse->setContentLanguage($contentLanguage);
         $expectedResponse->setFeedLabel($feedLabel);
         $expectedResponse->setDataSource($dataSource);
         $expectedResponse->setVersionNumber($versionNumber);
+        $expectedResponse->setArchived($archived);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->productName('[ACCOUNT]', '[PRODUCT]');

@@ -17,7 +17,7 @@ class CreateGrpcRouteRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent resource of the GrpcRoute. Must be in the
-     * format `projects/{@*}locations/global`.
+     * format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -37,7 +37,7 @@ class CreateGrpcRouteRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                     $parent      Required. The parent resource of the GrpcRoute. Must be in the
-     *                                                                format `projects/&#42;/locations/global`. Please see
+     *                                                                format `projects/&#42;/locations/*`. Please see
      *                                                                {@see NetworkServicesClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\NetworkServices\V1\GrpcRoute $grpcRoute   Required. GrpcRoute resource to be created.
      * @param string                                     $grpcRouteId Required. Short name of the GrpcRoute resource to be created.
@@ -62,7 +62,7 @@ class CreateGrpcRouteRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent resource of the GrpcRoute. Must be in the
-     *           format `projects/{@*}locations/global`.
+     *           format `projects/{@*}locations/*`.
      *     @type string $grpc_route_id
      *           Required. Short name of the GrpcRoute resource to be created.
      *     @type \Google\Cloud\NetworkServices\V1\GrpcRoute $grpc_route
@@ -76,7 +76,7 @@ class CreateGrpcRouteRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource of the GrpcRoute. Must be in the
-     * format `projects/{@*}locations/global`.
+     * format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -88,7 +88,7 @@ class CreateGrpcRouteRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource of the GrpcRoute. Must be in the
-     * format `projects/{@*}locations/global`.
+     * format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

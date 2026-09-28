@@ -115,6 +115,16 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      */
     protected $public_key = null;
     /**
+     * Output only. Specifies the
+     * [WrappingPublicKey][google.cloud.kms.v1.ImportJob.WrappingPublicKey] format
+     * provided by the customer in the
+     * [KeyManagementService.GetImportJob][google.cloud.kms.v1.KeyManagementService.GetImportJob]
+     * request.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.PublicKey.PublicKeyFormat public_key_format = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $public_key_format = 0;
+    /**
      * Output only. Statement that was generated and signed by the key creator
      * (for example, an HSM) at key creation time. Use this statement to verify
      * attributes of the key as stored on the HSM, independently of Google.
@@ -179,6 +189,12 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      *           Output only. The public key with which to wrap key material prior to
      *           import. Only returned if [state][google.cloud.kms.v1.ImportJob.state] is
      *           [ACTIVE][google.cloud.kms.v1.ImportJob.ImportJobState.ACTIVE].
+     *     @type int $public_key_format
+     *           Output only. Specifies the
+     *           [WrappingPublicKey][google.cloud.kms.v1.ImportJob.WrappingPublicKey] format
+     *           provided by the customer in the
+     *           [KeyManagementService.GetImportJob][google.cloud.kms.v1.KeyManagementService.GetImportJob]
+     *           request.
      *     @type \Google\Cloud\Kms\V1\KeyOperationAttestation $attestation
      *           Output only. Statement that was generated and signed by the key creator
      *           (for example, an HSM) at key creation time. Use this statement to verify
@@ -515,6 +531,40 @@ class ImportJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Kms\V1\ImportJob\WrappingPublicKey::class);
         $this->public_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Specifies the
+     * [WrappingPublicKey][google.cloud.kms.v1.ImportJob.WrappingPublicKey] format
+     * provided by the customer in the
+     * [KeyManagementService.GetImportJob][google.cloud.kms.v1.KeyManagementService.GetImportJob]
+     * request.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.PublicKey.PublicKeyFormat public_key_format = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getPublicKeyFormat()
+    {
+        return $this->public_key_format;
+    }
+
+    /**
+     * Output only. Specifies the
+     * [WrappingPublicKey][google.cloud.kms.v1.ImportJob.WrappingPublicKey] format
+     * provided by the customer in the
+     * [KeyManagementService.GetImportJob][google.cloud.kms.v1.KeyManagementService.GetImportJob]
+     * request.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.PublicKey.PublicKeyFormat public_key_format = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPublicKeyFormat($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\PublicKey\PublicKeyFormat::class);
+        $this->public_key_format = $var;
 
         return $this;
     }

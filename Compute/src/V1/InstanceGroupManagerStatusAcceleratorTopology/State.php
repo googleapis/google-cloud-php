@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InstanceGroupManagerStatusAcceleratorTopology;
 use UnexpectedValueException;
 
 /**
- * Output only. [Output Only] The state of the accelerator topology.
+ * Output only. The state of the accelerator topology.
  *
  * Protobuf type <code>google.cloud.compute.v1.InstanceGroupManagerStatusAcceleratorTopology.State</code>
  */

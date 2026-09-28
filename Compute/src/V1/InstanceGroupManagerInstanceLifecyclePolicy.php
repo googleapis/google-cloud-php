@@ -15,15 +15,14 @@ use Google\Protobuf\RepeatedField;
 class InstanceGroupManagerInstanceLifecyclePolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The action that a MIG performs on a failed or an unhealthy VM.
-     * A VM is marked as unhealthy when the application running on that
-     * VM fails a health check.
+     * The action that a MIG performs on a failed VM. If the value of the
+     * onFailedHealthCheck field is `DEFAULT_ACTION`, then the same action also
+     * applies to the VMs on which your application fails a health check.
      * Valid values are
-     *    - REPAIR (default): MIG automatically repairs a failed or
-     *    an unhealthy VM by recreating it. For more information, see About
+     *    - REPAIR (default): MIG automatically repairs a failed VM
+     *    by recreating it. For more information, see About
      *    repairing VMs in a MIG.
-     *    - DO_NOTHING: MIG does not repair a failed or an unhealthy
-     *    VM.
+     *    - DO_NOTHING: MIG does not repair a failed VM.
      * Check the DefaultActionOnFailure enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string default_action_on_failure = 61383253;</code>
@@ -58,6 +57,12 @@ class InstanceGroupManagerInstanceLifecyclePolicy extends \Google\Protobuf\Inter
      * Generated from protobuf field <code>optional string on_failed_health_check = 39807943;</code>
      */
     protected $on_failed_health_check = null;
+    /**
+     * Configuration for VM repairs in the MIG.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerInstanceLifecyclePolicyOnRepair on_repair = 371820013;</code>
+     */
+    protected $on_repair = null;
 
     /**
      * Constructor.
@@ -66,15 +71,14 @@ class InstanceGroupManagerInstanceLifecyclePolicy extends \Google\Protobuf\Inter
      *     Optional. Data for populating the Message object.
      *
      *     @type string $default_action_on_failure
-     *           The action that a MIG performs on a failed or an unhealthy VM.
-     *           A VM is marked as unhealthy when the application running on that
-     *           VM fails a health check.
+     *           The action that a MIG performs on a failed VM. If the value of the
+     *           onFailedHealthCheck field is `DEFAULT_ACTION`, then the same action also
+     *           applies to the VMs on which your application fails a health check.
      *           Valid values are
-     *              - REPAIR (default): MIG automatically repairs a failed or
-     *              an unhealthy VM by recreating it. For more information, see About
+     *              - REPAIR (default): MIG automatically repairs a failed VM
+     *              by recreating it. For more information, see About
      *              repairing VMs in a MIG.
-     *              - DO_NOTHING: MIG does not repair a failed or an unhealthy
-     *              VM.
+     *              - DO_NOTHING: MIG does not repair a failed VM.
      *           Check the DefaultActionOnFailure enum for the list of possible values.
      *     @type string $force_update_on_repair
      *           A bit indicating whether to forcefully apply the group's latest
@@ -97,6 +101,8 @@ class InstanceGroupManagerInstanceLifecyclePolicy extends \Google\Protobuf\Inter
      *              For more information, see
      *              About repairing VMs in a MIG.
      *           Check the OnFailedHealthCheck enum for the list of possible values.
+     *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceLifecyclePolicyOnRepair $on_repair
+     *           Configuration for VM repairs in the MIG.
      * }
      */
     public function __construct($data = NULL) {
@@ -105,15 +111,14 @@ class InstanceGroupManagerInstanceLifecyclePolicy extends \Google\Protobuf\Inter
     }
 
     /**
-     * The action that a MIG performs on a failed or an unhealthy VM.
-     * A VM is marked as unhealthy when the application running on that
-     * VM fails a health check.
+     * The action that a MIG performs on a failed VM. If the value of the
+     * onFailedHealthCheck field is `DEFAULT_ACTION`, then the same action also
+     * applies to the VMs on which your application fails a health check.
      * Valid values are
-     *    - REPAIR (default): MIG automatically repairs a failed or
-     *    an unhealthy VM by recreating it. For more information, see About
+     *    - REPAIR (default): MIG automatically repairs a failed VM
+     *    by recreating it. For more information, see About
      *    repairing VMs in a MIG.
-     *    - DO_NOTHING: MIG does not repair a failed or an unhealthy
-     *    VM.
+     *    - DO_NOTHING: MIG does not repair a failed VM.
      * Check the DefaultActionOnFailure enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string default_action_on_failure = 61383253;</code>
@@ -135,15 +140,14 @@ class InstanceGroupManagerInstanceLifecyclePolicy extends \Google\Protobuf\Inter
     }
 
     /**
-     * The action that a MIG performs on a failed or an unhealthy VM.
-     * A VM is marked as unhealthy when the application running on that
-     * VM fails a health check.
+     * The action that a MIG performs on a failed VM. If the value of the
+     * onFailedHealthCheck field is `DEFAULT_ACTION`, then the same action also
+     * applies to the VMs on which your application fails a health check.
      * Valid values are
-     *    - REPAIR (default): MIG automatically repairs a failed or
-     *    an unhealthy VM by recreating it. For more information, see About
+     *    - REPAIR (default): MIG automatically repairs a failed VM
+     *    by recreating it. For more information, see About
      *    repairing VMs in a MIG.
-     *    - DO_NOTHING: MIG does not repair a failed or an unhealthy
-     *    VM.
+     *    - DO_NOTHING: MIG does not repair a failed VM.
      * Check the DefaultActionOnFailure enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string default_action_on_failure = 61383253;</code>
@@ -260,6 +264,42 @@ class InstanceGroupManagerInstanceLifecyclePolicy extends \Google\Protobuf\Inter
     {
         GPBUtil::checkString($var, True);
         $this->on_failed_health_check = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for VM repairs in the MIG.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerInstanceLifecyclePolicyOnRepair on_repair = 371820013;</code>
+     * @return \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceLifecyclePolicyOnRepair|null
+     */
+    public function getOnRepair()
+    {
+        return $this->on_repair;
+    }
+
+    public function hasOnRepair()
+    {
+        return isset($this->on_repair);
+    }
+
+    public function clearOnRepair()
+    {
+        unset($this->on_repair);
+    }
+
+    /**
+     * Configuration for VM repairs in the MIG.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerInstanceLifecyclePolicyOnRepair on_repair = 371820013;</code>
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceLifecyclePolicyOnRepair $var
+     * @return $this
+     */
+    public function setOnRepair($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceLifecyclePolicyOnRepair::class);
+        $this->on_repair = $var;
 
         return $this;
     }

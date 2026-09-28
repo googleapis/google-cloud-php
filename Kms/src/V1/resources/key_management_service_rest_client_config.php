@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -174,6 +174,17 @@ return [
                     ],
                 ],
             ],
+            'ExportTrustedKeyWrappedCryptoKeyVersion' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:exportTrustedKeyWrappedCryptoKeyVersion',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GenerateRandomBytes' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{location=projects/*/locations/*}:generateRandomBytes',
@@ -255,6 +266,18 @@ return [
             'ImportCryptoKeyVersion' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/keyRings/*/cryptoKeys/*}/cryptoKeyVersions:import',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportTrustedKeyWrappedCryptoKeyVersion' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/keyRings/*/cryptoKeys/*}/cryptoKeyVersions:importTrustedKeyWrappedCryptoKeyVersion',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [

@@ -58,6 +58,26 @@ class CurrentState
      * Generated from protobuf enum <code>CURRENT_STATE_DECRYPTION_ERROR = 6;</code>
      */
     const CURRENT_STATE_DECRYPTION_ERROR = 6;
+    /**
+     * Encryption of all objects in the storage is enabled.
+     * It does not guarantee that all objects in the storage are encrypted,
+     * but eventually they will be.
+     *
+     * Generated from protobuf enum <code>CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_ENABLED = 8;</code>
+     */
+    const CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_ENABLED = 8;
+    /**
+     * Enablement of the encryption of all objects in storage is pending.
+     *
+     * Generated from protobuf enum <code>CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_PENDING = 9;</code>
+     */
+    const CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_PENDING = 9;
+    /**
+     * Enabling encryption of all objects in storage encountered an error.
+     *
+     * Generated from protobuf enum <code>CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_ERROR = 10;</code>
+     */
+    const CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_ERROR = 10;
 
     private static $valueToName = [
         self::CURRENT_STATE_UNSPECIFIED => 'CURRENT_STATE_UNSPECIFIED',
@@ -67,6 +87,9 @@ class CurrentState
         self::CURRENT_STATE_ENCRYPTION_ERROR => 'CURRENT_STATE_ENCRYPTION_ERROR',
         self::CURRENT_STATE_DECRYPTION_PENDING => 'CURRENT_STATE_DECRYPTION_PENDING',
         self::CURRENT_STATE_DECRYPTION_ERROR => 'CURRENT_STATE_DECRYPTION_ERROR',
+        self::CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_ENABLED => 'CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_ENABLED',
+        self::CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_PENDING => 'CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_PENDING',
+        self::CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_ERROR => 'CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_ERROR',
     ];
 
     public static function name($value)

@@ -45,6 +45,8 @@ use Google\Cloud\Dataplex\V1\GetDataAssetRequest;
 use Google\Cloud\Dataplex\V1\GetDataProductRequest;
 use Google\Cloud\Dataplex\V1\ListDataAssetsRequest;
 use Google\Cloud\Dataplex\V1\ListDataProductsRequest;
+use Google\Cloud\Dataplex\V1\RequestDataProductAccessRequest;
+use Google\Cloud\Dataplex\V1\RequestDataProductAccessResponse;
 use Google\Cloud\Dataplex\V1\UpdateDataAssetRequest;
 use Google\Cloud\Dataplex\V1\UpdateDataProductRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -80,6 +82,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<DataProduct> getDataProductAsync(GetDataProductRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listDataAssetsAsync(ListDataAssetsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listDataProductsAsync(ListDataProductsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RequestDataProductAccessResponse> requestDataProductAccessAsync(RequestDataProductAccessRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateDataAssetAsync(UpdateDataAssetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateDataProductAsync(UpdateDataProductRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -112,8 +115,17 @@ final class DataProductServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/cloud-platform.read-only',
+        'https://www.googleapis.com/auth/dataplex.read-write',
+        'https://www.googleapis.com/auth/dataplex.readonly',
+    ];
 
     private $operationsClient;
 
@@ -159,7 +171,10 @@ final class DataProductServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -182,6 +197,25 @@ final class DataProductServiceClient
         }
 
         return new OperationsClient($options);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * change_request resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $changeRequest
+     *
+     * @return string The formatted change_request resource.
+     */
+    public static function changeRequestName(string $project, string $location, string $changeRequest): string
+    {
+        return self::getPathTemplate('changeRequest')->render([
+            'project' => $project,
+            'location' => $location,
+            'change_request' => $changeRequest,
+        ]);
     }
 
     /**
@@ -229,6 +263,140 @@ final class DataProductServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a entry
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $entryGroup
+     * @param string $entry
+     *
+     * @return string The formatted entry resource.
+     */
+    public static function entryName(string $project, string $location, string $entryGroup, string $entry): string
+    {
+        return self::getPathTemplate('entry')->render([
+            'project' => $project,
+            'location' => $location,
+            'entry_group' => $entryGroup,
+            'entry' => $entry,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a entry_group
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $entryGroup
+     *
+     * @return string The formatted entry_group resource.
+     */
+    public static function entryGroupName(string $project, string $location, string $entryGroup): string
+    {
+        return self::getPathTemplate('entryGroup')->render([
+            'project' => $project,
+            'location' => $location,
+            'entry_group' => $entryGroup,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a entry_link
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $entryGroup
+     * @param string $entryLink
+     *
+     * @return string The formatted entry_link resource.
+     */
+    public static function entryLinkName(
+        string $project,
+        string $location,
+        string $entryGroup,
+        string $entryLink
+    ): string {
+        return self::getPathTemplate('entryLink')->render([
+            'project' => $project,
+            'location' => $location,
+            'entry_group' => $entryGroup,
+            'entry_link' => $entryLink,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a glossary
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $glossary
+     *
+     * @return string The formatted glossary resource.
+     */
+    public static function glossaryName(string $project, string $location, string $glossary): string
+    {
+        return self::getPathTemplate('glossary')->render([
+            'project' => $project,
+            'location' => $location,
+            'glossary' => $glossary,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * glossary_category resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $glossary
+     * @param string $glossaryCategory
+     *
+     * @return string The formatted glossary_category resource.
+     */
+    public static function glossaryCategoryName(
+        string $project,
+        string $location,
+        string $glossary,
+        string $glossaryCategory
+    ): string {
+        return self::getPathTemplate('glossaryCategory')->render([
+            'project' => $project,
+            'location' => $location,
+            'glossary' => $glossary,
+            'glossary_category' => $glossaryCategory,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * glossary_term resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $glossary
+     * @param string $glossaryTerm
+     *
+     * @return string The formatted glossary_term resource.
+     */
+    public static function glossaryTermName(
+        string $project,
+        string $location,
+        string $glossary,
+        string $glossaryTerm
+    ): string {
+        return self::getPathTemplate('glossaryTerm')->render([
+            'project' => $project,
+            'location' => $location,
+            'glossary' => $glossary,
+            'glossary_term' => $glossaryTerm,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -249,8 +417,15 @@ final class DataProductServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - changeRequest: projects/{project}/locations/{location}/changeRequests/{change_request}
      * - dataAsset: projects/{project}/locations/{location}/dataProducts/{data_product}/dataAssets/{data_asset}
      * - dataProduct: projects/{project}/locations/{location}/dataProducts/{data_product}
+     * - entry: projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}
+     * - entryGroup: projects/{project}/locations/{location}/entryGroups/{entry_group}
+     * - entryLink: projects/{project}/locations/{location}/entryGroups/{entry_group}/entryLinks/{entry_link}
+     * - glossary: projects/{project}/locations/{location}/glossaries/{glossary}
+     * - glossaryCategory: projects/{project}/locations/{location}/glossaries/{glossary}/categories/{glossary_category}
+     * - glossaryTerm: projects/{project}/locations/{location}/glossaries/{glossary}/terms/{glossary_term}
      * - location: projects/{project}/locations/{location}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -567,6 +742,37 @@ final class DataProductServiceClient
     }
 
     /**
+     * Requests access to a data product. This will trigger an access approval
+     * workflow, and the requester will need to wait for the approval to be
+     * granted before they will be able to access the data product assets.
+     *
+     * The async variant is
+     * {@see DataProductServiceClient::requestDataProductAccessAsync()} .
+     *
+     * @example samples/V1/DataProductServiceClient/request_data_product_access.php
+     *
+     * @param RequestDataProductAccessRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RequestDataProductAccessResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function requestDataProductAccess(
+        RequestDataProductAccessRequest $request,
+        array $callOptions = []
+    ): RequestDataProductAccessResponse {
+        return $this->startApiCall('RequestDataProductAccess', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates a data asset.
      *
      * The async variant is {@see DataProductServiceClient::updateDataAssetAsync()} .
@@ -646,13 +852,21 @@ final class DataProductServiceClient
 
     /**
      * Lists information about the supported locations for this service.
-    This method can be called in two ways:
-
-    *   **List all public locations:** Use the path `GET /v1/locations`.
-    *   **List project-visible locations:** Use the path
-    `GET /v1/projects/{project_id}/locations`. This may include public
-    locations as well as private or other locations specifically visible
-    to the project.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see DataProductServiceClient::listLocationsAsync()} .
      *
@@ -679,7 +893,7 @@ final class DataProductServiceClient
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy
-    if the resource exists and does not have a policy set.
+     * if the resource exists and does not have a policy set.
      *
      * The async variant is {@see DataProductServiceClient::getIamPolicyAsync()} .
      *
@@ -706,10 +920,10 @@ final class DataProductServiceClient
 
     /**
      * Sets the access control policy on the specified resource. Replaces
-    any existing policy.
-
-    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
-    errors.
+     * any existing policy.
+     *
+     * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+     * errors.
      *
      * The async variant is {@see DataProductServiceClient::setIamPolicyAsync()} .
      *
@@ -736,12 +950,12 @@ final class DataProductServiceClient
 
     /**
      * Returns permissions that a caller has on the specified resource. If the
-    resource does not exist, this will return an empty set of
-    permissions, not a `NOT_FOUND` error.
-
-    Note: This operation is designed to be used for building
-    permission-aware UIs and command-line tools, not for authorization
-    checking. This operation may "fail open" without warning.
+     * resource does not exist, this will return an empty set of
+     * permissions, not a `NOT_FOUND` error.
+     *
+     * Note: This operation is designed to be used for building
+     * permission-aware UIs and command-line tools, not for authorization
+     * checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see DataProductServiceClient::testIamPermissionsAsync()}
      * .

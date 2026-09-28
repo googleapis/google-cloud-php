@@ -122,6 +122,8 @@ class Step extends \Google\Protobuf\Internal\Message
      *           Display information of an App Engine service version.
      *     @type \Google\Cloud\NetworkManagement\V1\CloudRunRevisionInfo $cloud_run_revision
      *           Display information of a Cloud Run revision.
+     *     @type \Google\Cloud\NetworkManagement\V1\CloudRunJobInfo $cloud_run_job
+     *           Display information of a Cloud Run job.
      *     @type \Google\Cloud\NetworkManagement\V1\NatInfo $nat
      *           Display information of a NAT.
      *     @type \Google\Cloud\NetworkManagement\V1\ProxyConnectionInfo $proxy_connection
@@ -135,6 +137,8 @@ class Step extends \Google\Protobuf\Internal\Message
      *           only for return traces.
      *     @type \Google\Cloud\NetworkManagement\V1\NgfwPacketInspectionInfo $ngfw_packet_inspection
      *           Display information of a layer 7 packet inspection by the firewall.
+     *     @type \Google\Cloud\NetworkManagement\V1\PrivateConnectionInfo $dms_private_connection
+     *           Display information of a DMS Private Connection.
      * }
      */
     public function __construct($data = NULL) {
@@ -1198,6 +1202,37 @@ class Step extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Display information of a Cloud Run job.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.CloudRunJobInfo cloud_run_job = 45;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\CloudRunJobInfo|null
+     */
+    public function getCloudRunJob()
+    {
+        return $this->readOneof(45);
+    }
+
+    public function hasCloudRunJob()
+    {
+        return $this->hasOneof(45);
+    }
+
+    /**
+     * Display information of a Cloud Run job.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.CloudRunJobInfo cloud_run_job = 45;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\CloudRunJobInfo $var
+     * @return $this
+     */
+    public function setCloudRunJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\CloudRunJobInfo::class);
+        $this->writeOneof(45, $var);
+
+        return $this;
+    }
+
+    /**
      * Display information of a NAT.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.NatInfo nat = 25;</code>
@@ -1381,6 +1416,37 @@ class Step extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\NgfwPacketInspectionInfo::class);
         $this->writeOneof(42, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of a DMS Private Connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.PrivateConnectionInfo dms_private_connection = 43;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\PrivateConnectionInfo|null
+     */
+    public function getDmsPrivateConnection()
+    {
+        return $this->readOneof(43);
+    }
+
+    public function hasDmsPrivateConnection()
+    {
+        return $this->hasOneof(43);
+    }
+
+    /**
+     * Display information of a DMS Private Connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.PrivateConnectionInfo dms_private_connection = 43;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\PrivateConnectionInfo $var
+     * @return $this
+     */
+    public function setDmsPrivateConnection($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\PrivateConnectionInfo::class);
+        $this->writeOneof(43, $var);
 
         return $this;
     }

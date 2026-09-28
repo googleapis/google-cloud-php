@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,17 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.NetworkService' => [
+            'GetDefaultThirdPartyDataDeclaration' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=networks/*/defaultThirdPartyDataDeclaration}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetNetwork' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*}',
@@ -38,8 +49,37 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1/networks',
             ],
+            'ProvisionTestNetwork' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/networks:provisionTestNetwork',
+                'body' => '*',
+            ],
+            'UpdateNetwork' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{network.name=networks/*}',
+                'body' => 'network',
+                'placeholders' => [
+                    'network.name' => [
+                        'getters' => [
+                            'getNetwork',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=networks/*/operations/reports/runs/*}:cancel',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/operations/reports/runs/*}',

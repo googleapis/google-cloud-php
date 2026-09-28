@@ -8,7 +8,7 @@
         "AssetService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AssetServiceGapicClient",
+                    "libraryClient": "AssetServiceClient",
                     "rpcs": {
                         "AnalyzeIamPolicy": {
                             "methods": [

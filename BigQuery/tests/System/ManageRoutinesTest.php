@@ -17,6 +17,11 @@
 
 namespace Google\Cloud\BigQuery\Tests\System;
 
+use Google\Cloud\BigQuery\Connection\V1\Client\ConnectionServiceClient;
+use Google\Cloud\BigQuery\Connection\V1\CloudResourceProperties;
+use Google\Cloud\BigQuery\Connection\V1\Connection;
+use Google\Cloud\BigQuery\Connection\V1\CreateConnectionRequest;
+use Google\Cloud\BigQuery\Connection\V1\DeleteConnectionRequest;
 use Google\Cloud\BigQuery\Routine;
 
 /**
@@ -132,5 +137,76 @@ class ManageRoutinesTest extends BigQueryTestCase
         $routine->delete();
 
         $this->assertFalse($routine->exists());
+    }
+
+    public function testCreateRemoteUdf()
+    {
+        $routineId = uniqid(self::TESTING_PREFIX);
+        $connectionId = uniqid('udf_conn');
+
+        $connectionName = $this->createConnection($connectionId);
+
+        try {
+            $routine = self::$dataset->createRoutine($routineId, [
+                'routineType' => 'SCALAR_FUNCTION',
+                'language' => 'SQL',
+                'returnType' => [
+                    'typeKind' => 'STRING'
+                ],
+                'remoteFunctionOptions' => [
+                    'endpoint' => 'https://us-east1-my_gcf_project.cloudfunctions.net/remote_add',
+                    'connection' => $connectionName,
+                    'maxBatchingRows' => '10',
+                    'userDefinedContext' => [
+                        'key' => 'value'
+                    ]
+                ]
+            ]);
+
+            $this->assertTrue($routine->exists());
+
+            $info = $routine->info();
+            $this->assertEquals('SCALAR_FUNCTION', $info['routineType']);
+            $this->assertArrayHasKey('remoteFunctionOptions', $info);
+            $this->assertEquals(
+                'https://us-east1-my_gcf_project.cloudfunctions.net/remote_add',
+                $info['remoteFunctionOptions']['endpoint']
+            );
+
+            $routine->delete();
+        } finally {
+            $this->deleteConnection($connectionName);
+        }
+    }
+
+    private function createConnection($connectionId)
+    {
+        $projectId = self::$dataset->identity()['projectId'];
+        $location = 'us';
+        $parent = "projects/$projectId/locations/$location";
+
+        $connectionClient = new ConnectionServiceClient();
+
+        $connection = new Connection();
+        $connection->setFriendlyName($connectionId);
+        $connection->setCloudResource(new CloudResourceProperties());
+
+        $request = new CreateConnectionRequest();
+        $request->setParent($parent);
+        $request->setConnectionId($connectionId);
+        $request->setConnection($connection);
+
+        $response = $connectionClient->createConnection($request);
+        return $response->getName();
+    }
+
+    private function deleteConnection($name)
+    {
+        $connectionClient = new ConnectionServiceClient();
+
+        $request = new DeleteConnectionRequest();
+        $request->setName($name);
+
+        $connectionClient->deleteConnection($request);
     }
 }

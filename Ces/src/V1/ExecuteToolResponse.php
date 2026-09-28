@@ -31,6 +31,19 @@ class ExecuteToolResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Struct variables = 4;</code>
      */
     protected $variables = null;
+    /**
+     * Citations that provide the source information for the tool's execution.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.Citations citations = 5;</code>
+     */
+    protected $citations = null;
+    /**
+     * The suggestions returned from Google Search as a result of invoking the
+     * Google Search Tool during the tool execution.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.GoogleSearchSuggestions google_search_suggestions = 6;</code>
+     */
+    protected $google_search_suggestions = null;
     protected $tool_identifier;
 
     /**
@@ -51,6 +64,11 @@ class ExecuteToolResponse extends \Google\Protobuf\Internal\Message
      *           then whole "response" is treated as tool execution result.
      *     @type \Google\Protobuf\Struct $variables
      *           The variable values at the end of the tool execution.
+     *     @type \Google\Cloud\Ces\V1\Citations $citations
+     *           Citations that provide the source information for the tool's execution.
+     *     @type \Google\Cloud\Ces\V1\GoogleSearchSuggestions $google_search_suggestions
+     *           The suggestions returned from Google Search as a result of invoking the
+     *           Google Search Tool during the tool execution.
      * }
      */
     public function __construct($data = NULL) {
@@ -196,6 +214,80 @@ class ExecuteToolResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
         $this->variables = $var;
+
+        return $this;
+    }
+
+    /**
+     * Citations that provide the source information for the tool's execution.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.Citations citations = 5;</code>
+     * @return \Google\Cloud\Ces\V1\Citations|null
+     */
+    public function getCitations()
+    {
+        return $this->citations;
+    }
+
+    public function hasCitations()
+    {
+        return isset($this->citations);
+    }
+
+    public function clearCitations()
+    {
+        unset($this->citations);
+    }
+
+    /**
+     * Citations that provide the source information for the tool's execution.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.Citations citations = 5;</code>
+     * @param \Google\Cloud\Ces\V1\Citations $var
+     * @return $this
+     */
+    public function setCitations($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\Citations::class);
+        $this->citations = $var;
+
+        return $this;
+    }
+
+    /**
+     * The suggestions returned from Google Search as a result of invoking the
+     * Google Search Tool during the tool execution.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.GoogleSearchSuggestions google_search_suggestions = 6;</code>
+     * @return \Google\Cloud\Ces\V1\GoogleSearchSuggestions|null
+     */
+    public function getGoogleSearchSuggestions()
+    {
+        return $this->google_search_suggestions;
+    }
+
+    public function hasGoogleSearchSuggestions()
+    {
+        return isset($this->google_search_suggestions);
+    }
+
+    public function clearGoogleSearchSuggestions()
+    {
+        unset($this->google_search_suggestions);
+    }
+
+    /**
+     * The suggestions returned from Google Search as a result of invoking the
+     * Google Search Tool during the tool execution.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.GoogleSearchSuggestions google_search_suggestions = 6;</code>
+     * @param \Google\Cloud\Ces\V1\GoogleSearchSuggestions $var
+     * @return $this
+     */
+    public function setGoogleSearchSuggestions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\GoogleSearchSuggestions::class);
+        $this->google_search_suggestions = $var;
 
         return $this;
     }

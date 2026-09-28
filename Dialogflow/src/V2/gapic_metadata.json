@@ -8,7 +8,7 @@
         "Agents": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AgentsGapicClient",
+                    "libraryClient": "AgentsClient",
                     "rpcs": {
                         "DeleteAgent": {
                             "methods": [
@@ -72,7 +72,7 @@
         "Tools": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ToolsGapicClient",
+                    "libraryClient": "ToolsClient",
                     "rpcs": {
                         "CreateTool": {
                             "methods": [
@@ -116,7 +116,7 @@
         "Generators": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GeneratorsGapicClient",
+                    "libraryClient": "GeneratorsClient",
                     "rpcs": {
                         "CreateGenerator": {
                             "methods": [
@@ -160,7 +160,7 @@
         "Contexts": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ContextsGapicClient",
+                    "libraryClient": "ContextsClient",
                     "rpcs": {
                         "CreateContext": {
                             "methods": [
@@ -209,7 +209,7 @@
         "Intents": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "IntentsGapicClient",
+                    "libraryClient": "IntentsClient",
                     "rpcs": {
                         "BatchDeleteIntents": {
                             "methods": [
@@ -263,7 +263,7 @@
         "EntityTypes": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "EntityTypesGapicClient",
+                    "libraryClient": "EntityTypesClient",
                     "rpcs": {
                         "BatchCreateEntities": {
                             "methods": [
@@ -332,7 +332,7 @@
         "SessionEntityTypes": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SessionEntityTypesGapicClient",
+                    "libraryClient": "SessionEntityTypesClient",
                     "rpcs": {
                         "CreateSessionEntityType": {
                             "methods": [
@@ -376,7 +376,7 @@
         "Sessions": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SessionsGapicClient",
+                    "libraryClient": "SessionsClient",
                     "rpcs": {
                         "DetectIntent": {
                             "methods": [
@@ -405,7 +405,7 @@
         "Participants": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ParticipantsGapicClient",
+                    "libraryClient": "ParticipantsClient",
                     "rpcs": {
                         "AnalyzeContent": {
                             "methods": [
@@ -474,7 +474,7 @@
         "AnswerRecords": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AnswerRecordsGapicClient",
+                    "libraryClient": "AnswerRecordsClient",
                     "rpcs": {
                         "ListAnswerRecords": {
                             "methods": [
@@ -503,7 +503,7 @@
         "ConversationProfiles": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ConversationProfilesGapicClient",
+                    "libraryClient": "ConversationProfilesClient",
                     "rpcs": {
                         "ClearSuggestionFeatureConfig": {
                             "methods": [
@@ -557,7 +557,7 @@
         "Conversations": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ConversationsGapicClient",
+                    "libraryClient": "ConversationsClient",
                     "rpcs": {
                         "CompleteConversation": {
                             "methods": [
@@ -631,7 +631,7 @@
         "ConversationDatasets": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ConversationDatasetsGapicClient",
+                    "libraryClient": "ConversationDatasetsClient",
                     "rpcs": {
                         "CreateConversationDataset": {
                             "methods": [
@@ -675,7 +675,7 @@
         "ConversationModels": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ConversationModelsGapicClient",
+                    "libraryClient": "ConversationModelsClient",
                     "rpcs": {
                         "CreateConversationModel": {
                             "methods": [
@@ -739,7 +739,7 @@
         "Documents": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DocumentsGapicClient",
+                    "libraryClient": "DocumentsClient",
                     "rpcs": {
                         "CreateDocument": {
                             "methods": [
@@ -798,7 +798,7 @@
         "EncryptionSpecService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "EncryptionSpecServiceGapicClient",
+                    "libraryClient": "EncryptionSpecServiceClient",
                     "rpcs": {
                         "GetEncryptionSpec": {
                             "methods": [
@@ -827,7 +827,7 @@
         "Fulfillments": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FulfillmentsGapicClient",
+                    "libraryClient": "FulfillmentsClient",
                     "rpcs": {
                         "GetFulfillment": {
                             "methods": [
@@ -856,7 +856,7 @@
         "Environments": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "EnvironmentsGapicClient",
+                    "libraryClient": "EnvironmentsClient",
                     "rpcs": {
                         "CreateEnvironment": {
                             "methods": [
@@ -905,7 +905,7 @@
         "GeneratorEvaluations": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GeneratorEvaluationsGapicClient",
+                    "libraryClient": "GeneratorEvaluationsClient",
                     "rpcs": {
                         "CreateGeneratorEvaluation": {
                             "methods": [
@@ -944,7 +944,7 @@
         "KnowledgeBases": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "KnowledgeBasesGapicClient",
+                    "libraryClient": "KnowledgeBasesClient",
                     "rpcs": {
                         "CreateKnowledgeBase": {
                             "methods": [
@@ -988,7 +988,7 @@
         "SipTrunks": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SipTrunksGapicClient",
+                    "libraryClient": "SipTrunksClient",
                     "rpcs": {
                         "CreateSipTrunk": {
                             "methods": [
@@ -1032,7 +1032,7 @@
         "Versions": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "VersionsGapicClient",
+                    "libraryClient": "VersionsClient",
                     "rpcs": {
                         "CreateVersion": {
                             "methods": [

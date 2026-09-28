@@ -10,7 +10,7 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
- * [ProcessOpenLineageRunEvent][google.cloud.datacatalog.lineage.v1.ProcessOpenLineageRunEvent].
+ * [ProcessOpenLineageRunEvent][google.cloud.datacatalog.lineage.v1.Lineage.ProcessOpenLineageRunEvent].
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.lineage.v1.ProcessOpenLineageRunEventRequest</code>
  */
@@ -31,11 +31,11 @@ class ProcessOpenLineageRunEventRequest extends \Google\Protobuf\Internal\Messag
      */
     protected $open_lineage = null;
     /**
-     * A unique identifier for this request. Restricted to 36 ASCII characters.
-     * A random UUID is recommended. This request is idempotent only if a
-     * `request_id` is provided.
+     * Optional. A unique identifier for this request. Restricted to 36 ASCII
+     * characters. A random UUID is recommended. This request is idempotent only
+     * if a `request_id` is provided.
      *
-     * Generated from protobuf field <code>string request_id = 3;</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
     protected $request_id = '';
 
@@ -69,9 +69,9 @@ class ProcessOpenLineageRunEventRequest extends \Google\Protobuf\Internal\Messag
      *           Required. OpenLineage message following OpenLineage format:
      *           https://github.com/OpenLineage/OpenLineage/blob/main/spec/OpenLineage.json
      *     @type string $request_id
-     *           A unique identifier for this request. Restricted to 36 ASCII characters.
-     *           A random UUID is recommended. This request is idempotent only if a
-     *           `request_id` is provided.
+     *           Optional. A unique identifier for this request. Restricted to 36 ASCII
+     *           characters. A random UUID is recommended. This request is idempotent only
+     *           if a `request_id` is provided.
      * }
      */
     public function __construct($data = NULL) {
@@ -146,11 +146,11 @@ class ProcessOpenLineageRunEventRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * A unique identifier for this request. Restricted to 36 ASCII characters.
-     * A random UUID is recommended. This request is idempotent only if a
-     * `request_id` is provided.
+     * Optional. A unique identifier for this request. Restricted to 36 ASCII
+     * characters. A random UUID is recommended. This request is idempotent only
+     * if a `request_id` is provided.
      *
-     * Generated from protobuf field <code>string request_id = 3;</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @return string
      */
     public function getRequestId()
@@ -159,11 +159,11 @@ class ProcessOpenLineageRunEventRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * A unique identifier for this request. Restricted to 36 ASCII characters.
-     * A random UUID is recommended. This request is idempotent only if a
-     * `request_id` is provided.
+     * Optional. A unique identifier for this request. Restricted to 36 ASCII
+     * characters. A random UUID is recommended. This request is idempotent only
+     * if a `request_id` is provided.
      *
-     * Generated from protobuf field <code>string request_id = 3;</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @param string $var
      * @return $this
      */

@@ -44,9 +44,9 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
     protected $cron_schedule = '';
     /**
      * Optional. Specifies the time zone to be used when interpreting
-     * cron_schedule. Must be a time zone name from the time zone database
-     * (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left
-     * unspecified, the default is UTC.
+     * cron_schedule. Must be a time zone name from the [time zone
+     * database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If
+     * left unspecified, the default is `UTC`.
      *
      * Generated from protobuf field <code>string time_zone = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -105,9 +105,9 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
      *           this workflow config.
      *     @type string $time_zone
      *           Optional. Specifies the time zone to be used when interpreting
-     *           cron_schedule. Must be a time zone name from the time zone database
-     *           (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left
-     *           unspecified, the default is UTC.
+     *           cron_schedule. Must be a time zone name from the [time zone
+     *           database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If
+     *           left unspecified, the default is `UTC`.
      *     @type \Google\Cloud\Dataform\V1\WorkflowConfig\ScheduledExecutionRecord[] $recent_scheduled_execution_records
      *           Output only. Records of the 10 most recent scheduled execution attempts,
      *           ordered in descending order of `execution_time`. Updated whenever automatic
@@ -251,9 +251,9 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Specifies the time zone to be used when interpreting
-     * cron_schedule. Must be a time zone name from the time zone database
-     * (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left
-     * unspecified, the default is UTC.
+     * cron_schedule. Must be a time zone name from the [time zone
+     * database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If
+     * left unspecified, the default is `UTC`.
      *
      * Generated from protobuf field <code>string time_zone = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -265,9 +265,9 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Specifies the time zone to be used when interpreting
-     * cron_schedule. Must be a time zone name from the time zone database
-     * (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left
-     * unspecified, the default is UTC.
+     * cron_schedule. Must be a time zone name from the [time zone
+     * database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If
+     * left unspecified, the default is `UTC`.
      *
      * Generated from protobuf field <code>string time_zone = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

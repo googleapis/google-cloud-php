@@ -68,6 +68,17 @@ class AuthzPolicy extends \Google\Protobuf\Internal\Message
      */
     private $http_rules;
     /**
+     * Optional. A list of authorization network rules to match against the
+     * incoming request. A policy match occurs when at least one network rule
+     * matches the request.
+     * At least one network rule is required for Allow or Deny Action if no HTTP
+     * rules are provided. Network rules are mutually exclusive with HTTP rules.
+     * Limited to 5 rules.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.AuthzPolicy.AuthzRule network_rules = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $network_rules;
+    /**
      * Required. Can be one of `ALLOW`, `DENY`, `CUSTOM`.
      * When the action is `CUSTOM`, `customProvider` must be specified.
      * When the action is `ALLOW`, only requests matching the policy will
@@ -134,6 +145,13 @@ class AuthzPolicy extends \Google\Protobuf\Internal\Message
      *           request or when no HTTP rules are specified in the policy.
      *           At least one HTTP Rule is required for Allow or Deny Action. Limited
      *           to 5 rules.
+     *     @type \Google\Cloud\NetworkSecurity\V1\AuthzPolicy\AuthzRule[] $network_rules
+     *           Optional. A list of authorization network rules to match against the
+     *           incoming request. A policy match occurs when at least one network rule
+     *           matches the request.
+     *           At least one network rule is required for Allow or Deny Action if no HTTP
+     *           rules are provided. Network rules are mutually exclusive with HTTP rules.
+     *           Limited to 5 rules.
      *     @type int $action
      *           Required. Can be one of `ALLOW`, `DENY`, `CUSTOM`.
      *           When the action is `CUSTOM`, `customProvider` must be specified.
@@ -392,6 +410,42 @@ class AuthzPolicy extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\NetworkSecurity\V1\AuthzPolicy\AuthzRule::class);
         $this->http_rules = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of authorization network rules to match against the
+     * incoming request. A policy match occurs when at least one network rule
+     * matches the request.
+     * At least one network rule is required for Allow or Deny Action if no HTTP
+     * rules are provided. Network rules are mutually exclusive with HTTP rules.
+     * Limited to 5 rules.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.AuthzPolicy.AuthzRule network_rules = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\NetworkSecurity\V1\AuthzPolicy\AuthzRule>
+     */
+    public function getNetworkRules()
+    {
+        return $this->network_rules;
+    }
+
+    /**
+     * Optional. A list of authorization network rules to match against the
+     * incoming request. A policy match occurs when at least one network rule
+     * matches the request.
+     * At least one network rule is required for Allow or Deny Action if no HTTP
+     * rules are provided. Network rules are mutually exclusive with HTTP rules.
+     * Limited to 5 rules.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.AuthzPolicy.AuthzRule network_rules = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\NetworkSecurity\V1\AuthzPolicy\AuthzRule[] $var
+     * @return $this
+     */
+    public function setNetworkRules($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\NetworkSecurity\V1\AuthzPolicy\AuthzRule::class);
+        $this->network_rules = $arr;
 
         return $this;
     }

@@ -788,7 +788,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      */
     public function getEndLoads()
     {
-        if ($this->end_loads->count() !== 0) {
+        if (count($this->end_loads) !== 0) {
             @trigger_error('end_loads is deprecated.', E_USER_DEPRECATED);
         }
         return $this->end_loads;
@@ -831,7 +831,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      */
     public function getTravelSteps()
     {
-        if ($this->travel_steps->count() !== 0) {
+        if (count($this->travel_steps) !== 0) {
             @trigger_error('travel_steps is deprecated.', E_USER_DEPRECATED);
         }
         return $this->travel_steps;

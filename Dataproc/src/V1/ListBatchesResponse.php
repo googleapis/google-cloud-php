@@ -16,9 +16,9 @@ use Google\Protobuf\RepeatedField;
 class ListBatchesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The batches from the specified collection.
+     * Output only. The batches from the specified collection.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Batch batches = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Batch batches = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $batches;
     /**
@@ -44,7 +44,7 @@ class ListBatchesResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dataproc\V1\Batch[] $batches
-     *           The batches from the specified collection.
+     *           Output only. The batches from the specified collection.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
@@ -60,9 +60,9 @@ class ListBatchesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The batches from the specified collection.
+     * Output only. The batches from the specified collection.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Batch batches = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Batch batches = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return RepeatedField<\Google\Cloud\Dataproc\V1\Batch>
      */
     public function getBatches()
@@ -71,9 +71,9 @@ class ListBatchesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The batches from the specified collection.
+     * Output only. The batches from the specified collection.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Batch batches = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Batch batches = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataproc\V1\Batch[] $var
      * @return $this
      */

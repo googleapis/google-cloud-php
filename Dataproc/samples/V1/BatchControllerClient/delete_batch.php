@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,8 +28,10 @@ use Google\Cloud\Dataproc\V1\Client\BatchControllerClient;
 use Google\Cloud\Dataproc\V1\DeleteBatchRequest;
 
 /**
- * Deletes the batch workload resource. If the batch is not in terminal state,
- * the delete fails and the response returns `FAILED_PRECONDITION`.
+ * Deletes the batch workload resource. If the batch is not in a
+ * `CANCELLED`, `SUCCEEDED` or `FAILED`
+ * [`State`][google.cloud.dataproc.v1.Batch.State], the delete operation fails
+ * and the response returns `FAILED_PRECONDITION`.
  *
  * @param string $formattedName The fully qualified name of the batch to retrieve
  *                              in the format

@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class DirectoryContentsView
 {
     /**
-     * The default / unset value. Defaults to DIRECTORY_CONTENTS_VIEW_BASIC.
+     * The default unset value. Defaults to DIRECTORY_CONTENTS_VIEW_BASIC.
      *
      * Generated from protobuf enum <code>DIRECTORY_CONTENTS_VIEW_UNSPECIFIED = 0;</code>
      */

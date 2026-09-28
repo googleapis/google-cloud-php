@@ -25,10 +25,17 @@ class IntegratedService
      * Generated from protobuf enum <code>AI_PLATFORM = 1;</code>
      */
     const AI_PLATFORM = 1;
+    /**
+     * Google MCP Server (via Shim Service Extension)
+     *
+     * Generated from protobuf enum <code>GOOGLE_MCP_SERVER = 2;</code>
+     */
+    const GOOGLE_MCP_SERVER = 2;
 
     private static $valueToName = [
         self::INTEGRATED_SERVICE_UNSPECIFIED => 'INTEGRATED_SERVICE_UNSPECIFIED',
         self::AI_PLATFORM => 'AI_PLATFORM',
+        self::GOOGLE_MCP_SERVER => 'GOOGLE_MCP_SERVER',
     ];
 
     public static function name($value)

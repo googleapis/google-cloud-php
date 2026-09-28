@@ -18,6 +18,7 @@ class GlossaryTerm extends \Google\Protobuf\Internal\Message
     /**
      * Required. User friendly display name of the glossary term being defined.
      * For example: "CTR", "conversion rate", "pending"
+     * Must be at most 256 bytes.
      *
      * Generated from protobuf field <code>string display_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -26,6 +27,7 @@ class GlossaryTerm extends \Google\Protobuf\Internal\Message
      * Required. The description or meaning of the term.
      * For example: "Click-through rate", "The percentage of users who complete a
      * desired action", "An order that is waiting to be processed."
+     * Must be at most 5,000 bytes (approx. 5,000 characters).
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -47,10 +49,12 @@ class GlossaryTerm extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Required. User friendly display name of the glossary term being defined.
      *           For example: "CTR", "conversion rate", "pending"
+     *           Must be at most 256 bytes.
      *     @type string $description
      *           Required. The description or meaning of the term.
      *           For example: "Click-through rate", "The percentage of users who complete a
      *           desired action", "An order that is waiting to be processed."
+     *           Must be at most 5,000 bytes (approx. 5,000 characters).
      *     @type string[] $labels
      *           Optional. A list of general purpose labels associated to this term.
      *           For example: ["click rate", "clickthrough", "waiting"]
@@ -64,6 +68,7 @@ class GlossaryTerm extends \Google\Protobuf\Internal\Message
     /**
      * Required. User friendly display name of the glossary term being defined.
      * For example: "CTR", "conversion rate", "pending"
+     * Must be at most 256 bytes.
      *
      * Generated from protobuf field <code>string display_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -76,6 +81,7 @@ class GlossaryTerm extends \Google\Protobuf\Internal\Message
     /**
      * Required. User friendly display name of the glossary term being defined.
      * For example: "CTR", "conversion rate", "pending"
+     * Must be at most 256 bytes.
      *
      * Generated from protobuf field <code>string display_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -93,6 +99,7 @@ class GlossaryTerm extends \Google\Protobuf\Internal\Message
      * Required. The description or meaning of the term.
      * For example: "Click-through rate", "The percentage of users who complete a
      * desired action", "An order that is waiting to be processed."
+     * Must be at most 5,000 bytes (approx. 5,000 characters).
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -106,6 +113,7 @@ class GlossaryTerm extends \Google\Protobuf\Internal\Message
      * Required. The description or meaning of the term.
      * For example: "Click-through rate", "The percentage of users who complete a
      * desired action", "An order that is waiting to be processed."
+     * Must be at most 5,000 bytes (approx. 5,000 characters).
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

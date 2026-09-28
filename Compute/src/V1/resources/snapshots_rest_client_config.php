@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -141,6 +141,23 @@ return [
                     'resource' => [
                         'getters' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateKmsKey' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/snapshots/{snapshot}/updateKmsKey',
+                'body' => 'snapshot_update_kms_key_request_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'snapshot' => [
+                        'getters' => [
+                            'getSnapshot',
                         ],
                     ],
                 ],

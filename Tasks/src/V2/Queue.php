@@ -55,6 +55,12 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     protected $app_engine_routing_override = null;
     /**
+     * Modifies HTTP target for HTTP tasks.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2.HttpTarget http_target = 10;</code>
+     */
+    protected $http_target = null;
+    /**
      * Rate limits for task dispatches.
      * [rate_limits][google.cloud.tasks.v2.Queue.rate_limits] and
      * [retry_config][google.cloud.tasks.v2.Queue.retry_config] are related
@@ -66,8 +72,8 @@ class Queue extends \Google\Protobuf\Internal\Message
      *   queue, regardless of whether the dispatch is from a first
      *   attempt or a retry).
      * * [retry_config][google.cloud.tasks.v2.Queue.retry_config] controls what
-     * happens to
-     *   particular a task after its first attempt fails. That is,
+     * happens to a
+     *   particular task after its first attempt fails. That is,
      *   [retry_config][google.cloud.tasks.v2.Queue.retry_config] controls task
      *   retries (the second attempt, third attempt, etc).
      * The queue's actual dispatch rate is the result of:
@@ -167,6 +173,8 @@ class Queue extends \Google\Protobuf\Internal\Message
      *           [App Engine tasks][google.cloud.tasks.v2.AppEngineHttpRequest] in the
      *           queue, no matter what the setting is for the [task-level
      *           app_engine_routing][google.cloud.tasks.v2.AppEngineHttpRequest.app_engine_routing].
+     *     @type \Google\Cloud\Tasks\V2\HttpTarget $http_target
+     *           Modifies HTTP target for HTTP tasks.
      *     @type \Google\Cloud\Tasks\V2\RateLimits $rate_limits
      *           Rate limits for task dispatches.
      *           [rate_limits][google.cloud.tasks.v2.Queue.rate_limits] and
@@ -179,8 +187,8 @@ class Queue extends \Google\Protobuf\Internal\Message
      *             queue, regardless of whether the dispatch is from a first
      *             attempt or a retry).
      *           * [retry_config][google.cloud.tasks.v2.Queue.retry_config] controls what
-     *           happens to
-     *             particular a task after its first attempt fails. That is,
+     *           happens to a
+     *             particular task after its first attempt fails. That is,
      *             [retry_config][google.cloud.tasks.v2.Queue.retry_config] controls task
      *             retries (the second attempt, third attempt, etc).
      *           The queue's actual dispatch rate is the result of:
@@ -344,6 +352,42 @@ class Queue extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Modifies HTTP target for HTTP tasks.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2.HttpTarget http_target = 10;</code>
+     * @return \Google\Cloud\Tasks\V2\HttpTarget|null
+     */
+    public function getHttpTarget()
+    {
+        return $this->http_target;
+    }
+
+    public function hasHttpTarget()
+    {
+        return isset($this->http_target);
+    }
+
+    public function clearHttpTarget()
+    {
+        unset($this->http_target);
+    }
+
+    /**
+     * Modifies HTTP target for HTTP tasks.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2.HttpTarget http_target = 10;</code>
+     * @param \Google\Cloud\Tasks\V2\HttpTarget $var
+     * @return $this
+     */
+    public function setHttpTarget($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Tasks\V2\HttpTarget::class);
+        $this->http_target = $var;
+
+        return $this;
+    }
+
+    /**
      * Rate limits for task dispatches.
      * [rate_limits][google.cloud.tasks.v2.Queue.rate_limits] and
      * [retry_config][google.cloud.tasks.v2.Queue.retry_config] are related
@@ -355,8 +399,8 @@ class Queue extends \Google\Protobuf\Internal\Message
      *   queue, regardless of whether the dispatch is from a first
      *   attempt or a retry).
      * * [retry_config][google.cloud.tasks.v2.Queue.retry_config] controls what
-     * happens to
-     *   particular a task after its first attempt fails. That is,
+     * happens to a
+     *   particular task after its first attempt fails. That is,
      *   [retry_config][google.cloud.tasks.v2.Queue.retry_config] controls task
      *   retries (the second attempt, third attempt, etc).
      * The queue's actual dispatch rate is the result of:
@@ -399,8 +443,8 @@ class Queue extends \Google\Protobuf\Internal\Message
      *   queue, regardless of whether the dispatch is from a first
      *   attempt or a retry).
      * * [retry_config][google.cloud.tasks.v2.Queue.retry_config] controls what
-     * happens to
-     *   particular a task after its first attempt fails. That is,
+     * happens to a
+     *   particular task after its first attempt fails. That is,
      *   [retry_config][google.cloud.tasks.v2.Queue.retry_config] controls task
      *   retries (the second attempt, third attempt, etc).
      * The queue's actual dispatch rate is the result of:

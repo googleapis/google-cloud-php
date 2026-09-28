@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -382,6 +382,28 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}',
                 'body' => 'disk_resource',
+                'placeholders' => [
+                    'disk' => [
+                        'getters' => [
+                            'getDisk',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateKmsKey' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/updateKmsKey',
+                'body' => 'disk_update_kms_key_request_resource',
                 'placeholders' => [
                     'disk' => [
                         'getters' => [

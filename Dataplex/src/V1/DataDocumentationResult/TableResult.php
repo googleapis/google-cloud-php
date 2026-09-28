@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Generated metadata about the table.
+ * Insights for a table resource.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataDocumentationResult.TableResult</code>
  */

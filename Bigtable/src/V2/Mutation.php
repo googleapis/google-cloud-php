@@ -15,6 +15,12 @@ use Google\Protobuf\RepeatedField;
  */
 class Mutation extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Optional. The origin of the timestamp in this mutation.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Mutation.TimestampOrigin timestamp_origin = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $timestamp_origin = 0;
     protected $mutation;
 
     /**
@@ -35,6 +41,8 @@ class Mutation extends \Google\Protobuf\Internal\Message
      *           Deletes cells from a column family.
      *     @type \Google\Cloud\Bigtable\V2\Mutation\DeleteFromRow $delete_from_row
      *           Deletes cells from the entire row.
+     *     @type int $timestamp_origin
+     *           Optional. The origin of the timestamp in this mutation.
      * }
      */
     public function __construct($data = NULL) {
@@ -224,6 +232,32 @@ class Mutation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\Mutation\DeleteFromRow::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. The origin of the timestamp in this mutation.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Mutation.TimestampOrigin timestamp_origin = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getTimestampOrigin()
+    {
+        return $this->timestamp_origin;
+    }
+
+    /**
+     * Optional. The origin of the timestamp in this mutation.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Mutation.TimestampOrigin timestamp_origin = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTimestampOrigin($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\V2\Mutation\TimestampOrigin::class);
+        $this->timestamp_origin = $var;
 
         return $this;
     }

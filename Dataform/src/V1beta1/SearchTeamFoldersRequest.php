@@ -23,9 +23,9 @@ class SearchTeamFoldersRequest extends \Google\Protobuf\Internal\Message
      */
     protected $location = '';
     /**
-     * Optional. Maximum number of TeamFolders to return. The server may return
-     * fewer items than requested. If unspecified, the server will pick an
-     * appropriate default.
+     * Optional. Maximum number of `TeamFolders` to return. The server may return
+     * fewer items than requested. If unspecified, the server will pick a default
+     * of `page_size` = 50.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -44,8 +44,8 @@ class SearchTeamFoldersRequest extends \Google\Protobuf\Internal\Message
      * Optional. Field to additionally sort results by.
      * Supported keywords: `display_name` (default), `create_time`,
      * `last_modified_time`. Examples:
-     *   - `orderBy="display_name"`
-     *   - `orderBy="display_name desc"`
+     * * `orderBy="display_name"`
+     * * `orderBy="display_name desc"`
      *
      * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -54,7 +54,7 @@ class SearchTeamFoldersRequest extends \Google\Protobuf\Internal\Message
      * Optional. Optional filtering for the returned list. Filtering is currently
      * only supported on the `display_name` field.
      * Example:
-     *  - `filter="display_name="MyFolder""`
+     * * `filter="display_name="MyFolder""`
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -70,9 +70,9 @@ class SearchTeamFoldersRequest extends \Google\Protobuf\Internal\Message
      *           Required. Location in which to query TeamFolders.
      *           Format: `projects/{@*}locations/*`.
      *     @type int $page_size
-     *           Optional. Maximum number of TeamFolders to return. The server may return
-     *           fewer items than requested. If unspecified, the server will pick an
-     *           appropriate default.
+     *           Optional. Maximum number of `TeamFolders` to return. The server may return
+     *           fewer items than requested. If unspecified, the server will pick a default
+     *           of `page_size` = 50.
      *     @type string $page_token
      *           Optional. Page token received from a previous `SearchTeamFolders` call.
      *           Provide this to retrieve the subsequent page.
@@ -83,13 +83,13 @@ class SearchTeamFoldersRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Field to additionally sort results by.
      *           Supported keywords: `display_name` (default), `create_time`,
      *           `last_modified_time`. Examples:
-     *             - `orderBy="display_name"`
-     *             - `orderBy="display_name desc"`
+     *           * `orderBy="display_name"`
+     *           * `orderBy="display_name desc"`
      *     @type string $filter
      *           Optional. Optional filtering for the returned list. Filtering is currently
      *           only supported on the `display_name` field.
      *           Example:
-     *            - `filter="display_name="MyFolder""`
+     *           * `filter="display_name="MyFolder""`
      * }
      */
     public function __construct($data = NULL) {
@@ -126,9 +126,9 @@ class SearchTeamFoldersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of TeamFolders to return. The server may return
-     * fewer items than requested. If unspecified, the server will pick an
-     * appropriate default.
+     * Optional. Maximum number of `TeamFolders` to return. The server may return
+     * fewer items than requested. If unspecified, the server will pick a default
+     * of `page_size` = 50.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -139,9 +139,9 @@ class SearchTeamFoldersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of TeamFolders to return. The server may return
-     * fewer items than requested. If unspecified, the server will pick an
-     * appropriate default.
+     * Optional. Maximum number of `TeamFolders` to return. The server may return
+     * fewer items than requested. If unspecified, the server will pick a default
+     * of `page_size` = 50.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -193,8 +193,8 @@ class SearchTeamFoldersRequest extends \Google\Protobuf\Internal\Message
      * Optional. Field to additionally sort results by.
      * Supported keywords: `display_name` (default), `create_time`,
      * `last_modified_time`. Examples:
-     *   - `orderBy="display_name"`
-     *   - `orderBy="display_name desc"`
+     * * `orderBy="display_name"`
+     * * `orderBy="display_name desc"`
      *
      * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -208,8 +208,8 @@ class SearchTeamFoldersRequest extends \Google\Protobuf\Internal\Message
      * Optional. Field to additionally sort results by.
      * Supported keywords: `display_name` (default), `create_time`,
      * `last_modified_time`. Examples:
-     *   - `orderBy="display_name"`
-     *   - `orderBy="display_name desc"`
+     * * `orderBy="display_name"`
+     * * `orderBy="display_name desc"`
      *
      * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -227,7 +227,7 @@ class SearchTeamFoldersRequest extends \Google\Protobuf\Internal\Message
      * Optional. Optional filtering for the returned list. Filtering is currently
      * only supported on the `display_name` field.
      * Example:
-     *  - `filter="display_name="MyFolder""`
+     * * `filter="display_name="MyFolder""`
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -241,7 +241,7 @@ class SearchTeamFoldersRequest extends \Google\Protobuf\Internal\Message
      * Optional. Optional filtering for the returned list. Filtering is currently
      * only supported on the `display_name` field.
      * Example:
-     *  - `filter="display_name="MyFolder""`
+     * * `filter="display_name="MyFolder""`
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

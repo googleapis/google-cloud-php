@@ -10,7 +10,7 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
- * [CreateLineageEvent][google.cloud.datacatalog.lineage.v1.CreateLineageEvent].
+ * [CreateLineageEvent][google.cloud.datacatalog.lineage.v1.Lineage.CreateLineageEvent].
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.lineage.v1.CreateLineageEventRequest</code>
  */
@@ -29,11 +29,11 @@ class CreateLineageEventRequest extends \Google\Protobuf\Internal\Message
      */
     protected $lineage_event = null;
     /**
-     * A unique identifier for this request. Restricted to 36 ASCII characters.
-     * A random UUID is recommended. This request is idempotent only if a
-     * `request_id` is provided.
+     * Optional. A unique identifier for this request. Restricted to 36 ASCII
+     * characters. A random UUID is recommended. This request is idempotent only
+     * if a `request_id` is provided.
      *
-     * Generated from protobuf field <code>string request_id = 3;</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
     protected $request_id = '';
 
@@ -64,9 +64,9 @@ class CreateLineageEventRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DataCatalog\Lineage\V1\LineageEvent $lineage_event
      *           Required. The lineage event to create.
      *     @type string $request_id
-     *           A unique identifier for this request. Restricted to 36 ASCII characters.
-     *           A random UUID is recommended. This request is idempotent only if a
-     *           `request_id` is provided.
+     *           Optional. A unique identifier for this request. Restricted to 36 ASCII
+     *           characters. A random UUID is recommended. This request is idempotent only
+     *           if a `request_id` is provided.
      * }
      */
     public function __construct($data = NULL) {
@@ -137,11 +137,11 @@ class CreateLineageEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique identifier for this request. Restricted to 36 ASCII characters.
-     * A random UUID is recommended. This request is idempotent only if a
-     * `request_id` is provided.
+     * Optional. A unique identifier for this request. Restricted to 36 ASCII
+     * characters. A random UUID is recommended. This request is idempotent only
+     * if a `request_id` is provided.
      *
-     * Generated from protobuf field <code>string request_id = 3;</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @return string
      */
     public function getRequestId()
@@ -150,11 +150,11 @@ class CreateLineageEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique identifier for this request. Restricted to 36 ASCII characters.
-     * A random UUID is recommended. This request is idempotent only if a
-     * `request_id` is provided.
+     * Optional. A unique identifier for this request. Restricted to 36 ASCII
+     * characters. A random UUID is recommended. This request is idempotent only
+     * if a `request_id` is provided.
      *
-     * Generated from protobuf field <code>string request_id = 3;</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @param string $var
      * @return $this
      */

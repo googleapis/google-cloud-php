@@ -23,6 +23,20 @@ class ExecutePipelineRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $database = '';
+    /**
+     * Optional. Automatically commits the transaction after the pipeline has been
+     * executed. Only permitted in combination with `transaction` or
+     * `new_transaction`.
+     *
+     * Generated from protobuf field <code>bool auto_commit_transaction = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $auto_commit_transaction = false;
+    /**
+     * Optional. Any additional options for the request.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.RequestOptions request_options = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $request_options = null;
     protected $pipeline_type;
     protected $consistency_selector;
 
@@ -49,6 +63,12 @@ class ExecutePipelineRequest extends \Google\Protobuf\Internal\Message
      *           This must be a microsecond precision timestamp within the past one hour,
      *           or if Point-in-Time Recovery is enabled, can additionally be a whole
      *           minute timestamp within the past 7 days.
+     *     @type bool $auto_commit_transaction
+     *           Optional. Automatically commits the transaction after the pipeline has been
+     *           executed. Only permitted in combination with `transaction` or
+     *           `new_transaction`.
+     *     @type \Google\Cloud\Firestore\V1\RequestOptions $request_options
+     *           Optional. Any additional options for the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -216,6 +236,72 @@ class ExecutePipelineRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Automatically commits the transaction after the pipeline has been
+     * executed. Only permitted in combination with `transaction` or
+     * `new_transaction`.
+     *
+     * Generated from protobuf field <code>bool auto_commit_transaction = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getAutoCommitTransaction()
+    {
+        return $this->auto_commit_transaction;
+    }
+
+    /**
+     * Optional. Automatically commits the transaction after the pipeline has been
+     * executed. Only permitted in combination with `transaction` or
+     * `new_transaction`.
+     *
+     * Generated from protobuf field <code>bool auto_commit_transaction = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAutoCommitTransaction($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->auto_commit_transaction = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Any additional options for the request.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.RequestOptions request_options = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Firestore\V1\RequestOptions|null
+     */
+    public function getRequestOptions()
+    {
+        return $this->request_options;
+    }
+
+    public function hasRequestOptions()
+    {
+        return isset($this->request_options);
+    }
+
+    public function clearRequestOptions()
+    {
+        unset($this->request_options);
+    }
+
+    /**
+     * Optional. Any additional options for the request.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.RequestOptions request_options = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Firestore\V1\RequestOptions $var
+     * @return $this
+     */
+    public function setRequestOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\RequestOptions::class);
+        $this->request_options = $var;
 
         return $this;
     }

@@ -65,6 +65,12 @@ class Targeting extends \Google\Protobuf\Internal\Message
      */
     protected $data_segment_targeting = null;
     /**
+     * Optional. Used to target inventory formats.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.RequestFormatTargeting request_format_targeting = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $request_format_targeting = null;
+    /**
      * Optional. Used to target content.
      *
      * Generated from protobuf field <code>.google.ads.admanager.v1.ContentTargeting content_targeting = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -100,6 +106,8 @@ class Targeting extends \Google\Protobuf\Internal\Message
      *           Optional. Used to target video positions.
      *     @type \Google\Ads\AdManager\V1\DataSegmentTargeting $data_segment_targeting
      *           Optional. Used to target data segments.
+     *     @type \Google\Ads\AdManager\V1\RequestFormatTargeting $request_format_targeting
+     *           Optional. Used to target inventory formats.
      *     @type \Google\Ads\AdManager\V1\ContentTargeting $content_targeting
      *           Optional. Used to target content.
      *     @type \Google\Ads\AdManager\V1\MobileApplicationTargeting $mobile_application_targeting
@@ -397,6 +405,42 @@ class Targeting extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\DataSegmentTargeting::class);
         $this->data_segment_targeting = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Used to target inventory formats.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.RequestFormatTargeting request_format_targeting = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\RequestFormatTargeting|null
+     */
+    public function getRequestFormatTargeting()
+    {
+        return $this->request_format_targeting;
+    }
+
+    public function hasRequestFormatTargeting()
+    {
+        return isset($this->request_format_targeting);
+    }
+
+    public function clearRequestFormatTargeting()
+    {
+        unset($this->request_format_targeting);
+    }
+
+    /**
+     * Optional. Used to target inventory formats.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.RequestFormatTargeting request_format_targeting = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\RequestFormatTargeting $var
+     * @return $this
+     */
+    public function setRequestFormatTargeting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\RequestFormatTargeting::class);
+        $this->request_format_targeting = $var;
 
         return $this;
     }

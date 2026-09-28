@@ -8,7 +8,7 @@
         "ModelArmor": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ModelArmorGapicClient",
+                    "libraryClient": "ModelArmorClient",
                     "rpcs": {
                         "CreateTemplate": {
                             "methods": [
@@ -43,6 +43,16 @@
                         "SanitizeUserPrompt": {
                             "methods": [
                                 "sanitizeUserPrompt"
+                            ]
+                        },
+                        "StreamSanitizeModelResponse": {
+                            "methods": [
+                                "streamSanitizeModelResponse"
+                            ]
+                        },
+                        "StreamSanitizeUserPrompt": {
+                            "methods": [
+                                "streamSanitizeUserPrompt"
                             ]
                         },
                         "UpdateFloorSetting": {

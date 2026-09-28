@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,30 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta:aggregateIssueStats',
                 'body' => '*',
+            ],
+            'AggregateQueryStats' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{parent=organizations/*}:aggregateQueryStats',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{parent=folders/*}:aggregateQueryStats',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{parent=projects/*}:aggregateQueryStats',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'QueryDatabaseResourceGroups' => [
                 'method' => 'post',

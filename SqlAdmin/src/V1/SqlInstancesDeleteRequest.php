@@ -39,6 +39,12 @@ class SqlInstancesDeleteRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string final_backup_description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $final_backup_description = '';
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $location = '';
     protected $expiration;
 
     /**
@@ -60,6 +66,8 @@ class SqlInstancesDeleteRequest extends \Google\Protobuf\Internal\Message
      *           Timestamp in UTC of when this resource is considered expired.
      *     @type string $final_backup_description
      *           Optional. The description of the final backup.
+     *     @type string $location
+     *           Optional. Region of the Cloud SQL instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -241,6 +249,32 @@ class SqlInstancesDeleteRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->final_backup_description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location = $var;
 
         return $this;
     }

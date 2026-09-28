@@ -17,11 +17,11 @@ use Google\Protobuf\RepeatedField;
 class AccountSummary extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name for this account summary.
+     * Identifier. Resource name for this account summary.
      * Format: accountSummaries/{account_id}
      * Example: "accountSummaries/1000"
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -52,7 +52,7 @@ class AccountSummary extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Resource name for this account summary.
+     *           Identifier. Resource name for this account summary.
      *           Format: accountSummaries/{account_id}
      *           Example: "accountSummaries/1000"
      *     @type string $account
@@ -71,11 +71,11 @@ class AccountSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name for this account summary.
+     * Identifier. Resource name for this account summary.
      * Format: accountSummaries/{account_id}
      * Example: "accountSummaries/1000"
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -84,11 +84,11 @@ class AccountSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name for this account summary.
+     * Identifier. Resource name for this account summary.
      * Format: accountSummaries/{account_id}
      * Example: "accountSummaries/1000"
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

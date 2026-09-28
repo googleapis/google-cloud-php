@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request for [ExportBackup].
+ * Request for `ExportBackup`.
  *
  * Generated from protobuf message <code>google.cloud.memorystore.v1.ExportBackupRequest</code>
  */

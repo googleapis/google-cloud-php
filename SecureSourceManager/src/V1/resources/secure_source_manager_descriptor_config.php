@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -612,6 +612,26 @@ return [
                     ],
                 ],
             ],
+            'FetchRefs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getRefs',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\SecureSourceManager\V1\FetchRefsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'repository',
+                        'fieldAccessors' => [
+                            'getRepository',
+                        ],
+                    ],
+                ],
+            ],
             'FetchTree' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -1022,6 +1042,7 @@ return [
                 'caPool' => 'projects/{project}/locations/{location}/caPools/{ca_pool}',
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'hook' => 'projects/{project}/locations/{location}/repositories/{repository}/hooks/{hook}',
+                'inspectTemplate' => 'projects/{project}/locations/{location}/inspectTemplates/{inspect_template}',
                 'instance' => 'projects/{project}/locations/{location}/instances/{instance}',
                 'issue' => 'projects/{project}/locations/{location}/repositories/{repository}/issues/{issue}',
                 'issueComment' => 'projects/{project}/locations/{location}/repositories/{repository}/issues/{issue}/issueComments/{comment}',
@@ -1029,6 +1050,7 @@ return [
                 'pullRequest' => 'projects/{project}/locations/{location}/repositories/{repository}/pullRequests/{pull_request}',
                 'pullRequestComment' => 'projects/{project}/locations/{location}/repositories/{repository}/pullRequests/{pull_request}/pullRequestComments/{comment}',
                 'repository' => 'projects/{project}/locations/{location}/repositories/{repository}',
+                'serviceAccount' => 'projects/{project}/serviceAccounts/{service_account}',
                 'serviceAttachment' => 'projects/{project}/regions/{region}/serviceAttachments/{service_attachment}',
             ],
         ],

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetAdBreakRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve an `AdBreak` object.
+ * Retrieves an `AdBreak` object.
  *
  * Query an ad break by its resource name or custom asset key. Check the
  * resource's `breakState` field to determine its state.

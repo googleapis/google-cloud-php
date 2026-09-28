@@ -38,12 +38,19 @@ class TokenStatus
      * Generated from protobuf enum <code>VALID = 3;</code>
      */
     const VALID = 3;
+    /**
+     * The token is not accessible due to permission issues.
+     *
+     * Generated from protobuf enum <code>PERMISSION_DENIED = 4;</code>
+     */
+    const PERMISSION_DENIED = 4;
 
     private static $valueToName = [
         self::TOKEN_STATUS_UNSPECIFIED => 'TOKEN_STATUS_UNSPECIFIED',
         self::NOT_FOUND => 'NOT_FOUND',
         self::INVALID => 'INVALID',
         self::VALID => 'VALID',
+        self::PERMISSION_DENIED => 'PERMISSION_DENIED',
     ];
 
     public static function name($value)

@@ -26,9 +26,9 @@ class UpdateEntitySignalsMappingRequest extends \Google\Protobuf\Internal\Messag
      */
     protected $entity_signals_mapping = null;
     /**
-     * Required. The list of fields to update.
+     * Optional. The list of fields to update.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $update_mask = null;
 
@@ -39,7 +39,7 @@ class UpdateEntitySignalsMappingRequest extends \Google\Protobuf\Internal\Messag
      *                                                                            EntitySignalsMapping to update.
      *                                                                            Format:
      *                                                                            `networks/{network_code}/entitySignalsMappings/{entity_signals_mapping}`
-     * @param \Google\Protobuf\FieldMask                    $updateMask           Required. The list of fields to update.
+     * @param \Google\Protobuf\FieldMask                    $updateMask           Optional. The list of fields to update.
      *
      * @return \Google\Ads\AdManager\V1\UpdateEntitySignalsMappingRequest
      *
@@ -65,7 +65,7 @@ class UpdateEntitySignalsMappingRequest extends \Google\Protobuf\Internal\Messag
      *           Format:
      *           `networks/{network_code}/entitySignalsMappings/{entity_signals_mapping}`
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. The list of fields to update.
+     *           Optional. The list of fields to update.
      * }
      */
     public function __construct($data = NULL) {
@@ -118,9 +118,9 @@ class UpdateEntitySignalsMappingRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The list of fields to update.
+     * Optional. The list of fields to update.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
@@ -139,9 +139,9 @@ class UpdateEntitySignalsMappingRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The list of fields to update.
+     * Optional. The list of fields to update.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

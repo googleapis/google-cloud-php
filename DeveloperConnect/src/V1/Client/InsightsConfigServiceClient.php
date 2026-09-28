@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -105,7 +105,11 @@ final class InsightsConfigServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
@@ -152,7 +156,10 @@ final class InsightsConfigServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -575,13 +582,13 @@ final class InsightsConfigServiceClient
 
     /**
      * Lists information about the supported locations for this service.
-    This method can be called in two ways:
-
-    *   **List all public locations:** Use the path `GET /v1/locations`.
-    *   **List project-visible locations:** Use the path
-    `GET /v1/projects/{project_id}/locations`. This may include public
-    locations as well as private or other locations specifically visible
-    to the project.
+     * This method can be called in two ways:
+     *
+     * *   **List all public locations:** Use the path `GET /v1/locations`.
+     * *   **List project-visible locations:** Use the path
+     * `GET /v1/projects/{project_id}/locations`. This may include public
+     * locations as well as private or other locations specifically visible
+     * to the project.
      *
      * The async variant is {@see InsightsConfigServiceClient::listLocationsAsync()} .
      *

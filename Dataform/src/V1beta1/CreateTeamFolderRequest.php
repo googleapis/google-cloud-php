@@ -29,10 +29,13 @@ class CreateTeamFolderRequest extends \Google\Protobuf\Internal\Message
      */
     protected $team_folder = null;
     /**
+     * Deprecated: This field is not used. The resource name is generated
+     * automatically.
      * The ID to use for the TeamFolder, which will become the final component of
      * the TeamFolder's resource name.
      *
-     * Generated from protobuf field <code>string team_folder_id = 3;</code>
+     * Generated from protobuf field <code>string team_folder_id = 3 [deprecated = true];</code>
+     * @deprecated
      */
     protected $team_folder_id = '';
 
@@ -65,6 +68,8 @@ class CreateTeamFolderRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataform\V1beta1\TeamFolder $team_folder
      *           Required. The TeamFolder to create.
      *     @type string $team_folder_id
+     *           Deprecated: This field is not used. The resource name is generated
+     *           automatically.
      *           The ID to use for the TeamFolder, which will become the final component of
      *           the TeamFolder's resource name.
      * }
@@ -139,27 +144,37 @@ class CreateTeamFolderRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Deprecated: This field is not used. The resource name is generated
+     * automatically.
      * The ID to use for the TeamFolder, which will become the final component of
      * the TeamFolder's resource name.
      *
-     * Generated from protobuf field <code>string team_folder_id = 3;</code>
+     * Generated from protobuf field <code>string team_folder_id = 3 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getTeamFolderId()
     {
+        if ($this->team_folder_id !== '') {
+            @trigger_error('team_folder_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->team_folder_id;
     }
 
     /**
+     * Deprecated: This field is not used. The resource name is generated
+     * automatically.
      * The ID to use for the TeamFolder, which will become the final component of
      * the TeamFolder's resource name.
      *
-     * Generated from protobuf field <code>string team_folder_id = 3;</code>
+     * Generated from protobuf field <code>string team_folder_id = 3 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setTeamFolderId($var)
     {
+        @trigger_error('team_folder_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->team_folder_id = $var;
 

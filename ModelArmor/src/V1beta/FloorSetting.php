@@ -64,6 +64,12 @@ class FloorSetting extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1beta.FloorSetting.FloorSettingMetadata floor_setting_metadata = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $floor_setting_metadata = null;
+    /**
+     * Optional. Google MCP Server floor setting.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.modelarmor.v1beta.McpServerFloorSetting google_mcp_server_floor_setting = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $google_mcp_server_floor_setting = null;
 
     /**
      * Constructor.
@@ -88,6 +94,8 @@ class FloorSetting extends \Google\Protobuf\Internal\Message
      *           Optional. AI Platform floor setting.
      *     @type \Google\Cloud\ModelArmor\V1beta\FloorSetting\FloorSettingMetadata $floor_setting_metadata
      *           Optional. Metadata for FloorSetting
+     *     @type \Google\Cloud\ModelArmor\V1beta\McpServerFloorSetting $google_mcp_server_floor_setting
+     *           Optional. Google MCP Server floor setting.
      * }
      */
     public function __construct($data = NULL) {
@@ -361,6 +369,42 @@ class FloorSetting extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ModelArmor\V1beta\FloorSetting\FloorSettingMetadata::class);
         $this->floor_setting_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Google MCP Server floor setting.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.modelarmor.v1beta.McpServerFloorSetting google_mcp_server_floor_setting = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ModelArmor\V1beta\McpServerFloorSetting|null
+     */
+    public function getGoogleMcpServerFloorSetting()
+    {
+        return $this->google_mcp_server_floor_setting;
+    }
+
+    public function hasGoogleMcpServerFloorSetting()
+    {
+        return isset($this->google_mcp_server_floor_setting);
+    }
+
+    public function clearGoogleMcpServerFloorSetting()
+    {
+        unset($this->google_mcp_server_floor_setting);
+    }
+
+    /**
+     * Optional. Google MCP Server floor setting.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.modelarmor.v1beta.McpServerFloorSetting google_mcp_server_floor_setting = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ModelArmor\V1beta\McpServerFloorSetting $var
+     * @return $this
+     */
+    public function setGoogleMcpServerFloorSetting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ModelArmor\V1beta\McpServerFloorSetting::class);
+        $this->google_mcp_server_floor_setting = $var;
 
         return $this;
     }

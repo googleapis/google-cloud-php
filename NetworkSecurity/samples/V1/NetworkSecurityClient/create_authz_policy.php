@@ -42,8 +42,8 @@ use Google\Rpc\Status;
  * @param string $authzPolicyName                   Identifier. Name of the `AuthzPolicy` resource in the following
  *                                                  format:
  *                                                  `projects/{project}/locations/{location}/authzPolicies/{authz_policy}`.
- * @param string $authzPolicyTargetResourcesElement A list of references to the Forwarding Rules on which this
- *                                                  policy will be applied.
+ * @param string $authzPolicyTargetResourcesElement A list of references to the Forwarding Rules, Secure Web Proxy
+ *                                                  Gateways, or Agent Gateways on which this policy will be applied.
  * @param int    $authzPolicyAction                 Can be one of `ALLOW`, `DENY`, `CUSTOM`.
  *
  *                                                  When the action is `CUSTOM`, `customProvider` must be specified.

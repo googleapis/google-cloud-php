@@ -29,12 +29,14 @@ use Google\Cloud\AuditManager\V1\GetResourceEnrollmentStatusRequest;
 use Google\Cloud\AuditManager\V1\ResourceEnrollmentStatus;
 
 /**
- * Get a resource along with its enrollment status.
+ * Gets a resource and its enrollment status.
  *
- * @param string $formattedName Format
- *                              folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status},
- *                              projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status},
- *                              organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}
+ * @param string $formattedName Name of the resource enrollment status, in one of the following
+ *                              formats:
+ *
+ *                              * `folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+ *                              * `projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+ *                              * `organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
  *                              Please see {@see AuditManagerClient::resourceEnrollmentStatusName()} for help formatting this field.
  */
 function get_resource_enrollment_status_sample(string $formattedName): void

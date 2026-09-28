@@ -16,8 +16,11 @@ use Google\Protobuf\RepeatedField;
 class DeleteCloudControlRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the cloud control to delete, in the format
-     * `organizations/{organization}/locations/{location}/CloudControls/{CloudControl}`.
+     * Required. The name of the cloud control to delete, in one of the following
+     * formats:
+     * `organizations/{organization}/locations/{location}/CloudControls/{CloudControl}`
+     * or
+     * `projects/{project}/locations/{location}/CloudControls/{CloudControl}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -25,8 +28,12 @@ class DeleteCloudControlRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. The name of the cloud control to delete, in the format
-     *                     `organizations/{organization}/locations/{location}/CloudControls/{CloudControl}`.
+     * @param string $name Required. The name of the cloud control to delete, in one of the following
+     *                     formats:
+     *                     `organizations/{organization}/locations/{location}/CloudControls/{CloudControl}`
+     *                     or
+     *                     `projects/{project}/locations/{location}/CloudControls/{CloudControl}`.
+     *
      *                     The only supported location is `global`. Please see
      *                     {@see ConfigClient::cloudControlName()} for help formatting this field.
      *
@@ -47,8 +54,11 @@ class DeleteCloudControlRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the cloud control to delete, in the format
-     *           `organizations/{organization}/locations/{location}/CloudControls/{CloudControl}`.
+     *           Required. The name of the cloud control to delete, in one of the following
+     *           formats:
+     *           `organizations/{organization}/locations/{location}/CloudControls/{CloudControl}`
+     *           or
+     *           `projects/{project}/locations/{location}/CloudControls/{CloudControl}`.
      *           The only supported location is `global`.
      * }
      */
@@ -58,8 +68,11 @@ class DeleteCloudControlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the cloud control to delete, in the format
-     * `organizations/{organization}/locations/{location}/CloudControls/{CloudControl}`.
+     * Required. The name of the cloud control to delete, in one of the following
+     * formats:
+     * `organizations/{organization}/locations/{location}/CloudControls/{CloudControl}`
+     * or
+     * `projects/{project}/locations/{location}/CloudControls/{CloudControl}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -71,8 +84,11 @@ class DeleteCloudControlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the cloud control to delete, in the format
-     * `organizations/{organization}/locations/{location}/CloudControls/{CloudControl}`.
+     * Required. The name of the cloud control to delete, in one of the following
+     * formats:
+     * `organizations/{organization}/locations/{location}/CloudControls/{CloudControl}`
+     * or
+     * `projects/{project}/locations/{location}/CloudControls/{CloudControl}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

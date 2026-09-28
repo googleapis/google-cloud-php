@@ -27,6 +27,12 @@ class EventLink extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.datacatalog.lineage.v1.EntityReference target = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $target = null;
+    /**
+     * Optional. Describes how the target depends on the source.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.lineage.v1.DependencyInfo dependency_info = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $dependency_info = null;
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class EventLink extends \Google\Protobuf\Internal\Message
      *           Required. Reference to the source entity
      *     @type \Google\Cloud\DataCatalog\Lineage\V1\EntityReference $target
      *           Required. Reference to the target entity
+     *     @type \Google\Cloud\DataCatalog\Lineage\V1\DependencyInfo $dependency_info
+     *           Optional. Describes how the target depends on the source.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +121,42 @@ class EventLink extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\Lineage\V1\EntityReference::class);
         $this->target = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Describes how the target depends on the source.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.lineage.v1.DependencyInfo dependency_info = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DataCatalog\Lineage\V1\DependencyInfo|null
+     */
+    public function getDependencyInfo()
+    {
+        return $this->dependency_info;
+    }
+
+    public function hasDependencyInfo()
+    {
+        return isset($this->dependency_info);
+    }
+
+    public function clearDependencyInfo()
+    {
+        unset($this->dependency_info);
+    }
+
+    /**
+     * Optional. Describes how the target depends on the source.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.lineage.v1.DependencyInfo dependency_info = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DataCatalog\Lineage\V1\DependencyInfo $var
+     * @return $this
+     */
+    public function setDependencyInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\Lineage\V1\DependencyInfo::class);
+        $this->dependency_info = $var;
 
         return $this;
     }

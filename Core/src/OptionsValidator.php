@@ -33,6 +33,11 @@ class OptionsValidator
     use ArrayTrait;
 
     /**
+     * @var array
+     */
+    private static array $allowedKeysCache = [];
+
+    /**
      * @param ?Serializer $serializer use a serializer to decode protobuf messages
      *        instead of calling {@see Message::mergeFromJsonString()}.
      */
@@ -105,5 +110,46 @@ class OptionsValidator
         }
 
         return $splitOptions;
+    }
+
+    /**
+     * Filter an array of options to only include those matching the supplied `$optionTypes`.
+     *
+     * @param  array                $options
+     * @param  array|string ...$optionTypes An array of scalar keys, or a classname string (e.g. CallOptions::class).
+     * @return array
+     */
+    public function stripUnknownOptions(array $options, array|string ...$optionTypes): array
+    {
+        $cacheKey = serialize($optionTypes);
+
+        if (isset(self::$allowedKeysCache[$cacheKey])) {
+            return array_intersect_key($options, array_flip(self::$allowedKeysCache[$cacheKey]));
+        }
+
+        $allowedKeys = [];
+        foreach ($optionTypes as $optionType) {
+            if (is_array($optionType)) {
+                $allowedKeys = array_merge($allowedKeys, $optionType);
+            } elseif ($optionType === CallOptions::class) {
+                $callOptionKeys = array_keys((new CallOptions([]))->toArray());
+                $allowedKeys = array_merge($allowedKeys, $callOptionKeys);
+            } elseif (is_string($optionType) && is_subclass_of($optionType, Message::class)) {
+                $messageKeys = array_map(
+                    fn ($method) => lcfirst(substr($method, 3)),
+                    array_filter(
+                        get_class_methods($optionType),
+                        fn ($m) => 0 === strpos($m, 'get')
+                    )
+                );
+                $allowedKeys = array_merge($allowedKeys, $messageKeys);
+            } else {
+                throw new LogicException(sprintf('Invalid option type: %s', $optionType));
+            }
+        }
+
+        self::$allowedKeysCache[$cacheKey] = $allowedKeys;
+
+        return array_intersect_key($options, array_flip($allowedKeys));
     }
 }

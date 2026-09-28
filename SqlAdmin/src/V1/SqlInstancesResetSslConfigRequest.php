@@ -33,6 +33,12 @@ class SqlInstancesResetSslConfigRequest extends \Google\Protobuf\Internal\Messag
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlInstancesResetSslConfigRequest.ResetSslMode mode = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $mode = 0;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $location = '';
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class SqlInstancesResetSslConfigRequest extends \Google\Protobuf\Internal\Messag
      *           Project ID of the project that contains the instance.
      *     @type int $mode
      *           Optional. Reset SSL mode to use.
+     *     @type string $location
+     *           Optional. Region of the Cloud SQL instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +135,32 @@ class SqlInstancesResetSslConfigRequest extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\SqlInstancesResetSslConfigRequest\ResetSslMode::class);
         $this->mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location = $var;
 
         return $this;
     }

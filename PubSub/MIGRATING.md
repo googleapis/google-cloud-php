@@ -14,6 +14,9 @@ Update your `google/cloud-pubsub` dependency to `^2.0`:
 
 ## Changes
 
+### Version constant removed
+Removed `PubSubClient::VERSION`, use the `VERSION` file in the library root instead.
+
 ### Client Options changes
 
 The following client options are removed/replaced with other options present in

@@ -8,7 +8,7 @@
         "LanguageService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LanguageServiceGapicClient",
+                    "libraryClient": "LanguageServiceClient",
                     "rpcs": {
                         "AnalyzeEntities": {
                             "methods": [

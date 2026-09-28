@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ use Google\Cloud\CloudQuotas\V1\QuotaInfo;
 /**
  * Retrieve the QuotaInfo of a quota for a project, folder or organization.
  *
- * @param string $formattedName The resource name of the quota info.
+ * @param string $formattedName Identifier. The resource name of the quota info.
  *
  *                              An example name:
  *                              `projects/123/locations/global/services/compute.googleapis.com/quotaInfos/CpusPerProjectPerRegion`

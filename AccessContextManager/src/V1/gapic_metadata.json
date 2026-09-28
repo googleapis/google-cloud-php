@@ -8,7 +8,7 @@
         "AccessContextManager": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AccessContextManagerGapicClient",
+                    "libraryClient": "AccessContextManagerClient",
                     "rpcs": {
                         "CommitServicePerimeters": {
                             "methods": [

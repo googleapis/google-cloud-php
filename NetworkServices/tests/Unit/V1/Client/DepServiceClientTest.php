@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -150,10 +150,6 @@ class DepServiceClientTest extends GeneratedTest
         $authzExtension = new AuthzExtension();
         $authzExtensionName = 'authzExtensionName1185018040';
         $authzExtension->setName($authzExtensionName);
-        $authzExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
-        $authzExtension->setLoadBalancingScheme($authzExtensionLoadBalancingScheme);
-        $authzExtensionAuthority = 'authzExtensionAuthority-1897306826';
-        $authzExtension->setAuthority($authzExtensionAuthority);
         $authzExtensionService = 'authzExtensionService-1496447640';
         $authzExtension->setService($authzExtensionService);
         $authzExtensionTimeout = new Duration();
@@ -237,10 +233,6 @@ class DepServiceClientTest extends GeneratedTest
         $authzExtension = new AuthzExtension();
         $authzExtensionName = 'authzExtensionName1185018040';
         $authzExtension->setName($authzExtensionName);
-        $authzExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
-        $authzExtension->setLoadBalancingScheme($authzExtensionLoadBalancingScheme);
-        $authzExtensionAuthority = 'authzExtensionAuthority-1897306826';
-        $authzExtension->setAuthority($authzExtensionAuthority);
         $authzExtensionService = 'authzExtensionService-1496447640';
         $authzExtension->setService($authzExtensionService);
         $authzExtensionTimeout = new Duration();
@@ -1825,10 +1817,6 @@ class DepServiceClientTest extends GeneratedTest
         $authzExtension = new AuthzExtension();
         $authzExtensionName = 'authzExtensionName1185018040';
         $authzExtension->setName($authzExtensionName);
-        $authzExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
-        $authzExtension->setLoadBalancingScheme($authzExtensionLoadBalancingScheme);
-        $authzExtensionAuthority = 'authzExtensionAuthority-1897306826';
-        $authzExtension->setAuthority($authzExtensionAuthority);
         $authzExtensionService = 'authzExtensionService-1496447640';
         $authzExtension->setService($authzExtensionService);
         $authzExtensionTimeout = new Duration();
@@ -1906,10 +1894,6 @@ class DepServiceClientTest extends GeneratedTest
         $authzExtension = new AuthzExtension();
         $authzExtensionName = 'authzExtensionName1185018040';
         $authzExtension->setName($authzExtensionName);
-        $authzExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
-        $authzExtension->setLoadBalancingScheme($authzExtensionLoadBalancingScheme);
-        $authzExtensionAuthority = 'authzExtensionAuthority-1897306826';
-        $authzExtension->setAuthority($authzExtensionAuthority);
         $authzExtensionService = 'authzExtensionService-1496447640';
         $authzExtension->setService($authzExtensionService);
         $authzExtensionTimeout = new Duration();
@@ -2737,10 +2721,6 @@ class DepServiceClientTest extends GeneratedTest
         $authzExtension = new AuthzExtension();
         $authzExtensionName = 'authzExtensionName1185018040';
         $authzExtension->setName($authzExtensionName);
-        $authzExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
-        $authzExtension->setLoadBalancingScheme($authzExtensionLoadBalancingScheme);
-        $authzExtensionAuthority = 'authzExtensionAuthority-1897306826';
-        $authzExtension->setAuthority($authzExtensionAuthority);
         $authzExtensionService = 'authzExtensionService-1496447640';
         $authzExtension->setService($authzExtensionService);
         $authzExtensionTimeout = new Duration();

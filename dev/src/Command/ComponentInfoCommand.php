@@ -75,7 +75,13 @@ class ComponentInfoCommand extends Command
         $this->setName('component:info')
             ->setAliases(['info'])
             ->setDescription('list info of a component or the whole library')
-            ->addOption('component', 'c', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'get info for a single component', [])
+            ->addOption(
+                'component',
+                'c',
+                InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
+                'get info for a single component',
+                []
+            )
             ->addOption('csv', '', InputOption::VALUE_OPTIONAL, 'export findings to csv.', false)
             ->addOption('fields', 'f', InputOption::VALUE_REQUIRED, sprintf(
                 'Comma-separated list of fields. Prefix with "+" to add to default filters, or use "all" for all fields.'

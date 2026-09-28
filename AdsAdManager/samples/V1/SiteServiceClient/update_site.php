@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,9 @@ use Google\Ads\AdManager\V1\Client\SiteServiceClient;
 use Google\Ads\AdManager\V1\Site;
 use Google\Ads\AdManager\V1\UpdateSiteRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
- * API to update a `Site` object.
+ * Updates a `Site` object.
  *
  * @param string $siteUrl The URL of the Site.
  */
@@ -42,10 +41,8 @@ function update_site_sample(string $siteUrl): void
     // Prepare the request message.
     $site = (new Site())
         ->setUrl($siteUrl);
-    $updateMask = new FieldMask();
     $request = (new UpdateSiteRequest())
-        ->setSite($site)
-        ->setUpdateMask($updateMask);
+        ->setSite($site);
 
     // Call the API and handle any network failures.
     try {

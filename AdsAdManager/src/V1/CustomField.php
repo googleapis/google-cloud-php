@@ -23,10 +23,10 @@ class CustomField extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. Unique ID of the CustomField. This attribute is assigned by
-     * Google.
+     * Output only. Deprecated: Unique ID of the CustomField.
      *
-     * Generated from protobuf field <code>optional int64 custom_field_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 custom_field_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $custom_field_id = null;
     /**
@@ -84,8 +84,7 @@ class CustomField extends \Google\Protobuf\Internal\Message
      *           Identifier. The resource name of the `CustomField`.
      *           Format: `networks/{network_code}/customFields/{custom_field}`
      *     @type int|string $custom_field_id
-     *           Output only. Unique ID of the CustomField. This attribute is assigned by
-     *           Google.
+     *           Output only. Deprecated: Unique ID of the CustomField.
      *     @type string $display_name
      *           Required. Name of the CustomField. The max length is 127 characters.
      *     @type string $description
@@ -138,37 +137,45 @@ class CustomField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Unique ID of the CustomField. This attribute is assigned by
-     * Google.
+     * Output only. Deprecated: Unique ID of the CustomField.
      *
-     * Generated from protobuf field <code>optional int64 custom_field_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 custom_field_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
+     * @deprecated
      */
     public function getCustomFieldId()
     {
+        if (isset($this->custom_field_id)) {
+            @trigger_error('custom_field_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->custom_field_id) ? $this->custom_field_id : 0;
     }
 
     public function hasCustomFieldId()
     {
+        if (isset($this->custom_field_id)) {
+            @trigger_error('custom_field_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->custom_field_id);
     }
 
     public function clearCustomFieldId()
     {
+        @trigger_error('custom_field_id is deprecated.', E_USER_DEPRECATED);
         unset($this->custom_field_id);
     }
 
     /**
-     * Output only. Unique ID of the CustomField. This attribute is assigned by
-     * Google.
+     * Output only. Deprecated: Unique ID of the CustomField.
      *
-     * Generated from protobuf field <code>optional int64 custom_field_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 custom_field_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setCustomFieldId($var)
     {
+        @trigger_error('custom_field_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->custom_field_id = $var;
 

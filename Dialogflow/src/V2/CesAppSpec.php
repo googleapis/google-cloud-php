@@ -28,6 +28,24 @@ class CesAppSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Tool.ConfirmationRequirement confirmation_requirement = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $confirmation_requirement = 0;
+    /**
+     * Optional. Only applicable for CompanionAgent.
+     * Indicates whether the ces app is enabled in proactive mode.
+     * At least one of `proactive_enabled` or `reactive_enabled` should be
+     * true; otherwise, the ces app will be ignored.
+     *
+     * Generated from protobuf field <code>optional bool proactive_enabled = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $proactive_enabled = null;
+    /**
+     * Optional. Only applicable for CompanionAgent.
+     * Indicates whether the ces app is enabled in reactive mode.
+     * At least one of `proactive_enabled` or `reactive_enabled` should be
+     * true; otherwise, the ces app will be ignored.
+     *
+     * Generated from protobuf field <code>optional bool reactive_enabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $reactive_enabled = null;
 
     /**
      * Constructor.
@@ -40,6 +58,16 @@ class CesAppSpec extends \Google\Protobuf\Internal\Message
      *           ID>`.
      *     @type int $confirmation_requirement
      *           Optional. Indicates whether the app requires human confirmation.
+     *     @type bool $proactive_enabled
+     *           Optional. Only applicable for CompanionAgent.
+     *           Indicates whether the ces app is enabled in proactive mode.
+     *           At least one of `proactive_enabled` or `reactive_enabled` should be
+     *           true; otherwise, the ces app will be ignored.
+     *     @type bool $reactive_enabled
+     *           Optional. Only applicable for CompanionAgent.
+     *           Indicates whether the ces app is enabled in reactive mode.
+     *           At least one of `proactive_enabled` or `reactive_enabled` should be
+     *           true; otherwise, the ces app will be ignored.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +125,90 @@ class CesAppSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Tool\ConfirmationRequirement::class);
         $this->confirmation_requirement = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Only applicable for CompanionAgent.
+     * Indicates whether the ces app is enabled in proactive mode.
+     * At least one of `proactive_enabled` or `reactive_enabled` should be
+     * true; otherwise, the ces app will be ignored.
+     *
+     * Generated from protobuf field <code>optional bool proactive_enabled = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getProactiveEnabled()
+    {
+        return isset($this->proactive_enabled) ? $this->proactive_enabled : false;
+    }
+
+    public function hasProactiveEnabled()
+    {
+        return isset($this->proactive_enabled);
+    }
+
+    public function clearProactiveEnabled()
+    {
+        unset($this->proactive_enabled);
+    }
+
+    /**
+     * Optional. Only applicable for CompanionAgent.
+     * Indicates whether the ces app is enabled in proactive mode.
+     * At least one of `proactive_enabled` or `reactive_enabled` should be
+     * true; otherwise, the ces app will be ignored.
+     *
+     * Generated from protobuf field <code>optional bool proactive_enabled = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setProactiveEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->proactive_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Only applicable for CompanionAgent.
+     * Indicates whether the ces app is enabled in reactive mode.
+     * At least one of `proactive_enabled` or `reactive_enabled` should be
+     * true; otherwise, the ces app will be ignored.
+     *
+     * Generated from protobuf field <code>optional bool reactive_enabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getReactiveEnabled()
+    {
+        return isset($this->reactive_enabled) ? $this->reactive_enabled : false;
+    }
+
+    public function hasReactiveEnabled()
+    {
+        return isset($this->reactive_enabled);
+    }
+
+    public function clearReactiveEnabled()
+    {
+        unset($this->reactive_enabled);
+    }
+
+    /**
+     * Optional. Only applicable for CompanionAgent.
+     * Indicates whether the ces app is enabled in reactive mode.
+     * At least one of `proactive_enabled` or `reactive_enabled` should be
+     * true; otherwise, the ces app will be ignored.
+     *
+     * Generated from protobuf field <code>optional bool reactive_enabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReactiveEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->reactive_enabled = $var;
 
         return $this;
     }

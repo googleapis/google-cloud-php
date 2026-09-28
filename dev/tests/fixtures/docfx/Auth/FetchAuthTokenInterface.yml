@@ -1,0 +1,87 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Auth\FetchAuthTokenInterface
+    name: FetchAuthTokenInterface
+    friendlyApiName: 'Google Auth Library Client'
+    id: FetchAuthTokenInterface
+    summary: |-
+      An interface implemented by objects that can fetch auth tokens.
+
+      Classes which implement this interface in this package:
+       - <xref uid="\Google\Auth\CredentialsLoader">CredentialsLoader</xref>
+       - <xref uid="\Google\Auth\Credentials\ExternalAccountCredentials">Credentials\ExternalAccountCredentials</xref>
+       - <xref uid="\Google\Auth\Credentials\GCECredentials">Credentials\GCECredentials</xref>
+       - <xref uid="\Google\Auth\Credentials\ImpersonatedServiceAccountCredentials">Credentials\ImpersonatedServiceAccountCredentials</xref>
+       - <xref uid="\Google\Auth\Credentials\InsecureCredentials">Credentials\InsecureCredentials</xref>
+       - <xref uid="\Google\Auth\Credentials\ServiceAccountCredentials">Credentials\ServiceAccountCredentials</xref>
+       - <xref uid="\Google\Auth\Credentials\ServiceAccountJwtAccessCredentials">Credentials\ServiceAccountJwtAccessCredentials</xref>
+       - <xref uid="\Google\Auth\Credentials\UserRefreshCredentials">Credentials\UserRefreshCredentials</xref>
+       - <xref uid="\Google\Auth\FetchAuthTokenCache">FetchAuthTokenCache</xref>
+       - <xref uid="\Google\Auth\OAuth2">OAuth2</xref>
+    type: class
+    namespace: 'Google \ Auth'
+    langs:
+      - php
+    children:
+      - '\Google\Auth\FetchAuthTokenInterface::fetchAuthToken()'
+      - '\Google\Auth\FetchAuthTokenInterface::getCacheKey()'
+      - '\Google\Auth\FetchAuthTokenInterface::getLastReceivedToken()'
+  -
+    uid: '\Google\Auth\FetchAuthTokenInterface::fetchAuthToken()'
+    name: fetchAuthToken
+    id: fetchAuthToken
+    summary: 'Fetches the auth tokens based on the current state.'
+    parent: \Google\Auth\FetchAuthTokenInterface
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: httpHandler
+          var_type: callable|null
+          description: 'callback which delivers psr7 request'
+      returns:
+        -
+          var_type: array
+          description: 'a hash of auth tokens'
+  -
+    uid: '\Google\Auth\FetchAuthTokenInterface::getCacheKey()'
+    name: getCacheKey
+    id: getCacheKey
+    summary: |-
+      Obtains a key that can used to cache the results of #fetchAuthToken.
+
+      If the value is empty, the auth token is not cached.
+    parent: \Google\Auth\FetchAuthTokenInterface
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: string
+          description: 'a key that may be used to cache the auth token.'
+  -
+    uid: '\Google\Auth\FetchAuthTokenInterface::getLastReceivedToken()'
+    name: getLastReceivedToken
+    id: getLastReceivedToken
+    summary: |-
+      Returns an associative array with the token and
+      expiration time.
+    parent: \Google\Auth\FetchAuthTokenInterface
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: null|array
+          description: |-
+            {
+                The last received access token.
+
+                @type string $access_token The access token string.
+                @type int $expires_at The time the token expires as a UNIX timestamp.
+            }

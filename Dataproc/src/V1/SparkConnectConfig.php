@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Spark Connect configuration for an interactive session.
+ * Spark connect configuration for an interactive session.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.SparkConnectConfig</code>
  */

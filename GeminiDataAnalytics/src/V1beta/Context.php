@@ -21,6 +21,8 @@ class Context extends \Google\Protobuf\Internal\Message
      * Why: Business jargon (e.g., YTD revenue is calculated as…, Retirement Age
      * is 65 in the USA, etc) and system instructions (e.g., answer like a Pirate)
      * can help the model understand the business context around a user question.
+     * Must be at most 250,000 bytes (approx. 250,000 characters for English
+     * text).
      *
      * Generated from protobuf field <code>string system_instruction = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -40,7 +42,8 @@ class Context extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A list of example queries, providing examples of relevant and
      * commonly used SQL queries and their corresponding natural language queries
-     * optionally present. Currently only used for BigQuery data sources.
+     * optionally present. Currently only used for BigQuery data sources and
+     * databases (alloydb, cloudsql, spanner) data sources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ExampleQuery example_queries = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -48,13 +51,14 @@ class Context extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A list of golden queries, providing examples of relevant and
      * commonly used Looker queries and their corresponding natural language
-     * queries optionally present.
+     * queries optionally present. Only supported for Looker data sources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.LookerGoldenQuery looker_golden_queries = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $looker_golden_queries;
     /**
      * Optional. Term definitions (currently, only user authored)
+     * Not supported for databases (alloydb, cloudsql, spanner) data sources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.GlossaryTerm glossary_terms = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -66,6 +70,12 @@ class Context extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Context.SchemaRelationship schema_relationships = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $schema_relationships;
+    /**
+     * Optional. A collection of user functions to be included in context.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.UserFunctions user_functions = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $user_functions = null;
 
     /**
      * Constructor.
@@ -79,6 +89,8 @@ class Context extends \Google\Protobuf\Internal\Message
      *           Why: Business jargon (e.g., YTD revenue is calculated as…, Retirement Age
      *           is 65 in the USA, etc) and system instructions (e.g., answer like a Pirate)
      *           can help the model understand the business context around a user question.
+     *           Must be at most 250,000 bytes (approx. 250,000 characters for English
+     *           text).
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\DatasourceReferences $datasource_references
      *           Required. Data sources that are available for answering the question.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\ConversationOptions $options
@@ -86,16 +98,20 @@ class Context extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQuery[] $example_queries
      *           Optional. A list of example queries, providing examples of relevant and
      *           commonly used SQL queries and their corresponding natural language queries
-     *           optionally present. Currently only used for BigQuery data sources.
+     *           optionally present. Currently only used for BigQuery data sources and
+     *           databases (alloydb, cloudsql, spanner) data sources.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\LookerGoldenQuery[] $looker_golden_queries
      *           Optional. A list of golden queries, providing examples of relevant and
      *           commonly used Looker queries and their corresponding natural language
-     *           queries optionally present.
+     *           queries optionally present. Only supported for Looker data sources.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\GlossaryTerm[] $glossary_terms
      *           Optional. Term definitions (currently, only user authored)
+     *           Not supported for databases (alloydb, cloudsql, spanner) data sources.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Context\SchemaRelationship[] $schema_relationships
      *           Optional. Relationships between table schema, including referencing and
      *           referenced columns.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\UserFunctions $user_functions
+     *           Optional. A collection of user functions to be included in context.
      * }
      */
     public function __construct($data = NULL) {
@@ -109,6 +125,8 @@ class Context extends \Google\Protobuf\Internal\Message
      * Why: Business jargon (e.g., YTD revenue is calculated as…, Retirement Age
      * is 65 in the USA, etc) and system instructions (e.g., answer like a Pirate)
      * can help the model understand the business context around a user question.
+     * Must be at most 250,000 bytes (approx. 250,000 characters for English
+     * text).
      *
      * Generated from protobuf field <code>string system_instruction = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -124,6 +142,8 @@ class Context extends \Google\Protobuf\Internal\Message
      * Why: Business jargon (e.g., YTD revenue is calculated as…, Retirement Age
      * is 65 in the USA, etc) and system instructions (e.g., answer like a Pirate)
      * can help the model understand the business context around a user question.
+     * Must be at most 250,000 bytes (approx. 250,000 characters for English
+     * text).
      *
      * Generated from protobuf field <code>string system_instruction = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -212,7 +232,8 @@ class Context extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A list of example queries, providing examples of relevant and
      * commonly used SQL queries and their corresponding natural language queries
-     * optionally present. Currently only used for BigQuery data sources.
+     * optionally present. Currently only used for BigQuery data sources and
+     * databases (alloydb, cloudsql, spanner) data sources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ExampleQuery example_queries = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQuery>
@@ -225,7 +246,8 @@ class Context extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A list of example queries, providing examples of relevant and
      * commonly used SQL queries and their corresponding natural language queries
-     * optionally present. Currently only used for BigQuery data sources.
+     * optionally present. Currently only used for BigQuery data sources and
+     * databases (alloydb, cloudsql, spanner) data sources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ExampleQuery example_queries = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQuery[] $var
@@ -242,7 +264,7 @@ class Context extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A list of golden queries, providing examples of relevant and
      * commonly used Looker queries and their corresponding natural language
-     * queries optionally present.
+     * queries optionally present. Only supported for Looker data sources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.LookerGoldenQuery looker_golden_queries = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\LookerGoldenQuery>
@@ -255,7 +277,7 @@ class Context extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A list of golden queries, providing examples of relevant and
      * commonly used Looker queries and their corresponding natural language
-     * queries optionally present.
+     * queries optionally present. Only supported for Looker data sources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.LookerGoldenQuery looker_golden_queries = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\GeminiDataAnalytics\V1beta\LookerGoldenQuery[] $var
@@ -271,6 +293,7 @@ class Context extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Term definitions (currently, only user authored)
+     * Not supported for databases (alloydb, cloudsql, spanner) data sources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.GlossaryTerm glossary_terms = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\GlossaryTerm>
@@ -282,6 +305,7 @@ class Context extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Term definitions (currently, only user authored)
+     * Not supported for databases (alloydb, cloudsql, spanner) data sources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.GlossaryTerm glossary_terms = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\GeminiDataAnalytics\V1beta\GlossaryTerm[] $var
@@ -319,6 +343,42 @@ class Context extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GeminiDataAnalytics\V1beta\Context\SchemaRelationship::class);
         $this->schema_relationships = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A collection of user functions to be included in context.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.UserFunctions user_functions = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GeminiDataAnalytics\V1beta\UserFunctions|null
+     */
+    public function getUserFunctions()
+    {
+        return $this->user_functions;
+    }
+
+    public function hasUserFunctions()
+    {
+        return isset($this->user_functions);
+    }
+
+    public function clearUserFunctions()
+    {
+        unset($this->user_functions);
+    }
+
+    /**
+     * Optional. A collection of user functions to be included in context.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.UserFunctions user_functions = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\UserFunctions $var
+     * @return $this
+     */
+    public function setUserFunctions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\UserFunctions::class);
+        $this->user_functions = $var;
 
         return $this;
     }

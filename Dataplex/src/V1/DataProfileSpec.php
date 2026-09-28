@@ -64,6 +64,12 @@ class DataProfileSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool catalog_publishing_enabled = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $catalog_publishing_enabled = false;
+    /**
+     * Optional. The execution mode for the profile scan.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileSpec.Mode mode = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $mode = 0;
 
     /**
      * Constructor.
@@ -96,6 +102,8 @@ class DataProfileSpec extends \Google\Protobuf\Internal\Message
      *     @type bool $catalog_publishing_enabled
      *           Optional. If set, the latest DataScan job result will be published as
      *           Dataplex Universal Catalog metadata.
+     *     @type int $mode
+     *           Optional. The execution mode for the profile scan.
      * }
      */
     public function __construct($data = NULL) {
@@ -311,6 +319,32 @@ class DataProfileSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->catalog_publishing_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The execution mode for the profile scan.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileSpec.Mode mode = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMode()
+    {
+        return $this->mode;
+    }
+
+    /**
+     * Optional. The execution mode for the profile scan.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileSpec.Mode mode = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataplex\V1\DataProfileSpec\Mode::class);
+        $this->mode = $var;
 
         return $this;
     }

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Represents error information for [QuotaOperation][google.api.servicecontrol.v1.QuotaOperation].
+ * Represents error information for
+ * [QuotaOperation][google.api.servicecontrol.v1.QuotaOperation].
  *
  * Generated from protobuf message <code>google.api.servicecontrol.v1.QuotaError</code>
  */

@@ -24,12 +24,83 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Optional. The display name of the application. This attribute is required
-     * and has a maximum length of 80 characters.
+     * Required. The display name of the application.
      *
-     * Generated from protobuf field <code>optional string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string display_name = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $display_name = null;
+    /**
+     * Optional. The app store ID of the app to claim.
+     *
+     * Generated from protobuf field <code>optional string app_store_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $app_store_id = null;
+    /**
+     * Optional. The app stores the application belongs to. This attribute is
+     * mutable to allow for third party app store linking.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ApplicationStoreEnum.ApplicationStore app_stores = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $app_stores;
+    /**
+     * Output only. The archival status of the application.
+     * When true, an application cannot be targeted and will not serve ads,
+     * regardless of its `status`.
+     *
+     * Generated from protobuf field <code>optional bool archived = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $archived = null;
+    /**
+     * Output only. The name of the application on the app store.
+     *
+     * Generated from protobuf field <code>optional string app_store_display_name = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $app_store_display_name = null;
+    /**
+     * Output only. The application code used to identify the app in the SDK.
+     * Note that the UI refers to this as "App ID".
+     *
+     * Generated from protobuf field <code>optional string application_code = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $application_code = null;
+    /**
+     * Output only. The name of the developer of the application.
+     *
+     * Generated from protobuf field <code>optional string developer = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $developer = null;
+    /**
+     * Output only. The platform the application runs on.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ApplicationPlatformEnum.ApplicationPlatform platform = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $platform = null;
+    /**
+     * Output only. Whether the application is free on the app store it belongs
+     * to.
+     *
+     * Generated from protobuf field <code>optional bool free = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $free = null;
+    /**
+     * Output only. The download URL of the application on the app store it
+     * belongs to.
+     *
+     * Generated from protobuf field <code>optional string download_url = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $download_url = null;
+    /**
+     * Output only. The approval status for the application.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ApplicationApprovalStatusEnum.ApplicationApprovalStatus approval_status = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $approval_status = null;
+    /**
+     * Output only. The webview claiming status for the application.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.WebviewClaimingStatusEnum.WebviewClaimingStatus webview_claiming_status = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $webview_claiming_status = null;
 
     /**
      * Constructor.
@@ -41,8 +112,35 @@ class Application extends \Google\Protobuf\Internal\Message
      *           Identifier. The resource name of the `Application`.
      *           Format: `networks/{network_code}/applications/{application_id}`
      *     @type string $display_name
-     *           Optional. The display name of the application. This attribute is required
-     *           and has a maximum length of 80 characters.
+     *           Required. The display name of the application.
+     *     @type string $app_store_id
+     *           Optional. The app store ID of the app to claim.
+     *     @type int[] $app_stores
+     *           Optional. The app stores the application belongs to. This attribute is
+     *           mutable to allow for third party app store linking.
+     *     @type bool $archived
+     *           Output only. The archival status of the application.
+     *           When true, an application cannot be targeted and will not serve ads,
+     *           regardless of its `status`.
+     *     @type string $app_store_display_name
+     *           Output only. The name of the application on the app store.
+     *     @type string $application_code
+     *           Output only. The application code used to identify the app in the SDK.
+     *           Note that the UI refers to this as "App ID".
+     *     @type string $developer
+     *           Output only. The name of the developer of the application.
+     *     @type int $platform
+     *           Output only. The platform the application runs on.
+     *     @type bool $free
+     *           Output only. Whether the application is free on the app store it belongs
+     *           to.
+     *     @type string $download_url
+     *           Output only. The download URL of the application on the app store it
+     *           belongs to.
+     *     @type int $approval_status
+     *           Output only. The approval status for the application.
+     *     @type int $webview_claiming_status
+     *           Output only. The webview claiming status for the application.
      * }
      */
     public function __construct($data = NULL) {
@@ -79,10 +177,9 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The display name of the application. This attribute is required
-     * and has a maximum length of 80 characters.
+     * Required. The display name of the application.
      *
-     * Generated from protobuf field <code>optional string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string display_name = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDisplayName()
@@ -101,10 +198,9 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The display name of the application. This attribute is required
-     * and has a maximum length of 80 characters.
+     * Required. The display name of the application.
      *
-     * Generated from protobuf field <code>optional string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string display_name = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -112,6 +208,404 @@ class Application extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The app store ID of the app to claim.
+     *
+     * Generated from protobuf field <code>optional string app_store_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getAppStoreId()
+    {
+        return isset($this->app_store_id) ? $this->app_store_id : '';
+    }
+
+    public function hasAppStoreId()
+    {
+        return isset($this->app_store_id);
+    }
+
+    public function clearAppStoreId()
+    {
+        unset($this->app_store_id);
+    }
+
+    /**
+     * Optional. The app store ID of the app to claim.
+     *
+     * Generated from protobuf field <code>optional string app_store_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAppStoreId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->app_store_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The app stores the application belongs to. This attribute is
+     * mutable to allow for third party app store linking.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ApplicationStoreEnum.ApplicationStore app_stores = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<int>
+     */
+    public function getAppStores()
+    {
+        return $this->app_stores;
+    }
+
+    /**
+     * Optional. The app stores the application belongs to. This attribute is
+     * mutable to allow for third party app store linking.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ApplicationStoreEnum.ApplicationStore app_stores = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int[] $var
+     * @return $this
+     */
+    public function setAppStores($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Ads\AdManager\V1\ApplicationStoreEnum\ApplicationStore::class);
+        $this->app_stores = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The archival status of the application.
+     * When true, an application cannot be targeted and will not serve ads,
+     * regardless of its `status`.
+     *
+     * Generated from protobuf field <code>optional bool archived = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getArchived()
+    {
+        return isset($this->archived) ? $this->archived : false;
+    }
+
+    public function hasArchived()
+    {
+        return isset($this->archived);
+    }
+
+    public function clearArchived()
+    {
+        unset($this->archived);
+    }
+
+    /**
+     * Output only. The archival status of the application.
+     * When true, an application cannot be targeted and will not serve ads,
+     * regardless of its `status`.
+     *
+     * Generated from protobuf field <code>optional bool archived = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setArchived($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->archived = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The name of the application on the app store.
+     *
+     * Generated from protobuf field <code>optional string app_store_display_name = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getAppStoreDisplayName()
+    {
+        return isset($this->app_store_display_name) ? $this->app_store_display_name : '';
+    }
+
+    public function hasAppStoreDisplayName()
+    {
+        return isset($this->app_store_display_name);
+    }
+
+    public function clearAppStoreDisplayName()
+    {
+        unset($this->app_store_display_name);
+    }
+
+    /**
+     * Output only. The name of the application on the app store.
+     *
+     * Generated from protobuf field <code>optional string app_store_display_name = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAppStoreDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->app_store_display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The application code used to identify the app in the SDK.
+     * Note that the UI refers to this as "App ID".
+     *
+     * Generated from protobuf field <code>optional string application_code = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getApplicationCode()
+    {
+        return isset($this->application_code) ? $this->application_code : '';
+    }
+
+    public function hasApplicationCode()
+    {
+        return isset($this->application_code);
+    }
+
+    public function clearApplicationCode()
+    {
+        unset($this->application_code);
+    }
+
+    /**
+     * Output only. The application code used to identify the app in the SDK.
+     * Note that the UI refers to this as "App ID".
+     *
+     * Generated from protobuf field <code>optional string application_code = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setApplicationCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->application_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The name of the developer of the application.
+     *
+     * Generated from protobuf field <code>optional string developer = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getDeveloper()
+    {
+        return isset($this->developer) ? $this->developer : '';
+    }
+
+    public function hasDeveloper()
+    {
+        return isset($this->developer);
+    }
+
+    public function clearDeveloper()
+    {
+        unset($this->developer);
+    }
+
+    /**
+     * Output only. The name of the developer of the application.
+     *
+     * Generated from protobuf field <code>optional string developer = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDeveloper($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->developer = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The platform the application runs on.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ApplicationPlatformEnum.ApplicationPlatform platform = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getPlatform()
+    {
+        return isset($this->platform) ? $this->platform : 0;
+    }
+
+    public function hasPlatform()
+    {
+        return isset($this->platform);
+    }
+
+    public function clearPlatform()
+    {
+        unset($this->platform);
+    }
+
+    /**
+     * Output only. The platform the application runs on.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ApplicationPlatformEnum.ApplicationPlatform platform = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPlatform($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\ApplicationPlatformEnum\ApplicationPlatform::class);
+        $this->platform = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Whether the application is free on the app store it belongs
+     * to.
+     *
+     * Generated from protobuf field <code>optional bool free = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getFree()
+    {
+        return isset($this->free) ? $this->free : false;
+    }
+
+    public function hasFree()
+    {
+        return isset($this->free);
+    }
+
+    public function clearFree()
+    {
+        unset($this->free);
+    }
+
+    /**
+     * Output only. Whether the application is free on the app store it belongs
+     * to.
+     *
+     * Generated from protobuf field <code>optional bool free = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setFree($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->free = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The download URL of the application on the app store it
+     * belongs to.
+     *
+     * Generated from protobuf field <code>optional string download_url = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getDownloadUrl()
+    {
+        return isset($this->download_url) ? $this->download_url : '';
+    }
+
+    public function hasDownloadUrl()
+    {
+        return isset($this->download_url);
+    }
+
+    public function clearDownloadUrl()
+    {
+        unset($this->download_url);
+    }
+
+    /**
+     * Output only. The download URL of the application on the app store it
+     * belongs to.
+     *
+     * Generated from protobuf field <code>optional string download_url = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDownloadUrl($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->download_url = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The approval status for the application.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ApplicationApprovalStatusEnum.ApplicationApprovalStatus approval_status = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getApprovalStatus()
+    {
+        return isset($this->approval_status) ? $this->approval_status : 0;
+    }
+
+    public function hasApprovalStatus()
+    {
+        return isset($this->approval_status);
+    }
+
+    public function clearApprovalStatus()
+    {
+        unset($this->approval_status);
+    }
+
+    /**
+     * Output only. The approval status for the application.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ApplicationApprovalStatusEnum.ApplicationApprovalStatus approval_status = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setApprovalStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\ApplicationApprovalStatusEnum\ApplicationApprovalStatus::class);
+        $this->approval_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The webview claiming status for the application.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.WebviewClaimingStatusEnum.WebviewClaimingStatus webview_claiming_status = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getWebviewClaimingStatus()
+    {
+        return isset($this->webview_claiming_status) ? $this->webview_claiming_status : 0;
+    }
+
+    public function hasWebviewClaimingStatus()
+    {
+        return isset($this->webview_claiming_status);
+    }
+
+    public function clearWebviewClaimingStatus()
+    {
+        unset($this->webview_claiming_status);
+    }
+
+    /**
+     * Output only. The webview claiming status for the application.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.WebviewClaimingStatusEnum.WebviewClaimingStatus webview_claiming_status = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setWebviewClaimingStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\WebviewClaimingStatusEnum\WebviewClaimingStatus::class);
+        $this->webview_claiming_status = $var;
 
         return $this;
     }

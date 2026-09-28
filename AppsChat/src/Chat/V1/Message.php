@@ -86,8 +86,8 @@ class Message extends \Google\Protobuf\Internal\Message
      * but includes the following:
      * * [Markup
      * syntax](https://developers.google.com/workspace/chat/format-messages)
-     * for bold, italic, strikethrough, monospace, monospace block, and bulleted
-     * list.
+     * for bold, italic, strikethrough, monospace, monospace block, bulleted
+     * list, and block quote.
      * * [User
      * mentions](https://developers.google.com/workspace/chat/format-messages#messages-\@mention)
      * using the format `<users/{user}>`.
@@ -118,9 +118,14 @@ class Message extends \Google\Protobuf\Internal\Message
     /**
      * Optional. An array of
      * [cards](https://developers.google.com/workspace/chat/api/reference/rest/v1/cards).
-     * Only Chat apps can create cards. If your Chat app [authenticates as a
+     * Chat apps can create cards with [app
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
+     * As part of the [Developer Preview
+     * Program](https://developers.google.com/workspace/preview), if your Chat app
+     * [authenticates as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     * the messages can't contain cards.
+     * it can create card messages. If your Chat app is not part of Developer
+     * Preview Program, it can't create cards with user authentication.
      * To learn how to create a message that contains cards, see [Send a
      * message](https://developers.google.com/workspace/chat/create-messages).
      * [Card builder](https://addons.gsuite.google.com/uikit/builder)
@@ -188,8 +193,8 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     private $attachment;
     /**
-     * Output only. A URL in `spaces.messages.text` that matches a link preview
-     * pattern. For more information, see [Preview
+     * Output only. A URL in the Chat message `text` field that matches a link
+     * preview pattern. For more information, see [Preview
      * links](https://developers.google.com/workspace/chat/preview-links).
      *
      * Generated from protobuf field <code>.google.chat.v1.MatchedUrl matched_url = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -205,6 +210,13 @@ class Message extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool thread_reply = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $thread_reply = false;
+    /**
+     * Output only. Whether this is a silent message. Silent messages are messages
+     * where Chat suppresses push notifications for recipients.
+     *
+     * Generated from protobuf field <code>bool silent = 46 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $silent = false;
     /**
      * Optional. A custom ID for the message. You can use field to identify a
      * message, or to get, delete, or update a message. To set a custom ID,
@@ -275,6 +287,13 @@ class Message extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.chat.v1.AccessoryWidget accessory_widgets = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $accessory_widgets;
+    /**
+     * Optional. Specifies how the server interprets the message `text` field
+     * content.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.MarkupSyntax markup_syntax = 47 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $markup_syntax = 0;
 
     /**
      * Constructor.
@@ -329,8 +348,8 @@ class Message extends \Google\Protobuf\Internal\Message
      *           but includes the following:
      *           * [Markup
      *           syntax](https://developers.google.com/workspace/chat/format-messages)
-     *           for bold, italic, strikethrough, monospace, monospace block, and bulleted
-     *           list.
+     *           for bold, italic, strikethrough, monospace, monospace block, bulleted
+     *           list, and block quote.
      *           * [User
      *           mentions](https://developers.google.com/workspace/chat/format-messages#messages-\@mention)
      *           using the format `<users/{user}>`.
@@ -352,9 +371,14 @@ class Message extends \Google\Protobuf\Internal\Message
      *     @type \Google\Apps\Chat\V1\CardWithId[] $cards_v2
      *           Optional. An array of
      *           [cards](https://developers.google.com/workspace/chat/api/reference/rest/v1/cards).
-     *           Only Chat apps can create cards. If your Chat app [authenticates as a
+     *           Chat apps can create cards with [app
+     *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
+     *           As part of the [Developer Preview
+     *           Program](https://developers.google.com/workspace/preview), if your Chat app
+     *           [authenticates as a
      *           user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     *           the messages can't contain cards.
+     *           it can create card messages. If your Chat app is not part of Developer
+     *           Preview Program, it can't create cards with user authentication.
      *           To learn how to create a message that contains cards, see [Send a
      *           message](https://developers.google.com/workspace/chat/create-messages).
      *           [Card builder](https://addons.gsuite.google.com/uikit/builder)
@@ -386,8 +410,8 @@ class Message extends \Google\Protobuf\Internal\Message
      *     @type \Google\Apps\Chat\V1\Attachment[] $attachment
      *           Optional. User-uploaded attachment.
      *     @type \Google\Apps\Chat\V1\MatchedUrl $matched_url
-     *           Output only. A URL in `spaces.messages.text` that matches a link preview
-     *           pattern. For more information, see [Preview
+     *           Output only. A URL in the Chat message `text` field that matches a link
+     *           preview pattern. For more information, see [Preview
      *           links](https://developers.google.com/workspace/chat/preview-links).
      *     @type bool $thread_reply
      *           Output only. When `true`, the message is a response in a reply thread. When
@@ -395,6 +419,9 @@ class Message extends \Google\Protobuf\Internal\Message
      *           either the first message of a thread or a message with no threaded replies.
      *           If the space doesn't support reply in threads, this field is always
      *           `false`.
+     *     @type bool $silent
+     *           Output only. Whether this is a silent message. Silent messages are messages
+     *           where Chat suppresses push notifications for recipients.
      *     @type string $client_assigned_message_id
      *           Optional. A custom ID for the message. You can use field to identify a
      *           message, or to get, delete, or update a message. To set a custom ID,
@@ -437,6 +464,9 @@ class Message extends \Google\Protobuf\Internal\Message
      *           Creating a message with accessory widgets requires [app
      *           authentication]
      *           (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
+     *     @type int $markup_syntax
+     *           Optional. Specifies how the server interprets the message `text` field
+     *           content.
      * }
      */
     public function __construct($data = NULL) {
@@ -704,8 +734,8 @@ class Message extends \Google\Protobuf\Internal\Message
      * but includes the following:
      * * [Markup
      * syntax](https://developers.google.com/workspace/chat/format-messages)
-     * for bold, italic, strikethrough, monospace, monospace block, and bulleted
-     * list.
+     * for bold, italic, strikethrough, monospace, monospace block, bulleted
+     * list, and block quote.
      * * [User
      * mentions](https://developers.google.com/workspace/chat/format-messages#messages-\@mention)
      * using the format `<users/{user}>`.
@@ -733,8 +763,8 @@ class Message extends \Google\Protobuf\Internal\Message
      * but includes the following:
      * * [Markup
      * syntax](https://developers.google.com/workspace/chat/format-messages)
-     * for bold, italic, strikethrough, monospace, monospace block, and bulleted
-     * list.
+     * for bold, italic, strikethrough, monospace, monospace block, bulleted
+     * list, and block quote.
      * * [User
      * mentions](https://developers.google.com/workspace/chat/format-messages#messages-\@mention)
      * using the format `<users/{user}>`.
@@ -773,7 +803,7 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function getCards()
     {
-        if ($this->cards->count() !== 0) {
+        if (count($this->cards) !== 0) {
             @trigger_error('cards is deprecated.', E_USER_DEPRECATED);
         }
         return $this->cards;
@@ -805,9 +835,14 @@ class Message extends \Google\Protobuf\Internal\Message
     /**
      * Optional. An array of
      * [cards](https://developers.google.com/workspace/chat/api/reference/rest/v1/cards).
-     * Only Chat apps can create cards. If your Chat app [authenticates as a
+     * Chat apps can create cards with [app
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
+     * As part of the [Developer Preview
+     * Program](https://developers.google.com/workspace/preview), if your Chat app
+     * [authenticates as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     * the messages can't contain cards.
+     * it can create card messages. If your Chat app is not part of Developer
+     * Preview Program, it can't create cards with user authentication.
      * To learn how to create a message that contains cards, see [Send a
      * message](https://developers.google.com/workspace/chat/create-messages).
      * [Card builder](https://addons.gsuite.google.com/uikit/builder)
@@ -823,9 +858,14 @@ class Message extends \Google\Protobuf\Internal\Message
     /**
      * Optional. An array of
      * [cards](https://developers.google.com/workspace/chat/api/reference/rest/v1/cards).
-     * Only Chat apps can create cards. If your Chat app [authenticates as a
+     * Chat apps can create cards with [app
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
+     * As part of the [Developer Preview
+     * Program](https://developers.google.com/workspace/preview), if your Chat app
+     * [authenticates as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     * the messages can't contain cards.
+     * it can create card messages. If your Chat app is not part of Developer
+     * Preview Program, it can't create cards with user authentication.
      * To learn how to create a message that contains cards, see [Send a
      * message](https://developers.google.com/workspace/chat/create-messages).
      * [Card builder](https://addons.gsuite.google.com/uikit/builder)
@@ -1113,8 +1153,8 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A URL in `spaces.messages.text` that matches a link preview
-     * pattern. For more information, see [Preview
+     * Output only. A URL in the Chat message `text` field that matches a link
+     * preview pattern. For more information, see [Preview
      * links](https://developers.google.com/workspace/chat/preview-links).
      *
      * Generated from protobuf field <code>.google.chat.v1.MatchedUrl matched_url = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -1136,8 +1176,8 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A URL in `spaces.messages.text` that matches a link preview
-     * pattern. For more information, see [Preview
+     * Output only. A URL in the Chat message `text` field that matches a link
+     * preview pattern. For more information, see [Preview
      * links](https://developers.google.com/workspace/chat/preview-links).
      *
      * Generated from protobuf field <code>.google.chat.v1.MatchedUrl matched_url = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -1182,6 +1222,34 @@ class Message extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->thread_reply = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Whether this is a silent message. Silent messages are messages
+     * where Chat suppresses push notifications for recipients.
+     *
+     * Generated from protobuf field <code>bool silent = 46 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSilent()
+    {
+        return $this->silent;
+    }
+
+    /**
+     * Output only. Whether this is a silent message. Silent messages are messages
+     * where Chat suppresses push notifications for recipients.
+     *
+     * Generated from protobuf field <code>bool silent = 46 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSilent($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->silent = $var;
 
         return $this;
     }
@@ -1450,6 +1518,34 @@ class Message extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Apps\Chat\V1\AccessoryWidget::class);
         $this->accessory_widgets = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies how the server interprets the message `text` field
+     * content.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.MarkupSyntax markup_syntax = 47 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMarkupSyntax()
+    {
+        return $this->markup_syntax;
+    }
+
+    /**
+     * Optional. Specifies how the server interprets the message `text` field
+     * content.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.MarkupSyntax markup_syntax = 47 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMarkupSyntax($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Apps\Chat\V1\MarkupSyntax::class);
+        $this->markup_syntax = $var;
 
         return $this;
     }

@@ -35,6 +35,13 @@ class InstanceFlexibilityPolicyInstanceSelection extends \Google\Protobuf\Intern
      */
     private $machine_types;
     /**
+     * Name of the minimum CPU platform to be used by this instance selection.
+     * e.g. 'Intel Ice Lake'.
+     *
+     * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
+     */
+    protected $min_cpu_platform = null;
+    /**
      * Rank when prioritizing the shape flexibilities.
      * The instance selections with rank are considered
      * first, in the ascending order of the rank.
@@ -57,6 +64,9 @@ class InstanceFlexibilityPolicyInstanceSelection extends \Google\Protobuf\Intern
      *           Alternative machine types to use for instances that are created from
      *           these properties. This field only accepts a machine type names, for
      *           example `n2-standard-4` and not URLs or partial URLs.
+     *     @type string $min_cpu_platform
+     *           Name of the minimum CPU platform to be used by this instance selection.
+     *           e.g. 'Intel Ice Lake'.
      *     @type int|string $rank
      *           Rank when prioritizing the shape flexibilities.
      *           The instance selections with rank are considered
@@ -123,6 +133,44 @@ class InstanceFlexibilityPolicyInstanceSelection extends \Google\Protobuf\Intern
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->machine_types = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Name of the minimum CPU platform to be used by this instance selection.
+     * e.g. 'Intel Ice Lake'.
+     *
+     * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
+     * @return string
+     */
+    public function getMinCpuPlatform()
+    {
+        return isset($this->min_cpu_platform) ? $this->min_cpu_platform : '';
+    }
+
+    public function hasMinCpuPlatform()
+    {
+        return isset($this->min_cpu_platform);
+    }
+
+    public function clearMinCpuPlatform()
+    {
+        unset($this->min_cpu_platform);
+    }
+
+    /**
+     * Name of the minimum CPU platform to be used by this instance selection.
+     * e.g. 'Intel Ice Lake'.
+     *
+     * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMinCpuPlatform($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->min_cpu_platform = $var;
 
         return $this;
     }

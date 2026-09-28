@@ -64,6 +64,23 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * To learn more, see [Make a space discoverable to specific
      * users](https://developers.google.com/workspace/chat/space-target-audience).
      * `access_settings.audience` is not supported with `useAdminAccess`.
+     * `access_settings.access_permission_settings`: Updates the [access
+     * permission
+     * settings](https://support.google.com/chat/answer/11971020) of who can
+     * discover and join the space where `spaceType` field is `SPACE`. Principals
+     * allowed to join the space must also be allowed to discover it. To update
+     * access permission settings for a space, the authenticating user must be a
+     * space manager or assistant manager and omit all other field masks in the
+     * request. You can't update this field if the space is in [import
+     * mode](https://developers.google.com/workspace/chat/import-data-overview).
+     * To learn more, see [Make a space discoverable to specific
+     * users](https://developers.google.com/workspace/chat/space-target-audience).
+     * `access_settings.access_permission_settings` is not supported with
+     * `useAdminAccess`.
+     * The supported field masks include:
+     * - `access_settings.access_permission_settings.discoverSpaceSetting`
+     * - `access_settings.access_permission_settings.joinSpaceSetting`
+     * - `access_settings.access_permission_settings.viewSpaceMembershipSetting`
      * `permission_settings`: Supports changing the
      * [permission settings](https://support.google.com/chat/answer/13340792)
      * of a space.
@@ -78,6 +95,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * - `permission_settings.manageApps`
      * - `permission_settings.manageWebhooks`
      * - `permission_settings.replyMessages`
+     * - `permission_settings.viewSpaceMembership`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -148,6 +166,25 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      *                                               users](https://developers.google.com/workspace/chat/space-target-audience).
      *                                               `access_settings.audience` is not supported with `useAdminAccess`.
      *
+     *                                               `access_settings.access_permission_settings`: Updates the [access
+     *                                               permission
+     *                                               settings](https://support.google.com/chat/answer/11971020) of who can
+     *                                               discover and join the space where `spaceType` field is `SPACE`. Principals
+     *                                               allowed to join the space must also be allowed to discover it. To update
+     *                                               access permission settings for a space, the authenticating user must be a
+     *                                               space manager or assistant manager and omit all other field masks in the
+     *                                               request. You can't update this field if the space is in [import
+     *                                               mode](https://developers.google.com/workspace/chat/import-data-overview).
+     *                                               To learn more, see [Make a space discoverable to specific
+     *                                               users](https://developers.google.com/workspace/chat/space-target-audience).
+     *                                               `access_settings.access_permission_settings` is not supported with
+     *                                               `useAdminAccess`.
+     *                                               The supported field masks include:
+     *
+     *                                               - `access_settings.access_permission_settings.discoverSpaceSetting`
+     *                                               - `access_settings.access_permission_settings.joinSpaceSetting`
+     *                                               - `access_settings.access_permission_settings.viewSpaceMembershipSetting`
+     *
      *                                               `permission_settings`: Supports changing the
      *                                               [permission settings](https://support.google.com/chat/answer/13340792)
      *                                               of a space.
@@ -163,6 +200,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      *                                               - `permission_settings.manageApps`
      *                                               - `permission_settings.manageWebhooks`
      *                                               - `permission_settings.replyMessages`
+     *                                               - `permission_settings.viewSpaceMembership`
      *
      * @return \Google\Apps\Chat\V1\UpdateSpaceRequest
      *
@@ -226,6 +264,23 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      *           To learn more, see [Make a space discoverable to specific
      *           users](https://developers.google.com/workspace/chat/space-target-audience).
      *           `access_settings.audience` is not supported with `useAdminAccess`.
+     *           `access_settings.access_permission_settings`: Updates the [access
+     *           permission
+     *           settings](https://support.google.com/chat/answer/11971020) of who can
+     *           discover and join the space where `spaceType` field is `SPACE`. Principals
+     *           allowed to join the space must also be allowed to discover it. To update
+     *           access permission settings for a space, the authenticating user must be a
+     *           space manager or assistant manager and omit all other field masks in the
+     *           request. You can't update this field if the space is in [import
+     *           mode](https://developers.google.com/workspace/chat/import-data-overview).
+     *           To learn more, see [Make a space discoverable to specific
+     *           users](https://developers.google.com/workspace/chat/space-target-audience).
+     *           `access_settings.access_permission_settings` is not supported with
+     *           `useAdminAccess`.
+     *           The supported field masks include:
+     *           - `access_settings.access_permission_settings.discoverSpaceSetting`
+     *           - `access_settings.access_permission_settings.joinSpaceSetting`
+     *           - `access_settings.access_permission_settings.viewSpaceMembershipSetting`
      *           `permission_settings`: Supports changing the
      *           [permission settings](https://support.google.com/chat/answer/13340792)
      *           of a space.
@@ -240,6 +295,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      *           - `permission_settings.manageApps`
      *           - `permission_settings.manageWebhooks`
      *           - `permission_settings.replyMessages`
+     *           - `permission_settings.viewSpaceMembership`
      *     @type bool $use_admin_access
      *           Optional. When `true`, the method runs using the user's Google Workspace
      *           administrator privileges.
@@ -338,6 +394,23 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * To learn more, see [Make a space discoverable to specific
      * users](https://developers.google.com/workspace/chat/space-target-audience).
      * `access_settings.audience` is not supported with `useAdminAccess`.
+     * `access_settings.access_permission_settings`: Updates the [access
+     * permission
+     * settings](https://support.google.com/chat/answer/11971020) of who can
+     * discover and join the space where `spaceType` field is `SPACE`. Principals
+     * allowed to join the space must also be allowed to discover it. To update
+     * access permission settings for a space, the authenticating user must be a
+     * space manager or assistant manager and omit all other field masks in the
+     * request. You can't update this field if the space is in [import
+     * mode](https://developers.google.com/workspace/chat/import-data-overview).
+     * To learn more, see [Make a space discoverable to specific
+     * users](https://developers.google.com/workspace/chat/space-target-audience).
+     * `access_settings.access_permission_settings` is not supported with
+     * `useAdminAccess`.
+     * The supported field masks include:
+     * - `access_settings.access_permission_settings.discoverSpaceSetting`
+     * - `access_settings.access_permission_settings.joinSpaceSetting`
+     * - `access_settings.access_permission_settings.viewSpaceMembershipSetting`
      * `permission_settings`: Supports changing the
      * [permission settings](https://support.google.com/chat/answer/13340792)
      * of a space.
@@ -352,6 +425,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * - `permission_settings.manageApps`
      * - `permission_settings.manageWebhooks`
      * - `permission_settings.replyMessages`
+     * - `permission_settings.viewSpaceMembership`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -412,6 +486,23 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * To learn more, see [Make a space discoverable to specific
      * users](https://developers.google.com/workspace/chat/space-target-audience).
      * `access_settings.audience` is not supported with `useAdminAccess`.
+     * `access_settings.access_permission_settings`: Updates the [access
+     * permission
+     * settings](https://support.google.com/chat/answer/11971020) of who can
+     * discover and join the space where `spaceType` field is `SPACE`. Principals
+     * allowed to join the space must also be allowed to discover it. To update
+     * access permission settings for a space, the authenticating user must be a
+     * space manager or assistant manager and omit all other field masks in the
+     * request. You can't update this field if the space is in [import
+     * mode](https://developers.google.com/workspace/chat/import-data-overview).
+     * To learn more, see [Make a space discoverable to specific
+     * users](https://developers.google.com/workspace/chat/space-target-audience).
+     * `access_settings.access_permission_settings` is not supported with
+     * `useAdminAccess`.
+     * The supported field masks include:
+     * - `access_settings.access_permission_settings.discoverSpaceSetting`
+     * - `access_settings.access_permission_settings.joinSpaceSetting`
+     * - `access_settings.access_permission_settings.viewSpaceMembershipSetting`
      * `permission_settings`: Supports changing the
      * [permission settings](https://support.google.com/chat/answer/13340792)
      * of a space.
@@ -426,6 +517,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * - `permission_settings.manageApps`
      * - `permission_settings.manageWebhooks`
      * - `permission_settings.replyMessages`
+     * - `permission_settings.viewSpaceMembership`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

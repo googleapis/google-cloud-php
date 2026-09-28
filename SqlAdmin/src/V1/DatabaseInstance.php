@@ -378,6 +378,20 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DnsNameMapping dns_names = 67 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $dns_names;
+    /**
+     * Optional. If true, instance metadata is sent to the Database Center. If
+     * false, instance metadata is not sent to the Database Center.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue database_center_integration_enabled = 72 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $database_center_integration_enabled = null;
+    /**
+     * Optional. State of the Database Center integration for this instance.
+     * When unspecified, Database Center integration is enabled by default.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.DatabaseInstance.DatabaseCenterIntegration database_center_integration = 76 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $database_center_integration = null;
 
     /**
      * Constructor.
@@ -541,6 +555,12 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *           the read pool.
      *     @type \Google\Cloud\Sql\V1\DnsNameMapping[] $dns_names
      *           Output only. The list of DNS names used by this instance.
+     *     @type \Google\Protobuf\BoolValue $database_center_integration_enabled
+     *           Optional. If true, instance metadata is sent to the Database Center. If
+     *           false, instance metadata is not sent to the Database Center.
+     *     @type int $database_center_integration
+     *           Optional. State of the Database Center integration for this instance.
+     *           When unspecified, Database Center integration is enabled by default.
      * }
      */
     public function __construct($data = NULL) {
@@ -2440,6 +2460,111 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Sql\V1\DnsNameMapping::class);
         $this->dns_names = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, instance metadata is sent to the Database Center. If
+     * false, instance metadata is not sent to the Database Center.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue database_center_integration_enabled = 72 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getDatabaseCenterIntegrationEnabled()
+    {
+        return $this->database_center_integration_enabled;
+    }
+
+    public function hasDatabaseCenterIntegrationEnabled()
+    {
+        return isset($this->database_center_integration_enabled);
+    }
+
+    public function clearDatabaseCenterIntegrationEnabled()
+    {
+        unset($this->database_center_integration_enabled);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getDatabaseCenterIntegrationEnabled()</code>
+
+     * Optional. If true, instance metadata is sent to the Database Center. If
+     * false, instance metadata is not sent to the Database Center.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue database_center_integration_enabled = 72 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool|null
+     */
+    public function getDatabaseCenterIntegrationEnabledUnwrapped()
+    {
+        return $this->readWrapperValue("database_center_integration_enabled");
+    }
+
+    /**
+     * Optional. If true, instance metadata is sent to the Database Center. If
+     * false, instance metadata is not sent to the Database Center.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue database_center_integration_enabled = 72 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setDatabaseCenterIntegrationEnabled($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->database_center_integration_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Optional. If true, instance metadata is sent to the Database Center. If
+     * false, instance metadata is not sent to the Database Center.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue database_center_integration_enabled = 72 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setDatabaseCenterIntegrationEnabledUnwrapped($var)
+    {
+        $this->writeWrapperValue("database_center_integration_enabled", $var);
+        return $this;}
+
+    /**
+     * Optional. State of the Database Center integration for this instance.
+     * When unspecified, Database Center integration is enabled by default.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.DatabaseInstance.DatabaseCenterIntegration database_center_integration = 76 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDatabaseCenterIntegration()
+    {
+        return isset($this->database_center_integration) ? $this->database_center_integration : 0;
+    }
+
+    public function hasDatabaseCenterIntegration()
+    {
+        return isset($this->database_center_integration);
+    }
+
+    public function clearDatabaseCenterIntegration()
+    {
+        unset($this->database_center_integration);
+    }
+
+    /**
+     * Optional. State of the Database Center integration for this instance.
+     * When unspecified, Database Center integration is enabled by default.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.DatabaseInstance.DatabaseCenterIntegration database_center_integration = 76 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDatabaseCenterIntegration($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\DatabaseInstance\DatabaseCenterIntegration::class);
+        $this->database_center_integration = $var;
 
         return $this;
     }

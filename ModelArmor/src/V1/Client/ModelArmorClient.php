@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@
 namespace Google\Cloud\ModelArmor\V1\Client;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\Options\ClientOptions;
@@ -100,7 +101,11 @@ final class ModelArmorClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
@@ -522,6 +527,48 @@ final class ModelArmorClient
         array $callOptions = []
     ): SanitizeUserPromptResponse {
         return $this->startApiCall('SanitizeUserPrompt', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Streaming version of Sanitizes Model Response.
+     *
+     * @example samples/V1/ModelArmorClient/stream_sanitize_model_response.php
+     *
+     * @param array $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return BidiStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function streamSanitizeModelResponse(array $callOptions = []): BidiStream
+    {
+        return $this->startApiCall('StreamSanitizeModelResponse', null, $callOptions);
+    }
+
+    /**
+     * Streaming version of Sanitize User Prompt.
+     *
+     * @example samples/V1/ModelArmorClient/stream_sanitize_user_prompt.php
+     *
+     * @param array $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return BidiStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function streamSanitizeUserPrompt(array $callOptions = []): BidiStream
+    {
+        return $this->startApiCall('StreamSanitizeUserPrompt', null, $callOptions);
     }
 
     /**

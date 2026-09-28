@@ -39,6 +39,25 @@ class SubnetworkSecondaryRange extends \Google\Protobuf\Internal\Message
      */
     protected $ip_cidr_range = null;
     /**
+     * Reference to a Public Delegated Prefix (PDP) for BYOIP.
+     * This field should be specified for configuring BYOGUA internal IPv6
+     * secondary range.
+     * When specified along with the ip_cidr_range, the ip_cidr_range must lie
+     * within the PDP referenced by the `ipCollection` field.
+     * When specified without the ip_cidr_range, the range is auto-allocated
+     * from the PDP referenced by the `ipCollection` field.
+     *
+     * Generated from protobuf field <code>optional string ip_collection = 176818358;</code>
+     */
+    protected $ip_collection = null;
+    /**
+     * 
+     * Check the IpVersion enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ip_version = 294959552;</code>
+     */
+    protected $ip_version = null;
+    /**
      * The name associated with this subnetwork secondary range, used when adding
      * an alias IP/IPv6 range to a VM instance.
      * The name must be 1-63 characters long, and comply withRFC1035.
@@ -79,6 +98,17 @@ class SubnetworkSecondaryRange extends \Google\Protobuf\Internal\Message
      *           If `ipCollection` field is specified, but ip_cidr_range is not,
      *           the range is auto-allocated from the PDP referenced by the `ipCollection`
      *           field.
+     *     @type string $ip_collection
+     *           Reference to a Public Delegated Prefix (PDP) for BYOIP.
+     *           This field should be specified for configuring BYOGUA internal IPv6
+     *           secondary range.
+     *           When specified along with the ip_cidr_range, the ip_cidr_range must lie
+     *           within the PDP referenced by the `ipCollection` field.
+     *           When specified without the ip_cidr_range, the range is auto-allocated
+     *           from the PDP referenced by the `ipCollection` field.
+     *     @type string $ip_version
+     *           
+     *           Check the IpVersion enum for the list of possible values.
      *     @type string $range_name
      *           The name associated with this subnetwork secondary range, used when adding
      *           an alias IP/IPv6 range to a VM instance.
@@ -159,6 +189,92 @@ class SubnetworkSecondaryRange extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->ip_cidr_range = $var;
+
+        return $this;
+    }
+
+    /**
+     * Reference to a Public Delegated Prefix (PDP) for BYOIP.
+     * This field should be specified for configuring BYOGUA internal IPv6
+     * secondary range.
+     * When specified along with the ip_cidr_range, the ip_cidr_range must lie
+     * within the PDP referenced by the `ipCollection` field.
+     * When specified without the ip_cidr_range, the range is auto-allocated
+     * from the PDP referenced by the `ipCollection` field.
+     *
+     * Generated from protobuf field <code>optional string ip_collection = 176818358;</code>
+     * @return string
+     */
+    public function getIpCollection()
+    {
+        return isset($this->ip_collection) ? $this->ip_collection : '';
+    }
+
+    public function hasIpCollection()
+    {
+        return isset($this->ip_collection);
+    }
+
+    public function clearIpCollection()
+    {
+        unset($this->ip_collection);
+    }
+
+    /**
+     * Reference to a Public Delegated Prefix (PDP) for BYOIP.
+     * This field should be specified for configuring BYOGUA internal IPv6
+     * secondary range.
+     * When specified along with the ip_cidr_range, the ip_cidr_range must lie
+     * within the PDP referenced by the `ipCollection` field.
+     * When specified without the ip_cidr_range, the range is auto-allocated
+     * from the PDP referenced by the `ipCollection` field.
+     *
+     * Generated from protobuf field <code>optional string ip_collection = 176818358;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpCollection($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ip_collection = $var;
+
+        return $this;
+    }
+
+    /**
+     * 
+     * Check the IpVersion enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ip_version = 294959552;</code>
+     * @return string
+     */
+    public function getIpVersion()
+    {
+        return isset($this->ip_version) ? $this->ip_version : '';
+    }
+
+    public function hasIpVersion()
+    {
+        return isset($this->ip_version);
+    }
+
+    public function clearIpVersion()
+    {
+        unset($this->ip_version);
+    }
+
+    /**
+     * 
+     * Check the IpVersion enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ip_version = 294959552;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ip_version = $var;
 
         return $this;
     }

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VectorSearch\V1\SearchHint\IndexHint;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters for dense ScaNN.
@@ -16,19 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class DenseScannParams extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Dense ANN param overrides to control recall and latency.
-     * The percentage of leaves to search, in the range [0, 100].
+     * Optional. The target recall for the search. Must be a double in the
+     * range [0, 1]. While the search aims to achieve this level of recall, it
+     * is not guaranteed.
      *
-     * Generated from protobuf field <code>int32 search_leaves_pct = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional double target_recall = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $search_leaves_pct = 0;
-    /**
-     * Optional. The number of initial candidates. Must be a positive integer
-     * (> 0).
-     *
-     * Generated from protobuf field <code>int32 initial_candidate_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    protected $initial_candidate_count = 0;
+    protected $target_recall = null;
 
     /**
      * Constructor.
@@ -36,12 +30,10 @@ class DenseScannParams extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $search_leaves_pct
-     *           Optional. Dense ANN param overrides to control recall and latency.
-     *           The percentage of leaves to search, in the range [0, 100].
-     *     @type int $initial_candidate_count
-     *           Optional. The number of initial candidates. Must be a positive integer
-     *           (> 0).
+     *     @type float $target_recall
+     *           Optional. The target recall for the search. Must be a double in the
+     *           range [0, 1]. While the search aims to achieve this level of recall, it
+     *           is not guaranteed.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,61 +42,44 @@ class DenseScannParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Dense ANN param overrides to control recall and latency.
-     * The percentage of leaves to search, in the range [0, 100].
+     * Optional. The target recall for the search. Must be a double in the
+     * range [0, 1]. While the search aims to achieve this level of recall, it
+     * is not guaranteed.
      *
-     * Generated from protobuf field <code>int32 search_leaves_pct = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return int
+     * Generated from protobuf field <code>optional double target_recall = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
      */
-    public function getSearchLeavesPct()
+    public function getTargetRecall()
     {
-        return $this->search_leaves_pct;
+        return isset($this->target_recall) ? $this->target_recall : 0.0;
+    }
+
+    public function hasTargetRecall()
+    {
+        return isset($this->target_recall);
+    }
+
+    public function clearTargetRecall()
+    {
+        unset($this->target_recall);
     }
 
     /**
-     * Optional. Dense ANN param overrides to control recall and latency.
-     * The percentage of leaves to search, in the range [0, 100].
+     * Optional. The target recall for the search. Must be a double in the
+     * range [0, 1]. While the search aims to achieve this level of recall, it
+     * is not guaranteed.
      *
-     * Generated from protobuf field <code>int32 search_leaves_pct = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional double target_recall = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
      * @return $this
      */
-    public function setSearchLeavesPct($var)
+    public function setTargetRecall($var)
     {
-        GPBUtil::checkInt32($var);
-        $this->search_leaves_pct = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. The number of initial candidates. Must be a positive integer
-     * (> 0).
-     *
-     * Generated from protobuf field <code>int32 initial_candidate_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return int
-     */
-    public function getInitialCandidateCount()
-    {
-        return $this->initial_candidate_count;
-    }
-
-    /**
-     * Optional. The number of initial candidates. Must be a positive integer
-     * (> 0).
-     *
-     * Generated from protobuf field <code>int32 initial_candidate_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setInitialCandidateCount($var)
-    {
-        GPBUtil::checkInt32($var);
-        $this->initial_candidate_count = $var;
+        GPBUtil::checkDouble($var);
+        $this->target_recall = $var;
 
         return $this;
     }
 
 }
-
 

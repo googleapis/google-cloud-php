@@ -38,6 +38,14 @@ class Toolset extends \Google\Protobuf\Internal\Message
      */
     protected $description = '';
     /**
+     * Optional. The timeout for the toolset execution. If not set, the default
+     * timeout is 30 seconds for `SYNCHRONOUS` toolsets and 60 seconds for
+     * `ASYNCHRONOUS` toolsets.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration timeout = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $timeout = null;
+    /**
      * Output only. Timestamp when the toolset was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -95,6 +103,10 @@ class Toolset extends \Google\Protobuf\Internal\Message
      *           app.
      *     @type string $description
      *           Optional. The description of the toolset.
+     *     @type \Google\Protobuf\Duration $timeout
+     *           Optional. The timeout for the toolset execution. If not set, the default
+     *           timeout is 30 seconds for `SYNCHRONOUS` toolsets and 60 seconds for
+     *           `ASYNCHRONOUS` toolsets.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when the toolset was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -293,6 +305,46 @@ class Toolset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The timeout for the toolset execution. If not set, the default
+     * timeout is 30 seconds for `SYNCHRONOUS` toolsets and 60 seconds for
+     * `ASYNCHRONOUS` toolsets.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration timeout = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getTimeout()
+    {
+        return $this->timeout;
+    }
+
+    public function hasTimeout()
+    {
+        return isset($this->timeout);
+    }
+
+    public function clearTimeout()
+    {
+        unset($this->timeout);
+    }
+
+    /**
+     * Optional. The timeout for the toolset execution. If not set, the default
+     * timeout is 30 seconds for `SYNCHRONOUS` toolsets and 60 seconds for
+     * `ASYNCHRONOUS` toolsets.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration timeout = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setTimeout($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->timeout = $var;
 
         return $this;
     }

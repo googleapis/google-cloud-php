@@ -149,6 +149,12 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.databasecenter.v1beta.MaintenanceInfo maintenance_info = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $maintenance_info = null;
+    /**
+     * Optional. Affiliation details of the resource.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.Affiliation affiliations = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $affiliations;
 
     /**
      * Constructor.
@@ -221,6 +227,8 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
      *           The edition of the resource.
      *     @type \Google\Cloud\DatabaseCenter\V1beta\MaintenanceInfo $maintenance_info
      *           Optional. The maintenance information of the resource.
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\Affiliation[] $affiliations
+     *           Optional. Affiliation details of the resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -778,6 +786,32 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DatabaseCenter\V1beta\MaintenanceInfo::class);
         $this->maintenance_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Affiliation details of the resource.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.Affiliation affiliations = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\Affiliation>
+     */
+    public function getAffiliations()
+    {
+        return $this->affiliations;
+    }
+
+    /**
+     * Optional. Affiliation details of the resource.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.Affiliation affiliations = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DatabaseCenter\V1beta\Affiliation[] $var
+     * @return $this
+     */
+    public function setAffiliations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DatabaseCenter\V1beta\Affiliation::class);
+        $this->affiliations = $arr;
 
         return $this;
     }

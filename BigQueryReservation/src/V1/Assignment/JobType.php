@@ -78,6 +78,14 @@ class JobType
      * Generated from protobuf enum <code>BACKGROUND_SEARCH_INDEX_REFRESH = 9;</code>
      */
     const BACKGROUND_SEARCH_INDEX_REFRESH = 9;
+    /**
+     * Automated materialized view refresh jobs will use the reservation.
+     * Reservations with this job type will take priority over a default QUERY
+     * reservation assignment (if it exists).
+     *
+     * Generated from protobuf enum <code>AUTOMATIC_MATERIALIZED_VIEW_REFRESH = 10;</code>
+     */
+    const AUTOMATIC_MATERIALIZED_VIEW_REFRESH = 10;
 
     private static $valueToName = [
         self::JOB_TYPE_UNSPECIFIED => 'JOB_TYPE_UNSPECIFIED',
@@ -89,6 +97,7 @@ class JobType
         self::BACKGROUND_CHANGE_DATA_CAPTURE => 'BACKGROUND_CHANGE_DATA_CAPTURE',
         self::BACKGROUND_COLUMN_METADATA_INDEX => 'BACKGROUND_COLUMN_METADATA_INDEX',
         self::BACKGROUND_SEARCH_INDEX_REFRESH => 'BACKGROUND_SEARCH_INDEX_REFRESH',
+        self::AUTOMATIC_MATERIALIZED_VIEW_REFRESH => 'AUTOMATIC_MATERIALIZED_VIEW_REFRESH',
     ];
 
     public static function name($value)

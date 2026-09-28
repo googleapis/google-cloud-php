@@ -54,7 +54,7 @@ class BucketTest extends TestCase
     const BUCKET_NAME = 'my-bucket';
     const PROJECT_ID = 'my-project';
     const NOTIFICATION_ID = '1234';
-
+    const FILE_NAME_TEST = 'test.txt';
     private $connection;
     private $resumableUploader;
     private $multipartUploader;
@@ -181,6 +181,68 @@ class BucketTest extends TestCase
         $bucket = $this->getBucket();
 
         $bucket->getResumableUploader('some more data');
+    }
+
+    /**
+     * Verifies that a resumable upload triggered through a Bucket
+     * only sends the X-Goog-Hash on the final chunk.
+     */
+    public function testUploadResumableFinalChunkHashes()
+    {
+        $data = 'chunk1chunk2'; // 12 bytes
+        $name = 'test-resumable.txt';
+        $resumeUri = 'http://example.com/resumable/123';
+        $hash = 'crc32c=mb+64g==,md5=ecA+ttxFBv4gFVBh52kiWA==';
+
+        $rw = $this->prophesize(RequestWrapper::class);
+
+        // Handshake call (POST)
+        $rw->send(Argument::that(function ($request) {
+            return $request->getMethod() === 'POST';
+        }), Argument::any())->willReturn(new \GuzzleHttp\Psr7\Response(200, ['Location' => $resumeUri]));
+
+        // Intermediate chunk (PUT) - Should NOT have X-Goog-Hash
+        $rw->send(Argument::that(function ($request) {
+            return $request->getMethod() === 'PUT'
+                && $request->getHeaderLine('Content-Range') === 'bytes 0-5/12'
+                && !$request->hasHeader('X-Goog-Hash');
+        }), Argument::any())->willReturn(new \GuzzleHttp\Psr7\Response(308, ['Range' => 'bytes=0-5']));
+
+        // FINAL chunk (PUT) - MUST HAVE X-Goog-Hash
+        $rw->send(Argument::that(function ($request) use ($hash) {
+            return $request->getMethod() === 'PUT'
+                && $request->getHeaderLine('Content-Range') === 'bytes 6-11/12'
+                && $request->getHeaderLine('X-Goog-Hash') === $hash;
+        }), Argument::any())->willReturn(
+            new \GuzzleHttp\Psr7\Response(200, [], '{"name":"' . $name . '","generation":"1"}')
+        );
+
+        $this->connection->projectId()->willReturn(self::PROJECT_ID);
+        $this->connection->requestWrapper()->willReturn($rw->reveal());
+
+        $uploader = new ResumableUploader(
+            $rw->reveal(),
+            $data,
+            'http://example.com/upload',
+            [
+                'chunkSize' => 6,
+                'contentType' => 'text/plain',
+                'restOptions' => ['headers' => ['X-Goog-Hash' => $hash]]
+            ]
+        );
+
+        $this->connection->insertObject(Argument::any())
+            ->willReturn($uploader);
+
+        $bucket = $this->getBucket();
+        $object = $bucket->upload($data, [
+            'name' => $name,
+            'resumable' => true,
+            'chunkSize' => 6,
+        ]);
+
+        $this->assertInstanceOf(StorageObject::class, $object);
+        $this->assertEquals($name, $object->name());
     }
 
     public function testGetObject()
@@ -357,6 +419,86 @@ class BucketTest extends TestCase
         $this->assertEquals($destinationObject, $object->name());
     }
 
+    public function testComposeWithDeleteSourceObjects()
+    {
+        $acl = 'private';
+        $destinationObject = 'combined-files.txt';
+        $this->connection->composeObject([
+                'destinationBucket' => self::BUCKET_NAME,
+                'destinationObject' => $destinationObject,
+                'destinationPredefinedAcl' => $acl,
+                'destination' => ['contentType' => 'text/plain'],
+                'sourceObjects' => [['name' => 'file1.txt'], ['name' => 'file2.txt']],
+                'deleteSourceObjects' => true,
+            ])
+            ->willReturn([
+                'name' => $destinationObject,
+                'generation' => 1
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $bucket = $this->getBucket();
+
+        $object = $bucket->compose(['file1.txt', 'file2.txt'], $destinationObject, [
+            'predefinedAcl' => $acl,
+            'deleteSourceObjects' => true
+        ]);
+
+        $this->assertEquals($destinationObject, $object->name());
+    }
+
+    public function testComposeWithDeleteSourceObjectsFalse()
+    {
+        $acl = 'private';
+        $destinationObject = 'combined-files.txt';
+        $this->connection->composeObject([
+                'destinationBucket' => self::BUCKET_NAME,
+                'destinationObject' => $destinationObject,
+                'destinationPredefinedAcl' => $acl,
+                'destination' => ['contentType' => 'text/plain'],
+                'sourceObjects' => [['name' => 'file1.txt'], ['name' => 'file2.txt']],
+            ])
+            ->willReturn([
+                'name' => $destinationObject,
+                'generation' => 1
+            ])
+            ->shouldBeCalledTimes(1);
+        $bucket = $this->getBucket();
+
+        $object = $bucket->compose(['file1.txt', 'file2.txt'], $destinationObject, [
+            'predefinedAcl' => $acl,
+            'deleteSourceObjects' => false
+        ]);
+
+        $this->assertEquals($destinationObject, $object->name());
+    }
+
+    public function testComposeWithDeleteSourceObjectsNull()
+    {
+        $acl = 'private';
+        $destinationObject = 'combined-files.txt';
+        $this->connection->composeObject([
+                'destinationBucket' => self::BUCKET_NAME,
+                'destinationObject' => $destinationObject,
+                'destinationPredefinedAcl' => $acl,
+                'destination' => ['contentType' => 'text/plain'],
+                'sourceObjects' => [['name' => 'file1.txt'], ['name' => 'file2.txt']],
+            ])
+            ->willReturn([
+                'name' => $destinationObject,
+                'generation' => 1
+            ])
+            ->shouldBeCalledTimes(1);
+        $bucket = $this->getBucket();
+
+        $object = $bucket->compose(['file1.txt', 'file2.txt'], $destinationObject, [
+            'predefinedAcl' => $acl,
+            'deleteSourceObjects' => null
+        ]);
+
+        $this->assertEquals($destinationObject, $object->name());
+    }
+
     public function composeProvider()
     {
         $object1 = $this->prophesize(StorageObject::class);
@@ -489,6 +631,154 @@ class BucketTest extends TestCase
         );
     }
 
+    public function testUpdatesIpFilterConfig()
+    {
+        $ipFilterConfig = [
+            'mode' => 'Enabled',
+            'publicNetworkSource' => [
+                'allowedIpCidrRanges' => ['1.2.3.4/32']
+            ],
+            'vpcNetworkSources' => [
+                [
+                    'network' => 'projects/p1/global/networks/n1',
+                    'allowedIpCidrRanges' => ['10.0.0.0/24']
+                ]
+            ],
+            'allowCrossOrgVpcs' => true,
+            'allowAllServiceAgentAccess' => false
+        ];
+        $this->connection->patchBucket(Argument::withEntry('ipFilter', $ipFilterConfig))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => self::BUCKET_NAME,
+                'ipFilter' => $ipFilterConfig
+            ]);
+
+        $bucket = $this->getBucket(['name' => self::BUCKET_NAME]);
+
+        $bucket->update(['ipFilter' => $ipFilterConfig]);
+
+        $this->assertArrayHasKey('ipFilter', $bucket->info());
+        $this->assertEquals(
+            'Enabled',
+            $bucket->info()['ipFilter']['mode']
+        );
+        $this->assertEquals(
+            ['1.2.3.4/32'],
+            $bucket->info()['ipFilter']['publicNetworkSource']['allowedIpCidrRanges']
+        );
+    }
+
+    public function testBucketAccessAllowedWithIpFilter()
+    {
+        $ipFilterConfig = [
+            'mode' => 'Enabled',
+            'publicNetworkSource' => [
+                'allowedIpCidrRanges' => ['12.34.56.78/32']
+            ],
+            'allowAllServiceAgentAccess' => true
+        ];
+        $bucketInfo = [
+            'name' => self::BUCKET_NAME,
+            'ipFilter' => $ipFilterConfig
+        ];
+        $this->connection->getBucket(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($bucketInfo);
+
+        $bucket = $this->getBucket();
+        $info = $bucket->info();
+
+        $this->assertArrayHasKey('ipFilter', $info);
+        $this->assertEquals('Enabled', $info['ipFilter']['mode']);
+    }
+
+    public function testBucketAccessDeniedByIpFilter()
+    {
+        $this->expectException(ServiceException::class);
+        $this->expectExceptionCode(403);
+        $this->expectExceptionMessage('BUCKET_IP_FILTER_DENIED');
+
+        $this->connection->getBucket(Argument::any())
+            ->shouldBeCalled()
+            ->willThrow(new ServiceException('BUCKET_IP_FILTER_DENIED', 403));
+
+        $bucket = $this->getBucket();
+        $bucket->info();
+    }
+
+    public function testGetBucketWithIpFilter()
+    {
+        $ipFilterConfig = [
+            'mode' => 'Disabled',
+            'publicNetworkSource' => [
+                'allowedIpCidrRanges' => ['1.2.3.0/24']
+            ],
+            'allowAllServiceAgentAccess' => true
+        ];
+
+        $bucketInfo = [
+            'name' => self::BUCKET_NAME,
+            'ipFilter' => $ipFilterConfig
+        ];
+
+        $this->connection->getBucket(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($bucketInfo);
+
+        $bucket = $this->getBucket();
+        $info = $bucket->info();
+
+        $this->assertArrayHasKey('ipFilter', $info);
+        $this->assertEquals('Disabled', $info['ipFilter']['mode']);
+        $this->assertEquals(
+            ['1.2.3.0/24'],
+            $info['ipFilter']['publicNetworkSource']['allowedIpCidrRanges']
+        );
+    }
+
+    public function testDisableBucketIpFilter()
+    {
+        $ipFilterConfig = [
+            'mode' => 'Disabled',
+            'publicNetworkSource' => [
+                'allowedIpCidrRanges' => ['1.2.3.0/24']
+            ],
+            'allowAllServiceAgentAccess' => true
+        ];
+
+        $bucketInfo = [
+            'name' => self::BUCKET_NAME,
+            'ipFilter' => $ipFilterConfig
+        ];
+
+        $this->connection->patchBucket(Argument::withEntry('ipFilter', $ipFilterConfig))
+            ->shouldBeCalled()
+            ->willReturn($bucketInfo);
+
+        $bucket = $this->getBucket();
+        $info = $bucket->update(['ipFilter' => $ipFilterConfig]);
+
+        $this->assertArrayHasKey('ipFilter', $info);
+        $this->assertEquals('Disabled', $info['ipFilter']['mode']);
+    }
+
+    public function testDeleteBucketIpFilter()
+    {
+        $bucketInfo = [
+            'name' => self::BUCKET_NAME,
+        ];
+
+        $this->connection->patchBucket(Argument::withEntry('ipFilter', null))
+            ->shouldBeCalled()
+            ->willReturn($bucketInfo);
+
+        $bucket = $this->getBucket();
+        $info = $bucket->update(['ipFilter' => null]);
+
+        $this->assertArrayNotHasKey('ipFilter', $info);
+    }
+
     public function testGetsInfo()
     {
         $bucketInfo = [
@@ -578,6 +868,214 @@ class BucketTest extends TestCase
         $this->resumableUploader->getResumeUri()->willThrow(new ServerException('maintainence'));
         $bucket = $this->getBucket();
         $bucket->isWritable(); // raises exception
+    }
+
+    public function testCreateObjectWithValidContexts()
+    {
+        $contexts = [
+            'custom' => [
+                'dept' => ['value' => 'engineering'],
+                'env' => ['value' => 'production']
+            ]
+        ];
+        $this->resumableUploader->upload()->willReturn([
+            'name' => 'data.txt',
+            'generation' => 123,
+            'contexts' => $contexts
+        ]);
+
+        $this->connection->insertObject(Argument::any())
+            ->willReturn($this->resumableUploader->reveal());
+        $object = $this->getBucket()->upload('upload', [
+            'name' => 'data.txt',
+            'contexts' => $contexts
+        ]);
+        $this->assertInstanceOf(StorageObject::class, $object);
+        $this->assertEquals($contexts, $object->info()['contexts']);
+    }
+
+    public function testUpdateReplacesAllMetadataIncludingContexts()
+    {
+        $objectName = 'replace-test.txt';
+        $object = new StorageObject($this->connection->reveal(), $objectName, self::BUCKET_NAME);
+        $newContexts = ['custom' => ['new-key' => ['value' => 'new-val']]];
+
+        $this->connection->patchObject(Argument::withEntry('contexts', $newContexts))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => $objectName,
+                'contexts' => $newContexts,
+            ]);
+
+        $result = $object->update(['contexts' => $newContexts]);
+        $this->assertEquals('new-val', $result['contexts']['custom']['new-key']['value']);
+    }
+
+    public function testAddAndModifyWithIndividualContexts()
+    {
+        $patchMetadata = [
+            'contexts' => [
+                'custom' => [
+                    'new-key' => ['value' => 'added'],
+                    'existing-key' => ['value' => 'modified']
+                ]
+            ]
+        ];
+
+        $this->connection->patchObject(Argument::withEntry('metadata', $patchMetadata))
+        ->willReturn(['metadata' => $patchMetadata]);
+        
+        $file = $this->getBucket()->object(self::FILE_NAME_TEST);
+        $response = $file->update(['metadata' => $patchMetadata]);
+
+        $this->assertArrayHasKey('contexts', $response['metadata']);
+        $this->assertSame('added', $response['metadata']['contexts']['custom']['new-key']['value']);
+        $this->assertSame('modified', $response['metadata']['contexts']['custom']['existing-key']['value']);
+    }
+
+    /**
+    * @dataProvider removeAndClearAllContextsDataProvider
+    */
+    public function testRemoveAndClearAllObjectContexts($objectContexts)
+    {
+        $this->connection->patchObject(
+            Argument::withEntry('contexts', $objectContexts)
+        )->shouldBeCalled()->willReturn([
+            'name' => self::FILE_NAME_TEST,
+            'contexts' => $objectContexts
+        ]);
+
+        $object = new StorageObject(
+            $this->connection->reveal(),
+            self::FILE_NAME_TEST,
+            '',
+            1,
+            ['bucket' => self::BUCKET_NAME]
+        );
+        $object->update(['contexts' => $objectContexts]);
+        $info = $object->info();
+        if ($objectContexts === null) {
+            $hasContexts = isset($info['contexts']) && $info['contexts'] !== null;
+            $this->assertFalse($hasContexts);
+        } else {
+            $actualContexts = $object->info()['contexts'] ?? null;
+            $this->assertEquals($objectContexts, $actualContexts);
+        }
+    }
+
+    public function removeAndClearAllContextsDataProvider()
+    {
+        return [
+            'remove an individual context by setting it to null' => [
+                ['custom' => ['key-to-delete' => null]]
+            ],
+            'clear all contexts by setting custom to null' => [
+                ['custom' => null]
+            ]
+        ];
+    }
+
+    public function testCopyObjectWithMetadataOverrides()
+    {
+        $destFileName = 'destination.txt';
+        $metadata = [
+            'contexts' => [
+                'custom' => ['tag' => ['value' => 'overridden']],
+            ],
+        ];
+
+        $destinationObject = $this->prophesize(StorageObject::class);
+        $destinationObject->info()->willReturn(['metadata' => $metadata]);
+        $sourceObject = $this->prophesize(StorageObject::class);
+        $sourceObject->copy(Argument::any(), Argument::withEntry('metadata', $metadata))
+            ->shouldBeCalled()
+            ->willReturn($destinationObject->reveal());
+
+        $response = $sourceObject->reveal()->copy(self::BUCKET_NAME, [
+            'name' => $destFileName,
+            'metadata' => $metadata
+        ]);
+
+        $this->assertSame(
+            $metadata['contexts'],
+            $response->info()['metadata']['contexts']
+        );
+    }
+
+    public function testListFiltersByPresenceOfKeyValuePair()
+    {
+        $filter = 'contexts."status"="active"';
+        $this->connection->listObjects(Argument::withEntry('filter', $filter))
+            ->shouldBeCalled()
+            ->willReturn([
+                'items' => null
+            ]);
+
+        $bucket = $this->getBucket();
+        $iterator = $bucket->objects([
+            'filter' => $filter
+        ]);
+        $this->assertCount(0, iterator_to_array($iterator));
+    }
+
+    /**
+    * @dataProvider listFilterExistenceDataProvider
+    */
+    public function testListFiltersByExistence($filter)
+    {
+        $this->connection->listObjects(Argument::withEntry('filter', $filter))
+            ->shouldBeCalled()
+            ->willReturn([
+                'items' => null
+            ]);
+
+        $bucket = $this->getBucket();
+        $iterator = $bucket->objects([
+            'filter' => $filter
+        ]);
+
+        $this->assertCount(0, iterator_to_array($iterator));
+    }
+
+    public function listFilterExistenceDataProvider()
+    {
+        return [
+            'presence of key (Existence)' => ['contexts."status":*'],
+            'absence of key (Non-existence)' => ['-contexts."status":*']
+        ];
+    }
+
+    public function testGetFilesIncludesContextsInMetadata()
+    {
+        $fileMetadata = [
+            'name' => 'filename',
+            'metadata' => [
+                'contexts' => [ 'custom' => [ 'dept' =>
+                        [
+                            'value' => 'eng',
+                            'createTime' => '2026-04-16T01:01:01.045123456Z',
+                            'updateTime' => '2026-04-16T01:01:01.045123'
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        $this->connection->listObjects(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'items' => [$fileMetadata]
+            ]);
+
+        $bucket = $this->getBucket();
+        $files = iterator_to_array($bucket->objects());
+
+        $this->assertCount(1, $files);
+        $this->assertInstanceOf(StorageObject::class, $files[0]);
+
+        $this->assertEquals(
+            $fileMetadata['metadata']['contexts'],
+            $files[0]->info()['metadata']['contexts']
+        );
     }
 
     public function testIam()

@@ -48,6 +48,8 @@ class DocumentLayoutBlock extends \Google\Protobuf\Internal\Message
      *           Block consisting of table content/structure.
      *     @type \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutListBlock $list_block
      *           Block consisting of list content/structure.
+     *     @type \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutImageBlock $image_block
+     *           Block consisting of image content.
      *     @type string $block_id
      *           ID of the block.
      *     @type \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutPageSpan $page_span
@@ -150,6 +152,37 @@ class DocumentLayoutBlock extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutListBlock::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Block consisting of image content.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutImageBlock image_block = 7;</code>
+     * @return \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutImageBlock|null
+     */
+    public function getImageBlock()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasImageBlock()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Block consisting of image content.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutImageBlock image_block = 7;</code>
+     * @param \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutImageBlock $var
+     * @return $this
+     */
+    public function setImageBlock($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutImageBlock::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

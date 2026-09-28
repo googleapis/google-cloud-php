@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,6 +55,24 @@ return [
                         'keyName' => 'instance',
                         'fieldAccessors' => [
                             'getInstance',
+                        ],
+                    ],
+                ],
+            ],
+            'ResolveConnectSettings' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Sql\V1\ConnectSettings',
+                'headerParams' => [
+                    [
+                        'keyName' => 'location',
+                        'fieldAccessors' => [
+                            'getLocation',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'dns_name',
+                        'fieldAccessors' => [
+                            'getDnsName',
                         ],
                     ],
                 ],

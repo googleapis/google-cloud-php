@@ -50,8 +50,8 @@ class ApiConfig extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * Immutable. The Google Cloud IAM Service Account that Gateways serving this config
-     * should use to authenticate to other services. This may either be the
+     * Immutable. The Google Cloud IAM Service Account that Gateways serving this
+     * config should use to authenticate to other services. This may either be the
      * Service Account's email
      * (`{ACCOUNT_ID}\@{PROJECT}.iam.gserviceaccount.com`) or its full resource
      * name (`projects/{PROJECT}/accounts/{UNIQUE_ID}`). This is most often used
@@ -82,15 +82,15 @@ class ApiConfig extends \Google\Protobuf\Internal\Message
      */
     private $openapi_documents;
     /**
-     * Optional. gRPC service definition files. If specified, openapi_documents must
-     * not be included.
+     * Optional. gRPC service definition files. If specified, openapi_documents
+     * must not be included.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigateway.v1.ApiConfig.GrpcServiceDefinition grpc_services = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $grpc_services;
     /**
-     * Optional. Service Configuration files. At least one must be included when using gRPC
-     * service definitions. See
+     * Optional. Service Configuration files. At least one must be included when
+     * using gRPC service definitions. See
      * https://cloud.google.com/endpoints/docs/grpc/grpc-service-config#service_configuration_overview
      * for the expected file contents.
      * If multiple files are specified, the files are merged with the following
@@ -125,8 +125,8 @@ class ApiConfig extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Optional. Display name.
      *     @type string $gateway_service_account
-     *           Immutable. The Google Cloud IAM Service Account that Gateways serving this config
-     *           should use to authenticate to other services. This may either be the
+     *           Immutable. The Google Cloud IAM Service Account that Gateways serving this
+     *           config should use to authenticate to other services. This may either be the
      *           Service Account's email
      *           (`{ACCOUNT_ID}\@{PROJECT}.iam.gserviceaccount.com`) or its full resource
      *           name (`projects/{PROJECT}/accounts/{UNIQUE_ID}`). This is most often used
@@ -141,11 +141,11 @@ class ApiConfig extends \Google\Protobuf\Internal\Message
      *           Optional. OpenAPI specification documents. If specified, grpc_services and
      *           managed_service_configs must not be included.
      *     @type \Google\Cloud\ApiGateway\V1\ApiConfig\GrpcServiceDefinition[] $grpc_services
-     *           Optional. gRPC service definition files. If specified, openapi_documents must
-     *           not be included.
+     *           Optional. gRPC service definition files. If specified, openapi_documents
+     *           must not be included.
      *     @type \Google\Cloud\ApiGateway\V1\ApiConfig\File[] $managed_service_configs
-     *           Optional. Service Configuration files. At least one must be included when using gRPC
-     *           service definitions. See
+     *           Optional. Service Configuration files. At least one must be included when
+     *           using gRPC service definitions. See
      *           https://cloud.google.com/endpoints/docs/grpc/grpc-service-config#service_configuration_overview
      *           for the expected file contents.
      *           If multiple files are specified, the files are merged with the following
@@ -319,8 +319,8 @@ class ApiConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The Google Cloud IAM Service Account that Gateways serving this config
-     * should use to authenticate to other services. This may either be the
+     * Immutable. The Google Cloud IAM Service Account that Gateways serving this
+     * config should use to authenticate to other services. This may either be the
      * Service Account's email
      * (`{ACCOUNT_ID}\@{PROJECT}.iam.gserviceaccount.com`) or its full resource
      * name (`projects/{PROJECT}/accounts/{UNIQUE_ID}`). This is most often used
@@ -336,8 +336,8 @@ class ApiConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The Google Cloud IAM Service Account that Gateways serving this config
-     * should use to authenticate to other services. This may either be the
+     * Immutable. The Google Cloud IAM Service Account that Gateways serving this
+     * config should use to authenticate to other services. This may either be the
      * Service Account's email
      * (`{ACCOUNT_ID}\@{PROJECT}.iam.gserviceaccount.com`) or its full resource
      * name (`projects/{PROJECT}/accounts/{UNIQUE_ID}`). This is most often used
@@ -439,8 +439,8 @@ class ApiConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. gRPC service definition files. If specified, openapi_documents must
-     * not be included.
+     * Optional. gRPC service definition files. If specified, openapi_documents
+     * must not be included.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigateway.v1.ApiConfig.GrpcServiceDefinition grpc_services = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<\Google\Cloud\ApiGateway\V1\ApiConfig\GrpcServiceDefinition>
@@ -451,8 +451,8 @@ class ApiConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. gRPC service definition files. If specified, openapi_documents must
-     * not be included.
+     * Optional. gRPC service definition files. If specified, openapi_documents
+     * must not be included.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigateway.v1.ApiConfig.GrpcServiceDefinition grpc_services = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\ApiGateway\V1\ApiConfig\GrpcServiceDefinition[] $var
@@ -467,8 +467,8 @@ class ApiConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Service Configuration files. At least one must be included when using gRPC
-     * service definitions. See
+     * Optional. Service Configuration files. At least one must be included when
+     * using gRPC service definitions. See
      * https://cloud.google.com/endpoints/docs/grpc/grpc-service-config#service_configuration_overview
      * for the expected file contents.
      * If multiple files are specified, the files are merged with the following
@@ -488,8 +488,8 @@ class ApiConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Service Configuration files. At least one must be included when using gRPC
-     * service definitions. See
+     * Optional. Service Configuration files. At least one must be included when
+     * using gRPC service definitions. See
      * https://cloud.google.com/endpoints/docs/grpc/grpc-service-config#service_configuration_overview
      * for the expected file contents.
      * If multiple files are specified, the files are merged with the following

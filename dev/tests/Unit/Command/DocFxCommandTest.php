@@ -41,7 +41,7 @@ class DocFxCommandTest extends TestCase
         $componentDir = __DIR__ . '/../../../../Vision';
         $process = DocFxCommand::getPhpDocCommand($componentDir, self::$tmpDir);
         $process->mustRun();
-        $left = self::$fixturesDir . '/phpdoc/structure.xml';
+        $left = self::$fixturesDir . '/phpdoc/vision.xml';
         $right = self::$tmpDir . '/structure.xml';
 
         $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
@@ -115,6 +115,38 @@ class DocFxCommandTest extends TestCase
         $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
     }
 
+    public function testDocFxIterfaceFile()
+    {
+        self::getCommandTester()->execute([
+            '--component' => 'Auth',
+            '--xml' => self::$fixturesDir . '/phpdoc/auth.xml',
+            '--out' => $tmpDir = sys_get_temp_dir() . '/' . rand(),
+            '--metadata-version' => '1.0.0',
+            '--path' => __DIR__ . '/../../../../Auth',
+            '--with-cache' => true,
+        ]);
+
+        $left  = self::$fixturesDir . '/docfx/Auth/FetchAuthTokenInterface.yml';
+        $right = $tmpDir . '/FetchAuthTokenInterface.yml';
+        $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
+    }
+
+    public function testDocFxGaxInterfaceFile()
+    {
+        self::getCommandTester()->execute([
+            '--component' => 'Gax',
+            '--xml' => self::$fixturesDir . '/phpdoc/gax.xml',
+            '--out' => $tmpDir = sys_get_temp_dir() . '/' . rand(),
+            '--metadata-version' => '1.0.0',
+            '--path' => __DIR__ . '/../../../../Gax',
+            '--with-cache' => true,
+        ]);
+
+        $left  = self::$fixturesDir . '/docfx/Gax/Transport.TransportInterface.yml';
+        $right = $tmpDir . '/Transport.TransportInterface.yml';
+        $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
+    }
+
     /**
      * @depends testDocFxFiles
      */
@@ -138,7 +170,7 @@ class DocFxCommandTest extends TestCase
     {
         $output = self::getCommandTester()->execute([
             '--component' => 'Vision',
-            '--xml' => self::$fixturesDir . '/phpdoc/structure.xml',
+            '--xml' => self::$fixturesDir . '/phpdoc/vision.xml',
             '--out' => self::$tmpDir = sys_get_temp_dir() . '/' . rand(),
             '--metadata-version' => '1.0.0',
             '--path' => self::$fixturesDir . '/component/Vision',
@@ -227,6 +259,17 @@ class DocFxCommandTest extends TestCase
         $left  = self::$fixturesDir . '/docfx/ProductNeutralGuides/' . $file;
         $right = $filepath;
         $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
+    }
+
+    public function testWarmCache()
+    {
+        $exitCode = self::getCommandTester()->execute([
+            '--warm-cache' => true,
+        ]);
+
+        $this->assertEquals(0, $exitCode);
+        $this->assertStringContainsString('Warming cache... ', self::getCommandTester()->getDisplay());
+        $this->assertStringContainsString('Done.', self::getCommandTester()->getDisplay());
     }
 
     private function assertFileEqualsWithDiff(string $left, string $right, bool $updateFixtures = false)

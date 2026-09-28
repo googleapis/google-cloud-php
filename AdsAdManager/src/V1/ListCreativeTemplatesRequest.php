@@ -42,8 +42,18 @@ class ListCreativeTemplatesRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
     /**
      * Optional. Expression to filter the response.
-     * See syntax details at
-     * https://developers.google.com/ad-manager/api/beta/filters
+     *  See syntax details at
+     *  https://developers.google.com/ad-manager/api/beta/filters
+     * **Filterable fields:**
+     * * `description`
+     * * `displayName`
+     * * `interstitial`
+     * * `name`
+     * * `nativeEligible`
+     * * `nativeVideoEligible`
+     * * `safeFrameCompatible`
+     * * `status`
+     * * `type`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -99,8 +109,18 @@ class ListCreativeTemplatesRequest extends \Google\Protobuf\Internal\Message
      *           must match the call that provided the page token.
      *     @type string $filter
      *           Optional. Expression to filter the response.
-     *           See syntax details at
-     *           https://developers.google.com/ad-manager/api/beta/filters
+     *            See syntax details at
+     *            https://developers.google.com/ad-manager/api/beta/filters
+     *           **Filterable fields:**
+     *           * `description`
+     *           * `displayName`
+     *           * `interstitial`
+     *           * `name`
+     *           * `nativeEligible`
+     *           * `nativeVideoEligible`
+     *           * `safeFrameCompatible`
+     *           * `status`
+     *           * `type`
      *     @type string $order_by
      *           Optional. Expression to specify sorting order.
      *           See syntax details at
@@ -208,8 +228,18 @@ class ListCreativeTemplatesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Expression to filter the response.
-     * See syntax details at
-     * https://developers.google.com/ad-manager/api/beta/filters
+     *  See syntax details at
+     *  https://developers.google.com/ad-manager/api/beta/filters
+     * **Filterable fields:**
+     * * `description`
+     * * `displayName`
+     * * `interstitial`
+     * * `name`
+     * * `nativeEligible`
+     * * `nativeVideoEligible`
+     * * `safeFrameCompatible`
+     * * `status`
+     * * `type`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -221,8 +251,18 @@ class ListCreativeTemplatesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Expression to filter the response.
-     * See syntax details at
-     * https://developers.google.com/ad-manager/api/beta/filters
+     *  See syntax details at
+     *  https://developers.google.com/ad-manager/api/beta/filters
+     * **Filterable fields:**
+     * * `description`
+     * * `displayName`
+     * * `interstitial`
+     * * `name`
+     * * `nativeEligible`
+     * * `nativeVideoEligible`
+     * * `safeFrameCompatible`
+     * * `status`
+     * * `type`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

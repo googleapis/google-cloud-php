@@ -95,8 +95,11 @@ class MultipartUploader extends AbstractUploader
 
         $size = $multipartStream->getSize();
         if ($size !== null) {
-            $headers['Content-Length'] = $size;
+            $headers['Content-Length'] = (string) $size;
         }
+
+        $customHeaders = $this->requestOptions['restOptions']['headers'] ?? [];
+        $headers = array_merge($headers, $customHeaders);
 
         return new Request(
             'POST',

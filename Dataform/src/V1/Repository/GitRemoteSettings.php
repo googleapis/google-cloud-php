@@ -22,11 +22,20 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
      */
     protected $url = '';
     /**
-     * Required. The Git remote's default branch name.
+     * Optional. The Git remote's default branch name.
+     * If not set, `main` will be used.
      *
-     * Generated from protobuf field <code>string default_branch = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string default_branch = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $default_branch = '';
+    /**
+     * Output only. The Git remote's effective default branch name.
+     * This is the default branch name of the Git remote if it is set,
+     * otherwise it is `main`.
+     *
+     * Generated from protobuf field <code>string effective_default_branch = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $effective_default_branch = '';
     /**
      * Optional. The name of the Secret Manager secret version to use as an
      * authentication token for Git operations. Must be in the format
@@ -41,6 +50,14 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataform.v1.Repository.GitRemoteSettings.SshAuthenticationConfig ssh_authentication_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $ssh_authentication_config = null;
+    /**
+     * Optional. Resource name for the `GitRepositoryLink` used for machine
+     * credentials. Must be in the format
+     * `projects/{@*}locations/{@*}connections/{@*}gitRepositoryLinks/*`
+     *
+     * Generated from protobuf field <code>optional string git_repository_link = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $git_repository_link = null;
     /**
      * Output only. Deprecated: The field does not contain any token status
      * information.
@@ -59,13 +76,22 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
      *     @type string $url
      *           Required. The Git remote's URL.
      *     @type string $default_branch
-     *           Required. The Git remote's default branch name.
+     *           Optional. The Git remote's default branch name.
+     *           If not set, `main` will be used.
+     *     @type string $effective_default_branch
+     *           Output only. The Git remote's effective default branch name.
+     *           This is the default branch name of the Git remote if it is set,
+     *           otherwise it is `main`.
      *     @type string $authentication_token_secret_version
      *           Optional. The name of the Secret Manager secret version to use as an
      *           authentication token for Git operations. Must be in the format
      *           `projects/{@*}secrets/{@*}versions/*`.
      *     @type \Google\Cloud\Dataform\V1\Repository\GitRemoteSettings\SshAuthenticationConfig $ssh_authentication_config
      *           Optional. Authentication fields for remote uris using SSH protocol.
+     *     @type string $git_repository_link
+     *           Optional. Resource name for the `GitRepositoryLink` used for machine
+     *           credentials. Must be in the format
+     *           `projects/{@*}locations/{@*}connections/{@*}gitRepositoryLinks/*`
      *     @type int $token_status
      *           Output only. Deprecated: The field does not contain any token status
      *           information.
@@ -103,9 +129,10 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Git remote's default branch name.
+     * Optional. The Git remote's default branch name.
+     * If not set, `main` will be used.
      *
-     * Generated from protobuf field <code>string default_branch = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string default_branch = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDefaultBranch()
@@ -114,9 +141,10 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Git remote's default branch name.
+     * Optional. The Git remote's default branch name.
+     * If not set, `main` will be used.
      *
-     * Generated from protobuf field <code>string default_branch = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string default_branch = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -124,6 +152,36 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->default_branch = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The Git remote's effective default branch name.
+     * This is the default branch name of the Git remote if it is set,
+     * otherwise it is `main`.
+     *
+     * Generated from protobuf field <code>string effective_default_branch = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getEffectiveDefaultBranch()
+    {
+        return $this->effective_default_branch;
+    }
+
+    /**
+     * Output only. The Git remote's effective default branch name.
+     * This is the default branch name of the Git remote if it is set,
+     * otherwise it is `main`.
+     *
+     * Generated from protobuf field <code>string effective_default_branch = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEffectiveDefaultBranch($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->effective_default_branch = $var;
 
         return $this;
     }
@@ -190,6 +248,46 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1\Repository\GitRemoteSettings\SshAuthenticationConfig::class);
         $this->ssh_authentication_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Resource name for the `GitRepositoryLink` used for machine
+     * credentials. Must be in the format
+     * `projects/{@*}locations/{@*}connections/{@*}gitRepositoryLinks/*`
+     *
+     * Generated from protobuf field <code>optional string git_repository_link = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getGitRepositoryLink()
+    {
+        return isset($this->git_repository_link) ? $this->git_repository_link : '';
+    }
+
+    public function hasGitRepositoryLink()
+    {
+        return isset($this->git_repository_link);
+    }
+
+    public function clearGitRepositoryLink()
+    {
+        unset($this->git_repository_link);
+    }
+
+    /**
+     * Optional. Resource name for the `GitRepositoryLink` used for machine
+     * credentials. Must be in the format
+     * `projects/{@*}locations/{@*}connections/{@*}gitRepositoryLinks/*`
+     *
+     * Generated from protobuf field <code>optional string git_repository_link = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setGitRepositoryLink($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->git_repository_link = $var;
 
         return $this;
     }

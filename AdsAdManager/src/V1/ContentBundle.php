@@ -36,6 +36,20 @@ class ContentBundle extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $display_name = '';
+    /**
+     * Output only. The ContentBundleStatus of the
+     * [ContentBundle][google.ads.admanager.v1.ContentBundle]. This attribute is
+     * read-only and defaults to [ContentBundleStatus.INACTIVE][].
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ContentBundleStatusEnum.ContentBundleStatus status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $status = 0;
+    /**
+     * Output only. The time the `ContentBundle` was last modified.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $update_time = null;
 
     /**
      * Constructor.
@@ -51,6 +65,12 @@ class ContentBundle extends \Google\Protobuf\Internal\Message
      *           Required. The name of the
      *           [ContentBundle][google.ads.admanager.v1.ContentBundle]. This attribute is
      *           required and has a maximum length of 255 characters.
+     *     @type int $status
+     *           Output only. The ContentBundleStatus of the
+     *           [ContentBundle][google.ads.admanager.v1.ContentBundle]. This attribute is
+     *           read-only and defaults to [ContentBundleStatus.INACTIVE][].
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. The time the `ContentBundle` was last modified.
      * }
      */
     public function __construct($data = NULL) {
@@ -114,6 +134,72 @@ class ContentBundle extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The ContentBundleStatus of the
+     * [ContentBundle][google.ads.admanager.v1.ContentBundle]. This attribute is
+     * read-only and defaults to [ContentBundleStatus.INACTIVE][].
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ContentBundleStatusEnum.ContentBundleStatus status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Output only. The ContentBundleStatus of the
+     * [ContentBundle][google.ads.admanager.v1.ContentBundle]. This attribute is
+     * read-only and defaults to [ContentBundleStatus.INACTIVE][].
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ContentBundleStatusEnum.ContentBundleStatus status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\ContentBundleStatusEnum\ContentBundleStatus::class);
+        $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The time the `ContentBundle` was last modified.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
+    }
+
+    /**
+     * Output only. The time the `ContentBundle` was last modified.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
 
         return $this;
     }

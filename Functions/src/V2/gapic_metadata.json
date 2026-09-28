@@ -8,7 +8,7 @@
         "FunctionService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FunctionServiceGapicClient",
+                    "libraryClient": "FunctionServiceClient",
                     "rpcs": {
                         "CreateFunction": {
                             "methods": [

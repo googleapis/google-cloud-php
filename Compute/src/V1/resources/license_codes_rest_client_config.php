@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,6 +35,39 @@ return [
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/licenseCodes/{resource}/getIamPolicy',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'SetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/licenseCodes/{resource}/setIamPolicy',
+                'body' => 'global_set_policy_request_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],

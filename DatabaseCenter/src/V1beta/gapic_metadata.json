@@ -8,7 +8,7 @@
         "DatabaseCenter": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DatabaseCenterGapicClient",
+                    "libraryClient": "DatabaseCenterClient",
                     "rpcs": {
                         "AggregateFleet": {
                             "methods": [
@@ -18,6 +18,11 @@
                         "AggregateIssueStats": {
                             "methods": [
                                 "aggregateIssueStats"
+                            ]
+                        },
+                        "AggregateQueryStats": {
+                            "methods": [
+                                "aggregateQueryStats"
                             ]
                         },
                         "QueryDatabaseResourceGroups": {

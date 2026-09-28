@@ -10,8 +10,6 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Options for a transaction that can be used to read and write documents.
- * Firestore does not allow 3rd party auth requests to create read-write.
- * transactions.
  *
  * Generated from protobuf message <code>google.firestore.v1.TransactionOptions.ReadWrite</code>
  */
@@ -23,6 +21,17 @@ class ReadWrite extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes retry_transaction = 1;</code>
      */
     private $retry_transaction = '';
+    /**
+     * Optional. The concurrency control mode to use for this transaction.
+     * A database is able to use different concurrency modes for different
+     * transactions simultaneously.
+     * 3rd party auth requests are only allowed to create optimistic
+     * read-write transactions and must specify that here even if the
+     * database-level setting is already configured to optimistic.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.TransactionOptions.ConcurrencyMode concurrency_mode = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $concurrency_mode = 0;
 
     /**
      * Constructor.
@@ -32,6 +41,13 @@ class ReadWrite extends \Google\Protobuf\Internal\Message
      *
      *     @type string $retry_transaction
      *           An optional transaction to retry.
+     *     @type int $concurrency_mode
+     *           Optional. The concurrency control mode to use for this transaction.
+     *           A database is able to use different concurrency modes for different
+     *           transactions simultaneously.
+     *           3rd party auth requests are only allowed to create optimistic
+     *           read-write transactions and must specify that here even if the
+     *           database-level setting is already configured to optimistic.
      * }
      */
     public function __construct($data = NULL) {
@@ -61,6 +77,42 @@ class ReadWrite extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->retry_transaction = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The concurrency control mode to use for this transaction.
+     * A database is able to use different concurrency modes for different
+     * transactions simultaneously.
+     * 3rd party auth requests are only allowed to create optimistic
+     * read-write transactions and must specify that here even if the
+     * database-level setting is already configured to optimistic.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.TransactionOptions.ConcurrencyMode concurrency_mode = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getConcurrencyMode()
+    {
+        return $this->concurrency_mode;
+    }
+
+    /**
+     * Optional. The concurrency control mode to use for this transaction.
+     * A database is able to use different concurrency modes for different
+     * transactions simultaneously.
+     * 3rd party auth requests are only allowed to create optimistic
+     * read-write transactions and must specify that here even if the
+     * database-level setting is already configured to optimistic.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.TransactionOptions.ConcurrencyMode concurrency_mode = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setConcurrencyMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\V1\TransactionOptions\ConcurrencyMode::class);
+        $this->concurrency_mode = $var;
 
         return $this;
     }

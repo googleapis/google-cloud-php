@@ -21,7 +21,7 @@ class EndActiveConferenceRequest extends \Google\Protobuf\Internal\Message
      * `{space}` is the resource identifier for the space. It's a unique,
      * server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`.
      * For more information, see [How Meet identifies a meeting
-     * space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
+     * space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space).
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -36,7 +36,7 @@ class EndActiveConferenceRequest extends \Google\Protobuf\Internal\Message
      *                     server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`.
      *
      *                     For more information, see [How Meet identifies a meeting
-     *                     space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space). Please see
+     *                     space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space). Please see
      *                     {@see SpacesServiceClient::spaceName()} for help formatting this field.
      *
      * @return \Google\Apps\Meet\V2\EndActiveConferenceRequest
@@ -61,7 +61,7 @@ class EndActiveConferenceRequest extends \Google\Protobuf\Internal\Message
      *           `{space}` is the resource identifier for the space. It's a unique,
      *           server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`.
      *           For more information, see [How Meet identifies a meeting
-     *           space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
+     *           space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space).
      * }
      */
     public function __construct($data = NULL) {
@@ -75,7 +75,7 @@ class EndActiveConferenceRequest extends \Google\Protobuf\Internal\Message
      * `{space}` is the resource identifier for the space. It's a unique,
      * server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`.
      * For more information, see [How Meet identifies a meeting
-     * space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
+     * space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space).
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -91,7 +91,7 @@ class EndActiveConferenceRequest extends \Google\Protobuf\Internal\Message
      * `{space}` is the resource identifier for the space. It's a unique,
      * server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`.
      * For more information, see [How Meet identifies a meeting
-     * space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
+     * space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space).
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -193,6 +193,12 @@ class ChangeHistoryResourceType
      * Generated from protobuf enum <code>REPORTING_IDENTITY_SETTINGS = 34;</code>
      */
     const REPORTING_IDENTITY_SETTINGS = 34;
+    /**
+     * UserProvidedDataSettings resource
+     *
+     * Generated from protobuf enum <code>USER_PROVIDED_DATA_SETTINGS = 35;</code>
+     */
+    const USER_PROVIDED_DATA_SETTINGS = 35;
 
     private static $valueToName = [
         self::CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED => 'CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED',
@@ -225,6 +231,7 @@ class ChangeHistoryResourceType
         self::REPORTING_DATA_ANNOTATION => 'REPORTING_DATA_ANNOTATION',
         self::SUBPROPERTY_SYNC_CONFIG => 'SUBPROPERTY_SYNC_CONFIG',
         self::REPORTING_IDENTITY_SETTINGS => 'REPORTING_IDENTITY_SETTINGS',
+        self::USER_PROVIDED_DATA_SETTINGS => 'USER_PROVIDED_DATA_SETTINGS',
     ];
 
     public static function name($value)

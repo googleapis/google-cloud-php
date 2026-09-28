@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -82,8 +82,15 @@ final class PrivateAuctionDealServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/admanager',
+        'https://www.googleapis.com/auth/admanager.readonly',
+    ];
 
     private static function getClientDefaults()
     {
@@ -635,7 +642,7 @@ final class PrivateAuctionDealServiceClient
     }
 
     /**
-     * API to create a `PrivateAuctionDeal` object.
+     * Creates a `PrivateAuctionDeal` object.
      *
      * The async variant is
      * {@see PrivateAuctionDealServiceClient::createPrivateAuctionDealAsync()} .
@@ -664,7 +671,7 @@ final class PrivateAuctionDealServiceClient
     }
 
     /**
-     * API to retrieve a `PrivateAuctionDeal` object.
+     * Retrieves a `PrivateAuctionDeal` object.
      *
      * The async variant is
      * {@see PrivateAuctionDealServiceClient::getPrivateAuctionDealAsync()} .
@@ -693,7 +700,7 @@ final class PrivateAuctionDealServiceClient
     }
 
     /**
-     * API to retrieve a list of `PrivateAuctionDeal` objects.
+     * Lists `PrivateAuctionDeal` objects.
      *
      * The async variant is
      * {@see PrivateAuctionDealServiceClient::listPrivateAuctionDealsAsync()} .
@@ -722,7 +729,7 @@ final class PrivateAuctionDealServiceClient
     }
 
     /**
-     * API to update a `PrivateAuctionDeal` object.
+     * Updates a `PrivateAuctionDeal` object.
      *
      * The async variant is
      * {@see PrivateAuctionDealServiceClient::updatePrivateAuctionDealAsync()} .

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -84,8 +84,15 @@ final class AdReviewCenterAdServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/admanager',
+        'https://www.googleapis.com/auth/admanager.readonly',
+    ];
 
     private $operationsClient;
 
@@ -144,7 +151,10 @@ final class AdReviewCenterAdServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -317,7 +327,7 @@ final class AdReviewCenterAdServiceClient
     }
 
     /**
-     * API to batch allow AdReviewCenterAds.
+     * Batch allows AdReviewCenterAds.
      * This method supports partial success. Some operations may succeed while
      * others fail. Callers should check the failedRequests field in the response
      * to determine which operations failed.
@@ -349,7 +359,7 @@ final class AdReviewCenterAdServiceClient
     }
 
     /**
-     * API to batch block AdReviewCenterAds.
+     * Batch blocks AdReviewCenterAds.
      * This method supports partial success. Some operations may succeed while
      * others fail. Callers should check the failedRequests field in the response
      * to determine which operations failed.
@@ -381,7 +391,7 @@ final class AdReviewCenterAdServiceClient
     }
 
     /**
-     * API to search for AdReviewCenterAds.
+     * Searches for AdReviewCenterAds.
      *
      * The async variant is
      * {@see AdReviewCenterAdServiceClient::searchAdReviewCenterAdsAsync()} .

@@ -51,6 +51,7 @@ use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode;
 use Google\Protobuf\Duration;
 use Google\Protobuf\Timestamp as TimestampProto;
 use Grpc\Channel;
@@ -615,6 +616,74 @@ class SpannerClientTest extends TestCase
         );
     }
 
+    public function testClientPassesReadLockMode()
+    {
+        /** @var SpannerClient $client */
+        $client = new SpannerClient([
+            'projectId' => self::PROJECT,
+            'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
+            'readLockMode' => ReadLockMode::PESSIMISTIC,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+        ]);
+
+        $reflectedClient = new ReflectionClass($client);
+        $property = $reflectedClient->getProperty('readLockMode');
+        $this->assertEquals(
+            ReadLockMode::PESSIMISTIC,
+            $property->getValue($client)
+        );
+
+        $instance = $client->instance('test');
+        $reflectedInstance = new ReflectionClass($instance);
+        $property = $reflectedInstance->getProperty('readLockMode');
+        $this->assertEquals(
+            ReadLockMode::PESSIMISTIC,
+            $property->getValue($instance)
+        );
+
+        $database = $instance->database('test');
+        $reflectedDb = new ReflectionClass($database);
+        $property = $reflectedDb->getProperty('readLockMode');
+        $this->assertEquals(
+            ReadLockMode::PESSIMISTIC,
+            $property->getValue($database)
+        );
+    }
+
+    public function testTransactionHasCorrectReadLockMode()
+    {
+        /** @var SpannerClient $client */
+        $client = new SpannerClient([
+            'projectId' => self::PROJECT,
+            'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
+            'readLockMode' => ReadLockMode::PESSIMISTIC,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+        ]);
+
+        $reflectedClient = new ReflectionClass($client);
+        $property = $reflectedClient->getProperty('readLockMode');
+        $this->assertEquals(
+            ReadLockMode::PESSIMISTIC,
+            $property->getValue($client)
+        );
+
+        $instance = $client->instance('test');
+        $reflectedInstance = new ReflectionClass($instance);
+        $property = $reflectedInstance->getProperty('readLockMode');
+        $this->assertEquals(
+            ReadLockMode::PESSIMISTIC,
+            $property->getValue($instance)
+        );
+
+        $database = $instance->database('test');
+        $reflectedDb = new ReflectionClass($database);
+        $property = $reflectedDb->getProperty('readLockMode');
+        $this->assertEquals(
+            ReadLockMode::PESSIMISTIC,
+            $property->getValue($database)
+        );
+    }
+
     /**
      * @runInSeparateProcess
      */
@@ -799,5 +868,56 @@ class SpannerClientTest extends TestCase
             120 * 1000, // 120 seconds x 1000
             $newConfig['transportConfig']['grpc']['stubOpts']['grpc.keepalive_time_ms']
         );
+    }
+
+    public function testBuiltinMetricsDisabledByDefault()
+    {
+        $gapicSpannerClient = $this->prophesize(GapicSpannerClient::class);
+        $gapicSpannerClient->prependMiddleware(Argument::any())
+            ->shouldBeCalledTimes(1);
+        $gapicSpannerClient->addMiddleware(Argument::any())
+            ->shouldBeCalledTimes(1);
+
+        new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'gapicSpannerClient' => $gapicSpannerClient->reveal(),
+        ]);
+    }
+
+    public function testBuiltinMetricsCanBeEnabled()
+    {
+        $gapicSpannerClient = $this->prophesize(GapicSpannerClient::class);
+        $gapicSpannerClient->prependMiddleware(Argument::any())
+            ->shouldBeCalledTimes(2);
+        $gapicSpannerClient->addMiddleware(Argument::any())
+            ->shouldBeCalledTimes(2);
+
+        new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'gapicSpannerClient' => $gapicSpannerClient->reveal(),
+            'enableBuiltInMetrics' => true,
+        ]);
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testSpannerClientInstantiatesWithoutDelayWhenMetricsDisabled()
+    {
+        // This test ensures that the SpannerClient does not hit the GCE metadata server
+        // when enableBuiltInMetrics is false, which prevents a 1.5 second delay.
+        // It's run in a separate process to ensure the GCE static cache is empty.
+        $start = microtime(true);
+        new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE()
+        ]);
+        $end = microtime(true);
+
+        // Assert that the client instantiated quickly.
+        // If it probed the GCE metadata server without a mock, it would take ~1.5s to time out.
+        $this->assertLessThan(1.0, $end - $start);
     }
 }

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request message for [BinauthzManagementService.ListAttestors][].
+ * Request message for
+ * [BinauthzManagementServiceV1.ListAttestors][google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1.ListAttestors].
  *
  * Generated from protobuf message <code>google.cloud.binaryauthorization.v1.ListAttestorsRequest</code>
  */
@@ -17,7 +18,8 @@ class ListAttestorsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the project associated with the
-     * [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format `projects/*`.
+     * [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format
+     * `projects/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,8 +33,9 @@ class ListAttestorsRequest extends \Google\Protobuf\Internal\Message
     protected $page_size = 0;
     /**
      * A token identifying a page of results the server should return. Typically,
-     * this is the value of [ListAttestorsResponse.next_page_token][google.cloud.binaryauthorization.v1.ListAttestorsResponse.next_page_token] returned
-     * from the previous call to the `ListAttestors` method.
+     * this is the value of
+     * [ListAttestorsResponse.next_page_token][google.cloud.binaryauthorization.v1.ListAttestorsResponse.next_page_token]
+     * returned from the previous call to the `ListAttestors` method.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
@@ -40,7 +43,8 @@ class ListAttestorsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The resource name of the project associated with the
-     *                       [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format `projects/*`. Please see
+     *                       [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format
+     *                       `projects/*`. Please see
      *                       {@see BinauthzManagementServiceV1Client::projectName()} for help formatting this field.
      *
      * @return \Google\Cloud\BinaryAuthorization\V1\ListAttestorsRequest
@@ -61,14 +65,16 @@ class ListAttestorsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The resource name of the project associated with the
-     *           [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format `projects/*`.
+     *           [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format
+     *           `projects/*`.
      *     @type int $page_size
      *           Requested page size. The server may return fewer results than requested. If
      *           unspecified, the server will pick an appropriate default.
      *     @type string $page_token
      *           A token identifying a page of results the server should return. Typically,
-     *           this is the value of [ListAttestorsResponse.next_page_token][google.cloud.binaryauthorization.v1.ListAttestorsResponse.next_page_token] returned
-     *           from the previous call to the `ListAttestors` method.
+     *           this is the value of
+     *           [ListAttestorsResponse.next_page_token][google.cloud.binaryauthorization.v1.ListAttestorsResponse.next_page_token]
+     *           returned from the previous call to the `ListAttestors` method.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,7 +84,8 @@ class ListAttestorsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the project associated with the
-     * [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format `projects/*`.
+     * [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format
+     * `projects/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -90,7 +97,8 @@ class ListAttestorsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the project associated with the
-     * [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format `projects/*`.
+     * [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format
+     * `projects/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -134,8 +142,9 @@ class ListAttestorsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A token identifying a page of results the server should return. Typically,
-     * this is the value of [ListAttestorsResponse.next_page_token][google.cloud.binaryauthorization.v1.ListAttestorsResponse.next_page_token] returned
-     * from the previous call to the `ListAttestors` method.
+     * this is the value of
+     * [ListAttestorsResponse.next_page_token][google.cloud.binaryauthorization.v1.ListAttestorsResponse.next_page_token]
+     * returned from the previous call to the `ListAttestors` method.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -147,8 +156,9 @@ class ListAttestorsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A token identifying a page of results the server should return. Typically,
-     * this is the value of [ListAttestorsResponse.next_page_token][google.cloud.binaryauthorization.v1.ListAttestorsResponse.next_page_token] returned
-     * from the previous call to the `ListAttestors` method.
+     * this is the value of
+     * [ListAttestorsResponse.next_page_token][google.cloud.binaryauthorization.v1.ListAttestorsResponse.next_page_token]
+     * returned from the previous call to the `ListAttestors` method.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var

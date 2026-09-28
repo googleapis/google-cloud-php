@@ -93,6 +93,14 @@ class Index extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool unique = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $unique = false;
+    /**
+     * Optional. Options for search indexes that are at the index definition
+     * level. This field is only currently supported for indexes with
+     * MONGODB_COMPATIBLE_API ApiScope.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Index.SearchIndexOptions search_index_options = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $search_index_options = null;
 
     /**
      * Constructor.
@@ -141,6 +149,10 @@ class Index extends \Google\Protobuf\Internal\Message
      *     @type bool $unique
      *           Optional. Whether it is an unique index. Unique index ensures all values
      *           for the indexed field(s) are unique across documents.
+     *     @type \Google\Cloud\Firestore\Admin\V1\Index\SearchIndexOptions $search_index_options
+     *           Optional. Options for search indexes that are at the index definition
+     *           level. This field is only currently supported for indexes with
+     *           MONGODB_COMPATIBLE_API ApiScope.
      * }
      */
     public function __construct($data = NULL) {
@@ -424,6 +436,46 @@ class Index extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->unique = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Options for search indexes that are at the index definition
+     * level. This field is only currently supported for indexes with
+     * MONGODB_COMPATIBLE_API ApiScope.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Index.SearchIndexOptions search_index_options = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Firestore\Admin\V1\Index\SearchIndexOptions|null
+     */
+    public function getSearchIndexOptions()
+    {
+        return $this->search_index_options;
+    }
+
+    public function hasSearchIndexOptions()
+    {
+        return isset($this->search_index_options);
+    }
+
+    public function clearSearchIndexOptions()
+    {
+        unset($this->search_index_options);
+    }
+
+    /**
+     * Optional. Options for search indexes that are at the index definition
+     * level. This field is only currently supported for indexes with
+     * MONGODB_COMPATIBLE_API ApiScope.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Index.SearchIndexOptions search_index_options = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Firestore\Admin\V1\Index\SearchIndexOptions $var
+     * @return $this
+     */
+    public function setSearchIndexOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\Admin\V1\Index\SearchIndexOptions::class);
+        $this->search_index_options = $var;
 
         return $this;
     }

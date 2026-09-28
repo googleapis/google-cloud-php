@@ -203,6 +203,18 @@ return [
                     ],
                 ],
             ],
+            'RequestDataProductAccess' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataplex\V1\RequestDataProductAccessResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Location\Location',
@@ -277,8 +289,15 @@ return [
                 'interfaceOverride' => 'google.iam.v1.IAMPolicy',
             ],
             'templateMap' => [
+                'changeRequest' => 'projects/{project}/locations/{location}/changeRequests/{change_request}',
                 'dataAsset' => 'projects/{project}/locations/{location}/dataProducts/{data_product}/dataAssets/{data_asset}',
                 'dataProduct' => 'projects/{project}/locations/{location}/dataProducts/{data_product}',
+                'entry' => 'projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}',
+                'entryGroup' => 'projects/{project}/locations/{location}/entryGroups/{entry_group}',
+                'entryLink' => 'projects/{project}/locations/{location}/entryGroups/{entry_group}/entryLinks/{entry_link}',
+                'glossary' => 'projects/{project}/locations/{location}/glossaries/{glossary}',
+                'glossaryCategory' => 'projects/{project}/locations/{location}/glossaries/{glossary}/categories/{glossary_category}',
+                'glossaryTerm' => 'projects/{project}/locations/{location}/glossaries/{glossary}/terms/{glossary_term}',
                 'location' => 'projects/{project}/locations/{location}',
             ],
         ],

@@ -12,8 +12,8 @@ use Google\Protobuf\RepeatedField;
  * The inspectTemplate contains a configuration (set of types of sensitive data
  * to be detected) to be used anywhere you otherwise would normally specify
  * InspectConfig. See
- * https://cloud.google.com/sensitive-data-protection/docs/concepts-templates to
- * learn more.
+ * https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-templates
+ * to learn more.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.InspectTemplate</code>
  */
@@ -58,6 +58,15 @@ class InspectTemplate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig inspect_config = 6;</code>
      */
     protected $inspect_config = null;
+    /**
+     * Optional. Enables the use of [limited-availability built-in
+     * infoTypes](https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference#limited-availability-infotypes)
+     * in inspect_config. These infoTypes are supported only in specific regions
+     * and can cause scanning errors if used elsewhere.
+     *
+     * Generated from protobuf field <code>bool allow_limited_availability_info_types = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $allow_limited_availability_info_types = false;
 
     /**
      * Constructor.
@@ -80,6 +89,11 @@ class InspectTemplate extends \Google\Protobuf\Internal\Message
      *           Output only. The last update timestamp of an inspectTemplate.
      *     @type \Google\Cloud\Dlp\V2\InspectConfig $inspect_config
      *           The core content of the template. Configuration of the scanning process.
+     *     @type bool $allow_limited_availability_info_types
+     *           Optional. Enables the use of [limited-availability built-in
+     *           infoTypes](https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference#limited-availability-infotypes)
+     *           in inspect_config. These infoTypes are supported only in specific regions
+     *           and can cause scanning errors if used elsewhere.
      * }
      */
     public function __construct($data = NULL) {
@@ -275,6 +289,38 @@ class InspectTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\InspectConfig::class);
         $this->inspect_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Enables the use of [limited-availability built-in
+     * infoTypes](https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference#limited-availability-infotypes)
+     * in inspect_config. These infoTypes are supported only in specific regions
+     * and can cause scanning errors if used elsewhere.
+     *
+     * Generated from protobuf field <code>bool allow_limited_availability_info_types = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getAllowLimitedAvailabilityInfoTypes()
+    {
+        return $this->allow_limited_availability_info_types;
+    }
+
+    /**
+     * Optional. Enables the use of [limited-availability built-in
+     * infoTypes](https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference#limited-availability-infotypes)
+     * in inspect_config. These infoTypes are supported only in specific regions
+     * and can cause scanning errors if used elsewhere.
+     *
+     * Generated from protobuf field <code>bool allow_limited_availability_info_types = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllowLimitedAvailabilityInfoTypes($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->allow_limited_availability_info_types = $var;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1075,6 +1075,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $ruleName = 'ruleName-2092197394';
         $ruleTupleCount = 388342037;
         $securityProfileGroup = 'securityProfileGroup-329459286';
+        $targetType = 'targetType-2084558552';
         $tlsInspect = true;
         $expectedResponse = new FirewallPolicyRule();
         $expectedResponse->setAction($action);
@@ -1087,6 +1088,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $expectedResponse->setRuleName($ruleName);
         $expectedResponse->setRuleTupleCount($ruleTupleCount);
         $expectedResponse->setSecurityProfileGroup($securityProfileGroup);
+        $expectedResponse->setTargetType($targetType);
         $expectedResponse->setTlsInspect($tlsInspect);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -1168,6 +1170,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $ruleName = 'ruleName-2092197394';
         $ruleTupleCount = 388342037;
         $securityProfileGroup = 'securityProfileGroup-329459286';
+        $targetType = 'targetType-2084558552';
         $tlsInspect = true;
         $expectedResponse = new FirewallPolicyRule();
         $expectedResponse->setAction($action);
@@ -1180,6 +1183,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $expectedResponse->setRuleName($ruleName);
         $expectedResponse->setRuleTupleCount($ruleTupleCount);
         $expectedResponse->setSecurityProfileGroup($securityProfileGroup);
+        $expectedResponse->setTargetType($targetType);
         $expectedResponse->setTlsInspect($tlsInspect);
         $transport->addResponse($expectedResponse);
         // Mock request

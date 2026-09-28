@@ -180,6 +180,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateIndex' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{index.name=projects/*/locations/*/collections/*/indexes/*}',
+                'body' => 'index',
+                'placeholders' => [
+                    'index.name' => [
+                        'getters' => [
+                            'getIndex',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
             'CancelOperation' => [

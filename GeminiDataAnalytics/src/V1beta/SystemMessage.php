@@ -10,7 +10,7 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * A message from the system in response to the user. This message can also be a
- * message from the user as historical context for multiturn conversations with
+ * message from the user as historical context for multi-turn conversations with
  * the system.
  *
  * Generated from protobuf message <code>google.cloud.geminidataanalytics.v1beta.SystemMessage</code>
@@ -25,6 +25,12 @@ class SystemMessage extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional int32 group_id = 12;</code>
      */
     protected $group_id = null;
+    /**
+     * Output only. Citation information for the system message.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Citation citation = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $citation = null;
     protected $kind;
 
     /**
@@ -48,11 +54,14 @@ class SystemMessage extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQueries $example_queries
      *           Optional. A message containing example queries.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationMessage $clarification
-     *           Optional. A message containing clarification questions.
+     *           Optional. Deprecated: Use TextMessage with TextType.FINAL_RESPONSE
+     *           instead. A message containing clarification questions.
      *     @type int $group_id
      *           Identifies the group that the event belongs to. Similar events are deemed
      *           to be logically relevant to each other and should be shown together in
      *           the UI.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Citation $citation
+     *           Output only. Citation information for the system message.
      * }
      */
     public function __construct($data = NULL) {
@@ -278,30 +287,41 @@ class SystemMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A message containing clarification questions.
+     * Optional. Deprecated: Use TextMessage with TextType.FINAL_RESPONSE
+     * instead. A message containing clarification questions.
      *
-     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ClarificationMessage clarification = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ClarificationMessage clarification = 14 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationMessage|null
+     * @deprecated
      */
     public function getClarification()
     {
+        if ($this->hasOneof(14)) {
+            @trigger_error('clarification is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(14);
     }
 
     public function hasClarification()
     {
+        if ($this->hasOneof(14)) {
+            @trigger_error('clarification is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(14);
     }
 
     /**
-     * Optional. A message containing clarification questions.
+     * Optional. Deprecated: Use TextMessage with TextType.FINAL_RESPONSE
+     * instead. A message containing clarification questions.
      *
-     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ClarificationMessage clarification = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ClarificationMessage clarification = 14 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationMessage $var
      * @return $this
+     * @deprecated
      */
     public function setClarification($var)
     {
+        @trigger_error('clarification is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationMessage::class);
         $this->writeOneof(14, $var);
 
@@ -344,6 +364,42 @@ class SystemMessage extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->group_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Citation information for the system message.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Citation citation = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\GeminiDataAnalytics\V1beta\Citation|null
+     */
+    public function getCitation()
+    {
+        return $this->citation;
+    }
+
+    public function hasCitation()
+    {
+        return isset($this->citation);
+    }
+
+    public function clearCitation()
+    {
+        unset($this->citation);
+    }
+
+    /**
+     * Output only. Citation information for the system message.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Citation citation = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\Citation $var
+     * @return $this
+     */
+    public function setCitation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\Citation::class);
+        $this->citation = $var;
 
         return $this;
     }

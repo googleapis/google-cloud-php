@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,12 +30,12 @@ use Google\Cloud\NetworkManagement\V1\Client\ReachabilityServiceClient;
 
 /**
  * Returns permissions that a caller has on the specified resource. If the
-resource does not exist, this will return an empty set of
-permissions, not a `NOT_FOUND` error.
-
-Note: This operation is designed to be used for building
-permission-aware UIs and command-line tools, not for authorization
-checking. This operation may "fail open" without warning.
+ * resource does not exist, this will return an empty set of
+ * permissions, not a `NOT_FOUND` error.
+ *
+ * Note: This operation is designed to be used for building
+ * permission-aware UIs and command-line tools, not for authorization
+ * checking. This operation may "fail open" without warning.
  *
  * @param string $resource           REQUIRED: The resource for which the policy detail is being requested.
  *                                   See the operation documentation for the appropriate value for this field.

@@ -17,7 +17,7 @@ class CreateHttpRouteRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent resource of the HttpRoute. Must be in the
-     * format `projects/{@*}locations/global`.
+     * format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -34,10 +34,16 @@ class CreateHttpRouteRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.networkservices.v1.HttpRoute http_route = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $http_route = null;
+    /**
+     * Optional. Idempotent request UUID.
+     *
+     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     */
+    protected $request_id = '';
 
     /**
      * @param string                                     $parent      Required. The parent resource of the HttpRoute. Must be in the
-     *                                                                format `projects/&#42;/locations/global`. Please see
+     *                                                                format `projects/&#42;/locations/*`. Please see
      *                                                                {@see NetworkServicesClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\NetworkServices\V1\HttpRoute $httpRoute   Required. HttpRoute resource to be created.
      * @param string                                     $httpRouteId Required. Short name of the HttpRoute resource to be created.
@@ -62,11 +68,13 @@ class CreateHttpRouteRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent resource of the HttpRoute. Must be in the
-     *           format `projects/{@*}locations/global`.
+     *           format `projects/{@*}locations/*`.
      *     @type string $http_route_id
      *           Required. Short name of the HttpRoute resource to be created.
      *     @type \Google\Cloud\NetworkServices\V1\HttpRoute $http_route
      *           Required. HttpRoute resource to be created.
+     *     @type string $request_id
+     *           Optional. Idempotent request UUID.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,7 +84,7 @@ class CreateHttpRouteRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource of the HttpRoute. Must be in the
-     * format `projects/{@*}locations/global`.
+     * format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -88,7 +96,7 @@ class CreateHttpRouteRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource of the HttpRoute. Must be in the
-     * format `projects/{@*}locations/global`.
+     * format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -160,6 +168,32 @@ class CreateHttpRouteRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkServices\V1\HttpRoute::class);
         $this->http_route = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Idempotent request UUID.
+     *
+     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     * @return string
+     */
+    public function getRequestId()
+    {
+        return $this->request_id;
+    }
+
+    /**
+     * Optional. Idempotent request UUID.
+     *
+     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRequestId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->request_id = $var;
 
         return $this;
     }

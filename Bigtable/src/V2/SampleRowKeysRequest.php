@@ -47,6 +47,15 @@ class SampleRowKeysRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string app_profile_id = 2;</code>
      */
     protected $app_profile_id = '';
+    /**
+     * Optional. The row range to sample. If not specified, samples
+     * from all rows.
+     * The output will always return the end key in the range as the last sample
+     * returned.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.RowRange row_range = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $row_range = null;
 
     /**
      * @param string $tableName Optional. The unique name of the table from which to sample row keys.
@@ -107,6 +116,11 @@ class SampleRowKeysRequest extends \Google\Protobuf\Internal\Message
      *     @type string $app_profile_id
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
+     *     @type \Google\Cloud\Bigtable\V2\RowRange $row_range
+     *           Optional. The row range to sample. If not specified, samples
+     *           from all rows.
+     *           The output will always return the end key in the range as the last sample
+     *           returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -230,6 +244,48 @@ class SampleRowKeysRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->app_profile_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The row range to sample. If not specified, samples
+     * from all rows.
+     * The output will always return the end key in the range as the last sample
+     * returned.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.RowRange row_range = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Bigtable\V2\RowRange|null
+     */
+    public function getRowRange()
+    {
+        return $this->row_range;
+    }
+
+    public function hasRowRange()
+    {
+        return isset($this->row_range);
+    }
+
+    public function clearRowRange()
+    {
+        unset($this->row_range);
+    }
+
+    /**
+     * Optional. The row range to sample. If not specified, samples
+     * from all rows.
+     * The output will always return the end key in the range as the last sample
+     * returned.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.RowRange row_range = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Bigtable\V2\RowRange $var
+     * @return $this
+     */
+    public function setRowRange($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\RowRange::class);
+        $this->row_range = $var;
 
         return $this;
     }

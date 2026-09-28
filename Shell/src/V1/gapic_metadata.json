@@ -8,7 +8,7 @@
         "CloudShellService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CloudShellServiceGapicClient",
+                    "libraryClient": "CloudShellServiceClient",
                     "rpcs": {
                         "AddPublicKey": {
                             "methods": [

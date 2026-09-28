@@ -39,11 +39,37 @@ class ComponentUpdateDepsCommand extends Command
             ->setDescription('update a dependency across all components')
             ->addArgument('package', InputArgument::REQUIRED, 'Package name to update, e.g. "google/gax"')
             ->addArgument('version', InputArgument::OPTIONAL, 'Package version to update to, e.g. "1.4.0"', '')
-            ->addOption('component', 'c', InputOption::VALUE_REQUIRED|InputOption::VALUE_IS_ARRAY, 'bumps deps for the specified component/file')
-            ->addOption('bump', '', InputOption::VALUE_NONE, 'Bump to latest version of the package')
-            ->addOption('add', '', InputOption::VALUE_OPTIONAL, 'Adds the dep if it doesn\'t exist (--add=dev for require-dev)', false)
-            ->addOption('no-dev', '', InputOption::VALUE_NONE, 'Only updates the dep if its in "require" (deps in "require-dev" are left alone)')
-            ->addOption('local', '', InputOption::VALUE_NONE, 'Add a link to the local component')
+            ->addOption(
+                'component',
+                'c',
+                InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
+                'bumps deps for the specified component/file'
+            )
+            ->addOption(
+                'bump',
+                '',
+                InputOption::VALUE_NONE,
+                'Bump to latest version of the package'
+            )
+            ->addOption(
+                'add',
+                '',
+                InputOption::VALUE_OPTIONAL,
+                'Adds the dep if it doesn\'t exist (--add=dev for require-dev)',
+                false
+            )
+            ->addOption(
+                'no-dev',
+                '',
+                InputOption::VALUE_NONE,
+                'Only updates the dep if its in "require" (deps in "require-dev" are left alone)'
+            )
+            ->addOption(
+                'local',
+                '',
+                InputOption::VALUE_NONE,
+                'Add a link to the local component'
+            )
         ;
     }
 

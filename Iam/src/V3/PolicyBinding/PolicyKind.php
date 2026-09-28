@@ -7,7 +7,7 @@ namespace Google\Cloud\Iam\V3\PolicyBinding;
 use UnexpectedValueException;
 
 /**
- * Different policy kinds supported in this binding.
+ * The different policy kinds supported in this binding.
  *
  * Protobuf type <code>google.iam.v3.PolicyBinding.PolicyKind</code>
  */
@@ -25,10 +25,17 @@ class PolicyKind
      * Generated from protobuf enum <code>PRINCIPAL_ACCESS_BOUNDARY = 1;</code>
      */
     const PRINCIPAL_ACCESS_BOUNDARY = 1;
+    /**
+     * Access policy kind.
+     *
+     * Generated from protobuf enum <code>ACCESS = 2;</code>
+     */
+    const ACCESS = 2;
 
     private static $valueToName = [
         self::POLICY_KIND_UNSPECIFIED => 'POLICY_KIND_UNSPECIFIED',
         self::PRINCIPAL_ACCESS_BOUNDARY => 'PRINCIPAL_ACCESS_BOUNDARY',
+        self::ACCESS => 'ACCESS',
     ];
 
     public static function name($value)

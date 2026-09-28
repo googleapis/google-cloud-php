@@ -26,7 +26,7 @@ class GetSecurityProfileGroupRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. A name of the SecurityProfileGroup to get. Must be in the format
      *                     `projects|organizations/&#42;/locations/{location}/securityProfileGroups/{security_profile_group}`. Please see
-     *                     {@see OrganizationSecurityProfileGroupServiceClient::securityProfileGroupName()} for help formatting this field.
+     *                     {@see SecurityProfileGroupServiceClient::securityProfileGroupName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetworkSecurity\V1\GetSecurityProfileGroupRequest
      *

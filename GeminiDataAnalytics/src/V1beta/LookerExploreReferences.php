@@ -22,13 +22,15 @@ class LookerExploreReferences extends \Google\Protobuf\Internal\Message
      */
     private $explore_references;
     /**
-     * Optional. The credentials to use when calling the Looker API.
+     * Optional. Deprecated: Use credentials in ChatRequest.
+     * The credentials to use when calling the Looker API.
      * Currently supports both OAuth token and API key-based credentials, as
      * described in
      * [Authentication with an
      * SDK](https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk).
      *
-     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Credentials credentials = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Credentials credentials = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $credentials = null;
 
@@ -41,7 +43,8 @@ class LookerExploreReferences extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\LookerExploreReference[] $explore_references
      *           Required. References to Looker explores.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Credentials $credentials
-     *           Optional. The credentials to use when calling the Looker API.
+     *           Optional. Deprecated: Use credentials in ChatRequest.
+     *           The credentials to use when calling the Looker API.
      *           Currently supports both OAuth token and API key-based credentials, as
      *           described in
      *           [Authentication with an
@@ -80,43 +83,55 @@ class LookerExploreReferences extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The credentials to use when calling the Looker API.
+     * Optional. Deprecated: Use credentials in ChatRequest.
+     * The credentials to use when calling the Looker API.
      * Currently supports both OAuth token and API key-based credentials, as
      * described in
      * [Authentication with an
      * SDK](https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk).
      *
-     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Credentials credentials = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Credentials credentials = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\GeminiDataAnalytics\V1beta\Credentials|null
+     * @deprecated
      */
     public function getCredentials()
     {
+        if (isset($this->credentials)) {
+            @trigger_error('credentials is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->credentials;
     }
 
     public function hasCredentials()
     {
+        if (isset($this->credentials)) {
+            @trigger_error('credentials is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->credentials);
     }
 
     public function clearCredentials()
     {
+        @trigger_error('credentials is deprecated.', E_USER_DEPRECATED);
         unset($this->credentials);
     }
 
     /**
-     * Optional. The credentials to use when calling the Looker API.
+     * Optional. Deprecated: Use credentials in ChatRequest.
+     * The credentials to use when calling the Looker API.
      * Currently supports both OAuth token and API key-based credentials, as
      * described in
      * [Authentication with an
      * SDK](https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk).
      *
-     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Credentials credentials = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Credentials credentials = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\GeminiDataAnalytics\V1beta\Credentials $var
      * @return $this
+     * @deprecated
      */
     public function setCredentials($var)
     {
+        @trigger_error('credentials is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\Credentials::class);
         $this->credentials = $var;
 

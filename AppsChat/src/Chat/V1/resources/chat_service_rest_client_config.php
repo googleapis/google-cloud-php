@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,10 +64,34 @@ return [
                     ],
                 ],
             ],
+            'CreateMessagePin' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=spaces/*}/messagePins',
+                'body' => 'message_pin',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateReaction' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=spaces/*/messages/*}/reactions',
                 'body' => 'reaction',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateSection' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=users/*}/sections',
+                'body' => 'section',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -114,9 +138,31 @@ return [
                     ],
                 ],
             ],
+            'DeleteMessagePin' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=spaces/*/messagePins/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteReaction' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=spaces/*/messages/*/reactions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteSection' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=users/*/sections/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -140,9 +186,24 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1/spaces:findDirectMessage',
             ],
+            'FindGroupChats' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/spaces:findGroupChats',
+            ],
             'GetAttachment' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=spaces/*/messages/*/attachments/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAvailability' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=users/*/availability}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -254,6 +315,17 @@ return [
                     ],
                 ],
             ],
+            'ListMessagePins' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=spaces/*}/messagePins',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListMessages' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=spaces/*}/messages',
@@ -268,6 +340,28 @@ return [
             'ListReactions' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=spaces/*/messages/*}/reactions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSectionItems' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=users/*/sections/*}/items',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSections' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=users/*}/sections',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -294,6 +388,78 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1/spaces',
             ],
+            'MarkAsActive' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=users/*/availability}:markAsActive',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'MarkAsAway' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=users/*/availability}:markAsAway',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'MarkAsDoNotDisturb' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=users/*/availability}:markAsDoNotDisturb',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'MoveSectionItem' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=users/*/sections/*/items/*}:move',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'PositionSection' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=users/*/sections/*}:position',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'SearchMessages' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=spaces/*}/messages:search',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'SearchSpaces' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/spaces:search',
@@ -302,6 +468,22 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/spaces:setup',
                 'body' => '*',
+            ],
+            'UpdateAvailability' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{availability.name=users/*/availability}',
+                'body' => 'availability',
+                'placeholders' => [
+                    'availability.name' => [
+                        'getters' => [
+                            'getAvailability',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateMembership' => [
                 'method' => 'patch',
@@ -337,6 +519,22 @@ return [
                     'message.name' => [
                         'getters' => [
                             'getMessage',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateSection' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{section.name=users/*/sections/*}',
+                'body' => 'section',
+                'placeholders' => [
+                    'section.name' => [
+                        'getters' => [
+                            'getSection',
                             'getName',
                         ],
                     ],

@@ -19,7 +19,8 @@ class Backend extends \Google\Protobuf\Internal\Message
      * Specifies how to determine whether the backend of a load balancer can
      * handle additional traffic or is fully loaded. For usage guidelines, see
      * Connection balancing mode.
-     * Backends must use compatible balancing modes. For more information, see
+     * Backends must use compatible balancing modes. Backends of a backend
+     * service may use different balancing modes. For more information, see
      * Supported balancing modes and target capacity settings and
      * Restrictions and guidance for instance groups.
      * Note: Currently, if you use the API to configure incompatible balancing
@@ -65,6 +66,8 @@ class Backend extends \Google\Protobuf\Internal\Message
     /**
      * This field designates whether this is a failover backend. More than one
      * failover backend can be configured for a given BackendService.
+     * This field can only be used for a regional external Passthrough Network
+     * Load Balancer or a regional internal Passthrough Network Load Balancer.
      *
      * Generated from protobuf field <code>optional bool failover = 138892530;</code>
      */
@@ -112,6 +115,29 @@ class Backend extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional int32 max_connections_per_instance = 104671900;</code>
      */
     protected $max_connections_per_instance = null;
+    /**
+     * Defines a maximum number of in-flight requests for the whole NEG or
+     * instance group. Not available if backend's balancingMode isRATE or CONNECTION.
+     *
+     * Generated from protobuf field <code>optional int32 max_in_flight_requests = 273269332;</code>
+     */
+    protected $max_in_flight_requests = null;
+    /**
+     * Defines a maximum number of in-flight requests for a single endpoint.
+     * Not available if backend's balancingMode is RATE
+     * or CONNECTION.
+     *
+     * Generated from protobuf field <code>optional int32 max_in_flight_requests_per_endpoint = 307928706;</code>
+     */
+    protected $max_in_flight_requests_per_endpoint = null;
+    /**
+     * Defines a maximum number of in-flight requests for a single VM.
+     * Not available if backend's balancingMode is RATE
+     * or CONNECTION.
+     *
+     * Generated from protobuf field <code>optional int32 max_in_flight_requests_per_instance = 195696002;</code>
+     */
+    protected $max_in_flight_requests_per_instance = null;
     /**
      * Defines a maximum number of HTTP requests per second (RPS). For
      * usage guidelines, seeRate
@@ -166,11 +192,23 @@ class Backend extends \Google\Protobuf\Internal\Message
      *    capacity, backends in this layer would be used and traffic would be
      *    assigned based on the load balancing algorithm you use. This is the
      *    default
+     * For global external Passthrough Network Load Balancers, the following
+     * restrictions apply:
+     *    - At most one backend can be marked as PREFERRED.
+     *    - PREFERRED and DEFAULT backends cannot reside
+     *    in the same Cloud region.
      * Check the Preference enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string preference = 150781147;</code>
      */
     protected $preference = null;
+    /**
+     * 
+     * Check the TrafficDuration enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string traffic_duration = 11618710;</code>
+     */
+    protected $traffic_duration = null;
 
     /**
      * Constructor.
@@ -182,7 +220,8 @@ class Backend extends \Google\Protobuf\Internal\Message
      *           Specifies how to determine whether the backend of a load balancer can
      *           handle additional traffic or is fully loaded. For usage guidelines, see
      *           Connection balancing mode.
-     *           Backends must use compatible balancing modes. For more information, see
+     *           Backends must use compatible balancing modes. Backends of a backend
+     *           service may use different balancing modes. For more information, see
      *           Supported balancing modes and target capacity settings and
      *           Restrictions and guidance for instance groups.
      *           Note: Currently, if you use the API to configure incompatible balancing
@@ -212,6 +251,8 @@ class Backend extends \Google\Protobuf\Internal\Message
      *     @type bool $failover
      *           This field designates whether this is a failover backend. More than one
      *           failover backend can be configured for a given BackendService.
+     *           This field can only be used for a regional external Passthrough Network
+     *           Load Balancer or a regional internal Passthrough Network Load Balancer.
      *     @type string $group
      *           The fully-qualified URL of aninstance
      *           group or network endpoint
@@ -239,6 +280,17 @@ class Backend extends \Google\Protobuf\Internal\Message
      *           balancing mode and Utilization
      *           balancing mode.
      *           Not available if the backend's balancingMode isRATE.
+     *     @type int $max_in_flight_requests
+     *           Defines a maximum number of in-flight requests for the whole NEG or
+     *           instance group. Not available if backend's balancingMode isRATE or CONNECTION.
+     *     @type int $max_in_flight_requests_per_endpoint
+     *           Defines a maximum number of in-flight requests for a single endpoint.
+     *           Not available if backend's balancingMode is RATE
+     *           or CONNECTION.
+     *     @type int $max_in_flight_requests_per_instance
+     *           Defines a maximum number of in-flight requests for a single VM.
+     *           Not available if backend's balancingMode is RATE
+     *           or CONNECTION.
      *     @type int $max_rate
      *           Defines a maximum number of HTTP requests per second (RPS). For
      *           usage guidelines, seeRate
@@ -273,7 +325,15 @@ class Backend extends \Google\Protobuf\Internal\Message
      *              capacity, backends in this layer would be used and traffic would be
      *              assigned based on the load balancing algorithm you use. This is the
      *              default
+     *           For global external Passthrough Network Load Balancers, the following
+     *           restrictions apply:
+     *              - At most one backend can be marked as PREFERRED.
+     *              - PREFERRED and DEFAULT backends cannot reside
+     *              in the same Cloud region.
      *           Check the Preference enum for the list of possible values.
+     *     @type string $traffic_duration
+     *           
+     *           Check the TrafficDuration enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -285,7 +345,8 @@ class Backend extends \Google\Protobuf\Internal\Message
      * Specifies how to determine whether the backend of a load balancer can
      * handle additional traffic or is fully loaded. For usage guidelines, see
      * Connection balancing mode.
-     * Backends must use compatible balancing modes. For more information, see
+     * Backends must use compatible balancing modes. Backends of a backend
+     * service may use different balancing modes. For more information, see
      * Supported balancing modes and target capacity settings and
      * Restrictions and guidance for instance groups.
      * Note: Currently, if you use the API to configure incompatible balancing
@@ -317,7 +378,8 @@ class Backend extends \Google\Protobuf\Internal\Message
      * Specifies how to determine whether the backend of a load balancer can
      * handle additional traffic or is fully loaded. For usage guidelines, see
      * Connection balancing mode.
-     * Backends must use compatible balancing modes. For more information, see
+     * Backends must use compatible balancing modes. Backends of a backend
+     * service may use different balancing modes. For more information, see
      * Supported balancing modes and target capacity settings and
      * Restrictions and guidance for instance groups.
      * Note: Currently, if you use the API to configure incompatible balancing
@@ -464,6 +526,8 @@ class Backend extends \Google\Protobuf\Internal\Message
     /**
      * This field designates whether this is a failover backend. More than one
      * failover backend can be configured for a given BackendService.
+     * This field can only be used for a regional external Passthrough Network
+     * Load Balancer or a regional internal Passthrough Network Load Balancer.
      *
      * Generated from protobuf field <code>optional bool failover = 138892530;</code>
      * @return bool
@@ -486,6 +550,8 @@ class Backend extends \Google\Protobuf\Internal\Message
     /**
      * This field designates whether this is a failover backend. More than one
      * failover backend can be configured for a given BackendService.
+     * This field can only be used for a regional external Passthrough Network
+     * Load Balancer or a regional internal Passthrough Network Load Balancer.
      *
      * Generated from protobuf field <code>optional bool failover = 138892530;</code>
      * @param bool $var
@@ -677,6 +743,124 @@ class Backend extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_connections_per_instance = $var;
+
+        return $this;
+    }
+
+    /**
+     * Defines a maximum number of in-flight requests for the whole NEG or
+     * instance group. Not available if backend's balancingMode isRATE or CONNECTION.
+     *
+     * Generated from protobuf field <code>optional int32 max_in_flight_requests = 273269332;</code>
+     * @return int
+     */
+    public function getMaxInFlightRequests()
+    {
+        return isset($this->max_in_flight_requests) ? $this->max_in_flight_requests : 0;
+    }
+
+    public function hasMaxInFlightRequests()
+    {
+        return isset($this->max_in_flight_requests);
+    }
+
+    public function clearMaxInFlightRequests()
+    {
+        unset($this->max_in_flight_requests);
+    }
+
+    /**
+     * Defines a maximum number of in-flight requests for the whole NEG or
+     * instance group. Not available if backend's balancingMode isRATE or CONNECTION.
+     *
+     * Generated from protobuf field <code>optional int32 max_in_flight_requests = 273269332;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxInFlightRequests($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_in_flight_requests = $var;
+
+        return $this;
+    }
+
+    /**
+     * Defines a maximum number of in-flight requests for a single endpoint.
+     * Not available if backend's balancingMode is RATE
+     * or CONNECTION.
+     *
+     * Generated from protobuf field <code>optional int32 max_in_flight_requests_per_endpoint = 307928706;</code>
+     * @return int
+     */
+    public function getMaxInFlightRequestsPerEndpoint()
+    {
+        return isset($this->max_in_flight_requests_per_endpoint) ? $this->max_in_flight_requests_per_endpoint : 0;
+    }
+
+    public function hasMaxInFlightRequestsPerEndpoint()
+    {
+        return isset($this->max_in_flight_requests_per_endpoint);
+    }
+
+    public function clearMaxInFlightRequestsPerEndpoint()
+    {
+        unset($this->max_in_flight_requests_per_endpoint);
+    }
+
+    /**
+     * Defines a maximum number of in-flight requests for a single endpoint.
+     * Not available if backend's balancingMode is RATE
+     * or CONNECTION.
+     *
+     * Generated from protobuf field <code>optional int32 max_in_flight_requests_per_endpoint = 307928706;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxInFlightRequestsPerEndpoint($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_in_flight_requests_per_endpoint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Defines a maximum number of in-flight requests for a single VM.
+     * Not available if backend's balancingMode is RATE
+     * or CONNECTION.
+     *
+     * Generated from protobuf field <code>optional int32 max_in_flight_requests_per_instance = 195696002;</code>
+     * @return int
+     */
+    public function getMaxInFlightRequestsPerInstance()
+    {
+        return isset($this->max_in_flight_requests_per_instance) ? $this->max_in_flight_requests_per_instance : 0;
+    }
+
+    public function hasMaxInFlightRequestsPerInstance()
+    {
+        return isset($this->max_in_flight_requests_per_instance);
+    }
+
+    public function clearMaxInFlightRequestsPerInstance()
+    {
+        unset($this->max_in_flight_requests_per_instance);
+    }
+
+    /**
+     * Defines a maximum number of in-flight requests for a single VM.
+     * Not available if backend's balancingMode is RATE
+     * or CONNECTION.
+     *
+     * Generated from protobuf field <code>optional int32 max_in_flight_requests_per_instance = 195696002;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxInFlightRequestsPerInstance($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_in_flight_requests_per_instance = $var;
 
         return $this;
     }
@@ -899,6 +1083,11 @@ class Backend extends \Google\Protobuf\Internal\Message
      *    capacity, backends in this layer would be used and traffic would be
      *    assigned based on the load balancing algorithm you use. This is the
      *    default
+     * For global external Passthrough Network Load Balancers, the following
+     * restrictions apply:
+     *    - At most one backend can be marked as PREFERRED.
+     *    - PREFERRED and DEFAULT backends cannot reside
+     *    in the same Cloud region.
      * Check the Preference enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string preference = 150781147;</code>
@@ -929,6 +1118,11 @@ class Backend extends \Google\Protobuf\Internal\Message
      *    capacity, backends in this layer would be used and traffic would be
      *    assigned based on the load balancing algorithm you use. This is the
      *    default
+     * For global external Passthrough Network Load Balancers, the following
+     * restrictions apply:
+     *    - At most one backend can be marked as PREFERRED.
+     *    - PREFERRED and DEFAULT backends cannot reside
+     *    in the same Cloud region.
      * Check the Preference enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string preference = 150781147;</code>
@@ -939,6 +1133,44 @@ class Backend extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->preference = $var;
+
+        return $this;
+    }
+
+    /**
+     * 
+     * Check the TrafficDuration enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string traffic_duration = 11618710;</code>
+     * @return string
+     */
+    public function getTrafficDuration()
+    {
+        return isset($this->traffic_duration) ? $this->traffic_duration : '';
+    }
+
+    public function hasTrafficDuration()
+    {
+        return isset($this->traffic_duration);
+    }
+
+    public function clearTrafficDuration()
+    {
+        unset($this->traffic_duration);
+    }
+
+    /**
+     * 
+     * Check the TrafficDuration enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string traffic_duration = 11618710;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTrafficDuration($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->traffic_duration = $var;
 
         return $this;
     }

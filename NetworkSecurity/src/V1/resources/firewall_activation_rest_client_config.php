@@ -46,7 +46,7 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1/{name=organizations/*/locations/*}',
+                        'uriTemplate' => '/v1/{name=organizations/*}/locations',
                     ],
                 ],
                 'placeholders' => [
@@ -86,6 +86,21 @@ return [
                     ],
                 ],
             ],
+            'CreateProjectFirewallEndpoint' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/firewallEndpoints',
+                'body' => 'firewall_endpoint',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'firewall_endpoint_id',
+                ],
+            ],
             'DeleteFirewallEndpoint' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=organizations/*/locations/*/firewallEndpoints/*}',
@@ -100,6 +115,17 @@ return [
             'DeleteFirewallEndpointAssociation' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/firewallEndpointAssociations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteProjectFirewallEndpoint' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/firewallEndpoints/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -130,6 +156,17 @@ return [
                     ],
                 ],
             ],
+            'GetProjectFirewallEndpoint' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/firewallEndpoints/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListFirewallEndpointAssociations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/firewallEndpointAssociations',
@@ -144,6 +181,17 @@ return [
             'ListFirewallEndpoints' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=organizations/*/locations/*}/firewallEndpoints',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListProjectFirewallEndpoints' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/firewallEndpoints',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -184,6 +232,22 @@ return [
                     'update_mask',
                 ],
             ],
+            'UpdateProjectFirewallEndpoint' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{firewall_endpoint.name=projects/*/locations/*/firewallEndpoints/*}',
+                'body' => 'firewall_endpoint',
+                'placeholders' => [
+                    'firewall_endpoint.name' => [
+                        'getters' => [
+                            'getFirewallEndpoint',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
         ],
         'google.iam.v1.IAMPolicy' => [
             'GetIamPolicy' => [
@@ -193,10 +257,6 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/authorizationPolicies/*}:getIamPolicy',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{resource=organizations/*/locations/*/addressGroups/*}:getIamPolicy',
                     ],
                     [
                         'method' => 'get',
@@ -231,11 +291,6 @@ return [
                     ],
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=organizations/*/locations/*/addressGroups/*}:setIamPolicy',
-                        'body' => '*',
-                    ],
-                    [
-                        'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/serverTlsPolicies/*}:setIamPolicy',
                         'body' => '*',
                     ],
@@ -265,12 +320,12 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/authorizationPolicies/*}:testIamPermissions',
+                        'uriTemplate' => '/v1/{resource=organizations/*/locations/*/addressGroups/*}:testIamPermissions',
                         'body' => '*',
                     ],
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=organizations/*/locations/*/addressGroups/*}:testIamPermissions',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/authorizationPolicies/*}:testIamPermissions',
                         'body' => '*',
                     ],
                     [

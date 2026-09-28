@@ -27,7 +27,7 @@ class InventoryTargeting extends \Google\Protobuf\Internal\Message
      * Optional. A list of ad units that should be excluded.
      * Excluded AUs take precedence over targeted AUs. In fact an AU can be
      * excluded only if one of its ancestors is targeted. Subsequently child
-     * AUs of an excluded AU can not be targeted (except via a placement).
+     * AUs of an excluded AU can not be targeted (except through a Placement).
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AdUnitTargeting excluded_ad_units = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -52,7 +52,7 @@ class InventoryTargeting extends \Google\Protobuf\Internal\Message
      *           Optional. A list of ad units that should be excluded.
      *           Excluded AUs take precedence over targeted AUs. In fact an AU can be
      *           excluded only if one of its ancestors is targeted. Subsequently child
-     *           AUs of an excluded AU can not be targeted (except via a placement).
+     *           AUs of an excluded AU can not be targeted (except through a Placement).
      *     @type string[] $targeted_placements
      *           Optional. The resource names of the placements that should be
      *           targeted/included.
@@ -93,7 +93,7 @@ class InventoryTargeting extends \Google\Protobuf\Internal\Message
      * Optional. A list of ad units that should be excluded.
      * Excluded AUs take precedence over targeted AUs. In fact an AU can be
      * excluded only if one of its ancestors is targeted. Subsequently child
-     * AUs of an excluded AU can not be targeted (except via a placement).
+     * AUs of an excluded AU can not be targeted (except through a Placement).
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AdUnitTargeting excluded_ad_units = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<\Google\Ads\AdManager\V1\AdUnitTargeting>
@@ -107,7 +107,7 @@ class InventoryTargeting extends \Google\Protobuf\Internal\Message
      * Optional. A list of ad units that should be excluded.
      * Excluded AUs take precedence over targeted AUs. In fact an AU can be
      * excluded only if one of its ancestors is targeted. Subsequently child
-     * AUs of an excluded AU can not be targeted (except via a placement).
+     * AUs of an excluded AU can not be targeted (except through a Placement).
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AdUnitTargeting excluded_ad_units = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Ads\AdManager\V1\AdUnitTargeting[] $var

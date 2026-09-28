@@ -8,7 +8,7 @@
         "DataTransferService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataTransferServiceGapicClient",
+                    "libraryClient": "DataTransferServiceClient",
                     "rpcs": {
                         "CheckValidCreds": {
                             "methods": [

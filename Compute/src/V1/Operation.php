@@ -68,6 +68,12 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     protected $error = null;
     /**
+     * Output only. Metadata for GetHealth operations.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.GetHealthOperationMetadata get_health_operation_metadata = 303911457;</code>
+     */
+    protected $get_health_operation_metadata = null;
+    /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.GetVersionOperationMetadata get_version_operation_metadata = 173230167;</code>
      */
     protected $get_version_operation_metadata = null;
@@ -244,6 +250,8 @@ class Operation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\Error $error
      *           [Output Only] If errors are generated during processing of the operation,
      *           this field will be populated.
+     *     @type \Google\Cloud\Compute\V1\GetHealthOperationMetadata $get_health_operation_metadata
+     *           Output only. Metadata for GetHealth operations.
      *     @type \Google\Cloud\Compute\V1\GetVersionOperationMetadata $get_version_operation_metadata
      *     @type string $http_error_message
      *           [Output Only] If the operation fails, this field contains the HTTP error
@@ -505,6 +513,42 @@ class Operation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\Error::class);
         $this->error = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Metadata for GetHealth operations.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.GetHealthOperationMetadata get_health_operation_metadata = 303911457;</code>
+     * @return \Google\Cloud\Compute\V1\GetHealthOperationMetadata|null
+     */
+    public function getGetHealthOperationMetadata()
+    {
+        return $this->get_health_operation_metadata;
+    }
+
+    public function hasGetHealthOperationMetadata()
+    {
+        return isset($this->get_health_operation_metadata);
+    }
+
+    public function clearGetHealthOperationMetadata()
+    {
+        unset($this->get_health_operation_metadata);
+    }
+
+    /**
+     * Output only. Metadata for GetHealth operations.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.GetHealthOperationMetadata get_health_operation_metadata = 303911457;</code>
+     * @param \Google\Cloud\Compute\V1\GetHealthOperationMetadata $var
+     * @return $this
+     */
+    public function setGetHealthOperationMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\GetHealthOperationMetadata::class);
+        $this->get_health_operation_metadata = $var;
 
         return $this;
     }

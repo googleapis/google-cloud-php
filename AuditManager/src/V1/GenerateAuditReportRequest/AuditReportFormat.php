@@ -7,20 +7,20 @@ namespace Google\Cloud\AuditManager\V1\GenerateAuditReportRequest;
 use UnexpectedValueException;
 
 /**
- * The options for the audit report format.
+ * Format for the audit report.
  *
  * Protobuf type <code>google.cloud.auditmanager.v1.GenerateAuditReportRequest.AuditReportFormat</code>
  */
 class AuditReportFormat
 {
     /**
-     * Unspecified. Invalid state.
+     * Default value. This value is unused.
      *
      * Generated from protobuf enum <code>AUDIT_REPORT_FORMAT_UNSPECIFIED = 0;</code>
      */
     const AUDIT_REPORT_FORMAT_UNSPECIFIED = 0;
     /**
-     * Audit Report creation format is Open Document.
+     * Open Document format.
      *
      * Generated from protobuf enum <code>AUDIT_REPORT_FORMAT_ODF = 1;</code>
      */

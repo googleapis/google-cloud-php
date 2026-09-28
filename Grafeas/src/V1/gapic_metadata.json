@@ -8,7 +8,7 @@
         "Grafeas": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GrafeasGapicClient",
+                    "libraryClient": "GrafeasClient",
                     "rpcs": {
                         "BatchCreateNotes": {
                             "methods": [

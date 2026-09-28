@@ -8,7 +8,7 @@
         "AppHub": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AppHubGapicClient",
+                    "libraryClient": "AppHubClient",
                     "rpcs": {
                         "CreateApplication": {
                             "methods": [

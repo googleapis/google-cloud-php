@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -308,6 +308,7 @@ class ServiceAttachmentsClientTest extends GeneratedTest
         $id = 3355;
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $natIpsPerEndpoint = 1776023800;
         $producerForwardingRule = 'producerForwardingRule-825813935';
         $propagatedConnectionLimit = 1814764418;
         $reconcileConnections = true;
@@ -323,6 +324,7 @@ class ServiceAttachmentsClientTest extends GeneratedTest
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setNatIpsPerEndpoint($natIpsPerEndpoint);
         $expectedResponse->setProducerForwardingRule($producerForwardingRule);
         $expectedResponse->setPropagatedConnectionLimit($propagatedConnectionLimit);
         $expectedResponse->setReconcileConnections($reconcileConnections);

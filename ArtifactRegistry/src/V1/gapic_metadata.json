@@ -8,7 +8,7 @@
         "ArtifactRegistry": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ArtifactRegistryGapicClient",
+                    "libraryClient": "ArtifactRegistryClient",
                     "rpcs": {
                         "BatchDeleteVersions": {
                             "methods": [

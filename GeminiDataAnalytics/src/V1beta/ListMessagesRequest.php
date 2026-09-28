@@ -25,8 +25,9 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
     protected $parent = '';
     /**
      * Optional. Requested page size. Server may return fewer items than
-     * requested. The max page size is 100. All larger page sizes will be coerced
-     * to 100. If unspecified, server will pick 50 as an approperiate default.
+     * requested. The max page size is `100`. All larger page sizes will be
+     * coerced to `100`. If unspecified, server will pick `50` as an appropriate
+     * default.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -76,8 +77,9 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/conversations/{conversation_id}`
      *     @type int $page_size
      *           Optional. Requested page size. Server may return fewer items than
-     *           requested. The max page size is 100. All larger page sizes will be coerced
-     *           to 100. If unspecified, server will pick 50 as an approperiate default.
+     *           requested. The max page size is `100`. All larger page sizes will be
+     *           coerced to `100`. If unspecified, server will pick `50` as an appropriate
+     *           default.
      *     @type string $page_token
      *           Optional. A token identifying a page of results the server should return.
      *     @type string $filter
@@ -125,8 +127,9 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Requested page size. Server may return fewer items than
-     * requested. The max page size is 100. All larger page sizes will be coerced
-     * to 100. If unspecified, server will pick 50 as an approperiate default.
+     * requested. The max page size is `100`. All larger page sizes will be
+     * coerced to `100`. If unspecified, server will pick `50` as an appropriate
+     * default.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -138,8 +141,9 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Requested page size. Server may return fewer items than
-     * requested. The max page size is 100. All larger page sizes will be coerced
-     * to 100. If unspecified, server will pick 50 as an approperiate default.
+     * requested. The max page size is `100`. All larger page sizes will be
+     * coerced to `100`. If unspecified, server will pick `50` as an appropriate
+     * default.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

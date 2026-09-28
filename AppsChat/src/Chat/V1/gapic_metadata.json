@@ -8,7 +8,7 @@
         "ChatService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ChatServiceGapicClient",
+                    "libraryClient": "ChatServiceClient",
                     "rpcs": {
                         "CompleteImportSpace": {
                             "methods": [
@@ -30,9 +30,19 @@
                                 "createMessage"
                             ]
                         },
+                        "CreateMessagePin": {
+                            "methods": [
+                                "createMessagePin"
+                            ]
+                        },
                         "CreateReaction": {
                             "methods": [
                                 "createReaction"
+                            ]
+                        },
+                        "CreateSection": {
+                            "methods": [
+                                "createSection"
                             ]
                         },
                         "CreateSpace": {
@@ -55,9 +65,19 @@
                                 "deleteMessage"
                             ]
                         },
+                        "DeleteMessagePin": {
+                            "methods": [
+                                "deleteMessagePin"
+                            ]
+                        },
                         "DeleteReaction": {
                             "methods": [
                                 "deleteReaction"
+                            ]
+                        },
+                        "DeleteSection": {
+                            "methods": [
+                                "deleteSection"
                             ]
                         },
                         "DeleteSpace": {
@@ -70,9 +90,19 @@
                                 "findDirectMessage"
                             ]
                         },
+                        "FindGroupChats": {
+                            "methods": [
+                                "findGroupChats"
+                            ]
+                        },
                         "GetAttachment": {
                             "methods": [
                                 "getAttachment"
+                            ]
+                        },
+                        "GetAvailability": {
+                            "methods": [
+                                "getAvailability"
                             ]
                         },
                         "GetCustomEmoji": {
@@ -125,6 +155,11 @@
                                 "listMemberships"
                             ]
                         },
+                        "ListMessagePins": {
+                            "methods": [
+                                "listMessagePins"
+                            ]
+                        },
                         "ListMessages": {
                             "methods": [
                                 "listMessages"
@@ -133,6 +168,16 @@
                         "ListReactions": {
                             "methods": [
                                 "listReactions"
+                            ]
+                        },
+                        "ListSectionItems": {
+                            "methods": [
+                                "listSectionItems"
+                            ]
+                        },
+                        "ListSections": {
+                            "methods": [
+                                "listSections"
                             ]
                         },
                         "ListSpaceEvents": {
@@ -145,6 +190,36 @@
                                 "listSpaces"
                             ]
                         },
+                        "MarkAsActive": {
+                            "methods": [
+                                "markAsActive"
+                            ]
+                        },
+                        "MarkAsAway": {
+                            "methods": [
+                                "markAsAway"
+                            ]
+                        },
+                        "MarkAsDoNotDisturb": {
+                            "methods": [
+                                "markAsDoNotDisturb"
+                            ]
+                        },
+                        "MoveSectionItem": {
+                            "methods": [
+                                "moveSectionItem"
+                            ]
+                        },
+                        "PositionSection": {
+                            "methods": [
+                                "positionSection"
+                            ]
+                        },
+                        "SearchMessages": {
+                            "methods": [
+                                "searchMessages"
+                            ]
+                        },
                         "SearchSpaces": {
                             "methods": [
                                 "searchSpaces"
@@ -155,6 +230,11 @@
                                 "setUpSpace"
                             ]
                         },
+                        "UpdateAvailability": {
+                            "methods": [
+                                "updateAvailability"
+                            ]
+                        },
                         "UpdateMembership": {
                             "methods": [
                                 "updateMembership"
@@ -163,6 +243,11 @@
                         "UpdateMessage": {
                             "methods": [
                                 "updateMessage"
+                            ]
+                        },
+                        "UpdateSection": {
+                            "methods": [
+                                "updateSection"
                             ]
                         },
                         "UpdateSpace": {

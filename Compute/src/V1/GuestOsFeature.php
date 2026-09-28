@@ -30,6 +30,8 @@ class GuestOsFeature extends \Google\Protobuf\Internal\Message
      *    - TDX_CAPABLE
      *    - IDPF
      *    - SNP_SVSM_CAPABLE
+     *    - CCA_CAPABLE
+     *    - SUSPEND_SAFE_FPR
      * For more information, see
      * Enabling guest operating system features.
      * Check the Type enum for the list of possible values.
@@ -59,6 +61,8 @@ class GuestOsFeature extends \Google\Protobuf\Internal\Message
      *              - TDX_CAPABLE
      *              - IDPF
      *              - SNP_SVSM_CAPABLE
+     *              - CCA_CAPABLE
+     *              - SUSPEND_SAFE_FPR
      *           For more information, see
      *           Enabling guest operating system features.
      *           Check the Type enum for the list of possible values.
@@ -84,6 +88,8 @@ class GuestOsFeature extends \Google\Protobuf\Internal\Message
      *    - TDX_CAPABLE
      *    - IDPF
      *    - SNP_SVSM_CAPABLE
+     *    - CCA_CAPABLE
+     *    - SUSPEND_SAFE_FPR
      * For more information, see
      * Enabling guest operating system features.
      * Check the Type enum for the list of possible values.
@@ -121,6 +127,8 @@ class GuestOsFeature extends \Google\Protobuf\Internal\Message
      *    - TDX_CAPABLE
      *    - IDPF
      *    - SNP_SVSM_CAPABLE
+     *    - CCA_CAPABLE
+     *    - SUSPEND_SAFE_FPR
      * For more information, see
      * Enabling guest operating system features.
      * Check the Type enum for the list of possible values.

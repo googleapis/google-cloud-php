@@ -30,11 +30,19 @@ class HookEventType
      * Generated from protobuf enum <code>PULL_REQUEST = 2;</code>
      */
     const PULL_REQUEST = 2;
+    /**
+     * Triggers when a general comment is added, edited, or deleted on a pull
+     * request.
+     *
+     * Generated from protobuf enum <code>PULL_REQUEST_COMMENT = 3;</code>
+     */
+    const PULL_REQUEST_COMMENT = 3;
 
     private static $valueToName = [
         self::UNSPECIFIED => 'UNSPECIFIED',
         self::PUSH => 'PUSH',
         self::PULL_REQUEST => 'PULL_REQUEST',
+        self::PULL_REQUEST_COMMENT => 'PULL_REQUEST_COMMENT',
     ];
 
     public static function name($value)

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,10 +30,9 @@ use Google\Ads\AdManager\V1\CustomFieldEntityTypeEnum\CustomFieldEntityType;
 use Google\Ads\AdManager\V1\CustomFieldVisibilityEnum\CustomFieldVisibility;
 use Google\Ads\AdManager\V1\UpdateCustomFieldRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
- * API to update a `CustomField` object.
+ * Updates a `CustomField` object.
  *
  * @param string $customFieldDisplayName Name of the CustomField. The max length is 127 characters.
  * @param int    $customFieldEntityType  The type of entity the `CustomField` can be applied to.
@@ -55,10 +54,8 @@ function update_custom_field_sample(
         ->setEntityType($customFieldEntityType)
         ->setDataType($customFieldDataType)
         ->setVisibility($customFieldVisibility);
-    $updateMask = new FieldMask();
     $request = (new UpdateCustomFieldRequest())
-        ->setCustomField($customField)
-        ->setUpdateMask($updateMask);
+        ->setCustomField($customField);
 
     // Call the API and handle any network failures.
     try {

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,9 @@ use Google\Ads\AdManager\V1\Client\PrivateAuctionServiceClient;
 use Google\Ads\AdManager\V1\PrivateAuction;
 use Google\Ads\AdManager\V1\UpdatePrivateAuctionRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
- * API to update a `PrivateAuction` object.
+ * Updates a `PrivateAuction` object.
  *
  * @param string $privateAuctionDisplayName Display name of the `PrivateAuction`. This attribute has a
  *                                          maximum length of 255 bytes.
@@ -43,10 +42,8 @@ function update_private_auction_sample(string $privateAuctionDisplayName): void
     // Prepare the request message.
     $privateAuction = (new PrivateAuction())
         ->setDisplayName($privateAuctionDisplayName);
-    $updateMask = new FieldMask();
     $request = (new UpdatePrivateAuctionRequest())
-        ->setPrivateAuction($privateAuction)
-        ->setUpdateMask($updateMask);
+        ->setPrivateAuction($privateAuction);
 
     // Call the API and handle any network failures.
     try {

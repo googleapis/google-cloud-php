@@ -44,6 +44,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode;
 use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\Operation as OperationProto;
 use InvalidArgumentException;
@@ -79,6 +80,7 @@ class Instance
     private bool $returnInt64AsObject;
     private array $info;
     private int $isolationLevel;
+    private int $readLockMode;
     private CacheItemPoolInterface|null $cacheItemPool;
 
     /**
@@ -122,6 +124,7 @@ class Instance
         $this->name = $this->fullyQualifiedInstanceName($name);
         $this->directedReadOptions = $options['directedReadOptions'] ?? [];
         $this->isolationLevel = $options['isolationLevel'] ?? IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED;
+        $this->readLockMode = $options['readLockMode'] ?? ReadLockMode::READ_LOCK_MODE_UNSPECIFIED;
         $this->routeToLeader = $options['routeToLeader'] ?? true;
         $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
         $this->returnInt64AsObject = $options['returnInt64AsObject'] ?? false;
@@ -571,6 +574,7 @@ class Instance
                 'defaultQueryOptions' => $this->defaultQueryOptions,
                 'returnInt64AsObject' => $this->returnInt64AsObject,
                 'isolationLevel' => $this->isolationLevel,
+                'readLockMode' => $this->readLockMode,
             ]
         );
     }

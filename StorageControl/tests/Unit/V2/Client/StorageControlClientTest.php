@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,34 +36,55 @@ use Google\Cloud\Storage\Control\V2\Client\StorageControlClient;
 use Google\Cloud\Storage\Control\V2\CreateAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\CreateFolderRequest;
 use Google\Cloud\Storage\Control\V2\CreateManagedFolderRequest;
+use Google\Cloud\Storage\Control\V2\CreateRapidCacheRequest;
 use Google\Cloud\Storage\Control\V2\DeleteFolderRecursiveRequest;
 use Google\Cloud\Storage\Control\V2\DeleteFolderRequest;
 use Google\Cloud\Storage\Control\V2\DeleteManagedFolderRequest;
 use Google\Cloud\Storage\Control\V2\DisableAnywhereCacheRequest;
+use Google\Cloud\Storage\Control\V2\DisableRapidCacheRequest;
+use Google\Cloud\Storage\Control\V2\FindingSummary;
 use Google\Cloud\Storage\Control\V2\Folder;
 use Google\Cloud\Storage\Control\V2\GetAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\GetFolderIntelligenceConfigRequest;
 use Google\Cloud\Storage\Control\V2\GetFolderRequest;
+use Google\Cloud\Storage\Control\V2\GetIntelligenceFindingRequest;
+use Google\Cloud\Storage\Control\V2\GetIntelligenceFindingRevisionRequest;
 use Google\Cloud\Storage\Control\V2\GetManagedFolderRequest;
 use Google\Cloud\Storage\Control\V2\GetOrganizationIntelligenceConfigRequest;
 use Google\Cloud\Storage\Control\V2\GetProjectIntelligenceConfigRequest;
+use Google\Cloud\Storage\Control\V2\GetRapidCacheRequest;
 use Google\Cloud\Storage\Control\V2\GetStorageLayoutRequest;
 use Google\Cloud\Storage\Control\V2\IntelligenceConfig;
+use Google\Cloud\Storage\Control\V2\IntelligenceFinding;
+use Google\Cloud\Storage\Control\V2\IntelligenceFindingRevision;
 use Google\Cloud\Storage\Control\V2\ListAnywhereCachesRequest;
 use Google\Cloud\Storage\Control\V2\ListAnywhereCachesResponse;
 use Google\Cloud\Storage\Control\V2\ListFoldersRequest;
 use Google\Cloud\Storage\Control\V2\ListFoldersResponse;
+use Google\Cloud\Storage\Control\V2\ListIntelligenceFindingRevisionsRequest;
+use Google\Cloud\Storage\Control\V2\ListIntelligenceFindingRevisionsResponse;
+use Google\Cloud\Storage\Control\V2\ListIntelligenceFindingsRequest;
+use Google\Cloud\Storage\Control\V2\ListIntelligenceFindingsResponse;
 use Google\Cloud\Storage\Control\V2\ListManagedFoldersRequest;
 use Google\Cloud\Storage\Control\V2\ListManagedFoldersResponse;
+use Google\Cloud\Storage\Control\V2\ListRapidCachesRequest;
+use Google\Cloud\Storage\Control\V2\ListRapidCachesResponse;
 use Google\Cloud\Storage\Control\V2\ManagedFolder;
+use Google\Cloud\Storage\Control\V2\ObjectFullContext;
 use Google\Cloud\Storage\Control\V2\PauseAnywhereCacheRequest;
+use Google\Cloud\Storage\Control\V2\RapidCache;
 use Google\Cloud\Storage\Control\V2\RenameFolderRequest;
 use Google\Cloud\Storage\Control\V2\ResumeAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\StorageLayout;
+use Google\Cloud\Storage\Control\V2\SummarizeIntelligenceFindingsRequest;
+use Google\Cloud\Storage\Control\V2\SummarizeIntelligenceFindingsResponse;
 use Google\Cloud\Storage\Control\V2\UpdateAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\UpdateFolderIntelligenceConfigRequest;
+use Google\Cloud\Storage\Control\V2\UpdateManagedFolderRequest;
 use Google\Cloud\Storage\Control\V2\UpdateOrganizationIntelligenceConfigRequest;
 use Google\Cloud\Storage\Control\V2\UpdateProjectIntelligenceConfigRequest;
+use Google\Cloud\Storage\Control\V2\UpdateRapidCacheRequest;
+use Google\Cloud\Storage\Control\V2\ViewObjectFullContextRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -129,12 +150,14 @@ class StorageControlClientTest extends GeneratedTest
         $admissionPolicy = 'admissionPolicy1847270952';
         $state = 'state109757585';
         $pendingUpdate = false;
+        $ingestOnWrite = true;
         $expectedResponse = new AnywhereCache();
         $expectedResponse->setName($name);
         $expectedResponse->setZone($zone);
         $expectedResponse->setAdmissionPolicy($admissionPolicy);
         $expectedResponse->setState($state);
         $expectedResponse->setPendingUpdate($pendingUpdate);
+        $expectedResponse->setIngestOnWrite($ingestOnWrite);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -402,6 +425,144 @@ class StorageControlClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createRapidCacheTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createRapidCacheTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $zone = 'zone3744684';
+        $cacheType = 'cacheType29096407';
+        $admissionPolicy = 'admissionPolicy1847270952';
+        $state = 'state109757585';
+        $pendingUpdate = false;
+        $expectedResponse = new RapidCache();
+        $expectedResponse->setName($name);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setCacheType($cacheType);
+        $expectedResponse->setAdmissionPolicy($admissionPolicy);
+        $expectedResponse->setState($state);
+        $expectedResponse->setPendingUpdate($pendingUpdate);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createRapidCacheTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->bucketName('[PROJECT]', '[BUCKET]');
+        $rapidCache = new RapidCache();
+        $request = (new CreateRapidCacheRequest())->setParent($formattedParent)->setRapidCache($rapidCache);
+        $response = $gapicClient->createRapidCache($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/CreateRapidCache', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getRapidCache();
+        $this->assertProtobufEquals($rapidCache, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createRapidCacheTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createRapidCacheExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createRapidCacheTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->bucketName('[PROJECT]', '[BUCKET]');
+        $rapidCache = new RapidCache();
+        $request = (new CreateRapidCacheRequest())->setParent($formattedParent)->setRapidCache($rapidCache);
+        $response = $gapicClient->createRapidCache($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createRapidCacheTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function deleteFolderTest()
     {
         $transport = $this->createTransport();
@@ -661,12 +822,14 @@ class StorageControlClientTest extends GeneratedTest
         $admissionPolicy = 'admissionPolicy1847270952';
         $state = 'state109757585';
         $pendingUpdate = false;
+        $ingestOnWrite = true;
         $expectedResponse = new AnywhereCache();
         $expectedResponse->setName($name2);
         $expectedResponse->setZone($zone);
         $expectedResponse->setAdmissionPolicy($admissionPolicy);
         $expectedResponse->setState($state);
         $expectedResponse->setPendingUpdate($pendingUpdate);
+        $expectedResponse->setIngestOnWrite($ingestOnWrite);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->anywhereCacheName('[PROJECT]', '[BUCKET]', '[ANYWHERE_CACHE]');
@@ -721,6 +884,140 @@ class StorageControlClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function disableRapidCacheTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/disableRapidCacheTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $zone = 'zone3744684';
+        $cacheType = 'cacheType29096407';
+        $admissionPolicy = 'admissionPolicy1847270952';
+        $state = 'state109757585';
+        $pendingUpdate = false;
+        $expectedResponse = new RapidCache();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setCacheType($cacheType);
+        $expectedResponse->setAdmissionPolicy($admissionPolicy);
+        $expectedResponse->setState($state);
+        $expectedResponse->setPendingUpdate($pendingUpdate);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/disableRapidCacheTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->rapidCacheName('[PROJECT]', '[BUCKET]', '[RAPID_CACHE]');
+        $request = (new DisableRapidCacheRequest())->setName($formattedName);
+        $response = $gapicClient->disableRapidCache($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/DisableRapidCache', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/disableRapidCacheTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function disableRapidCacheExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/disableRapidCacheTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->rapidCacheName('[PROJECT]', '[BUCKET]', '[RAPID_CACHE]');
+        $request = (new DisableRapidCacheRequest())->setName($formattedName);
+        $response = $gapicClient->disableRapidCache($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/disableRapidCacheTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function getAnywhereCacheTest()
     {
         $transport = $this->createTransport();
@@ -734,12 +1031,14 @@ class StorageControlClientTest extends GeneratedTest
         $admissionPolicy = 'admissionPolicy1847270952';
         $state = 'state109757585';
         $pendingUpdate = false;
+        $ingestOnWrite = true;
         $expectedResponse = new AnywhereCache();
         $expectedResponse->setName($name2);
         $expectedResponse->setZone($zone);
         $expectedResponse->setAdmissionPolicy($admissionPolicy);
         $expectedResponse->setState($state);
         $expectedResponse->setPendingUpdate($pendingUpdate);
+        $expectedResponse->setIngestOnWrite($ingestOnWrite);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->anywhereCacheName('[PROJECT]', '[BUCKET]', '[ANYWHERE_CACHE]');
@@ -993,6 +1292,150 @@ class StorageControlClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getIntelligenceFindingTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $targetResource = 'targetResource-69552388';
+        $expectedResponse = new IntelligenceFinding();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setTargetResource($targetResource);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->intelligenceFindingName('[PROJECT]', '[LOCATION]', '[INTELLIGENCE_FINDING]');
+        $request = (new GetIntelligenceFindingRequest())->setName($formattedName);
+        $response = $gapicClient->getIntelligenceFinding($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/GetIntelligenceFinding', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getIntelligenceFindingExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->intelligenceFindingName('[PROJECT]', '[LOCATION]', '[INTELLIGENCE_FINDING]');
+        $request = (new GetIntelligenceFindingRequest())->setName($formattedName);
+        try {
+            $gapicClient->getIntelligenceFinding($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getIntelligenceFindingRevisionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new IntelligenceFindingRevision();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->intelligenceFindingRevisionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INTELLIGENCE_FINDING]',
+            '[REVISION]'
+        );
+        $request = (new GetIntelligenceFindingRevisionRequest())->setName($formattedName);
+        $response = $gapicClient->getIntelligenceFindingRevision($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/GetIntelligenceFindingRevision', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getIntelligenceFindingRevisionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->intelligenceFindingRevisionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INTELLIGENCE_FINDING]',
+            '[REVISION]'
+        );
+        $request = (new GetIntelligenceFindingRevisionRequest())->setName($formattedName);
+        try {
+            $gapicClient->getIntelligenceFindingRevision($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getManagedFolderTest()
     {
         $transport = $this->createTransport();
@@ -1181,6 +1624,81 @@ class StorageControlClientTest extends GeneratedTest
         $request = (new GetProjectIntelligenceConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getProjectIntelligenceConfig($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getRapidCacheTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $zone = 'zone3744684';
+        $cacheType = 'cacheType29096407';
+        $admissionPolicy = 'admissionPolicy1847270952';
+        $state = 'state109757585';
+        $pendingUpdate = false;
+        $expectedResponse = new RapidCache();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setCacheType($cacheType);
+        $expectedResponse->setAdmissionPolicy($admissionPolicy);
+        $expectedResponse->setState($state);
+        $expectedResponse->setPendingUpdate($pendingUpdate);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->rapidCacheName('[PROJECT]', '[BUCKET]', '[RAPID_CACHE]');
+        $request = (new GetRapidCacheRequest())->setName($formattedName);
+        $response = $gapicClient->getRapidCache($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/GetRapidCache', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getRapidCacheExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->rapidCacheName('[PROJECT]', '[BUCKET]', '[RAPID_CACHE]');
+        $request = (new GetRapidCacheRequest())->setName($formattedName);
+        try {
+            $gapicClient->getRapidCache($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1404,6 +1922,151 @@ class StorageControlClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listIntelligenceFindingRevisionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $intelligenceFindingRevisionsElement = new IntelligenceFindingRevision();
+        $intelligenceFindingRevisions = [$intelligenceFindingRevisionsElement];
+        $expectedResponse = new ListIntelligenceFindingRevisionsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setIntelligenceFindingRevisions($intelligenceFindingRevisions);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->intelligenceFindingName('[PROJECT]', '[LOCATION]', '[INTELLIGENCE_FINDING]');
+        $request = (new ListIntelligenceFindingRevisionsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listIntelligenceFindingRevisions($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getIntelligenceFindingRevisions()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.storage.control.v2.StorageControl/ListIntelligenceFindingRevisions',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listIntelligenceFindingRevisionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->intelligenceFindingName('[PROJECT]', '[LOCATION]', '[INTELLIGENCE_FINDING]');
+        $request = (new ListIntelligenceFindingRevisionsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listIntelligenceFindingRevisions($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listIntelligenceFindingsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $intelligenceFindingsElement = new IntelligenceFinding();
+        $intelligenceFindings = [$intelligenceFindingsElement];
+        $expectedResponse = new ListIntelligenceFindingsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setIntelligenceFindings($intelligenceFindings);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListIntelligenceFindingsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listIntelligenceFindings($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getIntelligenceFindings()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/ListIntelligenceFindings', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listIntelligenceFindingsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListIntelligenceFindingsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listIntelligenceFindings($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listManagedFoldersTest()
     {
         $transport = $this->createTransport();
@@ -1475,6 +2138,77 @@ class StorageControlClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listRapidCachesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $rapidCachesElement = new RapidCache();
+        $rapidCaches = [$rapidCachesElement];
+        $expectedResponse = new ListRapidCachesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setRapidCaches($rapidCaches);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->bucketName('[PROJECT]', '[BUCKET]');
+        $request = (new ListRapidCachesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listRapidCaches($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getRapidCaches()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/ListRapidCaches', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listRapidCachesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->bucketName('[PROJECT]', '[BUCKET]');
+        $request = (new ListRapidCachesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listRapidCaches($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function pauseAnywhereCacheTest()
     {
         $transport = $this->createTransport();
@@ -1488,12 +2222,14 @@ class StorageControlClientTest extends GeneratedTest
         $admissionPolicy = 'admissionPolicy1847270952';
         $state = 'state109757585';
         $pendingUpdate = false;
+        $ingestOnWrite = true;
         $expectedResponse = new AnywhereCache();
         $expectedResponse->setName($name2);
         $expectedResponse->setZone($zone);
         $expectedResponse->setAdmissionPolicy($admissionPolicy);
         $expectedResponse->setState($state);
         $expectedResponse->setPendingUpdate($pendingUpdate);
+        $expectedResponse->setIngestOnWrite($ingestOnWrite);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->anywhereCacheName('[PROJECT]', '[BUCKET]', '[ANYWHERE_CACHE]');
@@ -1691,12 +2427,14 @@ class StorageControlClientTest extends GeneratedTest
         $admissionPolicy = 'admissionPolicy1847270952';
         $state = 'state109757585';
         $pendingUpdate = false;
+        $ingestOnWrite = true;
         $expectedResponse = new AnywhereCache();
         $expectedResponse->setName($name2);
         $expectedResponse->setZone($zone);
         $expectedResponse->setAdmissionPolicy($admissionPolicy);
         $expectedResponse->setState($state);
         $expectedResponse->setPendingUpdate($pendingUpdate);
+        $expectedResponse->setIngestOnWrite($ingestOnWrite);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->anywhereCacheName('[PROJECT]', '[BUCKET]', '[ANYWHERE_CACHE]');
@@ -1822,6 +2560,77 @@ class StorageControlClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function summarizeIntelligenceFindingsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $findingSummariesElement = new FindingSummary();
+        $findingSummaries = [$findingSummariesElement];
+        $expectedResponse = new SummarizeIntelligenceFindingsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setFindingSummaries($findingSummaries);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new SummarizeIntelligenceFindingsRequest())->setParent($parent);
+        $response = $gapicClient->summarizeIntelligenceFindings($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getFindingSummaries()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/SummarizeIntelligenceFindings', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function summarizeIntelligenceFindingsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new SummarizeIntelligenceFindingsRequest())->setParent($parent);
+        try {
+            $gapicClient->summarizeIntelligenceFindings($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -1914,12 +2723,14 @@ class StorageControlClientTest extends GeneratedTest
         $admissionPolicy = 'admissionPolicy1847270952';
         $state = 'state109757585';
         $pendingUpdate = false;
+        $ingestOnWrite = true;
         $expectedResponse = new AnywhereCache();
         $expectedResponse->setName($name);
         $expectedResponse->setZone($zone);
         $expectedResponse->setAdmissionPolicy($admissionPolicy);
         $expectedResponse->setState($state);
         $expectedResponse->setPendingUpdate($pendingUpdate);
+        $expectedResponse->setIngestOnWrite($ingestOnWrite);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2098,6 +2909,73 @@ class StorageControlClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function updateManagedFolderTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $metageneration = 1048558813;
+        $expectedResponse = new ManagedFolder();
+        $expectedResponse->setName($name);
+        $expectedResponse->setMetageneration($metageneration);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $managedFolder = new ManagedFolder();
+        $request = (new UpdateManagedFolderRequest())->setManagedFolder($managedFolder);
+        $response = $gapicClient->updateManagedFolder($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/UpdateManagedFolder', $actualFuncCall);
+        $actualValue = $actualRequestObject->getManagedFolder();
+        $this->assertProtobufEquals($managedFolder, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateManagedFolderExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $managedFolder = new ManagedFolder();
+        $request = (new UpdateManagedFolderRequest())->setManagedFolder($managedFolder);
+        try {
+            $gapicClient->updateManagedFolder($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function updateOrganizationIntelligenceConfigTest()
     {
         $transport = $this->createTransport();
@@ -2247,6 +3125,215 @@ class StorageControlClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function updateRapidCacheTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateRapidCacheTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $zone = 'zone3744684';
+        $cacheType = 'cacheType29096407';
+        $admissionPolicy = 'admissionPolicy1847270952';
+        $state = 'state109757585';
+        $pendingUpdate = false;
+        $expectedResponse = new RapidCache();
+        $expectedResponse->setName($name);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setCacheType($cacheType);
+        $expectedResponse->setAdmissionPolicy($admissionPolicy);
+        $expectedResponse->setState($state);
+        $expectedResponse->setPendingUpdate($pendingUpdate);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateRapidCacheTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $rapidCache = new RapidCache();
+        $updateMask = new FieldMask();
+        $request = (new UpdateRapidCacheRequest())->setRapidCache($rapidCache)->setUpdateMask($updateMask);
+        $response = $gapicClient->updateRapidCache($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/UpdateRapidCache', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getRapidCache();
+        $this->assertProtobufEquals($rapidCache, $actualValue);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateRapidCacheTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateRapidCacheExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateRapidCacheTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $rapidCache = new RapidCache();
+        $updateMask = new FieldMask();
+        $request = (new UpdateRapidCacheRequest())->setRapidCache($rapidCache)->setUpdateMask($updateMask);
+        $response = $gapicClient->updateRapidCache($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateRapidCacheTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function viewObjectFullContextTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $key = 'key106079';
+        $value = 'value111972721';
+        $expectedResponse = new ObjectFullContext();
+        $expectedResponse->setKey($key);
+        $expectedResponse->setValue($value);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $contextKey = 'contextKey-102526001';
+        $formattedName = $gapicClient->objectName('[PROJECT]', '[BUCKET]', '[OBJECT]');
+        $request = (new ViewObjectFullContextRequest())->setContextKey($contextKey)->setName($formattedName);
+        $response = $gapicClient->viewObjectFullContext($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/ViewObjectFullContext', $actualFuncCall);
+        $actualValue = $actualRequestObject->getContextKey();
+        $this->assertProtobufEquals($contextKey, $actualValue);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function viewObjectFullContextExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $contextKey = 'contextKey-102526001';
+        $formattedName = $gapicClient->objectName('[PROJECT]', '[BUCKET]', '[OBJECT]');
+        $request = (new ViewObjectFullContextRequest())->setContextKey($contextKey)->setName($formattedName);
+        try {
+            $gapicClient->viewObjectFullContext($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function createAnywhereCacheAsyncTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2272,12 +3359,14 @@ class StorageControlClientTest extends GeneratedTest
         $admissionPolicy = 'admissionPolicy1847270952';
         $state = 'state109757585';
         $pendingUpdate = false;
+        $ingestOnWrite = true;
         $expectedResponse = new AnywhereCache();
         $expectedResponse->setName($name);
         $expectedResponse->setZone($zone);
         $expectedResponse->setAdmissionPolicy($admissionPolicy);
         $expectedResponse->setState($state);
         $expectedResponse->setPendingUpdate($pendingUpdate);
+        $expectedResponse->setIngestOnWrite($ingestOnWrite);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

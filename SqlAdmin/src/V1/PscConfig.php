@@ -47,6 +47,35 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string network_attachment_uri = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $network_attachment_uri = '';
+    /**
+     * Optional. Indicates whether Private Service Connect DNS automation is
+     * enabled for this instance. When enabled, Cloud SQL provisions a universal
+     * DNS record across all networks configured with Private Service Connect
+     * auto-connections. This will default to true for new instances when
+     * Private Service Connect is enabled.
+     *
+     * Generated from protobuf field <code>optional bool psc_auto_dns_enabled = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $psc_auto_dns_enabled = null;
+    /**
+     * Optional. Indicates whether Private Service Connect write endpoint DNS
+     * automation is enabled for this instance. When enabled, Cloud SQL provisions
+     * a universal global DNS record across all networks configured with Private
+     * Service Connect auto-connections that points to the cluster primary
+     * instance. This feature is only supported for Enterprise Plus edition. This
+     * will default to true for new Enterprise Plus instances when
+     * `psc_auto_dns_enabled` is enabled.
+     *
+     * Generated from protobuf field <code>optional bool psc_write_endpoint_dns_enabled = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $psc_write_endpoint_dns_enabled = null;
+    /**
+     * Optional. Whether to set up the PSC service connection policy
+     * automatically.
+     *
+     * Generated from protobuf field <code>optional bool psc_auto_connection_policy_enabled = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $psc_auto_connection_policy_enabled = null;
 
     /**
      * Constructor.
@@ -70,6 +99,23 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      *           Private Service Connect enabled Cloud SQL instance is
      *           authorized to connect via PSC interface.
      *           format: projects/PROJECT/regions/REGION/networkAttachments/ID
+     *     @type bool $psc_auto_dns_enabled
+     *           Optional. Indicates whether Private Service Connect DNS automation is
+     *           enabled for this instance. When enabled, Cloud SQL provisions a universal
+     *           DNS record across all networks configured with Private Service Connect
+     *           auto-connections. This will default to true for new instances when
+     *           Private Service Connect is enabled.
+     *     @type bool $psc_write_endpoint_dns_enabled
+     *           Optional. Indicates whether Private Service Connect write endpoint DNS
+     *           automation is enabled for this instance. When enabled, Cloud SQL provisions
+     *           a universal global DNS record across all networks configured with Private
+     *           Service Connect auto-connections that points to the cluster primary
+     *           instance. This feature is only supported for Enterprise Plus edition. This
+     *           will default to true for new Enterprise Plus instances when
+     *           `psc_auto_dns_enabled` is enabled.
+     *     @type bool $psc_auto_connection_policy_enabled
+     *           Optional. Whether to set up the PSC service connection policy
+     *           automatically.
      * }
      */
     public function __construct($data = NULL) {
@@ -203,6 +249,136 @@ class PscConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->network_attachment_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates whether Private Service Connect DNS automation is
+     * enabled for this instance. When enabled, Cloud SQL provisions a universal
+     * DNS record across all networks configured with Private Service Connect
+     * auto-connections. This will default to true for new instances when
+     * Private Service Connect is enabled.
+     *
+     * Generated from protobuf field <code>optional bool psc_auto_dns_enabled = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getPscAutoDnsEnabled()
+    {
+        return isset($this->psc_auto_dns_enabled) ? $this->psc_auto_dns_enabled : false;
+    }
+
+    public function hasPscAutoDnsEnabled()
+    {
+        return isset($this->psc_auto_dns_enabled);
+    }
+
+    public function clearPscAutoDnsEnabled()
+    {
+        unset($this->psc_auto_dns_enabled);
+    }
+
+    /**
+     * Optional. Indicates whether Private Service Connect DNS automation is
+     * enabled for this instance. When enabled, Cloud SQL provisions a universal
+     * DNS record across all networks configured with Private Service Connect
+     * auto-connections. This will default to true for new instances when
+     * Private Service Connect is enabled.
+     *
+     * Generated from protobuf field <code>optional bool psc_auto_dns_enabled = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPscAutoDnsEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->psc_auto_dns_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates whether Private Service Connect write endpoint DNS
+     * automation is enabled for this instance. When enabled, Cloud SQL provisions
+     * a universal global DNS record across all networks configured with Private
+     * Service Connect auto-connections that points to the cluster primary
+     * instance. This feature is only supported for Enterprise Plus edition. This
+     * will default to true for new Enterprise Plus instances when
+     * `psc_auto_dns_enabled` is enabled.
+     *
+     * Generated from protobuf field <code>optional bool psc_write_endpoint_dns_enabled = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getPscWriteEndpointDnsEnabled()
+    {
+        return isset($this->psc_write_endpoint_dns_enabled) ? $this->psc_write_endpoint_dns_enabled : false;
+    }
+
+    public function hasPscWriteEndpointDnsEnabled()
+    {
+        return isset($this->psc_write_endpoint_dns_enabled);
+    }
+
+    public function clearPscWriteEndpointDnsEnabled()
+    {
+        unset($this->psc_write_endpoint_dns_enabled);
+    }
+
+    /**
+     * Optional. Indicates whether Private Service Connect write endpoint DNS
+     * automation is enabled for this instance. When enabled, Cloud SQL provisions
+     * a universal global DNS record across all networks configured with Private
+     * Service Connect auto-connections that points to the cluster primary
+     * instance. This feature is only supported for Enterprise Plus edition. This
+     * will default to true for new Enterprise Plus instances when
+     * `psc_auto_dns_enabled` is enabled.
+     *
+     * Generated from protobuf field <code>optional bool psc_write_endpoint_dns_enabled = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPscWriteEndpointDnsEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->psc_write_endpoint_dns_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether to set up the PSC service connection policy
+     * automatically.
+     *
+     * Generated from protobuf field <code>optional bool psc_auto_connection_policy_enabled = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getPscAutoConnectionPolicyEnabled()
+    {
+        return isset($this->psc_auto_connection_policy_enabled) ? $this->psc_auto_connection_policy_enabled : false;
+    }
+
+    public function hasPscAutoConnectionPolicyEnabled()
+    {
+        return isset($this->psc_auto_connection_policy_enabled);
+    }
+
+    public function clearPscAutoConnectionPolicyEnabled()
+    {
+        unset($this->psc_auto_connection_policy_enabled);
+    }
+
+    /**
+     * Optional. Whether to set up the PSC service connection policy
+     * automatically.
+     *
+     * Generated from protobuf field <code>optional bool psc_auto_connection_policy_enabled = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPscAutoConnectionPolicyEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->psc_auto_connection_policy_enabled = $var;
 
         return $this;
     }

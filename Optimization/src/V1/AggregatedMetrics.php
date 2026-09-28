@@ -487,7 +487,7 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
      */
     public function getCosts()
     {
-        if ($this->costs->count() !== 0) {
+        if (count($this->costs) !== 0) {
             @trigger_error('costs is deprecated.', E_USER_DEPRECATED);
         }
         return $this->costs;

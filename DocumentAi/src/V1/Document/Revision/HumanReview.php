@@ -16,7 +16,7 @@ use Google\Protobuf\RepeatedField;
 class HumanReview extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Human review state. e.g. `requested`, `succeeded`, `rejected`.
+     * Human review state. For example, `requested`, `succeeded`, `rejected`.
      *
      * Generated from protobuf field <code>string state = 1;</code>
      */
@@ -36,7 +36,7 @@ class HumanReview extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $state
-     *           Human review state. e.g. `requested`, `succeeded`, `rejected`.
+     *           Human review state. For example, `requested`, `succeeded`, `rejected`.
      *     @type string $state_message
      *           A message providing more details about the current state of processing.
      *           For example, the rejection reason when the state is `rejected`.
@@ -48,7 +48,7 @@ class HumanReview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Human review state. e.g. `requested`, `succeeded`, `rejected`.
+     * Human review state. For example, `requested`, `succeeded`, `rejected`.
      *
      * Generated from protobuf field <code>string state = 1;</code>
      * @return string
@@ -59,7 +59,7 @@ class HumanReview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Human review state. e.g. `requested`, `succeeded`, `rejected`.
+     * Human review state. For example, `requested`, `succeeded`, `rejected`.
      *
      * Generated from protobuf field <code>string state = 1;</code>
      * @param string $var

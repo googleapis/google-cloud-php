@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,9 @@ use Google\Ads\AdManager\V1\AdUnit;
 use Google\Ads\AdManager\V1\Client\AdUnitServiceClient;
 use Google\Ads\AdManager\V1\UpdateAdUnitRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
- * API to update an `AdUnit` object.
+ * Updates an `AdUnit` object.
  *
  * @param string $formattedAdUnitParentAdUnit Immutable. The AdUnit's parent. Every ad unit has a parent except
  *                                            for the root ad unit, which is created by Google. Format:
@@ -50,10 +49,8 @@ function update_ad_unit_sample(
     $adUnit = (new AdUnit())
         ->setParentAdUnit($formattedAdUnitParentAdUnit)
         ->setDisplayName($adUnitDisplayName);
-    $updateMask = new FieldMask();
     $request = (new UpdateAdUnitRequest())
-        ->setAdUnit($adUnit)
-        ->setUpdateMask($updateMask);
+        ->setAdUnit($adUnit);
 
     // Call the API and handle any network failures.
     try {

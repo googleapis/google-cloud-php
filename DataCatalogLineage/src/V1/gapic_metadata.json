@@ -8,7 +8,7 @@
         "Lineage": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LineageGapicClient",
+                    "libraryClient": "LineageClient",
                     "rpcs": {
                         "BatchSearchLinkProcesses": {
                             "methods": [
@@ -78,6 +78,11 @@
                         "ProcessOpenLineageRunEvent": {
                             "methods": [
                                 "processOpenLineageRunEvent"
+                            ]
+                        },
+                        "SearchLineageStreaming": {
+                            "methods": [
+                                "searchLineageStreaming"
                             ]
                         },
                         "SearchLinks": {

@@ -36,7 +36,9 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AggregatedListRegionCompositeHealthChecksRequest;
 use Google\Cloud\Compute\V1\CompositeHealthCheck;
+use Google\Cloud\Compute\V1\CompositeHealthCheckHealth;
 use Google\Cloud\Compute\V1\DeleteRegionCompositeHealthCheckRequest;
+use Google\Cloud\Compute\V1\GetHealthRegionCompositeHealthCheckRequest;
 use Google\Cloud\Compute\V1\GetRegionCompositeHealthCheckRequest;
 use Google\Cloud\Compute\V1\InsertRegionCompositeHealthCheckRequest;
 use Google\Cloud\Compute\V1\ListRegionCompositeHealthChecksRequest;
@@ -55,6 +57,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListRegionCompositeHealthChecksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CompositeHealthCheck> getAsync(GetRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CompositeHealthCheckHealth> getHealthAsync(GetHealthRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListRegionCompositeHealthChecksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
@@ -83,7 +86,11 @@ final class RegionCompositeHealthChecksClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/compute',
         'https://www.googleapis.com/auth/cloud-platform',
@@ -165,7 +172,10 @@ final class RegionCompositeHealthChecksClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -356,6 +366,36 @@ final class RegionCompositeHealthChecksClient
     public function get(GetRegionCompositeHealthCheckRequest $request, array $callOptions = []): CompositeHealthCheck
     {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the most recent health check results for this
+     * regional CompositeHealthCheck.
+     *
+     * The async variant is {@see RegionCompositeHealthChecksClient::getHealthAsync()}
+     * .
+     *
+     * @example samples/V1/RegionCompositeHealthChecksClient/get_health.php
+     *
+     * @param GetHealthRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
+     * @param array                                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CompositeHealthCheckHealth
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getHealth(
+        GetHealthRegionCompositeHealthCheckRequest $request,
+        array $callOptions = []
+    ): CompositeHealthCheckHealth {
+        return $this->startApiCall('GetHealth', $request, $callOptions)->wait();
     }
 
     /**

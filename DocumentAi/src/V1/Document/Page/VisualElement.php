@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Detected non-text visual elements e.g. checkbox, signature etc. on the
- * page.
+ * Detected non-text visual elements, for example, checkbox, signature etc.
+ * on the page.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.Document.Page.VisualElement</code>
  */

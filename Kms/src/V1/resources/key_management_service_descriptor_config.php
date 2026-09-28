@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -181,6 +181,18 @@ return [
                     ],
                 ],
             ],
+            'ExportTrustedKeyWrappedCryptoKeyVersion' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Kms\V1\ExportTrustedKeyWrappedCryptoKeyVersionResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GenerateRandomBytes' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Kms\V1\GenerateRandomBytesResponse',
@@ -266,6 +278,18 @@ return [
                 ],
             ],
             'ImportCryptoKeyVersion' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Kms\V1\CryptoKeyVersion',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportTrustedKeyWrappedCryptoKeyVersion' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Kms\V1\CryptoKeyVersion',
                 'headerParams' => [
@@ -551,6 +575,7 @@ return [
             'templateMap' => [
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
+                'ekmConnection' => 'projects/{project}/locations/{location}/ekmConnections/{ekm_connection}',
                 'importJob' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/importJobs/{import_job}',
                 'keyRing' => 'projects/{project}/locations/{location}/keyRings/{key_ring}',
                 'location' => 'projects/{project}/locations/{location}',

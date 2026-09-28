@@ -60,6 +60,16 @@ class RequestOperation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.networksecurity.v1.AuthzPolicy.AuthzRule.To.RequestOperation.MCP mcp = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $mcp = null;
+    /**
+     * Optional. A list of SNIs to match against. The match can be one of
+     * exact, prefix, suffix, or contains (substring match). If there is no
+     * SNI (i.e. plaintext HTTP traffic), the request will be denied.
+     * Matches are always case sensitive unless the ignoreCase is set.
+     * Limited to 10 SNIs per Authorization Policy.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.AuthzPolicy.AuthzRule.StringMatch snis = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $snis;
 
     /**
      * Constructor.
@@ -92,6 +102,12 @@ class RequestOperation extends \Google\Protobuf\Internal\Message
      *           payload in the request body cannot be successfully parsed, the
      *           request will be denied. This field can be set only for AuthzPolicies
      *           targeting AgentGateway resources.
+     *     @type \Google\Cloud\NetworkSecurity\V1\AuthzPolicy\AuthzRule\StringMatch[] $snis
+     *           Optional. A list of SNIs to match against. The match can be one of
+     *           exact, prefix, suffix, or contains (substring match). If there is no
+     *           SNI (i.e. plaintext HTTP traffic), the request will be denied.
+     *           Matches are always case sensitive unless the ignoreCase is set.
+     *           Limited to 10 SNIs per Authorization Policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -275,6 +291,40 @@ class RequestOperation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkSecurity\V1\AuthzPolicy\AuthzRule\To\RequestOperation\MCP::class);
         $this->mcp = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of SNIs to match against. The match can be one of
+     * exact, prefix, suffix, or contains (substring match). If there is no
+     * SNI (i.e. plaintext HTTP traffic), the request will be denied.
+     * Matches are always case sensitive unless the ignoreCase is set.
+     * Limited to 10 SNIs per Authorization Policy.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.AuthzPolicy.AuthzRule.StringMatch snis = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\NetworkSecurity\V1\AuthzPolicy\AuthzRule\StringMatch>
+     */
+    public function getSnis()
+    {
+        return $this->snis;
+    }
+
+    /**
+     * Optional. A list of SNIs to match against. The match can be one of
+     * exact, prefix, suffix, or contains (substring match). If there is no
+     * SNI (i.e. plaintext HTTP traffic), the request will be denied.
+     * Matches are always case sensitive unless the ignoreCase is set.
+     * Limited to 10 SNIs per Authorization Policy.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.AuthzPolicy.AuthzRule.StringMatch snis = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\NetworkSecurity\V1\AuthzPolicy\AuthzRule\StringMatch[] $var
+     * @return $this
+     */
+    public function setSnis($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\NetworkSecurity\V1\AuthzPolicy\AuthzRule\StringMatch::class);
+        $this->snis = $arr;
 
         return $this;
     }

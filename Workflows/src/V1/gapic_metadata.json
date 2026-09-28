@@ -8,7 +8,7 @@
         "Workflows": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "WorkflowsGapicClient",
+                    "libraryClient": "WorkflowsClient",
                     "rpcs": {
                         "CreateWorkflow": {
                             "methods": [

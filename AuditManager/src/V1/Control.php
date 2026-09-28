@@ -16,8 +16,8 @@ use Google\Protobuf\RepeatedField;
 class Control extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The control identifier used to fetch the findings. This is
-     * same as the control report name.
+     * Output only. Control identifier that's used to fetch the findings. The
+     * identifier is the same as the control report name.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -29,53 +29,51 @@ class Control extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * Output only. Group where the control belongs. E.g. Access Control.
+     * Output only. Category that the control belongs to.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.Control.Family family = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $family = 0;
     /**
-     * Output only. Regulatory Family of the control E.g. Access Control
+     * Output only. Regulatory family of the control.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.ControlFamily control_family = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $control_family = null;
     /**
-     * Output only. Regulatory control ask of the control
+     * Output only. Description of the control.
      *
      * Generated from protobuf field <code>string description = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $description = '';
     /**
-     * Output only. The type of responsibility for implementing this control. It
-     * can be google, customer or shared.
+     * Output only. Who is responsible for implementing this control. Set to one
+     * of the following values: `GOOGLE`, `CUSTOMER`, or `SHARED`.
      *
      * Generated from protobuf field <code>string responsibility_type = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $responsibility_type = '';
     /**
-     * Output only. Description of the google responsibility for implementing this
-     * control.
+     * Output only. A description of Google's responsibility for this control.
      *
      * Generated from protobuf field <code>string google_responsibility_description = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $google_responsibility_description = '';
     /**
-     * Output only. Implementation of the google responsibility for implementing
+     * Output only. A description of how Google implements its responsibility for
      * this control.
      *
      * Generated from protobuf field <code>string google_responsibility_implementation = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $google_responsibility_implementation = '';
     /**
-     * Output only. Description of the customer responsibility for implementing
-     * this control.
+     * Output only. A description of your responsibility for this control.
      *
      * Generated from protobuf field <code>string customer_responsibility_description = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $customer_responsibility_description = '';
     /**
-     * Output only. Implementation of the customer responsibility for implementing
+     * Output only. A description of how you can implement your responsibility for
      * this control.
      *
      * Generated from protobuf field <code>string customer_responsibility_implementation = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -89,30 +87,28 @@ class Control extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $id
-     *           Output only. The control identifier used to fetch the findings. This is
-     *           same as the control report name.
+     *           Output only. Control identifier that's used to fetch the findings. The
+     *           identifier is the same as the control report name.
      *     @type string $display_name
      *           Output only. Display name of the control.
      *     @type int $family
-     *           Output only. Group where the control belongs. E.g. Access Control.
+     *           Output only. Category that the control belongs to.
      *     @type \Google\Cloud\AuditManager\V1\ControlFamily $control_family
-     *           Output only. Regulatory Family of the control E.g. Access Control
+     *           Output only. Regulatory family of the control.
      *     @type string $description
-     *           Output only. Regulatory control ask of the control
+     *           Output only. Description of the control.
      *     @type string $responsibility_type
-     *           Output only. The type of responsibility for implementing this control. It
-     *           can be google, customer or shared.
+     *           Output only. Who is responsible for implementing this control. Set to one
+     *           of the following values: `GOOGLE`, `CUSTOMER`, or `SHARED`.
      *     @type string $google_responsibility_description
-     *           Output only. Description of the google responsibility for implementing this
-     *           control.
+     *           Output only. A description of Google's responsibility for this control.
      *     @type string $google_responsibility_implementation
-     *           Output only. Implementation of the google responsibility for implementing
+     *           Output only. A description of how Google implements its responsibility for
      *           this control.
      *     @type string $customer_responsibility_description
-     *           Output only. Description of the customer responsibility for implementing
-     *           this control.
+     *           Output only. A description of your responsibility for this control.
      *     @type string $customer_responsibility_implementation
-     *           Output only. Implementation of the customer responsibility for implementing
+     *           Output only. A description of how you can implement your responsibility for
      *           this control.
      * }
      */
@@ -122,8 +118,8 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The control identifier used to fetch the findings. This is
-     * same as the control report name.
+     * Output only. Control identifier that's used to fetch the findings. The
+     * identifier is the same as the control report name.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -134,8 +130,8 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The control identifier used to fetch the findings. This is
-     * same as the control report name.
+     * Output only. Control identifier that's used to fetch the findings. The
+     * identifier is the same as the control report name.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -176,7 +172,7 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Group where the control belongs. E.g. Access Control.
+     * Output only. Category that the control belongs to.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.Control.Family family = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -187,7 +183,7 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Group where the control belongs. E.g. Access Control.
+     * Output only. Category that the control belongs to.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.Control.Family family = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -202,7 +198,7 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Regulatory Family of the control E.g. Access Control
+     * Output only. Regulatory family of the control.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.ControlFamily control_family = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\AuditManager\V1\ControlFamily|null
@@ -223,7 +219,7 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Regulatory Family of the control E.g. Access Control
+     * Output only. Regulatory family of the control.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.ControlFamily control_family = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\AuditManager\V1\ControlFamily $var
@@ -238,7 +234,7 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Regulatory control ask of the control
+     * Output only. Description of the control.
      *
      * Generated from protobuf field <code>string description = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -249,7 +245,7 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Regulatory control ask of the control
+     * Output only. Description of the control.
      *
      * Generated from protobuf field <code>string description = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -264,8 +260,8 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The type of responsibility for implementing this control. It
-     * can be google, customer or shared.
+     * Output only. Who is responsible for implementing this control. Set to one
+     * of the following values: `GOOGLE`, `CUSTOMER`, or `SHARED`.
      *
      * Generated from protobuf field <code>string responsibility_type = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -276,8 +272,8 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The type of responsibility for implementing this control. It
-     * can be google, customer or shared.
+     * Output only. Who is responsible for implementing this control. Set to one
+     * of the following values: `GOOGLE`, `CUSTOMER`, or `SHARED`.
      *
      * Generated from protobuf field <code>string responsibility_type = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -292,8 +288,7 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Description of the google responsibility for implementing this
-     * control.
+     * Output only. A description of Google's responsibility for this control.
      *
      * Generated from protobuf field <code>string google_responsibility_description = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -304,8 +299,7 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Description of the google responsibility for implementing this
-     * control.
+     * Output only. A description of Google's responsibility for this control.
      *
      * Generated from protobuf field <code>string google_responsibility_description = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -320,7 +314,7 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Implementation of the google responsibility for implementing
+     * Output only. A description of how Google implements its responsibility for
      * this control.
      *
      * Generated from protobuf field <code>string google_responsibility_implementation = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -332,7 +326,7 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Implementation of the google responsibility for implementing
+     * Output only. A description of how Google implements its responsibility for
      * this control.
      *
      * Generated from protobuf field <code>string google_responsibility_implementation = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -348,8 +342,7 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Description of the customer responsibility for implementing
-     * this control.
+     * Output only. A description of your responsibility for this control.
      *
      * Generated from protobuf field <code>string customer_responsibility_description = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -360,8 +353,7 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Description of the customer responsibility for implementing
-     * this control.
+     * Output only. A description of your responsibility for this control.
      *
      * Generated from protobuf field <code>string customer_responsibility_description = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -376,7 +368,7 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Implementation of the customer responsibility for implementing
+     * Output only. A description of how you can implement your responsibility for
      * this control.
      *
      * Generated from protobuf field <code>string customer_responsibility_implementation = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -388,7 +380,7 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Implementation of the customer responsibility for implementing
+     * Output only. A description of how you can implement your responsibility for
      * this control.
      *
      * Generated from protobuf field <code>string customer_responsibility_implementation = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

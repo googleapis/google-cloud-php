@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ use Google\Cloud\CloudQuotas\V1\QuotaPreference;
 /**
  * Lists QuotaPreferences in a given project, folder or organization.
  *
- * @param string $formattedParent Parent value of QuotaPreference resources.
+ * @param string $formattedParent Identifier. Parent value of QuotaPreference resources.
  *                                Listing across different resource containers (such as 'projects/-') is not
  *                                allowed.
  *

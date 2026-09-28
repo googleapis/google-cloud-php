@@ -21,6 +21,8 @@ use UnexpectedValueException;
  *    - TDX_CAPABLE
  *    - IDPF
  *    - SNP_SVSM_CAPABLE
+ *    - CCA_CAPABLE
+ *    - SUSPEND_SAFE_FPR
  * For more information, see
  * Enabling guest operating system features.
  *
@@ -38,6 +40,17 @@ class Type
      * Generated from protobuf enum <code>BARE_METAL_LINUX_COMPATIBLE = 354232740;</code>
      */
     const BARE_METAL_LINUX_COMPATIBLE = 354232740;
+    /**
+     * Indicates the guest OS is capable of Bare Metal Secure AI (BMSAI)
+     * confidential computing.
+     *
+     * Generated from protobuf enum <code>BMSAI_CAPABLE = 449302109;</code>
+     */
+    const BMSAI_CAPABLE = 449302109;
+    /**
+     * Generated from protobuf enum <code>CCA_CAPABLE = 79012270;</code>
+     */
+    const CCA_CAPABLE = 79012270;
     /**
      * Generated from protobuf enum <code>FEATURE_TYPE_UNSPECIFIED = 531767259;</code>
      */
@@ -79,6 +92,13 @@ class Type
      */
     const SNP_SVSM_CAPABLE = 52921460;
     /**
+     * Indicates the guest OS is safe for free page reporting (FPR) during
+     * suspend.
+     *
+     * Generated from protobuf enum <code>SUSPEND_SAFE_FPR = 223956441;</code>
+     */
+    const SUSPEND_SAFE_FPR = 223956441;
+    /**
      * Generated from protobuf enum <code>TDX_CAPABLE = 240446133;</code>
      */
     const TDX_CAPABLE = 240446133;
@@ -98,6 +118,8 @@ class Type
     private static $valueToName = [
         self::UNDEFINED_TYPE => 'UNDEFINED_TYPE',
         self::BARE_METAL_LINUX_COMPATIBLE => 'BARE_METAL_LINUX_COMPATIBLE',
+        self::BMSAI_CAPABLE => 'BMSAI_CAPABLE',
+        self::CCA_CAPABLE => 'CCA_CAPABLE',
         self::FEATURE_TYPE_UNSPECIFIED => 'FEATURE_TYPE_UNSPECIFIED',
         self::GVNIC => 'GVNIC',
         self::IDPF => 'IDPF',
@@ -108,6 +130,7 @@ class Type
         self::SEV_LIVE_MIGRATABLE_V2 => 'SEV_LIVE_MIGRATABLE_V2',
         self::SEV_SNP_CAPABLE => 'SEV_SNP_CAPABLE',
         self::SNP_SVSM_CAPABLE => 'SNP_SVSM_CAPABLE',
+        self::SUSPEND_SAFE_FPR => 'SUSPEND_SAFE_FPR',
         self::TDX_CAPABLE => 'TDX_CAPABLE',
         self::UEFI_COMPATIBLE => 'UEFI_COMPATIBLE',
         self::VIRTIO_SCSI_MULTIQUEUE => 'VIRTIO_SCSI_MULTIQUEUE',

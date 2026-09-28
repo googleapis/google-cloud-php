@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,6 +39,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dataform\V1beta1\CancelWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\CancelWorkflowInvocationResponse;
+use Google\Cloud\Dataform\V1beta1\CheckoutWorkspaceBranchRequest;
 use Google\Cloud\Dataform\V1beta1\CommitRepositoryChangesRequest;
 use Google\Cloud\Dataform\V1beta1\CommitRepositoryChangesResponse;
 use Google\Cloud\Dataform\V1beta1\CommitWorkspaceChangesRequest;
@@ -55,13 +56,21 @@ use Google\Cloud\Dataform\V1beta1\CreateTeamFolderRequest;
 use Google\Cloud\Dataform\V1beta1\CreateWorkflowConfigRequest;
 use Google\Cloud\Dataform\V1beta1\CreateWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\CreateWorkspaceRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteBranchRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteBranchResponse;
 use Google\Cloud\Dataform\V1beta1\DeleteFolderRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteFolderTreeRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteReleaseConfigRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteRepositoryLongRunningRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteRepositoryLongRunningResponse;
 use Google\Cloud\Dataform\V1beta1\DeleteRepositoryRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteTeamFolderRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteTeamFolderTreeRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteWorkflowConfigRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteWorkspaceRequest;
+use Google\Cloud\Dataform\V1beta1\FetchCurrentWorkspaceBranchRequest;
+use Google\Cloud\Dataform\V1beta1\FetchCurrentWorkspaceBranchResponse;
 use Google\Cloud\Dataform\V1beta1\FetchFileDiffRequest;
 use Google\Cloud\Dataform\V1beta1\FetchFileDiffResponse;
 use Google\Cloud\Dataform\V1beta1\FetchFileGitStatusesRequest;
@@ -71,6 +80,7 @@ use Google\Cloud\Dataform\V1beta1\FetchGitAheadBehindResponse;
 use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesRequest;
 use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesResponse;
 use Google\Cloud\Dataform\V1beta1\FetchRepositoryHistoryRequest;
+use Google\Cloud\Dataform\V1beta1\FetchWorkspaceBranchesRequest;
 use Google\Cloud\Dataform\V1beta1\Folder;
 use Google\Cloud\Dataform\V1beta1\GetCompilationResultRequest;
 use Google\Cloud\Dataform\V1beta1\GetConfigRequest;
@@ -122,6 +132,8 @@ use Google\Cloud\Dataform\V1beta1\ResetWorkspaceChangesRequest;
 use Google\Cloud\Dataform\V1beta1\ResetWorkspaceChangesResponse;
 use Google\Cloud\Dataform\V1beta1\SearchFilesRequest;
 use Google\Cloud\Dataform\V1beta1\SearchTeamFoldersRequest;
+use Google\Cloud\Dataform\V1beta1\SyncWorkspaceRefsRequest;
+use Google\Cloud\Dataform\V1beta1\SyncWorkspaceRefsResponse;
 use Google\Cloud\Dataform\V1beta1\TeamFolder;
 use Google\Cloud\Dataform\V1beta1\UpdateConfigRequest;
 use Google\Cloud\Dataform\V1beta1\UpdateFolderRequest;
@@ -166,6 +178,7 @@ use Psr\Log\LoggerInterface;
  * @experimental
  *
  * @method PromiseInterface<CancelWorkflowInvocationResponse> cancelWorkflowInvocationAsync(CancelWorkflowInvocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> checkoutWorkspaceBranchAsync(CheckoutWorkspaceBranchRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CommitRepositoryChangesResponse> commitRepositoryChangesAsync(CommitRepositoryChangesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CommitWorkspaceChangesResponse> commitWorkspaceChangesAsync(CommitWorkspaceChangesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ComputeRepositoryAccessTokenStatusResponse> computeRepositoryAccessTokenStatusAsync(ComputeRepositoryAccessTokenStatusRequest $request, array $optionalArgs = [])
@@ -177,18 +190,24 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<WorkflowConfig> createWorkflowConfigAsync(CreateWorkflowConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<WorkflowInvocation> createWorkflowInvocationAsync(CreateWorkflowInvocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Workspace> createWorkspaceAsync(CreateWorkspaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeleteBranchResponse> deleteBranchAsync(DeleteBranchRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteFolderAsync(DeleteFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteFolderTreeAsync(DeleteFolderTreeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteReleaseConfigAsync(DeleteReleaseConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteRepositoryAsync(DeleteRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRepositoryLongRunningAsync(DeleteRepositoryLongRunningRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteTeamFolderAsync(DeleteTeamFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTeamFolderTreeAsync(DeleteTeamFolderTreeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteWorkflowConfigAsync(DeleteWorkflowConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteWorkflowInvocationAsync(DeleteWorkflowInvocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteWorkspaceAsync(DeleteWorkspaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FetchCurrentWorkspaceBranchResponse> fetchCurrentWorkspaceBranchAsync(FetchCurrentWorkspaceBranchRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FetchFileDiffResponse> fetchFileDiffAsync(FetchFileDiffRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FetchFileGitStatusesResponse> fetchFileGitStatusesAsync(FetchFileGitStatusesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FetchGitAheadBehindResponse> fetchGitAheadBehindAsync(FetchGitAheadBehindRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FetchRemoteBranchesResponse> fetchRemoteBranchesAsync(FetchRemoteBranchesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> fetchRepositoryHistoryAsync(FetchRepositoryHistoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> fetchWorkspaceBranchesAsync(FetchWorkspaceBranchesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CompilationResult> getCompilationResultAsync(GetCompilationResultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Config> getConfigAsync(GetConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Folder> getFolderAsync(GetFolderRequest $request, array $optionalArgs = [])
@@ -228,6 +247,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> searchFilesAsync(SearchFilesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> searchTeamFoldersAsync(SearchTeamFoldersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SyncWorkspaceRefsResponse> syncWorkspaceRefsAsync(SyncWorkspaceRefsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Config> updateConfigAsync(UpdateConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Folder> updateFolderAsync(UpdateFolderRequest $request, array $optionalArgs = [])
@@ -267,7 +287,11 @@ final class DataformClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/bigquery',
         'https://www.googleapis.com/auth/cloud-platform',
@@ -321,7 +345,10 @@ final class DataformClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -463,6 +490,33 @@ final class DataformClient
             'project' => $project,
             'location' => $location,
             'folder' => $folder,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * git_repository_link resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $connection
+     * @param string $gitRepositoryLink
+     *
+     * @return string The formatted git_repository_link resource.
+     *
+     * @experimental
+     */
+    public static function gitRepositoryLinkName(
+        string $project,
+        string $location,
+        string $connection,
+        string $gitRepositoryLink
+    ): string {
+        return self::getPathTemplate('gitRepositoryLink')->render([
+            'project' => $project,
+            'location' => $location,
+            'connection' => $connection,
+            'git_repository_link' => $gitRepositoryLink,
         ]);
     }
 
@@ -689,6 +743,7 @@ final class DataformClient
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - folder: projects/{project}/locations/{location}/folders/{folder}
+     * - gitRepositoryLink: projects/{project}/locations/{location}/connections/{connection}/gitRepositoryLinks/{git_repository_link}
      * - location: projects/{project}/locations/{location}
      * - notebookRuntimeTemplate: projects/{project}/locations/{location}/notebookRuntimeTemplates/{notebook_runtime_template}
      * - releaseConfig: projects/{project}/locations/{location}/repositories/{repository}/releaseConfigs/{release_config}
@@ -835,6 +890,32 @@ final class DataformClient
         array $callOptions = []
     ): CancelWorkflowInvocationResponse {
         return $this->startApiCall('CancelWorkflowInvocation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Checkout a branch in a Workspace.
+     *
+     * The async variant is {@see DataformClient::checkoutWorkspaceBranchAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/checkout_workspace_branch.php
+     *
+     * @param CheckoutWorkspaceBranchRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function checkoutWorkspaceBranch(CheckoutWorkspaceBranchRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('CheckoutWorkspaceBranch', $request, $callOptions)->wait();
     }
 
     /**
@@ -1158,6 +1239,34 @@ final class DataformClient
     }
 
     /**
+     * Deletes a branch in a Workspace.
+     *
+     * The async variant is {@see DataformClient::deleteBranchAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/delete_branch.php
+     *
+     * @param DeleteBranchRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DeleteBranchResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteBranch(DeleteBranchRequest $request, array $callOptions = []): DeleteBranchResponse
+    {
+        return $this->startApiCall('DeleteBranch', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single Folder.
      *
      * The async variant is {@see DataformClient::deleteFolderAsync()} .
@@ -1181,6 +1290,35 @@ final class DataformClient
     public function deleteFolder(DeleteFolderRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteFolder', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a Folder with its contents (Folders, Repositories, Workspaces,
+     * ReleaseConfigs, and WorkflowConfigs).
+     *
+     * The async variant is {@see DataformClient::deleteFolderTreeAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/delete_folder_tree.php
+     *
+     * @param DeleteFolderTreeRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteFolderTree(DeleteFolderTreeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteFolderTree', $request, $callOptions)->wait();
     }
 
     /**
@@ -1236,6 +1374,36 @@ final class DataformClient
     }
 
     /**
+     * Deletes a single repository asynchronously.
+     *
+     * The async variant is {@see DataformClient::deleteRepositoryLongRunningAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/delete_repository_long_running.php
+     *
+     * @param DeleteRepositoryLongRunningRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<DeleteRepositoryLongRunningResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteRepositoryLongRunning(
+        DeleteRepositoryLongRunningRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteRepositoryLongRunning', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single TeamFolder.
      *
      * The async variant is {@see DataformClient::deleteTeamFolderAsync()} .
@@ -1259,6 +1427,37 @@ final class DataformClient
     public function deleteTeamFolder(DeleteTeamFolderRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteTeamFolder', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a TeamFolder with its contents (Folders, Repositories, Workspaces,
+     * ReleaseConfigs, and WorkflowConfigs).
+     *
+     * The async variant is {@see DataformClient::deleteTeamFolderTreeAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/delete_team_folder_tree.php
+     *
+     * @param DeleteTeamFolderTreeRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteTeamFolderTree(
+        DeleteTeamFolderTreeRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteTeamFolderTree', $request, $callOptions)->wait();
     }
 
     /**
@@ -1337,6 +1536,36 @@ final class DataformClient
     public function deleteWorkspace(DeleteWorkspaceRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteWorkspace', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetches the current branch of a Workspace.
+     *
+     * The async variant is {@see DataformClient::fetchCurrentWorkspaceBranchAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/fetch_current_workspace_branch.php
+     *
+     * @param FetchCurrentWorkspaceBranchRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FetchCurrentWorkspaceBranchResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function fetchCurrentWorkspaceBranch(
+        FetchCurrentWorkspaceBranchRequest $request,
+        array $callOptions = []
+    ): FetchCurrentWorkspaceBranchResponse {
+        return $this->startApiCall('FetchCurrentWorkspaceBranch', $request, $callOptions)->wait();
     }
 
     /**
@@ -1486,6 +1715,36 @@ final class DataformClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('FetchRepositoryHistory', $request, $callOptions);
+    }
+
+    /**
+     * Fetches branches in a Workspace.
+     *
+     * The async variant is {@see DataformClient::fetchWorkspaceBranchesAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/fetch_workspace_branches.php
+     *
+     * @param FetchWorkspaceBranchesRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function fetchWorkspaceBranches(
+        FetchWorkspaceBranchesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('FetchWorkspaceBranches', $request, $callOptions);
     }
 
     /**
@@ -2624,6 +2883,36 @@ final class DataformClient
     }
 
     /**
+     * Syncs the refs of a Workspace.
+     *
+     * The async variant is {@see DataformClient::syncWorkspaceRefsAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/sync_workspace_refs.php
+     *
+     * @param SyncWorkspaceRefsRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SyncWorkspaceRefsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function syncWorkspaceRefs(
+        SyncWorkspaceRefsRequest $request,
+        array $callOptions = []
+    ): SyncWorkspaceRefsResponse {
+        return $this->startApiCall('SyncWorkspaceRefs', $request, $callOptions)->wait();
+    }
+
+    /**
      * Returns permissions that a caller has on the specified resource.
      * If the resource does not exist, this will return an empty set of
      * permissions, not a `NOT_FOUND` error.
@@ -3029,13 +3318,21 @@ final class DataformClient
 
     /**
      * Lists information about the supported locations for this service.
-    This method can be called in two ways:
-
-    *   **List all public locations:** Use the path `GET /v1/locations`.
-    *   **List project-visible locations:** Use the path
-    `GET /v1/projects/{project_id}/locations`. This may include public
-    locations as well as private or other locations specifically visible
-    to the project.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see DataformClient::listLocationsAsync()} .
      *

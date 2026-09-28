@@ -17,8 +17,8 @@ use Google\Protobuf\RepeatedField;
  * will first attempt converting the type of the data to be transformed to match
  * the type of the bound before comparing.
  * See
- * https://cloud.google.com/sensitive-data-protection/docs/concepts-bucketing to
- * learn more.
+ * https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-bucketing
+ * to learn more.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.BucketingConfig</code>
  */

@@ -490,6 +490,30 @@ class OperationTest extends TestCase
         $this->assertEquals('foo', $transaction->id());
     }
 
+    public function testTransactionWithPrecommitToken()
+    {
+        $precommitToken = new MultiplexedSessionPrecommitToken([
+            'precommit_token' => 'my-precommit-token',
+        ]);
+        $this->spannerClient->beginTransaction(
+            Argument::cetera()
+        )
+            ->shouldBeCalled()
+            ->willReturn(new TransactionProto([
+                'id' => self::TRANSACTION,
+                'precommit_token' => $precommitToken,
+            ]));
+
+        $t = $this->operation->transaction($this->session);
+        $this->assertInstanceOf(Transaction::class, $t);
+        $this->assertEquals(self::TRANSACTION, $t->id());
+
+        $ref = new \ReflectionClass(Transaction::class);
+        $prop = $ref->getProperty('precommitToken');
+        $this->assertNotNull($prop->getValue($t));
+        $this->assertEquals($precommitToken, $prop->getValue($t));
+    }
+
     public function testExecuteAndExecuteUpdateWithExcludeTxnFromChangeStreams()
     {
         $sql = 'SELECT example FROM sql_query';
@@ -598,13 +622,15 @@ class OperationTest extends TestCase
             ]));
 
         $res = $this->operation->partitionQuery($this->session, $transactionId, $sql, [
-            'parameters' => $params
+            'parameters' => $params,
+            'dataBoostEnabled' => true
         ]);
 
         $this->assertContainsOnlyInstancesOf(QueryPartition::class, $res);
         $this->assertCount(2, $res);
         $this->assertEquals($partitionToken1, $res[0]->token());
         $this->assertEquals($partitionToken2, $res[1]->token());
+        $this->assertTrue($res[0]->options()['dataBoostEnabled']);
     }
 
     public function testPartitionRead()
@@ -645,6 +671,50 @@ class OperationTest extends TestCase
         $this->assertCount(2, $res);
         $this->assertEquals($partitionToken1, $res[0]->token());
         $this->assertEquals($partitionToken2, $res[1]->token());
+    }
+
+    public function testPartitionReadWithOptions()
+    {
+        $transactionId = 'foo';
+        $partitionToken1 = 'token1';
+        $options = [
+            'headers' => ['custom-header' => 'value'],
+            'retrySettings' => ['retriesEnabled' => false],
+            'timeoutMillis' => 1234,
+            'transportOptions' => ['grpc' => ['timeout' => 100]],
+            'dataBoostEnabled' => true,
+        ];
+
+        $this->spannerClient->partitionRead(
+            Argument::any(),
+            Argument::that(function (array $callOptions) {
+                $this->assertEquals($callOptions['headers']['custom-header'], 'value');
+                $this->assertEquals($callOptions['retrySettings'], ['retriesEnabled' => false]);
+                $this->assertEquals($callOptions['timeoutMillis'], 1234);
+                $this->assertEquals($callOptions['transportOptions'], ['grpc' => ['timeout' => 100]]);
+                return true;
+            })
+        )
+            ->shouldBeCalled()
+            ->willReturn(new PartitionResponse([
+                'partitions' => [
+                    new Partition(['partition_token' => $partitionToken1]),
+                ]
+            ]));
+
+        $res = $this->operation->partitionRead(
+            $this->session,
+            $transactionId,
+            'Posts',
+            new KeySet(['all' => true]),
+            ['foo'],
+            $options
+        );
+
+        $this->assertContainsOnlyInstancesOf(ReadPartition::class, $res);
+        $this->assertCount(1, $res);
+        $this->assertEquals($partitionToken1, $res[0]->token());
+        $this->assertTrue($res[0]->options()['dataBoostEnabled']);
     }
 
     public function testCommitWithPrecommitTokenOnRetry()

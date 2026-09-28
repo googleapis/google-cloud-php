@@ -7,23 +7,33 @@ namespace Grafeas\V1\CVSS;
 use UnexpectedValueException;
 
 /**
+ * Privileges Required.
+ *
  * Protobuf type <code>grafeas.v1.CVSS.PrivilegesRequired</code>
  */
 class PrivilegesRequired
 {
     /**
+     * Unspecified.
+     *
      * Generated from protobuf enum <code>PRIVILEGES_REQUIRED_UNSPECIFIED = 0;</code>
      */
     const PRIVILEGES_REQUIRED_UNSPECIFIED = 0;
     /**
+     * No privileges required (PR:N). Defined in CVSS v3, v4.
+     *
      * Generated from protobuf enum <code>PRIVILEGES_REQUIRED_NONE = 1;</code>
      */
     const PRIVILEGES_REQUIRED_NONE = 1;
     /**
+     * Low privileges required (PR:L). Defined in CVSS v3, v4.
+     *
      * Generated from protobuf enum <code>PRIVILEGES_REQUIRED_LOW = 2;</code>
      */
     const PRIVILEGES_REQUIRED_LOW = 2;
     /**
+     * High privileges required (PR:H). Defined in CVSS v3, v4.
+     *
      * Generated from protobuf enum <code>PRIVILEGES_REQUIRED_HIGH = 3;</code>
      */
     const PRIVILEGES_REQUIRED_HIGH = 3;

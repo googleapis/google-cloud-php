@@ -8,7 +8,7 @@
         "Dataform": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataformGapicClient",
+                    "libraryClient": "DataformClient",
                     "rpcs": {
                         "CancelWorkflowInvocation": {
                             "methods": [

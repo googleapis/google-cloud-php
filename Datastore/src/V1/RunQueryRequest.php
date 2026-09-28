@@ -60,6 +60,12 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.datastore.v1.ExplainOptions explain_options = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $explain_options = null;
+    /**
+     * Optional. The options for this request.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.RequestOptions request_options = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $request_options = null;
     protected $query_type;
 
     /**
@@ -93,6 +99,8 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Datastore\V1\ExplainOptions $explain_options
      *           Optional. Explain options for the query. If set, additional query
      *           statistics will be returned. If not, only query results will be returned.
+     *     @type \Google\Cloud\Datastore\V1\RequestOptions $request_options
+     *           Optional. The options for this request.
      * }
      */
     public function __construct($data = NULL) {
@@ -372,6 +380,42 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\ExplainOptions::class);
         $this->explain_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The options for this request.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.RequestOptions request_options = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Datastore\V1\RequestOptions|null
+     */
+    public function getRequestOptions()
+    {
+        return $this->request_options;
+    }
+
+    public function hasRequestOptions()
+    {
+        return isset($this->request_options);
+    }
+
+    public function clearRequestOptions()
+    {
+        unset($this->request_options);
+    }
+
+    /**
+     * Optional. The options for this request.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.RequestOptions request_options = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Datastore\V1\RequestOptions $var
+     * @return $this
+     */
+    public function setRequestOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\RequestOptions::class);
+        $this->request_options = $var;
 
         return $this;
     }

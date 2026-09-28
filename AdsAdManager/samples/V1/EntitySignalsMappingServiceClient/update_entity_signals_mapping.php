@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,9 @@ use Google\Ads\AdManager\V1\Client\EntitySignalsMappingServiceClient;
 use Google\Ads\AdManager\V1\EntitySignalsMapping;
 use Google\Ads\AdManager\V1\UpdateEntitySignalsMappingRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
- * API to update an `EntitySignalsMapping` object.
+ * Updates an `EntitySignalsMapping` object.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -45,10 +44,8 @@ function update_entity_signals_mapping_sample(): void
 
     // Prepare the request message.
     $entitySignalsMapping = new EntitySignalsMapping();
-    $updateMask = new FieldMask();
     $request = (new UpdateEntitySignalsMappingRequest())
-        ->setEntitySignalsMapping($entitySignalsMapping)
-        ->setUpdateMask($updateMask);
+        ->setEntitySignalsMapping($entitySignalsMapping);
 
     // Call the API and handle any network failures.
     try {

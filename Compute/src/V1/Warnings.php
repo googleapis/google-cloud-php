@@ -30,7 +30,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
      *   {
      *    "key": "scope",
      *    "value": "zones/us-east1-d"
-     *   }
+     *   }]
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Data data = 3076010;</code>
      */
@@ -60,7 +60,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
      *             {
      *              "key": "scope",
      *              "value": "zones/us-east1-d"
-     *             }
+     *             }]
      *     @type string $message
      *           [Output Only] A human-readable description of the warning code.
      * }
@@ -119,7 +119,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
      *   {
      *    "key": "scope",
      *    "value": "zones/us-east1-d"
-     *   }
+     *   }]
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Data data = 3076010;</code>
      * @return RepeatedField<\Google\Cloud\Compute\V1\Data>
@@ -136,7 +136,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
      *   {
      *    "key": "scope",
      *    "value": "zones/us-east1-d"
-     *   }
+     *   }]
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Data data = 3076010;</code>
      * @param \Google\Cloud\Compute\V1\Data[] $var

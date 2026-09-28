@@ -45,6 +45,20 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string tracking_url = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $tracking_url = '';
+    /**
+     * Optional. The cumulative CPU time consumed by the application for a job,
+     * measured in vcore-seconds.
+     *
+     * Generated from protobuf field <code>int64 vcore_seconds = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $vcore_seconds = 0;
+    /**
+     * Optional. The cumulative memory usage of the application for a job,
+     * measured in mb-seconds.
+     *
+     * Generated from protobuf field <code>int64 memory_mb_seconds = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $memory_mb_seconds = 0;
 
     /**
      * Constructor.
@@ -63,6 +77,12 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
      *           TimelineServer that provides application-specific information. The URL uses
      *           the internal hostname, and requires a proxy server for resolution and,
      *           possibly, access.
+     *     @type int|string $vcore_seconds
+     *           Optional. The cumulative CPU time consumed by the application for a job,
+     *           measured in vcore-seconds.
+     *     @type int|string $memory_mb_seconds
+     *           Optional. The cumulative memory usage of the application for a job,
+     *           measured in mb-seconds.
      * }
      */
     public function __construct($data = NULL) {
@@ -176,6 +196,62 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->tracking_url = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The cumulative CPU time consumed by the application for a job,
+     * measured in vcore-seconds.
+     *
+     * Generated from protobuf field <code>int64 vcore_seconds = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getVcoreSeconds()
+    {
+        return $this->vcore_seconds;
+    }
+
+    /**
+     * Optional. The cumulative CPU time consumed by the application for a job,
+     * measured in vcore-seconds.
+     *
+     * Generated from protobuf field <code>int64 vcore_seconds = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setVcoreSeconds($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->vcore_seconds = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The cumulative memory usage of the application for a job,
+     * measured in mb-seconds.
+     *
+     * Generated from protobuf field <code>int64 memory_mb_seconds = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getMemoryMbSeconds()
+    {
+        return $this->memory_mb_seconds;
+    }
+
+    /**
+     * Optional. The cumulative memory usage of the application for a job,
+     * measured in mb-seconds.
+     *
+     * Generated from protobuf field <code>int64 memory_mb_seconds = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMemoryMbSeconds($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->memory_mb_seconds = $var;
 
         return $this;
     }

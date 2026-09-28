@@ -31,6 +31,14 @@ class RetrieveToolsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string tool_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $tool_ids;
+    /**
+     * Optional. If true, the returned tools will contain raw descriptions and
+     * schemas directly from the server, bypassing any stored persistence
+     * configurations (overrides/snapshots).
+     *
+     * Generated from protobuf field <code>bool bypass_persistence_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $bypass_persistence_config = false;
 
     /**
      * Constructor.
@@ -45,6 +53,10 @@ class RetrieveToolsRequest extends \Google\Protobuf\Internal\Message
      *     @type string[] $tool_ids
      *           Optional. The identifiers of the tools to retrieve from the toolset.
      *           If empty, all tools in the toolset will be returned.
+     *     @type bool $bypass_persistence_config
+     *           Optional. If true, the returned tools will contain raw descriptions and
+     *           schemas directly from the server, bypassing any stored persistence
+     *           configurations (overrides/snapshots).
      * }
      */
     public function __construct($data = NULL) {
@@ -106,6 +118,36 @@ class RetrieveToolsRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->tool_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, the returned tools will contain raw descriptions and
+     * schemas directly from the server, bypassing any stored persistence
+     * configurations (overrides/snapshots).
+     *
+     * Generated from protobuf field <code>bool bypass_persistence_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getBypassPersistenceConfig()
+    {
+        return $this->bypass_persistence_config;
+    }
+
+    /**
+     * Optional. If true, the returned tools will contain raw descriptions and
+     * schemas directly from the server, bypassing any stored persistence
+     * configurations (overrides/snapshots).
+     *
+     * Generated from protobuf field <code>bool bypass_persistence_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setBypassPersistenceConfig($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->bypass_persistence_config = $var;
 
         return $this;
     }

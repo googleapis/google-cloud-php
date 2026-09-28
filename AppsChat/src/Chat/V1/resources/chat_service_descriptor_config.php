@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,9 +63,33 @@ return [
                     ],
                 ],
             ],
+            'CreateMessagePin' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\MessagePin',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateReaction' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\Reaction',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateSection' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\Section',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -115,7 +139,31 @@ return [
                     ],
                 ],
             ],
+            'DeleteMessagePin' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteReaction' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteSection' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
                 'headerParams' => [
@@ -143,9 +191,33 @@ return [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\Space',
             ],
+            'FindGroupChats' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSpaces',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\FindGroupChatsResponse',
+            ],
             'GetAttachment' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\Attachment',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAvailability' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\Availability',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -283,6 +355,26 @@ return [
                     ],
                 ],
             ],
+            'ListMessagePins' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getMessagePins',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\ListMessagePinsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListMessages' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -314,6 +406,46 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\ListReactionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSectionItems' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSectionItems',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\ListSectionItemsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSections' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSections',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\ListSectionsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -355,6 +487,86 @@ return [
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\ListSpacesResponse',
             ],
+            'MarkAsActive' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\Availability',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'MarkAsAway' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\Availability',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'MarkAsDoNotDisturb' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\Availability',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'MoveSectionItem' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\MoveSectionItemResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'PositionSection' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\PositionSectionResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'SearchMessages' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getResults',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\SearchMessagesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'SearchSpaces' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -370,6 +582,19 @@ return [
             'SetUpSpace' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\Space',
+            ],
+            'UpdateAvailability' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\Availability',
+                'headerParams' => [
+                    [
+                        'keyName' => 'availability.name',
+                        'fieldAccessors' => [
+                            'getAvailability',
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'UpdateMembership' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -392,6 +617,19 @@ return [
                         'keyName' => 'message.name',
                         'fieldAccessors' => [
                             'getMessage',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateSection' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\Section',
+                'headerParams' => [
+                    [
+                        'keyName' => 'section.name',
+                        'fieldAccessors' => [
+                            'getSection',
                             'getName',
                         ],
                     ],
@@ -450,17 +688,22 @@ return [
             ],
             'templateMap' => [
                 'attachment' => 'spaces/{space}/messages/{message}/attachments/{attachment}',
+                'availability' => 'users/{user}/availability',
                 'customEmoji' => 'customEmojis/{custom_emoji}',
                 'membership' => 'spaces/{space}/members/{member}',
                 'message' => 'spaces/{space}/messages/{message}',
+                'messagePin' => 'spaces/{space}/messagePins/{message_pin}',
                 'quotedMessageMetadata' => 'spaces/{space}/messages/{message}/quotedMessageMetadata/{quoted_message_metadata}',
                 'reaction' => 'spaces/{space}/messages/{message}/reactions/{reaction}',
+                'section' => 'users/{user}/sections/{section}',
+                'sectionItem' => 'users/{user}/sections/{section}/items/{item}',
                 'space' => 'spaces/{space}',
                 'spaceEvent' => 'spaces/{space}/spaceEvents/{space_event}',
                 'spaceNotificationSetting' => 'users/{user}/spaces/{space}/spaceNotificationSetting',
                 'spaceReadState' => 'users/{user}/spaces/{space}/spaceReadState',
                 'thread' => 'spaces/{space}/threads/{thread}',
                 'threadReadState' => 'users/{user}/spaces/{space}/threads/{thread}/threadReadState',
+                'user' => 'users/{user}',
             ],
         ],
     ],

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,6 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Protobuf\Duration;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -402,8 +401,7 @@ class AdBreakServiceClientTest extends GeneratedTest
         $adBreak = new AdBreak();
         $adBreakDuration = new Duration();
         $adBreak->setDuration($adBreakDuration);
-        $updateMask = new FieldMask();
-        $request = (new UpdateAdBreakRequest())->setAdBreak($adBreak)->setUpdateMask($updateMask);
+        $request = (new UpdateAdBreakRequest())->setAdBreak($adBreak);
         $response = $gapicClient->updateAdBreak($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -413,8 +411,6 @@ class AdBreakServiceClientTest extends GeneratedTest
         $this->assertSame('/google.ads.admanager.v1.AdBreakService/UpdateAdBreak', $actualFuncCall);
         $actualValue = $actualRequestObject->getAdBreak();
         $this->assertProtobufEquals($adBreak, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -443,8 +439,7 @@ class AdBreakServiceClientTest extends GeneratedTest
         $adBreak = new AdBreak();
         $adBreakDuration = new Duration();
         $adBreak->setDuration($adBreakDuration);
-        $updateMask = new FieldMask();
-        $request = (new UpdateAdBreakRequest())->setAdBreak($adBreak)->setUpdateMask($updateMask);
+        $request = (new UpdateAdBreakRequest())->setAdBreak($adBreak);
         try {
             $gapicClient->updateAdBreak($request);
             // If the $gapicClient method call did not throw, fail the test

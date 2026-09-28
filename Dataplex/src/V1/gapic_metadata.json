@@ -8,7 +8,7 @@
         "DataplexService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataplexServiceGapicClient",
+                    "libraryClient": "DataplexServiceClient",
                     "rpcs": {
                         "CancelJob": {
                             "methods": [
@@ -177,7 +177,7 @@
         "BusinessGlossaryService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BusinessGlossaryServiceGapicClient",
+                    "libraryClient": "BusinessGlossaryServiceClient",
                     "rpcs": {
                         "CreateGlossary": {
                             "methods": [
@@ -286,7 +286,7 @@
         "CatalogService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CatalogServiceGapicClient",
+                    "libraryClient": "CatalogServiceClient",
                     "rpcs": {
                         "CancelMetadataJob": {
                             "methods": [
@@ -438,6 +438,11 @@
                                 "lookupEntryLinks"
                             ]
                         },
+                        "ModifyEntry": {
+                            "methods": [
+                                "modifyEntry"
+                            ]
+                        },
                         "SearchEntries": {
                             "methods": [
                                 "searchEntries"
@@ -505,7 +510,7 @@
         "CmekService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CmekServiceGapicClient",
+                    "libraryClient": "CmekServiceClient",
                     "rpcs": {
                         "CreateEncryptionConfig": {
                             "methods": [
@@ -564,7 +569,7 @@
         "ContentService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ContentServiceGapicClient",
+                    "libraryClient": "ContentServiceClient",
                     "rpcs": {
                         "GetLocation": {
                             "methods": [
@@ -598,7 +603,7 @@
         "DataProductService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataProductServiceGapicClient",
+                    "libraryClient": "DataProductServiceClient",
                     "rpcs": {
                         "CreateDataAsset": {
                             "methods": [
@@ -638,6 +643,11 @@
                         "ListDataProducts": {
                             "methods": [
                                 "listDataProducts"
+                            ]
+                        },
+                        "RequestDataProductAccess": {
+                            "methods": [
+                                "requestDataProductAccess"
                             ]
                         },
                         "UpdateDataAsset": {
@@ -682,7 +692,7 @@
         "DataTaxonomyService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataTaxonomyServiceGapicClient",
+                    "libraryClient": "DataTaxonomyServiceClient",
                     "rpcs": {
                         "CreateDataAttribute": {
                             "methods": [
@@ -791,8 +801,13 @@
         "DataScanService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataScanServiceGapicClient",
+                    "libraryClient": "DataScanServiceClient",
                     "rpcs": {
+                        "CancelDataScanJob": {
+                            "methods": [
+                                "cancelDataScanJob"
+                            ]
+                        },
                         "CreateDataScan": {
                             "methods": [
                                 "createDataScan"
@@ -870,7 +885,7 @@
         "MetadataService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MetadataServiceGapicClient",
+                    "libraryClient": "MetadataServiceClient",
                     "rpcs": {
                         "CreateEntity": {
                             "methods": [

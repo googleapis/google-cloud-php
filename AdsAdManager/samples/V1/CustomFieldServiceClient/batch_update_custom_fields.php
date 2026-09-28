@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,10 +32,9 @@ use Google\Ads\AdManager\V1\CustomFieldEntityTypeEnum\CustomFieldEntityType;
 use Google\Ads\AdManager\V1\CustomFieldVisibilityEnum\CustomFieldVisibility;
 use Google\Ads\AdManager\V1\UpdateCustomFieldRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
- * API to batch update `CustomField` objects.
+ * Batch updates `CustomField` objects.
  *
  * @param string $formattedParent                The parent resource where `CustomFields` will be updated.
  *                                               Format: `networks/{network_code}`
@@ -63,10 +62,8 @@ function batch_update_custom_fields_sample(
         ->setEntityType($requestsCustomFieldEntityType)
         ->setDataType($requestsCustomFieldDataType)
         ->setVisibility($requestsCustomFieldVisibility);
-    $requestsUpdateMask = new FieldMask();
     $updateCustomFieldRequest = (new UpdateCustomFieldRequest())
-        ->setCustomField($requestsCustomField)
-        ->setUpdateMask($requestsUpdateMask);
+        ->setCustomField($requestsCustomField);
     $requests = [$updateCustomFieldRequest,];
     $request = (new BatchUpdateCustomFieldsRequest())
         ->setParent($formattedParent)

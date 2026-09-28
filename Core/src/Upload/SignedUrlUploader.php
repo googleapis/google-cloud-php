@@ -71,7 +71,7 @@ class SignedUrlUploader extends ResumableUploader
     {
         $headers = $this->headers + [
             'Content-Type' => $this->contentType,
-            'Content-Length' => 0,
+            'Content-Length' => '0',
             'x-goog-resumable' => 'start'
         ];
 

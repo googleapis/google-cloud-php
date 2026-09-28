@@ -25,8 +25,8 @@ class Event extends \Google\Protobuf\Internal\Message
      */
     private $destination_references;
     /**
-     * Optional. The unique identifier for this event. Required for conversions
-     * using multiple data sources.
+     * Optional. The unique identifier for this event. Required for events sent as
+     * an additional data source for tag conversions.
      *
      * Generated from protobuf field <code>string transaction_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -78,6 +78,13 @@ class Event extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional double conversion_value = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $conversion_value = null;
+    /**
+     * Optional. The conversion quantity associated with the event, for
+     * counting-based conversions.
+     *
+     * Generated from protobuf field <code>optional double conversion_count = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $conversion_count = null;
     /**
      * Optional. Signal for where the event happened (web, app, in-store, etc.).
      *
@@ -147,6 +154,28 @@ class Event extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.EventParameter additional_event_parameters = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $additional_event_parameters;
+    /**
+     * Optional. The same type of data provided in user_data, but explicitly
+     * flagged as being provided as owned by a third-party and not first-party
+     * advertiser data.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.UserData third_party_user_data = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $third_party_user_data = null;
+    /**
+     * Optional. Information gathered about the location of the user when this
+     * event occurred.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.EventLocation event_location = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $event_location = null;
+    /**
+     * Optional. A unique identifier for the user instance of an app client for
+     * this GA4 app stream.
+     *
+     * Generated from protobuf field <code>string app_instance_id = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $app_instance_id = '';
 
     /**
      * Constructor.
@@ -160,8 +189,8 @@ class Event extends \Google\Protobuf\Internal\Message
      *           [destinations][google.ads.datamanager.v1.IngestEventsRequest.destinations]
      *           in the request.
      *     @type string $transaction_id
-     *           Optional. The unique identifier for this event. Required for conversions
-     *           using multiple data sources.
+     *           Optional. The unique identifier for this event. Required for events sent as
+     *           an additional data source for tag conversions.
      *     @type \Google\Protobuf\Timestamp $event_timestamp
      *           Required. The time the event occurred.
      *     @type \Google\Protobuf\Timestamp $last_updated_timestamp
@@ -181,6 +210,9 @@ class Event extends \Google\Protobuf\Internal\Message
      *     @type float $conversion_value
      *           Optional. The conversion value associated with the event, for value-based
      *           conversions.
+     *     @type float $conversion_count
+     *           Optional. The conversion quantity associated with the event, for
+     *           counting-based conversions.
      *     @type int $event_source
      *           Optional. Signal for where the event happened (web, app, in-store, etc.).
      *     @type \Google\Ads\DataManager\V1\DeviceInfo $event_device_info
@@ -210,6 +242,16 @@ class Event extends \Google\Protobuf\Internal\Message
      *           parameters](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events)
      *           to be included within the event that were not already specified using other
      *           structured fields.
+     *     @type \Google\Ads\DataManager\V1\UserData $third_party_user_data
+     *           Optional. The same type of data provided in user_data, but explicitly
+     *           flagged as being provided as owned by a third-party and not first-party
+     *           advertiser data.
+     *     @type \Google\Ads\DataManager\V1\EventLocation $event_location
+     *           Optional. Information gathered about the location of the user when this
+     *           event occurred.
+     *     @type string $app_instance_id
+     *           Optional. A unique identifier for the user instance of an app client for
+     *           this GA4 app stream.
      * }
      */
     public function __construct($data = NULL) {
@@ -250,8 +292,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The unique identifier for this event. Required for conversions
-     * using multiple data sources.
+     * Optional. The unique identifier for this event. Required for events sent as
+     * an additional data source for tag conversions.
      *
      * Generated from protobuf field <code>string transaction_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -262,8 +304,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The unique identifier for this event. Required for conversions
-     * using multiple data sources.
+     * Optional. The unique identifier for this event. Required for events sent as
+     * an additional data source for tag conversions.
      *
      * Generated from protobuf field <code>string transaction_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -525,6 +567,44 @@ class Event extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->conversion_value = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The conversion quantity associated with the event, for
+     * counting-based conversions.
+     *
+     * Generated from protobuf field <code>optional double conversion_count = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
+     */
+    public function getConversionCount()
+    {
+        return isset($this->conversion_count) ? $this->conversion_count : 0.0;
+    }
+
+    public function hasConversionCount()
+    {
+        return isset($this->conversion_count);
+    }
+
+    public function clearConversionCount()
+    {
+        unset($this->conversion_count);
+    }
+
+    /**
+     * Optional. The conversion quantity associated with the event, for
+     * counting-based conversions.
+     *
+     * Generated from protobuf field <code>optional double conversion_count = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setConversionCount($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->conversion_count = $var;
 
         return $this;
     }
@@ -833,6 +913,112 @@ class Event extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\DataManager\V1\EventParameter::class);
         $this->additional_event_parameters = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The same type of data provided in user_data, but explicitly
+     * flagged as being provided as owned by a third-party and not first-party
+     * advertiser data.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.UserData third_party_user_data = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\DataManager\V1\UserData|null
+     */
+    public function getThirdPartyUserData()
+    {
+        return $this->third_party_user_data;
+    }
+
+    public function hasThirdPartyUserData()
+    {
+        return isset($this->third_party_user_data);
+    }
+
+    public function clearThirdPartyUserData()
+    {
+        unset($this->third_party_user_data);
+    }
+
+    /**
+     * Optional. The same type of data provided in user_data, but explicitly
+     * flagged as being provided as owned by a third-party and not first-party
+     * advertiser data.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.UserData third_party_user_data = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\DataManager\V1\UserData $var
+     * @return $this
+     */
+    public function setThirdPartyUserData($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\UserData::class);
+        $this->third_party_user_data = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Information gathered about the location of the user when this
+     * event occurred.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.EventLocation event_location = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\DataManager\V1\EventLocation|null
+     */
+    public function getEventLocation()
+    {
+        return $this->event_location;
+    }
+
+    public function hasEventLocation()
+    {
+        return isset($this->event_location);
+    }
+
+    public function clearEventLocation()
+    {
+        unset($this->event_location);
+    }
+
+    /**
+     * Optional. Information gathered about the location of the user when this
+     * event occurred.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.EventLocation event_location = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\DataManager\V1\EventLocation $var
+     * @return $this
+     */
+    public function setEventLocation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\EventLocation::class);
+        $this->event_location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A unique identifier for the user instance of an app client for
+     * this GA4 app stream.
+     *
+     * Generated from protobuf field <code>string app_instance_id = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getAppInstanceId()
+    {
+        return $this->app_instance_id;
+    }
+
+    /**
+     * Optional. A unique identifier for the user instance of an app client for
+     * this GA4 app stream.
+     *
+     * Generated from protobuf field <code>string app_instance_id = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAppInstanceId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->app_instance_id = $var;
 
         return $this;
     }

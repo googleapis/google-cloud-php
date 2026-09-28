@@ -19,10 +19,8 @@ class ParameterizedSecureViewParameters extends \Google\Protobuf\Internal\Messag
 {
     /**
      * Optional. Named parameters for Parameterized Secure Views (PSV).
-     * The map keys are parameter names (e.g., `"user_id"`), and values are the
-     * corresponding parameter values (e.g., `"123"`).
      *
-     * Generated from protobuf field <code>map<string, string> parameters = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ParameterizedSecureViewParameters.Parameter parameters = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $parameters;
 
@@ -32,10 +30,8 @@ class ParameterizedSecureViewParameters extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array|\Google\Protobuf\Internal\MapField $parameters
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\ParameterizedSecureViewParameters\Parameter[] $parameters
      *           Optional. Named parameters for Parameterized Secure Views (PSV).
-     *           The map keys are parameter names (e.g., `"user_id"`), and values are the
-     *           corresponding parameter values (e.g., `"123"`).
      * }
      */
     public function __construct($data = NULL) {
@@ -45,11 +41,9 @@ class ParameterizedSecureViewParameters extends \Google\Protobuf\Internal\Messag
 
     /**
      * Optional. Named parameters for Parameterized Secure Views (PSV).
-     * The map keys are parameter names (e.g., `"user_id"`), and values are the
-     * corresponding parameter values (e.g., `"123"`).
      *
-     * Generated from protobuf field <code>map<string, string> parameters = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\MapField
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ParameterizedSecureViewParameters.Parameter parameters = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\ParameterizedSecureViewParameters\Parameter>
      */
     public function getParameters()
     {
@@ -58,16 +52,14 @@ class ParameterizedSecureViewParameters extends \Google\Protobuf\Internal\Messag
 
     /**
      * Optional. Named parameters for Parameterized Secure Views (PSV).
-     * The map keys are parameter names (e.g., `"user_id"`), and values are the
-     * corresponding parameter values (e.g., `"123"`).
      *
-     * Generated from protobuf field <code>map<string, string> parameters = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array|\Google\Protobuf\Internal\MapField $var
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ParameterizedSecureViewParameters.Parameter parameters = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\ParameterizedSecureViewParameters\Parameter[] $var
      * @return $this
      */
     public function setParameters($var)
     {
-        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GeminiDataAnalytics\V1beta\ParameterizedSecureViewParameters\Parameter::class);
         $this->parameters = $arr;
 
         return $this;

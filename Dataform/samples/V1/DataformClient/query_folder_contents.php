@@ -32,7 +32,7 @@ use Google\Cloud\Dataform\V1\QueryFolderContentsResponse\FolderContentsEntry;
 /**
  * Returns the contents of a given Folder.
  *
- * @param string $formattedFolder Name of the folder whose contents to list.
+ * @param string $formattedFolder Resource name of the Folder to list contents for.
  *                                Format: projects/&#42;/locations/&#42;/folders/*
  *                                Please see {@see DataformClient::folderName()} for help formatting this field.
  */

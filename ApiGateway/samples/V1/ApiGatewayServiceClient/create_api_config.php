@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,8 +36,8 @@ use Google\Rpc\Status;
  * @param string $formattedParent Parent resource of the API Config, of the form:
  *                                `projects/&#42;/locations/global/apis/*`
  *                                Please see {@see ApiGatewayServiceClient::apiName()} for help formatting this field.
- * @param string $apiConfigId     Identifier to assign to the API Config. Must be unique within scope of
- *                                the parent resource.
+ * @param string $apiConfigId     Identifier to assign to the API Config. Must be unique within
+ *                                scope of the parent resource.
  */
 function create_api_config_sample(string $formattedParent, string $apiConfigId): void
 {

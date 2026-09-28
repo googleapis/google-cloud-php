@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -319,6 +319,13 @@ return [
                         'keyName' => 'project',
                         'fieldAccessors' => [
                             'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getBody',
+                            'getRegion',
                         ],
                     ],
                 ],
@@ -782,6 +789,10 @@ return [
             'templateMap' => [
                 'backup' => 'projects/{project}/backups/{backup}',
                 'network' => 'projects/{project}/global/networks/{network}',
+                'projectLocationSecretSecretVersion' => 'projects/{project}/locations/{location}/secrets/{secret}/versions/{secret_version}',
+                'projectSecretSecretVersion' => 'projects/{project}/secrets/{secret}/versions/{secret_version}',
+                'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{secret_version}',
+                'serviceConnectionPolicy' => 'projects/{project}/regions/{region}/serviceConnectionPolicies/{service_connection_policy}',
             ],
         ],
     ],

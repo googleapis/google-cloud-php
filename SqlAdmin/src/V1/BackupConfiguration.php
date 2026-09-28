@@ -42,9 +42,13 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      */
     protected $binary_log_enabled = null;
     /**
-     * Reserved for future use.
+     * Optional. Deprecated: replication_log_archiving_enabled is deprecated and
+     * will be removed from a future version of the API. Use
+     * [point_in_time_recovery_enabled][google.cloud.sql.v1.BackupConfiguration.point_in_time_recovery_enabled]
+     * instead.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue replication_log_archiving_enabled = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue replication_log_archiving_enabled = 5 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $replication_log_archiving_enabled = null;
     /**
@@ -103,7 +107,10 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      *           (MySQL only) Whether binary log is enabled. If backup configuration is
      *           disabled, binarylog must be disabled as well.
      *     @type \Google\Protobuf\BoolValue $replication_log_archiving_enabled
-     *           Reserved for future use.
+     *           Optional. Deprecated: replication_log_archiving_enabled is deprecated and
+     *           will be removed from a future version of the API. Use
+     *           [point_in_time_recovery_enabled][google.cloud.sql.v1.BackupConfiguration.point_in_time_recovery_enabled]
+     *           instead.
      *     @type string $location
      *           Location of the backup
      *     @type \Google\Protobuf\BoolValue $point_in_time_recovery_enabled
@@ -310,48 +317,70 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
-     * Reserved for future use.
+     * Optional. Deprecated: replication_log_archiving_enabled is deprecated and
+     * will be removed from a future version of the API. Use
+     * [point_in_time_recovery_enabled][google.cloud.sql.v1.BackupConfiguration.point_in_time_recovery_enabled]
+     * instead.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue replication_log_archiving_enabled = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue replication_log_archiving_enabled = 5 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\BoolValue|null
+     * @deprecated
      */
     public function getReplicationLogArchivingEnabled()
     {
+        if (isset($this->replication_log_archiving_enabled)) {
+            @trigger_error('replication_log_archiving_enabled is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->replication_log_archiving_enabled;
     }
 
     public function hasReplicationLogArchivingEnabled()
     {
+        if (isset($this->replication_log_archiving_enabled)) {
+            @trigger_error('replication_log_archiving_enabled is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->replication_log_archiving_enabled);
     }
 
     public function clearReplicationLogArchivingEnabled()
     {
+        @trigger_error('replication_log_archiving_enabled is deprecated.', E_USER_DEPRECATED);
         unset($this->replication_log_archiving_enabled);
     }
 
     /**
      * Returns the unboxed value from <code>getReplicationLogArchivingEnabled()</code>
 
-     * Reserved for future use.
+     * Optional. Deprecated: replication_log_archiving_enabled is deprecated and
+     * will be removed from a future version of the API. Use
+     * [point_in_time_recovery_enabled][google.cloud.sql.v1.BackupConfiguration.point_in_time_recovery_enabled]
+     * instead.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue replication_log_archiving_enabled = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue replication_log_archiving_enabled = 5 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool|null
      */
     public function getReplicationLogArchivingEnabledUnwrapped()
     {
+        if (isset($this->replication_log_archiving_enabled)) {
+            @trigger_error('replication_log_archiving_enabled is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readWrapperValue("replication_log_archiving_enabled");
     }
 
     /**
-     * Reserved for future use.
+     * Optional. Deprecated: replication_log_archiving_enabled is deprecated and
+     * will be removed from a future version of the API. Use
+     * [point_in_time_recovery_enabled][google.cloud.sql.v1.BackupConfiguration.point_in_time_recovery_enabled]
+     * instead.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue replication_log_archiving_enabled = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue replication_log_archiving_enabled = 5 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\BoolValue $var
      * @return $this
+     * @deprecated
      */
     public function setReplicationLogArchivingEnabled($var)
     {
+        @trigger_error('replication_log_archiving_enabled is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
         $this->replication_log_archiving_enabled = $var;
 
@@ -361,9 +390,12 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * Reserved for future use.
+     * Optional. Deprecated: replication_log_archiving_enabled is deprecated and
+     * will be removed from a future version of the API. Use
+     * [point_in_time_recovery_enabled][google.cloud.sql.v1.BackupConfiguration.point_in_time_recovery_enabled]
+     * instead.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue replication_log_archiving_enabled = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue replication_log_archiving_enabled = 5 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool|null $var
      * @return $this
      */

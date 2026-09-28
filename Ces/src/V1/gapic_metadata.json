@@ -8,7 +8,7 @@
         "AgentService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AgentServiceGapicClient",
+                    "libraryClient": "AgentServiceClient",
                     "rpcs": {
                         "BatchDeleteConversations": {
                             "methods": [
@@ -267,7 +267,7 @@
         "SessionService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SessionServiceGapicClient",
+                    "libraryClient": "SessionServiceClient",
                     "rpcs": {
                         "BidiRunSession": {
                             "methods": [
@@ -301,7 +301,7 @@
         "ToolService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ToolServiceGapicClient",
+                    "libraryClient": "ToolServiceClient",
                     "rpcs": {
                         "ExecuteTool": {
                             "methods": [
@@ -335,7 +335,7 @@
         "WidgetService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "WidgetServiceGapicClient",
+                    "libraryClient": "WidgetServiceClient",
                     "rpcs": {
                         "GenerateChatToken": {
                             "methods": [

@@ -8,7 +8,7 @@
         "AnalyticsAdminService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AnalyticsAdminServiceGapicClient",
+                    "libraryClient": "AnalyticsAdminServiceClient",
                     "rpcs": {
                         "AcknowledgeUserDataCollection": {
                             "methods": [
@@ -470,6 +470,11 @@
                                 "getSubpropertySyncConfig"
                             ]
                         },
+                        "GetUserProvidedDataSettings": {
+                            "methods": [
+                                "getUserProvidedDataSettings"
+                            ]
+                        },
                         "ListAccessBindings": {
                             "methods": [
                                 "listAccessBindings"
@@ -758,6 +763,11 @@
                         "UpdateReportingDataAnnotation": {
                             "methods": [
                                 "updateReportingDataAnnotation"
+                            ]
+                        },
+                        "UpdateReportingIdentitySettings": {
+                            "methods": [
+                                "updateReportingIdentitySettings"
                             ]
                         },
                         "UpdateSKAdNetworkConversionValueSchema": {

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ use Google\Ads\MarketingPlatform\Admin\V1alpha\ReportPropertyUsageResponse;
 use Google\ApiCore\ApiException;
 
 /**
- * Get the usage and billing data for properties within the organization for
+ * Gets the usage and billing data for properties within the organization for
  * the specified month.
  *
  * Per direct client org, user needs to be OrgAdmin/BillingAdmin on the

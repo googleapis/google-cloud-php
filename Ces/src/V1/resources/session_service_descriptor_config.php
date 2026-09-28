@@ -29,6 +29,18 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
                 'responseType' => 'Google\Cloud\Ces\V1\BidiSessionServerMessage',
+                'headerParams' => [
+                    [
+                        'keyName' => 'session',
+                        'fieldAccessors' => [
+                            'getConfig',
+                            'getSession',
+                        ],
+                        'matchers' => [
+                            '/^(?<session>projects\/[^\/]+\/locations\/[^\/]+\/apps\/[^\/]+\/sessions\/[^\/]+)$/',
+                        ],
+                    ],
+                ],
             ],
             'RunSession' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,

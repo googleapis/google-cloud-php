@@ -8,7 +8,7 @@
         "ParameterManager": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ParameterManagerGapicClient",
+                    "libraryClient": "ParameterManagerClient",
                     "rpcs": {
                         "CreateParameter": {
                             "methods": [
@@ -18,6 +18,16 @@
                         "CreateParameterVersion": {
                             "methods": [
                                 "createParameterVersion"
+                            ]
+                        },
+                        "CreateTemplate": {
+                            "methods": [
+                                "createTemplate"
+                            ]
+                        },
+                        "CreateTemplateVersion": {
+                            "methods": [
+                                "createTemplateVersion"
                             ]
                         },
                         "DeleteParameter": {
@@ -30,6 +40,16 @@
                                 "deleteParameterVersion"
                             ]
                         },
+                        "DeleteTemplate": {
+                            "methods": [
+                                "deleteTemplate"
+                            ]
+                        },
+                        "DeleteTemplateVersion": {
+                            "methods": [
+                                "deleteTemplateVersion"
+                            ]
+                        },
                         "GetParameter": {
                             "methods": [
                                 "getParameter"
@@ -38,6 +58,16 @@
                         "GetParameterVersion": {
                             "methods": [
                                 "getParameterVersion"
+                            ]
+                        },
+                        "GetTemplate": {
+                            "methods": [
+                                "getTemplate"
+                            ]
+                        },
+                        "GetTemplateVersion": {
+                            "methods": [
+                                "getTemplateVersion"
                             ]
                         },
                         "ListParameterVersions": {
@@ -50,9 +80,24 @@
                                 "listParameters"
                             ]
                         },
+                        "ListTemplateVersions": {
+                            "methods": [
+                                "listTemplateVersions"
+                            ]
+                        },
+                        "ListTemplates": {
+                            "methods": [
+                                "listTemplates"
+                            ]
+                        },
                         "RenderParameterVersion": {
                             "methods": [
                                 "renderParameterVersion"
+                            ]
+                        },
+                        "RenderTemplateVersion": {
+                            "methods": [
+                                "renderTemplateVersion"
                             ]
                         },
                         "UpdateParameter": {
@@ -63,6 +108,16 @@
                         "UpdateParameterVersion": {
                             "methods": [
                                 "updateParameterVersion"
+                            ]
+                        },
+                        "UpdateTemplate": {
+                            "methods": [
+                                "updateTemplate"
+                            ]
+                        },
+                        "UpdateTemplateVersion": {
+                            "methods": [
+                                "updateTemplateVersion"
                             ]
                         },
                         "GetLocation": {

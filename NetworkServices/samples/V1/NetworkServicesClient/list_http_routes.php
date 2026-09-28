@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ use Google\Cloud\NetworkServices\V1\ListHttpRoutesRequest;
  * Lists HttpRoute in a given project and location.
  *
  * @param string $formattedParent The project and location from which the HttpRoutes should be
- *                                listed, specified in the format `projects/&#42;/locations/global`. Please see
+ *                                listed, specified in the format `projects/&#42;/locations/*`. Please see
  *                                {@see NetworkServicesClient::locationName()} for help formatting this field.
  */
 function list_http_routes_sample(string $formattedParent): void

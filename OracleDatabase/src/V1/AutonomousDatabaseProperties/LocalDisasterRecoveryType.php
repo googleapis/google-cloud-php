@@ -31,11 +31,18 @@ class LocalDisasterRecoveryType
      * Generated from protobuf enum <code>BACKUP_BASED = 2;</code>
      */
     const BACKUP_BASED = 2;
+    /**
+     * Local disaster recovery is not available.
+     *
+     * Generated from protobuf enum <code>NOT_AVAILABLE = 3;</code>
+     */
+    const NOT_AVAILABLE = 3;
 
     private static $valueToName = [
         self::LOCAL_DISASTER_RECOVERY_TYPE_UNSPECIFIED => 'LOCAL_DISASTER_RECOVERY_TYPE_UNSPECIFIED',
         self::ADG => 'ADG',
         self::BACKUP_BASED => 'BACKUP_BASED',
+        self::NOT_AVAILABLE => 'NOT_AVAILABLE',
     ];
 
     public static function name($value)

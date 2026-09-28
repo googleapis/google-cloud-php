@@ -18,7 +18,7 @@ class FormField extends \Google\Protobuf\Internal\Message
     /**
      * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the
      * [FormField][google.cloud.documentai.v1.Document.Page.FormField] name.
-     * e.g. `Address`, `Email`, `Grand total`, `Phone number`, etc.
+     * For example, `Address`, `Email`, `Grand total`, `Phone number`, etc.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout field_name = 1;</code>
      */
@@ -84,7 +84,7 @@ class FormField extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Layout $field_name
      *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the
      *           [FormField][google.cloud.documentai.v1.Document.Page.FormField] name.
-     *           e.g. `Address`, `Email`, `Grand total`, `Phone number`, etc.
+     *           For example, `Address`, `Email`, `Grand total`, `Phone number`, etc.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Layout $field_value
      *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the
      *           [FormField][google.cloud.documentai.v1.Document.Page.FormField] value.
@@ -118,7 +118,7 @@ class FormField extends \Google\Protobuf\Internal\Message
     /**
      * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the
      * [FormField][google.cloud.documentai.v1.Document.Page.FormField] name.
-     * e.g. `Address`, `Email`, `Grand total`, `Phone number`, etc.
+     * For example, `Address`, `Email`, `Grand total`, `Phone number`, etc.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout field_name = 1;</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\Page\Layout|null
@@ -141,7 +141,7 @@ class FormField extends \Google\Protobuf\Internal\Message
     /**
      * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the
      * [FormField][google.cloud.documentai.v1.Document.Page.FormField] name.
-     * e.g. `Address`, `Email`, `Grand total`, `Phone number`, etc.
+     * For example, `Address`, `Email`, `Grand total`, `Phone number`, etc.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout field_name = 1;</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\Page\Layout $var

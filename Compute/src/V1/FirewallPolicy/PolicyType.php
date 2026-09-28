@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\FirewallPolicy;
 use UnexpectedValueException;
 
 /**
- * The type of the firewall policy. This field can be eitherVPC_POLICY or RDMA_ROCE_POLICY.
+ * The type of the firewall policy. This field can be one of
+ * VPC_POLICY, RDMA_ROCE_POLICY or ULL_POLICY.
  * Note: if not specified then VPC_POLICY will be used.
  *
  * Protobuf type <code>google.cloud.compute.v1.FirewallPolicy.PolicyType</code>
@@ -25,6 +26,10 @@ class PolicyType
      */
     const RDMA_ROCE_POLICY = 148757145;
     /**
+     * Generated from protobuf enum <code>ULL_POLICY = 100494364;</code>
+     */
+    const ULL_POLICY = 100494364;
+    /**
      * Generated from protobuf enum <code>VPC_POLICY = 74319208;</code>
      */
     const VPC_POLICY = 74319208;
@@ -32,6 +37,7 @@ class PolicyType
     private static $valueToName = [
         self::UNDEFINED_POLICY_TYPE => 'UNDEFINED_POLICY_TYPE',
         self::RDMA_ROCE_POLICY => 'RDMA_ROCE_POLICY',
+        self::ULL_POLICY => 'ULL_POLICY',
         self::VPC_POLICY => 'VPC_POLICY',
     ];
 

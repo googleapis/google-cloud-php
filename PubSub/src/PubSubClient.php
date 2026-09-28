@@ -98,8 +98,6 @@ class PubSubClient
     use ApiHelperTrait;
     use ClientOptionsTrait;
 
-    const VERSION = '2.19.1';
-
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
     private const GAPIC_KEYS = [

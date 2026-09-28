@@ -47,7 +47,7 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      * rows_limit_percent can be specified. Cannot be used in conjunction with
      * TimespanConfig.
      * Caution: A [known
-     * issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#bq-sampling)
+     * issue](https://docs.cloud.google.com/sensitive-data-protection/docs/known-issues#bq-sampling)
      * is causing the `rowsLimitPercent` field to behave unexpectedly. We
      * recommend using `rowsLimit` instead.
      *
@@ -106,7 +106,7 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      *           rows_limit_percent can be specified. Cannot be used in conjunction with
      *           TimespanConfig.
      *           Caution: A [known
-     *           issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#bq-sampling)
+     *           issue](https://docs.cloud.google.com/sensitive-data-protection/docs/known-issues#bq-sampling)
      *           is causing the `rowsLimitPercent` field to behave unexpectedly. We
      *           recommend using `rowsLimit` instead.
      *     @type int $sample_method
@@ -238,7 +238,7 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      * rows_limit_percent can be specified. Cannot be used in conjunction with
      * TimespanConfig.
      * Caution: A [known
-     * issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#bq-sampling)
+     * issue](https://docs.cloud.google.com/sensitive-data-protection/docs/known-issues#bq-sampling)
      * is causing the `rowsLimitPercent` field to behave unexpectedly. We
      * recommend using `rowsLimit` instead.
      *
@@ -257,7 +257,7 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      * rows_limit_percent can be specified. Cannot be used in conjunction with
      * TimespanConfig.
      * Caution: A [known
-     * issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#bq-sampling)
+     * issue](https://docs.cloud.google.com/sensitive-data-protection/docs/known-issues#bq-sampling)
      * is causing the `rowsLimitPercent` field to behave unexpectedly. We
      * recommend using `rowsLimit` instead.
      *

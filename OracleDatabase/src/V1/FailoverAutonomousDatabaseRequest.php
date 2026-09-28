@@ -23,9 +23,10 @@ class FailoverAutonomousDatabaseRequest extends \Google\Protobuf\Internal\Messag
      */
     protected $name = '';
     /**
-     * Required. The peer database name to fail over to.
+     * Optional. The peer database name to fail over to. Required for cross-region
+     * standby, and must be omitted for in-region Data Guard.
      *
-     * Generated from protobuf field <code>string peer_autonomous_database = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string peer_autonomous_database = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $peer_autonomous_database = '';
 
@@ -33,8 +34,8 @@ class FailoverAutonomousDatabaseRequest extends \Google\Protobuf\Internal\Messag
      * @param string $name                   Required. The name of the Autonomous Database in the following format:
      *                                       projects/{project}/locations/{location}/autonomousDatabases/{autonomous_database}. Please see
      *                                       {@see OracleDatabaseClient::autonomousDatabaseName()} for help formatting this field.
-     * @param string $peerAutonomousDatabase Required. The peer database name to fail over to. Please see
-     *                                       {@see OracleDatabaseClient::autonomousDatabaseName()} for help formatting this field.
+     * @param string $peerAutonomousDatabase Optional. The peer database name to fail over to. Required for cross-region
+     *                                       standby, and must be omitted for in-region Data Guard.
      *
      * @return \Google\Cloud\OracleDatabase\V1\FailoverAutonomousDatabaseRequest
      *
@@ -57,7 +58,8 @@ class FailoverAutonomousDatabaseRequest extends \Google\Protobuf\Internal\Messag
      *           Required. The name of the Autonomous Database in the following format:
      *           projects/{project}/locations/{location}/autonomousDatabases/{autonomous_database}.
      *     @type string $peer_autonomous_database
-     *           Required. The peer database name to fail over to.
+     *           Optional. The peer database name to fail over to. Required for cross-region
+     *           standby, and must be omitted for in-region Data Guard.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,9 +96,10 @@ class FailoverAutonomousDatabaseRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The peer database name to fail over to.
+     * Optional. The peer database name to fail over to. Required for cross-region
+     * standby, and must be omitted for in-region Data Guard.
      *
-     * Generated from protobuf field <code>string peer_autonomous_database = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string peer_autonomous_database = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getPeerAutonomousDatabase()
@@ -105,9 +108,10 @@ class FailoverAutonomousDatabaseRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The peer database name to fail over to.
+     * Optional. The peer database name to fail over to. Required for cross-region
+     * standby, and must be omitted for in-region Data Guard.
      *
-     * Generated from protobuf field <code>string peer_autonomous_database = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string peer_autonomous_database = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

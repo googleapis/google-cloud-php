@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ use Google\Cloud\Dlp\V2\DeidentifyContentResponse;
  * De-identifies potentially sensitive info from a ContentItem.
  * This method has limits on input size and output size.
  * See
- * https://cloud.google.com/sensitive-data-protection/docs/deidentify-sensitive-data
+ * https://docs.cloud.google.com/sensitive-data-protection/docs/deidentify-sensitive-data
  * to learn more.
  *
  * When no InfoTypes or CustomInfoTypes are specified in this request, the

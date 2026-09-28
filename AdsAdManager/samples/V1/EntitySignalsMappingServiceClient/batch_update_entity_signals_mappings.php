@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,10 +29,9 @@ use Google\Ads\AdManager\V1\Client\EntitySignalsMappingServiceClient;
 use Google\Ads\AdManager\V1\EntitySignalsMapping;
 use Google\Ads\AdManager\V1\UpdateEntitySignalsMappingRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
- * API to batch update `EntitySignalsMapping` objects.
+ * Batch updates `EntitySignalsMapping` objects.
  *
  * @param string $formattedParent The parent resource where `EntitySignalsMappings` will be
  *                                updated. Format: `networks/{network_code}` The parent field in the
@@ -46,10 +45,8 @@ function batch_update_entity_signals_mappings_sample(string $formattedParent): v
 
     // Prepare the request message.
     $requestsEntitySignalsMapping = new EntitySignalsMapping();
-    $requestsUpdateMask = new FieldMask();
     $updateEntitySignalsMappingRequest = (new UpdateEntitySignalsMappingRequest())
-        ->setEntitySignalsMapping($requestsEntitySignalsMapping)
-        ->setUpdateMask($requestsUpdateMask);
+        ->setEntitySignalsMapping($requestsEntitySignalsMapping);
     $requests = [$updateEntitySignalsMappingRequest,];
     $request = (new BatchUpdateEntitySignalsMappingsRequest())
         ->setParent($formattedParent)

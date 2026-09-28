@@ -47,6 +47,14 @@ class Rotation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration rotation_period = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     protected $rotation_period = null;
+    /**
+     * Output only. The current status of the managed rotation.
+     * This field is only applicable to Typed Secrets.
+     * This field is set by the service and cannot be set by the user.
+     *
+     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Rotation.ManagedRotationStatus managed_rotation_status = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $managed_rotation_status = null;
 
     /**
      * Constructor.
@@ -74,6 +82,10 @@ class Rotation extends \Google\Protobuf\Internal\Message
      *           [next_rotation_time][google.cloud.secretmanager.v1.Rotation.next_rotation_time]
      *           will be advanced by this period when the service automatically sends
      *           rotation notifications.
+     *     @type \Google\Cloud\SecretManager\V1\Rotation\ManagedRotationStatus $managed_rotation_status
+     *           Output only. The current status of the managed rotation.
+     *           This field is only applicable to Typed Secrets.
+     *           This field is set by the service and cannot be set by the user.
      * }
      */
     public function __construct($data = NULL) {
@@ -181,6 +193,46 @@ class Rotation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->rotation_period = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The current status of the managed rotation.
+     * This field is only applicable to Typed Secrets.
+     * This field is set by the service and cannot be set by the user.
+     *
+     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Rotation.ManagedRotationStatus managed_rotation_status = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\SecretManager\V1\Rotation\ManagedRotationStatus|null
+     */
+    public function getManagedRotationStatus()
+    {
+        return $this->managed_rotation_status;
+    }
+
+    public function hasManagedRotationStatus()
+    {
+        return isset($this->managed_rotation_status);
+    }
+
+    public function clearManagedRotationStatus()
+    {
+        unset($this->managed_rotation_status);
+    }
+
+    /**
+     * Output only. The current status of the managed rotation.
+     * This field is only applicable to Typed Secrets.
+     * This field is set by the service and cannot be set by the user.
+     *
+     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Rotation.ManagedRotationStatus managed_rotation_status = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\SecretManager\V1\Rotation\ManagedRotationStatus $var
+     * @return $this
+     */
+    public function setManagedRotationStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecretManager\V1\Rotation\ManagedRotationStatus::class);
+        $this->managed_rotation_status = $var;
 
         return $this;
     }

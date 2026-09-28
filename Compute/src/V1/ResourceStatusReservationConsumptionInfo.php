@@ -22,6 +22,20 @@ class ResourceStatusReservationConsumptionInfo extends \Google\Protobuf\Internal
      * Generated from protobuf field <code>optional string consumed_reservation = 318474741;</code>
      */
     protected $consumed_reservation = null;
+    /**
+     * Output only. [Output Only] The full resource name of the reservation block that this
+     * instance is consuming from.
+     *
+     * Generated from protobuf field <code>optional string consumed_reservation_block = 142321091;</code>
+     */
+    protected $consumed_reservation_block = null;
+    /**
+     * Output only. [Output Only] The full resource name of the reservation sub-block that
+     * this instance is consuming from.
+     *
+     * Generated from protobuf field <code>optional string consumed_reservation_sub_block = 461540356;</code>
+     */
+    protected $consumed_reservation_sub_block = null;
 
     /**
      * Constructor.
@@ -32,6 +46,12 @@ class ResourceStatusReservationConsumptionInfo extends \Google\Protobuf\Internal
      *     @type string $consumed_reservation
      *           Output only. [Output Only] The full resource name of the reservation that this
      *           instance is consuming from.
+     *     @type string $consumed_reservation_block
+     *           Output only. [Output Only] The full resource name of the reservation block that this
+     *           instance is consuming from.
+     *     @type string $consumed_reservation_sub_block
+     *           Output only. [Output Only] The full resource name of the reservation sub-block that
+     *           this instance is consuming from.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,6 +93,82 @@ class ResourceStatusReservationConsumptionInfo extends \Google\Protobuf\Internal
     {
         GPBUtil::checkString($var, True);
         $this->consumed_reservation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] The full resource name of the reservation block that this
+     * instance is consuming from.
+     *
+     * Generated from protobuf field <code>optional string consumed_reservation_block = 142321091;</code>
+     * @return string
+     */
+    public function getConsumedReservationBlock()
+    {
+        return isset($this->consumed_reservation_block) ? $this->consumed_reservation_block : '';
+    }
+
+    public function hasConsumedReservationBlock()
+    {
+        return isset($this->consumed_reservation_block);
+    }
+
+    public function clearConsumedReservationBlock()
+    {
+        unset($this->consumed_reservation_block);
+    }
+
+    /**
+     * Output only. [Output Only] The full resource name of the reservation block that this
+     * instance is consuming from.
+     *
+     * Generated from protobuf field <code>optional string consumed_reservation_block = 142321091;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setConsumedReservationBlock($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->consumed_reservation_block = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] The full resource name of the reservation sub-block that
+     * this instance is consuming from.
+     *
+     * Generated from protobuf field <code>optional string consumed_reservation_sub_block = 461540356;</code>
+     * @return string
+     */
+    public function getConsumedReservationSubBlock()
+    {
+        return isset($this->consumed_reservation_sub_block) ? $this->consumed_reservation_sub_block : '';
+    }
+
+    public function hasConsumedReservationSubBlock()
+    {
+        return isset($this->consumed_reservation_sub_block);
+    }
+
+    public function clearConsumedReservationSubBlock()
+    {
+        unset($this->consumed_reservation_sub_block);
+    }
+
+    /**
+     * Output only. [Output Only] The full resource name of the reservation sub-block that
+     * this instance is consuming from.
+     *
+     * Generated from protobuf field <code>optional string consumed_reservation_sub_block = 461540356;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setConsumedReservationSubBlock($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->consumed_reservation_sub_block = $var;
 
         return $this;
     }

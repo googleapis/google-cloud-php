@@ -16,10 +16,10 @@ use Google\Protobuf\RepeatedField;
 class CalculatedMetric extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Resource name for this CalculatedMetric.
+     * Identifier. Resource name for this CalculatedMetric.
      * Format: 'properties/{property_id}/calculatedMetrics/{calculated_metric_id}'
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -85,7 +85,7 @@ class CalculatedMetric extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. Resource name for this CalculatedMetric.
+     *           Identifier. Resource name for this CalculatedMetric.
      *           Format: 'properties/{property_id}/calculatedMetrics/{calculated_metric_id}'
      *     @type string $description
      *           Optional. Description for this calculated metric.
@@ -122,10 +122,10 @@ class CalculatedMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name for this CalculatedMetric.
+     * Identifier. Resource name for this CalculatedMetric.
      * Format: 'properties/{property_id}/calculatedMetrics/{calculated_metric_id}'
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -134,10 +134,10 @@ class CalculatedMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name for this CalculatedMetric.
+     * Identifier. Resource name for this CalculatedMetric.
      * Format: 'properties/{property_id}/calculatedMetrics/{calculated_metric_id}'
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

@@ -54,6 +54,14 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional int64 uncompressed_byte_size = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $uncompressed_byte_size = null;
+    /**
+     * Output only. The total estimated number of rows in the query results.
+     * Only populated when reading data from a BigQuery job.
+     * This feature is not yet available.
+     *
+     * Generated from protobuf field <code>optional int64 total_estimated_row_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $total_estimated_row_count = null;
     protected $rows;
     protected $schema;
 
@@ -93,6 +101,10 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      *           follows is not compressed, which can be useful for cases where compression
      *           does not yield appreciable savings. When uncompressed_byte_size is not
      *           greater than 0, the client should skip decompression.
+     *     @type int|string $total_estimated_row_count
+     *           Output only. The total estimated number of rows in the query results.
+     *           Only populated when reading data from a BigQuery job.
+     *           This feature is not yet available.
      * }
      */
     public function __construct($data = NULL) {
@@ -382,6 +394,46 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->uncompressed_byte_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The total estimated number of rows in the query results.
+     * Only populated when reading data from a BigQuery job.
+     * This feature is not yet available.
+     *
+     * Generated from protobuf field <code>optional int64 total_estimated_row_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getTotalEstimatedRowCount()
+    {
+        return isset($this->total_estimated_row_count) ? $this->total_estimated_row_count : 0;
+    }
+
+    public function hasTotalEstimatedRowCount()
+    {
+        return isset($this->total_estimated_row_count);
+    }
+
+    public function clearTotalEstimatedRowCount()
+    {
+        unset($this->total_estimated_row_count);
+    }
+
+    /**
+     * Output only. The total estimated number of rows in the query results.
+     * Only populated when reading data from a BigQuery job.
+     * This feature is not yet available.
+     *
+     * Generated from protobuf field <code>optional int64 total_estimated_row_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTotalEstimatedRowCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->total_estimated_row_count = $var;
 
         return $this;
     }

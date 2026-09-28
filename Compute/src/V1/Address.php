@@ -57,17 +57,25 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     protected $id = null;
     /**
-     * Reference to the source of external IPv4 addresses,
-     * like a PublicDelegatedPrefix (PDP) for BYOIP.
-     * The PDP must support enhanced IPv4 allocations.
-     * Use one of the following formats to specify a PDP when reserving an
-     * external IPv4 address using BYOIP.
+     * Reference to the source of IP addresses.
+     * It supports the following cases:
      *    -
-     *    Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *      Case 1: PublicDelegatedPrefix (PDP) for BYOIP external
+     *      addresses. If an IPv4 PDP is used, the PDP must support enhanced IPv4
+     *      allocations. If an IPv6 PDP is used, the PDP must be in
+     *      EXTERNAL_IPV6_FORWARDING_RULE_CREATION mode.
      *    -
-     *    Partial URL, as in
-     *           - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
-     *           - regions/region/publicDelegatedPrefixes/pdp-name
+     *      Case 2: Internal Range for global internal addresses.
+     * Use one of the following formats to specify the resource:
+     * For a Public Delegated Prefix:
+     *    -
+     *    Full resource URL:https://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp
+     *    - Partial URL:
+     *       - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *       - regions/region/publicDelegatedPrefixes/pdp-name
+     * For an Internal Range:
+     *    - Full URL:https://networkconnectivity.googleapis.com/v1/projects/project/locations/global/internalRanges/internal-range
+     *    - Partial URL:projects/project/locations/global/internalRanges/internal-range
      *
      * Generated from protobuf field <code>optional string ip_collection = 176818358;</code>
      */
@@ -173,6 +181,12 @@ class Address extends \Google\Protobuf\Internal\Message
      *      - `PRIVATE_SERVICE_CONNECT` for a private network address that is
      *      used to configure Private Service Connect. Only global internal addresses
      *      can use this purpose.
+     *      - `PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0` for addresses
+     *      that can only be assigned to global external Passthrough Network Load
+     *      Balancer forwarding rules, as an Availability Group 0 address.
+     *      - `PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1` for addresses that
+     *      can only be assigned to global external Passthrough Network Load Balancer
+     *      forwarding rules, as an Availability Group 1 address.
      * Check the Purpose enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string purpose = 316407070;</code>
@@ -240,17 +254,25 @@ class Address extends \Google\Protobuf\Internal\Message
      *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $ip_collection
-     *           Reference to the source of external IPv4 addresses,
-     *           like a PublicDelegatedPrefix (PDP) for BYOIP.
-     *           The PDP must support enhanced IPv4 allocations.
-     *           Use one of the following formats to specify a PDP when reserving an
-     *           external IPv4 address using BYOIP.
+     *           Reference to the source of IP addresses.
+     *           It supports the following cases:
      *              -
-     *              Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *                Case 1: PublicDelegatedPrefix (PDP) for BYOIP external
+     *                addresses. If an IPv4 PDP is used, the PDP must support enhanced IPv4
+     *                allocations. If an IPv6 PDP is used, the PDP must be in
+     *                EXTERNAL_IPV6_FORWARDING_RULE_CREATION mode.
      *              -
-     *              Partial URL, as in
-     *                     - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
-     *                     - regions/region/publicDelegatedPrefixes/pdp-name
+     *                Case 2: Internal Range for global internal addresses.
+     *           Use one of the following formats to specify the resource:
+     *           For a Public Delegated Prefix:
+     *              -
+     *              Full resource URL:https://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp
+     *              - Partial URL:
+     *                 - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *                 - regions/region/publicDelegatedPrefixes/pdp-name
+     *           For an Internal Range:
+     *              - Full URL:https://networkconnectivity.googleapis.com/v1/projects/project/locations/global/internalRanges/internal-range
+     *              - Partial URL:projects/project/locations/global/internalRanges/internal-range
      *     @type string $ip_version
      *           The IP version that will be used by this address. Valid options areIPV4 or IPV6.
      *           Check the IpVersion enum for the list of possible values.
@@ -316,6 +338,12 @@ class Address extends \Google\Protobuf\Internal\Message
      *                - `PRIVATE_SERVICE_CONNECT` for a private network address that is
      *                used to configure Private Service Connect. Only global internal addresses
      *                can use this purpose.
+     *                - `PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0` for addresses
+     *                that can only be assigned to global external Passthrough Network Load
+     *                Balancer forwarding rules, as an Availability Group 0 address.
+     *                - `PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1` for addresses that
+     *                can only be assigned to global external Passthrough Network Load Balancer
+     *                forwarding rules, as an Availability Group 1 address.
      *           Check the Purpose enum for the list of possible values.
      *     @type string $region
      *           Output only. [Output Only] The URL of the region where a regional address resides.
@@ -533,17 +561,25 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reference to the source of external IPv4 addresses,
-     * like a PublicDelegatedPrefix (PDP) for BYOIP.
-     * The PDP must support enhanced IPv4 allocations.
-     * Use one of the following formats to specify a PDP when reserving an
-     * external IPv4 address using BYOIP.
+     * Reference to the source of IP addresses.
+     * It supports the following cases:
      *    -
-     *    Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *      Case 1: PublicDelegatedPrefix (PDP) for BYOIP external
+     *      addresses. If an IPv4 PDP is used, the PDP must support enhanced IPv4
+     *      allocations. If an IPv6 PDP is used, the PDP must be in
+     *      EXTERNAL_IPV6_FORWARDING_RULE_CREATION mode.
      *    -
-     *    Partial URL, as in
-     *           - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
-     *           - regions/region/publicDelegatedPrefixes/pdp-name
+     *      Case 2: Internal Range for global internal addresses.
+     * Use one of the following formats to specify the resource:
+     * For a Public Delegated Prefix:
+     *    -
+     *    Full resource URL:https://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp
+     *    - Partial URL:
+     *       - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *       - regions/region/publicDelegatedPrefixes/pdp-name
+     * For an Internal Range:
+     *    - Full URL:https://networkconnectivity.googleapis.com/v1/projects/project/locations/global/internalRanges/internal-range
+     *    - Partial URL:projects/project/locations/global/internalRanges/internal-range
      *
      * Generated from protobuf field <code>optional string ip_collection = 176818358;</code>
      * @return string
@@ -564,17 +600,25 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reference to the source of external IPv4 addresses,
-     * like a PublicDelegatedPrefix (PDP) for BYOIP.
-     * The PDP must support enhanced IPv4 allocations.
-     * Use one of the following formats to specify a PDP when reserving an
-     * external IPv4 address using BYOIP.
+     * Reference to the source of IP addresses.
+     * It supports the following cases:
      *    -
-     *    Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *      Case 1: PublicDelegatedPrefix (PDP) for BYOIP external
+     *      addresses. If an IPv4 PDP is used, the PDP must support enhanced IPv4
+     *      allocations. If an IPv6 PDP is used, the PDP must be in
+     *      EXTERNAL_IPV6_FORWARDING_RULE_CREATION mode.
      *    -
-     *    Partial URL, as in
-     *           - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
-     *           - regions/region/publicDelegatedPrefixes/pdp-name
+     *      Case 2: Internal Range for global internal addresses.
+     * Use one of the following formats to specify the resource:
+     * For a Public Delegated Prefix:
+     *    -
+     *    Full resource URL:https://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp
+     *    - Partial URL:
+     *       - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *       - regions/region/publicDelegatedPrefixes/pdp-name
+     * For an Internal Range:
+     *    - Full URL:https://networkconnectivity.googleapis.com/v1/projects/project/locations/global/internalRanges/internal-range
+     *    - Partial URL:projects/project/locations/global/internalRanges/internal-range
      *
      * Generated from protobuf field <code>optional string ip_collection = 176818358;</code>
      * @param string $var
@@ -974,6 +1018,12 @@ class Address extends \Google\Protobuf\Internal\Message
      *      - `PRIVATE_SERVICE_CONNECT` for a private network address that is
      *      used to configure Private Service Connect. Only global internal addresses
      *      can use this purpose.
+     *      - `PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0` for addresses
+     *      that can only be assigned to global external Passthrough Network Load
+     *      Balancer forwarding rules, as an Availability Group 0 address.
+     *      - `PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1` for addresses that
+     *      can only be assigned to global external Passthrough Network Load Balancer
+     *      forwarding rules, as an Availability Group 1 address.
      * Check the Purpose enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string purpose = 316407070;</code>
@@ -1016,6 +1066,12 @@ class Address extends \Google\Protobuf\Internal\Message
      *      - `PRIVATE_SERVICE_CONNECT` for a private network address that is
      *      used to configure Private Service Connect. Only global internal addresses
      *      can use this purpose.
+     *      - `PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0` for addresses
+     *      that can only be assigned to global external Passthrough Network Load
+     *      Balancer forwarding rules, as an Availability Group 0 address.
+     *      - `PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1` for addresses that
+     *      can only be assigned to global external Passthrough Network Load Balancer
+     *      forwarding rules, as an Availability Group 1 address.
      * Check the Purpose enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string purpose = 316407070;</code>

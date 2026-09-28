@@ -29,7 +29,7 @@ class GetSpaceRequest extends \Google\Protobuf\Internal\Message
      * last use. For more information, see [Learn about meeting codes in Google
      * Meet](https://support.google.com/meet/answer/10710509).
      * For more information, see [How Meet identifies a meeting
-     * space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
+     * space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space).
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -54,7 +54,7 @@ class GetSpaceRequest extends \Google\Protobuf\Internal\Message
      *                     Meet](https://support.google.com/meet/answer/10710509).
      *
      *                     For more information, see [How Meet identifies a meeting
-     *                     space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space). Please see
+     *                     space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space). Please see
      *                     {@see SpacesServiceClient::spaceName()} for help formatting this field.
      *
      * @return \Google\Apps\Meet\V2beta\GetSpaceRequest
@@ -87,7 +87,7 @@ class GetSpaceRequest extends \Google\Protobuf\Internal\Message
      *           last use. For more information, see [Learn about meeting codes in Google
      *           Meet](https://support.google.com/meet/answer/10710509).
      *           For more information, see [How Meet identifies a meeting
-     *           space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
+     *           space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space).
      * }
      */
     public function __construct($data = NULL) {
@@ -109,7 +109,7 @@ class GetSpaceRequest extends \Google\Protobuf\Internal\Message
      * last use. For more information, see [Learn about meeting codes in Google
      * Meet](https://support.google.com/meet/answer/10710509).
      * For more information, see [How Meet identifies a meeting
-     * space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
+     * space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space).
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -133,7 +133,7 @@ class GetSpaceRequest extends \Google\Protobuf\Internal\Message
      * last use. For more information, see [Learn about meeting codes in Google
      * Meet](https://support.google.com/meet/answer/10710509).
      * For more information, see [How Meet identifies a meeting
-     * space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
+     * space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space).
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

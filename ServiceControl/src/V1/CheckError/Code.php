@@ -14,27 +14,31 @@ use UnexpectedValueException;
 class Code
 {
     /**
-     * This is never used in `CheckResponse`.
+     * This is the default value if error code is not explicitly set.
+     * It should not be used directly.
      *
      * Generated from protobuf enum <code>ERROR_CODE_UNSPECIFIED = 0;</code>
      */
     const ERROR_CODE_UNSPECIFIED = 0;
     /**
      * The consumer's project id, network container, or resource container was
-     * not found. Same as [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND].
+     * not found. Same as
+     * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND].
      *
      * Generated from protobuf enum <code>NOT_FOUND = 5;</code>
      */
     const NOT_FOUND = 5;
     /**
      * The consumer doesn't have access to the specified resource.
-     * Same as [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED].
+     * Same as
+     * [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED].
      *
      * Generated from protobuf enum <code>PERMISSION_DENIED = 7;</code>
      */
     const PERMISSION_DENIED = 7;
     /**
-     * Quota check failed. Same as [google.rpc.Code.RESOURCE_EXHAUSTED][google.rpc.Code.RESOURCE_EXHAUSTED].
+     * Quota check failed. Same as
+     * [google.rpc.Code.RESOURCE_EXHAUSTED][google.rpc.Code.RESOURCE_EXHAUSTED].
      *
      * Generated from protobuf enum <code>RESOURCE_EXHAUSTED = 8;</code>
      */

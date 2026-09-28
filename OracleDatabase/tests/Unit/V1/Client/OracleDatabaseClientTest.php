@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,16 +33,21 @@ use Google\Cloud\Location\Location;
 use Google\Cloud\OracleDatabase\V1\AutonomousDatabase;
 use Google\Cloud\OracleDatabase\V1\AutonomousDatabaseBackup;
 use Google\Cloud\OracleDatabase\V1\AutonomousDatabaseCharacterSet;
+use Google\Cloud\OracleDatabase\V1\AutonomousDatabaseRefreshableClones;
 use Google\Cloud\OracleDatabase\V1\AutonomousDbVersion;
 use Google\Cloud\OracleDatabase\V1\Client\OracleDatabaseClient;
 use Google\Cloud\OracleDatabase\V1\CloudExadataInfrastructure;
 use Google\Cloud\OracleDatabase\V1\CloudVmCluster;
+use Google\Cloud\OracleDatabase\V1\ConfigureExascaleCloudExadataInfrastructureRequest;
 use Google\Cloud\OracleDatabase\V1\CreateAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\CreateCloudExadataInfrastructureRequest;
 use Google\Cloud\OracleDatabase\V1\CreateCloudVmClusterRequest;
 use Google\Cloud\OracleDatabase\V1\CreateDbSystemRequest;
 use Google\Cloud\OracleDatabase\V1\CreateExadbVmClusterRequest;
 use Google\Cloud\OracleDatabase\V1\CreateExascaleDbStorageVaultRequest;
+use Google\Cloud\OracleDatabase\V1\CreateGoldengateConnectionAssignmentRequest;
+use Google\Cloud\OracleDatabase\V1\CreateGoldengateConnectionRequest;
+use Google\Cloud\OracleDatabase\V1\CreateGoldengateDeploymentRequest;
 use Google\Cloud\OracleDatabase\V1\CreateOdbNetworkRequest;
 use Google\Cloud\OracleDatabase\V1\CreateOdbSubnetRequest;
 use Google\Cloud\OracleDatabase\V1\Database;
@@ -59,6 +64,9 @@ use Google\Cloud\OracleDatabase\V1\DeleteCloudVmClusterRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteDbSystemRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteExadbVmClusterRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteExascaleDbStorageVaultRequest;
+use Google\Cloud\OracleDatabase\V1\DeleteGoldengateConnectionAssignmentRequest;
+use Google\Cloud\OracleDatabase\V1\DeleteGoldengateConnectionRequest;
+use Google\Cloud\OracleDatabase\V1\DeleteGoldengateDeploymentRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteOdbNetworkRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteOdbSubnetRequest;
 use Google\Cloud\OracleDatabase\V1\Entitlement;
@@ -72,6 +80,7 @@ use Google\Cloud\OracleDatabase\V1\ExascaleDbStorageVaultProperties;
 use Google\Cloud\OracleDatabase\V1\FailoverAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\GenerateAutonomousDatabaseWalletRequest;
 use Google\Cloud\OracleDatabase\V1\GenerateAutonomousDatabaseWalletResponse;
+use Google\Cloud\OracleDatabase\V1\GetAutonomousDatabaseRefreshableClonesRequest;
 use Google\Cloud\OracleDatabase\V1\GetAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\GetCloudExadataInfrastructureRequest;
 use Google\Cloud\OracleDatabase\V1\GetCloudVmClusterRequest;
@@ -79,10 +88,24 @@ use Google\Cloud\OracleDatabase\V1\GetDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\GetDbSystemRequest;
 use Google\Cloud\OracleDatabase\V1\GetExadbVmClusterRequest;
 use Google\Cloud\OracleDatabase\V1\GetExascaleDbStorageVaultRequest;
+use Google\Cloud\OracleDatabase\V1\GetGoldengateConnectionAssignmentRequest;
+use Google\Cloud\OracleDatabase\V1\GetGoldengateConnectionRequest;
+use Google\Cloud\OracleDatabase\V1\GetGoldengateDeploymentRequest;
 use Google\Cloud\OracleDatabase\V1\GetOdbNetworkRequest;
 use Google\Cloud\OracleDatabase\V1\GetOdbSubnetRequest;
 use Google\Cloud\OracleDatabase\V1\GetPluggableDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\GiVersion;
+use Google\Cloud\OracleDatabase\V1\GoldengateConnection;
+use Google\Cloud\OracleDatabase\V1\GoldengateConnectionAssignment;
+use Google\Cloud\OracleDatabase\V1\GoldengateConnectionAssignmentProperties;
+use Google\Cloud\OracleDatabase\V1\GoldengateConnectionProperties;
+use Google\Cloud\OracleDatabase\V1\GoldengateConnectionProperties\GoldengateConnectionType;
+use Google\Cloud\OracleDatabase\V1\GoldengateDeployment;
+use Google\Cloud\OracleDatabase\V1\GoldengateDeploymentEnvironment;
+use Google\Cloud\OracleDatabase\V1\GoldengateDeploymentProperties;
+use Google\Cloud\OracleDatabase\V1\GoldengateDeploymentType;
+use Google\Cloud\OracleDatabase\V1\GoldengateDeploymentVersion;
+use Google\Cloud\OracleDatabase\V1\GoldengateOggDeployment;
 use Google\Cloud\OracleDatabase\V1\ListAutonomousDatabaseBackupsRequest;
 use Google\Cloud\OracleDatabase\V1\ListAutonomousDatabaseBackupsResponse;
 use Google\Cloud\OracleDatabase\V1\ListAutonomousDatabaseCharacterSetsRequest;
@@ -119,6 +142,20 @@ use Google\Cloud\OracleDatabase\V1\ListExascaleDbStorageVaultsRequest;
 use Google\Cloud\OracleDatabase\V1\ListExascaleDbStorageVaultsResponse;
 use Google\Cloud\OracleDatabase\V1\ListGiVersionsRequest;
 use Google\Cloud\OracleDatabase\V1\ListGiVersionsResponse;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateConnectionAssignmentsRequest;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateConnectionAssignmentsResponse;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateConnectionTypesRequest;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateConnectionTypesResponse;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateConnectionsRequest;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateConnectionsResponse;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateDeploymentEnvironmentsRequest;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateDeploymentEnvironmentsResponse;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateDeploymentTypesRequest;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateDeploymentTypesResponse;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateDeploymentVersionsRequest;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateDeploymentVersionsResponse;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateDeploymentsRequest;
+use Google\Cloud\OracleDatabase\V1\ListGoldengateDeploymentsResponse;
 use Google\Cloud\OracleDatabase\V1\ListMinorVersionsRequest;
 use Google\Cloud\OracleDatabase\V1\ListMinorVersionsResponse;
 use Google\Cloud\OracleDatabase\V1\ListOdbNetworksRequest;
@@ -132,12 +169,17 @@ use Google\Cloud\OracleDatabase\V1\OdbNetwork;
 use Google\Cloud\OracleDatabase\V1\OdbSubnet;
 use Google\Cloud\OracleDatabase\V1\OdbSubnet\Purpose;
 use Google\Cloud\OracleDatabase\V1\PluggableDatabase;
+use Google\Cloud\OracleDatabase\V1\RefreshAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\RemoveVirtualMachineExadbVmClusterRequest;
 use Google\Cloud\OracleDatabase\V1\RestartAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\RestoreAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\StartAutonomousDatabaseRequest;
+use Google\Cloud\OracleDatabase\V1\StartGoldengateDeploymentRequest;
 use Google\Cloud\OracleDatabase\V1\StopAutonomousDatabaseRequest;
+use Google\Cloud\OracleDatabase\V1\StopGoldengateDeploymentRequest;
 use Google\Cloud\OracleDatabase\V1\SwitchoverAutonomousDatabaseRequest;
+use Google\Cloud\OracleDatabase\V1\TestGoldengateConnectionAssignmentRequest;
+use Google\Cloud\OracleDatabase\V1\TestGoldengateConnectionAssignmentResponse;
 use Google\Cloud\OracleDatabase\V1\UpdateAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\UpdateExadbVmClusterRequest;
 use Google\LongRunning\Client\OperationsClient;
@@ -180,6 +222,155 @@ class OracleDatabaseClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function configureExascaleCloudExadataInfrastructureTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/configureExascaleCloudExadataInfrastructureTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $gcpOracleZone = 'gcpOracleZone1763347746';
+        $entitlementId = 'entitlementId-1715775123';
+        $expectedResponse = new CloudExadataInfrastructure();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setGcpOracleZone($gcpOracleZone);
+        $expectedResponse->setEntitlementId($entitlementId);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/configureExascaleCloudExadataInfrastructureTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->cloudExadataInfrastructureName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CLOUD_EXADATA_INFRASTRUCTURE]'
+        );
+        $totalStorageSizeGb = 1493200154;
+        $request = (new ConfigureExascaleCloudExadataInfrastructureRequest())
+            ->setName($formattedName)
+            ->setTotalStorageSizeGb($totalStorageSizeGb);
+        $response = $gapicClient->configureExascaleCloudExadataInfrastructure($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/ConfigureExascaleCloudExadataInfrastructure',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualApiRequestObject->getTotalStorageSizeGb();
+        $this->assertProtobufEquals($totalStorageSizeGb, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/configureExascaleCloudExadataInfrastructureTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function configureExascaleCloudExadataInfrastructureExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/configureExascaleCloudExadataInfrastructureTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->cloudExadataInfrastructureName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CLOUD_EXADATA_INFRASTRUCTURE]'
+        );
+        $totalStorageSizeGb = 1493200154;
+        $request = (new ConfigureExascaleCloudExadataInfrastructureRequest())
+            ->setName($formattedName)
+            ->setTotalStorageSizeGb($totalStorageSizeGb);
+        $response = $gapicClient->configureExascaleCloudExadataInfrastructure($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/configureExascaleCloudExadataInfrastructureTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function createAutonomousDatabaseTest()
     {
         $operationsTransport = $this->createTransport();
@@ -205,6 +396,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $entitlementId = 'entitlementId-1715775123';
         $adminPassword = 'adminPassword1579561355';
+        $adminPasswordSecretVersion = 'adminPasswordSecretVersion-1735395459';
         $network = 'network1843485230';
         $cidr = 'cidr3053428';
         $odbNetwork = 'odbNetwork-1199754980';
@@ -215,6 +407,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEntitlementId($entitlementId);
         $expectedResponse->setAdminPassword($adminPassword);
+        $expectedResponse->setAdminPasswordSecretVersion($adminPasswordSecretVersion);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setCidr($cidr);
         $expectedResponse->setOdbNetwork($odbNetwork);
@@ -514,6 +707,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $odbNetwork = 'odbNetwork-1199754980';
         $odbSubnet = 'odbSubnet118675119';
         $backupOdbSubnet = 'backupOdbSubnet677701964';
+        $exascaleDbStorageVault = 'exascaleDbStorageVault-2059486384';
         $expectedResponse = new CloudVmCluster();
         $expectedResponse->setName($name);
         $expectedResponse->setExadataInfrastructure($exadataInfrastructure);
@@ -525,6 +719,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $expectedResponse->setOdbNetwork($odbNetwork);
         $expectedResponse->setOdbSubnet($odbSubnet);
         $expectedResponse->setBackupOdbSubnet($backupOdbSubnet);
+        $expectedResponse->setExascaleDbStorageVault($exascaleDbStorageVault);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1064,11 +1259,13 @@ class OracleDatabaseClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $gcpOracleZone = 'gcpOracleZone1763347746';
         $entitlementId = 'entitlementId-1715775123';
+        $exadataInfrastructure = 'exadataInfrastructure94104074';
         $expectedResponse = new ExascaleDbStorageVault();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setGcpOracleZone($gcpOracleZone);
         $expectedResponse->setEntitlementId($entitlementId);
+        $expectedResponse->setExadataInfrastructure($exadataInfrastructure);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1185,6 +1382,533 @@ class OracleDatabaseClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createExascaleDbStorageVaultTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createGoldengateConnectionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createGoldengateConnectionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $gcpOracleZone = 'gcpOracleZone1763347746';
+        $odbNetwork = 'odbNetwork-1199754980';
+        $odbSubnet = 'odbSubnet118675119';
+        $entitlementId = 'entitlementId-1715775123';
+        $ociUrl = 'ociUrl-1632104635';
+        $expectedResponse = new GoldengateConnection();
+        $expectedResponse->setName($name);
+        $expectedResponse->setGcpOracleZone($gcpOracleZone);
+        $expectedResponse->setOdbNetwork($odbNetwork);
+        $expectedResponse->setOdbSubnet($odbSubnet);
+        $expectedResponse->setEntitlementId($entitlementId);
+        $expectedResponse->setOciUrl($ociUrl);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createGoldengateConnectionTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $goldengateConnectionId = 'goldengateConnectionId30122609';
+        $goldengateConnection = new GoldengateConnection();
+        $goldengateConnectionProperties = new GoldengateConnectionProperties();
+        $propertiesConnectionType = GoldengateConnectionType::GOLDENGATE_CONNECTION_TYPE_UNSPECIFIED;
+        $goldengateConnectionProperties->setConnectionType($propertiesConnectionType);
+        $propertiesDisplayName = 'propertiesDisplayName-819870918';
+        $goldengateConnectionProperties->setDisplayName($propertiesDisplayName);
+        $goldengateConnection->setProperties($goldengateConnectionProperties);
+        $request = (new CreateGoldengateConnectionRequest())
+            ->setParent($formattedParent)
+            ->setGoldengateConnectionId($goldengateConnectionId)
+            ->setGoldengateConnection($goldengateConnection);
+        $response = $gapicClient->createGoldengateConnection($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/CreateGoldengateConnection',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getGoldengateConnectionId();
+        $this->assertProtobufEquals($goldengateConnectionId, $actualValue);
+        $actualValue = $actualApiRequestObject->getGoldengateConnection();
+        $this->assertProtobufEquals($goldengateConnection, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createGoldengateConnectionTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createGoldengateConnectionExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createGoldengateConnectionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $goldengateConnectionId = 'goldengateConnectionId30122609';
+        $goldengateConnection = new GoldengateConnection();
+        $goldengateConnectionProperties = new GoldengateConnectionProperties();
+        $propertiesConnectionType = GoldengateConnectionType::GOLDENGATE_CONNECTION_TYPE_UNSPECIFIED;
+        $goldengateConnectionProperties->setConnectionType($propertiesConnectionType);
+        $propertiesDisplayName = 'propertiesDisplayName-819870918';
+        $goldengateConnectionProperties->setDisplayName($propertiesDisplayName);
+        $goldengateConnection->setProperties($goldengateConnectionProperties);
+        $request = (new CreateGoldengateConnectionRequest())
+            ->setParent($formattedParent)
+            ->setGoldengateConnectionId($goldengateConnectionId)
+            ->setGoldengateConnection($goldengateConnection);
+        $response = $gapicClient->createGoldengateConnection($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createGoldengateConnectionTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createGoldengateConnectionAssignmentTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createGoldengateConnectionAssignmentTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $entitlementId = 'entitlementId-1715775123';
+        $expectedResponse = new GoldengateConnectionAssignment();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setEntitlementId($entitlementId);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createGoldengateConnectionAssignmentTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $goldengateConnectionAssignmentId = 'goldengateConnectionAssignmentId-394251081';
+        $goldengateConnectionAssignment = new GoldengateConnectionAssignment();
+        $goldengateConnectionAssignmentProperties = new GoldengateConnectionAssignmentProperties();
+        $propertiesGoldengateConnection = $gapicClient->goldengateConnectionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[GOLDENGATE_CONNECTION]'
+        );
+        $goldengateConnectionAssignmentProperties->setGoldengateConnection($propertiesGoldengateConnection);
+        $propertiesGoldengateDeployment = $gapicClient->goldengateDeploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[GOLDENGATE_DEPLOYMENT]'
+        );
+        $goldengateConnectionAssignmentProperties->setGoldengateDeployment($propertiesGoldengateDeployment);
+        $goldengateConnectionAssignment->setProperties($goldengateConnectionAssignmentProperties);
+        $request = (new CreateGoldengateConnectionAssignmentRequest())
+            ->setParent($formattedParent)
+            ->setGoldengateConnectionAssignmentId($goldengateConnectionAssignmentId)
+            ->setGoldengateConnectionAssignment($goldengateConnectionAssignment);
+        $response = $gapicClient->createGoldengateConnectionAssignment($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/CreateGoldengateConnectionAssignment',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getGoldengateConnectionAssignmentId();
+        $this->assertProtobufEquals($goldengateConnectionAssignmentId, $actualValue);
+        $actualValue = $actualApiRequestObject->getGoldengateConnectionAssignment();
+        $this->assertProtobufEquals($goldengateConnectionAssignment, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createGoldengateConnectionAssignmentTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createGoldengateConnectionAssignmentExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createGoldengateConnectionAssignmentTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $goldengateConnectionAssignmentId = 'goldengateConnectionAssignmentId-394251081';
+        $goldengateConnectionAssignment = new GoldengateConnectionAssignment();
+        $goldengateConnectionAssignmentProperties = new GoldengateConnectionAssignmentProperties();
+        $propertiesGoldengateConnection = $gapicClient->goldengateConnectionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[GOLDENGATE_CONNECTION]'
+        );
+        $goldengateConnectionAssignmentProperties->setGoldengateConnection($propertiesGoldengateConnection);
+        $propertiesGoldengateDeployment = $gapicClient->goldengateDeploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[GOLDENGATE_DEPLOYMENT]'
+        );
+        $goldengateConnectionAssignmentProperties->setGoldengateDeployment($propertiesGoldengateDeployment);
+        $goldengateConnectionAssignment->setProperties($goldengateConnectionAssignmentProperties);
+        $request = (new CreateGoldengateConnectionAssignmentRequest())
+            ->setParent($formattedParent)
+            ->setGoldengateConnectionAssignmentId($goldengateConnectionAssignmentId)
+            ->setGoldengateConnectionAssignment($goldengateConnectionAssignment);
+        $response = $gapicClient->createGoldengateConnectionAssignment($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createGoldengateConnectionAssignmentTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createGoldengateDeploymentTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createGoldengateDeploymentTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $gcpOracleZone = 'gcpOracleZone1763347746';
+        $odbNetwork = 'odbNetwork-1199754980';
+        $odbSubnet = 'odbSubnet118675119';
+        $entitlementId = 'entitlementId-1715775123';
+        $displayName = 'displayName1615086568';
+        $ociUrl = 'ociUrl-1632104635';
+        $expectedResponse = new GoldengateDeployment();
+        $expectedResponse->setName($name);
+        $expectedResponse->setGcpOracleZone($gcpOracleZone);
+        $expectedResponse->setOdbNetwork($odbNetwork);
+        $expectedResponse->setOdbSubnet($odbSubnet);
+        $expectedResponse->setEntitlementId($entitlementId);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setOciUrl($ociUrl);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createGoldengateDeploymentTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $goldengateDeploymentId = 'goldengateDeploymentId594577706';
+        $goldengateDeployment = new GoldengateDeployment();
+        $goldengateDeploymentProperties = new GoldengateDeploymentProperties();
+        $propertiesDeploymentType = 'propertiesDeploymentType-1052928078';
+        $goldengateDeploymentProperties->setDeploymentType($propertiesDeploymentType);
+        $propertiesOggData = new GoldengateOggDeployment();
+        $oggDataDeployment = 'oggDataDeployment314674558';
+        $propertiesOggData->setDeployment($oggDataDeployment);
+        $oggDataAdminUsername = 'oggDataAdminUsername1222195180';
+        $propertiesOggData->setAdminUsername($oggDataAdminUsername);
+        $goldengateDeploymentProperties->setOggData($propertiesOggData);
+        $goldengateDeployment->setProperties($goldengateDeploymentProperties);
+        $goldengateDeploymentOdbSubnet = $gapicClient->odbSubnetName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ODB_NETWORK]',
+            '[ODB_SUBNET]'
+        );
+        $goldengateDeployment->setOdbSubnet($goldengateDeploymentOdbSubnet);
+        $goldengateDeploymentDisplayName = 'goldengateDeploymentDisplayName1442438516';
+        $goldengateDeployment->setDisplayName($goldengateDeploymentDisplayName);
+        $request = (new CreateGoldengateDeploymentRequest())
+            ->setParent($formattedParent)
+            ->setGoldengateDeploymentId($goldengateDeploymentId)
+            ->setGoldengateDeployment($goldengateDeployment);
+        $response = $gapicClient->createGoldengateDeployment($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/CreateGoldengateDeployment',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getGoldengateDeploymentId();
+        $this->assertProtobufEquals($goldengateDeploymentId, $actualValue);
+        $actualValue = $actualApiRequestObject->getGoldengateDeployment();
+        $this->assertProtobufEquals($goldengateDeployment, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createGoldengateDeploymentTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createGoldengateDeploymentExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createGoldengateDeploymentTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $goldengateDeploymentId = 'goldengateDeploymentId594577706';
+        $goldengateDeployment = new GoldengateDeployment();
+        $goldengateDeploymentProperties = new GoldengateDeploymentProperties();
+        $propertiesDeploymentType = 'propertiesDeploymentType-1052928078';
+        $goldengateDeploymentProperties->setDeploymentType($propertiesDeploymentType);
+        $propertiesOggData = new GoldengateOggDeployment();
+        $oggDataDeployment = 'oggDataDeployment314674558';
+        $propertiesOggData->setDeployment($oggDataDeployment);
+        $oggDataAdminUsername = 'oggDataAdminUsername1222195180';
+        $propertiesOggData->setAdminUsername($oggDataAdminUsername);
+        $goldengateDeploymentProperties->setOggData($propertiesOggData);
+        $goldengateDeployment->setProperties($goldengateDeploymentProperties);
+        $goldengateDeploymentOdbSubnet = $gapicClient->odbSubnetName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ODB_NETWORK]',
+            '[ODB_SUBNET]'
+        );
+        $goldengateDeployment->setOdbSubnet($goldengateDeploymentOdbSubnet);
+        $goldengateDeploymentDisplayName = 'goldengateDeploymentDisplayName1442438516';
+        $goldengateDeployment->setDisplayName($goldengateDeploymentDisplayName);
+        $request = (new CreateGoldengateDeploymentRequest())
+            ->setParent($formattedParent)
+            ->setGoldengateDeploymentId($goldengateDeploymentId)
+            ->setGoldengateDeployment($goldengateDeployment);
+        $response = $gapicClient->createGoldengateDeployment($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createGoldengateDeploymentTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -2256,6 +2980,389 @@ class OracleDatabaseClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteGoldengateConnectionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteGoldengateConnectionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteGoldengateConnectionTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->goldengateConnectionName('[PROJECT]', '[LOCATION]', '[GOLDENGATE_CONNECTION]');
+        $request = (new DeleteGoldengateConnectionRequest())->setName($formattedName);
+        $response = $gapicClient->deleteGoldengateConnection($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/DeleteGoldengateConnection',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteGoldengateConnectionTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteGoldengateConnectionExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteGoldengateConnectionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->goldengateConnectionName('[PROJECT]', '[LOCATION]', '[GOLDENGATE_CONNECTION]');
+        $request = (new DeleteGoldengateConnectionRequest())->setName($formattedName);
+        $response = $gapicClient->deleteGoldengateConnection($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteGoldengateConnectionTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteGoldengateConnectionAssignmentTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteGoldengateConnectionAssignmentTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteGoldengateConnectionAssignmentTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->goldengateConnectionAssignmentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[GOLDENGATE_CONNECTION_ASSIGNMENT]'
+        );
+        $request = (new DeleteGoldengateConnectionAssignmentRequest())->setName($formattedName);
+        $response = $gapicClient->deleteGoldengateConnectionAssignment($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/DeleteGoldengateConnectionAssignment',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteGoldengateConnectionAssignmentTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteGoldengateConnectionAssignmentExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteGoldengateConnectionAssignmentTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->goldengateConnectionAssignmentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[GOLDENGATE_CONNECTION_ASSIGNMENT]'
+        );
+        $request = (new DeleteGoldengateConnectionAssignmentRequest())->setName($formattedName);
+        $response = $gapicClient->deleteGoldengateConnectionAssignment($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteGoldengateConnectionAssignmentTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteGoldengateDeploymentTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteGoldengateDeploymentTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteGoldengateDeploymentTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->goldengateDeploymentName('[PROJECT]', '[LOCATION]', '[GOLDENGATE_DEPLOYMENT]');
+        $request = (new DeleteGoldengateDeploymentRequest())->setName($formattedName);
+        $response = $gapicClient->deleteGoldengateDeployment($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/DeleteGoldengateDeployment',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteGoldengateDeploymentTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteGoldengateDeploymentExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteGoldengateDeploymentTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->goldengateDeploymentName('[PROJECT]', '[LOCATION]', '[GOLDENGATE_DEPLOYMENT]');
+        $request = (new DeleteGoldengateDeploymentRequest())->setName($formattedName);
+        $response = $gapicClient->deleteGoldengateDeployment($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteGoldengateDeploymentTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function deleteOdbNetworkTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2525,6 +3632,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $entitlementId = 'entitlementId-1715775123';
         $adminPassword = 'adminPassword1579561355';
+        $adminPasswordSecretVersion = 'adminPasswordSecretVersion-1735395459';
         $network = 'network1843485230';
         $cidr = 'cidr3053428';
         $odbNetwork = 'odbNetwork-1199754980';
@@ -2535,6 +3643,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEntitlementId($entitlementId);
         $expectedResponse->setAdminPassword($adminPassword);
+        $expectedResponse->setAdminPasswordSecretVersion($adminPasswordSecretVersion);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setCidr($cidr);
         $expectedResponse->setOdbNetwork($odbNetwork);
@@ -2548,14 +3657,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->autonomousDatabaseName('[PROJECT]', '[LOCATION]', '[AUTONOMOUS_DATABASE]');
-        $formattedPeerAutonomousDatabase = $gapicClient->autonomousDatabaseName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[AUTONOMOUS_DATABASE]'
-        );
-        $request = (new FailoverAutonomousDatabaseRequest())
-            ->setName($formattedName)
-            ->setPeerAutonomousDatabase($formattedPeerAutonomousDatabase);
+        $request = (new FailoverAutonomousDatabaseRequest())->setName($formattedName);
         $response = $gapicClient->failoverAutonomousDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2571,8 +3673,6 @@ class OracleDatabaseClientTest extends GeneratedTest
         );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getPeerAutonomousDatabase();
-        $this->assertProtobufEquals($formattedPeerAutonomousDatabase, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/failoverAutonomousDatabaseTest');
         $response->pollUntilComplete([
@@ -2628,14 +3728,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->autonomousDatabaseName('[PROJECT]', '[LOCATION]', '[AUTONOMOUS_DATABASE]');
-        $formattedPeerAutonomousDatabase = $gapicClient->autonomousDatabaseName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[AUTONOMOUS_DATABASE]'
-        );
-        $request = (new FailoverAutonomousDatabaseRequest())
-            ->setName($formattedName)
-            ->setPeerAutonomousDatabase($formattedPeerAutonomousDatabase);
+        $request = (new FailoverAutonomousDatabaseRequest())->setName($formattedName);
         $response = $gapicClient->failoverAutonomousDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2744,6 +3837,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $entitlementId = 'entitlementId-1715775123';
         $adminPassword = 'adminPassword1579561355';
+        $adminPasswordSecretVersion = 'adminPasswordSecretVersion-1735395459';
         $network = 'network1843485230';
         $cidr = 'cidr3053428';
         $odbNetwork = 'odbNetwork-1199754980';
@@ -2754,6 +3848,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEntitlementId($entitlementId);
         $expectedResponse->setAdminPassword($adminPassword);
+        $expectedResponse->setAdminPasswordSecretVersion($adminPasswordSecretVersion);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setCidr($cidr);
         $expectedResponse->setOdbNetwork($odbNetwork);
@@ -2800,6 +3895,72 @@ class OracleDatabaseClientTest extends GeneratedTest
         $request = (new GetAutonomousDatabaseRequest())->setName($formattedName);
         try {
             $gapicClient->getAutonomousDatabase($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAutonomousDatabaseRefreshableClonesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new AutonomousDatabaseRefreshableClones();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->autonomousDatabaseName('[PROJECT]', '[LOCATION]', '[AUTONOMOUS_DATABASE]');
+        $request = (new GetAutonomousDatabaseRefreshableClonesRequest())->setName($formattedName);
+        $response = $gapicClient->getAutonomousDatabaseRefreshableClones($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/GetAutonomousDatabaseRefreshableClones',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAutonomousDatabaseRefreshableClonesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->autonomousDatabaseName('[PROJECT]', '[LOCATION]', '[AUTONOMOUS_DATABASE]');
+        $request = (new GetAutonomousDatabaseRefreshableClonesRequest())->setName($formattedName);
+        try {
+            $gapicClient->getAutonomousDatabaseRefreshableClones($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2912,6 +4073,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $odbNetwork = 'odbNetwork-1199754980';
         $odbSubnet = 'odbSubnet118675119';
         $backupOdbSubnet = 'backupOdbSubnet677701964';
+        $exascaleDbStorageVault = 'exascaleDbStorageVault-2059486384';
         $expectedResponse = new CloudVmCluster();
         $expectedResponse->setName($name2);
         $expectedResponse->setExadataInfrastructure($exadataInfrastructure);
@@ -2923,6 +4085,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $expectedResponse->setOdbNetwork($odbNetwork);
         $expectedResponse->setOdbSubnet($odbSubnet);
         $expectedResponse->setBackupOdbSubnet($backupOdbSubnet);
+        $expectedResponse->setExascaleDbStorageVault($exascaleDbStorageVault);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->cloudVmClusterName('[PROJECT]', '[LOCATION]', '[CLOUD_VM_CLUSTER]');
@@ -2989,25 +4152,33 @@ class OracleDatabaseClientTest extends GeneratedTest
         $dbName = 'dbName1452819884';
         $dbUniqueName = 'dbUniqueName-247267336';
         $adminPassword = 'adminPassword1579561355';
+        $adminPasswordSecretVersion = 'adminPasswordSecretVersion-1735395459';
         $tdeWalletPassword = 'tdeWalletPassword2013760471';
+        $tdeWalletPasswordSecretVersion = 'tdeWalletPasswordSecretVersion-1612891215';
         $characterSet = 'characterSet-1789597108';
         $ncharacterSet = 'ncharacterSet-1566471010';
         $ociUrl = 'ociUrl-1632104635';
         $databaseId = 'databaseId816491103';
         $dbHomeName = 'dbHomeName644903786';
         $gcpOracleZone = 'gcpOracleZone1763347746';
+        $pluggableDatabaseId = 'pluggableDatabaseId305674643';
+        $pluggableDatabaseName = 'pluggableDatabaseName1695705347';
         $expectedResponse = new Database();
         $expectedResponse->setName($name2);
         $expectedResponse->setDbName($dbName);
         $expectedResponse->setDbUniqueName($dbUniqueName);
         $expectedResponse->setAdminPassword($adminPassword);
+        $expectedResponse->setAdminPasswordSecretVersion($adminPasswordSecretVersion);
         $expectedResponse->setTdeWalletPassword($tdeWalletPassword);
+        $expectedResponse->setTdeWalletPasswordSecretVersion($tdeWalletPasswordSecretVersion);
         $expectedResponse->setCharacterSet($characterSet);
         $expectedResponse->setNcharacterSet($ncharacterSet);
         $expectedResponse->setOciUrl($ociUrl);
         $expectedResponse->setDatabaseId($databaseId);
         $expectedResponse->setDbHomeName($dbHomeName);
         $expectedResponse->setGcpOracleZone($gcpOracleZone);
+        $expectedResponse->setPluggableDatabaseId($pluggableDatabaseId);
+        $expectedResponse->setPluggableDatabaseName($pluggableDatabaseName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->databaseName('[PROJECT]', '[LOCATION]', '[DATABASE]');
@@ -3228,11 +4399,13 @@ class OracleDatabaseClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $gcpOracleZone = 'gcpOracleZone1763347746';
         $entitlementId = 'entitlementId-1715775123';
+        $exadataInfrastructure = 'exadataInfrastructure94104074';
         $expectedResponse = new ExascaleDbStorageVault();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setGcpOracleZone($gcpOracleZone);
         $expectedResponse->setEntitlementId($entitlementId);
+        $expectedResponse->setExadataInfrastructure($exadataInfrastructure);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->exascaleDbStorageVaultName(
@@ -3283,6 +4456,238 @@ class OracleDatabaseClientTest extends GeneratedTest
         $request = (new GetExascaleDbStorageVaultRequest())->setName($formattedName);
         try {
             $gapicClient->getExascaleDbStorageVault($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getGoldengateConnectionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $gcpOracleZone = 'gcpOracleZone1763347746';
+        $odbNetwork = 'odbNetwork-1199754980';
+        $odbSubnet = 'odbSubnet118675119';
+        $entitlementId = 'entitlementId-1715775123';
+        $ociUrl = 'ociUrl-1632104635';
+        $expectedResponse = new GoldengateConnection();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setGcpOracleZone($gcpOracleZone);
+        $expectedResponse->setOdbNetwork($odbNetwork);
+        $expectedResponse->setOdbSubnet($odbSubnet);
+        $expectedResponse->setEntitlementId($entitlementId);
+        $expectedResponse->setOciUrl($ociUrl);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->goldengateConnectionName('[PROJECT]', '[LOCATION]', '[GOLDENGATE_CONNECTION]');
+        $request = (new GetGoldengateConnectionRequest())->setName($formattedName);
+        $response = $gapicClient->getGoldengateConnection($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.oracledatabase.v1.OracleDatabase/GetGoldengateConnection', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getGoldengateConnectionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->goldengateConnectionName('[PROJECT]', '[LOCATION]', '[GOLDENGATE_CONNECTION]');
+        $request = (new GetGoldengateConnectionRequest())->setName($formattedName);
+        try {
+            $gapicClient->getGoldengateConnection($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getGoldengateConnectionAssignmentTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $entitlementId = 'entitlementId-1715775123';
+        $expectedResponse = new GoldengateConnectionAssignment();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setEntitlementId($entitlementId);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->goldengateConnectionAssignmentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[GOLDENGATE_CONNECTION_ASSIGNMENT]'
+        );
+        $request = (new GetGoldengateConnectionAssignmentRequest())->setName($formattedName);
+        $response = $gapicClient->getGoldengateConnectionAssignment($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/GetGoldengateConnectionAssignment',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getGoldengateConnectionAssignmentExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->goldengateConnectionAssignmentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[GOLDENGATE_CONNECTION_ASSIGNMENT]'
+        );
+        $request = (new GetGoldengateConnectionAssignmentRequest())->setName($formattedName);
+        try {
+            $gapicClient->getGoldengateConnectionAssignment($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getGoldengateDeploymentTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $gcpOracleZone = 'gcpOracleZone1763347746';
+        $odbNetwork = 'odbNetwork-1199754980';
+        $odbSubnet = 'odbSubnet118675119';
+        $entitlementId = 'entitlementId-1715775123';
+        $displayName = 'displayName1615086568';
+        $ociUrl = 'ociUrl-1632104635';
+        $expectedResponse = new GoldengateDeployment();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setGcpOracleZone($gcpOracleZone);
+        $expectedResponse->setOdbNetwork($odbNetwork);
+        $expectedResponse->setOdbSubnet($odbSubnet);
+        $expectedResponse->setEntitlementId($entitlementId);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setOciUrl($ociUrl);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->goldengateDeploymentName('[PROJECT]', '[LOCATION]', '[GOLDENGATE_DEPLOYMENT]');
+        $request = (new GetGoldengateDeploymentRequest())->setName($formattedName);
+        $response = $gapicClient->getGoldengateDeployment($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.oracledatabase.v1.OracleDatabase/GetGoldengateDeployment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getGoldengateDeploymentExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->goldengateDeploymentName('[PROJECT]', '[LOCATION]', '[GOLDENGATE_DEPLOYMENT]');
+        $request = (new GetGoldengateDeploymentRequest())->setName($formattedName);
+        try {
+            $gapicClient->getGoldengateDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4801,6 +6206,518 @@ class OracleDatabaseClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listGoldengateConnectionAssignmentsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $goldengateConnectionAssignmentsElement = new GoldengateConnectionAssignment();
+        $goldengateConnectionAssignments = [$goldengateConnectionAssignmentsElement];
+        $expectedResponse = new ListGoldengateConnectionAssignmentsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setGoldengateConnectionAssignments($goldengateConnectionAssignments);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListGoldengateConnectionAssignmentsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listGoldengateConnectionAssignments($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getGoldengateConnectionAssignments()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/ListGoldengateConnectionAssignments',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listGoldengateConnectionAssignmentsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListGoldengateConnectionAssignmentsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listGoldengateConnectionAssignments($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listGoldengateConnectionTypesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $goldengateConnectionTypesElement = new \Google\Cloud\OracleDatabase\V1\GoldengateConnectionType();
+        $goldengateConnectionTypes = [$goldengateConnectionTypesElement];
+        $expectedResponse = new ListGoldengateConnectionTypesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setGoldengateConnectionTypes($goldengateConnectionTypes);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListGoldengateConnectionTypesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listGoldengateConnectionTypes($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getGoldengateConnectionTypes()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/ListGoldengateConnectionTypes',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listGoldengateConnectionTypesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListGoldengateConnectionTypesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listGoldengateConnectionTypes($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listGoldengateConnectionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $goldengateConnectionsElement = new GoldengateConnection();
+        $goldengateConnections = [$goldengateConnectionsElement];
+        $expectedResponse = new ListGoldengateConnectionsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setGoldengateConnections($goldengateConnections);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListGoldengateConnectionsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listGoldengateConnections($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getGoldengateConnections()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.oracledatabase.v1.OracleDatabase/ListGoldengateConnections', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listGoldengateConnectionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListGoldengateConnectionsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listGoldengateConnections($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listGoldengateDeploymentEnvironmentsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $goldengateDeploymentEnvironmentsElement = new GoldengateDeploymentEnvironment();
+        $goldengateDeploymentEnvironments = [$goldengateDeploymentEnvironmentsElement];
+        $expectedResponse = new ListGoldengateDeploymentEnvironmentsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setGoldengateDeploymentEnvironments($goldengateDeploymentEnvironments);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListGoldengateDeploymentEnvironmentsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listGoldengateDeploymentEnvironments($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getGoldengateDeploymentEnvironments()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/ListGoldengateDeploymentEnvironments',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listGoldengateDeploymentEnvironmentsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListGoldengateDeploymentEnvironmentsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listGoldengateDeploymentEnvironments($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listGoldengateDeploymentTypesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $goldengateDeploymentTypesElement = new GoldengateDeploymentType();
+        $goldengateDeploymentTypes = [$goldengateDeploymentTypesElement];
+        $expectedResponse = new ListGoldengateDeploymentTypesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setGoldengateDeploymentTypes($goldengateDeploymentTypes);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListGoldengateDeploymentTypesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listGoldengateDeploymentTypes($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getGoldengateDeploymentTypes()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/ListGoldengateDeploymentTypes',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listGoldengateDeploymentTypesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListGoldengateDeploymentTypesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listGoldengateDeploymentTypes($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listGoldengateDeploymentVersionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $goldengateDeploymentVersionsElement = new GoldengateDeploymentVersion();
+        $goldengateDeploymentVersions = [$goldengateDeploymentVersionsElement];
+        $expectedResponse = new ListGoldengateDeploymentVersionsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setGoldengateDeploymentVersions($goldengateDeploymentVersions);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListGoldengateDeploymentVersionsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listGoldengateDeploymentVersions($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getGoldengateDeploymentVersions()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/ListGoldengateDeploymentVersions',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listGoldengateDeploymentVersionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListGoldengateDeploymentVersionsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listGoldengateDeploymentVersions($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listGoldengateDeploymentsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $goldengateDeploymentsElement = new GoldengateDeployment();
+        $goldengateDeployments = [$goldengateDeploymentsElement];
+        $expectedResponse = new ListGoldengateDeploymentsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setGoldengateDeployments($goldengateDeployments);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListGoldengateDeploymentsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listGoldengateDeployments($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getGoldengateDeployments()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.oracledatabase.v1.OracleDatabase/ListGoldengateDeployments', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listGoldengateDeploymentsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListGoldengateDeploymentsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listGoldengateDeployments($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listMinorVersionsTest()
     {
         $transport = $this->createTransport();
@@ -5085,6 +7002,159 @@ class OracleDatabaseClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function refreshAutonomousDatabaseTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/refreshAutonomousDatabaseTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $database = 'database1789464955';
+        $displayName = 'displayName1615086568';
+        $entitlementId = 'entitlementId-1715775123';
+        $adminPassword = 'adminPassword1579561355';
+        $adminPasswordSecretVersion = 'adminPasswordSecretVersion-1735395459';
+        $network = 'network1843485230';
+        $cidr = 'cidr3053428';
+        $odbNetwork = 'odbNetwork-1199754980';
+        $odbSubnet = 'odbSubnet118675119';
+        $expectedResponse = new AutonomousDatabase();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDatabase($database);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setEntitlementId($entitlementId);
+        $expectedResponse->setAdminPassword($adminPassword);
+        $expectedResponse->setAdminPasswordSecretVersion($adminPasswordSecretVersion);
+        $expectedResponse->setNetwork($network);
+        $expectedResponse->setCidr($cidr);
+        $expectedResponse->setOdbNetwork($odbNetwork);
+        $expectedResponse->setOdbSubnet($odbSubnet);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/refreshAutonomousDatabaseTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->autonomousDatabaseName('[PROJECT]', '[LOCATION]', '[AUTONOMOUS_DATABASE]');
+        $refreshCutoffTime = new Timestamp();
+        $request = (new RefreshAutonomousDatabaseRequest())
+            ->setName($formattedName)
+            ->setRefreshCutoffTime($refreshCutoffTime);
+        $response = $gapicClient->refreshAutonomousDatabase($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/RefreshAutonomousDatabase',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualApiRequestObject->getRefreshCutoffTime();
+        $this->assertProtobufEquals($refreshCutoffTime, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/refreshAutonomousDatabaseTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function refreshAutonomousDatabaseExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/refreshAutonomousDatabaseTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->autonomousDatabaseName('[PROJECT]', '[LOCATION]', '[AUTONOMOUS_DATABASE]');
+        $refreshCutoffTime = new Timestamp();
+        $request = (new RefreshAutonomousDatabaseRequest())
+            ->setName($formattedName)
+            ->setRefreshCutoffTime($refreshCutoffTime);
+        $response = $gapicClient->refreshAutonomousDatabase($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/refreshAutonomousDatabaseTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function removeVirtualMachineExadbVmClusterTest()
     {
         $operationsTransport = $this->createTransport();
@@ -5253,6 +7323,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $entitlementId = 'entitlementId-1715775123';
         $adminPassword = 'adminPassword1579561355';
+        $adminPasswordSecretVersion = 'adminPasswordSecretVersion-1735395459';
         $network = 'network1843485230';
         $cidr = 'cidr3053428';
         $odbNetwork = 'odbNetwork-1199754980';
@@ -5263,6 +7334,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEntitlementId($entitlementId);
         $expectedResponse->setAdminPassword($adminPassword);
+        $expectedResponse->setAdminPasswordSecretVersion($adminPasswordSecretVersion);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setCidr($cidr);
         $expectedResponse->setOdbNetwork($odbNetwork);
@@ -5396,6 +7468,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $entitlementId = 'entitlementId-1715775123';
         $adminPassword = 'adminPassword1579561355';
+        $adminPasswordSecretVersion = 'adminPasswordSecretVersion-1735395459';
         $network = 'network1843485230';
         $cidr = 'cidr3053428';
         $odbNetwork = 'odbNetwork-1199754980';
@@ -5406,6 +7479,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEntitlementId($entitlementId);
         $expectedResponse->setAdminPassword($adminPassword);
+        $expectedResponse->setAdminPasswordSecretVersion($adminPasswordSecretVersion);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setCidr($cidr);
         $expectedResponse->setOdbNetwork($odbNetwork);
@@ -5543,6 +7617,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $entitlementId = 'entitlementId-1715775123';
         $adminPassword = 'adminPassword1579561355';
+        $adminPasswordSecretVersion = 'adminPasswordSecretVersion-1735395459';
         $network = 'network1843485230';
         $cidr = 'cidr3053428';
         $odbNetwork = 'odbNetwork-1199754980';
@@ -5553,6 +7628,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEntitlementId($entitlementId);
         $expectedResponse->setAdminPassword($adminPassword);
+        $expectedResponse->setAdminPasswordSecretVersion($adminPasswordSecretVersion);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setCidr($cidr);
         $expectedResponse->setOdbNetwork($odbNetwork);
@@ -5658,6 +7734,145 @@ class OracleDatabaseClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function startGoldengateDeploymentTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/startGoldengateDeploymentTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $gcpOracleZone = 'gcpOracleZone1763347746';
+        $odbNetwork = 'odbNetwork-1199754980';
+        $odbSubnet = 'odbSubnet118675119';
+        $entitlementId = 'entitlementId-1715775123';
+        $displayName = 'displayName1615086568';
+        $ociUrl = 'ociUrl-1632104635';
+        $expectedResponse = new GoldengateDeployment();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setGcpOracleZone($gcpOracleZone);
+        $expectedResponse->setOdbNetwork($odbNetwork);
+        $expectedResponse->setOdbSubnet($odbSubnet);
+        $expectedResponse->setEntitlementId($entitlementId);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setOciUrl($ociUrl);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/startGoldengateDeploymentTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->goldengateDeploymentName('[PROJECT]', '[LOCATION]', '[GOLDENGATE_DEPLOYMENT]');
+        $request = (new StartGoldengateDeploymentRequest())->setName($formattedName);
+        $response = $gapicClient->startGoldengateDeployment($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/StartGoldengateDeployment',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/startGoldengateDeploymentTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function startGoldengateDeploymentExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/startGoldengateDeploymentTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->goldengateDeploymentName('[PROJECT]', '[LOCATION]', '[GOLDENGATE_DEPLOYMENT]');
+        $request = (new StartGoldengateDeploymentRequest())->setName($formattedName);
+        $response = $gapicClient->startGoldengateDeployment($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/startGoldengateDeploymentTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function stopAutonomousDatabaseTest()
     {
         $operationsTransport = $this->createTransport();
@@ -5683,6 +7898,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $entitlementId = 'entitlementId-1715775123';
         $adminPassword = 'adminPassword1579561355';
+        $adminPasswordSecretVersion = 'adminPasswordSecretVersion-1735395459';
         $network = 'network1843485230';
         $cidr = 'cidr3053428';
         $odbNetwork = 'odbNetwork-1199754980';
@@ -5693,6 +7909,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEntitlementId($entitlementId);
         $expectedResponse->setAdminPassword($adminPassword);
+        $expectedResponse->setAdminPasswordSecretVersion($adminPasswordSecretVersion);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setCidr($cidr);
         $expectedResponse->setOdbNetwork($odbNetwork);
@@ -5798,6 +8015,145 @@ class OracleDatabaseClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function stopGoldengateDeploymentTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/stopGoldengateDeploymentTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $gcpOracleZone = 'gcpOracleZone1763347746';
+        $odbNetwork = 'odbNetwork-1199754980';
+        $odbSubnet = 'odbSubnet118675119';
+        $entitlementId = 'entitlementId-1715775123';
+        $displayName = 'displayName1615086568';
+        $ociUrl = 'ociUrl-1632104635';
+        $expectedResponse = new GoldengateDeployment();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setGcpOracleZone($gcpOracleZone);
+        $expectedResponse->setOdbNetwork($odbNetwork);
+        $expectedResponse->setOdbSubnet($odbSubnet);
+        $expectedResponse->setEntitlementId($entitlementId);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setOciUrl($ociUrl);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/stopGoldengateDeploymentTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->goldengateDeploymentName('[PROJECT]', '[LOCATION]', '[GOLDENGATE_DEPLOYMENT]');
+        $request = (new StopGoldengateDeploymentRequest())->setName($formattedName);
+        $response = $gapicClient->stopGoldengateDeployment($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/StopGoldengateDeployment',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/stopGoldengateDeploymentTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function stopGoldengateDeploymentExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/stopGoldengateDeploymentTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->goldengateDeploymentName('[PROJECT]', '[LOCATION]', '[GOLDENGATE_DEPLOYMENT]');
+        $request = (new StopGoldengateDeploymentRequest())->setName($formattedName);
+        $response = $gapicClient->stopGoldengateDeployment($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/stopGoldengateDeploymentTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function switchoverAutonomousDatabaseTest()
     {
         $operationsTransport = $this->createTransport();
@@ -5823,6 +8179,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $entitlementId = 'entitlementId-1715775123';
         $adminPassword = 'adminPassword1579561355';
+        $adminPasswordSecretVersion = 'adminPasswordSecretVersion-1735395459';
         $network = 'network1843485230';
         $cidr = 'cidr3053428';
         $odbNetwork = 'odbNetwork-1199754980';
@@ -5833,6 +8190,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEntitlementId($entitlementId);
         $expectedResponse->setAdminPassword($adminPassword);
+        $expectedResponse->setAdminPasswordSecretVersion($adminPasswordSecretVersion);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setCidr($cidr);
         $expectedResponse->setOdbNetwork($odbNetwork);
@@ -5846,14 +8204,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->autonomousDatabaseName('[PROJECT]', '[LOCATION]', '[AUTONOMOUS_DATABASE]');
-        $formattedPeerAutonomousDatabase = $gapicClient->autonomousDatabaseName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[AUTONOMOUS_DATABASE]'
-        );
-        $request = (new SwitchoverAutonomousDatabaseRequest())
-            ->setName($formattedName)
-            ->setPeerAutonomousDatabase($formattedPeerAutonomousDatabase);
+        $request = (new SwitchoverAutonomousDatabaseRequest())->setName($formattedName);
         $response = $gapicClient->switchoverAutonomousDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5869,8 +8220,6 @@ class OracleDatabaseClientTest extends GeneratedTest
         );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getPeerAutonomousDatabase();
-        $this->assertProtobufEquals($formattedPeerAutonomousDatabase, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/switchoverAutonomousDatabaseTest');
         $response->pollUntilComplete([
@@ -5926,14 +8275,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->autonomousDatabaseName('[PROJECT]', '[LOCATION]', '[AUTONOMOUS_DATABASE]');
-        $formattedPeerAutonomousDatabase = $gapicClient->autonomousDatabaseName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[AUTONOMOUS_DATABASE]'
-        );
-        $request = (new SwitchoverAutonomousDatabaseRequest())
-            ->setName($formattedName)
-            ->setPeerAutonomousDatabase($formattedPeerAutonomousDatabase);
+        $request = (new SwitchoverAutonomousDatabaseRequest())->setName($formattedName);
         $response = $gapicClient->switchoverAutonomousDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5954,6 +8296,80 @@ class OracleDatabaseClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function testGoldengateConnectionAssignmentTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new TestGoldengateConnectionAssignmentResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->goldengateConnectionAssignmentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[GOLDENGATE_CONNECTION_ASSIGNMENT]'
+        );
+        $request = (new TestGoldengateConnectionAssignmentRequest())->setName($formattedName);
+        $response = $gapicClient->testGoldengateConnectionAssignment($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/TestGoldengateConnectionAssignment',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function testGoldengateConnectionAssignmentExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->goldengateConnectionAssignmentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[GOLDENGATE_CONNECTION_ASSIGNMENT]'
+        );
+        $request = (new TestGoldengateConnectionAssignmentRequest())->setName($formattedName);
+        try {
+            $gapicClient->testGoldengateConnectionAssignment($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -5982,6 +8398,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $entitlementId = 'entitlementId-1715775123';
         $adminPassword = 'adminPassword1579561355';
+        $adminPasswordSecretVersion = 'adminPasswordSecretVersion-1735395459';
         $network = 'network1843485230';
         $cidr = 'cidr3053428';
         $odbNetwork = 'odbNetwork-1199754980';
@@ -5992,6 +8409,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEntitlementId($entitlementId);
         $expectedResponse->setAdminPassword($adminPassword);
+        $expectedResponse->setAdminPasswordSecretVersion($adminPasswordSecretVersion);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setCidr($cidr);
         $expectedResponse->setOdbNetwork($odbNetwork);
@@ -6444,7 +8862,7 @@ class OracleDatabaseClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createAutonomousDatabaseAsyncTest()
+    public function configureExascaleCloudExadataInfrastructureAsyncTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -6461,44 +8879,36 @@ class OracleDatabaseClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createAutonomousDatabaseTest');
+        $incompleteOperation->setName('operations/configureExascaleCloudExadataInfrastructureTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
-        $name = 'name3373707';
-        $database = 'database1789464955';
+        $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
+        $gcpOracleZone = 'gcpOracleZone1763347746';
         $entitlementId = 'entitlementId-1715775123';
-        $adminPassword = 'adminPassword1579561355';
-        $network = 'network1843485230';
-        $cidr = 'cidr3053428';
-        $odbNetwork = 'odbNetwork-1199754980';
-        $odbSubnet = 'odbSubnet118675119';
-        $expectedResponse = new AutonomousDatabase();
-        $expectedResponse->setName($name);
-        $expectedResponse->setDatabase($database);
+        $expectedResponse = new CloudExadataInfrastructure();
+        $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setGcpOracleZone($gcpOracleZone);
         $expectedResponse->setEntitlementId($entitlementId);
-        $expectedResponse->setAdminPassword($adminPassword);
-        $expectedResponse->setNetwork($network);
-        $expectedResponse->setCidr($cidr);
-        $expectedResponse->setOdbNetwork($odbNetwork);
-        $expectedResponse->setOdbSubnet($odbSubnet);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/createAutonomousDatabaseTest');
+        $completeOperation->setName('operations/configureExascaleCloudExadataInfrastructureTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $autonomousDatabaseId = 'autonomousDatabaseId-1188134896';
-        $autonomousDatabase = new AutonomousDatabase();
-        $request = (new CreateAutonomousDatabaseRequest())
-            ->setParent($formattedParent)
-            ->setAutonomousDatabaseId($autonomousDatabaseId)
-            ->setAutonomousDatabase($autonomousDatabase);
-        $response = $gapicClient->createAutonomousDatabaseAsync($request)->wait();
+        $formattedName = $gapicClient->cloudExadataInfrastructureName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CLOUD_EXADATA_INFRASTRUCTURE]'
+        );
+        $totalStorageSizeGb = 1493200154;
+        $request = (new ConfigureExascaleCloudExadataInfrastructureRequest())
+            ->setName($formattedName)
+            ->setTotalStorageSizeGb($totalStorageSizeGb);
+        $response = $gapicClient->configureExascaleCloudExadataInfrastructureAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -6508,17 +8918,15 @@ class OracleDatabaseClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.cloud.oracledatabase.v1.OracleDatabase/CreateAutonomousDatabase',
+            '/google.cloud.oracledatabase.v1.OracleDatabase/ConfigureExascaleCloudExadataInfrastructure',
             $actualApiFuncCall
         );
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getAutonomousDatabaseId();
-        $this->assertProtobufEquals($autonomousDatabaseId, $actualValue);
-        $actualValue = $actualApiRequestObject->getAutonomousDatabase();
-        $this->assertProtobufEquals($autonomousDatabase, $actualValue);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualApiRequestObject->getTotalStorageSizeGb();
+        $this->assertProtobufEquals($totalStorageSizeGb, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createAutonomousDatabaseTest');
+        $expectedOperationsRequestObject->setName('operations/configureExascaleCloudExadataInfrastructureTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

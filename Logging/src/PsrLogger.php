@@ -374,7 +374,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      */
     public function log($level, Stringable|string $message, array $context = []): void
     {
-        $this->validateLogLevel($level);
+        $level = $this->validateLogLevel($level);
         $options = [];
 
         if (isset($context['exception'])
@@ -520,16 +520,21 @@ class PsrLogger implements LoggerInterface, \Serializable
      * Validates whether or not the provided log level exists.
      *
      * @param string|int $level The severity of the log entry.
-     * @return bool
+     * @return int
      * @throws \InvalidArgumentException
      */
-    private function validateLogLevel($level)
+    private function validateLogLevel($level): int
     {
         $map = Logger::getLogLevelMap();
         $level = (string) $level;
 
-        if (isset($map[$level]) || isset(array_flip($map)[strtoupper($level)])) {
-            return true;
+        if (isset($map[$level])) {
+            return $level;
+        }
+
+        $levelFromString = array_flip($map)[strtoupper($level)] ?? null;
+        if (!is_null($levelFromString)) {
+            return $levelFromString;
         }
 
         throw new InvalidArgumentException("Severity level '$level' is not defined.");

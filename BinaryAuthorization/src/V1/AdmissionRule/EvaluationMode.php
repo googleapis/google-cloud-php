@@ -18,14 +18,14 @@ class EvaluationMode
      */
     const EVALUATION_MODE_UNSPECIFIED = 0;
     /**
-     * This rule allows all all pod creations.
+     * This rule allows all pod creations.
      *
      * Generated from protobuf enum <code>ALWAYS_ALLOW = 1;</code>
      */
     const ALWAYS_ALLOW = 1;
     /**
      * This rule allows a pod creation if all the attestors listed in
-     * 'require_attestations_by' have valid attestations for all of the
+     * `require_attestations_by` have valid attestations for all of the
      * images in the pod spec.
      *
      * Generated from protobuf enum <code>REQUIRE_ATTESTATION = 2;</code>

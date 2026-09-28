@@ -90,6 +90,18 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securesourcemanager.v1.Instance.WorkforceIdentityFederationConfig workforce_identity_federation_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $workforce_identity_federation_config = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
 
     /**
      * Constructor.
@@ -132,6 +144,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\SecureSourceManager\V1\Instance\WorkforceIdentityFederationConfig $workforce_identity_federation_config
      *           Optional. Configuration for Workforce Identity Federation to support
      *           third party identity provider. If unset, defaults to the Google OIDC IdP.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -475,6 +491,58 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecureSourceManager\V1\Instance\WorkforceIdentityFederationConfig::class);
         $this->workforce_identity_federation_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }

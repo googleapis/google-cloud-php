@@ -21,6 +21,12 @@ class Impact extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.recommender.v1.Impact.Category category = 1;</code>
      */
     protected $category = 0;
+    /**
+     * The service that this impact is associated with.
+     *
+     * Generated from protobuf field <code>string service = 3;</code>
+     */
+    protected $service = '';
     protected $projection;
 
     /**
@@ -39,6 +45,8 @@ class Impact extends \Google\Protobuf\Internal\Message
      *           Use with CategoryType.SUSTAINABILITY
      *     @type \Google\Cloud\Recommender\V1\ReliabilityProjection $reliability_projection
      *           Use with CategoryType.RELIABILITY
+     *     @type string $service
+     *           The service that this impact is associated with.
      * }
      */
     public function __construct($data = NULL) {
@@ -192,6 +200,32 @@ class Impact extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Recommender\V1\ReliabilityProjection::class);
         $this->writeOneof(103, $var);
+
+        return $this;
+    }
+
+    /**
+     * The service that this impact is associated with.
+     *
+     * Generated from protobuf field <code>string service = 3;</code>
+     * @return string
+     */
+    public function getService()
+    {
+        return $this->service;
+    }
+
+    /**
+     * The service that this impact is associated with.
+     *
+     * Generated from protobuf field <code>string service = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setService($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service = $var;
 
         return $this;
     }

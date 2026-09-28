@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,6 +35,8 @@ use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Apps\Meet\V2beta\BatchUpdateMembersRequest;
+use Google\Apps\Meet\V2beta\BatchUpdateMembersResponse;
 use Google\Apps\Meet\V2beta\ConnectActiveConferenceRequest;
 use Google\Apps\Meet\V2beta\ConnectActiveConferenceResponse;
 use Google\Apps\Meet\V2beta\CreateMemberRequest;
@@ -46,6 +48,7 @@ use Google\Apps\Meet\V2beta\GetSpaceRequest;
 use Google\Apps\Meet\V2beta\ListMembersRequest;
 use Google\Apps\Meet\V2beta\Member;
 use Google\Apps\Meet\V2beta\Space;
+use Google\Apps\Meet\V2beta\UpdateMemberRequest;
 use Google\Apps\Meet\V2beta\UpdateSpaceRequest;
 use Google\Auth\FetchAuthTokenInterface;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -64,6 +67,7 @@ use Psr\Log\LoggerInterface;
  *
  * @experimental
  *
+ * @method PromiseInterface<BatchUpdateMembersResponse> batchUpdateMembersAsync(BatchUpdateMembersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ConnectActiveConferenceResponse> connectActiveConferenceAsync(ConnectActiveConferenceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Member> createMemberAsync(CreateMemberRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> createSpaceAsync(CreateSpaceRequest $request, array $optionalArgs = [])
@@ -72,6 +76,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Member> getMemberAsync(GetMemberRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> getSpaceAsync(GetSpaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listMembersAsync(ListMembersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Member> updateMemberAsync(UpdateMemberRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> updateSpaceAsync(UpdateSpaceRequest $request, array $optionalArgs = [])
  */
 final class SpacesServiceClient
@@ -98,7 +103,11 @@ final class SpacesServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/meetings.conference.media.audio.readonly',
         'https://www.googleapis.com/auth/meetings.conference.media.readonly',
@@ -296,6 +305,36 @@ final class SpacesServiceClient
     }
 
     /**
+     * Updates members of one space within a batch.
+     *
+     * The async variant is {@see SpacesServiceClient::batchUpdateMembersAsync()} .
+     *
+     * @example samples/V2beta/SpacesServiceClient/batch_update_members.php
+     *
+     * @param BatchUpdateMembersRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchUpdateMembersResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function batchUpdateMembers(
+        BatchUpdateMembersRequest $request,
+        array $callOptions = []
+    ): BatchUpdateMembersResponse {
+        return $this->startApiCall('BatchUpdateMembers', $request, $callOptions)->wait();
+    }
+
+    /**
      * [Developer Preview](https://developers.google.com/workspace/preview):
      * Broker a WebRTC connection to the active conference of a space.
      *
@@ -304,8 +343,8 @@ final class SpacesServiceClient
      * additional functionality is available across WebRTC data channels.
      *
      * See [Meet Media API
-     * overview](https://developers.google.com/meet/media-api/guides/overview) for
-     * more details about this connection.
+     * overview](https://developers.google.com/workspace/meet/media-api/guides/overview)
+     * for more details about this connection.
      *
      * The async variant is {@see SpacesServiceClient::connectActiveConferenceAsync()}
      * .
@@ -336,8 +375,7 @@ final class SpacesServiceClient
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview):
-     * Create a member.
+     * Creates a member.
      *
      * This API supports the `fields` parameter in
      * [SystemParameterContext](https://cloud.google.com/apis/docs/system-parameters).
@@ -398,8 +436,7 @@ final class SpacesServiceClient
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview):
-     * Delete the member who was previously assigned roles in the space.
+     * Deletes the member who was previously assigned roles in the space.
      *
      * The async variant is {@see SpacesServiceClient::deleteMemberAsync()} .
      *
@@ -428,7 +465,7 @@ final class SpacesServiceClient
      * Ends an active conference (if there's one).
      *
      * For an example, see [End active
-     * conference](https://developers.google.com/meet/api/guides/meeting-spaces#end-active-conference).
+     * conference](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#end-active-conference).
      *
      * The async variant is {@see SpacesServiceClient::endActiveConferenceAsync()} .
      *
@@ -454,8 +491,7 @@ final class SpacesServiceClient
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview):
-     * Get a member.
+     * Gets a member.
      *
      * This API supports the `fields` parameter in
      * [SystemParameterContext](https://cloud.google.com/apis/docs/system-parameters).
@@ -491,7 +527,7 @@ final class SpacesServiceClient
      * Gets details about a meeting space.
      *
      * For an example, see [Get a meeting
-     * space](https://developers.google.com/meet/api/guides/meeting-spaces#get-meeting-space).
+     * space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#get-meeting-space).
      *
      * The async variant is {@see SpacesServiceClient::getSpaceAsync()} .
      *
@@ -519,8 +555,7 @@ final class SpacesServiceClient
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview):
-     * List members.
+     * Lists members.
      *
      * This API supports the `fields` parameter in
      * [SystemParameterContext](https://cloud.google.com/apis/docs/system-parameters).
@@ -553,10 +588,38 @@ final class SpacesServiceClient
     }
 
     /**
+     * Updates a member.
+     *
+     * The async variant is {@see SpacesServiceClient::updateMemberAsync()} .
+     *
+     * @example samples/V2beta/SpacesServiceClient/update_member.php
+     *
+     * @param UpdateMemberRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Member
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateMember(UpdateMemberRequest $request, array $callOptions = []): Member
+    {
+        return $this->startApiCall('UpdateMember', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates details about a meeting space.
      *
      * For an example, see [Update a meeting
-     * space](https://developers.google.com/meet/api/guides/meeting-spaces#update-meeting-space).
+     * space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#update-meeting-space).
      *
      * The async variant is {@see SpacesServiceClient::updateSpaceAsync()} .
      *

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -267,7 +267,11 @@ final class DataformClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/bigquery',
         'https://www.googleapis.com/auth/cloud-platform',
@@ -317,7 +321,10 @@ final class DataformClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -449,6 +456,31 @@ final class DataformClient
             'project' => $project,
             'location' => $location,
             'folder' => $folder,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * git_repository_link resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $connection
+     * @param string $gitRepositoryLink
+     *
+     * @return string The formatted git_repository_link resource.
+     */
+    public static function gitRepositoryLinkName(
+        string $project,
+        string $location,
+        string $connection,
+        string $gitRepositoryLink
+    ): string {
+        return self::getPathTemplate('gitRepositoryLink')->render([
+            'project' => $project,
+            'location' => $location,
+            'connection' => $connection,
+            'git_repository_link' => $gitRepositoryLink,
         ]);
     }
 
@@ -657,6 +689,7 @@ final class DataformClient
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - folder: projects/{project}/locations/{location}/folders/{folder}
+     * - gitRepositoryLink: projects/{project}/locations/{location}/connections/{connection}/gitRepositoryLinks/{git_repository_link}
      * - location: projects/{project}/locations/{location}
      * - notebookRuntimeTemplate: projects/{project}/locations/{location}/notebookRuntimeTemplates/{notebook_runtime_template}
      * - releaseConfig: projects/{project}/locations/{location}/repositories/{repository}/releaseConfigs/{release_config}
@@ -2897,22 +2930,21 @@ final class DataformClient
 
     /**
      * Lists information about the supported locations for this service.
-
-    This method lists locations based on the resource scope provided in
-    the [ListLocationsRequest.name] field:
-
-    * **Global locations**: If `name` is empty, the method lists the
-    public locations available to all projects. * **Project-specific
-    locations**: If `name` follows the format
-    `projects/{project}`, the method lists locations visible to that
-    specific project. This includes public, private, or other
-    project-specific locations enabled for the project.
-
-    For gRPC and client library implementations, the resource name is
-    passed as the `name` field. For direct service calls, the resource
-    name is
-    incorporated into the request path based on the specific service
-    implementation and version.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see DataformClient::listLocationsAsync()} .
      *

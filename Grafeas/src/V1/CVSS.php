@@ -33,45 +33,107 @@ class CVSS extends \Google\Protobuf\Internal\Message
      */
     protected $impact_score = 0.0;
     /**
-     * Base Metrics
-     * Represents the intrinsic characteristics of a vulnerability that are
-     * constant over time and across user environments.
+     * Attack Vector (AV). Defined in CVSS v2, v3, v4.
      *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.AttackVector attack_vector = 4;</code>
      */
     protected $attack_vector = 0;
     /**
+     * Attack Complexity (AC). Defined in CVSS v2, v3, v4.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.AttackComplexity attack_complexity = 5;</code>
      */
     protected $attack_complexity = 0;
     /**
+     * Authentication (Au). Defined in CVSS v2.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.Authentication authentication = 6;</code>
      */
     protected $authentication = 0;
     /**
+     * Privileges Required (PR). Defined in CVSS v3, v4.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.PrivilegesRequired privileges_required = 7;</code>
      */
     protected $privileges_required = 0;
     /**
+     * User Interaction (UI). Defined in CVSS v3, v4.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.UserInteraction user_interaction = 8;</code>
      */
     protected $user_interaction = 0;
     /**
+     * Scope (S). Defined in CVSS v3.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.Scope scope = 9;</code>
      */
     protected $scope = 0;
     /**
+     * Confidentiality Impact (C). Defined in CVSS v2, v3.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact confidentiality_impact = 10;</code>
      */
     protected $confidentiality_impact = 0;
     /**
+     * Integrity Impact (I). Defined in CVSS v2, v3.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact integrity_impact = 11;</code>
      */
     protected $integrity_impact = 0;
     /**
+     * Availability Impact (A). Defined in CVSS v2, v3.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact availability_impact = 12;</code>
      */
     protected $availability_impact = 0;
+    /**
+     * Attack Requirements (AT). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.AttackRequirements attack_requirements = 13;</code>
+     */
+    protected $attack_requirements = 0;
+    /**
+     * Vulnerable System Confidentiality Impact (VC). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact vulnerable_system_confidentiality_impact = 14;</code>
+     */
+    protected $vulnerable_system_confidentiality_impact = 0;
+    /**
+     * Vulnerable System Integrity Impact (VI). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact vulnerable_system_integrity_impact = 15;</code>
+     */
+    protected $vulnerable_system_integrity_impact = 0;
+    /**
+     * Vulnerable System Availability Impact (VA). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact vulnerable_system_availability_impact = 16;</code>
+     */
+    protected $vulnerable_system_availability_impact = 0;
+    /**
+     * Subsequent System Confidentiality Impact (SC). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact subsequent_system_confidentiality_impact = 17;</code>
+     */
+    protected $subsequent_system_confidentiality_impact = 0;
+    /**
+     * Subsequent System Integrity Impact (SI). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact subsequent_system_integrity_impact = 18;</code>
+     */
+    protected $subsequent_system_integrity_impact = 0;
+    /**
+     * Subsequent System Availability Impact (SA). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact subsequent_system_availability_impact = 19;</code>
+     */
+    protected $subsequent_system_availability_impact = 0;
+    /**
+     * Exploit Maturity (E). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.ExploitMaturity exploit_maturity = 20;</code>
+     */
+    protected $exploit_maturity = 0;
 
     /**
      * Constructor.
@@ -84,17 +146,39 @@ class CVSS extends \Google\Protobuf\Internal\Message
      *     @type float $exploitability_score
      *     @type float $impact_score
      *     @type int $attack_vector
-     *           Base Metrics
-     *           Represents the intrinsic characteristics of a vulnerability that are
-     *           constant over time and across user environments.
+     *           Attack Vector (AV). Defined in CVSS v2, v3, v4.
      *     @type int $attack_complexity
+     *           Attack Complexity (AC). Defined in CVSS v2, v3, v4.
      *     @type int $authentication
+     *           Authentication (Au). Defined in CVSS v2.
      *     @type int $privileges_required
+     *           Privileges Required (PR). Defined in CVSS v3, v4.
      *     @type int $user_interaction
+     *           User Interaction (UI). Defined in CVSS v3, v4.
      *     @type int $scope
+     *           Scope (S). Defined in CVSS v3.
      *     @type int $confidentiality_impact
+     *           Confidentiality Impact (C). Defined in CVSS v2, v3.
      *     @type int $integrity_impact
+     *           Integrity Impact (I). Defined in CVSS v2, v3.
      *     @type int $availability_impact
+     *           Availability Impact (A). Defined in CVSS v2, v3.
+     *     @type int $attack_requirements
+     *           Attack Requirements (AT). Defined in CVSS v4.
+     *     @type int $vulnerable_system_confidentiality_impact
+     *           Vulnerable System Confidentiality Impact (VC). Defined in CVSS v4.
+     *     @type int $vulnerable_system_integrity_impact
+     *           Vulnerable System Integrity Impact (VI). Defined in CVSS v4.
+     *     @type int $vulnerable_system_availability_impact
+     *           Vulnerable System Availability Impact (VA). Defined in CVSS v4.
+     *     @type int $subsequent_system_confidentiality_impact
+     *           Subsequent System Confidentiality Impact (SC). Defined in CVSS v4.
+     *     @type int $subsequent_system_integrity_impact
+     *           Subsequent System Integrity Impact (SI). Defined in CVSS v4.
+     *     @type int $subsequent_system_availability_impact
+     *           Subsequent System Availability Impact (SA). Defined in CVSS v4.
+     *     @type int $exploit_maturity
+     *           Exploit Maturity (E). Defined in CVSS v4.
      * }
      */
     public function __construct($data = NULL) {
@@ -173,9 +257,7 @@ class CVSS extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Base Metrics
-     * Represents the intrinsic characteristics of a vulnerability that are
-     * constant over time and across user environments.
+     * Attack Vector (AV). Defined in CVSS v2, v3, v4.
      *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.AttackVector attack_vector = 4;</code>
      * @return int
@@ -186,9 +268,7 @@ class CVSS extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Base Metrics
-     * Represents the intrinsic characteristics of a vulnerability that are
-     * constant over time and across user environments.
+     * Attack Vector (AV). Defined in CVSS v2, v3, v4.
      *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.AttackVector attack_vector = 4;</code>
      * @param int $var
@@ -203,6 +283,8 @@ class CVSS extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Attack Complexity (AC). Defined in CVSS v2, v3, v4.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.AttackComplexity attack_complexity = 5;</code>
      * @return int
      */
@@ -212,6 +294,8 @@ class CVSS extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Attack Complexity (AC). Defined in CVSS v2, v3, v4.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.AttackComplexity attack_complexity = 5;</code>
      * @param int $var
      * @return $this
@@ -225,6 +309,8 @@ class CVSS extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Authentication (Au). Defined in CVSS v2.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.Authentication authentication = 6;</code>
      * @return int
      */
@@ -234,6 +320,8 @@ class CVSS extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Authentication (Au). Defined in CVSS v2.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.Authentication authentication = 6;</code>
      * @param int $var
      * @return $this
@@ -247,6 +335,8 @@ class CVSS extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Privileges Required (PR). Defined in CVSS v3, v4.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.PrivilegesRequired privileges_required = 7;</code>
      * @return int
      */
@@ -256,6 +346,8 @@ class CVSS extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Privileges Required (PR). Defined in CVSS v3, v4.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.PrivilegesRequired privileges_required = 7;</code>
      * @param int $var
      * @return $this
@@ -269,6 +361,8 @@ class CVSS extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * User Interaction (UI). Defined in CVSS v3, v4.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.UserInteraction user_interaction = 8;</code>
      * @return int
      */
@@ -278,6 +372,8 @@ class CVSS extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * User Interaction (UI). Defined in CVSS v3, v4.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.UserInteraction user_interaction = 8;</code>
      * @param int $var
      * @return $this
@@ -291,6 +387,8 @@ class CVSS extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Scope (S). Defined in CVSS v3.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.Scope scope = 9;</code>
      * @return int
      */
@@ -300,6 +398,8 @@ class CVSS extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Scope (S). Defined in CVSS v3.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.Scope scope = 9;</code>
      * @param int $var
      * @return $this
@@ -313,6 +413,8 @@ class CVSS extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Confidentiality Impact (C). Defined in CVSS v2, v3.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact confidentiality_impact = 10;</code>
      * @return int
      */
@@ -322,6 +424,8 @@ class CVSS extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Confidentiality Impact (C). Defined in CVSS v2, v3.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact confidentiality_impact = 10;</code>
      * @param int $var
      * @return $this
@@ -335,6 +439,8 @@ class CVSS extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Integrity Impact (I). Defined in CVSS v2, v3.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact integrity_impact = 11;</code>
      * @return int
      */
@@ -344,6 +450,8 @@ class CVSS extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Integrity Impact (I). Defined in CVSS v2, v3.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact integrity_impact = 11;</code>
      * @param int $var
      * @return $this
@@ -357,6 +465,8 @@ class CVSS extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Availability Impact (A). Defined in CVSS v2, v3.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact availability_impact = 12;</code>
      * @return int
      */
@@ -366,6 +476,8 @@ class CVSS extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Availability Impact (A). Defined in CVSS v2, v3.
+     *
      * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact availability_impact = 12;</code>
      * @param int $var
      * @return $this
@@ -374,6 +486,214 @@ class CVSS extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Grafeas\V1\CVSS\Impact::class);
         $this->availability_impact = $var;
+
+        return $this;
+    }
+
+    /**
+     * Attack Requirements (AT). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.AttackRequirements attack_requirements = 13;</code>
+     * @return int
+     */
+    public function getAttackRequirements()
+    {
+        return $this->attack_requirements;
+    }
+
+    /**
+     * Attack Requirements (AT). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.AttackRequirements attack_requirements = 13;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAttackRequirements($var)
+    {
+        GPBUtil::checkEnum($var, \Grafeas\V1\CVSS\AttackRequirements::class);
+        $this->attack_requirements = $var;
+
+        return $this;
+    }
+
+    /**
+     * Vulnerable System Confidentiality Impact (VC). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact vulnerable_system_confidentiality_impact = 14;</code>
+     * @return int
+     */
+    public function getVulnerableSystemConfidentialityImpact()
+    {
+        return $this->vulnerable_system_confidentiality_impact;
+    }
+
+    /**
+     * Vulnerable System Confidentiality Impact (VC). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact vulnerable_system_confidentiality_impact = 14;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setVulnerableSystemConfidentialityImpact($var)
+    {
+        GPBUtil::checkEnum($var, \Grafeas\V1\CVSS\Impact::class);
+        $this->vulnerable_system_confidentiality_impact = $var;
+
+        return $this;
+    }
+
+    /**
+     * Vulnerable System Integrity Impact (VI). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact vulnerable_system_integrity_impact = 15;</code>
+     * @return int
+     */
+    public function getVulnerableSystemIntegrityImpact()
+    {
+        return $this->vulnerable_system_integrity_impact;
+    }
+
+    /**
+     * Vulnerable System Integrity Impact (VI). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact vulnerable_system_integrity_impact = 15;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setVulnerableSystemIntegrityImpact($var)
+    {
+        GPBUtil::checkEnum($var, \Grafeas\V1\CVSS\Impact::class);
+        $this->vulnerable_system_integrity_impact = $var;
+
+        return $this;
+    }
+
+    /**
+     * Vulnerable System Availability Impact (VA). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact vulnerable_system_availability_impact = 16;</code>
+     * @return int
+     */
+    public function getVulnerableSystemAvailabilityImpact()
+    {
+        return $this->vulnerable_system_availability_impact;
+    }
+
+    /**
+     * Vulnerable System Availability Impact (VA). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact vulnerable_system_availability_impact = 16;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setVulnerableSystemAvailabilityImpact($var)
+    {
+        GPBUtil::checkEnum($var, \Grafeas\V1\CVSS\Impact::class);
+        $this->vulnerable_system_availability_impact = $var;
+
+        return $this;
+    }
+
+    /**
+     * Subsequent System Confidentiality Impact (SC). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact subsequent_system_confidentiality_impact = 17;</code>
+     * @return int
+     */
+    public function getSubsequentSystemConfidentialityImpact()
+    {
+        return $this->subsequent_system_confidentiality_impact;
+    }
+
+    /**
+     * Subsequent System Confidentiality Impact (SC). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact subsequent_system_confidentiality_impact = 17;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSubsequentSystemConfidentialityImpact($var)
+    {
+        GPBUtil::checkEnum($var, \Grafeas\V1\CVSS\Impact::class);
+        $this->subsequent_system_confidentiality_impact = $var;
+
+        return $this;
+    }
+
+    /**
+     * Subsequent System Integrity Impact (SI). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact subsequent_system_integrity_impact = 18;</code>
+     * @return int
+     */
+    public function getSubsequentSystemIntegrityImpact()
+    {
+        return $this->subsequent_system_integrity_impact;
+    }
+
+    /**
+     * Subsequent System Integrity Impact (SI). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact subsequent_system_integrity_impact = 18;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSubsequentSystemIntegrityImpact($var)
+    {
+        GPBUtil::checkEnum($var, \Grafeas\V1\CVSS\Impact::class);
+        $this->subsequent_system_integrity_impact = $var;
+
+        return $this;
+    }
+
+    /**
+     * Subsequent System Availability Impact (SA). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact subsequent_system_availability_impact = 19;</code>
+     * @return int
+     */
+    public function getSubsequentSystemAvailabilityImpact()
+    {
+        return $this->subsequent_system_availability_impact;
+    }
+
+    /**
+     * Subsequent System Availability Impact (SA). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.Impact subsequent_system_availability_impact = 19;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSubsequentSystemAvailabilityImpact($var)
+    {
+        GPBUtil::checkEnum($var, \Grafeas\V1\CVSS\Impact::class);
+        $this->subsequent_system_availability_impact = $var;
+
+        return $this;
+    }
+
+    /**
+     * Exploit Maturity (E). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.ExploitMaturity exploit_maturity = 20;</code>
+     * @return int
+     */
+    public function getExploitMaturity()
+    {
+        return $this->exploit_maturity;
+    }
+
+    /**
+     * Exploit Maturity (E). Defined in CVSS v4.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.CVSS.ExploitMaturity exploit_maturity = 20;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setExploitMaturity($var)
+    {
+        GPBUtil::checkEnum($var, \Grafeas\V1\CVSS\ExploitMaturity::class);
+        $this->exploit_maturity = $var;
 
         return $this;
     }

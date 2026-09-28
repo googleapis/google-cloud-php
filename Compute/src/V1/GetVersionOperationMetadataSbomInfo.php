@@ -15,15 +15,15 @@ use Google\Protobuf\RepeatedField;
 class GetVersionOperationMetadataSbomInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * SBOM versions currently applied to the resource. The key is the component
-     * name and the value is the version.
+     * A mapping of components to their currently-applied versions or other
+     * appropriate identifiers.
      *
      * Generated from protobuf field <code>map<string, string> current_component_versions = 273325091;</code>
      */
     private $current_component_versions;
     /**
-     * SBOM versions scheduled for the next maintenance. The key is the
-     * component name and the value is the version.
+     * A mapping of components to their target versions or other appropriate
+     * identifiers.
      *
      * Generated from protobuf field <code>map<string, string> target_component_versions = 345997579;</code>
      */
@@ -36,11 +36,11 @@ class GetVersionOperationMetadataSbomInfo extends \Google\Protobuf\Internal\Mess
      *     Optional. Data for populating the Message object.
      *
      *     @type array|\Google\Protobuf\Internal\MapField $current_component_versions
-     *           SBOM versions currently applied to the resource. The key is the component
-     *           name and the value is the version.
+     *           A mapping of components to their currently-applied versions or other
+     *           appropriate identifiers.
      *     @type array|\Google\Protobuf\Internal\MapField $target_component_versions
-     *           SBOM versions scheduled for the next maintenance. The key is the
-     *           component name and the value is the version.
+     *           A mapping of components to their target versions or other appropriate
+     *           identifiers.
      * }
      */
     public function __construct($data = NULL) {
@@ -49,8 +49,8 @@ class GetVersionOperationMetadataSbomInfo extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * SBOM versions currently applied to the resource. The key is the component
-     * name and the value is the version.
+     * A mapping of components to their currently-applied versions or other
+     * appropriate identifiers.
      *
      * Generated from protobuf field <code>map<string, string> current_component_versions = 273325091;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -61,8 +61,8 @@ class GetVersionOperationMetadataSbomInfo extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * SBOM versions currently applied to the resource. The key is the component
-     * name and the value is the version.
+     * A mapping of components to their currently-applied versions or other
+     * appropriate identifiers.
      *
      * Generated from protobuf field <code>map<string, string> current_component_versions = 273325091;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -77,8 +77,8 @@ class GetVersionOperationMetadataSbomInfo extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * SBOM versions scheduled for the next maintenance. The key is the
-     * component name and the value is the version.
+     * A mapping of components to their target versions or other appropriate
+     * identifiers.
      *
      * Generated from protobuf field <code>map<string, string> target_component_versions = 345997579;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -89,8 +89,8 @@ class GetVersionOperationMetadataSbomInfo extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * SBOM versions scheduled for the next maintenance. The key is the
-     * component name and the value is the version.
+     * A mapping of components to their target versions or other appropriate
+     * identifiers.
      *
      * Generated from protobuf field <code>map<string, string> target_component_versions = 345997579;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

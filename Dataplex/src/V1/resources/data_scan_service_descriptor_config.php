@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -76,6 +76,18 @@ return [
                         'keyName' => 'data_scan.name',
                         'fieldAccessors' => [
                             'getDataScan',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'CancelDataScanJob' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataplex\V1\CancelDataScanJobResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
                             'getName',
                         ],
                     ],
@@ -248,6 +260,7 @@ return [
                 'dataScanJob' => 'projects/{project}/locations/{location}/dataScans/{dataScan}/jobs/{job}',
                 'dataset' => 'projects/{project}/datasets/{dataset}',
                 'entity' => 'projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/entities/{entity}',
+                'entry' => 'projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}',
                 'location' => 'projects/{project}/locations/{location}',
                 'project' => 'projects/{project}',
             ],

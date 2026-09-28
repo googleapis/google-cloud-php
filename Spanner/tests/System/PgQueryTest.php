@@ -25,6 +25,7 @@ use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Interval;
+use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\PgJsonb;
 use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\Timestamp;
@@ -40,7 +41,7 @@ class PgQueryTest extends SystemTestCase
 {
     use PgSystemTestCaseTrait;
 
-    const TABLE_NAME = 'test';
+    const TABLE_NAME = 'PgQueryTest_2';
 
     public static $timestampVal;
 
@@ -51,23 +52,9 @@ class PgQueryTest extends SystemTestCase
     {
         self::setUpTestDatabase();
 
-        self::$database->updateDdl(
-            'CREATE TABLE ' . self::TABLE_NAME . ' (
-                id bigint NOT NULL,
-                name varchar(1024),
-                registered bool,
-                age numeric,
-                rating float,
-                bytes_col bytea,
-                created_at timestamptz,
-                dt date,
-                data jsonb,
-                weight float4,
-                PRIMARY KEY (id)
-            )'
-        )->pollUntilComplete();
-
         self::$timestampVal = new Timestamp(new \DateTime());
+
+        self::$database->delete(self::TABLE_NAME, new KeySet(['all' => true]));
 
         self::$database->insertOrUpdateBatch(self::TABLE_NAME, [
             [

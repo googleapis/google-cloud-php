@@ -8,7 +8,7 @@
         "AddressGroupService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AddressGroupServiceGapicClient",
+                    "libraryClient": "AddressGroupServiceClient",
                     "rpcs": {
                         "AddAddressGroupItems": {
                             "methods": [
@@ -87,7 +87,7 @@
         "OrganizationAddressGroupService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "OrganizationAddressGroupServiceGapicClient",
+                    "libraryClient": "OrganizationAddressGroupServiceClient",
                     "rpcs": {
                         "AddAddressGroupItems": {
                             "methods": [
@@ -166,7 +166,7 @@
         "DnsThreatDetectorService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DnsThreatDetectorServiceGapicClient",
+                    "libraryClient": "DnsThreatDetectorServiceClient",
                     "rpcs": {
                         "CreateDnsThreatDetector": {
                             "methods": [
@@ -225,7 +225,7 @@
         "FirewallActivation": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FirewallActivationGapicClient",
+                    "libraryClient": "FirewallActivationClient",
                     "rpcs": {
                         "CreateFirewallEndpoint": {
                             "methods": [
@@ -235,6 +235,11 @@
                         "CreateFirewallEndpointAssociation": {
                             "methods": [
                                 "createFirewallEndpointAssociation"
+                            ]
+                        },
+                        "CreateProjectFirewallEndpoint": {
+                            "methods": [
+                                "createProjectFirewallEndpoint"
                             ]
                         },
                         "DeleteFirewallEndpoint": {
@@ -247,6 +252,11 @@
                                 "deleteFirewallEndpointAssociation"
                             ]
                         },
+                        "DeleteProjectFirewallEndpoint": {
+                            "methods": [
+                                "deleteProjectFirewallEndpoint"
+                            ]
+                        },
                         "GetFirewallEndpoint": {
                             "methods": [
                                 "getFirewallEndpoint"
@@ -255,6 +265,11 @@
                         "GetFirewallEndpointAssociation": {
                             "methods": [
                                 "getFirewallEndpointAssociation"
+                            ]
+                        },
+                        "GetProjectFirewallEndpoint": {
+                            "methods": [
+                                "getProjectFirewallEndpoint"
                             ]
                         },
                         "ListFirewallEndpointAssociations": {
@@ -267,6 +282,11 @@
                                 "listFirewallEndpoints"
                             ]
                         },
+                        "ListProjectFirewallEndpoints": {
+                            "methods": [
+                                "listProjectFirewallEndpoints"
+                            ]
+                        },
                         "UpdateFirewallEndpoint": {
                             "methods": [
                                 "updateFirewallEndpoint"
@@ -275,6 +295,11 @@
                         "UpdateFirewallEndpointAssociation": {
                             "methods": [
                                 "updateFirewallEndpointAssociation"
+                            ]
+                        },
+                        "UpdateProjectFirewallEndpoint": {
+                            "methods": [
+                                "updateProjectFirewallEndpoint"
                             ]
                         },
                         "GetLocation": {
@@ -309,7 +334,7 @@
         "Intercept": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InterceptGapicClient",
+                    "libraryClient": "InterceptClient",
                     "rpcs": {
                         "CreateInterceptDeployment": {
                             "methods": [
@@ -443,7 +468,7 @@
         "Mirroring": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MirroringGapicClient",
+                    "libraryClient": "MirroringClient",
                     "rpcs": {
                         "CreateMirroringDeployment": {
                             "methods": [
@@ -577,7 +602,7 @@
         "NetworkSecurity": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NetworkSecurityGapicClient",
+                    "libraryClient": "NetworkSecurityClient",
                     "rpcs": {
                         "CreateAuthorizationPolicy": {
                             "methods": [
@@ -833,10 +858,10 @@
                 }
             }
         },
-        "OrganizationSecurityProfileGroupService": {
+        "SecurityProfileGroupService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "OrganizationSecurityProfileGroupServiceGapicClient",
+                    "libraryClient": "SecurityProfileGroupServiceClient",
                     "rpcs": {
                         "CreateSecurityProfile": {
                             "methods": [
@@ -886,6 +911,164 @@
                         "UpdateSecurityProfileGroup": {
                             "methods": [
                                 "updateSecurityProfileGroup"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "OrganizationSecurityProfileGroupService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "OrganizationSecurityProfileGroupServiceClient",
+                    "rpcs": {
+                        "CreateSecurityProfile": {
+                            "methods": [
+                                "createSecurityProfile"
+                            ]
+                        },
+                        "CreateSecurityProfileGroup": {
+                            "methods": [
+                                "createSecurityProfileGroup"
+                            ]
+                        },
+                        "DeleteSecurityProfile": {
+                            "methods": [
+                                "deleteSecurityProfile"
+                            ]
+                        },
+                        "DeleteSecurityProfileGroup": {
+                            "methods": [
+                                "deleteSecurityProfileGroup"
+                            ]
+                        },
+                        "GetSecurityProfile": {
+                            "methods": [
+                                "getSecurityProfile"
+                            ]
+                        },
+                        "GetSecurityProfileGroup": {
+                            "methods": [
+                                "getSecurityProfileGroup"
+                            ]
+                        },
+                        "ListSecurityProfileGroups": {
+                            "methods": [
+                                "listSecurityProfileGroups"
+                            ]
+                        },
+                        "ListSecurityProfiles": {
+                            "methods": [
+                                "listSecurityProfiles"
+                            ]
+                        },
+                        "UpdateSecurityProfile": {
+                            "methods": [
+                                "updateSecurityProfile"
+                            ]
+                        },
+                        "UpdateSecurityProfileGroup": {
+                            "methods": [
+                                "updateSecurityProfileGroup"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SSERealmService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SSERealmServiceClient",
+                    "rpcs": {
+                        "CreateSACAttachment": {
+                            "methods": [
+                                "createSACAttachment"
+                            ]
+                        },
+                        "CreateSACRealm": {
+                            "methods": [
+                                "createSACRealm"
+                            ]
+                        },
+                        "DeleteSACAttachment": {
+                            "methods": [
+                                "deleteSACAttachment"
+                            ]
+                        },
+                        "DeleteSACRealm": {
+                            "methods": [
+                                "deleteSACRealm"
+                            ]
+                        },
+                        "GetSACAttachment": {
+                            "methods": [
+                                "getSACAttachment"
+                            ]
+                        },
+                        "GetSACRealm": {
+                            "methods": [
+                                "getSACRealm"
+                            ]
+                        },
+                        "ListSACAttachments": {
+                            "methods": [
+                                "listSACAttachments"
+                            ]
+                        },
+                        "ListSACRealms": {
+                            "methods": [
+                                "listSACRealms"
                             ]
                         },
                         "GetLocation": {

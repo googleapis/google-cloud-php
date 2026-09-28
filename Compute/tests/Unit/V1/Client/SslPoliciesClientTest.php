@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -293,6 +293,7 @@ class SslPoliciesClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $minTlsVersion = 'minTlsVersion8155943';
         $name = 'name3373707';
+        $postQuantumKeyExchange = 'postQuantumKeyExchange1319288038';
         $profile = 'profile-309425751';
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
@@ -304,6 +305,7 @@ class SslPoliciesClientTest extends GeneratedTest
         $expectedResponse->setKind($kind);
         $expectedResponse->setMinTlsVersion($minTlsVersion);
         $expectedResponse->setName($name);
+        $expectedResponse->setPostQuantumKeyExchange($postQuantumKeyExchange);
         $expectedResponse->setProfile($profile);
         $expectedResponse->setRegion($region);
         $expectedResponse->setSelfLink($selfLink);

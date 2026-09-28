@@ -183,7 +183,7 @@ class Zone extends \Google\Protobuf\Internal\Message
      */
     public function getLabels()
     {
-        if ($this->labels->count() !== 0) {
+        if (count($this->labels) !== 0) {
             @trigger_error('labels is deprecated.', E_USER_DEPRECATED);
         }
         return $this->labels;

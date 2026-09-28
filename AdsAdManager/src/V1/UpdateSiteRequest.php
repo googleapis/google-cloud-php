@@ -23,9 +23,9 @@ class UpdateSiteRequest extends \Google\Protobuf\Internal\Message
      */
     protected $site = null;
     /**
-     * Required. The list of fields to update.
+     * Optional. The list of fields to update.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $update_mask = null;
 
@@ -33,7 +33,7 @@ class UpdateSiteRequest extends \Google\Protobuf\Internal\Message
      * @param \Google\Ads\AdManager\V1\Site $site       Required. The `Site` to update.
      *
      *                                                  The `Site`'s `name` is used to identify the `Site` to update.
-     * @param \Google\Protobuf\FieldMask    $updateMask Required. The list of fields to update.
+     * @param \Google\Protobuf\FieldMask    $updateMask Optional. The list of fields to update.
      *
      * @return \Google\Ads\AdManager\V1\UpdateSiteRequest
      *
@@ -56,7 +56,7 @@ class UpdateSiteRequest extends \Google\Protobuf\Internal\Message
      *           Required. The `Site` to update.
      *           The `Site`'s `name` is used to identify the `Site` to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. The list of fields to update.
+     *           Optional. The list of fields to update.
      * }
      */
     public function __construct($data = NULL) {
@@ -103,9 +103,9 @@ class UpdateSiteRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The list of fields to update.
+     * Optional. The list of fields to update.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
@@ -124,9 +124,9 @@ class UpdateSiteRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The list of fields to update.
+     * Optional. The list of fields to update.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

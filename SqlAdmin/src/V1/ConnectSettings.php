@@ -118,6 +118,13 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ConnectSettings.MdxProtocolSupport mdx_protocol_support = 39 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $mdx_protocol_support;
+    /**
+     * Optional. Output only. Connection name of the Cloud SQL instance used in
+     * connection strings, in the format project:region:instance.
+     *
+     * Generated from protobuf field <code>string connection_name = 40 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $connection_name = '';
 
     /**
      * Constructor.
@@ -172,6 +179,9 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      *           representing parts of the MDX protocol that are supported by this instance.
      *           When the list is empty, the instance does not support MDX, so the client
      *           must not send an MDX request. The default is empty.
+     *     @type string $connection_name
+     *           Optional. Output only. Connection name of the Cloud SQL instance used in
+     *           connection strings, in the format project:region:instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -597,6 +607,34 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Sql\V1\ConnectSettings\MdxProtocolSupport::class);
         $this->mdx_protocol_support = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Output only. Connection name of the Cloud SQL instance used in
+     * connection strings, in the format project:region:instance.
+     *
+     * Generated from protobuf field <code>string connection_name = 40 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getConnectionName()
+    {
+        return $this->connection_name;
+    }
+
+    /**
+     * Optional. Output only. Connection name of the Cloud SQL instance used in
+     * connection strings, in the format project:region:instance.
+     *
+     * Generated from protobuf field <code>string connection_name = 40 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setConnectionName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->connection_name = $var;
 
         return $this;
     }

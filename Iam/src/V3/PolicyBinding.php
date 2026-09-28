@@ -59,8 +59,8 @@ class PolicyBinding extends \Google\Protobuf\Internal\Message
      */
     private $annotations;
     /**
-     * Required. Immutable. Target is the full resource name of the resource to
-     * which the policy will be bound. Immutable once set.
+     * Required. Immutable. The full resource name of the resource to which the
+     * policy will be bound. Immutable once set.
      *
      * Generated from protobuf field <code>.google.iam.v3.PolicyBinding.Target target = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -110,12 +110,13 @@ class PolicyBinding extends \Google\Protobuf\Internal\Message
      * - `principal.type == <principal type string>`
      * - `principal.type != <principal type string>`
      * - `principal.type in [<list of principal types>]`
-     * Supported principal types are Workspace, Workforce Pool, Workload Pool and
-     * Service Account. Allowed string must be one of:
-     * - iam.googleapis.com/WorkspaceIdentity
-     * - iam.googleapis.com/WorkforcePoolIdentity
-     * - iam.googleapis.com/WorkloadPoolIdentity
-     * - iam.googleapis.com/ServiceAccount
+     * Supported principal types are workspace, workforce pool, workload pool,
+     * service account, and agent identity. Allowed string must be one of:
+     * - `iam.googleapis.com/WorkspaceIdentity`
+     * - `iam.googleapis.com/WorkforcePoolIdentity`
+     * - `iam.googleapis.com/WorkloadPoolIdentity`
+     * - `iam.googleapis.com/ServiceAccount`
+     * - `iam.googleapis.com/AgentPoolIdentity` (available in Preview)
      *
      * Generated from protobuf field <code>.google.type.Expr condition = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -163,8 +164,8 @@ class PolicyBinding extends \Google\Protobuf\Internal\Message
      *           https://google.aip.dev/148#annotations for more details such as format and
      *           size limitations
      *     @type \Google\Cloud\Iam\V3\PolicyBinding\Target $target
-     *           Required. Immutable. Target is the full resource name of the resource to
-     *           which the policy will be bound. Immutable once set.
+     *           Required. Immutable. The full resource name of the resource to which the
+     *           policy will be bound. Immutable once set.
      *     @type int $policy_kind
      *           Immutable. The kind of the policy to attach in this binding. This field
      *           must be one of the following:
@@ -198,12 +199,13 @@ class PolicyBinding extends \Google\Protobuf\Internal\Message
      *           - `principal.type == <principal type string>`
      *           - `principal.type != <principal type string>`
      *           - `principal.type in [<list of principal types>]`
-     *           Supported principal types are Workspace, Workforce Pool, Workload Pool and
-     *           Service Account. Allowed string must be one of:
-     *           - iam.googleapis.com/WorkspaceIdentity
-     *           - iam.googleapis.com/WorkforcePoolIdentity
-     *           - iam.googleapis.com/WorkloadPoolIdentity
-     *           - iam.googleapis.com/ServiceAccount
+     *           Supported principal types are workspace, workforce pool, workload pool,
+     *           service account, and agent identity. Allowed string must be one of:
+     *           - `iam.googleapis.com/WorkspaceIdentity`
+     *           - `iam.googleapis.com/WorkforcePoolIdentity`
+     *           - `iam.googleapis.com/WorkloadPoolIdentity`
+     *           - `iam.googleapis.com/ServiceAccount`
+     *           - `iam.googleapis.com/AgentPoolIdentity` (available in Preview)
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time when the policy binding was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -372,8 +374,8 @@ class PolicyBinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Target is the full resource name of the resource to
-     * which the policy will be bound. Immutable once set.
+     * Required. Immutable. The full resource name of the resource to which the
+     * policy will be bound. Immutable once set.
      *
      * Generated from protobuf field <code>.google.iam.v3.PolicyBinding.Target target = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Iam\V3\PolicyBinding\Target|null
@@ -394,8 +396,8 @@ class PolicyBinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Target is the full resource name of the resource to
-     * which the policy will be bound. Immutable once set.
+     * Required. Immutable. The full resource name of the resource to which the
+     * policy will be bound. Immutable once set.
      *
      * Generated from protobuf field <code>.google.iam.v3.PolicyBinding.Target target = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Iam\V3\PolicyBinding\Target $var
@@ -518,12 +520,13 @@ class PolicyBinding extends \Google\Protobuf\Internal\Message
      * - `principal.type == <principal type string>`
      * - `principal.type != <principal type string>`
      * - `principal.type in [<list of principal types>]`
-     * Supported principal types are Workspace, Workforce Pool, Workload Pool and
-     * Service Account. Allowed string must be one of:
-     * - iam.googleapis.com/WorkspaceIdentity
-     * - iam.googleapis.com/WorkforcePoolIdentity
-     * - iam.googleapis.com/WorkloadPoolIdentity
-     * - iam.googleapis.com/ServiceAccount
+     * Supported principal types are workspace, workforce pool, workload pool,
+     * service account, and agent identity. Allowed string must be one of:
+     * - `iam.googleapis.com/WorkspaceIdentity`
+     * - `iam.googleapis.com/WorkforcePoolIdentity`
+     * - `iam.googleapis.com/WorkloadPoolIdentity`
+     * - `iam.googleapis.com/ServiceAccount`
+     * - `iam.googleapis.com/AgentPoolIdentity` (available in Preview)
      *
      * Generated from protobuf field <code>.google.type.Expr condition = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Type\Expr|null
@@ -566,12 +569,13 @@ class PolicyBinding extends \Google\Protobuf\Internal\Message
      * - `principal.type == <principal type string>`
      * - `principal.type != <principal type string>`
      * - `principal.type in [<list of principal types>]`
-     * Supported principal types are Workspace, Workforce Pool, Workload Pool and
-     * Service Account. Allowed string must be one of:
-     * - iam.googleapis.com/WorkspaceIdentity
-     * - iam.googleapis.com/WorkforcePoolIdentity
-     * - iam.googleapis.com/WorkloadPoolIdentity
-     * - iam.googleapis.com/ServiceAccount
+     * Supported principal types are workspace, workforce pool, workload pool,
+     * service account, and agent identity. Allowed string must be one of:
+     * - `iam.googleapis.com/WorkspaceIdentity`
+     * - `iam.googleapis.com/WorkforcePoolIdentity`
+     * - `iam.googleapis.com/WorkloadPoolIdentity`
+     * - `iam.googleapis.com/ServiceAccount`
+     * - `iam.googleapis.com/AgentPoolIdentity` (available in Preview)
      *
      * Generated from protobuf field <code>.google.type.Expr condition = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Type\Expr $var

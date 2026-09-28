@@ -14,6 +14,9 @@ Update your `google/cloud-datastore` dependency to `^2.0`:
 
 ## Breaking Changes
 
+### Version constant removed
+Removed `DatastoreClient::VERSION`, use the `VERSION` file in the library root instead.
+
 ### EntityInterface changes
 
 Types have been added to the methods in [`EntityInterface`](src/EntityInterface.php). This means that
@@ -148,4 +151,3 @@ to the namespaced version (replacing `_` with `\`) to upgrade.
  - `Google\Cloud\Datastore\V1\ReadOptions_ReadConsistency` has been removed
  - `Google\Cloud\Datastore\V1\Key_PathElement` has been removed
  - `Google\Cloud\Datastore\V1\AggregationQuery_Aggregation_Count` has been removed
-

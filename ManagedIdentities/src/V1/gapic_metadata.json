@@ -8,7 +8,7 @@
         "ManagedIdentitiesService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ManagedIdentitiesServiceGapicClient",
+                    "libraryClient": "ManagedIdentitiesServiceClient",
                     "rpcs": {
                         "AttachTrust": {
                             "methods": [

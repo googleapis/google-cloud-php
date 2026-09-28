@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ use Google\Cloud\NetworkServices\V1\Mesh;
  * Gets details of a single Mesh.
  *
  * @param string $formattedName A name of the Mesh to get. Must be in the format
- *                              `projects/&#42;/locations/global/meshes/*`. Please see
+ *                              `projects/&#42;/locations/&#42;/meshes/*`. Please see
  *                              {@see NetworkServicesClient::meshName()} for help formatting this field.
  */
 function get_mesh_sample(string $formattedName): void

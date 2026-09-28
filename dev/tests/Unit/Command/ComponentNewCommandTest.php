@@ -20,13 +20,13 @@ namespace Google\Cloud\Dev\Tests\Unit\Command;
 use Google\Cloud\Dev\Command\ComponentNewCommand;
 use Symfony\Component\Console\Input\InputDefinition;
 use Google\Cloud\Dev\Composer;
+use Google\Cloud\Dev\RunProcess;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
-
 
 /**
  * @group dev
@@ -36,9 +36,7 @@ class ComponentNewCommandTest extends TestCase
     use ProphecyTrait;
 
     private static $expectedFiles = [
-        '.OwlBot.yaml' => '.OwlBot.yaml.test', // so OwlBot doesn't read the test file
         '.gitattributes' => null,
-        '.github/pull_request_template.md' => null,
         'CONTRIBUTING.md' => null,
         'LICENSE' => null,
         'README.md' => null,
@@ -86,7 +84,7 @@ class ComponentNewCommandTest extends TestCase
         | githubRepo           | googleapis/google-cloud-php-secretmanager
         | gpbMetadataNamespace | GPBMetadata\Google\Cloud\Secretmanager
         | shortName            | secretmanager
-        | protoPath            | google/cloud/secretmanager/(v1)
+        | protoPath            | google/cloud/secretmanager/v1
         | version              | v1
         EOF, self::$tmpDir);
         foreach (explode("\n", $expectedDisplay) as $expectedLine) {
@@ -120,7 +118,7 @@ class ComponentNewCommandTest extends TestCase
             'googleapis/google-cloud-php-custom-repo',                      // custom value for "githubRepo"
             'GPBMetadata\Google\Custommetadatanamespace',                   // custom value for "gpbMetadataNamespace"
             'customshortname',                                              // custom value for "shortName"
-            'google/cloud/custompath/(.*)',                                 // custom value for "protoPath"
+            'google/cloud/custompath/v2',                                   // custom value for "protoPath"
             'v2',                                                           // custom value for "version"
             'Y',                                                            // Does this information look correct? [Y/n]
             'https://cloud.google.com/coustom-product/docs/reference/rest/', // What is the product documentation URL?
@@ -144,7 +142,7 @@ class ComponentNewCommandTest extends TestCase
         | githubRepo           | googleapis/google-cloud-php-custom-repo
         | gpbMetadataNamespace | GPBMetadata\Google\Custommetadatanamespace
         | shortName            | customshortname
-        | protoPath            | google/cloud/custompath/(.*)
+        | protoPath            | google/cloud/custompath/v2
         | version              | v2
         EOF, self::$tmpDir);
         foreach (explode("\n", $expectedDisplay) as $expectedLine) {
@@ -171,8 +169,17 @@ class ComponentNewCommandTest extends TestCase
         $dummyCommand->getAliases()->willReturn([]);
         $dummyCommand->setApplication(Argument::type(Application::class))->shouldBeCalled();
 
+        $runProcess = $this->prophesize(RunProcess::class);
+        $runProcess->execute(
+            ['librarian', 'add', 'google/cloud/secretmanager/v1'],
+            self::$tmpDir,
+            120
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn('');
+
         $application = new Application();
-        $application->add(new ComponentNewCommand(self::$tmpDir));
+        $application->add(new ComponentNewCommand(self::$tmpDir, null, $runProcess->reveal()));
 
         // Add dummy command for component:update and component:update:readme-sample to ensure they're called
         $dummyCommand->getName()->willReturn('component:update');
@@ -207,7 +214,7 @@ class ComponentNewCommandTest extends TestCase
         | githubRepo           | googleapis/google-cloud-php-secretmanager
         | gpbMetadataNamespace | GPBMetadata\Google\Cloud\Secretmanager
         | shortName            | secretmanager
-        | protoPath            | google/cloud/secretmanager/(v1)
+        | protoPath            | google/cloud/secretmanager/v1
         | version              | v1
         EOF, self::$tmpDir);
         foreach (explode("\n", $expectedDisplay) as $expectedLine) {
@@ -265,6 +272,206 @@ class ComponentNewCommandTest extends TestCase
             'proto' => 'google/cloud/secretmanager/v1/service.proto',
             '--timeout' => 'not-a-number'
         ]);
+    }
+
+    public function testNewComponentWithAllOptions()
+    {
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+        $commandTester->setInputs(['Y']);
+
+        $commandTester->execute([
+            '--no-update' => true,
+            '--component-name' => 'Speech',
+            '--php-namespace' => 'Google\Cloud\Speech\V2',
+            '--proto-package' => 'google.cloud.speech.v2',
+            '--api-short-name' => 'speech',
+            '--api-version' => 'v2',
+            '--product-docs' => 'https://cloud.google.com/speech-to-text/docs',
+            '--product-homepage' => 'https://cloud.google.com/speech-to-text',
+        ]);
+
+        $display = $commandTester->getDisplay();
+        $expectedDisplay = sprintf(<<<EOF
+        | protoPackage         | google.cloud.speech.v2
+        | phpNamespace         | Google\Cloud\Speech\V2
+        | displayName          | Google Cloud Speech V2
+        | componentName        | Speech
+        | componentPath        | %s
+        | composerPackage      | google/cloud-speech-v2
+        | githubRepo           | googleapis/google-cloud-php-speech-v2
+        | gpbMetadataNamespace | GPBMetadata\Google\Cloud\Speech\V2
+        | shortName            | speech
+        | protoPath            | 
+        | version              | v2
+        EOF, self::$tmpDir);
+
+        foreach (explode("\n", $expectedDisplay) as $expectedLine) {
+            $this->assertStringContainsString($expectedLine, $display);
+        }
+
+        $this->assertFileExists(self::$tmpDir . '/Speech/README.md');
+        $this->assertFalse(file_exists(self::$tmpDir . '/Speech/.OwlBot.yaml'));
+
+        $repoMetadataFull = json_decode(file_get_contents(self::$tmpDir . '/.repo-metadata-full.json'), true);
+        $this->assertArrayHasKey('Speech', $repoMetadataFull);
+        $this->assertEquals('speech', $repoMetadataFull['Speech']['api_shortname']);
+    }
+
+    public function testNewComponentWithAllOptionsNonInteractive()
+    {
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+
+        $commandTester->execute([
+            '--no-update' => true,
+            '--component-name' => 'SpeechNonInteractive',
+            '--php-namespace' => 'Google\Cloud\Speech\V2',
+            '--proto-package' => 'google.cloud.speech.v2',
+            '--api-short-name' => 'speech',
+            '--api-version' => 'v2',
+            '--product-docs' => 'https://cloud.google.com/speech-to-text/docs',
+            '--product-homepage' => 'https://cloud.google.com/speech-to-text',
+        ], ['interactive' => false]);
+
+        $display = $commandTester->getDisplay();
+        $this->assertStringContainsString('| componentName        | SpeechNonInteractive', $display);
+        $this->assertFileExists(self::$tmpDir . '/SpeechNonInteractive/README.md');
+    }
+
+    public function testNewComponentWithAllOptionsAndEmptyProductHomepage()
+    {
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+        $commandTester->setInputs(['Y']);
+
+        $commandTester->execute([
+            '--no-update' => true,
+            '--component-name' => 'SpeechEmptyHomepage',
+            '--php-namespace' => 'Google\Cloud\Speech\V2',
+            '--proto-package' => 'google.cloud.speech.v2',
+            '--api-short-name' => 'speech',
+            '--api-version' => 'v2',
+            '--product-docs' => 'https://cloud.google.com/speech-to-text/docs',
+            '--product-homepage' => '',
+        ]);
+
+        $display = $commandTester->getDisplay();
+        $this->assertStringContainsString('| componentName        | SpeechEmptyHomepage', $display);
+        $this->assertFileExists(self::$tmpDir . '/SpeechEmptyHomepage/README.md');
+    }
+
+    public function testNewComponentWithoutProtoOrOptionsFails()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Error: You must provide a proto file path or all 7 component options.');
+
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+        $commandTester->execute([]);
+    }
+
+    public function testNewComponentWithAllOptionsAndProtoPathFails()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Error: Cannot provide both a proto file path and all 7 component options.');
+
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+
+        $commandTester->execute([
+            'proto' => 'google/cloud/secretmanager/v1/service.proto',
+            '--no-update' => true,
+            '--component-name' => 'SecretManagerWithOptions',
+            '--php-namespace' => 'Google\Cloud\SecretManager',
+            '--proto-package' => 'google.cloud.secretmanager',
+            '--api-short-name' => 'secretmanager',
+            '--api-version' => 'v1',
+            '--product-docs' => 'https://cloud.google.com/secret-manager/docs',
+            '--product-homepage' => 'https://cloud.google.com/secret-manager',
+        ]);
+    }
+
+    public function testNewComponentWithPartialOptionsAndProtoPath()
+    {
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+        $commandTester->setInputs([
+            'Y', // Does this information look correct? [Y/n]
+            'https://cloud.google.com/secret-manager', // What is the product homepage?
+        ]);
+
+        $commandTester->execute([
+            'proto' => 'google/cloud/secretmanager/v1/service.proto',
+            '--no-update' => true,
+            '--component-name' => 'CustomSecretManagerName',
+        ]);
+
+        $display = $commandTester->getDisplay();
+        $this->assertStringContainsString('| componentName        | CustomSecretManagerName', $display);
+        $this->assertFileExists(self::$tmpDir . '/CustomSecretManagerName/README.md');
+    }
+
+    public function testNewComponentCommonProtosWithAllOptions()
+    {
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+
+        $commandTester->execute([
+            '--no-update' => true,
+            '--component-name' => 'GeoCommonProtos',
+            '--php-namespace' => 'Google\Geo',
+            '--proto-package' => 'google.geo',
+            '--api-short-name' => '',
+            '--api-version' => '',
+            '--product-docs' => 'https://cloud.google.com/geo/docs',
+            '--product-homepage' => 'https://cloud.google.com/geo',
+        ]);
+
+        $repoMetadataFull = json_decode(file_get_contents(self::$tmpDir . '/.repo-metadata-full.json'), true);
+        $this->assertArrayHasKey('GeoCommonProtos', $repoMetadataFull);
+        $this->assertEquals('CORE', $repoMetadataFull['GeoCommonProtos']['library_type']);
+        $this->assertEquals('google/geo-common-protos', $repoMetadataFull['GeoCommonProtos']['distribution_name']);
+        $this->assertEquals('', $repoMetadataFull['GeoCommonProtos']['api_shortname']);
+    }
+
+    public function testNewComponentAdsWithAllOptions()
+    {
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+
+        $commandTester->execute([
+            '--no-update' => true,
+            '--component-name' => 'AdsAdManager',
+            '--php-namespace' => 'Google\Ads\AdManager\V1',
+            '--proto-package' => 'google.ads.admanager',
+            '--api-short-name' => 'admanager',
+            '--api-version' => 'v1',
+            '--product-docs' => 'https://developers.google.com/ad-manager/api',
+            '--product-homepage' => 'https://developers.google.com/ad-manager',
+        ]);
+
+        $repoMetadataFull = json_decode(file_get_contents(self::$tmpDir . '/.repo-metadata-full.json'), true);
+        $this->assertArrayHasKey('AdsAdManager', $repoMetadataFull);
+        $this->assertEquals('GAPIC_AUTO', $repoMetadataFull['AdsAdManager']['library_type']);
+        $this->assertEquals('googleads/admanager', $repoMetadataFull['AdsAdManager']['distribution_name']);
+        $this->assertEquals('admanager', $repoMetadataFull['AdsAdManager']['api_shortname']);
     }
 
     private function assertComposerJson(string $componentName)

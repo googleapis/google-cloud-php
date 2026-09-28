@@ -122,6 +122,12 @@ class DataProduct extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.dataplex.v1.DataProduct.AccessGroup> access_groups = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $access_groups;
+    /**
+     * Optional. Configuration for access approval for the data product.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.dataplex.v1.DataProduct.AccessApprovalConfig access_approval_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $access_approval_config = null;
 
     /**
      * Constructor.
@@ -186,6 +192,8 @@ class DataProduct extends \Google\Protobuf\Internal\Message
      *              }
      *            }
      *            ```
+     *     @type \Google\Cloud\Dataplex\V1\DataProduct\AccessApprovalConfig $access_approval_config
+     *           Optional. Configuration for access approval for the data product.
      * }
      */
     public function __construct($data = NULL) {
@@ -587,6 +595,42 @@ class DataProduct extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataplex\V1\DataProduct\AccessGroup::class);
         $this->access_groups = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for access approval for the data product.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.dataplex.v1.DataProduct.AccessApprovalConfig access_approval_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataplex\V1\DataProduct\AccessApprovalConfig|null
+     */
+    public function getAccessApprovalConfig()
+    {
+        return $this->access_approval_config;
+    }
+
+    public function hasAccessApprovalConfig()
+    {
+        return isset($this->access_approval_config);
+    }
+
+    public function clearAccessApprovalConfig()
+    {
+        unset($this->access_approval_config);
+    }
+
+    /**
+     * Optional. Configuration for access approval for the data product.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.dataplex.v1.DataProduct.AccessApprovalConfig access_approval_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataplex\V1\DataProduct\AccessApprovalConfig $var
+     * @return $this
+     */
+    public function setAccessApprovalConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataProduct\AccessApprovalConfig::class);
+        $this->access_approval_config = $var;
 
         return $this;
     }

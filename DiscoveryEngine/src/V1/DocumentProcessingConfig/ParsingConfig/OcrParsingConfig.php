@@ -60,7 +60,7 @@ class OcrParsingConfig extends \Google\Protobuf\Internal\Message
      */
     public function getEnhancedDocumentElements()
     {
-        if ($this->enhanced_document_elements->count() !== 0) {
+        if (count($this->enhanced_document_elements) !== 0) {
             @trigger_error('enhanced_document_elements is deprecated.', E_USER_DEPRECATED);
         }
         return $this->enhanced_document_elements;

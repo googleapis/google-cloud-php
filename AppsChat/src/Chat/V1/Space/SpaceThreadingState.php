@@ -20,9 +20,9 @@ class SpaceThreadingState
      */
     const SPACE_THREADING_STATE_UNSPECIFIED = 0;
     /**
-     * Named spaces that support message threads. When users respond to a
-     * message, they can reply in-thread, which keeps their response in the
-     * context of the original message.
+     * Spaces that support message threads. When users respond to a message,
+     * they can reply in-thread, which keeps their response in the context of
+     * the original message.
      *
      * Generated from protobuf enum <code>THREADED_MESSAGES = 2;</code>
      */
@@ -35,8 +35,10 @@ class SpaceThreadingState
      */
     const GROUPED_MESSAGES = 3;
     /**
-     * Direct messages (DMs) between two people and group conversations between
-     * 3 or more people.
+     * Spaces that don't support message threading. This space threading state
+     * is only used for special cases including:
+     * * Continuous meeting chat where threading is intentionally turned off.
+     * * Legacy group conversations that were created prior to 2022.
      *
      * Generated from protobuf enum <code>UNTHREADED_MESSAGES = 4;</code>
      */

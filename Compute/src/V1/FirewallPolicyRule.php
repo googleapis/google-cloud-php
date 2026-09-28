@@ -19,7 +19,9 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * The Action to perform when the client connection triggers the rule.
      * Valid actions for firewall rules are: "allow", "deny",
-     * "apply_security_profile_group" and "goto_next".
+     * "apply_security_profile_group" and "goto_next" (
+     * "apply_security_profile_group" can be specified only for global
+     * network firewall policies or hierarchical firewall policies).
      * Valid actions for packet mirroring rules are: "mirror", "do_not_mirror"
      * and "goto_next".
      *
@@ -94,15 +96,30 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      */
     protected $rule_tuple_count = null;
     /**
-     * A fully-qualified URL of a SecurityProfile resource instance.
+     * A fully-qualified URL of a SecurityProfileGroup resource instance.
      * Example:
      * https://networksecurity.googleapis.com/v1/projects/{project}/locations/{location}/securityProfileGroups/my-security-profile-group
      * Must be specified if action is one of 'apply_security_profile_group' or
-     * 'mirror'. Cannot be specified for other actions.
+     * 'mirror'. Cannot be specified for other actions. Can be specified only
+     * for global network firewall policies or hierarchical firewall policies.
      *
      * Generated from protobuf field <code>optional string security_profile_group = 207411626;</code>
      */
     protected $security_profile_group = null;
+    /**
+     * A list of forwarding rules to which this rule applies.
+     * This field allows you to control which load balancers get this rule.
+     * For example, the following are valid values:
+     *      - https://www.googleapis.com/compute/v1/projects/project/global/forwardingRules/forwardingRule
+     *      - https://www.googleapis.com/compute/v1/projects/project/regions/region/forwardingRules/forwardingRule
+     *      - projects/project/global/
+     *      forwardingRules/forwardingRule
+     *      - projects/project/regions/region/forwardingRules/
+     *      forwardingRule
+     *
+     * Generated from protobuf field <code>repeated string target_forwarding_rules = 495923747;</code>
+     */
+    private $target_forwarding_rules;
     /**
      * A list of network resource URLs to which this rule applies.  This field
      * allows you to control which network's VMs get this rule.  If this field
@@ -132,6 +149,14 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      */
     private $target_service_accounts;
     /**
+     * Target types of the firewall policy rule.
+     * Default value is INSTANCES.
+     * Check the TargetType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string target_type = 62925096;</code>
+     */
+    protected $target_type = null;
+    /**
      * Boolean flag indicating if the traffic should be TLS decrypted.
      * Can be set only if action = 'apply_security_profile_group' and cannot
      * be set for other actions.
@@ -149,7 +174,9 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      *     @type string $action
      *           The Action to perform when the client connection triggers the rule.
      *           Valid actions for firewall rules are: "allow", "deny",
-     *           "apply_security_profile_group" and "goto_next".
+     *           "apply_security_profile_group" and "goto_next" (
+     *           "apply_security_profile_group" can be specified only for global
+     *           network firewall policies or hierarchical firewall policies).
      *           Valid actions for packet mirroring rules are: "mirror", "do_not_mirror"
      *           and "goto_next".
      *     @type string $description
@@ -184,11 +211,22 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      *           Output only. [Output Only] Calculation of the complexity of a single firewall policy
      *           rule.
      *     @type string $security_profile_group
-     *           A fully-qualified URL of a SecurityProfile resource instance.
+     *           A fully-qualified URL of a SecurityProfileGroup resource instance.
      *           Example:
      *           https://networksecurity.googleapis.com/v1/projects/{project}/locations/{location}/securityProfileGroups/my-security-profile-group
      *           Must be specified if action is one of 'apply_security_profile_group' or
-     *           'mirror'. Cannot be specified for other actions.
+     *           'mirror'. Cannot be specified for other actions. Can be specified only
+     *           for global network firewall policies or hierarchical firewall policies.
+     *     @type string[] $target_forwarding_rules
+     *           A list of forwarding rules to which this rule applies.
+     *           This field allows you to control which load balancers get this rule.
+     *           For example, the following are valid values:
+     *                - https://www.googleapis.com/compute/v1/projects/project/global/forwardingRules/forwardingRule
+     *                - https://www.googleapis.com/compute/v1/projects/project/regions/region/forwardingRules/forwardingRule
+     *                - projects/project/global/
+     *                forwardingRules/forwardingRule
+     *                - projects/project/regions/region/forwardingRules/
+     *                forwardingRule
      *     @type string[] $target_resources
      *           A list of network resource URLs to which this rule applies.  This field
      *           allows you to control which network's VMs get this rule.  If this field
@@ -205,6 +243,10 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      *     @type string[] $target_service_accounts
      *           A list of service accounts indicating the sets of instances that are
      *           applied with this rule.
+     *     @type string $target_type
+     *           Target types of the firewall policy rule.
+     *           Default value is INSTANCES.
+     *           Check the TargetType enum for the list of possible values.
      *     @type bool $tls_inspect
      *           Boolean flag indicating if the traffic should be TLS decrypted.
      *           Can be set only if action = 'apply_security_profile_group' and cannot
@@ -219,7 +261,9 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * The Action to perform when the client connection triggers the rule.
      * Valid actions for firewall rules are: "allow", "deny",
-     * "apply_security_profile_group" and "goto_next".
+     * "apply_security_profile_group" and "goto_next" (
+     * "apply_security_profile_group" can be specified only for global
+     * network firewall policies or hierarchical firewall policies).
      * Valid actions for packet mirroring rules are: "mirror", "do_not_mirror"
      * and "goto_next".
      *
@@ -244,7 +288,9 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * The Action to perform when the client connection triggers the rule.
      * Valid actions for firewall rules are: "allow", "deny",
-     * "apply_security_profile_group" and "goto_next".
+     * "apply_security_profile_group" and "goto_next" (
+     * "apply_security_profile_group" can be specified only for global
+     * network firewall policies or hierarchical firewall policies).
      * Valid actions for packet mirroring rules are: "mirror", "do_not_mirror"
      * and "goto_next".
      *
@@ -611,11 +657,12 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A fully-qualified URL of a SecurityProfile resource instance.
+     * A fully-qualified URL of a SecurityProfileGroup resource instance.
      * Example:
      * https://networksecurity.googleapis.com/v1/projects/{project}/locations/{location}/securityProfileGroups/my-security-profile-group
      * Must be specified if action is one of 'apply_security_profile_group' or
-     * 'mirror'. Cannot be specified for other actions.
+     * 'mirror'. Cannot be specified for other actions. Can be specified only
+     * for global network firewall policies or hierarchical firewall policies.
      *
      * Generated from protobuf field <code>optional string security_profile_group = 207411626;</code>
      * @return string
@@ -636,11 +683,12 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A fully-qualified URL of a SecurityProfile resource instance.
+     * A fully-qualified URL of a SecurityProfileGroup resource instance.
      * Example:
      * https://networksecurity.googleapis.com/v1/projects/{project}/locations/{location}/securityProfileGroups/my-security-profile-group
      * Must be specified if action is one of 'apply_security_profile_group' or
-     * 'mirror'. Cannot be specified for other actions.
+     * 'mirror'. Cannot be specified for other actions. Can be specified only
+     * for global network firewall policies or hierarchical firewall policies.
      *
      * Generated from protobuf field <code>optional string security_profile_group = 207411626;</code>
      * @param string $var
@@ -650,6 +698,48 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->security_profile_group = $var;
+
+        return $this;
+    }
+
+    /**
+     * A list of forwarding rules to which this rule applies.
+     * This field allows you to control which load balancers get this rule.
+     * For example, the following are valid values:
+     *      - https://www.googleapis.com/compute/v1/projects/project/global/forwardingRules/forwardingRule
+     *      - https://www.googleapis.com/compute/v1/projects/project/regions/region/forwardingRules/forwardingRule
+     *      - projects/project/global/
+     *      forwardingRules/forwardingRule
+     *      - projects/project/regions/region/forwardingRules/
+     *      forwardingRule
+     *
+     * Generated from protobuf field <code>repeated string target_forwarding_rules = 495923747;</code>
+     * @return RepeatedField<string>
+     */
+    public function getTargetForwardingRules()
+    {
+        return $this->target_forwarding_rules;
+    }
+
+    /**
+     * A list of forwarding rules to which this rule applies.
+     * This field allows you to control which load balancers get this rule.
+     * For example, the following are valid values:
+     *      - https://www.googleapis.com/compute/v1/projects/project/global/forwardingRules/forwardingRule
+     *      - https://www.googleapis.com/compute/v1/projects/project/regions/region/forwardingRules/forwardingRule
+     *      - projects/project/global/
+     *      forwardingRules/forwardingRule
+     *      - projects/project/regions/region/forwardingRules/
+     *      forwardingRule
+     *
+     * Generated from protobuf field <code>repeated string target_forwarding_rules = 495923747;</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setTargetForwardingRules($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->target_forwarding_rules = $arr;
 
         return $this;
     }
@@ -748,6 +838,46 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->target_service_accounts = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Target types of the firewall policy rule.
+     * Default value is INSTANCES.
+     * Check the TargetType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string target_type = 62925096;</code>
+     * @return string
+     */
+    public function getTargetType()
+    {
+        return isset($this->target_type) ? $this->target_type : '';
+    }
+
+    public function hasTargetType()
+    {
+        return isset($this->target_type);
+    }
+
+    public function clearTargetType()
+    {
+        unset($this->target_type);
+    }
+
+    /**
+     * Target types of the firewall policy rule.
+     * Default value is INSTANCES.
+     * Check the TargetType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string target_type = 62925096;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTargetType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->target_type = $var;
 
         return $this;
     }

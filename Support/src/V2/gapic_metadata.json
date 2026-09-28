@@ -8,8 +8,13 @@
         "CaseAttachmentService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CaseAttachmentServiceGapicClient",
+                    "libraryClient": "CaseAttachmentServiceClient",
                     "rpcs": {
+                        "GetAttachment": {
+                            "methods": [
+                                "getAttachment"
+                            ]
+                        },
                         "ListAttachments": {
                             "methods": [
                                 "listAttachments"
@@ -22,7 +27,7 @@
         "CaseService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CaseServiceGapicClient",
+                    "libraryClient": "CaseServiceClient",
                     "rpcs": {
                         "CloseCase": {
                             "methods": [
@@ -71,16 +76,65 @@
         "CommentService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CommentServiceGapicClient",
+                    "libraryClient": "CommentServiceClient",
                     "rpcs": {
                         "CreateComment": {
                             "methods": [
                                 "createComment"
                             ]
                         },
+                        "GetComment": {
+                            "methods": [
+                                "getComment"
+                            ]
+                        },
                         "ListComments": {
                             "methods": [
                                 "listComments"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SupportEventSubscriptionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SupportEventSubscriptionServiceClient",
+                    "rpcs": {
+                        "CreateSupportEventSubscription": {
+                            "methods": [
+                                "createSupportEventSubscription"
+                            ]
+                        },
+                        "DeleteSupportEventSubscription": {
+                            "methods": [
+                                "deleteSupportEventSubscription"
+                            ]
+                        },
+                        "ExpungeSupportEventSubscription": {
+                            "methods": [
+                                "expungeSupportEventSubscription"
+                            ]
+                        },
+                        "GetSupportEventSubscription": {
+                            "methods": [
+                                "getSupportEventSubscription"
+                            ]
+                        },
+                        "ListSupportEventSubscriptions": {
+                            "methods": [
+                                "listSupportEventSubscriptions"
+                            ]
+                        },
+                        "UndeleteSupportEventSubscription": {
+                            "methods": [
+                                "undeleteSupportEventSubscription"
+                            ]
+                        },
+                        "UpdateSupportEventSubscription": {
+                            "methods": [
+                                "updateSupportEventSubscription"
                             ]
                         }
                     }

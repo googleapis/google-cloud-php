@@ -26,9 +26,9 @@ class Export extends \Google\Protobuf\Internal\Message
      *   generated and the dataset and table are created, the discovery scan
      *   configuration will be updated with the dataset and table names.
      * * See [Analyze data profiles stored in
-     * BigQuery](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles).
+     * BigQuery](https://docs.cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles).
      * * See [Sample queries for your BigQuery
-     * table](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#sample_sql_queries).
+     * table](https://docs.cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#sample_sql_queries).
      * *  Data is inserted using [streaming
      *    insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert)
      *    and so data may be in the buffer for a period of time after the
@@ -38,8 +38,8 @@ class Export extends \Google\Protobuf\Internal\Message
      *    visible to queries by the time your topic receives the Pub/Sub
      *    notification.
      *  * The best practice is to use the same table for an entire organization
-     *    so that you can take advantage of the [provided Looker
-     *    reports](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#use_a_premade_report).
+     *    so that you can take advantage of the [provided Data Studio
+     *    reports](https://docs.cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#use_a_premade_report).
      *    If you use VPC Service Controls to define security perimeters, then
      *    you must use a separate table for each boundary.
      *
@@ -75,9 +75,9 @@ class Export extends \Google\Protobuf\Internal\Message
      *             generated and the dataset and table are created, the discovery scan
      *             configuration will be updated with the dataset and table names.
      *           * See [Analyze data profiles stored in
-     *           BigQuery](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles).
+     *           BigQuery](https://docs.cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles).
      *           * See [Sample queries for your BigQuery
-     *           table](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#sample_sql_queries).
+     *           table](https://docs.cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#sample_sql_queries).
      *           *  Data is inserted using [streaming
      *              insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert)
      *              and so data may be in the buffer for a period of time after the
@@ -87,8 +87,8 @@ class Export extends \Google\Protobuf\Internal\Message
      *              visible to queries by the time your topic receives the Pub/Sub
      *              notification.
      *            * The best practice is to use the same table for an entire organization
-     *              so that you can take advantage of the [provided Looker
-     *              reports](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#use_a_premade_report).
+     *              so that you can take advantage of the [provided Data Studio
+     *              reports](https://docs.cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#use_a_premade_report).
      *              If you use VPC Service Controls to define security perimeters, then
      *              you must use a separate table for each boundary.
      *     @type \Google\Cloud\Dlp\V2\BigQueryTable $sample_findings_table
@@ -116,9 +116,9 @@ class Export extends \Google\Protobuf\Internal\Message
      *   generated and the dataset and table are created, the discovery scan
      *   configuration will be updated with the dataset and table names.
      * * See [Analyze data profiles stored in
-     * BigQuery](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles).
+     * BigQuery](https://docs.cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles).
      * * See [Sample queries for your BigQuery
-     * table](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#sample_sql_queries).
+     * table](https://docs.cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#sample_sql_queries).
      * *  Data is inserted using [streaming
      *    insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert)
      *    and so data may be in the buffer for a period of time after the
@@ -128,8 +128,8 @@ class Export extends \Google\Protobuf\Internal\Message
      *    visible to queries by the time your topic receives the Pub/Sub
      *    notification.
      *  * The best practice is to use the same table for an entire organization
-     *    so that you can take advantage of the [provided Looker
-     *    reports](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#use_a_premade_report).
+     *    so that you can take advantage of the [provided Data Studio
+     *    reports](https://docs.cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#use_a_premade_report).
      *    If you use VPC Service Controls to define security perimeters, then
      *    you must use a separate table for each boundary.
      *
@@ -161,9 +161,9 @@ class Export extends \Google\Protobuf\Internal\Message
      *   generated and the dataset and table are created, the discovery scan
      *   configuration will be updated with the dataset and table names.
      * * See [Analyze data profiles stored in
-     * BigQuery](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles).
+     * BigQuery](https://docs.cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles).
      * * See [Sample queries for your BigQuery
-     * table](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#sample_sql_queries).
+     * table](https://docs.cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#sample_sql_queries).
      * *  Data is inserted using [streaming
      *    insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert)
      *    and so data may be in the buffer for a period of time after the
@@ -173,8 +173,8 @@ class Export extends \Google\Protobuf\Internal\Message
      *    visible to queries by the time your topic receives the Pub/Sub
      *    notification.
      *  * The best practice is to use the same table for an entire organization
-     *    so that you can take advantage of the [provided Looker
-     *    reports](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#use_a_premade_report).
+     *    so that you can take advantage of the [provided Data Studio
+     *    reports](https://docs.cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#use_a_premade_report).
      *    If you use VPC Service Controls to define security perimeters, then
      *    you must use a separate table for each boundary.
      *

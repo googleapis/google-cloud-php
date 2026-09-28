@@ -54,7 +54,9 @@ class ErrorStatsServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ErrorStatsServiceClient */
@@ -79,15 +81,17 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedProjectName = $gapicClient->projectName('[PROJECT]');
-        $request = (new DeleteEventsRequest())
-            ->setProjectName($formattedProjectName);
+        $request = (new DeleteEventsRequest())->setProjectName($formattedProjectName);
         $response = $gapicClient->deleteEvents($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/DeleteEvents', $actualFuncCall);
+        $this->assertSame(
+            '/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/DeleteEvents',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getProjectName();
         $this->assertProtobufEquals($formattedProjectName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -104,17 +108,19 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedProjectName = $gapicClient->projectName('[PROJECT]');
-        $request = (new DeleteEventsRequest())
-            ->setProjectName($formattedProjectName);
+        $request = (new DeleteEventsRequest())->setProjectName($formattedProjectName);
         try {
             $gapicClient->deleteEvents($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -139,9 +145,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $errorEventsElement = new ErrorEvent();
-        $errorEvents = [
-            $errorEventsElement,
-        ];
+        $errorEvents = [$errorEventsElement];
         $expectedResponse = new ListEventsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setErrorEvents($errorEvents);
@@ -149,9 +153,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         // Mock request
         $formattedProjectName = $gapicClient->projectName('[PROJECT]');
         $groupId = 'groupId506361563';
-        $request = (new ListEventsRequest())
-            ->setProjectName($formattedProjectName)
-            ->setGroupId($groupId);
+        $request = (new ListEventsRequest())->setProjectName($formattedProjectName)->setGroupId($groupId);
         $response = $gapicClient->listEvents($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -180,19 +182,20 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedProjectName = $gapicClient->projectName('[PROJECT]');
         $groupId = 'groupId506361563';
-        $request = (new ListEventsRequest())
-            ->setProjectName($formattedProjectName)
-            ->setGroupId($groupId);
+        $request = (new ListEventsRequest())->setProjectName($formattedProjectName)->setGroupId($groupId);
         try {
             $gapicClient->listEvents($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -217,17 +220,14 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $errorGroupStatsElement = new ErrorGroupStats();
-        $errorGroupStats = [
-            $errorGroupStatsElement,
-        ];
+        $errorGroupStats = [$errorGroupStatsElement];
         $expectedResponse = new ListGroupStatsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setErrorGroupStats($errorGroupStats);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedProjectName = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListGroupStatsRequest())
-            ->setProjectName($formattedProjectName);
+        $request = (new ListGroupStatsRequest())->setProjectName($formattedProjectName);
         $response = $gapicClient->listGroupStats($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -237,7 +237,10 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/ListGroupStats', $actualFuncCall);
+        $this->assertSame(
+            '/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/ListGroupStats',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getProjectName();
         $this->assertProtobufEquals($formattedProjectName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -254,17 +257,19 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedProjectName = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListGroupStatsRequest())
-            ->setProjectName($formattedProjectName);
+        $request = (new ListGroupStatsRequest())->setProjectName($formattedProjectName);
         try {
             $gapicClient->listGroupStats($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -291,15 +296,17 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedProjectName = $gapicClient->projectName('[PROJECT]');
-        $request = (new DeleteEventsRequest())
-            ->setProjectName($formattedProjectName);
+        $request = (new DeleteEventsRequest())->setProjectName($formattedProjectName);
         $response = $gapicClient->deleteEventsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/DeleteEvents', $actualFuncCall);
+        $this->assertSame(
+            '/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/DeleteEvents',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getProjectName();
         $this->assertProtobufEquals($formattedProjectName, $actualValue);
         $this->assertTrue($transport->isExhausted());

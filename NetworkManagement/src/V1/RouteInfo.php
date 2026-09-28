@@ -51,7 +51,9 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     /**
      * Region of the route. DYNAMIC, PEERING_DYNAMIC, POLICY_BASED and ADVERTISED
      * routes only. If set for POLICY_BASED route, this is a region of VLAN
-     * attachments for Cloud Interconnect the route applies to.
+     * attachments for Cloud Interconnect the route applies to. If set to "all"
+     * for POLICY_BASED route, the route applies to VLAN attachments of Cloud
+     * Interconnect in all regions.
      *
      * Generated from protobuf field <code>string region = 19;</code>
      */
@@ -200,7 +202,9 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      *     @type string $region
      *           Region of the route. DYNAMIC, PEERING_DYNAMIC, POLICY_BASED and ADVERTISED
      *           routes only. If set for POLICY_BASED route, this is a region of VLAN
-     *           attachments for Cloud Interconnect the route applies to.
+     *           attachments for Cloud Interconnect the route applies to. If set to "all"
+     *           for POLICY_BASED route, the route applies to VLAN attachments of Cloud
+     *           Interconnect in all regions.
      *     @type string $dest_ip_range
      *           Destination IP range of the route.
      *     @type string $next_hop
@@ -399,7 +403,9 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     /**
      * Region of the route. DYNAMIC, PEERING_DYNAMIC, POLICY_BASED and ADVERTISED
      * routes only. If set for POLICY_BASED route, this is a region of VLAN
-     * attachments for Cloud Interconnect the route applies to.
+     * attachments for Cloud Interconnect the route applies to. If set to "all"
+     * for POLICY_BASED route, the route applies to VLAN attachments of Cloud
+     * Interconnect in all regions.
      *
      * Generated from protobuf field <code>string region = 19;</code>
      * @return string
@@ -412,7 +418,9 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     /**
      * Region of the route. DYNAMIC, PEERING_DYNAMIC, POLICY_BASED and ADVERTISED
      * routes only. If set for POLICY_BASED route, this is a region of VLAN
-     * attachments for Cloud Interconnect the route applies to.
+     * attachments for Cloud Interconnect the route applies to. If set to "all"
+     * for POLICY_BASED route, the route applies to VLAN attachments of Cloud
+     * Interconnect in all regions.
      *
      * Generated from protobuf field <code>string region = 19;</code>
      * @param string $var

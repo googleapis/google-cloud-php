@@ -26,6 +26,16 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
      */
     protected $idle_delete_ttl = null;
     /**
+     * Optional. The duration to keep the cluster started while idling (when no
+     * jobs are running). Passing this threshold will cause the cluster to be
+     * stopped. Minimum value is 5 minutes; maximum value is 14 days (see JSON
+     * representation of
+     * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration idle_stop_ttl = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $idle_stop_ttl = null;
+    /**
      * Output only. The time when cluster became idle (most recent job finished)
      * and became eligible for deletion due to idleness (see JSON representation
      * of
@@ -35,6 +45,7 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
      */
     protected $idle_start_time = null;
     protected $ttl;
+    protected $stop_ttl;
 
     /**
      * Constructor.
@@ -56,6 +67,22 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The lifetime duration of cluster. The cluster will be
      *           auto-deleted at the end of this period. Minimum value is 10 minutes;
      *           maximum value is 14 days (see JSON representation of
+     *           [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     *     @type \Google\Protobuf\Duration $idle_stop_ttl
+     *           Optional. The duration to keep the cluster started while idling (when no
+     *           jobs are running). Passing this threshold will cause the cluster to be
+     *           stopped. Minimum value is 5 minutes; maximum value is 14 days (see JSON
+     *           representation of
+     *           [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     *     @type \Google\Protobuf\Timestamp $auto_stop_time
+     *           Optional. The time when cluster will be auto-stopped (see JSON
+     *           representation of
+     *           [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     *     @type \Google\Protobuf\Duration $auto_stop_ttl
+     *           Optional. The lifetime duration of the cluster. The cluster will be
+     *           auto-stopped at the end of this period, calculated from the time of
+     *           submission of the create or update cluster request. Minimum value is 10
+     *           minutes; maximum value is 14 days (see JSON representation of
      *           [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *     @type \Google\Protobuf\Timestamp $idle_start_time
      *           Output only. The time when cluster became idle (most recent job finished)
@@ -186,6 +213,124 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The duration to keep the cluster started while idling (when no
+     * jobs are running). Passing this threshold will cause the cluster to be
+     * stopped. Minimum value is 5 minutes; maximum value is 14 days (see JSON
+     * representation of
+     * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration idle_stop_ttl = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getIdleStopTtl()
+    {
+        return $this->idle_stop_ttl;
+    }
+
+    public function hasIdleStopTtl()
+    {
+        return isset($this->idle_stop_ttl);
+    }
+
+    public function clearIdleStopTtl()
+    {
+        unset($this->idle_stop_ttl);
+    }
+
+    /**
+     * Optional. The duration to keep the cluster started while idling (when no
+     * jobs are running). Passing this threshold will cause the cluster to be
+     * stopped. Minimum value is 5 minutes; maximum value is 14 days (see JSON
+     * representation of
+     * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration idle_stop_ttl = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setIdleStopTtl($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->idle_stop_ttl = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The time when cluster will be auto-stopped (see JSON
+     * representation of
+     * [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp auto_stop_time = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getAutoStopTime()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasAutoStopTime()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Optional. The time when cluster will be auto-stopped (see JSON
+     * representation of
+     * [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp auto_stop_time = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setAutoStopTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. The lifetime duration of the cluster. The cluster will be
+     * auto-stopped at the end of this period, calculated from the time of
+     * submission of the create or update cluster request. Minimum value is 10
+     * minutes; maximum value is 14 days (see JSON representation of
+     * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration auto_stop_ttl = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getAutoStopTtl()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasAutoStopTtl()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Optional. The lifetime duration of the cluster. The cluster will be
+     * auto-stopped at the end of this period, calculated from the time of
+     * submission of the create or update cluster request. Minimum value is 10
+     * minutes; maximum value is 14 days (see JSON representation of
+     * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration auto_stop_ttl = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setAutoStopTtl($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
      * Output only. The time when cluster became idle (most recent job finished)
      * and became eligible for deletion due to idleness (see JSON representation
      * of
@@ -233,6 +378,14 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
     public function getTtl()
     {
         return $this->whichOneof("ttl");
+    }
+
+    /**
+     * @return string
+     */
+    public function getStopTtl()
+    {
+        return $this->whichOneof("stop_ttl");
     }
 
 }

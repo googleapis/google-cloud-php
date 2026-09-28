@@ -73,14 +73,19 @@ use Psr\Log\LoggerInterface;
  *
  * @method PromiseInterface<OperationResponse> createFirewallEndpointAsync(CreateFirewallEndpointRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createFirewallEndpointAssociationAsync(CreateFirewallEndpointAssociationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createProjectFirewallEndpointAsync(CreateFirewallEndpointRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteFirewallEndpointAsync(DeleteFirewallEndpointRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteFirewallEndpointAssociationAsync(DeleteFirewallEndpointAssociationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteProjectFirewallEndpointAsync(DeleteFirewallEndpointRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FirewallEndpoint> getFirewallEndpointAsync(GetFirewallEndpointRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FirewallEndpointAssociation> getFirewallEndpointAssociationAsync(GetFirewallEndpointAssociationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallEndpoint> getProjectFirewallEndpointAsync(GetFirewallEndpointRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listFirewallEndpointAssociationsAsync(ListFirewallEndpointAssociationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listFirewallEndpointsAsync(ListFirewallEndpointsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listProjectFirewallEndpointsAsync(ListFirewallEndpointsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateFirewallEndpointAsync(UpdateFirewallEndpointRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateFirewallEndpointAssociationAsync(UpdateFirewallEndpointAssociationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateProjectFirewallEndpointAsync(UpdateFirewallEndpointRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
@@ -111,7 +116,11 @@ final class FirewallActivationClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
@@ -158,7 +167,10 @@ final class FirewallActivationClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -520,6 +532,35 @@ final class FirewallActivationClient
     }
 
     /**
+     * Creates a new FirewallEndpoint in a given project and location.
+     *
+     * The async variant is
+     * {@see FirewallActivationClient::createProjectFirewallEndpointAsync()} .
+     *
+     * @example samples/V1/FirewallActivationClient/create_project_firewall_endpoint.php
+     *
+     * @param CreateFirewallEndpointRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<FirewallEndpoint>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createProjectFirewallEndpoint(
+        CreateFirewallEndpointRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateProjectFirewallEndpoint', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single org Endpoint.
      *
      * The async variant is
@@ -578,6 +619,35 @@ final class FirewallActivationClient
     }
 
     /**
+     * Deletes a single project Endpoint.
+     *
+     * The async variant is
+     * {@see FirewallActivationClient::deleteProjectFirewallEndpointAsync()} .
+     *
+     * @example samples/V1/FirewallActivationClient/delete_project_firewall_endpoint.php
+     *
+     * @param DeleteFirewallEndpointRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteProjectFirewallEndpoint(
+        DeleteFirewallEndpointRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteProjectFirewallEndpoint', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets details of a single org Endpoint.
      *
      * The async variant is {@see FirewallActivationClient::getFirewallEndpointAsync()}
@@ -631,6 +701,35 @@ final class FirewallActivationClient
         array $callOptions = []
     ): FirewallEndpointAssociation {
         return $this->startApiCall('GetFirewallEndpointAssociation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single project Endpoint.
+     *
+     * The async variant is
+     * {@see FirewallActivationClient::getProjectFirewallEndpointAsync()} .
+     *
+     * @example samples/V1/FirewallActivationClient/get_project_firewall_endpoint.php
+     *
+     * @param GetFirewallEndpointRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FirewallEndpoint
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getProjectFirewallEndpoint(
+        GetFirewallEndpointRequest $request,
+        array $callOptions = []
+    ): FirewallEndpoint {
+        return $this->startApiCall('GetProjectFirewallEndpoint', $request, $callOptions)->wait();
     }
 
     /**
@@ -692,6 +791,35 @@ final class FirewallActivationClient
     }
 
     /**
+     * Lists FirewallEndpoints in a given project and location.
+     *
+     * The async variant is
+     * {@see FirewallActivationClient::listProjectFirewallEndpointsAsync()} .
+     *
+     * @example samples/V1/FirewallActivationClient/list_project_firewall_endpoints.php
+     *
+     * @param ListFirewallEndpointsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listProjectFirewallEndpoints(
+        ListFirewallEndpointsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListProjectFirewallEndpoints', $request, $callOptions);
+    }
+
+    /**
      * Update a single org Endpoint.
      *
      * The async variant is
@@ -750,6 +878,35 @@ final class FirewallActivationClient
     }
 
     /**
+     * Update a single project Endpoint.
+     *
+     * The async variant is
+     * {@see FirewallActivationClient::updateProjectFirewallEndpointAsync()} .
+     *
+     * @example samples/V1/FirewallActivationClient/update_project_firewall_endpoint.php
+     *
+     * @param UpdateFirewallEndpointRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<FirewallEndpoint>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateProjectFirewallEndpoint(
+        UpdateFirewallEndpointRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateProjectFirewallEndpoint', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets information about a location.
      *
      * The async variant is {@see FirewallActivationClient::getLocationAsync()} .
@@ -777,22 +934,21 @@ final class FirewallActivationClient
 
     /**
      * Lists information about the supported locations for this service.
-
-    This method lists locations based on the resource scope provided in
-    the [ListLocationsRequest.name] field:
-
-    * **Global locations**: If `name` is empty, the method lists the
-    public locations available to all projects. * **Project-specific
-    locations**: If `name` follows the format
-    `projects/{project}`, the method lists locations visible to that
-    specific project. This includes public, private, or other
-    project-specific locations enabled for the project.
-
-    For gRPC and client library implementations, the resource name is
-    passed as the `name` field. For direct service calls, the resource
-    name is
-    incorporated into the request path based on the specific service
-    implementation and version.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see FirewallActivationClient::listLocationsAsync()} .
      *
@@ -819,7 +975,7 @@ final class FirewallActivationClient
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy
-    if the resource exists and does not have a policy set.
+     * if the resource exists and does not have a policy set.
      *
      * The async variant is {@see FirewallActivationClient::getIamPolicyAsync()} .
      *
@@ -846,10 +1002,10 @@ final class FirewallActivationClient
 
     /**
      * Sets the access control policy on the specified resource. Replaces
-    any existing policy.
-
-    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
-    errors.
+     * any existing policy.
+     *
+     * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+     * errors.
      *
      * The async variant is {@see FirewallActivationClient::setIamPolicyAsync()} .
      *
@@ -876,12 +1032,12 @@ final class FirewallActivationClient
 
     /**
      * Returns permissions that a caller has on the specified resource. If the
-    resource does not exist, this will return an empty set of
-    permissions, not a `NOT_FOUND` error.
-
-    Note: This operation is designed to be used for building
-    permission-aware UIs and command-line tools, not for authorization
-    checking. This operation may "fail open" without warning.
+     * resource does not exist, this will return an empty set of
+     * permissions, not a `NOT_FOUND` error.
+     *
+     * Note: This operation is designed to be used for building
+     * permission-aware UIs and command-line tools, not for authorization
+     * checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see FirewallActivationClient::testIamPermissionsAsync()}
      * .

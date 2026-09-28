@@ -90,6 +90,25 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool peer_info = 11;</code>
      */
     protected $peer_info = false;
+    /**
+     * Indicates whether the client supports the Bigtable Sessions API.
+     *
+     * Generated from protobuf field <code>bool sessions_compatible = 12;</code>
+     */
+    protected $sessions_compatible = false;
+    /**
+     * Internal flag to force sessions for internal projects.
+     *
+     * Generated from protobuf field <code>bool sessions_required = 13;</code>
+     */
+    protected $sessions_required = false;
+    /**
+     * Optional. Indicates whether the client supports microsecond precision
+     * timestamps.
+     *
+     * Generated from protobuf field <code>bool microsecond_timestamp = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $microsecond_timestamp = false;
 
     /**
      * Constructor.
@@ -125,6 +144,13 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
      *           Notify the server that the client explicitly opted in for Direct Access.
      *     @type bool $peer_info
      *           If the client can support using BigtablePeerInfo.
+     *     @type bool $sessions_compatible
+     *           Indicates whether the client supports the Bigtable Sessions API.
+     *     @type bool $sessions_required
+     *           Internal flag to force sessions for internal projects.
+     *     @type bool $microsecond_timestamp
+     *           Optional. Indicates whether the client supports microsecond precision
+     *           timestamps.
      * }
      */
     public function __construct($data = NULL) {
@@ -404,6 +430,86 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->peer_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates whether the client supports the Bigtable Sessions API.
+     *
+     * Generated from protobuf field <code>bool sessions_compatible = 12;</code>
+     * @return bool
+     */
+    public function getSessionsCompatible()
+    {
+        return $this->sessions_compatible;
+    }
+
+    /**
+     * Indicates whether the client supports the Bigtable Sessions API.
+     *
+     * Generated from protobuf field <code>bool sessions_compatible = 12;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSessionsCompatible($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->sessions_compatible = $var;
+
+        return $this;
+    }
+
+    /**
+     * Internal flag to force sessions for internal projects.
+     *
+     * Generated from protobuf field <code>bool sessions_required = 13;</code>
+     * @return bool
+     */
+    public function getSessionsRequired()
+    {
+        return $this->sessions_required;
+    }
+
+    /**
+     * Internal flag to force sessions for internal projects.
+     *
+     * Generated from protobuf field <code>bool sessions_required = 13;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSessionsRequired($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->sessions_required = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates whether the client supports microsecond precision
+     * timestamps.
+     *
+     * Generated from protobuf field <code>bool microsecond_timestamp = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getMicrosecondTimestamp()
+    {
+        return $this->microsecond_timestamp;
+    }
+
+    /**
+     * Optional. Indicates whether the client supports microsecond precision
+     * timestamps.
+     *
+     * Generated from protobuf field <code>bool microsecond_timestamp = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setMicrosecondTimestamp($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->microsecond_timestamp = $var;
 
         return $this;
     }

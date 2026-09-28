@@ -510,6 +510,22 @@ class Dataset
      * ]);
      * ```
      *
+     * ```
+     * // Create a routine with remote function options.
+     * $routine = $dataset->createRoutine('my_remote_udf', [
+     *     'routineType' => 'SCALAR_FUNCTION',
+     *     'language' => 'SQL',
+     *     'remoteFunctionOptions' => [
+     *         'endpoint' => 'https://us-east1-my_gcf_project.cloudfunctions.net/remote_add',
+     *         'connection' => 'projects/project-id/locations/us/connections/connection-id',
+     *         'maxBatchingRows' => '10',
+     *         'userDefinedContext' => [
+     *             'key' => 'value'
+     *         ]
+     *     ]
+     * ]);
+     * ```
+     *
      * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/routines/insert Insert Routines API documentation.
      *
      * @param string $id The routine ID.

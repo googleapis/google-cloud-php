@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ namespace Google\Cloud\AIPlatform\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -36,6 +37,10 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Api\HttpBody;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\AIPlatform\V1\AsyncQueryReasoningEngineRequest;
+use Google\Cloud\AIPlatform\V1\AsyncQueryReasoningEngineResponse;
+use Google\Cloud\AIPlatform\V1\CancelAsyncQueryReasoningEngineRequest;
+use Google\Cloud\AIPlatform\V1\CancelAsyncQueryReasoningEngineResponse;
 use Google\Cloud\AIPlatform\V1\QueryReasoningEngineRequest;
 use Google\Cloud\AIPlatform\V1\QueryReasoningEngineResponse;
 use Google\Cloud\AIPlatform\V1\StreamQueryReasoningEngineRequest;
@@ -47,6 +52,8 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -61,6 +68,8 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<OperationResponse> asyncQueryReasoningEngineAsync(AsyncQueryReasoningEngineRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CancelAsyncQueryReasoningEngineResponse> cancelAsyncQueryReasoningEngineAsync(CancelAsyncQueryReasoningEngineRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<QueryReasoningEngineResponse> queryReasoningEngineAsync(QueryReasoningEngineRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -92,8 +101,14 @@ final class ReasoningEngineExecutionServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+
+    private $operationsClient;
 
     private static function getClientDefaults()
     {
@@ -114,6 +129,57 @@ final class ReasoningEngineExecutionServiceClient
                 ],
             ],
         ];
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+        return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -231,6 +297,7 @@ final class ReasoningEngineExecutionServiceClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /** Handles execution of the async variants for each documented method. */
@@ -242,6 +309,65 @@ final class ReasoningEngineExecutionServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Async query using a reasoning engine.
+     *
+     * The async variant is
+     * {@see ReasoningEngineExecutionServiceClient::asyncQueryReasoningEngineAsync()} .
+     *
+     * @example samples/V1/ReasoningEngineExecutionServiceClient/async_query_reasoning_engine.php
+     *
+     * @param AsyncQueryReasoningEngineRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<AsyncQueryReasoningEngineResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function asyncQueryReasoningEngine(
+        AsyncQueryReasoningEngineRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('AsyncQueryReasoningEngine', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Cancels an AsyncQueryReasoningEngine operation.
+     *
+     * The async variant is
+     * {@see ReasoningEngineExecutionServiceClient::cancelAsyncQueryReasoningEngineAsync()}
+     * .
+     *
+     * @example samples/V1/ReasoningEngineExecutionServiceClient/cancel_async_query_reasoning_engine.php
+     *
+     * @param CancelAsyncQueryReasoningEngineRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CancelAsyncQueryReasoningEngineResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function cancelAsyncQueryReasoningEngine(
+        CancelAsyncQueryReasoningEngineRequest $request,
+        array $callOptions = []
+    ): CancelAsyncQueryReasoningEngineResponse {
+        return $this->startApiCall('CancelAsyncQueryReasoningEngine', $request, $callOptions)->wait();
     }
 
     /**
@@ -353,7 +479,7 @@ final class ReasoningEngineExecutionServiceClient
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy
-    if the resource exists and does not have a policy set.
+     * if the resource exists and does not have a policy set.
      *
      * The async variant is
      * {@see ReasoningEngineExecutionServiceClient::getIamPolicyAsync()} .
@@ -381,10 +507,10 @@ final class ReasoningEngineExecutionServiceClient
 
     /**
      * Sets the access control policy on the specified resource. Replaces
-    any existing policy.
-
-    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
-    errors.
+     * any existing policy.
+     *
+     * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+     * errors.
      *
      * The async variant is
      * {@see ReasoningEngineExecutionServiceClient::setIamPolicyAsync()} .
@@ -412,12 +538,12 @@ final class ReasoningEngineExecutionServiceClient
 
     /**
      * Returns permissions that a caller has on the specified resource. If the
-    resource does not exist, this will return an empty set of
-    permissions, not a `NOT_FOUND` error.
-
-    Note: This operation is designed to be used for building
-    permission-aware UIs and command-line tools, not for authorization
-    checking. This operation may "fail open" without warning.
+     * resource does not exist, this will return an empty set of
+     * permissions, not a `NOT_FOUND` error.
+     *
+     * Note: This operation is designed to be used for building
+     * permission-aware UIs and command-line tools, not for authorization
+     * checking. This operation may "fail open" without warning.
      *
      * The async variant is
      * {@see ReasoningEngineExecutionServiceClient::testIamPermissionsAsync()} .

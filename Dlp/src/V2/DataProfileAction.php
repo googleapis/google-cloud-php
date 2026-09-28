@@ -31,7 +31,7 @@ class DataProfileAction extends \Google\Protobuf\Internal\Message
      *           Publishes generated data profiles to Google Security Operations.
      *           For more information, see [Use Sensitive Data Protection data in
      *           context-aware
-     *           analytics](https://cloud.google.com/chronicle/docs/detection/usecase-dlp-high-risk-user-download).
+     *           analytics](https://docs.cloud.google.com/chronicle/docs/detection/usecase-dlp-high-risk-user-download).
      *     @type \Google\Cloud\Dlp\V2\DataProfileAction\PublishToSecurityCommandCenter $publish_to_scc
      *           Publishes findings to Security Command Center for each data profile.
      *     @type \Google\Cloud\Dlp\V2\DataProfileAction\TagResources $tag_resources
@@ -112,7 +112,7 @@ class DataProfileAction extends \Google\Protobuf\Internal\Message
      * Publishes generated data profiles to Google Security Operations.
      * For more information, see [Use Sensitive Data Protection data in
      * context-aware
-     * analytics](https://cloud.google.com/chronicle/docs/detection/usecase-dlp-high-risk-user-download).
+     * analytics](https://docs.cloud.google.com/chronicle/docs/detection/usecase-dlp-high-risk-user-download).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileAction.PublishToChronicle publish_to_chronicle = 3;</code>
      * @return \Google\Cloud\Dlp\V2\DataProfileAction\PublishToChronicle|null
@@ -131,7 +131,7 @@ class DataProfileAction extends \Google\Protobuf\Internal\Message
      * Publishes generated data profiles to Google Security Operations.
      * For more information, see [Use Sensitive Data Protection data in
      * context-aware
-     * analytics](https://cloud.google.com/chronicle/docs/detection/usecase-dlp-high-risk-user-download).
+     * analytics](https://docs.cloud.google.com/chronicle/docs/detection/usecase-dlp-high-risk-user-download).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileAction.PublishToChronicle publish_to_chronicle = 3;</code>
      * @param \Google\Cloud\Dlp\V2\DataProfileAction\PublishToChronicle $var

@@ -1305,7 +1305,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      */
     public function getCustomAudiences()
     {
-        if ($this->custom_audiences->count() !== 0) {
+        if (count($this->custom_audiences) !== 0) {
             @trigger_error('custom_audiences is deprecated.', E_USER_DEPRECATED);
         }
         return $this->custom_audiences;
@@ -1322,7 +1322,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
     public function setCustomAudiences($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('custom_audiences is deprecated.', E_USER_DEPRECATED);
         }
         $this->custom_audiences = $arr;

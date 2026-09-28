@@ -29,7 +29,7 @@ class AIInference extends \Google\Protobuf\Internal\Message
      * endpoints. The resource creator or updater that specifies this field must
      * have `iam.serviceAccounts.actAs` permission on the service account. If not
      * specified, the Pub/Sub [service
-     * agent]({$universe.dns_names.final_documentation_domain}/iam/docs/service-agents),
+     * agent](https://cloud.google.com/iam/docs/service-agents),
      * service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      *
      * Generated from protobuf field <code>string service_account_email = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -55,7 +55,7 @@ class AIInference extends \Google\Protobuf\Internal\Message
      *           endpoints. The resource creator or updater that specifies this field must
      *           have `iam.serviceAccounts.actAs` permission on the service account. If not
      *           specified, the Pub/Sub [service
-     *           agent]({$universe.dns_names.final_documentation_domain}/iam/docs/service-agents),
+     *           agent](https://cloud.google.com/iam/docs/service-agents),
      *           service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      * }
      */
@@ -132,7 +132,7 @@ class AIInference extends \Google\Protobuf\Internal\Message
      * endpoints. The resource creator or updater that specifies this field must
      * have `iam.serviceAccounts.actAs` permission on the service account. If not
      * specified, the Pub/Sub [service
-     * agent]({$universe.dns_names.final_documentation_domain}/iam/docs/service-agents),
+     * agent](https://cloud.google.com/iam/docs/service-agents),
      * service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      *
      * Generated from protobuf field <code>string service_account_email = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -148,7 +148,7 @@ class AIInference extends \Google\Protobuf\Internal\Message
      * endpoints. The resource creator or updater that specifies this field must
      * have `iam.serviceAccounts.actAs` permission on the service account. If not
      * specified, the Pub/Sub [service
-     * agent]({$universe.dns_names.final_documentation_domain}/iam/docs/service-agents),
+     * agent](https://cloud.google.com/iam/docs/service-agents),
      * service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      *
      * Generated from protobuf field <code>string service_account_email = 3 [(.google.api.field_behavior) = OPTIONAL];</code>

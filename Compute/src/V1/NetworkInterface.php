@@ -31,6 +31,13 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      */
     private $alias_ip_ranges;
     /**
+     * An array of alias IPv6 ranges for this network interface.
+     * You can only specify this field for network interfaces in VPC networks.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AliasIpRange alias_ipv6_ranges = 104028351;</code>
+     */
+    private $alias_ipv6_ranges;
+    /**
      * Optional. If true, DNS resolution will be enabled over this interface. Only valid
      * with network_attachment.
      *
@@ -157,6 +164,15 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      */
     protected $queue_count = null;
     /**
+     * Optional. Producer Service's Service class Id for the region of this network
+     * interface. Can only be used with network_attachment. It is not possible to
+     * use on its own however, network_attachment can be used without
+     * service_class_id.
+     *
+     * Generated from protobuf field <code>optional string service_class_id = 422763404;</code>
+     */
+    protected $service_class_id = null;
+    /**
      * The stack type for this network interface. To assign only IPv4 addresses,
      * use IPV4_ONLY. To assign both IPv4 and IPv6 addresses, useIPV4_IPV6. If not specified, IPV4_ONLY is used.
      * This field can be both set at instance creation and update network
@@ -200,6 +216,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *           no external internet access.
      *     @type \Google\Cloud\Compute\V1\AliasIpRange[] $alias_ip_ranges
      *           An array of alias IP ranges for this network interface.
+     *           You can only specify this field for network interfaces in VPC networks.
+     *     @type \Google\Cloud\Compute\V1\AliasIpRange[] $alias_ipv6_ranges
+     *           An array of alias IPv6 ranges for this network interface.
      *           You can only specify this field for network interfaces in VPC networks.
      *     @type bool $enable_vpc_scoped_dns
      *           Optional. If true, DNS resolution will be enabled over this interface. Only valid
@@ -267,6 +286,11 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *           The networking queue count that's specified by users for the network
      *           interface. Both Rx and Tx queues will be set to this number. It'll be empty
      *           if not specified by the users.
+     *     @type string $service_class_id
+     *           Optional. Producer Service's Service class Id for the region of this network
+     *           interface. Can only be used with network_attachment. It is not possible to
+     *           use on its own however, network_attachment can be used without
+     *           service_class_id.
      *     @type string $stack_type
      *           The stack type for this network interface. To assign only IPv4 addresses,
      *           use IPV4_ONLY. To assign both IPv4 and IPv6 addresses, useIPV4_IPV6. If not specified, IPV4_ONLY is used.
@@ -347,6 +371,34 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\AliasIpRange::class);
         $this->alias_ip_ranges = $arr;
+
+        return $this;
+    }
+
+    /**
+     * An array of alias IPv6 ranges for this network interface.
+     * You can only specify this field for network interfaces in VPC networks.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AliasIpRange alias_ipv6_ranges = 104028351;</code>
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AliasIpRange>
+     */
+    public function getAliasIpv6Ranges()
+    {
+        return $this->alias_ipv6_ranges;
+    }
+
+    /**
+     * An array of alias IPv6 ranges for this network interface.
+     * You can only specify this field for network interfaces in VPC networks.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AliasIpRange alias_ipv6_ranges = 104028351;</code>
+     * @param \Google\Cloud\Compute\V1\AliasIpRange[] $var
+     * @return $this
+     */
+    public function setAliasIpv6Ranges($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\AliasIpRange::class);
+        $this->alias_ipv6_ranges = $arr;
 
         return $this;
     }
@@ -949,6 +1001,48 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->queue_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Producer Service's Service class Id for the region of this network
+     * interface. Can only be used with network_attachment. It is not possible to
+     * use on its own however, network_attachment can be used without
+     * service_class_id.
+     *
+     * Generated from protobuf field <code>optional string service_class_id = 422763404;</code>
+     * @return string
+     */
+    public function getServiceClassId()
+    {
+        return isset($this->service_class_id) ? $this->service_class_id : '';
+    }
+
+    public function hasServiceClassId()
+    {
+        return isset($this->service_class_id);
+    }
+
+    public function clearServiceClassId()
+    {
+        unset($this->service_class_id);
+    }
+
+    /**
+     * Optional. Producer Service's Service class Id for the region of this network
+     * interface. Can only be used with network_attachment. It is not possible to
+     * use on its own however, network_attachment can be used without
+     * service_class_id.
+     *
+     * Generated from protobuf field <code>optional string service_class_id = 422763404;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceClassId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_class_id = $var;
 
         return $this;
     }

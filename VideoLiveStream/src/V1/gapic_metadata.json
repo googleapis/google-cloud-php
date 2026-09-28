@@ -8,7 +8,7 @@
         "LivestreamService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LivestreamServiceGapicClient",
+                    "libraryClient": "LivestreamServiceClient",
                     "rpcs": {
                         "CreateAsset": {
                             "methods": [

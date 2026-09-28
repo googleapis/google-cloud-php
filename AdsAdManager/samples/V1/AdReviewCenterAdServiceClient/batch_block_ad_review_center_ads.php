@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ use Google\ApiCore\OperationResponse;
 use Google\Rpc\Status;
 
 /**
- * API to batch block AdReviewCenterAds.
+ * Batch blocks AdReviewCenterAds.
  * This method supports partial success. Some operations may succeed while
  * others fail. Callers should check the failedRequests field in the response
  * to determine which operations failed.

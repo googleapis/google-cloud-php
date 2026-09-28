@@ -353,7 +353,7 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      */
     public function getEnvironments()
     {
-        if ($this->environments->count() !== 0) {
+        if (count($this->environments) !== 0) {
             @trigger_error('environments is deprecated.', E_USER_DEPRECATED);
         }
         return $this->environments;

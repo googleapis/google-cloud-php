@@ -23,13 +23,11 @@ use Google\Cloud\Dev\Packagist;
 use Google\Cloud\Dev\ReleaseNotes;
 use Google\Cloud\Dev\RunShell;
 use Google\Cloud\Dev\Split;
-use Google\Cloud\Dev\SplitInstall;
 use GuzzleHttp\BodySummarizer;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -358,6 +356,7 @@ class RepoSplitCommand extends Command
                 'has_wiki' => false,
                 'has_pages' => false,
                 'has_discussions' => false,
+                'has_pull_requests' => false,
                 'visibility' => 'public',
             ]);
 

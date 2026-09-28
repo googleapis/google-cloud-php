@@ -8,7 +8,7 @@
         "ManagedNotebookService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ManagedNotebookServiceGapicClient",
+                    "libraryClient": "ManagedNotebookServiceClient",
                     "rpcs": {
                         "CreateRuntime": {
                             "methods": [
@@ -107,7 +107,7 @@
         "NotebookService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NotebookServiceGapicClient",
+                    "libraryClient": "NotebookServiceClient",
                     "rpcs": {
                         "CreateEnvironment": {
                             "methods": [

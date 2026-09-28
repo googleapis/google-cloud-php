@@ -9,9 +9,9 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * An [attestor][google.cloud.binaryauthorization.v1.Attestor] that attests to container image
- * artifacts. An existing attestor cannot be modified except where
- * indicated.
+ * An [attestor][google.cloud.binaryauthorization.v1.Attestor] that attests to
+ * container image artifacts. An existing attestor cannot be modified except
+ * where indicated.
  *
  * Generated from protobuf message <code>google.cloud.binaryauthorization.v1.Attestor</code>
  */
@@ -37,6 +37,14 @@ class Attestor extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $update_time = null;
+    /**
+     * Optional. A checksum, returned by the server, that can be sent on update
+     * requests to ensure the attestor has an up-to-date value before attempting
+     * to update it. See https://google.aip.dev/154.
+     *
+     * Generated from protobuf field <code>string etag = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $etag = '';
     protected $attestor_type;
 
     /**
@@ -56,6 +64,10 @@ class Attestor extends \Google\Protobuf\Internal\Message
      *           during policy enforcement.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Time when the attestor was last updated.
+     *     @type string $etag
+     *           Optional. A checksum, returned by the server, that can be sent on update
+     *           requests to ensure the attestor has an up-to-date value before attempting
+     *           to update it. See https://google.aip.dev/154.
      * }
      */
     public function __construct($data = NULL) {
@@ -184,6 +196,36 @@ class Attestor extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A checksum, returned by the server, that can be sent on update
+     * requests to ensure the attestor has an up-to-date value before attempting
+     * to update it. See https://google.aip.dev/154.
+     *
+     * Generated from protobuf field <code>string etag = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getEtag()
+    {
+        return $this->etag;
+    }
+
+    /**
+     * Optional. A checksum, returned by the server, that can be sent on update
+     * requests to ensure the attestor has an up-to-date value before attempting
+     * to update it. See https://google.aip.dev/154.
+     *
+     * Generated from protobuf field <code>string etag = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEtag($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->etag = $var;
 
         return $this;
     }

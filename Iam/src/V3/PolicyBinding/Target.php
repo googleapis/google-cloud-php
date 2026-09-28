@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Target is the full resource name of the resource to which the policy will
+ * The full resource name of the resource to which the policy will
  * be bound. Immutable once set.
  *
  * Generated from protobuf message <code>google.iam.v3.PolicyBinding.Target</code>
@@ -25,27 +25,37 @@ class Target extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $principal_set
-     *           Immutable. Full Resource Name used for principal access boundary policy
-     *           bindings. The principal set must be directly parented by the policy
-     *           binding's parent or same as the parent if the target is a
-     *           project/folder/organization.
+     *           Immutable. The full resource name that's used for principal access
+     *           boundary policy bindings. The principal set must be directly parented
+     *           by the policy binding's parent or same as the parent if the target is a
+     *           project, folder, or organization.
      *           Examples:
-     *           * For binding's parented by an organization:
-     *             * Organization:
-     *             `//cloudresourcemanager.googleapis.com/organizations/ORGANIZATION_ID`
-     *             * Workforce Identity:
-     *             `//iam.googleapis.com/locations/global/workforcePools/WORKFORCE_POOL_ID`
-     *             * Workspace Identity:
-     *             `//iam.googleapis.com/locations/global/workspace/WORKSPACE_ID`
-     *           * For binding's parented by a folder:
-     *             * Folder:
-     *             `//cloudresourcemanager.googleapis.com/folders/FOLDER_ID`
-     *           * For binding's parented by a project:
-     *             * Project:
+     *           * For bindings parented by an organization:
+     *               * Organization:
+     *               `//cloudresourcemanager.googleapis.com/organizations/ORGANIZATION_ID`
+     *               * Workforce Identity:
+     *               `//iam.googleapis.com/locations/global/workforcePools/WORKFORCE_POOL_ID`
+     *               * Workspace Identity:
+     *               `//iam.googleapis.com/locations/global/workspace/WORKSPACE_ID`
+     *           * For bindings parented by a folder:
+     *               * Folder:
+     *                 `//cloudresourcemanager.googleapis.com/folders/FOLDER_ID`
+     *           * For bindings parented by a project:
+     *               * Project:
+     *                   * `//cloudresourcemanager.googleapis.com/projects/PROJECT_NUMBER`
+     *                   * `//cloudresourcemanager.googleapis.com/projects/PROJECT_ID`
+     *               * Workload Identity Pool:
+     *               `//iam.googleapis.com/projects/PROJECT_NUMBER/locations/LOCATION/workloadIdentityPools/WORKLOAD_POOL_ID`
+     *     @type string $resource
+     *           Immutable. The full resource name that's used for access policy
+     *           bindings.
+     *           Examples:
+     *           * Organization:
+     *           `//cloudresourcemanager.googleapis.com/organizations/ORGANIZATION_ID`
+     *           * Folder: `//cloudresourcemanager.googleapis.com/folders/FOLDER_ID`
+     *           * Project:
      *               * `//cloudresourcemanager.googleapis.com/projects/PROJECT_NUMBER`
      *               * `//cloudresourcemanager.googleapis.com/projects/PROJECT_ID`
-     *             * Workload Identity Pool:
-     *             `//iam.googleapis.com/projects/PROJECT_NUMBER/locations/LOCATION/workloadIdentityPools/WORKLOAD_POOL_ID`
      * }
      */
     public function __construct($data = NULL) {
@@ -54,27 +64,27 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Full Resource Name used for principal access boundary policy
-     * bindings. The principal set must be directly parented by the policy
-     * binding's parent or same as the parent if the target is a
-     * project/folder/organization.
+     * Immutable. The full resource name that's used for principal access
+     * boundary policy bindings. The principal set must be directly parented
+     * by the policy binding's parent or same as the parent if the target is a
+     * project, folder, or organization.
      * Examples:
-     * * For binding's parented by an organization:
-     *   * Organization:
-     *   `//cloudresourcemanager.googleapis.com/organizations/ORGANIZATION_ID`
-     *   * Workforce Identity:
-     *   `//iam.googleapis.com/locations/global/workforcePools/WORKFORCE_POOL_ID`
-     *   * Workspace Identity:
-     *   `//iam.googleapis.com/locations/global/workspace/WORKSPACE_ID`
-     * * For binding's parented by a folder:
-     *   * Folder:
-     *   `//cloudresourcemanager.googleapis.com/folders/FOLDER_ID`
-     * * For binding's parented by a project:
-     *   * Project:
-     *     * `//cloudresourcemanager.googleapis.com/projects/PROJECT_NUMBER`
-     *     * `//cloudresourcemanager.googleapis.com/projects/PROJECT_ID`
-     *   * Workload Identity Pool:
-     *   `//iam.googleapis.com/projects/PROJECT_NUMBER/locations/LOCATION/workloadIdentityPools/WORKLOAD_POOL_ID`
+     * * For bindings parented by an organization:
+     *     * Organization:
+     *     `//cloudresourcemanager.googleapis.com/organizations/ORGANIZATION_ID`
+     *     * Workforce Identity:
+     *     `//iam.googleapis.com/locations/global/workforcePools/WORKFORCE_POOL_ID`
+     *     * Workspace Identity:
+     *     `//iam.googleapis.com/locations/global/workspace/WORKSPACE_ID`
+     * * For bindings parented by a folder:
+     *     * Folder:
+     *       `//cloudresourcemanager.googleapis.com/folders/FOLDER_ID`
+     * * For bindings parented by a project:
+     *     * Project:
+     *         * `//cloudresourcemanager.googleapis.com/projects/PROJECT_NUMBER`
+     *         * `//cloudresourcemanager.googleapis.com/projects/PROJECT_ID`
+     *     * Workload Identity Pool:
+     *     `//iam.googleapis.com/projects/PROJECT_NUMBER/locations/LOCATION/workloadIdentityPools/WORKLOAD_POOL_ID`
      *
      * Generated from protobuf field <code>string principal_set = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -90,27 +100,27 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Full Resource Name used for principal access boundary policy
-     * bindings. The principal set must be directly parented by the policy
-     * binding's parent or same as the parent if the target is a
-     * project/folder/organization.
+     * Immutable. The full resource name that's used for principal access
+     * boundary policy bindings. The principal set must be directly parented
+     * by the policy binding's parent or same as the parent if the target is a
+     * project, folder, or organization.
      * Examples:
-     * * For binding's parented by an organization:
-     *   * Organization:
-     *   `//cloudresourcemanager.googleapis.com/organizations/ORGANIZATION_ID`
-     *   * Workforce Identity:
-     *   `//iam.googleapis.com/locations/global/workforcePools/WORKFORCE_POOL_ID`
-     *   * Workspace Identity:
-     *   `//iam.googleapis.com/locations/global/workspace/WORKSPACE_ID`
-     * * For binding's parented by a folder:
-     *   * Folder:
-     *   `//cloudresourcemanager.googleapis.com/folders/FOLDER_ID`
-     * * For binding's parented by a project:
-     *   * Project:
-     *     * `//cloudresourcemanager.googleapis.com/projects/PROJECT_NUMBER`
-     *     * `//cloudresourcemanager.googleapis.com/projects/PROJECT_ID`
-     *   * Workload Identity Pool:
-     *   `//iam.googleapis.com/projects/PROJECT_NUMBER/locations/LOCATION/workloadIdentityPools/WORKLOAD_POOL_ID`
+     * * For bindings parented by an organization:
+     *     * Organization:
+     *     `//cloudresourcemanager.googleapis.com/organizations/ORGANIZATION_ID`
+     *     * Workforce Identity:
+     *     `//iam.googleapis.com/locations/global/workforcePools/WORKFORCE_POOL_ID`
+     *     * Workspace Identity:
+     *     `//iam.googleapis.com/locations/global/workspace/WORKSPACE_ID`
+     * * For bindings parented by a folder:
+     *     * Folder:
+     *       `//cloudresourcemanager.googleapis.com/folders/FOLDER_ID`
+     * * For bindings parented by a project:
+     *     * Project:
+     *         * `//cloudresourcemanager.googleapis.com/projects/PROJECT_NUMBER`
+     *         * `//cloudresourcemanager.googleapis.com/projects/PROJECT_ID`
+     *     * Workload Identity Pool:
+     *     `//iam.googleapis.com/projects/PROJECT_NUMBER/locations/LOCATION/workloadIdentityPools/WORKLOAD_POOL_ID`
      *
      * Generated from protobuf field <code>string principal_set = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -120,6 +130,53 @@ class Target extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The full resource name that's used for access policy
+     * bindings.
+     * Examples:
+     * * Organization:
+     * `//cloudresourcemanager.googleapis.com/organizations/ORGANIZATION_ID`
+     * * Folder: `//cloudresourcemanager.googleapis.com/folders/FOLDER_ID`
+     * * Project:
+     *     * `//cloudresourcemanager.googleapis.com/projects/PROJECT_NUMBER`
+     *     * `//cloudresourcemanager.googleapis.com/projects/PROJECT_ID`
+     *
+     * Generated from protobuf field <code>string resource = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return string
+     */
+    public function getResource()
+    {
+        return $this->readOneof(2);
+    }
+
+    public function hasResource()
+    {
+        return $this->hasOneof(2);
+    }
+
+    /**
+     * Immutable. The full resource name that's used for access policy
+     * bindings.
+     * Examples:
+     * * Organization:
+     * `//cloudresourcemanager.googleapis.com/organizations/ORGANIZATION_ID`
+     * * Folder: `//cloudresourcemanager.googleapis.com/folders/FOLDER_ID`
+     * * Project:
+     *     * `//cloudresourcemanager.googleapis.com/projects/PROJECT_NUMBER`
+     *     * `//cloudresourcemanager.googleapis.com/projects/PROJECT_ID`
+     *
+     * Generated from protobuf field <code>string resource = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResource($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(2, $var);
 
         return $this;
     }

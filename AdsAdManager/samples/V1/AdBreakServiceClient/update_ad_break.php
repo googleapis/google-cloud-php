@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,10 +28,9 @@ use Google\Ads\AdManager\V1\Client\AdBreakServiceClient;
 use Google\Ads\AdManager\V1\UpdateAdBreakRequest;
 use Google\ApiCore\ApiException;
 use Google\Protobuf\Duration;
-use Google\Protobuf\FieldMask;
 
 /**
- * API to update an `AdBreak` object.
+ * Updates an `AdBreak` object.
  *
  * Modify an ad break when its state is
  * [`SCHEDULED`][google.ads.admanager.v1.AdBreakStateEnum.AdBreakState.SCHEDULED].
@@ -51,10 +50,8 @@ function update_ad_break_sample(): void
     $adBreakDuration = new Duration();
     $adBreak = (new AdBreak())
         ->setDuration($adBreakDuration);
-    $updateMask = new FieldMask();
     $request = (new UpdateAdBreakRequest())
-        ->setAdBreak($adBreak)
-        ->setUpdateMask($updateMask);
+        ->setAdBreak($adBreak);
 
     // Call the API and handle any network failures.
     try {

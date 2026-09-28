@@ -83,8 +83,65 @@ class StreamWrapperTest extends TestCase
      */
     public function testUnknownOpenMode()
     {
+        $fp = @fopen('gs://my_bucket/existing_file.txt', 'z');
+        $this->assertFalse($fp);
+    }
+
+    /**
+     * @group storageWrite
+     */
+    public function testOpeningExistingFileWithXModeReturnsFalse()
+    {
+        $object = $this->prophesize(StorageObject::class);
+        $object->exists()->willReturn(true);
+        $this->bucket->object('existing_file.txt')->willReturn($object->reveal());
+
         $fp = @fopen('gs://my_bucket/existing_file.txt', 'x');
         $this->assertFalse($fp);
+    }
+
+    /**
+     * @group storageWrite
+     */
+    public function testOpeningNonExistentFileWithXModeSucceeds()
+    {
+        $object = $this->prophesize(StorageObject::class);
+        $object->exists()->willReturn(false);
+        $this->bucket->object('new_file.txt')->willReturn($object->reveal());
+
+        $uploader = $this->prophesize(StreamableUploader::class);
+        $uploader->upload()->shouldBeCalled();
+        $uploader->getResumeUri()->willReturn('https://resume-uri/');
+        
+        $this->bucket->getStreamableUploader(Argument::any(), Argument::withEntry('ifGenerationMatch', 0))
+            ->willReturn($uploader->reveal());
+
+        $fp = fopen('gs://my_bucket/new_file.txt', 'x');
+        $this->assertIsResource($fp);
+        fwrite($fp, "some data");
+        fclose($fp);
+    }
+
+    /**
+     * @group storageWrite
+     */
+    public function testOpeningNonExistentFileWithXbModeSucceeds()
+    {
+        $object = $this->prophesize(StorageObject::class);
+        $object->exists()->willReturn(false);
+        $this->bucket->object('new_file.txt')->willReturn($object->reveal());
+
+        $uploader = $this->prophesize(StreamableUploader::class);
+        $uploader->upload()->shouldBeCalled();
+        $uploader->getResumeUri()->willReturn('https://resume-uri/');
+
+        $this->bucket->getStreamableUploader(Argument::any(), Argument::withEntry('ifGenerationMatch', 0))
+            ->willReturn($uploader->reveal());
+
+        $fp = fopen('gs://my_bucket/new_file.txt', 'xb');
+        $this->assertIsResource($fp);
+        fwrite($fp, "some data");
+        fclose($fp);
     }
 
     /**
@@ -210,20 +267,24 @@ class StreamWrapperTest extends TestCase
         set_error_handler(static function (int $errno, string $errstr): never {
             throw new Exception($errstr, $errno);
         }, E_WARNING);
-        $this->expectException(Exception::class);
+        try {
+            $this->expectException(Exception::class);
 
-        $object = $this->prophesize(StorageObject::class);
-        $object->info()->willThrow(NotFoundException::class);
-        $this->bucket->object('non-existent/file.txt')
-            ->shouldBeCalled()
-            ->willReturn($object->reveal());
-        $this->bucket->objects(Argument::allOf(
-            Argument::withEntry('prefix', 'non-existent/file.txt/'),
-            Argument::withEntry('resultLimit', 1),
-            Argument::withEntry('fields', Argument::any())
-        ))->shouldBeCalled()->willReturn(new \ArrayIterator());
+            $object = $this->prophesize(StorageObject::class);
+            $object->info()->willThrow(NotFoundException::class);
+            $this->bucket->object('non-existent/file.txt')
+                ->shouldBeCalled()
+                ->willReturn($object->reveal());
+            $this->bucket->objects(Argument::allOf(
+                Argument::withEntry('prefix', 'non-existent/file.txt/'),
+                Argument::withEntry('resultLimit', 1),
+                Argument::withEntry('fields', Argument::any())
+            ))->shouldBeCalled()->willReturn(new \ArrayIterator());
 
-        stat('gs://my_bucket/non-existent/file.txt');
+            stat('gs://my_bucket/non-existent/file.txt');
+        } finally {
+            restore_error_handler();
+        }
     }
 
     /**

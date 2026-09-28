@@ -23,9 +23,10 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. AdUnit ID.
+     * Output only. Deprecated: AdUnit ID.
      *
-     * Generated from protobuf field <code>int64 ad_unit_id = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int64 ad_unit_id = 15 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $ad_unit_id = 0;
     /**
@@ -200,6 +201,13 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool effective_adsense_enabled = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $effective_adsense_enabled = null;
+    /**
+     * Optional. Non-empty default. Defines the type of refresh rate control for
+     * this ad unit. This field defaults to `DISABLED`.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.RefreshRateTypeEnum.RefreshRateType refresh_rate_type = 78 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     */
+    protected $refresh_rate_type = null;
 
     /**
      * Constructor.
@@ -211,7 +219,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      *           Identifier. The resource name of the AdUnit.
      *           Format: `networks/{network_code}/adUnits/{ad_unit_id}`
      *     @type int|string $ad_unit_id
-     *           Output only. AdUnit ID.
+     *           Output only. Deprecated: AdUnit ID.
      *     @type string $parent_ad_unit
      *           Required. Immutable. The AdUnit's parent. Every ad unit has a parent except
      *           for the root ad unit, which is created by Google. Format:
@@ -291,6 +299,9 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      *           from the AdSense content network. This attribute defaults to the ad unit's
      *           parent or ancestor's setting if one has been set. If no ancestor of the ad
      *           unit has set appliedAdsenseEnabled, the attribute is defaulted to true.
+     *     @type int $refresh_rate_type
+     *           Optional. Non-empty default. Defines the type of refresh rate control for
+     *           this ad unit. This field defaults to `DISABLED`.
      * }
      */
     public function __construct($data = NULL) {
@@ -327,25 +338,31 @@ class AdUnit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. AdUnit ID.
+     * Output only. Deprecated: AdUnit ID.
      *
-     * Generated from protobuf field <code>int64 ad_unit_id = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int64 ad_unit_id = 15 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
+     * @deprecated
      */
     public function getAdUnitId()
     {
+        if ($this->ad_unit_id !== 0) {
+            @trigger_error('ad_unit_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->ad_unit_id;
     }
 
     /**
-     * Output only. AdUnit ID.
+     * Output only. Deprecated: AdUnit ID.
      *
-     * Generated from protobuf field <code>int64 ad_unit_id = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int64 ad_unit_id = 15 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setAdUnitId($var)
     {
+        @trigger_error('ad_unit_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->ad_unit_id = $var;
 
@@ -1172,6 +1189,44 @@ class AdUnit extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->effective_adsense_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Non-empty default. Defines the type of refresh rate control for
+     * this ad unit. This field defaults to `DISABLED`.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.RefreshRateTypeEnum.RefreshRateType refresh_rate_type = 78 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @return int
+     */
+    public function getRefreshRateType()
+    {
+        return isset($this->refresh_rate_type) ? $this->refresh_rate_type : 0;
+    }
+
+    public function hasRefreshRateType()
+    {
+        return isset($this->refresh_rate_type);
+    }
+
+    public function clearRefreshRateType()
+    {
+        unset($this->refresh_rate_type);
+    }
+
+    /**
+     * Optional. Non-empty default. Defines the type of refresh rate control for
+     * this ad unit. This field defaults to `DISABLED`.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.RefreshRateTypeEnum.RefreshRateType refresh_rate_type = 78 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRefreshRateType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\RefreshRateTypeEnum\RefreshRateType::class);
+        $this->refresh_rate_type = $var;
 
         return $this;
     }

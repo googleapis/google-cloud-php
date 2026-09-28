@@ -34,6 +34,12 @@ class SqlInstancesGetLatestRecoveryTimeRequest extends \Google\Protobuf\Internal
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp source_instance_deletion_time = 3;</code>
      */
     protected $source_instance_deletion_time = null;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $location = '';
 
     /**
      * Constructor.
@@ -48,6 +54,8 @@ class SqlInstancesGetLatestRecoveryTimeRequest extends \Google\Protobuf\Internal
      *     @type \Google\Protobuf\Timestamp $source_instance_deletion_time
      *           The timestamp used to identify the time when the source instance is
      *           deleted. If this instance is deleted, then you must set the timestamp.
+     *     @type string $location
+     *           Optional. Region of the Cloud SQL instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -141,6 +149,32 @@ class SqlInstancesGetLatestRecoveryTimeRequest extends \Google\Protobuf\Internal
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->source_instance_deletion_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location = $var;
 
         return $this;
     }

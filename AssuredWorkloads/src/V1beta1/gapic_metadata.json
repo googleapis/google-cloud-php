@@ -8,7 +8,7 @@
         "AssuredWorkloadsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AssuredWorkloadsServiceGapicClient",
+                    "libraryClient": "AssuredWorkloadsServiceClient",
                     "rpcs": {
                         "AnalyzeWorkloadMove": {
                             "methods": [

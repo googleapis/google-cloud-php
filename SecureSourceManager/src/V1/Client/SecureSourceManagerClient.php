@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,6 +65,7 @@ use Google\Cloud\SecureSourceManager\V1\DeletePullRequestCommentRequest;
 use Google\Cloud\SecureSourceManager\V1\DeleteRepositoryRequest;
 use Google\Cloud\SecureSourceManager\V1\FetchBlobRequest;
 use Google\Cloud\SecureSourceManager\V1\FetchBlobResponse;
+use Google\Cloud\SecureSourceManager\V1\FetchRefsRequest;
 use Google\Cloud\SecureSourceManager\V1\FetchTreeRequest;
 use Google\Cloud\SecureSourceManager\V1\GetBranchRuleRequest;
 use Google\Cloud\SecureSourceManager\V1\GetHookRequest;
@@ -141,6 +142,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deletePullRequestCommentAsync(DeletePullRequestCommentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteRepositoryAsync(DeleteRepositoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FetchBlobResponse> fetchBlobAsync(FetchBlobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> fetchRefsAsync(FetchRefsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> fetchTreeAsync(FetchTreeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BranchRule> getBranchRuleAsync(GetBranchRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Hook> getHookAsync(GetHookRequest $request, array $optionalArgs = [])
@@ -204,8 +206,15 @@ final class SecureSourceManagerClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/securesourcemanager.read-write',
+    ];
 
     private $operationsClient;
 
@@ -251,7 +260,10 @@ final class SecureSourceManagerClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -359,6 +371,25 @@ final class SecureSourceManagerClient
             'location' => $location,
             'repository' => $repository,
             'hook' => $hook,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * inspect_template resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $inspectTemplate
+     *
+     * @return string The formatted inspect_template resource.
+     */
+    public static function inspectTemplateName(string $project, string $location, string $inspectTemplate): string
+    {
+        return self::getPathTemplate('inspectTemplate')->render([
+            'project' => $project,
+            'location' => $location,
+            'inspect_template' => $inspectTemplate,
         ]);
     }
 
@@ -521,6 +552,23 @@ final class SecureSourceManagerClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * service_account resource.
+     *
+     * @param string $project
+     * @param string $serviceAccount
+     *
+     * @return string The formatted service_account resource.
+     */
+    public static function serviceAccountName(string $project, string $serviceAccount): string
+    {
+        return self::getPathTemplate('serviceAccount')->render([
+            'project' => $project,
+            'service_account' => $serviceAccount,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * service_attachment resource.
      *
      * @param string $project
@@ -546,6 +594,7 @@ final class SecureSourceManagerClient
      * - caPool: projects/{project}/locations/{location}/caPools/{ca_pool}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - hook: projects/{project}/locations/{location}/repositories/{repository}/hooks/{hook}
+     * - inspectTemplate: projects/{project}/locations/{location}/inspectTemplates/{inspect_template}
      * - instance: projects/{project}/locations/{location}/instances/{instance}
      * - issue: projects/{project}/locations/{location}/repositories/{repository}/issues/{issue}
      * - issueComment: projects/{project}/locations/{location}/repositories/{repository}/issues/{issue}/issueComments/{comment}
@@ -553,6 +602,7 @@ final class SecureSourceManagerClient
      * - pullRequest: projects/{project}/locations/{location}/repositories/{repository}/pullRequests/{pull_request}
      * - pullRequestComment: projects/{project}/locations/{location}/repositories/{repository}/pullRequests/{pull_request}/pullRequestComments/{comment}
      * - repository: projects/{project}/locations/{location}/repositories/{repository}
+     * - serviceAccount: projects/{project}/serviceAccounts/{service_account}
      * - serviceAttachment: projects/{project}/regions/{region}/serviceAttachments/{service_attachment}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -1174,6 +1224,32 @@ final class SecureSourceManagerClient
     public function fetchBlob(FetchBlobRequest $request, array $callOptions = []): FetchBlobResponse
     {
         return $this->startApiCall('FetchBlob', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetches git references from a repository.
+     *
+     * The async variant is {@see SecureSourceManagerClient::fetchRefsAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/fetch_refs.php
+     *
+     * @param FetchRefsRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchRefs(FetchRefsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('FetchRefs', $request, $callOptions);
     }
 
     /**
@@ -2070,7 +2146,7 @@ final class SecureSourceManagerClient
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy
-    if the resource exists and does not have a policy set.
+     * if the resource exists and does not have a policy set.
      *
      * The async variant is {@see SecureSourceManagerClient::getIamPolicyAsync()} .
      *
@@ -2097,10 +2173,10 @@ final class SecureSourceManagerClient
 
     /**
      * Sets the access control policy on the specified resource. Replaces
-    any existing policy.
-
-    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
-    errors.
+     * any existing policy.
+     *
+     * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+     * errors.
      *
      * The async variant is {@see SecureSourceManagerClient::setIamPolicyAsync()} .
      *
@@ -2127,12 +2203,12 @@ final class SecureSourceManagerClient
 
     /**
      * Returns permissions that a caller has on the specified resource. If the
-    resource does not exist, this will return an empty set of
-    permissions, not a `NOT_FOUND` error.
-
-    Note: This operation is designed to be used for building
-    permission-aware UIs and command-line tools, not for authorization
-    checking. This operation may "fail open" without warning.
+     * resource does not exist, this will return an empty set of
+     * permissions, not a `NOT_FOUND` error.
+     *
+     * Note: This operation is designed to be used for building
+     * permission-aware UIs and command-line tools, not for authorization
+     * checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see SecureSourceManagerClient::testIamPermissionsAsync()}
      * .
@@ -2188,22 +2264,21 @@ final class SecureSourceManagerClient
 
     /**
      * Lists information about the supported locations for this service.
-
-    This method lists locations based on the resource scope provided in
-    the [ListLocationsRequest.name] field:
-
-    * **Global locations**: If `name` is empty, the method lists the
-    public locations available to all projects. * **Project-specific
-    locations**: If `name` follows the format
-    `projects/{project}`, the method lists locations visible to that
-    specific project. This includes public, private, or other
-    project-specific locations enabled for the project.
-
-    For gRPC and client library implementations, the resource name is
-    passed as the `name` field. For direct service calls, the resource
-    name is
-    incorporated into the request path based on the specific service
-    implementation and version.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see SecureSourceManagerClient::listLocationsAsync()} .
      *

@@ -83,6 +83,42 @@ class ImportMethod
      * Generated from protobuf enum <code>RSA_OAEP_4096_SHA256 = 6;</code>
      */
     const RSA_OAEP_4096_SHA256 = 6;
+    /**
+     * Represents the Hybrid Public Key Encryption (HPKE) Scheme originally
+     * defined in [RFC 9180](https://www.rfc-editor.org/rfc/rfc9180). It
+     * involves wrapping the raw key with an ephemeral AES key, derived with
+     * HKDF-SHA256 from an encryption context, that is, in turn obtained from
+     * the receiver’s public key with the help of the ML-KEM-768 KEM. For more
+     * details, see the [ML-KEM HPKE
+     * standard](http://datatracker.ietf.org/doc/draft-ietf-hpke-pq/01/).
+     *
+     * Generated from protobuf enum <code>HPKE_KEM_ML_KEM_768_HKDF_SHA256_AES_256_GCM = 8;</code>
+     */
+    const HPKE_KEM_ML_KEM_768_HKDF_SHA256_AES_256_GCM = 8;
+    /**
+     * Represents the Hybrid Public Key Encryption (HPKE) Scheme originally
+     * defined in [RFC 9180](https://www.rfc-editor.org/rfc/rfc9180). It
+     * involves wrapping the raw key with an ephemeral AES key, derived with
+     * HKDF-SHA256 from an encryption context, that is, in turn obtained from
+     * the receiver’s public key with the help of the ML-KEM-1024 KEM. For more
+     * details, see the [ML-KEM HPKE
+     * standard](http://datatracker.ietf.org/doc/draft-ietf-hpke-pq/01/).
+     *
+     * Generated from protobuf enum <code>HPKE_KEM_ML_KEM_1024_HKDF_SHA256_AES_256_GCM = 9;</code>
+     */
+    const HPKE_KEM_ML_KEM_1024_HKDF_SHA256_AES_256_GCM = 9;
+    /**
+     * Represents the Hybrid Public Key Encryption (HPKE) Scheme originally
+     * defined in [RFC 9180](https://www.rfc-editor.org/rfc/rfc9180). It
+     * involves wrapping the raw key with an ephemeral AES key, derived with
+     * HKDF-SHA256 from an encryption context, that is, in turn obtained from
+     * the receiver’s public key with the help of the X-Wing hybrid KEM. For
+     * more details, see the [X-Wing
+     * standard](http://datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem/09/).
+     *
+     * Generated from protobuf enum <code>HPKE_KEM_XWING_HKDF_SHA256_AES_256_GCM = 10;</code>
+     */
+    const HPKE_KEM_XWING_HKDF_SHA256_AES_256_GCM = 10;
 
     private static $valueToName = [
         self::IMPORT_METHOD_UNSPECIFIED => 'IMPORT_METHOD_UNSPECIFIED',
@@ -92,6 +128,9 @@ class ImportMethod
         self::RSA_OAEP_4096_SHA256_AES_256 => 'RSA_OAEP_4096_SHA256_AES_256',
         self::RSA_OAEP_3072_SHA256 => 'RSA_OAEP_3072_SHA256',
         self::RSA_OAEP_4096_SHA256 => 'RSA_OAEP_4096_SHA256',
+        self::HPKE_KEM_ML_KEM_768_HKDF_SHA256_AES_256_GCM => 'HPKE_KEM_ML_KEM_768_HKDF_SHA256_AES_256_GCM',
+        self::HPKE_KEM_ML_KEM_1024_HKDF_SHA256_AES_256_GCM => 'HPKE_KEM_ML_KEM_1024_HKDF_SHA256_AES_256_GCM',
+        self::HPKE_KEM_XWING_HKDF_SHA256_AES_256_GCM => 'HPKE_KEM_XWING_HKDF_SHA256_AES_256_GCM',
     ];
 
     public static function name($value)

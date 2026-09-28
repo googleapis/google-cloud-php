@@ -76,11 +76,19 @@ class DocFxCommand extends Command
             ->addOption('path', '', InputOption::VALUE_OPTIONAL, 'Specify the path to the composer package to generate.')
             ->addOption('--with-cache', '', InputOption::VALUE_NONE, 'Cache expensive proto namespace lookups to a file')
             ->addOption('--generate-product-neutral-guides', '', InputOption::VALUE_NONE, 'Instead of a component, generate product-neutral guides.')
+            ->addOption('--warm-cache', '', InputOption::VALUE_NONE, 'Warm the cache by resolving proto packages to namespaces')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if ($input->getOption('warm-cache')) {
+            $output->writeln('Warming cache... ');
+            $this->getProtoPackageToNamespaceMap(true);
+            $output->writeln('Done.');
+            return 0;
+        }
+
         // YAML dump configuration
         $inline = 11; // The level where you switch to inline YAML
         $indent = 2; // The amount of spaces to use for indentation of nested nodes

@@ -273,7 +273,7 @@ class ProjectErrors extends \Google\Protobuf\Internal\Message
      */
     public function getNonManagementHubEntitledProjectNumbers()
     {
-        if ($this->non_management_hub_entitled_project_numbers->count() !== 0) {
+        if (count($this->non_management_hub_entitled_project_numbers) !== 0) {
             @trigger_error('non_management_hub_entitled_project_numbers is deprecated.', E_USER_DEPRECATED);
         }
         return $this->non_management_hub_entitled_project_numbers;

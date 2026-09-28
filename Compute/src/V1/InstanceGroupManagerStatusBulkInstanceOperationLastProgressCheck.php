@@ -15,13 +15,13 @@ use Google\Protobuf\RepeatedField;
 class InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. [Output Only] Errors encountered during bulk instance operation.
+     * Output only. Errors encountered during bulk instance operation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Error error = 96784904;</code>
      */
     protected $error = null;
     /**
-     * Output only. [Output Only] Timestamp of the last progress check of bulk instance
+     * Output only. Timestamp of the last progress check of bulk instance
      * operation. Timestamp is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string timestamp = 55126294;</code>
@@ -35,9 +35,9 @@ class InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck extends \
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\Error $error
-     *           Output only. [Output Only] Errors encountered during bulk instance operation.
+     *           Output only. Errors encountered during bulk instance operation.
      *     @type string $timestamp
-     *           Output only. [Output Only] Timestamp of the last progress check of bulk instance
+     *           Output only. Timestamp of the last progress check of bulk instance
      *           operation. Timestamp is in RFC3339 text format.
      * }
      */
@@ -47,7 +47,7 @@ class InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck extends \
     }
 
     /**
-     * Output only. [Output Only] Errors encountered during bulk instance operation.
+     * Output only. Errors encountered during bulk instance operation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Error error = 96784904;</code>
      * @return \Google\Cloud\Compute\V1\Error|null
@@ -68,7 +68,7 @@ class InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck extends \
     }
 
     /**
-     * Output only. [Output Only] Errors encountered during bulk instance operation.
+     * Output only. Errors encountered during bulk instance operation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Error error = 96784904;</code>
      * @param \Google\Cloud\Compute\V1\Error $var
@@ -83,7 +83,7 @@ class InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck extends \
     }
 
     /**
-     * Output only. [Output Only] Timestamp of the last progress check of bulk instance
+     * Output only. Timestamp of the last progress check of bulk instance
      * operation. Timestamp is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string timestamp = 55126294;</code>
@@ -105,7 +105,7 @@ class InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck extends \
     }
 
     /**
-     * Output only. [Output Only] Timestamp of the last progress check of bulk instance
+     * Output only. Timestamp of the last progress check of bulk instance
      * operation. Timestamp is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string timestamp = 55126294;</code>

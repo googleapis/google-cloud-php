@@ -8,7 +8,7 @@
         "NotificationsApiService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NotificationsApiServiceGapicClient",
+                    "libraryClient": "NotificationsApiServiceClient",
                     "rpcs": {
                         "CreateNotificationSubscription": {
                             "methods": [

@@ -62,6 +62,18 @@ class ChannelProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string noise_suppression_level = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $noise_suppression_level = '';
+    /**
+     * Optional. Configuration specific to WhatsApp deployments.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ChannelProfile.WhatsAppConfig whatsapp_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $whatsapp_config = null;
+    /**
+     * Optional. Configuration specific to Instagram deployments.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ChannelProfile.InstagramConfig instagram_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $instagram_config = null;
 
     /**
      * Constructor.
@@ -87,6 +99,10 @@ class ChannelProfile extends \Google\Protobuf\Internal\Message
      *     @type string $noise_suppression_level
      *           Optional. The noise suppression level of the channel profile.
      *           Available values are "low", "moderate", "high", "very_high".
+     *     @type \Google\Cloud\Ces\V1\ChannelProfile\WhatsAppConfig $whatsapp_config
+     *           Optional. Configuration specific to WhatsApp deployments.
+     *     @type \Google\Cloud\Ces\V1\ChannelProfile\InstagramConfig $instagram_config
+     *           Optional. Configuration specific to Instagram deployments.
      * }
      */
     public function __construct($data = NULL) {
@@ -300,6 +316,78 @@ class ChannelProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->noise_suppression_level = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration specific to WhatsApp deployments.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ChannelProfile.WhatsAppConfig whatsapp_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Ces\V1\ChannelProfile\WhatsAppConfig|null
+     */
+    public function getWhatsappConfig()
+    {
+        return $this->whatsapp_config;
+    }
+
+    public function hasWhatsappConfig()
+    {
+        return isset($this->whatsapp_config);
+    }
+
+    public function clearWhatsappConfig()
+    {
+        unset($this->whatsapp_config);
+    }
+
+    /**
+     * Optional. Configuration specific to WhatsApp deployments.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ChannelProfile.WhatsAppConfig whatsapp_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Ces\V1\ChannelProfile\WhatsAppConfig $var
+     * @return $this
+     */
+    public function setWhatsappConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\ChannelProfile\WhatsAppConfig::class);
+        $this->whatsapp_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration specific to Instagram deployments.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ChannelProfile.InstagramConfig instagram_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Ces\V1\ChannelProfile\InstagramConfig|null
+     */
+    public function getInstagramConfig()
+    {
+        return $this->instagram_config;
+    }
+
+    public function hasInstagramConfig()
+    {
+        return isset($this->instagram_config);
+    }
+
+    public function clearInstagramConfig()
+    {
+        unset($this->instagram_config);
+    }
+
+    /**
+     * Optional. Configuration specific to Instagram deployments.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ChannelProfile.InstagramConfig instagram_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Ces\V1\ChannelProfile\InstagramConfig $var
+     * @return $this
+     */
+    public function setInstagramConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\ChannelProfile\InstagramConfig::class);
+        $this->instagram_config = $var;
 
         return $this;
     }

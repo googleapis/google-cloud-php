@@ -61,7 +61,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      * HTTP request headers.
      * This map contains the header field names and values.
      * Headers can be set when the
-     * [task is created][google.cloud.tasks.v2beta3.CloudTasks.CreateTask].
+     * [task is created][google.cloud.tasks.v2.CloudTasks.CreateTask].
      * These headers represent a subset of the headers that will accompany the
      * task's HTTP request. Some HTTP request headers will be ignored or replaced.
      * A partial list of headers that will be ignored or replaced is:
@@ -73,7 +73,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      * * `X-AppEngine-*`: Google use only.
      * `Content-Type` won't be set by Cloud Tasks. You can explicitly set
      * `Content-Type` to a media type when the
-     *  [task is created][google.cloud.tasks.v2beta3.CloudTasks.CreateTask].
+     *  [task is created][google.cloud.tasks.v2.CloudTasks.CreateTask].
      *  For example, `Content-Type` can be set to `"application/octet-stream"` or
      *  `"application/json"`.
      * Headers which can have multiple values (according to RFC2616) can be
@@ -115,7 +115,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *           HTTP request headers.
      *           This map contains the header field names and values.
      *           Headers can be set when the
-     *           [task is created][google.cloud.tasks.v2beta3.CloudTasks.CreateTask].
+     *           [task is created][google.cloud.tasks.v2.CloudTasks.CreateTask].
      *           These headers represent a subset of the headers that will accompany the
      *           task's HTTP request. Some HTTP request headers will be ignored or replaced.
      *           A partial list of headers that will be ignored or replaced is:
@@ -127,7 +127,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *           * `X-AppEngine-*`: Google use only.
      *           `Content-Type` won't be set by Cloud Tasks. You can explicitly set
      *           `Content-Type` to a media type when the
-     *            [task is created][google.cloud.tasks.v2beta3.CloudTasks.CreateTask].
+     *            [task is created][google.cloud.tasks.v2.CloudTasks.CreateTask].
      *            For example, `Content-Type` can be set to `"application/octet-stream"` or
      *            `"application/json"`.
      *           Headers which can have multiple values (according to RFC2616) can be
@@ -229,7 +229,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      * HTTP request headers.
      * This map contains the header field names and values.
      * Headers can be set when the
-     * [task is created][google.cloud.tasks.v2beta3.CloudTasks.CreateTask].
+     * [task is created][google.cloud.tasks.v2.CloudTasks.CreateTask].
      * These headers represent a subset of the headers that will accompany the
      * task's HTTP request. Some HTTP request headers will be ignored or replaced.
      * A partial list of headers that will be ignored or replaced is:
@@ -241,7 +241,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      * * `X-AppEngine-*`: Google use only.
      * `Content-Type` won't be set by Cloud Tasks. You can explicitly set
      * `Content-Type` to a media type when the
-     *  [task is created][google.cloud.tasks.v2beta3.CloudTasks.CreateTask].
+     *  [task is created][google.cloud.tasks.v2.CloudTasks.CreateTask].
      *  For example, `Content-Type` can be set to `"application/octet-stream"` or
      *  `"application/json"`.
      * Headers which can have multiple values (according to RFC2616) can be
@@ -260,7 +260,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      * HTTP request headers.
      * This map contains the header field names and values.
      * Headers can be set when the
-     * [task is created][google.cloud.tasks.v2beta3.CloudTasks.CreateTask].
+     * [task is created][google.cloud.tasks.v2.CloudTasks.CreateTask].
      * These headers represent a subset of the headers that will accompany the
      * task's HTTP request. Some HTTP request headers will be ignored or replaced.
      * A partial list of headers that will be ignored or replaced is:
@@ -272,7 +272,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      * * `X-AppEngine-*`: Google use only.
      * `Content-Type` won't be set by Cloud Tasks. You can explicitly set
      * `Content-Type` to a media type when the
-     *  [task is created][google.cloud.tasks.v2beta3.CloudTasks.CreateTask].
+     *  [task is created][google.cloud.tasks.v2.CloudTasks.CreateTask].
      *  For example, `Content-Type` can be set to `"application/octet-stream"` or
      *  `"application/json"`.
      * Headers which can have multiple values (according to RFC2616) can be

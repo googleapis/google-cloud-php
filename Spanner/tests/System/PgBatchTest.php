@@ -22,6 +22,7 @@ use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
+use Google\Cloud\Spanner\KeySet;
 
 /**
  * @group spanner
@@ -30,10 +31,11 @@ use Google\Cloud\Spanner\Batch\BatchSnapshot;
  */
 class PgBatchTest extends SystemTestCase
 {
+    const TABLE_NAME = 'PgBatchTest';
     use PgSystemTestCaseTrait;
     use DatabaseRoleTrait;
 
-    private static $tableName;
+    
     private static $hasSetupBatch = false;
 
     /**
@@ -50,37 +52,7 @@ class PgBatchTest extends SystemTestCase
         }
         self::setUpTestDatabase();
 
-        self::$tableName = uniqid(self::TESTING_PREFIX);
-
-        self::$database->updateDdl(sprintf(
-            'CREATE TABLE %s (
-                    id INTEGER PRIMARY KEY,
-                    decade INTEGER NOT NULL
-                )',
-            self::$tableName
-        ))->pollUntilComplete();
-
-        if (self::$database->info()['databaseDialect'] == DatabaseDialect::POSTGRESQL) {
-            $statements = [
-                sprintf('CREATE ROLE %s', self::$dbRole),
-                sprintf('CREATE ROLE %s', self::$restrictiveDbRole),
-            ];
-
-            if (!self::isEmulatorUsed()) {
-                $statements[] = sprintf(
-                    'GRANT SELECT(id) ON TABLE %s TO %s',
-                    self::$tableName,
-                    self::$restrictiveDbRole
-                );
-                $statements[] = sprintf(
-                    'GRANT SELECT ON TABLE %s TO %s',
-                    self::$tableName,
-                    self::$dbRole
-                );
-            }
-
-            self::$database->updateDdlBatch($statements)->pollUntilComplete();
-        }
+        self::$database->delete(self::TABLE_NAME, new KeySet(['all' => true]));
 
         self::seedTable();
         self::$hasSetupBatch = true;
@@ -98,7 +70,7 @@ class PgBatchTest extends SystemTestCase
         $query = 'SELECT
                     id,
                     decade
-                FROM ' . self::$tableName . '
+                FROM ' . self::TABLE_NAME . '
                 WHERE
                     decade > $1
                 AND
@@ -119,6 +91,9 @@ class PgBatchTest extends SystemTestCase
         try {
             $partitions = $snapshot->partitionQuery($query, ['parameters' => $parameters]);
         } catch (ServiceException $e) {
+            if (is_null($expected)) {
+                throw $e;
+            }
             $error = $e;
         }
 
@@ -145,13 +120,17 @@ class PgBatchTest extends SystemTestCase
     private static function seedTable()
     {
         $decades = [1950, 1960, 1970, 1980, 1990, 2000];
+        $mutations = [];
+
         for ($i = 0; $i < 250; $i++) {
-            self::$database->insert(self::$tableName, [
+            $mutations[] = [
                 'id' => self::randId(),
-                'decade' => array_rand($decades)
-            ], [
-                'timeoutMillis' => 50000
-            ]);
+                'decade' => $decades[array_rand($decades)]
+            ];
         }
+
+        self::$database->insertOrUpdateBatch(self::TABLE_NAME, $mutations, [
+            'timeoutMillis' => 50000
+        ]);
     }
 }

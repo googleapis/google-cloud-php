@@ -16,6 +16,16 @@
                 }
             },
             "methods": {
+                "BatchActivateCmsMetadataValues": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "BatchDeactivateCmsMetadataValues": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "GetCmsMetadataValue": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",

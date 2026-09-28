@@ -19,7 +19,7 @@ class Mesh extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. Name of the Mesh resource. It matches pattern
-     * `projects/{@*}locations/global/meshes/<mesh_name>`.
+     * `projects/{@*}locations/{@*}meshes/<mesh_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -83,7 +83,7 @@ class Mesh extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. Name of the Mesh resource. It matches pattern
-     *           `projects/{@*}locations/global/meshes/<mesh_name>`.
+     *           `projects/{@*}locations/{@*}meshes/<mesh_name>`.
      *     @type string $self_link
      *           Output only. Server-defined URL of this resource
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -115,7 +115,7 @@ class Mesh extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the Mesh resource. It matches pattern
-     * `projects/{@*}locations/global/meshes/<mesh_name>`.
+     * `projects/{@*}locations/{@*}meshes/<mesh_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -127,7 +127,7 @@ class Mesh extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the Mesh resource. It matches pattern
-     * `projects/{@*}locations/global/meshes/<mesh_name>`.
+     * `projects/{@*}locations/{@*}meshes/<mesh_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

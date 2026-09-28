@@ -8,7 +8,7 @@
         "StorageControl": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "StorageControlGapicClient",
+                    "libraryClient": "StorageControlClient",
                     "rpcs": {
                         "CreateAnywhereCache": {
                             "methods": [
@@ -23,6 +23,11 @@
                         "CreateManagedFolder": {
                             "methods": [
                                 "createManagedFolder"
+                            ]
+                        },
+                        "CreateRapidCache": {
+                            "methods": [
+                                "createRapidCache"
                             ]
                         },
                         "DeleteFolder": {
@@ -45,6 +50,11 @@
                                 "disableAnywhereCache"
                             ]
                         },
+                        "DisableRapidCache": {
+                            "methods": [
+                                "disableRapidCache"
+                            ]
+                        },
                         "GetAnywhereCache": {
                             "methods": [
                                 "getAnywhereCache"
@@ -65,6 +75,16 @@
                                 "getIamPolicy"
                             ]
                         },
+                        "GetIntelligenceFinding": {
+                            "methods": [
+                                "getIntelligenceFinding"
+                            ]
+                        },
+                        "GetIntelligenceFindingRevision": {
+                            "methods": [
+                                "getIntelligenceFindingRevision"
+                            ]
+                        },
                         "GetManagedFolder": {
                             "methods": [
                                 "getManagedFolder"
@@ -78,6 +98,11 @@
                         "GetProjectIntelligenceConfig": {
                             "methods": [
                                 "getProjectIntelligenceConfig"
+                            ]
+                        },
+                        "GetRapidCache": {
+                            "methods": [
+                                "getRapidCache"
                             ]
                         },
                         "GetStorageLayout": {
@@ -95,9 +120,24 @@
                                 "listFolders"
                             ]
                         },
+                        "ListIntelligenceFindingRevisions": {
+                            "methods": [
+                                "listIntelligenceFindingRevisions"
+                            ]
+                        },
+                        "ListIntelligenceFindings": {
+                            "methods": [
+                                "listIntelligenceFindings"
+                            ]
+                        },
                         "ListManagedFolders": {
                             "methods": [
                                 "listManagedFolders"
+                            ]
+                        },
+                        "ListRapidCaches": {
+                            "methods": [
+                                "listRapidCaches"
                             ]
                         },
                         "PauseAnywhereCache": {
@@ -120,6 +160,11 @@
                                 "setIamPolicy"
                             ]
                         },
+                        "SummarizeIntelligenceFindings": {
+                            "methods": [
+                                "summarizeIntelligenceFindings"
+                            ]
+                        },
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
@@ -135,6 +180,11 @@
                                 "updateFolderIntelligenceConfig"
                             ]
                         },
+                        "UpdateManagedFolder": {
+                            "methods": [
+                                "updateManagedFolder"
+                            ]
+                        },
                         "UpdateOrganizationIntelligenceConfig": {
                             "methods": [
                                 "updateOrganizationIntelligenceConfig"
@@ -143,6 +193,16 @@
                         "UpdateProjectIntelligenceConfig": {
                             "methods": [
                                 "updateProjectIntelligenceConfig"
+                            ]
+                        },
+                        "UpdateRapidCache": {
+                            "methods": [
+                                "updateRapidCache"
+                            ]
+                        },
+                        "ViewObjectFullContext": {
+                            "methods": [
+                                "viewObjectFullContext"
                             ]
                         }
                     }

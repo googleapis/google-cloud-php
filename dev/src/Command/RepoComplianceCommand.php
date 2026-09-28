@@ -46,10 +46,15 @@ class RepoComplianceCommand extends Command
     {
         $this->setName('repo:compliance')
             ->setDescription('ensure all github repositories meet compliance')
-            ->addOption('component', 'c', InputOption::VALUE_REQUIRED, 'If specified, display repo info for this component only', '')
-            ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication', '')
+            ->addOption(
+                'component',
+                'c',
+                InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
+                'If specified, display repo info for this component only'
+            )
+            ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication')
             ->addOption('format', 'f', InputOption::VALUE_REQUIRED, 'can be "ci" or "table"', 'table')
-            ->addOption('new-packagist-token', '', InputOption::VALUE_REQUIRED, 'update the packagist token')
+            ->addOption('packagist-token', 'p', InputOption::VALUE_REQUIRED, 'Packagist token for the webhook')
         ;
     }
 
@@ -57,8 +62,8 @@ class RepoComplianceCommand extends Command
     {
         // Create github client wrapper
         $http = new Client();
-        $this->github = new GitHub(new RunShell(), $http, $input->getOption('token'), $output);
-        $this->packagist = new Packagist($http, self::PACKAGIST_USERNAME, $input->getOption('new-packagist-token') ?? '');
+        $this->github = new GitHub(new RunShell(), $http, (string) $input->getOption('token'), $output);
+        $this->packagist = new Packagist($http, self::PACKAGIST_USERNAME, $input->getOption('packagist-token') ?? '');
 
         $format = $input->getOption('format');
         if (!in_array($format, ['ci', 'table'])) {
@@ -66,7 +71,7 @@ class RepoComplianceCommand extends Command
         }
 
         $table = (new Table($output));
-        $table->setColumnWidths([55, 20, 20, 25, 50]);
+        $table->setColumnWidths([55, 20, 22, 33, 50]);
         $table->setStyle('compact');
         $headers = $format == 'ci' ? ['Name', 'Compliance'] : [
             'Name',
@@ -77,69 +82,109 @@ class RepoComplianceCommand extends Command
         ];
         (clone $table)->setHeaders($headers)->render();
 
-        $componentName = $input->getOption('component');
-        $components = $componentName ? [new Component($componentName)] : Component::getComponents();
+        $components = $input->getOption('component')
+            ? array_map(fn ($c) => new Component($c), $input->getOption('component'))
+            : Component::getComponents();
 
-        $isCompliant = true;
+        $emoji = fn ($check) => match ($check) { 'skipped' => '⚪', false => '❌', true => '✅', null => '❓'};
+        $failed = [];
         foreach ($components as $i => $component) {
-            $details = $this->getRepoDetails($component);
-            $settingsCheck = true;
-            $packagistCheck = true;
-            $teamCheck = true;
+            $isNewComponent = $component->getPackageVersion() === '0.0.0'
+                || ($component->getPackageVersion() === '0.1.0' && $format == 'ci');
 
-            $refreshDetails = false;
-            if (!$this->checkSettingsCompliance($details)) {
-                $settingsCheck = false;
-                $refreshDetails |= $this->askFixSettingsCompliance($input, $output, $details);
-            }
-            if (!$this->checkPackagistCompliance($details)) {
-                $packagistCheck = false;
-                $refreshDetails |= $this->askFixPackagistCompliance($input, $output, $component->getRepoName());
-            }
-            if (!$this->checkTeamCompliance($details)) {
-                $teamCheck = $this->github->token ? false : null;
-                $refreshDetails |= $this->askFixTeamCompliance($input, $output, $component->getRepoName());
-            }
-            if ($refreshDetails) {
-                $details = $this->getRepoDetails($component);
-            }
-            if ($packagistToken = $this->packagist->getApiToken()) {
-                $repoName = 'googleapis/' . $details['name'];
-                $webhookUrl = $this->packagist->getWebhookUrl();
-                if (!$webhookId = $this->github->getWebhook($repoName, $webhookUrl, $packagistToken)) {
-                    $output->writeln(sprintf('<error>%s</error>: Webhook not found in', $repoName));
-                } elseif (!$this->github->updateWebhook($repoName, $webhookId, $packagistToken, $webhookUrl)) {
-                    $output->writeln(sprintf('<error>%s</error>: Unable to update webhook.', $repoName));
-                } else {
-                    $output->writeln(sprintf('<comment>%s</comment>: Packagist webhook token updated.', $repoName));
+            do {
+                $refreshDetails = false;
+                if (!$details = $this->getRepoDetails($component)) {
+                    $repoCheck = $packagistCheck = $webhookCheck = $teamsCheck = false;
+                    $details = array_fill(0, count($headers) - 1, '**REPO NOT FOUND**');
+                    $details[0] = str_replace('googleapis/', '', $component->getRepoName());
+                    continue;
                 }
-            }
+                $repoCheck = $packagistCheck = $webhookCheck = $teamsCheck = true;
+                if (!$this->checkSettingsCompliance($component, $details)) {
+                    $repoCheck = false;
+                    $refreshDetails |= $this->askFixSettingsCompliance($input, $output, $component, $details);
+                }
+                if (!$this->checkWebhookCompliance($details)) {
+                    $webhookCheck = $this->github->token ? ($isNewComponent ? 'skipped' : false) : null;
+                    $refreshDetails |= $this->askFixWebhookCompliance($input, $output, $details);
+                }
+                if (!$this->checkPackagistCompliance($details)) {
+                    // New components don't have packagist config, so bypass for CI.
+                    $packagistCheck = $isNewComponent ? 'skipped' : false;
+                    $refreshDetails |= $this->askFixPackagistCompliance($input, $output, $details);
+                    $details['packagist_config'] ??= '**PACKAGE NOT FOUND**';
+                }
+                if (!$this->checkTeamCompliance($details)) {
+                    $teamsCheck = $this->github->token ? false : null;
+                    $refreshDetails |= $this->askFixTeamCompliance($input, $output, $component->getRepoName());
+                }
+            } while ($refreshDetails);
 
-            $emoji = fn (?bool $check) => match ($check) { null => '❓', true => '✅', false => '❌'};
             $details['compliant'] = implode("\n", [
-                sprintf('%s Issues, Projects, Wiki, Pages, and Discussion are disabled', $emoji($settingsCheck)),
-                sprintf('%s Packagist maintainer is "google-cloud"', $emoji($packagistCheck)),
-                sprintf('%s Github teams permissions are configured correctly', $emoji($teamCheck)),
+                sprintf('%s [repo] Issues, Projects, Wiki, Pages, Discussions and Pull Requests are ' .
+                    'configured correctly', $emoji($repoCheck)),
+                sprintf('%s [webhook] Packagist webhook is configured', $emoji($webhookCheck)),
+                sprintf('%s [packagist] Packagist maintainer is "google-cloud"', $emoji($packagistCheck)),
+                sprintf('%s [teams] Github teams permissions are configured correctly', $emoji($teamsCheck)),
                 '',
             ]);
-
-            $isCompliant = $isCompliant && $settingsCheck && $packagistCheck && $teamCheck;
             if ($format == 'ci') {
                 unset($details['repo_config'], $details['packagist_config'], $details['teams']);
             }
-            (clone $table)->addRow($details)->render();
+            $componentTable = (clone $table);
+            $componentTable->addRow($details)->render();
+
+            if (!($repoCheck && $webhookCheck && $packagistCheck && $teamsCheck)) {
+                $failed[] = $componentTable;
+            }
         }
 
-        return $isCompliant ? Command::SUCCESS : Command::FAILURE;
+        if (count($failed) > 0) {
+            $output->writeln('<error>ERROR: ' . count($failed) . ' components failed the repo compliance check:');
+            foreach ($failed as $table) {
+                $table->render();
+            }
+            return Command::FAILURE;
+        }
+
+        return Command::SUCCESS;
     }
 
-    private function checkSettingsCompliance(array $details)
+    /**
+     * The GitHub settings each split repository is expected to have.
+     *
+     * Migrated repositories have issues and pull requests which our commit
+     * history links to, and disabling either would hide them, so both tabs stay
+     * visible. New issues are turned away by the issue template config, and new
+     * pull requests by the "collaborators only" creation policy.
+     */
+    private function getExpectedSettings(Component $component): array
     {
-        return $details['repo_config'] === "issues: false
-projects: false
-wiki: false
-pages: false
-discussions: false";
+        $isMigrated = $component->isMigratedRepo();
+
+        return [
+            'has_issues' => $isMigrated,
+            'has_projects' => false,
+            'has_wiki' => false,
+            'has_pages' => false,
+            'has_discussions' => false,
+            'has_pull_requests' => $isMigrated,
+        ] + ($isMigrated ? ['pull_request_creation_policy' => 'collaborators_only'] : []);
+    }
+
+    private function formatSettings(array $settings): string
+    {
+        return implode("\n", array_map(
+            fn ($v, $k) => sprintf('%s: %s', str_replace('has_', '', $k), var_export($v, true)),
+            $settings,
+            array_keys($settings),
+        ));
+    }
+
+    private function checkSettingsCompliance(Component $component, array $details)
+    {
+        return $details['repo_config'] === $this->formatSettings($this->getExpectedSettings($component));
     }
 
     private function checkTeamCompliance(array $details)
@@ -150,45 +195,88 @@ discussions: false";
         ));
     }
 
-    private function askFixSettingsCompliance(InputInterface $input, OutputInterface $output, array $details)
+    private function askFixSettingsCompliance(
+        InputInterface $input,
+        OutputInterface $output,
+        Component $component,
+        array $details
+    ) {
+        if (!$this->github->token || $input->getOption('format') == 'ci') {
+            // without a token, or in CI mode, don't ask to fix compliance
+            return false;
+        }
+        $expected = $this->getExpectedSettings($component);
+        $question = new ConfirmationQuestion(sprintf(
+            "Repo %s has the following configuration:\n%s\n\nExpected:\n%s\n\nWould you like to update it? (Y/n)",
+            $details['name'],
+            $details['repo_config'],
+            $this->formatSettings($expected)
+        ), true);
+        if ($this->getHelper('question')->ask($input, $output, $question)) {
+            if ($this->github->updateRepoDetails('googleapis/' . $details['name'], $expected)) {
+                $output->writeln(sprintf('<comment>%s</comment>: Repo settings updated.', $details['name']));
+                return true;
+            }
+            $output->writeln(sprintf('<error>%s</error>: Unable to update repo settings.', $details['name']));
+            return false;
+        }
+        return false;
+    }
+
+    private function checkWebhookCompliance(array $details): bool
+    {
+        if (!$this->github->token) {
+            return false;
+        }
+
+        $repoName = 'googleapis/' . $details['name'];
+        $webhookUrl = $this->packagist->getWebhookUrl();
+
+        return null !== $this->github->getWebhook($repoName, $webhookUrl);
+    }
+
+    private function askFixWebhookCompliance(InputInterface $input, OutputInterface $output, array $details)
     {
         if (!$this->github->token || $input->getOption('format') == 'ci') {
             // without a token, or in CI mode, don't ask to fix compliance
             return false;
         }
-        $explodedConfig = array_map(fn ($line) => explode(': ', $line), explode("\n", $details['repo_config']));
-        $fields = array_combine(array_column($explodedConfig, 0), array_column($explodedConfig, 1));
-        $fieldsToUpdate = array_keys(array_filter($fields, fn ($value) => $value === 'true'));
+
         $question = new ConfirmationQuestion(sprintf(
-            'Repo %s has the following configuration enabled: %s. Would you like to disable them? (Y/n)',
+            'Repo %s does not have the packagist webhook configured. Would you like to configure it? (Y/n)',
             $details['name'],
-            implode(', ', $fieldsToUpdate)
         ), true);
         if ($this->getHelper('question')->ask($input, $output, $question)) {
-            $this->github->updateRepoDetails(
-                'googleapis/' . $details['name'],
-                array_fill_keys(array_map(
-                    fn ($key) => 'has_' . $key,
-                    array_keys($fields)
-                ), false)
-            );
+            if (!$packagistToken = $this->packagist->getApiToken()) {
+                throw new \Exception('Packagist token required to update webhook compliance');
+            }
+
+            $repoName = 'googleapis/' . $details['name'];
+            $webhookUrl = $this->packagist->getWebhookUrl();
+            if (!$this->github->addWebhook($repoName, $webhookUrl, $packagistToken)) {
+                $output->writeln(sprintf('<error>%s</error>: Unable to create Packagist webhook.', $repoName));
+
+                return false;
+            }
+            $output->writeln(sprintf('<comment>%s</comment>: Packagist webhook created.', $repoName));
             return true;
         }
+
         return false;
     }
 
     private function checkPackagistCompliance(array $details)
     {
         return !empty(array_filter(
-            explode("\n", $details['packagist_config']),
+            explode("\n", (string) $details['packagist_config']),
             fn ($team) => $team === self::PACKAGIST_USERNAME
         ));
     }
 
     private function askFixPackagistCompliance(InputInterface $input, OutputInterface $output, array $details)
     {
-        if (!$this->github->token || $input->getOption('format') == 'ci') {
-            // without a token, or in CI mode, don't ask to fix compliance
+        if (!$this->github->token || $input->getOption('format') == 'ci' || $details['packagist_config'] === null) {
+            // cannot fix compliance without a token, or in CI mode, or without packagist config
             return false;
         }
         throw new \Exception('not implemented');
@@ -211,26 +299,26 @@ discussions: false";
         return false;
     }
 
-    private function getRepoDetails(Component $component): array
+    private function getRepoDetails(Component $component): array|null
     {
-        $repoDetails = (array) $this->github->getRepoDetails($component->getRepoName());
-        // use "array_intersect_key" to filter out fields that were not requested.
-        $fields = array_map(
-            fn ($field) => var_export($field, true),
-            array_intersect_key(
-                $repoDetails,
-                array_flip(['has_issues', 'has_projects', 'has_wiki', 'has_pages', 'has_discussions'])
-            )
-        );
+        if (!$repoDetails = $this->github->getRepoDetails($component->getRepoName())) {
+            return null;
+        }
+
+        if (null !== $packagistDetails = $this->packagist->getMaintainers($component->getPackageName())) {
+            $packagistDetails = implode("\n", $packagistDetails);
+        }
+
+        // only display the settings we have an expectation for, in a stable order.
+        $actual = [];
+        foreach (array_keys($this->getExpectedSettings($component)) as $key) {
+            $actual[$key] = $repoDetails[$key] ?? null;
+        }
 
         return [
             'name' => $repoDetails['name'],
-            'repo_config' => implode("\n", array_map(
-                fn ($v, $k) => sprintf('%s: %s', str_replace('has_', '', $k), $v),
-                $fields,
-                array_keys($fields),
-            )),
-            'packagist_config' => implode("\n", $this->packagist->getMaintainers($component->getPackageName())),
+            'repo_config' => $this->formatSettings($actual),
+            'packagist_config' => $packagistDetails,
             'teams' => $this->getRepoTeamDetails($component),
         ];
     }

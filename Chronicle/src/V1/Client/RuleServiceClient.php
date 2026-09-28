@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,6 +50,8 @@ use Google\Cloud\Chronicle\V1\Rule;
 use Google\Cloud\Chronicle\V1\RuleDeployment;
 use Google\Cloud\Chronicle\V1\UpdateRuleDeploymentRequest;
 use Google\Cloud\Chronicle\V1\UpdateRuleRequest;
+use Google\Cloud\Chronicle\V1\VerifyRuleTextRequest;
+use Google\Cloud\Chronicle\V1\VerifyRuleTextResponse;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -78,6 +80,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listRulesAsync(ListRulesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Rule> updateRuleAsync(UpdateRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RuleDeployment> updateRuleDeploymentAsync(UpdateRuleDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<VerifyRuleTextResponse> verifyRuleTextAsync(VerifyRuleTextRequest $request, array $optionalArgs = [])
  */
 final class RuleServiceClient
 {
@@ -103,8 +106,16 @@ final class RuleServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/chronicle',
+        'https://www.googleapis.com/auth/chronicle.readonly',
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -150,7 +161,10 @@ final class RuleServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -740,5 +754,31 @@ final class RuleServiceClient
     public function updateRuleDeployment(UpdateRuleDeploymentRequest $request, array $callOptions = []): RuleDeployment
     {
         return $this->startApiCall('UpdateRuleDeployment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Verifies the given rule text.
+     *
+     * The async variant is {@see RuleServiceClient::verifyRuleTextAsync()} .
+     *
+     * @example samples/V1/RuleServiceClient/verify_rule_text.php
+     *
+     * @param VerifyRuleTextRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return VerifyRuleTextResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function verifyRuleText(VerifyRuleTextRequest $request, array $callOptions = []): VerifyRuleTextResponse
+    {
+        return $this->startApiCall('VerifyRuleText', $request, $callOptions)->wait();
     }
 }

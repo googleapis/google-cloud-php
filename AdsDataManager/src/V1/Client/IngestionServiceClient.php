@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,13 +24,18 @@
 
 namespace Google\Ads\DataManager\V1\Client;
 
+use Google\Ads\DataManager\V1\AdEvent;
 use Google\Ads\DataManager\V1\AudienceMember;
 use Google\Ads\DataManager\V1\Destination;
 use Google\Ads\DataManager\V1\Event;
+use Google\Ads\DataManager\V1\IngestAdEventsRequest;
+use Google\Ads\DataManager\V1\IngestAdEventsResponse;
 use Google\Ads\DataManager\V1\IngestAudienceMembersRequest;
 use Google\Ads\DataManager\V1\IngestAudienceMembersResponse;
 use Google\Ads\DataManager\V1\IngestEventsRequest;
 use Google\Ads\DataManager\V1\IngestEventsResponse;
+use Google\Ads\DataManager\V1\RemoveAllAudienceMembersRequest;
+use Google\Ads\DataManager\V1\RemoveAllAudienceMembersResponse;
 use Google\Ads\DataManager\V1\RemoveAudienceMembersRequest;
 use Google\Ads\DataManager\V1\RemoveAudienceMembersResponse;
 use Google\Ads\DataManager\V1\RetrieveRequestStatusRequest;
@@ -52,8 +57,10 @@ use Psr\Log\LoggerInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
+ * @method PromiseInterface<IngestAdEventsResponse> ingestAdEventsAsync(IngestAdEventsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IngestAudienceMembersResponse> ingestAudienceMembersAsync(IngestAudienceMembersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IngestEventsResponse> ingestEventsAsync(IngestEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RemoveAllAudienceMembersResponse> removeAllAudienceMembersAsync(RemoveAllAudienceMembersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RemoveAudienceMembersResponse> removeAudienceMembersAsync(RemoveAudienceMembersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RetrieveRequestStatusResponse> retrieveRequestStatusAsync(RetrieveRequestStatusRequest $request, array $optionalArgs = [])
  */
@@ -80,7 +87,11 @@ final class IngestionServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = ['https://www.googleapis.com/auth/datamanager'];
 
     private static function getClientDefaults()
@@ -189,6 +200,36 @@ final class IngestionServiceClient
 
     /**
      * Uploads a list of
+     * [AdEvent][google.ads.datamanager.v1.AdEvent] resources to Google
+     * Analytics.
+     *
+     * This feature is only available to accounts on an allowlist.
+     *
+     * The async variant is {@see IngestionServiceClient::ingestAdEventsAsync()} .
+     *
+     * @example samples/V1/IngestionServiceClient/ingest_ad_events.php
+     *
+     * @param IngestAdEventsRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return IngestAdEventsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function ingestAdEvents(IngestAdEventsRequest $request, array $callOptions = []): IngestAdEventsResponse
+    {
+        return $this->startApiCall('IngestAdEvents', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Uploads a list of
      * [AudienceMember][google.ads.datamanager.v1.AudienceMember] resources to the
      * provided [Destination][google.ads.datamanager.v1.Destination].
      *
@@ -244,6 +285,35 @@ final class IngestionServiceClient
     public function ingestEvents(IngestEventsRequest $request, array $callOptions = []): IngestEventsResponse
     {
         return $this->startApiCall('IngestEvents', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Removes all audience members from the provided destinations.
+     *
+     * The async variant is
+     * {@see IngestionServiceClient::removeAllAudienceMembersAsync()} .
+     *
+     * @example samples/V1/IngestionServiceClient/remove_all_audience_members.php
+     *
+     * @param RemoveAllAudienceMembersRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RemoveAllAudienceMembersResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function removeAllAudienceMembers(
+        RemoveAllAudienceMembersRequest $request,
+        array $callOptions = []
+    ): RemoveAllAudienceMembersResponse {
+        return $this->startApiCall('RemoveAllAudienceMembers', $request, $callOptions)->wait();
     }
 
     /**

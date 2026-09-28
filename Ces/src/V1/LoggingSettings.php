@@ -22,18 +22,38 @@ class LoggingSettings extends \Google\Protobuf\Internal\Message
      */
     protected $redaction_config = null;
     /**
-     * Optional. Configuration for how audio interactions should be recorded.
+     * Optional. Configuration for how audio interactions should be recorded. The
+     * audio is subject to redaction as configured in
+     * [RedactionConfig][google.cloud.ces.v1.LoggingSettings.redaction_config].
      *
      * Generated from protobuf field <code>.google.cloud.ces.v1.AudioRecordingConfig audio_recording_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $audio_recording_config = null;
     /**
-     * Optional. Settings to describe the BigQuery export behaviors for the app.
-     * The conversation data will be exported to BigQuery tables if it is enabled.
+     * Optional. Configures an additional recording of unredacted audio. This can
+     * be used to maintain a raw audio copy when audio redaction is
+     * [enabled][google.cloud.ces.v1.RedactionConfig.enable_redaction], typically
+     * for auditing or monitoring purposes.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.AudioRecordingConfig unredacted_audio_recording_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $unredacted_audio_recording_config = null;
+    /**
+     * Optional. Configures the BigQuery export behaviors for the app. The
+     * conversation data is subject to redaction as configured in
+     * [RedactionConfig][google.cloud.ces.v1.LoggingSettings.redaction_config].
      *
      * Generated from protobuf field <code>.google.cloud.ces.v1.BigQueryExportSettings bigquery_export_settings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $bigquery_export_settings = null;
+    /**
+     * Optional. Configures the BigQuery export behaviors for the app.
+     * The unredacted conversation data will be exported to BigQuery tables if it
+     * is enabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.BigQueryExportSettings unredacted_bigquery_export_settings = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $unredacted_bigquery_export_settings = null;
     /**
      * Optional. Settings to describe the Cloud Logging behaviors for the app.
      *
@@ -72,10 +92,22 @@ class LoggingSettings extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Ces\V1\RedactionConfig $redaction_config
      *           Optional. Configuration for how sensitive data should be redacted.
      *     @type \Google\Cloud\Ces\V1\AudioRecordingConfig $audio_recording_config
-     *           Optional. Configuration for how audio interactions should be recorded.
+     *           Optional. Configuration for how audio interactions should be recorded. The
+     *           audio is subject to redaction as configured in
+     *           [RedactionConfig][google.cloud.ces.v1.LoggingSettings.redaction_config].
+     *     @type \Google\Cloud\Ces\V1\AudioRecordingConfig $unredacted_audio_recording_config
+     *           Optional. Configures an additional recording of unredacted audio. This can
+     *           be used to maintain a raw audio copy when audio redaction is
+     *           [enabled][google.cloud.ces.v1.RedactionConfig.enable_redaction], typically
+     *           for auditing or monitoring purposes.
      *     @type \Google\Cloud\Ces\V1\BigQueryExportSettings $bigquery_export_settings
-     *           Optional. Settings to describe the BigQuery export behaviors for the app.
-     *           The conversation data will be exported to BigQuery tables if it is enabled.
+     *           Optional. Configures the BigQuery export behaviors for the app. The
+     *           conversation data is subject to redaction as configured in
+     *           [RedactionConfig][google.cloud.ces.v1.LoggingSettings.redaction_config].
+     *     @type \Google\Cloud\Ces\V1\BigQueryExportSettings $unredacted_bigquery_export_settings
+     *           Optional. Configures the BigQuery export behaviors for the app.
+     *           The unredacted conversation data will be exported to BigQuery tables if it
+     *           is enabled.
      *     @type \Google\Cloud\Ces\V1\CloudLoggingSettings $cloud_logging_settings
      *           Optional. Settings to describe the Cloud Logging behaviors for the app.
      *     @type \Google\Cloud\Ces\V1\ConversationLoggingSettings $conversation_logging_settings
@@ -132,7 +164,9 @@ class LoggingSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Configuration for how audio interactions should be recorded.
+     * Optional. Configuration for how audio interactions should be recorded. The
+     * audio is subject to redaction as configured in
+     * [RedactionConfig][google.cloud.ces.v1.LoggingSettings.redaction_config].
      *
      * Generated from protobuf field <code>.google.cloud.ces.v1.AudioRecordingConfig audio_recording_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Ces\V1\AudioRecordingConfig|null
@@ -153,7 +187,9 @@ class LoggingSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Configuration for how audio interactions should be recorded.
+     * Optional. Configuration for how audio interactions should be recorded. The
+     * audio is subject to redaction as configured in
+     * [RedactionConfig][google.cloud.ces.v1.LoggingSettings.redaction_config].
      *
      * Generated from protobuf field <code>.google.cloud.ces.v1.AudioRecordingConfig audio_recording_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Ces\V1\AudioRecordingConfig $var
@@ -168,8 +204,51 @@ class LoggingSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Settings to describe the BigQuery export behaviors for the app.
-     * The conversation data will be exported to BigQuery tables if it is enabled.
+     * Optional. Configures an additional recording of unredacted audio. This can
+     * be used to maintain a raw audio copy when audio redaction is
+     * [enabled][google.cloud.ces.v1.RedactionConfig.enable_redaction], typically
+     * for auditing or monitoring purposes.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.AudioRecordingConfig unredacted_audio_recording_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Ces\V1\AudioRecordingConfig|null
+     */
+    public function getUnredactedAudioRecordingConfig()
+    {
+        return $this->unredacted_audio_recording_config;
+    }
+
+    public function hasUnredactedAudioRecordingConfig()
+    {
+        return isset($this->unredacted_audio_recording_config);
+    }
+
+    public function clearUnredactedAudioRecordingConfig()
+    {
+        unset($this->unredacted_audio_recording_config);
+    }
+
+    /**
+     * Optional. Configures an additional recording of unredacted audio. This can
+     * be used to maintain a raw audio copy when audio redaction is
+     * [enabled][google.cloud.ces.v1.RedactionConfig.enable_redaction], typically
+     * for auditing or monitoring purposes.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.AudioRecordingConfig unredacted_audio_recording_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Ces\V1\AudioRecordingConfig $var
+     * @return $this
+     */
+    public function setUnredactedAudioRecordingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\AudioRecordingConfig::class);
+        $this->unredacted_audio_recording_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configures the BigQuery export behaviors for the app. The
+     * conversation data is subject to redaction as configured in
+     * [RedactionConfig][google.cloud.ces.v1.LoggingSettings.redaction_config].
      *
      * Generated from protobuf field <code>.google.cloud.ces.v1.BigQueryExportSettings bigquery_export_settings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Ces\V1\BigQueryExportSettings|null
@@ -190,8 +269,9 @@ class LoggingSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Settings to describe the BigQuery export behaviors for the app.
-     * The conversation data will be exported to BigQuery tables if it is enabled.
+     * Optional. Configures the BigQuery export behaviors for the app. The
+     * conversation data is subject to redaction as configured in
+     * [RedactionConfig][google.cloud.ces.v1.LoggingSettings.redaction_config].
      *
      * Generated from protobuf field <code>.google.cloud.ces.v1.BigQueryExportSettings bigquery_export_settings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Ces\V1\BigQueryExportSettings $var
@@ -201,6 +281,46 @@ class LoggingSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\BigQueryExportSettings::class);
         $this->bigquery_export_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configures the BigQuery export behaviors for the app.
+     * The unredacted conversation data will be exported to BigQuery tables if it
+     * is enabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.BigQueryExportSettings unredacted_bigquery_export_settings = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Ces\V1\BigQueryExportSettings|null
+     */
+    public function getUnredactedBigqueryExportSettings()
+    {
+        return $this->unredacted_bigquery_export_settings;
+    }
+
+    public function hasUnredactedBigqueryExportSettings()
+    {
+        return isset($this->unredacted_bigquery_export_settings);
+    }
+
+    public function clearUnredactedBigqueryExportSettings()
+    {
+        unset($this->unredacted_bigquery_export_settings);
+    }
+
+    /**
+     * Optional. Configures the BigQuery export behaviors for the app.
+     * The unredacted conversation data will be exported to BigQuery tables if it
+     * is enabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.BigQueryExportSettings unredacted_bigquery_export_settings = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Ces\V1\BigQueryExportSettings $var
+     * @return $this
+     */
+    public function setUnredactedBigqueryExportSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\BigQueryExportSettings::class);
+        $this->unredacted_bigquery_export_settings = $var;
 
         return $this;
     }

@@ -10,7 +10,7 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
- * [DeleteLineageEvent][google.cloud.datacatalog.lineage.v1.DeleteLineageEvent].
+ * [DeleteLineageEvent][google.cloud.datacatalog.lineage.v1.Lineage.DeleteLineageEvent].
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.lineage.v1.DeleteLineageEventRequest</code>
  */
@@ -23,10 +23,10 @@ class DeleteLineageEventRequest extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * If set to true and the lineage event is not found, the request
+     * Optional. If set to true and the lineage event is not found, the request
      * succeeds but the server doesn't perform any actions.
      *
-     * Generated from protobuf field <code>bool allow_missing = 2;</code>
+     * Generated from protobuf field <code>bool allow_missing = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $allow_missing = false;
 
@@ -53,7 +53,7 @@ class DeleteLineageEventRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the lineage event to delete.
      *     @type bool $allow_missing
-     *           If set to true and the lineage event is not found, the request
+     *           Optional. If set to true and the lineage event is not found, the request
      *           succeeds but the server doesn't perform any actions.
      * }
      */
@@ -89,10 +89,10 @@ class DeleteLineageEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true and the lineage event is not found, the request
+     * Optional. If set to true and the lineage event is not found, the request
      * succeeds but the server doesn't perform any actions.
      *
-     * Generated from protobuf field <code>bool allow_missing = 2;</code>
+     * Generated from protobuf field <code>bool allow_missing = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getAllowMissing()
@@ -101,10 +101,10 @@ class DeleteLineageEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true and the lineage event is not found, the request
+     * Optional. If set to true and the lineage event is not found, the request
      * succeeds but the server doesn't perform any actions.
      *
-     * Generated from protobuf field <code>bool allow_missing = 2;</code>
+     * Generated from protobuf field <code>bool allow_missing = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

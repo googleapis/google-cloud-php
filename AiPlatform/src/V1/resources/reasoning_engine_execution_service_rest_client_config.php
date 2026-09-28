@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,44 @@
 return [
     'interfaces' => [
         'google.cloud.aiplatform.v1.ReasoningEngineExecutionService' => [
+            'AsyncQueryReasoningEngine' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/reasoningEngines/*}:asyncQuery',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=reasoningEngines/*}:asyncQuery',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'CancelAsyncQueryReasoningEngine' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/reasoningEngines/*}:cancelAsyncQuery',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=reasoningEngines/*}:cancelAsyncQuery',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'QueryReasoningEngine' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/reasoningEngines/*}:query',

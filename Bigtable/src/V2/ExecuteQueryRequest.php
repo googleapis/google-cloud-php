@@ -87,6 +87,16 @@ class ExecuteQueryRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.bigtable.v2.Value> params = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $params;
+    /**
+     * Optional. This map provides the runtime values returned by the
+     * VIEW_PARAMETERS() function calls, typically used for user-level scoping of
+     * data based on identity.
+     * The key is the name of the view parameter e.g. `user_id`, and
+     * the value is the parameter value e.g. `alice\@example.com`.
+     *
+     * Generated from protobuf field <code>map<string, .google.bigtable.v2.Value> view_parameters = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $view_parameters;
     protected $data_format;
 
     /**
@@ -190,6 +200,12 @@ class ExecuteQueryRequest extends \Google\Protobuf\Internal\Message
      *           inferred from the `param_types` in the `PrepareQueryRequest`. Any non-empty
      *           `Value.type` must match the corresponding `param_types` entry, or be
      *           rejected with `INVALID_ARGUMENT`.
+     *     @type array|\Google\Protobuf\Internal\MapField $view_parameters
+     *           Optional. This map provides the runtime values returned by the
+     *           VIEW_PARAMETERS() function calls, typically used for user-level scoping of
+     *           data based on identity.
+     *           The key is the name of the view parameter e.g. `user_id`, and
+     *           the value is the parameter value e.g. `alice\@example.com`.
      * }
      */
     public function __construct($data = NULL) {
@@ -467,6 +483,40 @@ class ExecuteQueryRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Bigtable\V2\Value::class);
         $this->params = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This map provides the runtime values returned by the
+     * VIEW_PARAMETERS() function calls, typically used for user-level scoping of
+     * data based on identity.
+     * The key is the name of the view parameter e.g. `user_id`, and
+     * the value is the parameter value e.g. `alice\@example.com`.
+     *
+     * Generated from protobuf field <code>map<string, .google.bigtable.v2.Value> view_parameters = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getViewParameters()
+    {
+        return $this->view_parameters;
+    }
+
+    /**
+     * Optional. This map provides the runtime values returned by the
+     * VIEW_PARAMETERS() function calls, typically used for user-level scoping of
+     * data based on identity.
+     * The key is the name of the view parameter e.g. `user_id`, and
+     * the value is the parameter value e.g. `alice\@example.com`.
+     *
+     * Generated from protobuf field <code>map<string, .google.bigtable.v2.Value> view_parameters = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setViewParameters($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Bigtable\V2\Value::class);
+        $this->view_parameters = $arr;
 
         return $this;
     }

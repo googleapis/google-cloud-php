@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * A [policy][google.cloud.binaryauthorization.v1.Policy] for container image binary authorization.
+ * A [policy][google.cloud.binaryauthorization.v1.Policy] for container image
+ * binary authorization.
  *
  * Generated from protobuf message <code>google.cloud.binaryauthorization.v1.Policy</code>
  */
@@ -46,7 +47,12 @@ class Policy extends \Google\Protobuf\Internal\Message
      */
     private $admission_whitelist_patterns;
     /**
-     * Optional. Per-cluster admission rules. Cluster spec format:
+     * Optional. A valid policy has only one of the following rule maps non-empty,
+     * i.e. only one of `cluster_admission_rules`,
+     * `kubernetes_namespace_admission_rules`,
+     * `kubernetes_service_account_admission_rules`,
+     * or `istio_service_identity_admission_rules` can be non-empty.
+     * Per-cluster admission rules. Cluster spec format:
      * `location.clusterId`. There can be at most one admission rule per cluster
      * spec.
      * A `location` is either a compute zone (e.g. us-central1-a) or a region
@@ -58,15 +64,16 @@ class Policy extends \Google\Protobuf\Internal\Message
      */
     private $cluster_admission_rules;
     /**
-     * Optional. Per-kubernetes-namespace admission rules. K8s namespace spec format:
-     * [a-z.-]+, e.g. 'some-namespace'
+     * Optional. Per-kubernetes-namespace admission rules. K8s namespace spec
+     * format:
+     * `[a-z.-]+`, e.g. `some-namespace`
      *
      * Generated from protobuf field <code>map<string, .google.cloud.binaryauthorization.v1.AdmissionRule> kubernetes_namespace_admission_rules = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $kubernetes_namespace_admission_rules;
     /**
      * Optional. Per-kubernetes-service-account admission rules. Service account
-     * spec format: `namespace:serviceaccount`. e.g. 'test-ns:default'
+     * spec format: `namespace:serviceaccount`. e.g. `test-ns:default`
      *
      * Generated from protobuf field <code>map<string, .google.cloud.binaryauthorization.v1.AdmissionRule> kubernetes_service_account_admission_rules = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -74,9 +81,9 @@ class Policy extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Per-istio-service-identity admission rules. Istio service
      * identity spec format:
-     * spiffe://<domain>/ns/<namespace>/sa/<serviceaccount> or
-     * <domain>/ns/<namespace>/sa/<serviceaccount>
-     * e.g. spiffe://example.com/ns/test-ns/sa/default
+     * `spiffe://<domain>/ns/<namespace>/sa/<serviceaccount>` or
+     * `<domain>/ns/<namespace>/sa/<serviceaccount>`
+     * e.g. `spiffe://example.com/ns/test-ns/sa/default`
      *
      * Generated from protobuf field <code>map<string, .google.cloud.binaryauthorization.v1.AdmissionRule> istio_service_identity_admission_rules = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -94,6 +101,14 @@ class Policy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $update_time = null;
+    /**
+     * Optional. A checksum, returned by the server, that can be sent on update
+     * requests to ensure the policy has an up-to-date value before attempting to
+     * update it. See https://google.aip.dev/154.
+     *
+     * Generated from protobuf field <code>string etag = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $etag = '';
 
     /**
      * Constructor.
@@ -116,7 +131,12 @@ class Policy extends \Google\Protobuf\Internal\Message
      *           always be permitted. This feature is typically used to exclude Google or
      *           third-party infrastructure images from Binary Authorization policies.
      *     @type array|\Google\Protobuf\Internal\MapField $cluster_admission_rules
-     *           Optional. Per-cluster admission rules. Cluster spec format:
+     *           Optional. A valid policy has only one of the following rule maps non-empty,
+     *           i.e. only one of `cluster_admission_rules`,
+     *           `kubernetes_namespace_admission_rules`,
+     *           `kubernetes_service_account_admission_rules`,
+     *           or `istio_service_identity_admission_rules` can be non-empty.
+     *           Per-cluster admission rules. Cluster spec format:
      *           `location.clusterId`. There can be at most one admission rule per cluster
      *           spec.
      *           A `location` is either a compute zone (e.g. us-central1-a) or a region
@@ -124,22 +144,27 @@ class Policy extends \Google\Protobuf\Internal\Message
      *           For `clusterId` syntax restrictions see
      *           https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters.
      *     @type array|\Google\Protobuf\Internal\MapField $kubernetes_namespace_admission_rules
-     *           Optional. Per-kubernetes-namespace admission rules. K8s namespace spec format:
-     *           [a-z.-]+, e.g. 'some-namespace'
+     *           Optional. Per-kubernetes-namespace admission rules. K8s namespace spec
+     *           format:
+     *           `[a-z.-]+`, e.g. `some-namespace`
      *     @type array|\Google\Protobuf\Internal\MapField $kubernetes_service_account_admission_rules
      *           Optional. Per-kubernetes-service-account admission rules. Service account
-     *           spec format: `namespace:serviceaccount`. e.g. 'test-ns:default'
+     *           spec format: `namespace:serviceaccount`. e.g. `test-ns:default`
      *     @type array|\Google\Protobuf\Internal\MapField $istio_service_identity_admission_rules
      *           Optional. Per-istio-service-identity admission rules. Istio service
      *           identity spec format:
-     *           spiffe://<domain>/ns/<namespace>/sa/<serviceaccount> or
-     *           <domain>/ns/<namespace>/sa/<serviceaccount>
-     *           e.g. spiffe://example.com/ns/test-ns/sa/default
+     *           `spiffe://<domain>/ns/<namespace>/sa/<serviceaccount>` or
+     *           `<domain>/ns/<namespace>/sa/<serviceaccount>`
+     *           e.g. `spiffe://example.com/ns/test-ns/sa/default`
      *     @type \Google\Cloud\BinaryAuthorization\V1\AdmissionRule $default_admission_rule
      *           Required. Default admission rule for a cluster without a per-cluster, per-
      *           kubernetes-service-account, or per-istio-service-identity admission rule.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Time when the policy was last updated.
+     *     @type string $etag
+     *           Optional. A checksum, returned by the server, that can be sent on update
+     *           requests to ensure the policy has an up-to-date value before attempting to
+     *           update it. See https://google.aip.dev/154.
      * }
      */
     public function __construct($data = NULL) {
@@ -264,7 +289,12 @@ class Policy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Per-cluster admission rules. Cluster spec format:
+     * Optional. A valid policy has only one of the following rule maps non-empty,
+     * i.e. only one of `cluster_admission_rules`,
+     * `kubernetes_namespace_admission_rules`,
+     * `kubernetes_service_account_admission_rules`,
+     * or `istio_service_identity_admission_rules` can be non-empty.
+     * Per-cluster admission rules. Cluster spec format:
      * `location.clusterId`. There can be at most one admission rule per cluster
      * spec.
      * A `location` is either a compute zone (e.g. us-central1-a) or a region
@@ -281,7 +311,12 @@ class Policy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Per-cluster admission rules. Cluster spec format:
+     * Optional. A valid policy has only one of the following rule maps non-empty,
+     * i.e. only one of `cluster_admission_rules`,
+     * `kubernetes_namespace_admission_rules`,
+     * `kubernetes_service_account_admission_rules`,
+     * or `istio_service_identity_admission_rules` can be non-empty.
+     * Per-cluster admission rules. Cluster spec format:
      * `location.clusterId`. There can be at most one admission rule per cluster
      * spec.
      * A `location` is either a compute zone (e.g. us-central1-a) or a region
@@ -302,8 +337,9 @@ class Policy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Per-kubernetes-namespace admission rules. K8s namespace spec format:
-     * [a-z.-]+, e.g. 'some-namespace'
+     * Optional. Per-kubernetes-namespace admission rules. K8s namespace spec
+     * format:
+     * `[a-z.-]+`, e.g. `some-namespace`
      *
      * Generated from protobuf field <code>map<string, .google.cloud.binaryauthorization.v1.AdmissionRule> kubernetes_namespace_admission_rules = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -314,8 +350,9 @@ class Policy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Per-kubernetes-namespace admission rules. K8s namespace spec format:
-     * [a-z.-]+, e.g. 'some-namespace'
+     * Optional. Per-kubernetes-namespace admission rules. K8s namespace spec
+     * format:
+     * `[a-z.-]+`, e.g. `some-namespace`
      *
      * Generated from protobuf field <code>map<string, .google.cloud.binaryauthorization.v1.AdmissionRule> kubernetes_namespace_admission_rules = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -331,7 +368,7 @@ class Policy extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Per-kubernetes-service-account admission rules. Service account
-     * spec format: `namespace:serviceaccount`. e.g. 'test-ns:default'
+     * spec format: `namespace:serviceaccount`. e.g. `test-ns:default`
      *
      * Generated from protobuf field <code>map<string, .google.cloud.binaryauthorization.v1.AdmissionRule> kubernetes_service_account_admission_rules = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -343,7 +380,7 @@ class Policy extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Per-kubernetes-service-account admission rules. Service account
-     * spec format: `namespace:serviceaccount`. e.g. 'test-ns:default'
+     * spec format: `namespace:serviceaccount`. e.g. `test-ns:default`
      *
      * Generated from protobuf field <code>map<string, .google.cloud.binaryauthorization.v1.AdmissionRule> kubernetes_service_account_admission_rules = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -360,9 +397,9 @@ class Policy extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Per-istio-service-identity admission rules. Istio service
      * identity spec format:
-     * spiffe://<domain>/ns/<namespace>/sa/<serviceaccount> or
-     * <domain>/ns/<namespace>/sa/<serviceaccount>
-     * e.g. spiffe://example.com/ns/test-ns/sa/default
+     * `spiffe://<domain>/ns/<namespace>/sa/<serviceaccount>` or
+     * `<domain>/ns/<namespace>/sa/<serviceaccount>`
+     * e.g. `spiffe://example.com/ns/test-ns/sa/default`
      *
      * Generated from protobuf field <code>map<string, .google.cloud.binaryauthorization.v1.AdmissionRule> istio_service_identity_admission_rules = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -375,9 +412,9 @@ class Policy extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Per-istio-service-identity admission rules. Istio service
      * identity spec format:
-     * spiffe://<domain>/ns/<namespace>/sa/<serviceaccount> or
-     * <domain>/ns/<namespace>/sa/<serviceaccount>
-     * e.g. spiffe://example.com/ns/test-ns/sa/default
+     * `spiffe://<domain>/ns/<namespace>/sa/<serviceaccount>` or
+     * `<domain>/ns/<namespace>/sa/<serviceaccount>`
+     * e.g. `spiffe://example.com/ns/test-ns/sa/default`
      *
      * Generated from protobuf field <code>map<string, .google.cloud.binaryauthorization.v1.AdmissionRule> istio_service_identity_admission_rules = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -461,6 +498,36 @@ class Policy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A checksum, returned by the server, that can be sent on update
+     * requests to ensure the policy has an up-to-date value before attempting to
+     * update it. See https://google.aip.dev/154.
+     *
+     * Generated from protobuf field <code>string etag = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getEtag()
+    {
+        return $this->etag;
+    }
+
+    /**
+     * Optional. A checksum, returned by the server, that can be sent on update
+     * requests to ensure the policy has an up-to-date value before attempting to
+     * update it. See https://google.aip.dev/154.
+     *
+     * Generated from protobuf field <code>string etag = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEtag($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->etag = $var;
 
         return $this;
     }

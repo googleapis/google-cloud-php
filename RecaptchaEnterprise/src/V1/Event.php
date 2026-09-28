@@ -46,7 +46,7 @@ class Event extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The expected action for this type of event. This should be the
      * same action provided at token generation time on client-side platforms
-     * already integrated with recaptcha enterprise.
+     * already integrated with recaptcha enterprise. Required for Universal keys.
      *
      * Generated from protobuf field <code>string expected_action = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -154,7 +154,7 @@ class Event extends \Google\Protobuf\Internal\Message
      *     @type string $expected_action
      *           Optional. The expected action for this type of event. This should be the
      *           same action provided at token generation time on client-side platforms
-     *           already integrated with recaptcha enterprise.
+     *           already integrated with recaptcha enterprise. Required for Universal keys.
      *     @type string $hashed_account_id
      *           Optional. Deprecated: use `user_info.account_id` instead.
      *           Unique stable hashed user identifier for the request. The identifier must
@@ -313,7 +313,7 @@ class Event extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The expected action for this type of event. This should be the
      * same action provided at token generation time on client-side platforms
-     * already integrated with recaptcha enterprise.
+     * already integrated with recaptcha enterprise. Required for Universal keys.
      *
      * Generated from protobuf field <code>string expected_action = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -326,7 +326,7 @@ class Event extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The expected action for this type of event. This should be the
      * same action provided at token generation time on client-side platforms
-     * already integrated with recaptcha enterprise.
+     * already integrated with recaptcha enterprise. Required for Universal keys.
      *
      * Generated from protobuf field <code>string expected_action = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

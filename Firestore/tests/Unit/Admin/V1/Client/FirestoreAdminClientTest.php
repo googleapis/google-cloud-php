@@ -99,7 +99,9 @@ class FirestoreAdminClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return FirestoreAdminClient */
@@ -142,8 +144,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new BulkDeleteDocumentsRequest())
-            ->setName($formattedName);
+        $request = (new BulkDeleteDocumentsRequest())->setName($formattedName);
         $response = $gapicClient->bulkDeleteDocuments($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -199,17 +200,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new BulkDeleteDocumentsRequest())
-            ->setName($formattedName);
+        $request = (new BulkDeleteDocumentsRequest())->setName($formattedName);
         $response = $gapicClient->bulkDeleteDocuments($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -346,12 +349,15 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
@@ -403,9 +409,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
         $backupSchedule = new BackupSchedule();
-        $request = (new CreateBackupScheduleRequest())
-            ->setParent($formattedParent)
-            ->setBackupSchedule($backupSchedule);
+        $request = (new CreateBackupScheduleRequest())->setParent($formattedParent)->setBackupSchedule($backupSchedule);
         $response = $gapicClient->createBackupSchedule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -431,19 +435,20 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
         $backupSchedule = new BackupSchedule();
-        $request = (new CreateBackupScheduleRequest())
-            ->setParent($formattedParent)
-            ->setBackupSchedule($backupSchedule);
+        $request = (new CreateBackupScheduleRequest())->setParent($formattedParent)->setBackupSchedule($backupSchedule);
         try {
             $gapicClient->createBackupSchedule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -567,12 +572,15 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
@@ -644,9 +652,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
         $index = new Index();
-        $request = (new CreateIndexRequest())
-            ->setParent($formattedParent)
-            ->setIndex($index);
+        $request = (new CreateIndexRequest())->setParent($formattedParent)->setIndex($index);
         $response = $gapicClient->createIndex($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -704,19 +710,20 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
         $index = new Index();
-        $request = (new CreateIndexRequest())
-            ->setParent($formattedParent)
-            ->setIndex($index);
+        $request = (new CreateIndexRequest())->setParent($formattedParent)->setIndex($index);
         $response = $gapicClient->createIndex($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -789,12 +796,15 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
@@ -830,8 +840,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
-        $request = (new DeleteBackupRequest())
-            ->setName($formattedName);
+        $request = (new DeleteBackupRequest())->setName($formattedName);
         $gapicClient->deleteBackup($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -854,17 +863,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
-        $request = (new DeleteBackupRequest())
-            ->setName($formattedName);
+        $request = (new DeleteBackupRequest())->setName($formattedName);
         try {
             $gapicClient->deleteBackup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -891,8 +902,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupScheduleName('[PROJECT]', '[DATABASE]', '[BACKUP_SCHEDULE]');
-        $request = (new DeleteBackupScheduleRequest())
-            ->setName($formattedName);
+        $request = (new DeleteBackupScheduleRequest())->setName($formattedName);
         $gapicClient->deleteBackupSchedule($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -915,17 +925,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->backupScheduleName('[PROJECT]', '[DATABASE]', '[BACKUP_SCHEDULE]');
-        $request = (new DeleteBackupScheduleRequest())
-            ->setName($formattedName);
+        $request = (new DeleteBackupScheduleRequest())->setName($formattedName);
         try {
             $gapicClient->deleteBackupSchedule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -984,8 +996,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new DeleteDatabaseRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDatabaseRequest())->setName($formattedName);
         $response = $gapicClient->deleteDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1041,17 +1052,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new DeleteDatabaseRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDatabaseRequest())->setName($formattedName);
         $response = $gapicClient->deleteDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1087,8 +1100,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
-        $request = (new DeleteIndexRequest())
-            ->setName($formattedName);
+        $request = (new DeleteIndexRequest())->setName($formattedName);
         $gapicClient->deleteIndex($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1111,17 +1123,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
-        $request = (new DeleteIndexRequest())
-            ->setName($formattedName);
+        $request = (new DeleteIndexRequest())->setName($formattedName);
         try {
             $gapicClient->deleteIndex($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1148,8 +1162,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
-        $request = (new DeleteUserCredsRequest())
-            ->setName($formattedName);
+        $request = (new DeleteUserCredsRequest())->setName($formattedName);
         $gapicClient->deleteUserCreds($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1172,17 +1185,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
-        $request = (new DeleteUserCredsRequest())
-            ->setName($formattedName);
+        $request = (new DeleteUserCredsRequest())->setName($formattedName);
         try {
             $gapicClient->deleteUserCreds($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1213,8 +1228,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
-        $request = (new DisableUserCredsRequest())
-            ->setName($formattedName);
+        $request = (new DisableUserCredsRequest())->setName($formattedName);
         $response = $gapicClient->disableUserCreds($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1238,17 +1252,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
-        $request = (new DisableUserCredsRequest())
-            ->setName($formattedName);
+        $request = (new DisableUserCredsRequest())->setName($formattedName);
         try {
             $gapicClient->disableUserCreds($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1279,8 +1295,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
-        $request = (new EnableUserCredsRequest())
-            ->setName($formattedName);
+        $request = (new EnableUserCredsRequest())->setName($formattedName);
         $response = $gapicClient->enableUserCreds($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1304,17 +1319,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
-        $request = (new EnableUserCredsRequest())
-            ->setName($formattedName);
+        $request = (new EnableUserCredsRequest())->setName($formattedName);
         try {
             $gapicClient->enableUserCreds($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1361,8 +1378,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new ExportDocumentsRequest())
-            ->setName($formattedName);
+        $request = (new ExportDocumentsRequest())->setName($formattedName);
         $response = $gapicClient->exportDocuments($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1418,17 +1434,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new ExportDocumentsRequest())
-            ->setName($formattedName);
+        $request = (new ExportDocumentsRequest())->setName($formattedName);
         $response = $gapicClient->exportDocuments($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1470,8 +1488,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
-        $request = (new GetBackupRequest())
-            ->setName($formattedName);
+        $request = (new GetBackupRequest())->setName($formattedName);
         $response = $gapicClient->getBackup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1495,17 +1512,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
-        $request = (new GetBackupRequest())
-            ->setName($formattedName);
+        $request = (new GetBackupRequest())->setName($formattedName);
         try {
             $gapicClient->getBackup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1534,8 +1553,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupScheduleName('[PROJECT]', '[DATABASE]', '[BACKUP_SCHEDULE]');
-        $request = (new GetBackupScheduleRequest())
-            ->setName($formattedName);
+        $request = (new GetBackupScheduleRequest())->setName($formattedName);
         $response = $gapicClient->getBackupSchedule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1559,17 +1577,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->backupScheduleName('[PROJECT]', '[DATABASE]', '[BACKUP_SCHEDULE]');
-        $request = (new GetBackupScheduleRequest())
-            ->setName($formattedName);
+        $request = (new GetBackupScheduleRequest())->setName($formattedName);
         try {
             $gapicClient->getBackupSchedule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1610,8 +1630,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new GetDatabaseRequest())
-            ->setName($formattedName);
+        $request = (new GetDatabaseRequest())->setName($formattedName);
         $response = $gapicClient->getDatabase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1635,17 +1654,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new GetDatabaseRequest())
-            ->setName($formattedName);
+        $request = (new GetDatabaseRequest())->setName($formattedName);
         try {
             $gapicClient->getDatabase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1674,8 +1695,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->fieldName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[FIELD]');
-        $request = (new GetFieldRequest())
-            ->setName($formattedName);
+        $request = (new GetFieldRequest())->setName($formattedName);
         $response = $gapicClient->getField($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1699,17 +1719,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->fieldName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[FIELD]');
-        $request = (new GetFieldRequest())
-            ->setName($formattedName);
+        $request = (new GetFieldRequest())->setName($formattedName);
         try {
             $gapicClient->getField($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1744,8 +1766,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
-        $request = (new GetIndexRequest())
-            ->setName($formattedName);
+        $request = (new GetIndexRequest())->setName($formattedName);
         $response = $gapicClient->getIndex($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1769,17 +1790,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
-        $request = (new GetIndexRequest())
-            ->setName($formattedName);
+        $request = (new GetIndexRequest())->setName($formattedName);
         try {
             $gapicClient->getIndex($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1810,8 +1833,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
-        $request = (new GetUserCredsRequest())
-            ->setName($formattedName);
+        $request = (new GetUserCredsRequest())->setName($formattedName);
         $response = $gapicClient->getUserCreds($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1835,17 +1857,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
-        $request = (new GetUserCredsRequest())
-            ->setName($formattedName);
+        $request = (new GetUserCredsRequest())->setName($formattedName);
         try {
             $gapicClient->getUserCreds($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1890,8 +1914,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new ImportDocumentsRequest())
-            ->setName($formattedName);
+        $request = (new ImportDocumentsRequest())->setName($formattedName);
         $response = $gapicClient->importDocuments($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1947,17 +1970,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new ImportDocumentsRequest())
-            ->setName($formattedName);
+        $request = (new ImportDocumentsRequest())->setName($formattedName);
         $response = $gapicClient->importDocuments($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1993,8 +2018,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new ListBackupSchedulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListBackupSchedulesRequest())->setParent($formattedParent);
         $response = $gapicClient->listBackupSchedules($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2018,17 +2042,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new ListBackupSchedulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListBackupSchedulesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listBackupSchedules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2055,8 +2081,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListBackupsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListBackupsRequest())->setParent($formattedParent);
         $response = $gapicClient->listBackups($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2080,17 +2105,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListBackupsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListBackupsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listBackups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2117,8 +2144,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListDatabasesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDatabasesRequest())->setParent($formattedParent);
         $response = $gapicClient->listDatabases($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2142,17 +2168,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListDatabasesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDatabasesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDatabases($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2177,17 +2205,14 @@ class FirestoreAdminClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $fieldsElement = new Field();
-        $fields = [
-            $fieldsElement,
-        ];
+        $fields = [$fieldsElement];
         $expectedResponse = new ListFieldsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFields($fields);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
-        $request = (new ListFieldsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListFieldsRequest())->setParent($formattedParent);
         $response = $gapicClient->listFields($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2214,17 +2239,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
-        $request = (new ListFieldsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListFieldsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listFields($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2249,17 +2276,14 @@ class FirestoreAdminClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $indexesElement = new Index();
-        $indexes = [
-            $indexesElement,
-        ];
+        $indexes = [$indexesElement];
         $expectedResponse = new ListIndexesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setIndexes($indexes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
-        $request = (new ListIndexesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListIndexesRequest())->setParent($formattedParent);
         $response = $gapicClient->listIndexes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2286,17 +2310,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
-        $request = (new ListIndexesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListIndexesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listIndexes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2323,8 +2349,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new ListUserCredsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListUserCredsRequest())->setParent($formattedParent);
         $response = $gapicClient->listUserCreds($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2348,17 +2373,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new ListUserCredsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListUserCredsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listUserCreds($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2389,8 +2416,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
-        $request = (new ResetUserPasswordRequest())
-            ->setName($formattedName);
+        $request = (new ResetUserPasswordRequest())->setName($formattedName);
         $response = $gapicClient->resetUserPassword($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2414,17 +2440,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
-        $request = (new ResetUserPasswordRequest())
-            ->setName($formattedName);
+        $request = (new ResetUserPasswordRequest())->setName($formattedName);
         try {
             $gapicClient->resetUserPassword($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2548,12 +2576,15 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
@@ -2600,8 +2631,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $backupSchedule = new BackupSchedule();
-        $request = (new UpdateBackupScheduleRequest())
-            ->setBackupSchedule($backupSchedule);
+        $request = (new UpdateBackupScheduleRequest())->setBackupSchedule($backupSchedule);
         $response = $gapicClient->updateBackupSchedule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2625,17 +2655,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $backupSchedule = new BackupSchedule();
-        $request = (new UpdateBackupScheduleRequest())
-            ->setBackupSchedule($backupSchedule);
+        $request = (new UpdateBackupScheduleRequest())->setBackupSchedule($backupSchedule);
         try {
             $gapicClient->updateBackupSchedule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2694,8 +2726,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $database = new Database();
-        $request = (new UpdateDatabaseRequest())
-            ->setDatabase($database);
+        $request = (new UpdateDatabaseRequest())->setDatabase($database);
         $response = $gapicClient->updateDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2751,17 +2782,19 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $database = new Database();
-        $request = (new UpdateDatabaseRequest())
-            ->setDatabase($database);
+        $request = (new UpdateDatabaseRequest())->setDatabase($database);
         $response = $gapicClient->updateDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2819,8 +2852,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $field = new Field();
         $fieldName = 'fieldName1265009317';
         $field->setName($fieldName);
-        $request = (new UpdateFieldRequest())
-            ->setField($field);
+        $request = (new UpdateFieldRequest())->setField($field);
         $response = $gapicClient->updateField($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2876,19 +2908,21 @@ class FirestoreAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $field = new Field();
         $fieldName = 'fieldName1265009317';
         $field->setName($fieldName);
-        $request = (new UpdateFieldRequest())
-            ->setField($field);
+        $request = (new UpdateFieldRequest())->setField($field);
         $response = $gapicClient->updateField($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2942,8 +2976,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new BulkDeleteDocumentsRequest())
-            ->setName($formattedName);
+        $request = (new BulkDeleteDocumentsRequest())->setName($formattedName);
         $response = $gapicClient->bulkDeleteDocumentsAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

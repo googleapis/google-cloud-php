@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/databasecenter/(v1beta)/.*-php/(.*)
-      dest: /owl-bot-staging/DatabaseCenter/$1/$2
-api-name: DatabaseCenter

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,6 +45,25 @@ return [
                     'requestId' => \Google\Api\FieldInfo\Format::UUID4,
                 ],
             ],
+            'CreateRapidCache' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Storage\Control\V2\RapidCache',
+                    'metadataReturnType' => '\Google\Cloud\Storage\Control\V2\CreateRapidCacheMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteFolderRecursive' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
@@ -68,6 +87,28 @@ return [
                 ],
                 'autoPopulatedFields' => [
                     'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
+            ],
+            'DisableRapidCache' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Storage\Control\V2\RapidCache',
+                    'metadataReturnType' => '\Google\Cloud\Storage\Control\V2\DisableRapidCacheMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                        'matchers' => [
+                            '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)(?:\/.*)?$/',
+                        ],
+                    ],
                 ],
             ],
             'RenameFolder' => [
@@ -119,6 +160,29 @@ return [
                 ],
                 'autoPopulatedFields' => [
                     'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
+            ],
+            'UpdateRapidCache' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Storage\Control\V2\RapidCache',
+                    'metadataReturnType' => '\Google\Cloud\Storage\Control\V2\UpdateRapidCacheMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getRapidCache',
+                            'getName',
+                        ],
+                        'matchers' => [
+                            '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)(?:\/.*)?$/',
+                        ],
+                    ],
                 ],
             ],
             'CreateFolder' => [
@@ -268,6 +332,30 @@ return [
                     ],
                 ],
             ],
+            'GetIntelligenceFinding' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\IntelligenceFinding',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIntelligenceFindingRevision' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\IntelligenceFindingRevision',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetManagedFolder' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Storage\Control\V2\ManagedFolder',
@@ -306,6 +394,21 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetRapidCache' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\RapidCache',
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                        'matchers' => [
+                            '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
                 ],
@@ -371,6 +474,46 @@ return [
                     ],
                 ],
             ],
+            'ListIntelligenceFindingRevisions' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getIntelligenceFindingRevisions',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\ListIntelligenceFindingRevisionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListIntelligenceFindings' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getIntelligenceFindings',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\ListIntelligenceFindingsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListManagedFolders' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -392,6 +535,26 @@ return [
                 ],
                 'autoPopulatedFields' => [
                     'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
+            ],
+            'ListRapidCaches' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getRapidCaches',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\ListRapidCachesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
                 ],
             ],
             'PauseAnywhereCache' => [
@@ -445,6 +608,26 @@ return [
                     ],
                 ],
             ],
+            'SummarizeIntelligenceFindings' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getFindingSummaries',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\SummarizeIntelligenceFindingsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'TestIamPermissions' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Iam\V1\TestIamPermissionsResponse',
@@ -470,6 +653,22 @@ return [
                         'fieldAccessors' => [
                             'getIntelligenceConfig',
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateManagedFolder' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\ManagedFolder',
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getManagedFolder',
+                            'getName',
+                        ],
+                        'matchers' => [
+                            '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
                 ],
@@ -500,15 +699,35 @@ return [
                     ],
                 ],
             ],
+            'ViewObjectFullContext' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\ObjectFullContext',
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                        'matchers' => [
+                            '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)(?:\/.*)?$/',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'anywhereCache' => 'projects/{project}/buckets/{bucket}/anywhereCaches/{anywhere_cache}',
                 'bucket' => 'projects/{project}/buckets/{bucket}',
                 'folder' => 'projects/{project}/buckets/{bucket}/folders/{folder=**}',
                 'folderLocationIntelligenceConfig' => 'folders/{folder}/locations/{location}/intelligenceConfig',
                 'intelligenceConfig' => 'folders/{folder}/locations/{location}/intelligenceConfig',
+                'intelligenceFinding' => 'projects/{project}/locations/{location}/intelligenceFindings/{intelligence_finding}',
+                'intelligenceFindingRevision' => 'projects/{project}/locations/{location}/intelligenceFindings/{intelligence_finding}/revisions/{revision}',
+                'location' => 'projects/{project}/locations/{location}',
                 'managedFolder' => 'projects/{project}/buckets/{bucket}/managedFolders/{managed_folder=**}',
+                'object' => 'projects/{project}/buckets/{bucket}/objects/{object}',
                 'orgLocationIntelligenceConfig' => 'organizations/{org}/locations/{location}/intelligenceConfig',
                 'projectLocationIntelligenceConfig' => 'projects/{project}/locations/{location}/intelligenceConfig',
+                'rapidCache' => 'projects/{project}/buckets/{bucket}/rapidCaches/{rapid_cache}',
                 'storageLayout' => 'projects/{project}/buckets/{bucket}/storageLayout',
             ],
         ],

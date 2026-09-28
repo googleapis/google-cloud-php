@@ -12,19 +12,21 @@ jobs:
     runs-on: ubuntu-latest
     name: PHP Style Check
     steps:
-    - uses: actions/checkout@v6
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.1'
-    - name: Install Dependencies
-      run: composer global require "squizlabs/php_codesniffer:3.*"
-    - name: Run PHPCS Code Style Checker
-      run: ~/.composer/vendor/bin/phpcs --standard=phpcs-ruleset.xml -p
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Setup PHP
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        with:
+          php-version: '8.2'
+      - name: Install Dependencies
+        run: composer global require "squizlabs/php_codesniffer:3.*"
+      - name: Run PHPCS Code Style Checker
+        run: ~/.composer/vendor/bin/phpcs --standard=phpcs-ruleset.xml -p
 
   style_csfixer:
     name: PHP CS Fixer
-    uses: GoogleCloudPlatform/php-tools/.github/workflows/code-standards.yml@main
+    uses: GoogleCloudPlatform/php-tools/.github/workflows/code-standards.yml@8d707553d2c90c3b614941950814dcc10c19ce47 # main
     with:
       config: GoogleCloudPlatform/php-tools/.php-cs-fixer.default.php@main
       exclude-patterns: |
@@ -52,15 +54,41 @@ jobs:
     runs-on: ubuntu-latest
     name: PHPStan Static Analysis
     steps:
-    - uses: actions/checkout@v6
-    - name: Install PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.1'
-    - name: "Install dependencies"
-      run: |
-        composer --no-interaction --no-ansi --no-progress update
-        composer --no-interaction --no-ansi --no-progress update -d dev
-    - name: Run Static Analysis
-      run: |
-        dev/sh/static-analysis
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Install PHP
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        with:
+          php-version: '8.2'
+      - name: "Install dependencies"
+        run: |
+          composer --no-interaction --no-ansi --no-progress update
+          composer --no-interaction --no-ansi --no-progress update -d dev
+      - name: Run Static Analysis
+        run: |
+          dev/sh/static-analysis
+  tidy-check:
+    runs-on: ubuntu-latest
+    name: Verify librarian.yaml is tidy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # Version of librarian is pulled from librarian.yaml,
+      # action is pinned to commit SHA to satisfy blanket security policy.
+      - uses: googleapis/librarian@db8da62c971d5abc64e8fedc3022ad9819ae5c09 # v0.45.0
+      - name: Run librarian tidy
+        run: librarian tidy
+      - name: Check for diff
+        run: |
+          if ! git diff --exit-code; then
+            V=$(librarian config get version 2>/dev/null || echo "latest")
+            echo "librarian.yaml is not tidy. Please run:"
+            echo ""
+            echo "  librarian tidy"
+            echo ""
+            echo "to tidy librarian.yaml and commit the changes."
+            exit 1
+          fi

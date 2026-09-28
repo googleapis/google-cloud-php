@@ -30,6 +30,13 @@ class ListExascaleDbStorageVaultsResponse extends \Google\Protobuf\Internal\Mess
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     protected $next_page_token = '';
+    /**
+     * Unreachable locations when listing resources across all locations using
+     * wildcard location '-'.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     */
+    private $unreachable;
 
     /**
      * Constructor.
@@ -44,6 +51,9 @@ class ListExascaleDbStorageVaultsResponse extends \Google\Protobuf\Internal\Mess
      *           the next page token can be provided to a subsequent
      *           ListExascaleDbStorageVaults call to list the next page.
      *           If empty, there are no more pages.
+     *     @type string[] $unreachable
+     *           Unreachable locations when listing resources across all locations using
+     *           wildcard location '-'.
      * }
      */
     public function __construct($data = NULL) {
@@ -105,6 +115,34 @@ class ListExascaleDbStorageVaultsResponse extends \Google\Protobuf\Internal\Mess
     {
         GPBUtil::checkString($var, True);
         $this->next_page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Unreachable locations when listing resources across all locations using
+     * wildcard location '-'.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     * @return RepeatedField<string>
+     */
+    public function getUnreachable()
+    {
+        return $this->unreachable;
+    }
+
+    /**
+     * Unreachable locations when listing resources across all locations using
+     * wildcard location '-'.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setUnreachable($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->unreachable = $arr;
 
         return $this;
     }

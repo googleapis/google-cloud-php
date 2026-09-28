@@ -61,6 +61,25 @@ return [
                     ],
                 ],
             ],
+            'CreateProjectFirewallEndpoint' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkSecurity\V1\FirewallEndpoint',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteFirewallEndpoint' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
@@ -81,6 +100,25 @@ return [
                 ],
             ],
             'DeleteFirewallEndpointAssociation' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteProjectFirewallEndpoint' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
@@ -139,6 +177,26 @@ return [
                     ],
                 ],
             ],
+            'UpdateProjectFirewallEndpoint' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkSecurity\V1\FirewallEndpoint',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'firewall_endpoint.name',
+                        'fieldAccessors' => [
+                            'getFirewallEndpoint',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetFirewallEndpoint' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\NetworkSecurity\V1\FirewallEndpoint',
@@ -154,6 +212,18 @@ return [
             'GetFirewallEndpointAssociation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\NetworkSecurity\V1\FirewallEndpointAssociation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetProjectFirewallEndpoint' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetworkSecurity\V1\FirewallEndpoint',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -184,6 +254,26 @@ return [
                 ],
             ],
             'ListFirewallEndpoints' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getFirewallEndpoints',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetworkSecurity\V1\ListFirewallEndpointsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListProjectFirewallEndpoints' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',

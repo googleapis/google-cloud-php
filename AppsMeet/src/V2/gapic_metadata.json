@@ -8,11 +8,26 @@
         "SpacesService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SpacesServiceGapicClient",
+                    "libraryClient": "SpacesServiceClient",
                     "rpcs": {
+                        "BatchUpdateMembers": {
+                            "methods": [
+                                "batchUpdateMembers"
+                            ]
+                        },
+                        "CreateMember": {
+                            "methods": [
+                                "createMember"
+                            ]
+                        },
                         "CreateSpace": {
                             "methods": [
                                 "createSpace"
+                            ]
+                        },
+                        "DeleteMember": {
+                            "methods": [
+                                "deleteMember"
                             ]
                         },
                         "EndActiveConference": {
@@ -20,9 +35,24 @@
                                 "endActiveConference"
                             ]
                         },
+                        "GetMember": {
+                            "methods": [
+                                "getMember"
+                            ]
+                        },
                         "GetSpace": {
                             "methods": [
                                 "getSpace"
+                            ]
+                        },
+                        "ListMembers": {
+                            "methods": [
+                                "listMembers"
+                            ]
+                        },
+                        "UpdateMember": {
+                            "methods": [
+                                "updateMember"
                             ]
                         },
                         "UpdateSpace": {
@@ -37,7 +67,7 @@
         "ConferenceRecordsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ConferenceRecordsServiceGapicClient",
+                    "libraryClient": "ConferenceRecordsServiceClient",
                     "rpcs": {
                         "GetConferenceRecord": {
                             "methods": [
@@ -57,6 +87,11 @@
                         "GetRecording": {
                             "methods": [
                                 "getRecording"
+                            ]
+                        },
+                        "GetSmartNote": {
+                            "methods": [
+                                "getSmartNote"
                             ]
                         },
                         "GetTranscript": {
@@ -87,6 +122,11 @@
                         "ListRecordings": {
                             "methods": [
                                 "listRecordings"
+                            ]
+                        },
+                        "ListSmartNotes": {
+                            "methods": [
+                                "listSmartNotes"
                             ]
                         },
                         "ListTranscriptEntries": {

@@ -67,6 +67,12 @@ class Component
      * Generated from protobuf enum <code>KCP_HPA = 9;</code>
      */
     const KCP_HPA = 9;
+    /**
+     * vertical pod autoscaler decision logs
+     *
+     * Generated from protobuf enum <code>KCP_VPA = 10;</code>
+     */
+    const KCP_VPA = 10;
 
     private static $valueToName = [
         self::COMPONENT_UNSPECIFIED => 'COMPONENT_UNSPECIFIED',
@@ -78,6 +84,7 @@ class Component
         self::KCP_SSHD => 'KCP_SSHD',
         self::KCP_CONNECTION => 'KCP_CONNECTION',
         self::KCP_HPA => 'KCP_HPA',
+        self::KCP_VPA => 'KCP_VPA',
     ];
 
     public static function name($value)

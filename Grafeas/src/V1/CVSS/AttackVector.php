@@ -7,27 +7,39 @@ namespace Grafeas\V1\CVSS;
 use UnexpectedValueException;
 
 /**
+ * Attack Vector.
+ *
  * Protobuf type <code>grafeas.v1.CVSS.AttackVector</code>
  */
 class AttackVector
 {
     /**
+     * Unspecified.
+     *
      * Generated from protobuf enum <code>ATTACK_VECTOR_UNSPECIFIED = 0;</code>
      */
     const ATTACK_VECTOR_UNSPECIFIED = 0;
     /**
+     * Attack Vector: Network (AV:N). Defined in CVSS v2, v3, v4.
+     *
      * Generated from protobuf enum <code>ATTACK_VECTOR_NETWORK = 1;</code>
      */
     const ATTACK_VECTOR_NETWORK = 1;
     /**
+     * Attack Vector: Adjacent (AV:A). Defined in CVSS v2, v3, v4.
+     *
      * Generated from protobuf enum <code>ATTACK_VECTOR_ADJACENT = 2;</code>
      */
     const ATTACK_VECTOR_ADJACENT = 2;
     /**
+     *  Attack Vector: Local (AV:L). Defined in CVSS v2, v3, v4.
+     *
      * Generated from protobuf enum <code>ATTACK_VECTOR_LOCAL = 3;</code>
      */
     const ATTACK_VECTOR_LOCAL = 3;
     /**
+     * Attack Vector: Physical (AV:P). Defined in CVSS v3, v4.
+     *
      * Generated from protobuf enum <code>ATTACK_VECTOR_PHYSICAL = 4;</code>
      */
     const ATTACK_VECTOR_PHYSICAL = 4;

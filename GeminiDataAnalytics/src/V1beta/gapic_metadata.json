@@ -5,10 +5,44 @@
     "protoPackage": "google.cloud.geminidataanalytics.v1beta",
     "libraryPackage": "Google\\Cloud\\GeminiDataAnalytics\\V1beta",
     "services": {
+        "DataA2AService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataA2AServiceClient",
+                    "rpcs": {
+                        "GetAgentCard": {
+                            "methods": [
+                                "getAgentCard"
+                            ]
+                        },
+                        "SendMessage": {
+                            "methods": [
+                                "sendMessage"
+                            ]
+                        },
+                        "SendStreamingMessage": {
+                            "methods": [
+                                "sendStreamingMessage"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "DataAgentService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataAgentServiceGapicClient",
+                    "libraryClient": "DataAgentServiceClient",
                     "rpcs": {
                         "CreateDataAgent": {
                             "methods": [
@@ -50,6 +84,16 @@
                                 "listDataAgents"
                             ]
                         },
+                        "RetrieveAgentOpsObservability": {
+                            "methods": [
+                                "retrieveAgentOpsObservability"
+                            ]
+                        },
+                        "SetAgentOpsObservability": {
+                            "methods": [
+                                "setAgentOpsObservability"
+                            ]
+                        },
                         "SetIamPolicy": {
                             "methods": [
                                 "setIamPolicy"
@@ -82,7 +126,7 @@
         "DataChatService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataChatServiceGapicClient",
+                    "libraryClient": "DataChatServiceClient",
                     "rpcs": {
                         "Chat": {
                             "methods": [
@@ -117,6 +161,11 @@
                         "QueryData": {
                             "methods": [
                                 "queryData"
+                            ]
+                        },
+                        "UpdateConversation": {
+                            "methods": [
+                                "updateConversation"
                             ]
                         },
                         "GetLocation": {

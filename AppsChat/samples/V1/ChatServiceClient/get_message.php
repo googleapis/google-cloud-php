@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,8 +46,7 @@ use Google\Apps\Chat\V1\Message;
  * that invoke the Chat app.
  * - `https://www.googleapis.com/auth/chat.app.messages.readonly`
  * with [administrator
- * approval](https://support.google.com/a?p=chat-app-auth) (available in
- * [Developer Preview](https://developers.google.com/workspace/preview)).
+ * approval](https://support.google.com/a?p=chat-app-auth).
  * When using this authentication scope,
  * this method returns details about a public message in a space.
  *

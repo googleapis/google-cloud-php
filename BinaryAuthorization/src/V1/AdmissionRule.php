@@ -9,12 +9,14 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * An [admission rule][google.cloud.binaryauthorization.v1.AdmissionRule] specifies either that all container images
- * used in a pod creation request must be attested to by one or more
- * [attestors][google.cloud.binaryauthorization.v1.Attestor], that all pod creations will be allowed, or that all
- * pod creations will be denied.
- * Images matching an [admission allowlist pattern][google.cloud.binaryauthorization.v1.AdmissionWhitelistPattern]
- * are exempted from admission rules and will never block a pod creation.
+ * An [admission rule][google.cloud.binaryauthorization.v1.AdmissionRule]
+ * specifies either that all container images used in a pod creation request
+ * must be attested to by one or more
+ * [attestors][google.cloud.binaryauthorization.v1.Attestor], that all pod
+ * creations will be allowed, or that all pod creations will be denied.
+ * Images matching an [admission allowlist
+ * pattern][google.cloud.binaryauthorization.v1.AdmissionWhitelistPattern] are
+ * exempted from admission rules and will never block a pod creation.
  *
  * Generated from protobuf message <code>google.cloud.binaryauthorization.v1.AdmissionRule</code>
  */
@@ -32,8 +34,8 @@ class AdmissionRule extends \Google\Protobuf\Internal\Message
      * attestor must exist before a policy can reference it.  To add an attestor
      * to a policy the principal issuing the policy change request must be able
      * to read the attestor resource.
-     * Note: this field must be non-empty when the evaluation_mode field specifies
-     * REQUIRE_ATTESTATION, otherwise it must be empty.
+     * Note: this field must be non-empty when the `evaluation_mode` field
+     * specifies `REQUIRE_ATTESTATION`, otherwise it must be empty.
      *
      * Generated from protobuf field <code>repeated string require_attestations_by = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -59,8 +61,8 @@ class AdmissionRule extends \Google\Protobuf\Internal\Message
      *           attestor must exist before a policy can reference it.  To add an attestor
      *           to a policy the principal issuing the policy change request must be able
      *           to read the attestor resource.
-     *           Note: this field must be non-empty when the evaluation_mode field specifies
-     *           REQUIRE_ATTESTATION, otherwise it must be empty.
+     *           Note: this field must be non-empty when the `evaluation_mode` field
+     *           specifies `REQUIRE_ATTESTATION`, otherwise it must be empty.
      *     @type int $enforcement_mode
      *           Required. The action when a pod creation is denied by the admission rule.
      * }
@@ -102,8 +104,8 @@ class AdmissionRule extends \Google\Protobuf\Internal\Message
      * attestor must exist before a policy can reference it.  To add an attestor
      * to a policy the principal issuing the policy change request must be able
      * to read the attestor resource.
-     * Note: this field must be non-empty when the evaluation_mode field specifies
-     * REQUIRE_ATTESTATION, otherwise it must be empty.
+     * Note: this field must be non-empty when the `evaluation_mode` field
+     * specifies `REQUIRE_ATTESTATION`, otherwise it must be empty.
      *
      * Generated from protobuf field <code>repeated string require_attestations_by = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<string>
@@ -119,8 +121,8 @@ class AdmissionRule extends \Google\Protobuf\Internal\Message
      * attestor must exist before a policy can reference it.  To add an attestor
      * to a policy the principal issuing the policy change request must be able
      * to read the attestor resource.
-     * Note: this field must be non-empty when the evaluation_mode field specifies
-     * REQUIRE_ATTESTATION, otherwise it must be empty.
+     * Note: this field must be non-empty when the `evaluation_mode` field
+     * specifies `REQUIRE_ATTESTATION`, otherwise it must be empty.
      *
      * Generated from protobuf field <code>repeated string require_attestations_by = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[] $var

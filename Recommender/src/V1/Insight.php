@@ -17,9 +17,9 @@ use Google\Protobuf\RepeatedField;
 class Insight extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the insight.
+     * Identifier. Name of the insight.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -101,7 +101,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name of the insight.
+     *           Identifier. Name of the insight.
      *     @type string $description
      *           Free-form human readable summary in English. The maximum length is 500
      *           characters.
@@ -137,9 +137,9 @@ class Insight extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the insight.
+     * Identifier. Name of the insight.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -148,9 +148,9 @@ class Insight extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the insight.
+     * Identifier. Name of the insight.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

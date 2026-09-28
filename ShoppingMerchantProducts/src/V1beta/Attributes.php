@@ -1785,7 +1785,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     public function getGtin()
     {
-        if ($this->gtin->count() !== 0) {
+        if (count($this->gtin) !== 0) {
             @trigger_error('gtin is deprecated.', E_USER_DEPRECATED);
         }
         return $this->gtin;
@@ -1806,7 +1806,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     public function setGtin($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('gtin is deprecated.', E_USER_DEPRECATED);
         }
         $this->gtin = $arr;
@@ -2973,7 +2973,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     public function getTaxes()
     {
-        if ($this->taxes->count() !== 0) {
+        if (count($this->taxes) !== 0) {
             @trigger_error('taxes is deprecated.', E_USER_DEPRECATED);
         }
         return $this->taxes;
@@ -2990,7 +2990,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     public function setTaxes($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Products\V1beta\Tax::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('taxes is deprecated.', E_USER_DEPRECATED);
         }
         $this->taxes = $arr;

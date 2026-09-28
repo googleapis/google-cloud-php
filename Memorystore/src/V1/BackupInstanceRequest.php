@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request for [BackupInstance].
+ * Request for `BackupInstance`.
  *
  * Generated from protobuf message <code>google.cloud.memorystore.v1.BackupInstanceRequest</code>
  */

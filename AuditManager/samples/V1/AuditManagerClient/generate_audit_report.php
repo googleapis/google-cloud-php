@@ -32,21 +32,22 @@ use Google\Cloud\AuditManager\V1\GenerateAuditReportRequest\AuditReportFormat;
 use Google\Rpc\Status;
 
 /**
- * Register the Audit Report generation requests and returns the OperationId
- * using which the customer can track the report generation progress.
+ * Registers audit report generation requests. This method returns the
+ * operation identifier that you can use to track the report generation
+ * progress.
  *
- * @param string $scope               Scope for which the AuditScopeReport is required. Must be of
- *                                    format resource_type/resource_identifier Eg:
- *                                    projects/{project}/locations/{location},
- *                                    folders/{folder}/locations/{location}
- * @param string $complianceStandard  Compliance Standard against which the Scope Report must be
- *                                    generated. Eg: FEDRAMP_MODERATE
- * @param int    $reportFormat        The format in which the audit report should be created.
- * @param string $complianceFramework Compliance framework against which the Report must be generated.
+ * @param string $scope               Organization, folder, or project that the audit applies to, in
+ *                                    one of the following formats:
+ *
+ *                                    * `projects/{project}/locations/{location}`
+ *                                    * `folders/{folder}/locations/{location}`
+ *                                    * `organizations/{organization}/locations/{location}`
+ * @param int    $reportFormat        Format for the audit report.
+ * @param string $complianceFramework The framework that's used for the audit report. For example,
+ *                                    `NIST_800_53`.
  */
 function generate_audit_report_sample(
     string $scope,
-    string $complianceStandard,
     int $reportFormat,
     string $complianceFramework
 ): void {
@@ -56,7 +57,6 @@ function generate_audit_report_sample(
     // Prepare the request message.
     $request = (new GenerateAuditReportRequest())
         ->setScope($scope)
-        ->setComplianceStandard($complianceStandard)
         ->setReportFormat($reportFormat)
         ->setComplianceFramework($complianceFramework);
 
@@ -92,10 +92,9 @@ function generate_audit_report_sample(
 function callSample(): void
 {
     $scope = '[SCOPE]';
-    $complianceStandard = '[COMPLIANCE_STANDARD]';
     $reportFormat = AuditReportFormat::AUDIT_REPORT_FORMAT_UNSPECIFIED;
     $complianceFramework = '[COMPLIANCE_FRAMEWORK]';
 
-    generate_audit_report_sample($scope, $complianceStandard, $reportFormat, $complianceFramework);
+    generate_audit_report_sample($scope, $reportFormat, $complianceFramework);
 }
 // [END auditmanager_v1_generated_AuditManager_GenerateAuditReport_sync]

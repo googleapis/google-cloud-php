@@ -8,7 +8,7 @@
         "AccountTaxService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AccountTaxServiceGapicClient",
+                    "libraryClient": "AccountTaxServiceClient",
                     "rpcs": {
                         "GetAccountTax": {
                             "methods": [
@@ -32,7 +32,7 @@
         "AccountIssueService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AccountIssueServiceGapicClient",
+                    "libraryClient": "AccountIssueServiceClient",
                     "rpcs": {
                         "ListAccountIssues": {
                             "methods": [
@@ -46,7 +46,7 @@
         "UserService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "UserServiceGapicClient",
+                    "libraryClient": "UserServiceClient",
                     "rpcs": {
                         "CreateUser": {
                             "methods": [
@@ -80,7 +80,7 @@
         "AccountsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AccountsServiceGapicClient",
+                    "libraryClient": "AccountsServiceClient",
                     "rpcs": {
                         "CreateAndConfigureAccount": {
                             "methods": [
@@ -119,7 +119,7 @@
         "AutofeedSettingsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AutofeedSettingsServiceGapicClient",
+                    "libraryClient": "AutofeedSettingsServiceClient",
                     "rpcs": {
                         "GetAutofeedSettings": {
                             "methods": [
@@ -138,7 +138,7 @@
         "AutomaticImprovementsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AutomaticImprovementsServiceGapicClient",
+                    "libraryClient": "AutomaticImprovementsServiceClient",
                     "rpcs": {
                         "GetAutomaticImprovements": {
                             "methods": [
@@ -157,7 +157,7 @@
         "BusinessIdentityService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BusinessIdentityServiceGapicClient",
+                    "libraryClient": "BusinessIdentityServiceClient",
                     "rpcs": {
                         "GetBusinessIdentity": {
                             "methods": [
@@ -176,7 +176,7 @@
         "BusinessInfoService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BusinessInfoServiceGapicClient",
+                    "libraryClient": "BusinessInfoServiceClient",
                     "rpcs": {
                         "GetBusinessInfo": {
                             "methods": [
@@ -195,7 +195,7 @@
         "CheckoutSettingsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CheckoutSettingsServiceGapicClient",
+                    "libraryClient": "CheckoutSettingsServiceClient",
                     "rpcs": {
                         "CreateCheckoutSettings": {
                             "methods": [
@@ -224,7 +224,7 @@
         "EmailPreferencesService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "EmailPreferencesServiceGapicClient",
+                    "libraryClient": "EmailPreferencesServiceClient",
                     "rpcs": {
                         "GetEmailPreferences": {
                             "methods": [
@@ -243,7 +243,7 @@
         "GbpAccountsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GbpAccountsServiceGapicClient",
+                    "libraryClient": "GbpAccountsServiceClient",
                     "rpcs": {
                         "LinkGbpAccount": {
                             "methods": [
@@ -262,7 +262,7 @@
         "HomepageService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "HomepageServiceGapicClient",
+                    "libraryClient": "HomepageServiceClient",
                     "rpcs": {
                         "ClaimHomepage": {
                             "methods": [
@@ -291,7 +291,7 @@
         "LfpProvidersService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LfpProvidersServiceGapicClient",
+                    "libraryClient": "LfpProvidersServiceClient",
                     "rpcs": {
                         "FindLfpProviders": {
                             "methods": [
@@ -310,7 +310,7 @@
         "OmnichannelSettingsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "OmnichannelSettingsServiceGapicClient",
+                    "libraryClient": "OmnichannelSettingsServiceClient",
                     "rpcs": {
                         "CreateOmnichannelSetting": {
                             "methods": [
@@ -344,7 +344,7 @@
         "OnlineReturnPolicyService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "OnlineReturnPolicyServiceGapicClient",
+                    "libraryClient": "OnlineReturnPolicyServiceClient",
                     "rpcs": {
                         "CreateOnlineReturnPolicy": {
                             "methods": [
@@ -378,7 +378,7 @@
         "ProgramsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ProgramsServiceGapicClient",
+                    "libraryClient": "ProgramsServiceClient",
                     "rpcs": {
                         "DisableProgram": {
                             "methods": [
@@ -407,7 +407,7 @@
         "RegionsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionsServiceGapicClient",
+                    "libraryClient": "RegionsServiceClient",
                     "rpcs": {
                         "CreateRegion": {
                             "methods": [
@@ -441,7 +441,7 @@
         "ShippingSettingsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ShippingSettingsServiceGapicClient",
+                    "libraryClient": "ShippingSettingsServiceClient",
                     "rpcs": {
                         "GetShippingSettings": {
                             "methods": [
@@ -460,7 +460,7 @@
         "TermsOfServiceService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TermsOfServiceServiceGapicClient",
+                    "libraryClient": "TermsOfServiceServiceClient",
                     "rpcs": {
                         "AcceptTermsOfService": {
                             "methods": [
@@ -484,7 +484,7 @@
         "TermsOfServiceAgreementStateService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TermsOfServiceAgreementStateServiceGapicClient",
+                    "libraryClient": "TermsOfServiceAgreementStateServiceClient",
                     "rpcs": {
                         "GetTermsOfServiceAgreementState": {
                             "methods": [

@@ -53,6 +53,28 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string limit = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $limit = null;
+    /**
+     * Optional. The dynamic fields used in the query.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.DynamicField dynamic_fields = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $dynamic_fields;
+    /**
+     * Optional. The primary identifier for the query resource in Looker, used for
+     * API operations. Maps to `id` (or `slug`) in the Looker API `Query`
+     * resource.
+     *
+     * Generated from protobuf field <code>optional string query_id = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $query_id = null;
+    /**
+     * Optional. The short alphanumeric identifier for the query, used for share
+     * links and Explore URLs (e.g., in the `qid` parameter). Maps to `client_id`
+     * in the Looker API `Query` resource.
+     *
+     * Generated from protobuf field <code>optional string client_id = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $client_id = null;
 
     /**
      * Constructor.
@@ -72,6 +94,16 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
      *           Optional. The sorts to apply to the explore.
      *     @type string $limit
      *           Optional. Limit in the query.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\DynamicField[] $dynamic_fields
+     *           Optional. The dynamic fields used in the query.
+     *     @type string $query_id
+     *           Optional. The primary identifier for the query resource in Looker, used for
+     *           API operations. Maps to `id` (or `slug`) in the Looker API `Query`
+     *           resource.
+     *     @type string $client_id
+     *           Optional. The short alphanumeric identifier for the query, used for share
+     *           links and Explore URLs (e.g., in the `qid` parameter). Maps to `client_id`
+     *           in the Looker API `Query` resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -241,6 +273,112 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->limit = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The dynamic fields used in the query.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.DynamicField dynamic_fields = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\DynamicField>
+     */
+    public function getDynamicFields()
+    {
+        return $this->dynamic_fields;
+    }
+
+    /**
+     * Optional. The dynamic fields used in the query.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.DynamicField dynamic_fields = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\DynamicField[] $var
+     * @return $this
+     */
+    public function setDynamicFields($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GeminiDataAnalytics\V1beta\DynamicField::class);
+        $this->dynamic_fields = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The primary identifier for the query resource in Looker, used for
+     * API operations. Maps to `id` (or `slug`) in the Looker API `Query`
+     * resource.
+     *
+     * Generated from protobuf field <code>optional string query_id = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getQueryId()
+    {
+        return isset($this->query_id) ? $this->query_id : '';
+    }
+
+    public function hasQueryId()
+    {
+        return isset($this->query_id);
+    }
+
+    public function clearQueryId()
+    {
+        unset($this->query_id);
+    }
+
+    /**
+     * Optional. The primary identifier for the query resource in Looker, used for
+     * API operations. Maps to `id` (or `slug`) in the Looker API `Query`
+     * resource.
+     *
+     * Generated from protobuf field <code>optional string query_id = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setQueryId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->query_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The short alphanumeric identifier for the query, used for share
+     * links and Explore URLs (e.g., in the `qid` parameter). Maps to `client_id`
+     * in the Looker API `Query` resource.
+     *
+     * Generated from protobuf field <code>optional string client_id = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getClientId()
+    {
+        return isset($this->client_id) ? $this->client_id : '';
+    }
+
+    public function hasClientId()
+    {
+        return isset($this->client_id);
+    }
+
+    public function clearClientId()
+    {
+        unset($this->client_id);
+    }
+
+    /**
+     * Optional. The short alphanumeric identifier for the query, used for share
+     * links and Explore URLs (e.g., in the `qid` parameter). Maps to `client_id`
+     * in the Looker API `Query` resource.
+     *
+     * Generated from protobuf field <code>optional string client_id = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setClientId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->client_id = $var;
 
         return $this;
     }

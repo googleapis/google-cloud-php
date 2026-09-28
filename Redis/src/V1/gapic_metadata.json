@@ -8,7 +8,7 @@
         "CloudRedis": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CloudRedisGapicClient",
+                    "libraryClient": "CloudRedisClient",
                     "rpcs": {
                         "CreateInstance": {
                             "methods": [

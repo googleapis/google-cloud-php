@@ -17,7 +17,7 @@ class GetGrpcRouteRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. A name of the GrpcRoute to get. Must be in the format
-     * `projects/{@*}locations/global/grpcRoutes/*`.
+     * `projects/{@*}locations/{@*}grpcRoutes/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -25,7 +25,7 @@ class GetGrpcRouteRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. A name of the GrpcRoute to get. Must be in the format
-     *                     `projects/&#42;/locations/global/grpcRoutes/*`. Please see
+     *                     `projects/&#42;/locations/&#42;/grpcRoutes/*`. Please see
      *                     {@see NetworkServicesClient::grpcRouteName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetworkServices\V1\GetGrpcRouteRequest
@@ -46,7 +46,7 @@ class GetGrpcRouteRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. A name of the GrpcRoute to get. Must be in the format
-     *           `projects/{@*}locations/global/grpcRoutes/*`.
+     *           `projects/{@*}locations/{@*}grpcRoutes/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class GetGrpcRouteRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A name of the GrpcRoute to get. Must be in the format
-     * `projects/{@*}locations/global/grpcRoutes/*`.
+     * `projects/{@*}locations/{@*}grpcRoutes/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class GetGrpcRouteRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A name of the GrpcRoute to get. Must be in the format
-     * `projects/{@*}locations/global/grpcRoutes/*`.
+     * `projects/{@*}locations/{@*}grpcRoutes/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

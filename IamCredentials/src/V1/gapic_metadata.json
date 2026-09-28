@@ -8,7 +8,7 @@
         "IAMCredentials": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "IAMCredentialsGapicClient",
+                    "libraryClient": "IAMCredentialsClient",
                     "rpcs": {
                         "GenerateAccessToken": {
                             "methods": [

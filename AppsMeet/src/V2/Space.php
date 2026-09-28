@@ -22,7 +22,7 @@ class Space extends \Google\Protobuf\Internal\Message
      * `{space}` is the resource identifier for the space. It's a unique,
      * server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`.
      * For more information, see [How Meet identifies a meeting
-     * space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
+     * space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space).
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -56,6 +56,20 @@ class Space extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.apps.meet.v2.ActiveConference active_conference = 6;</code>
      */
     protected $active_conference = null;
+    /**
+     * Output only. All regional phone access methods for this meeting space. Can
+     * be empty.
+     *
+     * Generated from protobuf field <code>repeated .google.apps.meet.v2.Space.PhoneAccess phone_access = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $phone_access;
+    /**
+     * Output only. The SIP-based access methods that can be used to join the
+     * conference. Can be empty.
+     *
+     * Generated from protobuf field <code>repeated .google.apps.meet.v2.Space.GatewaySipAccess gateway_sip_access = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $gateway_sip_access;
 
     /**
      * Constructor.
@@ -69,7 +83,7 @@ class Space extends \Google\Protobuf\Internal\Message
      *           `{space}` is the resource identifier for the space. It's a unique,
      *           server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`.
      *           For more information, see [How Meet identifies a meeting
-     *           space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
+     *           space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space).
      *     @type string $meeting_uri
      *           Output only. URI used to join meetings consisting of
      *           `https://meet.google.com/` followed by the `meeting_code`. For example,
@@ -83,6 +97,12 @@ class Space extends \Google\Protobuf\Internal\Message
      *           Configuration pertaining to the meeting space.
      *     @type \Google\Apps\Meet\V2\ActiveConference $active_conference
      *           Active conference, if it exists.
+     *     @type \Google\Apps\Meet\V2\Space\PhoneAccess[] $phone_access
+     *           Output only. All regional phone access methods for this meeting space. Can
+     *           be empty.
+     *     @type \Google\Apps\Meet\V2\Space\GatewaySipAccess[] $gateway_sip_access
+     *           Output only. The SIP-based access methods that can be used to join the
+     *           conference. Can be empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -96,7 +116,7 @@ class Space extends \Google\Protobuf\Internal\Message
      * `{space}` is the resource identifier for the space. It's a unique,
      * server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`.
      * For more information, see [How Meet identifies a meeting
-     * space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
+     * space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space).
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -112,7 +132,7 @@ class Space extends \Google\Protobuf\Internal\Message
      * `{space}` is the resource identifier for the space. It's a unique,
      * server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`.
      * For more information, see [How Meet identifies a meeting
-     * space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
+     * space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space).
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -256,6 +276,62 @@ class Space extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Apps\Meet\V2\ActiveConference::class);
         $this->active_conference = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. All regional phone access methods for this meeting space. Can
+     * be empty.
+     *
+     * Generated from protobuf field <code>repeated .google.apps.meet.v2.Space.PhoneAccess phone_access = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<\Google\Apps\Meet\V2\Space\PhoneAccess>
+     */
+    public function getPhoneAccess()
+    {
+        return $this->phone_access;
+    }
+
+    /**
+     * Output only. All regional phone access methods for this meeting space. Can
+     * be empty.
+     *
+     * Generated from protobuf field <code>repeated .google.apps.meet.v2.Space.PhoneAccess phone_access = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Apps\Meet\V2\Space\PhoneAccess[] $var
+     * @return $this
+     */
+    public function setPhoneAccess($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Apps\Meet\V2\Space\PhoneAccess::class);
+        $this->phone_access = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The SIP-based access methods that can be used to join the
+     * conference. Can be empty.
+     *
+     * Generated from protobuf field <code>repeated .google.apps.meet.v2.Space.GatewaySipAccess gateway_sip_access = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<\Google\Apps\Meet\V2\Space\GatewaySipAccess>
+     */
+    public function getGatewaySipAccess()
+    {
+        return $this->gateway_sip_access;
+    }
+
+    /**
+     * Output only. The SIP-based access methods that can be used to join the
+     * conference. Can be empty.
+     *
+     * Generated from protobuf field <code>repeated .google.apps.meet.v2.Space.GatewaySipAccess gateway_sip_access = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Apps\Meet\V2\Space\GatewaySipAccess[] $var
+     * @return $this
+     */
+    public function setGatewaySipAccess($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Apps\Meet\V2\Space\GatewaySipAccess::class);
+        $this->gateway_sip_access = $arr;
 
         return $this;
     }

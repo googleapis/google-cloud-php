@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1105,6 +1105,17 @@ return [
                     ],
                 ],
             ],
+            'GetUserProvidedDataSettings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/userProvidedDataSettings}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListAccessBindings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=accounts/*}/accessBindings',
@@ -1846,6 +1857,19 @@ return [
                     'reporting_data_annotation.name' => [
                         'getters' => [
                             'getReportingDataAnnotation',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateReportingIdentitySettings' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{reporting_identity_settings.name=properties/*/reportingIdentitySettings}',
+                'body' => 'reporting_identity_settings',
+                'placeholders' => [
+                    'reporting_identity_settings.name' => [
+                        'getters' => [
+                            'getReportingIdentitySettings',
                             'getName',
                         ],
                     ],

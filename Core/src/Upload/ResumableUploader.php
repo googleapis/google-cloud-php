@@ -165,10 +165,20 @@ class ResumableUploader extends AbstractUploader
             $rangeEnd = $rangeStart + ($currStreamLimitSize - 1);
 
             $headers = $this->headers + [
-                'Content-Length' => $currStreamLimitSize,
+                'Content-Length' => (string) $currStreamLimitSize,
                 'Content-Type' => $this->contentType,
                 'Content-Range' => "bytes $rangeStart-$rangeEnd/$size",
             ];
+
+            $customHeaders = $this->requestOptions['restOptions']['headers'] ?? [];
+
+            // Check if this chunk is the final one
+            $isFinalChunk = ($size !== '*' && (int) ($rangeEnd + 1) === (int) $size);
+            if (!$isFinalChunk) {
+                unset($customHeaders['X-Goog-Hash']);
+            }
+
+            $headers = array_merge($headers, $customHeaders);
 
             $request = new Request(
                 'PUT',
@@ -235,7 +245,7 @@ class ResumableUploader extends AbstractUploader
     {
         $headers = $this->headers + [
             'X-Upload-Content-Type' => $this->contentType,
-            'X-Upload-Content-Length' => $this->data->getSize(),
+            'X-Upload-Content-Length' => (string) $this->data->getSize(),
             'Content-Type' => 'application/json'
         ];
 

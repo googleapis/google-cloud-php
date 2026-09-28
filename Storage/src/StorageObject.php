@@ -146,7 +146,7 @@ class StorageObject
     public function exists(array $options = [])
     {
         try {
-            $this->connection->getObject($this->identity + $options + ['fields' => 'name']);
+            $this->connection->headObject($this->identity + $options);
         } catch (NotFoundException $ex) {
             return false;
         }
@@ -231,6 +231,12 @@ class StorageObject
      *           This is the retention configuration set for this object.
      *     @type string $retention.mode The mode of the retention configuration,
      *           which can be either `"Unlocked"` or `"Locked"`.
+     *     @type array $contexts Object contexts. See at the
+     *           [API docs](https://docs.cloud.google.com/storage/docs/use-object-contexts) for more details.
+     *     @type string $contexts.custom.{key}.createTime The time the context
+     *           was created in RFC 3339 format. **(read only)**
+     *     @type string $contexts.custom.{key}.updateTime The time the context
+     *           was last updated in RFC 3339 format. **(read only)**
      *     @type bool $overrideUnlockedRetention Applicable for objects that
      *           have an unlocked retention configuration. Required to be set to
      *           `true` if the operation includes a retention property that

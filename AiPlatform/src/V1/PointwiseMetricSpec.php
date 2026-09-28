@@ -21,6 +21,24 @@ class PointwiseMetricSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string metric_prompt_template = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $metric_prompt_template = null;
+    /**
+     * Optional. System instructions for pointwise metric.
+     *
+     * Generated from protobuf field <code>optional string system_instruction = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $system_instruction = null;
+    /**
+     * Optional. CustomOutputFormatConfig allows customization of metric output.
+     * By default, metrics return a score and explanation.
+     * When this config is set, the default output is replaced with either:
+     *  - The raw output string.
+     *  - A parsed output based on a user-defined schema.
+     * If a custom format is chosen, the `score` and `explanation` fields in the
+     * corresponding metric result will be empty.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.CustomOutputFormatConfig custom_output_format_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $custom_output_format_config = null;
 
     /**
      * Constructor.
@@ -30,6 +48,16 @@ class PointwiseMetricSpec extends \Google\Protobuf\Internal\Message
      *
      *     @type string $metric_prompt_template
      *           Required. Metric prompt template for pointwise metric.
+     *     @type string $system_instruction
+     *           Optional. System instructions for pointwise metric.
+     *     @type \Google\Cloud\AIPlatform\V1\CustomOutputFormatConfig $custom_output_format_config
+     *           Optional. CustomOutputFormatConfig allows customization of metric output.
+     *           By default, metrics return a score and explanation.
+     *           When this config is set, the default output is replaced with either:
+     *            - The raw output string.
+     *            - A parsed output based on a user-defined schema.
+     *           If a custom format is chosen, the `score` and `explanation` fields in the
+     *           corresponding metric result will be empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +97,90 @@ class PointwiseMetricSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->metric_prompt_template = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. System instructions for pointwise metric.
+     *
+     * Generated from protobuf field <code>optional string system_instruction = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getSystemInstruction()
+    {
+        return isset($this->system_instruction) ? $this->system_instruction : '';
+    }
+
+    public function hasSystemInstruction()
+    {
+        return isset($this->system_instruction);
+    }
+
+    public function clearSystemInstruction()
+    {
+        unset($this->system_instruction);
+    }
+
+    /**
+     * Optional. System instructions for pointwise metric.
+     *
+     * Generated from protobuf field <code>optional string system_instruction = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSystemInstruction($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->system_instruction = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. CustomOutputFormatConfig allows customization of metric output.
+     * By default, metrics return a score and explanation.
+     * When this config is set, the default output is replaced with either:
+     *  - The raw output string.
+     *  - A parsed output based on a user-defined schema.
+     * If a custom format is chosen, the `score` and `explanation` fields in the
+     * corresponding metric result will be empty.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.CustomOutputFormatConfig custom_output_format_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\CustomOutputFormatConfig|null
+     */
+    public function getCustomOutputFormatConfig()
+    {
+        return $this->custom_output_format_config;
+    }
+
+    public function hasCustomOutputFormatConfig()
+    {
+        return isset($this->custom_output_format_config);
+    }
+
+    public function clearCustomOutputFormatConfig()
+    {
+        unset($this->custom_output_format_config);
+    }
+
+    /**
+     * Optional. CustomOutputFormatConfig allows customization of metric output.
+     * By default, metrics return a score and explanation.
+     * When this config is set, the default output is replaced with either:
+     *  - The raw output string.
+     *  - A parsed output based on a user-defined schema.
+     * If a custom format is chosen, the `score` and `explanation` fields in the
+     * corresponding metric result will be empty.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.CustomOutputFormatConfig custom_output_format_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\CustomOutputFormatConfig $var
+     * @return $this
+     */
+    public function setCustomOutputFormatConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\CustomOutputFormatConfig::class);
+        $this->custom_output_format_config = $var;
 
         return $this;
     }

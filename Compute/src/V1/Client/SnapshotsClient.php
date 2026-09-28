@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,6 +45,7 @@ use Google\Cloud\Compute\V1\SetLabelsSnapshotRequest;
 use Google\Cloud\Compute\V1\Snapshot;
 use Google\Cloud\Compute\V1\TestIamPermissionsSnapshotRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
+use Google\Cloud\Compute\V1\UpdateKmsKeySnapshotRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -62,6 +63,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicySnapshotRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsSnapshotRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateKmsKeyAsync(UpdateKmsKeySnapshotRequest $request, array $optionalArgs = [])
  */
 final class SnapshotsClient
 {
@@ -86,7 +88,11 @@ final class SnapshotsClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/compute',
         'https://www.googleapis.com/auth/cloud-platform',
@@ -167,7 +173,10 @@ final class SnapshotsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -498,5 +507,32 @@ final class SnapshotsClient
         array $callOptions = []
     ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Rotates the customer-managed
+     * encryption key to the latest version for the specified snapshot.
+     *
+     * The async variant is {@see SnapshotsClient::updateKmsKeyAsync()} .
+     *
+     * @example samples/V1/SnapshotsClient/update_kms_key.php
+     *
+     * @param UpdateKmsKeySnapshotRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateKmsKey(UpdateKmsKeySnapshotRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateKmsKey', $request, $callOptions)->wait();
     }
 }

@@ -8,7 +8,7 @@
         "WebSecurityScanner": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "WebSecurityScannerGapicClient",
+                    "libraryClient": "WebSecurityScannerClient",
                     "rpcs": {
                         "CreateScanConfig": {
                             "methods": [

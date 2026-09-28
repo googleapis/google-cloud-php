@@ -187,9 +187,6 @@ trait XrefTrait
 
         // Check for external package namespaces
         switch (true) {
-            case str_starts_with($uid, '\Google\Protobuf\\'):
-                $extLinkRoot = 'https://protobuf.dev/reference/php/api-docs/';
-                break;
             case 0 === strpos($uid, '\GuzzleHttp\Promise\PromiseInterface'):
                 $extLinkRoot = 'https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html';
                 break;

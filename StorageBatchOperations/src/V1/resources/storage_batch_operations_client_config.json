@@ -55,8 +55,8 @@
                 },
                 "GetBucketOperation": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_codes",
-                    "retry_params_name": "no_retry_params"
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
                 },
                 "GetJob": {
                     "timeout_millis": 60000,
@@ -65,8 +65,8 @@
                 },
                 "ListBucketOperations": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_codes",
-                    "retry_params_name": "no_retry_params"
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
                 },
                 "ListJobs": {
                     "timeout_millis": 60000,

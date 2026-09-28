@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1111,6 +1111,18 @@ return [
                     ],
                 ],
             ],
+            'GetUserProvidedDataSettings' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\UserProvidedDataSettings',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListAccessBindings' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -2023,6 +2035,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateReportingIdentitySettings' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\ReportingIdentitySettings',
+                'headerParams' => [
+                    [
+                        'keyName' => 'reporting_identity_settings.name',
+                        'fieldAccessors' => [
+                            'getReportingIdentitySettings',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateSKAdNetworkConversionValueSchema' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema',
@@ -2114,6 +2139,7 @@ return [
                 'searchAds360Link' => 'properties/{property}/searchAds360Links/{search_ads_360_link}',
                 'subpropertyEventFilter' => 'properties/{property}/subpropertyEventFilters/{sub_property_event_filter}',
                 'subpropertySyncConfig' => 'properties/{property}/subpropertySyncConfigs/{subproperty_sync_config}',
+                'userProvidedDataSettings' => 'properties/{property}/userProvidedDataSettings',
             ],
         ],
     ],

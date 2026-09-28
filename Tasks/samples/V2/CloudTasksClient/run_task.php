@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,10 +40,6 @@ use Google\Cloud\Tasks\V2\Task;
  * example, [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask] can be used to
  * retry a failed task after a fix has been made or to manually force a task
  * to be dispatched now.
- *
- * The dispatched task is returned. That is, the task that is returned
- * contains the [status][Task.status] after the task is dispatched but
- * before the task is received by its target.
  *
  * If Cloud Tasks receives a successful response from the task's
  * target, then the task will be deleted; otherwise the task's

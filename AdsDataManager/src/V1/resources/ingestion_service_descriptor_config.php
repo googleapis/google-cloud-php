@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,10 @@
 return [
     'interfaces' => [
         'google.ads.datamanager.v1.IngestionService' => [
+            'IngestAdEvents' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\DataManager\V1\IngestAdEventsResponse',
+            ],
             'IngestAudienceMembers' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\DataManager\V1\IngestAudienceMembersResponse',
@@ -30,6 +34,10 @@ return [
             'IngestEvents' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\DataManager\V1\IngestEventsResponse',
+            ],
+            'RemoveAllAudienceMembers' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\DataManager\V1\RemoveAllAudienceMembersResponse',
             ],
             'RemoveAudienceMembers' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,

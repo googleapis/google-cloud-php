@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,9 +23,80 @@
 return [
     'interfaces' => [
         'google.storage.control.v2.StorageControl' => [
+            'CreateFolder' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/buckets/*}/folders',
+                'body' => 'folder',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'folder_id',
+                ],
+            ],
+            'DeleteFolder' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/buckets/*/folders/**}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteFolderRecursive' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/buckets/*/folders/**}:deleteRecursive',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetFolder' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/buckets/*/folders/**}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetFolderIntelligenceConfig' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=folders/*/locations/*/intelligenceConfig}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIntelligenceFinding' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/intelligenceFindings/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIntelligenceFindingRevision' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/intelligenceFindings/*/revisions/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -52,6 +123,83 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetStorageLayout' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/buckets/*/storageLayout}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListFolders' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/buckets/*}/folders',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListIntelligenceFindingRevisions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*/intelligenceFindings/*}/revisions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListIntelligenceFindings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/intelligenceFindings',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RenameFolder' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/buckets/*/folders/**}:rename',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'SummarizeIntelligenceFindings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/intelligenceFindings:summarize',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=folders/*/locations/*}/intelligenceFindings:summarize',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/intelligenceFindings:summarize',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -102,6 +250,17 @@ return [
                 ],
                 'queryParams' => [
                     'update_mask',
+                ],
+            ],
+            'ViewObjectFullContext' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/buckets/*/objects/**}:viewFullContext',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
         ],

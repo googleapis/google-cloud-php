@@ -17,7 +17,9 @@ class CloudControlDeploymentReference extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The name of the CloudControlDeployment. The format is
-     * `organizations/{org}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`
+     * or
+     * `projects/{project}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string cloud_control_deployment = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -32,7 +34,9 @@ class CloudControlDeploymentReference extends \Google\Protobuf\Internal\Message
      *
      *     @type string $cloud_control_deployment
      *           Output only. The name of the CloudControlDeployment. The format is
-     *           `organizations/{org}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     *           `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`
+     *           or
+     *           `projects/{project}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`.
      *           The only supported location is `global`.
      * }
      */
@@ -43,7 +47,9 @@ class CloudControlDeploymentReference extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The name of the CloudControlDeployment. The format is
-     * `organizations/{org}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`
+     * or
+     * `projects/{project}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string cloud_control_deployment = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -56,7 +62,9 @@ class CloudControlDeploymentReference extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The name of the CloudControlDeployment. The format is
-     * `organizations/{org}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`
+     * or
+     * `projects/{project}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string cloud_control_deployment = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>

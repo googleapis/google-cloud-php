@@ -8,7 +8,7 @@
         "CloudControlsPartnerCore": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CloudControlsPartnerCoreGapicClient",
+                    "libraryClient": "CloudControlsPartnerCoreClient",
                     "rpcs": {
                         "CreateCustomer": {
                             "methods": [
@@ -72,7 +72,7 @@
         "CloudControlsPartnerMonitoring": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CloudControlsPartnerMonitoringGapicClient",
+                    "libraryClient": "CloudControlsPartnerMonitoringClient",
                     "rpcs": {
                         "GetViolation": {
                             "methods": [

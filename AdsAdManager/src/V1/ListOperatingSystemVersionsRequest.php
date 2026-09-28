@@ -44,8 +44,13 @@ class ListOperatingSystemVersionsRequest extends \Google\Protobuf\Internal\Messa
     protected $page_token = '';
     /**
      * Optional. Expression to filter the response.
-     * See syntax details at
-     * https://developers.google.com/ad-manager/api/beta/filters
+     *  See syntax details at
+     *  https://developers.google.com/ad-manager/api/beta/filters
+     * **Filterable fields:**
+     * * `majorVersion`
+     * * `microVersion`
+     * * `minorVersion`
+     * * `name`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -103,8 +108,13 @@ class ListOperatingSystemVersionsRequest extends \Google\Protobuf\Internal\Messa
      *           token.
      *     @type string $filter
      *           Optional. Expression to filter the response.
-     *           See syntax details at
-     *           https://developers.google.com/ad-manager/api/beta/filters
+     *            See syntax details at
+     *            https://developers.google.com/ad-manager/api/beta/filters
+     *           **Filterable fields:**
+     *           * `majorVersion`
+     *           * `microVersion`
+     *           * `minorVersion`
+     *           * `name`
      *     @type string $order_by
      *           Optional. Expression to specify sorting order.
      *           See syntax details at
@@ -216,8 +226,13 @@ class ListOperatingSystemVersionsRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * Optional. Expression to filter the response.
-     * See syntax details at
-     * https://developers.google.com/ad-manager/api/beta/filters
+     *  See syntax details at
+     *  https://developers.google.com/ad-manager/api/beta/filters
+     * **Filterable fields:**
+     * * `majorVersion`
+     * * `microVersion`
+     * * `minorVersion`
+     * * `name`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -229,8 +244,13 @@ class ListOperatingSystemVersionsRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * Optional. Expression to filter the response.
-     * See syntax details at
-     * https://developers.google.com/ad-manager/api/beta/filters
+     *  See syntax details at
+     *  https://developers.google.com/ad-manager/api/beta/filters
+     * **Filterable fields:**
+     * * `majorVersion`
+     * * `microVersion`
+     * * `minorVersion`
+     * * `name`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

@@ -124,15 +124,15 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      */
     protected $state = 0;
     /**
-     * Output only. SCAN listener port - TCP
+     * Optional. SCAN listener port - TCP
      *
-     * Generated from protobuf field <code>int32 scan_listener_port_tcp = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int32 scan_listener_port_tcp = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $scan_listener_port_tcp = 0;
     /**
-     * Output only. SCAN listener port - TLS
+     * Optional. SCAN listener port - TLS
      *
-     * Generated from protobuf field <code>int32 scan_listener_port_tcp_ssl = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int32 scan_listener_port_tcp_ssl = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $scan_listener_port_tcp_ssl = 0;
     /**
@@ -217,6 +217,26 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ComputeModel compute_model = 37 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $compute_model = 0;
+    /**
+     * Output only. The storage management type of the VM Cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties.StorageManagementType storage_management_type = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $storage_management_type = 0;
+    /**
+     * Optional. Specifies whether VM file system storage / VM images are stored
+     * on local DB server storage or Exascale storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties.VmFileSystemStorageType vm_file_system_storage_type = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $vm_file_system_storage_type = 0;
+    /**
+     * Optional. Specifies whether VM backups are stored on local DB server
+     * storage or Exascale storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties.VmBackupStorageType vm_backup_storage_type = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $vm_backup_storage_type = 0;
 
     /**
      * Constructor.
@@ -261,9 +281,9 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. State of the cluster.
      *     @type int $scan_listener_port_tcp
-     *           Output only. SCAN listener port - TCP
+     *           Optional. SCAN listener port - TCP
      *     @type int $scan_listener_port_tcp_ssl
-     *           Output only. SCAN listener port - TLS
+     *           Optional. SCAN listener port - TLS
      *     @type string $domain
      *           Output only. Parent DNS domain where SCAN DNS and hosts names are
      *           qualified. ex: ocispdelegated.ocisp10jvnet.oraclevcn.com
@@ -294,6 +314,14 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      *           Optional. OCI Cluster name.
      *     @type int $compute_model
      *           Output only. The compute model of the VM Cluster.
+     *     @type int $storage_management_type
+     *           Output only. The storage management type of the VM Cluster.
+     *     @type int $vm_file_system_storage_type
+     *           Optional. Specifies whether VM file system storage / VM images are stored
+     *           on local DB server storage or Exascale storage.
+     *     @type int $vm_backup_storage_type
+     *           Optional. Specifies whether VM backups are stored on local DB server
+     *           storage or Exascale storage.
      * }
      */
     public function __construct($data = NULL) {
@@ -790,9 +818,9 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. SCAN listener port - TCP
+     * Optional. SCAN listener port - TCP
      *
-     * Generated from protobuf field <code>int32 scan_listener_port_tcp = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int32 scan_listener_port_tcp = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getScanListenerPortTcp()
@@ -801,9 +829,9 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. SCAN listener port - TCP
+     * Optional. SCAN listener port - TCP
      *
-     * Generated from protobuf field <code>int32 scan_listener_port_tcp = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int32 scan_listener_port_tcp = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -816,9 +844,9 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. SCAN listener port - TLS
+     * Optional. SCAN listener port - TLS
      *
-     * Generated from protobuf field <code>int32 scan_listener_port_tcp_ssl = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int32 scan_listener_port_tcp_ssl = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getScanListenerPortTcpSsl()
@@ -827,9 +855,9 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. SCAN listener port - TLS
+     * Optional. SCAN listener port - TLS
      *
-     * Generated from protobuf field <code>int32 scan_listener_port_tcp_ssl = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int32 scan_listener_port_tcp_ssl = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -1183,6 +1211,88 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\OracleDatabase\V1\ComputeModel::class);
         $this->compute_model = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The storage management type of the VM Cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties.StorageManagementType storage_management_type = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getStorageManagementType()
+    {
+        return $this->storage_management_type;
+    }
+
+    /**
+     * Output only. The storage management type of the VM Cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties.StorageManagementType storage_management_type = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStorageManagementType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\OracleDatabase\V1\CloudVmClusterProperties\StorageManagementType::class);
+        $this->storage_management_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies whether VM file system storage / VM images are stored
+     * on local DB server storage or Exascale storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties.VmFileSystemStorageType vm_file_system_storage_type = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getVmFileSystemStorageType()
+    {
+        return $this->vm_file_system_storage_type;
+    }
+
+    /**
+     * Optional. Specifies whether VM file system storage / VM images are stored
+     * on local DB server storage or Exascale storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties.VmFileSystemStorageType vm_file_system_storage_type = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setVmFileSystemStorageType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\OracleDatabase\V1\CloudVmClusterProperties\VmFileSystemStorageType::class);
+        $this->vm_file_system_storage_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies whether VM backups are stored on local DB server
+     * storage or Exascale storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties.VmBackupStorageType vm_backup_storage_type = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getVmBackupStorageType()
+    {
+        return $this->vm_backup_storage_type;
+    }
+
+    /**
+     * Optional. Specifies whether VM backups are stored on local DB server
+     * storage or Exascale storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties.VmBackupStorageType vm_backup_storage_type = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setVmBackupStorageType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\OracleDatabase\V1\CloudVmClusterProperties\VmBackupStorageType::class);
+        $this->vm_backup_storage_type = $var;
 
         return $this;
     }

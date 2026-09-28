@@ -39,6 +39,13 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     protected $commitment = null;
     /**
+     * 
+     * Check the ConfidentialComputeType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string confidential_compute_type = 386447257;</code>
+     */
+    protected $confidential_compute_type = null;
+    /**
      * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
@@ -146,6 +153,16 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     protected $reservation_sharing_policy = null;
     /**
+     * Output only. [Output Only] Contains standard resource metadata for an Allocation
+     * resource. It is populated for each instance of the Allocation
+     * resource, and includes the api_version the
+     * instance was retrieved through, and its canonical
+     * resource_type name.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceMetadata resource_metadata = 99063872;</code>
+     */
+    protected $resource_metadata = null;
+    /**
      * Resource policies to be added to this reservation. The key is defined by
      * user, and the value is resource policy url. This is to define placement
      * policy with reservation.
@@ -236,6 +253,9 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *     @type string $commitment
      *           Output only. [Output Only] Full or partial URL to a parent commitment. This field
      *           displays for reservations that are tied to a commitment.
+     *     @type string $confidential_compute_type
+     *           
+     *           Check the ConfidentialComputeType enum for the list of possible values.
      *     @type string $creation_timestamp
      *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
@@ -287,6 +307,12 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\AllocationReservationSharingPolicy $reservation_sharing_policy
      *           Specify the reservation sharing policy. If unspecified, the reservation
      *           will not be shared with Google Cloud managed services.
+     *     @type \Google\Cloud\Compute\V1\ResourceMetadata $resource_metadata
+     *           Output only. [Output Only] Contains standard resource metadata for an Allocation
+     *           resource. It is populated for each instance of the Allocation
+     *           resource, and includes the api_version the
+     *           instance was retrieved through, and its canonical
+     *           resource_type name.
      *     @type array|\Google\Protobuf\Internal\MapField $resource_policies
      *           Resource policies to be added to this reservation. The key is defined by
      *           user, and the value is resource policy url. This is to define placement
@@ -438,6 +464,44 @@ class Reservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->commitment = $var;
+
+        return $this;
+    }
+
+    /**
+     * 
+     * Check the ConfidentialComputeType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string confidential_compute_type = 386447257;</code>
+     * @return string
+     */
+    public function getConfidentialComputeType()
+    {
+        return isset($this->confidential_compute_type) ? $this->confidential_compute_type : '';
+    }
+
+    public function hasConfidentialComputeType()
+    {
+        return isset($this->confidential_compute_type);
+    }
+
+    public function clearConfidentialComputeType()
+    {
+        unset($this->confidential_compute_type);
+    }
+
+    /**
+     * 
+     * Check the ConfidentialComputeType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string confidential_compute_type = 386447257;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setConfidentialComputeType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->confidential_compute_type = $var;
 
         return $this;
     }
@@ -978,6 +1042,50 @@ class Reservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\AllocationReservationSharingPolicy::class);
         $this->reservation_sharing_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] Contains standard resource metadata for an Allocation
+     * resource. It is populated for each instance of the Allocation
+     * resource, and includes the api_version the
+     * instance was retrieved through, and its canonical
+     * resource_type name.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceMetadata resource_metadata = 99063872;</code>
+     * @return \Google\Cloud\Compute\V1\ResourceMetadata|null
+     */
+    public function getResourceMetadata()
+    {
+        return $this->resource_metadata;
+    }
+
+    public function hasResourceMetadata()
+    {
+        return isset($this->resource_metadata);
+    }
+
+    public function clearResourceMetadata()
+    {
+        unset($this->resource_metadata);
+    }
+
+    /**
+     * Output only. [Output Only] Contains standard resource metadata for an Allocation
+     * resource. It is populated for each instance of the Allocation
+     * resource, and includes the api_version the
+     * instance was retrieved through, and its canonical
+     * resource_type name.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceMetadata resource_metadata = 99063872;</code>
+     * @param \Google\Cloud\Compute\V1\ResourceMetadata $var
+     * @return $this
+     */
+    public function setResourceMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ResourceMetadata::class);
+        $this->resource_metadata = $var;
 
         return $this;
     }

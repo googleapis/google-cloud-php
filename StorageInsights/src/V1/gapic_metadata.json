@@ -8,7 +8,7 @@
         "StorageInsights": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "StorageInsightsGapicClient",
+                    "libraryClient": "StorageInsightsClient",
                     "rpcs": {
                         "CreateDatasetConfig": {
                             "methods": [

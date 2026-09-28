@@ -16,7 +16,8 @@ use Google\Protobuf\RepeatedField;
 class PyPiRepositoryConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. PyPi repository address
+     * Optional. The PyPi repository address. **Note: This field is not available
+     * for batch workloads.**
      *
      * Generated from protobuf field <code>string pypi_repository = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -29,7 +30,8 @@ class PyPiRepositoryConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $pypi_repository
-     *           Optional. PyPi repository address
+     *           Optional. The PyPi repository address. **Note: This field is not available
+     *           for batch workloads.**
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +40,8 @@ class PyPiRepositoryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. PyPi repository address
+     * Optional. The PyPi repository address. **Note: This field is not available
+     * for batch workloads.**
      *
      * Generated from protobuf field <code>string pypi_repository = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -49,7 +52,8 @@ class PyPiRepositoryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. PyPi repository address
+     * Optional. The PyPi repository address. **Note: This field is not available
+     * for batch workloads.**
      *
      * Generated from protobuf field <code>string pypi_repository = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

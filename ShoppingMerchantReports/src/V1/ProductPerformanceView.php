@@ -53,6 +53,15 @@ class ProductPerformanceView extends \Google\Protobuf\Internal\Message
      */
     protected $customer_country_code = null;
     /**
+     * Store type to which metrics apply. Can be `ONLINE_STORE` or
+     * `LOCAL_STORES`. Segment.
+     * For `LOCAL_STORES` store type, further segmentation by a specific store
+     * is not available.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1.StoreType.StoreTypeEnum store_type = 32;</code>
+     */
+    protected $store_type = null;
+    /**
      * Merchant-provided id of the product. Segment.
      *
      * Generated from protobuf field <code>optional string offer_id = 5;</code>
@@ -246,6 +255,11 @@ class ProductPerformanceView extends \Google\Protobuf\Internal\Message
      *           Represented in the ISO 3166 format. Segment.
      *           If the customer country cannot be determined, a special 'ZZ' code is
      *           returned.
+     *     @type int $store_type
+     *           Store type to which metrics apply. Can be `ONLINE_STORE` or
+     *           `LOCAL_STORES`. Segment.
+     *           For `LOCAL_STORES` store type, further segmentation by a specific store
+     *           is not available.
      *     @type string $offer_id
      *           Merchant-provided id of the product. Segment.
      *     @type string $title
@@ -481,6 +495,48 @@ class ProductPerformanceView extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->customer_country_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Store type to which metrics apply. Can be `ONLINE_STORE` or
+     * `LOCAL_STORES`. Segment.
+     * For `LOCAL_STORES` store type, further segmentation by a specific store
+     * is not available.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1.StoreType.StoreTypeEnum store_type = 32;</code>
+     * @return int
+     */
+    public function getStoreType()
+    {
+        return isset($this->store_type) ? $this->store_type : 0;
+    }
+
+    public function hasStoreType()
+    {
+        return isset($this->store_type);
+    }
+
+    public function clearStoreType()
+    {
+        unset($this->store_type);
+    }
+
+    /**
+     * Store type to which metrics apply. Can be `ONLINE_STORE` or
+     * `LOCAL_STORES`. Segment.
+     * For `LOCAL_STORES` store type, further segmentation by a specific store
+     * is not available.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1.StoreType.StoreTypeEnum store_type = 32;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStoreType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Reports\V1\StoreType\StoreTypeEnum::class);
+        $this->store_type = $var;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ use Google\Cloud\CloudQuotas\V1\QuotaPreference;
 /**
  * Gets details of a single QuotaPreference.
  *
- * @param string $formattedName Name of the resource
+ * @param string $formattedName Identifier. Name of the resource
  *
  *                              Example name:
  *                              `projects/123/locations/global/quota_preferences/my-config-for-us-east1`

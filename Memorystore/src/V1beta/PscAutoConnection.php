@@ -46,7 +46,7 @@ class PscAutoConnection extends \Google\Protobuf\Internal\Message
     protected $project_id = '';
     /**
      * Required. The network where the PSC endpoints are created, in the form of
-     * projects/{project_id}/global/networks/{network_id}.
+     * projects/{project_id}/global/networks/{network_name}.
      *
      * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -83,8 +83,7 @@ class PscAutoConnection extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $port
-     *           Optional. Output only. port will only be set for Primary/Reader or
-     *           Discovery endpoint.
+     *           Optional. port will only be set for Primary/Reader or Discovery endpoint.
      *     @type string $psc_connection_id
      *           Output only. The PSC connection id of the forwarding rule connected to the
      *           service attachment.
@@ -100,7 +99,7 @@ class PscAutoConnection extends \Google\Protobuf\Internal\Message
      *           This should be the same project_id that the instance is being created in.
      *     @type string $network
      *           Required. The network where the PSC endpoints are created, in the form of
-     *           projects/{project_id}/global/networks/{network_id}.
+     *           projects/{project_id}/global/networks/{network_name}.
      *     @type string $service_attachment
      *           Output only. The service attachment which is the target of the PSC
      *           connection, in the form of
@@ -120,10 +119,9 @@ class PscAutoConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Output only. port will only be set for Primary/Reader or
-     * Discovery endpoint.
+     * Optional. port will only be set for Primary/Reader or Discovery endpoint.
      *
-     * Generated from protobuf field <code>int32 port = 9 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 port = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPort()
@@ -137,10 +135,9 @@ class PscAutoConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Output only. port will only be set for Primary/Reader or
-     * Discovery endpoint.
+     * Optional. port will only be set for Primary/Reader or Discovery endpoint.
      *
-     * Generated from protobuf field <code>int32 port = 9 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 port = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -268,7 +265,7 @@ class PscAutoConnection extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The network where the PSC endpoints are created, in the form of
-     * projects/{project_id}/global/networks/{network_id}.
+     * projects/{project_id}/global/networks/{network_name}.
      *
      * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -280,7 +277,7 @@ class PscAutoConnection extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The network where the PSC endpoints are created, in the form of
-     * projects/{project_id}/global/networks/{network_id}.
+     * projects/{project_id}/global/networks/{network_name}.
      *
      * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

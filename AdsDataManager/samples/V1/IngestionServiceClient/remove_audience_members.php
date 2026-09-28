@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ use Google\Ads\DataManager\V1\AudienceMember;
 use Google\Ads\DataManager\V1\Client\IngestionServiceClient;
 use Google\Ads\DataManager\V1\Destination;
 use Google\Ads\DataManager\V1\ProductAccount;
+use Google\Ads\DataManager\V1\ProductAccount\AccountType;
 use Google\Ads\DataManager\V1\RemoveAudienceMembersRequest;
 use Google\Ads\DataManager\V1\RemoveAudienceMembersResponse;
 use Google\ApiCore\ApiException;
@@ -36,24 +37,24 @@ use Google\ApiCore\ApiException;
  * [AudienceMember][google.ads.datamanager.v1.AudienceMember] resources from
  * the provided [Destination][google.ads.datamanager.v1.Destination].
  *
- * @param string $destinationsOperatingAccountAccountId The ID of the account. For example, your Google Ads account ID.
- * @param string $destinationsProductDestinationId      The object within the product account to ingest into. For
- *                                                      example, a Google Ads audience ID, a Display & Video 360 audience ID or a
- *                                                      Google Ads conversion action ID.
+ * @param string $destinationsOperatingAccountAccountId   The ID of the account. For example, your Google Ads account ID.
+ * @param int    $destinationsOperatingAccountAccountType The type of the account. For example, `GOOGLE_ADS`.
+ *                                                        Either `account_type` or the deprecated `product` is required.
+ *                                                        If both are set, the values must match.
  */
 function remove_audience_members_sample(
     string $destinationsOperatingAccountAccountId,
-    string $destinationsProductDestinationId
+    int $destinationsOperatingAccountAccountType
 ): void {
     // Create a client.
     $ingestionServiceClient = new IngestionServiceClient();
 
     // Prepare the request message.
     $destinationsOperatingAccount = (new ProductAccount())
-        ->setAccountId($destinationsOperatingAccountAccountId);
+        ->setAccountId($destinationsOperatingAccountAccountId)
+        ->setAccountType($destinationsOperatingAccountAccountType);
     $destination = (new Destination())
-        ->setOperatingAccount($destinationsOperatingAccount)
-        ->setProductDestinationId($destinationsProductDestinationId);
+        ->setOperatingAccount($destinationsOperatingAccount);
     $destinations = [$destination,];
     $audienceMembers = [new AudienceMember()];
     $request = (new RemoveAudienceMembersRequest())
@@ -82,11 +83,11 @@ function remove_audience_members_sample(
 function callSample(): void
 {
     $destinationsOperatingAccountAccountId = '[ACCOUNT_ID]';
-    $destinationsProductDestinationId = '[PRODUCT_DESTINATION_ID]';
+    $destinationsOperatingAccountAccountType = AccountType::ACCOUNT_TYPE_UNSPECIFIED;
 
     remove_audience_members_sample(
         $destinationsOperatingAccountAccountId,
-        $destinationsProductDestinationId
+        $destinationsOperatingAccountAccountType
     );
 }
 // [END datamanager_v1_generated_IngestionService_RemoveAudienceMembers_sync]

@@ -50,6 +50,12 @@ class WidgetTool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.ces.v1.WidgetTool.DataMapping data_mapping = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $data_mapping = null;
+    /**
+     * Optional. Configuration for always-included text responses.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.WidgetTool.TextResponseConfig text_response_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $text_response_config = null;
     protected $input;
 
     /**
@@ -72,6 +78,8 @@ class WidgetTool extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Ces\V1\WidgetTool\DataMapping $data_mapping
      *           Optional. The mapping that defines how data from a source tool is mapped to
      *           the widget's input parameters.
+     *     @type \Google\Cloud\Ces\V1\WidgetTool\TextResponseConfig $text_response_config
+     *           Optional. Configuration for always-included text responses.
      * }
      */
     public function __construct($data = NULL) {
@@ -260,6 +268,42 @@ class WidgetTool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\WidgetTool\DataMapping::class);
         $this->data_mapping = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for always-included text responses.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.WidgetTool.TextResponseConfig text_response_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Ces\V1\WidgetTool\TextResponseConfig|null
+     */
+    public function getTextResponseConfig()
+    {
+        return $this->text_response_config;
+    }
+
+    public function hasTextResponseConfig()
+    {
+        return isset($this->text_response_config);
+    }
+
+    public function clearTextResponseConfig()
+    {
+        unset($this->text_response_config);
+    }
+
+    /**
+     * Optional. Configuration for always-included text responses.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.WidgetTool.TextResponseConfig text_response_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Ces\V1\WidgetTool\TextResponseConfig $var
+     * @return $this
+     */
+    public function setTextResponseConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\WidgetTool\TextResponseConfig::class);
+        $this->text_response_config = $var;
 
         return $this;
     }

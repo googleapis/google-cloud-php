@@ -8,7 +8,7 @@
         "ContainerAnalysis": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ContainerAnalysisGapicClient",
+                    "libraryClient": "ContainerAnalysisClient",
                     "rpcs": {
                         "ExportSBOM": {
                             "methods": [

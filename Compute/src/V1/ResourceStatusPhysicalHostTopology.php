@@ -17,6 +17,12 @@ use Google\Protobuf\RepeatedField;
 class ResourceStatusPhysicalHostTopology extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Output only. [Output Only] Additional location information of the running instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusPhysicalHostTopologyAdditionalAttributes additional_attributes = 74463343;</code>
+     */
+    protected $additional_attributes = null;
+    /**
      * [Output Only] The ID of the block in which the running instance is
      * located. Instances within the same block experience low network latency.
      *
@@ -53,6 +59,8 @@ class ResourceStatusPhysicalHostTopology extends \Google\Protobuf\Internal\Messa
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\ResourceStatusPhysicalHostTopologyAdditionalAttributes $additional_attributes
+     *           Output only. [Output Only] Additional location information of the running instance.
      *     @type string $block
      *           [Output Only] The ID of the block in which the running instance is
      *           located. Instances within the same block experience low network latency.
@@ -72,6 +80,42 @@ class ResourceStatusPhysicalHostTopology extends \Google\Protobuf\Internal\Messa
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Output only. [Output Only] Additional location information of the running instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusPhysicalHostTopologyAdditionalAttributes additional_attributes = 74463343;</code>
+     * @return \Google\Cloud\Compute\V1\ResourceStatusPhysicalHostTopologyAdditionalAttributes|null
+     */
+    public function getAdditionalAttributes()
+    {
+        return $this->additional_attributes;
+    }
+
+    public function hasAdditionalAttributes()
+    {
+        return isset($this->additional_attributes);
+    }
+
+    public function clearAdditionalAttributes()
+    {
+        unset($this->additional_attributes);
+    }
+
+    /**
+     * Output only. [Output Only] Additional location information of the running instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusPhysicalHostTopologyAdditionalAttributes additional_attributes = 74463343;</code>
+     * @param \Google\Cloud\Compute\V1\ResourceStatusPhysicalHostTopologyAdditionalAttributes $var
+     * @return $this
+     */
+    public function setAdditionalAttributes($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ResourceStatusPhysicalHostTopologyAdditionalAttributes::class);
+        $this->additional_attributes = $var;
+
+        return $this;
     }
 
     /**

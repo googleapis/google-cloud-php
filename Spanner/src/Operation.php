@@ -28,6 +28,7 @@ use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
+use Google\Cloud\Spanner\OpenTelemetry\MetricsContext;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
@@ -194,7 +195,11 @@ class Operation
      *        Note that the session MUST be the same one in which the
      *        transaction was created.
      * @param string $transactionId The transaction to roll back.
-     * @param array $options [optional] Configuration Options.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type int $timeoutMillis Timeout to use for this call.
+     * }
      * @return void
      * @throws InvalidArgumentException If the transaction is not yet initialized.
      */
@@ -281,6 +286,9 @@ class Operation
         // @TODO potentially move to a `Spanner\CallOptions`
         $callOptions += $rtl;
 
+        $metricsContext = new MetricsContext();
+        $callOptions['middlewareOptions']['metricsContext'] = $metricsContext;
+
         // Initially with begin, transactionId will be null.
         // Once transaction is generated, even in the case of stream failure,
         // transaction will be passed to this callable by the Result class.
@@ -306,7 +314,60 @@ class Operation
 
             return $this->handleResultSetStream($stream, $transaction);
         };
-        return new Result($this, $session, $call, $miscOptions['transactionContext'] ?? null, $this->mapper);
+
+        $wrappedCall = function ($resumeToken = null, $transaction = null) use ($call, $metricsContext) {
+            $generator = $call($resumeToken, $transaction);
+            $delegator = function () use ($generator, $metricsContext) {
+                try {
+                    foreach ($generator as $result) {
+                        yield $result;
+                    }
+                    $attemptCounter = $metricsContext->getAttemptCountCounter();
+                    $attemptHistogram = $metricsContext->getAttemptLatencyHistogram();
+                    $opCounter = $metricsContext->getOperationCountCounter();
+                    $opHistogram = $metricsContext->getOperationLatencyHistogram();
+
+                    $labels = $metricsContext->getBaseLabels();
+                    $labels['status'] = Code::name(Code::OK);
+
+                    if ($attemptCounter && $attemptHistogram) {
+                        $attemptCounter->add(1, $labels);
+                        $duration = (microtime(true) - $metricsContext->getLastAttemptStartTime()) * 1000;
+                        $attemptHistogram->record($duration, $labels);
+                    }
+
+                    if ($opCounter && $opHistogram) {
+                        $opCounter->add(1, $labels);
+                        $duration = (microtime(true) - $metricsContext->getOperationStartTime()) * 1000;
+                        $opHistogram->record($duration, $labels);
+                    }
+                } catch (\Exception $ex) {
+                    $attemptCounter = $metricsContext->getAttemptCountCounter();
+                    $attemptHistogram = $metricsContext->getAttemptLatencyHistogram();
+
+                    $labels = $metricsContext->getBaseLabels();
+                    $labels['status'] = Code::name($ex->getCode());
+
+                    if ($attemptCounter && $attemptHistogram) {
+                        $attemptCounter->add(1, $labels);
+                        $duration = (microtime(true) - $metricsContext->getLastAttemptStartTime()) * 1000;
+                        $attemptHistogram->record($duration, $labels);
+                    }
+
+                    $metricsContext->setIsResume(true);
+                    throw $ex;
+                }
+            };
+            return $delegator();
+        };
+
+        return new Result(
+            $this,
+            $session,
+            $wrappedCall,
+            $miscOptions['transactionContext'] ?? null,
+            $this->mapper
+        );
     }
 
     /**
@@ -415,12 +476,16 @@ class Operation
         /**
          * @var ExecuteBatchDmlRequest $dmlRequest
          * @var array $callOptions
+         * @var array $rtl
          */
-        [$dmlRequest, $callOptions] = $this->validateOptions(
+        [$dmlRequest, $callOptions, $rtl] = $this->validateOptions(
             $options,
             new ExecuteBatchDmlRequest(),
-            CallOptions::class
+            CallOptions::class,
+            ['route-to-leader']
         );
+
+        $callOptions += $rtl;
 
         $response = $this->spannerClient->executeBatchDml($dmlRequest, $callOptions + [
             'resource-prefix' => $this->getDatabaseNameFromSession($session),
@@ -502,6 +567,9 @@ class Operation
         // Spanner allows "route-to-leader" as a call option {@see Middleware\SpannerMiddleware}
         $callOptions += $rtl;
 
+        $metricsContext = new MetricsContext();
+        $callOptions['middlewareOptions']['metricsContext'] = $metricsContext;
+
         $call = function ($resumeToken = null, $transaction = null) use (
             $table,
             $session,
@@ -533,7 +601,59 @@ class Operation
             return $this->handleResultSetStream($stream, $transaction);
         };
 
-        return new Result($this, $session, $call, $context, $this->mapper);
+        $wrappedCall = function ($resumeToken = null, $transaction = null) use ($call, $metricsContext) {
+            $generator = $call($resumeToken, $transaction);
+            $delegator = function () use ($generator, $metricsContext) {
+                try {
+                    foreach ($generator as $result) {
+                        yield $result;
+                    }
+                    $attemptCounter = $metricsContext->getAttemptCountCounter();
+                    $attemptHistogram = $metricsContext->getAttemptLatencyHistogram();
+                    $opCounter = $metricsContext->getOperationCountCounter();
+                    $opHistogram = $metricsContext->getOperationLatencyHistogram();
+
+                    $labels = $metricsContext->getBaseLabels();
+                    $labels['status'] = Code::name(Code::OK);
+
+                    if ($attemptCounter && $attemptHistogram) {
+                        $attemptCounter->add(1, $labels);
+                        $duration = (microtime(true) - $metricsContext->getLastAttemptStartTime()) * 1000;
+                        $attemptHistogram->record($duration, $labels);
+                    }
+
+                    if ($opCounter && $opHistogram) {
+                        $opCounter->add(1, $labels);
+                        $duration = (microtime(true) - $metricsContext->getOperationStartTime()) * 1000;
+                        $opHistogram->record($duration, $labels);
+                    }
+                } catch (\Exception $ex) {
+                    $attemptCounter = $metricsContext->getAttemptCountCounter();
+                    $attemptHistogram = $metricsContext->getAttemptLatencyHistogram();
+
+                    $labels = $metricsContext->getBaseLabels();
+                    $labels['status'] = Code::name($ex->getCode());
+
+                    if ($attemptCounter && $attemptHistogram) {
+                        $attemptCounter->add(1, $labels);
+                        $duration = (microtime(true) - $metricsContext->getLastAttemptStartTime()) * 1000;
+                        $attemptHistogram->record($duration, $labels);
+                    }
+
+                    $metricsContext->setIsResume(true);
+                    throw $ex;
+                }
+            };
+            return $delegator();
+        };
+
+        return new Result(
+            $this,
+            $session,
+            $wrappedCall,
+            $context,
+            $this->mapper
+        );
     }
 
     /**
@@ -561,6 +681,7 @@ class Operation
      *           that commit mutations but do not perform any reads or queries. If not supplied,
      *           one of the mutations from the mutation set will be selected and sent as a part of
      *           this request.
+     *     @type int $timeoutMillis Timeout to use for this call.
      * }
      * @return Transaction
      */
@@ -620,7 +741,7 @@ class Operation
             'requestOptions' => $beginTransaction->getRequestOptions(),
             'transactionOptions' => $txnOptions,
         ]);
-        return new Transaction(
+        $transaction = new Transaction(
             $this,
             $session,
             $id,
@@ -741,6 +862,10 @@ class Operation
      *           the type should be given as an array, where the first element
      *           is `Database::TYPE_ARRAY` and the second element is the
      *           array type, for instance `[Database::TYPE_ARRAY, Database::TYPE_INT64]`.
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout to use for this call.
+     *     @type array $transportOptions Options to be used for the transport.
      * }
      * @return QueryPartition[]
      */
@@ -783,7 +908,11 @@ class Operation
         ]);
 
         $partitions = [];
-        $queryPartitionOptions = $this->pluckArray(['parameters', 'types', 'maxPartitions', 'partitionSizeBytes'], $options);
+        $queryPartitionOptions = $this->optionsValidator->stripUnknownOptions(
+            $options,
+            ['parameters', 'types', 'maxPartitions', 'partitionSizeBytes', 'dataBoostEnabled'],
+            CallOptions::class
+        );
 
         /** @var RepeatedField<Partition> $protoPartitions */
         $protoPartitions = $response->getPartitions();
@@ -819,6 +948,10 @@ class Operation
      *           each partition may be smaller or larger than this size request.
      *           **Defaults to** `1000000000` (i.e. 1 GiB).
      *     @type string $index The name of an index on the table.
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout to use for this call.
+     *     @type array $transportOptions Options to be used for the transport.
      * }
      * @return ReadPartition[]
      */
@@ -861,7 +994,11 @@ class Operation
         ]);
 
         $partitions = [];
-        $readPartitionOptions = $this->pluckArray(['index', 'maxPartitions', 'partitionSizeBytes'], $options);
+        $readPartitionOptions = $this->optionsValidator->stripUnknownOptions(
+            $options,
+            ['index', 'maxPartitions', 'partitionSizeBytes', 'dataBoostEnabled'],
+            CallOptions::class
+        );
         /** @var RepeatedField<Partition> $protoPartitions */
         $protoPartitions = $response->getPartitions();
         foreach ($protoPartitions as $partition) {
@@ -1005,8 +1142,12 @@ class Operation
         $parameters = $args['parameters'] ?? [];
         $types = $args['types'] ?? [];
 
-        $paramsAndParamTypes = $this->mapper->formatParamsForExecuteSql($parameters, $types);
-        return $this->formatSqlParams($paramsAndParamTypes);
+        /** @var array{params: array, paramTypes: array} $paramsAndParamTypes */
+        $paramsAndParamTypes = $this->formatSqlParams(
+            $this->mapper->formatParamsForExecuteSql($parameters, $types)
+        );
+
+        return $paramsAndParamTypes;
     }
 
     /**

@@ -17,8 +17,15 @@
 
 namespace Google\Cloud\Dev\Tests\Unit\DocFx;
 
+use Google\Auth\Credentials\AppIdentityCredentials;
+use Google\Auth\Credentials\ServiceAccountCredentials;
+use Google\Auth\FetchAuthTokenInterface;
+use Google\Auth\Iam;
+use Google\Auth\OAuth2;
 use PHPUnit\Framework\TestCase;
 use Google\Cloud\Dev\DocFx\Node\ClassNode;
+use Google\Cloud\Dev\DocFx\Node\InterfaceNode;
+use Google\Cloud\Dev\DocFx\Node\MethodNode;
 use Google\Cloud\Dev\DocFx\Page\OverviewPage;
 use Google\Cloud\Dev\DocFx\Page\Page;
 use Google\Cloud\Dev\DocFx\Page\PageTree;
@@ -65,7 +72,7 @@ class PageTest extends TestCase
 
     public function testLoadPagesProtoPackages()
     {
-        $structureXml = __DIR__ . '/../../fixtures/phpdoc/structure.xml';
+        $structureXml = __DIR__ . '/../../fixtures/phpdoc/vision.xml';
         $componentPath = __DIR__ . '/../../fixtures/component/Vision';
         $protoPackages = [
             'google.longrunning' => 'Google\LongRunning',
@@ -109,6 +116,65 @@ class PageTest extends TestCase
         $this->assertStringEndsWith("\nend.", $overview4->getContents());
     }
 
+    public function testInterfacePage()
+    {
+        $pageTree = new PageTree(
+            __DIR__ . '/../../fixtures/phpdoc/auth.xml',
+            'Google\Auth',
+            'Google Auth',
+            __DIR__ . '/../../../../Auth',
+            [],
+        );
+
+        $interfacePage = $this->findNode($pageTree->getPages(), FetchAuthTokenInterface::class);;
+        $this->assertNotNull($interfacePage);
+        $description = $interfacePage->getLongDescription();
+        $this->assertStringContainsString(
+            ServiceAccountCredentials::class,
+            $description
+        );
+    }
+
+    public function testDeprecatedNodes()
+    {
+        $pageTree = new PageTree(
+            __DIR__ . '/../../fixtures/phpdoc/auth.xml',
+            'Google\Auth',
+            'Google Auth',
+            __DIR__ . '/../../../../Auth',
+            [],
+        );
+
+        $deprecatedXml = file_get_contents(__DIR__ . '/../../fixtures/phpdoc/deprecated.xml');
+        $deprecatedClass = new ClassNode(new SimpleXMLElement($deprecatedXml), []);
+        $this->assertTrue($deprecatedClass->isDeprecated());
+        $this->assertEquals('this is now deprecated', $deprecatedClass->getDeprecatedDescription());
+
+        $deprecatedConstant = $this->findNode($pageTree->getPages(), Iam::class, 'IAM_API_ROOT');
+        $this->assertNotNull($deprecatedConstant);
+        $this->assertTrue($deprecatedConstant->isDeprecated());
+        $this->assertEquals('', $deprecatedConstant->getDeprecatedDescription());
+
+        $deprecatedMethod = $this->findNode($pageTree->getPages(), OAuth2::class, 'getCacheKey');
+        $this->assertNotNull($deprecatedMethod);
+        $this->assertTrue($deprecatedMethod->isDeprecated());
+        $this->assertNotEquals('', $deprecatedMethod->getDeprecatedDescription());
+
+        $deprecatedParam = $deprecatedClass->getMethods()[0]->getParameters()[0];
+        $this->assertTrue($deprecatedParam->isDeprecated());
+
+        $deprecatedNestedParam = null;
+        $nestedParamsXml = file_get_contents(__DIR__ . '/../../fixtures/phpdoc/nestedparams.xml');
+        $methodWithDeprecatedParams = new MethodNode(new SimpleXMLElement($nestedParamsXml), '', [], '');
+        foreach ($methodWithDeprecatedParams->getParameters() as $nestedParam) {
+            if ($nestedParam->getName() === '↳ obsoleteParam') {
+                $deprecatedNestedParam = $nestedParam;
+            }
+        }
+        $this->assertNotNull($deprecatedNestedParam);
+        $this->assertTrue($deprecatedNestedParam->isDeprecated());
+    }
+
     public function testHandleSample()
     {
         $structureXml = __DIR__ . '/../../fixtures/phpdoc/clientsnippets.xml';
@@ -124,5 +190,28 @@ class PageTest extends TestCase
         $this->assertNotEmpty($rpcMethod['example']);
         $this->assertCount(1, $rpcMethod['example']);
         $this->assertStringContainsString('function an_rpc_method_sample', $rpcMethod['example'][0]);
+    }
+
+    private function findNode(array $pages, string $className, string $methodOrConstant = '')
+    {
+        foreach ($pages as $page) {
+            if ($page->getClassNode()->getFullname() === '\\' . $className) {
+                if (!$methodOrConstant) {
+                    return $page->getClassNode();
+                }
+
+                foreach ($page->getClassNode()->getMethods() as $method) {
+                    if ($method->getFullname() === '\\' . $className . '::' . $methodOrConstant . '()') {
+                        return $method;
+                    }
+                }
+
+                foreach ($page->getClassNode()->getConstants() as $constant) {
+                    if ($constant->getFullname() === '\\' . $className . '::' . $methodOrConstant) {
+                        return $constant;
+                    }
+                }
+            }
+        }
     }
 }

@@ -8,7 +8,7 @@
         "EssentialContactsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "EssentialContactsServiceGapicClient",
+                    "libraryClient": "EssentialContactsServiceClient",
                     "rpcs": {
                         "ComputeContacts": {
                             "methods": [

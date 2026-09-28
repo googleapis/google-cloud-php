@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/recommender/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/Recommender/$1/$2
-api-name: Recommender

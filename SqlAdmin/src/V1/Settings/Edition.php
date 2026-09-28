@@ -7,7 +7,7 @@ namespace Google\Cloud\Sql\V1\Settings;
 use UnexpectedValueException;
 
 /**
- * The edition of the instance.
+ * The list of Cloud SQL editions available to users.
  *
  * Protobuf type <code>google.cloud.sql.v1.Settings.Edition</code>
  */
@@ -31,11 +31,18 @@ class Edition
      * Generated from protobuf enum <code>ENTERPRISE_PLUS = 3;</code>
      */
     const ENTERPRISE_PLUS = 3;
+    /**
+     * This instance is a Cloud SQL developer edition instance.
+     *
+     * Generated from protobuf enum <code>DEVELOPER = 5;</code>
+     */
+    const DEVELOPER = 5;
 
     private static $valueToName = [
         self::EDITION_UNSPECIFIED => 'EDITION_UNSPECIFIED',
         self::ENTERPRISE => 'ENTERPRISE',
         self::ENTERPRISE_PLUS => 'ENTERPRISE_PLUS',
+        self::DEVELOPER => 'DEVELOPER',
     ];
 
     public static function name($value)

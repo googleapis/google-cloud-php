@@ -55,7 +55,10 @@ class TroubleshootingTest extends SnippetTestCase
         $logger->debug(Argument::type('string'))->shouldBeCalled();
 
         global $client;
-        $client = new TranslationServiceClient(['logger' => $logger->reveal()]);
+        $client = new TranslationServiceClient([
+            'logger' => $logger->reveal(),
+            'transport' => 'rest',
+        ]);
 
         try {
             putenv('GOOGLE_SDK_PHP_LOGGING=true');

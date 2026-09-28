@@ -16,7 +16,7 @@ use Google\Protobuf\RepeatedField;
 class QueryFolderContentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the folder whose contents to list.
+     * Required. Resource name of the Folder to list contents for.
      * Format: projects/{@*}locations/{@*}folders/*
      *
      * Generated from protobuf field <code>string folder = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -46,8 +46,8 @@ class QueryFolderContentsRequest extends \Google\Protobuf\Internal\Message
      * order. Supported keywords: display_name (default), create_time,
      * last_modified_time.
      * Examples:
-     *   - `orderBy="display_name"`
-     *   - `orderBy="display_name desc"`
+     * * `orderBy="display_name"`
+     * * `orderBy="display_name desc"`
      *
      * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -56,14 +56,14 @@ class QueryFolderContentsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Optional filtering for the returned list. Filtering is currently
      * only supported on the `display_name` field.
      * Example:
-     *  - `filter="display_name="MyFolder""`
+     * * `filter="display_name="MyFolder""`
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = '';
 
     /**
-     * @param string $folder Required. Name of the folder whose contents to list.
+     * @param string $folder Required. Resource name of the Folder to list contents for.
      *                       Format: projects/&#42;/locations/&#42;/folders/*
      *                       Please see {@see DataformClient::folderName()} for help formatting this field.
      *
@@ -84,7 +84,7 @@ class QueryFolderContentsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $folder
-     *           Required. Name of the folder whose contents to list.
+     *           Required. Resource name of the Folder to list contents for.
      *           Format: projects/{@*}locations/{@*}folders/*
      *     @type int $page_size
      *           Optional. Maximum number of paths to return. The server may return fewer
@@ -102,13 +102,13 @@ class QueryFolderContentsRequest extends \Google\Protobuf\Internal\Message
      *           order. Supported keywords: display_name (default), create_time,
      *           last_modified_time.
      *           Examples:
-     *             - `orderBy="display_name"`
-     *             - `orderBy="display_name desc"`
+     *           * `orderBy="display_name"`
+     *           * `orderBy="display_name desc"`
      *     @type string $filter
      *           Optional. Optional filtering for the returned list. Filtering is currently
      *           only supported on the `display_name` field.
      *           Example:
-     *            - `filter="display_name="MyFolder""`
+     *           * `filter="display_name="MyFolder""`
      * }
      */
     public function __construct($data = NULL) {
@@ -117,7 +117,7 @@ class QueryFolderContentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the folder whose contents to list.
+     * Required. Resource name of the Folder to list contents for.
      * Format: projects/{@*}locations/{@*}folders/*
      *
      * Generated from protobuf field <code>string folder = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -129,7 +129,7 @@ class QueryFolderContentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the folder whose contents to list.
+     * Required. Resource name of the Folder to list contents for.
      * Format: projects/{@*}locations/{@*}folders/*
      *
      * Generated from protobuf field <code>string folder = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -214,8 +214,8 @@ class QueryFolderContentsRequest extends \Google\Protobuf\Internal\Message
      * order. Supported keywords: display_name (default), create_time,
      * last_modified_time.
      * Examples:
-     *   - `orderBy="display_name"`
-     *   - `orderBy="display_name desc"`
+     * * `orderBy="display_name"`
+     * * `orderBy="display_name desc"`
      *
      * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -231,8 +231,8 @@ class QueryFolderContentsRequest extends \Google\Protobuf\Internal\Message
      * order. Supported keywords: display_name (default), create_time,
      * last_modified_time.
      * Examples:
-     *   - `orderBy="display_name"`
-     *   - `orderBy="display_name desc"`
+     * * `orderBy="display_name"`
+     * * `orderBy="display_name desc"`
      *
      * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -250,7 +250,7 @@ class QueryFolderContentsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Optional filtering for the returned list. Filtering is currently
      * only supported on the `display_name` field.
      * Example:
-     *  - `filter="display_name="MyFolder""`
+     * * `filter="display_name="MyFolder""`
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -264,7 +264,7 @@ class QueryFolderContentsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Optional filtering for the returned list. Filtering is currently
      * only supported on the `display_name` field.
      * Example:
-     *  - `filter="display_name="MyFolder""`
+     * * `filter="display_name="MyFolder""`
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,6 +35,8 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Dataplex\V1\CancelDataScanJobRequest;
+use Google\Cloud\Dataplex\V1\CancelDataScanJobResponse;
 use Google\Cloud\Dataplex\V1\CreateDataScanRequest;
 use Google\Cloud\Dataplex\V1\DataScan;
 use Google\Cloud\Dataplex\V1\DataScanJob;
@@ -74,6 +76,7 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<CancelDataScanJobResponse> cancelDataScanJobAsync(CancelDataScanJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createDataScanAsync(CreateDataScanRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteDataScanAsync(DeleteDataScanRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GenerateDataQualityRulesResponse> generateDataQualityRulesAsync(GenerateDataQualityRulesRequest $request, array $optionalArgs = [])
@@ -113,8 +116,17 @@ final class DataScanServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/cloud-platform.read-only',
+        'https://www.googleapis.com/auth/dataplex.read-write',
+        'https://www.googleapis.com/auth/dataplex.readonly',
+    ];
 
     private $operationsClient;
 
@@ -160,7 +172,10 @@ final class DataScanServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -290,6 +305,27 @@ final class DataScanServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a entry
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $entryGroup
+     * @param string $entry
+     *
+     * @return string The formatted entry resource.
+     */
+    public static function entryName(string $project, string $location, string $entryGroup, string $entry): string
+    {
+        return self::getPathTemplate('entry')->render([
+            'project' => $project,
+            'location' => $location,
+            'entry_group' => $entryGroup,
+            'entry' => $entry,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -330,6 +366,7 @@ final class DataScanServiceClient
      * - dataScanJob: projects/{project}/locations/{location}/dataScans/{dataScan}/jobs/{job}
      * - dataset: projects/{project}/datasets/{dataset}
      * - entity: projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/entities/{entity}
+     * - entry: projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}
      * - location: projects/{project}/locations/{location}
      * - project: projects/{project}
      *
@@ -435,6 +472,34 @@ final class DataScanServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Cancels a running/pending DataScan job.
+     *
+     * The async variant is {@see DataScanServiceClient::cancelDataScanJobAsync()} .
+     *
+     * @example samples/V1/DataScanServiceClient/cancel_data_scan_job.php
+     *
+     * @param CancelDataScanJobRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CancelDataScanJobResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function cancelDataScanJob(
+        CancelDataScanJobRequest $request,
+        array $callOptions = []
+    ): CancelDataScanJobResponse {
+        return $this->startApiCall('CancelDataScanJob', $request, $callOptions)->wait();
     }
 
     /**
@@ -705,13 +770,21 @@ final class DataScanServiceClient
 
     /**
      * Lists information about the supported locations for this service.
-    This method can be called in two ways:
-
-    *   **List all public locations:** Use the path `GET /v1/locations`.
-    *   **List project-visible locations:** Use the path
-    `GET /v1/projects/{project_id}/locations`. This may include public
-    locations as well as private or other locations specifically visible
-    to the project.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see DataScanServiceClient::listLocationsAsync()} .
      *
@@ -738,7 +811,7 @@ final class DataScanServiceClient
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy
-    if the resource exists and does not have a policy set.
+     * if the resource exists and does not have a policy set.
      *
      * The async variant is {@see DataScanServiceClient::getIamPolicyAsync()} .
      *
@@ -765,10 +838,10 @@ final class DataScanServiceClient
 
     /**
      * Sets the access control policy on the specified resource. Replaces
-    any existing policy.
-
-    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
-    errors.
+     * any existing policy.
+     *
+     * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+     * errors.
      *
      * The async variant is {@see DataScanServiceClient::setIamPolicyAsync()} .
      *
@@ -795,12 +868,12 @@ final class DataScanServiceClient
 
     /**
      * Returns permissions that a caller has on the specified resource. If the
-    resource does not exist, this will return an empty set of
-    permissions, not a `NOT_FOUND` error.
-
-    Note: This operation is designed to be used for building
-    permission-aware UIs and command-line tools, not for authorization
-    checking. This operation may "fail open" without warning.
+     * resource does not exist, this will return an empty set of
+     * permissions, not a `NOT_FOUND` error.
+     *
+     * Note: This operation is designed to be used for building
+     * permission-aware UIs and command-line tools, not for authorization
+     * checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see DataScanServiceClient::testIamPermissionsAsync()} .
      *

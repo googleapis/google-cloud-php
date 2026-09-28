@@ -67,6 +67,22 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting reply_messages = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $reply_messages = null;
+    /**
+     * Optional. Setting for viewing space membership.
+     * Must be specified together with
+     * `AccessPermissionSettings.view_space_membership_setting` in the update
+     * mask and request body when updating who can view space membership.
+     * When restricting view access to specific roles (for example, space
+     * managers or assistant managers only), specify the desired role
+     * permissions here and provide an empty
+     * `AccessPermissionSettings.view_space_membership_setting` in the same
+     * request. If a target audience is configured in
+     * `AccessPermissionSettings.view_space_membership_setting`, this setting
+     * must be granted to all members.
+     *
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting view_space_membership = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $view_space_membership = null;
 
     /**
      * Constructor.
@@ -91,6 +107,18 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
      *           Output only. Setting for posting messages in a space.
      *     @type \Google\Apps\Chat\V1\Space\PermissionSetting $reply_messages
      *           Optional. Setting for replying to messages in a space.
+     *     @type \Google\Apps\Chat\V1\Space\PermissionSetting $view_space_membership
+     *           Optional. Setting for viewing space membership.
+     *           Must be specified together with
+     *           `AccessPermissionSettings.view_space_membership_setting` in the update
+     *           mask and request body when updating who can view space membership.
+     *           When restricting view access to specific roles (for example, space
+     *           managers or assistant managers only), specify the desired role
+     *           permissions here and provide an empty
+     *           `AccessPermissionSettings.view_space_membership_setting` in the same
+     *           request. If a target audience is configured in
+     *           `AccessPermissionSettings.view_space_membership_setting`, this setting
+     *           must be granted to all members.
      * }
      */
     public function __construct($data = NULL) {
@@ -384,6 +412,62 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\Space\PermissionSetting::class);
         $this->reply_messages = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Setting for viewing space membership.
+     * Must be specified together with
+     * `AccessPermissionSettings.view_space_membership_setting` in the update
+     * mask and request body when updating who can view space membership.
+     * When restricting view access to specific roles (for example, space
+     * managers or assistant managers only), specify the desired role
+     * permissions here and provide an empty
+     * `AccessPermissionSettings.view_space_membership_setting` in the same
+     * request. If a target audience is configured in
+     * `AccessPermissionSettings.view_space_membership_setting`, this setting
+     * must be granted to all members.
+     *
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting view_space_membership = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Apps\Chat\V1\Space\PermissionSetting|null
+     */
+    public function getViewSpaceMembership()
+    {
+        return $this->view_space_membership;
+    }
+
+    public function hasViewSpaceMembership()
+    {
+        return isset($this->view_space_membership);
+    }
+
+    public function clearViewSpaceMembership()
+    {
+        unset($this->view_space_membership);
+    }
+
+    /**
+     * Optional. Setting for viewing space membership.
+     * Must be specified together with
+     * `AccessPermissionSettings.view_space_membership_setting` in the update
+     * mask and request body when updating who can view space membership.
+     * When restricting view access to specific roles (for example, space
+     * managers or assistant managers only), specify the desired role
+     * permissions here and provide an empty
+     * `AccessPermissionSettings.view_space_membership_setting` in the same
+     * request. If a target audience is configured in
+     * `AccessPermissionSettings.view_space_membership_setting`, this setting
+     * must be granted to all members.
+     *
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting view_space_membership = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Apps\Chat\V1\Space\PermissionSetting $var
+     * @return $this
+     */
+    public function setViewSpaceMembership($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\Space\PermissionSetting::class);
+        $this->view_space_membership = $var;
 
         return $this;
     }
