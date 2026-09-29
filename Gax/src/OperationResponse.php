@@ -100,7 +100,7 @@ class OperationResponse
      * OperationResponse constructor.
      *
      * @param string|null $operationName
-     * @param object|null $operationsClient
+     * @param ServiceInterface|object|null $operationsClient
      * @param array $options {
      *                       Optional. Options for configuring the operation response object.
      *
@@ -373,7 +373,7 @@ class OperationResponse
     }
 
     /**
-     * @return object|null The OperationsClient object used to make
+     * @return ServiceInterface|object|null The OperationsClient object used to make
      * requests to the operations API.
      */
     public function getOperationsClient(): ?object
