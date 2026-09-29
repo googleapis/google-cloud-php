@@ -35,8 +35,11 @@ namespace Google\ApiCore\Middleware;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
+use Google\ApiCore\ClientStream;
 use Google\ApiCore\RetrySettings;
+use Google\ApiCore\ServerStream;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -62,8 +65,8 @@ class RetryMiddleware implements MiddlewareInterface
     public function __construct(
         callable $nextHandler,
         RetrySettings $retrySettings,
-        $deadlineMs = null,
-        $retryAttempts = 0,
+        ?float $deadlineMs = null,
+        int $retryAttempts = 0,
         ?callable $delayHandler = null
     ) {
         $this->nextHandler = $nextHandler;
@@ -77,10 +80,12 @@ class RetryMiddleware implements MiddlewareInterface
      * @param Call $call
      * @param array $options
      *
-     * @return PromiseInterface
+     * @return PromiseInterface|ClientStream|ServerStream|BidiStream
      */
-    public function __invoke(Call $call, array $options)
-    {
+    public function __invoke(
+        Call $call,
+        array $options
+    ): PromiseInterface|ClientStream|ServerStream|BidiStream {
         $nextHandler = $this->nextHandler;
 
         if (!isset($options['timeoutMillis'])) {
@@ -134,11 +139,14 @@ class RetryMiddleware implements MiddlewareInterface
      * @param array $options
      * @param string $status
      *
-     * @return PromiseInterface
+     * @return PromiseInterface|ClientStream|ServerStream|BidiStream
      * @throws ApiException
      */
-    private function retry(Call $call, array $options, string $status)
-    {
+    private function retry(
+        Call $call,
+        array $options,
+        string $status
+    ): PromiseInterface|ClientStream|ServerStream|BidiStream {
         $delayMult = $this->retrySettings->getRetryDelayMultiplier();
         $maxDelayMs = $this->retrySettings->getMaxRetryDelayMillis();
         $timeoutMult = $this->retrySettings->getRpcTimeoutMultiplier();
@@ -193,7 +201,7 @@ class RetryMiddleware implements MiddlewareInterface
     /**
      * This is the default retry behaviour.
      */
-    private function getRetryFunction()
+    private function getRetryFunction(): callable
     {
         return $this->retrySettings->getRetryFunction() ??
             function (\Throwable $e, array $options): bool {
@@ -215,7 +223,7 @@ class RetryMiddleware implements MiddlewareInterface
     /**
      * @param int $millis
      */
-    private function sleepMillis(int $millis)
+    private function sleepMillis(int $millis): void
     {
         usleep($millis * 1000);
     }

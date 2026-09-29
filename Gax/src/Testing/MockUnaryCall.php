@@ -52,16 +52,16 @@ class MockUnaryCall extends \Grpc\UnaryCall
 {
     use SerializationTrait;
 
-    private $response;
-    private $status;
+    private mixed $response;
+    private stdClass $status;
 
     /**
      * MockUnaryCall constructor.
-     * @param Message|string|null $response The response object.
+     * @param Message|string|mixed $response The response object.
      * @param callable|array|null $deserialize An optional deserialize method for the response object.
      * @param stdClass|null $status An optional status object. If set to null, a status of OK is used.
      */
-    public function __construct($response = null, $deserialize = null, ?stdClass $status = null)
+    public function __construct(mixed $response = null, mixed $deserialize = null, ?stdClass $status = null)
     {
         $this->response = $response;
         $this->deserialize = $deserialize;
@@ -75,7 +75,7 @@ class MockUnaryCall extends \Grpc\UnaryCall
      * Immediately return the preset response object and status.
      * @return array The response object and status.
      */
-    public function wait()
+    public function wait(): array
     {
         return [
             $this->deserializeMessage($this->response, $this->deserialize),

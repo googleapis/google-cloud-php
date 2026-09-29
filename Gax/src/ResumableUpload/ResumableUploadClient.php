@@ -488,7 +488,7 @@ class ResumableUploadClient
             $response = $this->transport->sendRawRequest($request, $callOptions);
         }
 
-        if (is_object($response) && method_exists($response, 'wait')) {
+        if (method_exists($response, 'wait')) {
             $response = $response->wait();
         }
         return $response;

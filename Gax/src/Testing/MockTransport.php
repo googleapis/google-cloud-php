@@ -42,6 +42,7 @@ use Google\ApiCore\ServerStream;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Rpc\Code;
 use GuzzleHttp\Promise\Promise;
+use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * @internal
@@ -50,14 +51,14 @@ class MockTransport implements TransportInterface
 {
     use MockStubTrait;
 
-    private $agentHeaderDescriptor; // @phpstan-ignore-line
+    private mixed $agentHeaderDescriptor = null; // @phpstan-ignore-line
 
-    public function setAgentHeaderDescriptor($agentHeaderDescriptor)
+    public function setAgentHeaderDescriptor(mixed $agentHeaderDescriptor): void
     {
         $this->agentHeaderDescriptor = $agentHeaderDescriptor;
     }
 
-    public function startUnaryCall(Call $call, array $options)
+    public function startUnaryCall(Call $call, array $options): PromiseInterface
     {
         $call = call_user_func([$this, $call->getMethod()], $call, $options);
         return $promise = new Promise(
@@ -74,28 +75,28 @@ class MockTransport implements TransportInterface
         );
     }
 
-    public function startBidiStreamingCall(Call $call, array $options)
+    public function startBidiStreamingCall(Call $call, array $options): BidiStream
     {
         $newArgs = ['/' . $call->getMethod(), $this->deserialize, $options, $options];
         $response = $this->_bidiRequest(...$newArgs);
         return new BidiStream($response, $call->getDescriptor());
     }
 
-    public function startClientStreamingCall(Call $call, array $options)
+    public function startClientStreamingCall(Call $call, array $options): ClientStream
     {
         $newArgs = ['/' . $call->getMethod(), $this->deserialize, $options, $options];
         $response = $this->_clientStreamRequest(...$newArgs);
         return new ClientStream($response, $call->getDescriptor());
     }
 
-    public function startServerStreamingCall(Call $call, array $options)
+    public function startServerStreamingCall(Call $call, array $options): ServerStream
     {
         $newArgs = ['/' . $call->getMethod(), $call->getMessage(), $this->deserialize, $options, $options];
         $response = $this->_serverStreamRequest(...$newArgs);
         return new ServerStream($response, $call->getDescriptor());
     }
 
-    public function __call(string $name, array $arguments)
+    public function __call(string $name, array $arguments): mixed
     {
         $call = $arguments[0];
         $options = $arguments[1];
@@ -109,7 +110,7 @@ class MockTransport implements TransportInterface
         );
     }
 
-    public function close()
+    public function close(): void
     {
         // does nothing
     }

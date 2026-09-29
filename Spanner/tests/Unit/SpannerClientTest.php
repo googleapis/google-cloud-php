@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
-use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
@@ -26,6 +25,7 @@ use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance as InstanceProto;
@@ -109,7 +109,7 @@ class SpannerClientTest extends TestCase
         ]));
         $this->spannerClient = new SpannerClient([
             'projectId' => self::PROJECT,
-            'credentials' => new InsecureCredentialsWrapper(),
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
             'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
             'gapicSpannerClient' => $this->gapicSpannerClient->reveal(),
             'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal(),
@@ -555,7 +555,7 @@ class SpannerClientTest extends TestCase
             'projectId' => self::PROJECT,
             'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
             'isolationLevel' => IsolationLevel::REPEATABLE_READ,
-            'credentials' => new InsecureCredentialsWrapper(),
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
         ]);
 
         $reflectedClient = new ReflectionClass($client);
@@ -589,7 +589,7 @@ class SpannerClientTest extends TestCase
             'projectId' => self::PROJECT,
             'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
             'isolationLevel' => IsolationLevel::REPEATABLE_READ,
-            'credentials' => new InsecureCredentialsWrapper(),
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
         ]);
 
         $reflectedClient = new ReflectionClass($client);
@@ -623,7 +623,7 @@ class SpannerClientTest extends TestCase
             'projectId' => self::PROJECT,
             'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
             'readLockMode' => ReadLockMode::PESSIMISTIC,
-            'credentials' => new InsecureCredentialsWrapper(),
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
         ]);
 
         $reflectedClient = new ReflectionClass($client);
@@ -657,7 +657,7 @@ class SpannerClientTest extends TestCase
             'projectId' => self::PROJECT,
             'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
             'readLockMode' => ReadLockMode::PESSIMISTIC,
-            'credentials' => new InsecureCredentialsWrapper(),
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
         ]);
 
         $reflectedClient = new ReflectionClass($client);
@@ -694,7 +694,7 @@ class SpannerClientTest extends TestCase
         /** @var SpannerClient $client */
         $client2 = new SpannerClient([
             'projectId' => self::PROJECT,
-            'credentials' => new InsecureCredentialsWrapper(),
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
             'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
             'gapicSpannerClient' => $this->gapicSpannerClient->reveal(),
             'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal(),
@@ -714,7 +714,7 @@ class SpannerClientTest extends TestCase
 
         $client = new SpannerClient([
             'projectId' => self::PROJECT,
-            'credentials' => new InsecureCredentialsWrapper(),
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
             'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
             'gapicSpannerClient' => $this->gapicSpannerClient->reveal(),
             'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal(),
@@ -731,7 +731,7 @@ class SpannerClientTest extends TestCase
 
         $client2 = new SpannerClient([
             'projectId' => self::PROJECT,
-            'credentials' => new InsecureCredentialsWrapper(),
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
             'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
             'gapicSpannerClient' => $this->gapicSpannerClient->reveal(),
             'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal(),
@@ -761,7 +761,7 @@ class SpannerClientTest extends TestCase
         // This client is using a shared channel. This has not been previously used, so this should increase the count.
         $client = new SpannerClient([
             'projectId' => self::PROJECT,
-            'credentials' => new InsecureCredentialsWrapper(),
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
             'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
             'gapicSpannerClient' => $this->gapicSpannerClient->reveal(),
             'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal(),
@@ -777,7 +777,7 @@ class SpannerClientTest extends TestCase
         // This client is not using a shared channel, increasing the total once more to 3 channels.
         $client2 = new SpannerClient([
             'projectId' => self::PROJECT,
-            'credentials' => new InsecureCredentialsWrapper(),
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
             'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
             'gapicSpannerClient' => $this->gapicSpannerClient->reveal(),
             'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal(),
@@ -792,7 +792,7 @@ class SpannerClientTest extends TestCase
         // This is using an entirely new Channel. This should increase the total channels to 4.
         $client3 = new SpannerClient([
             'projectId' => self::PROJECT,
-            'credentials' => new InsecureCredentialsWrapper(),
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
             'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
             'gapicSpannerClient' => $this->gapicSpannerClient->reveal(),
             'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal(),
@@ -809,7 +809,7 @@ class SpannerClientTest extends TestCase
         // As this has been seen before, the total should not increase.
         $client4 = new SpannerClient([
             'projectId' => self::PROJECT,
-            'credentials' => new InsecureCredentialsWrapper(),
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
             'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
             'gapicSpannerClient' => $this->gapicSpannerClient->reveal(),
             'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal(),
@@ -835,7 +835,7 @@ class SpannerClientTest extends TestCase
     {
         $client = new SpannerClient([
             'projectId' => 'test-project',
-            'credentials' => new InsecureCredentialsWrapper(),
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
         ]);
         $reflection = new ReflectionClass($client);
         $method = $reflection->getMethod('configureKeepAlive');
@@ -880,7 +880,7 @@ class SpannerClientTest extends TestCase
 
         new SpannerClient([
             'projectId' => self::PROJECT,
-            'credentials' => new InsecureCredentialsWrapper(),
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
             'gapicSpannerClient' => $gapicSpannerClient->reveal(),
         ]);
     }
@@ -895,7 +895,7 @@ class SpannerClientTest extends TestCase
 
         new SpannerClient([
             'projectId' => self::PROJECT,
-            'credentials' => new InsecureCredentialsWrapper(),
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
             'gapicSpannerClient' => $gapicSpannerClient->reveal(),
             'enableBuiltInMetrics' => true,
         ]);
@@ -912,7 +912,7 @@ class SpannerClientTest extends TestCase
         $start = microtime(true);
         new SpannerClient([
             'projectId' => self::PROJECT,
-            'credentials' => new InsecureCredentialsWrapper()
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE()
         ]);
         $end = microtime(true);
 

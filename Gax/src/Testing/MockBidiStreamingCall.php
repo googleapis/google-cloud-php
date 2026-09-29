@@ -50,10 +50,10 @@ class MockBidiStreamingCall extends Grpc\BidiStreamingCall
 {
     use SerializationTrait;
 
-    private $responses;
-    private $status;
-    private $writesDone = false;
-    private $receivedWrites = [];
+    private array $responses;
+    private stdClass $status;
+    private bool $writesDone = false;
+    private array $receivedWrites = [];
 
     /**
      * MockBidiStreamingCall constructor.
@@ -61,7 +61,7 @@ class MockBidiStreamingCall extends Grpc\BidiStreamingCall
      * @param mixed|null $deserialize An optional deserialize method for the response object.
      * @param stdClass|null $status An optional status object. If set to null, a status of OK is used.
      */
-    public function __construct(array $responses, $deserialize = null, ?stdClass $status = null)
+    public function __construct(array $responses, mixed $deserialize = null, ?stdClass $status = null)
     {
         $this->responses = $responses;
         $this->deserialize = $deserialize;
@@ -75,7 +75,7 @@ class MockBidiStreamingCall extends Grpc\BidiStreamingCall
      * @return mixed|null
      * @throws ApiException
      */
-    public function read()
+    public function read(): mixed
     {
         if (count($this->responses) > 0) {
             $resp = array_shift($this->responses);
@@ -102,10 +102,10 @@ class MockBidiStreamingCall extends Grpc\BidiStreamingCall
     }
 
     /**
-     * @return stdClass|null
+     * @return stdClass
      * @throws ApiException
      */
-    public function getStatus()
+    public function getStatus(): stdClass
     {
         if (count($this->responses) > 0) {
             throw new ApiException(
@@ -130,7 +130,7 @@ class MockBidiStreamingCall extends Grpc\BidiStreamingCall
      * @param array $options An array of options.
      * @throws ApiException
      */
-    public function write($request, array $options = [])
+    public function write($request, array $options = []): void
     {
         if ($this->writesDone) {
             throw new ApiException(
@@ -151,7 +151,7 @@ class MockBidiStreamingCall extends Grpc\BidiStreamingCall
     /**
      * Set writesDone to true
      */
-    public function writesDone()
+    public function writesDone(): void
     {
         $this->writesDone = true;
     }
@@ -161,7 +161,7 @@ class MockBidiStreamingCall extends Grpc\BidiStreamingCall
      *
      * @return mixed[] An array of received requests
      */
-    public function popReceivedCalls()
+    public function popReceivedCalls(): array
     {
         $receivedFuncCallsTemp = $this->receivedWrites;
         $this->receivedWrites = [];

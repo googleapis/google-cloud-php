@@ -964,7 +964,7 @@ class GapicClientTraitTest extends TestCase
             public array $capturedCredentialsConfig = [];
 
             public function createCredentialsWrapper(
-                FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials,
+                string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials,
                 array $credentialsConfig,
                 string $universeDomain
             ): HeaderCredentialsInterface {
@@ -1078,6 +1078,31 @@ class GapicClientTraitTest extends TestCase
                 /* $expected */ ['']
             ],
         ];
+    }
+
+    public function testServiceAddressOption()
+    {
+        $client = new StubGapicClient();
+        $apiEndpoint = 'test.address.com:443';
+        $updatedOptions = $client->buildClientOptions(
+            ['serviceAddress' => $apiEndpoint]
+        );
+        $client->setClientOptions($updatedOptions);
+
+        $this->assertEquals($apiEndpoint, $updatedOptions['apiEndpoint']);
+        $this->assertArrayNotHasKey('serviceAddress', $updatedOptions);
+    }
+
+    public function testModifyClientOptions()
+    {
+        $options = [];
+        $client = new StubGapicClientExtension();
+        $updatedOptions = $client->buildClientOptions($options);
+        $client->setClientOptions($updatedOptions);
+
+        $this->assertArrayHasKey('addNewOption', $updatedOptions);
+        $this->assertTrue($updatedOptions['disableRetries']);
+        $this->assertEquals('abc123', $updatedOptions['apiEndpoint']);
     }
 
     private function buildClientToTestModifyCallMethods($clientClass = null)
@@ -1520,7 +1545,7 @@ class GapicClientTraitTest extends TestCase
                     $this->handler = $handler;
                     $this->m1Called = &$m1Called;
                 }
-                public function __invoke(Call $call, array $options)
+                public function __invoke(Call $call, array $options): PromiseInterface
                 {
                     $this->m1Called = true;
                     return ($this->handler)($call, $options);
@@ -1538,7 +1563,7 @@ class GapicClientTraitTest extends TestCase
                     $this->handler = $handler;
                     $this->m2Called = &$m2Called;
                 }
-                public function __invoke(Call $call, array $options)
+                public function __invoke(Call $call, array $options): PromiseInterface
                 {
                     $this->m2Called = true;
                     return ($this->handler)($call, $options);
@@ -1591,7 +1616,7 @@ class GapicClientTraitTest extends TestCase
                     $this->handler = $handler;
                     $this->callOrder = &$callOrder;
                 }
-                public function __invoke(Call $call, array $options)
+                public function __invoke(Call $call, array $options): PromiseInterface
                 {
                     $this->callOrder[] = 'middleware1';
                     return ($this->handler)($call, $options);
@@ -1609,7 +1634,7 @@ class GapicClientTraitTest extends TestCase
                     $this->handler = $handler;
                     $this->callOrder = &$callOrder;
                 }
-                public function __invoke(Call $call, array $options)
+                public function __invoke(Call $call, array $options): PromiseInterface
                 {
                     $this->callOrder[] = 'middleware2';
                     return ($this->handler)($call, $options);
@@ -1661,7 +1686,7 @@ class GapicClientTraitTest extends TestCase
                     $this->handler = $handler;
                     $this->callOrder = &$callOrder;
                 }
-                public function __invoke(Call $call, array $options)
+                public function __invoke(Call $call, array $options): PromiseInterface
                 {
                     $this->callOrder[] = 'middleware1';
                     return ($this->handler)($call, $options);
@@ -1679,7 +1704,7 @@ class GapicClientTraitTest extends TestCase
                     $this->handler = $handler;
                     $this->callOrder = &$callOrder;
                 }
-                public function __invoke(Call $call, array $options)
+                public function __invoke(Call $call, array $options): PromiseInterface
                 {
                     $this->callOrder[] = 'middleware2';
                     return ($this->handler)($call, $options);
@@ -2004,6 +2029,13 @@ trait GapicClientStubTrait
 
 class StubGapicClientExtension extends StubGapicClient
 {
+    protected function modifyClientOptions(array &$options)
+    {
+        $options['disableRetries'] = true;
+        $options['addNewOption'] = true;
+        $options['apiEndpoint'] = 'abc123';
+    }
+
     protected function modifyUnaryCallable(callable &$callable)
     {
         $originalCallable = $callable;

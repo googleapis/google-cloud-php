@@ -44,10 +44,10 @@ use stdClass;
  */
 class ApiException extends Exception
 {
-    private $status;
-    private $metadata;
-    private $basicMessage;
-    private $decodedMetadataErrorInfo;
+    private ?string $status;
+    private mixed $metadata;
+    private ?string $basicMessage;
+    private ?array $decodedMetadataErrorInfo = null;
     private array $protobufErrors;
 
     /**
@@ -83,7 +83,7 @@ class ApiException extends Exception
         $this->protobufErrors = $protobufErrors;
     }
 
-    public function getStatus()
+    public function getStatus(): ?string
     {
         return $this->status;
     }
@@ -98,7 +98,7 @@ class ApiException extends Exception
      *     @type array|null $errorInfoMetadata
      * }
      */
-    private static function decodeMetadataErrorInfo(array $metadata)
+    private static function decodeMetadataErrorInfo(array $metadata): array
     {
         $details = [];
         // ApiExceptions created from RPC status have metadata that is an array of objects.
@@ -119,7 +119,7 @@ class ApiException extends Exception
      * Returns the `reason` in ErrorInfo for an exception, or null if there is no ErrorInfo.
      * @return string|null $reason
      */
-    public function getReason()
+    public function getReason(): ?string
     {
         return ($this->decodedMetadataErrorInfo) ? $this->decodedMetadataErrorInfo['reason'] : null;
     }
@@ -128,7 +128,7 @@ class ApiException extends Exception
      * Returns the `domain` in ErrorInfo for an exception, or null if there is no ErrorInfo.
      * @return string|null $domain
      */
-    public function getDomain()
+    public function getDomain(): ?string
     {
         return ($this->decodedMetadataErrorInfo) ? $this->decodedMetadataErrorInfo['domain'] : null;
     }
@@ -137,7 +137,7 @@ class ApiException extends Exception
      * Returns the `metadata` in ErrorInfo for an exception, or null if there is no ErrorInfo.
      * @return array|null $errorInfoMetadata
      */
-    public function getErrorInfoMetadata()
+    public function getErrorInfoMetadata(): ?array
     {
         return ($this->decodedMetadataErrorInfo) ? $this->decodedMetadataErrorInfo['errorInfoMetadata'] : null;
     }
@@ -155,7 +155,7 @@ class ApiException extends Exception
      * @param stdClass $status
      * @return ApiException
      */
-    public static function createFromStdClass(stdClass $status)
+    public static function createFromStdClass(stdClass $status): self
     {
         $metadata = property_exists($status, 'metadata') ? $status->metadata : null;
         $errors = [];
@@ -173,15 +173,15 @@ class ApiException extends Exception
      * @param string $basicMessage
      * @param int $rpcCode
      * @param array|null $metadata
-     * @param Exception $previous
+     * @param Exception|null $previous
      * @return ApiException
      */
     public static function createFromApiResponse(
-        $basicMessage,
-        $rpcCode,
+        string $basicMessage,
+        int $rpcCode,
         ?array $metadata = null,
         ?Exception $previous = null
-    ) {
+    ): self {
         $errors = [];
         return self::create(
             $basicMessage,
@@ -199,15 +199,15 @@ class ApiException extends Exception
      * @param string $basicMessage
      * @param int $rpcCode
      * @param array|null $metadata
-     * @param Exception $previous
+     * @param Exception|null $previous
      * @return ApiException
      */
     public static function createFromRestApiResponse(
-        $basicMessage,
-        $rpcCode,
+        string $basicMessage,
+        int $rpcCode,
         ?array $metadata = null,
         ?Exception $previous = null
-    ) {
+    ): self {
         return self::create(
             $basicMessage,
             $rpcCode,
@@ -228,7 +228,7 @@ class ApiException extends Exception
      *     @type array $errorInfoMetadata
      * }
      */
-    private static function containsErrorInfo(array $decodedMetadata)
+    private static function containsErrorInfo(array $decodedMetadata): array
     {
         if (empty($decodedMetadata)) {
             return [];
@@ -262,11 +262,11 @@ class ApiException extends Exception
     private static function create(
         string $basicMessage,
         int $rpcCode,
-        $metadata,
+        mixed $metadata,
         array $decodedMetadata,
         ?array $protobufErrors = null,
         ?Exception $previous = null
-    ) {
+    ): self {
         $containsErrorInfo = self::containsErrorInfo($decodedMetadata);
         $rpcStatus = ApiStatus::statusFromRpcCode($rpcCode);
         $messageData = [
@@ -336,7 +336,7 @@ class ApiException extends Exception
      * @param Status $status
      * @return ApiException
      */
-    public static function createFromRpcStatus(Status $status)
+    public static function createFromRpcStatus(Status $status): self
     {
         return self::create(
             $status->getMessage(),
@@ -356,7 +356,7 @@ class ApiException extends Exception
      * @return ApiException
      * @throws ValidationException
      */
-    public static function createFromRequestException(RequestException $ex, bool $isStream = false)
+    public static function createFromRequestException(RequestException $ex, bool $isStream = false): self
     {
         // Guzzle 7 carries the response on RequestException, Guzzle 8 only on
         // its ResponseException subclass, hence the method_exists() check.
@@ -387,15 +387,15 @@ class ApiException extends Exception
     /**
      * @return null|string
      */
-    public function getBasicMessage()
+    public function getBasicMessage(): ?string
     {
         return $this->basicMessage;
     }
 
     /**
-     * @return mixed[]
+     * @return mixed[]|null
      */
-    public function getMetadata()
+    public function getMetadata(): mixed
     {
         return $this->metadata;
     }

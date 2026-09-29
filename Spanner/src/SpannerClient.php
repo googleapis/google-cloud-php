@@ -1064,7 +1064,7 @@ class SpannerClient
 
     private function configureMetrics(
         array $options,
-        FetchAuthTokenInterface|HeaderCredentialsInterface|null $rawCredentials = null
+        string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null $rawCredentials = null
     ): void {
         $timeoutMillis = $this->pluck('metricsTimeoutMillis', $options, false) ?? 100;
 
@@ -1188,7 +1188,7 @@ class SpannerClient
     }
 
     private function buildMetricsCredentials(
-        FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials,
+        string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials,
         array $options
     ): HeaderCredentialsInterface {
         $credentialsConfig = [

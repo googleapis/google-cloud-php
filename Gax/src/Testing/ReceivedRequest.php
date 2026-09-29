@@ -41,10 +41,15 @@ namespace Google\ApiCore\Testing;
  */
 class ReceivedRequest
 {
-    private $actualCall;
+    private array $actualCall;
 
-    public function __construct($funcCall, $requestObject, $deserialize = null, $metadata = [], $options = [])
-    {
+    public function __construct(
+        string $funcCall,
+        mixed $requestObject,
+        mixed $deserialize = null,
+        array $metadata = [],
+        array $options = []
+    ) {
         $this->actualCall = [
             'funcCall' => $funcCall,
             'request' => $requestObject,
@@ -54,27 +59,27 @@ class ReceivedRequest
         ];
     }
 
-    public function getArray()
+    public function getArray(): array
     {
         return $this->actualCall;
     }
 
-    public function getFuncCall()
+    public function getFuncCall(): string
     {
         return $this->actualCall['funcCall'];
     }
 
-    public function getRequestObject()
+    public function getRequestObject(): mixed
     {
         return $this->actualCall['request'];
     }
 
-    public function getMetadata()
+    public function getMetadata(): array
     {
         return $this->actualCall['metadata'];
     }
 
-    public function getOptions()
+    public function getOptions(): array
     {
         return $this->actualCall['options'];
     }

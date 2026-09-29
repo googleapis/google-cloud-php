@@ -39,6 +39,7 @@ use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\Credentials\GCECredentials;
 use Google\Auth\Credentials\ServiceAccountCredentials;
+use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetQuotaProjectInterface;
@@ -91,6 +92,10 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
      * @param array $args {
      *     An array of optional arguments.
      *
+     *     @type string|array $keyFile
+     *           Credentials to be used. Accepts either a path to a credentials file, or a decoded
+     *           credentials file as a PHP array. If this is not specified, application default
+     *           credentials will be used.
      *     @type string[] $scopes
      *           A string array of scopes to use when acquiring credentials.
      *     @type callable $authHttpHandler
@@ -125,6 +130,7 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
         string $universeDomain = GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
     ): self {
         $args += [
+            'keyFile'           => null,
             'scopes'            => null,
             'authHttpHandler'   => null,
             'enableCaching'     => true,
@@ -136,17 +142,39 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
             'enableRegionalAccessBoundary' => false,
         ];
 
-        $loader = self::buildApplicationDefaultCredentials(
-            $args['scopes'],
-            $args['authHttpHandler'],
-            $args['authCacheOptions'],
-            $args['authCache'],
-            $args['quotaProject'],
-            $args['defaultScopes'],
-            $args['enableRegionalAccessBoundary'],
-        );
-        if ($loader instanceof FetchAuthTokenCache) {
-            $loader = $loader->getFetcher();
+        $keyFile = $args['keyFile'];
+
+        if (is_null($keyFile)) {
+            $loader = self::buildApplicationDefaultCredentials(
+                $args['scopes'],
+                $args['authHttpHandler'],
+                $args['authCacheOptions'],
+                $args['authCache'],
+                $args['quotaProject'],
+                $args['defaultScopes'],
+                $args['enableRegionalAccessBoundary'],
+            );
+            if ($loader instanceof FetchAuthTokenCache) {
+                $loader = $loader->getFetcher();
+            }
+        } else {
+            if (is_string($keyFile)) {
+                if (!file_exists($keyFile)) {
+                    throw new ValidationException("Could not find keyfile: $keyFile");
+                }
+                $keyFile = json_decode(file_get_contents($keyFile), true);
+            }
+
+            if (isset($args['quotaProject'])) {
+                $keyFile['quota_project_id'] = $args['quotaProject'];
+            }
+
+            $loader = CredentialsLoader::makeCredentials(
+                $args['scopes'],
+                $keyFile,
+                $args['defaultScopes'],
+                $args['enableRegionalAccessBoundary'],
+            );
         }
 
         if ($loader instanceof ServiceAccountCredentials && $args['useJwtAccessWithScope']) {

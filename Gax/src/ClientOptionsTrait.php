@@ -175,6 +175,18 @@ trait ClientOptionsTrait
             $options['transportConfig']['grpc-fallback']['logger'] = $options['logger'] ?? null;
         }
 
+        $preModifiedOptions = $options;
+        $this->modifyClientOptions($options);
+        // NOTE: this is required to ensure backwards compatiblity with $options['apiEndpoint']
+        if ($options['apiEndpoint'] !== $preModifiedOptions['apiEndpoint']) {
+            $apiEndpoint = $options['apiEndpoint'];
+        }
+
+        // serviceAddress is now deprecated and acts as an alias for apiEndpoint
+        if (isset($options['serviceAddress'])) {
+            $apiEndpoint = $this->pluck('serviceAddress', $options, false);
+        }
+
         // If an API endpoint is different form the default, ensure the "audience" does not conflict
         // with the custom endpoint by setting "user defined" scopes.
         if ($apiEndpoint
@@ -252,19 +264,23 @@ trait ClientOptionsTrait
     }
 
     /**
-     * @param FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials
+     * @param string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials
      * @param array $credentialsConfig
      * @param string $universeDomain
      * @return HeaderCredentialsInterface
      * @throws ValidationException
      */
     private function createCredentialsWrapper(
-        FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials,
+        string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials,
         array $credentialsConfig,
         string $universeDomain
     ): HeaderCredentialsInterface {
         if (is_null($credentials)) {
             return CredentialsWrapper::build($credentialsConfig, $universeDomain);
+        }
+
+        if (is_string($credentials) || is_array($credentials)) {
+            return CredentialsWrapper::build(['keyFile' => $credentials] + $credentialsConfig, $universeDomain);
         }
 
         if ($credentials instanceof FetchAuthTokenInterface) {
@@ -288,6 +304,18 @@ trait ClientOptionsTrait
     // The methods below provide extension points that can be used to customize client
     // functionality. These extension points are currently considered
     // private and may change at any time.
+
+    /**
+     * Modify options passed to the client before calling setClientOptions.
+     *
+     * @param array $options
+     * @access private
+     * @internal
+     */
+    protected function modifyClientOptions(array &$options)
+    {
+        // Do nothing - this method exists to allow option modification by partial veneers.
+    }
 
     /**
      * @param null|false|LoggerInterface $logger

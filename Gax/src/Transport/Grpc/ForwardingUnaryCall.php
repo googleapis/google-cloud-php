@@ -49,9 +49,9 @@ class ForwardingUnaryCall extends ForwardingCall
     /**
      * Wait for the server to respond with data and a status.
      *
-     * @return array [response data, status]
+     * @return ?array [response data, status]
      */
-    public function wait()
+    public function wait(): ?array
     {
         return $this->innerCall->wait();
     }
