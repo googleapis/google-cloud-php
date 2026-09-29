@@ -53,6 +53,7 @@ use Grpc\Channel;
 use Grpc\ChannelCredentials;
 use Grpc\Interceptor;
 use GuzzleHttp\Promise\Promise;
+use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -94,7 +95,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
         }
 
         parent::__construct($hostname, $opts, $channel);
-        $this->logger = $logger;
+        $this->logger = $logger ?: null;
     }
 
     /**
@@ -116,7 +117,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
      * @return GrpcTransport
      * @throws ValidationException
      */
-    public static function build(string $apiEndpoint, array $config = [])
+    public static function build(string $apiEndpoint, array $config = []): GrpcTransport
     {
         self::validateGrpcSupport();
         $config += [
@@ -163,7 +164,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
     /**
      * {@inheritdoc}
      */
-    public function startBidiStreamingCall(Call $call, array $options)
+    public function startBidiStreamingCall(Call $call, array $options): BidiStream
     {
         $this->verifyUniverseDomain($options);
 
@@ -198,7 +199,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
     /**
      * {@inheritdoc}
      */
-    public function startClientStreamingCall(Call $call, array $options)
+    public function startClientStreamingCall(Call $call, array $options): ClientStream
     {
 
         $this->verifyUniverseDomain($options);
@@ -218,7 +219,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
     /**
      * {@inheritdoc}
      */
-    public function startServerStreamingCall(Call $call, array $options)
+    public function startServerStreamingCall(Call $call, array $options): ServerStream
     {
         $this->verifyUniverseDomain($options);
 
@@ -264,7 +265,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
     /**
      * {@inheritdoc}
      */
-    public function startUnaryCall(Call $call, array $options)
+    public function startUnaryCall(Call $call, array $options): PromiseInterface
     {
         $this->verifyUniverseDomain($options);
         $headers = $options['headers'] ?? [];
@@ -326,14 +327,22 @@ class GrpcTransport extends BaseStub implements TransportInterface
         return $promise;
     }
 
-    private function verifyUniverseDomain(array $options)
+    /**
+     * {@inheritdoc}
+     */
+    public function close(): void
+    {
+        parent::close();
+    }
+
+    private function verifyUniverseDomain(array $options): void
     {
         if (isset($options['credentialsWrapper'])) {
             $options['credentialsWrapper']->checkUniverseDomain();
         }
     }
 
-    private function getCallOptions(array $options)
+    private function getCallOptions(array $options): array
     {
         $callOptions = $options['transportOptions']['grpcOptions'] ?? [];
 
@@ -356,7 +365,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
         return 'grpc://' . str_replace('dns:///', '', $this->getTarget());
     }
 
-    private static function loadClientCertSource(callable $clientCertSource)
+    private static function loadClientCertSource(callable $clientCertSource): array
     {
         return call_user_func($clientCertSource);
     }

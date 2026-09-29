@@ -16,7 +16,7 @@ class InsecureRequestBuilder extends RequestBuilder
      * @param array $queryParams
      * @return UriInterface
      */
-    protected function buildUri(string $path, array $queryParams)
+    protected function buildUri(string $path, array $queryParams): UriInterface
     {
         $uri = Utils::uriFor(sprintf(
             'http://%s%s',

@@ -34,6 +34,7 @@ declare(strict_types=1);
 
 namespace Google\ApiCore\Testing;
 
+use Generator;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
 use Google\ApiCore\ServerStreamingCallInterface;
@@ -50,8 +51,8 @@ class MockServerStreamingCall extends \Grpc\ServerStreamingCall implements Serve
 {
     use SerializationTrait;
 
-    private $responses;
-    private $status;
+    private array $responses;
+    private stdClass $status;
 
     /**
      * MockServerStreamingCall constructor.
@@ -59,7 +60,7 @@ class MockServerStreamingCall extends \Grpc\ServerStreamingCall implements Serve
      * @param callable|array|null $deserialize An optional deserialize method for the response object.
      * @param stdClass|null $status An optional status object. If set to null, a status of OK is used.
      */
-    public function __construct(array $responses, $deserialize = null, ?stdClass $status = null)
+    public function __construct(array $responses, mixed $deserialize = null, ?stdClass $status = null)
     {
         $this->responses = $responses;
         $this->deserialize = $deserialize;
@@ -73,7 +74,12 @@ class MockServerStreamingCall extends \Grpc\ServerStreamingCall implements Serve
         $this->status = $status;
     }
 
-    public function responses()
+    public function start(mixed $data, array $metadata = [], array $options = []): void
+    {
+        parent::start($data, $metadata, $options);
+    }
+
+    public function responses(): Generator
     {
         while (count($this->responses) > 0) {
             $resp = array_shift($this->responses);
@@ -86,7 +92,7 @@ class MockServerStreamingCall extends \Grpc\ServerStreamingCall implements Serve
      * @return stdClass|null
      * @throws ApiException
      */
-    public function getStatus()
+    public function getStatus(): ?stdClass
     {
         if (count($this->responses) > 0) {
             throw new ApiException(
@@ -96,5 +102,30 @@ class MockServerStreamingCall extends \Grpc\ServerStreamingCall implements Serve
             );
         }
         return $this->status;
+    }
+
+    public function getMetadata(): mixed
+    {
+        return $this->metadata;
+    }
+
+    public function getTrailingMetadata(): mixed
+    {
+        return $this->trailing_metadata;
+    }
+
+    public function getPeer(): ?string
+    {
+        return parent::getPeer();
+    }
+
+    public function cancel(): void
+    {
+        parent::cancel();
+    }
+
+    public function setCallCredentials(mixed $call_credentials): void
+    {
+        parent::setCallCredentials($call_credentials);
     }
 }

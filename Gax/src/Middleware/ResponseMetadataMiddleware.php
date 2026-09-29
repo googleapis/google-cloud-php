@@ -55,7 +55,7 @@ class ResponseMetadataMiddleware implements MiddlewareInterface
         $this->nextHandler = $nextHandler;
     }
 
-    public function __invoke(Call $call, array $options)
+    public function __invoke(Call $call, array $options): PromiseInterface
     {
         $metadataReceiver = new Promise();
         $options['metadataCallback'] = function ($metadata) use ($metadataReceiver) {

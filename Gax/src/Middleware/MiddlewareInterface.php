@@ -50,20 +50,27 @@ use GuzzleHttp\Promise\PromiseInterface;
  * pass the handler in through the constructor:
  *
  * ```
+ * use Google\ApiCore\BidiStream;
  * use Google\ApiCore\Call;
+ * use Google\ApiCore\ClientStream;
  * use Google\ApiCore\Middleware\MiddlewareInterface;
+ * use Google\ApiCore\ServerStream;
+ * use GuzzleHttp\Promise\PromiseInterface;
  *
  * class MyTestMiddleware implements MiddlewareInterface
  * {
- *     public function __construct(MiddlewareInterface $handler)
- *      {
- *.         $this->handler = $handler;
- *      }
- *      public function __invoke(Call $call, array $options)
- *      {
- *          echo "Logging info about the call: " . $call->getMethod();
- *          return ($this->handler)($call, $options);
- *      }
+ *     public function __construct(
+ *         private MiddlewareInterface $handler
+ *     ) {
+ *     }
+ *
+ *     public function __invoke(
+ *         Call $call,
+ *         array $options
+ *     ): PromiseInterface|ClientStream|ServerStream|BidiStream {
+ *         echo "Logging info about the call: " . $call->getMethod();
+ *         return ($this->handler)($call, $options);
+ *     }
  * }
  * ```
  *
@@ -90,5 +97,8 @@ interface MiddlewareInterface
      * @param array $options
      * @return PromiseInterface|ClientStream|ServerStream|BidiStream
      */
-    public function __invoke(Call $call, array $options);
+    public function __invoke(
+        Call $call,
+        array $options
+    ): PromiseInterface|ClientStream|ServerStream|BidiStream;
 }

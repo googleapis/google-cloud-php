@@ -34,7 +34,11 @@ declare(strict_types=1);
 namespace Google\ApiCore\Middleware;
 
 use Google\ApiCore\ArrayTrait;
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
+use Google\ApiCore\ClientStream;
+use Google\ApiCore\ServerStream;
+use GuzzleHttp\Promise\PromiseInterface;
 
 /**
 * Middleware which filters the $options array.
@@ -57,8 +61,10 @@ class OptionsFilterMiddleware implements MiddlewareInterface
         $this->permittedOptions = $permittedOptions;
     }
 
-    public function __invoke(Call $call, array $options)
-    {
+    public function __invoke(
+        Call $call,
+        array $options
+    ): PromiseInterface|ClientStream|ServerStream|BidiStream {
         $next = $this->nextHandler;
         $filteredOptions = $this->pluckArray($this->permittedOptions, $options);
         return $next(

@@ -17,9 +17,9 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
-use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\BatchPublisher;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
@@ -91,7 +91,7 @@ class BatchPublisherTest extends TestCase
             [
                 'suppressKeyFileNotice' => true,
                 'projectId' => 'example-project',
-                'credentials' => new InsecureCredentialsWrapper()
+                'credentials' => Fixtures::KEYFILE_STUB_FIXTURE()
             ]
         ], [
             'encode', 'requestHandler'
@@ -166,7 +166,7 @@ class BatchPublisherTest extends TestCase
             [
                 'suppressKeyFileNotice' => true,
                 'projectId' => 'example-project',
-                'credentials' => new InsecureCredentialsWrapper()
+                'credentials' => Fixtures::KEYFILE_STUB_FIXTURE()
             ]
         ], [
             'encode', 'requestHandler'

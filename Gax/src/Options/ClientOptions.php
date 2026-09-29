@@ -70,7 +70,7 @@ class ClientOptions implements ArrayAccess, OptionsInterface
 
     private array $clientConfig;
 
-    private FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials;
+    private string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials;
 
     private array $credentialsConfig;
 
@@ -111,10 +111,22 @@ class ClientOptions implements ArrayAccess, OptionsInterface
      *           path to a JSON file, or a PHP array containing the decoded JSON data.
      *           By default this settings points to the default client config file, which is provided
      *           in the resources folder.
-     *     @type FetchAuthTokenInterface|HeaderCredentialsInterface $credentials
+     *     @type string|array|FetchAuthTokenInterface|HeaderCredentialsInterface $credentials
      *           This option should only be used with a pre-constructed \Google\Auth\FetchAuthTokenInterface
      *           object or \Google\ApiCore\HeaderCredentialsInterface object. Note that when one of these objects
      *           are provided, any settings in $authConfig will be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded credentials
+     *           file as a PHP array, this usage is now DEPRECATED. Providing an unvalidated credential
+     *           configuration to Google APIs can compromise the security of your systems and data. It is now
+     *           recommended to create the credentials explicitly:
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\ApiCore\Options\ClientOptions;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new ClientOptions(['credentials' => $creds]);
+     *           ```
+     *           For more information
+     *           {@see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the client.
      *           For a full list of supporting configuration options, see
@@ -230,12 +242,13 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     }
 
     /**
-     * @param FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials
+     * @param string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials
      *
      * @return $this
      */
-    public function setCredentials(FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials): self
-    {
+    public function setCredentials(
+        string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials
+    ): self {
         $this->credentials = $credentials;
 
         return $this;

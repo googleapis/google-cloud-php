@@ -34,8 +34,10 @@ declare(strict_types=1);
 
 namespace Google\ApiCore\Transport\Grpc;
 
+use Generator;
 use Google\ApiCore\ServerStreamingCallInterface;
 use Grpc\ServerStreamingCall;
+use stdClass;
 
 /**
  * Class ServerStreamingCallWrapper implements \Google\ApiCore\ServerStreamingCallInterface.
@@ -53,7 +55,7 @@ class ServerStreamingCallWrapper implements ServerStreamingCallInterface
     /**
      * {@inheritdoc}
      */
-    public function start($data, array $metadata = [], array $callOptions = [])
+    public function start(mixed $data, array $metadata = [], array $callOptions = []): void
     {
         $this->stream->start($data, $metadata, $callOptions);
     }
@@ -61,7 +63,7 @@ class ServerStreamingCallWrapper implements ServerStreamingCallInterface
     /**
      * {@inheritdoc}
      */
-    public function responses()
+    public function responses(): Generator
     {
         foreach ($this->stream->responses() as $response) {
             yield $response;
@@ -71,7 +73,7 @@ class ServerStreamingCallWrapper implements ServerStreamingCallInterface
     /**
      * {@inheritdoc}
      */
-    public function getStatus()
+    public function getStatus(): ?stdClass
     {
         return $this->stream->getStatus();
     }
@@ -79,7 +81,7 @@ class ServerStreamingCallWrapper implements ServerStreamingCallInterface
     /**
      * {@inheritdoc}
      */
-    public function getMetadata()
+    public function getMetadata(): mixed
     {
         return $this->stream->getMetadata();
     }
@@ -87,7 +89,7 @@ class ServerStreamingCallWrapper implements ServerStreamingCallInterface
     /**
      * {@inheritdoc}
      */
-    public function getTrailingMetadata()
+    public function getTrailingMetadata(): mixed
     {
         return $this->stream->getTrailingMetadata();
     }
@@ -95,7 +97,7 @@ class ServerStreamingCallWrapper implements ServerStreamingCallInterface
     /**
      * {@inheritdoc}
      */
-    public function getPeer()
+    public function getPeer(): ?string
     {
         return $this->stream->getPeer();
     }
@@ -103,7 +105,7 @@ class ServerStreamingCallWrapper implements ServerStreamingCallInterface
     /**
      * {@inheritdoc}
      */
-    public function cancel()
+    public function cancel(): void
     {
         $this->stream->cancel();
     }
@@ -111,7 +113,7 @@ class ServerStreamingCallWrapper implements ServerStreamingCallInterface
     /**
      * {@inheritdoc}
      */
-    public function setCallCredentials($call_credentials)
+    public function setCallCredentials(mixed $call_credentials): void
     {
         $this->stream->setCallCredentials($call_credentials);
     }

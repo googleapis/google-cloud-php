@@ -54,17 +54,17 @@ use stdClass;
  */
 class MockClientStreamingCall extends Grpc\ClientStreamingCall
 {
-    private $mockUnaryCall;
-    private $waitCalled = false;
-    private $receivedWrites = [];
+    private MockUnaryCall $mockUnaryCall;
+    private bool $waitCalled = false;
+    private array $receivedWrites = [];
 
     /**
      * MockClientStreamingCall constructor.
-     * @param Message|string $response The response object.
+     * @param Message|string|mixed $response The response object.
      * @param callable|array|null $deserialize An optional deserialize method for the response object.
      * @param stdClass|null $status An optional status object. If set to null, a status of OK is used.
      */
-    public function __construct($response, $deserialize = null, ?stdClass $status = null)
+    public function __construct(mixed $response, mixed $deserialize = null, ?stdClass $status = null)
     {
         $this->mockUnaryCall = new MockUnaryCall($response, $deserialize, $status);
     }
@@ -73,7 +73,7 @@ class MockClientStreamingCall extends Grpc\ClientStreamingCall
      * Immediately return the preset response object and status.
      * @return array The response object and status.
      */
-    public function wait()
+    public function wait(): array
     {
         $this->waitCalled = true;
         return $this->mockUnaryCall->wait();
@@ -85,7 +85,7 @@ class MockClientStreamingCall extends Grpc\ClientStreamingCall
      * @param array $options An array of options
      * @throws ApiException
      */
-    public function write($request, array $options = [])
+    public function write($request, array $options = []): void
     {
         if ($this->waitCalled) {
             throw new ApiException('Cannot call write() after wait()', Code::INTERNAL, ApiStatus::INTERNAL);
@@ -104,7 +104,7 @@ class MockClientStreamingCall extends Grpc\ClientStreamingCall
      *
      * @return mixed[] An array of received requests
      */
-    public function popReceivedCalls()
+    public function popReceivedCalls(): array
     {
         $receivedFuncCallsTemp = $this->receivedWrites;
         $this->receivedWrites = [];

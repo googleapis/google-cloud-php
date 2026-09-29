@@ -53,7 +53,7 @@ interface ResumableUploadTransportInterface
      * @param array            $options
      * @return ResponseInterface|PromiseInterface
      */
-    public function sendRawRequest(RequestInterface $request, array $options = []);
+    public function sendRawRequest(RequestInterface $request, array $options = []): ResponseInterface|PromiseInterface;
 
     /**
      * Builds a PSR-7 request.

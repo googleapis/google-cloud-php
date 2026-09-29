@@ -103,7 +103,10 @@ trait GapicClientTrait
      *         public function __construct(private MiddlewareInterface $handler) {
      *         }
      *
-     *         public function __invoke(Call $call, array $options) {
+     *         public function __invoke(
+     *             Call $call,
+     *             array $options
+     *         ): PromiseInterface|ClientStream|ServerStream|BidiStream {
      *             // modify call and options (pre-request)
      *             $response = ($this->handler)($call, $options);
      *             // modify the response (post-request)
@@ -139,7 +142,10 @@ trait GapicClientTrait
      *         public function __construct(private MiddlewareInterface $handler) {
      *         }
      *
-     *         public function __invoke(Call $call, array $options) {
+     *         public function __invoke(
+     *             Call $call,
+     *             array $options
+     *         ): PromiseInterface|ClientStream|ServerStream|BidiStream {
      *             // modify call and options (pre-request)
      *             $response = ($this->handler)($call, $options);
      *             // modify the response (post-request)
@@ -221,11 +227,14 @@ trait GapicClientTrait
      *           path to a JSON file, or a PHP array containing the decoded JSON data.
      *           By default this settings points to the default client config file, which is provided
      *           in the resources folder.
-     *     @type FetchAuthTokenInterface|HeaderCredentialsInterface $credentials
+     *     @type string|array|FetchAuthTokenInterface|HeaderCredentialsInterface $credentials
      *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts a pre-constructed \Google\Auth\FetchAuthTokenInterface object or
-     *           \Google\ApiCore\HeaderCredentialsInterface object. Note that when one of these
-     *           objects are provided, any settings in $authConfig will be ignored.
+     *           accepts either a path to a credentials file, or a decoded credentials file as a
+     *           PHP array.
+     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
+     *           \Google\Auth\FetchAuthTokenInterface object or \Google\ApiCore\HeaderCredentialsInterface
+     *           object. Note that when one of these objects are provided, any settings in
+     *           $authConfig will be ignored.
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the client.
      *           For a full list of supporting configuration options, see
@@ -266,6 +275,10 @@ trait GapicClientTrait
      */
     private function setClientOptions(array $options): void
     {
+        // serviceAddress is now deprecated and acts as an alias for apiEndpoint
+        if (isset($options['serviceAddress'])) {
+            $options['apiEndpoint'] = $this->pluck('serviceAddress', $options, false);
+        }
         self::validateNotNull($options, [
             'apiEndpoint',
             'serviceName',

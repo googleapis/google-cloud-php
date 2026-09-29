@@ -39,6 +39,7 @@ use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\Cache\SysVCacheItemPool;
 use Google\Auth\Credentials\GCECredentials;
 use Google\Auth\Credentials\ServiceAccountCredentials;
+use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GCECache;
@@ -66,6 +67,15 @@ class CredentialsWrapperTest extends TestCase
         $this->assertEquals($expectedCredentialsWrapper, $actualCredentialsWrapper);
 
         $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', $appDefaultCreds);
+    }
+
+    /**
+     * @dataProvider buildDataWithKeyFile
+     */
+    public function testBuildWithKeyFile($args, $expectedCredentialsWrapper)
+    {
+        $actualCredentialsWrapper = CredentialsWrapper::build($args);
+        $this->assertEquals($expectedCredentialsWrapper, $actualCredentialsWrapper);
     }
 
     public function buildDataWithoutExplicitKeyFile()
@@ -168,6 +178,69 @@ class CredentialsWrapperTest extends TestCase
         $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', $appDefaultCreds);
 
         return $testData;
+    }
+
+    public function buildDataWithKeyFile()
+    {
+        $keyFilePath = __DIR__ . '/testdata/creds/json-key-file.json';
+        $keyFile = json_decode(file_get_contents($keyFilePath), true);
+
+        $scopes = ['myscope'];
+        $authHttpHandler = function () {
+        };
+        $defaultAuthCache = new MemoryCacheItemPool();
+        $authCache = new SysVCacheItemPool();
+        $authCacheOptions = ['lifetime' => 600];
+        $quotaProject = 'my-quota-project';
+        return [
+            [
+                ['keyFile' => $keyFile],
+                $this->makeExpectedKeyFileCreds($keyFile, null, $defaultAuthCache, null, null),
+            ],
+            [
+                ['keyFile' => $keyFilePath],
+                $this->makeExpectedKeyFileCreds($keyFile, null, $defaultAuthCache, null, null),
+            ],
+            [
+                ['keyFile' => $keyFile, 'scopes' => $scopes],
+                $this->makeExpectedKeyFileCreds($keyFile, $scopes, $defaultAuthCache, null, null),
+            ],
+            [
+                ['keyFile' => $keyFile, 'scopes' => $scopes, 'authHttpHandler' => $authHttpHandler],
+                $this->makeExpectedKeyFileCreds($keyFile, $scopes, $defaultAuthCache, null, $authHttpHandler),
+            ],
+            [
+                ['keyFile' => $keyFile, 'enableCaching' => false],
+                $this->makeExpectedKeyFileCreds($keyFile, null, null, null, null),
+            ],
+            [
+                ['keyFile' => $keyFile, 'authCacheOptions' => $authCacheOptions],
+                $this->makeExpectedKeyFileCreds($keyFile, null, $defaultAuthCache, $authCacheOptions, null),
+            ],
+            [
+                ['keyFile' => $keyFile, 'authCache' => $authCache],
+                $this->makeExpectedKeyFileCreds($keyFile, null, $authCache, null, null),
+            ],
+            [
+                ['keyFile' => $keyFile, 'quotaProject' => $quotaProject],
+                $this->makeExpectedKeyFileCreds(
+                    $keyFile + ['quota_project_id' => $quotaProject],
+                    null,
+                    $defaultAuthCache,
+                    null,
+                    null
+                ),
+            ],
+        ];
+    }
+
+    private function makeExpectedKeyFileCreds($keyFile, $scopes, $cache, $cacheConfig, $httpHandler)
+    {
+        $loader = CredentialsLoader::makeCredentials($scopes, $keyFile);
+        if ($cache) {
+            $loader = new FetchAuthTokenCache($loader, $cacheConfig, $cache);
+        }
+        return new CredentialsWrapper($loader, $httpHandler);
     }
 
     /**

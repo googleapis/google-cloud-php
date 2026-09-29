@@ -146,10 +146,15 @@ class ClientOptionsTraitTest extends TestCase
 
     public function createCredentialsWrapperData()
     {
+        $keyFilePath = __DIR__ . '/testdata/creds/json-key-file.json';
+        $keyFile = json_decode(file_get_contents($keyFilePath), true);
+
         $fetcher = $this->prophesize(FetchAuthTokenInterface::class)->reveal();
         $credentialsWrapper = new CredentialsWrapper($fetcher);
 
         return [
+            [$keyFilePath, [], CredentialsWrapper::build(['keyFile' => $keyFile])],
+            [$keyFile, [], CredentialsWrapper::build(['keyFile' => $keyFile])],
             [$fetcher, [], new CredentialsWrapper($fetcher)],
             [$credentialsWrapper, [], $credentialsWrapper],
         ];
@@ -171,6 +176,28 @@ class ClientOptionsTraitTest extends TestCase
         );
 
         $this->assertEquals($expectedCredentialsWrapper, $actualCredentialsWrapper);
+    }
+
+    public function testCreateCredentialsWrapperValidationException()
+    {
+        $this->expectException(ValidationException::class);
+
+        $this->clientStub->createCredentialsWrapper(
+            'not a json string',
+            [],
+            ''
+        );
+    }
+
+    public function testCreateCredentialsWrapperInvalidArgumentException()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->clientStub->createCredentialsWrapper(
+            ['array' => 'without right keys'],
+            [],
+            ''
+        );
     }
 
     /**

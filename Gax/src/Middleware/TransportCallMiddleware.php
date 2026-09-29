@@ -33,8 +33,12 @@ declare(strict_types=1);
  */
 namespace Google\ApiCore\Middleware;
 
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
+use Google\ApiCore\ClientStream;
+use Google\ApiCore\ServerStream;
 use Google\ApiCore\Transport\TransportInterface;
+use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * A Middleware in charge of handling the end of the callstack to call the transport layer.
@@ -54,8 +58,10 @@ class TransportCallMiddleware implements MiddlewareInterface
     ) {
     }
 
-    public function __invoke(Call $call, array $options)
-    {
+    public function __invoke(
+        Call $call,
+        array $options
+    ): PromiseInterface|ClientStream|ServerStream|BidiStream {
         $startCallMethod = $this->transportCallMethods[$call->getCallType()];
         return $this->transport->$startCallMethod($call, $options);
     }

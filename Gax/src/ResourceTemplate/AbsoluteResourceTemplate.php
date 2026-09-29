@@ -56,8 +56,7 @@ use Google\ApiCore\ValidationException;
 class AbsoluteResourceTemplate implements ResourceTemplateInterface
 {
     private RelativeResourceTemplate $resourceTemplate;
-    /** @var string */
-    private $verb;
+    private string $verb;
 
     /**
      * AbsoluteResourceTemplate constructor.
@@ -82,7 +81,7 @@ class AbsoluteResourceTemplate implements ResourceTemplateInterface
     /**
      * @inheritdoc
      */
-    public function __toString()
+    public function __toString(): string
     {
         return sprintf('/%s%s', $this->resourceTemplate, $this->renderVerb());
     }
@@ -90,7 +89,7 @@ class AbsoluteResourceTemplate implements ResourceTemplateInterface
     /**
      * @inheritdoc
      */
-    public function render(array $bindings, bool $urlEncode = false)
+    public function render(array $bindings, bool $urlEncode = false): string
     {
         return sprintf('/%s%s', $this->resourceTemplate->render($bindings, $urlEncode), $this->renderVerb());
     }
@@ -98,7 +97,7 @@ class AbsoluteResourceTemplate implements ResourceTemplateInterface
     /**
      * @inheritdoc
      */
-    public function matches(string $path)
+    public function matches(string $path): bool
     {
         try {
             $this->match($path);
@@ -111,7 +110,7 @@ class AbsoluteResourceTemplate implements ResourceTemplateInterface
     /**
      * @inheritdoc
      */
-    public function match(string $path)
+    public function match(string $path): array
     {
         if (empty($path)) {
             throw $this->matchException($path, 'path cannot be empty');
@@ -126,17 +125,17 @@ class AbsoluteResourceTemplate implements ResourceTemplateInterface
         return $this->resourceTemplate->match(substr($path, 1, $verbSeparatorPos - 1));
     }
 
-    private function matchException(string $path, string $reason)
+    private function matchException(string $path, string $reason): ValidationException
     {
         return new ValidationException("Could not match path '$path' to template '$this': $reason");
     }
 
-    private function renderVerb()
+    private function renderVerb(): string
     {
         return $this->verb ? ':' . $this->verb : '';
     }
 
-    private function verbSeparatorPos(string $path)
+    private function verbSeparatorPos(string $path): int
     {
         $finalSeparatorPos = strrpos($path, '/');
         $verbSeparatorPos = strrpos($path, ':', $finalSeparatorPos);

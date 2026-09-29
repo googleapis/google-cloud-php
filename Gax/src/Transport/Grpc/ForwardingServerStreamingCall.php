@@ -35,6 +35,7 @@ declare(strict_types=1);
 namespace Google\ApiCore\Transport\Grpc;
 
 use Grpc\ServerStreamingCall;
+use stdClass;
 
 /**
  * Class ForwardingServerStreamingCall wraps a \Grpc\ServerStreamingCall.
@@ -49,7 +50,7 @@ class ForwardingServerStreamingCall extends ForwardingCall
     /**
      * @return mixed An iterator of response values
      */
-    public function responses()
+    public function responses(): mixed
     {
         return $this->innerCall->responses();
     }
@@ -57,10 +58,10 @@ class ForwardingServerStreamingCall extends ForwardingCall
     /**
      * Wait for the server to send the status, and return it.
      *
-     * @return \stdClass The status object, with integer $code, string
+     * @return ?stdClass The status object, with integer $code, string
      *                   $details, and array $metadata members
      */
-    public function getStatus()
+    public function getStatus(): ?stdClass
     {
         return $this->innerCall->getStatus();
     }
