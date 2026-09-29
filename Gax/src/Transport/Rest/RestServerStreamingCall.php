@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2021 Google LLC
  * All rights reserved.
@@ -175,7 +177,7 @@ class RestServerStreamingCall implements ServerStreamingCallInterface
      */
     public function getPeer()
     {
-        return $this->originalRequest->getUri();
+        return (string) $this->originalRequest->getUri();
     }
 
     /**

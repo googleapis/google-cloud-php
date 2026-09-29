@@ -39,7 +39,6 @@ use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\Cache\SysVCacheItemPool;
 use Google\Auth\Credentials\GCECredentials;
 use Google\Auth\Credentials\ServiceAccountCredentials;
-use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GCECache;
@@ -67,15 +66,6 @@ class CredentialsWrapperTest extends TestCase
         $this->assertEquals($expectedCredentialsWrapper, $actualCredentialsWrapper);
 
         $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', $appDefaultCreds);
-    }
-
-    /**
-     * @dataProvider buildDataWithKeyFile
-     */
-    public function testBuildWithKeyFile($args, $expectedCredentialsWrapper)
-    {
-        $actualCredentialsWrapper = CredentialsWrapper::build($args);
-        $this->assertEquals($expectedCredentialsWrapper, $actualCredentialsWrapper);
     }
 
     public function buildDataWithoutExplicitKeyFile()
@@ -180,69 +170,6 @@ class CredentialsWrapperTest extends TestCase
         return $testData;
     }
 
-    public function buildDataWithKeyFile()
-    {
-        $keyFilePath = __DIR__ . '/testdata/creds/json-key-file.json';
-        $keyFile = json_decode(file_get_contents($keyFilePath), true);
-
-        $scopes = ['myscope'];
-        $authHttpHandler = function () {
-        };
-        $defaultAuthCache = new MemoryCacheItemPool();
-        $authCache = new SysVCacheItemPool();
-        $authCacheOptions = ['lifetime' => 600];
-        $quotaProject = 'my-quota-project';
-        return [
-            [
-                ['keyFile' => $keyFile],
-                $this->makeExpectedKeyFileCreds($keyFile, null, $defaultAuthCache, null, null),
-            ],
-            [
-                ['keyFile' => $keyFilePath],
-                $this->makeExpectedKeyFileCreds($keyFile, null, $defaultAuthCache, null, null),
-            ],
-            [
-                ['keyFile' => $keyFile, 'scopes' => $scopes],
-                $this->makeExpectedKeyFileCreds($keyFile, $scopes, $defaultAuthCache, null, null),
-            ],
-            [
-                ['keyFile' => $keyFile, 'scopes' => $scopes, 'authHttpHandler' => $authHttpHandler],
-                $this->makeExpectedKeyFileCreds($keyFile, $scopes, $defaultAuthCache, null, $authHttpHandler),
-            ],
-            [
-                ['keyFile' => $keyFile, 'enableCaching' => false],
-                $this->makeExpectedKeyFileCreds($keyFile, null, null, null, null),
-            ],
-            [
-                ['keyFile' => $keyFile, 'authCacheOptions' => $authCacheOptions],
-                $this->makeExpectedKeyFileCreds($keyFile, null, $defaultAuthCache, $authCacheOptions, null),
-            ],
-            [
-                ['keyFile' => $keyFile, 'authCache' => $authCache],
-                $this->makeExpectedKeyFileCreds($keyFile, null, $authCache, null, null),
-            ],
-            [
-                ['keyFile' => $keyFile, 'quotaProject' => $quotaProject],
-                $this->makeExpectedKeyFileCreds(
-                    $keyFile + ['quota_project_id' => $quotaProject],
-                    null,
-                    $defaultAuthCache,
-                    null,
-                    null
-                ),
-            ],
-        ];
-    }
-
-    private function makeExpectedKeyFileCreds($keyFile, $scopes, $cache, $cacheConfig, $httpHandler)
-    {
-        $loader = CredentialsLoader::makeCredentials($scopes, $keyFile);
-        if ($cache) {
-            $loader = new FetchAuthTokenCache($loader, $cacheConfig, $cache);
-        }
-        return new CredentialsWrapper($loader, $httpHandler);
-    }
-
     /**
      * @dataProvider provideCheckUniverseDomainFails
      */
@@ -272,39 +199,6 @@ class CredentialsWrapperTest extends TestCase
         }
         // Check authorization callback
         $credentialsWrapper->getAuthorizationHeaderCallback()();
-    }
-
-    /**
-     * Same test as above, but calls the deprecated CredentialsWrapper::getBearerString method
-     * instead of CredentialsWrapper::getAuthorizationHeaderCallback
-     * @dataProvider provideCheckUniverseDomainFails
-     */
-    public function testCheckUniverseDomainOnGetBearerStringFails(
-        ?string $universeDomain,
-        ?string $credentialsUniverse,
-        ?string $message = null
-    ) {
-        $this->expectException(ValidationException::class);
-        $this->expectExceptionMessage($message ?: sprintf(
-            'The configured universe domain (%s) does not match the credential universe domain (%s)',
-            is_null($universeDomain) ? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN : $universeDomain,
-            is_null($credentialsUniverse) ? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN : $credentialsUniverse,
-        ));
-        $fetcher = $this->prophesize(FetchAuthTokenInterface::class);
-        // When the $credentialsUniverse is null, the fetcher doesn't implement GetUniverseDomainInterface
-        if (!is_null($credentialsUniverse)) {
-            $fetcher->willImplement(GetUniverseDomainInterface::class);
-            $fetcher->getUniverseDomain()->willReturn($credentialsUniverse);
-        }
-        $fetcher->getLastReceivedToken()->willReturn(null);
-        // When $universeDomain is null, it means no $universeDomain argument was provided
-        if (is_null($universeDomain)) {
-            $credentialsWrapper = new CredentialsWrapper($fetcher->reveal());
-        } else {
-            $credentialsWrapper = new CredentialsWrapper($fetcher->reveal(), null, $universeDomain);
-        }
-        // Check getBearerString (deprecated)
-        $credentialsWrapper->getBearerString();
     }
 
     public function provideCheckUniverseDomainFails()
@@ -342,11 +236,6 @@ class CredentialsWrapperTest extends TestCase
             ['authorization' => ['Bearer abc']],
             $credentialsWrapper->getAuthorizationHeaderCallback()()
         );
-        // Check getBearerString (deprecated)
-        $this->assertEquals(
-            'Bearer abc',
-            $credentialsWrapper->getBearerString()
-        );
     }
 
     public function provideCheckUniverseDomainPasses()
@@ -370,29 +259,6 @@ class CredentialsWrapperTest extends TestCase
         );
 
         $credentialsWrapper->checkUniverseDomain();
-    }
-
-    /**
-     * @dataProvider getBearerStringData
-     * @runInSeparateProcess
-     */
-    public function testGetBearerString(string $fetcherFunc, $expectedBearerString)
-    {
-        $fetcher = $this->$fetcherFunc();
-        $credentialsWrapper = new CredentialsWrapper($fetcher);
-        $bearerString = $credentialsWrapper->getBearerString();
-        $this->assertSame($expectedBearerString, $bearerString);
-    }
-
-    public function getBearerStringData()
-    {
-        return [
-            ['getExpiredFetcher', 'Bearer 456'],
-            ['getEagerExpiredFetcher', 'Bearer 456'],
-            ['getUnexpiredFetcher', 'Bearer 123'],
-            ['getInsecureFetcher', ''],
-            ['getNullFetcher', ''],
-        ];
     }
 
     /**
@@ -636,11 +502,14 @@ class CredentialsWrapperTest extends TestCase
 
     public function testSerializeCredentialsWrapper()
     {
-        $credentialsWrapper = CredentialsWrapper::build([
-            'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json',
-        ]);
+        $appDefaultCreds = getenv('GOOGLE_APPLICATION_CREDENTIALS');
+        $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', __DIR__ . '/testdata/creds/json-key-file.json');
+
+        $credentialsWrapper = CredentialsWrapper::build();
         $serialized = serialize($credentialsWrapper);
         $this->assertIsString($serialized);
+
+        $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', $appDefaultCreds);
     }
 
     private function setEnv(string $env, ?string $value = null)

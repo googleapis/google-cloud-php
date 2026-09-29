@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2024 Google LLC
  * All rights reserved.
@@ -31,7 +33,9 @@
  */
 namespace Google\ApiCore;
 
-interface HeaderCredentialsInterface
+use Google\Auth\GetQuotaProjectInterface;
+
+interface HeaderCredentialsInterface extends GetQuotaProjectInterface
 {
     /**
      * @param string|null $audience optional audience for self-signed JWTs.

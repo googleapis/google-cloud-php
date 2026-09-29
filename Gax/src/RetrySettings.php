@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2016 Google LLC
  * All rights reserved.
@@ -207,19 +209,19 @@ class RetrySettings
 
     const DEFAULT_MAX_RETRIES = 0;
 
-    private $retriesEnabled;
+    private bool $retriesEnabled;
 
-    private $retryableCodes;
+    private array $retryableCodes;
 
-    private $initialRetryDelayMillis;
-    private $retryDelayMultiplier;
-    private $maxRetryDelayMillis;
-    private $initialRpcTimeoutMillis;
-    private $rpcTimeoutMultiplier;
-    private $maxRpcTimeoutMillis;
-    private $totalTimeoutMillis;
+    private int $initialRetryDelayMillis;
+    private int|float $retryDelayMultiplier;
+    private int $maxRetryDelayMillis;
+    private int $initialRpcTimeoutMillis;
+    private int|float $rpcTimeoutMultiplier;
+    private int $maxRpcTimeoutMillis;
+    private int $totalTimeoutMillis;
 
-    private $noRetriesRpcTimeoutMillis;
+    private int $noRetriesRpcTimeoutMillis;
 
     /**
      * The number of maximum retries an operation can do.
@@ -314,7 +316,7 @@ class RetrySettings
         string $serviceName,
         array $clientConfig,
         bool $disableRetries = false
-    ) {
+    ): array {
         $serviceRetrySettings = [];
 
         $serviceConfig = $clientConfig['interfaces'][$serviceName];
@@ -362,7 +364,7 @@ class RetrySettings
         return $serviceRetrySettings;
     }
 
-    public static function constructDefault()
+    public static function constructDefault(): self
     {
         return new RetrySettings([
             'retriesEnabled' => false,
@@ -391,7 +393,7 @@ class RetrySettings
      * }
      * @return RetrySettings
      */
-    public function with(array $settings)
+    public function with(array $settings): self
     {
         $existingSettings = [
             'initialRetryDelayMillis' => $this->getInitialRetryDelayMillis(),
@@ -417,7 +419,7 @@ class RetrySettings
      * @param int $timeout The timeout in milliseconds to be used as a logical call timeout.
      * @return array
      */
-    public static function logicalTimeout(int $timeout)
+    public static function logicalTimeout(int $timeout): array
     {
         return [
             'initialRpcTimeoutMillis' => $timeout,
@@ -431,7 +433,7 @@ class RetrySettings
     /**
      * @return bool Returns true if retries are enabled, otherwise returns false.
      */
-    public function retriesEnabled()
+    public function retriesEnabled(): bool
     {
         return $this->retriesEnabled;
     }
@@ -440,15 +442,15 @@ class RetrySettings
      * @return int The timeout of the rpc call to be used if $retriesEnabled is false,
      *             in milliseconds.
      */
-    public function getNoRetriesRpcTimeoutMillis()
+    public function getNoRetriesRpcTimeoutMillis(): int
     {
         return $this->noRetriesRpcTimeoutMillis;
     }
 
     /**
-     * @return int[] Status codes to retry
+     * @return array<int|string> Status codes to retry
      */
-    public function getRetryableCodes()
+    public function getRetryableCodes(): array
     {
         return $this->retryableCodes;
     }
@@ -457,16 +459,16 @@ class RetrySettings
      * @return int The initial retry delay in milliseconds. If $this->retriesEnabled()
      *             is false, this setting is unused.
      */
-    public function getInitialRetryDelayMillis()
+    public function getInitialRetryDelayMillis(): int
     {
         return $this->initialRetryDelayMillis;
     }
 
     /**
-     * @return float The retry delay multiplier. If $this->retriesEnabled()
+     * @return int|float The retry delay multiplier. If $this->retriesEnabled()
      *               is false, this setting is unused.
      */
-    public function getRetryDelayMultiplier()
+    public function getRetryDelayMultiplier(): int|float
     {
         return $this->retryDelayMultiplier;
     }
@@ -475,7 +477,7 @@ class RetrySettings
      * @return int The maximum retry delay in milliseconds. If $this->retriesEnabled()
      *             is false, this setting is unused.
      */
-    public function getMaxRetryDelayMillis()
+    public function getMaxRetryDelayMillis(): int
     {
         return $this->maxRetryDelayMillis;
     }
@@ -485,16 +487,16 @@ class RetrySettings
      *             is false, this setting is unused - use noRetriesRpcTimeoutMillis to
      *             set the timeout in that case.
      */
-    public function getInitialRpcTimeoutMillis()
+    public function getInitialRpcTimeoutMillis(): int
     {
         return $this->initialRpcTimeoutMillis;
     }
 
     /**
-     * @return float The rpc timeout multiplier. If $this->retriesEnabled()
+     * @return int|float The rpc timeout multiplier. If $this->retriesEnabled()
      *               is false, this setting is unused.
      */
-    public function getRpcTimeoutMultiplier()
+    public function getRpcTimeoutMultiplier(): int|float
     {
         return $this->rpcTimeoutMultiplier;
     }
@@ -504,7 +506,7 @@ class RetrySettings
      *             is false, this setting is unused - use noRetriesRpcTimeoutMillis to
      *             set the timeout in that case.
      */
-    public function getMaxRpcTimeoutMillis()
+    public function getMaxRpcTimeoutMillis(): int
     {
         return $this->maxRpcTimeoutMillis;
     }
@@ -515,7 +517,7 @@ class RetrySettings
      *             is false, this setting is unused - use noRetriesRpcTimeoutMillis to
      *             set the timeout in that case.
      */
-    public function getTotalTimeoutMillis()
+    public function getTotalTimeoutMillis(): int
     {
         return $this->totalTimeoutMillis;
     }
@@ -523,7 +525,7 @@ class RetrySettings
     /**
      * @experimental
      */
-    public function getMaxRetries()
+    public function getMaxRetries(): int
     {
         return $this->maxRetries;
     }
@@ -531,12 +533,12 @@ class RetrySettings
     /**
      * @experimental
      */
-    public function getRetryFunction()
+    public function getRetryFunction(): ?Closure
     {
         return $this->retryFunction;
     }
 
-    private static function convertArrayFromSnakeCase(array $settings)
+    private static function convertArrayFromSnakeCase(array $settings): array
     {
         $camelCaseSettings = [];
         foreach ($settings as $key => $value) {

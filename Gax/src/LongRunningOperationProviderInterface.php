@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 /*
- * Copyright 2016 Google LLC
+ * Copyright 2026 Google LLC
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -31,13 +31,14 @@ declare(strict_types=1);
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 namespace Google\ApiCore;
 
-use Exception;
+use Google\LongRunning\Client\OperationsClient;
 
-/**
- * ValidationException represents a local error (i.e. not during an RPC call).
- */
-class ValidationException extends Exception
+interface LongRunningOperationProviderInterface
 {
+    public function resumeOperation(string $operationName, ?string $methodName = null): OperationResponse;
+
+    public function getOperationsClient(): OperationsClient;
 }

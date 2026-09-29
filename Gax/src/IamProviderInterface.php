@@ -1,6 +1,8 @@
 <?php
+declare(strict_types=1);
+
 /*
- * Copyright 2018 Google LLC
+ * Copyright 2026 Google LLC
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -32,33 +34,20 @@
 
 namespace Google\ApiCore;
 
-/**
- * Provides helper methods for service address handling.
- *
- * @deprecated
- * @todo (dwsupplee) serviceAddress is deprecated now in favor of
- *        apiEndpoint. Rename the trait/method in our next major release.
- */
-trait ServiceAddressTrait
-{
-    private static $defaultPort = 443;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 
-    /**
-     * @param string $apiEndpoint
-     * @return array
-     * @throws ValidationException
-     */
-    private static function normalizeServiceAddress(string $apiEndpoint)
-    {
-        $components = explode(':', $apiEndpoint);
-        if (count($components) == 2) {
-            // Port is included in service address
-            return [$components[0], $components[1]];
-        } elseif (count($components) == 1) {
-            // Port is not included - append default port
-            return [$components[0], self::$defaultPort];
-        } else {
-            throw new ValidationException("Invalid apiEndpoint: $apiEndpoint");
-        }
-    }
+interface IamProviderInterface
+{
+    public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): Policy;
+
+    public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy;
+
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse;
 }

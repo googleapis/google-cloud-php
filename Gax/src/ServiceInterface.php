@@ -1,6 +1,8 @@
 <?php
+declare(strict_types=1);
+
 /*
- * Copyright 2018 Google LLC
+ * Copyright 2026 Google LLC
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,32 +32,15 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Google\ApiCore\Transport\Grpc;
+namespace Google\ApiCore;
 
-/**
- * Temporary class to support an interceptor-like interface until gRPC interceptor support is
- * available.
- *
- * @experimental
- * @deprecated Deprecated in favor of implementations extending {@see \Grpc\Interceptor}.
- */
-interface UnaryInterceptorInterface
+interface ServiceInterface
 {
-    /**
-     * @param string $method
-     * @param \Google\Protobuf\Internal\Message $argument
-     * @param callable $deserialize
-     * @param array $metadata
-     * @param array $options
-     * @param callable $continuation
-     * @return mixed
-     */
-    public function interceptUnaryUnary(
-        $method,
-        $argument,
-        $deserialize,
-        array $metadata,
-        array $options,
-        callable $continuation
-    );
+    public function addMiddleware(callable $middlewareCallable): void;
+
+    public function prependMiddleware(callable $middlewareCallable): void;
+
+    public static function getServiceScopes(): array;
+
+    public function close(): void;
 }

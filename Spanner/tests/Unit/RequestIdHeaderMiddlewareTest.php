@@ -18,11 +18,11 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\Cloud\Spanner\Middleware\RequestIdHeaderMiddleware;
 use Google\ApiCore\Call;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesResponse;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Rpc\Code;
@@ -181,7 +181,7 @@ class RequestIdHeaderMiddlewareTest extends TestCase
         $transport = $this->prophesize(TransportInterface::class);
         $client =  new SpannerClient([
             'projectId' => self::PROJECT,
-            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'credentials' => new InsecureCredentialsWrapper(),
             'transport' => $transport->reveal()
         ]);
 

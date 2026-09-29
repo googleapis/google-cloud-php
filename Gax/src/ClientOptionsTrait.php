@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2024 Google LLC
  * All rights reserved.
@@ -38,8 +40,6 @@ use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
-use Grpc\Gcp\ApiConfig;
-use Grpc\Gcp\Config;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
@@ -52,9 +52,9 @@ trait ClientOptionsTrait
 {
     use ArrayTrait;
 
-    private static $gapicVersionFromFile;
+    private static ?string $gapicVersionFromFile = null;
 
-    private static function getGapicVersion(array $options)
+    private static function getGapicVersion(array $options): string
     {
         if (isset($options['libVersion'])) {
             return $options['libVersion'];
@@ -63,14 +63,6 @@ trait ClientOptionsTrait
             self::$gapicVersionFromFile = AgentHeader::readGapicVersionFromFile(__CLASS__);
         }
         return self::$gapicVersionFromFile;
-    }
-
-    private static function initGrpcGcpConfig(string $hostName, string $confPath)
-    {
-        $apiConfig = new ApiConfig();
-        $apiConfig->mergeFromJsonString(file_get_contents($confPath));
-        $config = new Config($hostName, $apiConfig);
-        return $config;
     }
 
     /**
@@ -87,19 +79,17 @@ trait ClientOptionsTrait
 
     /**
      * Resolve client options based on the client's default
-     * ({@see ClientOptionsTrait::getClientDefault}) and the default for all
+     * ({@see ClientOptionsTrait::getClientDefaults}) and the default for all
      * Google APIs.
      *
      * 1. Set default client option values
      * 2. Set default logger (and log user-supplied configuration options)
      * 3. Set default transport configuration
-     * 4. Call "modifyClientOptions" (for backwards compatibility)
-     * 5. Use "defaultScopes" when custom endpoint is supplied
-     * 6. Load mTLS from the environment if configured
-     * 7. Resolve endpoint based on universe domain template when possible
-     * 8. Load sysvshm grpc config when possible
+     * 4. Use "defaultScopes" when custom endpoint is supplied
+     * 5. Load mTLS from the environment if configured
+     * 6. Resolve endpoint based on universe domain template when possible
      */
-    private function buildClientOptions(array|ClientOptions $options)
+    private function buildClientOptions(array|ClientOptions $options): array
     {
         if ($options instanceof ClientOptions) {
             $options = $options->toArray();
@@ -185,25 +175,6 @@ trait ClientOptionsTrait
             $options['transportConfig']['grpc-fallback']['logger'] = $options['logger'] ?? null;
         }
 
-        // These calls do not apply to "New Surface" clients.
-        if ($this->isBackwardsCompatibilityMode()) {
-            $preModifiedOptions = $options;
-            $this->modifyClientOptions($options);
-            // NOTE: this is required to ensure backwards compatiblity with $options['apiEndpoint']
-            if ($options['apiEndpoint'] !== $preModifiedOptions['apiEndpoint']) {
-                $apiEndpoint = $options['apiEndpoint'];
-            }
-
-            // serviceAddress is now deprecated and acts as an alias for apiEndpoint
-            if (isset($options['serviceAddress'])) {
-                $apiEndpoint = $this->pluck('serviceAddress', $options, false);
-            }
-        } else {
-            // Ads is using this method in their new surface clients, so we need to call it.
-            // However, this method is not used anywhere else for the new surface clients
-            // @TODO: Remove this in GAX V2
-            $this->modifyClientOptions($options);
-        }
         // If an API endpoint is different form the default, ensure the "audience" does not conflict
         // with the custom endpoint by setting "user defined" scopes.
         if ($apiEndpoint
@@ -248,37 +219,9 @@ trait ClientOptionsTrait
         }
 
         if (is_null($apiEndpoint)) {
-            if (defined('self::SERVICE_ADDRESS_TEMPLATE')) {
-                // Derive the endpoint from the service address template and the universe domain
-                $apiEndpoint = str_replace(
-                    'UNIVERSE_DOMAIN',
-                    $options['universeDomain'],
-                    self::SERVICE_ADDRESS_TEMPLATE
-                );
-            } else {
-                // For older clients, the service address template does not exist. Use the default
-                // endpoint instead.
-                $apiEndpoint = $defaultOptions['apiEndpoint'];
-            }
-        }
-
-        if (extension_loaded('sysvshm')
-            && isset($options['gcpApiConfigPath'])
-            && file_exists($options['gcpApiConfigPath'])
-            && !empty($apiEndpoint)
-        ) {
-            $grpcGcpConfig = self::initGrpcGcpConfig(
-                $apiEndpoint,
-                $options['gcpApiConfigPath']
-            );
-
-            if (!array_key_exists('stubOpts', $options['transportConfig']['grpc'])) {
-                $options['transportConfig']['grpc']['stubOpts'] = [];
-            }
-
-            $options['transportConfig']['grpc']['stubOpts'] += [
-                'grpc_call_invoker' => $grpcGcpConfig->callInvoker()
-            ];
+            $apiEndpoint = defined('self::SERVICE_ADDRESS_TEMPLATE')
+                ? str_replace('UNIVERSE_DOMAIN', $options['universeDomain'], self::SERVICE_ADDRESS_TEMPLATE)
+                : $defaultOptions['apiEndpoint'];
         }
 
         $options['apiEndpoint'] = $apiEndpoint;
@@ -286,7 +229,7 @@ trait ClientOptionsTrait
         return $options;
     }
 
-    private function shouldUseMtlsEndpoint(array $options)
+    private function shouldUseMtlsEndpoint(array $options): bool
     {
         $mtlsEndpointEnvVar = getenv('GOOGLE_API_USE_MTLS_ENDPOINT');
         if ('always' === $mtlsEndpointEnvVar) {
@@ -299,7 +242,7 @@ trait ClientOptionsTrait
         return !empty($options['clientCertSource']);
     }
 
-    private static function determineMtlsEndpoint(string $apiEndpoint)
+    private static function determineMtlsEndpoint(string $apiEndpoint): string
     {
         $parts = explode('.', $apiEndpoint);
         if (count($parts) < 3) {
@@ -309,20 +252,19 @@ trait ClientOptionsTrait
     }
 
     /**
-     * @param mixed $credentials
+     * @param FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials
      * @param array $credentialsConfig
-     * @return CredentialsWrapper
+     * @param string $universeDomain
+     * @return HeaderCredentialsInterface
      * @throws ValidationException
      */
-    private function createCredentialsWrapper($credentials, array $credentialsConfig, string $universeDomain)
-    {
+    private function createCredentialsWrapper(
+        FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials,
+        array $credentialsConfig,
+        string $universeDomain
+    ): HeaderCredentialsInterface {
         if (is_null($credentials)) {
-            // If the user has explicitly set the apiKey option, use Api Key credentials
             return CredentialsWrapper::build($credentialsConfig, $universeDomain);
-        }
-
-        if (is_string($credentials) || is_array($credentials)) {
-            return CredentialsWrapper::build(['keyFile' => $credentials] + $credentialsConfig, $universeDomain);
         }
 
         if ($credentials instanceof FetchAuthTokenInterface) {
@@ -330,21 +272,14 @@ trait ClientOptionsTrait
             return new CredentialsWrapper($credentials, $authHttpHandler, $universeDomain);
         }
 
-        if ($credentials instanceof CredentialsWrapper) {
-            return $credentials;
-        }
-
-        throw new ValidationException(sprintf(
-            'Unexpected value in $auth option, got: %s',
-            print_r($credentials, true)
-        ));
+        return $credentials;
     }
 
     /**
      * This defaults to all three transports, which One-Platform supports.
      * Discovery clients should define this function and only return ['rest'].
      */
-    private static function supportedTransports()
+    private static function supportedTransports(): array
     {
         return ['grpc', 'grpc-fallback', 'rest'];
     }
@@ -353,26 +288,6 @@ trait ClientOptionsTrait
     // The methods below provide extension points that can be used to customize client
     // functionality. These extension points are currently considered
     // private and may change at any time.
-
-    /**
-     * Modify options passed to the client before calling setClientOptions.
-     *
-     * @param array $options
-     * @access private
-     * @internal
-     */
-    protected function modifyClientOptions(array &$options)
-    {
-        // Do nothing - this method exists to allow option modification by partial veneers.
-    }
-
-    /**
-     * @internal
-     */
-    private function isBackwardsCompatibilityMode(): bool
-    {
-        return false;
-    }
 
     /**
      * @param null|false|LoggerInterface $logger

@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 /*
- * Copyright 2016 Google LLC
+ * Copyright 2018 Google LLC
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -31,13 +31,32 @@ declare(strict_types=1);
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 namespace Google\ApiCore;
 
-use Exception;
-
 /**
- * ValidationException represents a local error (i.e. not during an RPC call).
+ * Provides helper methods for service address handling.
  */
-class ValidationException extends Exception
+trait ApiEndpointTrait
 {
+    private static $defaultPort = 443;
+
+    /**
+     * @param string $apiEndpoint
+     * @return array
+     * @throws ValidationException
+     */
+    private static function normalizeApiEndpoint(string $apiEndpoint)
+    {
+        $components = explode(':', $apiEndpoint);
+        if (count($components) == 2) {
+            // Port is included in service address
+            return [$components[0], $components[1]];
+        } elseif (count($components) == 1) {
+            // Port is not included - append default port
+            return [$components[0], self::$defaultPort];
+        } else {
+            throw new ValidationException("Invalid apiEndpoint: $apiEndpoint");
+        }
+    }
 }

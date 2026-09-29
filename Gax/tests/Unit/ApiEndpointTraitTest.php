@@ -17,29 +17,25 @@
 
 namespace Google\ApiCore\Tests\Unit;
 
-use Google\ApiCore\ServiceAddressTrait;
+use Google\ApiCore\ApiEndpointTrait;
 use Google\ApiCore\ValidationException;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @todo (dwsupplee) serviceAddress is deprecated now in favor of
- *        apiEndpoint. Rename the tests/variables in our next major release.
- */
-class ServiceAddressTraitTest extends TestCase
+class ApiEndpointTraitTest extends TestCase
 {
-    use ServiceAddressTrait;
+    use ApiEndpointTrait;
 
     /**
-     * @dataProvider normalizeServiceAddressData
+     * @dataProvider normalizeApiEndpointData
      */
-    public function testNormalizeServiceAddress($serviceAddressString, $expectedAddress, $expectedPort)
+    public function testNormalizeApiEndpoint($apiEndpointString, $expectedAddress, $expectedPort)
     {
-        list($actualAddress, $actualPort) = self::normalizeServiceAddress($serviceAddressString);
+        list($actualAddress, $actualPort) = self::normalizeApiEndpoint($apiEndpointString);
         $this->assertSame($expectedAddress, $actualAddress);
         $this->assertSame($expectedPort, $actualPort);
     }
 
-    public function normalizeServiceAddressData()
+    public function normalizeApiEndpointData()
     {
         return [
             ['simple.com:123', 'simple.com', '123'],
@@ -49,17 +45,17 @@ class ServiceAddressTraitTest extends TestCase
     }
 
     /**
-     * @dataProvider normalizeServiceAddressInvalidData
+     * @dataProvider normalizeApiEndpointInvalidData
      */
-    public function testNormalizeServiceAddressInvalid($serviceAddressString)
+    public function testNormalizeApiEndpointInvalid($apiEndpointString)
     {
         $this->expectException(ValidationException::class);
         $this->expectExceptionMessage('Invalid apiEndpoint');
 
-        self::normalizeServiceAddress($serviceAddressString);
+        self::normalizeApiEndpoint($apiEndpointString);
     }
 
-    public function normalizeServiceAddressInvalidData()
+    public function normalizeApiEndpointInvalidData()
     {
         return [
             ['too.many:colons:123'],

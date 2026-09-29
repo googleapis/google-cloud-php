@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2023 Google LLC
  * All rights reserved.
@@ -34,10 +36,9 @@ namespace Google\ApiCore\Options;
 
 use ArrayAccess;
 use Closure;
-use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\HeaderCredentialsInterface;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Auth\FetchAuthTokenInterface;
-use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -47,11 +48,11 @@ use Psr\Log\LoggerInterface;
  * client constructor:
  *
  * ```
- * use Google\ApiCore\ClientOptions;
+ * use Google\ApiCore\Options\ClientOptions;
  * use Google\Cloud\SecretManager\Client\SecretManagerClient;
  *
  * $options = new ClientOptions([
- *     'credentials' => '/path/to/my/credentials.json'
+ *     'apiEndpoint' => 'my-custom-endpoint.com'
  * ]);
  * $secretManager = new SecretManagerClient($options->toArray());
  * ```
@@ -69,13 +70,11 @@ class ClientOptions implements ArrayAccess, OptionsInterface
 
     private array $clientConfig;
 
-    /** @var string|array|FetchAuthTokenInterface|CredentialsWrapper|null */
-    private $credentials;
+    private FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials;
 
     private array $credentialsConfig;
 
-    /** @var string|TransportInterface|null $transport */
-    private $transport;
+    private string|TransportInterface|null $transport;
 
     private TransportOptions $transportConfig;
 
@@ -112,22 +111,10 @@ class ClientOptions implements ArrayAccess, OptionsInterface
      *           path to a JSON file, or a PHP array containing the decoded JSON data.
      *           By default this settings points to the default client config file, which is provided
      *           in the resources folder.
-     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *     @type FetchAuthTokenInterface|HeaderCredentialsInterface $credentials
      *           This option should only be used with a pre-constructed \Google\Auth\FetchAuthTokenInterface
-     *           object or \Google\ApiCore\CredentialsWrapper object. Note that when one of these objects
+     *           object or \Google\ApiCore\HeaderCredentialsInterface object. Note that when one of these objects
      *           are provided, any settings in $authConfig will be ignored.
-     *           **Important**: If you are providing a path to a credentials file, or a decoded credentials
-     *           file as a PHP array, this usage is now DEPRECATED. Providing an unvalidated credential
-     *           configuration to Google APIs can compromise the security of your systems and data. It is now
-     *           recommended to create the credentials explicitly:
-     *           ```
-     *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           use Google\ApiCore\Options\ClientOptions;
-     *           $creds = new ServiceAccountCredentials($scopes, $json);
-     *           $options = new ClientOptions(['credentials' => $creds]);
-     *           ```
-     *           For more information
-     *           {@see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the client.
      *           For a full list of supporting configuration options, see
@@ -230,27 +217,24 @@ class ClientOptions implements ArrayAccess, OptionsInterface
      * @param string|array $clientConfig
      *
      * @return $this
-     * @throws InvalidArgumentException
      */
-    public function setClientConfig($clientConfig): self
+    public function setClientConfig(string|array $clientConfig): self
     {
         if (is_string($clientConfig)) {
             $this->clientConfig = json_decode(file_get_contents($clientConfig), true);
-        } elseif (is_array($clientConfig)) {
-            $this->clientConfig = $clientConfig;
         } else {
-            throw new InvalidArgumentException('Invalid client config');
+            $this->clientConfig = $clientConfig;
         }
 
         return $this;
     }
 
     /**
-     * @param string|array|FetchAuthTokenInterface|CredentialsWrapper|null $credentials
+     * @param FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials
      *
      * @return $this
      */
-    public function setCredentials($credentials): self
+    public function setCredentials(FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials): self
     {
         $this->credentials = $credentials;
 
@@ -274,7 +258,7 @@ class ClientOptions implements ArrayAccess, OptionsInterface
      *
      * @return $this
      */
-    public function setTransport($transport): self
+    public function setTransport(string|TransportInterface|null $transport): self
     {
         $this->transport = $transport;
 

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -129,7 +131,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
                 );
             }
 
-            $encodedValue = $urlEncode ? self::encodeValue($value) : $value;
+            $encodedValue = $urlEncode ? self::encodeValue((string) $value) : (string) $value;
             $literalSegments[] = new Segment(
                 Segment::LITERAL_SEGMENT,
                 $encodedValue,

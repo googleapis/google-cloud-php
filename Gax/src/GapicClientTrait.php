@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -32,7 +34,6 @@
 
 namespace Google\ApiCore;
 
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Middleware\CredentialsWrapperMiddleware;
 use Google\ApiCore\Middleware\FixedHeaderMiddleware;
 use Google\ApiCore\Middleware\OperationsMiddleware;
@@ -50,6 +51,7 @@ use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\Transport\RestTransport;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Internal\Message;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -84,7 +86,6 @@ trait GapicClientTrait
         Call::CLIENT_STREAMING_CALL => 'startClientStreamingCall',
         Call::SERVER_STREAMING_CALL => 'startServerStreamingCall',
     ];
-    private bool $backwardsCompatibilityMode;
 
     /**
      * Add a middleware to the call stack by providing a callable which will be
@@ -174,7 +175,7 @@ trait GapicClientTrait
      *
      * @experimental
      */
-    public function close()
+    public function close(): void
     {
         $this->transport->close();
     }
@@ -184,9 +185,9 @@ trait GapicClientTrait
      * use by customized clients.
      *
      * @access private
-     * @return TransportInterface
+     * @return ?TransportInterface
      */
-    protected function getTransport()
+    protected function getTransport(): ?TransportInterface
     {
         return $this->transport;
     }
@@ -196,9 +197,9 @@ trait GapicClientTrait
      * use by customized clients.
      *
      * @access private
-     * @return CredentialsWrapper
+     * @return ?HeaderCredentialsInterface
      */
-    protected function getCredentialsWrapper()
+    protected function getCredentialsWrapper(): ?HeaderCredentialsInterface
     {
         return $this->credentialsWrapper;
     }
@@ -220,14 +221,11 @@ trait GapicClientTrait
      *           path to a JSON file, or a PHP array containing the decoded JSON data.
      *           By default this settings points to the default client config file, which is provided
      *           in the resources folder.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *     @type FetchAuthTokenInterface|HeaderCredentialsInterface $credentials
      *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           \Google\Auth\FetchAuthTokenInterface object or \Google\ApiCore\CredentialsWrapper
-     *           object. Note that when one of these objects are provided, any settings in
-     *           $authConfig will be ignored.
+     *           accepts a pre-constructed \Google\Auth\FetchAuthTokenInterface object or
+     *           \Google\ApiCore\HeaderCredentialsInterface object. Note that when one of these
+     *           objects are provided, any settings in $authConfig will be ignored.
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the client.
      *           For a full list of supporting configuration options, see
@@ -266,12 +264,8 @@ trait GapicClientTrait
      * }
      * @throws ValidationException
      */
-    private function setClientOptions(array $options)
+    private function setClientOptions(array $options): void
     {
-        // serviceAddress is now deprecated and acts as an alias for apiEndpoint
-        if (isset($options['serviceAddress'])) {
-            $options['apiEndpoint'] = $this->pluck('serviceAddress', $options, false);
-        }
         self::validateNotNull($options, [
             'apiEndpoint',
             'serviceName',
@@ -294,20 +288,7 @@ trait GapicClientTrait
         // Therefore, we need to remove it from the $options array before
         // creating the ClientOptions.
         $hasEmulator = $this->pluck('hasEmulator', $options, false) ?? false;
-        if ($this->isBackwardsCompatibilityMode()) {
-            if (is_string($options['clientConfig'])) {
-                // perform validation for V1 surfaces which is done in the
-                // ClientOptions class for v2 surfaces.
-                $options['clientConfig'] = json_decode(
-                    file_get_contents($options['clientConfig']),
-                    true
-                );
-                self::validateFileExists($options['descriptorsConfigPath']);
-            }
-        } else {
-            // cast to ClientOptions for new surfaces only
-            $options = new ClientOptions($options);
-        }
+        $options = new ClientOptions($options);
         $this->serviceName = $options['serviceName'];
         $this->retrySettings = RetrySettings::load(
             $this->serviceName,
@@ -329,14 +310,6 @@ trait GapicClientTrait
             $headerInfo['restVersion'] = Version::getApiCoreVersion();
         }
         $this->agentHeader = AgentHeader::buildAgentHeader($headerInfo);
-
-        // Set "client_library_name" depending on client library surface being used
-        $userAgentHeader = sprintf(
-            'gcloud-php-%s/%s',
-            $this->isBackwardsCompatibilityMode() ? 'legacy' : 'new',
-            $options['gapicVersion']
-        );
-        $this->agentHeader['User-Agent'] = [$userAgentHeader];
 
         self::validateFileExists($options['descriptorsConfigPath']);
 
@@ -395,17 +368,11 @@ trait GapicClientTrait
      */
     private function createTransport(
         string $apiEndpoint,
-        $transport,
-        $transportConfig,
+        string $transport,
+        TransportOptions|array $transportConfig,
         ?callable $clientCertSource = null,
         bool $hasEmulator = false
-    ) {
-        if (!is_string($transport)) {
-            throw new ValidationException(
-                "'transport' must be a string, instead got:" .
-                print_r($transport, true)
-            );
-        }
+    ): TransportInterface {
         $supportedTransports = self::supportedTransports();
         if (!in_array($transport, $supportedTransports)) {
             throw new ValidationException(sprintf(
@@ -453,39 +420,39 @@ trait GapicClientTrait
     }
 
     /**
-     * @param array $options
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
      * @return OperationsClient
      */
     private function createOperationsClient(array $options)
     {
-        $this->pluckArray([
-            'serviceName',
-            'clientConfig',
-            'descriptorsConfigPath',
-        ], $options);
+        // Unset client-specific configuration options
+        unset(
+            $options['serviceName'],
+            $options['clientConfig'],
+            $options['descriptorsConfigPath']
+        );
 
-        // User-supplied operations client
-        if ($operationsClient = $this->pluck('operationsClient', $options, false)) {
-            return $operationsClient;
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
         }
 
-        // operationsClientClass option
-        $operationsClientClass = $this->pluck('operationsClientClass', $options, false)
-            ?: OperationsCLient::class;
-        return new $operationsClientClass($options);
+        return new OperationsClient($options);
     }
 
     /**
      * @return string
      */
-    private static function defaultTransport()
+    private static function defaultTransport(): string
     {
         return self::getGrpcDependencyStatus()
             ? 'grpc'
             : 'rest';
     }
 
-    private function validateCallConfig(string $methodName)
+    private function validateCallConfig(string $methodName): array
     {
         // Ensure a method descriptor exists for the target method.
         if (!isset($this->descriptors[$methodName])) {
@@ -506,8 +473,8 @@ trait GapicClientTrait
                 throw new ValidationException("Requested method '$methodName' does not have a longRunning config " .
                     'in descriptor configuration.');
             }
-            // @TODO: check if the client implements `OperationsClientInterface` instead
-            if (!method_exists($this, 'getOperationsClient')) {
+            if (!$this instanceof LongRunningOperationProviderInterface
+                && !method_exists($this, 'getOperationsClient')) {
                 throw new ValidationException('Client missing required getOperationsClient ' .
                     "for longrunning call '$methodName'");
             }
@@ -550,7 +517,7 @@ trait GapicClientTrait
         string $methodName,
         Message $request,
         array $optionalArgs = []
-    ) {
+    ): PromiseInterface {
         // Convert method name to the UpperCamelCase of RPC names from lowerCamelCase of GAPIC method names
         // in order to find the method in the descriptor config.
         $methodName = ucfirst($methodName);
@@ -593,13 +560,13 @@ trait GapicClientTrait
      *
      * @experimental
      *
-     * @return PromiseInterface|PagedListResponse|BidiStream|ClientStream|ServerStream
+     * @return PromiseInterface|PagedListResponse|BidiStream|ClientStream|ServerStream|ResumableUpload
      */
     private function startApiCall(
         string $methodName,
         ?Message $request = null,
         array $optionalArgs = []
-    ) {
+    ): PromiseInterface|PagedListResponse|BidiStream|ClientStream|ServerStream|ResumableUpload {
         $methodDescriptors = $this->validateCallConfig($methodName);
         $callType = $methodDescriptors['callType'];
 
@@ -666,7 +633,7 @@ trait GapicClientTrait
         ?Message $request = null,
         int $callType = Call::UNARY_CALL,
         ?string $interfaceName = null
-    ) {
+    ): PromiseInterface|BidiStream|ClientStream|ServerStream {
         $optionalArgs = $this->configureCallOptions($optionalArgs);
         $callStack = $this->createCallStack(
             $this->configureCallConstructionOptions($methodName, $optionalArgs)
@@ -709,7 +676,7 @@ trait GapicClientTrait
      *
      * @return callable
      */
-    private function createCallStack(array $callConstructionOptions)
+    private function createCallStack(array $callConstructionOptions): callable
     {
         $fixedHeaders = $this->agentHeader;
         if ($quotaProject = $this->credentialsWrapper->getQuotaProject()) {
@@ -767,7 +734,7 @@ trait GapicClientTrait
      *
      * @return array
      */
-    private function configureCallConstructionOptions(string $methodName, array $optionalArgs)
+    private function configureCallConstructionOptions(string $methodName, array $optionalArgs): array
     {
         $retrySettings = $this->retrySettings[$methodName];
         $autoPopulatedFields = $this->descriptors[$methodName]['autoPopulatedFields'] ?? [];
@@ -792,10 +759,6 @@ trait GapicClientTrait
      */
     private function configureCallOptions(array $optionalArgs): array
     {
-        if ($this->isBackwardsCompatibilityMode()) {
-            return $optionalArgs;
-        }
-        // cast to CallOptions for new surfaces only
         return (new CallOptions($optionalArgs))->toArray();
     }
 
@@ -820,10 +783,10 @@ trait GapicClientTrait
         string $methodName,
         array $optionalArgs,
         Message $request,
-        $client,
+        object $client,
         ?string $interfaceName = null,
         ?string $operationClass = null
-    ) {
+    ): PromiseInterface {
         $optionalArgs = $this->configureCallOptions($optionalArgs);
         $callStack = $this->createCallStack(
             $this->configureCallConstructionOptions($methodName, $optionalArgs)
@@ -878,7 +841,7 @@ trait GapicClientTrait
         string $decodeType,
         Message $request,
         ?string $interfaceName = null
-    ) {
+    ): PagedListResponse {
         return $this->getPagedListResponseAsync(
             $methodName,
             $optionalArgs,
@@ -903,7 +866,7 @@ trait GapicClientTrait
         string $decodeType,
         ?Message $request,
         ?string $interfaceName = null
-    ) {
+    ): ResumableUpload {
         if (isset($this->retrySettings[$methodName])) {
             $callConstructionOptions = $this->configureCallConstructionOptions($methodName, $optionalArgs);
             $optionalArgs['retrySettings'] = $callConstructionOptions['retrySettings'];
@@ -941,7 +904,7 @@ trait GapicClientTrait
         string $decodeType,
         Message $request,
         ?string $interfaceName = null
-    ) {
+    ): PromiseInterface {
         $optionalArgs = $this->configureCallOptions($optionalArgs);
         $callStack = $this->createCallStack(
             $this->configureCallConstructionOptions($methodName, $optionalArgs)
@@ -971,7 +934,7 @@ trait GapicClientTrait
      *
      * @return string
      */
-    private function buildMethod(?string $interfaceName = null, ?string $methodName = null)
+    private function buildMethod(?string $interfaceName = null, ?string $methodName = null): string
     {
         return sprintf(
             '%s/%s',
@@ -986,7 +949,7 @@ trait GapicClientTrait
      *
      * @return array
      */
-    private function buildRequestParamsHeader(array $headerParams, ?Message $request = null)
+    private function buildRequestParamsHeader(array $headerParams, ?Message $request = null): array
     {
         $headers = [];
 
@@ -1042,7 +1005,7 @@ trait GapicClientTrait
     /**
      * The SERVICE_ADDRESS constant is set by GAPIC clients
      */
-    private static function getDefaultAudience()
+    private static function getDefaultAudience(): ?string
     {
         if (!defined('self::SERVICE_ADDRESS')) {
             return null;
@@ -1070,14 +1033,5 @@ trait GapicClientTrait
     protected function modifyStreamingCallable(callable &$callable)
     {
         // Do nothing - this method exists to allow callable modification by partial veneers.
-    }
-
-    /**
-     * @internal
-     */
-    private function isBackwardsCompatibilityMode(): bool
-    {
-        return $this->backwardsCompatibilityMode
-            ?? $this->backwardsCompatibilityMode = substr(__CLASS__, -11) === 'GapicClient';
     }
 }
