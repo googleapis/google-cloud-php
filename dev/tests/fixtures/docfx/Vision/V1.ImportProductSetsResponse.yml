@@ -9,7 +9,7 @@ items:
       Response message for the `ImportProductSets` method.
 
       This message is returned by the
-      <xref uid="\Google\LongRunning\OperationsClient::getOperation()">google.longrunning.Operations.GetOperation</xref>
+      <xref uid="\Google\LongRunning\Client\OperationsClient::getOperation()">google.longrunning.Operations.GetOperation</xref>
       method in the returned
       <xref uid="\Google\LongRunning\Operation::getResponse()">google.longrunning.Operation.response</xref>
       field.
