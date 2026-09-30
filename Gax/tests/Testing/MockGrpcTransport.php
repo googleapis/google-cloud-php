@@ -56,6 +56,8 @@ class MockGrpcTransport extends GrpcTransport
         parent::__construct('', $opts, logger: $logger);
     }
 
+    // phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps,PSR2.Methods.MethodDeclaration.Underscore
+
     /**
      * @param string $method
      * @param array $arguments
@@ -115,6 +117,8 @@ class MockGrpcTransport extends GrpcTransport
         $this->logCall($method, $deserialize, $metadata, $options);
         return $this->mockCall;
     }
+
+    // phpcs:enable
 
     /**
      * @param string $method
