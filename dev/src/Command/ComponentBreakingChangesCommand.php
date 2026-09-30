@@ -274,7 +274,12 @@ EOF)
         $proc->setTimeout(600);
         $proc->run();
 
-        return [0 !== $proc->getExitCode(), $proc->getOutput() . $proc->getErrorOutput()];
+        $lines = array_filter(
+            explode("\n", $proc->getOutput()),
+            fn(string $line) => str_starts_with($line, '::error')
+        );
+
+        return [0 !== $proc->getExitCode(), implode("\n", $lines) ?: trim($proc->getErrorOutput())];
     }
 
     private function commit(string $cwd, string $msg): void
