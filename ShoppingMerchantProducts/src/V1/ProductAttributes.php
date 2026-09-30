@@ -684,9 +684,8 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
     /**
      * Product Certifications, for example for energy efficiency labeling of
      * products recorded in the [EU EPREL](https://eprel.ec.europa.eu/screen/home)
-     * database. See the [Help
-     * Center](https://support.google.com/merchants/answer/13528839)
-     * article for more information.
+     * database. For more information, see
+     * [Certification](https://support.google.com/merchants/answer/13528839).
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductCertification certifications = 123;</code>
      */
@@ -738,6 +737,13 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductMinimumOrderValue minimum_order_values = 146;</code>
      */
     private $minimum_order_values;
+    /**
+     * The [warranty](https://support.google.com/merchants/answer/15957626) of
+     * the product.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Warranty warranty = 168;</code>
+     */
+    protected $warranty = null;
     /**
      * The [Vehicle Identification Number
      * (VIN)](https://support.google.com/google-ads/answer/14154510) of the
@@ -901,12 +907,13 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      */
     protected $vehicle_expenses = null;
     /**
-     * The [warranty](https://support.google.com/google-ads/answer/15957626) of
-     * the vehicle.
+     * Optional. [Return
+     * rules](https://support.google.com/merchants/answer/17081382) for the
+     * product.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Warranty warranty = 168;</code>
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.Returns returns = 171 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $warranty = null;
+    private $returns;
     /**
      * The display address of the property.
      *
@@ -1009,6 +1016,12 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string short_title = 194;</code>
      */
     protected $short_title = null;
+    /**
+     * The lease term of the property.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.LeaseTerm lease_term = 195;</code>
+     */
+    protected $lease_term = null;
     /**
      * Optional. Contains user-, merchant-, and manufacturer-authored [questions
      * and answers](https://support.google.com/merchants/answer/17085211) about
@@ -1369,9 +1382,8 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *     @type \Google\Shopping\Merchant\Products\V1\ProductCertification[] $certifications
      *           Product Certifications, for example for energy efficiency labeling of
      *           products recorded in the [EU EPREL](https://eprel.ec.europa.eu/screen/home)
-     *           database. See the [Help
-     *           Center](https://support.google.com/merchants/answer/13528839)
-     *           article for more information.
+     *           database. For more information, see
+     *           [Certification](https://support.google.com/merchants/answer/13528839).
      *     @type \Google\Shopping\Merchant\Products\V1\StructuredTitle $structured_title
      *           Structured title, for algorithmically (AI)-generated titles.
      *     @type \Google\Shopping\Merchant\Products\V1\StructuredDescription $structured_description
@@ -1395,6 +1407,9 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *           in the cart before a customer can initiate checkout. Supports multiple
      *           minimum order values. Different minimum order values can be specified per
      *           country, service and surface. Maximum entries: 100.
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\Warranty $warranty
+     *           The [warranty](https://support.google.com/merchants/answer/15957626) of
+     *           the product.
      *     @type string $vin
      *           The [Vehicle Identification Number
      *           (VIN)](https://support.google.com/google-ads/answer/14154510) of the
@@ -1477,9 +1492,10 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *           vehicle. See the [Vehicle
      *           expenses](https://support.google.com/google-ads/answer/15957154) for more
      *           information.
-     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\Warranty $warranty
-     *           The [warranty](https://support.google.com/google-ads/answer/15957626) of
-     *           the vehicle.
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\Returns[] $returns
+     *           Optional. [Return
+     *           rules](https://support.google.com/merchants/answer/17081382) for the
+     *           product.
      *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\DisplayAddress $display_address
      *           The display address of the property.
      *     @type float $latitude
@@ -1518,6 +1534,8 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *           The product fee for the property.
      *     @type string $short_title
      *           The short title of the item.
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\LeaseTerm $lease_term
+     *           The lease term of the property.
      *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\QuestionAndAnswer[] $questions_and_answers
      *           Optional. Contains user-, merchant-, and manufacturer-authored [questions
      *           and answers](https://support.google.com/merchants/answer/17085211) about
@@ -4914,9 +4932,8 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
     /**
      * Product Certifications, for example for energy efficiency labeling of
      * products recorded in the [EU EPREL](https://eprel.ec.europa.eu/screen/home)
-     * database. See the [Help
-     * Center](https://support.google.com/merchants/answer/13528839)
-     * article for more information.
+     * database. For more information, see
+     * [Certification](https://support.google.com/merchants/answer/13528839).
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductCertification certifications = 123;</code>
      * @return RepeatedField<\Google\Shopping\Merchant\Products\V1\ProductCertification>
@@ -4929,9 +4946,8 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
     /**
      * Product Certifications, for example for energy efficiency labeling of
      * products recorded in the [EU EPREL](https://eprel.ec.europa.eu/screen/home)
-     * database. See the [Help
-     * Center](https://support.google.com/merchants/answer/13528839)
-     * article for more information.
+     * database. For more information, see
+     * [Certification](https://support.google.com/merchants/answer/13528839).
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductCertification certifications = 123;</code>
      * @param \Google\Shopping\Merchant\Products\V1\ProductCertification[] $var
@@ -5149,6 +5165,44 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Products\V1\ProductMinimumOrderValue::class);
         $this->minimum_order_values = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The [warranty](https://support.google.com/merchants/answer/15957626) of
+     * the product.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Warranty warranty = 168;</code>
+     * @return \Google\Shopping\Merchant\Products\V1\ProductAttributes\Warranty|null
+     */
+    public function getWarranty()
+    {
+        return $this->warranty;
+    }
+
+    public function hasWarranty()
+    {
+        return isset($this->warranty);
+    }
+
+    public function clearWarranty()
+    {
+        unset($this->warranty);
+    }
+
+    /**
+     * The [warranty](https://support.google.com/merchants/answer/15957626) of
+     * the product.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Warranty warranty = 168;</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\Warranty $var
+     * @return $this
+     */
+    public function setWarranty($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\Warranty::class);
+        $this->warranty = $var;
 
         return $this;
     }
@@ -5848,39 +5902,31 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [warranty](https://support.google.com/google-ads/answer/15957626) of
-     * the vehicle.
+     * Optional. [Return
+     * rules](https://support.google.com/merchants/answer/17081382) for the
+     * product.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Warranty warranty = 168;</code>
-     * @return \Google\Shopping\Merchant\Products\V1\ProductAttributes\Warranty|null
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.Returns returns = 171 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Shopping\Merchant\Products\V1\ProductAttributes\Returns>
      */
-    public function getWarranty()
+    public function getReturns()
     {
-        return $this->warranty;
-    }
-
-    public function hasWarranty()
-    {
-        return isset($this->warranty);
-    }
-
-    public function clearWarranty()
-    {
-        unset($this->warranty);
+        return $this->returns;
     }
 
     /**
-     * The [warranty](https://support.google.com/google-ads/answer/15957626) of
-     * the vehicle.
+     * Optional. [Return
+     * rules](https://support.google.com/merchants/answer/17081382) for the
+     * product.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Warranty warranty = 168;</code>
-     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\Warranty $var
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.Returns returns = 171 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\Returns[] $var
      * @return $this
      */
-    public function setWarranty($var)
+    public function setReturns($var)
     {
-        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\Warranty::class);
-        $this->warranty = $var;
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Products\V1\ProductAttributes\Returns::class);
+        $this->returns = $arr;
 
         return $this;
     }
@@ -6399,6 +6445,42 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->short_title = $var;
+
+        return $this;
+    }
+
+    /**
+     * The lease term of the property.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.LeaseTerm lease_term = 195;</code>
+     * @return \Google\Shopping\Merchant\Products\V1\ProductAttributes\LeaseTerm|null
+     */
+    public function getLeaseTerm()
+    {
+        return $this->lease_term;
+    }
+
+    public function hasLeaseTerm()
+    {
+        return isset($this->lease_term);
+    }
+
+    public function clearLeaseTerm()
+    {
+        unset($this->lease_term);
+    }
+
+    /**
+     * The lease term of the property.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.LeaseTerm lease_term = 195;</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\LeaseTerm $var
+     * @return $this
+     */
+    public function setLeaseTerm($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\LeaseTerm::class);
+        $this->lease_term = $var;
 
         return $this;
     }

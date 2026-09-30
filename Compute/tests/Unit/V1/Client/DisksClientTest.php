@@ -1003,11 +1003,9 @@ class DisksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $etag = 'etag3123477';
-        $iamOwned = false;
         $version = 351608024;
         $expectedResponse = new Policy();
         $expectedResponse->setEtag($etag);
-        $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -1569,11 +1567,9 @@ class DisksClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $etag = 'etag3123477';
-        $iamOwned = false;
         $version = 351608024;
         $expectedResponse = new Policy();
         $expectedResponse->setEtag($etag);
-        $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
         // Mock request
