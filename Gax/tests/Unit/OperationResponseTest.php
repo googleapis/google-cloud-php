@@ -231,7 +231,7 @@ class OperationResponseTest extends TestCase
         $operationName = 'test-123';
         $operation = $this->prophesize(CustomOperation::class);
         $operation->isThisOperationDoneOrWhat()
-            ->shouldBeCalledTimes(2)
+            ->shouldBeCalledOnce()
             ->willReturn('Yes, it is!');
         $operation->getError()
             ->shouldBeCalledOnce()
@@ -364,10 +364,10 @@ class OperationResponseTest extends TestCase
         $operationName = 'test-123';
         $operation = $this->prophesize(CustomOperationWithErrorAnnotations::class);
         $operation->isThisOperationDoneOrWhat()
-            ->shouldBeCalledTimes(2)
+            ->shouldBeCalledOnce()
             ->willReturn('Yes, it is!');
         $operation->getTheErrorCode()
-            ->shouldBeCalledTimes(2)
+            ->shouldBeCalledOnce()
             ->willReturn(500);
         $operation->getTheErrorMessage()
             ->shouldBeCalledOnce()
@@ -419,6 +419,9 @@ class OperationResponseTest extends TestCase
      */
     public function testMisconfiguredCustomOperationThrowsException($operationClient)
     {
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage('Unable to determine operation error status for this service');
+
         $operationName = 'test-123';
         $operation = $this->prophesize(CustomOperationWithErrorAnnotations::class);
         $operation->isThisOperationDoneOrWhat()
@@ -431,9 +434,6 @@ class OperationResponseTest extends TestCase
             'lastProtoResponse' => $operation->reveal(),
         ];
         $operationResponse = new OperationResponse($operationName, $operationClient, $options);
-
-        $this->expectException(LogicException::class);
-        $this->expectExceptionMessage('Unable to determine operation error status for this service');
 
         $operationResponse->operationSucceeded();
     }

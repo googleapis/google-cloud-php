@@ -245,6 +245,9 @@ class InstanceConfigurationTest extends TestCase
             'displayName' => 'New Name',
         ];
 
+        $operationResponse = $this->prophesize(OperationResponse::class);
+        $operationResponse->getName()->willReturn('operation-name');
+        $operationResponse->getLastProtoResponse()->willReturn(null);
         $this->instanceAdminClient->updateInstanceConfig(
             Argument::that(function (UpdateInstanceConfigRequest $request) use ($config) {
                 $instanceConfig = $request->getInstanceConfig()->serializeToJsonString();
@@ -253,7 +256,7 @@ class InstanceConfigurationTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
+            ->willReturn($operationResponse->reveal());
 
         $instanceConfig = new InstanceConfiguration(
             $this->instanceAdminClient->reveal(),

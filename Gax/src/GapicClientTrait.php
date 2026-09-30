@@ -211,9 +211,9 @@ trait GapicClientTrait
     }
 
     /**
-     * Configures the GAPIC client based on an array of options.
+     * Configures the GAPIC client based on an array or ClientOptions instance.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     An array of required and optional arguments.
      *
      *     @type string $apiEndpoint
@@ -273,13 +273,19 @@ trait GapicClientTrait
      * }
      * @throws ValidationException
      */
-    private function setClientOptions(array $options): void
+    private function setClientOptions(array|ClientOptions $options): void
     {
-        // serviceAddress is now deprecated and acts as an alias for apiEndpoint
-        if (isset($options['serviceAddress'])) {
-            $options['apiEndpoint'] = $this->pluck('serviceAddress', $options, false);
+        if ($options instanceof ClientOptions) {
+            $this->clientOptions = clone $options;
+            $optionsArray = $options->toArray();
+        } else {
+            $optionsArray = $options;
         }
-        self::validateNotNull($options, [
+        // serviceAddress is now deprecated and acts as an alias for apiEndpoint
+        if (isset($optionsArray['serviceAddress'])) {
+            $optionsArray['apiEndpoint'] = $this->pluck('serviceAddress', $optionsArray, false);
+        }
+        self::validateNotNull($optionsArray, [
             'apiEndpoint',
             'serviceName',
             'descriptorsConfigPath',
@@ -288,7 +294,7 @@ trait GapicClientTrait
             'credentialsConfig',
             'transportConfig',
         ]);
-        self::traitValidate($options, [
+        self::traitValidate($optionsArray, [
             'credentials',
             'transport',
             'gapicVersion',
@@ -296,12 +302,12 @@ trait GapicClientTrait
             'libVersion',
         ]);
 
-        // "hasEmulator" is not a supported Client Option, but is used
-        // internally to determine if the client is running in emulator mode.
-        // Therefore, we need to remove it from the $options array before
-        // creating the ClientOptions.
-        $hasEmulator = $this->pluck('hasEmulator', $options, false) ?? false;
-        $options = new ClientOptions($options);
+        $hasEmulator = (bool) ($optionsArray['hasEmulator'] ?? false);
+        if ($this->clientOptions instanceof ClientOptions) {
+            $options = $this->clientOptions->fromArray($optionsArray);
+        } else {
+            $options = $this->clientOptions = $this->createClientOptions($optionsArray);
+        }
         $this->serviceName = $options['serviceName'];
         $this->retrySettings = RetrySettings::load(
             $this->serviceName,
@@ -439,7 +445,7 @@ trait GapicClientTrait
      *
      * @return OperationsClient
      */
-    private function createOperationsClient(array $options)
+    protected function createOperationsClient(array $options)
     {
         // Unset client-specific configuration options
         unset(
@@ -450,6 +456,9 @@ trait GapicClientTrait
 
         if (isset($options['operationsClient'])) {
             return $options['operationsClient'];
+        }
+        if (isset($this->clientOptions['operationsClient'])) {
+            return $this->clientOptions['operationsClient'];
         }
 
         return new OperationsClient($options);

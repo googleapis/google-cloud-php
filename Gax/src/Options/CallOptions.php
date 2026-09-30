@@ -77,7 +77,7 @@ class CallOptions implements ArrayAccess, OptionsInterface
      *           that object will be used instead of the method defaults.
      * }
      */
-    public function __construct(array $options)
+    public function __construct(array $options = [])
     {
         $this->fromArray($options);
     }
@@ -102,8 +102,10 @@ class CallOptions implements ArrayAccess, OptionsInterface
 
     /**
      * @param array $headers
+     *
+     * @return static
      */
-    public function setHeaders(array $headers): self
+    public function setHeaders(array $headers): static
     {
         $this->headers = $headers;
 
@@ -112,8 +114,10 @@ class CallOptions implements ArrayAccess, OptionsInterface
 
     /**
      * @param int|null $timeoutMillis
+     *
+     * @return static
      */
-    public function setTimeoutMillis(?int $timeoutMillis): self
+    public function setTimeoutMillis(?int $timeoutMillis): static
     {
         $this->timeoutMillis = $timeoutMillis;
 
@@ -138,8 +142,10 @@ class CallOptions implements ArrayAccess, OptionsInterface
      *           callable. By default these are passed to {@see \GuzzleHttp\Client} as request options.
      *           See {@link https://docs.guzzlephp.org/en/stable/request-options.html}.
      * }
+     *
+     * @return static
      */
-    public function setTransportOptions(array $transportOptions): self
+    public function setTransportOptions(array $transportOptions): static
     {
         $this->transportOptions = $transportOptions;
 
@@ -149,9 +155,9 @@ class CallOptions implements ArrayAccess, OptionsInterface
     /**
      * @param RetrySettings|array|null $retrySettings
      *
-     * @return $this
+     * @return static
      */
-    public function setRetrySettings(RetrySettings|array|null $retrySettings): self
+    public function setRetrySettings(RetrySettings|array|null $retrySettings): static
     {
         $this->retrySettings = $retrySettings;
 
@@ -161,23 +167,29 @@ class CallOptions implements ArrayAccess, OptionsInterface
     /**
      * @param array|null $middlewareOptions
      *
-     * @return $this
+     * @return static
      */
-    public function setMiddlewareOptions(array|null $middlewareOptions): self
+    public function setMiddlewareOptions(array|null $middlewareOptions): static
     {
         $this->middlewareOptions = $middlewareOptions;
 
         return $this;
     }
 
-    public function setMetadataCallback(callable|null $metadataCallback): self
+    /**
+     * @return static
+     */
+    public function setMetadataCallback(callable|null $metadataCallback): static
     {
         $this->metadataCallback = $metadataCallback;
 
         return $this;
     }
 
-    public function setAudience(?string $audience): self
+    /**
+     * @return static
+     */
+    public function setAudience(?string $audience): static
     {
         $this->audience = $audience;
 

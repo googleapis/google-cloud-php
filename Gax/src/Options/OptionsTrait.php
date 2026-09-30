@@ -47,7 +47,7 @@ trait OptionsTrait
      * @param string $filePath
      * @throws ValidationException
      */
-    private static function validateFileExists(string $filePath)
+    protected static function validateFileExists(string $filePath)
     {
         if (!file_exists($filePath)) {
             throw new ValidationException("Could not find specified file: $filePath");
@@ -65,7 +65,7 @@ trait OptionsTrait
     #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
-        return $this->$offset;
+        return $this->$offset ?? null;
     }
 
     /**
@@ -73,6 +73,11 @@ trait OptionsTrait
      */
     public function offsetSet($offset, $value): void
     {
+        $setter = 'set' . str_replace(['-', '_'], '', ucwords((string) $offset, '-_'));
+        if (method_exists($this, $setter)) {
+            $this->$setter($value);
+            return;
+        }
         throw new BadMethodCallException('Cannot set options through array access. Use the setters instead');
     }
 

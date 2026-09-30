@@ -76,7 +76,7 @@ class GrpcTransportOptions implements ArrayAccess, OptionsInterface
      *    @type null|false|LoggerInterface A PSR-3 Logger Interface.
      * }
      */
-    public function __construct(array $options)
+    public function __construct(array $options = [])
     {
         $this->fromArray($options);
     }
@@ -98,9 +98,9 @@ class GrpcTransportOptions implements ArrayAccess, OptionsInterface
     /**
      * @param array $stubOpts
      *
-     * @return $this
+     * @return static
      */
-    public function setStubOpts(array $stubOpts): self
+    public function setStubOpts(array $stubOpts): static
     {
         $this->stubOpts = $stubOpts;
 
@@ -110,9 +110,9 @@ class GrpcTransportOptions implements ArrayAccess, OptionsInterface
     /**
      * @param ?Channel $channel
      *
-     * @return $this
+     * @return static
      */
-    public function setChannel(?Channel $channel): self
+    public function setChannel(?Channel $channel): static
     {
         $this->channel = $channel;
 
@@ -122,9 +122,9 @@ class GrpcTransportOptions implements ArrayAccess, OptionsInterface
     /**
      * @param Interceptor[] $interceptors
      *
-     * @return $this
+     * @return static
      */
-    public function setInterceptors(array $interceptors): self
+    public function setInterceptors(array $interceptors): static
     {
         $this->interceptors = $interceptors;
 
@@ -134,9 +134,9 @@ class GrpcTransportOptions implements ArrayAccess, OptionsInterface
     /**
      * @param ?callable $clientCertSource
      *
-     * @return $this
+     * @return static
      */
-    public function setClientCertSource(?callable $clientCertSource): self
+    public function setClientCertSource(?callable $clientCertSource): static
     {
         if (!is_null($clientCertSource)) {
             $clientCertSource = Closure::fromCallable($clientCertSource);
@@ -149,9 +149,9 @@ class GrpcTransportOptions implements ArrayAccess, OptionsInterface
     /**
      * @param null|false|LoggerInterface $logger
      *
-     * @return $this
+     * @return static
      */
-    public function setLogger(null|false|LoggerInterface $logger): self
+    public function setLogger(null|false|LoggerInterface $logger): static
     {
         $this->logger = $logger;
 
