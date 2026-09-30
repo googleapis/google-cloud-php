@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Dev\Command;
 
+use Google\Cloud\Dev\RunProcess;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
@@ -27,12 +28,24 @@ use Symfony\Component\Yaml\Yaml;
 use RuntimeException;
 
 /**
- * Add a Component
+ * Add a Version to a Component
  * @internal
  */
 class ComponentAddVersionCommand extends Command
 {
-    private const OWL_BOT_REGEX='/.*\/\(([\w|]+)\).*/';
+    private $rootPath;
+    private RunProcess $runProcess;
+
+    /**
+     * @param string $rootPath The path to the repository root directory.
+     * @param RunProcess|null $runProcess Instance to execute Symfony Process commands, useful for tests.
+     */
+    public function __construct($rootPath, ?RunProcess $runProcess = null)
+    {
+        $this->rootPath = realpath($rootPath);
+        $this->runProcess = $runProcess ?: new RunProcess();
+        parent::__construct();
+    }
 
     protected function configure()
     {
@@ -44,57 +57,60 @@ class ComponentAddVersionCommand extends Command
                 'no-update',
                 null,
                 InputOption::VALUE_NONE,
-                'Do not run the update-component command after adding the component skeleton'
+                'Do not run the component:update command after adding the version'
             )
             ->addOption(
                 'timeout',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'The timeout limit for executing commands in seconds. Defaults to 60.',
+                'The timeout limit for executing commands in seconds. Defaults to 120.',
                 120
             );
-    }
-
-    private $rootPath;
-
-    /**
-     * @param string $rootPath The path to the repository root directory.\
-     */
-    public function __construct($rootPath)
-    {
-        $this->rootPath = realpath($rootPath);
-        parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $componentName = $input->getArgument('component');
         $version = $input->getArgument('version');
+        $unsafeTimeout = $input->getOption('timeout');
 
-        // Ensure component exists
-        $owlbotFile = sprintf('%s/%s/.OwlBot.yaml', $this->rootPath, $componentName);
-        if (!file_exists($owlbotFile)) {
-            throw new RuntimeException(".Owlbot.yaml for component '$componentName' not found.");
+        if (!is_numeric($unsafeTimeout)) {
+            throw new RuntimeException(
+                'Error: The timeout option must be a positive integer'
+            );
         }
-        $output->writeln("Adding new version '$version' to .OwlBot.yaml.");
-        $yaml = Yaml::parse(file_get_contents($owlbotFile));
-        foreach ($yaml['deep-copy-regex'] as $i => $deepCopyRegex) {
-            if (preg_match(self::OWL_BOT_REGEX, $deepCopyRegex['source'], $matches)) {
-                // ensure version doesn't already exist in .OwlBot.yaml before adding it
-                if (false !== array_search($version, explode('|', $matches[1]))) {
-                    $output->writeln("Version '$version' already exists in deep-copy-regex. Skipping... ");
-                    continue;
-                }
-                $newVersion = $matches[1] . '|' . $version;
-                $yaml['deep-copy-regex'][$i]['source'] = str_replace($matches[1], $newVersion, $matches[0]);
+        $timeout = (int) $unsafeTimeout;
+
+        $librarianFile = sprintf('%s/librarian.yaml', $this->rootPath);
+        if (!file_exists($librarianFile)) {
+            throw new RuntimeException('librarian.yaml not found.');
+        }
+
+        $yaml = Yaml::parse(file_get_contents($librarianFile));
+        $library = null;
+        foreach ($yaml['libraries'] ?? [] as $lib) {
+            if (($lib['output'] ?? null) === $componentName || ($lib['name'] ?? null) === $componentName) {
+                $library = $lib;
+                break;
             }
         }
-        // Ensure YAML has changed before writing it
-        if ($yaml != Yaml::parse(file_get_contents($owlbotFile))) {
-            file_put_contents($owlbotFile, Yaml::dump($yaml, 3, 2, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK));
+
+        if (!$library || empty($library['apis'])) {
+            throw new RuntimeException("Component '$componentName' not found in librarian.yaml.");
         }
 
-        // Run "update-component" command to generate the new version and add its sample to the README
+        $baseApiPath = dirname($library['apis'][0]['path']);
+        $newApiPath = $baseApiPath . '/' . $version;
+
+        $existingPaths = array_column($library['apis'], 'path');
+        if (in_array($newApiPath, $existingPaths, true)) {
+            $output->writeln("Version '$version' already exists in librarian.yaml. Skipping...");
+        } else {
+            $output->writeln("Adding new version '$version' to librarian.yaml.");
+            $this->runProcess->execute(['librarian', 'add', $newApiPath], $this->rootPath, $timeout);
+        }
+
+        // Run "component:update" command to generate the new version and add its sample to the README
         if ($input->getOption('no-update')) {
             // nothing left to do
             $output->writeln('Skipping component update: "--no-update" flag set');
@@ -102,8 +118,8 @@ class ComponentAddVersionCommand extends Command
         }
 
         $args = [
-            'component' => $componentName,
-            '--timeout' => $input->getOption('timeout'),
+            '--component' => [$componentName],
+            '--timeout' => $timeout,
         ];
         if (!$this->getApplication()->has('component:update')) {
             throw new \RuntimeException(
@@ -117,13 +133,14 @@ class ComponentAddVersionCommand extends Command
             return $returnCode;
         }
         // Run "component:update:readme-sample" command to ensure our README contains the latest version's sample.
-        $updateReadmeSampleArgs = ['--component' => [$componentName], '--update' => true];
-        if (!$updateReadmeSampleCommand = $this->getApplication()->find('component:update:readme-sample')) {
+        $updateReadmeSampleArgs = ['--component' => [$componentName], '--force' => true];
+        if (!$this->getApplication()->has('component:update:readme-sample')) {
             throw new \RuntimeException(
-                'Application does not have an component:update::readme-sample command. '
+                'Application does not have an component:update:readme-sample command. '
                 . 'Run with --no-update to skip this.'
             );
         }
+        $updateReadmeSampleCommand = $this->getApplication()->find('component:update:readme-sample');
         return $updateReadmeSampleCommand->run(new ArrayInput($updateReadmeSampleArgs), $output);
     }
 }

@@ -351,6 +351,8 @@ class GitHub
                 'body' => json_encode($settings),
             ]);
 
+            unset($this->targetInfoCache[$repoName]);
+
             return $res->getStatusCode() === 200;
         } catch (\Exception $e) {
             $this->logException($e);

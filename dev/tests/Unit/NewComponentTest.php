@@ -80,23 +80,23 @@ class NewComponentTest extends TestCase
             ],
             [
                 'foo/bar/v1/admin.proto',
-                ['version' => 'v1', 'protoPath' => 'foo/bar/(v1)']
+                ['version' => 'v1', 'protoPath' => 'foo/bar/v1']
             ],
             [
                 'foo/bar/v2/admin/admin.proto',
-                ['version' => 'v2', 'protoPath' => 'foo/bar/(v2)/admin']
+                ['version' => 'v2', 'protoPath' => 'foo/bar/v2/admin']
             ],
             [
                 'foo/bar/v2beta1/admin/admin.proto',
-                ['version' => 'v2beta1', 'protoPath' => 'foo/bar/(v2beta1)/admin']
+                ['version' => 'v2beta1', 'protoPath' => 'foo/bar/v2beta1/admin']
             ],
             [
                 'foo/bar/v1p1beta1/admin/admin.proto',
-                ['version' => 'v1p1beta1', 'protoPath' => 'foo/bar/(v1p1beta1)/admin']
+                ['version' => 'v1p1beta1', 'protoPath' => 'foo/bar/v1p1beta1/admin']
             ],
             [
                 'foo/v2/admin/v1/admin.proto',
-                ['version' => 'v1', 'protoPath' => 'foo/v2/admin/(v1)']
+                ['version' => 'v1', 'protoPath' => 'foo/v2/admin/v1']
             ],
             [
                 'foo/bar/admin/admin.proto',
@@ -167,7 +167,7 @@ EOF;
         $this->assertEquals('Google\Cloud\Speech', $new->phpNamespace);
         $this->assertEquals('speech', $new->shortName);
         $this->assertEquals('v2', $new->version);
-        $this->assertEquals('google/cloud/speech/(v2)', $new->protoPath);
+        $this->assertEquals('google/cloud/speech/v2', $new->protoPath);
     }
 
     public function testFromProtoWithAds()
@@ -188,7 +188,7 @@ EOF;
         $this->assertEquals('GPBMetadata\Google\Ads\Admanager', $new->gpbMetadataNamespace);
         $this->assertEquals('admanager', $new->shortName);
         $this->assertEquals('v1', $new->version);
-        $this->assertEquals('google/ads/admanager/(v1)', $new->protoPath);
+        $this->assertEquals('google/ads/admanager/v1', $new->protoPath);
 
         // DataManager
         $protoContents = <<<EOF
