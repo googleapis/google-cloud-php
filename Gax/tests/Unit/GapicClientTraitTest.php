@@ -1113,8 +1113,7 @@ class GapicClientTraitTest extends TestCase
         $options = (new ($customOptionsClass::class)())
             ->setDisableRetries(true)
             ->setApiEndpoint('abc123')
-            ->setDeveloperToken('dev-token-123')
-            ->setCustomOption('addNewOption', true);
+            ->setDeveloperToken('dev-token-123');
 
         $client = new GapicV2SurfaceClient($options);
         $resolvedOptions = $client->getClientOptions();
@@ -1122,7 +1121,6 @@ class GapicClientTraitTest extends TestCase
         $this->assertInstanceOf($customOptionsClass::class, $resolvedOptions);
         $this->assertNotSame($options, $resolvedOptions);
         $this->assertSame('dev-token-123', $resolvedOptions->getDeveloperToken());
-        $this->assertTrue($resolvedOptions->getCustomOption('addNewOption'));
         $this->assertTrue($resolvedOptions['disableRetries']);
         $this->assertEquals('abc123', $resolvedOptions['apiEndpoint']);
         $this->assertEquals('test.interface.v1.api', $resolvedOptions['serviceName']);
@@ -1133,14 +1131,12 @@ class GapicClientTraitTest extends TestCase
         $client = new StubGapicClientExtension();
         $updatedOptions = $client->buildClientOptions([
             'developer-token' => 'dev-token-456',
-            'customFlag' => true,
         ]);
         $client->setClientOptions($updatedOptions);
 
         $resolvedOptions = $client->getClientOptions();
         $this->assertInstanceOf(StubCustomClientOptions::class, $resolvedOptions);
         $this->assertSame('dev-token-456', $resolvedOptions->getDeveloperToken());
-        $this->assertTrue($resolvedOptions->getCustomOption('customFlag'));
     }
 
     private function buildClientToTestModifyCallMethods($clientClass = null)

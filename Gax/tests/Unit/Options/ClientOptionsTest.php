@@ -70,26 +70,6 @@ class ClientOptionsTest extends TestCase
         $this->assertEquals('fluid.endpoint:443', $fluid['apiEndpoint']);
     }
 
-    public function testCustomOptions()
-    {
-        $options = (new ClientOptions([
-            'experimentalOption' => 'exp-val',
-        ]))->setCustomOption('anotherOption', 123);
-
-        $this->assertTrue(isset($options['experimentalOption']));
-        $this->assertTrue(isset($options['anotherOption']));
-        $this->assertFalse(isset($options['nonExistentOption']));
-        $this->assertEquals('exp-val', $options['experimentalOption']);
-        $this->assertEquals('exp-val', $options->getCustomOption('experimentalOption'));
-        $this->assertEquals(123, $options['anotherOption']);
-        $this->assertEquals('default', $options->getCustomOption('nonExistentOption', 'default'));
-
-        $arr = $options->toArray();
-        $this->assertArrayNotHasKey('customOptions', $arr);
-        $this->assertEquals('exp-val', $arr['experimentalOption']);
-        $this->assertEquals(123, $arr['anotherOption']);
-    }
-
     public function testSubclassClientOptions()
     {
         $options = new class([
@@ -132,16 +112,11 @@ class ClientOptionsTest extends TestCase
         $this->assertEquals('cust-456', $arr['loginCustomerId']);
     }
 
-    public function testArrayAccessSetAndEmulatorConfig()
+    public function testArrayAccessSet()
     {
         $options = new ClientOptions();
         $options['apiEndpoint'] ??= 'localhost:8086';
-        $options['transportConfig']['grpc']['stubOpts']['credentials'] ??= 'insecure-channel-creds';
-        $options['customOption'] = 'custom-value';
 
         $this->assertEquals('localhost:8086', $options['apiEndpoint']);
-        $this->assertEquals('insecure-channel-creds', $options['transportConfig']['grpc']['stubOpts']['credentials']);
-        $this->assertEquals('custom-value', $options['customOption']);
-        $this->assertEquals('custom-value', $options->getCustomOption('customOption'));
     }
 }

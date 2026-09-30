@@ -56,29 +56,16 @@ trait OptionsTrait
 
     public function offsetExists($offset): bool
     {
-        return isset($this->$offset) || isset($this->customOptions[$offset]);
+        return isset($this->$offset);
     }
 
     /**
      * @return mixed
      */
     #[\ReturnTypeWillChange]
-    public function &offsetGet($offset)
+    public function offsetGet($offset)
     {
-        if (property_exists($this, $offset)) {
-            return $this->$offset;
-        }
-
-        if (isset($this->customOptions) && is_array($this->customOptions)) {
-            if (!array_key_exists($offset, $this->customOptions)) {
-                $null = null;
-                return $null;
-            }
-            return $this->customOptions[$offset];
-        }
-
-        $null = null;
-        return $null;
+        return $this->$offset ?? null;
     }
 
     /**
@@ -87,12 +74,8 @@ trait OptionsTrait
     public function offsetSet($offset, $value): void
     {
         $setter = 'set' . str_replace(['-', '_'], '', ucwords((string) $offset, '-_'));
-        if ($setter !== 'setCustomOption' && method_exists($this, $setter)) {
+        if (method_exists($this, $setter)) {
             $this->$setter($value);
-            return;
-        }
-        if (method_exists($this, 'setCustomOption')) {
-            $this->setCustomOption((string) $offset, $value);
             return;
         }
         throw new BadMethodCallException('Cannot set options through array access. Use the setters instead');
@@ -110,15 +93,9 @@ trait OptionsTrait
     {
         $arr = [];
         foreach (get_object_vars($this) as $key => $value) {
-            if ($key === 'customOptions') {
-                continue;
-            }
             $arr[$key] = $value instanceof OptionsInterface
                  ? $value->toArray()
                  : $value;
-        }
-        if (isset($this->customOptions) && is_array($this->customOptions)) {
-            $arr += $this->customOptions;
         }
         return $arr;
     }

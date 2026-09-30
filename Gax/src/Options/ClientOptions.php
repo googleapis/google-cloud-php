@@ -95,8 +95,6 @@ class ClientOptions implements ArrayAccess, OptionsInterface
 
     protected null|false|LoggerInterface $logger = null;
 
-    protected array $customOptions = [];
-
     /**
      * @param array $options {
      *     @type string $apiEndpoint
@@ -198,10 +196,8 @@ class ClientOptions implements ArrayAccess, OptionsInterface
                 continue;
             }
             $setter = 'set' . str_replace(['-', '_'], '', ucwords((string) $key, '-_'));
-            if ($setter !== 'setCustomOption' && method_exists($this, $setter)) {
+            if (method_exists($this, $setter)) {
                 $this->$setter($value);
-            } else {
-                $this->setCustomOption((string) $key, $value);
             }
         }
 
@@ -435,43 +431,5 @@ class ClientOptions implements ArrayAccess, OptionsInterface
         $this->logger = $logger;
 
         return $this;
-    }
-
-    /**
-     * Set a custom or experimental option not explicitly defined on ClientOptions.
-     *
-     * @param string $key
-     * @param mixed $value
-     *
-     * @return static
-     */
-    public function setCustomOption(string $key, mixed $value): static
-    {
-        $this->customOptions[$key] = $value;
-
-        return $this;
-    }
-
-    /**
-     * Get a custom or experimental option value.
-     *
-     * @param string $key
-     * @param mixed $default
-     *
-     * @return mixed
-     */
-    public function getCustomOption(string $key, mixed $default = null): mixed
-    {
-        return $this->customOptions[$key] ?? $default;
-    }
-
-    /**
-     * Get all custom or experimental options.
-     *
-     * @return array
-     */
-    public function getCustomOptions(): array
-    {
-        return $this->customOptions;
     }
 }

@@ -302,12 +302,12 @@ trait GapicClientTrait
             'libVersion',
         ]);
 
+        $hasEmulator = (bool) ($optionsArray['hasEmulator'] ?? false);
         if ($this->clientOptions instanceof ClientOptions) {
             $options = $this->clientOptions->fromArray($optionsArray);
         } else {
             $options = $this->clientOptions = $this->createClientOptions($optionsArray);
         }
-        $hasEmulator = (bool) ($options['hasEmulator'] ?? false);
         $this->serviceName = $options['serviceName'];
         $this->retrySettings = RetrySettings::load(
             $this->serviceName,

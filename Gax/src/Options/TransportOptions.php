@@ -125,24 +125,19 @@ class TransportOptions implements ArrayAccess, OptionsInterface
         if ($offset === 'grpc-fallback') {
             $offset = 'grpcFallback';
         }
-        return isset($this->$offset) || isset($this->customOptions[$offset]);
+        return isset($this->$offset);
     }
 
     /**
      * @return mixed
      */
     #[\ReturnTypeWillChange]
-    public function &offsetGet($offset)
+    public function offsetGet($offset)
     {
         if ($offset === 'grpc-fallback') {
             $offset = 'grpcFallback';
         }
-        if (property_exists($this, $offset)) {
-            return $this->$offset;
-        }
-
-        $null = null;
-        return $null;
+        return $this->$offset ?? null;
     }
 
     public function toArray(): array
