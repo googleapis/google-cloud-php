@@ -35,12 +35,11 @@ class ContextContent extends \Google\Protobuf\Internal\Message
      */
     protected $ingestion_time = null;
     /**
-     * If the context content was generated from a tool call, specify the
-     * answer record associated with the tool call.
+     * Optional. The answer record of the tool execution result.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/answerRecords/<Answer Record ID>`.
      *
-     * Generated from protobuf field <code>string answer_record = 4;</code>
+     * Generated from protobuf field <code>string answer_record = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $answer_record = '';
 
@@ -58,8 +57,7 @@ class ContextContent extends \Google\Protobuf\Internal\Message
      *           Output only. The time when this information was incorporated into the
      *           relevant context reference.
      *     @type string $answer_record
-     *           If the context content was generated from a tool call, specify the
-     *           answer record associated with the tool call.
+     *           Optional. The answer record of the tool execution result.
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/answerRecords/<Answer Record ID>`.
      * }
@@ -160,12 +158,11 @@ class ContextContent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the context content was generated from a tool call, specify the
-     * answer record associated with the tool call.
+     * Optional. The answer record of the tool execution result.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/answerRecords/<Answer Record ID>`.
      *
-     * Generated from protobuf field <code>string answer_record = 4;</code>
+     * Generated from protobuf field <code>string answer_record = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getAnswerRecord()
@@ -174,12 +171,11 @@ class ContextContent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the context content was generated from a tool call, specify the
-     * answer record associated with the tool call.
+     * Optional. The answer record of the tool execution result.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/answerRecords/<Answer Record ID>`.
      *
-     * Generated from protobuf field <code>string answer_record = 4;</code>
+     * Generated from protobuf field <code>string answer_record = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

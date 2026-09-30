@@ -217,6 +217,25 @@ final class ConversationProfilesClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * companion_agent resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $companionAgent
+     *
+     * @return string The formatted companion_agent resource.
+     */
+    public static function companionAgentName(string $project, string $location, string $companionAgent): string
+    {
+        return self::getPathTemplate('companionAgent')->render([
+            'project' => $project,
+            'location' => $location,
+            'companion_agent' => $companionAgent,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * conversation_model resource.
      *
      * @param string $project
@@ -559,6 +578,7 @@ final class ConversationProfilesClient
      * Template: Pattern
      * - agent: projects/{project}/agent
      * - cXSecuritySettings: projects/{project}/locations/{location}/securitySettings/{security_settings}
+     * - companionAgent: projects/{project}/locations/{location}/companionAgents/{companion_agent}
      * - conversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - conversationProfile: projects/{project}/conversationProfiles/{conversation_profile}
      * - document: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}

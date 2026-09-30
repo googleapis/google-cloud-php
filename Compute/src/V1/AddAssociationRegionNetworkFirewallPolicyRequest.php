@@ -16,6 +16,14 @@ use Google\Protobuf\RepeatedField;
 class AddAssociationRegionNetworkFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Name of the firewall policy associated with the target network to swap
+     * association with. This field is mutually exclusive with
+     * 'replace_existing_association'.
+     *
+     * Generated from protobuf field <code>optional string associated_policy_to_be_replaced = 240901404;</code>
+     */
+    protected $associated_policy_to_be_replaced = null;
+    /**
      * Name of the firewall policy to update.
      *
      * Generated from protobuf field <code>string firewall_policy = 498173265 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -89,6 +97,10 @@ class AddAssociationRegionNetworkFirewallPolicyRequest extends \Google\Protobuf\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $associated_policy_to_be_replaced
+     *           Name of the firewall policy associated with the target network to swap
+     *           association with. This field is mutually exclusive with
+     *           'replace_existing_association'.
      *     @type string $firewall_policy
      *           Name of the firewall policy to update.
      *     @type \Google\Cloud\Compute\V1\FirewallPolicyAssociation $firewall_policy_association_resource
@@ -118,6 +130,46 @@ class AddAssociationRegionNetworkFirewallPolicyRequest extends \Google\Protobuf\
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Name of the firewall policy associated with the target network to swap
+     * association with. This field is mutually exclusive with
+     * 'replace_existing_association'.
+     *
+     * Generated from protobuf field <code>optional string associated_policy_to_be_replaced = 240901404;</code>
+     * @return string
+     */
+    public function getAssociatedPolicyToBeReplaced()
+    {
+        return isset($this->associated_policy_to_be_replaced) ? $this->associated_policy_to_be_replaced : '';
+    }
+
+    public function hasAssociatedPolicyToBeReplaced()
+    {
+        return isset($this->associated_policy_to_be_replaced);
+    }
+
+    public function clearAssociatedPolicyToBeReplaced()
+    {
+        unset($this->associated_policy_to_be_replaced);
+    }
+
+    /**
+     * Name of the firewall policy associated with the target network to swap
+     * association with. This field is mutually exclusive with
+     * 'replace_existing_association'.
+     *
+     * Generated from protobuf field <code>optional string associated_policy_to_be_replaced = 240901404;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAssociatedPolicyToBeReplaced($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->associated_policy_to_be_replaced = $var;
+
+        return $this;
     }
 
     /**
