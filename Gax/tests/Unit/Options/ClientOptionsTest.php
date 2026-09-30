@@ -131,4 +131,17 @@ class ClientOptionsTest extends TestCase
         $this->assertEquals('dev-123', $arr['developerToken']);
         $this->assertEquals('cust-456', $arr['loginCustomerId']);
     }
+
+    public function testArrayAccessSetAndEmulatorConfig()
+    {
+        $options = new ClientOptions();
+        $options['apiEndpoint'] ??= 'localhost:8086';
+        $options['transportConfig']['grpc']['stubOpts']['credentials'] ??= 'insecure-channel-creds';
+        $options['customOption'] = 'custom-value';
+
+        $this->assertEquals('localhost:8086', $options['apiEndpoint']);
+        $this->assertEquals('insecure-channel-creds', $options['transportConfig']['grpc']['stubOpts']['credentials']);
+        $this->assertEquals('custom-value', $options['customOption']);
+        $this->assertEquals('custom-value', $options->getCustomOption('customOption'));
+    }
 }

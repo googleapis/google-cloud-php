@@ -198,7 +198,7 @@ class ClientOptions implements ArrayAccess, OptionsInterface
                 continue;
             }
             $setter = 'set' . str_replace(['-', '_'], '', ucwords((string) $key, '-_'));
-            if (method_exists($this, $setter)) {
+            if ($setter !== 'setCustomOption' && method_exists($this, $setter)) {
                 $this->$setter($value);
             } else {
                 $this->setCustomOption((string) $key, $value);
