@@ -50,6 +50,7 @@ use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\Transport\RestTransport;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\LongRunning\Client\OperationsClient as V2OperationsClient;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Internal\Message;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -174,7 +175,7 @@ trait GapicClientTrait
      *
      * @experimental
      */
-    public function close()
+    public function close(): void
     {
         $this->transport->close();
     }
@@ -454,9 +455,9 @@ trait GapicClientTrait
 
     /**
      * @param array $options
-     * @return OperationsClient
+     * @return OperationsClient|V2OperationsClient|object
      */
-    private function createOperationsClient(array $options)
+    protected function createOperationsClient(array $options)
     {
         $this->pluckArray([
             'serviceName',
@@ -470,8 +471,11 @@ trait GapicClientTrait
         }
 
         // operationsClientClass option
+        $defaultClass = $this->isBackwardsCompatibilityMode()
+            ? OperationsClient::class
+            : V2OperationsClient::class;
         $operationsClientClass = $this->pluck('operationsClientClass', $options, false)
-            ?: OperationsCLient::class;
+            ?: $defaultClass;
         return new $operationsClientClass($options);
     }
 
