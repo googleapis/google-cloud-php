@@ -54,3 +54,11 @@ Update your `google/gax` dependency to `^2.0`:
 - Added `declare(strict_types=1)` across all `Google\ApiCore` files.
 - Added native parameter, property, and return type declarations across all `Google\ApiCore` classes, interfaces (`TransportInterface`, `MiddlewareInterface`, `ResourceTemplateInterface`, `ServerStreamingCallInterface`, `ResumableUploadTransportInterface`, `HeaderCredentialsInterface`), and traits.
 - **`PathTemplate::__construct(string $path)`** now requires a non-null `string`.
+- **`OperationResponse`**:
+  - `__construct(string $operationName, object $operationsClient, array $options = [])` now requires non-null `$operationName` (`string`) and `$operationsClient` (`object`).
+  - `getName()` now returns non-nullable `string`.
+  - `getError()` now returns `?Google\Rpc\Status`.
+  - `getLastProtoResponse()` now returns `?Google\LongRunning\Operation`.
+  - `getOperationsClient()` now returns `Google\LongRunning\Client\OperationsClient|Google\ApiCore\OperationsClientInterface`.
+  - Custom operations clients (e.g., Compute's `ZoneOperationsClient`) and custom operation options are now encapsulated in `Google\ApiCore\CustomOperationsClient` (implementing `Google\ApiCore\OperationsClientInterface`), which normalizes custom operation proto responses into `Google\LongRunning\Operation`.
+
