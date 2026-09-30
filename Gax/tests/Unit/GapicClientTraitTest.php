@@ -1093,16 +1093,54 @@ class GapicClientTraitTest extends TestCase
         $this->assertArrayNotHasKey('serviceAddress', $updatedOptions);
     }
 
-    public function testModifyClientOptions()
+    public function testExtendedClientOptions()
     {
-        $options = [];
+        $customOptionsClass = new class() extends \Google\ApiCore\Options\ClientOptions {
+            protected ?string $developerToken = null;
+
+            public function setDeveloperToken(?string $developerToken): static
+            {
+                $this->developerToken = $developerToken;
+                return $this;
+            }
+
+            public function getDeveloperToken(): ?string
+            {
+                return $this->developerToken;
+            }
+        };
+
+        $options = (new ($customOptionsClass::class)())
+            ->setDisableRetries(true)
+            ->setApiEndpoint('abc123')
+            ->setDeveloperToken('dev-token-123')
+            ->setCustomOption('addNewOption', true);
+
+        $client = new GapicV2SurfaceClient($options);
+        $resolvedOptions = $client->getClientOptions();
+
+        $this->assertInstanceOf($customOptionsClass::class, $resolvedOptions);
+        $this->assertNotSame($options, $resolvedOptions);
+        $this->assertSame('dev-token-123', $resolvedOptions->getDeveloperToken());
+        $this->assertTrue($resolvedOptions->getCustomOption('addNewOption'));
+        $this->assertTrue($resolvedOptions['disableRetries']);
+        $this->assertEquals('abc123', $resolvedOptions['apiEndpoint']);
+        $this->assertEquals('test.interface.v1.api', $resolvedOptions['serviceName']);
+    }
+
+    public function testCreateClientOptionsOverride()
+    {
         $client = new StubGapicClientExtension();
-        $updatedOptions = $client->buildClientOptions($options);
+        $updatedOptions = $client->buildClientOptions([
+            'developer-token' => 'dev-token-456',
+            'customFlag' => true,
+        ]);
         $client->setClientOptions($updatedOptions);
 
-        $this->assertArrayHasKey('addNewOption', $updatedOptions);
-        $this->assertTrue($updatedOptions['disableRetries']);
-        $this->assertEquals('abc123', $updatedOptions['apiEndpoint']);
+        $resolvedOptions = $client->getClientOptions();
+        $this->assertInstanceOf(StubCustomClientOptions::class, $resolvedOptions);
+        $this->assertSame('dev-token-456', $resolvedOptions->getDeveloperToken());
+        $this->assertTrue($resolvedOptions->getCustomOption('customFlag'));
     }
 
     private function buildClientToTestModifyCallMethods($clientClass = null)
@@ -1957,6 +1995,7 @@ class StubGapicClient
         createOperationsClient as public;
         createTransport as public;
         determineMtlsEndpoint as public;
+        getClientOptions as public;
         getGapicVersion as public;
         getCredentialsWrapper as public;
         getPagedListResponse as public;
@@ -2027,13 +2066,27 @@ trait GapicClientStubTrait
     }
 }
 
+class StubCustomClientOptions extends \Google\ApiCore\Options\ClientOptions
+{
+    protected ?string $developerToken = null;
+
+    public function setDeveloperToken(?string $developerToken): static
+    {
+        $this->developerToken = $developerToken;
+        return $this;
+    }
+
+    public function getDeveloperToken(): ?string
+    {
+        return $this->developerToken;
+    }
+}
+
 class StubGapicClientExtension extends StubGapicClient
 {
-    protected function modifyClientOptions(array &$options)
+    protected function createClientOptions(array $options): \Google\ApiCore\Options\ClientOptions
     {
-        $options['disableRetries'] = true;
-        $options['addNewOption'] = true;
-        $options['apiEndpoint'] = 'abc123';
+        return new StubCustomClientOptions($options);
     }
 
     protected function modifyUnaryCallable(callable &$callable)
@@ -2138,6 +2191,7 @@ class CustomOperationsClient
 class GapicV2SurfaceClient
 {
     use GapicClientTrait {
+        getClientOptions as public;
         startCall as public;
     }
     use GapicClientStubTrait;
@@ -2145,7 +2199,7 @@ class GapicV2SurfaceClient
         ClientDefaultsTrait::getClientDefaults insteadof GapicClientTrait;
     }
 
-    public function __construct(array $options = [])
+    public function __construct(array|\Google\ApiCore\Options\ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -2155,5 +2209,4 @@ class GapicV2SurfaceClient
     {
         return $this->agentHeader;
     }
-
 }

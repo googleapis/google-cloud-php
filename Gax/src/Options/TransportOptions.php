@@ -43,11 +43,11 @@ class TransportOptions implements ArrayAccess, OptionsInterface
 {
     use OptionsTrait;
 
-    private GrpcTransportOptions $grpc;
+    protected GrpcTransportOptions $grpc;
 
-    private GrpcFallbackTransportOptions $grpcFallback;
+    protected GrpcFallbackTransportOptions $grpcFallback;
 
-    private RestTransportOptions $rest;
+    protected RestTransportOptions $rest;
 
     /**
      * @param array $options {
@@ -58,56 +58,98 @@ class TransportOptions implements ArrayAccess, OptionsInterface
      *    @type array $rest
      * }
      */
-    public function __construct(array $options)
+    public function __construct(array $options = [])
     {
         $this->fromArray($options);
     }
 
     /**
-     * Sets the array of options as class properites.
+     * Sets the array of options as class properties.
      *
      * @param array $arr See the constructor for the list of supported options.
      */
-    private function fromArray(array $arr): void
+    protected function fromArray(array $arr): void
     {
-        $this->setGrpc(new GrpcTransportOptions($arr['grpc'] ?? []));
-        $this->setGrpcFallback(new GrpcFallbackTransportOptions($arr['grpc-fallback'] ?? []));
-        $this->setRest(new RestTransportOptions($arr['rest'] ?? []));
+        $this->setGrpc($arr['grpc'] ?? []);
+        $this->setGrpcFallback($arr['grpc-fallback'] ?? $arr['grpcFallback'] ?? []);
+        $this->setRest($arr['rest'] ?? []);
     }
 
     /**
-     * @param GrpcTransportOptions $grpc
+     * @param GrpcTransportOptions|array $grpc
      *
-     * @return $this
+     * @return static
      */
-    public function setGrpc(GrpcTransportOptions $grpc): self
+    public function setGrpc(GrpcTransportOptions|array $grpc): static
     {
+        if (is_array($grpc)) {
+            $grpc = new GrpcTransportOptions($grpc);
+        }
         $this->grpc = $grpc;
 
         return $this;
     }
 
     /**
-     * @param GrpcFallbackTransportOptions $grpcFallback
+     * @param GrpcFallbackTransportOptions|array $grpcFallback
      *
-     * @return $this
+     * @return static
      */
-    public function setGrpcFallback(GrpcFallbackTransportOptions $grpcFallback): self
+    public function setGrpcFallback(GrpcFallbackTransportOptions|array $grpcFallback): static
     {
+        if (is_array($grpcFallback)) {
+            $grpcFallback = new GrpcFallbackTransportOptions($grpcFallback);
+        }
         $this->grpcFallback = $grpcFallback;
 
         return $this;
     }
 
     /**
-     * @param RestTransportOptions $rest
+     * @param RestTransportOptions|array $rest
      *
-     * @return $this
+     * @return static
      */
-    public function setRest(RestTransportOptions $rest): self
+    public function setRest(RestTransportOptions|array $rest): static
     {
+        if (is_array($rest)) {
+            $rest = new RestTransportOptions($rest);
+        }
         $this->rest = $rest;
 
         return $this;
+    }
+
+    public function offsetExists($offset): bool
+    {
+        if ($offset === 'grpc-fallback') {
+            $offset = 'grpcFallback';
+        }
+        return isset($this->$offset) || isset($this->customOptions[$offset]);
+    }
+
+    /**
+     * @return mixed
+     */
+    #[\ReturnTypeWillChange]
+    public function offsetGet($offset)
+    {
+        if ($offset === 'grpc-fallback') {
+            $offset = 'grpcFallback';
+        }
+        if (property_exists($this, $offset)) {
+            return $this->$offset;
+        }
+
+        return $this->customOptions[$offset] ?? null;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'grpc' => $this->grpc->toArray(),
+            'grpc-fallback' => $this->grpcFallback->toArray(),
+            'rest' => $this->rest->toArray(),
+        ];
     }
 }

@@ -47,7 +47,7 @@ trait OptionsTrait
      * @param string $filePath
      * @throws ValidationException
      */
-    private static function validateFileExists(string $filePath)
+    protected static function validateFileExists(string $filePath)
     {
         if (!file_exists($filePath)) {
             throw new ValidationException("Could not find specified file: $filePath");
@@ -56,7 +56,7 @@ trait OptionsTrait
 
     public function offsetExists($offset): bool
     {
-        return isset($this->$offset);
+        return isset($this->$offset) || isset($this->customOptions[$offset]);
     }
 
     /**
@@ -65,7 +65,11 @@ trait OptionsTrait
     #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
-        return $this->$offset;
+        if (property_exists($this, $offset)) {
+            return $this->$offset;
+        }
+
+        return $this->customOptions[$offset] ?? null;
     }
 
     /**
@@ -88,9 +92,15 @@ trait OptionsTrait
     {
         $arr = [];
         foreach (get_object_vars($this) as $key => $value) {
+            if ($key === 'customOptions') {
+                continue;
+            }
             $arr[$key] = $value instanceof OptionsInterface
                  ? $value->toArray()
                  : $value;
+        }
+        if (isset($this->customOptions) && is_array($this->customOptions)) {
+            $arr += $this->customOptions;
         }
         return $arr;
     }

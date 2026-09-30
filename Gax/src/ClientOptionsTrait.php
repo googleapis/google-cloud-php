@@ -53,6 +53,7 @@ trait ClientOptionsTrait
     use ArrayTrait;
 
     private static ?string $gapicVersionFromFile = null;
+    private ?ClientOptions $clientOptions = null;
 
     private static function getGapicVersion(array $options): string
     {
@@ -92,7 +93,20 @@ trait ClientOptionsTrait
     private function buildClientOptions(array|ClientOptions $options): array
     {
         if ($options instanceof ClientOptions) {
-            $options = $options->toArray();
+            $this->clientOptions = clone $options;
+            $options = array_filter(
+                $options->toArray(),
+                fn ($v) => $v !== null && $v !== []
+            );
+            if (isset($options['transportConfig'])) {
+                foreach ($options['transportConfig'] as $transport => $config) {
+                    $options['transportConfig'][$transport] = array_filter(
+                        $config,
+                        fn ($v) => $v !== null && $v !== []
+                    );
+                }
+                $options['transportConfig'] = array_filter($options['transportConfig']);
+            }
         }
 
         // Build $defaultOptions starting from top level
@@ -175,13 +189,6 @@ trait ClientOptionsTrait
             $options['transportConfig']['grpc-fallback']['logger'] = $options['logger'] ?? null;
         }
 
-        $preModifiedOptions = $options;
-        $this->modifyClientOptions($options);
-        // NOTE: this is required to ensure backwards compatiblity with $options['apiEndpoint']
-        if ($options['apiEndpoint'] !== $preModifiedOptions['apiEndpoint']) {
-            $apiEndpoint = $options['apiEndpoint'];
-        }
-
         // serviceAddress is now deprecated and acts as an alias for apiEndpoint
         if (isset($options['serviceAddress'])) {
             $apiEndpoint = $this->pluck('serviceAddress', $options, false);
@@ -241,6 +248,31 @@ trait ClientOptionsTrait
         return $options;
     }
 
+    /**
+     * Get the resolved ClientOptions for the client. This method is protected to support
+     * use by customized clients.
+     *
+     * @access private
+     * @return ?ClientOptions
+     */
+    protected function getClientOptions(): ?ClientOptions
+    {
+        return $this->clientOptions;
+    }
+
+    /**
+     * Create the ClientOptions instance for the client. Customized clients may override
+     * this method to return a ClientOptions subclass.
+     *
+     * @param array $options
+     * @access private
+     * @return ClientOptions
+     */
+    protected function createClientOptions(array $options): ClientOptions
+    {
+        return new ClientOptions($options);
+    }
+
     private function shouldUseMtlsEndpoint(array $options): bool
     {
         $mtlsEndpointEnvVar = getenv('GOOGLE_API_USE_MTLS_ENDPOINT');
@@ -298,23 +330,6 @@ trait ClientOptionsTrait
     private static function supportedTransports(): array
     {
         return ['grpc', 'grpc-fallback', 'rest'];
-    }
-
-    // Gapic Client Extension Points
-    // The methods below provide extension points that can be used to customize client
-    // functionality. These extension points are currently considered
-    // private and may change at any time.
-
-    /**
-     * Modify options passed to the client before calling setClientOptions.
-     *
-     * @param array $options
-     * @access private
-     * @internal
-     */
-    protected function modifyClientOptions(array &$options)
-    {
-        // Do nothing - this method exists to allow option modification by partial veneers.
     }
 
     /**

@@ -43,18 +43,15 @@ use Psr\Log\LoggerInterface;
 
 /**
  * The ClientOptions class adds typing to the associative array of options
- * passed into each API client constructor. To use this class directly, pass
- * the result of {@see \Google\ApiCore\Options\ClientOptions::toArray()} to the
- * client constructor:
+ * passed into each API client constructor:
  *
  * ```
  * use Google\ApiCore\Options\ClientOptions;
- * use Google\Cloud\SecretManager\Client\SecretManagerClient;
+ * use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
  *
- * $options = new ClientOptions([
- *     'apiEndpoint' => 'my-custom-endpoint.com'
- * ]);
- * $secretManager = new SecretManagerClient($options->toArray());
+ * $options = (new ClientOptions())
+ *     ->setApiEndpoint('my-custom-endpoint.com');
+ * $secretManager = new SecretManagerServiceClient($options);
  * ```
  *
  * Note: It's possible to pass an associative array to the API clients as well,
@@ -64,39 +61,41 @@ class ClientOptions implements ArrayAccess, OptionsInterface
 {
     use OptionsTrait;
 
-    private ?string $apiEndpoint;
+    protected ?string $apiEndpoint = null;
 
-    private bool $disableRetries;
+    protected bool $disableRetries = false;
 
-    private array $clientConfig;
+    protected array $clientConfig = [];
 
-    private string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials;
+    protected string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials = null;
 
-    private array $credentialsConfig;
+    protected array $credentialsConfig = [];
 
-    private string|TransportInterface|null $transport;
+    protected string|TransportInterface|null $transport = null;
 
-    private TransportOptions $transportConfig;
+    protected TransportOptions $transportConfig;
 
-    private ?string $versionFile;
+    protected ?string $versionFile = null;
 
-    private ?string $descriptorsConfigPath;
+    protected ?string $descriptorsConfigPath = null;
 
-    private ?string $serviceName;
+    protected ?string $serviceName = null;
 
-    private ?string $libName;
+    protected ?string $libName = null;
 
-    private ?string $libVersion;
+    protected ?string $libVersion = null;
 
-    private ?string $gapicVersion;
+    protected ?string $gapicVersion = null;
 
-    private ?Closure $clientCertSource;
+    protected ?Closure $clientCertSource = null;
 
-    private ?string $universeDomain;
+    protected ?string $universeDomain = null;
 
-    private ?string $apiKey;
+    protected ?string $apiKey = null;
 
-    private null|false|LoggerInterface $logger;
+    protected null|false|LoggerInterface $logger = null;
+
+    protected array $customOptions = [];
 
     /**
      * @param array $options {
@@ -170,43 +169,51 @@ class ClientOptions implements ArrayAccess, OptionsInterface
      *           A PSR-3 compliant logger.
      * }
      */
-    public function __construct(array $options)
+    public function __construct(array $options = [])
     {
         $this->fromArray($options);
     }
 
     /**
-     * Sets the array of options as class properites.
+     * Sets the array of options as class properties.
      *
      * @param array $arr See the constructor for the list of supported options.
+     *
+     * @return static
      */
-    private function fromArray(array $arr): void
+    public function fromArray(array $arr): static
     {
-        $this->setApiEndpoint($arr['apiEndpoint'] ?? null);
-        $this->setDisableRetries($arr['disableRetries'] ?? false);
-        $this->setClientConfig($arr['clientConfig'] ?? []);
-        $this->setCredentials($arr['credentials'] ?? null);
-        $this->setCredentialsConfig($arr['credentialsConfig'] ?? []);
-        $this->setTransport($arr['transport'] ?? null);
-        $this->setTransportConfig(new TransportOptions($arr['transportConfig'] ?? []));
-        $this->setVersionFile($arr['versionFile'] ?? null);
-        $this->setDescriptorsConfigPath($arr['descriptorsConfigPath'] ?? null);
-        $this->setServiceName($arr['serviceName'] ?? null);
-        $this->setLibName($arr['libName'] ?? null);
-        $this->setLibVersion($arr['libVersion'] ?? null);
-        $this->setGapicVersion($arr['gapicVersion'] ?? null);
-        $this->setClientCertSource($arr['clientCertSource'] ?? null);
-        $this->setUniverseDomain($arr['universeDomain'] ?? null);
-        $this->setApiKey($arr['apiKey'] ?? null);
-        $this->setLogger($arr['logger'] ?? null);
+        if (!isset($this->transportConfig) || isset($arr['transportConfig'])) {
+            $this->setTransportConfig($arr['transportConfig'] ?? []);
+        }
+
+        // serviceAddress is deprecated and acts as an alias for apiEndpoint
+        if (isset($arr['serviceAddress'])) {
+            $arr['apiEndpoint'] = $arr['serviceAddress'];
+            unset($arr['serviceAddress']);
+        }
+
+        foreach ($arr as $key => $value) {
+            if ($key === 'transportConfig') {
+                continue;
+            }
+            $setter = 'set' . str_replace(['-', '_'], '', ucwords((string) $key, '-_'));
+            if (method_exists($this, $setter)) {
+                $this->$setter($value);
+            } else {
+                $this->setCustomOption((string) $key, $value);
+            }
+        }
+
+        return $this;
     }
 
     /**
      * @param ?string $apiEndpoint
      *
-     * @return $this
+     * @return static
      */
-    public function setApiEndpoint(?string $apiEndpoint): self
+    public function setApiEndpoint(?string $apiEndpoint): static
     {
         $this->apiEndpoint = $apiEndpoint;
 
@@ -214,11 +221,22 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     }
 
     /**
+     * @deprecated Use {@see ClientOptions::setApiEndpoint()} instead.
+     * @param ?string $serviceAddress
+     *
+     * @return static
+     */
+    public function setServiceAddress(?string $serviceAddress): static
+    {
+        return $this->setApiEndpoint($serviceAddress);
+    }
+
+    /**
      * @param bool $disableRetries
      *
-     * @return $this
+     * @return static
      */
-    public function setDisableRetries(bool $disableRetries): self
+    public function setDisableRetries(bool $disableRetries): static
     {
         $this->disableRetries = $disableRetries;
 
@@ -228,9 +246,9 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     /**
      * @param string|array $clientConfig
      *
-     * @return $this
+     * @return static
      */
-    public function setClientConfig(string|array $clientConfig): self
+    public function setClientConfig(string|array $clientConfig): static
     {
         if (is_string($clientConfig)) {
             $this->clientConfig = json_decode(file_get_contents($clientConfig), true);
@@ -244,11 +262,11 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     /**
      * @param string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials
      *
-     * @return $this
+     * @return static
      */
     public function setCredentials(
         string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials
-    ): self {
+    ): static {
         $this->credentials = $credentials;
 
         return $this;
@@ -257,9 +275,9 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     /**
      * @param array $credentialsConfig
      *
-     * @return $this
+     * @return static
      */
-    public function setCredentialsConfig(array $credentialsConfig): self
+    public function setCredentialsConfig(array $credentialsConfig): static
     {
         $this->credentialsConfig = $credentialsConfig;
 
@@ -269,9 +287,9 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     /**
      * @param string|TransportInterface|null $transport
      *
-     * @return $this
+     * @return static
      */
-    public function setTransport(string|TransportInterface|null $transport): self
+    public function setTransport(string|TransportInterface|null $transport): static
     {
         $this->transport = $transport;
 
@@ -279,12 +297,15 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     }
 
     /**
-     * @param TransportOptions $transportConfig
+     * @param TransportOptions|array $transportConfig
      *
-     * @return $this
+     * @return static
      */
-    public function setTransportConfig(TransportOptions $transportConfig): self
+    public function setTransportConfig(TransportOptions|array $transportConfig): static
     {
+        if (is_array($transportConfig)) {
+            $transportConfig = new TransportOptions($transportConfig);
+        }
         $this->transportConfig = $transportConfig;
 
         return $this;
@@ -293,9 +314,9 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     /**
      * @param ?string $versionFile
      *
-     * @return $this
+     * @return static
      */
-    public function setVersionFile(?string $versionFile): self
+    public function setVersionFile(?string $versionFile): static
     {
         $this->versionFile = $versionFile;
 
@@ -305,9 +326,9 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     /**
      * @param ?string $descriptorsConfigPath
      *
-     * @return $this
+     * @return static
      */
-    private function setDescriptorsConfigPath(?string $descriptorsConfigPath): self
+    public function setDescriptorsConfigPath(?string $descriptorsConfigPath): static
     {
         if (!is_null($descriptorsConfigPath)) {
             self::validateFileExists($descriptorsConfigPath);
@@ -320,9 +341,9 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     /**
      * @param ?string $serviceName
      *
-     * @return $this
+     * @return static
      */
-    public function setServiceName(?string $serviceName): self
+    public function setServiceName(?string $serviceName): static
     {
         $this->serviceName = $serviceName;
 
@@ -332,9 +353,9 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     /**
      * @param ?string $libName
      *
-     * @return $this
+     * @return static
      */
-    public function setLibName(?string $libName): self
+    public function setLibName(?string $libName): static
     {
         $this->libName = $libName;
 
@@ -344,9 +365,9 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     /**
      * @param ?string $libVersion
      *
-     * @return $this
+     * @return static
      */
-    public function setLibVersion(?string $libVersion): self
+    public function setLibVersion(?string $libVersion): static
     {
         $this->libVersion = $libVersion;
 
@@ -356,9 +377,9 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     /**
      * @param ?string $gapicVersion
      *
-     * @return $this
+     * @return static
      */
-    public function setGapicVersion(?string $gapicVersion): self
+    public function setGapicVersion(?string $gapicVersion): static
     {
         $this->gapicVersion = $gapicVersion;
 
@@ -368,9 +389,9 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     /**
      * @param ?callable $clientCertSource
      *
-     * @return $this
+     * @return static
      */
-    public function setClientCertSource(?callable $clientCertSource): self
+    public function setClientCertSource(?callable $clientCertSource): static
     {
         if (!is_null($clientCertSource)) {
             $clientCertSource = Closure::fromCallable($clientCertSource);
@@ -381,11 +402,11 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     }
 
     /**
-     * @param string $universeDomain
+     * @param ?string $universeDomain
      *
-     * @return $this
+     * @return static
      */
-    public function setUniverseDomain(?string $universeDomain): self
+    public function setUniverseDomain(?string $universeDomain): static
     {
         $this->universeDomain = $universeDomain;
 
@@ -393,11 +414,11 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     }
 
     /**
-     * @param string $apiKey
+     * @param ?string $apiKey
      *
-     * @return $this
+     * @return static
      */
-    public function setApiKey(?string $apiKey): self
+    public function setApiKey(?string $apiKey): static
     {
         $this->apiKey = $apiKey;
 
@@ -407,12 +428,50 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     /**
      * @param null|false|LoggerInterface $logger
      *
-     * @return $this
+     * @return static
      */
-    public function setLogger(null|false|LoggerInterface $logger): self
+    public function setLogger(null|false|LoggerInterface $logger): static
     {
         $this->logger = $logger;
 
         return $this;
+    }
+
+    /**
+     * Set a custom or experimental option not explicitly defined on ClientOptions.
+     *
+     * @param string $key
+     * @param mixed $value
+     *
+     * @return static
+     */
+    public function setCustomOption(string $key, mixed $value): static
+    {
+        $this->customOptions[$key] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get a custom or experimental option value.
+     *
+     * @param string $key
+     * @param mixed $default
+     *
+     * @return mixed
+     */
+    public function getCustomOption(string $key, mixed $default = null): mixed
+    {
+        return $this->customOptions[$key] ?? $default;
+    }
+
+    /**
+     * Get all custom or experimental options.
+     *
+     * @return array
+     */
+    public function getCustomOptions(): array
+    {
+        return $this->customOptions;
     }
 }
