@@ -29,6 +29,11 @@ jobs:
             php: "8.2"
             extensions: ""
             type: "Unit Test (no gRPC)"
+          - platform: "ubuntu-latest"
+            php: "8.2"
+            extensions: "grpc"
+            type: "Unit Test + phpseclib 4"
+            phpseclib: "^4.0.1"
     name: PHP ${{ matrix.php }} ${{ matrix.type }} (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
     continue-on-error: true
@@ -57,6 +62,12 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: sodium, sysvshm, gmp, ${{ matrix.extensions }}
+
+      - if: ${{ matrix.phpseclib }}
+        name: Pin phpseclib to ${{ matrix.phpseclib }}
+        run: |
+          composer --no-interaction --no-ansi --no-progress require --dev --no-update \
+            "phpseclib/phpseclib:${{ matrix.phpseclib }}"
 
       - name: Install Dependencies
         uses: nick-invision/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4
@@ -87,6 +98,23 @@ jobs:
           extensions: grpc
       - name: Run Package Test Suites
         run: bash .github/run-package-tests.sh
+
+  test_packages_phpseclib4:
+    name: Package Tests (phpseclib 4)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Setup PHP
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        with:
+          php-version: '8.2'
+          extensions: grpc
+      - name: Run Package Test Suites
+        env:
+          PHPSECLIB: "^4.0.1"
+        run: bash .github/run-package-tests.sh "Auth Jwt Storage"
 
   test_packages_lowest:
     name: Package Tests (Lowest Dependencies)

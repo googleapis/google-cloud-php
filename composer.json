@@ -78,7 +78,7 @@
         "phpunit/phpunit": "9.6.33",
         "phpdocumentor/reflection": "^6.0",
         "erusev/parsedown": "^1.6",
-        "phpseclib/phpseclib": "^3.0",
+        "phpseclib/phpseclib": "^3.0||^4.0.1",
         "google/cloud-tools": "^0.16.0",
         "opis/closure": "^3.7||^4.0",
         "flix-tech/avro-php": "^5.0.0",
@@ -332,7 +332,7 @@
     },
     "suggest": {
         "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",
-        "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs. Please require version ^2."
+        "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs. Please require version ^3 or ^4."
     },
     "autoload": {
         "psr-4": {

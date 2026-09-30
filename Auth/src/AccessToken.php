@@ -28,9 +28,12 @@ use Google\Auth\HttpHandler\HttpHandlerFactory;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Utils;
 use InvalidArgumentException;
-use phpseclib3\Crypt\PublicKeyLoader;
-use phpseclib3\Crypt\RSA;
-use phpseclib3\Math\BigInteger;
+use phpseclib3\Crypt\PublicKeyLoader as PublicKeyLoader3;
+use phpseclib3\Crypt\RSA as RSA3;
+use phpseclib3\Math\BigInteger as BigInteger3;
+use phpseclib4\Crypt\PublicKeyLoader as PublicKeyLoader4;
+use phpseclib4\Crypt\RSA as RSA4;
+use phpseclib4\Math\BigInteger as BigInteger4;
 use Psr\Cache\CacheItemPoolInterface;
 use RuntimeException;
 use SimpleJWT\InvalidTokenException;
@@ -394,8 +397,8 @@ class AccessToken
      */
     private function checkAndInitializePhpsec()
     {
-        if (!class_exists(RSA::class)) {
-            throw new RuntimeException('Please require phpseclib/phpseclib v3 to use this utility.');
+        if (!class_exists(RSA3::class) && !class_exists(RSA4::class)) {
+            throw new RuntimeException('Please require phpseclib/phpseclib v3 or v4 to use this utility.');
         }
     }
 
@@ -405,11 +408,15 @@ class AccessToken
      */
     private function loadPhpsecPublicKey(string $modulus, string $exponent): string
     {
-        $key = PublicKeyLoader::load([
-            'n' => new BigInteger($this->callJwtStatic('urlsafeB64Decode', [
+        $usePhpsec4 = class_exists(RSA4::class);
+        $publicKeyLoader = $usePhpsec4 ? PublicKeyLoader4::class : PublicKeyLoader3::class;
+        $bigInteger = $usePhpsec4 ? BigInteger4::class : BigInteger3::class;
+
+        $key = $publicKeyLoader::load([
+            'n' => new $bigInteger($this->callJwtStatic('urlsafeB64Decode', [
                 $modulus,
             ]), 256),
-            'e' => new BigInteger($this->callJwtStatic('urlsafeB64Decode', [
+            'e' => new $bigInteger($this->callJwtStatic('urlsafeB64Decode', [
                 $exponent
             ]), 256),
         ]);
