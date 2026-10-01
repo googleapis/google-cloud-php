@@ -2076,7 +2076,7 @@ class GapicClientTraitTest extends TestCase
                 'responseType' => TestIamPermissionsResponse::class,
             ],
         ]);
-        $retrySettings = $this->prophesize(RetrySettings::class)->reveal();
+        $retrySettings = RetrySettings::constructDefault();
         $client->set('retrySettings', [
             'GetIamPolicy' => $retrySettings,
             'SetIamPolicy' => $retrySettings,
@@ -2311,7 +2311,7 @@ class GapicV2SurfaceClient implements ServiceInterface, LongRunningOperationProv
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
-        $this->operationsClient = $this->createOperationsClient($clientOptions->toArray());
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     public function getAgentHeader()
