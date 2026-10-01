@@ -40,10 +40,6 @@ class AuditLogConfig extends \Google\Protobuf\Internal\Message
      */
     private $exempted_members;
     /**
-     * Generated from protobuf field <code>optional bool ignore_child_exemptions = 70141850;</code>
-     */
-    protected $ignore_child_exemptions = null;
-    /**
      * The log type that this config enables.
      * Check the LogType enum for the list of possible values.
      *
@@ -61,7 +57,6 @@ class AuditLogConfig extends \Google\Protobuf\Internal\Message
      *           Specifies the identities that do not cause logging for this type of
      *           permission.
      *           Follows the same format of Binding.members.
-     *     @type bool $ignore_child_exemptions
      *     @type string $log_type
      *           The log type that this config enables.
      *           Check the LogType enum for the list of possible values.
@@ -98,38 +93,6 @@ class AuditLogConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->exempted_members = $arr;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>optional bool ignore_child_exemptions = 70141850;</code>
-     * @return bool
-     */
-    public function getIgnoreChildExemptions()
-    {
-        return isset($this->ignore_child_exemptions) ? $this->ignore_child_exemptions : false;
-    }
-
-    public function hasIgnoreChildExemptions()
-    {
-        return isset($this->ignore_child_exemptions);
-    }
-
-    public function clearIgnoreChildExemptions()
-    {
-        unset($this->ignore_child_exemptions);
-    }
-
-    /**
-     * Generated from protobuf field <code>optional bool ignore_child_exemptions = 70141850;</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setIgnoreChildExemptions($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->ignore_child_exemptions = $var;
 
         return $this;
     }

@@ -56,6 +56,13 @@ class InvocationConfig extends \Google\Protobuf\Internal\Message
      */
     protected $service_account = '';
     /**
+     * Optional. Configuration for end user authentication.
+     * Note that this should not be set when `service_account` is used.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.InvocationConfig.EndUserAuthenticationConfig end_user_auth_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $end_user_auth_config = null;
+    /**
      * Optional. Specifies the priority for query execution in BigQuery.
      * More information can be found at
      * https://cloud.google.com/bigquery/docs/running-queries#queries.
@@ -84,6 +91,9 @@ class InvocationConfig extends \Google\Protobuf\Internal\Message
      *           Optional. When set to true, any incremental tables will be fully refreshed.
      *     @type string $service_account
      *           Optional. The service account to run workflow invocations under.
+     *     @type \Google\Cloud\Dataform\V1beta1\InvocationConfig\EndUserAuthenticationConfig $end_user_auth_config
+     *           Optional. Configuration for end user authentication.
+     *           Note that this should not be set when `service_account` is used.
      *     @type int $query_priority
      *           Optional. Specifies the priority for query execution in BigQuery.
      *           More information can be found at
@@ -251,6 +261,44 @@ class InvocationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->service_account = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for end user authentication.
+     * Note that this should not be set when `service_account` is used.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.InvocationConfig.EndUserAuthenticationConfig end_user_auth_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataform\V1beta1\InvocationConfig\EndUserAuthenticationConfig|null
+     */
+    public function getEndUserAuthConfig()
+    {
+        return $this->end_user_auth_config;
+    }
+
+    public function hasEndUserAuthConfig()
+    {
+        return isset($this->end_user_auth_config);
+    }
+
+    public function clearEndUserAuthConfig()
+    {
+        unset($this->end_user_auth_config);
+    }
+
+    /**
+     * Optional. Configuration for end user authentication.
+     * Note that this should not be set when `service_account` is used.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.InvocationConfig.EndUserAuthenticationConfig end_user_auth_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataform\V1beta1\InvocationConfig\EndUserAuthenticationConfig $var
+     * @return $this
+     */
+    public function setEndUserAuthConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\InvocationConfig\EndUserAuthenticationConfig::class);
+        $this->end_user_auth_config = $var;
 
         return $this;
     }

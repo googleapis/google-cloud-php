@@ -122,6 +122,12 @@ class Repository extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string internal_metadata = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $internal_metadata = null;
+    /**
+     * Optional. Includes configuration options for end user authentication.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Repository.EndUserAuthConfig end_user_auth_config = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $end_user_auth_config = null;
 
     /**
      * Constructor.
@@ -180,6 +186,8 @@ class Repository extends \Google\Protobuf\Internal\Message
      *           Output only. All the metadata information that is used internally to serve
      *           the resource. For example: timestamps, flags, status fields, etc. The
      *           format of this field is a JSON string.
+     *     @type \Google\Cloud\Dataform\V1beta1\Repository\EndUserAuthConfig $end_user_auth_config
+     *           Optional. Includes configuration options for end user authentication.
      * }
      */
     public function __construct($data = NULL) {
@@ -663,6 +671,42 @@ class Repository extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->internal_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Includes configuration options for end user authentication.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Repository.EndUserAuthConfig end_user_auth_config = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataform\V1beta1\Repository\EndUserAuthConfig|null
+     */
+    public function getEndUserAuthConfig()
+    {
+        return $this->end_user_auth_config;
+    }
+
+    public function hasEndUserAuthConfig()
+    {
+        return isset($this->end_user_auth_config);
+    }
+
+    public function clearEndUserAuthConfig()
+    {
+        unset($this->end_user_auth_config);
+    }
+
+    /**
+     * Optional. Includes configuration options for end user authentication.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Repository.EndUserAuthConfig end_user_auth_config = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataform\V1beta1\Repository\EndUserAuthConfig $var
+     * @return $this
+     */
+    public function setEndUserAuthConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\Repository\EndUserAuthConfig::class);
+        $this->end_user_auth_config = $var;
 
         return $this;
     }
