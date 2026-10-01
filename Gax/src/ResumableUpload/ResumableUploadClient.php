@@ -35,7 +35,7 @@ namespace Google\ApiCore\ResumableUpload;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
 use Google\ApiCore\Call;
-use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\HeaderCredentialsInterface;
 use Google\ApiCore\Middleware\RetryMiddleware;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ValidationException;
@@ -75,13 +75,13 @@ class ResumableUploadClient
 
     /**
      * @param ResumableUploadTransportInterface $transport Transport implementing buildRequest and sendRawRequest.
-     * @param CredentialsWrapper $credentialsWrapper The credentials wrapper from GAPIC client.
+     * @param HeaderCredentialsInterface $credentialsWrapper The credentials wrapper from GAPIC client.
      * @param array $headers Custom headers to include with the initial upload request.
      * @param string $uploadPrefix Resumable upload path prefix (default: '/resumable/upload').
      */
     public function __construct(
         private ResumableUploadTransportInterface $transport,
-        private CredentialsWrapper $credentialsWrapper,
+        private HeaderCredentialsInterface $credentialsWrapper,
         private array $headers = [],
         private string $uploadPrefix = '/resumable/upload'
     ) {

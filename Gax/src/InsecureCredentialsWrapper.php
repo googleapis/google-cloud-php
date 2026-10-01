@@ -34,9 +34,8 @@ namespace Google\ApiCore;
 
 /**
  * For connect to emulator.
- * @TODO: implement HeaderCredentialsInterface instead of extending CredentialsWrapper
  */
-class InsecureCredentialsWrapper extends CredentialsWrapper
+class InsecureCredentialsWrapper implements HeaderCredentialsInterface
 {
     public function __construct()
     {
@@ -53,5 +52,13 @@ class InsecureCredentialsWrapper extends CredentialsWrapper
 
     public function checkUniverseDomain(): void
     {
+    }
+
+    /**
+     * @return string|null The quota project associated with the credentials.
+     */
+    public function getQuotaProject(): ?string
+    {
+        return null;
     }
 }

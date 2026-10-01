@@ -32,8 +32,12 @@
 
 namespace Google\Cloud\Spanner\Middleware;
 
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
+use Google\ApiCore\ClientStream;
 use Google\ApiCore\Middleware\MiddlewareInterface;
+use Google\ApiCore\ServerStream;
+use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * Middleware that adds the RequestId header to each rpc call made by spanner
@@ -60,8 +64,10 @@ class RequestIdHeaderMiddleware implements MiddlewareInterface
         $this->client = self::$currentClient++;
     }
 
-    public function __invoke(Call $call, array $options)
-    {
+    public function __invoke(
+        Call $call,
+        array $options
+    ): PromiseInterface|ClientStream|ServerStream|BidiStream {
         $options['headers'][self::REQUEST_ID_HEADER_NAME] = [$this->getNewHeaderValue($options)];
         $next = $this->nextHandler;
         return $next(

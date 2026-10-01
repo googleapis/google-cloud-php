@@ -21,6 +21,7 @@ namespace Google\Cloud\Spanner;
 use Exception;
 use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\HeaderCredentialsInterface;
 use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\ValidationException;
@@ -1063,7 +1064,7 @@ class SpannerClient
 
     private function configureMetrics(
         array $options,
-        string|array|FetchAuthTokenInterface|CredentialsWrapper|null $rawCredentials = null
+        string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null $rawCredentials = null
     ): void {
         $timeoutMillis = $this->pluck('metricsTimeoutMillis', $options, false) ?? 100;
 
@@ -1187,9 +1188,9 @@ class SpannerClient
     }
 
     private function buildMetricsCredentials(
-        string|array|FetchAuthTokenInterface|CredentialsWrapper|null $credentials,
+        string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials,
         array $options
-    ): CredentialsWrapper {
+    ): HeaderCredentialsInterface {
         $credentialsConfig = [
             'scopes' => [
                 self::MONITORING_WRITE_SCOPE
