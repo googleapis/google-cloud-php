@@ -1988,9 +1988,10 @@ class GapicClientTraitTest extends TestCase
         );
 
         $v2Client = new GapicV2SurfaceClient();
+        $method = new \ReflectionMethod($v2Client, 'createOperationsClient');
         $this->assertInstanceOf(
             OperationsClient::class,
-            $v2Client->getOperationsClient()
+            $method->invoke($v2Client, [])
         );
     }
 
@@ -2072,7 +2073,7 @@ class GapicClientTraitTest extends TestCase
                 'responseType' => TestIamPermissionsResponse::class,
             ],
         ]);
-        $retrySettings = $this->prophesize(RetrySettings::class)->reveal();
+        $retrySettings = RetrySettings::constructDefault();
         $client->set('retrySettings', [
             'GetIamPolicy' => $retrySettings,
             'SetIamPolicy' => $retrySettings,
