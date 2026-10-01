@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2016 Google LLC
  * All rights reserved.
@@ -41,10 +43,10 @@ use stdClass;
 class MockStatus extends stdClass
 {
     /** @var Code|int $code */
-    public $code;
-    public $details;
-    public $metadata;
-    public function __construct($code, ?string $details = null, array $metadata = [])
+    public int|Code $code;
+    public ?string $details;
+    public array $metadata;
+    public function __construct(int|Code $code, ?string $details = null, array $metadata = [])
     {
         $this->code = $code;
         $this->details = $details;

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2021 Google LLC
  * All rights reserved.
@@ -32,6 +34,7 @@
 
 namespace Google\ApiCore\Transport\Rest;
 
+use Generator;
 use Psr\Http\Message\StreamInterface;
 use RuntimeException;
 
@@ -87,9 +90,9 @@ class JsonStreamDecoder
      * byte is read or if it encounters an error while decoding a message.
      *
      * @throws RuntimeException
-     * @return \Generator
+     * @return Generator
      */
-    public function decode()
+    public function decode(): Generator
     {
         try {
             foreach ($this->doDecode() as $response) {
@@ -110,9 +113,9 @@ class JsonStreamDecoder
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
-    private function doDecode()
+    private function doDecode(): Generator
     {
         $decodeType = $this->decodeType;
         $str = false;
@@ -230,7 +233,7 @@ class JsonStreamDecoder
      *
      * @return void
      */
-    public function close()
+    public function close(): void
     {
         $this->closeCalled = true;
         $this->stream->close();

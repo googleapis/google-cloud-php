@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2017 Google LLC
  * All rights reserved.
@@ -41,7 +43,7 @@ trait ValidationTrait
      * @param array $requiredKeys List of keys to check for in $arr
      * @return array Returns $arr for fluent use
      */
-    public static function validate(array $arr, array $requiredKeys)
+    public static function validate(array $arr, array $requiredKeys): array
     {
         return self::validateImpl($arr, $requiredKeys, true);
     }
@@ -51,12 +53,12 @@ trait ValidationTrait
      * @param array $requiredKeys List of keys to check for in $arr
      * @return array Returns $arr for fluent use
      */
-    public static function validateNotNull(array $arr, array $requiredKeys)
+    public static function validateNotNull(array $arr, array $requiredKeys): array
     {
         return self::validateImpl($arr, $requiredKeys, false);
     }
 
-    private static function validateImpl($arr, $requiredKeys, $allowNull)
+    private static function validateImpl(array $arr, array $requiredKeys, bool $allowNull): array
     {
         foreach ($requiredKeys as $requiredKey) {
             $valid = array_key_exists($requiredKey, $arr)
@@ -72,7 +74,7 @@ trait ValidationTrait
      * @param string $filePath
      * @throws ValidationException
      */
-    private static function validateFileExists(string $filePath)
+    private static function validateFileExists(string $filePath): void
     {
         if (!file_exists($filePath)) {
             throw new ValidationException("Could not find specified file: $filePath");

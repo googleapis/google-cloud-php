@@ -527,7 +527,7 @@ class OperationResponseTest extends TestCase
                 return $this->sleeps;
             }
 
-            public function sleepMillis(int $millis)
+            public function sleepMillis(int $millis): void
             {
                 $this->currentTime += $millis;
                 $this->sleeps[] = $millis;
@@ -538,9 +538,9 @@ class OperationResponseTest extends TestCase
                 $this->times = $times;
             }
 
-            public function getCurrentTimeMillis()
+            public function getCurrentTimeMillis(): float
             {
-                return $this->currentTime;
+                return (float) $this->currentTime;
             }
         };
     }

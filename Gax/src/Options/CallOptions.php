@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2023 Google LLC
  * All rights reserved.
@@ -33,7 +35,6 @@
 namespace Google\ApiCore\Options;
 
 use ArrayAccess;
-use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\RetrySettings;
 
 /**
@@ -57,8 +58,7 @@ class CallOptions implements ArrayAccess, OptionsInterface
     /** @var callable|null $metadataCallback */
     private $metadataCallback;
 
-    /** @var RetrySettings|array|null $retrySettings */
-    private $retrySettings;
+    private RetrySettings|array|null $retrySettings;
 
     /**
      * @param array $options {
@@ -151,7 +151,7 @@ class CallOptions implements ArrayAccess, OptionsInterface
      *
      * @return $this
      */
-    public function setRetrySettings($retrySettings): self
+    public function setRetrySettings(RetrySettings|array|null $retrySettings): self
     {
         $this->retrySettings = $retrySettings;
 
