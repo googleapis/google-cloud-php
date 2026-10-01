@@ -28,6 +28,21 @@ class Service extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string title = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $title = '';
+    /**
+     * Output only. Document requirement for private offers on this service.
+     * Constraints that apply to every service, such as the restriction against
+     * attaching both a standard and a custom EULA, are documented on
+     * `PrivateOfferDocument` and are not represented here.
+     *
+     * Generated from protobuf field <code>.google.cloud.commerceproducer.v1beta.Service.DocumentRequirement document_requirement = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $document_requirement = null;
+    /**
+     * Output only. Type of the product this service commercializes.
+     *
+     * Generated from protobuf field <code>.google.cloud.commerceproducer.v1beta.Service.ProductType product_type = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $product_type = 0;
 
     /**
      * Constructor.
@@ -40,6 +55,13 @@ class Service extends \Google\Protobuf\Internal\Message
      *     @type string $title
      *           Output only. Title of the service.
      *           Not included for `SERVICE_VIEW_BASIC`.
+     *     @type \Google\Cloud\CommerceProducer\V1beta\Service\DocumentRequirement $document_requirement
+     *           Output only. Document requirement for private offers on this service.
+     *           Constraints that apply to every service, such as the restriction against
+     *           attaching both a standard and a custom EULA, are documented on
+     *           `PrivateOfferDocument` and are not represented here.
+     *     @type int $product_type
+     *           Output only. Type of the product this service commercializes.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +119,74 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->title = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Document requirement for private offers on this service.
+     * Constraints that apply to every service, such as the restriction against
+     * attaching both a standard and a custom EULA, are documented on
+     * `PrivateOfferDocument` and are not represented here.
+     *
+     * Generated from protobuf field <code>.google.cloud.commerceproducer.v1beta.Service.DocumentRequirement document_requirement = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\CommerceProducer\V1beta\Service\DocumentRequirement|null
+     */
+    public function getDocumentRequirement()
+    {
+        return $this->document_requirement;
+    }
+
+    public function hasDocumentRequirement()
+    {
+        return isset($this->document_requirement);
+    }
+
+    public function clearDocumentRequirement()
+    {
+        unset($this->document_requirement);
+    }
+
+    /**
+     * Output only. Document requirement for private offers on this service.
+     * Constraints that apply to every service, such as the restriction against
+     * attaching both a standard and a custom EULA, are documented on
+     * `PrivateOfferDocument` and are not represented here.
+     *
+     * Generated from protobuf field <code>.google.cloud.commerceproducer.v1beta.Service.DocumentRequirement document_requirement = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\CommerceProducer\V1beta\Service\DocumentRequirement $var
+     * @return $this
+     */
+    public function setDocumentRequirement($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\CommerceProducer\V1beta\Service\DocumentRequirement::class);
+        $this->document_requirement = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Type of the product this service commercializes.
+     *
+     * Generated from protobuf field <code>.google.cloud.commerceproducer.v1beta.Service.ProductType product_type = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getProductType()
+    {
+        return $this->product_type;
+    }
+
+    /**
+     * Output only. Type of the product this service commercializes.
+     *
+     * Generated from protobuf field <code>.google.cloud.commerceproducer.v1beta.Service.ProductType product_type = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setProductType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\CommerceProducer\V1beta\Service\ProductType::class);
+        $this->product_type = $var;
 
         return $this;
     }
