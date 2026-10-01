@@ -23,16 +23,21 @@
 namespace Google\Ads\DataManager\Tests\Unit\V1\Client;
 
 use Google\Ads\DataManager\V1\Client\IngestionServiceClient;
+use Google\Ads\DataManager\V1\Encoding;
 use Google\Ads\DataManager\V1\IngestAdEventsRequest;
 use Google\Ads\DataManager\V1\IngestAdEventsResponse;
 use Google\Ads\DataManager\V1\IngestAudienceMembersRequest;
 use Google\Ads\DataManager\V1\IngestAudienceMembersResponse;
 use Google\Ads\DataManager\V1\IngestEventsRequest;
 use Google\Ads\DataManager\V1\IngestEventsResponse;
+use Google\Ads\DataManager\V1\IngestUsersRequest;
+use Google\Ads\DataManager\V1\IngestUsersResponse;
 use Google\Ads\DataManager\V1\RemoveAllAudienceMembersRequest;
 use Google\Ads\DataManager\V1\RemoveAllAudienceMembersResponse;
 use Google\Ads\DataManager\V1\RemoveAudienceMembersRequest;
 use Google\Ads\DataManager\V1\RemoveAudienceMembersResponse;
+use Google\Ads\DataManager\V1\RemoveUsersRequest;
+use Google\Ads\DataManager\V1\RemoveUsersResponse;
 use Google\Ads\DataManager\V1\RetrieveRequestStatusRequest;
 use Google\Ads\DataManager\V1\RetrieveRequestStatusResponse;
 use Google\ApiCore\ApiException;
@@ -278,6 +283,85 @@ class IngestionServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function ingestUsersTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $requestId = 'requestId37109963';
+        $expectedResponse = new IngestUsersResponse();
+        $expectedResponse->setRequestId($requestId);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $destinations = [];
+        $users = [];
+        $encoding = Encoding::ENCODING_UNSPECIFIED;
+        $request = (new IngestUsersRequest())
+            ->setDestinations($destinations)
+            ->setUsers($users)
+            ->setEncoding($encoding);
+        $response = $gapicClient->ingestUsers($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.datamanager.v1.IngestionService/IngestUsers', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDestinations();
+        $this->assertProtobufEquals($destinations, $actualValue);
+        $actualValue = $actualRequestObject->getUsers();
+        $this->assertProtobufEquals($users, $actualValue);
+        $actualValue = $actualRequestObject->getEncoding();
+        $this->assertProtobufEquals($encoding, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function ingestUsersExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $destinations = [];
+        $users = [];
+        $encoding = Encoding::ENCODING_UNSPECIFIED;
+        $request = (new IngestUsersRequest())
+            ->setDestinations($destinations)
+            ->setUsers($users)
+            ->setEncoding($encoding);
+        try {
+            $gapicClient->ingestUsers($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function removeAllAudienceMembersTest()
     {
         $transport = $this->createTransport();
@@ -404,6 +488,85 @@ class IngestionServiceClientTest extends GeneratedTest
             ->setAudienceMembers($audienceMembers);
         try {
             $gapicClient->removeAudienceMembers($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function removeUsersTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $requestId = 'requestId37109963';
+        $expectedResponse = new RemoveUsersResponse();
+        $expectedResponse->setRequestId($requestId);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $destinations = [];
+        $userData = [];
+        $encoding = Encoding::ENCODING_UNSPECIFIED;
+        $request = (new RemoveUsersRequest())
+            ->setDestinations($destinations)
+            ->setUserData($userData)
+            ->setEncoding($encoding);
+        $response = $gapicClient->removeUsers($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.datamanager.v1.IngestionService/RemoveUsers', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDestinations();
+        $this->assertProtobufEquals($destinations, $actualValue);
+        $actualValue = $actualRequestObject->getUserData();
+        $this->assertProtobufEquals($userData, $actualValue);
+        $actualValue = $actualRequestObject->getEncoding();
+        $this->assertProtobufEquals($encoding, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function removeUsersExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $destinations = [];
+        $userData = [];
+        $encoding = Encoding::ENCODING_UNSPECIFIED;
+        $request = (new RemoveUsersRequest())
+            ->setDestinations($destinations)
+            ->setUserData($userData)
+            ->setEncoding($encoding);
+        try {
+            $gapicClient->removeUsers($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

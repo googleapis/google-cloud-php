@@ -100,6 +100,7 @@ class DatabaseTest extends SnippetTestCase
         $this->databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
         $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
         $this->operationResponse = $this->prophesize(OperationResponse::class);
+        $this->operationResponse->getName()->willReturn('my-operation');
         $this->serializer = new Serializer();
 
         $session = $this->prophesize(SessionCache::class);

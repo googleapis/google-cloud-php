@@ -75,11 +75,26 @@ class SuggestionConfig extends \Google\Protobuf\Internal\Message
      */
     protected $use_unredacted_conversation_data = false;
     /**
-     * Optional. If true, enable asynchronous execution of tools.
+     * Optional. Deprecated: This field is not consulted for tool execution.
+     * Configure asynchronous execution per tool using
+     * [CesToolSpec.async_execution][google.cloud.dialogflow.v2.CesToolSpec.async_execution]
+     * or
+     * [ToolsetTool.async_execution][google.cloud.dialogflow.v2.ToolsetTool.async_execution]
+     * instead.
      *
-     * Generated from protobuf field <code>bool enable_async_tool_call = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enable_async_tool_call = 9 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $enable_async_tool_call = false;
+    /**
+     * Optional. The resource name of the companion agent to link.
+     * This is only supported for `human_agent_suggestion_config`.
+     * Format:
+     * `projects/{project}/locations/{location}/companionAgents/{companion_agent}`
+     *
+     * Generated from protobuf field <code>string companion_agent = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $companion_agent = '';
 
     /**
      * Constructor.
@@ -123,7 +138,17 @@ class SuggestionConfig extends \Google\Protobuf\Internal\Message
      *           use unredacted ingested context (Supported features: All Agent Assist
      *           features)
      *     @type bool $enable_async_tool_call
-     *           Optional. If true, enable asynchronous execution of tools.
+     *           Optional. Deprecated: This field is not consulted for tool execution.
+     *           Configure asynchronous execution per tool using
+     *           [CesToolSpec.async_execution][google.cloud.dialogflow.v2.CesToolSpec.async_execution]
+     *           or
+     *           [ToolsetTool.async_execution][google.cloud.dialogflow.v2.ToolsetTool.async_execution]
+     *           instead.
+     *     @type string $companion_agent
+     *           Optional. The resource name of the companion agent to link.
+     *           This is only supported for `human_agent_suggestion_config`.
+     *           Format:
+     *           `projects/{project}/locations/{location}/companionAgents/{companion_agent}`
      * }
      */
     public function __construct($data = NULL) {
@@ -334,27 +359,75 @@ class SuggestionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If true, enable asynchronous execution of tools.
+     * Optional. Deprecated: This field is not consulted for tool execution.
+     * Configure asynchronous execution per tool using
+     * [CesToolSpec.async_execution][google.cloud.dialogflow.v2.CesToolSpec.async_execution]
+     * or
+     * [ToolsetTool.async_execution][google.cloud.dialogflow.v2.ToolsetTool.async_execution]
+     * instead.
      *
-     * Generated from protobuf field <code>bool enable_async_tool_call = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enable_async_tool_call = 9 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
+     * @deprecated
      */
     public function getEnableAsyncToolCall()
     {
+        if ($this->enable_async_tool_call !== false) {
+            @trigger_error('enable_async_tool_call is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->enable_async_tool_call;
     }
 
     /**
-     * Optional. If true, enable asynchronous execution of tools.
+     * Optional. Deprecated: This field is not consulted for tool execution.
+     * Configure asynchronous execution per tool using
+     * [CesToolSpec.async_execution][google.cloud.dialogflow.v2.CesToolSpec.async_execution]
+     * or
+     * [ToolsetTool.async_execution][google.cloud.dialogflow.v2.ToolsetTool.async_execution]
+     * instead.
      *
-     * Generated from protobuf field <code>bool enable_async_tool_call = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enable_async_tool_call = 9 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setEnableAsyncToolCall($var)
     {
+        @trigger_error('enable_async_tool_call is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->enable_async_tool_call = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The resource name of the companion agent to link.
+     * This is only supported for `human_agent_suggestion_config`.
+     * Format:
+     * `projects/{project}/locations/{location}/companionAgents/{companion_agent}`
+     *
+     * Generated from protobuf field <code>string companion_agent = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getCompanionAgent()
+    {
+        return $this->companion_agent;
+    }
+
+    /**
+     * Optional. The resource name of the companion agent to link.
+     * This is only supported for `human_agent_suggestion_config`.
+     * Format:
+     * `projects/{project}/locations/{location}/companionAgents/{companion_agent}`
+     *
+     * Generated from protobuf field <code>string companion_agent = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCompanionAgent($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->companion_agent = $var;
 
         return $this;
     }
