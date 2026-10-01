@@ -39,7 +39,6 @@ use Google\ApiCore\Call;
 use Google\ApiCore\ClientStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -54,6 +53,7 @@ use Google\ApiCore\Transport\RestTransport;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use Grpc\Gcp\Config;
 use GuzzleHttp\Promise\FulfilledPromise;
@@ -67,6 +67,11 @@ class GapicClientTraitTest extends TestCase
 {
     use ProphecyTrait;
     use TestTrait;
+
+    public static function setUpBeforeClass(): void
+    {
+        self::autoloadTestdata('mocks', 'Google');
+    }
 
     public function setUp(): void
     {
@@ -114,14 +119,16 @@ class GapicClientTraitTest extends TestCase
             'x-goog-request-params' => ['name=foos%2F123%2Fbars%2F456']
         ];
         $transport = $this->prophesize(TransportInterface::class);
-        $credentialsWrapper = CredentialsWrapper::build([
-            'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
-        ]);
+        $credentialsWrapper = CredentialsWrapper::build();
         $transport->startUnaryCall(
             Argument::type(Call::class),
             [
                 'headers' => $expectedHeaders,
                 'credentialsWrapper' => $credentialsWrapper,
+                'timeoutMillis' => 30000,
+                'transportOptions' => [],
+                'metadataCallback' => null,
+                'middlewareOptions' => null,
             ]
         )
             ->shouldBeCalledOnce()
@@ -130,7 +137,7 @@ class GapicClientTraitTest extends TestCase
         $client->set('agentHeader', $header);
         $client->set(
             'retrySettings',
-            ['method' => $this->prophesize(RetrySettings::class)->reveal()]
+            ['method' => RetrySettings::constructDefault()]
         );
         $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
@@ -163,15 +170,13 @@ class GapicClientTraitTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->prophesize(PromiseInterface::class)->reveal());
 
-        $credentialsWrapper = CredentialsWrapper::build([
-            'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
-        ]);
+        $credentialsWrapper = CredentialsWrapper::build();
 
         $client = new StubGapicClient();
         $client->set('agentHeader', []);
         $client->set(
             'retrySettings',
-            ['method' => $this->prophesize(RetrySettings::class)->reveal()]
+            ['method' => RetrySettings::constructDefault()]
         );
         $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
@@ -230,20 +235,14 @@ class GapicClientTraitTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->prophesize(PromiseInterface::class)->reveal());
 
-        $credentialsWrapper = CredentialsWrapper::build([
-            "keyFile" => __DIR__ . "/testdata/creds/json-key-file.json"
-        ]);
+        $credentialsWrapper = CredentialsWrapper::build();
 
-        $client = new class extends StubGapicClient {
-            protected function isNewClientSurface(): bool {
-                return true;
-            }
-        };
+        $client = new StubGapicClient();
 
         $client->set("agentHeader", []);
         $client->set(
             "retrySettings",
-            ["method" => $this->prophesize(RetrySettings::class)->reveal()]
+            ["method" => RetrySettings::constructDefault()]
         );
         $client->set("transport", $transport->reveal());
         $client->set("credentialsWrapper", $credentialsWrapper);
@@ -302,14 +301,16 @@ class GapicClientTraitTest extends TestCase
             'x-goog-request-params' => ['name=foos%2F123%2Fbars%2F456'],
         ];
         $transport = $this->prophesize(TransportInterface::class);
-        $credentialsWrapper = CredentialsWrapper::build([
-            'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
-        ]);
+        $credentialsWrapper = CredentialsWrapper::build();
         $transport->startUnaryCall(
             Argument::type(Call::class),
             [
                 'headers' => $expectedHeaders,
                 'credentialsWrapper' => $credentialsWrapper,
+                'timeoutMillis' => 30000,
+                'transportOptions' => [],
+                'metadataCallback' => null,
+                'middlewareOptions' => null,
             ]
         )
             ->shouldBeCalledOnce()
@@ -318,7 +319,7 @@ class GapicClientTraitTest extends TestCase
         $client->set('agentHeader', $header);
         $client->set(
             'retrySettings',
-            ['method' => $this->prophesize(RetrySettings::class)->reveal()]
+            ['method' => RetrySettings::constructDefault()]
         );
         $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
@@ -376,7 +377,7 @@ class GapicClientTraitTest extends TestCase
     public function testStartOperationsCall()
     {
         $header = AgentHeader::buildAgentHeader([]);
-        $retrySettings = $this->prophesize(RetrySettings::class);
+        $retrySettings = RetrySettings::constructDefault();
         $longRunningDescriptors = [
             'longRunning' => [
                 'operationReturnType' => 'operationType',
@@ -397,7 +398,7 @@ class GapicClientTraitTest extends TestCase
         $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
         $client->set('agentHeader', $header);
-        $client->set('retrySettings', ['method' => $retrySettings->reveal()]);
+        $client->set('retrySettings', ['method' => $retrySettings]);
         $client->set('descriptors', ['method' => $longRunningDescriptors]);
         $message = new MockRequest();
         $operationsClient = $this->prophesize(OperationsClient::class);
@@ -421,7 +422,7 @@ class GapicClientTraitTest extends TestCase
     public function testStartApiCallOperation()
     {
         $header = AgentHeader::buildAgentHeader([]);
-        $retrySettings = $this->prophesize(RetrySettings::class);
+        $retrySettings = RetrySettings::constructDefault();
 
         $longRunningDescriptors = [
             'callType' => Call::LONGRUNNING_CALL,
@@ -444,7 +445,7 @@ class GapicClientTraitTest extends TestCase
         $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
         $client->set('agentHeader', $header);
-        $client->set('retrySettings', ['method' => $retrySettings->reveal()]);
+        $client->set('retrySettings', ['method' => $retrySettings]);
         $client->set('descriptors', ['method' => $longRunningDescriptors]);
         $operationsClient = $this->prophesize(OperationsClient::class);
         $client->set('operationsClient', $operationsClient->reveal());
@@ -467,7 +468,7 @@ class GapicClientTraitTest extends TestCase
     public function testStartApiCallCustomOperation()
     {
         $header = AgentHeader::buildAgentHeader([]);
-        $retrySettings = $this->prophesize(RetrySettings::class);
+        $retrySettings = RetrySettings::constructDefault();
 
         $longRunningDescriptors = [
             'callType' => Call::LONGRUNNING_CALL,
@@ -491,7 +492,7 @@ class GapicClientTraitTest extends TestCase
         $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
         $client->set('agentHeader', $header);
-        $client->set('retrySettings', ['method' => $retrySettings->reveal()]);
+        $client->set('retrySettings', ['method' => $retrySettings]);
         $client->set('descriptors', ['method' => $longRunningDescriptors]);
         $operationsClient = $this->prophesize(OperationsClient::class)->reveal();
         $client->set('operationsClient', $operationsClient);
@@ -573,7 +574,7 @@ class GapicClientTraitTest extends TestCase
     public function testStartApiCallUnary()
     {
         $header = AgentHeader::buildAgentHeader([]);
-        $retrySettings = $this->prophesize(RetrySettings::class);
+        $retrySettings = RetrySettings::constructDefault();
         $unaryDescriptors = [
             'callType' => Call::UNARY_CALL,
             'responseType' => 'Google\Longrunning\Operation',
@@ -594,7 +595,7 @@ class GapicClientTraitTest extends TestCase
         $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
         $client->set('agentHeader', $header);
-        $client->set('retrySettings', ['method' => $retrySettings->reveal()]);
+        $client->set('retrySettings', ['method' => $retrySettings]);
         $client->set('descriptors', ['method' => $unaryDescriptors]);
 
         $request = new MockRequest();
@@ -607,7 +608,7 @@ class GapicClientTraitTest extends TestCase
     public function testStartApiCallPaged()
     {
         $header = AgentHeader::buildAgentHeader([]);
-        $retrySettings = $this->prophesize(RetrySettings::class);
+        $retrySettings = RetrySettings::constructDefault();
         $pagedDescriptors = [
             'callType' => Call::PAGINATED_CALL,
             'responseType' => 'Google\Longrunning\ListOperationsResponse',
@@ -630,7 +631,7 @@ class GapicClientTraitTest extends TestCase
         $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
         $client->set('agentHeader', $header);
-        $client->set('retrySettings', ['method' => $retrySettings->reveal()]);
+        $client->set('retrySettings', ['method' => $retrySettings]);
         $client->set('descriptors', ['method' => $pagedDescriptors]);
 
         $request = new MockRequest();
@@ -643,7 +644,7 @@ class GapicClientTraitTest extends TestCase
     public function testStartAsyncCall()
     {
         $header = AgentHeader::buildAgentHeader([]);
-        $retrySettings = $this->prophesize(RetrySettings::class);
+        $retrySettings = RetrySettings::constructDefault();
         $unaryDescriptors = [
             'callType' => Call::UNARY_CALL,
             'responseType' => 'Google\Longrunning\Operation'
@@ -658,7 +659,7 @@ class GapicClientTraitTest extends TestCase
         $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
         $client->set('agentHeader', $header);
-        $client->set('retrySettings', ['Method' => $retrySettings->reveal()]);
+        $client->set('retrySettings', ['Method' => $retrySettings]);
         $client->set('descriptors', ['Method' => $unaryDescriptors]);
 
         $request = new MockRequest();
@@ -671,7 +672,7 @@ class GapicClientTraitTest extends TestCase
     public function testStartAsyncCallPaged()
     {
         $header = AgentHeader::buildAgentHeader([]);
-        $retrySettings = $this->prophesize(RetrySettings::class);
+        $retrySettings = RetrySettings::constructDefault();
         $pagedDescriptors = [
             'callType' => Call::PAGINATED_CALL,
             'responseType' => 'Google\Longrunning\ListOperationsResponse',
@@ -700,7 +701,7 @@ class GapicClientTraitTest extends TestCase
         $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
         $client->set('agentHeader', $header);
-        $client->set('retrySettings', ['Method' => $retrySettings->reveal()]);
+        $client->set('retrySettings', ['Method' => $retrySettings]);
         $client->set('descriptors', ['Method' => $pagedDescriptors]);
 
         $request = new MockRequest();
@@ -846,32 +847,9 @@ class GapicClientTraitTest extends TestCase
             ],
         ];
         return [
-            [$apiEndpoint, null, $transportConfig],
-            [$apiEndpoint, ['transport' => 'weirdstring'], $transportConfig],
-            [$apiEndpoint, ['transport' => new \stdClass()], $transportConfig],
-            [$apiEndpoint, ['transport' => 'rest'], []],
+            [$apiEndpoint, 'weirdstring', $transportConfig],
+            [$apiEndpoint, 'rest', []],
         ];
-    }
-
-    public function testServiceAddressAlias()
-    {
-        $client = new StubGapicClient();
-        $apiEndpoint = 'test.address.com:443';
-        $updatedOptions = $client->buildClientOptions(
-            ['serviceAddress' => $apiEndpoint]
-        );
-        $client->setClientOptions($updatedOptions);
-
-        $this->assertEquals($apiEndpoint, $updatedOptions['apiEndpoint']);
-        $this->assertArrayNotHasKey('serviceAddress', $updatedOptions);
-    }
-
-    public function testOperationClientClassOption()
-    {
-        $options = ['operationsClientClass' => CustomOperationsClient::class];
-        $client = new StubGapicClient();
-        $operationsClient = $client->createOperationsClient($options);
-        $this->assertInstanceOf(CustomOperationsClient::class, $operationsClient);
     }
 
     public function testAdditionalArgumentMethods()
@@ -881,6 +859,7 @@ class GapicClientTraitTest extends TestCase
         // Set the LRO descriptors we are testing.
         $longRunningDescriptors = [
             'longRunning' => [
+                'getOperationRequest' => \Google\CustomOperation\GetOperationRequest::class,
                 'additionalArgumentMethods' => [
                     'getPageToken',
                     'getPageSize',
@@ -900,7 +879,6 @@ class GapicClientTraitTest extends TestCase
         // Set up things for the mock call to work.
         $client->set('credentialsWrapper', CredentialsWrapper::build([]));
         $client->set('agentHeader', []);
-        $retrySettings = $this->prophesize(RetrySettings::class);
         $client->set('retrySettings', [
             'method.name' => RetrySettings::constructDefault()
         ]);
@@ -915,7 +893,9 @@ class GapicClientTraitTest extends TestCase
         // Create mock operations client to test the additional arguments from
         // the request object are used.
         $operationsClient = $this->prophesize(CustomOperationsClient::class);
-        $operationsClient->getOperation('test-123', 'abc', 100)
+        $operationsClient->getOperation(
+            \Google\CustomOperation\GetOperationRequest::build('abc', 100, 'test-123')
+        )
             ->shouldBeCalledOnce();
 
         $operationResponse = $client->startOperationsCall(
@@ -959,7 +939,7 @@ class GapicClientTraitTest extends TestCase
         }
         $expectedProperties = [
             'serviceName' => 'test.interface.v1.api',
-            'agentHeader' => AgentHeader::buildAgentHeader([]) + ['User-Agent' => ['gcloud-php-legacy/']],
+            'agentHeader' => AgentHeader::buildAgentHeader([]),
             'retrySettings' => $expectedRetrySettings,
         ];
         return [
@@ -1096,6 +1076,19 @@ class GapicClientTraitTest extends TestCase
         ];
     }
 
+    public function testServiceAddressOption()
+    {
+        $client = new StubGapicClient();
+        $apiEndpoint = 'test.address.com:443';
+        $updatedOptions = $client->buildClientOptions(
+            ['serviceAddress' => $apiEndpoint]
+        );
+        $client->setClientOptions($updatedOptions);
+
+        $this->assertEquals($apiEndpoint, $updatedOptions['apiEndpoint']);
+        $this->assertArrayNotHasKey('serviceAddress', $updatedOptions);
+    }
+
     public function testModifyClientOptions()
     {
         $options = [];
@@ -1111,7 +1104,7 @@ class GapicClientTraitTest extends TestCase
     private function buildClientToTestModifyCallMethods($clientClass = null)
     {
         $header = AgentHeader::buildAgentHeader([]);
-        $retrySettings = $this->prophesize(RetrySettings::class);
+        $retrySettings = RetrySettings::constructDefault();
 
         $longRunningDescriptors = [
             'longRunning' => [
@@ -1130,21 +1123,19 @@ class GapicClientTraitTest extends TestCase
             ],
         ];
         $transport = $this->prophesize(TransportInterface::class);
-        $credentialsWrapper = CredentialsWrapper::build([
-            'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
-        ]);
+        $credentialsWrapper = CredentialsWrapper::build();
         $clientClass = $clientClass ?: StubGapicClientExtension::class;
         $client = new $clientClass();
         $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
         $client->set('agentHeader', $header);
         $client->set('retrySettings', [
-            'simpleMethod' => $retrySettings->reveal(),
-            'longRunningMethod' => $retrySettings->reveal(),
-            'pagedMethod' => $retrySettings->reveal(),
-            'bidiStreamingMethod' => $retrySettings->reveal(),
-            'clientStreamingMethod' => $retrySettings->reveal(),
-            'serverStreamingMethod' => $retrySettings->reveal(),
+            'simpleMethod' => $retrySettings,
+            'longRunningMethod' => $retrySettings,
+            'pagedMethod' => $retrySettings,
+            'bidiStreamingMethod' => $retrySettings,
+            'clientStreamingMethod' => $retrySettings,
+            'serverStreamingMethod' => $retrySettings,
         ]);
         $client->set('descriptors', [
             'longRunningMethod' => $longRunningDescriptors,
@@ -1163,9 +1154,10 @@ class GapicClientTraitTest extends TestCase
                     'custom' => ['addModifyUnaryCallableOption' => true]
                 ],
                 'headers' => AgentHeader::buildAgentHeader([]),
-                'credentialsWrapper' => CredentialsWrapper::build([
-                    'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
-                ])
+                'credentialsWrapper' => CredentialsWrapper::build(),
+                'timeoutMillis' => 30000,
+                'metadataCallback' => null,
+                'middlewareOptions' => null,
             ]
         )
             ->shouldBeCalledOnce()
@@ -1189,10 +1181,11 @@ class GapicClientTraitTest extends TestCase
                     'custom' => ['addModifyUnaryCallableOption' => true]
                 ],
                 'headers' => AgentHeader::buildAgentHeader([]),
-                'credentialsWrapper' => CredentialsWrapper::build([
-                    'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
-                ]),
-                'metadataReturnType' => 'metadataType'
+                'credentialsWrapper' => CredentialsWrapper::build(),
+                'metadataReturnType' => 'metadataType',
+                'timeoutMillis' => 30000,
+                'metadataCallback' => null,
+                'middlewareOptions' => null,
             ]
         )
             ->shouldBeCalledOnce()
@@ -1217,9 +1210,10 @@ class GapicClientTraitTest extends TestCase
                     'custom' => ['addModifyUnaryCallableOption' => true]
                 ],
                 'headers' => AgentHeader::buildAgentHeader([]),
-                'credentialsWrapper' => CredentialsWrapper::build([
-                    'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
-                ])
+                'credentialsWrapper' => CredentialsWrapper::build(),
+                'timeoutMillis' => 30000,
+                'metadataCallback' => null,
+                'middlewareOptions' => null,
             ]
         )
             ->shouldBeCalledOnce()
@@ -1245,9 +1239,10 @@ class GapicClientTraitTest extends TestCase
                     'custom' => ['addModifyStreamingCallable' => true]
                 ],
                 'headers' => AgentHeader::buildAgentHeader([]),
-                'credentialsWrapper' => CredentialsWrapper::build([
-                    'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
-                ])
+                'credentialsWrapper' => CredentialsWrapper::build(),
+                'timeoutMillis' => 30000,
+                'metadataCallback' => null,
+                'middlewareOptions' => null,
             ]
         )
             ->shouldBeCalledOnce()
@@ -1323,9 +1318,12 @@ class GapicClientTraitTest extends TestCase
             [
                 'headers' => AgentHeader::buildAgentHeader([]) + [
                     'X-Goog-User-Project' => [$quotaProject],
-                    'User-Agent' => ['gcloud-php-legacy/']
                 ],
-                'credentialsWrapper' => $credentialsWrapper->reveal()
+                'credentialsWrapper' => $credentialsWrapper->reveal(),
+                'timeoutMillis' => 30000,
+                'transportOptions' => [],
+                'metadataCallback' => null,
+                'middlewareOptions' => null,
             ]
         )
             ->shouldBeCalledOnce()
@@ -1340,7 +1338,7 @@ class GapicClientTraitTest extends TestCase
         $client->setClientOptions($updatedOptions);
         $client->set(
             'retrySettings',
-            ['method' => $this->prophesize(RetrySettings::class)->reveal()]
+            ['method' => RetrySettings::constructDefault()]
         );
         $client->startCall(
             'method',
@@ -1350,7 +1348,7 @@ class GapicClientTraitTest extends TestCase
 
     public function testDefaultAudience()
     {
-        $retrySettings = $this->prophesize(RetrySettings::class);
+        $retrySettings = RetrySettings::constructDefault();
         $credentialsWrapper = $this->prophesize(CredentialsWrapper::class)
             ->reveal();
         $transport = $this->prophesize(TransportInterface::class);
@@ -1361,6 +1359,10 @@ class GapicClientTraitTest extends TestCase
                     'audience' => 'https://service-address/',
                     'headers' => [],
                     'credentialsWrapper' => $credentialsWrapper,
+                    'timeoutMillis' => 30000,
+                    'transportOptions' => [],
+                    'metadataCallback' => null,
+                    'middlewareOptions' => null,
                 ]
             )
             ->shouldBeCalledOnce()
@@ -1371,7 +1373,7 @@ class GapicClientTraitTest extends TestCase
         $client->set('agentHeader', []);
         $client->set(
             'retrySettings',
-            ['method.name' => $retrySettings->reveal()]
+            ['method.name' => $retrySettings]
         );
         $client->set('transport', $transport->reveal());
         $client->startCall('method.name', 'decodeType');
@@ -1383,6 +1385,10 @@ class GapicClientTraitTest extends TestCase
                     'audience' => 'custom-audience',
                     'headers' => [],
                     'credentialsWrapper' => $credentialsWrapper,
+                    'timeoutMillis' => 30000,
+                    'transportOptions' => [],
+                    'metadataCallback' => null,
+                    'middlewareOptions' => null,
                 ]
             )
             ->shouldBeCalledOnce()
@@ -1395,7 +1401,7 @@ class GapicClientTraitTest extends TestCase
 
     public function testDefaultAudienceWithOperations()
     {
-        $retrySettings = $this->prophesize(RetrySettings::class);
+        $retrySettings = RetrySettings::constructDefault();
         $credentialsWrapper = $this->prophesize(CredentialsWrapper::class)
             ->reveal();
         $transport = $this->prophesize(TransportInterface::class);
@@ -1406,7 +1412,11 @@ class GapicClientTraitTest extends TestCase
                     'audience' => 'https://service-address/',
                     'headers' => [],
                     'credentialsWrapper' => $credentialsWrapper,
-                    'metadataReturnType' => 'metadataType'
+                    'metadataReturnType' => 'metadataType',
+                    'timeoutMillis' => 30000,
+                    'transportOptions' => [],
+                    'metadataCallback' => null,
+                    'middlewareOptions' => null,
                 ]
             )
             ->shouldBeCalledOnce()
@@ -1427,7 +1437,7 @@ class GapicClientTraitTest extends TestCase
         $client->set('agentHeader', []);
         $client->set(
             'retrySettings',
-            ['method.name' => $retrySettings->reveal()]
+            ['method.name' => $retrySettings]
         );
         $client->set('transport', $transport->reveal());
         $client->set('descriptors', ['method.name' => $longRunningDescriptors]);
@@ -1444,7 +1454,7 @@ class GapicClientTraitTest extends TestCase
 
     public function testDefaultAudienceWithPagedList()
     {
-        $retrySettings = $this->prophesize(RetrySettings::class);
+        $retrySettings = RetrySettings::constructDefault();
         $credentialsWrapper = $this->prophesize(CredentialsWrapper::class)
             ->reveal();
         $transport = $this->prophesize(TransportInterface::class);
@@ -1455,6 +1465,10 @@ class GapicClientTraitTest extends TestCase
                     'audience' => 'https://service-address/',
                     'headers' => [],
                     'credentialsWrapper' => $credentialsWrapper,
+                    'timeoutMillis' => 30000,
+                    'transportOptions' => [],
+                    'metadataCallback' => null,
+                    'middlewareOptions' => null,
                 ]
             )
             ->shouldBeCalledOnce()
@@ -1474,7 +1488,7 @@ class GapicClientTraitTest extends TestCase
         $client->set('agentHeader', []);
         $client->set(
             'retrySettings',
-            ['method.name' => $retrySettings->reveal()]
+            ['method.name' => $retrySettings]
         );
         $client->set('transport', $transport->reveal());
         $client->set('descriptors', [
@@ -1562,9 +1576,10 @@ class GapicClientTraitTest extends TestCase
                     'custom' => ['addModifyUnaryCallableOption' => true]
                 ],
                 'headers' => AgentHeader::buildAgentHeader([]),
-                'credentialsWrapper' => CredentialsWrapper::build([
-                    'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
-                ])
+                'credentialsWrapper' => CredentialsWrapper::build(),
+                'timeoutMillis' => 30000,
+                'metadataCallback' => null,
+                'middlewareOptions' => null,
             ]
         )
             ->shouldBeCalledOnce()
@@ -1632,9 +1647,10 @@ class GapicClientTraitTest extends TestCase
                     'custom' => ['addModifyUnaryCallableOption' => true]
                 ],
                 'headers' => AgentHeader::buildAgentHeader([]),
-                'credentialsWrapper' => CredentialsWrapper::build([
-                    'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
-                ])
+                'credentialsWrapper' => CredentialsWrapper::build(),
+                'timeoutMillis' => 30000,
+                'metadataCallback' => null,
+                'middlewareOptions' => null,
             ]
         )
             ->shouldBeCalledOnce()
@@ -1702,13 +1718,14 @@ class GapicClientTraitTest extends TestCase
                     'custom' => ['addModifyUnaryCallableOption' => true]
                 ],
                 'headers' => AgentHeader::buildAgentHeader([]),
-                'credentialsWrapper' => CredentialsWrapper::build([
-                    'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
-                ])
+                'credentialsWrapper' => CredentialsWrapper::build(),
+                'timeoutMillis' => 30000,
+                'metadataCallback' => null,
+                'middlewareOptions' => null,
             ]
         )
-            ->shouldBeCalledOnce()
-            ->willReturn(new FulfilledPromise(new Operation()));
+           ->shouldBeCalledOnce()
+           ->willReturn(new FulfilledPromise(new Operation()));
 
         $client->startCall(
             'simpleMethod',
@@ -1720,12 +1737,8 @@ class GapicClientTraitTest extends TestCase
         $this->assertEquals(['middleware2', 'middleware1'], $callOrder);
     }
 
-    public function testInvalidClientOptionsTypeThrowsExceptionForV2SurfaceOnly()
+    public function testInvalidClientOptionsTypeThrowsException()
     {
-        // v1 client
-        new StubGapicClient(['apiEndpoint' => ['foo']]);
-        $this->assertTrue(true, 'Test made it to here without throwing an exception');
-
         $this->expectException(\TypeError::class);
         $this->expectExceptionMessage(
             PHP_MAJOR_VERSION < 8
@@ -1735,7 +1748,6 @@ class GapicClientTraitTest extends TestCase
                     . '($apiEndpoint) must be of type ?string, array given'
         );
 
-        // v2 client
         new GapicV2SurfaceClient(['apiEndpoint' => ['foo']]);
     }
 
@@ -1749,10 +1761,8 @@ class GapicClientTraitTest extends TestCase
             Argument::type(Call::class),
             [
                 'headers' => AgentHeader::buildAgentHeader([]) + ['Foo' => 'Bar'],
-                'credentialsWrapper' => CredentialsWrapper::build([
-                    'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
-                ]),
-                'timeoutMillis' => null, // adds null timeoutMillis,
+                'credentialsWrapper' => CredentialsWrapper::build(),
+                'timeoutMillis' => 30000, // adds null timeoutMillis,
                 'transportOptions' => [],
                 'metadataCallback' => null,
                 'middlewareOptions' => null,
@@ -1770,32 +1780,6 @@ class GapicClientTraitTest extends TestCase
             'simpleMethod',
             'decodeType',
             $callOptions,
-            new MockRequest(),
-        )->wait();
-    }
-
-    public function testInvalidCallOptionsTypeForV1SurfaceDoesNotThrowException()
-    {
-        list($client, $transport) = $this->buildClientToTestModifyCallMethods();
-
-        $transport->startUnaryCall(
-            Argument::type(Call::class),
-            [
-                'transportOptions' => ['custom' => ['addModifyUnaryCallableOption' => true]],
-                'headers' => AgentHeader::buildAgentHeader([]),
-                'credentialsWrapper' => CredentialsWrapper::build([
-                    'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
-                ]),
-                'timeoutMillis' => 'blue', // invalid type, this is ignored
-            ]
-        )
-            ->shouldBeCalledOnce()
-            ->willReturn(new FulfilledPromise(new Operation()));
-
-        $client->startCall(
-            'simpleMethod',
-            'decodeType',
-            ['timeoutMillis' => 'blue'],
             new MockRequest(),
         )->wait();
     }
@@ -1819,25 +1803,6 @@ class GapicClientTraitTest extends TestCase
             ['timeoutMillis' => 'blue'], // invalid type, will throw exception
             new MockRequest(),
         )->wait();
-    }
-
-    public function testSurfaceAgentHeaders()
-    {
-        // V1 does not contain new headers
-        $client = new RestOnlyGapicClient([
-            'gapicVersion' => '0.0.2',
-        ]);
-        $agentHeader = $client->getAgentHeader();
-        $this->assertStringContainsString(' gapic/0.0.2 ', $agentHeader['x-goog-api-client'][0]);
-        $this->assertEquals('gcloud-php-legacy/0.0.2', $agentHeader['User-Agent'][0]);
-
-        // V2 contains new headers
-        $client = new GapicV2SurfaceClient([
-            'gapicVersion' => '0.0.1',
-        ]);
-        $agentHeader = $client->getAgentHeader();
-        $this->assertStringContainsString(' gapic/0.0.1 ', $agentHeader['x-goog-api-client'][0]);
-        $this->assertEquals('gcloud-php-new/0.0.1', $agentHeader['User-Agent'][0]);
     }
 
     public function testApiKeyOption()
@@ -2153,7 +2118,7 @@ class OperationsGapicClient extends StubGapicClient
 
 class CustomOperationsClient
 {
-    public function getOperation($name, $arg1, $arg2)
+    public function getOperation($request)
     {
     }
 }

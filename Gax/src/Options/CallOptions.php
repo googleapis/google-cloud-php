@@ -143,16 +143,6 @@ class CallOptions implements ArrayAccess, OptionsInterface
     }
 
     /**
-     * @deprecated use CallOptions::setTransportOptions
-     */
-    public function setTransportSpecificOptions(array $transportSpecificOptions): self
-    {
-        $this->setTransportOptions($transportSpecificOptions);
-
-        return $this;
-    }
-
-    /**
      * @param RetrySettings|array|null $retrySettings
      *
      * @return $this
