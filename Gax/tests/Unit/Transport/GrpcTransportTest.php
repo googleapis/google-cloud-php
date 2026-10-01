@@ -35,8 +35,8 @@ namespace Google\ApiCore\Tests\Unit\Transport;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\Testing\MockGrpcTransport;
 use Google\ApiCore\Testing\MockRequest;
+use Google\ApiCore\Tests\Testing\MockGrpcTransport;
 use Google\ApiCore\Tests\Unit\TestTrait;
 use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\ValidationException;
@@ -50,7 +50,6 @@ use Grpc\BaseStub;
 use Grpc\CallInvoker;
 use Grpc\ChannelCredentials;
 use Grpc\ClientStreamingCall;
-use Grpc\Interceptor;
 use Grpc\ServerStreamingCall;
 use Grpc\UnaryCall;
 use GuzzleHttp\Promise\Promise;
@@ -668,13 +667,8 @@ class GrpcTransportTest extends TestCase
     {
         $this->autoloadTestdata('mocks', __NAMESPACE__);
 
-        $deprecatedInterceptors = (new \ReflectionClass(Interceptor::class))
-            ->getMethod('interceptUnaryUnary')
-            ->getParameters()[3]
-            ->getName() === 'metadata';
-
-        $interceptor = $deprecatedInterceptors ? new DeprecatedTestInterceptor(): new TestInterceptor();
-        $unaryInterceptor = $deprecatedInterceptors ? new DeprecatedTestUnaryInterceptor(): new TestUnaryInterceptor();
+        $interceptor = new TestInterceptor();
+        $unaryInterceptor = new TestUnaryInterceptor();
 
         return [
             [

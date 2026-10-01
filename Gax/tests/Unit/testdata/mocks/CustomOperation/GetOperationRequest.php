@@ -6,9 +6,9 @@ class GetOperationRequest
 {
     public string $name;
     public string $arg2;
-    public string $arg3;
+    public string|int $arg3;
 
-    public static function build(string $arg2, string $arg3, string $name): static
+    public static function build(string $arg2, string|int $arg3, string $name): static
     {
         $request = new static();
         $request->name = $name;

@@ -38,14 +38,14 @@ use Google\CustomOperation\CustomOperationClient;
 use Google\CustomOperation\CustomOperationWithErrorAnnotations;
 use Google\CustomOperation\DeleteOperationRequest as CustomDeleteOperationRequest;
 use Google\CustomOperation\GetOperationRequest as CustomGetOperationRequest;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\LongRunning\CancelOperationRequest;
-use Google\LongRunning\Client\OperationsClient as LROOperationsClient;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\DeleteOperationRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\Internal\Message;
 use Google\Rpc\Code;
 use LogicException;
 use PHPUnit\Framework\TestCase;
@@ -78,7 +78,7 @@ class OperationResponseTest extends TestCase
     {
         return [
             [$this->createOperationsClient()],
-            [$this->prophesize(LROOperationsClient::class)->reveal()],
+            [$this->prophesize(OperationsClient::class)->reveal()],
         ];
     }
 
@@ -237,13 +237,13 @@ class OperationResponseTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn(null);
         $operationClient = $this->prophesize(CustomOperationClient::class);
-        $operationClient->getMyOperationPlease($operationName, 'arg1', 'arg2')
+        $operationClient->getMyOperationPlease(Argument::type(Message::class))
             ->shouldBeCalledOnce()
             ->willReturn($operation->reveal());
-        $operationClient->cancelMyOperationPlease($operationName, 'arg1', 'arg2')
+        $operationClient->cancelMyOperationPlease(Argument::type(Message::class))
             ->shouldBeCalledOnce()
             ->willReturn(true);
-        $operationClient->deleteMyOperationPlease($operationName, 'arg1', 'arg2')
+        $operationClient->deleteMyOperationPlease(Argument::type(Message::class))
             ->shouldBeCalledOnce()
             ->willReturn(true);
         $options = [
@@ -481,9 +481,9 @@ class OperationResponseTest extends TestCase
         $this->assertEquals($op->getSleeps(), [3, 4, 6]);
     }
 
-    public function testReloadWithLROOperationsClient()
+    public function testReloadWithOperationsClient()
     {
-        $operationClient = $this->prophesize(LROOperationsClient::class);
+        $operationClient = $this->prophesize(OperationsClient::class);
         $request = new GetOperationRequest(['name' => 'test-123']);
         $operationClient->getOperation($request)
             ->shouldBeCalledOnce()
@@ -493,9 +493,9 @@ class OperationResponseTest extends TestCase
         $operationResponse->reload();
     }
 
-    public function testCancelWithLROOperationsClient()
+    public function testCancelWithOperationsClient()
     {
-        $operationClient = $this->prophesize(LROOperationsClient::class);
+        $operationClient = $this->prophesize(OperationsClient::class);
         $request = new CancelOperationRequest(['name' => 'test-123']);
         $operationClient->cancelOperation($request)
             ->shouldBeCalledOnce();
@@ -504,9 +504,9 @@ class OperationResponseTest extends TestCase
         $operationResponse->cancel();
     }
 
-    public function testDeleteWithLROOperationsClient()
+    public function testDeleteWithOperationsClient()
     {
-        $operationClient = $this->prophesize(LROOperationsClient::class);
+        $operationClient = $this->prophesize(OperationsClient::class);
         $request = new DeleteOperationRequest(['name' => 'test-123']);
         $operationClient->deleteOperation($request)
             ->shouldBeCalledOnce();
@@ -555,7 +555,7 @@ class OperationResponseTest extends TestCase
 
         $opClient = $this->prophesize(OperationsClient::class);
 
-        $opClient->getOperation(Argument::type('string'))
+        $opClient->getOperation(Argument::type('object'))
             ->shouldBeCalledTimes($reloadCount)
             ->willReturn(...$consecutiveCalls);
 
