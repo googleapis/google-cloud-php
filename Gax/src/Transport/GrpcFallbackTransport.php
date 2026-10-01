@@ -100,6 +100,16 @@ class GrpcFallbackTransport implements TransportInterface
 
     /**
      * {@inheritdoc}
+     * @return never
+     * @throws \BadMethodCallException
+     */
+    public function startServerStreamingCall(Call $call, array $options)
+    {
+        $this->throwUnsupportedException();
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function startUnaryCall(Call $call, array $options)
     {
