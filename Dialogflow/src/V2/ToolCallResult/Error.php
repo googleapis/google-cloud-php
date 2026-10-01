@@ -21,6 +21,12 @@ class Error extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string message = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $message = '';
+    /**
+     * Optional. Specifies whether the tool call is retryable.
+     *
+     * Generated from protobuf field <code>bool retryable = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $retryable = false;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class Error extends \Google\Protobuf\Internal\Message
      *
      *     @type string $message
      *           Optional. The error message of the function.
+     *     @type bool $retryable
+     *           Optional. Specifies whether the tool call is retryable.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +67,32 @@ class Error extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->message = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies whether the tool call is retryable.
+     *
+     * Generated from protobuf field <code>bool retryable = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getRetryable()
+    {
+        return $this->retryable;
+    }
+
+    /**
+     * Optional. Specifies whether the tool call is retryable.
+     *
+     * Generated from protobuf field <code>bool retryable = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRetryable($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->retryable = $var;
 
         return $this;
     }

@@ -16,17 +16,25 @@ use Google\Protobuf\RepeatedField;
 class Warranty extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The warranty duration in months.
+     * The warranty duration in units. Default is in months, can be overridden
+     * by the `duration_unit` field.
      *
      * Generated from protobuf field <code>int64 duration = 1;</code>
      */
     protected $duration = 0;
     /**
-     * The warranty mileage.
+     * The warranty mileage (only applies to vehicles).
      *
      * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Mileage mileage = 2;</code>
      */
     protected $mileage = null;
+    /**
+     * The unit for the warranty duration. Assumed to be `MONTH` if
+     * equal to `WARRANTY_DURATION_UNIT_UNSPECIFIED`.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Warranty.WarrantyDurationUnit duration_unit = 3;</code>
+     */
+    protected $duration_unit = 0;
 
     /**
      * Constructor.
@@ -35,9 +43,13 @@ class Warranty extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $duration
-     *           The warranty duration in months.
+     *           The warranty duration in units. Default is in months, can be overridden
+     *           by the `duration_unit` field.
      *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\Mileage $mileage
-     *           The warranty mileage.
+     *           The warranty mileage (only applies to vehicles).
+     *     @type int $duration_unit
+     *           The unit for the warranty duration. Assumed to be `MONTH` if
+     *           equal to `WARRANTY_DURATION_UNIT_UNSPECIFIED`.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +58,8 @@ class Warranty extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The warranty duration in months.
+     * The warranty duration in units. Default is in months, can be overridden
+     * by the `duration_unit` field.
      *
      * Generated from protobuf field <code>int64 duration = 1;</code>
      * @return int|string
@@ -57,7 +70,8 @@ class Warranty extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The warranty duration in months.
+     * The warranty duration in units. Default is in months, can be overridden
+     * by the `duration_unit` field.
      *
      * Generated from protobuf field <code>int64 duration = 1;</code>
      * @param int|string $var
@@ -72,7 +86,7 @@ class Warranty extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The warranty mileage.
+     * The warranty mileage (only applies to vehicles).
      *
      * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Mileage mileage = 2;</code>
      * @return \Google\Shopping\Merchant\Products\V1\ProductAttributes\Mileage|null
@@ -93,7 +107,7 @@ class Warranty extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The warranty mileage.
+     * The warranty mileage (only applies to vehicles).
      *
      * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Mileage mileage = 2;</code>
      * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\Mileage $var
@@ -103,6 +117,34 @@ class Warranty extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\Mileage::class);
         $this->mileage = $var;
+
+        return $this;
+    }
+
+    /**
+     * The unit for the warranty duration. Assumed to be `MONTH` if
+     * equal to `WARRANTY_DURATION_UNIT_UNSPECIFIED`.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Warranty.WarrantyDurationUnit duration_unit = 3;</code>
+     * @return int
+     */
+    public function getDurationUnit()
+    {
+        return $this->duration_unit;
+    }
+
+    /**
+     * The unit for the warranty duration. Assumed to be `MONTH` if
+     * equal to `WARRANTY_DURATION_UNIT_UNSPECIFIED`.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Warranty.WarrantyDurationUnit duration_unit = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDurationUnit($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\Warranty\WarrantyDurationUnit::class);
+        $this->duration_unit = $var;
 
         return $this;
     }
