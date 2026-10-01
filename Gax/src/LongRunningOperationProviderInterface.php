@@ -36,9 +36,29 @@ namespace Google\ApiCore;
 
 use Google\LongRunning\Client\OperationsClient;
 
+/**
+ * Interface implemented by GAPIC service clients that support standard
+ * Google Cloud Long-Running Operations (LROs).
+ */
 interface LongRunningOperationProviderInterface
 {
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string      $operationName The name of the long running operation
+     * @param string|null $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     */
     public function resumeOperation(string $operationName, ?string $methodName = null): OperationResponse;
 
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     */
     public function getOperationsClient(): OperationsClient;
 }
