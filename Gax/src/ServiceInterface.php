@@ -34,13 +34,90 @@ declare(strict_types=1);
 
 namespace Google\ApiCore;
 
+/**
+ * Interface implemented by all GAPIC service clients, defining common lifecycle,
+ * scope, and middleware configuration methods.
+ */
 interface ServiceInterface
 {
+    /**
+     * Add a middleware to the call stack by providing a callable which will be
+     * invoked at the start of each call, and will return an instance of
+     * {@see \Google\ApiCore\Middleware\MiddlewareInterface} when invoked.
+     *
+     * The callable must have the following method signature:
+     *
+     *     callable(MiddlewareInterface): MiddlewareInterface
+     *
+     * An implementation may look something like this:
+     * ```
+     * $client->addMiddleware(function (MiddlewareInterface $handler) {
+     *     return new class ($handler) implements MiddlewareInterface {
+     *         public function __construct(private MiddlewareInterface $handler) {
+     *         }
+     *
+     *         public function __invoke(Call $call, array $options) {
+     *             // modify call and options (pre-request)
+     *             $response = ($this->handler)($call, $options);
+     *             // modify the response (post-request)
+     *             return $response;
+     *         }
+     *     };
+     * });
+     * ```
+     *
+     * @param callable $middlewareCallable A callable which returns an instance
+     *                 of {@see \Google\ApiCore\Middleware\MiddlewareInterface} when invoked with a
+     *                 MiddlewareInterface instance as its first argument.
+     * @return void
+     */
     public function addMiddleware(callable $middlewareCallable): void;
 
+    /**
+     * Prepend a middleware to the call stack by providing a callable which will be
+     * invoked at the end of each call, and will return an instance of
+     * {@see \Google\ApiCore\Middleware\MiddlewareInterface} when invoked.
+     *
+     * The callable must have the following method signature:
+     *
+     *     callable(MiddlewareInterface): MiddlewareInterface
+     *
+     * An implementation may look something like this:
+     * ```
+     * $client->prependMiddleware(function (MiddlewareInterface $handler) {
+     *     return new class ($handler) implements MiddlewareInterface {
+     *         public function __construct(private MiddlewareInterface $handler) {
+     *         }
+     *
+     *         public function __invoke(Call $call, array $options) {
+     *             // modify call and options (pre-request)
+     *             $response = ($this->handler)($call, $options);
+     *             // modify the response (post-request)
+     *             return $response;
+     *         }
+     *     };
+     * });
+     * ```
+     *
+     * @param callable $middlewareCallable A callable which returns an instance
+     *                 of {@see \Google\ApiCore\Middleware\MiddlewareInterface} when invoked with a
+     *                 MiddlewareInterface instance as its first argument.
+     * @return void
+     */
     public function prependMiddleware(callable $middlewareCallable): void;
 
+    /**
+     * Get the default scopes required by the service.
+     *
+     * @return array
+     */
     public static function getServiceScopes(): array;
 
+    /**
+     * Initiates an orderly shutdown in which preexisting calls continue but new
+     * calls are immediately cancelled.
+     *
+     * @return void
+     */
     public function close(): void;
 }
