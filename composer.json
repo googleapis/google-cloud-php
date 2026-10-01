@@ -589,7 +589,6 @@
             "Google\\Analytics\\Admin\\": "AnalyticsAdmin/src",
             "Google\\Analytics\\Data\\": "AnalyticsData/src",
             "Google\\ApiCore\\": "Gax/src",
-            "Google\\ApiCore\\LongRunning\\": "LongRunning/src/ApiCore/LongRunning",
             "Google\\Api\\": "CommonProtos/src/Api",
             "Google\\Apps\\Card\\": "AppsChat/src/Card",
             "Google\\Apps\\Chat\\": "AppsChat/src/Chat",

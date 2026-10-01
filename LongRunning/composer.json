@@ -6,7 +6,6 @@
     "version": "0.8.5",
     "autoload": {
         "psr-4": {
-            "Google\\ApiCore\\LongRunning\\": "src/ApiCore/LongRunning",
             "Google\\LongRunning\\": "src/LongRunning",
             "GPBMetadata\\Google\\Longrunning\\": "metadata/Longrunning"
         }
@@ -20,7 +19,7 @@
         }
     },
     "require-dev": {
-        "google/gax": "^1.38.0",
+        "google/gax": "^1.38.0||^2.0",
         "phpunit/phpunit": "^9.0"
     }
 }
