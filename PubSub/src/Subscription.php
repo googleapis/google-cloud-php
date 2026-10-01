@@ -86,7 +86,7 @@ use InvalidArgumentException;
  * // use `Authorization` as the header name, e.g. `$request->headers->get('Authorization')`.
  * $jwt = explode(' ', $_SERVER['HTTP_AUTHORIZATION'])[1];
  *
- * // Using the Access Token utility requires installation of the `phpseclib/phpseclib` dependency at version 2.
+ * // Using the Access Token utility requires installation of the `phpseclib/phpseclib` dependency at version 3 or 4.
  * $accessTokenUtility = new AccessToken();
  * $payload = $accessTokenUtility->verify($jwt);
  * if (!$payload) {

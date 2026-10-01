@@ -20,7 +20,13 @@ set -e
 #     run-package-tests.sh [DIRECTORY] [PREFER_LOWEST]
 #
 # DIRECTORY:     Optionally pass in a component directory and only run the script
-#.               for that component.
+#.               for that component. A space-separated list of directories may
+#                also be passed as a single argument.
+#
+# PHPSECLIB:     Optional environment variable. When set to a version constraint
+#                (e.g. "^4.0.1"), components which declare phpseclib/phpseclib in
+#                their "require-dev" have that constraint pinned before Composer
+#                resolves, so alternate major versions can be exercised in CI.
 #
 # PREFER_LOWEST: can be "--prefer-lowest" or "--prefer-lowest-strict". When the
 #                "--prefer-lowest-strict" flag is set, local package dependencies
@@ -104,6 +110,13 @@ run_package_test() {
         fi
     done
 
+    # Optionally pin phpseclib to a specific major version for components which
+    # develop against it, so both supported majors are covered by CI.
+    if [ -n "${PHPSECLIB}" ] && php -r 'exit(isset(json_decode(file_get_contents($argv[1]), true)["require-dev"]["phpseclib/phpseclib"]) ? 0 : 1);' "${DIR}/composer.json"; then
+        echo "Pin phpseclib/phpseclib:${PHPSECLIB} in ${DIR}"
+        composer --no-interaction --no-ansi --no-progress require --dev --no-update -d "${DIR}" "phpseclib/phpseclib:${PHPSECLIB}"
+    fi
+
     echo -n "Installing composer in ${DIR}"
     if [ -n "${PREFER_LOWEST}" ]; then
         echo -n " (with ${PREFER_LOWEST})"
@@ -157,6 +170,7 @@ export -f run_package_test
 export -f run_package_test_parallel
 export STRICT
 export PREFER_LOWEST
+export PHPSECLIB
 export FAILED_FILE
 
 # Determine optimal parallelism: default to the number of CPU cores on the host runner
