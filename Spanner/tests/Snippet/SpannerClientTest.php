@@ -82,6 +82,8 @@ class SpannerClientTest extends SnippetTestCase
             'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal(),
         ]);
         $this->operationResponse = $this->prophesize(OperationResponse::class);
+        $this->operationResponse->getName()->willReturn('my-operation');
+        $this->operationResponse->getLastProtoResponse()->willReturn(null);
     }
 
     public function testClass()
@@ -168,7 +170,7 @@ class SpannerClientTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
+            ->willReturn($this->operationResponse->reveal());
 
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
