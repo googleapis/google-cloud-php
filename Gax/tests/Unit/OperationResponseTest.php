@@ -38,7 +38,9 @@ use Google\CustomOperation\CustomOperationClient;
 use Google\CustomOperation\CustomOperationWithErrorAnnotations;
 use Google\CustomOperation\DeleteOperationRequest as CustomDeleteOperationRequest;
 use Google\CustomOperation\GetOperationRequest as CustomGetOperationRequest;
+use Google\ApiCore\CustomOperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\OperationsClientInterface;
 use Google\LongRunning\CancelOperationRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\DeleteOperationRequest;
@@ -231,7 +233,7 @@ class OperationResponseTest extends TestCase
         $operationName = 'test-123';
         $operation = $this->prophesize(CustomOperation::class);
         $operation->isThisOperationDoneOrWhat()
-            ->shouldBeCalledTimes(2)
+            ->shouldBeCalledOnce()
             ->willReturn('Yes, it is!');
         $operation->getError()
             ->shouldBeCalledOnce()
@@ -364,10 +366,10 @@ class OperationResponseTest extends TestCase
         $operationName = 'test-123';
         $operation = $this->prophesize(CustomOperationWithErrorAnnotations::class);
         $operation->isThisOperationDoneOrWhat()
-            ->shouldBeCalledTimes(2)
+            ->shouldBeCalledOnce()
             ->willReturn('Yes, it is!');
         $operation->getTheErrorCode()
-            ->shouldBeCalledTimes(2)
+            ->shouldBeCalledOnce()
             ->willReturn(500);
         $operation->getTheErrorMessage()
             ->shouldBeCalledOnce()
@@ -419,6 +421,9 @@ class OperationResponseTest extends TestCase
      */
     public function testMisconfiguredCustomOperationThrowsException($operationClient)
     {
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage('Unable to determine operation error status for this service');
+
         $operationName = 'test-123';
         $operation = $this->prophesize(CustomOperationWithErrorAnnotations::class);
         $operation->isThisOperationDoneOrWhat()
@@ -431,9 +436,6 @@ class OperationResponseTest extends TestCase
             'lastProtoResponse' => $operation->reveal(),
         ];
         $operationResponse = new OperationResponse($operationName, $operationClient, $options);
-
-        $this->expectException(LogicException::class);
-        $this->expectExceptionMessage('Unable to determine operation error status for this service');
 
         $operationResponse->operationSucceeded();
     }
@@ -513,6 +515,66 @@ class OperationResponseTest extends TestCase
 
         $operationResponse = new OperationResponse('test-123', $operationClient->reveal());
         $operationResponse->delete();
+    }
+
+    public function testOperationsClientInterface()
+    {
+        $operationClient = $this->prophesize(OperationsClientInterface::class);
+        $getRequest = new GetOperationRequest(['name' => 'test-123']);
+        $cancelRequest = new CancelOperationRequest(['name' => 'test-123']);
+        $deleteRequest = new DeleteOperationRequest(['name' => 'test-123']);
+        $protoOp = new Operation(['name' => 'test-123', 'done' => true]);
+
+        $operationClient->getOperation($getRequest)
+            ->shouldBeCalledOnce()
+            ->willReturn($protoOp);
+        $operationClient->cancelOperation($cancelRequest)
+            ->shouldBeCalledOnce();
+        $operationClient->deleteOperation($deleteRequest)
+            ->shouldBeCalledOnce();
+
+        $operationResponse = new OperationResponse('test-123', $operationClient->reveal());
+        $this->assertSame($operationClient->reveal(), $operationResponse->getOperationsClient());
+
+        $operationResponse->reload();
+        $this->assertTrue($operationResponse->isDone());
+        $this->assertSame($protoOp, $operationResponse->getLastProtoResponse());
+
+        $operationResponse->cancel();
+        $operationResponse->delete();
+    }
+
+    public function testCustomOperationsClientDirectly()
+    {
+        $operationName = 'test-123';
+        $customOp = $this->prophesize(CustomOperation::class);
+        $customOp->isThisOperationDoneOrWhat()
+            ->shouldBeCalledOnce()
+            ->willReturn('Yes, it is!');
+        $customOp->getError()
+            ->shouldBeCalledOnce()
+            ->willReturn(null);
+
+        $rawClient = $this->prophesize(CustomOperationClient::class);
+        $rawClient->getMyOperationPlease(Argument::type(Message::class))
+            ->shouldBeCalledOnce()
+            ->willReturn($customOp->reveal());
+
+        $adapter = new CustomOperationsClient($rawClient->reveal(), [
+            'getOperationMethod' => 'getMyOperationPlease',
+            'operationStatusMethod' => 'isThisOperationDoneOrWhat',
+            'operationStatusDoneValue' => 'Yes, it is!',
+        ]);
+
+        $operationResponse = new OperationResponse($operationName, $adapter);
+        $this->assertSame($adapter, $operationResponse->getOperationsClient());
+        $this->assertInstanceOf(OperationsClientInterface::class, $operationResponse->getOperationsClient());
+
+        $operationResponse->reload();
+        $this->assertTrue($operationResponse->isDone());
+        $this->assertTrue($operationResponse->operationSucceeded());
+        $this->assertInstanceOf(Operation::class, $operationResponse->getLastProtoResponse());
+        $this->assertTrue($operationResponse->getLastProtoResponse()->getDone());
     }
 
     private function createOperationResponse($options, $reloadCount)
