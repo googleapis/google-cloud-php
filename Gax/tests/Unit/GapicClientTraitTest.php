@@ -2076,7 +2076,7 @@ class GapicClientTraitTest extends TestCase
                 'responseType' => TestIamPermissionsResponse::class,
             ],
         ]);
-        $retrySettings = $this->prophesize(RetrySettings::class)->reveal();
+        $retrySettings = RetrySettings::constructDefault();
         $client->set('retrySettings', [
             'GetIamPolicy' => $retrySettings,
             'SetIamPolicy' => $retrySettings,
