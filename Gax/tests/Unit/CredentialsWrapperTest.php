@@ -33,6 +33,8 @@
 namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\HeaderCredentialsInterface;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\ValidationException;
 use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\Cache\MemoryCacheItemPool;
@@ -43,6 +45,7 @@ use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GCECache;
+use Google\Auth\GetQuotaProjectInterface;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Auth\ProjectIdProviderInterface;
@@ -583,6 +586,18 @@ class CredentialsWrapperTest extends TestCase
         $this->assertIsString($serialized);
 
         $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', $appDefaultCreds);
+    }
+
+    public function testInsecureCredentialsWrapperImplementsHeaderCredentialsInterface()
+    {
+        $wrapper = new InsecureCredentialsWrapper();
+
+        $this->assertInstanceOf(HeaderCredentialsInterface::class, $wrapper);
+        $this->assertInstanceOf(GetQuotaProjectInterface::class, $wrapper);
+        $this->assertNotInstanceOf(CredentialsWrapper::class, $wrapper);
+        $this->assertNull($wrapper->getQuotaProject());
+        $this->assertNull($wrapper->getAuthorizationHeaderCallback());
+        $wrapper->checkUniverseDomain();
     }
 
     private function setEnv(string $env, ?string $value = null)
