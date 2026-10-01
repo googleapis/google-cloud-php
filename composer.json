@@ -69,7 +69,6 @@
         "grpc/grpc": "^1.13",
         "google/common-protos": "^4.4",
         "google/protobuf": "^4.31||^5.34",
-        "google/grpc-gcp": "^0.4",
         "ramsey/uuid": "^4.0",
         "open-telemetry/sdk": "^1.13",
         "open-telemetry/exporter-otlp": "^1.4"
