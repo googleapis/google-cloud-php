@@ -31,7 +31,9 @@
  */
 namespace Google\ApiCore;
 
-interface HeaderCredentialsInterface
+use Google\Auth\GetQuotaProjectInterface;
+
+interface HeaderCredentialsInterface extends GetQuotaProjectInterface
 {
     /**
      * @param string|null $audience optional audience for self-signed JWTs.
