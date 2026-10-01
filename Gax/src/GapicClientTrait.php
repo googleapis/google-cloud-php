@@ -435,7 +435,7 @@ trait GapicClientTrait
      * @param array $options
      * @return OperationsClient|object
      */
-    protected function createOperationsClient(array $options)
+    private function createOperationsClient(array $options)
     {
         $this->pluckArray([
             'serviceName',
