@@ -74,6 +74,7 @@ class BackupTest extends SnippetTestCase
         $this->serializer = new Serializer();
 
         $this->operationResponse = $this->prophesize(OperationResponse::class);
+        $this->operationResponse->getName()->willReturn('my-operation');
 
         $this->expireTime = new \DateTime('+ 7 hours');
         $database = $this->prophesize(Database::class);

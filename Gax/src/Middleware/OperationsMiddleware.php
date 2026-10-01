@@ -35,8 +35,6 @@ namespace Google\ApiCore\Middleware;
 
 use Google\ApiCore\Call;
 use Google\ApiCore\OperationResponse;
-use Google\ApiCore\OperationsClientInterface;
-use Google\LongRunning\Client\OperationsClient;
 use Google\Protobuf\Internal\Message;
 use GuzzleHttp\Promise\PromiseInterface;
 

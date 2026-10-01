@@ -44,8 +44,8 @@ use LogicException;
 
 /**
  * Adapter that wraps a custom operations client (e.g. Compute's ZoneOperationsClient)
- * to implement {@see OperationsClientInterface} and normalize custom operation messages
- * into {@see Operation}.
+ * to implement {@see \Google\ApiCore\OperationsClientInterface} and normalize custom operation messages
+ * into {@see \Google\LongRunning\Operation}.
  */
 class CustomOperationsClient implements OperationsClientInterface
 {
