@@ -445,7 +445,7 @@ trait GapicClientTrait
      *
      * @return OperationsClient
      */
-    protected function createOperationsClient(array $options)
+    private function createOperationsClient(array $options)
     {
         // Unset client-specific configuration options
         unset(
