@@ -146,6 +146,21 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool opt_out_conformer_model_migration = 26;</code>
      */
     protected $opt_out_conformer_model_migration = false;
+    /**
+     * Optional. Configuration for using Gemini ASR models served via Vertex AI.
+     * This field is only used when `use_gemini_asr` is true.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechToTextConfig.GeminiAsrConfig gemini_asr_config = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $gemini_asr_config = null;
+    /**
+     * Optional. If true, Gemini ASR will be used for transcription instead of
+     * Cloud Speech-to-Text. If false, Cloud Speech-to-Text will be used.
+     * If unset, this setting is inherited from the ConversationProfile.
+     *
+     * Generated from protobuf field <code>optional bool use_gemini_asr = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $use_gemini_asr = null;
 
     /**
      * Constructor.
@@ -227,6 +242,13 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           This field will be deprecated once force migration takes place in June
      *           2024. Please refer to [Dialogflow ES Speech model
      *           migration](https://cloud.google.com/dialogflow/es/docs/speech-model-migration).
+     *     @type \Google\Cloud\Dialogflow\V2\SpeechToTextConfig\GeminiAsrConfig $gemini_asr_config
+     *           Optional. Configuration for using Gemini ASR models served via Vertex AI.
+     *           This field is only used when `use_gemini_asr` is true.
+     *     @type bool $use_gemini_asr
+     *           Optional. If true, Gemini ASR will be used for transcription instead of
+     *           Cloud Speech-to-Text. If false, Cloud Speech-to-Text will be used.
+     *           If unset, this setting is inherited from the ConversationProfile.
      * }
      */
     public function __construct($data = NULL) {
@@ -694,6 +716,84 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->opt_out_conformer_model_migration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for using Gemini ASR models served via Vertex AI.
+     * This field is only used when `use_gemini_asr` is true.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechToTextConfig.GeminiAsrConfig gemini_asr_config = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\V2\SpeechToTextConfig\GeminiAsrConfig|null
+     */
+    public function getGeminiAsrConfig()
+    {
+        return $this->gemini_asr_config;
+    }
+
+    public function hasGeminiAsrConfig()
+    {
+        return isset($this->gemini_asr_config);
+    }
+
+    public function clearGeminiAsrConfig()
+    {
+        unset($this->gemini_asr_config);
+    }
+
+    /**
+     * Optional. Configuration for using Gemini ASR models served via Vertex AI.
+     * This field is only used when `use_gemini_asr` is true.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechToTextConfig.GeminiAsrConfig gemini_asr_config = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\SpeechToTextConfig\GeminiAsrConfig $var
+     * @return $this
+     */
+    public function setGeminiAsrConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\SpeechToTextConfig\GeminiAsrConfig::class);
+        $this->gemini_asr_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, Gemini ASR will be used for transcription instead of
+     * Cloud Speech-to-Text. If false, Cloud Speech-to-Text will be used.
+     * If unset, this setting is inherited from the ConversationProfile.
+     *
+     * Generated from protobuf field <code>optional bool use_gemini_asr = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getUseGeminiAsr()
+    {
+        return isset($this->use_gemini_asr) ? $this->use_gemini_asr : false;
+    }
+
+    public function hasUseGeminiAsr()
+    {
+        return isset($this->use_gemini_asr);
+    }
+
+    public function clearUseGeminiAsr()
+    {
+        unset($this->use_gemini_asr);
+    }
+
+    /**
+     * Optional. If true, Gemini ASR will be used for transcription instead of
+     * Cloud Speech-to-Text. If false, Cloud Speech-to-Text will be used.
+     * If unset, this setting is inherited from the ConversationProfile.
+     *
+     * Generated from protobuf field <code>optional bool use_gemini_asr = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseGeminiAsr($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_gemini_asr = $var;
 
         return $this;
     }

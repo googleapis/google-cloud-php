@@ -34,12 +34,17 @@ use Google\Ads\DataManager\V1\IngestAudienceMembersRequest;
 use Google\Ads\DataManager\V1\IngestAudienceMembersResponse;
 use Google\Ads\DataManager\V1\IngestEventsRequest;
 use Google\Ads\DataManager\V1\IngestEventsResponse;
+use Google\Ads\DataManager\V1\IngestUsersRequest;
+use Google\Ads\DataManager\V1\IngestUsersResponse;
 use Google\Ads\DataManager\V1\RemoveAllAudienceMembersRequest;
 use Google\Ads\DataManager\V1\RemoveAllAudienceMembersResponse;
 use Google\Ads\DataManager\V1\RemoveAudienceMembersRequest;
 use Google\Ads\DataManager\V1\RemoveAudienceMembersResponse;
+use Google\Ads\DataManager\V1\RemoveUsersRequest;
+use Google\Ads\DataManager\V1\RemoveUsersResponse;
 use Google\Ads\DataManager\V1\RetrieveRequestStatusRequest;
 use Google\Ads\DataManager\V1\RetrieveRequestStatusResponse;
+use Google\Ads\DataManager\V1\User;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -60,8 +65,10 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<IngestAdEventsResponse> ingestAdEventsAsync(IngestAdEventsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IngestAudienceMembersResponse> ingestAudienceMembersAsync(IngestAudienceMembersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IngestEventsResponse> ingestEventsAsync(IngestEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IngestUsersResponse> ingestUsersAsync(IngestUsersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RemoveAllAudienceMembersResponse> removeAllAudienceMembersAsync(RemoveAllAudienceMembersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RemoveAudienceMembersResponse> removeAudienceMembersAsync(RemoveAudienceMembersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RemoveUsersResponse> removeUsersAsync(RemoveUsersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RetrieveRequestStatusResponse> retrieveRequestStatusAsync(RetrieveRequestStatusRequest $request, array $optionalArgs = [])
  */
 final class IngestionServiceClient
@@ -288,6 +295,39 @@ final class IngestionServiceClient
     }
 
     /**
+     * Uploads a list of users to the provided destinations. Unlike
+     * [IngestAudienceMembers][google.ads.datamanager.v1.IngestionService.IngestAudienceMembers]
+     * (which adds users to specific advertiser audience lists for targeting),
+     * `IngestUsers` ingests account level identity linkage data (for example,
+     * user identifiers linked to mobile IDs) independent of specific audience
+     * segments.
+     *
+     * This feature is only available to accounts on an allowlist.
+     *
+     * The async variant is {@see IngestionServiceClient::ingestUsersAsync()} .
+     *
+     * @example samples/V1/IngestionServiceClient/ingest_users.php
+     *
+     * @param IngestUsersRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return IngestUsersResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function ingestUsers(IngestUsersRequest $request, array $callOptions = []): IngestUsersResponse
+    {
+        return $this->startApiCall('IngestUsers', $request, $callOptions)->wait();
+    }
+
+    /**
      * Removes all audience members from the provided destinations.
      *
      * The async variant is
@@ -345,6 +385,34 @@ final class IngestionServiceClient
         array $callOptions = []
     ): RemoveAudienceMembersResponse {
         return $this->startApiCall('RemoveAudienceMembers', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Removes a list of users from the provided destinations.
+     *
+     * This feature is only available to accounts on an allowlist.
+     *
+     * The async variant is {@see IngestionServiceClient::removeUsersAsync()} .
+     *
+     * @example samples/V1/IngestionServiceClient/remove_users.php
+     *
+     * @param RemoveUsersRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RemoveUsersResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function removeUsers(RemoveUsersRequest $request, array $callOptions = []): RemoveUsersResponse
+    {
+        return $this->startApiCall('RemoveUsers', $request, $callOptions)->wait();
     }
 
     /**
