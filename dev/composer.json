@@ -21,6 +21,9 @@
             "Google\\Cloud\\Dev\\": "src"
         }
     },
+    "replace": {
+        "symplify/coding-standard": "*"
+    },
     "require-dev": {
         "google/gapic-generator": "dev-main",
         "google/gapic-showcase": "dev-main",
