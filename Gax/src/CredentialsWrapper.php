@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -126,7 +128,7 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
     public static function build(
         array $args = [],
         string $universeDomain = GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
-    ) {
+    ): self {
         $args += [
             'keyFile'           => null,
             'scopes'            => null,
@@ -219,10 +221,10 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
     }
 
     /**
-     * @param string $audience optional audience for self-signed JWTs.
-     * @return callable Callable function that returns an authorization header.
+     * @param string|null $audience optional audience for self-signed JWTs.
+     * @return callable|null Callable function that returns an authorization header.
      */
-    public function getAuthorizationHeaderCallback($audience = null): ?callable
+    public function getAuthorizationHeaderCallback(?string $audience = null): ?callable
     {
         // NOTE: changes to this function should be treated carefully and tested thoroughly. It will
         // be passed into the gRPC c extension, and changes have the potential to trigger very
@@ -307,10 +309,10 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
         ?callable $authHttpHandler = null,
         ?array $authCacheOptions = null,
         ?CacheItemPoolInterface $authCache = null,
-        $quotaProject = null,
+        ?string $quotaProject = null,
         ?array $defaultScopes = null,
         bool $enableRegionalAccessBoundary = true,
-    ) {
+    ): FetchAuthTokenInterface {
         try {
             return ApplicationDefaultCredentials::getCredentials(
                 $scopes,
@@ -331,7 +333,7 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
     /**
      * @param mixed $token
      */
-    private static function isValid($token)
+    private static function isValid(mixed $token): bool
     {
         return is_array($token)
             && array_key_exists('access_token', $token);
@@ -340,7 +342,7 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
     /**
      * @param mixed $token
      */
-    private static function isExpired($token)
+    private static function isExpired(mixed $token): bool
     {
         return !(self::isValid($token)
             && array_key_exists('expires_at', $token)

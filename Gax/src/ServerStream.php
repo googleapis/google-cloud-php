@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2016 Google LLC
  * All rights reserved.
@@ -46,8 +48,8 @@ class ServerStream
 {
     use LoggingTrait;
 
-    private $call;
-    private $resourcesGetMethod;
+    private ServerStreamingCallInterface $call;
+    private ?string $resourcesGetMethod = null;
     private null|LoggerInterface $logger;
 
     /**
@@ -58,7 +60,7 @@ class ServerStream
      * @param null|LoggerInterface $logger A PSR-3 compliant logger.
      */
     public function __construct(
-        $serverStreamingCall,
+        ServerStreamingCallInterface $serverStreamingCall,
         array $streamingDescriptor = [],
         null|LoggerInterface $logger = null
     ) {
@@ -74,9 +76,9 @@ class ServerStream
      * completes. Throws an ApiException if the streaming call failed.
      *
      * @throws ApiException
-     * @return \Generator<int, T>|mixed
+     * @return \Generator<int, T>
      */
-    public function readAll()
+    public function readAll(): iterable
     {
         $resourcesGetMethod = $this->resourcesGetMethod;
         foreach ($this->call->responses() as $response) {
@@ -121,7 +123,7 @@ class ServerStream
      *
      * @return ServerStreamingCallInterface
      */
-    public function getServerStreamingCall()
+    public function getServerStreamingCall(): ServerStreamingCallInterface
     {
         return $this->call;
     }

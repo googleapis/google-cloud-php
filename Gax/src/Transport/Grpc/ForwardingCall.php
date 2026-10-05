@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -51,7 +53,7 @@ abstract class ForwardingCall
      *
      * @param AbstractCall|ForwardingCall $innerCall
      */
-    public function __construct($innerCall)
+    public function __construct(AbstractCall|ForwardingCall $innerCall)
     {
         $this->innerCall = $innerCall;
     }
@@ -59,7 +61,7 @@ abstract class ForwardingCall
     /**
      * @return mixed The metadata sent by the server
      */
-    public function getMetadata()
+    public function getMetadata(): mixed
     {
         return $this->innerCall->getMetadata();
     }
@@ -67,15 +69,15 @@ abstract class ForwardingCall
     /**
      * @return mixed The trailing metadata sent by the server
      */
-    public function getTrailingMetadata()
+    public function getTrailingMetadata(): mixed
     {
         return $this->innerCall->getTrailingMetadata();
     }
 
     /**
-     * @return string The URI of the endpoint
+     * @return ?string The URI of the endpoint
      */
-    public function getPeer()
+    public function getPeer(): ?string
     {
         return $this->innerCall->getPeer();
     }
@@ -83,7 +85,7 @@ abstract class ForwardingCall
     /**
      * Cancels the call.
      */
-    public function cancel()
+    public function cancel(): void
     {
         $this->innerCall->cancel();
     }

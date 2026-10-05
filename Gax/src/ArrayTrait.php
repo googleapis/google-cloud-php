@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -48,7 +50,7 @@ trait ArrayTrait
      * @return mixed|null
      * @throws \InvalidArgumentException
      */
-    private function pluck(string $key, array &$arr, bool $isRequired = true)
+    private function pluck(string $key, array &$arr, bool $isRequired = true): mixed
     {
         if (!array_key_exists($key, $arr)) {
             if ($isRequired) {
@@ -72,7 +74,7 @@ trait ArrayTrait
      * @param array $arr
      * @return array
      */
-    private function pluckArray(array $keys, array &$arr)
+    private function pluckArray(array $keys, array &$arr): array
     {
         $values = [];
 
@@ -91,7 +93,7 @@ trait ArrayTrait
      * @param array $arr
      * @return bool
      */
-    private function isAssoc(array $arr)
+    private function isAssoc(array $arr): bool
     {
         return array_keys($arr) !== range(0, count($arr) - 1);
     }
@@ -102,7 +104,7 @@ trait ArrayTrait
      * @param array $arr
      * @return array
      */
-    private function arrayFilterRemoveNull(array $arr)
+    private function arrayFilterRemoveNull(array $arr): array
     {
         return array_filter($arr, function ($element) {
             if (!is_null($element)) {
@@ -120,7 +122,7 @@ trait ArrayTrait
      * @param array $arr
      * @return array
      */
-    private function subsetArray(array $keys, array $arr)
+    private function subsetArray(array $keys, array $arr): array
     {
         return array_intersect_key(
             $arr,
@@ -139,7 +141,7 @@ trait ArrayTrait
      * @param array $array2
      * @return array
      */
-    private function arrayMergeRecursive(array $array1, array $array2)
+    private function arrayMergeRecursive(array $array1, array $array2): array
     {
         foreach ($array2 as $key => $value) {
             if (array_key_exists($key, $array1) && is_array($array1[$key]) && is_array($value)) {

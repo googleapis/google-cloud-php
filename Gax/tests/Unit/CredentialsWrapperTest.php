@@ -578,11 +578,14 @@ class CredentialsWrapperTest extends TestCase
 
     public function testSerializeCredentialsWrapper()
     {
-        $credentialsWrapper = CredentialsWrapper::build([
-            'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json',
-        ]);
+        $appDefaultCreds = getenv('GOOGLE_APPLICATION_CREDENTIALS');
+        $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', __DIR__ . '/testdata/creds/json-key-file.json');
+
+        $credentialsWrapper = CredentialsWrapper::build();
         $serialized = serialize($credentialsWrapper);
         $this->assertIsString($serialized);
+
+        $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', $appDefaultCreds);
     }
 
     public function testInsecureCredentialsWrapperImplementsHeaderCredentialsInterface()

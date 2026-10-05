@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -32,7 +34,11 @@
 
 namespace Google\ApiCore\Middleware;
 
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
+use Google\ApiCore\ClientStream;
+use Google\ApiCore\ServerStream;
+use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * Middleware to add fixed headers to an API call.
@@ -56,8 +62,10 @@ class FixedHeaderMiddleware implements MiddlewareInterface
         $this->overrideUserHeaders = $overrideUserHeaders;
     }
 
-    public function __invoke(Call $call, array $options)
-    {
+    public function __invoke(
+        Call $call,
+        array $options
+    ): PromiseInterface|ClientStream|ServerStream|BidiStream {
         $userHeaders = $options['headers'] ?? [];
         if ($this->overrideUserHeaders) {
             $options['headers'] = $this->headers + $userHeaders;

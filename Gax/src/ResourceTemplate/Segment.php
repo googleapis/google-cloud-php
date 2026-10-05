@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -99,7 +101,7 @@ class Segment
     /**
      * @return string A string representation of the segment.
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->stringRepr;
     }
@@ -111,7 +113,7 @@ class Segment
      * @return bool
      * @throws ValidationException
      */
-    public function matches(string $value)
+    public function matches(string $value): bool
     {
         switch ($this->segmentType) {
             case Segment::LITERAL_SEGMENT:
@@ -132,7 +134,7 @@ class Segment
     /**
      * @return int
      */
-    public function getSegmentType()
+    public function getSegmentType(): int
     {
         return $this->segmentType;
     }
@@ -140,7 +142,7 @@ class Segment
     /**
      * @return string|null
      */
-    public function getKey()
+    public function getKey(): ?string
     {
         return $this->key;
     }
@@ -148,7 +150,7 @@ class Segment
     /**
      * @return string|null
      */
-    public function getValue()
+    public function getValue(): ?string
     {
         return $this->value;
     }
@@ -156,7 +158,7 @@ class Segment
     /**
      * @return RelativeResourceTemplate|null
      */
-    public function getTemplate()
+    public function getTemplate(): ?RelativeResourceTemplate
     {
         return $this->template;
     }
@@ -164,7 +166,7 @@ class Segment
     /**
      * @return string
      */
-    public function getSeparator()
+    public function getSeparator(): string
     {
         return $this->separator;
     }
@@ -176,7 +178,7 @@ class Segment
      * @param string $binding
      * @return bool
      */
-    private static function isValidBinding(string $binding)
+    private static function isValidBinding(string $binding): bool
     {
         return preg_match('-^[^/]+$-', $binding) === 1;
     }
@@ -188,7 +190,7 @@ class Segment
      * @param string $binding
      * @return bool
      */
-    private static function isValidDoubleWildcardBinding(string $binding)
+    private static function isValidDoubleWildcardBinding(string $binding): bool
     {
         return preg_match('-^.+$-', $binding) === 1;
     }

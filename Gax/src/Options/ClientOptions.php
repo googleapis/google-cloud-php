@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2023 Google LLC
  * All rights reserved.
@@ -37,7 +39,6 @@ use Closure;
 use Google\ApiCore\HeaderCredentialsInterface;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Auth\FetchAuthTokenInterface;
-use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -69,13 +70,11 @@ class ClientOptions implements ArrayAccess, OptionsInterface
 
     private array $clientConfig;
 
-    /** @var string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null */
-    private $credentials;
+    private string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials;
 
     private array $credentialsConfig;
 
-    /** @var string|TransportInterface|null $transport */
-    private $transport;
+    private string|TransportInterface|null $transport;
 
     private TransportOptions $transportConfig;
 
@@ -230,16 +229,13 @@ class ClientOptions implements ArrayAccess, OptionsInterface
      * @param string|array $clientConfig
      *
      * @return $this
-     * @throws InvalidArgumentException
      */
-    public function setClientConfig($clientConfig): self
+    public function setClientConfig(string|array $clientConfig): self
     {
         if (is_string($clientConfig)) {
             $this->clientConfig = json_decode(file_get_contents($clientConfig), true);
-        } elseif (is_array($clientConfig)) {
-            $this->clientConfig = $clientConfig;
         } else {
-            throw new InvalidArgumentException('Invalid client config');
+            $this->clientConfig = $clientConfig;
         }
 
         return $this;
@@ -250,8 +246,9 @@ class ClientOptions implements ArrayAccess, OptionsInterface
      *
      * @return $this
      */
-    public function setCredentials($credentials): self
-    {
+    public function setCredentials(
+        string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials
+    ): self {
         $this->credentials = $credentials;
 
         return $this;
@@ -274,7 +271,7 @@ class ClientOptions implements ArrayAccess, OptionsInterface
      *
      * @return $this
      */
-    public function setTransport($transport): self
+    public function setTransport(string|TransportInterface|null $transport): self
     {
         $this->transport = $transport;
 

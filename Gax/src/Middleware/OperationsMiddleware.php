@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -34,6 +36,7 @@ namespace Google\ApiCore\Middleware;
 use Google\ApiCore\Call;
 use Google\ApiCore\OperationResponse;
 use Google\Protobuf\Internal\Message;
+use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * Middleware which wraps the response in an OperationResponse object.
@@ -49,7 +52,7 @@ class OperationsMiddleware implements MiddlewareInterface
 
     public function __construct(
         callable $nextHandler,
-        $operationsClient,
+        object $operationsClient,
         array $descriptor
     ) {
         $this->nextHandler = $nextHandler;
@@ -57,7 +60,7 @@ class OperationsMiddleware implements MiddlewareInterface
         $this->descriptor = $descriptor;
     }
 
-    public function __invoke(Call $call, array $options)
+    public function __invoke(Call $call, array $options): PromiseInterface
     {
         $next = $this->nextHandler;
         return $next(

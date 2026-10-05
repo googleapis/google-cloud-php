@@ -972,8 +972,11 @@ class GapicClientTraitTest extends TestCase
         $client = new class() extends StubGapicClient {
             public array $capturedCredentialsConfig = [];
 
-            public function createCredentialsWrapper($credentials, array $credentialsConfig, string $universeDomain): HeaderCredentialsInterface
-            {
+            public function createCredentialsWrapper(
+                string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials,
+                array $credentialsConfig,
+                string $universeDomain
+            ): HeaderCredentialsInterface {
                 $this->capturedCredentialsConfig = $credentialsConfig;
                 return new InsecureCredentialsWrapper();
             }
@@ -1561,7 +1564,7 @@ class GapicClientTraitTest extends TestCase
                     $this->handler = $handler;
                     $this->m1Called = &$m1Called;
                 }
-                public function __invoke(Call $call, array $options)
+                public function __invoke(Call $call, array $options): PromiseInterface
                 {
                     $this->m1Called = true;
                     return ($this->handler)($call, $options);
@@ -1579,7 +1582,7 @@ class GapicClientTraitTest extends TestCase
                     $this->handler = $handler;
                     $this->m2Called = &$m2Called;
                 }
-                public function __invoke(Call $call, array $options)
+                public function __invoke(Call $call, array $options): PromiseInterface
                 {
                     $this->m2Called = true;
                     return ($this->handler)($call, $options);
@@ -1632,7 +1635,7 @@ class GapicClientTraitTest extends TestCase
                     $this->handler = $handler;
                     $this->callOrder = &$callOrder;
                 }
-                public function __invoke(Call $call, array $options)
+                public function __invoke(Call $call, array $options): PromiseInterface
                 {
                     $this->callOrder[] = 'middleware1';
                     return ($this->handler)($call, $options);
@@ -1650,7 +1653,7 @@ class GapicClientTraitTest extends TestCase
                     $this->handler = $handler;
                     $this->callOrder = &$callOrder;
                 }
-                public function __invoke(Call $call, array $options)
+                public function __invoke(Call $call, array $options): PromiseInterface
                 {
                     $this->callOrder[] = 'middleware2';
                     return ($this->handler)($call, $options);
@@ -1702,7 +1705,7 @@ class GapicClientTraitTest extends TestCase
                     $this->handler = $handler;
                     $this->callOrder = &$callOrder;
                 }
-                public function __invoke(Call $call, array $options)
+                public function __invoke(Call $call, array $options): PromiseInterface
                 {
                     $this->callOrder[] = 'middleware1';
                     return ($this->handler)($call, $options);
@@ -1720,7 +1723,7 @@ class GapicClientTraitTest extends TestCase
                     $this->handler = $handler;
                     $this->callOrder = &$callOrder;
                 }
-                public function __invoke(Call $call, array $options)
+                public function __invoke(Call $call, array $options): PromiseInterface
                 {
                     $this->callOrder[] = 'middleware2';
                     return ($this->handler)($call, $options);
@@ -1913,8 +1916,15 @@ class GapicClientTraitTest extends TestCase
 
     public function testHasEmulatorOption()
     {
-        $gapic = new class() {
+        $mockTransport = $this->prophesize(TransportInterface::class)->reveal();
+        $gapic = new class($mockTransport) {
             public bool $hasEmulator;
+            private TransportInterface $mockTransport;
+
+            public function __construct(TransportInterface $mockTransport)
+            {
+                $this->mockTransport = $mockTransport;
+            }
 
             use GapicClientTrait {
                 buildClientOptions as public;
@@ -1927,12 +1937,13 @@ class GapicClientTraitTest extends TestCase
 
             private function createTransport(
                 string $apiEndpoint,
-                $transport,
+                string|TransportInterface $transport,
                 $transportConfig,
                 ?callable $clientCertSource = null,
                 bool $hasEmulator = false
-            ) {
+            ): TransportInterface {
                 $this->hasEmulator = $hasEmulator;
+                return $this->mockTransport;
             }
         };
 
