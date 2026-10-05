@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests\Unit;
 
 use Google\Cloud\Dev\Component;
-use Swaggest\JsonSchema\Schema;
+use JsonSchema\Validator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -67,17 +67,16 @@ class JsonFileTest extends TestCase
             $schemaPath
         ));
 
-        $validator = Schema::import(json_decode($schema));
+        $validator = new Validator();
+        $validator->validate($input, json_decode($schema));
 
-        $valid = false;
         $msg = '';
-        try {
-            $validator->in($input);
-            $valid = true;
-        } catch (\Exception $e) {
-            $msg = $e->getMessage();
+        if (!$validator->isValid()) {
+            foreach ($validator->getErrors() as $error) {
+                $msg .= sprintf("[%s] %s\n", $error['property'], $error['message']);
+            }
         }
 
-        $this->assertTrue($valid, $msg);
+        $this->assertTrue($validator->isValid(), $msg);
     }
 }

@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Dev\DocFx\Node;
 
-use Kcs\ClassFinder\Finder\ComposerFinder;
+use ReflectionClass;
 use SimpleXMLElement;
 
 /**
@@ -36,20 +36,18 @@ class InterfaceNode extends ClassNode
 
     public function determineImplementingClasses(array $pageNodes): void
     {
-        // Project root components
-        $componentDirs = array_map('realpath', glob(__DIR__ . '/../../../../*/src', GLOB_ONLYDIR));
-        $componentDirs[] = __DIR__ . '/../../../vendor/google/cloud/Auth/src';
-        $componentDirs[] = __DIR__ . '/../../../vendor/google/cloud/Gax/src';
+        $interfaceName = ltrim($this->getFullName(), '\\');
+        if (!interface_exists($interfaceName)) {
+            return;
+        }
 
-        $finder = new ComposerFinder();
-        $finder
-            ->in($componentDirs)
-            ->implementationOf($this->getFullName());
-
-        foreach ($finder as $className => $reflection) {
-            // ensure the class is part of our published documentation
-            if (isset($pageNodes['\\' . $className])) {
-                $this->implementingClasses[] = '\\' . $className;
+        foreach (array_keys($pageNodes) as $className) {
+            if (!class_exists($className)) {
+                continue;
+            }
+            $reflection = new ReflectionClass($className);
+            if (!$reflection->isEnum() && $reflection->implementsInterface($interfaceName)) {
+                $this->implementingClasses[] = $className;
             }
         }
 

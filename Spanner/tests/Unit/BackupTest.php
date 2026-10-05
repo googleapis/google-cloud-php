@@ -18,7 +18,6 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use DateTime;
-use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
@@ -49,7 +48,6 @@ class BackupTest extends TestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
-    use ArraySubsetAsserts;
     use ApiHelperTrait;
 
     const PROJECT_ID = 'test-project';
@@ -228,12 +226,10 @@ class BackupTest extends TestCase
 
         $info = $backup->info();
 
-        $this->assertArraySubset([
-            'name' => $response->getName(),
-            'expireTime' => $this->expireTime->format('Y-m-d\TH:i:s.000000\Z'),
-            'createTime' => $this->expireTime->format('Y-m-d\TH:i:s.000000\Z'),
-            'versionTime' => $this->versionTime->format('Y-m-d\TH:i:s.000000\Z'),
-        ], $info);
+        $this->assertEquals($response->getName(), $info['name']);
+        $this->assertEquals($this->expireTime->format('Y-m-d\TH:i:s.000000\Z'), $info['expireTime']);
+        $this->assertEquals($this->expireTime->format('Y-m-d\TH:i:s.000000\Z'), $info['createTime']);
+        $this->assertEquals($this->versionTime->format('Y-m-d\TH:i:s.000000\Z'), $info['versionTime']);
 
         // Make sure the request only is sent once.
         $backup->info();
@@ -263,9 +259,7 @@ class BackupTest extends TestCase
 
         $info = $backup->reload();
 
-        $this->assertArraySubset([
-            'name' => $response->getName(),
-        ], $info);
+        $this->assertEquals($response->getName(), $info['name']);
     }
 
     public function testState()
@@ -344,8 +338,6 @@ class BackupTest extends TestCase
         );
 
         $info = $backup->updateExpireTime($newExpireTime);
-        $this->assertArraySubset([
-            'expireTime' => $newExpireTime->format('Y-m-d\TH:i:s.000000\Z'),
-        ], $info);
+        $this->assertEquals($newExpireTime->format('Y-m-d\TH:i:s.000000\Z'), $info['expireTime']);
     }
 }
