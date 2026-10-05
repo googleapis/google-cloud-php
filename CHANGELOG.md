@@ -8,7 +8,9 @@
 
 ### Features
 
-* update API sources and regenerate ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* add IngestUsers and RemoveUsers methods to IngestionService ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* add User message representing a user's PII and mobile device IDs ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* add TOO_MANY_USERS, INVALID_AD_IDENTIFIER_FOR_ACCOUNT to ErrorReason ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
 
 </details>
 
@@ -16,9 +18,9 @@
 
 
 
-### Features
+### Documentation
 
-* update API sources and regenerate ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* describe what the backend deadline bounds on a streaming gateway ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
 
 </details>
 
@@ -28,7 +30,12 @@
 
 ### Features
 
-* update API sources and regenerate ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* Expose avatar_url and email fields on User ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+
+
+### Documentation
+
+* Clarify user resource visibility and field population behavior in User, Message, and Membership ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
 
 </details>
 
@@ -38,7 +45,7 @@
 
 ### Features
 
-* update API sources and regenerate ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* support check and mutate on session protocol ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
 
 </details>
 
@@ -48,7 +55,12 @@
 
 ### Features
 
-* update API sources and regenerate ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* add product_type and document_requirement to Service ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+
+
+### Documentation
+
+* clarify PrivateOfferDocument requirements and reference Service.document_requirement ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
 
 </details>
 
@@ -58,7 +70,20 @@
 
 ### Features
 
-* update API sources and regenerate ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* update Compute Engine v1 API to version 2026-09-01 ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* update Compute Engine v1 API artifacts to revision 20260922 ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* remove all return_partial_success fields ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* all AggregatedList RPCs return_partial_success by default ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* add GlobalFrontendSettingsService service and methods ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* add ImageViews service and methods ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* add ManagedRulesets service and methods ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* add SetName RPC to Interconnects service ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* add PatchAssociation RPC to RegionNetworkFirewallPolicies service ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+
+
+### Documentation
+
+* update documentation in proto definitions ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
 
 </details>
 
@@ -68,7 +93,9 @@
 
 ### Features
 
-* update API sources and regenerate ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* add EndUserAuthConfig to support repository end user authentication ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* add EndUserAuthenticationConfig to support workflow invocation end user authentication ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* add OAuthConfig to support additional OAuth scopes ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
 
 </details>
 
@@ -78,7 +105,19 @@
 
 ### Features
 
-* update API sources and regenerate ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* expose BidiStreamingAnalyzeContent in Dialogflow v2 API ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+
+
+### Documentation
+
+* A comment for message `CesAppSpec` is changed ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* A comment for field `answer_record` in message `.google.cloud.dialogflow.v2.Conversation` is changed ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* A comment for field `enable_async_tool_call` in message `.google.cloud.dialogflow.v2.HumanAgentAssistantConfig` is changed ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* A comment for field `ces_app_specs` in message `.google.cloud.dialogflow.v2.Generator` is changed ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* A comment for field `content` in message `.google.cloud.dialogflow.v2.Message` is changed ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* A comment for message `KnowledgeAssistDebugInfo` is changed ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* A comment for field `query_generation_debug_info` in message `.google.cloud.dialogflow.v2.KnowledgeAssistDebugInfo` is changed ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* A comment for field `text` in message `.google.cloud.dialogflow.v2.TextInput` is changed ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
 
 </details>
 
@@ -88,7 +127,13 @@
 
 ### Features
 
-* update API sources and regenerate ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* add offer-level Returns to ProductAttributes ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+* add LeaseTerm, WarrantyDurationUnit, mileage_allowance, and certification links to ProductAttributes ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+
+
+### Documentation
+
+* update comments for duration, mileage, certifications, warranty, and LoyaltyProgram ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
 
 </details>
 
