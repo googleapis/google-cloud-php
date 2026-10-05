@@ -52,7 +52,6 @@ class CallOptions implements ArrayAccess, OptionsInterface
     private ?int $timeoutMillis;
     private array $transportOptions;
     private ?array $middlewareOptions;
-    private ?string $audience;
 
     /** @var callable|null $metadataCallback */
     private $metadataCallback;
@@ -95,9 +94,6 @@ class CallOptions implements ArrayAccess, OptionsInterface
         $this->setRetrySettings($arr['retrySettings'] ?? null);
         $this->setMetadataCallback($arr['metadataCallback'] ?? null);
         $this->setMiddlewareOptions($arr['middlewareOptions'] ?? null);
-        if (isset($arr['audience'])) {
-            $this->setAudience($arr['audience']);
-        }
     }
 
     /**
@@ -173,13 +169,6 @@ class CallOptions implements ArrayAccess, OptionsInterface
     public function setMetadataCallback(callable|null $metadataCallback): self
     {
         $this->metadataCallback = $metadataCallback;
-
-        return $this;
-    }
-
-    public function setAudience(?string $audience): self
-    {
-        $this->audience = $audience;
 
         return $this;
     }
