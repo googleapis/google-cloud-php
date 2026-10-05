@@ -1407,9 +1407,19 @@ class GapicClientTraitTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->prophesize(PromiseInterface::class)->reveal());
 
-        $client->startCall('method.name', 'decodeType', [
-            'audience' => 'custom-audience',
-        ]);
+        $client->addMiddleware(function (MiddlewareInterface $handler) {
+            return new class ($handler) implements MiddlewareInterface {
+                public function __construct(private MiddlewareInterface $handler)
+                {
+                }
+                public function __invoke(Call $call, array $options): PromiseInterface
+                {
+                    $options['audience'] = 'custom-audience';
+                    return ($this->handler)($call, $options);
+                }
+            };
+        });
+        $client->startCall('method.name', 'decodeType');
     }
 
     public function testDefaultAudienceWithOperations()
