@@ -62,7 +62,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listOperationsAsync(ListOperationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> waitOperationAsync(WaitOperationRequest $request, array $optionalArgs = [])
  */
-class OperationsClient
+final class OperationsClient
 {
     use GapicClientTrait;
 

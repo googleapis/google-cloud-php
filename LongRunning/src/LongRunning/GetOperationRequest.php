@@ -21,7 +21,7 @@ class GetOperationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $name The name of the operation resource.
