@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 /*
- * Copyright 2018 Google LLC
+ * Copyright 2026 Google LLC
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -31,50 +31,19 @@ declare(strict_types=1);
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Google\ApiCore\Middleware;
 
-use Google\ApiCore\Call;
-use Google\ApiCore\OperationResponse;
-use Google\Protobuf\Internal\Message;
-use GuzzleHttp\Promise\PromiseInterface;
+namespace Google\ApiCore;
 
-/**
- * Middleware which wraps the response in an OperationResponse object.
- *
- * @internal
- */
-class OperationsMiddleware implements MiddlewareInterface
+use Google\LongRunning\CancelOperationRequest;
+use Google\LongRunning\DeleteOperationRequest;
+use Google\LongRunning\GetOperationRequest;
+use Google\LongRunning\Operation;
+
+interface OperationsClientInterface
 {
-    /** @var callable */
-    private $nextHandler;
-    private object $operationsClient;
-    private array $descriptor;
+    public function getOperation(GetOperationRequest $request, array $callOptions = []): Operation;
 
-    public function __construct(
-        callable $nextHandler,
-        object $operationsClient,
-        array $descriptor
-    ) {
-        $this->nextHandler = $nextHandler;
-        $this->operationsClient = $operationsClient;
-        $this->descriptor = $descriptor;
-    }
+    public function cancelOperation(CancelOperationRequest $request, array $callOptions = []): void;
 
-    public function __invoke(Call $call, array $options): PromiseInterface
-    {
-        $next = $this->nextHandler;
-        return $next(
-            $call,
-            $options
-        )->then(function (Message $response) {
-            $options = $this->descriptor + [
-                'lastProtoResponse' => $response
-            ];
-            $operationNameMethod = $options['operationNameMethod'] ?? 'getName';
-            $operationName = method_exists($response, $operationNameMethod)
-                ? (string) $response->$operationNameMethod()
-                : '';
-            return new OperationResponse($operationName, $this->operationsClient, $options);
-        });
-    }
+    public function deleteOperation(DeleteOperationRequest $request, array $callOptions = []): void;
 }

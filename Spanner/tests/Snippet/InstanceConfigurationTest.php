@@ -56,6 +56,8 @@ class InstanceConfigurationTest extends SnippetTestCase
         $this->serializer = new Serializer();
         $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
         $this->operationResponse = $this->prophesize(OperationResponse::class);
+        $this->operationResponse->getName()->willReturn('my-operation');
+        $this->operationResponse->getLastProtoResponse()->willReturn(null);
 
         $this->config = new InstanceConfiguration(
             $this->instanceAdminClient->reveal(),
