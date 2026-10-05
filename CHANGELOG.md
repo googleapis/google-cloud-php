@@ -1,5 +1,97 @@
 # Changelog
 
+## 0.348.0
+
+<details><summary>googleads/data-manager 0.10.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+
+</details>
+
+<details><summary>google/cloud-api-gateway 2.4.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+
+</details>
+
+<details><summary>google/apps-chat 0.28.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.30.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+
+</details>
+
+<details><summary>google/cloud-commerceproducer 0.2.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+
+</details>
+
+<details><summary>google/cloud-compute 2.15.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+
+</details>
+
+<details><summary>google/cloud-dataform 0.16.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 2.7.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+
+</details>
+
+<details><summary>google/shopping-merchant-products 1.8.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9748](https://github.com/googleapis/google-cloud-php/issues/9748)) ([7d1c0ce](https://github.com/googleapis/google-cloud-php/commit/7d1c0ce20a79ebe16366aa55374aedde09e61aa2))
+
+</details>
+
 ## 0.347.0
 
 <details><summary>google/cloud-access-approval 2.2.3</summary>
