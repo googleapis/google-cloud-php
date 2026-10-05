@@ -35,16 +35,11 @@ class Ipv6AccessType
      * Generated from protobuf enum <code>INTERNAL = 279295677;</code>
      */
     const INTERNAL = 279295677;
-    /**
-     * Generated from protobuf enum <code>UNSPECIFIED_IPV6_ACCESS_TYPE = 313080613;</code>
-     */
-    const UNSPECIFIED_IPV6_ACCESS_TYPE = 313080613;
 
     private static $valueToName = [
         self::UNDEFINED_IPV6_ACCESS_TYPE => 'UNDEFINED_IPV6_ACCESS_TYPE',
         self::EXTERNAL => 'EXTERNAL',
         self::INTERNAL => 'INTERNAL',
-        self::UNSPECIFIED_IPV6_ACCESS_TYPE => 'UNSPECIFIED_IPV6_ACCESS_TYPE',
     ];
 
     public static function name($value)

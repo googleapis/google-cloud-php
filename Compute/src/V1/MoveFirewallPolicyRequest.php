@@ -26,9 +26,9 @@ class MoveFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
      * "folders/[FOLDER_ID]" if the parent is a folder or
      * "organizations/[ORGANIZATION_ID]" if the parent is an organization.
      *
-     * Generated from protobuf field <code>string parent_id = 459714768 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "parent_id"];</code>
+     * Generated from protobuf field <code>optional string parent_id = 459714768 [(.google.cloud.operation_request_field) = "parent_id"];</code>
      */
-    protected $parent_id = '';
+    protected $parent_id = null;
     /**
      * An optional request ID to identify requests. Specify a unique request ID so
      * that if you must retry your request, the server will know to ignore the
@@ -48,19 +48,15 @@ class MoveFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $firewallPolicy Name of the firewall policy to update.
-     * @param string $parentId       The new parent of the firewall policy. The ID can be either be
-     *                               "folders/[FOLDER_ID]" if the parent is a folder or
-     *                               "organizations/[ORGANIZATION_ID]" if the parent is an organization.
      *
      * @return \Google\Cloud\Compute\V1\MoveFirewallPolicyRequest
      *
      * @experimental
      */
-    public static function build(string $firewallPolicy, string $parentId): self
+    public static function build(string $firewallPolicy): self
     {
         return (new self())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setParentId($parentId);
+            ->setFirewallPolicy($firewallPolicy);
     }
 
     /**
@@ -125,12 +121,22 @@ class MoveFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
      * "folders/[FOLDER_ID]" if the parent is a folder or
      * "organizations/[ORGANIZATION_ID]" if the parent is an organization.
      *
-     * Generated from protobuf field <code>string parent_id = 459714768 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "parent_id"];</code>
+     * Generated from protobuf field <code>optional string parent_id = 459714768 [(.google.cloud.operation_request_field) = "parent_id"];</code>
      * @return string
      */
     public function getParentId()
     {
-        return $this->parent_id;
+        return isset($this->parent_id) ? $this->parent_id : '';
+    }
+
+    public function hasParentId()
+    {
+        return isset($this->parent_id);
+    }
+
+    public function clearParentId()
+    {
+        unset($this->parent_id);
     }
 
     /**
@@ -138,7 +144,7 @@ class MoveFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
      * "folders/[FOLDER_ID]" if the parent is a folder or
      * "organizations/[ORGANIZATION_ID]" if the parent is an organization.
      *
-     * Generated from protobuf field <code>string parent_id = 459714768 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "parent_id"];</code>
+     * Generated from protobuf field <code>optional string parent_id = 459714768 [(.google.cloud.operation_request_field) = "parent_id"];</code>
      * @param string $var
      * @return $this
      */

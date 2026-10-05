@@ -40,6 +40,17 @@ class FirewallPolicyAssociation extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
+     * An integer indicating the priority of an association. The priority
+     * must be a positive value between 1 and 2147483647.
+     * Firewall Policies are evaluated from highest to lowest priority where 1
+     * is the highest priority and 2147483647 is the lowest priority.
+     * The default value is `1000`. If two associations have the same priority
+     * then lexicographical order on association names is applied.
+     *
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
+     */
+    protected $priority = null;
+    /**
      * Output only. [Output Only] The short name of the firewall policy of the association.
      *
      * Generated from protobuf field <code>optional string short_name = 492051566;</code>
@@ -61,6 +72,13 @@ class FirewallPolicyAssociation extends \Google\Protobuf\Internal\Message
      *           Output only. [Output Only] The firewall policy ID of the association.
      *     @type string $name
      *           The name for an association.
+     *     @type int $priority
+     *           An integer indicating the priority of an association. The priority
+     *           must be a positive value between 1 and 2147483647.
+     *           Firewall Policies are evaluated from highest to lowest priority where 1
+     *           is the highest priority and 2147483647 is the lowest priority.
+     *           The default value is `1000`. If two associations have the same priority
+     *           then lexicographical order on association names is applied.
      *     @type string $short_name
      *           Output only. [Output Only] The short name of the firewall policy of the association.
      * }
@@ -212,6 +230,52 @@ class FirewallPolicyAssociation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * An integer indicating the priority of an association. The priority
+     * must be a positive value between 1 and 2147483647.
+     * Firewall Policies are evaluated from highest to lowest priority where 1
+     * is the highest priority and 2147483647 is the lowest priority.
+     * The default value is `1000`. If two associations have the same priority
+     * then lexicographical order on association names is applied.
+     *
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
+     * @return int
+     */
+    public function getPriority()
+    {
+        return isset($this->priority) ? $this->priority : 0;
+    }
+
+    public function hasPriority()
+    {
+        return isset($this->priority);
+    }
+
+    public function clearPriority()
+    {
+        unset($this->priority);
+    }
+
+    /**
+     * An integer indicating the priority of an association. The priority
+     * must be a positive value between 1 and 2147483647.
+     * Firewall Policies are evaluated from highest to lowest priority where 1
+     * is the highest priority and 2147483647 is the lowest priority.
+     * The default value is `1000`. If two associations have the same priority
+     * then lexicographical order on association names is applied.
+     *
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPriority($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->priority = $var;
 
         return $this;
     }

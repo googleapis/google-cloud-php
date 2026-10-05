@@ -35,6 +35,13 @@ return [
                     ],
                 ],
             ],
+            'BidiStreamingAnalyzeContent' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'BidiStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\Dialogflow\V2\BidiStreamingAnalyzeContentResponse',
+            ],
             'CreateParticipant' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dialogflow\V2\Participant',
@@ -85,6 +92,13 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
                 'responseType' => 'Google\Cloud\Dialogflow\V2\StreamingAnalyzeContentResponse',
+            ],
+            'StreamingReactiveCompanionSuggestions' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'BidiStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\Dialogflow\V2\StreamingReactiveCompanionSuggestionsResponse',
             ],
             'SuggestArticles' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -184,6 +198,7 @@ return [
             'templateMap' => [
                 'context' => 'projects/{project}/agent/sessions/{session}/contexts/{context}',
                 'conversation' => 'projects/{project}/conversations/{conversation}',
+                'intent' => 'projects/{project}/agent/intents/{intent}',
                 'message' => 'projects/{project}/conversations/{conversation}/messages/{message}',
                 'participant' => 'projects/{project}/conversations/{conversation}/participants/{participant}',
                 'phraseSet' => 'projects/{project}/locations/{location}/phraseSets/{phrase_set}',
@@ -193,12 +208,14 @@ return [
                 'projectEnvironmentUserSession' => 'projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}',
                 'projectEnvironmentUserSessionContext' => 'projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}',
                 'projectEnvironmentUserSessionEntityType' => 'projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}',
+                'projectIntent' => 'projects/{project}/agent/intents/{intent}',
                 'projectLocationConversation' => 'projects/{project}/locations/{location}/conversations/{conversation}',
                 'projectLocationConversationMessage' => 'projects/{project}/locations/{location}/conversations/{conversation}/messages/{message}',
                 'projectLocationConversationParticipant' => 'projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}',
                 'projectLocationEnvironmentUserSession' => 'projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}',
                 'projectLocationEnvironmentUserSessionContext' => 'projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}',
                 'projectLocationEnvironmentUserSessionEntityType' => 'projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}',
+                'projectLocationIntent' => 'projects/{project}/locations/{location}/agent/intents/{intent}',
                 'projectLocationSession' => 'projects/{project}/locations/{location}/agent/sessions/{session}',
                 'projectLocationSessionContext' => 'projects/{project}/locations/{location}/agent/sessions/{session}/contexts/{context}',
                 'projectLocationSessionEntityType' => 'projects/{project}/locations/{location}/agent/sessions/{session}/entityTypes/{entity_type}',
