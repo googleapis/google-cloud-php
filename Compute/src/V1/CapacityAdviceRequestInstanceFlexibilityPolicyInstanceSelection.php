@@ -33,6 +33,14 @@ class CapacityAdviceRequestInstanceFlexibilityPolicyInstanceSelection extends \G
      * Generated from protobuf field <code>repeated string machine_types = 79720065;</code>
      */
     private $machine_types;
+    /**
+     * Optional. Rank when prioritizing the shape flexibilities.
+     * The instance selections are considered in the ascending order of the
+     * rank. If not set, defaults to 0.
+     *
+     * Generated from protobuf field <code>optional int64 rank = 3492908;</code>
+     */
+    protected $rank = null;
 
     /**
      * Constructor.
@@ -46,6 +54,10 @@ class CapacityAdviceRequestInstanceFlexibilityPolicyInstanceSelection extends \G
      *           Accelerators configuration.
      *     @type string[] $machine_types
      *           Full machine-type names, e.g. "n1-standard-16".
+     *     @type int|string $rank
+     *           Optional. Rank when prioritizing the shape flexibilities.
+     *           The instance selections are considered in the ascending order of the
+     *           rank. If not set, defaults to 0.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +139,46 @@ class CapacityAdviceRequestInstanceFlexibilityPolicyInstanceSelection extends \G
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->machine_types = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Rank when prioritizing the shape flexibilities.
+     * The instance selections are considered in the ascending order of the
+     * rank. If not set, defaults to 0.
+     *
+     * Generated from protobuf field <code>optional int64 rank = 3492908;</code>
+     * @return int|string
+     */
+    public function getRank()
+    {
+        return isset($this->rank) ? $this->rank : 0;
+    }
+
+    public function hasRank()
+    {
+        return isset($this->rank);
+    }
+
+    public function clearRank()
+    {
+        unset($this->rank);
+    }
+
+    /**
+     * Optional. Rank when prioritizing the shape flexibilities.
+     * The instance selections are considered in the ascending order of the
+     * rank. If not set, defaults to 0.
+     *
+     * Generated from protobuf field <code>optional int64 rank = 3492908;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setRank($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->rank = $var;
 
         return $this;
     }

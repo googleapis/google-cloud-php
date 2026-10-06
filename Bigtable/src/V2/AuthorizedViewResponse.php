@@ -25,6 +25,7 @@ class AuthorizedViewResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Bigtable\V2\SessionReadRowResponse $read_row
      *     @type \Google\Cloud\Bigtable\V2\SessionMutateRowResponse $mutate_row
+     *     @type \Google\Cloud\Bigtable\V2\SessionCheckAndMutateRowResponse $check_and_mutate_row
      * }
      */
     public function __construct($data = NULL) {
@@ -82,6 +83,33 @@ class AuthorizedViewResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\SessionMutateRowResponse::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.bigtable.v2.SessionCheckAndMutateRowResponse check_and_mutate_row = 4;</code>
+     * @return \Google\Cloud\Bigtable\V2\SessionCheckAndMutateRowResponse|null
+     */
+    public function getCheckAndMutateRow()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasCheckAndMutateRow()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.bigtable.v2.SessionCheckAndMutateRowResponse check_and_mutate_row = 4;</code>
+     * @param \Google\Cloud\Bigtable\V2\SessionCheckAndMutateRowResponse $var
+     * @return $this
+     */
+    public function setCheckAndMutateRow($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\SessionCheckAndMutateRowResponse::class);
+        $this->writeOneof(4, $var);
 
         return $this;
     }

@@ -167,6 +167,7 @@ return [
             'templateMap' => [
                 'agent' => 'projects/{project}/agent',
                 'cXSecuritySettings' => 'projects/{project}/locations/{location}/securitySettings/{security_settings}',
+                'companionAgent' => 'projects/{project}/locations/{location}/companionAgents/{companion_agent}',
                 'conversationModel' => 'projects/{project}/locations/{location}/conversationModels/{conversation_model}',
                 'conversationProfile' => 'projects/{project}/conversationProfiles/{conversation_profile}',
                 'document' => 'projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}',

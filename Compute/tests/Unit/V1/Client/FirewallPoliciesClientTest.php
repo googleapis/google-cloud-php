@@ -667,12 +667,14 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $firewallPolicyId = 'firewallPolicyId1430953673';
         $name2 = 'name2-1052831874';
+        $priority = 1165461084;
         $shortName = 'shortName1565793390';
         $expectedResponse = new FirewallPolicyAssociation();
         $expectedResponse->setAttachmentTarget($attachmentTarget);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setFirewallPolicyId($firewallPolicyId);
         $expectedResponse->setName($name2);
+        $expectedResponse->setPriority($priority);
         $expectedResponse->setShortName($shortName);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -737,11 +739,9 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $etag = 'etag3123477';
-        $iamOwned = false;
         $version = 351608024;
         $expectedResponse = new Policy();
         $expectedResponse->setEtag($etag);
-        $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -910,10 +910,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $firewallPolicyResource = new FirewallPolicy();
-        $parentId = 'parentId2070327504';
-        $request = (new InsertFirewallPolicyRequest())
-            ->setFirewallPolicyResource($firewallPolicyResource)
-            ->setParentId($parentId);
+        $request = (new InsertFirewallPolicyRequest())->setFirewallPolicyResource($firewallPolicyResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -925,8 +922,6 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/Insert', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getFirewallPolicyResource();
         $this->assertProtobufEquals($firewallPolicyResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getParentId();
-        $this->assertProtobufEquals($parentId, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $response->pollUntilComplete([
@@ -981,10 +976,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $firewallPolicyResource = new FirewallPolicy();
-        $parentId = 'parentId2070327504';
-        $request = (new InsertFirewallPolicyRequest())
-            ->setFirewallPolicyResource($firewallPolicyResource)
-            ->setParentId($parentId);
+        $request = (new InsertFirewallPolicyRequest())->setFirewallPolicyResource($firewallPolicyResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1160,8 +1152,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
-        $parentId = 'parentId2070327504';
-        $request = (new MoveFirewallPolicyRequest())->setFirewallPolicy($firewallPolicy)->setParentId($parentId);
+        $request = (new MoveFirewallPolicyRequest())->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->move($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1173,8 +1164,6 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/Move', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getFirewallPolicy();
         $this->assertProtobufEquals($firewallPolicy, $actualValue);
-        $actualValue = $actualApiRequestObject->getParentId();
-        $this->assertProtobufEquals($parentId, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $response->pollUntilComplete([
@@ -1229,8 +1218,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
-        $parentId = 'parentId2070327504';
-        $request = (new MoveFirewallPolicyRequest())->setFirewallPolicy($firewallPolicy)->setParentId($parentId);
+        $request = (new MoveFirewallPolicyRequest())->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->move($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1733,11 +1721,9 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $etag = 'etag3123477';
-        $iamOwned = false;
         $version = 351608024;
         $expectedResponse = new Policy();
         $expectedResponse->setEtag($etag);
-        $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
         // Mock request

@@ -52,6 +52,14 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
      */
     protected $auto_delete_auto_created_reservations = null;
     /**
+     * Full or partial URL of an existing future reservation to indicate
+     * intent for reserving capacity in the same cluster as the colocation
+     * resource.
+     *
+     * Generated from protobuf field <code>optional string colocation_resource = 32901740;</code>
+     */
+    protected $colocation_resource = null;
+    /**
      * If not present, then FR will not deliver a new commitment or update an
      * existing commitment.
      *
@@ -269,6 +277,10 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
      *           values is specified.
      *           For keeping auto-created reservation indefinitely, this value should be set
      *           to false.
+     *     @type string $colocation_resource
+     *           Full or partial URL of an existing future reservation to indicate
+     *           intent for reserving capacity in the same cluster as the colocation
+     *           resource.
      *     @type \Google\Cloud\Compute\V1\FutureReservationCommitmentInfo $commitment_info
      *           If not present, then FR will not deliver a new commitment or update an
      *           existing commitment.
@@ -528,6 +540,46 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->auto_delete_auto_created_reservations = $var;
+
+        return $this;
+    }
+
+    /**
+     * Full or partial URL of an existing future reservation to indicate
+     * intent for reserving capacity in the same cluster as the colocation
+     * resource.
+     *
+     * Generated from protobuf field <code>optional string colocation_resource = 32901740;</code>
+     * @return string
+     */
+    public function getColocationResource()
+    {
+        return isset($this->colocation_resource) ? $this->colocation_resource : '';
+    }
+
+    public function hasColocationResource()
+    {
+        return isset($this->colocation_resource);
+    }
+
+    public function clearColocationResource()
+    {
+        unset($this->colocation_resource);
+    }
+
+    /**
+     * Full or partial URL of an existing future reservation to indicate
+     * intent for reserving capacity in the same cluster as the colocation
+     * resource.
+     *
+     * Generated from protobuf field <code>optional string colocation_resource = 32901740;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setColocationResource($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->colocation_resource = $var;
 
         return $this;
     }

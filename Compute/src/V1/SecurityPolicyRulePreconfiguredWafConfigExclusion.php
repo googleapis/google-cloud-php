@@ -15,6 +15,13 @@ use Google\Protobuf\RepeatedField;
 class SecurityPolicyRulePreconfiguredWafConfigExclusion extends \Google\Protobuf\Internal\Message
 {
     /**
+     * A list of request body fields to be excluded from inspection during
+     * preconfigured WAF evaluation.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams request_bodies_to_exclude = 60453445;</code>
+     */
+    private $request_bodies_to_exclude;
+    /**
      * A list of request cookie names whose value will be excluded from
      * inspection during preconfigured WAF evaluation.
      *
@@ -65,6 +72,9 @@ class SecurityPolicyRulePreconfiguredWafConfigExclusion extends \Google\Protobuf
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams[] $request_bodies_to_exclude
+     *           A list of request body fields to be excluded from inspection during
+     *           preconfigured WAF evaluation.
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams[] $request_cookies_to_exclude
      *           A list of request cookie names whose value will be excluded from
      *           inspection during preconfigured WAF evaluation.
@@ -90,6 +100,34 @@ class SecurityPolicyRulePreconfiguredWafConfigExclusion extends \Google\Protobuf
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * A list of request body fields to be excluded from inspection during
+     * preconfigured WAF evaluation.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams request_bodies_to_exclude = 60453445;</code>
+     * @return RepeatedField<\Google\Cloud\Compute\V1\SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams>
+     */
+    public function getRequestBodiesToExclude()
+    {
+        return $this->request_bodies_to_exclude;
+    }
+
+    /**
+     * A list of request body fields to be excluded from inspection during
+     * preconfigured WAF evaluation.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams request_bodies_to_exclude = 60453445;</code>
+     * @param \Google\Cloud\Compute\V1\SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams[] $var
+     * @return $this
+     */
+    public function setRequestBodiesToExclude($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams::class);
+        $this->request_bodies_to_exclude = $arr;
+
+        return $this;
     }
 
     /**

@@ -35,9 +35,11 @@ class Message extends \Google\Protobuf\Internal\Message
      * Output only. The user who created the message.
      * If your Chat app [authenticates as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     * the output populates the
+     * the output only populates the
      * [user](https://developers.google.com/workspace/chat/api/reference/rest/v1/User)
-     * `name` and `type`.
+     * `name` and `type` fields for both internal and external users, unless they
+     * are members of the space or have a prior affinity, like a direct message
+     * (DM) conversation, with the calling user.
      *
      * Generated from protobuf field <code>.google.chat.v1.User sender = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -317,9 +319,11 @@ class Message extends \Google\Protobuf\Internal\Message
      *           Output only. The user who created the message.
      *           If your Chat app [authenticates as a
      *           user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     *           the output populates the
+     *           the output only populates the
      *           [user](https://developers.google.com/workspace/chat/api/reference/rest/v1/User)
-     *           `name` and `type`.
+     *           `name` and `type` fields for both internal and external users, unless they
+     *           are members of the space or have a prior affinity, like a direct message
+     *           (DM) conversation, with the calling user.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Optional. Immutable. For spaces created in Chat, the time at which the
      *           message was created. This field is output only, except when used in import
@@ -524,9 +528,11 @@ class Message extends \Google\Protobuf\Internal\Message
      * Output only. The user who created the message.
      * If your Chat app [authenticates as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     * the output populates the
+     * the output only populates the
      * [user](https://developers.google.com/workspace/chat/api/reference/rest/v1/User)
-     * `name` and `type`.
+     * `name` and `type` fields for both internal and external users, unless they
+     * are members of the space or have a prior affinity, like a direct message
+     * (DM) conversation, with the calling user.
      *
      * Generated from protobuf field <code>.google.chat.v1.User sender = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Apps\Chat\V1\User|null
@@ -550,9 +556,11 @@ class Message extends \Google\Protobuf\Internal\Message
      * Output only. The user who created the message.
      * If your Chat app [authenticates as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     * the output populates the
+     * the output only populates the
      * [user](https://developers.google.com/workspace/chat/api/reference/rest/v1/User)
-     * `name` and `type`.
+     * `name` and `type` fields for both internal and external users, unless they
+     * are members of the space or have a prior affinity, like a direct message
+     * (DM) conversation, with the calling user.
      *
      * Generated from protobuf field <code>.google.chat.v1.User sender = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Apps\Chat\V1\User $var

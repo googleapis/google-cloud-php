@@ -9,8 +9,10 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
+ * Deprecated: Use `CesToolSpec` instead.
  * Spec of CES app that the generator can choose from.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.CesAppSpec</code>
  */
 class CesAppSpec extends \Google\Protobuf\Internal\Message
