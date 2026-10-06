@@ -17,8 +17,9 @@
 
 namespace Google\Cloud\Dev;
 
-use Composer\Semver\VersionParser;
 use GuzzleHttp\Client;
+use vierbergenlars\SemVer\SemVerException;
+use vierbergenlars\SemVer\version;
 
 /**
  * Creates and manages composer files.
@@ -140,21 +141,23 @@ class Composer
         $pkg = $client->request('GET', $uri);
 
         $versions = json_decode($pkg->getBody(), true)['package']['versions'];
-        $versionParser = new VersionParser();
         $def = null;
         foreach (array_keys($versions) as $v) {
-            if (VersionParser::parseStability($v) === 'dev') {
+            if (strpos($v, 'dev-') !== false) {
                 continue;
             }
 
             try {
-                $normalized = $versionParser->normalize($v);
-            } catch (\UnexpectedValueException $e) {
+                $version = new version($v);
+            } catch (SemVerException $e) {
                 continue;
             }
 
-            [$major, $minor] = explode('.', $normalized);
-            $def = sprintf('^%d.%d.0', $major, $minor);
+            $def = sprintf(
+                '^%d.%d.0',
+                $version->getMajor(),
+                $version->getMinor()
+            );
 
             break;
         }
