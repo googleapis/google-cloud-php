@@ -36,6 +36,14 @@ class InterfaceNode extends ClassNode
         parent::__construct($xmlNode, $protoPackages);
     }
 
+    /**
+     * Finds classes in the current package ($pageNodes) that implement this interface.
+     *
+     * We use ReflectionClass::implementsInterface() rather than reading <implements> tags from
+     * phpDocumentor's structure.xml because structure.xml only records interfaces declared
+     * directly on a class, omitting interfaces inherited through a parent class (e.g.
+     * ServiceAccountCredentials extends CredentialsLoader, which implements FetchAuthTokenInterface).
+     */
     public function determineImplementingClasses(array $pageNodes): void
     {
         $interfaceName = ltrim($this->getFullName(), '\\');

@@ -126,6 +126,9 @@ class PageTest extends TestCase
             [],
         );
 
+        // ServiceAccountCredentials implements FetchAuthTokenInterface via its parent class
+        // (CredentialsLoader), which is not in structure.xml's <implements> tags and requires
+        // ReflectionClass::implementsInterface() in InterfaceNode::determineImplementingClasses().
         $interfacePage = $this->findNode($pageTree->getPages(), FetchAuthTokenInterface::class);
         $this->assertNotNull($interfacePage);
         $description = $interfacePage->getLongDescription();
@@ -134,6 +137,9 @@ class PageTest extends TestCase
             $description
         );
 
+        // Cross-component interface links on class pages ("Implements" section) are read from
+        // structure.xml via ClassNode::getImplements() (e.g. Gax's CredentialsWrapper linking
+        // to Auth's ProjectIdProviderInterface).
         $gaxPageTree = new PageTree(
             __DIR__ . '/../../fixtures/phpdoc/gax.xml',
             'Google\ApiCore',
@@ -151,6 +157,8 @@ class PageTest extends TestCase
             $credentialsWrapperNode->getImplements()
         );
 
+        // Verify InterfaceNode resolves implementing classes in Google\Cloud\* components and
+        // safely skips Monolog v1/v2 formatter classes in $pageNodes.
         $interfaceXml = new SimpleXMLElement(
             '<interface><full_name>\Google\Cloud\Spanner\ValueInterface</full_name>'
             . '<docblock><description>Value interface</description></docblock></interface>'
