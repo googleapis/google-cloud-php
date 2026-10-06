@@ -4,6 +4,18 @@
     ],
     "rangeStrategy": "replace",
     "rebaseWhen": "behind-base-branch",
+    "pip_requirements": {
+        "enabled": false
+    },
+    "pip-compile": {
+        "managerFilePatterns": [
+            "/(^|/)requirements\\.txt$/"
+        ],
+        "rangeStrategy": "update-lockfile",
+        "lockFileMaintenance": {
+            "enabled": false
+        }
+    },
     "packageRules": [
         {
             "matchPackageNames": [
