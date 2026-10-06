@@ -51,7 +51,6 @@ class UrlStatTest extends StreamWrapperTestCase
             stream_context_set_default([
                 'gs' => ['stat_permission_check' => false]
             ]);
-            clearstatcache();
 
             $stat = stat(self::$fileUrl);
             $this->assertEquals(33206, $stat['mode']);

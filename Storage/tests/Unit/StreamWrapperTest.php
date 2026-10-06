@@ -303,7 +303,6 @@ class StreamWrapperTest extends TestCase
             stream_context_set_default([
                 'gs' => ['stat_permission_check' => false]
             ]);
-            clearstatcache();
 
             $stat = stat('gs://my_bucket/some_file.txt');
             $this->assertEquals(33206, $stat['mode']);
