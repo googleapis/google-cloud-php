@@ -216,6 +216,45 @@ SH);
         $this->assertSame("::error file=/src/Foo.php,line=1,col=1::Method Foo#x() changed\n", $tester->getDisplay());
     }
 
+    public function testExpectBreakingChangesOptionAllowsPreGaWithGaOnlyAndFailsWhenNoBreaksDetected(): void
+    {
+        $this->fs->dumpFile($this->rootDir . '/Alpha/VERSION', "0.13.1\n");
+        $this->fs->dumpFile($this->rootDir . '/Alpha/src/Foo.php', '<?php class Foo { public function x(int $a) {} }');
+        $this->commitAll('break pre-1.0 Alpha');
+
+        $tester = new CommandTester(new ComponentBreakingChangesCommand($this->rootDir, fn() => [false, '']));
+
+        // Pre-GA component with --ga-only and --expect-breaking-changes=true succeeds (filtered out before check)
+        $code = $tester->execute(
+            ['--base-ref' => 'baseline', '--ga-only' => true, '--expect-breaking-changes' => 'true'],
+            ['capture_stderr_separately' => true]
+        );
+        $this->assertSame(Command::SUCCESS, $code);
+
+        // Modify GA component Beta (1.2.0) without any detected BC breaks
+        $this->fs->dumpFile($this->rootDir . '/Beta/VERSION', "1.2.0\n");
+        $this->fs->dumpFile($this->rootDir . '/Beta/src/Baz.php', '<?php class Baz { public function y() {} }');
+        $this->commitAll('modify GA Beta');
+
+        // GA component with --expect-breaking-changes=false succeeds when no BC breaks are detected
+        $code = $tester->execute(
+            ['--base-ref' => 'baseline', '--ga-only' => true, '--expect-breaking-changes' => 'false'],
+            ['capture_stderr_separately' => true]
+        );
+        $this->assertSame(Command::SUCCESS, $code);
+
+        // GA component with --expect-breaking-changes=true (or --expect-breaking-changes) fails when no BC breaks are detected
+        $code = $tester->execute(
+            ['--base-ref' => 'baseline', '--ga-only' => true, '--expect-breaking-changes' => 'true'],
+            ['capture_stderr_separately' => true]
+        );
+        $this->assertSame(Command::FAILURE, $code);
+        $this->assertStringContainsString(
+            'You indicated breaking changes in your PR title (!:), but no backwards compatibility breaks were detected',
+            $tester->getErrorOutput()
+        );
+    }
+
     public function testRejectsLowercaseComponentName(): void
     {
         $cmd = new ComponentBreakingChangesCommand($this->rootDir);

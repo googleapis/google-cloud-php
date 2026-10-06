@@ -169,6 +169,23 @@ final class ParticipantsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a intent
+     * resource.
+     *
+     * @param string $project
+     * @param string $intent
+     *
+     * @return string The formatted intent resource.
+     */
+    public static function intentName(string $project, string $intent): string
+    {
+        return self::getPathTemplate('intent')->render([
+            'project' => $project,
+            'intent' => $intent,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a message
      * resource.
      *
@@ -369,6 +386,23 @@ final class ParticipantsClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_intent resource.
+     *
+     * @param string $project
+     * @param string $intent
+     *
+     * @return string The formatted project_intent resource.
+     */
+    public static function projectIntentName(string $project, string $intent): string
+    {
+        return self::getPathTemplate('projectIntent')->render([
+            'project' => $project,
+            'intent' => $intent,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_conversation resource.
      *
      * @param string $project
@@ -526,6 +560,25 @@ final class ParticipantsClient
             'user' => $user,
             'session' => $session,
             'entity_type' => $entityType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_intent resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $intent
+     *
+     * @return string The formatted project_location_intent resource.
+     */
+    public static function projectLocationIntentName(string $project, string $location, string $intent): string
+    {
+        return self::getPathTemplate('projectLocationIntent')->render([
+            'project' => $project,
+            'location' => $location,
+            'intent' => $intent,
         ]);
     }
 
@@ -695,6 +748,7 @@ final class ParticipantsClient
      * Template: Pattern
      * - context: projects/{project}/agent/sessions/{session}/contexts/{context}
      * - conversation: projects/{project}/conversations/{conversation}
+     * - intent: projects/{project}/agent/intents/{intent}
      * - message: projects/{project}/conversations/{conversation}/messages/{message}
      * - participant: projects/{project}/conversations/{conversation}/participants/{participant}
      * - phraseSet: projects/{project}/locations/{location}/phraseSets/{phrase_set}
@@ -704,12 +758,14 @@ final class ParticipantsClient
      * - projectEnvironmentUserSession: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}
      * - projectEnvironmentUserSessionContext: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}
      * - projectEnvironmentUserSessionEntityType: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}
+     * - projectIntent: projects/{project}/agent/intents/{intent}
      * - projectLocationConversation: projects/{project}/locations/{location}/conversations/{conversation}
      * - projectLocationConversationMessage: projects/{project}/locations/{location}/conversations/{conversation}/messages/{message}
      * - projectLocationConversationParticipant: projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}
      * - projectLocationEnvironmentUserSession: projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}
      * - projectLocationEnvironmentUserSessionContext: projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}
      * - projectLocationEnvironmentUserSessionEntityType: projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}
+     * - projectLocationIntent: projects/{project}/locations/{location}/agent/intents/{intent}
      * - projectLocationSession: projects/{project}/locations/{location}/agent/sessions/{session}
      * - projectLocationSessionContext: projects/{project}/locations/{location}/agent/sessions/{session}/contexts/{context}
      * - projectLocationSessionEntityType: projects/{project}/locations/{location}/agent/sessions/{session}/entityTypes/{entity_type}
@@ -854,6 +910,28 @@ final class ParticipantsClient
     }
 
     /**
+     * Bidirectional endless streaming version of
+     * [StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent].
+     *
+     * @example samples/V2/ParticipantsClient/bidi_streaming_analyze_content.php
+     *
+     * @param array $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return BidiStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function bidiStreamingAnalyzeContent(array $callOptions = []): BidiStream
+    {
+        return $this->startApiCall('BidiStreamingAnalyzeContent', null, $callOptions);
+    }
+
+    /**
      * Creates a new participant in a conversation.
      *
      * The async variant is {@see ParticipantsClient::createParticipantAsync()} .
@@ -964,6 +1042,27 @@ final class ParticipantsClient
     public function streamingAnalyzeContent(array $callOptions = []): BidiStream
     {
         return $this->startApiCall('StreamingAnalyzeContent', null, $callOptions);
+    }
+
+    /**
+     * External streaming API for direct human-agent-to-bot chats.
+     *
+     * @example samples/V2/ParticipantsClient/streaming_reactive_companion_suggestions.php
+     *
+     * @param array $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return BidiStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function streamingReactiveCompanionSuggestions(array $callOptions = []): BidiStream
+    {
+        return $this->startApiCall('StreamingReactiveCompanionSuggestions', null, $callOptions);
     }
 
     /**

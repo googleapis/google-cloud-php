@@ -15,11 +15,25 @@ use Google\Protobuf\RepeatedField;
 class InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection extends \Google\Protobuf\Internal\Message
 {
     /**
+     * List of disks to be attached to the instances created from this
+     * selection.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AttachedDisk disks = 95594102;</code>
+     */
+    private $disks;
+    /**
      * Full machine-type names, e.g. "n1-standard-16".
      *
      * Generated from protobuf field <code>repeated string machine_types = 79720065;</code>
      */
     private $machine_types;
+    /**
+     * Name of the minimum CPU platform to be used by this instance selection.
+     * e.g. 'Intel Ice Lake'.
+     *
+     * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
+     */
+    protected $min_cpu_platform = null;
     /**
      * Preference of this instance selection. Lower number means higher
      * preference. MIG will first try to create a VM based on the machine-type
@@ -37,8 +51,14 @@ class InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection extends \Go
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\AttachedDisk[] $disks
+     *           List of disks to be attached to the instances created from this
+     *           selection.
      *     @type string[] $machine_types
      *           Full machine-type names, e.g. "n1-standard-16".
+     *     @type string $min_cpu_platform
+     *           Name of the minimum CPU platform to be used by this instance selection.
+     *           e.g. 'Intel Ice Lake'.
      *     @type int $rank
      *           Preference of this instance selection. Lower number means higher
      *           preference. MIG will first try to create a VM based on the machine-type
@@ -50,6 +70,34 @@ class InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection extends \Go
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * List of disks to be attached to the instances created from this
+     * selection.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AttachedDisk disks = 95594102;</code>
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AttachedDisk>
+     */
+    public function getDisks()
+    {
+        return $this->disks;
+    }
+
+    /**
+     * List of disks to be attached to the instances created from this
+     * selection.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AttachedDisk disks = 95594102;</code>
+     * @param \Google\Cloud\Compute\V1\AttachedDisk[] $var
+     * @return $this
+     */
+    public function setDisks($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\AttachedDisk::class);
+        $this->disks = $arr;
+
+        return $this;
     }
 
     /**
@@ -74,6 +122,44 @@ class InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection extends \Go
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->machine_types = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Name of the minimum CPU platform to be used by this instance selection.
+     * e.g. 'Intel Ice Lake'.
+     *
+     * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
+     * @return string
+     */
+    public function getMinCpuPlatform()
+    {
+        return isset($this->min_cpu_platform) ? $this->min_cpu_platform : '';
+    }
+
+    public function hasMinCpuPlatform()
+    {
+        return isset($this->min_cpu_platform);
+    }
+
+    public function clearMinCpuPlatform()
+    {
+        unset($this->min_cpu_platform);
+    }
+
+    /**
+     * Name of the minimum CPU platform to be used by this instance selection.
+     * e.g. 'Intel Ice Lake'.
+     *
+     * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMinCpuPlatform($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->min_cpu_platform = $var;
 
         return $this;
     }

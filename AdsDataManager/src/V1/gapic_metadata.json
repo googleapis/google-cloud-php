@@ -25,6 +25,11 @@
                                 "ingestEvents"
                             ]
                         },
+                        "IngestUsers": {
+                            "methods": [
+                                "ingestUsers"
+                            ]
+                        },
                         "RemoveAllAudienceMembers": {
                             "methods": [
                                 "removeAllAudienceMembers"
@@ -33,6 +38,11 @@
                         "RemoveAudienceMembers": {
                             "methods": [
                                 "removeAudienceMembers"
+                            ]
+                        },
+                        "RemoveUsers": {
+                            "methods": [
+                                "removeUsers"
                             ]
                         },
                         "RetrieveRequestStatus": {

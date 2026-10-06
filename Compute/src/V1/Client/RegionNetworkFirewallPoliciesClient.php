@@ -48,6 +48,7 @@ use Google\Cloud\Compute\V1\GetRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GetRuleRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\InsertRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\ListRegionNetworkFirewallPoliciesRequest;
+use Google\Cloud\Compute\V1\PatchAssociationRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\PatchRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\PatchRuleRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\Policy;
@@ -62,6 +63,8 @@ use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionNetworkFirewallPolicies API.
+ *
+ * This client uses RegionNetworkFirewallPolicies version 2026-09-01.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -78,6 +81,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListRegionNetworkFirewallPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAssociationAsync(PatchAssociationRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchRuleAsync(PatchRuleRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> removeAssociationAsync(RemoveAssociationRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> removeRuleAsync(RemoveRuleRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
@@ -106,6 +110,9 @@ final class RegionNetworkFirewallPoliciesClient
 
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
+
+    /** The api version of the service */
+    private string $apiVersion = '2026-09-01';
 
     /**
      * The default scopes required by the service.
@@ -641,6 +648,35 @@ final class RegionNetworkFirewallPoliciesClient
     public function patch(PatchRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Patch', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates an association for the specified network firewall policy.
+     *
+     * The async variant is
+     * {@see RegionNetworkFirewallPoliciesClient::patchAssociationAsync()} .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/patch_association.php
+     *
+     * @param PatchAssociationRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function patchAssociation(
+        PatchAssociationRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('PatchAssociation', $request, $callOptions)->wait();
     }
 
     /**

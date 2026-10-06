@@ -114,10 +114,6 @@ class Policy extends \Google\Protobuf\Internal\Message
      */
     protected $etag = null;
     /**
-     * Generated from protobuf field <code>optional bool iam_owned = 450566203;</code>
-     */
-    protected $iam_owned = null;
-    /**
      * Specifies the format of the policy.
      * Valid values are `0`, `1`, and `3`. Requests that specify an invalid value
      * are rejected.
@@ -171,7 +167,6 @@ class Policy extends \Google\Protobuf\Internal\Message
      *           whenever you call `setIamPolicy`. If you omit this field, then IAM allows
      *           you to overwrite a version `3` policy with a version `1` policy, and all of
      *           the conditions in the version `3` policy are lost.
-     *     @type bool $iam_owned
      *     @type int $version
      *           Specifies the format of the policy.
      *           Valid values are `0`, `1`, and `3`. Requests that specify an invalid value
@@ -318,38 +313,6 @@ class Policy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>optional bool iam_owned = 450566203;</code>
-     * @return bool
-     */
-    public function getIamOwned()
-    {
-        return isset($this->iam_owned) ? $this->iam_owned : false;
-    }
-
-    public function hasIamOwned()
-    {
-        return isset($this->iam_owned);
-    }
-
-    public function clearIamOwned()
-    {
-        unset($this->iam_owned);
-    }
-
-    /**
-     * Generated from protobuf field <code>optional bool iam_owned = 450566203;</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setIamOwned($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->iam_owned = $var;
 
         return $this;
     }

@@ -29,6 +29,7 @@ use Google\Cloud\Bigtable\V2\Client\BigtableClient;
 use Google\Cloud\Bigtable\V2\GetClientConfigurationRequest;
 
 /**
+ *
  * This RPC is only intended to be used by the official Cloud Bigtable client
  * libraries to implement the Bigtable Session based protocol. It is subject
  * to change without notice.

@@ -108,16 +108,6 @@ class ListFirewallPoliciesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string parent_id = 459714768;</code>
      */
     protected $parent_id = null;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     *
-     * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
-     */
-    protected $return_partial_success = null;
 
     /**
      * Constructor.
@@ -198,12 +188,6 @@ class ListFirewallPoliciesRequest extends \Google\Protobuf\Internal\Message
      *           Parent ID for this request. The ID can be either be "folders/[FOLDER_ID]"
      *           if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the
      *           parent is an organization.
-     *     @type bool $return_partial_success
-     *           Opt-in for partial success behavior which provides partial results in case
-     *           of failure. The default value is false.
-     *           For example, when partial success behavior is enabled, aggregatedList for a
-     *           single zone scope either returns all resources in the zone or no resources,
-     *           with an error code.
      * }
      */
     public function __construct($data = NULL) {
@@ -513,50 +497,6 @@ class ListFirewallPoliciesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent_id = $var;
-
-        return $this;
-    }
-
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     *
-     * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
-     * @return bool
-     */
-    public function getReturnPartialSuccess()
-    {
-        return isset($this->return_partial_success) ? $this->return_partial_success : false;
-    }
-
-    public function hasReturnPartialSuccess()
-    {
-        return isset($this->return_partial_success);
-    }
-
-    public function clearReturnPartialSuccess()
-    {
-        unset($this->return_partial_success);
-    }
-
-    /**
-     * Opt-in for partial success behavior which provides partial results in case
-     * of failure. The default value is false.
-     * For example, when partial success behavior is enabled, aggregatedList for a
-     * single zone scope either returns all resources in the zone or no resources,
-     * with an error code.
-     *
-     * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setReturnPartialSuccess($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->return_partial_success = $var;
 
         return $this;
     }
