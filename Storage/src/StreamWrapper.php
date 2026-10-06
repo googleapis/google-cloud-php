@@ -45,6 +45,7 @@ class StreamWrapper
      * Options used by StreamWrapper:
      *
      * flush (bool) `true`: fflush() will flush output buffer; `false`: fflush() will do nothing
+     * stat_permission_check (bool) `true`: stat()/is_readable() checks bucket permissions; `false`: bypasses permission check
      */
     public $context;
 
@@ -740,12 +741,7 @@ class StreamWrapper
      */
     private function isBucketWritable()
     {
-        $contextOptions = [];
-        if ($this->context) {
-            $contextOptions = stream_context_get_options($this->context);
-        } else {
-            $contextOptions = stream_context_get_options(stream_context_get_default());
-        }
+        $contextOptions = stream_context_get_options($this->context ?: stream_context_get_default());
 
         if (isset($contextOptions[$this->protocol]['stat_permission_check'])
             && $contextOptions[$this->protocol]['stat_permission_check'] === false

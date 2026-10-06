@@ -51,6 +51,8 @@ class StreamWrapperTest extends TestCase
 
     public function tearDown(): void
     {
+        stream_context_set_default(['gs' => []]);
+        clearstatcache();
         StreamWrapper::unregister();
     }
 
@@ -271,28 +273,47 @@ class StreamWrapperTest extends TestCase
             'timeCreated' => '2017-01-19T19:31:35.833Z'
         ]);
 
+        $dirObject = $this->prophesize(StorageObject::class);
+        $dirObject->info()->willReturn([
+            'size' => 0,
+            'updated' => '2017-01-19T19:31:35.833Z',
+            'timeCreated' => '2017-01-19T19:31:35.833Z'
+        ]);
+
         $this->bucket->objects(Argument::allOf(
-            Argument::withEntry('prefix', 'some_long_file.txt/'),
+            Argument::withEntry('prefix', 'some_file.txt/'),
             Argument::withEntry('resultLimit', 1),
             Argument::withEntry('fields', Argument::any())
         ))->willReturn(new \ArrayIterator());
 
-        $this->bucket->object('some_long_file.txt')
+        $this->bucket->objects(Argument::allOf(
+            Argument::withEntry('prefix', 'some_dir/'),
+            Argument::withEntry('resultLimit', 1),
+            Argument::withEntry('fields', Argument::any())
+        ))->willReturn(new \ArrayIterator([$dirObject->reveal()]));
+
+        $this->bucket->object('some_file.txt')
             ->shouldBeCalled()
             ->willReturn($object->reveal());
 
         // We DO NOT EXPECT isWritable to be called.
         $this->bucket->isWritable()->shouldNotBeCalled();
 
-        stream_context_set_default([
-            'gs' => ['stat_permission_check' => false]
-        ]);
+        try {
+            stream_context_set_default([
+                'gs' => ['stat_permission_check' => false]
+            ]);
+            clearstatcache();
 
-        $stat = stat('gs://my_bucket/some_long_file.txt');
-        $this->assertEquals(33206, $stat['mode']);
-        
-        // Reset default context so other tests are not affected
-        stream_context_set_default(['gs' => []]);
+            $stat = stat('gs://my_bucket/some_file.txt');
+            $this->assertEquals(33206, $stat['mode']);
+
+            $statDir = stat('gs://my_bucket/some_dir/');
+            $this->assertEquals(16895, $statDir['mode']);
+        } finally {
+            stream_context_set_default(['gs' => []]);
+            clearstatcache();
+        }
     }
 
     public function testStatOnNonExistentFile()
