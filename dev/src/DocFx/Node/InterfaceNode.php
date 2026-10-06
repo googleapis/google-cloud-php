@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Dev\DocFx\Node;
 
+use Google\Cloud\Core\Logger\AppEngineFlexFormatter;
+use Google\Cloud\Core\Logger\AppEngineFlexFormatterV2;
 use ReflectionClass;
 use SimpleXMLElement;
 
@@ -42,6 +44,13 @@ class InterfaceNode extends ClassNode
         }
 
         foreach (array_keys($pageNodes) as $className) {
+            // We cannot run "class_exists" on these classes because they will throw a fatal error.
+            if (in_array(
+                $className,
+                ['\\' . AppEngineFlexFormatter::class, '\\' . AppEngineFlexFormatterV2::class]
+            )) {
+                continue;
+            }
             if (!class_exists($className)) {
                 continue;
             }

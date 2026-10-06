@@ -126,12 +126,58 @@ class PageTest extends TestCase
             [],
         );
 
-        $interfacePage = $this->findNode($pageTree->getPages(), FetchAuthTokenInterface::class);;
+        $interfacePage = $this->findNode($pageTree->getPages(), FetchAuthTokenInterface::class);
         $this->assertNotNull($interfacePage);
         $description = $interfacePage->getLongDescription();
         $this->assertStringContainsString(
             ServiceAccountCredentials::class,
             $description
+        );
+
+        $gaxPageTree = new PageTree(
+            __DIR__ . '/../../fixtures/phpdoc/gax.xml',
+            'Google\ApiCore',
+            'Google API Core',
+            __DIR__ . '/../../../../Gax',
+            [],
+        );
+        $credentialsWrapperNode = $this->findNode(
+            $gaxPageTree->getPages(),
+            \Google\ApiCore\CredentialsWrapper::class
+        );
+        $this->assertNotNull($credentialsWrapperNode);
+        $this->assertContains(
+            '\\' . \Google\Auth\ProjectIdProviderInterface::class,
+            $credentialsWrapperNode->getImplements()
+        );
+
+        $interfaceXml = new SimpleXMLElement(
+            '<interface><full_name>\Google\Cloud\Spanner\ValueInterface</full_name>'
+            . '<docblock><description>Value interface</description></docblock></interface>'
+        );
+        $valueInterfaceNode = new InterfaceNode($interfaceXml);
+        $valueInterfaceNode->determineImplementingClasses([
+            '\\' . \Google\Cloud\Spanner\Bytes::class => true,
+            '\\' . \Google\Cloud\Spanner\Date::class => true,
+            '\\' . \Google\Cloud\Core\Logger\AppEngineFlexFormatter::class => true,
+            '\\' . \Google\Cloud\Core\Logger\AppEngineFlexFormatterV2::class => true,
+        ]);
+        $this->assertStringContainsString(
+            \Google\Cloud\Spanner\Bytes::class,
+            $valueInterfaceNode->getLongDescription()
+        );
+
+        $middlewareXml = new SimpleXMLElement(
+            '<interface><full_name>\Google\ApiCore\Middleware\MiddlewareInterface</full_name>'
+            . '<docblock><description>Middleware interface</description></docblock></interface>'
+        );
+        $middlewareInterfaceNode = new InterfaceNode($middlewareXml);
+        $middlewareInterfaceNode->determineImplementingClasses([
+            '\\' . \Google\Cloud\Spanner\Middleware\SpannerMiddleware::class => true,
+        ]);
+        $this->assertStringContainsString(
+            \Google\Cloud\Spanner\Middleware\SpannerMiddleware::class,
+            $middlewareInterfaceNode->getLongDescription()
         );
     }
 
