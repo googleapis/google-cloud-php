@@ -39,7 +39,6 @@ use GuzzleHttp\Promise\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
 use OpenTelemetry\API\Trace\SpanKind;
 use OpenTelemetry\API\Trace\StatusCode;
-use OpenTelemetry\API\Trace\TracerProviderInterface;
 use Throwable;
 
 /**
@@ -53,31 +52,29 @@ class TracingMiddleware implements MiddlewareInterface
 
     /** @var MiddlewareInterface|callable */
     private $nextHandler;
-    private string $serverAddress;
-    private int $serverPort;
+    private ?string $serverAddress;
+    private ?int $serverPort;
     private string $systemName;
 
     /**
      * @param MiddlewareInterface|callable $nextHandler
-     * @param TracerProviderInterface|null $openTelemetryTracerProvider
-     * @param string $serverAddress
-     * @param int $serverPort
+     * @param string|null $serverAddress
+     * @param int|null $serverPort
      * @param string $systemName
      * @param array $telemetryOptions
      */
     public function __construct(
         $nextHandler,
-        ?TracerProviderInterface $openTelemetryTracerProvider = null,
-        string $serverAddress = '',
-        int $serverPort = 443,
+        ?string $serverAddress = null,
+        ?int $serverPort = null,
         string $systemName = 'grpc',
         array $telemetryOptions = []
     ) {
         $this->nextHandler = $nextHandler;
-        $this->serverAddress = $serverAddress;
+        $this->serverAddress = $serverAddress ?: null;
         $this->serverPort = $serverPort;
         $this->systemName = $systemName;
-        $this->initTelemetry($telemetryOptions, $openTelemetryTracerProvider);
+        $this->initTelemetry($telemetryOptions);
     }
 
     /**
@@ -85,7 +82,7 @@ class TracingMiddleware implements MiddlewareInterface
      */
     public function __invoke(Call $call, array $options)
     {
-        if (!$this->openTelemetryTracerProvider) {
+        if (!$this->openTelemetryTracerProvider || $call->getCallType() !== Call::UNARY_CALL) {
             return ($this->nextHandler)($call, $options);
         }
 
@@ -129,12 +126,17 @@ class TracingMiddleware implements MiddlewareInterface
                     function () use ($result, $span) {
                         $waitScope = $span->activate();
                         try {
-                            $result->wait();
+                            $result->wait(false);
                         } finally {
                             $waitScope->detach();
                         }
                     },
-                    [$result, 'cancel']
+                    function () use ($result, $span) {
+                        $span->setStatus(StatusCode::STATUS_ERROR, 'Call cancelled');
+                        $span->setAttribute(SpanAttributes::ERROR_TYPE, 'CANCELLED');
+                        $span->end();
+                        $result->cancel();
+                    }
                 );
 
                 $result->then(

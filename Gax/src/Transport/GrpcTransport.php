@@ -71,8 +71,8 @@ class GrpcTransport extends BaseStub implements TransportInterface
     use TelemetryTrait;
 
     private null|LoggerInterface $logger;
-    private string $serverAddress = '';
-    private int $serverPort = 443;
+    private ?string $serverAddress = null;
+    private ?int $serverPort = null;
 
     /**
      * @param string $hostname
@@ -109,7 +109,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
         parent::__construct($hostname, $opts, $channel);
         $this->logger = $logger;
         if ($hostname !== '') {
-            list($addr, $port) = self::normalizeServiceAddress($hostname);
+            [$addr, $port] = self::normalizeServiceAddress($hostname);
             $this->serverAddress = $addr;
             $this->serverPort = (int) $port;
         }
@@ -310,27 +310,34 @@ class GrpcTransport extends BaseStub implements TransportInterface
             );
         }
 
-        $unaryCall = $this->_simpleRequest(
-            '/' . $call->getMethod(),
-            $call->getMessage(),
-            [$call->getDecodeType(), 'decode'],
-            isset($options['headers']) ? $options['headers'] : [],
-            $this->getCallOptions($options)
-        );
+        try {
+            $unaryCall = $this->_simpleRequest(
+                '/' . $call->getMethod(),
+                $call->getMessage(),
+                [$call->getDecodeType(), 'decode'],
+                isset($options['headers']) ? $options['headers'] : [],
+                $this->getCallOptions($options)
+            );
 
-        if ($this->logger) {
-            $requestEvent = new RpcLogEvent();
+            if ($this->logger) {
+                $requestEvent = new RpcLogEvent();
 
-            $requestEvent->headers = $headers;
-            $requestEvent->payload = $call->getMessage()->serializeToJsonString();
-            $requestEvent->retryAttempt = $options['retryAttempt'] ?? null;
-            $requestEvent->serviceName = $options['serviceName'] ?? null;
-            $requestEvent->rpcName = $call->getMethod();
-            $requestEvent->processId = (int) getmypid();
-            $requestEvent->requestId = crc32((string) spl_object_id($call) . getmypid());
-            $requestEvent->url = $this->getGrpcUrl();
+                $requestEvent->headers = $headers;
+                $requestEvent->payload = $call->getMessage()->serializeToJsonString();
+                $requestEvent->retryAttempt = $options['retryAttempt'] ?? null;
+                $requestEvent->serviceName = $options['serviceName'] ?? null;
+                $requestEvent->rpcName = $call->getMethod();
+                $requestEvent->processId = (int) getmypid();
+                $requestEvent->requestId = crc32((string) spl_object_id($call) . getmypid());
+                $requestEvent->url = $this->getGrpcUrl();
 
-            $this->logRequest($requestEvent);
+                $this->logRequest($requestEvent);
+            }
+        } catch (Throwable $e) {
+            if ($span) {
+                $this->recordException($span, $e, true);
+            }
+            throw $e;
         }
 
         /** @var Promise $promise */
@@ -352,20 +359,24 @@ class GrpcTransport extends BaseStub implements TransportInterface
                     }
 
                     if ($status->code == Code::OK) {
-                        if ($span) {
-                            $span->setAttribute(SpanAttributes::RPC_RESPONSE_STATUS_CODE, 'OK');
-                            $span->setStatus(StatusCode::STATUS_OK);
-                        }
                         if (isset($options['metadataCallback'])) {
                             $metadataCallback = $options['metadataCallback'];
                             $metadataCallback($unaryCall->getMetadata());
                         }
+                        if ($span) {
+                            $span->setAttribute(SpanAttributes::RPC_RESPONSE_STATUS_CODE, 'OK');
+                            $span->setStatus(StatusCode::STATUS_OK);
+                        }
                         $promise->resolve($response);
                     } else {
+                        $apiException = ApiException::createFromStdClass($status);
                         if ($span) {
-                            $span->setAttribute(SpanAttributes::RPC_RESPONSE_STATUS_CODE, Code::name($status->code));
+                            $span->setAttribute(
+                                SpanAttributes::RPC_RESPONSE_STATUS_CODE,
+                                $apiException->getStatus()
+                            );
                         }
-                        throw ApiException::createFromStdClass($status);
+                        throw $apiException;
                     }
                 } catch (Throwable $e) {
                     if ($span) {

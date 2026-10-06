@@ -72,9 +72,10 @@ trait GapicClientTrait
 
     private ?TransportInterface $transport = null;
     private ?HeaderCredentialsInterface $credentialsWrapper = null;
-    private ?TracerProviderInterface $openTelemetryTracerProvider = null;
     private array $telemetryOptions = [];
     private string $apiEndpoint = '';
+    private ?string $serverAddress = null;
+    private ?int $serverPort = null;
     /** @var RetrySettings[] $retrySettings */
     private array $retrySettings = [];
     private string $serviceName = '';
@@ -269,6 +270,8 @@ trait GapicClientTrait
      *           The code generator version of the GAPIC library.
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string.
+     *     @type TracerProviderInterface|null $openTelemetryTracerProvider
+     *           An OpenTelemetry TracerProvider to use for tracing API calls.
      * }
      * @throws ValidationException
      */
@@ -379,29 +382,27 @@ trait GapicClientTrait
         }
 
         $this->apiEndpoint = $options['apiEndpoint'];
-        $this->openTelemetryTracerProvider = $options['openTelemetryTracerProvider'] ?? null;
-        $telemetryOptions = [
+        if ($this->apiEndpoint !== '') {
+            [$serverAddress, $serverPort] = self::normalizeServiceAddress($this->apiEndpoint);
+            $this->serverAddress = $serverAddress;
+            $this->serverPort = (int) $serverPort;
+        }
+        $this->telemetryOptions = [
             'openTelemetryTracerProvider' => $options['openTelemetryTracerProvider'] ?? null,
-            'clientVersion' => $options['libVersion'] ?? null,
+            'clientVersion' => $options['gapicVersion'] ?? null,
         ];
-        $this->telemetryOptions = $telemetryOptions;
 
         $transport = $options['transport'] ?: self::defaultTransport();
-        if ($transport instanceof TransportInterface) {
-            if (method_exists($transport, 'setTelemetryOptions')) {
-                $transport->setTelemetryOptions($telemetryOptions);
-            }
-            $this->transport = $transport;
-        } else {
-            $this->transport = $this->createTransport(
+        $this->transport = $transport instanceof TransportInterface
+            ? $transport
+            : $this->createTransport(
                 $options['apiEndpoint'],
                 $transport,
                 $options['transportConfig'],
                 $options['clientCertSource'],
                 $hasEmulator,
-                $telemetryOptions
+                $this->telemetryOptions
             );
-        }
     }
 
     /**
@@ -775,14 +776,12 @@ trait GapicClientTrait
             $callStack = $fn($callStack);
         }
 
-        if ($this->openTelemetryTracerProvider) {
-            [$serverAddress, $serverPort] = self::normalizeServiceAddress($this->apiEndpoint);
+        if (!empty($this->telemetryOptions['openTelemetryTracerProvider'])) {
             $systemName = $this->transport instanceof GrpcTransport ? 'grpc' : 'http';
             $callStack = new TracingMiddleware(
                 $callStack,
-                $this->openTelemetryTracerProvider,
-                $serverAddress,
-                (int) $serverPort,
+                $this->serverAddress,
+                $this->serverPort,
                 $systemName,
                 $this->telemetryOptions
             );

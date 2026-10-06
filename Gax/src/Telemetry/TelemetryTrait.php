@@ -38,7 +38,6 @@ use OpenTelemetry\API\Trace\SpanInterface;
 use OpenTelemetry\API\Trace\SpanKind;
 use OpenTelemetry\API\Trace\StatusCode;
 use OpenTelemetry\API\Trace\TracerProviderInterface;
-use Psr\Http\Message\ResponseInterface;
 use Throwable;
 
 /**
@@ -55,33 +54,23 @@ trait TelemetryTrait
      * Sets telemetry options and initializes tracing properties.
      *
      * @param array $telemetryOptions
-     * @param TracerProviderInterface|null $openTelemetryTracerProvider
      * @return $this
      */
-    public function setTelemetryOptions(
-        array $telemetryOptions,
-        ?TracerProviderInterface $openTelemetryTracerProvider = null
-    ): self {
-        $this->initTelemetry($telemetryOptions, $openTelemetryTracerProvider);
+    public function setTelemetryOptions(array $telemetryOptions): self
+    {
+        $this->initTelemetry($telemetryOptions);
         return $this;
     }
 
     /**
-     * Initializes telemetry properties from an options array and optional tracer provider.
+     * Initializes telemetry properties from an options array.
      *
      * @param array $telemetryOptions
-     * @param TracerProviderInterface|null $openTelemetryTracerProvider
      */
-    private function initTelemetry(
-        array $telemetryOptions,
-        ?TracerProviderInterface $openTelemetryTracerProvider = null
-    ): void {
-        $this->openTelemetryTracerProvider = $openTelemetryTracerProvider
-            ?? $telemetryOptions['openTelemetryTracerProvider']
-            ?? null;
-        $this->clientVersion = $telemetryOptions['clientVersion']
-            ?? $telemetryOptions['libVersion']
-            ?? null;
+    private function initTelemetry(array $telemetryOptions): void
+    {
+        $this->openTelemetryTracerProvider = $telemetryOptions['openTelemetryTracerProvider'] ?? null;
+        $this->clientVersion = $telemetryOptions['clientVersion'] ?? null;
     }
 
     /**
@@ -94,19 +83,6 @@ trait TelemetryTrait
         return [
             'openTelemetryTracerProvider' => null,
             'clientVersion' => null,
-        ];
-    }
-
-    /**
-     * Returns the telemetry options populated from this instance.
-     *
-     * @return array
-     */
-    private function getTelemetryOptions(): array
-    {
-        return [
-            'openTelemetryTracerProvider' => $this->openTelemetryTracerProvider,
-            'clientVersion' => $this->clientVersion,
         ];
     }
 
@@ -153,26 +129,19 @@ trait TelemetryTrait
             return;
         }
 
-        $statusCode = null;
-        if (method_exists($e, 'getResponse') && $e->getResponse() instanceof ResponseInterface) {
-            $statusCode = $e->getResponse()->getStatusCode();
-            $span->setAttribute(SpanAttributes::HTTP_RESPONSE_STATUS_CODE, $statusCode);
-        }
-
-        $errorType = null;
-        if ($statusCode !== null) {
-            $errorType = (string) $statusCode;
-        } elseif ($e instanceof ApiException && $e->getStatus()) {
-            $errorType = $e->getStatus();
+        if ($e instanceof ApiException) {
+            $errorType = $e->getReason() ?: $e->getStatus() ?: get_class($e);
+            $message = $e->getBasicMessage() ?? $e->getMessage();
         } else {
             $errorType = get_class($e);
+            $message = $e->getMessage();
         }
 
         $span->recordException($e);
-        $span->setStatus(StatusCode::STATUS_ERROR, $e->getMessage());
+        $span->setStatus(StatusCode::STATUS_ERROR, $message);
         $span->setAttribute(SpanAttributes::ERROR_TYPE, $errorType);
         $span->setAttribute(SpanAttributes::EXCEPTION_TYPE, get_class($e));
-        $span->setAttribute(SpanAttributes::STATUS_MESSAGE, $e->getMessage());
+        $span->setAttribute(SpanAttributes::STATUS_MESSAGE, $message);
 
         if ($end) {
             $span->end();

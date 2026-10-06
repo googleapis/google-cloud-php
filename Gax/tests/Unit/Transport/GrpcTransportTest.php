@@ -785,8 +785,9 @@ class GrpcTransportTest extends TestCase
 
         $transport = new MockGrpcTransport($unaryCall->reveal());
         $transport->setTelemetryOptions([
+            'openTelemetryTracerProvider' => $tracerProvider,
             'clientVersion' => '1.0.0',
-        ], $tracerProvider);
+        ]);
 
         $call = new Call($method, Status::class, new MockRequest());
         $promise = $transport->startUnaryCall($call, []);
@@ -795,6 +796,8 @@ class GrpcTransportTest extends TestCase
         $this->assertSame($response, $result);
         $this->assertSame('grpc', $attributes[SpanAttributes::RPC_SYSTEM_NAME]);
         $this->assertSame($method, $attributes[SpanAttributes::RPC_METHOD]);
+        $this->assertArrayNotHasKey(SpanAttributes::SERVER_ADDRESS, $attributes);
+        $this->assertArrayNotHasKey(SpanAttributes::SERVER_PORT, $attributes);
         $this->assertSame('OK', $recordedSpanAttributes[SpanAttributes::RPC_RESPONSE_STATUS_CODE]);
     }
 
@@ -822,7 +825,7 @@ class GrpcTransportTest extends TestCase
 
         $span->expects($this->once())
             ->method('setStatus')
-            ->with($this->equalTo(StatusCode::STATUS_ERROR), $this->stringContains('Resource not found'));
+            ->with(StatusCode::STATUS_ERROR, 'Resource not found');
 
         $span->expects($this->once())
             ->method('end');
@@ -837,7 +840,9 @@ class GrpcTransportTest extends TestCase
             ->willReturn([null, $status]);
 
         $transport = new MockGrpcTransport($unaryCall->reveal());
-        $transport->setTelemetryOptions([], $tracerProvider);
+        $transport->setTelemetryOptions([
+            'openTelemetryTracerProvider' => $tracerProvider,
+        ]);
 
         $call = new Call($method, Status::class, new MockRequest());
         $promise = $transport->startUnaryCall($call, []);
@@ -849,11 +854,51 @@ class GrpcTransportTest extends TestCase
         } finally {
             $this->assertSame('NOT_FOUND', $recordedSpanAttributes[SpanAttributes::RPC_RESPONSE_STATUS_CODE]);
             $this->assertSame('NOT_FOUND', $recordedSpanAttributes[SpanAttributes::ERROR_TYPE]);
-            $this->assertStringContainsString(
-                'Resource not found',
-                $recordedSpanAttributes[SpanAttributes::STATUS_MESSAGE]
-            );
+            $this->assertSame('Resource not found', $recordedSpanAttributes[SpanAttributes::STATUS_MESSAGE]);
         }
+    }
+
+    public function testStartUnaryCallEndsSpanOnSynchronousException(): void
+    {
+        $tracerProvider = $this->createMock(TracerProviderInterface::class);
+        $tracer = $this->createMock(TracerInterface::class);
+        $spanBuilder = $this->createMock(SpanBuilderInterface::class);
+        $span = $this->createMock(SpanInterface::class);
+
+        $tracerProvider->method('getTracer')->willReturn($tracer);
+        $tracer->method('spanBuilder')->willReturn($spanBuilder);
+        $spanBuilder->method('setSpanKind')->willReturnSelf();
+        $spanBuilder->method('setAttribute')->willReturnSelf();
+        $spanBuilder->method('startSpan')->willReturn($span);
+
+        $span->expects($this->once())
+            ->method('setStatus')
+            ->with(StatusCode::STATUS_ERROR, 'Auth callback failed');
+        $span->expects($this->once())
+            ->method('end');
+
+        $credentialsWrapper = $this->prophesize(CredentialsWrapper::class);
+        $credentialsWrapper->checkUniverseDomain()->shouldBeCalledOnce();
+        $credentialsWrapper->getAuthorizationHeaderCallback(null)
+            ->willThrow(new \RuntimeException('Auth callback failed'));
+
+        $transport = new MockGrpcTransport(null);
+        $transport->setTelemetryOptions([
+            'openTelemetryTracerProvider' => $tracerProvider,
+        ]);
+
+        $call = new Call(
+            'google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion',
+            Status::class,
+            new MockRequest()
+        );
+
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Auth callback failed');
+
+        $transport->startUnaryCall($call, [
+            'credentialsWrapper' => $credentialsWrapper->reveal(),
+        ]);
     }
 
     public function testBuildSetsTelemetryOptions(): void
