@@ -35,14 +35,12 @@ use Google\Cloud\Dialogflow\V2\Message;
  * Generates and returns a summary for a conversation that does not have a
  * resource created for it.
  *
- * @param string $statelessConversationMessagesContent The message content.
  * @param string $formattedStatelessConversationParent The parent resource to charge for the Summary's generation.
  *                                                     Format: `projects/<Project ID>/locations/<Location ID>`. Please see
  *                                                     {@see ConversationsClient::locationName()} for help formatting this field.
  * @param string $conversationProfileDisplayName       Human readable name for this profile. Max length 1024 bytes.
  */
 function generate_stateless_summary_sample(
-    string $statelessConversationMessagesContent,
     string $formattedStatelessConversationParent,
     string $conversationProfileDisplayName
 ): void {
@@ -50,9 +48,7 @@ function generate_stateless_summary_sample(
     $conversationsClient = new ConversationsClient();
 
     // Prepare the request message.
-    $message = (new Message())
-        ->setContent($statelessConversationMessagesContent);
-    $statelessConversationMessages = [$message,];
+    $statelessConversationMessages = [new Message()];
     $statelessConversation = (new MinimalConversation())
         ->setMessages($statelessConversationMessages)
         ->setParent($formattedStatelessConversationParent);
@@ -83,7 +79,6 @@ function generate_stateless_summary_sample(
  */
 function callSample(): void
 {
-    $statelessConversationMessagesContent = '[CONTENT]';
     $formattedStatelessConversationParent = ConversationsClient::locationName(
         '[PROJECT]',
         '[LOCATION]'
@@ -91,7 +86,6 @@ function callSample(): void
     $conversationProfileDisplayName = '[DISPLAY_NAME]';
 
     generate_stateless_summary_sample(
-        $statelessConversationMessagesContent,
         $formattedStatelessConversationParent,
         $conversationProfileDisplayName
     );

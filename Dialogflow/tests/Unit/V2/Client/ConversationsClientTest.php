@@ -756,8 +756,6 @@ class ConversationsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $query = new TextInput();
-        $queryText = 'queryText-1806881259';
-        $query->setText($queryText);
         $queryLanguageCode = 'queryLanguageCode66898509';
         $query->setLanguageCode($queryLanguageCode);
         $formattedConversationProfile = $gapicClient->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
@@ -801,8 +799,6 @@ class ConversationsClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $query = new TextInput();
-        $queryText = 'queryText-1806881259';
-        $query->setText($queryText);
         $queryLanguageCode = 'queryLanguageCode66898509';
         $query->setLanguageCode($queryLanguageCode);
         $formattedConversationProfile = $gapicClient->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
