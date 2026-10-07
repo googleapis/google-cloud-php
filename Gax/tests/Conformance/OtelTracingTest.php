@@ -96,6 +96,9 @@ final class OtelTracingTest extends TestCase
     {
         $transport = $this->buildTransport($transportType, self::ECHO_REST_CONFIG, null);
         $echoClient = new EchoClient([
+            // @TODO: Remove apiEndpoint once https://github.com/googleapis/gapic-generator-php/pull/889 is merged
+            // and the Showcase client is regenerated.
+            'apiEndpoint' => self::HOST,
             'credentials' => new InsecureCredentialsWrapper(),
             'transport' => $transport,
         ]);
@@ -124,6 +127,9 @@ final class OtelTracingTest extends TestCase
     {
         $transport = $this->buildTransport($transportType, self::ECHO_REST_CONFIG, $this->tracerProvider);
         $echoClient = new EchoClient([
+            // @TODO: Remove apiEndpoint once https://github.com/googleapis/gapic-generator-php/pull/889 is merged
+            // and the Showcase client is regenerated.
+            'apiEndpoint' => self::HOST,
             'credentials' => new InsecureCredentialsWrapper(),
             'transport' => $transport,
             'openTelemetryTracerProvider' => $this->tracerProvider,
@@ -195,6 +201,9 @@ final class OtelTracingTest extends TestCase
     {
         $transport = $this->buildTransport($transportType, self::IDENTITY_REST_CONFIG, $this->tracerProvider);
         $identityClient = new IdentityClient([
+            // @TODO: Remove apiEndpoint once https://github.com/googleapis/gapic-generator-php/pull/889 is merged
+            // and the Showcase client is regenerated.
+            'apiEndpoint' => self::HOST,
             'credentials' => new InsecureCredentialsWrapper(),
             'transport' => $transport,
             'openTelemetryTracerProvider' => $this->tracerProvider,
@@ -252,6 +261,9 @@ final class OtelTracingTest extends TestCase
     {
         $transport = $this->buildTransport($transportType, self::SEQUENCE_REST_CONFIG, $this->tracerProvider);
         $sequenceClient = new SequenceServiceClient([
+            // @TODO: Remove apiEndpoint once https://github.com/googleapis/gapic-generator-php/pull/889 is merged
+            // and the Showcase client is regenerated.
+            'apiEndpoint' => self::HOST,
             'credentials' => new InsecureCredentialsWrapper(),
             'transport' => $transport,
             'openTelemetryTracerProvider' => $this->tracerProvider,
@@ -345,6 +357,9 @@ final class OtelTracingTest extends TestCase
     {
         $transport = $this->buildTransport($transportType, self::ECHO_REST_CONFIG, $this->tracerProvider);
         $echoClient = new EchoClient([
+            // @TODO: Remove apiEndpoint once https://github.com/googleapis/gapic-generator-php/pull/889 is merged
+            // and the Showcase client is regenerated.
+            'apiEndpoint' => self::HOST,
             'credentials' => new InsecureCredentialsWrapper(),
             'transport' => $transport,
             'openTelemetryTracerProvider' => $this->tracerProvider,
@@ -428,6 +443,9 @@ final class OtelTracingTest extends TestCase
     {
         $transport = $this->buildTransport($transportType, self::ECHO_REST_CONFIG, $this->tracerProvider);
         $echoClient = new EchoClient([
+            // @TODO: Remove apiEndpoint once https://github.com/googleapis/gapic-generator-php/pull/889 is merged
+            // and the Showcase client is regenerated.
+            'apiEndpoint' => self::HOST,
             'credentials' => new InsecureCredentialsWrapper(),
             'transport' => $transport,
             'openTelemetryTracerProvider' => $this->tracerProvider,
