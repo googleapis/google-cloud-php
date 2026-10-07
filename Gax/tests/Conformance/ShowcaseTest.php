@@ -77,6 +77,9 @@ final class ShowcaseTest extends TestCase
     public function testFailWithDetails(TransportInterface $transport): void
     {
         $echoClient = new EchoClient([
+            // @TODO: Remove apiEndpoint once https://github.com/googleapis/gapic-generator-php/pull/889 is merged
+            // and the Showcase client is regenerated.
+            'apiEndpoint' => 'localhost:7469',
             'credentials' => new InsecureCredentialsWrapper(),
             'transport' => $transport,
         ]);
@@ -112,6 +115,9 @@ final class ShowcaseTest extends TestCase
         };
 
         $echoClient = new EchoClient([
+            // @TODO: Remove apiEndpoint once https://github.com/googleapis/gapic-generator-php/pull/889 is merged
+            // and the Showcase client is regenerated.
+            'apiEndpoint' => 'localhost:7469',
             'credentials' => new InsecureCredentialsWrapper(),
             'transport' => $transport
         ]);
