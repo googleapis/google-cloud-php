@@ -1,5 +1,167 @@
 # Changelog
 
+## 0.349.0
+
+<details><summary>googleads/ad-manager 0.15.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+
+</details>
+
+<details><summary>google/cloud-apphub 0.6.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+
+</details>
+
+<details><summary>google/cloud-apptopology 0.2.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnections 1.3.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnectors 1.3.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appgateways 1.3.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.31.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+
+</details>
+
+<details><summary>google/cloud-core 1.74.0</summary>
+
+
+
+### Features
+
+* **Storage:** implement GCS idempotency tokens for all API operations ([#9490](https://github.com/googleapis/google-cloud-php/issues/9490)) ([13e173e](https://github.com/googleapis/google-cloud-php/commit/13e173e4bf079ec3611f5a547d2c4cf70a952163))
+
+</details>
+
+<details><summary>google/cloud-dataform 0.17.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+
+</details>
+
+<details><summary>google/developer-knowledge 0.5.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 2.8.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+
+</details>
+
+<details><summary>google/cloud-dialogflow-cx 0.13.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+
+</details>
+
+<details><summary>google/cloud-netapp 1.14.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.11.2</summary>
+
+
+
+### Bug Fixes
+
+* **Spanner:** properly apply retry limits and backoff when resuming result stream ([#9746](https://github.com/googleapis/google-cloud-php/issues/9746)) ([195d9ad](https://github.com/googleapis/google-cloud-php/commit/195d9ad0ebdbc79ee97d7d1af027cf8d69226dc6))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.13.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+
+</details>
+
+<details><summary>google/cloud-storage 2.6.0</summary>
+
+
+
+### Features
+
+* **Storage:** implement GCS idempotency tokens for all API operations ([#9490](https://github.com/googleapis/google-cloud-php/issues/9490)) ([13e173e](https://github.com/googleapis/google-cloud-php/commit/13e173e4bf079ec3611f5a547d2c4cf70a952163))
+
+</details>
+
 ## 0.348.0
 
 <details><summary>googleads/data-manager 0.10.0</summary>
