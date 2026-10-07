@@ -35,6 +35,12 @@ class VirtualRpcResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes payload = 3;</code>
      */
     protected $payload = '';
+    /**
+     * If there are more responses for this rpc_id coming.
+     *
+     * Generated from protobuf field <code>bool has_more = 5;</code>
+     */
+    protected $has_more = false;
 
     /**
      * Constructor.
@@ -48,6 +54,8 @@ class VirtualRpcResponse extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Bigtable\V2\SessionRequestStats $stats
      *     @type string $payload
      *           Could be TableResponse (or in post-V1, SqlResponse)
+     *     @type bool $has_more
+     *           If there are more responses for this rpc_id coming.
      * }
      */
     public function __construct($data = NULL) {
@@ -167,6 +175,32 @@ class VirtualRpcResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->payload = $var;
+
+        return $this;
+    }
+
+    /**
+     * If there are more responses for this rpc_id coming.
+     *
+     * Generated from protobuf field <code>bool has_more = 5;</code>
+     * @return bool
+     */
+    public function getHasMore()
+    {
+        return $this->has_more;
+    }
+
+    /**
+     * If there are more responses for this rpc_id coming.
+     *
+     * Generated from protobuf field <code>bool has_more = 5;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setHasMore($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->has_more = $var;
 
         return $this;
     }

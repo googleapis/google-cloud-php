@@ -95,6 +95,18 @@ return [
                     ],
                 ],
             ],
+            'BatchUpdateAudienceSegments' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchUpdateAudienceSegmentsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateAudienceSegment' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\AdManager\V1\AudienceSegment',
@@ -135,6 +147,19 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateAudienceSegment' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\AudienceSegment',
+                'headerParams' => [
+                    [
+                        'keyName' => 'audience_segment.name',
+                        'fieldAccessors' => [
+                            'getAudienceSegment',
+                            'getName',
                         ],
                     ],
                 ],

@@ -34,9 +34,11 @@ use Google\Ads\AdManager\V1\BatchDeactivateNativeStylesRequest;
 use Google\Ads\AdManager\V1\BatchDeactivateNativeStylesResponse;
 use Google\Ads\AdManager\V1\BatchUpdateNativeStylesRequest;
 use Google\Ads\AdManager\V1\BatchUpdateNativeStylesResponse;
+use Google\Ads\AdManager\V1\CreateNativeStyleRequest;
 use Google\Ads\AdManager\V1\GetNativeStyleRequest;
 use Google\Ads\AdManager\V1\ListNativeStylesRequest;
 use Google\Ads\AdManager\V1\NativeStyle;
+use Google\Ads\AdManager\V1\UpdateNativeStyleRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -66,8 +68,10 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<BatchCreateNativeStylesResponse> batchCreateNativeStylesAsync(BatchCreateNativeStylesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BatchDeactivateNativeStylesResponse> batchDeactivateNativeStylesAsync(BatchDeactivateNativeStylesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BatchUpdateNativeStylesResponse> batchUpdateNativeStylesAsync(BatchUpdateNativeStylesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NativeStyle> createNativeStyleAsync(CreateNativeStyleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<NativeStyle> getNativeStyleAsync(GetNativeStyleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listNativeStylesAsync(ListNativeStylesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NativeStyle> updateNativeStyleAsync(UpdateNativeStyleRequest $request, array $optionalArgs = [])
  */
 final class NativeStyleServiceClient
 {
@@ -816,6 +820,32 @@ final class NativeStyleServiceClient
     }
 
     /**
+     * Creates a `NativeStyle` object.
+     *
+     * The async variant is {@see NativeStyleServiceClient::createNativeStyleAsync()} .
+     *
+     * @example samples/V1/NativeStyleServiceClient/create_native_style.php
+     *
+     * @param CreateNativeStyleRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return NativeStyle
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createNativeStyle(CreateNativeStyleRequest $request, array $callOptions = []): NativeStyle
+    {
+        return $this->startApiCall('CreateNativeStyle', $request, $callOptions)->wait();
+    }
+
+    /**
      * Retrieves a `NativeStyle` object.
      *
      * The async variant is {@see NativeStyleServiceClient::getNativeStyleAsync()} .
@@ -865,5 +895,31 @@ final class NativeStyleServiceClient
     public function listNativeStyles(ListNativeStylesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListNativeStyles', $request, $callOptions);
+    }
+
+    /**
+     * Updates a `NativeStyle` object.
+     *
+     * The async variant is {@see NativeStyleServiceClient::updateNativeStyleAsync()} .
+     *
+     * @example samples/V1/NativeStyleServiceClient/update_native_style.php
+     *
+     * @param UpdateNativeStyleRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return NativeStyle
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateNativeStyle(UpdateNativeStyleRequest $request, array $callOptions = []): NativeStyle
+    {
+        return $this->startApiCall('UpdateNativeStyle', $request, $callOptions)->wait();
     }
 }

@@ -40,6 +40,12 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool has_ontap_proxy = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $has_ontap_proxy = false;
+    /**
+     * Output only. Indicates the flex performance tier of this location.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.LocationMetadata.FlexPerformanceTier flex_performance_tier = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $flex_performance_tier = 0;
 
     /**
      * Constructor.
@@ -55,6 +61,8 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      *           Output only. Indicates if the location has VCP support.
      *     @type bool $has_ontap_proxy
      *           Output only. Indicates if the location has ONTAP Proxy support.
+     *     @type int $flex_performance_tier
+     *           Output only. Indicates the flex performance tier of this location.
      * }
      */
     public function __construct($data = NULL) {
@@ -162,6 +170,32 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->has_ontap_proxy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Indicates the flex performance tier of this location.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.LocationMetadata.FlexPerformanceTier flex_performance_tier = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getFlexPerformanceTier()
+    {
+        return $this->flex_performance_tier;
+    }
+
+    /**
+     * Output only. Indicates the flex performance tier of this location.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.LocationMetadata.FlexPerformanceTier flex_performance_tier = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFlexPerformanceTier($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetApp\V1\LocationMetadata\FlexPerformanceTier::class);
+        $this->flex_performance_tier = $var;
 
         return $this;
     }

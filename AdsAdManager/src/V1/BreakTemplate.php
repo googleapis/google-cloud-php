@@ -61,15 +61,18 @@ class BreakTemplate extends \Google\Protobuf\Internal\Message
     private $break_template_members;
     /**
      * Optional. The optimization type of the pod. This field is optional and
-     * defaults to [AdBreakOptimizationType.REVENUE][].
+     * defaults to
+     * [AdBreakOptimizationTypeEnum.AdBreakOptimizationType.REVENUE][google.ads.admanager.v1.AdBreakOptimizationTypeEnum.AdBreakOptimizationType.REVENUE].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.AdBreakOptimizationTypeEnum.AdBreakOptimizationType ad_break_optimization_type = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $ad_break_optimization_type = null;
     /**
      * Optional. The fill order direction of the pod. This value is required if
-     * `adBreakOptimizationType` is equal to
-     * [AdBreakOptimizationType.POSITION][] and should otherwise be unset.
+     * [adBreakOptimizationType][google.ads.admanager.v1.BreakTemplate.ad_break_optimization_type]
+     * is equal to
+     * [AdBreakOptimizationTypeEnum.AdBreakOptimizationType.POSITION][google.ads.admanager.v1.AdBreakOptimizationTypeEnum.AdBreakOptimizationType.POSITION]
+     * and should otherwise be unset.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.AdRuleFillOrderDirectionEnum.AdRuleFillOrderDirection fill_order_direction_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -105,11 +108,14 @@ class BreakTemplate extends \Google\Protobuf\Internal\Message
      *           should be filled.
      *     @type int $ad_break_optimization_type
      *           Optional. The optimization type of the pod. This field is optional and
-     *           defaults to [AdBreakOptimizationType.REVENUE][].
+     *           defaults to
+     *           [AdBreakOptimizationTypeEnum.AdBreakOptimizationType.REVENUE][google.ads.admanager.v1.AdBreakOptimizationTypeEnum.AdBreakOptimizationType.REVENUE].
      *     @type int $fill_order_direction_type
      *           Optional. The fill order direction of the pod. This value is required if
-     *           `adBreakOptimizationType` is equal to
-     *           [AdBreakOptimizationType.POSITION][] and should otherwise be unset.
+     *           [adBreakOptimizationType][google.ads.admanager.v1.BreakTemplate.ad_break_optimization_type]
+     *           is equal to
+     *           [AdBreakOptimizationTypeEnum.AdBreakOptimizationType.POSITION][google.ads.admanager.v1.AdBreakOptimizationTypeEnum.AdBreakOptimizationType.POSITION]
+     *           and should otherwise be unset.
      * }
      */
     public function __construct($data = NULL) {
@@ -303,7 +309,8 @@ class BreakTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The optimization type of the pod. This field is optional and
-     * defaults to [AdBreakOptimizationType.REVENUE][].
+     * defaults to
+     * [AdBreakOptimizationTypeEnum.AdBreakOptimizationType.REVENUE][google.ads.admanager.v1.AdBreakOptimizationTypeEnum.AdBreakOptimizationType.REVENUE].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.AdBreakOptimizationTypeEnum.AdBreakOptimizationType ad_break_optimization_type = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -325,7 +332,8 @@ class BreakTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The optimization type of the pod. This field is optional and
-     * defaults to [AdBreakOptimizationType.REVENUE][].
+     * defaults to
+     * [AdBreakOptimizationTypeEnum.AdBreakOptimizationType.REVENUE][google.ads.admanager.v1.AdBreakOptimizationTypeEnum.AdBreakOptimizationType.REVENUE].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.AdBreakOptimizationTypeEnum.AdBreakOptimizationType ad_break_optimization_type = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -341,8 +349,10 @@ class BreakTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The fill order direction of the pod. This value is required if
-     * `adBreakOptimizationType` is equal to
-     * [AdBreakOptimizationType.POSITION][] and should otherwise be unset.
+     * [adBreakOptimizationType][google.ads.admanager.v1.BreakTemplate.ad_break_optimization_type]
+     * is equal to
+     * [AdBreakOptimizationTypeEnum.AdBreakOptimizationType.POSITION][google.ads.admanager.v1.AdBreakOptimizationTypeEnum.AdBreakOptimizationType.POSITION]
+     * and should otherwise be unset.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.AdRuleFillOrderDirectionEnum.AdRuleFillOrderDirection fill_order_direction_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -364,8 +374,10 @@ class BreakTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The fill order direction of the pod. This value is required if
-     * `adBreakOptimizationType` is equal to
-     * [AdBreakOptimizationType.POSITION][] and should otherwise be unset.
+     * [adBreakOptimizationType][google.ads.admanager.v1.BreakTemplate.ad_break_optimization_type]
+     * is equal to
+     * [AdBreakOptimizationTypeEnum.AdBreakOptimizationType.POSITION][google.ads.admanager.v1.AdBreakOptimizationTypeEnum.AdBreakOptimizationType.POSITION]
+     * and should otherwise be unset.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.AdRuleFillOrderDirectionEnum.AdRuleFillOrderDirection fill_order_direction_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
