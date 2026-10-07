@@ -8,7 +8,47 @@
 
 ### Features
 
-* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* added new PUBLIC metric: ADVERTISER_COST_PER_ATTRIBUTED_ITEM_PURCHASED ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* added new PUBLIC metric: ATTRIBUTED_ITEMS_PURCHASED ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* added new PUBLIC metric: ATTRIBUTED_ITEMS_PURCHASED_ROAS ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* added new PUBLIC metric: REVENUE_ON_ATTRIBUTED_ITEMS_PURCHASED ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Added update methods to `AudienceSegmentService` ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Added `OFF_PROPERTY_VIDEO` report metrics ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Exposes BUDDER_ID dimension ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Added `CreateNativeStyle` and `UpdateNativeStyle` to `NativeStyleService` ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Added LineItemTemplateService ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Make `ad_badging_enabled` optionally mutable ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Add UserService.ListUsers ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Add UserService.CreateUser ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Add UserService.BatchCreateUsers ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Add UserService.UpdateUser ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Add UserService.BatchUpdateUsers ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Add UserService.BatchActivateUsers ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Add UserService.BatchDeactivateUsers ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Added GET and LIST operations for `LineItemCreativeAssociation` ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Added RunAvailabilityForecast to ForecastService ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* A new message `TemplateCreativeDetails` is added ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Added new AdReviewCenterAd fields and methods ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Expose `LineItemService` write and batch action methods in v1. ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* added new PUBLIC dimension: NON_GUARANTEED_DEAL_PRIORITY_TIER_NAME ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* added new API dimension: NON_GUARANTEED_DEAL_PRIORITY_TIER ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Added GET and LIST operations for Creative ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Added create and update methods for `LineItems` ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Added ForecastService ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* **report:** Added `draftReportDefinition` to Reports. ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* New REQUIRED field `advertiser` in message `.google.ads.admanager.v1.Creative` ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* New REQUIRED field `size` in message `.google.ads.admanager.v1.Creative` ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+
+
+### Documentation
+
+* Make `CreativeAsset.size` optionally mutable ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* A comment for field `creative_targetings` in message `.google.ads.admanager.v1.LineItem` is changed ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* **ad_review_center_ad:** Clarified manualReviewStatus vs. status filter usage based on Manual Creative Review (MCR) settings in adReviewCenterAds:search. ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Added deprecation notices for deprecated report dimensions ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Updated Ad Review Center docs ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Fixed documentation cross-references ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Updated link in DAI session docs ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
 
 </details>
 
@@ -18,7 +58,17 @@
 
 ### Features
 
-* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add Boundary resource and GetBoundary, UpdateBoundary RPCs in apphub v1 ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add ExtendedMetadataSchema resource and GetExtendedMetadataSchema, ListExtendedMetadataSchemas RPCs in apphub v1 ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add functional_type, registration_type, identity, and extended_metadata to Service in apphub v1 ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add functional_type, identity, and extended_metadata to Workload in apphub v1 ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add application_properties and application_type to Application in apphub v1 ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+
+
+### Documentation
+
+* relax update_mask from REQUIRED to OPTIONAL on update requests in apphub v1 ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add service overview, summary, and location listing documentation in apphub_v1.yaml ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
 
 </details>
 
@@ -28,7 +78,7 @@
 
 ### Features
 
-* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add ExploreSchema RPC to AppTopology v1 API ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
 
 </details>
 
@@ -36,9 +86,9 @@
 
 
 
-### Features
+### Documentation
 
-* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* deprecate AppConnectorsService, AppConnectionsService, and AppGatewaysService ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
 
 </details>
 
@@ -46,9 +96,9 @@
 
 
 
-### Features
+### Documentation
 
-* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* deprecate AppConnectorsService, AppConnectionsService, and AppGatewaysService ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
 
 </details>
 
@@ -56,9 +106,9 @@
 
 
 
-### Features
+### Documentation
 
-* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* deprecate AppConnectorsService, AppConnectionsService, and AppGatewaysService ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
 
 </details>
 
@@ -68,7 +118,7 @@
 
 ### Features
 
-* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add session support on ReadRows, MutateRows, ReadModifyWrite ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
 
 </details>
 
@@ -86,9 +136,9 @@
 
 
 
-### Features
+### Miscellaneous Chores
 
-* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* reserve field tag 11 in `InvocationConfig` in v1 and v1beta1 to prevent tag collisions with the internal API ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
 
 </details>
 
@@ -96,9 +146,9 @@
 
 
 
-### Features
+### Bug Fixes
 
-* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* apply default timeout and retry policy to SearchDocumentChunks in gRPC service config ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
 
 </details>
 
@@ -108,7 +158,8 @@
 
 ### Features
 
-* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* new required peer_hostnames and optional google_root_cert_file in SipTrunk ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* new WebRtcLiveListenCall API ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
 
 </details>
 
@@ -118,7 +169,12 @@
 
 ### Features
 
-* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* Fulfillment supports code_block_function ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+
+
+### Documentation
+
+* Intent's description could be 1000-character long ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
 
 </details>
 
@@ -128,7 +184,18 @@
 
 ### Features
 
-* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add ontap_source field and OntapSource message for ONTAP-mode volume backups ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add RestoreVolume method, BackupSource, and OntapVolumeTarget messages for volume restoration ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add ListBackupConfigs and UpdateBackupConfig methods and messages for storage pool backup configurations ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add StartSplit and GetSplitStatus methods, SplitState enum, and SplitStatus message for volume clone splitting ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add FlexPerformanceTier enum and flex_performance_tier field to LocationMetadata ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add NVME protocol to Protocols enum ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add resource_reference for CryptoKey to crypto_key_name in KmsConfig ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+
+
+### Documentation
+
+* update documentation comments for backup, volume peering, storage pool mode, and ONTAP execution methods ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
 
 </details>
 
@@ -148,7 +215,26 @@
 
 ### Features
 
-* update API sources and regenerate ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add BlueGreenDeploymentsService and BlueGreenDeployment resource for managing blue-green deployments ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add CreateBlueGreenDeployment, GetBlueGreenDeployment, SwitchoverBlueGreenDeployment, ListBlueGreenDeployments, and DeleteBlueGreenDeployment RPCs ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add SqlWorkloadCapturesService and WorkloadCapture resource for capturing and replaying SQL workloads ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add Start, Stop, StartReplay, StopReplay, and List RPCs to SqlWorkloadCapturesService ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add ignore_maintenance_version field to RestoreBackupContext ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add skip_precheck and deployment_info fields to DatabaseInstance ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add BlueGreenDeploymentInfo message ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add WRITABLE_DESTINATION_REPLICA_RECREATION_DOWNTIME and WRITABLE_DESTINATION_STORAGE_AUTO_INCREASE_DISABLED values to SqlExternalSyncSettingErrorType ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add GREEN_INSTANCE value to SqlInstanceType ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add CustomerManagedCertificate, CryptoKey, CryptoKeyVersion, NetworkAttachment, and Instance resource definitions ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add max_runtime field to PrecheckMajorVersionUpgradeContext ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add confidential_mode and cmek_source_log_encryption_enforced fields to DiskEncryptionConfiguration ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add CREATE_BLUE_GREEN_DEPLOYMENT, SWITCHOVER_BLUE_GREEN_DEPLOYMENT, and DELETE_BLUE_GREEN_DEPLOYMENT values to OperationType ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add StartWorkloadCaptureContext, StopWorkloadCaptureContext, StartWorkloadReplayContext, and StopWorkloadReplayContext messages and Operation fields ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+* add resource_reference annotations to KMS key and network fields ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
+
+
+### Documentation
+
+* update documentation comments in Cloud SQL v1 protos ([#9774](https://github.com/googleapis/google-cloud-php/issues/9774)) ([bdee36c](https://github.com/googleapis/google-cloud-php/commit/bdee36ccdb81b5404ff2fac87a7a3592eccd4f48))
 
 </details>
 
