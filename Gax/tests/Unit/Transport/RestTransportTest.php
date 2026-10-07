@@ -54,6 +54,9 @@ use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use InvalidArgumentException;
+use OpenTelemetry\SDK\Trace\SpanExporter\InMemoryExporter;
+use OpenTelemetry\SDK\Trace\SpanProcessor\SimpleSpanProcessor;
+use OpenTelemetry\SDK\Trace\TracerProvider;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Argument;
@@ -680,5 +683,33 @@ class RestTransportTest extends TestCase
 
         $actualRequest = $transport->buildRequest($method, $message);
         $this->assertSame($expectedRequest, $actualRequest);
+    }
+
+    public function testStartUnaryCallDoesNotEmitSpan(): void
+    {
+        $exporter = new InMemoryExporter();
+        $tracerProvider = new TracerProvider(new SimpleSpanProcessor($exporter));
+
+        $body = ['name' => 'hello', 'number' => 15];
+        $httpHandler = fn (RequestInterface $request, array $options = []) => Create::promiseFor(
+            new Response(200, [], json_encode($body))
+        );
+
+        $transport = $this->getTransport($httpHandler);
+        $appSpan = $tracerProvider->getTracer('test-app')->spanBuilder('app-operation')->startSpan();
+        $appScope = $appSpan->activate();
+
+        try {
+            $response = $transport->startUnaryCall($this->call, [])->wait();
+            $this->assertSame('hello', $response->getName());
+        } finally {
+            $appScope->detach();
+            $appSpan->end();
+            $tracerProvider->shutdown();
+        }
+
+        $spans = $exporter->getSpans();
+        $this->assertCount(1, $spans);
+        $this->assertSame('app-operation', $spans[0]->getName());
     }
 }
