@@ -52,9 +52,9 @@ class AdRule extends \Google\Protobuf\Internal\Message
     /**
      * Optional. This end time of the AdRule. This attribute is required
      * unless
-     * [end_time_unlimited][google.ads.admanager.v1.AdRule.end_time_unlimited] is
+     * [endTimeUnlimited][google.ads.admanager.v1.AdRule.end_time_unlimited] is
      * set to true. If specified, it must be after the
-     * [start_time][google.ads.admanager.v1.AdRule.start_time].
+     * [startTime][google.ads.admanager.v1.AdRule.start_time].
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp end_time = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -68,14 +68,16 @@ class AdRule extends \Google\Protobuf\Internal\Message
     protected $end_time_unlimited = null;
     /**
      * Output only. The AdRuleStatus of the AdRule. This attribute is read-only
-     * and defaults to [AdRuleStatus.INACTIVE][].
+     * and defaults to
+     * [AdRuleStatusEnum.AdRuleStatus.INACTIVE][google.ads.admanager.v1.AdRuleStatusEnum.AdRuleStatus.INACTIVE].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.AdRuleStatusEnum.AdRuleStatus status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $status = null;
     /**
      * Optional. The FrequencyCapBehavior of the AdRule. This attribute is
-     * optional and defaults to [FrequencyCapBehavior.DEFER][].
+     * optional and defaults to
+     * [AdRuleFrequencyCapBehaviorEnum.AdRuleFrequencyCapBehavior.DEFER][google.ads.admanager.v1.AdRuleFrequencyCapBehaviorEnum.AdRuleFrequencyCapBehavior.DEFER].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.AdRuleFrequencyCapBehaviorEnum.AdRuleFrequencyCapBehavior frequency_cap_behavior = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -146,18 +148,20 @@ class AdRule extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Optional. This end time of the AdRule. This attribute is required
      *           unless
-     *           [end_time_unlimited][google.ads.admanager.v1.AdRule.end_time_unlimited] is
+     *           [endTimeUnlimited][google.ads.admanager.v1.AdRule.end_time_unlimited] is
      *           set to true. If specified, it must be after the
-     *           [start_time][google.ads.admanager.v1.AdRule.start_time].
+     *           [startTime][google.ads.admanager.v1.AdRule.start_time].
      *     @type bool $end_time_unlimited
      *           Optional. Specifies whether or not the AdRule has an end time. This
      *           attribute is optional and defaults to false.
      *     @type int $status
      *           Output only. The AdRuleStatus of the AdRule. This attribute is read-only
-     *           and defaults to [AdRuleStatus.INACTIVE][].
+     *           and defaults to
+     *           [AdRuleStatusEnum.AdRuleStatus.INACTIVE][google.ads.admanager.v1.AdRuleStatusEnum.AdRuleStatus.INACTIVE].
      *     @type int $frequency_cap_behavior
      *           Optional. The FrequencyCapBehavior of the AdRule. This attribute is
-     *           optional and defaults to [FrequencyCapBehavior.DEFER][].
+     *           optional and defaults to
+     *           [AdRuleFrequencyCapBehaviorEnum.AdRuleFrequencyCapBehavior.DEFER][google.ads.admanager.v1.AdRuleFrequencyCapBehaviorEnum.AdRuleFrequencyCapBehavior.DEFER].
      *     @type int $max_impressions_per_line_item_per_stream
      *           Optional. This AdRule object's frequency cap for the maximum impressions
      *           per stream. This attribute is optional and defaults to 0.
@@ -335,9 +339,9 @@ class AdRule extends \Google\Protobuf\Internal\Message
     /**
      * Optional. This end time of the AdRule. This attribute is required
      * unless
-     * [end_time_unlimited][google.ads.admanager.v1.AdRule.end_time_unlimited] is
+     * [endTimeUnlimited][google.ads.admanager.v1.AdRule.end_time_unlimited] is
      * set to true. If specified, it must be after the
-     * [start_time][google.ads.admanager.v1.AdRule.start_time].
+     * [startTime][google.ads.admanager.v1.AdRule.start_time].
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp end_time = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -360,9 +364,9 @@ class AdRule extends \Google\Protobuf\Internal\Message
     /**
      * Optional. This end time of the AdRule. This attribute is required
      * unless
-     * [end_time_unlimited][google.ads.admanager.v1.AdRule.end_time_unlimited] is
+     * [endTimeUnlimited][google.ads.admanager.v1.AdRule.end_time_unlimited] is
      * set to true. If specified, it must be after the
-     * [start_time][google.ads.admanager.v1.AdRule.start_time].
+     * [startTime][google.ads.admanager.v1.AdRule.start_time].
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp end_time = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -416,7 +420,8 @@ class AdRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The AdRuleStatus of the AdRule. This attribute is read-only
-     * and defaults to [AdRuleStatus.INACTIVE][].
+     * and defaults to
+     * [AdRuleStatusEnum.AdRuleStatus.INACTIVE][google.ads.admanager.v1.AdRuleStatusEnum.AdRuleStatus.INACTIVE].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.AdRuleStatusEnum.AdRuleStatus status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -438,7 +443,8 @@ class AdRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The AdRuleStatus of the AdRule. This attribute is read-only
-     * and defaults to [AdRuleStatus.INACTIVE][].
+     * and defaults to
+     * [AdRuleStatusEnum.AdRuleStatus.INACTIVE][google.ads.admanager.v1.AdRuleStatusEnum.AdRuleStatus.INACTIVE].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.AdRuleStatusEnum.AdRuleStatus status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -454,7 +460,8 @@ class AdRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The FrequencyCapBehavior of the AdRule. This attribute is
-     * optional and defaults to [FrequencyCapBehavior.DEFER][].
+     * optional and defaults to
+     * [AdRuleFrequencyCapBehaviorEnum.AdRuleFrequencyCapBehavior.DEFER][google.ads.admanager.v1.AdRuleFrequencyCapBehaviorEnum.AdRuleFrequencyCapBehavior.DEFER].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.AdRuleFrequencyCapBehaviorEnum.AdRuleFrequencyCapBehavior frequency_cap_behavior = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -476,7 +483,8 @@ class AdRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The FrequencyCapBehavior of the AdRule. This attribute is
-     * optional and defaults to [FrequencyCapBehavior.DEFER][].
+     * optional and defaults to
+     * [AdRuleFrequencyCapBehaviorEnum.AdRuleFrequencyCapBehavior.DEFER][google.ads.admanager.v1.AdRuleFrequencyCapBehaviorEnum.AdRuleFrequencyCapBehavior.DEFER].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.AdRuleFrequencyCapBehaviorEnum.AdRuleFrequencyCapBehavior frequency_cap_behavior = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

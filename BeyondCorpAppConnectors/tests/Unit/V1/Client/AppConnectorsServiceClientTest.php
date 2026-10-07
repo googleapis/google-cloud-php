@@ -35,6 +35,8 @@ use Google\Cloud\BeyondCorp\AppConnectors\V1\GetAppConnectorRequest;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\ListAppConnectorsRequest;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\ListAppConnectorsResponse;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\ReportStatusRequest;
+use Google\Cloud\BeyondCorp\AppConnectors\V1\ResolveInstanceConfigRequest;
+use Google\Cloud\BeyondCorp\AppConnectors\V1\ResolveInstanceConfigResponse;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\ResourceInfo;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\UpdateAppConnectorRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -636,6 +638,72 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function resolveInstanceConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ResolveInstanceConfigResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedAppConnector = $gapicClient->appConnectorName('[PROJECT]', '[LOCATION]', '[APP_CONNECTOR]');
+        $request = (new ResolveInstanceConfigRequest())->setAppConnector($formattedAppConnector);
+        $response = $gapicClient->resolveInstanceConfig($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/ResolveInstanceConfig',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getAppConnector();
+        $this->assertProtobufEquals($formattedAppConnector, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function resolveInstanceConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedAppConnector = $gapicClient->appConnectorName('[PROJECT]', '[LOCATION]', '[APP_CONNECTOR]');
+        $request = (new ResolveInstanceConfigRequest())->setAppConnector($formattedAppConnector);
+        try {
+            $gapicClient->resolveInstanceConfig($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */

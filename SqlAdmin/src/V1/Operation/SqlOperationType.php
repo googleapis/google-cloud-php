@@ -350,6 +350,24 @@ class SqlOperationType
      * Generated from protobuf enum <code>SETUP_MIGRATION = 55;</code>
      */
     const SETUP_MIGRATION = 55;
+    /**
+     * Creates a new Blue-Green deployment.
+     *
+     * Generated from protobuf enum <code>CREATE_BLUE_GREEN_DEPLOYMENT = 56;</code>
+     */
+    const CREATE_BLUE_GREEN_DEPLOYMENT = 56;
+    /**
+     * Switches over a Blue-Green deployment.
+     *
+     * Generated from protobuf enum <code>SWITCHOVER_BLUE_GREEN_DEPLOYMENT = 57;</code>
+     */
+    const SWITCHOVER_BLUE_GREEN_DEPLOYMENT = 57;
+    /**
+     * Deletes a Blue-Green deployment.
+     *
+     * Generated from protobuf enum <code>DELETE_BLUE_GREEN_DEPLOYMENT = 58;</code>
+     */
+    const DELETE_BLUE_GREEN_DEPLOYMENT = 58;
 
     private static $valueToName = [
         self::SQL_OPERATION_TYPE_UNSPECIFIED => 'SQL_OPERATION_TYPE_UNSPECIFIED',
@@ -406,6 +424,9 @@ class SqlOperationType
         self::CREATE_READ_POOL => 'CREATE_READ_POOL',
         self::PRE_CHECK_MAJOR_VERSION_UPGRADE => 'PRE_CHECK_MAJOR_VERSION_UPGRADE',
         self::SETUP_MIGRATION => 'SETUP_MIGRATION',
+        self::CREATE_BLUE_GREEN_DEPLOYMENT => 'CREATE_BLUE_GREEN_DEPLOYMENT',
+        self::SWITCHOVER_BLUE_GREEN_DEPLOYMENT => 'SWITCHOVER_BLUE_GREEN_DEPLOYMENT',
+        self::DELETE_BLUE_GREEN_DEPLOYMENT => 'DELETE_BLUE_GREEN_DEPLOYMENT',
     ];
 
     public static function name($value)

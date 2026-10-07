@@ -514,6 +514,17 @@ return [
                     ],
                 ],
             ],
+            'GetSplitStatus' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/volumes/*}:getSplitStatus',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetStoragePool' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/storagePools/*}',
@@ -539,6 +550,17 @@ return [
             'ListActiveDirectories' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/activeDirectories',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackupConfigs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/storagePools/*}/backupConfigs',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -669,6 +691,18 @@ return [
                     ],
                 ],
             ],
+            'RestoreVolume' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/storagePools/*}:restoreVolume',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ResumeReplication' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/volumes/*/replications/*}:resume',
@@ -696,6 +730,18 @@ return [
             'RevertVolume' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/volumes/*}:revert',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'StartSplit' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/volumes/*}:startSplit',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
@@ -771,6 +817,18 @@ return [
                 ],
                 'queryParams' => [
                     'update_mask',
+                ],
+            ],
+            'UpdateBackupConfig' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/storagePools/*}:updateBackupConfig',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'UpdateBackupPolicy' => [

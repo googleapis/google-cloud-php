@@ -32,7 +32,7 @@ use Google\ApiCore\PagedListResponse;
  * Lists [Partner][google.ads.admanager.v1.Partner] objects.
  *
  * @param string $formattedParent The parent, which owns this collection of
- *                                [Partner][google.ads.admanager.v1.Partner]s. Format:
+ *                                [Partners][google.ads.admanager.v1.Partner]. Format:
  *                                `networks/{network_code}`
  *                                Please see {@see PartnerServiceClient::networkName()} for help formatting this field.
  */

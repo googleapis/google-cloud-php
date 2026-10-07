@@ -20,17 +20,19 @@ class CustomPacingGoal extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The start date and time of the goal. This field is required
      * unless
-     * [use_line_item_start_time][google.ads.admanager.v1.CustomPacingGoal.use_line_item_start_time]
+     * [useLineItemStartTime][google.ads.admanager.v1.CustomPacingGoal.use_line_item_start_time]
      * is true.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp start_time = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $start_time = null;
     /**
-     * Optional. Input only. Whether the [LineItem.start_time] should be used for
-     * the start date and time of this goal. This field is not persisted and if it
-     * is set to true, the [start_time] field will be populated by the line item's
-     * start time.
+     * Optional. Input only. Whether the
+     * [LineItem.startTime][google.ads.admanager.v1.LineItem.start_time] should be
+     * used for the start date and time of this goal. This field is not persisted
+     * and if it is set to true, the
+     * [startTime][google.ads.admanager.v1.CustomPacingGoal.start_time] field will
+     * be populated by the line item's start time.
      *
      * Generated from protobuf field <code>optional bool use_line_item_start_time = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      */
@@ -51,13 +53,15 @@ class CustomPacingGoal extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Optional. The start date and time of the goal. This field is required
      *           unless
-     *           [use_line_item_start_time][google.ads.admanager.v1.CustomPacingGoal.use_line_item_start_time]
+     *           [useLineItemStartTime][google.ads.admanager.v1.CustomPacingGoal.use_line_item_start_time]
      *           is true.
      *     @type bool $use_line_item_start_time
-     *           Optional. Input only. Whether the [LineItem.start_time] should be used for
-     *           the start date and time of this goal. This field is not persisted and if it
-     *           is set to true, the [start_time] field will be populated by the line item's
-     *           start time.
+     *           Optional. Input only. Whether the
+     *           [LineItem.startTime][google.ads.admanager.v1.LineItem.start_time] should be
+     *           used for the start date and time of this goal. This field is not persisted
+     *           and if it is set to true, the
+     *           [startTime][google.ads.admanager.v1.CustomPacingGoal.start_time] field will
+     *           be populated by the line item's start time.
      *     @type int|string $amount
      *           Optional. The amount associated with the goal. This field is required.
      * }
@@ -70,7 +74,7 @@ class CustomPacingGoal extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The start date and time of the goal. This field is required
      * unless
-     * [use_line_item_start_time][google.ads.admanager.v1.CustomPacingGoal.use_line_item_start_time]
+     * [useLineItemStartTime][google.ads.admanager.v1.CustomPacingGoal.use_line_item_start_time]
      * is true.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp start_time = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -94,7 +98,7 @@ class CustomPacingGoal extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The start date and time of the goal. This field is required
      * unless
-     * [use_line_item_start_time][google.ads.admanager.v1.CustomPacingGoal.use_line_item_start_time]
+     * [useLineItemStartTime][google.ads.admanager.v1.CustomPacingGoal.use_line_item_start_time]
      * is true.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp start_time = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -110,10 +114,12 @@ class CustomPacingGoal extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Input only. Whether the [LineItem.start_time] should be used for
-     * the start date and time of this goal. This field is not persisted and if it
-     * is set to true, the [start_time] field will be populated by the line item's
-     * start time.
+     * Optional. Input only. Whether the
+     * [LineItem.startTime][google.ads.admanager.v1.LineItem.start_time] should be
+     * used for the start date and time of this goal. This field is not persisted
+     * and if it is set to true, the
+     * [startTime][google.ads.admanager.v1.CustomPacingGoal.start_time] field will
+     * be populated by the line item's start time.
      *
      * Generated from protobuf field <code>optional bool use_line_item_start_time = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return bool
@@ -134,10 +140,12 @@ class CustomPacingGoal extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Input only. Whether the [LineItem.start_time] should be used for
-     * the start date and time of this goal. This field is not persisted and if it
-     * is set to true, the [start_time] field will be populated by the line item's
-     * start time.
+     * Optional. Input only. Whether the
+     * [LineItem.startTime][google.ads.admanager.v1.LineItem.start_time] should be
+     * used for the start date and time of this goal. This field is not persisted
+     * and if it is set to true, the
+     * [startTime][google.ads.admanager.v1.CustomPacingGoal.start_time] field will
+     * be populated by the line item's start time.
      *
      * Generated from protobuf field <code>optional bool use_line_item_start_time = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param bool $var

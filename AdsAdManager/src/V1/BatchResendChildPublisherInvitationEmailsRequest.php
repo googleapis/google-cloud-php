@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request message for [BatchResendChildPublisherInvitationEmails][] method.
+ * Request message for `BatchResendChildPublisherInvitationEmails` method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.BatchResendChildPublisherInvitationEmailsRequest</code>
  */
@@ -23,7 +23,7 @@ class BatchResendChildPublisherInvitationEmailsRequest extends \Google\Protobuf\
     protected $parent = '';
     /**
      * Required. Resource names of the
-     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s that should be
+     * [ChildPublishers][google.ads.admanager.v1.ChildPublisher] that should be
      * resent invitation emails. Format:
      * `networks/{network_code}/childPublisher/{child_publisher_id}`
      *
@@ -35,7 +35,7 @@ class BatchResendChildPublisherInvitationEmailsRequest extends \Google\Protobuf\
      * @param string   $parent Required. Format: `networks/{network_code}`
      *                         Please see {@see ChildPublisherServiceClient::networkName()} for help formatting this field.
      * @param string[] $names  Required. Resource names of the
-     *                         [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s that should be
+     *                         [ChildPublishers][google.ads.admanager.v1.ChildPublisher] that should be
      *                         resent invitation emails. Format:
      *                         `networks/{network_code}/childPublisher/{child_publisher_id}`
      *                         Please see {@see ChildPublisherServiceClient::childPublisherName()} for help formatting this field.
@@ -61,7 +61,7 @@ class BatchResendChildPublisherInvitationEmailsRequest extends \Google\Protobuf\
      *           Required. Format: `networks/{network_code}`
      *     @type string[] $names
      *           Required. Resource names of the
-     *           [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s that should be
+     *           [ChildPublishers][google.ads.admanager.v1.ChildPublisher] that should be
      *           resent invitation emails. Format:
      *           `networks/{network_code}/childPublisher/{child_publisher_id}`
      * }
@@ -99,7 +99,7 @@ class BatchResendChildPublisherInvitationEmailsRequest extends \Google\Protobuf\
 
     /**
      * Required. Resource names of the
-     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s that should be
+     * [ChildPublishers][google.ads.admanager.v1.ChildPublisher] that should be
      * resent invitation emails. Format:
      * `networks/{network_code}/childPublisher/{child_publisher_id}`
      *
@@ -113,7 +113,7 @@ class BatchResendChildPublisherInvitationEmailsRequest extends \Google\Protobuf\
 
     /**
      * Required. Resource names of the
-     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s that should be
+     * [ChildPublishers][google.ads.admanager.v1.ChildPublisher] that should be
      * resent invitation emails. Format:
      * `networks/{network_code}/childPublisher/{child_publisher_id}`
      *

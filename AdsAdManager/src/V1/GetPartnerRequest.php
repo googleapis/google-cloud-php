@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request object for [GetPartner][] method.
+ * Request object for `GetPartner` method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.GetPartnerRequest</code>
  */

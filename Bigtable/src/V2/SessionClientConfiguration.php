@@ -16,12 +16,25 @@ use Google\Protobuf\RepeatedField;
 class SessionClientConfiguration extends \Google\Protobuf\Internal\Message
 {
     /**
-     * What share of requests should operate on a session, [0, 1]. The rest
-     * should operate on the old-style API.
+     * Deprecated: Prefer session_diversion_configuration. If both are provided,
+     * the client should apply this session_load to Bigtable.ReadRow &
+     * Bigtable.MutateRow, then process the session_diversion_configuration,
+     * overwriting any behavior established by this value.
+     * What share of the following methods should operate on a session, [0, 1]:
+     *   * Bigtable.ReadRow
+     *   * Bigtable.MutateRow
+     * The rest should operate on the classic API, e.g. have session_load = 0.
      *
-     * Generated from protobuf field <code>float session_load = 1;</code>
+     * Generated from protobuf field <code>float session_load = 1 [deprecated = true];</code>
+     * @deprecated
      */
     protected $session_load = 0.0;
+    /**
+     * How load should be divered to sessions.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.SessionDiversionConfiguration session_diversion_configuration = 5;</code>
+     */
+    protected $session_diversion_configuration = null;
     /**
      * Generated from protobuf field <code>.google.bigtable.v2.LoadBalancingOptions load_balancing_options = 2 [deprecated = true];</code>
      * @deprecated
@@ -47,8 +60,16 @@ class SessionClientConfiguration extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type float $session_load
-     *           What share of requests should operate on a session, [0, 1]. The rest
-     *           should operate on the old-style API.
+     *           Deprecated: Prefer session_diversion_configuration. If both are provided,
+     *           the client should apply this session_load to Bigtable.ReadRow &
+     *           Bigtable.MutateRow, then process the session_diversion_configuration,
+     *           overwriting any behavior established by this value.
+     *           What share of the following methods should operate on a session, [0, 1]:
+     *             * Bigtable.ReadRow
+     *             * Bigtable.MutateRow
+     *           The rest should operate on the classic API, e.g. have session_load = 0.
+     *     @type \Google\Cloud\Bigtable\V2\SessionDiversionConfiguration $session_diversion_configuration
+     *           How load should be divered to sessions.
      *     @type \Google\Cloud\Bigtable\V2\LoadBalancingOptions $load_balancing_options
      *     @type \Google\Cloud\Bigtable\V2\SessionClientConfiguration\ChannelPoolConfiguration $channel_configuration
      *           Configuration for the channel pool.
@@ -62,29 +83,83 @@ class SessionClientConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * What share of requests should operate on a session, [0, 1]. The rest
-     * should operate on the old-style API.
+     * Deprecated: Prefer session_diversion_configuration. If both are provided,
+     * the client should apply this session_load to Bigtable.ReadRow &
+     * Bigtable.MutateRow, then process the session_diversion_configuration,
+     * overwriting any behavior established by this value.
+     * What share of the following methods should operate on a session, [0, 1]:
+     *   * Bigtable.ReadRow
+     *   * Bigtable.MutateRow
+     * The rest should operate on the classic API, e.g. have session_load = 0.
      *
-     * Generated from protobuf field <code>float session_load = 1;</code>
+     * Generated from protobuf field <code>float session_load = 1 [deprecated = true];</code>
      * @return float
+     * @deprecated
      */
     public function getSessionLoad()
     {
+        if ($this->session_load !== 0.0) {
+            @trigger_error('session_load is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->session_load;
     }
 
     /**
-     * What share of requests should operate on a session, [0, 1]. The rest
-     * should operate on the old-style API.
+     * Deprecated: Prefer session_diversion_configuration. If both are provided,
+     * the client should apply this session_load to Bigtable.ReadRow &
+     * Bigtable.MutateRow, then process the session_diversion_configuration,
+     * overwriting any behavior established by this value.
+     * What share of the following methods should operate on a session, [0, 1]:
+     *   * Bigtable.ReadRow
+     *   * Bigtable.MutateRow
+     * The rest should operate on the classic API, e.g. have session_load = 0.
      *
-     * Generated from protobuf field <code>float session_load = 1;</code>
+     * Generated from protobuf field <code>float session_load = 1 [deprecated = true];</code>
      * @param float $var
      * @return $this
+     * @deprecated
      */
     public function setSessionLoad($var)
     {
+        @trigger_error('session_load is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkFloat($var);
         $this->session_load = $var;
+
+        return $this;
+    }
+
+    /**
+     * How load should be divered to sessions.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.SessionDiversionConfiguration session_diversion_configuration = 5;</code>
+     * @return \Google\Cloud\Bigtable\V2\SessionDiversionConfiguration|null
+     */
+    public function getSessionDiversionConfiguration()
+    {
+        return $this->session_diversion_configuration;
+    }
+
+    public function hasSessionDiversionConfiguration()
+    {
+        return isset($this->session_diversion_configuration);
+    }
+
+    public function clearSessionDiversionConfiguration()
+    {
+        unset($this->session_diversion_configuration);
+    }
+
+    /**
+     * How load should be divered to sessions.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.SessionDiversionConfiguration session_diversion_configuration = 5;</code>
+     * @param \Google\Cloud\Bigtable\V2\SessionDiversionConfiguration $var
+     * @return $this
+     */
+    public function setSessionDiversionConfiguration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\SessionDiversionConfiguration::class);
+        $this->session_diversion_configuration = $var;
 
         return $this;
     }

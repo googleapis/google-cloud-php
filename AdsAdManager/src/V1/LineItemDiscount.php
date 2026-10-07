@@ -9,24 +9,29 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Discount information for a LineItem.
+ * Discount information for a [LineItem][google.ads.admanager.v1.LineItem].
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.LineItemDiscount</code>
  */
 class LineItemDiscount extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The type of discount being applied to a LineItem, either
-     * percentage based or absolute. This attribute is optional and defaults to
-     * PERCENTAGE.
+     * Optional. The type of discount being applied to a
+     * [LineItem][google.ads.admanager.v1.LineItem], either percentage based or
+     * absolute. This attribute is optional and defaults to
+     * [PERCENTAGE][google.ads.admanager.v1.DiscountTypeEnum.DiscountType.PERCENTAGE].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.DiscountTypeEnum.DiscountType discount_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $discount_type = null;
     /**
      * Optional. The number here is either a percentage or an absolute value
-     * depending on the DiscountType. If the DiscountType is PERCENTAGE, then only
-     * non-fractional values are supported.
+     * depending on the
+     * [DiscountType][google.ads.admanager.v1.DiscountTypeEnum.DiscountType]. If
+     * the [DiscountType][google.ads.admanager.v1.DiscountTypeEnum.DiscountType]
+     * is
+     * [PERCENTAGE][google.ads.admanager.v1.DiscountTypeEnum.DiscountType.PERCENTAGE],
+     * then only non-fractional values are supported.
      *
      * Generated from protobuf field <code>optional double discount = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -39,13 +44,18 @@ class LineItemDiscount extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $discount_type
-     *           Optional. The type of discount being applied to a LineItem, either
-     *           percentage based or absolute. This attribute is optional and defaults to
-     *           PERCENTAGE.
+     *           Optional. The type of discount being applied to a
+     *           [LineItem][google.ads.admanager.v1.LineItem], either percentage based or
+     *           absolute. This attribute is optional and defaults to
+     *           [PERCENTAGE][google.ads.admanager.v1.DiscountTypeEnum.DiscountType.PERCENTAGE].
      *     @type float $discount
      *           Optional. The number here is either a percentage or an absolute value
-     *           depending on the DiscountType. If the DiscountType is PERCENTAGE, then only
-     *           non-fractional values are supported.
+     *           depending on the
+     *           [DiscountType][google.ads.admanager.v1.DiscountTypeEnum.DiscountType]. If
+     *           the [DiscountType][google.ads.admanager.v1.DiscountTypeEnum.DiscountType]
+     *           is
+     *           [PERCENTAGE][google.ads.admanager.v1.DiscountTypeEnum.DiscountType.PERCENTAGE],
+     *           then only non-fractional values are supported.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,9 +64,10 @@ class LineItemDiscount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The type of discount being applied to a LineItem, either
-     * percentage based or absolute. This attribute is optional and defaults to
-     * PERCENTAGE.
+     * Optional. The type of discount being applied to a
+     * [LineItem][google.ads.admanager.v1.LineItem], either percentage based or
+     * absolute. This attribute is optional and defaults to
+     * [PERCENTAGE][google.ads.admanager.v1.DiscountTypeEnum.DiscountType.PERCENTAGE].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.DiscountTypeEnum.DiscountType discount_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -77,9 +88,10 @@ class LineItemDiscount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The type of discount being applied to a LineItem, either
-     * percentage based or absolute. This attribute is optional and defaults to
-     * PERCENTAGE.
+     * Optional. The type of discount being applied to a
+     * [LineItem][google.ads.admanager.v1.LineItem], either percentage based or
+     * absolute. This attribute is optional and defaults to
+     * [PERCENTAGE][google.ads.admanager.v1.DiscountTypeEnum.DiscountType.PERCENTAGE].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.DiscountTypeEnum.DiscountType discount_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -95,8 +107,12 @@ class LineItemDiscount extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The number here is either a percentage or an absolute value
-     * depending on the DiscountType. If the DiscountType is PERCENTAGE, then only
-     * non-fractional values are supported.
+     * depending on the
+     * [DiscountType][google.ads.admanager.v1.DiscountTypeEnum.DiscountType]. If
+     * the [DiscountType][google.ads.admanager.v1.DiscountTypeEnum.DiscountType]
+     * is
+     * [PERCENTAGE][google.ads.admanager.v1.DiscountTypeEnum.DiscountType.PERCENTAGE],
+     * then only non-fractional values are supported.
      *
      * Generated from protobuf field <code>optional double discount = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
@@ -118,8 +134,12 @@ class LineItemDiscount extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The number here is either a percentage or an absolute value
-     * depending on the DiscountType. If the DiscountType is PERCENTAGE, then only
-     * non-fractional values are supported.
+     * depending on the
+     * [DiscountType][google.ads.admanager.v1.DiscountTypeEnum.DiscountType]. If
+     * the [DiscountType][google.ads.admanager.v1.DiscountTypeEnum.DiscountType]
+     * is
+     * [PERCENTAGE][google.ads.admanager.v1.DiscountTypeEnum.DiscountType.PERCENTAGE],
+     * then only non-fractional values are supported.
      *
      * Generated from protobuf field <code>optional double discount = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var

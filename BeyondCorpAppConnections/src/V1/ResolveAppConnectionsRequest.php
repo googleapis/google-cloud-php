@@ -35,7 +35,7 @@ class ResolveAppConnectionsRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 50 will be used by the service.
      * Regardless of the page_size value, the response may include a partial list
      * and a caller should only rely on response's
-     * [next_page_token][BeyondCorp.ResolveAppConnectionsResponse.next_page_token]
+     * [next_page_token][google.cloud.beyondcorp.appconnections.v1.ResolveAppConnectionsResponse.next_page_token]
      * to determine if there are more instances left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -82,7 +82,7 @@ class ResolveAppConnectionsRequest extends \Google\Protobuf\Internal\Message
      *           If not specified, a default value of 50 will be used by the service.
      *           Regardless of the page_size value, the response may include a partial list
      *           and a caller should only rely on response's
-     *           [next_page_token][BeyondCorp.ResolveAppConnectionsResponse.next_page_token]
+     *           [next_page_token][google.cloud.beyondcorp.appconnections.v1.ResolveAppConnectionsResponse.next_page_token]
      *           to determine if there are more instances left to be queried.
      *     @type string $page_token
      *           Optional. The next_page_token value returned from a previous
@@ -157,7 +157,7 @@ class ResolveAppConnectionsRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 50 will be used by the service.
      * Regardless of the page_size value, the response may include a partial list
      * and a caller should only rely on response's
-     * [next_page_token][BeyondCorp.ResolveAppConnectionsResponse.next_page_token]
+     * [next_page_token][google.cloud.beyondcorp.appconnections.v1.ResolveAppConnectionsResponse.next_page_token]
      * to determine if there are more instances left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -173,7 +173,7 @@ class ResolveAppConnectionsRequest extends \Google\Protobuf\Internal\Message
      * If not specified, a default value of 50 will be used by the service.
      * Regardless of the page_size value, the response may include a partial list
      * and a caller should only rely on response's
-     * [next_page_token][BeyondCorp.ResolveAppConnectionsResponse.next_page_token]
+     * [next_page_token][google.cloud.beyondcorp.appconnections.v1.ResolveAppConnectionsResponse.next_page_token]
      * to determine if there are more instances left to be queried.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>

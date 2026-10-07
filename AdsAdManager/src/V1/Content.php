@@ -52,9 +52,10 @@ class Content extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The list of any errors that occurred during the most recent
      * DAI ingestion process of the HLS media. This attribute will be empty if the
-     * hlsIngestStatus is [DaiIngestStatus.SUCCESS][] or if the `Content` is
-     * not eligible for dynamic ad insertion or if the `Content` does not have
-     * HLS media.
+     * [hlsIngestStatus][google.ads.admanager.v1.Content.hls_ingest_status] is
+     * [DaiIngestStatusEnum.DaiIngestStatus.SUCCESS][google.ads.admanager.v1.DaiIngestStatusEnum.DaiIngestStatus.SUCCESS]
+     * or if the `Content` is not eligible for dynamic ad insertion or if the
+     * `Content` does not have HLS media.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.DaiIngestError hls_ingest_errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -79,9 +80,11 @@ class Content extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The list of any errors that occurred during the most recent
      * DAI ingestion process of the DASH media. This attribute will be empty if
-     * the hlsIngestStatus is [DaiIngestStatus.SUCCESS][] or if the `Content` is
-     * not eligible for dynamic ad insertion or if the `Content` does not have
-     * DASH media.
+     * the [dashIngestStatus][google.ads.admanager.v1.Content.dash_ingest_status]
+     * is
+     * [DaiIngestStatusEnum.DaiIngestStatus.SUCCESS][google.ads.admanager.v1.DaiIngestStatusEnum.DaiIngestStatus.SUCCESS]
+     * or if the `Content` is not eligible for dynamic ad insertion or if the
+     * `Content` does not have DASH media.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.DaiIngestError dash_ingest_errors = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -165,9 +168,10 @@ class Content extends \Google\Protobuf\Internal\Message
      *     @type \Google\Ads\AdManager\V1\DaiIngestError[] $hls_ingest_errors
      *           Output only. The list of any errors that occurred during the most recent
      *           DAI ingestion process of the HLS media. This attribute will be empty if the
-     *           hlsIngestStatus is [DaiIngestStatus.SUCCESS][] or if the `Content` is
-     *           not eligible for dynamic ad insertion or if the `Content` does not have
-     *           HLS media.
+     *           [hlsIngestStatus][google.ads.admanager.v1.Content.hls_ingest_status] is
+     *           [DaiIngestStatusEnum.DaiIngestStatus.SUCCESS][google.ads.admanager.v1.DaiIngestStatusEnum.DaiIngestStatus.SUCCESS]
+     *           or if the `Content` is not eligible for dynamic ad insertion or if the
+     *           `Content` does not have HLS media.
      *     @type \Google\Protobuf\Timestamp $last_hls_ingest_time
      *           Output only. The timestamp at which this `Content`'s HLS media was last
      *           ingested for DAI. This attribute will be unset if the `Content` is not
@@ -180,9 +184,11 @@ class Content extends \Google\Protobuf\Internal\Message
      *     @type \Google\Ads\AdManager\V1\DaiIngestError[] $dash_ingest_errors
      *           Output only. The list of any errors that occurred during the most recent
      *           DAI ingestion process of the DASH media. This attribute will be empty if
-     *           the hlsIngestStatus is [DaiIngestStatus.SUCCESS][] or if the `Content` is
-     *           not eligible for dynamic ad insertion or if the `Content` does not have
-     *           DASH media.
+     *           the [dashIngestStatus][google.ads.admanager.v1.Content.dash_ingest_status]
+     *           is
+     *           [DaiIngestStatusEnum.DaiIngestStatus.SUCCESS][google.ads.admanager.v1.DaiIngestStatusEnum.DaiIngestStatus.SUCCESS]
+     *           or if the `Content` is not eligible for dynamic ad insertion or if the
+     *           `Content` does not have DASH media.
      *     @type \Google\Protobuf\Timestamp $last_dash_ingest_time
      *           Output only. The timestamp at which this `Content`'s DASH media was last
      *           ingested for DAI. This attribute will be unset if the `Content` is not
@@ -398,9 +404,10 @@ class Content extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The list of any errors that occurred during the most recent
      * DAI ingestion process of the HLS media. This attribute will be empty if the
-     * hlsIngestStatus is [DaiIngestStatus.SUCCESS][] or if the `Content` is
-     * not eligible for dynamic ad insertion or if the `Content` does not have
-     * HLS media.
+     * [hlsIngestStatus][google.ads.admanager.v1.Content.hls_ingest_status] is
+     * [DaiIngestStatusEnum.DaiIngestStatus.SUCCESS][google.ads.admanager.v1.DaiIngestStatusEnum.DaiIngestStatus.SUCCESS]
+     * or if the `Content` is not eligible for dynamic ad insertion or if the
+     * `Content` does not have HLS media.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.DaiIngestError hls_ingest_errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return RepeatedField<\Google\Ads\AdManager\V1\DaiIngestError>
@@ -413,9 +420,10 @@ class Content extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The list of any errors that occurred during the most recent
      * DAI ingestion process of the HLS media. This attribute will be empty if the
-     * hlsIngestStatus is [DaiIngestStatus.SUCCESS][] or if the `Content` is
-     * not eligible for dynamic ad insertion or if the `Content` does not have
-     * HLS media.
+     * [hlsIngestStatus][google.ads.admanager.v1.Content.hls_ingest_status] is
+     * [DaiIngestStatusEnum.DaiIngestStatus.SUCCESS][google.ads.admanager.v1.DaiIngestStatusEnum.DaiIngestStatus.SUCCESS]
+     * or if the `Content` is not eligible for dynamic ad insertion or if the
+     * `Content` does not have HLS media.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.DaiIngestError hls_ingest_errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Ads\AdManager\V1\DaiIngestError[] $var
@@ -514,9 +522,11 @@ class Content extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The list of any errors that occurred during the most recent
      * DAI ingestion process of the DASH media. This attribute will be empty if
-     * the hlsIngestStatus is [DaiIngestStatus.SUCCESS][] or if the `Content` is
-     * not eligible for dynamic ad insertion or if the `Content` does not have
-     * DASH media.
+     * the [dashIngestStatus][google.ads.admanager.v1.Content.dash_ingest_status]
+     * is
+     * [DaiIngestStatusEnum.DaiIngestStatus.SUCCESS][google.ads.admanager.v1.DaiIngestStatusEnum.DaiIngestStatus.SUCCESS]
+     * or if the `Content` is not eligible for dynamic ad insertion or if the
+     * `Content` does not have DASH media.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.DaiIngestError dash_ingest_errors = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return RepeatedField<\Google\Ads\AdManager\V1\DaiIngestError>
@@ -529,9 +539,11 @@ class Content extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The list of any errors that occurred during the most recent
      * DAI ingestion process of the DASH media. This attribute will be empty if
-     * the hlsIngestStatus is [DaiIngestStatus.SUCCESS][] or if the `Content` is
-     * not eligible for dynamic ad insertion or if the `Content` does not have
-     * DASH media.
+     * the [dashIngestStatus][google.ads.admanager.v1.Content.dash_ingest_status]
+     * is
+     * [DaiIngestStatusEnum.DaiIngestStatus.SUCCESS][google.ads.admanager.v1.DaiIngestStatusEnum.DaiIngestStatus.SUCCESS]
+     * or if the `Content` is not eligible for dynamic ad insertion or if the
+     * `Content` does not have DASH media.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.DaiIngestError dash_ingest_errors = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Ads\AdManager\V1\DaiIngestError[] $var

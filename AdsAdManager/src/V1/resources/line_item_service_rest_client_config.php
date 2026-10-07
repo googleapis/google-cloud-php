@@ -23,6 +23,162 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.LineItemService' => [
+            'BatchActivateLineItems' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/lineItems:batchActivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchArchiveLineItems' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/lineItems:batchArchive',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchCreateLineItems' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/lineItems:batchCreate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeleteLineItems' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/lineItems:batchDelete',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchPauseLineItems' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/lineItems:batchPause',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchReleaseLineItems' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/lineItems:batchRelease',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchReserveAndOverbookLineItems' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/lineItems:batchReserveAndOverbook',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchReserveLineItems' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/lineItems:batchReserve',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchResumeAndOverbookLineItems' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/lineItems:batchResumeAndOverbook',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchResumeLineItems' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/lineItems:batchResume',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUnarchiveLineItems' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/lineItems:batchUnarchive',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateLineItems' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/lineItems:batchUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateLineItem' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/lineItems',
+                'body' => 'line_item',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetLineItem' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/lineItems/*}',
@@ -41,6 +197,19 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateLineItem' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{line_item.name=networks/*/lineItems/*}',
+                'body' => 'line_item',
+                'placeholders' => [
+                    'line_item.name' => [
+                        'getters' => [
+                            'getLineItem',
+                            'getName',
                         ],
                     ],
                 ],

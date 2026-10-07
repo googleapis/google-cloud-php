@@ -33,10 +33,14 @@ use Google\Ads\AdManager\V1\BatchDeactivateNativeStylesResponse;
 use Google\Ads\AdManager\V1\BatchUpdateNativeStylesRequest;
 use Google\Ads\AdManager\V1\BatchUpdateNativeStylesResponse;
 use Google\Ads\AdManager\V1\Client\NativeStyleServiceClient;
+use Google\Ads\AdManager\V1\CreateNativeStyleRequest;
 use Google\Ads\AdManager\V1\GetNativeStyleRequest;
 use Google\Ads\AdManager\V1\ListNativeStylesRequest;
 use Google\Ads\AdManager\V1\ListNativeStylesResponse;
 use Google\Ads\AdManager\V1\NativeStyle;
+use Google\Ads\AdManager\V1\Size;
+use Google\Ads\AdManager\V1\SizeTypeEnum\SizeType;
+use Google\Ads\AdManager\V1\UpdateNativeStyleRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
@@ -410,6 +414,107 @@ class NativeStyleServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createNativeStyleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $creativeTemplate = 'creativeTemplate-1585462518';
+        $displayName = 'displayName1615086568';
+        $htmlSnippet = 'htmlSnippet966640777';
+        $cssSnippet = 'cssSnippet-36018463';
+        $expectedResponse = new NativeStyle();
+        $expectedResponse->setName($name);
+        $expectedResponse->setCreativeTemplate($creativeTemplate);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setHtmlSnippet($htmlSnippet);
+        $expectedResponse->setCssSnippet($cssSnippet);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $nativeStyle = new NativeStyle();
+        $nativeStyleCreativeTemplate = $gapicClient->creativeTemplateName('[NETWORK_CODE]', '[CREATIVE_TEMPLATE]');
+        $nativeStyle->setCreativeTemplate($nativeStyleCreativeTemplate);
+        $nativeStyleDisplayName = 'nativeStyleDisplayName1600331315';
+        $nativeStyle->setDisplayName($nativeStyleDisplayName);
+        $nativeStyleSize = new Size();
+        $sizeWidth = 489043525;
+        $nativeStyleSize->setWidth($sizeWidth);
+        $sizeHeight = 1842452616;
+        $nativeStyleSize->setHeight($sizeHeight);
+        $sizeSizeType = SizeType::SIZE_TYPE_UNSPECIFIED;
+        $nativeStyleSize->setSizeType($sizeSizeType);
+        $nativeStyle->setSize($nativeStyleSize);
+        $request = (new CreateNativeStyleRequest())->setParent($formattedParent)->setNativeStyle($nativeStyle);
+        $response = $gapicClient->createNativeStyle($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.NativeStyleService/CreateNativeStyle', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNativeStyle();
+        $this->assertProtobufEquals($nativeStyle, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createNativeStyleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $nativeStyle = new NativeStyle();
+        $nativeStyleCreativeTemplate = $gapicClient->creativeTemplateName('[NETWORK_CODE]', '[CREATIVE_TEMPLATE]');
+        $nativeStyle->setCreativeTemplate($nativeStyleCreativeTemplate);
+        $nativeStyleDisplayName = 'nativeStyleDisplayName1600331315';
+        $nativeStyle->setDisplayName($nativeStyleDisplayName);
+        $nativeStyleSize = new Size();
+        $sizeWidth = 489043525;
+        $nativeStyleSize->setWidth($sizeWidth);
+        $sizeHeight = 1842452616;
+        $nativeStyleSize->setHeight($sizeHeight);
+        $sizeSizeType = SizeType::SIZE_TYPE_UNSPECIFIED;
+        $nativeStyleSize->setSizeType($sizeSizeType);
+        $nativeStyle->setSize($nativeStyleSize);
+        $request = (new CreateNativeStyleRequest())->setParent($formattedParent)->setNativeStyle($nativeStyle);
+        try {
+            $gapicClient->createNativeStyle($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getNativeStyleTest()
     {
         $transport = $this->createTransport();
@@ -544,6 +649,103 @@ class NativeStyleServiceClientTest extends GeneratedTest
         $request = (new ListNativeStylesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listNativeStyles($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateNativeStyleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $creativeTemplate = 'creativeTemplate-1585462518';
+        $displayName = 'displayName1615086568';
+        $htmlSnippet = 'htmlSnippet966640777';
+        $cssSnippet = 'cssSnippet-36018463';
+        $expectedResponse = new NativeStyle();
+        $expectedResponse->setName($name);
+        $expectedResponse->setCreativeTemplate($creativeTemplate);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setHtmlSnippet($htmlSnippet);
+        $expectedResponse->setCssSnippet($cssSnippet);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $nativeStyle = new NativeStyle();
+        $nativeStyleCreativeTemplate = $gapicClient->creativeTemplateName('[NETWORK_CODE]', '[CREATIVE_TEMPLATE]');
+        $nativeStyle->setCreativeTemplate($nativeStyleCreativeTemplate);
+        $nativeStyleDisplayName = 'nativeStyleDisplayName1600331315';
+        $nativeStyle->setDisplayName($nativeStyleDisplayName);
+        $nativeStyleSize = new Size();
+        $sizeWidth = 489043525;
+        $nativeStyleSize->setWidth($sizeWidth);
+        $sizeHeight = 1842452616;
+        $nativeStyleSize->setHeight($sizeHeight);
+        $sizeSizeType = SizeType::SIZE_TYPE_UNSPECIFIED;
+        $nativeStyleSize->setSizeType($sizeSizeType);
+        $nativeStyle->setSize($nativeStyleSize);
+        $request = (new UpdateNativeStyleRequest())->setNativeStyle($nativeStyle);
+        $response = $gapicClient->updateNativeStyle($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.NativeStyleService/UpdateNativeStyle', $actualFuncCall);
+        $actualValue = $actualRequestObject->getNativeStyle();
+        $this->assertProtobufEquals($nativeStyle, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateNativeStyleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $nativeStyle = new NativeStyle();
+        $nativeStyleCreativeTemplate = $gapicClient->creativeTemplateName('[NETWORK_CODE]', '[CREATIVE_TEMPLATE]');
+        $nativeStyle->setCreativeTemplate($nativeStyleCreativeTemplate);
+        $nativeStyleDisplayName = 'nativeStyleDisplayName1600331315';
+        $nativeStyle->setDisplayName($nativeStyleDisplayName);
+        $nativeStyleSize = new Size();
+        $sizeWidth = 489043525;
+        $nativeStyleSize->setWidth($sizeWidth);
+        $sizeHeight = 1842452616;
+        $nativeStyleSize->setHeight($sizeHeight);
+        $sizeSizeType = SizeType::SIZE_TYPE_UNSPECIFIED;
+        $nativeStyleSize->setSizeType($sizeSizeType);
+        $nativeStyle->setSize($nativeStyleSize);
+        $request = (new UpdateNativeStyleRequest())->setNativeStyle($nativeStyle);
+        try {
+            $gapicClient->updateNativeStyle($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
