@@ -54,6 +54,7 @@ use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use InvalidArgumentException;
+use OpenTelemetry\SDK\Resource\ResourceInfoFactory;
 use OpenTelemetry\SDK\Trace\SpanExporter\InMemoryExporter;
 use OpenTelemetry\SDK\Trace\SpanProcessor\SimpleSpanProcessor;
 use OpenTelemetry\SDK\Trace\TracerProvider;
@@ -688,7 +689,11 @@ class RestTransportTest extends TestCase
     public function testStartUnaryCallDoesNotEmitSpan(): void
     {
         $exporter = new InMemoryExporter();
-        $tracerProvider = new TracerProvider(new SimpleSpanProcessor($exporter));
+        $tracerProvider = new TracerProvider(
+            new SimpleSpanProcessor($exporter),
+            null,
+            ResourceInfoFactory::emptyResource()
+        );
 
         $body = ['name' => 'hello', 'number' => 15];
         $httpHandler = fn (RequestInterface $request, array $options = []) => Create::promiseFor(

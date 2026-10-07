@@ -48,6 +48,7 @@ use GuzzleHttp\Client;
 use OpenTelemetry\API\Trace\SpanKind;
 use OpenTelemetry\API\Trace\StatusCode;
 use OpenTelemetry\API\Trace\TracerProviderInterface;
+use OpenTelemetry\SDK\Resource\ResourceInfoFactory;
 use OpenTelemetry\SDK\Trace\SpanDataInterface;
 use OpenTelemetry\SDK\Trace\SpanExporter\InMemoryExporter;
 use OpenTelemetry\SDK\Trace\SpanProcessor\SimpleSpanProcessor;
@@ -72,7 +73,11 @@ final class OtelTracingTest extends TestCase
     {
         parent::setUp();
         $this->exporter = new InMemoryExporter();
-        $this->tracerProvider = new TracerProvider(new SimpleSpanProcessor($this->exporter));
+        $this->tracerProvider = new TracerProvider(
+            new SimpleSpanProcessor($this->exporter),
+            null,
+            ResourceInfoFactory::emptyResource()
+        );
     }
 
     protected function tearDown(): void

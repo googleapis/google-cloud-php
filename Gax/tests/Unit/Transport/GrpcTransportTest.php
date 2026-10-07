@@ -65,6 +65,7 @@ use OpenTelemetry\API\Trace\SpanKind;
 use OpenTelemetry\API\Trace\StatusCode;
 use OpenTelemetry\API\Trace\TracerInterface;
 use OpenTelemetry\API\Trace\TracerProviderInterface;
+use OpenTelemetry\SDK\Resource\ResourceInfoFactory;
 use OpenTelemetry\SDK\Trace\SpanDataInterface;
 use OpenTelemetry\SDK\Trace\SpanExporter\InMemoryExporter;
 use OpenTelemetry\SDK\Trace\SpanProcessor\SimpleSpanProcessor;
@@ -933,7 +934,11 @@ class GrpcTransportTest extends TestCase
     public function testStartUnaryCallDoesNotEmitSpanWhenTracingDisabled(): void
     {
         $exporter = new InMemoryExporter();
-        $tracerProvider = new TracerProvider(new SimpleSpanProcessor($exporter));
+        $tracerProvider = new TracerProvider(
+            new SimpleSpanProcessor($exporter),
+            null,
+            ResourceInfoFactory::emptyResource()
+        );
 
         $response = new Status(['code' => Code::OK]);
         $status = new stdClass();
@@ -969,7 +974,11 @@ class GrpcTransportTest extends TestCase
     public function testStartUnaryCallRecordsParentSpanAndServerAttributes(): void
     {
         $exporter = new InMemoryExporter();
-        $tracerProvider = new TracerProvider(new SimpleSpanProcessor($exporter));
+        $tracerProvider = new TracerProvider(
+            new SimpleSpanProcessor($exporter),
+            null,
+            ResourceInfoFactory::emptyResource()
+        );
         $method = 'google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion';
 
         $response = new Status(['code' => Code::OK]);
@@ -1026,7 +1035,11 @@ class GrpcTransportTest extends TestCase
     public function testStartUnaryCallRecordsErrorInfoReasonAndServerFailureAttributes(): void
     {
         $exporter = new InMemoryExporter();
-        $tracerProvider = new TracerProvider(new SimpleSpanProcessor($exporter));
+        $tracerProvider = new TracerProvider(
+            new SimpleSpanProcessor($exporter),
+            null,
+            ResourceInfoFactory::emptyResource()
+        );
         $method = 'google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion';
 
         $statusWithoutErrorInfo = new stdClass();
@@ -1118,7 +1131,11 @@ class GrpcTransportTest extends TestCase
     public function testStartUnaryCallRecordsClientFailureAndCancellationOnSpan(): void
     {
         $exporter = new InMemoryExporter();
-        $tracerProvider = new TracerProvider(new SimpleSpanProcessor($exporter));
+        $tracerProvider = new TracerProvider(
+            new SimpleSpanProcessor($exporter),
+            null,
+            ResourceInfoFactory::emptyResource()
+        );
         $method = 'google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion';
 
         $unaryCallForCancel = $this->prophesize(UnaryCall::class);
@@ -1208,7 +1225,11 @@ class GrpcTransportTest extends TestCase
     public function testStartUnaryCallWithRetryMiddlewareEmitsSpanPerAttempt(): void
     {
         $exporter = new InMemoryExporter();
-        $tracerProvider = new TracerProvider(new SimpleSpanProcessor($exporter));
+        $tracerProvider = new TracerProvider(
+            new SimpleSpanProcessor($exporter),
+            null,
+            ResourceInfoFactory::emptyResource()
+        );
         $method = 'google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion';
 
         $failStatus = new stdClass();

@@ -60,6 +60,7 @@ use OpenTelemetry\API\Trace\StatusCode;
 use OpenTelemetry\API\Trace\TracerInterface;
 use OpenTelemetry\API\Trace\TracerProviderInterface;
 use OpenTelemetry\Context\ScopeInterface;
+use OpenTelemetry\SDK\Resource\ResourceInfoFactory;
 use OpenTelemetry\SDK\Trace\SpanDataInterface;
 use OpenTelemetry\SDK\Trace\SpanExporter\InMemoryExporter;
 use OpenTelemetry\SDK\Trace\SpanProcessor\SimpleSpanProcessor;
@@ -650,7 +651,11 @@ class TracingMiddlewareTest extends TestCase
     public function testTracingDisabledDoesNotEmitSpanToExporter(string $transportName): void
     {
         $exporter = new InMemoryExporter();
-        $tracerProvider = new TracerProvider(new SimpleSpanProcessor($exporter));
+        $tracerProvider = new TracerProvider(
+            new SimpleSpanProcessor($exporter),
+            null,
+            ResourceInfoFactory::emptyResource()
+        );
 
         $response = new Status(['code' => Code::OK]);
         $nextHandler = fn (Call $call, array $options) => Create::promiseFor($response);
@@ -691,7 +696,11 @@ class TracingMiddlewareTest extends TestCase
     public function testUnaryCallEmitsSpanAsChildOfActiveSpan(string $transportName): void
     {
         $exporter = new InMemoryExporter();
-        $tracerProvider = new TracerProvider(new SimpleSpanProcessor($exporter));
+        $tracerProvider = new TracerProvider(
+            new SimpleSpanProcessor($exporter),
+            null,
+            ResourceInfoFactory::emptyResource()
+        );
         $method = 'google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion';
 
         $response = new Status(['code' => Code::OK]);
@@ -752,7 +761,11 @@ class TracingMiddlewareTest extends TestCase
     public function testUnaryCallServerFailureAttributesWithInMemoryExporter(string $transportName): void
     {
         $exporter = new InMemoryExporter();
-        $tracerProvider = new TracerProvider(new SimpleSpanProcessor($exporter));
+        $tracerProvider = new TracerProvider(
+            new SimpleSpanProcessor($exporter),
+            null,
+            ResourceInfoFactory::emptyResource()
+        );
         $method = 'google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion';
 
         if ($transportName === 'http') {
@@ -862,7 +875,11 @@ class TracingMiddlewareTest extends TestCase
     public function testUnaryCallClientFailureAndCancellationWithInMemoryExporter(string $transportName): void
     {
         $exporter = new InMemoryExporter();
-        $tracerProvider = new TracerProvider(new SimpleSpanProcessor($exporter));
+        $tracerProvider = new TracerProvider(
+            new SimpleSpanProcessor($exporter),
+            null,
+            ResourceInfoFactory::emptyResource()
+        );
         $method = 'google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion';
 
         $callIndex = 0;
@@ -945,7 +962,11 @@ class TracingMiddlewareTest extends TestCase
         self::requiresGrpcExtension();
 
         $exporter = new InMemoryExporter();
-        $tracerProvider = new TracerProvider(new SimpleSpanProcessor($exporter));
+        $tracerProvider = new TracerProvider(
+            new SimpleSpanProcessor($exporter),
+            null,
+            ResourceInfoFactory::emptyResource()
+        );
         $method = 'google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion';
 
         $failStatus = new stdClass();
@@ -1042,7 +1063,11 @@ class TracingMiddlewareTest extends TestCase
         self::requiresGrpcExtension();
 
         $exporter = new InMemoryExporter();
-        $tracerProvider = new TracerProvider(new SimpleSpanProcessor($exporter));
+        $tracerProvider = new TracerProvider(
+            new SimpleSpanProcessor($exporter),
+            null,
+            ResourceInfoFactory::emptyResource()
+        );
         $method = 'google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion';
 
         $failStatus = new stdClass();
