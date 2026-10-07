@@ -383,9 +383,22 @@ trait GapicClientTrait
 
         $this->apiEndpoint = $options['apiEndpoint'];
         if ($this->apiEndpoint !== '') {
-            [$serverAddress, $serverPort] = self::normalizeServiceAddress($this->apiEndpoint);
-            $this->serverAddress = $serverAddress;
-            $this->serverPort = (int) $serverPort;
+            try {
+                [$serverAddress, $serverPort] = self::normalizeServiceAddress($this->apiEndpoint);
+                $this->serverAddress = $serverAddress;
+                $this->serverPort = (int) $serverPort;
+            } catch (ValidationException $e) {
+                if (!$options['transport'] instanceof TransportInterface) {
+                    throw $e;
+                }
+                if (defined('self::SERVICE_ADDRESS')) {
+                    [$serverAddress, $serverPort] = self::normalizeServiceAddress(
+                        self::SERVICE_ADDRESS // @phpstan-ignore-line
+                    );
+                    $this->serverAddress = $serverAddress;
+                    $this->serverPort = (int) $serverPort;
+                }
+            }
         }
         $this->telemetryOptions = [
             'openTelemetryTracerProvider' => $options['openTelemetryTracerProvider'] ?? null,
