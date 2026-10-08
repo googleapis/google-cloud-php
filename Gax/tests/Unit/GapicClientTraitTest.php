@@ -1977,48 +1977,27 @@ class GapicClientTraitTest extends TestCase
         );
     }
 
-    public function testPreInstantiatedTransportReceivesTelemetryOptions()
+    public function testSetClientOptionsPopulatesTelemetryOptionsFromGapicVersion(): void
     {
-        $transport = new class() implements TransportInterface {
-            public ?array $telemetryOptions = null;
-
-            public function setTelemetryOptions(array $telemetryOptions): void
-            {
-                $this->telemetryOptions = $telemetryOptions;
-            }
-
-            public function startUnaryCall(Call $call, array $options)
-            {
-            }
-
-            public function startServerStreamingCall(Call $call, array $options)
-            {
-            }
-
-            public function startClientStreamingCall(Call $call, array $options)
-            {
-            }
-
-            public function startBidiStreamingCall(Call $call, array $options)
-            {
-            }
-
-            public function close()
-            {
-            }
-        };
-
+        $transport = $this->prophesize(TransportInterface::class)->reveal();
         $tracerProvider = $this->createMock(TracerProviderInterface::class);
+
         $client = new StubGapicClient();
         $options = $client->buildClientOptions([
             'transport' => $transport,
             'openTelemetryTracerProvider' => $tracerProvider,
+            'gapicVersion' => '2.3.4',
+            'apiEndpoint' => 'secretmanager.googleapis.com:8443',
         ]);
         $client->setClientOptions($options);
 
         $this->assertSame($transport, $client->getTransport());
-        $this->assertNotNull($transport->telemetryOptions);
-        $this->assertSame($tracerProvider, $transport->telemetryOptions['openTelemetryTracerProvider']);
+        $this->assertSame([
+            'openTelemetryTracerProvider' => $tracerProvider,
+            'clientVersion' => '2.3.4',
+        ], $client->get('telemetryOptions'));
+        $this->assertSame('secretmanager.googleapis.com', $client->get('serverAddress'));
+        $this->assertSame(8443, $client->get('serverPort'));
     }
 
     public function testCreateCallStackIncludesTracingMiddlewareWhenTracingEnabled(): void
@@ -2031,6 +2010,7 @@ class GapicClientTraitTest extends TestCase
 
         $tracerProvider->expects($this->once())
             ->method('getTracer')
+            ->with('google-cloud-php', '1.2.3')
             ->willReturn($tracer);
 
         $tracer->expects($this->once())
@@ -2074,8 +2054,12 @@ class GapicClientTraitTest extends TestCase
         $client = new StubGapicClient();
         $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper->reveal());
-        $client->set('apiEndpoint', 'secretmanager.googleapis.com:443');
-        $client->set('openTelemetryTracerProvider', $tracerProvider);
+        $client->set('serverAddress', 'secretmanager.googleapis.com');
+        $client->set('serverPort', 443);
+        $client->set('telemetryOptions', [
+            'openTelemetryTracerProvider' => $tracerProvider,
+            'clientVersion' => '1.2.3',
+        ]);
 
         $callStack = $client->createCallStack([
             'retrySettings' => RetrySettings::constructDefault(),

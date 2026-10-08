@@ -173,6 +173,8 @@ class ClientOptions implements ArrayAccess, OptionsInterface
      *          The API key to be used for the client.
      *     @type null|false|LoggerInterface
      *           A PSR-3 compliant logger.
+     *     @type TracerProviderInterface|null $openTelemetryTracerProvider
+     *           An OpenTelemetry TracerProvider to use for tracing API calls.
      * }
      */
     public function __construct(array $options)
