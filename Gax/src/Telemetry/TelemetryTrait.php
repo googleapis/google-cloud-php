@@ -56,21 +56,11 @@ trait TelemetryTrait
      * @param array $telemetryOptions
      * @return $this
      */
-    public function setTelemetryOptions(array $telemetryOptions): self
-    {
-        $this->initTelemetry($telemetryOptions);
-        return $this;
-    }
-
-    /**
-     * Initializes telemetry properties from an options array.
-     *
-     * @param array $telemetryOptions
-     */
-    private function initTelemetry(array $telemetryOptions): void
+    protected function setTelemetryOptions(array $telemetryOptions): self
     {
         $this->openTelemetryTracerProvider = $telemetryOptions['openTelemetryTracerProvider'] ?? null;
         $this->clientVersion = $telemetryOptions['clientVersion'] ?? null;
+        return $this;
     }
 
     /**

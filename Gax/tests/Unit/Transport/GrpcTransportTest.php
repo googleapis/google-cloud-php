@@ -784,7 +784,7 @@ class GrpcTransportTest extends TestCase
             ->willReturn([$response, $status]);
 
         $transport = new MockGrpcTransport($unaryCall->reveal());
-        $transport->setTelemetryOptions([
+        $this->setTelemetryOptions($transport, [
             'openTelemetryTracerProvider' => $tracerProvider,
             'clientVersion' => '1.0.0',
         ]);
@@ -840,7 +840,7 @@ class GrpcTransportTest extends TestCase
             ->willReturn([null, $status]);
 
         $transport = new MockGrpcTransport($unaryCall->reveal());
-        $transport->setTelemetryOptions([
+        $this->setTelemetryOptions($transport, [
             'openTelemetryTracerProvider' => $tracerProvider,
         ]);
 
@@ -883,7 +883,7 @@ class GrpcTransportTest extends TestCase
             ->willThrow(new \RuntimeException('Auth callback failed'));
 
         $transport = new MockGrpcTransport(null);
-        $transport->setTelemetryOptions([
+        $this->setTelemetryOptions($transport, [
             'openTelemetryTracerProvider' => $tracerProvider,
         ]);
 
@@ -928,7 +928,7 @@ class GrpcTransportTest extends TestCase
         ]);
 
         $tracerProvider = $this->createMock(TracerProviderInterface::class);
-        $transport->setTelemetryOptions([
+        $this->setTelemetryOptions($transport, [
             'openTelemetryTracerProvider' => $tracerProvider,
         ]);
 
@@ -937,5 +937,12 @@ class GrpcTransportTest extends TestCase
         $portProp = $ref->getProperty('serverPort');
         $this->assertNull($addrProp->getValue($transport));
         $this->assertNull($portProp->getValue($transport));
+    }
+
+    private function setTelemetryOptions(GrpcTransport $transport, array $options): void
+    {
+        (new ReflectionClass(GrpcTransport::class))
+            ->getMethod('setTelemetryOptions')
+            ->invoke($transport, $options);
     }
 }
