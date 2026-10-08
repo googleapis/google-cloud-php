@@ -71,6 +71,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
     use TelemetryTrait;
 
     private null|LoggerInterface $logger;
+    private string $hostname;
     private ?string $serverAddress = null;
     private ?int $serverPort = null;
 
@@ -108,11 +109,28 @@ class GrpcTransport extends BaseStub implements TransportInterface
 
         parent::__construct($hostname, $opts, $channel);
         $this->logger = $logger;
-        if ($hostname !== '') {
-            [$addr, $port] = self::normalizeServiceAddress($hostname);
-            $this->serverAddress = $addr;
-            $this->serverPort = (int) $port;
+        $this->hostname = $hostname;
+    }
+
+    /**
+     * Sets telemetry options and initializes tracing properties.
+     *
+     * @param array $telemetryOptions
+     * @return $this
+     */
+    public function setTelemetryOptions(array $telemetryOptions): self
+    {
+        $this->initTelemetry($telemetryOptions);
+        if ($this->openTelemetryTracerProvider && $this->hostname !== '') {
+            try {
+                [$addr, $port] = self::normalizeServiceAddress($this->hostname);
+                $this->serverAddress = $addr;
+                $this->serverPort = (int) $port;
+            } catch (ValidationException $e) {
+                // Ignore invalid hostname formats when setting span attributes
+            }
         }
+        return $this;
     }
 
     /**
