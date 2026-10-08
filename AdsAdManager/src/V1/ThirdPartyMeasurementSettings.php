@@ -16,8 +16,10 @@ use Google\Protobuf\RepeatedField;
 class ThirdPartyMeasurementSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. A field to determine the type of ViewabilityPartner. This field
-     * default is NONE.
+     * Optional. A field to determine the type of
+     * [ViewabilityPartner][google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner].
+     * This field default is
+     * [NONE][google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner.NONE].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner viewability_partner = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -36,8 +38,10 @@ class ThirdPartyMeasurementSettings extends \Google\Protobuf\Internal\Message
      */
     protected $viewability_reporting_id = null;
     /**
-     * Optional. A field to determine the type of publisher's viewability partner.
-     * This field default is NONE.
+     * Optional. A field to determine the type of publisher's
+     * [ViewabilityPartner][google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner].
+     * This field default is
+     * [NONE][google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner.NONE].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner publisher_viewability_partner = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -57,8 +61,10 @@ class ThirdPartyMeasurementSettings extends \Google\Protobuf\Internal\Message
      */
     protected $publisher_viewability_reporting_id = null;
     /**
-     * Optional. A field to determine the type of BrandLiftPartner. This field
-     * default is NONE.
+     * Optional. A field to determine the type of
+     * [BrandLiftPartner][google.ads.admanager.v1.BrandLiftPartnerEnum.BrandLiftPartner].
+     * This field default is
+     * [NONE][google.ads.admanager.v1.BrandLiftPartnerEnum.BrandLiftPartner.NONE].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.BrandLiftPartnerEnum.BrandLiftPartner brand_lift_partner = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -77,8 +83,9 @@ class ThirdPartyMeasurementSettings extends \Google\Protobuf\Internal\Message
      */
     protected $brand_lift_reporting_id = null;
     /**
-     * Optional. A field to determine the type of advertiser's ReachPartner. This
-     * field default is UNKNOWN.
+     * Optional. A field to determine the type of advertiser's
+     * [ReachPartner][google.ads.admanager.v1.ReachPartnerEnum.ReachPartner]. This
+     * field default is [UNKNOWN][ReachPartnerEnum.ReachPartner.UNKNOWN].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.ReachPartnerEnum.ReachPartner reach_partner = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -98,8 +105,9 @@ class ThirdPartyMeasurementSettings extends \Google\Protobuf\Internal\Message
      */
     protected $reach_reporting_id = null;
     /**
-     * Optional. A field to determine the type of publisher's ReachPartner. This
-     * field default is UNKNOWN.
+     * Optional. A field to determine the type of publisher's
+     * [ReachPartner][google.ads.admanager.v1.ReachPartnerEnum.ReachPartner]. This
+     * field default is [UNKNOWN][ReachPartnerEnum.ReachPartner.UNKNOWN].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.ReachPartnerEnum.ReachPartner publisher_reach_partner = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -126,16 +134,20 @@ class ThirdPartyMeasurementSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $viewability_partner
-     *           Optional. A field to determine the type of ViewabilityPartner. This field
-     *           default is NONE.
+     *           Optional. A field to determine the type of
+     *           [ViewabilityPartner][google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner].
+     *           This field default is
+     *           [NONE][google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner.NONE].
      *     @type string $viewability_client_id
      *           Optional. The third party partner ID for YouTube viewability verification.
      *     @type string $viewability_reporting_id
      *           Optional. The reporting ID that maps viewability partner data with a
      *           campaign (or a group of related campaigns) specific data.
      *     @type int $publisher_viewability_partner
-     *           Optional. A field to determine the type of publisher's viewability partner.
-     *           This field default is NONE.
+     *           Optional. A field to determine the type of publisher's
+     *           [ViewabilityPartner][google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner].
+     *           This field default is
+     *           [NONE][google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner.NONE].
      *     @type string $publisher_viewability_client_id
      *           Optional. The third party partner ID for YouTube viewability verification
      *           for publisher.
@@ -143,16 +155,19 @@ class ThirdPartyMeasurementSettings extends \Google\Protobuf\Internal\Message
      *           Optional. The reporting ID that maps viewability partner data with a
      *           campaign (or a group of related campaigns) specific data for publisher.
      *     @type int $brand_lift_partner
-     *           Optional. A field to determine the type of BrandLiftPartner. This field
-     *           default is NONE.
+     *           Optional. A field to determine the type of
+     *           [BrandLiftPartner][google.ads.admanager.v1.BrandLiftPartnerEnum.BrandLiftPartner].
+     *           This field default is
+     *           [NONE][google.ads.admanager.v1.BrandLiftPartnerEnum.BrandLiftPartner.NONE].
      *     @type string $brand_lift_client_id
      *           Optional. The third party partner ID for YouTube brand lift verification.
      *     @type string $brand_lift_reporting_id
      *           Optional. The reporting ID that maps brand lift partner data with a
      *           campaign (or a group of related campaigns) specific data.
      *     @type int $reach_partner
-     *           Optional. A field to determine the type of advertiser's ReachPartner. This
-     *           field default is UNKNOWN.
+     *           Optional. A field to determine the type of advertiser's
+     *           [ReachPartner][google.ads.admanager.v1.ReachPartnerEnum.ReachPartner]. This
+     *           field default is [UNKNOWN][ReachPartnerEnum.ReachPartner.UNKNOWN].
      *     @type string $reach_client_id
      *           Optional. The third party partner ID for YouTube reach verification for
      *           advertiser.
@@ -160,8 +175,9 @@ class ThirdPartyMeasurementSettings extends \Google\Protobuf\Internal\Message
      *           Optional. The reporting ID that maps reach partner data with a campaign (or
      *           a group of related campaigns) specific data for advertiser.
      *     @type int $publisher_reach_partner
-     *           Optional. A field to determine the type of publisher's ReachPartner. This
-     *           field default is UNKNOWN.
+     *           Optional. A field to determine the type of publisher's
+     *           [ReachPartner][google.ads.admanager.v1.ReachPartnerEnum.ReachPartner]. This
+     *           field default is [UNKNOWN][ReachPartnerEnum.ReachPartner.UNKNOWN].
      *     @type string $publisher_reach_client_id
      *           Optional. The third party partner ID for YouTube reach verification for
      *           publisher.
@@ -176,8 +192,10 @@ class ThirdPartyMeasurementSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A field to determine the type of ViewabilityPartner. This field
-     * default is NONE.
+     * Optional. A field to determine the type of
+     * [ViewabilityPartner][google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner].
+     * This field default is
+     * [NONE][google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner.NONE].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner viewability_partner = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -198,8 +216,10 @@ class ThirdPartyMeasurementSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A field to determine the type of ViewabilityPartner. This field
-     * default is NONE.
+     * Optional. A field to determine the type of
+     * [ViewabilityPartner][google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner].
+     * This field default is
+     * [NONE][google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner.NONE].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner viewability_partner = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -288,8 +308,10 @@ class ThirdPartyMeasurementSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A field to determine the type of publisher's viewability partner.
-     * This field default is NONE.
+     * Optional. A field to determine the type of publisher's
+     * [ViewabilityPartner][google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner].
+     * This field default is
+     * [NONE][google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner.NONE].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner publisher_viewability_partner = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -310,8 +332,10 @@ class ThirdPartyMeasurementSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A field to determine the type of publisher's viewability partner.
-     * This field default is NONE.
+     * Optional. A field to determine the type of publisher's
+     * [ViewabilityPartner][google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner].
+     * This field default is
+     * [NONE][google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner.NONE].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.ViewabilityPartnerEnum.ViewabilityPartner publisher_viewability_partner = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -402,8 +426,10 @@ class ThirdPartyMeasurementSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A field to determine the type of BrandLiftPartner. This field
-     * default is NONE.
+     * Optional. A field to determine the type of
+     * [BrandLiftPartner][google.ads.admanager.v1.BrandLiftPartnerEnum.BrandLiftPartner].
+     * This field default is
+     * [NONE][google.ads.admanager.v1.BrandLiftPartnerEnum.BrandLiftPartner.NONE].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.BrandLiftPartnerEnum.BrandLiftPartner brand_lift_partner = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -424,8 +450,10 @@ class ThirdPartyMeasurementSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A field to determine the type of BrandLiftPartner. This field
-     * default is NONE.
+     * Optional. A field to determine the type of
+     * [BrandLiftPartner][google.ads.admanager.v1.BrandLiftPartnerEnum.BrandLiftPartner].
+     * This field default is
+     * [NONE][google.ads.admanager.v1.BrandLiftPartnerEnum.BrandLiftPartner.NONE].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.BrandLiftPartnerEnum.BrandLiftPartner brand_lift_partner = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -514,8 +542,9 @@ class ThirdPartyMeasurementSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A field to determine the type of advertiser's ReachPartner. This
-     * field default is UNKNOWN.
+     * Optional. A field to determine the type of advertiser's
+     * [ReachPartner][google.ads.admanager.v1.ReachPartnerEnum.ReachPartner]. This
+     * field default is [UNKNOWN][ReachPartnerEnum.ReachPartner.UNKNOWN].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.ReachPartnerEnum.ReachPartner reach_partner = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -536,8 +565,9 @@ class ThirdPartyMeasurementSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A field to determine the type of advertiser's ReachPartner. This
-     * field default is UNKNOWN.
+     * Optional. A field to determine the type of advertiser's
+     * [ReachPartner][google.ads.admanager.v1.ReachPartnerEnum.ReachPartner]. This
+     * field default is [UNKNOWN][ReachPartnerEnum.ReachPartner.UNKNOWN].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.ReachPartnerEnum.ReachPartner reach_partner = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -628,8 +658,9 @@ class ThirdPartyMeasurementSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A field to determine the type of publisher's ReachPartner. This
-     * field default is UNKNOWN.
+     * Optional. A field to determine the type of publisher's
+     * [ReachPartner][google.ads.admanager.v1.ReachPartnerEnum.ReachPartner]. This
+     * field default is [UNKNOWN][ReachPartnerEnum.ReachPartner.UNKNOWN].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.ReachPartnerEnum.ReachPartner publisher_reach_partner = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -650,8 +681,9 @@ class ThirdPartyMeasurementSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A field to determine the type of publisher's ReachPartner. This
-     * field default is UNKNOWN.
+     * Optional. A field to determine the type of publisher's
+     * [ReachPartner][google.ads.admanager.v1.ReachPartnerEnum.ReachPartner]. This
+     * field default is [UNKNOWN][ReachPartnerEnum.ReachPartner.UNKNOWN].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.ReachPartnerEnum.ReachPartner publisher_reach_partner = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

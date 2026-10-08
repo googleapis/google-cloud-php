@@ -51,8 +51,8 @@ class SqlUserType
      */
     const CLOUD_IAM_GROUP_SERVICE_ACCOUNT = 5;
     /**
-     * Cloud IAM workforce identity user managed via workforce identity
-     * federation.
+     * Cloud IAM workforce identity managed by Workforce Identity
+     * Federation.
      *
      * Generated from protobuf enum <code>CLOUD_IAM_WORKFORCE_IDENTITY = 6;</code>
      */

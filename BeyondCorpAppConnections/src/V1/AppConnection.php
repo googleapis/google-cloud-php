@@ -12,7 +12,7 @@ use Google\Protobuf\RepeatedField;
  * A BeyondCorp AppConnection resource represents a BeyondCorp protected
  * AppConnection to a remote application. It creates all the necessary GCP
  * components needed for creating a BeyondCorp protected AppConnection. Multiple
- * connectors can be authorised for a single AppConnection.
+ * connectors can be authorized for a single AppConnection.
  *
  * Generated from protobuf message <code>google.cloud.beyondcorp.appconnections.v1.AppConnection</code>
  */
@@ -72,7 +72,7 @@ class AppConnection extends \Google\Protobuf\Internal\Message
     protected $application_endpoint = null;
     /**
      * Optional. List of [google.cloud.beyondcorp.v1main.Connector.name] that are
-     * authorised to be associated with this AppConnection.
+     * authorized to be associated with this AppConnection.
      *
      * Generated from protobuf field <code>repeated string connectors = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -89,6 +89,18 @@ class AppConnection extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.beyondcorp.appconnections.v1.AppConnection.Gateway gateway = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $gateway = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = null;
 
     /**
      * Constructor.
@@ -118,11 +130,15 @@ class AppConnection extends \Google\Protobuf\Internal\Message
      *           AppConnection.
      *     @type string[] $connectors
      *           Optional. List of [google.cloud.beyondcorp.v1main.Connector.name] that are
-     *           authorised to be associated with this AppConnection.
+     *           authorized to be associated with this AppConnection.
      *     @type int $state
      *           Output only. The current state of the AppConnection.
      *     @type \Google\Cloud\BeyondCorp\AppConnections\V1\AppConnection\Gateway $gateway
      *           Optional. Gateway used by the AppConnection.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -378,7 +394,7 @@ class AppConnection extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. List of [google.cloud.beyondcorp.v1main.Connector.name] that are
-     * authorised to be associated with this AppConnection.
+     * authorized to be associated with this AppConnection.
      *
      * Generated from protobuf field <code>repeated string connectors = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<string>
@@ -390,7 +406,7 @@ class AppConnection extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. List of [google.cloud.beyondcorp.v1main.Connector.name] that are
-     * authorised to be associated with this AppConnection.
+     * authorized to be associated with this AppConnection.
      *
      * Generated from protobuf field <code>repeated string connectors = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[] $var
@@ -462,6 +478,78 @@ class AppConnection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BeyondCorp\AppConnections\V1\AppConnection\Gateway::class);
         $this->gateway = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : false;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi) ? $this->satisfies_pzi : false;
+    }
+
+    public function hasSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi);
+    }
+
+    public function clearSatisfiesPzi()
+    {
+        unset($this->satisfies_pzi);
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

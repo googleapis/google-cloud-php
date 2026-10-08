@@ -35,6 +35,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AppTopology\V1\Domain;
+use Google\Cloud\AppTopology\V1\ExploreSchemaRequest;
 use Google\Cloud\AppTopology\V1\GenerateDiscoveredResourcesTopologyRequest;
 use Google\Cloud\AppTopology\V1\GenerateDiscoveredResourcesTopologyResponse;
 use Google\Cloud\AppTopology\V1\GetDomainRequest;
@@ -58,6 +59,7 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<PagedListResponse> exploreSchemaAsync(ExploreSchemaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GenerateDiscoveredResourcesTopologyResponse> generateDiscoveredResourcesTopologyAsync(GenerateDiscoveredResourcesTopologyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Domain> getDomainAsync(GetDomainRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Schema> getSchemaAsync(GetSchemaRequest $request, array $optionalArgs = [])
@@ -301,6 +303,33 @@ final class AppTopologyClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Explores the topology schema starting from given node types or label names
+     * up to a specified hop depth.
+     *
+     * The async variant is {@see AppTopologyClient::exploreSchemaAsync()} .
+     *
+     * @example samples/V1/AppTopologyClient/explore_schema.php
+     *
+     * @param ExploreSchemaRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function exploreSchema(ExploreSchemaRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ExploreSchema', $request, $callOptions);
     }
 
     /**

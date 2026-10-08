@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request object for [ListViewabilityProviders][] method.
+ * Request object for `ListViewabilityProviders` method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.ListViewabilityProvidersRequest</code>
  */
@@ -17,7 +17,7 @@ class ListViewabilityProvidersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent, which owns this collection of
-     * [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider]s.
+     * [ViewabilityProviders][google.ads.admanager.v1.ViewabilityProvider].
      * Format: `networks/{network_code}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -25,9 +25,9 @@ class ListViewabilityProvidersRequest extends \Google\Protobuf\Internal\Message
     protected $parent = '';
     /**
      * Optional. The maximum number of
-     * [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider]s to
+     * [ViewabilityProviders][google.ads.admanager.v1.ViewabilityProvider] to
      * return. The service may return fewer than this value. If unspecified, at
-     * most 50 [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider]s
+     * most 50 [ViewabilityProviders][google.ads.admanager.v1.ViewabilityProvider]
      * will be returned. The maximum value is 1000; values above 1000 will be
      * coerced to 1000.
      *
@@ -35,11 +35,10 @@ class ListViewabilityProvidersRequest extends \Google\Protobuf\Internal\Message
      */
     protected $page_size = 0;
     /**
-     * Optional. A page token, received from a previous
-     * [ListViewabilityProviders][] call. Provide this to retrieve the subsequent
-     * page.
+     * Optional. A page token, received from a previous `ListViewabilityProviders`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [ListViewabilityProviders][] must match the call that provided the page
+     * `ListViewabilityProviders` must match the call that provided the page
      * token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -84,7 +83,7 @@ class ListViewabilityProvidersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The parent, which owns this collection of
-     *                       [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider]s.
+     *                       [ViewabilityProviders][google.ads.admanager.v1.ViewabilityProvider].
      *                       Format: `networks/{network_code}`
      *                       Please see {@see ViewabilityProviderServiceClient::networkName()} for help formatting this field.
      *
@@ -106,21 +105,20 @@ class ListViewabilityProvidersRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent, which owns this collection of
-     *           [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider]s.
+     *           [ViewabilityProviders][google.ads.admanager.v1.ViewabilityProvider].
      *           Format: `networks/{network_code}`
      *     @type int $page_size
      *           Optional. The maximum number of
-     *           [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider]s to
+     *           [ViewabilityProviders][google.ads.admanager.v1.ViewabilityProvider] to
      *           return. The service may return fewer than this value. If unspecified, at
-     *           most 50 [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider]s
+     *           most 50 [ViewabilityProviders][google.ads.admanager.v1.ViewabilityProvider]
      *           will be returned. The maximum value is 1000; values above 1000 will be
      *           coerced to 1000.
      *     @type string $page_token
-     *           Optional. A page token, received from a previous
-     *           [ListViewabilityProviders][] call. Provide this to retrieve the subsequent
-     *           page.
+     *           Optional. A page token, received from a previous `ListViewabilityProviders`
+     *           call. Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to
-     *           [ListViewabilityProviders][] must match the call that provided the page
+     *           `ListViewabilityProviders` must match the call that provided the page
      *           token.
      *     @type string $filter
      *           Optional. Expression to filter the response.
@@ -155,7 +153,7 @@ class ListViewabilityProvidersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns this collection of
-     * [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider]s.
+     * [ViewabilityProviders][google.ads.admanager.v1.ViewabilityProvider].
      * Format: `networks/{network_code}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -168,7 +166,7 @@ class ListViewabilityProvidersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns this collection of
-     * [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider]s.
+     * [ViewabilityProviders][google.ads.admanager.v1.ViewabilityProvider].
      * Format: `networks/{network_code}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -185,9 +183,9 @@ class ListViewabilityProvidersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The maximum number of
-     * [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider]s to
+     * [ViewabilityProviders][google.ads.admanager.v1.ViewabilityProvider] to
      * return. The service may return fewer than this value. If unspecified, at
-     * most 50 [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider]s
+     * most 50 [ViewabilityProviders][google.ads.admanager.v1.ViewabilityProvider]
      * will be returned. The maximum value is 1000; values above 1000 will be
      * coerced to 1000.
      *
@@ -201,9 +199,9 @@ class ListViewabilityProvidersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The maximum number of
-     * [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider]s to
+     * [ViewabilityProviders][google.ads.admanager.v1.ViewabilityProvider] to
      * return. The service may return fewer than this value. If unspecified, at
-     * most 50 [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider]s
+     * most 50 [ViewabilityProviders][google.ads.admanager.v1.ViewabilityProvider]
      * will be returned. The maximum value is 1000; values above 1000 will be
      * coerced to 1000.
      *
@@ -220,11 +218,10 @@ class ListViewabilityProvidersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A page token, received from a previous
-     * [ListViewabilityProviders][] call. Provide this to retrieve the subsequent
-     * page.
+     * Optional. A page token, received from a previous `ListViewabilityProviders`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [ListViewabilityProviders][] must match the call that provided the page
+     * `ListViewabilityProviders` must match the call that provided the page
      * token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -236,11 +233,10 @@ class ListViewabilityProvidersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A page token, received from a previous
-     * [ListViewabilityProviders][] call. Provide this to retrieve the subsequent
-     * page.
+     * Optional. A page token, received from a previous `ListViewabilityProviders`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [ListViewabilityProviders][] must match the call that provided the page
+     * `ListViewabilityProviders` must match the call that provided the page
      * token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>

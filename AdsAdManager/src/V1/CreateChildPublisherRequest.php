@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request object for [CreateChildPublisher][] method.
+ * Request object for `CreateChildPublisher` method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.CreateChildPublisherRequest</code>
  */
