@@ -64,13 +64,9 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
     use HttpUnaryTransportTrait {
         startServerStreamingCall as protected unsupportedServerStreamingCall;
     }
-    use TelemetryTrait {
-        setTelemetryOptions as private traitSetTelemetryOptions;
-    }
+    use TelemetryTrait;
 
     private RequestBuilder $requestBuilder;
-    private ?string $serverAddress = null;
-    private ?int $serverPort = null;
 
     /**
      * @param RequestBuilder $requestBuilder A builder responsible for creating
@@ -84,28 +80,6 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
         $this->requestBuilder = $requestBuilder;
         $this->httpHandler = $httpHandler;
         $this->transportName = 'REST';
-    }
-
-    /**
-     * Sets telemetry options and initializes tracing properties.
-     *
-     * @param array $telemetryOptions
-     * @return $this
-     */
-    protected function setTelemetryOptions(array $telemetryOptions): self
-    {
-        $this->traitSetTelemetryOptions($telemetryOptions);
-        $apiEndpoint = $telemetryOptions['apiEndpoint'] ?? '';
-        if ($this->openTelemetryTracerProvider && $apiEndpoint !== '') {
-            try {
-                [$addr, $port] = self::normalizeServiceAddress($apiEndpoint);
-                $this->serverAddress = $addr;
-                $this->serverPort = (int) $port;
-            } catch (ValidationException $e) {
-                // Ignore invalid apiEndpoint formats when setting span attributes
-            }
-        }
-        return $this;
     }
 
     /**
@@ -140,7 +114,7 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
             : new RequestBuilder($host, $restConfigPath);
         $httpHandler = $config['httpHandler'] ?: self::buildHttpHandlerAsync($config['logger']);
         $transport = new RestTransport($requestBuilder, $httpHandler);
-        $transport->setTelemetryOptions($config + ['apiEndpoint' => $host]);
+        $transport->setTelemetryOptions($config, $host);
         if ($config['clientCertSource']) {
             $transport->configureMtlsChannel($config['clientCertSource']);
         }
