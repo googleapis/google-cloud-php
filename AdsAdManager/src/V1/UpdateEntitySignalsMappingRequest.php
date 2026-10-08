@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request object for 'UpdateEntitySignalsMapping' method.
+ * Request object for `UpdateEntitySignalsMapping` method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.UpdateEntitySignalsMappingRequest</code>
  */

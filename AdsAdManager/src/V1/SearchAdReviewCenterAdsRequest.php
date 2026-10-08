@@ -54,9 +54,8 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
     private $ad_review_center_ad_id;
     /**
      * Optional. If provided, only return ads that served within the given date
-     * range (inclusive). The  date range must be within the last 30 days. If not
-     * provided, the date range will be the last 30 days. This filter does not
-     * apply to the PENDING manual review status.
+     * range (inclusive). The date range must be within the last 30 days. If not
+     * provided, the date range will be the last 30 days.
      *
      * Generated from protobuf field <code>.google.type.Interval date_time_range = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -79,6 +78,71 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated int64 buyer_account_id = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $buyer_account_id;
+    /**
+     * Optional. If provided, only return ads with the given ad response IDs.
+     * This filter is exclusive and cannot be combined with any other filters.
+     * Maximum of 10 IDs can be specified.
+     *
+     * Generated from protobuf field <code>repeated string ad_response_id = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $ad_response_id;
+    /**
+     * Optional. If provided, restrict the search to creatives with the given
+     * advertiser names.
+     *
+     * Generated from protobuf field <code>repeated string advertiser_display_names = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $advertiser_display_names;
+    /**
+     * Optional. If provided, restrict the search to creatives serving in the
+     * given language codes.
+     *
+     * Generated from protobuf field <code>repeated string language_codes = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $language_codes;
+    /**
+     * Optional. If provided, restrict the search to creatives serving in the
+     * given region codes.
+     *
+     * Generated from protobuf field <code>repeated string region_codes = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $region_codes;
+    /**
+     * Optional. If provided, restrict the search to creatives with the given ad
+     * types.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ArcCreativeFormatEnum.ArcCreativeFormat ad_types = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $ad_types;
+    /**
+     * Optional. If provided, restrict the search to creatives promoting the given
+     * app.
+     *
+     * Generated from protobuf field <code>repeated string advertiser_apps = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $advertiser_apps;
+    /**
+     * Optional. If provided, restrict the search to creatives belonging to the
+     * given publisher domain.
+     *
+     * Generated from protobuf field <code>repeated string publisher_domains = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $publisher_domains;
+    /**
+     * Optional. If provided, restrict the search to creatives which appeared for
+     * the first time within the past X days. Must be within the last 30 days (1
+     * to 30, inclusive).
+     *
+     * Generated from protobuf field <code>optional int32 new_in_last_days = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $new_in_last_days = null;
+    /**
+     * Optional. If provided, restrict the search to creatives associated with the
+     * given custom label IDs.
+     *
+     * Generated from protobuf field <code>repeated string label_ids = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $label_ids;
     protected $ad_review_status;
 
     /**
@@ -116,11 +180,13 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type int $status
      *           Optional. Only return ads with the given status.
+     *           Use this filter for web properties where [Manual Creative Review
+     *           (MCR)](https://support.google.com/admanager/answer/2913553) is not
+     *           enabled.
      *     @type int $manual_review_status
-     *           Optional. Only return ads with the given manual review status. Only
-     *           available for networks with Manual Creative Review enabled. For more
-     *           information, see
-     *           https://support.google.com/admanager/answer/2586531#manual-creative-review.
+     *           Optional. Only return ads with the given manual review status.
+     *           Use this filter for web properties where [Manual Creative Review
+     *           (MCR)](https://support.google.com/admanager/answer/2913553) is enabled.
      *     @type string $parent
      *           Required. The parent, which owns this collection of AdReviewCenterAds.
      *           Format: networks/{network_code}/webProperties/{web_property_code}
@@ -144,9 +210,8 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
      *           no other filter can be set (other than page size and page token).
      *     @type \Google\Type\Interval $date_time_range
      *           Optional. If provided, only return ads that served within the given date
-     *           range (inclusive). The  date range must be within the last 30 days. If not
-     *           provided, the date range will be the last 30 days. This filter does not
-     *           apply to the PENDING manual review status.
+     *           range (inclusive). The date range must be within the last 30 days. If not
+     *           provided, the date range will be the last 30 days.
      *     @type string[] $search_text
      *           Optional. If provided, restrict the search to AdReviewCenterAds associated
      *           with the text (including any text on the ad or in the destination URL). If
@@ -157,6 +222,35 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. If provided, restrict the search to creatives belonging to one of
      *           the given Adx buyer account IDs. Only applicable to RTB creatives. Adx
      *           buyer account IDs can be found using the `ProgrammaticBuyerService`.
+     *     @type string[] $ad_response_id
+     *           Optional. If provided, only return ads with the given ad response IDs.
+     *           This filter is exclusive and cannot be combined with any other filters.
+     *           Maximum of 10 IDs can be specified.
+     *     @type string[] $advertiser_display_names
+     *           Optional. If provided, restrict the search to creatives with the given
+     *           advertiser names.
+     *     @type string[] $language_codes
+     *           Optional. If provided, restrict the search to creatives serving in the
+     *           given language codes.
+     *     @type string[] $region_codes
+     *           Optional. If provided, restrict the search to creatives serving in the
+     *           given region codes.
+     *     @type int[] $ad_types
+     *           Optional. If provided, restrict the search to creatives with the given ad
+     *           types.
+     *     @type string[] $advertiser_apps
+     *           Optional. If provided, restrict the search to creatives promoting the given
+     *           app.
+     *     @type string[] $publisher_domains
+     *           Optional. If provided, restrict the search to creatives belonging to the
+     *           given publisher domain.
+     *     @type int $new_in_last_days
+     *           Optional. If provided, restrict the search to creatives which appeared for
+     *           the first time within the past X days. Must be within the last 30 days (1
+     *           to 30, inclusive).
+     *     @type string[] $label_ids
+     *           Optional. If provided, restrict the search to creatives associated with the
+     *           given custom label IDs.
      * }
      */
     public function __construct($data = NULL) {
@@ -166,6 +260,9 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Only return ads with the given status.
+     * Use this filter for web properties where [Manual Creative Review
+     * (MCR)](https://support.google.com/admanager/answer/2913553) is not
+     * enabled.
      *
      * Generated from protobuf field <code>.google.ads.admanager.v1.AdReviewCenterAdStatusEnum.AdReviewCenterAdStatus status = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -182,6 +279,9 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Only return ads with the given status.
+     * Use this filter for web properties where [Manual Creative Review
+     * (MCR)](https://support.google.com/admanager/answer/2913553) is not
+     * enabled.
      *
      * Generated from protobuf field <code>.google.ads.admanager.v1.AdReviewCenterAdStatusEnum.AdReviewCenterAdStatus status = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -196,10 +296,9 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Only return ads with the given manual review status. Only
-     * available for networks with Manual Creative Review enabled. For more
-     * information, see
-     * https://support.google.com/admanager/answer/2586531#manual-creative-review.
+     * Optional. Only return ads with the given manual review status.
+     * Use this filter for web properties where [Manual Creative Review
+     * (MCR)](https://support.google.com/admanager/answer/2913553) is enabled.
      *
      * Generated from protobuf field <code>.google.ads.admanager.v1.ManualAdReviewCenterAdStatusEnum.ManualAdReviewCenterAdStatus manual_review_status = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -215,10 +314,9 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Only return ads with the given manual review status. Only
-     * available for networks with Manual Creative Review enabled. For more
-     * information, see
-     * https://support.google.com/admanager/answer/2586531#manual-creative-review.
+     * Optional. Only return ads with the given manual review status.
+     * Use this filter for web properties where [Manual Creative Review
+     * (MCR)](https://support.google.com/admanager/answer/2913553) is enabled.
      *
      * Generated from protobuf field <code>.google.ads.admanager.v1.ManualAdReviewCenterAdStatusEnum.ManualAdReviewCenterAdStatus manual_review_status = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -364,9 +462,8 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. If provided, only return ads that served within the given date
-     * range (inclusive). The  date range must be within the last 30 days. If not
-     * provided, the date range will be the last 30 days. This filter does not
-     * apply to the PENDING manual review status.
+     * range (inclusive). The date range must be within the last 30 days. If not
+     * provided, the date range will be the last 30 days.
      *
      * Generated from protobuf field <code>.google.type.Interval date_time_range = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Type\Interval|null
@@ -388,9 +485,8 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. If provided, only return ads that served within the given date
-     * range (inclusive). The  date range must be within the last 30 days. If not
-     * provided, the date range will be the last 30 days. This filter does not
-     * apply to the PENDING manual review status.
+     * range (inclusive). The date range must be within the last 30 days. If not
+     * provided, the date range will be the last 30 days.
      *
      * Generated from protobuf field <code>.google.type.Interval date_time_range = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Type\Interval $var
@@ -464,6 +560,272 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT64);
         $this->buyer_account_id = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If provided, only return ads with the given ad response IDs.
+     * This filter is exclusive and cannot be combined with any other filters.
+     * Maximum of 10 IDs can be specified.
+     *
+     * Generated from protobuf field <code>repeated string ad_response_id = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getAdResponseId()
+    {
+        return $this->ad_response_id;
+    }
+
+    /**
+     * Optional. If provided, only return ads with the given ad response IDs.
+     * This filter is exclusive and cannot be combined with any other filters.
+     * Maximum of 10 IDs can be specified.
+     *
+     * Generated from protobuf field <code>repeated string ad_response_id = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setAdResponseId($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->ad_response_id = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If provided, restrict the search to creatives with the given
+     * advertiser names.
+     *
+     * Generated from protobuf field <code>repeated string advertiser_display_names = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getAdvertiserDisplayNames()
+    {
+        return $this->advertiser_display_names;
+    }
+
+    /**
+     * Optional. If provided, restrict the search to creatives with the given
+     * advertiser names.
+     *
+     * Generated from protobuf field <code>repeated string advertiser_display_names = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setAdvertiserDisplayNames($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->advertiser_display_names = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If provided, restrict the search to creatives serving in the
+     * given language codes.
+     *
+     * Generated from protobuf field <code>repeated string language_codes = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getLanguageCodes()
+    {
+        return $this->language_codes;
+    }
+
+    /**
+     * Optional. If provided, restrict the search to creatives serving in the
+     * given language codes.
+     *
+     * Generated from protobuf field <code>repeated string language_codes = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setLanguageCodes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->language_codes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If provided, restrict the search to creatives serving in the
+     * given region codes.
+     *
+     * Generated from protobuf field <code>repeated string region_codes = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getRegionCodes()
+    {
+        return $this->region_codes;
+    }
+
+    /**
+     * Optional. If provided, restrict the search to creatives serving in the
+     * given region codes.
+     *
+     * Generated from protobuf field <code>repeated string region_codes = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setRegionCodes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->region_codes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If provided, restrict the search to creatives with the given ad
+     * types.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ArcCreativeFormatEnum.ArcCreativeFormat ad_types = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<int>
+     */
+    public function getAdTypes()
+    {
+        return $this->ad_types;
+    }
+
+    /**
+     * Optional. If provided, restrict the search to creatives with the given ad
+     * types.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ArcCreativeFormatEnum.ArcCreativeFormat ad_types = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int[] $var
+     * @return $this
+     */
+    public function setAdTypes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Ads\AdManager\V1\ArcCreativeFormatEnum\ArcCreativeFormat::class);
+        $this->ad_types = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If provided, restrict the search to creatives promoting the given
+     * app.
+     *
+     * Generated from protobuf field <code>repeated string advertiser_apps = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getAdvertiserApps()
+    {
+        return $this->advertiser_apps;
+    }
+
+    /**
+     * Optional. If provided, restrict the search to creatives promoting the given
+     * app.
+     *
+     * Generated from protobuf field <code>repeated string advertiser_apps = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setAdvertiserApps($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->advertiser_apps = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If provided, restrict the search to creatives belonging to the
+     * given publisher domain.
+     *
+     * Generated from protobuf field <code>repeated string publisher_domains = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getPublisherDomains()
+    {
+        return $this->publisher_domains;
+    }
+
+    /**
+     * Optional. If provided, restrict the search to creatives belonging to the
+     * given publisher domain.
+     *
+     * Generated from protobuf field <code>repeated string publisher_domains = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setPublisherDomains($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->publisher_domains = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If provided, restrict the search to creatives which appeared for
+     * the first time within the past X days. Must be within the last 30 days (1
+     * to 30, inclusive).
+     *
+     * Generated from protobuf field <code>optional int32 new_in_last_days = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getNewInLastDays()
+    {
+        return isset($this->new_in_last_days) ? $this->new_in_last_days : 0;
+    }
+
+    public function hasNewInLastDays()
+    {
+        return isset($this->new_in_last_days);
+    }
+
+    public function clearNewInLastDays()
+    {
+        unset($this->new_in_last_days);
+    }
+
+    /**
+     * Optional. If provided, restrict the search to creatives which appeared for
+     * the first time within the past X days. Must be within the last 30 days (1
+     * to 30, inclusive).
+     *
+     * Generated from protobuf field <code>optional int32 new_in_last_days = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setNewInLastDays($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->new_in_last_days = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If provided, restrict the search to creatives associated with the
+     * given custom label IDs.
+     *
+     * Generated from protobuf field <code>repeated string label_ids = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getLabelIds()
+    {
+        return $this->label_ids;
+    }
+
+    /**
+     * Optional. If provided, restrict the search to creatives associated with the
+     * given custom label IDs.
+     *
+     * Generated from protobuf field <code>repeated string label_ids = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setLabelIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->label_ids = $arr;
 
         return $this;
     }

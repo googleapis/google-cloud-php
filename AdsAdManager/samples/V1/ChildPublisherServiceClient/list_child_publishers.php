@@ -32,7 +32,7 @@ use Google\ApiCore\PagedListResponse;
  * Lists [ChildPublisher][google.ads.admanager.v1.ChildPublisher] objects.
  *
  * @param string $formattedParent The parent, which owns this collection of
- *                                [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s. Format:
+ *                                [ChildPublishers][google.ads.admanager.v1.ChildPublisher]. Format:
  *                                `networks/{network_code}`
  *                                Please see {@see ChildPublisherServiceClient::networkName()} for help formatting this field.
  */

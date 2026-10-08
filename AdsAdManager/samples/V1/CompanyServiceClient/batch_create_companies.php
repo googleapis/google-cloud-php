@@ -34,10 +34,10 @@ use Google\ApiCore\ApiException;
 /**
  * Creates [Company][google.ads.admanager.v1.Company] objects.
  *
- * @param string $formattedParent            The parent resource where [Companies][] will be created.
- *                                           Format: `networks/{network_code}`
- *                                           The parent field in the CreateCompanyRequest must match this
- *                                           field. Please see
+ * @param string $formattedParent            The parent resource where
+ *                                           [Companies][google.ads.admanager.v1.Company] will be created. Format:
+ *                                           `networks/{network_code}` The parent field in the CreateCompanyRequest must
+ *                                           match this field. Please see
  *                                           {@see CompanyServiceClient::networkName()} for help formatting this field.
  * @param string $formattedRequestsParent    The parent resource where this
  *                                           [Company][google.ads.admanager.v1.Company] will be created. Format:

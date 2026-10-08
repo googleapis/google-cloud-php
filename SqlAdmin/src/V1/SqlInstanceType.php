@@ -43,6 +43,13 @@ class SqlInstanceType
      * Generated from protobuf enum <code>READ_POOL_INSTANCE = 5;</code>
      */
     const READ_POOL_INSTANCE = 5;
+    /**
+     * A Cloud SQL instance acting as a Blue-Green deployment target primary.
+     * (MySQL only)
+     *
+     * Generated from protobuf enum <code>GREEN_INSTANCE = 7;</code>
+     */
+    const GREEN_INSTANCE = 7;
 
     private static $valueToName = [
         self::SQL_INSTANCE_TYPE_UNSPECIFIED => 'SQL_INSTANCE_TYPE_UNSPECIFIED',
@@ -50,6 +57,7 @@ class SqlInstanceType
         self::ON_PREMISES_INSTANCE => 'ON_PREMISES_INSTANCE',
         self::READ_REPLICA_INSTANCE => 'READ_REPLICA_INSTANCE',
         self::READ_POOL_INSTANCE => 'READ_POOL_INSTANCE',
+        self::GREEN_INSTANCE => 'GREEN_INSTANCE',
     ];
 
     public static function name($value)

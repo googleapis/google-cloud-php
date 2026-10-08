@@ -24,6 +24,7 @@ class MaterializedViewRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Bigtable\V2\SessionReadRowRequest $read_row
+     *     @type \Google\Cloud\Bigtable\V2\SessionReadRowsRequest $read_rows
      * }
      */
     public function __construct($data = NULL) {
@@ -54,6 +55,33 @@ class MaterializedViewRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\SessionReadRowRequest::class);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.bigtable.v2.SessionReadRowsRequest read_rows = 2;</code>
+     * @return \Google\Cloud\Bigtable\V2\SessionReadRowsRequest|null
+     */
+    public function getReadRows()
+    {
+        return $this->readOneof(2);
+    }
+
+    public function hasReadRows()
+    {
+        return $this->hasOneof(2);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.bigtable.v2.SessionReadRowsRequest read_rows = 2;</code>
+     * @param \Google\Cloud\Bigtable\V2\SessionReadRowsRequest $var
+     * @return $this
+     */
+    public function setReadRows($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\SessionReadRowsRequest::class);
+        $this->writeOneof(2, $var);
 
         return $this;
     }

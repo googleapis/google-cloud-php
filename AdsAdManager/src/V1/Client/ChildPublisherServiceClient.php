@@ -324,7 +324,7 @@ final class ChildPublisherServiceClient
      * associated with an Ad Manager network.
      *
      * To sever the relationship from the parent publisher's side, use
-     * [BatchWithdrawChildPublisher][].
+     * `BatchWithdrawChildPublishers`.
      *
      * The async variant is
      * {@see ChildPublisherServiceClient::batchRejectChildPublishersAsync()} .
@@ -455,12 +455,12 @@ final class ChildPublisherServiceClient
     }
 
     /**
-     * Batch withdraws [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s.
+     * Batch withdraws [ChildPublishers][google.ads.admanager.v1.ChildPublisher].
      *
      * Only expired, pending, and accepted
-     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s can be withdrawn.
+     * [ChildPublishers][google.ads.admanager.v1.ChildPublisher] can be withdrawn.
      * Rejected or withdrawn
-     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s will be ignored.
+     * [ChildPublishers][google.ads.admanager.v1.ChildPublisher] will be ignored.
      *
      * The async variant is
      * {@see ChildPublisherServiceClient::batchWithdrawChildPublishersAsync()} .

@@ -59,6 +59,15 @@ class SessionPoolConfiguration extends \Google\Protobuf\Internal\Message
      */
     protected $new_session_creation_penalty = null;
     /**
+     * How many concurrent session closures are allowed. The client will hold
+     * onto a count against this budget whenever it is closing a session, and
+     * release that count once the session is successfully established or failed
+     * to establish.
+     *
+     * Generated from protobuf field <code>int32 soft_session_close_budget = 7;</code>
+     */
+    protected $soft_session_close_budget = 0;
+    /**
      * A threshold for cancelling all pending vRPCs based on how many
      * consecutive session establishment errors have been observed. The client
      * will eagerly cancel queued vRPCs after this threshold is met to avoid
@@ -70,7 +79,8 @@ class SessionPoolConfiguration extends \Google\Protobuf\Internal\Message
     protected $consecutive_session_failure_threshold = 0;
     /**
      * How to balance vRPC load over connections to AFEs.
-     * Set only if session_load > 0.
+     * Set only if session_load or session_diversion_configuration indicates
+     * that there will be some session traffic.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.LoadBalancingOptions load_balancing_options = 9;</code>
      */
@@ -100,6 +110,11 @@ class SessionPoolConfiguration extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $new_session_creation_penalty
      *           How long to penalize the creation budget for a failed session creation
      *           attempt.
+     *     @type int $soft_session_close_budget
+     *           How many concurrent session closures are allowed. The client will hold
+     *           onto a count against this budget whenever it is closing a session, and
+     *           release that count once the session is successfully established or failed
+     *           to establish.
      *     @type int $consecutive_session_failure_threshold
      *           A threshold for cancelling all pending vRPCs based on how many
      *           consecutive session establishment errors have been observed. The client
@@ -108,7 +123,8 @@ class SessionPoolConfiguration extends \Google\Protobuf\Internal\Message
      *           any session to establish to actually send the vRPC).
      *     @type \Google\Cloud\Bigtable\V2\LoadBalancingOptions $load_balancing_options
      *           How to balance vRPC load over connections to AFEs.
-     *           Set only if session_load > 0.
+     *           Set only if session_load or session_diversion_configuration indicates
+     *           that there will be some session traffic.
      * }
      */
     public function __construct($data = NULL) {
@@ -295,6 +311,38 @@ class SessionPoolConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * How many concurrent session closures are allowed. The client will hold
+     * onto a count against this budget whenever it is closing a session, and
+     * release that count once the session is successfully established or failed
+     * to establish.
+     *
+     * Generated from protobuf field <code>int32 soft_session_close_budget = 7;</code>
+     * @return int
+     */
+    public function getSoftSessionCloseBudget()
+    {
+        return $this->soft_session_close_budget;
+    }
+
+    /**
+     * How many concurrent session closures are allowed. The client will hold
+     * onto a count against this budget whenever it is closing a session, and
+     * release that count once the session is successfully established or failed
+     * to establish.
+     *
+     * Generated from protobuf field <code>int32 soft_session_close_budget = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSoftSessionCloseBudget($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->soft_session_close_budget = $var;
+
+        return $this;
+    }
+
+    /**
      * A threshold for cancelling all pending vRPCs based on how many
      * consecutive session establishment errors have been observed. The client
      * will eagerly cancel queued vRPCs after this threshold is met to avoid
@@ -330,7 +378,8 @@ class SessionPoolConfiguration extends \Google\Protobuf\Internal\Message
 
     /**
      * How to balance vRPC load over connections to AFEs.
-     * Set only if session_load > 0.
+     * Set only if session_load or session_diversion_configuration indicates
+     * that there will be some session traffic.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.LoadBalancingOptions load_balancing_options = 9;</code>
      * @return \Google\Cloud\Bigtable\V2\LoadBalancingOptions|null
@@ -352,7 +401,8 @@ class SessionPoolConfiguration extends \Google\Protobuf\Internal\Message
 
     /**
      * How to balance vRPC load over connections to AFEs.
-     * Set only if session_load > 0.
+     * Set only if session_load or session_diversion_configuration indicates
+     * that there will be some session traffic.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.LoadBalancingOptions load_balancing_options = 9;</code>
      * @param \Google\Cloud\Bigtable\V2\LoadBalancingOptions $var

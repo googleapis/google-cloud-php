@@ -10,7 +10,7 @@ jobs:
   backwards-compatibility-check:
     name: Breaking Change Detector
     runs-on: ubuntu-latest
-    if: ${{ !contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
+    continue-on-error: ${{ contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -26,19 +26,13 @@ jobs:
           composer install -d dev --no-interaction --no-progress
       - name: "Check for BC breaks"
         if: github.event.pull_request.user.login != 'release-please[bot]'
-        run: |
-          ./dev/google-cloud component:breaking-changes \
-            --base-ref="$(git merge-base origin/main HEAD)" \
-            --ga-only
-      - name: "Check for BC label"
-        if: github.event.pull_request.user.login != 'release-please[bot]'
         env:
           HAS_BC_LABEL: ${{ contains(github.event.pull_request.title, '!:') }}
         run: |
-          if [[ "true" == "${HAS_BC_LABEL}" ]]; then
-            echo "❌ Error: You indicated breaking changes in your PR title (!:), but no backwards compatibility breaks were detected by the automated check."
-            exit 1
-          fi
+          ./dev/google-cloud component:breaking-changes \
+            --base-ref="$(git merge-base origin/main HEAD)" \
+            --expect-breaking-changes=${HAS_BC_LABEL} \
+            --ga-only
 
   # Ensure the release PR does not contain an unexpected (e.g. 2.0.0) major version release
   # Add "MAJOR_VERSION_ALLOWED=component1,component2" to the PR description to allow major version

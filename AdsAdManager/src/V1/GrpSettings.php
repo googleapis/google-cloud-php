@@ -51,10 +51,12 @@ class GrpSettings extends \Google\Protobuf\Internal\Message
      * Optional. Estimate for the in-target ratio given the line item's audience
      * targeting. This field is only applicable if
      * [provider][google.ads.admanager.v1.GrpSettings.provider] is Nielsen,
-     * [LineItem.primary_goal.unit_type][] is in-target impressions, and
-     * [LineItemCostType] is in-target CPM. This field determines the in-target
-     * ratio to use for pacing Nielsen line items before Nielsen reporting data is
-     * available. Represented as a milli percent, so 55.7% becomes 55700.
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type] is in-target
+     * impressions, and
+     * [LineItemCostTypeEnum.LineItemCostType][google.ads.admanager.v1.LineItemCostTypeEnum.LineItemCostType]
+     * is in-target CPM. This field determines the in-target ratio to use for
+     * pacing Nielsen line items before Nielsen reporting data is available.
+     * Represented as a milli percent, so 55.7% becomes 55700.
      *
      * Generated from protobuf field <code>optional int64 in_target_ratio_estimate_milli_percent = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -76,7 +78,7 @@ class GrpSettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Specifies whether to apply true coviewing in Nielsen Line Item
      * auto pacing. This field can only be true if
-     * [nielsen_ctv_pacing_type][google.ads.admanager.v1.GrpSettings.nielsen_ctv_pacing_type]
+     * [nielsenCtvPacingType][google.ads.admanager.v1.GrpSettings.nielsen_ctv_pacing_type]
      * is not NONE.
      *
      * Generated from protobuf field <code>optional bool apply_true_coview = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -107,10 +109,12 @@ class GrpSettings extends \Google\Protobuf\Internal\Message
      *           Optional. Estimate for the in-target ratio given the line item's audience
      *           targeting. This field is only applicable if
      *           [provider][google.ads.admanager.v1.GrpSettings.provider] is Nielsen,
-     *           [LineItem.primary_goal.unit_type][] is in-target impressions, and
-     *           [LineItemCostType] is in-target CPM. This field determines the in-target
-     *           ratio to use for pacing Nielsen line items before Nielsen reporting data is
-     *           available. Represented as a milli percent, so 55.7% becomes 55700.
+     *           [Goal.unitType][google.ads.admanager.v1.Goal.unit_type] is in-target
+     *           impressions, and
+     *           [LineItemCostTypeEnum.LineItemCostType][google.ads.admanager.v1.LineItemCostTypeEnum.LineItemCostType]
+     *           is in-target CPM. This field determines the in-target ratio to use for
+     *           pacing Nielsen line items before Nielsen reporting data is available.
+     *           Represented as a milli percent, so 55.7% becomes 55700.
      *     @type int $nielsen_ctv_pacing_type
      *           Optional. Specifies which pacing computation to apply in pacing to
      *           impressions from connected devices.
@@ -120,7 +124,7 @@ class GrpSettings extends \Google\Protobuf\Internal\Message
      *     @type bool $apply_true_coview
      *           Optional. Specifies whether to apply true coviewing in Nielsen Line Item
      *           auto pacing. This field can only be true if
-     *           [nielsen_ctv_pacing_type][google.ads.admanager.v1.GrpSettings.nielsen_ctv_pacing_type]
+     *           [nielsenCtvPacingType][google.ads.admanager.v1.GrpSettings.nielsen_ctv_pacing_type]
      *           is not NONE.
      * }
      */
@@ -289,10 +293,12 @@ class GrpSettings extends \Google\Protobuf\Internal\Message
      * Optional. Estimate for the in-target ratio given the line item's audience
      * targeting. This field is only applicable if
      * [provider][google.ads.admanager.v1.GrpSettings.provider] is Nielsen,
-     * [LineItem.primary_goal.unit_type][] is in-target impressions, and
-     * [LineItemCostType] is in-target CPM. This field determines the in-target
-     * ratio to use for pacing Nielsen line items before Nielsen reporting data is
-     * available. Represented as a milli percent, so 55.7% becomes 55700.
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type] is in-target
+     * impressions, and
+     * [LineItemCostTypeEnum.LineItemCostType][google.ads.admanager.v1.LineItemCostTypeEnum.LineItemCostType]
+     * is in-target CPM. This field determines the in-target ratio to use for
+     * pacing Nielsen line items before Nielsen reporting data is available.
+     * Represented as a milli percent, so 55.7% becomes 55700.
      *
      * Generated from protobuf field <code>optional int64 in_target_ratio_estimate_milli_percent = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
@@ -316,10 +322,12 @@ class GrpSettings extends \Google\Protobuf\Internal\Message
      * Optional. Estimate for the in-target ratio given the line item's audience
      * targeting. This field is only applicable if
      * [provider][google.ads.admanager.v1.GrpSettings.provider] is Nielsen,
-     * [LineItem.primary_goal.unit_type][] is in-target impressions, and
-     * [LineItemCostType] is in-target CPM. This field determines the in-target
-     * ratio to use for pacing Nielsen line items before Nielsen reporting data is
-     * available. Represented as a milli percent, so 55.7% becomes 55700.
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type] is in-target
+     * impressions, and
+     * [LineItemCostTypeEnum.LineItemCostType][google.ads.admanager.v1.LineItemCostTypeEnum.LineItemCostType]
+     * is in-target CPM. This field determines the in-target ratio to use for
+     * pacing Nielsen line items before Nielsen reporting data is available.
+     * Represented as a milli percent, so 55.7% becomes 55700.
      *
      * Generated from protobuf field <code>optional int64 in_target_ratio_estimate_milli_percent = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
@@ -412,7 +420,7 @@ class GrpSettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Specifies whether to apply true coviewing in Nielsen Line Item
      * auto pacing. This field can only be true if
-     * [nielsen_ctv_pacing_type][google.ads.admanager.v1.GrpSettings.nielsen_ctv_pacing_type]
+     * [nielsenCtvPacingType][google.ads.admanager.v1.GrpSettings.nielsen_ctv_pacing_type]
      * is not NONE.
      *
      * Generated from protobuf field <code>optional bool apply_true_coview = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -436,7 +444,7 @@ class GrpSettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Specifies whether to apply true coviewing in Nielsen Line Item
      * auto pacing. This field can only be true if
-     * [nielsen_ctv_pacing_type][google.ads.admanager.v1.GrpSettings.nielsen_ctv_pacing_type]
+     * [nielsenCtvPacingType][google.ads.admanager.v1.GrpSettings.nielsen_ctv_pacing_type]
      * is not NONE.
      *
      * Generated from protobuf field <code>optional bool apply_true_coview = 10 [(.google.api.field_behavior) = OPTIONAL];</code>

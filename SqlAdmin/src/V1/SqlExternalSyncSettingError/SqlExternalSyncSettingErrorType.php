@@ -391,6 +391,21 @@ class SqlExternalSyncSettingErrorType
      * Generated from protobuf enum <code>PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE = 58;</code>
      */
     const PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE = 58;
+    /**
+     * Read replicas of the Writable Destination instance will be recreated
+     * after external synchronization is complete, causing downtime on read
+     * replicas.
+     *
+     * Generated from protobuf enum <code>WRITABLE_DESTINATION_REPLICA_RECREATION_DOWNTIME = 59;</code>
+     */
+    const WRITABLE_DESTINATION_REPLICA_RECREATION_DOWNTIME = 59;
+    /**
+     * A warning that disk storage auto increase is disabled on the destination
+     * instance for a Writable Destination migration.
+     *
+     * Generated from protobuf enum <code>WRITABLE_DESTINATION_STORAGE_AUTO_INCREASE_DISABLED = 60;</code>
+     */
+    const WRITABLE_DESTINATION_STORAGE_AUTO_INCREASE_DISABLED = 60;
 
     private static $valueToName = [
         self::SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED => 'SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED',
@@ -452,6 +467,8 @@ class SqlExternalSyncSettingErrorType
         self::PROMPT_DELETE_EXISTING => 'PROMPT_DELETE_EXISTING',
         self::WILL_DELETE_EXISTING => 'WILL_DELETE_EXISTING',
         self::PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE => 'PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE',
+        self::WRITABLE_DESTINATION_REPLICA_RECREATION_DOWNTIME => 'WRITABLE_DESTINATION_REPLICA_RECREATION_DOWNTIME',
+        self::WRITABLE_DESTINATION_STORAGE_AUTO_INCREASE_DISABLED => 'WRITABLE_DESTINATION_STORAGE_AUTO_INCREASE_DISABLED',
     ];
 
     public static function name($value)

@@ -29,6 +29,90 @@ class Creative extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string display_name = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $display_name = null;
+    /**
+     * Required. The resource name of the Company, which is of type
+     * Company.Type.ADVERTISER, to which this Creative belongs. Format:
+     * "networks/{network_code}/companies/{company_id}"
+     *
+     * Generated from protobuf field <code>optional string advertiser = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     */
+    protected $advertiser = null;
+    /**
+     * Output only. The instant this Creative was last modified.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $update_time = null;
+    /**
+     * Optional. The values of the custom fields associated with this creative.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomFieldValue custom_field_values = 76 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $custom_field_values;
+    /**
+     * Output only. The URL of the creative for previewing the media.
+     *
+     * Generated from protobuf field <code>optional string preview_url = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $preview_url = null;
+    /**
+     * Required. Immutable. The Size of the creative.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.Size size = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $size = null;
+    /**
+     * Optional. The third party companies associated with this creative.
+     * This is distinct from any associated companies that Google may detect
+     * programmatically.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ThirdPartyDataDeclaration third_party_data_declaration = 59 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $third_party_data_declaration = null;
+    /**
+     * Output only. The status of the publisher's `ThirdPartyDataDeclaration`,
+     * when compared with the set of third party companies detected via automated
+     * scanning.
+     * For example, if automated scanning detects more companies than have been
+     * declared, this status will be
+     * [CreativeThirdPartyDataDeclarationStatus.INCOMPLETE][google.ads.admanager.v1.CreativeThirdPartyDataDeclarationStatusEnum.CreativeThirdPartyDataDeclarationStatus.INCOMPLETE].
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CreativeThirdPartyDataDeclarationStatusEnum.CreativeThirdPartyDataDeclarationStatus third_party_data_declaration_status = 60 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $third_party_data_declaration_status = null;
+    /**
+     * Optional. Whether this creative contains self-declared European Union
+     * political content.
+     *
+     * Generated from protobuf field <code>optional bool self_declared_european_union_political_content = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $self_declared_european_union_political_content = null;
+    /**
+     * Optional. Non-empty default. Whether the creative has ad badging enabled.
+     * Defaults to false for VastRedirectCreative, ThirdPartyCreative,
+     * AudioRedirectCreative, ProgrammaticCreative, LegacyDfpMobileCreative,
+     * FlashOverlayCreative, GraphicalInterstitialCreative,
+     * LegacyDfpCreative, MobileAdNetworkCreative,
+     * MobileVideoInterstitialCreative, SdkMediationCreative, and
+     * FlashCreative types.
+     * Defaults to true for all other creative types.
+     *
+     * Generated from protobuf field <code>optional bool ad_badging_enabled = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     */
+    protected $ad_badging_enabled = null;
+    /**
+     * Optional. The set of labels applied directly to this creative.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel applied_labels = 56 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $applied_labels;
+    /**
+     * Optional. The buyer placement configuration for this creative.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.BuyerPlacementConfig buyer_placement_config = 81 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $buyer_placement_config = null;
+    protected $details;
 
     /**
      * Constructor.
@@ -36,17 +120,857 @@ class Creative extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Ads\AdManager\V1\AdExchangeCreativeDetails $ad_exchange_creative
+     *           Optional. An Ad Exchange dynamic allocation creative.
+     *     @type \Google\Ads\AdManager\V1\AdSenseCreativeDetails $ad_sense_creative
+     *           Optional. An AdSense dynamic allocation creative.
+     *     @type \Google\Ads\AdManager\V1\AspectRatioImageCreativeDetails $aspect_ratio_image_creative
+     *           Optional. A Creative intended for mobile platforms that displays an
+     *           image, whose size is defined as an aspect ratio. It can have multiple
+     *           images whose dimensions conform to that aspect ratio.
+     *     @type \Google\Ads\AdManager\V1\AudioCreativeDetails $audio_creative
+     *           Optional. A Creative that contains Ad Manager hosted audio ads and is
+     *           served via VAST XML.
+     *     @type \Google\Ads\AdManager\V1\AudioRedirectCreativeDetails $audio_redirect_creative
+     *           Optional. A Creative that contains externally hosted audio ads and is
+     *           served via VAST XML.
+     *     @type \Google\Ads\AdManager\V1\ClickTrackingCreativeDetails $click_tracking_creative
+     *           Optional. A creative that is used for tracking clicks on ads that are
+     *           served directly from the customers' web servers or media servers. NOTE:
+     *           The size attribute is not used for click tracking creative and it will
+     *           not be persisted upon save.
+     *     @type \Google\Ads\AdManager\V1\CustomCreativeDetails $custom_creative
+     *           Optional. A Creative that contains a custom HTML snippet and file assets.
+     *     @type \Google\Ads\AdManager\V1\Html5CreativeDetails $html5_creative
+     *           Optional. A Creative that contains a zipped HTML5 bundle asset, a list of
+     *           third party impression trackers, and a third party click tracker.
+     *     @type \Google\Ads\AdManager\V1\ImageCreativeDetails $image_creative
+     *           Optional. A Creative that displays an image.
+     *     @type \Google\Ads\AdManager\V1\ImageOverlayCreativeDetails $image_overlay_creative
+     *           Optional. An overlay Creative that displays an image and is served via
+     *           VAST 2.0 XML. Overlays cover part of the video content they are displayed
+     *           on top of.
+     *     @type \Google\Ads\AdManager\V1\ImageRedirectCreativeDetails $image_redirect_creative
+     *           Optional. A Creative that loads an image asset from a specified URL.
+     *     @type \Google\Ads\AdManager\V1\ImageRedirectOverlayCreativeDetails $image_redirect_overlay_creative
+     *           Optional. An overlay Creative that loads an image asset from a specified
+     *           URL and is served via VAST XML. Overlays cover part of the video content
+     *           they are displayed on top of. This creative is read only.
+     *     @type \Google\Ads\AdManager\V1\InternalRedirectCreativeDetails $internal_redirect_creative
+     *           Optional. A Creative hosted by Campaign Manager 360.
+     *           Similar to third-party creatives, a Campaign Manager 360 tag is used to
+     *           retrieve a creative asset. However, Campaign Manager 360 tags are not
+     *           sent to the user's browser. Instead, they are processed internally within
+     *           the Google Marketing Platform system.
+     *     @type \Google\Ads\AdManager\V1\LegacyDfpCreativeDetails $legacy_dfp_creative
+     *           Optional. A Creative that isn't supported by Google DFP, but was migrated
+     *           from DART. Creatives of this type cannot be created or modified.
+     *     @type \Google\Ads\AdManager\V1\ProgrammaticCreativeDetails $programmatic_creative
+     *           Optional. A Creative used for programmatic trafficking. This creative
+     *           will be auto-created with the right approval from the buyer. This
+     *           creative cannot be created through the API. This creative can be updated.
+     *     @type \Google\Ads\AdManager\V1\RichMediaStudioCreativeDetails $rich_media_studio_creative
+     *           Optional. A Creative that is created by a Rich Media Studio. You cannot
+     *           create this creative, but you can update some fields of this creative.
+     *     @type \Google\Ads\AdManager\V1\SetTopBoxCreativeDetails $set_top_box_creative
+     *           Optional. A Creative that will be served into cable set-top boxes. There
+     *           are no assets for this creative type, as they are hosted by external
+     *           cable systems.
+     *     @type \Google\Ads\AdManager\V1\TemplateCreativeDetails $template_creative
+     *           Optional. A Creative that is created by the specified creative template.
+     *     @type \Google\Ads\AdManager\V1\ThirdPartyCreativeDetails $third_party_creative
+     *           Optional. A Creative that is served by a 3rd-party vendor.
+     *     @type \Google\Ads\AdManager\V1\VastRedirectCreativeDetails $vast_redirect_creative
+     *           Optional. A Creative that points to an externally hosted VAST ad and is
+     *           served via VAST XML as a VAST Wrapper.
+     *     @type \Google\Ads\AdManager\V1\VideoCreativeDetails $video_creative
+     *           Optional. A Creative that contains Ad Manager hosted video ads and is
+     *           served via VAST XML.
+     *     @type \Google\Ads\AdManager\V1\VideoRedirectCreativeDetails $video_redirect_creative
+     *           Optional. A Creative that contains externally hosted video ads and is
+     *           served via VAST XML.
      *     @type string $name
      *           Identifier. The resource name of the Creative.
      *           Format: `networks/{network_code}/creatives/{creative_id}`
      *     @type string $display_name
      *           Required. Display name of the `Creative`. This attribute has a maximum
      *           length of 255 characters.
+     *     @type string $advertiser
+     *           Required. The resource name of the Company, which is of type
+     *           Company.Type.ADVERTISER, to which this Creative belongs. Format:
+     *           "networks/{network_code}/companies/{company_id}"
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. The instant this Creative was last modified.
+     *     @type \Google\Ads\AdManager\V1\CustomFieldValue[] $custom_field_values
+     *           Optional. The values of the custom fields associated with this creative.
+     *     @type string $preview_url
+     *           Output only. The URL of the creative for previewing the media.
+     *     @type \Google\Ads\AdManager\V1\Size $size
+     *           Required. Immutable. The Size of the creative.
+     *     @type \Google\Ads\AdManager\V1\ThirdPartyDataDeclaration $third_party_data_declaration
+     *           Optional. The third party companies associated with this creative.
+     *           This is distinct from any associated companies that Google may detect
+     *           programmatically.
+     *     @type int $third_party_data_declaration_status
+     *           Output only. The status of the publisher's `ThirdPartyDataDeclaration`,
+     *           when compared with the set of third party companies detected via automated
+     *           scanning.
+     *           For example, if automated scanning detects more companies than have been
+     *           declared, this status will be
+     *           [CreativeThirdPartyDataDeclarationStatus.INCOMPLETE][google.ads.admanager.v1.CreativeThirdPartyDataDeclarationStatusEnum.CreativeThirdPartyDataDeclarationStatus.INCOMPLETE].
+     *     @type bool $self_declared_european_union_political_content
+     *           Optional. Whether this creative contains self-declared European Union
+     *           political content.
+     *     @type bool $ad_badging_enabled
+     *           Optional. Non-empty default. Whether the creative has ad badging enabled.
+     *           Defaults to false for VastRedirectCreative, ThirdPartyCreative,
+     *           AudioRedirectCreative, ProgrammaticCreative, LegacyDfpMobileCreative,
+     *           FlashOverlayCreative, GraphicalInterstitialCreative,
+     *           LegacyDfpCreative, MobileAdNetworkCreative,
+     *           MobileVideoInterstitialCreative, SdkMediationCreative, and
+     *           FlashCreative types.
+     *           Defaults to true for all other creative types.
+     *     @type \Google\Ads\AdManager\V1\AppliedLabel[] $applied_labels
+     *           Optional. The set of labels applied directly to this creative.
+     *     @type \Google\Ads\AdManager\V1\BuyerPlacementConfig $buyer_placement_config
+     *           Optional. The buyer placement configuration for this creative.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Ads\Admanager\V1\CreativeMessages::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. An Ad Exchange dynamic allocation creative.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AdExchangeCreativeDetails ad_exchange_creative = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\AdExchangeCreativeDetails|null
+     */
+    public function getAdExchangeCreative()
+    {
+        return $this->readOneof(20);
+    }
+
+    public function hasAdExchangeCreative()
+    {
+        return $this->hasOneof(20);
+    }
+
+    /**
+     * Optional. An Ad Exchange dynamic allocation creative.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AdExchangeCreativeDetails ad_exchange_creative = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\AdExchangeCreativeDetails $var
+     * @return $this
+     */
+    public function setAdExchangeCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\AdExchangeCreativeDetails::class);
+        $this->writeOneof(20, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. An AdSense dynamic allocation creative.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AdSenseCreativeDetails ad_sense_creative = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\AdSenseCreativeDetails|null
+     */
+    public function getAdSenseCreative()
+    {
+        return $this->readOneof(22);
+    }
+
+    public function hasAdSenseCreative()
+    {
+        return $this->hasOneof(22);
+    }
+
+    /**
+     * Optional. An AdSense dynamic allocation creative.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AdSenseCreativeDetails ad_sense_creative = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\AdSenseCreativeDetails $var
+     * @return $this
+     */
+    public function setAdSenseCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\AdSenseCreativeDetails::class);
+        $this->writeOneof(22, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A Creative intended for mobile platforms that displays an
+     * image, whose size is defined as an aspect ratio. It can have multiple
+     * images whose dimensions conform to that aspect ratio.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AspectRatioImageCreativeDetails aspect_ratio_image_creative = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\AspectRatioImageCreativeDetails|null
+     */
+    public function getAspectRatioImageCreative()
+    {
+        return $this->readOneof(23);
+    }
+
+    public function hasAspectRatioImageCreative()
+    {
+        return $this->hasOneof(23);
+    }
+
+    /**
+     * Optional. A Creative intended for mobile platforms that displays an
+     * image, whose size is defined as an aspect ratio. It can have multiple
+     * images whose dimensions conform to that aspect ratio.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AspectRatioImageCreativeDetails aspect_ratio_image_creative = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\AspectRatioImageCreativeDetails $var
+     * @return $this
+     */
+    public function setAspectRatioImageCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\AspectRatioImageCreativeDetails::class);
+        $this->writeOneof(23, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A Creative that contains Ad Manager hosted audio ads and is
+     * served via VAST XML.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AudioCreativeDetails audio_creative = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\AudioCreativeDetails|null
+     */
+    public function getAudioCreative()
+    {
+        return $this->readOneof(24);
+    }
+
+    public function hasAudioCreative()
+    {
+        return $this->hasOneof(24);
+    }
+
+    /**
+     * Optional. A Creative that contains Ad Manager hosted audio ads and is
+     * served via VAST XML.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AudioCreativeDetails audio_creative = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\AudioCreativeDetails $var
+     * @return $this
+     */
+    public function setAudioCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\AudioCreativeDetails::class);
+        $this->writeOneof(24, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A Creative that contains externally hosted audio ads and is
+     * served via VAST XML.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AudioRedirectCreativeDetails audio_redirect_creative = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\AudioRedirectCreativeDetails|null
+     */
+    public function getAudioRedirectCreative()
+    {
+        return $this->readOneof(25);
+    }
+
+    public function hasAudioRedirectCreative()
+    {
+        return $this->hasOneof(25);
+    }
+
+    /**
+     * Optional. A Creative that contains externally hosted audio ads and is
+     * served via VAST XML.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AudioRedirectCreativeDetails audio_redirect_creative = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\AudioRedirectCreativeDetails $var
+     * @return $this
+     */
+    public function setAudioRedirectCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\AudioRedirectCreativeDetails::class);
+        $this->writeOneof(25, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A creative that is used for tracking clicks on ads that are
+     * served directly from the customers' web servers or media servers. NOTE:
+     * The size attribute is not used for click tracking creative and it will
+     * not be persisted upon save.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ClickTrackingCreativeDetails click_tracking_creative = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\ClickTrackingCreativeDetails|null
+     */
+    public function getClickTrackingCreative()
+    {
+        return $this->readOneof(26);
+    }
+
+    public function hasClickTrackingCreative()
+    {
+        return $this->hasOneof(26);
+    }
+
+    /**
+     * Optional. A creative that is used for tracking clicks on ads that are
+     * served directly from the customers' web servers or media servers. NOTE:
+     * The size attribute is not used for click tracking creative and it will
+     * not be persisted upon save.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ClickTrackingCreativeDetails click_tracking_creative = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\ClickTrackingCreativeDetails $var
+     * @return $this
+     */
+    public function setClickTrackingCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\ClickTrackingCreativeDetails::class);
+        $this->writeOneof(26, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A Creative that contains a custom HTML snippet and file assets.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomCreativeDetails custom_creative = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\CustomCreativeDetails|null
+     */
+    public function getCustomCreative()
+    {
+        return $this->readOneof(18);
+    }
+
+    public function hasCustomCreative()
+    {
+        return $this->hasOneof(18);
+    }
+
+    /**
+     * Optional. A Creative that contains a custom HTML snippet and file assets.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomCreativeDetails custom_creative = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\CustomCreativeDetails $var
+     * @return $this
+     */
+    public function setCustomCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\CustomCreativeDetails::class);
+        $this->writeOneof(18, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A Creative that contains a zipped HTML5 bundle asset, a list of
+     * third party impression trackers, and a third party click tracker.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.Html5CreativeDetails html5_creative = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\Html5CreativeDetails|null
+     */
+    public function getHtml5Creative()
+    {
+        return $this->readOneof(33);
+    }
+
+    public function hasHtml5Creative()
+    {
+        return $this->hasOneof(33);
+    }
+
+    /**
+     * Optional. A Creative that contains a zipped HTML5 bundle asset, a list of
+     * third party impression trackers, and a third party click tracker.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.Html5CreativeDetails html5_creative = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\Html5CreativeDetails $var
+     * @return $this
+     */
+    public function setHtml5Creative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\Html5CreativeDetails::class);
+        $this->writeOneof(33, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A Creative that displays an image.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ImageCreativeDetails image_creative = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\ImageCreativeDetails|null
+     */
+    public function getImageCreative()
+    {
+        return $this->readOneof(19);
+    }
+
+    public function hasImageCreative()
+    {
+        return $this->hasOneof(19);
+    }
+
+    /**
+     * Optional. A Creative that displays an image.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ImageCreativeDetails image_creative = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\ImageCreativeDetails $var
+     * @return $this
+     */
+    public function setImageCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\ImageCreativeDetails::class);
+        $this->writeOneof(19, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. An overlay Creative that displays an image and is served via
+     * VAST 2.0 XML. Overlays cover part of the video content they are displayed
+     * on top of.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ImageOverlayCreativeDetails image_overlay_creative = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\ImageOverlayCreativeDetails|null
+     */
+    public function getImageOverlayCreative()
+    {
+        return $this->readOneof(35);
+    }
+
+    public function hasImageOverlayCreative()
+    {
+        return $this->hasOneof(35);
+    }
+
+    /**
+     * Optional. An overlay Creative that displays an image and is served via
+     * VAST 2.0 XML. Overlays cover part of the video content they are displayed
+     * on top of.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ImageOverlayCreativeDetails image_overlay_creative = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\ImageOverlayCreativeDetails $var
+     * @return $this
+     */
+    public function setImageOverlayCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\ImageOverlayCreativeDetails::class);
+        $this->writeOneof(35, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A Creative that loads an image asset from a specified URL.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ImageRedirectCreativeDetails image_redirect_creative = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\ImageRedirectCreativeDetails|null
+     */
+    public function getImageRedirectCreative()
+    {
+        return $this->readOneof(36);
+    }
+
+    public function hasImageRedirectCreative()
+    {
+        return $this->hasOneof(36);
+    }
+
+    /**
+     * Optional. A Creative that loads an image asset from a specified URL.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ImageRedirectCreativeDetails image_redirect_creative = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\ImageRedirectCreativeDetails $var
+     * @return $this
+     */
+    public function setImageRedirectCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\ImageRedirectCreativeDetails::class);
+        $this->writeOneof(36, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. An overlay Creative that loads an image asset from a specified
+     * URL and is served via VAST XML. Overlays cover part of the video content
+     * they are displayed on top of. This creative is read only.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ImageRedirectOverlayCreativeDetails image_redirect_overlay_creative = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\ImageRedirectOverlayCreativeDetails|null
+     */
+    public function getImageRedirectOverlayCreative()
+    {
+        return $this->readOneof(37);
+    }
+
+    public function hasImageRedirectOverlayCreative()
+    {
+        return $this->hasOneof(37);
+    }
+
+    /**
+     * Optional. An overlay Creative that loads an image asset from a specified
+     * URL and is served via VAST XML. Overlays cover part of the video content
+     * they are displayed on top of. This creative is read only.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ImageRedirectOverlayCreativeDetails image_redirect_overlay_creative = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\ImageRedirectOverlayCreativeDetails $var
+     * @return $this
+     */
+    public function setImageRedirectOverlayCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\ImageRedirectOverlayCreativeDetails::class);
+        $this->writeOneof(37, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A Creative hosted by Campaign Manager 360.
+     * Similar to third-party creatives, a Campaign Manager 360 tag is used to
+     * retrieve a creative asset. However, Campaign Manager 360 tags are not
+     * sent to the user's browser. Instead, they are processed internally within
+     * the Google Marketing Platform system.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.InternalRedirectCreativeDetails internal_redirect_creative = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\InternalRedirectCreativeDetails|null
+     */
+    public function getInternalRedirectCreative()
+    {
+        return $this->readOneof(38);
+    }
+
+    public function hasInternalRedirectCreative()
+    {
+        return $this->hasOneof(38);
+    }
+
+    /**
+     * Optional. A Creative hosted by Campaign Manager 360.
+     * Similar to third-party creatives, a Campaign Manager 360 tag is used to
+     * retrieve a creative asset. However, Campaign Manager 360 tags are not
+     * sent to the user's browser. Instead, they are processed internally within
+     * the Google Marketing Platform system.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.InternalRedirectCreativeDetails internal_redirect_creative = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\InternalRedirectCreativeDetails $var
+     * @return $this
+     */
+    public function setInternalRedirectCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\InternalRedirectCreativeDetails::class);
+        $this->writeOneof(38, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A Creative that isn't supported by Google DFP, but was migrated
+     * from DART. Creatives of this type cannot be created or modified.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.LegacyDfpCreativeDetails legacy_dfp_creative = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\LegacyDfpCreativeDetails|null
+     */
+    public function getLegacyDfpCreative()
+    {
+        return $this->readOneof(39);
+    }
+
+    public function hasLegacyDfpCreative()
+    {
+        return $this->hasOneof(39);
+    }
+
+    /**
+     * Optional. A Creative that isn't supported by Google DFP, but was migrated
+     * from DART. Creatives of this type cannot be created or modified.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.LegacyDfpCreativeDetails legacy_dfp_creative = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\LegacyDfpCreativeDetails $var
+     * @return $this
+     */
+    public function setLegacyDfpCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\LegacyDfpCreativeDetails::class);
+        $this->writeOneof(39, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A Creative used for programmatic trafficking. This creative
+     * will be auto-created with the right approval from the buyer. This
+     * creative cannot be created through the API. This creative can be updated.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ProgrammaticCreativeDetails programmatic_creative = 42 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\ProgrammaticCreativeDetails|null
+     */
+    public function getProgrammaticCreative()
+    {
+        return $this->readOneof(42);
+    }
+
+    public function hasProgrammaticCreative()
+    {
+        return $this->hasOneof(42);
+    }
+
+    /**
+     * Optional. A Creative used for programmatic trafficking. This creative
+     * will be auto-created with the right approval from the buyer. This
+     * creative cannot be created through the API. This creative can be updated.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ProgrammaticCreativeDetails programmatic_creative = 42 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\ProgrammaticCreativeDetails $var
+     * @return $this
+     */
+    public function setProgrammaticCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\ProgrammaticCreativeDetails::class);
+        $this->writeOneof(42, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A Creative that is created by a Rich Media Studio. You cannot
+     * create this creative, but you can update some fields of this creative.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.RichMediaStudioCreativeDetails rich_media_studio_creative = 43 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\RichMediaStudioCreativeDetails|null
+     */
+    public function getRichMediaStudioCreative()
+    {
+        return $this->readOneof(43);
+    }
+
+    public function hasRichMediaStudioCreative()
+    {
+        return $this->hasOneof(43);
+    }
+
+    /**
+     * Optional. A Creative that is created by a Rich Media Studio. You cannot
+     * create this creative, but you can update some fields of this creative.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.RichMediaStudioCreativeDetails rich_media_studio_creative = 43 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\RichMediaStudioCreativeDetails $var
+     * @return $this
+     */
+    public function setRichMediaStudioCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\RichMediaStudioCreativeDetails::class);
+        $this->writeOneof(43, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A Creative that will be served into cable set-top boxes. There
+     * are no assets for this creative type, as they are hosted by external
+     * cable systems.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.SetTopBoxCreativeDetails set_top_box_creative = 46 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\SetTopBoxCreativeDetails|null
+     */
+    public function getSetTopBoxCreative()
+    {
+        return $this->readOneof(46);
+    }
+
+    public function hasSetTopBoxCreative()
+    {
+        return $this->hasOneof(46);
+    }
+
+    /**
+     * Optional. A Creative that will be served into cable set-top boxes. There
+     * are no assets for this creative type, as they are hosted by external
+     * cable systems.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.SetTopBoxCreativeDetails set_top_box_creative = 46 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\SetTopBoxCreativeDetails $var
+     * @return $this
+     */
+    public function setSetTopBoxCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\SetTopBoxCreativeDetails::class);
+        $this->writeOneof(46, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A Creative that is created by the specified creative template.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.TemplateCreativeDetails template_creative = 47 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\TemplateCreativeDetails|null
+     */
+    public function getTemplateCreative()
+    {
+        return $this->readOneof(47);
+    }
+
+    public function hasTemplateCreative()
+    {
+        return $this->hasOneof(47);
+    }
+
+    /**
+     * Optional. A Creative that is created by the specified creative template.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.TemplateCreativeDetails template_creative = 47 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\TemplateCreativeDetails $var
+     * @return $this
+     */
+    public function setTemplateCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\TemplateCreativeDetails::class);
+        $this->writeOneof(47, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A Creative that is served by a 3rd-party vendor.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ThirdPartyCreativeDetails third_party_creative = 48 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\ThirdPartyCreativeDetails|null
+     */
+    public function getThirdPartyCreative()
+    {
+        return $this->readOneof(48);
+    }
+
+    public function hasThirdPartyCreative()
+    {
+        return $this->hasOneof(48);
+    }
+
+    /**
+     * Optional. A Creative that is served by a 3rd-party vendor.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ThirdPartyCreativeDetails third_party_creative = 48 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\ThirdPartyCreativeDetails $var
+     * @return $this
+     */
+    public function setThirdPartyCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\ThirdPartyCreativeDetails::class);
+        $this->writeOneof(48, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A Creative that points to an externally hosted VAST ad and is
+     * served via VAST XML as a VAST Wrapper.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.VastRedirectCreativeDetails vast_redirect_creative = 49 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\VastRedirectCreativeDetails|null
+     */
+    public function getVastRedirectCreative()
+    {
+        return $this->readOneof(49);
+    }
+
+    public function hasVastRedirectCreative()
+    {
+        return $this->hasOneof(49);
+    }
+
+    /**
+     * Optional. A Creative that points to an externally hosted VAST ad and is
+     * served via VAST XML as a VAST Wrapper.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.VastRedirectCreativeDetails vast_redirect_creative = 49 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\VastRedirectCreativeDetails $var
+     * @return $this
+     */
+    public function setVastRedirectCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\VastRedirectCreativeDetails::class);
+        $this->writeOneof(49, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A Creative that contains Ad Manager hosted video ads and is
+     * served via VAST XML.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.VideoCreativeDetails video_creative = 51 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\VideoCreativeDetails|null
+     */
+    public function getVideoCreative()
+    {
+        return $this->readOneof(51);
+    }
+
+    public function hasVideoCreative()
+    {
+        return $this->hasOneof(51);
+    }
+
+    /**
+     * Optional. A Creative that contains Ad Manager hosted video ads and is
+     * served via VAST XML.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.VideoCreativeDetails video_creative = 51 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\VideoCreativeDetails $var
+     * @return $this
+     */
+    public function setVideoCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\VideoCreativeDetails::class);
+        $this->writeOneof(51, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A Creative that contains externally hosted video ads and is
+     * served via VAST XML.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.VideoRedirectCreativeDetails video_redirect_creative = 53 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\VideoRedirectCreativeDetails|null
+     */
+    public function getVideoRedirectCreative()
+    {
+        return $this->readOneof(53);
+    }
+
+    public function hasVideoRedirectCreative()
+    {
+        return $this->hasOneof(53);
+    }
+
+    /**
+     * Optional. A Creative that contains externally hosted video ads and is
+     * served via VAST XML.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.VideoRedirectCreativeDetails video_redirect_creative = 53 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\VideoRedirectCreativeDetails $var
+     * @return $this
+     */
+    public function setVideoRedirectCreative($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\VideoRedirectCreativeDetails::class);
+        $this->writeOneof(53, $var);
+
+        return $this;
     }
 
     /**
@@ -113,6 +1037,424 @@ class Creative extends \Google\Protobuf\Internal\Message
         $this->display_name = $var;
 
         return $this;
+    }
+
+    /**
+     * Required. The resource name of the Company, which is of type
+     * Company.Type.ADVERTISER, to which this Creative belongs. Format:
+     * "networks/{network_code}/companies/{company_id}"
+     *
+     * Generated from protobuf field <code>optional string advertiser = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getAdvertiser()
+    {
+        return isset($this->advertiser) ? $this->advertiser : '';
+    }
+
+    public function hasAdvertiser()
+    {
+        return isset($this->advertiser);
+    }
+
+    public function clearAdvertiser()
+    {
+        unset($this->advertiser);
+    }
+
+    /**
+     * Required. The resource name of the Company, which is of type
+     * Company.Type.ADVERTISER, to which this Creative belongs. Format:
+     * "networks/{network_code}/companies/{company_id}"
+     *
+     * Generated from protobuf field <code>optional string advertiser = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAdvertiser($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->advertiser = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The instant this Creative was last modified.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
+    }
+
+    /**
+     * Output only. The instant this Creative was last modified.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The values of the custom fields associated with this creative.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomFieldValue custom_field_values = 76 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Ads\AdManager\V1\CustomFieldValue>
+     */
+    public function getCustomFieldValues()
+    {
+        return $this->custom_field_values;
+    }
+
+    /**
+     * Optional. The values of the custom fields associated with this creative.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomFieldValue custom_field_values = 76 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\CustomFieldValue[] $var
+     * @return $this
+     */
+    public function setCustomFieldValues($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\AdManager\V1\CustomFieldValue::class);
+        $this->custom_field_values = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The URL of the creative for previewing the media.
+     *
+     * Generated from protobuf field <code>optional string preview_url = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getPreviewUrl()
+    {
+        return isset($this->preview_url) ? $this->preview_url : '';
+    }
+
+    public function hasPreviewUrl()
+    {
+        return isset($this->preview_url);
+    }
+
+    public function clearPreviewUrl()
+    {
+        unset($this->preview_url);
+    }
+
+    /**
+     * Output only. The URL of the creative for previewing the media.
+     *
+     * Generated from protobuf field <code>optional string preview_url = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPreviewUrl($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->preview_url = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required. Immutable. The Size of the creative.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.Size size = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Ads\AdManager\V1\Size|null
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    public function hasSize()
+    {
+        return isset($this->size);
+    }
+
+    public function clearSize()
+    {
+        unset($this->size);
+    }
+
+    /**
+     * Required. Immutable. The Size of the creative.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.Size size = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Ads\AdManager\V1\Size $var
+     * @return $this
+     */
+    public function setSize($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\Size::class);
+        $this->size = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The third party companies associated with this creative.
+     * This is distinct from any associated companies that Google may detect
+     * programmatically.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ThirdPartyDataDeclaration third_party_data_declaration = 59 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\ThirdPartyDataDeclaration|null
+     */
+    public function getThirdPartyDataDeclaration()
+    {
+        return $this->third_party_data_declaration;
+    }
+
+    public function hasThirdPartyDataDeclaration()
+    {
+        return isset($this->third_party_data_declaration);
+    }
+
+    public function clearThirdPartyDataDeclaration()
+    {
+        unset($this->third_party_data_declaration);
+    }
+
+    /**
+     * Optional. The third party companies associated with this creative.
+     * This is distinct from any associated companies that Google may detect
+     * programmatically.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ThirdPartyDataDeclaration third_party_data_declaration = 59 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\ThirdPartyDataDeclaration $var
+     * @return $this
+     */
+    public function setThirdPartyDataDeclaration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\ThirdPartyDataDeclaration::class);
+        $this->third_party_data_declaration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The status of the publisher's `ThirdPartyDataDeclaration`,
+     * when compared with the set of third party companies detected via automated
+     * scanning.
+     * For example, if automated scanning detects more companies than have been
+     * declared, this status will be
+     * [CreativeThirdPartyDataDeclarationStatus.INCOMPLETE][google.ads.admanager.v1.CreativeThirdPartyDataDeclarationStatusEnum.CreativeThirdPartyDataDeclarationStatus.INCOMPLETE].
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CreativeThirdPartyDataDeclarationStatusEnum.CreativeThirdPartyDataDeclarationStatus third_party_data_declaration_status = 60 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getThirdPartyDataDeclarationStatus()
+    {
+        return isset($this->third_party_data_declaration_status) ? $this->third_party_data_declaration_status : 0;
+    }
+
+    public function hasThirdPartyDataDeclarationStatus()
+    {
+        return isset($this->third_party_data_declaration_status);
+    }
+
+    public function clearThirdPartyDataDeclarationStatus()
+    {
+        unset($this->third_party_data_declaration_status);
+    }
+
+    /**
+     * Output only. The status of the publisher's `ThirdPartyDataDeclaration`,
+     * when compared with the set of third party companies detected via automated
+     * scanning.
+     * For example, if automated scanning detects more companies than have been
+     * declared, this status will be
+     * [CreativeThirdPartyDataDeclarationStatus.INCOMPLETE][google.ads.admanager.v1.CreativeThirdPartyDataDeclarationStatusEnum.CreativeThirdPartyDataDeclarationStatus.INCOMPLETE].
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CreativeThirdPartyDataDeclarationStatusEnum.CreativeThirdPartyDataDeclarationStatus third_party_data_declaration_status = 60 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setThirdPartyDataDeclarationStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\CreativeThirdPartyDataDeclarationStatusEnum\CreativeThirdPartyDataDeclarationStatus::class);
+        $this->third_party_data_declaration_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether this creative contains self-declared European Union
+     * political content.
+     *
+     * Generated from protobuf field <code>optional bool self_declared_european_union_political_content = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSelfDeclaredEuropeanUnionPoliticalContent()
+    {
+        return isset($this->self_declared_european_union_political_content) ? $this->self_declared_european_union_political_content : false;
+    }
+
+    public function hasSelfDeclaredEuropeanUnionPoliticalContent()
+    {
+        return isset($this->self_declared_european_union_political_content);
+    }
+
+    public function clearSelfDeclaredEuropeanUnionPoliticalContent()
+    {
+        unset($this->self_declared_european_union_political_content);
+    }
+
+    /**
+     * Optional. Whether this creative contains self-declared European Union
+     * political content.
+     *
+     * Generated from protobuf field <code>optional bool self_declared_european_union_political_content = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSelfDeclaredEuropeanUnionPoliticalContent($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->self_declared_european_union_political_content = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Non-empty default. Whether the creative has ad badging enabled.
+     * Defaults to false for VastRedirectCreative, ThirdPartyCreative,
+     * AudioRedirectCreative, ProgrammaticCreative, LegacyDfpMobileCreative,
+     * FlashOverlayCreative, GraphicalInterstitialCreative,
+     * LegacyDfpCreative, MobileAdNetworkCreative,
+     * MobileVideoInterstitialCreative, SdkMediationCreative, and
+     * FlashCreative types.
+     * Defaults to true for all other creative types.
+     *
+     * Generated from protobuf field <code>optional bool ad_badging_enabled = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @return bool
+     */
+    public function getAdBadgingEnabled()
+    {
+        return isset($this->ad_badging_enabled) ? $this->ad_badging_enabled : false;
+    }
+
+    public function hasAdBadgingEnabled()
+    {
+        return isset($this->ad_badging_enabled);
+    }
+
+    public function clearAdBadgingEnabled()
+    {
+        unset($this->ad_badging_enabled);
+    }
+
+    /**
+     * Optional. Non-empty default. Whether the creative has ad badging enabled.
+     * Defaults to false for VastRedirectCreative, ThirdPartyCreative,
+     * AudioRedirectCreative, ProgrammaticCreative, LegacyDfpMobileCreative,
+     * FlashOverlayCreative, GraphicalInterstitialCreative,
+     * LegacyDfpCreative, MobileAdNetworkCreative,
+     * MobileVideoInterstitialCreative, SdkMediationCreative, and
+     * FlashCreative types.
+     * Defaults to true for all other creative types.
+     *
+     * Generated from protobuf field <code>optional bool ad_badging_enabled = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAdBadgingEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ad_badging_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The set of labels applied directly to this creative.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel applied_labels = 56 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Ads\AdManager\V1\AppliedLabel>
+     */
+    public function getAppliedLabels()
+    {
+        return $this->applied_labels;
+    }
+
+    /**
+     * Optional. The set of labels applied directly to this creative.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel applied_labels = 56 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\AppliedLabel[] $var
+     * @return $this
+     */
+    public function setAppliedLabels($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\AdManager\V1\AppliedLabel::class);
+        $this->applied_labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The buyer placement configuration for this creative.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.BuyerPlacementConfig buyer_placement_config = 81 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\BuyerPlacementConfig|null
+     */
+    public function getBuyerPlacementConfig()
+    {
+        return $this->buyer_placement_config;
+    }
+
+    public function hasBuyerPlacementConfig()
+    {
+        return isset($this->buyer_placement_config);
+    }
+
+    public function clearBuyerPlacementConfig()
+    {
+        unset($this->buyer_placement_config);
+    }
+
+    /**
+     * Optional. The buyer placement configuration for this creative.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.BuyerPlacementConfig buyer_placement_config = 81 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\BuyerPlacementConfig $var
+     * @return $this
+     */
+    public function setBuyerPlacementConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\BuyerPlacementConfig::class);
+        $this->buyer_placement_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDetails()
+    {
+        return $this->whichOneof("details");
     }
 
 }
