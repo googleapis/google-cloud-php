@@ -22,6 +22,7 @@ use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\StreamInterface;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @group storage
@@ -540,6 +541,81 @@ class ManageObjectsTest extends StorageTestCase
         $this->assertInstanceOf(PromiseInterface::class, $promise);
         $resp = $promise->wait();
         $this->assertInstanceOf(StorageObject::class, $resp);
+    }
+
+    public function testIdempotencyTokenRetries()
+    {
+        $name = uniqid(self::TESTING_PREFIX);
+        $object = self::$bucket->upload('test data', [
+            'name' => $name
+        ]);
+
+        $uuid = Uuid::uuid4()->toString();
+
+        // First delete will succeed
+        $object->delete([
+            'restOptions' => [
+                'headers' => [
+                    'x-goog-gcs-idempotency-token' => $uuid
+                ]
+            ]
+        ]);
+
+        // Second delete uses the exact same UUID, simulating a network retry.
+        // It should NOT throw a NotFoundException because the GCS backend
+        // will recognize the token and return the cached success response.
+        $object->delete([
+            'restOptions' => [
+                'headers' => [
+                    'x-goog-gcs-idempotency-token' => $uuid
+                ]
+            ]
+        ]);
+
+        $this->assertFalse($object->exists());
+    }
+
+    public function testIdempotencyTokenUpdateRetriesWithPrecondition()
+    {
+        $name = uniqid(self::TESTING_PREFIX);
+        $object = self::$bucket->upload('test data', [
+            'name' => $name
+        ]);
+
+        $info = $object->info();
+        $metageneration = $info['metageneration'];
+
+        $uuid = Uuid::uuid4()->toString();
+
+        $metadata = [
+            'metadata' => [
+                'location' => 'test'
+            ]
+        ];
+
+        // First update will succeed and increment the metageneration
+        $object->update($metadata, [
+            'ifMetagenerationMatch' => $metageneration,
+            'restOptions' => [
+                'headers' => [
+                    'x-goog-gcs-idempotency-token' => $uuid
+                ]
+            ]
+        ]);
+
+        // Second update uses the exact same UUID, simulating a network retry.
+        // Even though the metageneration has changed, the backend recognizes
+        // the idempotency token and returns 200 OK instead of 412 Precondition Failed.
+        $object->update($metadata, [
+            'ifMetagenerationMatch' => $metageneration,
+            'restOptions' => [
+                'headers' => [
+                    'x-goog-gcs-idempotency-token' => $uuid
+                ]
+            ]
+        ]);
+
+        $this->assertEquals('test', $object->info()['metadata']['location']);
     }
 
     public function testUpdateObject()

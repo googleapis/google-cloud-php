@@ -45,7 +45,7 @@ class AdRequest extends \Google\Protobuf\Internal\Message
      * response. This value is only populated for VMAP ad requests when video
      * playlist internal redirects are enabled. For details, see [Internal
      * redirect to Google Campaign Manager
-     * 360](https://support.google.com/admanager/answer/9580500?hl=en&sjid=487826991051851731-NA).
+     * 360](https://support.google.com/admanager/answer/9580500).
      *
      * Generated from protobuf field <code>optional string effective_ad_request_url = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -71,7 +71,7 @@ class AdRequest extends \Google\Protobuf\Internal\Message
      *           response. This value is only populated for VMAP ad requests when video
      *           playlist internal redirects are enabled. For details, see [Internal
      *           redirect to Google Campaign Manager
-     *           360](https://support.google.com/admanager/answer/9580500?hl=en&sjid=487826991051851731-NA).
+     *           360](https://support.google.com/admanager/answer/9580500).
      * }
      */
     public function __construct($data = NULL) {
@@ -220,7 +220,7 @@ class AdRequest extends \Google\Protobuf\Internal\Message
      * response. This value is only populated for VMAP ad requests when video
      * playlist internal redirects are enabled. For details, see [Internal
      * redirect to Google Campaign Manager
-     * 360](https://support.google.com/admanager/answer/9580500?hl=en&sjid=487826991051851731-NA).
+     * 360](https://support.google.com/admanager/answer/9580500).
      *
      * Generated from protobuf field <code>optional string effective_ad_request_url = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -245,7 +245,7 @@ class AdRequest extends \Google\Protobuf\Internal\Message
      * response. This value is only populated for VMAP ad requests when video
      * playlist internal redirects are enabled. For details, see [Internal
      * redirect to Google Campaign Manager
-     * 360](https://support.google.com/admanager/answer/9580500?hl=en&sjid=487826991051851731-NA).
+     * 360](https://support.google.com/admanager/answer/9580500).
      *
      * Generated from protobuf field <code>optional string effective_ad_request_url = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

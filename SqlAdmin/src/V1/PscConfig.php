@@ -41,10 +41,10 @@ class PscConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The network attachment of the consumer network that the
      * Private Service Connect enabled Cloud SQL instance is
-     * authorized to connect via PSC interface.
+     * authorized to connect using the PSC interface.
      * format: projects/PROJECT/regions/REGION/networkAttachments/ID
      *
-     * Generated from protobuf field <code>string network_attachment_uri = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string network_attachment_uri = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $network_attachment_uri = '';
     /**
@@ -97,7 +97,7 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      *     @type string $network_attachment_uri
      *           Optional. The network attachment of the consumer network that the
      *           Private Service Connect enabled Cloud SQL instance is
-     *           authorized to connect via PSC interface.
+     *           authorized to connect using the PSC interface.
      *           format: projects/PROJECT/regions/REGION/networkAttachments/ID
      *     @type bool $psc_auto_dns_enabled
      *           Optional. Indicates whether Private Service Connect DNS automation is
@@ -224,10 +224,10 @@ class PscConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The network attachment of the consumer network that the
      * Private Service Connect enabled Cloud SQL instance is
-     * authorized to connect via PSC interface.
+     * authorized to connect using the PSC interface.
      * format: projects/PROJECT/regions/REGION/networkAttachments/ID
      *
-     * Generated from protobuf field <code>string network_attachment_uri = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string network_attachment_uri = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getNetworkAttachmentUri()
@@ -238,10 +238,10 @@ class PscConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The network attachment of the consumer network that the
      * Private Service Connect enabled Cloud SQL instance is
-     * authorized to connect via PSC interface.
+     * authorized to connect using the PSC interface.
      * format: projects/PROJECT/regions/REGION/networkAttachments/ID
      *
-     * Generated from protobuf field <code>string network_attachment_uri = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string network_attachment_uri = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -412,7 +412,9 @@ class LineItem extends \Google\Protobuf\Internal\Message
      *    For example a LineItem specifies 750x350, 400x200 but only a 750x350 was
      *    uploaded. Or LineItem specifies 750x350 with an expected count of 2, but
      *    only one was uploaded.
-     *  - The [Creative.applied_labels][] of an associated Creative don't match
+     *  - The
+     *  [Creative.applied_labels][google.ads.admanager.v1.Creative.applied_labels]
+     *  of an associated Creative don't match
      *    the
      *    [CreativePlaceholder.applied_labels][google.ads.admanager.v1.CreativePlaceholder.applied_labels]
      *    of the LineItem. For example LineItem specifies 750x350 with a Foo
@@ -525,8 +527,9 @@ class LineItem extends \Google\Protobuf\Internal\Message
      * [CreativePlaceholder.creative_targeting_display_name][google.ads.admanager.v1.CreativePlaceholder.creative_targeting_display_name]
      * field by referencing the [CreativeTargeting.display_name][] field. It also
      * needs to be re-specified in the
-     * [LineItemCreativeAssociation.targeting_display_name][] field when
-     * associating a line item with a creative that fits into that placeholder.
+     * [LineItemCreativeAssociation.targeting_display_name][google.ads.admanager.v1.LineItemCreativeAssociation.targeting_display_name]
+     * field when associating a line item with a creative that fits into that
+     * placeholder.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreativeTargeting creative_targetings = 94 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -753,7 +756,9 @@ class LineItem extends \Google\Protobuf\Internal\Message
      *              For example a LineItem specifies 750x350, 400x200 but only a 750x350 was
      *              uploaded. Or LineItem specifies 750x350 with an expected count of 2, but
      *              only one was uploaded.
-     *            - The [Creative.applied_labels][] of an associated Creative don't match
+     *            - The
+     *            [Creative.applied_labels][google.ads.admanager.v1.Creative.applied_labels]
+     *            of an associated Creative don't match
      *              the
      *              [CreativePlaceholder.applied_labels][google.ads.admanager.v1.CreativePlaceholder.applied_labels]
      *              of the LineItem. For example LineItem specifies 750x350 with a Foo
@@ -810,8 +815,9 @@ class LineItem extends \Google\Protobuf\Internal\Message
      *           [CreativePlaceholder.creative_targeting_display_name][google.ads.admanager.v1.CreativePlaceholder.creative_targeting_display_name]
      *           field by referencing the [CreativeTargeting.display_name][] field. It also
      *           needs to be re-specified in the
-     *           [LineItemCreativeAssociation.targeting_display_name][] field when
-     *           associating a line item with a creative that fits into that placeholder.
+     *           [LineItemCreativeAssociation.targeting_display_name][google.ads.admanager.v1.LineItemCreativeAssociation.targeting_display_name]
+     *           field when associating a line item with a creative that fits into that
+     *           placeholder.
      *     @type int[] $allowed_formats
      *           Optional. The set of allowed formats for this line item.
      *           If empty, all formats are allowed. This property only applies
@@ -2671,7 +2677,9 @@ class LineItem extends \Google\Protobuf\Internal\Message
      *    For example a LineItem specifies 750x350, 400x200 but only a 750x350 was
      *    uploaded. Or LineItem specifies 750x350 with an expected count of 2, but
      *    only one was uploaded.
-     *  - The [Creative.applied_labels][] of an associated Creative don't match
+     *  - The
+     *  [Creative.applied_labels][google.ads.admanager.v1.Creative.applied_labels]
+     *  of an associated Creative don't match
      *    the
      *    [CreativePlaceholder.applied_labels][google.ads.admanager.v1.CreativePlaceholder.applied_labels]
      *    of the LineItem. For example LineItem specifies 750x350 with a Foo
@@ -2705,7 +2713,9 @@ class LineItem extends \Google\Protobuf\Internal\Message
      *    For example a LineItem specifies 750x350, 400x200 but only a 750x350 was
      *    uploaded. Or LineItem specifies 750x350 with an expected count of 2, but
      *    only one was uploaded.
-     *  - The [Creative.applied_labels][] of an associated Creative don't match
+     *  - The
+     *  [Creative.applied_labels][google.ads.admanager.v1.Creative.applied_labels]
+     *  of an associated Creative don't match
      *    the
      *    [CreativePlaceholder.applied_labels][google.ads.admanager.v1.CreativePlaceholder.applied_labels]
      *    of the LineItem. For example LineItem specifies 750x350 with a Foo
@@ -3216,8 +3226,9 @@ class LineItem extends \Google\Protobuf\Internal\Message
      * [CreativePlaceholder.creative_targeting_display_name][google.ads.admanager.v1.CreativePlaceholder.creative_targeting_display_name]
      * field by referencing the [CreativeTargeting.display_name][] field. It also
      * needs to be re-specified in the
-     * [LineItemCreativeAssociation.targeting_display_name][] field when
-     * associating a line item with a creative that fits into that placeholder.
+     * [LineItemCreativeAssociation.targeting_display_name][google.ads.admanager.v1.LineItemCreativeAssociation.targeting_display_name]
+     * field when associating a line item with a creative that fits into that
+     * placeholder.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreativeTargeting creative_targetings = 94 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<\Google\Ads\AdManager\V1\CreativeTargeting>
@@ -3234,8 +3245,9 @@ class LineItem extends \Google\Protobuf\Internal\Message
      * [CreativePlaceholder.creative_targeting_display_name][google.ads.admanager.v1.CreativePlaceholder.creative_targeting_display_name]
      * field by referencing the [CreativeTargeting.display_name][] field. It also
      * needs to be re-specified in the
-     * [LineItemCreativeAssociation.targeting_display_name][] field when
-     * associating a line item with a creative that fits into that placeholder.
+     * [LineItemCreativeAssociation.targeting_display_name][google.ads.admanager.v1.LineItemCreativeAssociation.targeting_display_name]
+     * field when associating a line item with a creative that fits into that
+     * placeholder.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreativeTargeting creative_targetings = 94 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Ads\AdManager\V1\CreativeTargeting[] $var

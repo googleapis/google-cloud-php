@@ -36,6 +36,33 @@ class ServiceProperties extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string zone = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $zone = '';
+    /**
+     * Output only. The type of the service.
+     *
+     * Generated from protobuf field <code>.google.cloud.apphub.v1.FunctionalType functional_type = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $functional_type = null;
+    /**
+     * Output only. The registration type of the service.
+     *
+     * Generated from protobuf field <code>.google.cloud.apphub.v1.RegistrationType registration_type = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $registration_type = null;
+    /**
+     * Output only. Additional metadata specific to the resource type.
+     * The key is a string that identifies the type of metadata and the value is
+     * the metadata contents specific to that type.
+     * Key format: `apphub.googleapis.com/{metadataType}`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.apphub.v1.ExtendedMetadata> extended_metadata = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $extended_metadata;
+    /**
+     * Output only. The identity associated with the service.
+     *
+     * Generated from protobuf field <code>.google.cloud.apphub.v1.Identity identity = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $identity = null;
 
     /**
      * Constructor.
@@ -52,6 +79,17 @@ class ServiceProperties extends \Google\Protobuf\Internal\Message
      *     @type string $zone
      *           Output only. The location that the underlying resource resides in if it is
      *           zonal, for example, us-west1-a).
+     *     @type \Google\Cloud\AppHub\V1\FunctionalType $functional_type
+     *           Output only. The type of the service.
+     *     @type \Google\Cloud\AppHub\V1\RegistrationType $registration_type
+     *           Output only. The registration type of the service.
+     *     @type array|\Google\Protobuf\Internal\MapField $extended_metadata
+     *           Output only. Additional metadata specific to the resource type.
+     *           The key is a string that identifies the type of metadata and the value is
+     *           the metadata contents specific to that type.
+     *           Key format: `apphub.googleapis.com/{metadataType}`
+     *     @type \Google\Cloud\AppHub\V1\Identity $identity
+     *           Output only. The identity associated with the service.
      * }
      */
     public function __construct($data = NULL) {
@@ -139,6 +177,146 @@ class ServiceProperties extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The type of the service.
+     *
+     * Generated from protobuf field <code>.google.cloud.apphub.v1.FunctionalType functional_type = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AppHub\V1\FunctionalType|null
+     */
+    public function getFunctionalType()
+    {
+        return $this->functional_type;
+    }
+
+    public function hasFunctionalType()
+    {
+        return isset($this->functional_type);
+    }
+
+    public function clearFunctionalType()
+    {
+        unset($this->functional_type);
+    }
+
+    /**
+     * Output only. The type of the service.
+     *
+     * Generated from protobuf field <code>.google.cloud.apphub.v1.FunctionalType functional_type = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AppHub\V1\FunctionalType $var
+     * @return $this
+     */
+    public function setFunctionalType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AppHub\V1\FunctionalType::class);
+        $this->functional_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The registration type of the service.
+     *
+     * Generated from protobuf field <code>.google.cloud.apphub.v1.RegistrationType registration_type = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AppHub\V1\RegistrationType|null
+     */
+    public function getRegistrationType()
+    {
+        return $this->registration_type;
+    }
+
+    public function hasRegistrationType()
+    {
+        return isset($this->registration_type);
+    }
+
+    public function clearRegistrationType()
+    {
+        unset($this->registration_type);
+    }
+
+    /**
+     * Output only. The registration type of the service.
+     *
+     * Generated from protobuf field <code>.google.cloud.apphub.v1.RegistrationType registration_type = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AppHub\V1\RegistrationType $var
+     * @return $this
+     */
+    public function setRegistrationType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AppHub\V1\RegistrationType::class);
+        $this->registration_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Additional metadata specific to the resource type.
+     * The key is a string that identifies the type of metadata and the value is
+     * the metadata contents specific to that type.
+     * Key format: `apphub.googleapis.com/{metadataType}`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.apphub.v1.ExtendedMetadata> extended_metadata = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getExtendedMetadata()
+    {
+        return $this->extended_metadata;
+    }
+
+    /**
+     * Output only. Additional metadata specific to the resource type.
+     * The key is a string that identifies the type of metadata and the value is
+     * the metadata contents specific to that type.
+     * Key format: `apphub.googleapis.com/{metadataType}`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.apphub.v1.ExtendedMetadata> extended_metadata = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setExtendedMetadata($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AppHub\V1\ExtendedMetadata::class);
+        $this->extended_metadata = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The identity associated with the service.
+     *
+     * Generated from protobuf field <code>.google.cloud.apphub.v1.Identity identity = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AppHub\V1\Identity|null
+     */
+    public function getIdentity()
+    {
+        return $this->identity;
+    }
+
+    public function hasIdentity()
+    {
+        return isset($this->identity);
+    }
+
+    public function clearIdentity()
+    {
+        unset($this->identity);
+    }
+
+    /**
+     * Output only. The identity associated with the service.
+     *
+     * Generated from protobuf field <code>.google.cloud.apphub.v1.Identity identity = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AppHub\V1\Identity $var
+     * @return $this
+     */
+    public function setIdentity($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AppHub\V1\Identity::class);
+        $this->identity = $var;
 
         return $this;
     }

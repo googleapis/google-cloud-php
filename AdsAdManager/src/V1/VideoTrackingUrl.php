@@ -10,8 +10,8 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a
- * [ConversionEventEnum][google.ads.admanager.v1.ConversionEventEnum] to URL
- * pair that will be pinged when the event happens.
+ * [ConversionEvent][google.ads.admanager.v1.ConversionEventEnum.ConversionEvent]
+ * to URL pair that will be pinged when the event happens.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.VideoTrackingUrl</code>
  */

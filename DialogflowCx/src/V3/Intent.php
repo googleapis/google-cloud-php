@@ -91,7 +91,7 @@ class Intent extends \Google\Protobuf\Internal\Message
     private $labels;
     /**
      * Human readable description for better understanding an intent like its
-     * scope, content, result etc. Maximum character limit: 140 characters.
+     * scope, content, result etc. Maximum character limit: 1000 characters.
      *
      * Generated from protobuf field <code>string description = 8;</code>
      */
@@ -154,7 +154,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      *           head intent. "sys.contextual" means the intent is a contextual intent.
      *     @type string $description
      *           Human readable description for better understanding an intent like its
-     *           scope, content, result etc. Maximum character limit: 140 characters.
+     *           scope, content, result etc. Maximum character limit: 1000 characters.
      *     @type string $dtmf_pattern
      *           Optional. Matching DTMF pattern for the intent.
      * }
@@ -406,7 +406,7 @@ class Intent extends \Google\Protobuf\Internal\Message
 
     /**
      * Human readable description for better understanding an intent like its
-     * scope, content, result etc. Maximum character limit: 140 characters.
+     * scope, content, result etc. Maximum character limit: 1000 characters.
      *
      * Generated from protobuf field <code>string description = 8;</code>
      * @return string
@@ -418,7 +418,7 @@ class Intent extends \Google\Protobuf\Internal\Message
 
     /**
      * Human readable description for better understanding an intent like its
-     * scope, content, result etc. Maximum character limit: 140 characters.
+     * scope, content, result etc. Maximum character limit: 1000 characters.
      *
      * Generated from protobuf field <code>string description = 8;</code>
      * @param string $var

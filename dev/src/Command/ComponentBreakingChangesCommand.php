@@ -82,7 +82,14 @@ EOF)
                 InputOption::VALUE_REQUIRED,
                 'Git ref to compare to (defaults to working copy)'
             )
-            ->addOption('ga-only', null, InputOption::VALUE_NONE, 'Only check GA (>= 1.0.0) components');
+            ->addOption('ga-only', null, InputOption::VALUE_NONE, 'Only check GA (>= 1.0.0) components')
+            ->addOption(
+                'expect-breaking-changes',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Fail if no breaking changes are detected in checked components',
+                false
+            );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -127,6 +134,18 @@ EOF)
         }
 
         if (!$breaks) {
+            $expectBreakingChanges = filter_var(
+                $input->getOption('expect-breaking-changes') ?? true,
+                FILTER_VALIDATE_BOOLEAN
+            );
+            if ($expectBreakingChanges) {
+                $err->writeln(
+                    '❌ Error: You indicated breaking changes in your PR title (!:), '
+                    . 'but no backwards compatibility breaks were detected by the automated check.'
+                );
+                return Command::FAILURE;
+            }
+
             $err->writeln('No breaking changes detected.');
             return Command::SUCCESS;
         }
@@ -274,7 +293,12 @@ EOF)
         $proc->setTimeout(600);
         $proc->run();
 
-        return [0 !== $proc->getExitCode(), $proc->getOutput() . $proc->getErrorOutput()];
+        $lines = array_filter(
+            explode("\n", $proc->getOutput()),
+            fn(string $line) => str_starts_with($line, '::error')
+        );
+
+        return [0 !== $proc->getExitCode(), implode("\n", $lines) ?: trim($proc->getErrorOutput())];
     }
 
     private function commit(string $cwd, string $msg): void
