@@ -46,6 +46,14 @@ class JWK
         'Ed25519' => true, // RFC 8037
     ];
 
+    // For keys with "kty" equal to "AKP" (Algorithm Key Pair), the "alg" parameter determines the key format.
+    // This library supports the following algorithms, mapped to their OID and raw public key size in bytes:
+    private const AKP_ALGORITHMS = [
+        'ML-DSA-44' => ['2.16.840.1.101.3.4.3.17', 1312], // RFC 9964, RFC 9881
+        'ML-DSA-65' => ['2.16.840.1.101.3.4.3.18', 1952],
+        'ML-DSA-87' => ['2.16.840.1.101.3.4.3.19', 2592],
+    ];
+
     /**
      * Parse a set of JWK keys
      *
@@ -184,6 +192,22 @@ class JWK
                 // This library works internally with EdDSA keys (Ed25519) encoded in standard base64.
                 $publicKey = JWT::convertBase64urlToBase64($jwk['x']);
                 return new Key($publicKey, $jwk['alg']);
+            case 'AKP':
+                if (isset($jwk['priv'])) {
+                    // The key is actually a private key
+                    throw new UnexpectedValueException('Key data must be for a public key');
+                }
+
+                if (!isset(self::AKP_ALGORITHMS[$jwk['alg']])) {
+                    throw new DomainException('Unrecognised or unsupported AKP algorithm');
+                }
+
+                if (empty($jwk['pub'])) {
+                    throw new UnexpectedValueException('pub not set');
+                }
+
+                $publicKey = self::createPemFromAlgAndPub($jwk['alg'], $jwk['pub']);
+                return new Key($publicKey, $jwk['alg']);
             case 'oct':
                 if (!isset($jwk['k'])) {
                     throw new UnexpectedValueException('k not set');
@@ -227,6 +251,44 @@ class JWK
                     \chr(0x00) . \chr(0x04)
                     . JWT::urlsafeB64Decode($x)
                     . JWT::urlsafeB64Decode($y)
+                )
+            );
+
+        return \sprintf(
+            "-----BEGIN PUBLIC KEY-----\n%s\n-----END PUBLIC KEY-----\n",
+            wordwrap(base64_encode($pem), 64, "\n", true)
+        );
+    }
+
+    /**
+     * Converts the AKP JWK values to pem format.
+     *
+     * @param   string  $alg The AKP algorithm (only ML-DSA-44, ML-DSA-65 & ML-DSA-87 are supported)
+     * @param   string  $pub The base64url encoded public key
+     *
+     * @return  string
+     */
+    private static function createPemFromAlgAndPub(string $alg, string $pub): string
+    {
+        list($oid, $length) = self::AKP_ALGORITHMS[$alg];
+        $publicKey = JWT::urlsafeB64Decode($pub);
+        if (\strlen($publicKey) !== $length) {
+            throw new UnexpectedValueException('Invalid public key length for ' . $alg);
+        }
+
+        $pem =
+            self::encodeDER(
+                self::ASN1_SEQUENCE,
+                self::encodeDER(
+                    self::ASN1_SEQUENCE,
+                    self::encodeDER(
+                        self::ASN1_OBJECT_IDENTIFIER,
+                        self::encodeOID($oid)
+                    )
+                ) .
+                self::encodeDER(
+                    self::ASN1_BIT_STRING,
+                    \chr(0x00) . $publicKey
                 )
             );
 
@@ -329,7 +391,7 @@ class JWK
         $der = \chr($tag_header | $type);
 
         // Length
-        $der .= \chr(\strlen($value));
+        $der .= self::encodeLength(\strlen($value));
 
         return $der . $value;
     }
