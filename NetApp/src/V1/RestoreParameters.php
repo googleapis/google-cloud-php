@@ -30,7 +30,7 @@ class RestoreParameters extends \Google\Protobuf\Internal\Message
      *     @type string $source_backup
      *           Full name of the backup resource.
      *           Format for standard backup:
-     *           projects/{project}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}
+     *           projects/{project}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}.
      *           Format for BackupDR backup:
      *           projects/{project}/locations/{location}/backupVaults/{backup_vault}/dataSources/{data_source}/backups/{backup}
      * }
@@ -78,7 +78,7 @@ class RestoreParameters extends \Google\Protobuf\Internal\Message
     /**
      * Full name of the backup resource.
      * Format for standard backup:
-     * projects/{project}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}
+     * projects/{project}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}.
      * Format for BackupDR backup:
      * projects/{project}/locations/{location}/backupVaults/{backup_vault}/dataSources/{data_source}/backups/{backup}
      *
@@ -98,7 +98,7 @@ class RestoreParameters extends \Google\Protobuf\Internal\Message
     /**
      * Full name of the backup resource.
      * Format for standard backup:
-     * projects/{project}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}
+     * projects/{project}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}.
      * Format for BackupDR backup:
      * projects/{project}/locations/{location}/backupVaults/{backup_vault}/dataSources/{data_source}/backups/{backup}
      *

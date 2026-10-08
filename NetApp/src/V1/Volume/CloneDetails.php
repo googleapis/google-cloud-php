@@ -38,6 +38,12 @@ class CloneDetails extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 shared_space_gib = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $shared_space_gib = 0;
+    /**
+     * Output only. The current state of the clone split operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.SplitState split_state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $split_state = 0;
 
     /**
      * Constructor.
@@ -56,6 +62,8 @@ class CloneDetails extends \Google\Protobuf\Internal\Message
      *     @type int|string $shared_space_gib
      *           Output only. Shared space in GiB. Determined at volume creation time
      *           based on size of source snapshot.
+     *     @type int $split_state
+     *           Output only. The current state of the clone split operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -147,6 +155,32 @@ class CloneDetails extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->shared_space_gib = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The current state of the clone split operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.SplitState split_state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getSplitState()
+    {
+        return $this->split_state;
+    }
+
+    /**
+     * Output only. The current state of the clone split operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.SplitState split_state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSplitState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetApp\V1\SplitState::class);
+        $this->split_state = $var;
 
         return $this;
     }

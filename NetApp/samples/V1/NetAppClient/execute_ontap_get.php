@@ -29,7 +29,7 @@ use Google\Cloud\NetApp\V1\ExecuteOntapGetRequest;
 use Google\Cloud\NetApp\V1\ExecuteOntapGetResponse;
 
 /**
- * `ExecuteOntapGet` dispatches the ONTAP `GET` request to the
+ * `ExecuteOntapGet` sends the ONTAP `GET` request to the
  * `StoragePool` cluster.
  *
  * @param string $ontapPath The resource path of the ONTAP resource.

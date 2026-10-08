@@ -25,7 +25,10 @@ class TableResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Bigtable\V2\SessionReadRowResponse $read_row
      *     @type \Google\Cloud\Bigtable\V2\SessionMutateRowResponse $mutate_row
+     *     @type \Google\Cloud\Bigtable\V2\SessionReadRowsResponse $read_rows
      *     @type \Google\Cloud\Bigtable\V2\SessionCheckAndMutateRowResponse $check_and_mutate_row
+     *     @type \Google\Cloud\Bigtable\V2\SessionReadModifyWriteRowResponse $read_modify_write_row
+     *     @type \Google\Cloud\Bigtable\V2\SessionMutateRowsResponse $mutate_rows
      * }
      */
     public function __construct($data = NULL) {
@@ -88,6 +91,33 @@ class TableResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>.google.bigtable.v2.SessionReadRowsResponse read_rows = 3;</code>
+     * @return \Google\Cloud\Bigtable\V2\SessionReadRowsResponse|null
+     */
+    public function getReadRows()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasReadRows()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.bigtable.v2.SessionReadRowsResponse read_rows = 3;</code>
+     * @param \Google\Cloud\Bigtable\V2\SessionReadRowsResponse $var
+     * @return $this
+     */
+    public function setReadRows($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\SessionReadRowsResponse::class);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
      * Generated from protobuf field <code>.google.bigtable.v2.SessionCheckAndMutateRowResponse check_and_mutate_row = 4;</code>
      * @return \Google\Cloud\Bigtable\V2\SessionCheckAndMutateRowResponse|null
      */
@@ -110,6 +140,60 @@ class TableResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\SessionCheckAndMutateRowResponse::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.bigtable.v2.SessionReadModifyWriteRowResponse read_modify_write_row = 5;</code>
+     * @return \Google\Cloud\Bigtable\V2\SessionReadModifyWriteRowResponse|null
+     */
+    public function getReadModifyWriteRow()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasReadModifyWriteRow()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.bigtable.v2.SessionReadModifyWriteRowResponse read_modify_write_row = 5;</code>
+     * @param \Google\Cloud\Bigtable\V2\SessionReadModifyWriteRowResponse $var
+     * @return $this
+     */
+    public function setReadModifyWriteRow($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\SessionReadModifyWriteRowResponse::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.bigtable.v2.SessionMutateRowsResponse mutate_rows = 6;</code>
+     * @return \Google\Cloud\Bigtable\V2\SessionMutateRowsResponse|null
+     */
+    public function getMutateRows()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasMutateRows()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.bigtable.v2.SessionMutateRowsResponse mutate_rows = 6;</code>
+     * @param \Google\Cloud\Bigtable\V2\SessionMutateRowsResponse $var
+     * @return $this
+     */
+    public function setMutateRows($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\SessionMutateRowsResponse::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

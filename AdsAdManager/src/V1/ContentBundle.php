@@ -39,7 +39,8 @@ class ContentBundle extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The ContentBundleStatus of the
      * [ContentBundle][google.ads.admanager.v1.ContentBundle]. This attribute is
-     * read-only and defaults to [ContentBundleStatus.INACTIVE][].
+     * read-only and defaults to
+     * [ContentBundleStatusEnum.ContentBundleStatus.INACTIVE][google.ads.admanager.v1.ContentBundleStatusEnum.ContentBundleStatus.INACTIVE].
      *
      * Generated from protobuf field <code>.google.ads.admanager.v1.ContentBundleStatusEnum.ContentBundleStatus status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -68,7 +69,8 @@ class ContentBundle extends \Google\Protobuf\Internal\Message
      *     @type int $status
      *           Output only. The ContentBundleStatus of the
      *           [ContentBundle][google.ads.admanager.v1.ContentBundle]. This attribute is
-     *           read-only and defaults to [ContentBundleStatus.INACTIVE][].
+     *           read-only and defaults to
+     *           [ContentBundleStatusEnum.ContentBundleStatus.INACTIVE][google.ads.admanager.v1.ContentBundleStatusEnum.ContentBundleStatus.INACTIVE].
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time the `ContentBundle` was last modified.
      * }
@@ -141,7 +143,8 @@ class ContentBundle extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The ContentBundleStatus of the
      * [ContentBundle][google.ads.admanager.v1.ContentBundle]. This attribute is
-     * read-only and defaults to [ContentBundleStatus.INACTIVE][].
+     * read-only and defaults to
+     * [ContentBundleStatusEnum.ContentBundleStatus.INACTIVE][google.ads.admanager.v1.ContentBundleStatusEnum.ContentBundleStatus.INACTIVE].
      *
      * Generated from protobuf field <code>.google.ads.admanager.v1.ContentBundleStatusEnum.ContentBundleStatus status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -154,7 +157,8 @@ class ContentBundle extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The ContentBundleStatus of the
      * [ContentBundle][google.ads.admanager.v1.ContentBundle]. This attribute is
-     * read-only and defaults to [ContentBundleStatus.INACTIVE][].
+     * read-only and defaults to
+     * [ContentBundleStatusEnum.ContentBundleStatus.INACTIVE][google.ads.admanager.v1.ContentBundleStatusEnum.ContentBundleStatus.INACTIVE].
      *
      * Generated from protobuf field <code>.google.ads.admanager.v1.ContentBundleStatusEnum.ContentBundleStatus status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var

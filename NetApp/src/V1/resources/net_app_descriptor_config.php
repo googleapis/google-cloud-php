@@ -517,6 +517,25 @@ return [
                     ],
                 ],
             ],
+            'RestoreVolume' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetApp\V1\RestoreVolumeResponse',
+                    'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ResumeReplication' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\NetApp\V1\Replication',
@@ -556,6 +575,25 @@ return [
                 ],
             ],
             'RevertVolume' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetApp\V1\Volume',
+                    'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'StartSplit' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\NetApp\V1\Volume',
                     'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
@@ -666,6 +704,25 @@ return [
                         'keyName' => 'backup.name',
                         'fieldAccessors' => [
                             'getBackup',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateBackupConfig' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetApp\V1\UpdateBackupConfigResponse',
+                    'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
                             'getName',
                         ],
                     ],
@@ -1026,6 +1083,18 @@ return [
                     ],
                 ],
             ],
+            'GetSplitStatus' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetApp\V1\SplitStatus',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetStoragePool' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\NetApp\V1\StoragePool',
@@ -1061,6 +1130,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\NetApp\V1\ListActiveDirectoriesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackupConfigs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getVolumeBackupConfigs',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetApp\V1\ListBackupConfigsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -1321,6 +1410,7 @@ return [
                 'backup' => 'projects/{project}/locations/{location}/backupVaults/{backup_vault}/backups/{backup}',
                 'backupPolicy' => 'projects/{project}/locations/{location}/backupPolicies/{backup_policy}',
                 'backupVault' => 'projects/{project}/locations/{location}/backupVaults/{backup_vault}',
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'hostGroup' => 'projects/{project}/locations/{location}/hostGroups/{host_group}',
                 'kmsConfig' => 'projects/{project}/locations/{location}/kmsConfigs/{kms_config}',
                 'location' => 'projects/{project}/locations/{location}',
