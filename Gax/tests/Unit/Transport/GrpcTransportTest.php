@@ -33,8 +33,11 @@
 namespace Google\ApiCore\Tests\Unit\Transport;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\ApiStatus;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\Middleware\RetryMiddleware;
+use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Testing\MockGrpcTransport;
 use Google\ApiCore\Testing\MockRequest;
 use Google\ApiCore\Telemetry\SpanAttributes;
@@ -46,6 +49,7 @@ use Google\Protobuf\Internal\GPBType;
 use Google\Protobuf\Internal\Message;
 use Google\Protobuf\RepeatedField;
 use Google\Rpc\Code;
+use Google\Rpc\ErrorInfo;
 use Google\Rpc\Status;
 use Grpc\BaseStub;
 use Grpc\CallInvoker;
@@ -61,11 +65,17 @@ use OpenTelemetry\API\Trace\SpanKind;
 use OpenTelemetry\API\Trace\StatusCode;
 use OpenTelemetry\API\Trace\TracerInterface;
 use OpenTelemetry\API\Trace\TracerProviderInterface;
+use OpenTelemetry\SDK\Resource\ResourceInfoFactory;
+use OpenTelemetry\SDK\Trace\SpanDataInterface;
+use OpenTelemetry\SDK\Trace\SpanExporter\InMemoryExporter;
+use OpenTelemetry\SDK\Trace\SpanProcessor\SimpleSpanProcessor;
+use OpenTelemetry\SDK\Trace\TracerProvider;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Log\LoggerInterface;
 use ReflectionClass;
+use RuntimeException;
 use stdClass;
 use TypeError;
 
@@ -921,6 +931,373 @@ class GrpcTransportTest extends TestCase
         $this->assertSame(443, $portProp->getValue($transport));
     }
 
+    public function testStartUnaryCallDoesNotEmitSpanWhenTracingDisabled(): void
+    {
+        $exporter = new InMemoryExporter();
+        $tracerProvider = new TracerProvider(
+            new SimpleSpanProcessor($exporter),
+            null,
+            ResourceInfoFactory::emptyResource()
+        );
+
+        $response = new Status(['code' => Code::OK]);
+        $status = new stdClass();
+        $status->code = Code::OK;
+
+        $unaryCall = $this->prophesize(UnaryCall::class);
+        $unaryCall->wait()->shouldBeCalledOnce()->willReturn([$response, $status]);
+
+        $transport = $this->createTracedGrpcTransport([$unaryCall->reveal()]);
+
+        $appSpan = $tracerProvider->getTracer('test-app')->spanBuilder('app-operation')->startSpan();
+        $appScope = $appSpan->activate();
+
+        try {
+            $call = new Call(
+                'google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion',
+                Status::class,
+                new MockRequest()
+            );
+            $result = $transport->startUnaryCall($call, [])->wait();
+            $this->assertSame($response, $result);
+        } finally {
+            $appScope->detach();
+            $appSpan->end();
+            $tracerProvider->shutdown();
+        }
+
+        $spans = $exporter->getSpans();
+        $this->assertCount(1, $spans);
+        $this->assertSame('app-operation', $spans[0]->getName());
+    }
+
+    public function testStartUnaryCallRecordsParentSpanAndServerAttributes(): void
+    {
+        $exporter = new InMemoryExporter();
+        $tracerProvider = new TracerProvider(
+            new SimpleSpanProcessor($exporter),
+            null,
+            ResourceInfoFactory::emptyResource()
+        );
+        $method = 'google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion';
+
+        $response = new Status(['code' => Code::OK]);
+        $status = new stdClass();
+        $status->code = Code::OK;
+
+        $unaryCall = $this->prophesize(UnaryCall::class);
+        $unaryCall->wait()->shouldBeCalledOnce()->willReturn([$response, $status]);
+
+        $transport = $this->createTracedGrpcTransport([$unaryCall->reveal()], [
+            'openTelemetryTracerProvider' => $tracerProvider,
+            'clientVersion' => '1.2.3',
+        ]);
+
+        $appSpan = $tracerProvider->getTracer('test-app')->spanBuilder('app-operation')->startSpan();
+        $appScope = $appSpan->activate();
+
+        try {
+            $call = new Call($method, Status::class, new MockRequest());
+            $result = $transport->startUnaryCall($call, [])->wait();
+            $this->assertSame($response, $result);
+        } finally {
+            $appScope->detach();
+            $appSpan->end();
+            $tracerProvider->shutdown();
+        }
+
+        /** @var SpanDataInterface[] $spans */
+        $spans = $exporter->getSpans();
+        $this->assertCount(2, $spans);
+
+        $transportSpan = $spans[0];
+        $exportedAppSpan = $spans[1];
+
+        $this->assertSame($exportedAppSpan->getSpanId(), $transportSpan->getParentSpanId());
+        $this->assertSame($exportedAppSpan->getTraceId(), $transportSpan->getTraceId());
+        $this->assertSame(SpanKind::KIND_CLIENT, $transportSpan->getKind());
+        $this->assertSame($method, $transportSpan->getName());
+        $this->assertSame(StatusCode::STATUS_OK, $transportSpan->getStatus()->getCode());
+        $this->assertSame('google-cloud-php', $transportSpan->getInstrumentationScope()->getName());
+        $this->assertSame('1.2.3', $transportSpan->getInstrumentationScope()->getVersion());
+
+        $attributes = $transportSpan->getAttributes()->toArray();
+        $this->assertSame('grpc', $attributes[SpanAttributes::RPC_SYSTEM_NAME]);
+        $this->assertSame($method, $attributes[SpanAttributes::RPC_METHOD]);
+        $this->assertSame('OK', $attributes[SpanAttributes::RPC_RESPONSE_STATUS_CODE]);
+        $this->assertSame('secretmanager.googleapis.com', $attributes[SpanAttributes::SERVER_ADDRESS]);
+        $this->assertSame(443, $attributes[SpanAttributes::SERVER_PORT]);
+        $this->assertArrayNotHasKey(SpanAttributes::STATUS_MESSAGE, $attributes);
+        $this->assertArrayNotHasKey(SpanAttributes::ERROR_TYPE, $attributes);
+        $this->assertArrayNotHasKey(SpanAttributes::EXCEPTION_TYPE, $attributes);
+    }
+
+    public function testStartUnaryCallRecordsErrorInfoReasonAndServerFailureAttributes(): void
+    {
+        $exporter = new InMemoryExporter();
+        $tracerProvider = new TracerProvider(
+            new SimpleSpanProcessor($exporter),
+            null,
+            ResourceInfoFactory::emptyResource()
+        );
+        $method = 'google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion';
+
+        $statusWithoutErrorInfo = new stdClass();
+        $statusWithoutErrorInfo->code = Code::UNAVAILABLE;
+        $statusWithoutErrorInfo->details = 'Service unavailable';
+
+        $errorInfo = new ErrorInfo([
+            'reason' => 'IAM_PERMISSION_DENIED',
+            'domain' => 'googleapis.com',
+        ]);
+        $statusWithErrorInfo = new stdClass();
+        $statusWithErrorInfo->code = Code::PERMISSION_DENIED;
+        $statusWithErrorInfo->details = 'Permission denied on resource';
+        $statusWithErrorInfo->metadata = [
+            'google.rpc.errorinfo-bin' => [$errorInfo->serializeToString()],
+        ];
+
+        $unaryCall1 = $this->prophesize(UnaryCall::class);
+        $unaryCall1->wait()->shouldBeCalledOnce()->willReturn([null, $statusWithoutErrorInfo]);
+
+        $unaryCall2 = $this->prophesize(UnaryCall::class);
+        $unaryCall2->wait()->shouldBeCalledOnce()->willReturn([null, $statusWithErrorInfo]);
+
+        $transport = $this->createTracedGrpcTransport(
+            [$unaryCall1->reveal(), $unaryCall2->reveal()],
+            ['openTelemetryTracerProvider' => $tracerProvider]
+        );
+
+        $appSpan = $tracerProvider->getTracer('test-app')->spanBuilder('app-operation')->startSpan();
+        $appScope = $appSpan->activate();
+
+        try {
+            $call = new Call($method, Status::class, new MockRequest());
+
+            try {
+                $transport->startUnaryCall($call, [])->wait();
+                $this->fail('Expected ApiException for call 1');
+            } catch (ApiException $e) {
+                $this->assertSame('UNAVAILABLE', $e->getStatus());
+            }
+
+            try {
+                $transport->startUnaryCall($call, [])->wait();
+                $this->fail('Expected ApiException for call 2');
+            } catch (ApiException $e) {
+                $this->assertSame('PERMISSION_DENIED', $e->getStatus());
+                $this->assertSame('IAM_PERMISSION_DENIED', $e->getReason());
+            }
+        } finally {
+            $appScope->detach();
+            $appSpan->end();
+            $tracerProvider->shutdown();
+        }
+
+        /** @var SpanDataInterface[] $spans */
+        $spans = $exporter->getSpans();
+        $this->assertCount(3, $spans);
+
+        $span1 = $spans[0];
+        $span2 = $spans[1];
+        $exportedAppSpan = $spans[2];
+
+        $this->assertSame($exportedAppSpan->getSpanId(), $span1->getParentSpanId());
+        $this->assertSame(SpanKind::KIND_CLIENT, $span1->getKind());
+        $this->assertSame($method, $span1->getName());
+        $this->assertSame(StatusCode::STATUS_ERROR, $span1->getStatus()->getCode());
+        $this->assertSame('Service unavailable', $span1->getStatus()->getDescription());
+        $attrs1 = $span1->getAttributes()->toArray();
+        $this->assertSame('grpc', $attrs1[SpanAttributes::RPC_SYSTEM_NAME]);
+        $this->assertSame($method, $attrs1[SpanAttributes::RPC_METHOD]);
+        $this->assertSame('UNAVAILABLE', $attrs1[SpanAttributes::RPC_RESPONSE_STATUS_CODE]);
+        $this->assertSame('UNAVAILABLE', $attrs1[SpanAttributes::ERROR_TYPE]);
+        $this->assertSame('Service unavailable', $attrs1[SpanAttributes::STATUS_MESSAGE]);
+        $this->assertSame(ApiException::class, $attrs1[SpanAttributes::EXCEPTION_TYPE]);
+        $this->assertSame('secretmanager.googleapis.com', $attrs1[SpanAttributes::SERVER_ADDRESS]);
+        $this->assertSame(443, $attrs1[SpanAttributes::SERVER_PORT]);
+
+        $this->assertSame($exportedAppSpan->getSpanId(), $span2->getParentSpanId());
+        $this->assertSame(SpanKind::KIND_CLIENT, $span2->getKind());
+        $this->assertSame(StatusCode::STATUS_ERROR, $span2->getStatus()->getCode());
+        $this->assertSame('Permission denied on resource', $span2->getStatus()->getDescription());
+        $attrs2 = $span2->getAttributes()->toArray();
+        $this->assertSame('PERMISSION_DENIED', $attrs2[SpanAttributes::RPC_RESPONSE_STATUS_CODE]);
+        $this->assertSame('IAM_PERMISSION_DENIED', $attrs2[SpanAttributes::ERROR_TYPE]);
+        $this->assertSame('Permission denied on resource', $attrs2[SpanAttributes::STATUS_MESSAGE]);
+        $this->assertSame(ApiException::class, $attrs2[SpanAttributes::EXCEPTION_TYPE]);
+    }
+
+    public function testStartUnaryCallRecordsClientFailureAndCancellationOnSpan(): void
+    {
+        $exporter = new InMemoryExporter();
+        $tracerProvider = new TracerProvider(
+            new SimpleSpanProcessor($exporter),
+            null,
+            ResourceInfoFactory::emptyResource()
+        );
+        $method = 'google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion';
+
+        $unaryCallForCancel = $this->prophesize(UnaryCall::class);
+        $unaryCallForCancel->cancel()->shouldBeCalledOnce();
+
+        $callCount = 0;
+        $transport = new class(
+            'secretmanager.googleapis.com:443',
+            function () use (&$callCount, $unaryCallForCancel) {
+                $callCount++;
+                if ($callCount === 1) {
+                    throw new RuntimeException('Client deadline exceeded before sending request');
+                }
+                return $unaryCallForCancel->reveal();
+            }
+        ) extends GrpcTransport {
+            /** @var callable */
+            private $factory;
+
+            public function __construct(string $hostname, callable $factory)
+            {
+                $this->factory = $factory;
+                parent::__construct($hostname, ['credentials' => ChannelCredentials::createSsl()]);
+            }
+
+            // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
+            protected function _simpleRequest(
+                $method,
+                $arguments,
+                $deserialize,
+                array $metadata = [],
+                array $options = []
+            ) {
+                return ($this->factory)();
+            }
+        };
+        $this->setTelemetryOptions(
+            $transport,
+            ['openTelemetryTracerProvider' => $tracerProvider],
+            'secretmanager.googleapis.com:443'
+        );
+
+        $appSpan = $tracerProvider->getTracer('test-app')->spanBuilder('app-operation')->startSpan();
+        $appScope = $appSpan->activate();
+
+        try {
+            $call = new Call($method, Status::class, new MockRequest());
+
+            try {
+                $transport->startUnaryCall($call, []);
+                $this->fail('Expected RuntimeException');
+            } catch (RuntimeException $e) {
+                $this->assertSame('Client deadline exceeded before sending request', $e->getMessage());
+            }
+
+            $promise = $transport->startUnaryCall($call, []);
+            $promise->cancel();
+        } finally {
+            $appScope->detach();
+            $appSpan->end();
+            $tracerProvider->shutdown();
+        }
+
+        /** @var SpanDataInterface[] $spans */
+        $spans = $exporter->getSpans();
+        $this->assertCount(3, $spans);
+
+        $exceptionSpan = $spans[0];
+        $cancelledSpan = $spans[1];
+        $exportedAppSpan = $spans[2];
+
+        $this->assertSame($exportedAppSpan->getSpanId(), $exceptionSpan->getParentSpanId());
+        $this->assertSame(SpanKind::KIND_CLIENT, $exceptionSpan->getKind());
+        $this->assertSame($method, $exceptionSpan->getName());
+        $this->assertSame(StatusCode::STATUS_ERROR, $exceptionSpan->getStatus()->getCode());
+        $attrs1 = $exceptionSpan->getAttributes()->toArray();
+        $this->assertSame(RuntimeException::class, $attrs1[SpanAttributes::ERROR_TYPE]);
+        $this->assertSame(RuntimeException::class, $attrs1[SpanAttributes::EXCEPTION_TYPE]);
+        $this->assertSame('Client deadline exceeded before sending request', $attrs1[SpanAttributes::STATUS_MESSAGE]);
+        $this->assertArrayNotHasKey(SpanAttributes::RPC_RESPONSE_STATUS_CODE, $attrs1);
+
+        $this->assertSame($exportedAppSpan->getSpanId(), $cancelledSpan->getParentSpanId());
+        $this->assertSame(SpanKind::KIND_CLIENT, $cancelledSpan->getKind());
+        $this->assertSame(StatusCode::STATUS_ERROR, $cancelledSpan->getStatus()->getCode());
+        $attrs2 = $cancelledSpan->getAttributes()->toArray();
+        $this->assertSame('CANCELLED', $attrs2[SpanAttributes::ERROR_TYPE]);
+        $this->assertArrayNotHasKey(SpanAttributes::RPC_RESPONSE_STATUS_CODE, $attrs2);
+    }
+
+    public function testStartUnaryCallWithRetryMiddlewareEmitsSpanPerAttempt(): void
+    {
+        $exporter = new InMemoryExporter();
+        $tracerProvider = new TracerProvider(
+            new SimpleSpanProcessor($exporter),
+            null,
+            ResourceInfoFactory::emptyResource()
+        );
+        $method = 'google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion';
+
+        $failStatus = new stdClass();
+        $failStatus->code = Code::UNAVAILABLE;
+        $failStatus->details = 'Temporary backend error';
+
+        $okResponse = new Status(['code' => Code::OK]);
+        $okStatus = new stdClass();
+        $okStatus->code = Code::OK;
+
+        $unaryCall1 = $this->prophesize(UnaryCall::class);
+        $unaryCall1->wait()->shouldBeCalledOnce()->willReturn([null, $failStatus]);
+
+        $unaryCall2 = $this->prophesize(UnaryCall::class);
+        $unaryCall2->wait()->shouldBeCalledOnce()->willReturn([$okResponse, $okStatus]);
+
+        $transport = $this->createTracedGrpcTransport(
+            [$unaryCall1->reveal(), $unaryCall2->reveal()],
+            ['openTelemetryTracerProvider' => $tracerProvider]
+        );
+
+        $retrySettings = RetrySettings::constructDefault()
+            ->with([
+                'retriesEnabled' => true,
+                'retryableCodes' => [ApiStatus::UNAVAILABLE],
+                'initialRetryDelayMillis' => 1,
+                'maxRetryDelayMillis' => 5,
+            ]);
+
+        $retryMiddleware = new RetryMiddleware([$transport, 'startUnaryCall'], $retrySettings);
+
+        $appSpan = $tracerProvider->getTracer('test-app')->spanBuilder('app-operation')->startSpan();
+        $appScope = $appSpan->activate();
+
+        try {
+            $call = new Call($method, Status::class, new MockRequest());
+            $result = $retryMiddleware($call, [])->wait();
+            $this->assertSame($okResponse, $result);
+        } finally {
+            $appScope->detach();
+            $appSpan->end();
+            $tracerProvider->shutdown();
+        }
+
+        /** @var SpanDataInterface[] $spans */
+        $spans = $exporter->getSpans();
+        $this->assertCount(3, $spans);
+
+        $attempt1 = $spans[0];
+        $attempt2 = $spans[1];
+        $exportedAppSpan = $spans[2];
+
+        $this->assertSame($exportedAppSpan->getSpanId(), $attempt1->getParentSpanId());
+        $this->assertSame(SpanKind::KIND_CLIENT, $attempt1->getKind());
+        $this->assertSame(StatusCode::STATUS_ERROR, $attempt1->getStatus()->getCode());
+        $this->assertSame('UNAVAILABLE', $attempt1->getAttributes()->get(SpanAttributes::RPC_RESPONSE_STATUS_CODE));
+        $this->assertSame('UNAVAILABLE', $attempt1->getAttributes()->get(SpanAttributes::ERROR_TYPE));
+
+        $this->assertSame($exportedAppSpan->getSpanId(), $attempt2->getParentSpanId());
+        $this->assertSame(SpanKind::KIND_CLIENT, $attempt2->getKind());
+        $this->assertSame(StatusCode::STATUS_OK, $attempt2->getStatus()->getCode());
+        $this->assertSame('OK', $attempt2->getAttributes()->get(SpanAttributes::RPC_RESPONSE_STATUS_CODE));
+        $this->assertNull($attempt2->getAttributes()->get(SpanAttributes::ERROR_TYPE));
+    }
+
     public function testConstructAndSetTelemetryOptionsIgnoreInvalidHostname(): void
     {
         $transport = new GrpcTransport('dns:///localhost:7469', [
@@ -947,5 +1324,42 @@ class GrpcTransportTest extends TestCase
         (new ReflectionClass(GrpcTransport::class))
             ->getMethod('setTelemetryOptions')
             ->invoke($transport, $options, $apiEndpoint);
+    }
+
+    /**
+     * @param UnaryCall[] $unaryCalls
+     * @param array<string, mixed> $telemetryOptions
+     */
+    private function createTracedGrpcTransport(array $unaryCalls, array $telemetryOptions = []): GrpcTransport
+    {
+        $transport = new class(
+            'secretmanager.googleapis.com:443',
+            $unaryCalls
+        ) extends GrpcTransport {
+            /** @var UnaryCall[] */
+            private array $unaryCalls;
+
+            /**
+             * @param UnaryCall[] $unaryCalls
+             */
+            public function __construct(string $hostname, array $unaryCalls)
+            {
+                $this->unaryCalls = $unaryCalls;
+                parent::__construct($hostname, ['credentials' => ChannelCredentials::createSsl()]);
+            }
+
+            // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
+            protected function _simpleRequest(
+                $method,
+                $arguments,
+                $deserialize,
+                array $metadata = [],
+                array $options = []
+            ) {
+                return array_shift($this->unaryCalls);
+            }
+        };
+        $this->setTelemetryOptions($transport, $telemetryOptions, 'secretmanager.googleapis.com:443');
+        return $transport;
     }
 }
