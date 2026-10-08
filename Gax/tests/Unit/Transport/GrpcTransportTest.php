@@ -1150,17 +1150,15 @@ class GrpcTransportTest extends TestCase
                     throw new RuntimeException('Client deadline exceeded before sending request');
                 }
                 return $unaryCallForCancel->reveal();
-            },
-            ['openTelemetryTracerProvider' => $tracerProvider]
+            }
         ) extends GrpcTransport {
             /** @var callable */
             private $factory;
 
-            public function __construct(string $hostname, callable $factory, array $telemetryOptions)
+            public function __construct(string $hostname, callable $factory)
             {
                 $this->factory = $factory;
                 parent::__construct($hostname, ['credentials' => ChannelCredentials::createSsl()]);
-                $this->setTelemetryOptions($telemetryOptions);
             }
 
             // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
@@ -1174,6 +1172,11 @@ class GrpcTransportTest extends TestCase
                 return ($this->factory)();
             }
         };
+        $this->setTelemetryOptions(
+            $transport,
+            ['openTelemetryTracerProvider' => $tracerProvider],
+            'secretmanager.googleapis.com:443'
+        );
 
         $appSpan = $tracerProvider->getTracer('test-app')->spanBuilder('app-operation')->startSpan();
         $appScope = $appSpan->activate();
@@ -1329,23 +1332,20 @@ class GrpcTransportTest extends TestCase
      */
     private function createTracedGrpcTransport(array $unaryCalls, array $telemetryOptions = []): GrpcTransport
     {
-        return new class(
+        $transport = new class(
             'secretmanager.googleapis.com:443',
-            $unaryCalls,
-            $telemetryOptions
+            $unaryCalls
         ) extends GrpcTransport {
             /** @var UnaryCall[] */
             private array $unaryCalls;
 
             /**
              * @param UnaryCall[] $unaryCalls
-             * @param array<string, mixed> $telemetryOptions
              */
-            public function __construct(string $hostname, array $unaryCalls, array $telemetryOptions)
+            public function __construct(string $hostname, array $unaryCalls)
             {
                 $this->unaryCalls = $unaryCalls;
                 parent::__construct($hostname, ['credentials' => ChannelCredentials::createSsl()]);
-                $this->setTelemetryOptions($telemetryOptions);
             }
 
             // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
@@ -1359,5 +1359,7 @@ class GrpcTransportTest extends TestCase
                 return array_shift($this->unaryCalls);
             }
         };
+        $this->setTelemetryOptions($transport, $telemetryOptions, 'secretmanager.googleapis.com:443');
+        return $transport;
     }
 }

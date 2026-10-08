@@ -67,6 +67,7 @@ use OpenTelemetry\SDK\Trace\SpanProcessor\SimpleSpanProcessor;
 use OpenTelemetry\SDK\Trace\TracerProvider;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
+use ReflectionClass;
 use RuntimeException;
 use stdClass;
 
@@ -1164,23 +1165,20 @@ class TracingMiddlewareTest extends TestCase
      */
     private function createGrpcTransport(array $unaryCalls, array $telemetryOptions = []): GrpcTransport
     {
-        return new class(
+        $transport = new class(
             'secretmanager.googleapis.com:443',
-            $unaryCalls,
-            $telemetryOptions
+            $unaryCalls
         ) extends GrpcTransport {
             /** @var UnaryCall[] */
             private array $unaryCalls;
 
             /**
              * @param UnaryCall[] $unaryCalls
-             * @param array<string, mixed> $telemetryOptions
              */
-            public function __construct(string $hostname, array $unaryCalls, array $telemetryOptions)
+            public function __construct(string $hostname, array $unaryCalls)
             {
                 $this->unaryCalls = $unaryCalls;
                 parent::__construct($hostname, ['credentials' => ChannelCredentials::createSsl()]);
-                $this->setTelemetryOptions($telemetryOptions);
             }
 
             // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
@@ -1194,5 +1192,9 @@ class TracingMiddlewareTest extends TestCase
                 return array_shift($this->unaryCalls);
             }
         };
+        (new ReflectionClass(GrpcTransport::class))
+            ->getMethod('setTelemetryOptions')
+            ->invoke($transport, $telemetryOptions, 'secretmanager.googleapis.com:443');
+        return $transport;
     }
 }
