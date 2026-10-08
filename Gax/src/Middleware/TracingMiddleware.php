@@ -74,7 +74,7 @@ class TracingMiddleware implements MiddlewareInterface
         $this->serverAddress = $serverAddress ?: null;
         $this->serverPort = $serverPort;
         $this->systemName = $systemName;
-        $this->initTelemetry($telemetryOptions);
+        $this->setTelemetryOptions($telemetryOptions);
     }
 
     /**
