@@ -21,8 +21,6 @@ namespace Google\Generator\Tests\Conformance;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
 use Google\ApiCore\InsecureCredentialsWrapper;
-use Google\ApiCore\InsecureRequestBuilder;
-use Google\ApiCore\RequestBuilder;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Telemetry\SpanAttributes;
 use Google\ApiCore\Transport\GrpcTransport;
@@ -156,32 +154,35 @@ final class OtelTracingTest extends TestCase
         $spans = $this->exporter->getSpans();
         $expectedMethod = 'google.showcase.v1beta1.Echo/Echo';
 
-        if ($transportType === 'grpc') {
-            $this->assertCount(3, $spans);
-            $t4Span = $spans[0];
-            $t3Span = $spans[1];
-            $exportedAppSpan = $spans[2];
+        $this->assertCount(3, $spans);
+        $t4Span = $spans[0];
+        $t3Span = $spans[1];
+        $exportedAppSpan = $spans[2];
 
-            $this->assertSame($t3Span->getSpanId(), $t4Span->getParentSpanId());
-            $this->assertSame(SpanKind::KIND_CLIENT, $t4Span->getKind());
-            $this->assertSame($expectedMethod, $t4Span->getName());
-            $this->assertSame(StatusCode::STATUS_OK, $t4Span->getStatus()->getCode());
-            $this->assertSame('google-cloud-php', $t4Span->getInstrumentationScope()->getName());
+        $this->assertSame($t3Span->getSpanId(), $t4Span->getParentSpanId());
+        $this->assertSame(SpanKind::KIND_CLIENT, $t4Span->getKind());
+        $this->assertSame(
+            $transportType === 'grpc' ? $expectedMethod : 'POST /v1beta1/echo:echo',
+            $t4Span->getName()
+        );
+        $this->assertSame(StatusCode::STATUS_OK, $t4Span->getStatus()->getCode());
+        $this->assertSame('google-cloud-php', $t4Span->getInstrumentationScope()->getName());
 
-            $t4Attrs = $t4Span->getAttributes()->toArray();
-            $this->assertSame('grpc', $t4Attrs[SpanAttributes::RPC_SYSTEM_NAME]);
-            $this->assertSame($expectedMethod, $t4Attrs[SpanAttributes::RPC_METHOD]);
-            $this->assertSame('OK', $t4Attrs[SpanAttributes::RPC_RESPONSE_STATUS_CODE]);
-            $this->assertSame(self::SERVER_ADDRESS, $t4Attrs[SpanAttributes::SERVER_ADDRESS]);
-            $this->assertSame(self::SERVER_PORT, $t4Attrs[SpanAttributes::SERVER_PORT]);
-            $this->assertArrayNotHasKey(SpanAttributes::ERROR_TYPE, $t4Attrs);
-            $this->assertArrayNotHasKey(SpanAttributes::STATUS_MESSAGE, $t4Attrs);
-            $this->assertArrayNotHasKey(SpanAttributes::EXCEPTION_TYPE, $t4Attrs);
-        } else {
-            $this->assertCount(2, $spans);
-            $t3Span = $spans[0];
-            $exportedAppSpan = $spans[1];
+        $t4Attrs = $t4Span->getAttributes()->toArray();
+        $this->assertSame($transportType === 'grpc' ? 'grpc' : 'http', $t4Attrs[SpanAttributes::RPC_SYSTEM_NAME]);
+        $this->assertSame($expectedMethod, $t4Attrs[SpanAttributes::RPC_METHOD]);
+        $this->assertSame('OK', $t4Attrs[SpanAttributes::RPC_RESPONSE_STATUS_CODE]);
+        $this->assertSame(self::SERVER_ADDRESS, $t4Attrs[SpanAttributes::SERVER_ADDRESS]);
+        $this->assertSame(self::SERVER_PORT, $t4Attrs[SpanAttributes::SERVER_PORT]);
+        if ($transportType === 'rest') {
+            $this->assertSame('POST', $t4Attrs[SpanAttributes::HTTP_REQUEST_METHOD]);
+            $this->assertSame(200, $t4Attrs[SpanAttributes::HTTP_RESPONSE_STATUS_CODE]);
+            $this->assertSame('/v1beta1/echo:echo', $t4Attrs[SpanAttributes::URL_TEMPLATE]);
+            $this->assertStringEndsWith('/v1beta1/echo:echo', $t4Attrs[SpanAttributes::URL_FULL]);
         }
+        $this->assertArrayNotHasKey(SpanAttributes::ERROR_TYPE, $t4Attrs);
+        $this->assertArrayNotHasKey(SpanAttributes::STATUS_MESSAGE, $t4Attrs);
+        $this->assertArrayNotHasKey(SpanAttributes::EXCEPTION_TYPE, $t4Attrs);
 
         $this->assertSame($exportedAppSpan->getSpanId(), $t3Span->getParentSpanId());
         $this->assertSame(SpanKind::KIND_INTERNAL, $t3Span->getKind());
@@ -232,21 +233,24 @@ final class OtelTracingTest extends TestCase
         $spans = $this->exporter->getSpans();
         $expectedMethod = 'google.showcase.v1beta1.Identity/GetUser';
 
-        if ($transportType === 'grpc') {
-            $this->assertCount(2, $spans);
-            $t4Span = $spans[0];
-            $t3Span = $spans[1];
+        $this->assertCount(2, $spans);
+        $t4Span = $spans[0];
+        $t3Span = $spans[1];
 
-            $this->assertSame($t3Span->getSpanId(), $t4Span->getParentSpanId());
-            $this->assertSame(SpanKind::KIND_CLIENT, $t4Span->getKind());
-            $this->assertSame($expectedMethod, $t4Span->getName());
-            $this->assertSame(StatusCode::STATUS_ERROR, $t4Span->getStatus()->getCode());
-            $this->assertSame('NOT_FOUND', $t4Span->getAttributes()->get(SpanAttributes::RPC_RESPONSE_STATUS_CODE));
-            $this->assertSame('NOT_FOUND', $t4Span->getAttributes()->get(SpanAttributes::ERROR_TYPE));
-            $this->assertSame(ApiException::class, $t4Span->getAttributes()->get(SpanAttributes::EXCEPTION_TYPE));
-        } else {
-            $this->assertCount(1, $spans);
-            $t3Span = $spans[0];
+        $this->assertSame($t3Span->getSpanId(), $t4Span->getParentSpanId());
+        $this->assertSame(SpanKind::KIND_CLIENT, $t4Span->getKind());
+        $this->assertSame(
+            $transportType === 'grpc' ? $expectedMethod : 'GET /v1beta1/{name=users/*}',
+            $t4Span->getName()
+        );
+        $this->assertSame(StatusCode::STATUS_ERROR, $t4Span->getStatus()->getCode());
+        $this->assertSame('NOT_FOUND', $t4Span->getAttributes()->get(SpanAttributes::RPC_RESPONSE_STATUS_CODE));
+        $this->assertSame('NOT_FOUND', $t4Span->getAttributes()->get(SpanAttributes::ERROR_TYPE));
+        $this->assertSame(ApiException::class, $t4Span->getAttributes()->get(SpanAttributes::EXCEPTION_TYPE));
+        if ($transportType === 'rest') {
+            $this->assertSame(404, $t4Span->getAttributes()->get(SpanAttributes::HTTP_RESPONSE_STATUS_CODE));
+            $this->assertSame('GET', $t4Span->getAttributes()->get(SpanAttributes::HTTP_REQUEST_METHOD));
+            $this->assertSame('/v1beta1/{name=users/*}', $t4Span->getAttributes()->get(SpanAttributes::URL_TEMPLATE));
         }
 
         $this->assertSame(SpanKind::KIND_INTERNAL, $t3Span->getKind());
@@ -314,37 +318,41 @@ final class OtelTracingTest extends TestCase
         /** @var SpanDataInterface[] $spans */
         $spans = $this->exporter->getSpans();
         $expectedMethod = 'google.showcase.v1beta1.SequenceService/AttemptSequence';
+        $expectedT4Name = $transportType === 'grpc'
+            ? $expectedMethod
+            : 'POST /v1beta1/{name=sequences/*}';
 
-        if ($transportType === 'grpc') {
-            $this->assertCount(4, $spans);
-            $t4Attempt1 = $spans[0];
-            $t4Attempt2 = $spans[1];
-            $t3Span = $spans[2];
-            $exportedAppSpan = $spans[3];
+        $this->assertCount(4, $spans);
+        $t4Attempt1 = $spans[0];
+        $t4Attempt2 = $spans[1];
+        $t3Span = $spans[2];
+        $exportedAppSpan = $spans[3];
 
-            $this->assertSame($exportedAppSpan->getSpanId(), $t3Span->getParentSpanId());
-            $this->assertSame($t3Span->getSpanId(), $t4Attempt1->getParentSpanId());
-            $this->assertSame($t3Span->getSpanId(), $t4Attempt2->getParentSpanId());
+        $this->assertSame($exportedAppSpan->getSpanId(), $t3Span->getParentSpanId());
+        $this->assertSame($t3Span->getSpanId(), $t4Attempt1->getParentSpanId());
+        $this->assertSame($t3Span->getSpanId(), $t4Attempt2->getParentSpanId());
 
-            $this->assertSame(SpanKind::KIND_CLIENT, $t4Attempt1->getKind());
-            $this->assertSame($expectedMethod, $t4Attempt1->getName());
-            $this->assertSame(StatusCode::STATUS_ERROR, $t4Attempt1->getStatus()->getCode());
-            $this->assertSame(
-                'UNAVAILABLE',
-                $t4Attempt1->getAttributes()->get(SpanAttributes::RPC_RESPONSE_STATUS_CODE)
-            );
-            $this->assertSame('UNAVAILABLE', $t4Attempt1->getAttributes()->get(SpanAttributes::ERROR_TYPE));
+        $this->assertSame(SpanKind::KIND_CLIENT, $t4Attempt1->getKind());
+        $this->assertSame($expectedT4Name, $t4Attempt1->getName());
+        $this->assertSame(StatusCode::STATUS_ERROR, $t4Attempt1->getStatus()->getCode());
+        $this->assertSame(
+            'UNAVAILABLE',
+            $t4Attempt1->getAttributes()->get(SpanAttributes::RPC_RESPONSE_STATUS_CODE)
+        );
+        $this->assertSame('UNAVAILABLE', $t4Attempt1->getAttributes()->get(SpanAttributes::ERROR_TYPE));
+        if ($transportType === 'rest') {
+            $this->assertSame(503, $t4Attempt1->getAttributes()->get(SpanAttributes::HTTP_RESPONSE_STATUS_CODE));
+            $this->assertNull($t4Attempt1->getAttributes()->get(SpanAttributes::HTTP_REQUEST_RESEND_COUNT));
+        }
 
-            $this->assertSame(SpanKind::KIND_CLIENT, $t4Attempt2->getKind());
-            $this->assertSame($expectedMethod, $t4Attempt2->getName());
-            $this->assertSame(StatusCode::STATUS_OK, $t4Attempt2->getStatus()->getCode());
-            $this->assertSame('OK', $t4Attempt2->getAttributes()->get(SpanAttributes::RPC_RESPONSE_STATUS_CODE));
-            $this->assertNull($t4Attempt2->getAttributes()->get(SpanAttributes::ERROR_TYPE));
-        } else {
-            $this->assertCount(2, $spans);
-            $t3Span = $spans[0];
-            $exportedAppSpan = $spans[1];
-            $this->assertSame($exportedAppSpan->getSpanId(), $t3Span->getParentSpanId());
+        $this->assertSame(SpanKind::KIND_CLIENT, $t4Attempt2->getKind());
+        $this->assertSame($expectedT4Name, $t4Attempt2->getName());
+        $this->assertSame(StatusCode::STATUS_OK, $t4Attempt2->getStatus()->getCode());
+        $this->assertSame('OK', $t4Attempt2->getAttributes()->get(SpanAttributes::RPC_RESPONSE_STATUS_CODE));
+        $this->assertNull($t4Attempt2->getAttributes()->get(SpanAttributes::ERROR_TYPE));
+        if ($transportType === 'rest') {
+            $this->assertSame(200, $t4Attempt2->getAttributes()->get(SpanAttributes::HTTP_RESPONSE_STATUS_CODE));
+            $this->assertSame(1, $t4Attempt2->getAttributes()->get(SpanAttributes::HTTP_REQUEST_RESEND_COUNT));
         }
 
         $this->assertSame(SpanKind::KIND_INTERNAL, $t3Span->getKind());
@@ -405,32 +413,35 @@ final class OtelTracingTest extends TestCase
         /** @var SpanDataInterface[] $spans */
         $spans = $this->exporter->getSpans();
         $expectedMethod = 'google.showcase.v1beta1.Echo/Echo';
+        $expectedT4Name = $transportType === 'grpc'
+            ? $expectedMethod
+            : 'POST /v1beta1/echo:echo';
 
-        if ($transportType === 'grpc') {
-            // 5 T4 attempt spans (1 initial + 4 retries) + 1 T3 span + 1 APP span = 7 spans
-            $this->assertCount(7, $spans);
-            $t3Span = $spans[5];
-            $exportedAppSpan = $spans[6];
+        // 5 T4 attempt spans (1 initial + 4 retries) + 1 T3 span + 1 APP span = 7 spans
+        $this->assertCount(7, $spans);
+        $t3Span = $spans[5];
+        $exportedAppSpan = $spans[6];
 
-            $this->assertSame($exportedAppSpan->getSpanId(), $t3Span->getParentSpanId());
-            for ($i = 0; $i < 5; $i++) {
-                $t4Span = $spans[$i];
-                $this->assertSame($t3Span->getSpanId(), $t4Span->getParentSpanId());
-                $this->assertSame(SpanKind::KIND_CLIENT, $t4Span->getKind());
-                $this->assertSame($expectedMethod, $t4Span->getName());
-                $this->assertSame(StatusCode::STATUS_ERROR, $t4Span->getStatus()->getCode());
+        $this->assertSame($exportedAppSpan->getSpanId(), $t3Span->getParentSpanId());
+        for ($i = 0; $i < 5; $i++) {
+            $t4Span = $spans[$i];
+            $this->assertSame($t3Span->getSpanId(), $t4Span->getParentSpanId());
+            $this->assertSame(SpanKind::KIND_CLIENT, $t4Span->getKind());
+            $this->assertSame($expectedT4Name, $t4Span->getName());
+            $this->assertSame(StatusCode::STATUS_ERROR, $t4Span->getStatus()->getCode());
+            $this->assertSame(
+                'UNAVAILABLE',
+                $t4Span->getAttributes()->get(SpanAttributes::RPC_RESPONSE_STATUS_CODE)
+            );
+            $this->assertSame('UNAVAILABLE', $t4Span->getAttributes()->get(SpanAttributes::ERROR_TYPE));
+            $this->assertSame('Test error', $t4Span->getAttributes()->get(SpanAttributes::STATUS_MESSAGE));
+            if ($transportType === 'rest') {
+                $this->assertSame(503, $t4Span->getAttributes()->get(SpanAttributes::HTTP_RESPONSE_STATUS_CODE));
                 $this->assertSame(
-                    'UNAVAILABLE',
-                    $t4Span->getAttributes()->get(SpanAttributes::RPC_RESPONSE_STATUS_CODE)
+                    $i === 0 ? null : $i,
+                    $t4Span->getAttributes()->get(SpanAttributes::HTTP_REQUEST_RESEND_COUNT)
                 );
-                $this->assertSame('UNAVAILABLE', $t4Span->getAttributes()->get(SpanAttributes::ERROR_TYPE));
-                $this->assertSame('Test error', $t4Span->getAttributes()->get(SpanAttributes::STATUS_MESSAGE));
             }
-        } else {
-            $this->assertCount(2, $spans);
-            $t3Span = $spans[0];
-            $exportedAppSpan = $spans[1];
-            $this->assertSame($exportedAppSpan->getSpanId(), $t3Span->getParentSpanId());
         }
 
         $this->assertSame(SpanKind::KIND_INTERNAL, $t3Span->getKind());
@@ -498,67 +509,43 @@ final class OtelTracingTest extends TestCase
         /** @var SpanDataInterface[] $spans */
         $spans = $this->exporter->getSpans();
 
-        if ($transportType === 'grpc') {
-            $this->assertCount(6, $spans);
-            $okT4Span = $spans[0];
-            $okT3Span = $spans[1];
-            $errInfoT4Span = $spans[2];
-            $errInfoT3Span = $spans[3];
-            $failDetailsT4Span = $spans[4];
-            $failDetailsT3Span = $spans[5];
+        $this->assertCount(6, $spans);
+        $okT4Span = $spans[0];
+        $okT3Span = $spans[1];
+        $errInfoT4Span = $spans[2];
+        $errInfoT3Span = $spans[3];
+        $failDetailsT4Span = $spans[4];
+        $failDetailsT3Span = $spans[5];
 
-            $this->assertSame('OK', $okT4Span->getAttributes()->get(SpanAttributes::RPC_RESPONSE_STATUS_CODE));
-            $this->assertNull($okT4Span->getAttributes()->get(SpanAttributes::ERROR_TYPE));
-            $this->assertNull($okT3Span->getAttributes()->get(SpanAttributes::ERROR_TYPE));
+        $this->assertSame('OK', $okT4Span->getAttributes()->get(SpanAttributes::RPC_RESPONSE_STATUS_CODE));
+        $this->assertNull($okT4Span->getAttributes()->get(SpanAttributes::ERROR_TYPE));
+        $this->assertNull($okT3Span->getAttributes()->get(SpanAttributes::ERROR_TYPE));
 
-            $this->assertSame(
-                'INVALID_ARGUMENT',
-                $errInfoT4Span->getAttributes()->get(SpanAttributes::RPC_RESPONSE_STATUS_CODE)
-            );
-            $this->assertSame(
-                'CUSTOM_SHOWCASE_ERROR_REASON',
-                $errInfoT4Span->getAttributes()->get(SpanAttributes::ERROR_TYPE)
-            );
-            $this->assertSame(
-                'CUSTOM_SHOWCASE_ERROR_REASON',
-                $errInfoT3Span->getAttributes()->get(SpanAttributes::ERROR_TYPE)
-            );
+        $this->assertSame(
+            'INVALID_ARGUMENT',
+            $errInfoT4Span->getAttributes()->get(SpanAttributes::RPC_RESPONSE_STATUS_CODE)
+        );
+        $this->assertSame(
+            'CUSTOM_SHOWCASE_ERROR_REASON',
+            $errInfoT4Span->getAttributes()->get(SpanAttributes::ERROR_TYPE)
+        );
+        $this->assertSame(
+            'CUSTOM_SHOWCASE_ERROR_REASON',
+            $errInfoT3Span->getAttributes()->get(SpanAttributes::ERROR_TYPE)
+        );
 
-            $this->assertSame(
-                'google.showcase.v1beta1.Echo/FailEchoWithDetails',
-                $failDetailsT4Span->getName()
-            );
-            $this->assertSame(StatusCode::STATUS_ERROR, $failDetailsT4Span->getStatus()->getCode());
-            $this->assertSame(StatusCode::STATUS_ERROR, $failDetailsT3Span->getStatus()->getCode());
-            $this->assertSame(
-                ApiException::class,
-                $failDetailsT3Span->getAttributes()->get(SpanAttributes::EXCEPTION_TYPE)
-            );
-        } else {
-            $this->assertCount(3, $spans);
-            $okT3Span = $spans[0];
-            $errInfoT3Span = $spans[1];
-            $failDetailsT3Span = $spans[2];
-
-            $this->assertSame(StatusCode::STATUS_OK, $okT3Span->getStatus()->getCode());
-            $this->assertNull($okT3Span->getAttributes()->get(SpanAttributes::ERROR_TYPE));
-
-            $this->assertSame(StatusCode::STATUS_ERROR, $errInfoT3Span->getStatus()->getCode());
-            $this->assertSame(
-                'CUSTOM_SHOWCASE_ERROR_REASON',
-                $errInfoT3Span->getAttributes()->get(SpanAttributes::ERROR_TYPE)
-            );
-
-            $this->assertSame(
-                'google.showcase.v1beta1.Echo/FailEchoWithDetails',
-                $failDetailsT3Span->getName()
-            );
-            $this->assertSame(StatusCode::STATUS_ERROR, $failDetailsT3Span->getStatus()->getCode());
-            $this->assertSame(
-                ApiException::class,
-                $failDetailsT3Span->getAttributes()->get(SpanAttributes::EXCEPTION_TYPE)
-            );
-        }
+        $this->assertSame(
+            $transportType === 'grpc'
+                ? 'google.showcase.v1beta1.Echo/FailEchoWithDetails'
+                : 'POST /v1beta1/echo:failWithDetails',
+            $failDetailsT4Span->getName()
+        );
+        $this->assertSame(StatusCode::STATUS_ERROR, $failDetailsT4Span->getStatus()->getCode());
+        $this->assertSame(StatusCode::STATUS_ERROR, $failDetailsT3Span->getStatus()->getCode());
+        $this->assertSame(
+            ApiException::class,
+            $failDetailsT3Span->getAttributes()->get(SpanAttributes::EXCEPTION_TYPE)
+        );
     }
 
     private function buildTransport(
@@ -569,11 +556,9 @@ final class OtelTracingTest extends TestCase
         if (file_exists(self::PEM_PATH)) {
             $pemContents = file_get_contents(self::PEM_PATH);
             $grpcCredentials = ChannelCredentials::createSsl($pemContents);
-            $requestBuilder = new RequestBuilder(self::HOST, $restConfigPath);
             $guzzleClient = new Client(['verify' => self::PEM_PATH]);
         } else {
             $grpcCredentials = ChannelCredentials::createInsecure();
-            $requestBuilder = new InsecureRequestBuilder(self::HOST, $restConfigPath);
             $guzzleClient = null;
         }
 
@@ -590,6 +575,14 @@ final class OtelTracingTest extends TestCase
         }
 
         $httpHandler = HttpHandlerFactory::build($guzzleClient);
-        return new RestTransport($requestBuilder, [$httpHandler, 'async']);
+        return RestTransport::build(
+            self::HOST,
+            $restConfigPath,
+            [
+                'httpHandler' => [$httpHandler, 'async'],
+                'hasEmulator' => !file_exists(self::PEM_PATH),
+                'openTelemetryTracerProvider' => $tracerProvider,
+            ]
+        );
     }
 }
