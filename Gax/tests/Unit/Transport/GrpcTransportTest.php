@@ -930,7 +930,7 @@ class GrpcTransportTest extends TestCase
         $tracerProvider = $this->createMock(TracerProviderInterface::class);
         $this->setTelemetryOptions($transport, [
             'openTelemetryTracerProvider' => $tracerProvider,
-        ]);
+        ], 'dns:///localhost:7469');
 
         $ref = new ReflectionClass($transport);
         $addrProp = $ref->getProperty('serverAddress');
@@ -939,10 +939,13 @@ class GrpcTransportTest extends TestCase
         $this->assertNull($portProp->getValue($transport));
     }
 
-    private function setTelemetryOptions(GrpcTransport $transport, array $options): void
-    {
+    private function setTelemetryOptions(
+        GrpcTransport $transport,
+        array $options,
+        ?string $apiEndpoint = null
+    ): void {
         (new ReflectionClass(GrpcTransport::class))
             ->getMethod('setTelemetryOptions')
-            ->invoke($transport, $options);
+            ->invoke($transport, $options, $apiEndpoint);
     }
 }
