@@ -385,9 +385,13 @@ trait GapicClientTrait
             'clientVersion' => $options['gapicVersion'] ?? null,
         ];
         if (!empty($this->telemetryOptions['openTelemetryTracerProvider']) && $options['apiEndpoint'] !== '') {
-            [$serverAddress, $serverPort] = self::normalizeServiceAddress($options['apiEndpoint']);
-            $this->serverAddress = $serverAddress;
-            $this->serverPort = (int) $serverPort;
+            try {
+                [$serverAddress, $serverPort] = self::normalizeServiceAddress($options['apiEndpoint']);
+                $this->serverAddress = $serverAddress;
+                $this->serverPort = (int) $serverPort;
+            } catch (ValidationException $e) {
+                // Ignore invalid apiEndpoint formats when setting span attributes
+            }
         }
 
         $transport = $options['transport'] ?: self::defaultTransport();

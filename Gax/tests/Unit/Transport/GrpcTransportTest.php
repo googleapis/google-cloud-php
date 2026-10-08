@@ -920,4 +920,22 @@ class GrpcTransportTest extends TestCase
         $portProp = $ref->getProperty('serverPort');
         $this->assertSame(443, $portProp->getValue($transport));
     }
+
+    public function testConstructAndSetTelemetryOptionsIgnoreInvalidHostname(): void
+    {
+        $transport = new GrpcTransport('dns:///localhost:7469', [
+            'credentials' => ChannelCredentials::createSsl(),
+        ]);
+
+        $tracerProvider = $this->createMock(TracerProviderInterface::class);
+        $transport->setTelemetryOptions([
+            'openTelemetryTracerProvider' => $tracerProvider,
+        ]);
+
+        $ref = new ReflectionClass($transport);
+        $addrProp = $ref->getProperty('serverAddress');
+        $portProp = $ref->getProperty('serverPort');
+        $this->assertNull($addrProp->getValue($transport));
+        $this->assertNull($portProp->getValue($transport));
+    }
 }
