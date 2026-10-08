@@ -52,8 +52,6 @@ class TracingMiddleware implements MiddlewareInterface
 
     /** @var MiddlewareInterface|callable */
     private $nextHandler;
-    private ?string $serverAddress;
-    private ?int $serverPort;
     private string $systemName;
 
     /**

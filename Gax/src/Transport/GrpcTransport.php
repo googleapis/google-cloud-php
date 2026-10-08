@@ -68,14 +68,9 @@ class GrpcTransport extends BaseStub implements TransportInterface
     use GrpcSupportTrait;
     use ServiceAddressTrait;
     use LoggingTrait;
-    use TelemetryTrait {
-        setTelemetryOptions as private traitSetTelemetryOptions;
-    }
+    use TelemetryTrait;
 
     private null|LoggerInterface $logger;
-    private string $hostname;
-    private ?string $serverAddress = null;
-    private ?int $serverPort = null;
 
     /**
      * @param string $hostname
@@ -111,28 +106,6 @@ class GrpcTransport extends BaseStub implements TransportInterface
 
         parent::__construct($hostname, $opts, $channel);
         $this->logger = $logger;
-        $this->hostname = $hostname;
-    }
-
-    /**
-     * Sets telemetry options and initializes tracing properties.
-     *
-     * @param array $telemetryOptions
-     * @return $this
-     */
-    protected function setTelemetryOptions(array $telemetryOptions): self
-    {
-        $this->traitSetTelemetryOptions($telemetryOptions);
-        if ($this->openTelemetryTracerProvider && $this->hostname !== '') {
-            try {
-                [$addr, $port] = self::normalizeServiceAddress($this->hostname);
-                $this->serverAddress = $addr;
-                $this->serverPort = (int) $port;
-            } catch (ValidationException $e) {
-                // Ignore invalid hostname formats when setting span attributes
-            }
-        }
-        return $this;
     }
 
     /**
@@ -195,7 +168,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
                 $config['logger'] = null;
             }
             $transport = new GrpcTransport($host, $stubOpts, $channel, $config['interceptors'], $config['logger']);
-            $transport->setTelemetryOptions($config);
+            $transport->setTelemetryOptions($config, $host);
             return $transport;
         } catch (Exception $ex) {
             throw new ValidationException(
