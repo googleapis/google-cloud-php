@@ -73,7 +73,6 @@ trait GapicClientTrait
     private ?TransportInterface $transport = null;
     private ?HeaderCredentialsInterface $credentialsWrapper = null;
     private array $telemetryOptions = [];
-    private string $apiEndpoint = '';
     private ?string $serverAddress = null;
     private ?int $serverPort = null;
     /** @var RetrySettings[] $retrySettings */
@@ -381,16 +380,15 @@ trait GapicClientTrait
             );
         }
 
-        $this->apiEndpoint = $options['apiEndpoint'];
-        if ($this->apiEndpoint !== '') {
-            [$serverAddress, $serverPort] = self::normalizeServiceAddress($this->apiEndpoint);
-            $this->serverAddress = $serverAddress;
-            $this->serverPort = (int) $serverPort;
-        }
         $this->telemetryOptions = [
             'openTelemetryTracerProvider' => $options['openTelemetryTracerProvider'] ?? null,
             'clientVersion' => $options['gapicVersion'] ?? null,
         ];
+        if (!empty($this->telemetryOptions['openTelemetryTracerProvider']) && $options['apiEndpoint'] !== '') {
+            [$serverAddress, $serverPort] = self::normalizeServiceAddress($options['apiEndpoint']);
+            $this->serverAddress = $serverAddress;
+            $this->serverPort = (int) $serverPort;
+        }
 
         $transport = $options['transport'] ?: self::defaultTransport();
         $this->transport = $transport instanceof TransportInterface
