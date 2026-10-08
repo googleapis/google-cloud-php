@@ -781,7 +781,7 @@ class TracingMiddlewareTest extends TestCase
                         '@type' => 'type.googleapis.com/google.rpc.ErrorInfo',
                         'reason' => 'SERVICE_DISABLED',
                         'domain' => 'googleapis.com',
-                        'metadata' => [],
+                        'metadata' => ['service' => 'secretmanager.googleapis.com'],
                     ],
                 ]
             );
