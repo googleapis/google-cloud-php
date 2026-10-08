@@ -891,6 +891,111 @@ class JWTTest extends TestCase
         ];
     }
 
+    /** @dataProvider provideMlDsa */
+    public function testMlDsaEncodeDecode(string $alg): void
+    {
+        $this->skipUnlessMlDsaIsSupported();
+
+        $privateKey = file_get_contents(__DIR__ . '/data/' . strtolower($alg) . '-private.pem');
+        $publicKey = file_get_contents(__DIR__ . '/data/' . strtolower($alg) . '-public.pem');
+
+        $payload = ['foo' => 'bar'];
+        $encoded = JWT::encode($payload, $privateKey, $alg);
+
+        // Verify decoding succeeds with a PEM string and with an OpenSSLAsymmetricKey
+        $decoded = JWT::decode($encoded, new Key($publicKey, $alg));
+        $this->assertSame('bar', $decoded->foo);
+
+        $decoded = JWT::decode($encoded, new Key(openssl_pkey_get_public($publicKey), $alg));
+        $this->assertSame('bar', $decoded->foo);
+    }
+
+    /** @dataProvider provideMlDsa */
+    public function testMlDsaInvalidSignature(string $alg): void
+    {
+        $this->skipUnlessMlDsaIsSupported();
+
+        $privateKey = file_get_contents(__DIR__ . '/data/' . strtolower($alg) . '-private.pem');
+        $publicKey = file_get_contents(__DIR__ . '/data/' . strtolower($alg) . '-public.pem');
+
+        $encoded = JWT::encode(['foo' => 'bar'], $privateKey, $alg);
+
+        // Replace the payload, keeping the original signature
+        list($headb64, , $cryptob64) = explode('.', $encoded);
+        $tampered = $headb64 . '.' . JWT::urlsafeB64Encode(JWT::jsonEncode(['foo' => 'baz'])) . '.' . $cryptob64;
+
+        $this->expectException(SignatureInvalidException::class);
+        JWT::decode($tampered, new Key($publicKey, $alg));
+    }
+
+    /** @dataProvider provideMlDsaRfc9964Examples */
+    public function testMlDsaVerifiesRfc9964Examples(array $jwk, string $jws): void
+    {
+        $this->skipUnlessMlDsaIsSupported();
+
+        // The payloads of the RFC 9964 examples are not JSON objects, so the
+        // signatures are verified directly rather than through JWT::decode()
+        $key = JWK::parseKey($jwk);
+        list($headb64, $bodyb64, $cryptob64) = explode('.', $jws);
+        $signature = JWT::urlsafeB64Decode($cryptob64);
+
+        $verify = new \ReflectionMethod(JWT::class, 'verify');
+        $verify->setAccessible(true);
+
+        $msg = $headb64 . '.' . $bodyb64;
+        $this->assertTrue($verify->invoke(null, $msg, $signature, $key->getKeyMaterial(), $jwk['alg']));
+        $this->assertFalse($verify->invoke(null, $msg . 'x', $signature, $key->getKeyMaterial(), $jwk['alg']));
+    }
+
+    public function testMlDsaKeyMismatchThrowsExceptionEncode(): void
+    {
+        $this->skipUnlessMlDsaIsSupported();
+
+        $this->expectException(DomainException::class);
+        $this->expectExceptionMessage('Provided key is not an ML-DSA-65 key');
+
+        $privateKey = file_get_contents(__DIR__ . '/data/ml-dsa-44-private.pem');
+        JWT::encode(['foo' => 'bar'], $privateKey, 'ML-DSA-65');
+    }
+
+    public function testMlDsaKeyMismatchThrowsExceptionDecode(): void
+    {
+        $this->skipUnlessMlDsaIsSupported();
+
+        $this->expectException(DomainException::class);
+        $this->expectExceptionMessage('Provided key is not an ML-DSA-44 key');
+
+        $privateKey = file_get_contents(__DIR__ . '/data/ml-dsa-44-private.pem');
+        $encoded = JWT::encode(['foo' => 'bar'], $privateKey, 'ML-DSA-44');
+
+        $publicKey = file_get_contents(__DIR__ . '/data/ml-dsa-65-public.pem');
+        JWT::decode($encoded, new Key($publicKey, 'ML-DSA-44'));
+    }
+
+    public function provideMlDsa()
+    {
+        return [
+            ['ML-DSA-44'],
+            ['ML-DSA-65'],
+            ['ML-DSA-87'],
+        ];
+    }
+
+    public function provideMlDsaRfc9964Examples()
+    {
+        $examples = json_decode(file_get_contents(__DIR__ . '/data/ml-dsa-rfc9964-examples.json'), true);
+        foreach ($examples as $example) {
+            yield $example['jwk']['alg'] => [$example['jwk'], $example['jws']];
+        }
+    }
+
+    private function skipUnlessMlDsaIsSupported(): void
+    {
+        if (PHP_VERSION_ID < 80400 || OPENSSL_VERSION_NUMBER < 0x30500000) {
+            $this->markTestSkipped('ML-DSA requires PHP 8.4+ and OpenSSL 3.5+');
+        }
+    }
+
     private function generateHmac256(): Key
     {
         return new Key(random_bytes(32), 'HS256');
