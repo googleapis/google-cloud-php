@@ -34,6 +34,8 @@
 namespace Google\ApiCore\Telemetry;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\ServiceAddressTrait;
+use Google\ApiCore\ValidationException;
 use OpenTelemetry\API\Trace\SpanInterface;
 use OpenTelemetry\API\Trace\SpanKind;
 use OpenTelemetry\API\Trace\StatusCode;
@@ -47,19 +49,33 @@ use Throwable;
  */
 trait TelemetryTrait
 {
+    use ServiceAddressTrait;
+
     private ?TracerProviderInterface $openTelemetryTracerProvider = null;
     private ?string $clientVersion = null;
+    private ?string $serverAddress = null;
+    private ?int $serverPort = null;
 
     /**
      * Sets telemetry options and initializes tracing properties.
      *
      * @param array $telemetryOptions
+     * @param string|null $apiEndpoint
      * @return $this
      */
-    protected function setTelemetryOptions(array $telemetryOptions): self
+    private function setTelemetryOptions(array $telemetryOptions, ?string $apiEndpoint = null): self
     {
         $this->openTelemetryTracerProvider = $telemetryOptions['openTelemetryTracerProvider'] ?? null;
         $this->clientVersion = $telemetryOptions['clientVersion'] ?? null;
+        if ($this->openTelemetryTracerProvider && $apiEndpoint) {
+            try {
+                [$addr, $port] = self::normalizeServiceAddress($apiEndpoint);
+                $this->serverAddress = $addr;
+                $this->serverPort = (int) $port;
+            } catch (ValidationException $e) {
+                // Ignore invalid apiEndpoint formats when setting span attributes
+            }
+        }
         return $this;
     }
 
