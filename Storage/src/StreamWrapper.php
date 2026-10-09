@@ -45,6 +45,7 @@ class StreamWrapper
      * Options used by StreamWrapper:
      *
      * flush (bool) `true`: fflush() will flush output buffer; `false`: fflush() will do nothing
+     * stat_permission_check (bool) `true`: stat()/is_readable() checks bucket permissions; `false`: bypasses permission check
      */
     public $context;
 
@@ -733,6 +734,25 @@ class StreamWrapper
     }
 
     /**
+     * Determine if the bucket is writable.
+     * Allows bypassing the expensive API call via context options.
+     *
+     * @return bool
+     */
+    private function isBucketWritable()
+    {
+        $contextOptions = stream_context_get_options($this->context ?: stream_context_get_default());
+
+        if (isset($contextOptions[$this->protocol]['stat_permission_check'])
+            && $contextOptions[$this->protocol]['stat_permission_check'] === false
+        ) {
+            return true;
+        }
+
+        return $this->bucket->isWritable();
+    }
+
+    /**
      * Calculate the `url_stat` response for a directory
      *
      * @return array|bool
@@ -743,7 +763,7 @@ class StreamWrapper
         $info = $object->info();
 
         // equivalent to 40777 and 40444 in octal
-        $stats['mode'] = $this->bucket->isWritable()
+        $stats['mode'] = $this->isBucketWritable()
             ? self::DIRECTORY_WRITABLE_MODE
             : self::DIRECTORY_READABLE_MODE;
         $this->statsFromFileInfo($info, $stats);
@@ -768,7 +788,7 @@ class StreamWrapper
 
         // equivalent to 100666 and 100444 in octal
         $stats = [
-            'mode' => $this->bucket->isWritable()
+            'mode' => $this->isBucketWritable()
                 ? self::FILE_WRITABLE_MODE
                 : self::FILE_READABLE_MODE
         ];
