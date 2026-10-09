@@ -92,16 +92,24 @@ jobs:
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
         with:
           script: |
-            const { data: pulls } = await github.rest.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open',
-            });
+            const repos = [context.repo.repo, 'gapic-generator-php'];
+            const openPRs = [];
 
             // check for open PRs which contain the 'next release' label
-            const openPRs = pulls.filter(pr =>
-              pr.labels.some(label => label.name === 'next release')
-            ).map(pr => `  - #${pr.number}: ${pr.title}`);
+            for (const repo of repos) {
+              const { data: pulls } = await github.rest.pulls.list({
+                owner: context.repo.owner,
+                repo,
+                state: 'open',
+              });
+
+              pulls.filter(pr =>
+                pr.labels.some(label => label.name === 'next release')
+              ).forEach(pr => {
+                const prefix = repo === context.repo.repo ? `#${pr.number}` : `${repo}#${pr.number}`;
+                openPRs.push(`  - ${prefix}: ${pr.title}`);
+              });
+            }
 
             if (openPRs.length > 0) {
               const errorMessage = 'Found "next release" label on the following open pull requests:\n'
