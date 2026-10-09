@@ -38,7 +38,8 @@ class DaiEncodingProfile extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The status of this DaiEncodingProfile.
      * DAI encoding profiles are created in the
-     * [DaiEncodingProfileStatus.ACTIVE][] state by default.
+     * [DaiEncodingProfileStatusEnum.DaiEncodingProfileStatus.ACTIVE][google.ads.admanager.v1.DaiEncodingProfileStatusEnum.DaiEncodingProfileStatus.ACTIVE]
+     * state by default.
      * Only active profiles will be allowed to be associated with live streams.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.DaiEncodingProfileStatusEnum.DaiEncodingProfileStatus status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -92,7 +93,8 @@ class DaiEncodingProfile extends \Google\Protobuf\Internal\Message
      *     @type int $status
      *           Output only. The status of this DaiEncodingProfile.
      *           DAI encoding profiles are created in the
-     *           [DaiEncodingProfileStatus.ACTIVE][] state by default.
+     *           [DaiEncodingProfileStatusEnum.DaiEncodingProfileStatus.ACTIVE][google.ads.admanager.v1.DaiEncodingProfileStatusEnum.DaiEncodingProfileStatus.ACTIVE]
+     *           state by default.
      *           Only active profiles will be allowed to be associated with live streams.
      *     @type int $variant_type
      *           Required. The variant playlist type that this DaiEncodingProfile
@@ -189,7 +191,8 @@ class DaiEncodingProfile extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The status of this DaiEncodingProfile.
      * DAI encoding profiles are created in the
-     * [DaiEncodingProfileStatus.ACTIVE][] state by default.
+     * [DaiEncodingProfileStatusEnum.DaiEncodingProfileStatus.ACTIVE][google.ads.admanager.v1.DaiEncodingProfileStatusEnum.DaiEncodingProfileStatus.ACTIVE]
+     * state by default.
      * Only active profiles will be allowed to be associated with live streams.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.DaiEncodingProfileStatusEnum.DaiEncodingProfileStatus status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -213,7 +216,8 @@ class DaiEncodingProfile extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The status of this DaiEncodingProfile.
      * DAI encoding profiles are created in the
-     * [DaiEncodingProfileStatus.ACTIVE][] state by default.
+     * [DaiEncodingProfileStatusEnum.DaiEncodingProfileStatus.ACTIVE][google.ads.admanager.v1.DaiEncodingProfileStatusEnum.DaiEncodingProfileStatus.ACTIVE]
+     * state by default.
      * Only active profiles will be allowed to be associated with live streams.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.DaiEncodingProfileStatusEnum.DaiEncodingProfileStatus status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

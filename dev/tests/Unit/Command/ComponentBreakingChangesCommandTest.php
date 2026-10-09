@@ -185,6 +185,37 @@ class ComponentBreakingChangesCommandTest extends TestCase
         $this->assertSame(['google/beta'], $checked);
     }
 
+    public function testFiltersRoaveOutputToOnlyBreakingChangeErrors(): void
+    {
+        $this->fs->dumpFile($this->rootDir . '/Alpha/src/Foo.php', '<?php class Foo { public function x(int $a) {} }');
+        $this->commitAll('break Alpha');
+
+        $binDir = $this->rootDir . '/bin';
+        $this->fs->mkdir($binDir);
+        $fakeRoave = $binDir . '/roave-backward-compatibility-check';
+        $this->fs->dumpFile($fakeRoave, <<<'SH'
+#!/usr/bin/env bash
+echo "No security vulnerability advisories found."
+echo "::error file=/src/Foo.php,line=1,col=1::Method Foo#x() changed"
+echo "#StandWithUkraine" >&2
+echo "Installing dependencies from lock file" >&2
+exit 3
+SH);
+        $this->fs->chmod($fakeRoave, 0755);
+
+        $origPath = getenv('PATH');
+        putenv('PATH=' . $binDir . PATH_SEPARATOR . $origPath);
+        try {
+            $tester = new CommandTester(new ComponentBreakingChangesCommand($this->rootDir));
+            $code = $tester->execute(['--base-ref' => 'baseline'], ['capture_stderr_separately' => true]);
+        } finally {
+            putenv('PATH=' . $origPath);
+        }
+
+        $this->assertSame(Command::FAILURE, $code);
+        $this->assertSame("::error file=/src/Foo.php,line=1,col=1::Method Foo#x() changed\n", $tester->getDisplay());
+    }
+
     public function testExpectBreakingChangesOptionAllowsPreGaWithGaOnlyAndFailsWhenNoBreaksDetected(): void
     {
         $this->fs->dumpFile($this->rootDir . '/Alpha/VERSION', "0.13.1\n");

@@ -10,7 +10,7 @@ jobs:
   backwards-compatibility-check:
     name: Breaking Change Detector
     runs-on: ubuntu-latest
-    if: ${{ !contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
+    continue-on-error: ${{ contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:

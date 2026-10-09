@@ -23,12 +23,96 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.UserService' => [
+            'BatchActivateUsers' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/users:batchActivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchCreateUsers' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/users:batchCreate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeactivateUsers' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/users:batchDeactivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateUsers' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/users:batchUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateUser' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/users',
+                'body' => 'user',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetUser' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/users/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListUsers' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=networks/*}/users',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateUser' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{user.name=networks/*/users/*}',
+                'body' => 'user',
+                'placeholders' => [
+                    'user.name' => [
+                        'getters' => [
+                            'getUser',
                             'getName',
                         ],
                     ],

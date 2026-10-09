@@ -34,10 +34,11 @@ use Google\Rpc\Status;
 /**
  * Updates the Kms config properties with the full spec
  *
- * @param string $kmsConfigCryptoKeyName Customer-managed crypto key resource full name. Format:
- *                                       `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`
+ * @param string $formattedKmsConfigCryptoKeyName Customer-managed crypto key resource full name. Format:
+ *                                                `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`
+ *                                                Please see {@see NetAppClient::cryptoKeyName()} for help formatting this field.
  */
-function update_kms_config_sample(string $kmsConfigCryptoKeyName): void
+function update_kms_config_sample(string $formattedKmsConfigCryptoKeyName): void
 {
     // Create a client.
     $netAppClient = new NetAppClient();
@@ -45,7 +46,7 @@ function update_kms_config_sample(string $kmsConfigCryptoKeyName): void
     // Prepare the request message.
     $updateMask = new FieldMask();
     $kmsConfig = (new KmsConfig())
-        ->setCryptoKeyName($kmsConfigCryptoKeyName);
+        ->setCryptoKeyName($formattedKmsConfigCryptoKeyName);
     $request = (new UpdateKmsConfigRequest())
         ->setUpdateMask($updateMask)
         ->setKmsConfig($kmsConfig);
@@ -81,8 +82,13 @@ function update_kms_config_sample(string $kmsConfigCryptoKeyName): void
  */
 function callSample(): void
 {
-    $kmsConfigCryptoKeyName = '[CRYPTO_KEY_NAME]';
+    $formattedKmsConfigCryptoKeyName = NetAppClient::cryptoKeyName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[KEY_RING]',
+        '[CRYPTO_KEY]'
+    );
 
-    update_kms_config_sample($kmsConfigCryptoKeyName);
+    update_kms_config_sample($formattedKmsConfigCryptoKeyName);
 }
 // [END netapp_v1_generated_NetApp_UpdateKmsConfig_sync]

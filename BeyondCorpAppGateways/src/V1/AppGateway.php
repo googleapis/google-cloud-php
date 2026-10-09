@@ -87,6 +87,18 @@ class AppGateway extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.beyondcorp.appgateways.v1.AppGateway.HostType host_type = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $host_type = 0;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = null;
 
     /**
      * Constructor.
@@ -119,6 +131,10 @@ class AppGateway extends \Google\Protobuf\Internal\Message
      *           Output only. A list of connections allocated for the Gateway
      *     @type int $host_type
      *           Required. The type of hosting used by the AppGateway.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -434,6 +450,78 @@ class AppGateway extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\BeyondCorp\AppGateways\V1\AppGateway\HostType::class);
         $this->host_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : false;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi) ? $this->satisfies_pzi : false;
+    }
+
+    public function hasSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi);
+    }
+
+    public function clearSatisfiesPzi()
+    {
+        unset($this->satisfies_pzi);
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

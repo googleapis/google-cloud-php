@@ -25,24 +25,32 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_SipTrunks_UpdateSipTrunk_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Dialogflow\V2\Client\SipTrunksClient;
+use Google\Cloud\Dialogflow\V2\SipHostname;
 use Google\Cloud\Dialogflow\V2\SipTrunk;
 use Google\Cloud\Dialogflow\V2\UpdateSipTrunkRequest;
 
 /**
  * Updates the specified SipTrunk.
  *
- * @param string $sipTrunkExpectedHostnameElement The expected hostnames in the peer certificate from partner that
- *                                                is used for TLS authentication.
+ * @param string $sipTrunkExpectedHostnameElement   The expected hostnames in the peer certificate from partner that
+ *                                                  is used for TLS authentication.
+ * @param string $sipTrunkPeerHostnamesPeerHostname Peer hostname name.
  */
-function update_sip_trunk_sample(string $sipTrunkExpectedHostnameElement): void
-{
+function update_sip_trunk_sample(
+    string $sipTrunkExpectedHostnameElement,
+    string $sipTrunkPeerHostnamesPeerHostname
+): void {
     // Create a client.
     $sipTrunksClient = new SipTrunksClient();
 
     // Prepare the request message.
     $sipTrunkExpectedHostname = [$sipTrunkExpectedHostnameElement,];
+    $sipHostname = (new SipHostname())
+        ->setPeerHostname($sipTrunkPeerHostnamesPeerHostname);
+    $sipTrunkPeerHostnames = [$sipHostname,];
     $sipTrunk = (new SipTrunk())
-        ->setExpectedHostname($sipTrunkExpectedHostname);
+        ->setExpectedHostname($sipTrunkExpectedHostname)
+        ->setPeerHostnames($sipTrunkPeerHostnames);
     $request = (new UpdateSipTrunkRequest())
         ->setSipTrunk($sipTrunk);
 
@@ -68,7 +76,8 @@ function update_sip_trunk_sample(string $sipTrunkExpectedHostnameElement): void
 function callSample(): void
 {
     $sipTrunkExpectedHostnameElement = '[EXPECTED_HOSTNAME]';
+    $sipTrunkPeerHostnamesPeerHostname = '[PEER_HOSTNAME]';
 
-    update_sip_trunk_sample($sipTrunkExpectedHostnameElement);
+    update_sip_trunk_sample($sipTrunkExpectedHostnameElement, $sipTrunkPeerHostnamesPeerHostname);
 }
 // [END dialogflow_v2_generated_SipTrunks_UpdateSipTrunk_sync]

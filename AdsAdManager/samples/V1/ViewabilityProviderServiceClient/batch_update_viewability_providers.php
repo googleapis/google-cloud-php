@@ -35,7 +35,7 @@ use Google\ApiCore\ApiException;
  * [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider] objects.
  *
  * @param string $formattedParent                                  The parent resource where
- *                                                                 [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider]s will be
+ *                                                                 [ViewabilityProviders][google.ads.admanager.v1.ViewabilityProvider] will be
  *                                                                 updated. Format: `networks/{network_code}` The parent field in the
  *                                                                 UpdateViewabilityProviderRequest must match this field. Please see
  *                                                                 {@see ViewabilityProviderServiceClient::networkName()} for help formatting this field.
