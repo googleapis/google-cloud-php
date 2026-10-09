@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\Dev\DocFx\Node;
 
-use Kcs\ClassFinder\Finder\ComposerFinder;
+use Google\Cloud\Core\Logger\AppEngineFlexFormatter;
+use Google\Cloud\Core\Logger\AppEngineFlexFormatterV2;
+use ReflectionClass;
 use SimpleXMLElement;
 
 /**
@@ -34,22 +36,35 @@ class InterfaceNode extends ClassNode
         parent::__construct($xmlNode, $protoPackages);
     }
 
+    /**
+     * Finds classes in the current package ($pageNodes) that implement this interface.
+     *
+     * We use ReflectionClass::implementsInterface() rather than reading <implements> tags from
+     * phpDocumentor's structure.xml because structure.xml only records interfaces declared
+     * directly on a class, omitting interfaces inherited through a parent class (e.g.
+     * ServiceAccountCredentials extends CredentialsLoader, which implements FetchAuthTokenInterface).
+     */
     public function determineImplementingClasses(array $pageNodes): void
     {
-        // Project root components
-        $componentDirs = array_map('realpath', glob(__DIR__ . '/../../../../*/src', GLOB_ONLYDIR));
-        $componentDirs[] = __DIR__ . '/../../../vendor/google/cloud/Auth/src';
-        $componentDirs[] = __DIR__ . '/../../../vendor/google/cloud/Gax/src';
+        $interfaceName = ltrim($this->getFullName(), '\\');
+        if (!interface_exists($interfaceName)) {
+            return;
+        }
 
-        $finder = new ComposerFinder();
-        $finder
-            ->in($componentDirs)
-            ->implementationOf($this->getFullName());
-
-        foreach ($finder as $className => $reflection) {
-            // ensure the class is part of our published documentation
-            if (isset($pageNodes['\\' . $className])) {
-                $this->implementingClasses[] = '\\' . $className;
+        foreach (array_keys($pageNodes) as $className) {
+            // We cannot run "class_exists" on these classes because they will throw a fatal error.
+            if (in_array(
+                $className,
+                ['\\' . AppEngineFlexFormatter::class, '\\' . AppEngineFlexFormatterV2::class]
+            )) {
+                continue;
+            }
+            if (!class_exists($className)) {
+                continue;
+            }
+            $reflection = new ReflectionClass($className);
+            if (!$reflection->isEnum() && $reflection->implementsInterface($interfaceName)) {
+                $this->implementingClasses[] = $className;
             }
         }
 
