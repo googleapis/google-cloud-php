@@ -40,7 +40,7 @@
         "psr/http-client": "^1.0",
         "psr/http-factory": "^1.0",
         "phpfastcache/phpfastcache": "^9.2",
-        "phpseclib/phpseclib": "~3.0"
+        "phpseclib/phpseclib": "^3.0||^4.0.1"
     },
     "extra": {
         "component": {
