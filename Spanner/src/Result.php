@@ -128,7 +128,7 @@ class Result implements \IteratorAggregate
     {
         $bufferedResults = [];
         $call = $this->call;
-        $shouldRetry = false;
+        $shouldRetry = true;
         $isResultsYielded = false;
 
         $valid = $this->createGenerator();
@@ -158,6 +158,7 @@ class Result implements \IteratorAggregate
 
                     // Now that we've yielded all available rows, flush the buffer.
                     $bufferedResults = [];
+                    $shouldRetry = !$isResultsYielded || $hasResumeToken;
 
                     // If the last item in the buffer had a chunked value let's
                     // hold on to it so we can stitch it together into a yieldable
@@ -167,8 +168,6 @@ class Result implements \IteratorAggregate
                     }
                 }
 
-                // retry without resume token when results have not yielded
-                $shouldRetry = !$isResultsYielded || $hasResumeToken;
                 $this->generator->next();
                 $valid = $this->generator->valid();
             } catch (ServiceException $ex) {
@@ -179,7 +178,12 @@ class Result implements \IteratorAggregate
                     });
                     // Attempt to resume using the last stored resume token and the transaction.
                     // If we successfully resume, flush the buffer.
-                    $this->generator = $backoff->execute($call, [$this->resumeToken, $this->transaction()]);
+                    $generator = null;
+                    $valid = $backoff->execute(function () use ($call, &$generator) {
+                        $generator = $call($this->resumeToken, $this->transaction());
+                        return $generator->valid();
+                    });
+                    $this->generator = $generator;
                     $bufferedResults = [];
 
                     continue;

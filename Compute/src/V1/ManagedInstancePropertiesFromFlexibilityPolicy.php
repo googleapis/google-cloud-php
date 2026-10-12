@@ -15,11 +15,24 @@ use Google\Protobuf\RepeatedField;
 class ManagedInstancePropertiesFromFlexibilityPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
+     * List of disks to be attached to the instance.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AttachedDisk disks = 95594102;</code>
+     */
+    private $disks;
+    /**
      * Output only. The machine type to be used for this instance.
      *
      * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      */
     protected $machine_type = null;
+    /**
+     * Name of the minimum CPU platform to be used by this instance.
+     * e.g. 'Intel Ice Lake'.
+     *
+     * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
+     */
+    protected $min_cpu_platform = null;
 
     /**
      * Constructor.
@@ -27,13 +40,44 @@ class ManagedInstancePropertiesFromFlexibilityPolicy extends \Google\Protobuf\In
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\AttachedDisk[] $disks
+     *           List of disks to be attached to the instance.
      *     @type string $machine_type
      *           Output only. The machine type to be used for this instance.
+     *     @type string $min_cpu_platform
+     *           Name of the minimum CPU platform to be used by this instance.
+     *           e.g. 'Intel Ice Lake'.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * List of disks to be attached to the instance.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AttachedDisk disks = 95594102;</code>
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AttachedDisk>
+     */
+    public function getDisks()
+    {
+        return $this->disks;
+    }
+
+    /**
+     * List of disks to be attached to the instance.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AttachedDisk disks = 95594102;</code>
+     * @param \Google\Cloud\Compute\V1\AttachedDisk[] $var
+     * @return $this
+     */
+    public function setDisks($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\AttachedDisk::class);
+        $this->disks = $arr;
+
+        return $this;
     }
 
     /**
@@ -68,6 +112,44 @@ class ManagedInstancePropertiesFromFlexibilityPolicy extends \Google\Protobuf\In
     {
         GPBUtil::checkString($var, True);
         $this->machine_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Name of the minimum CPU platform to be used by this instance.
+     * e.g. 'Intel Ice Lake'.
+     *
+     * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
+     * @return string
+     */
+    public function getMinCpuPlatform()
+    {
+        return isset($this->min_cpu_platform) ? $this->min_cpu_platform : '';
+    }
+
+    public function hasMinCpuPlatform()
+    {
+        return isset($this->min_cpu_platform);
+    }
+
+    public function clearMinCpuPlatform()
+    {
+        unset($this->min_cpu_platform);
+    }
+
+    /**
+     * Name of the minimum CPU platform to be used by this instance.
+     * e.g. 'Intel Ice Lake'.
+     *
+     * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMinCpuPlatform($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->min_cpu_platform = $var;
 
         return $this;
     }

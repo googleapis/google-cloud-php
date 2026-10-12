@@ -32,7 +32,7 @@ class CreativeSet extends \Google\Protobuf\Internal\Message
     protected $display_name = null;
     /**
      * Required. Immutable. The master
-     * [Creative](google.ads.admanager.v1.Creative) to which the `CreativeSet` is
+     * [Creative][google.ads.admanager.v1.Creative] to which the `CreativeSet` is
      * associated.
      *
      * Generated from protobuf field <code>optional string master_creative = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
@@ -66,7 +66,7 @@ class CreativeSet extends \Google\Protobuf\Internal\Message
      *           length of 255 characters.
      *     @type string $master_creative
      *           Required. Immutable. The master
-     *           [Creative](google.ads.admanager.v1.Creative) to which the `CreativeSet` is
+     *           [Creative][google.ads.admanager.v1.Creative] to which the `CreativeSet` is
      *           associated.
      *     @type string[] $companion_creatives
      *           Required. The resource names of the companion `Creative`s associated with
@@ -148,7 +148,7 @@ class CreativeSet extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Immutable. The master
-     * [Creative](google.ads.admanager.v1.Creative) to which the `CreativeSet` is
+     * [Creative][google.ads.admanager.v1.Creative] to which the `CreativeSet` is
      * associated.
      *
      * Generated from protobuf field <code>optional string master_creative = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
@@ -171,7 +171,7 @@ class CreativeSet extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Immutable. The master
-     * [Creative](google.ads.admanager.v1.Creative) to which the `CreativeSet` is
+     * [Creative][google.ads.admanager.v1.Creative] to which the `CreativeSet` is
      * associated.
      *
      * Generated from protobuf field <code>optional string master_creative = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>

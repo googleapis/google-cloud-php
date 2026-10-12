@@ -267,6 +267,28 @@ return [
                     ],
                 ],
             ],
+            'PatchAssociation' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewall_policy}/patchAssociation',
+                'body' => 'firewall_policy_association_resource',
+                'placeholders' => [
+                    'firewall_policy' => [
+                        'getters' => [
+                            'getFirewallPolicy',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
             'PatchRule' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/firewallPolicies/{firewall_policy}/patchRule',

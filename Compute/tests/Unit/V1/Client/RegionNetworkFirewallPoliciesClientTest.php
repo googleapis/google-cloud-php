@@ -46,6 +46,7 @@ use Google\Cloud\Compute\V1\InsertRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\ListRegionNetworkFirewallPoliciesRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
+use Google\Cloud\Compute\V1\PatchAssociationRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\PatchRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\PatchRuleRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\Policy;
@@ -740,12 +741,14 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $firewallPolicyId = 'firewallPolicyId1430953673';
         $name2 = 'name2-1052831874';
+        $priority = 1165461084;
         $shortName = 'shortName1565793390';
         $expectedResponse = new FirewallPolicyAssociation();
         $expectedResponse->setAttachmentTarget($attachmentTarget);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setFirewallPolicyId($firewallPolicyId);
         $expectedResponse->setName($name2);
+        $expectedResponse->setPriority($priority);
         $expectedResponse->setShortName($shortName);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -904,11 +907,9 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $etag = 'etag3123477';
-        $iamOwned = false;
         $version = 351608024;
         $expectedResponse = new Policy();
         $expectedResponse->setEtag($etag);
-        $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -1424,6 +1425,145 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function patchAssociationTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/patchAssociationTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/patchAssociationTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $firewallPolicyAssociationResource = new FirewallPolicyAssociation();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new PatchAssociationRegionNetworkFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setFirewallPolicyAssociationResource($firewallPolicyAssociationResource)
+            ->setProject($project)
+            ->setRegion($region);
+        $response = $gapicClient->patchAssociation($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.compute.v1.RegionNetworkFirewallPolicies/PatchAssociation',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getFirewallPolicy();
+        $this->assertProtobufEquals($firewallPolicy, $actualValue);
+        $actualValue = $actualApiRequestObject->getFirewallPolicyAssociationResource();
+        $this->assertProtobufEquals($firewallPolicyAssociationResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $expectedOperationsRequestObject = new GetRegionOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function patchAssociationExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/patchAssociationExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $firewallPolicyAssociationResource = new FirewallPolicyAssociation();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new PatchAssociationRegionNetworkFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setFirewallPolicyAssociationResource($firewallPolicyAssociationResource)
+            ->setProject($project)
+            ->setRegion($region);
+        $response = $gapicClient->patchAssociation($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function patchRuleTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1832,11 +1972,9 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $etag = 'etag3123477';
-        $iamOwned = false;
         $version = 351608024;
         $expectedResponse = new Policy();
         $expectedResponse->setEtag($etag);
-        $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
         // Mock request

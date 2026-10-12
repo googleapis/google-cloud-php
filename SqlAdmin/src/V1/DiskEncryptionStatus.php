@@ -18,7 +18,7 @@ class DiskEncryptionStatus extends \Google\Protobuf\Internal\Message
     /**
      * KMS key version used to encrypt the Cloud SQL instance resource
      *
-     * Generated from protobuf field <code>string kms_key_version_name = 1;</code>
+     * Generated from protobuf field <code>string kms_key_version_name = 1 [(.google.api.resource_reference) = {</code>
      */
     protected $kms_key_version_name = '';
     /**
@@ -48,7 +48,7 @@ class DiskEncryptionStatus extends \Google\Protobuf\Internal\Message
     /**
      * KMS key version used to encrypt the Cloud SQL instance resource
      *
-     * Generated from protobuf field <code>string kms_key_version_name = 1;</code>
+     * Generated from protobuf field <code>string kms_key_version_name = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getKmsKeyVersionName()
@@ -59,7 +59,7 @@ class DiskEncryptionStatus extends \Google\Protobuf\Internal\Message
     /**
      * KMS key version used to encrypt the Cloud SQL instance resource
      *
-     * Generated from protobuf field <code>string kms_key_version_name = 1;</code>
+     * Generated from protobuf field <code>string kms_key_version_name = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

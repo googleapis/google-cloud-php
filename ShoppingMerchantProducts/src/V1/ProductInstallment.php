@@ -51,6 +51,13 @@ class ProductInstallment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.shopping.type.Price total_amount = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $total_amount = null;
+    /**
+     * Optional. The mileage allowance for the lease of the vehicle. Only
+     * applicable to vehicle products.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.merchant.products.v1.ProductAttributes.Mileage mileage_allowance = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $mileage_allowance = null;
 
     /**
      * Constructor.
@@ -70,6 +77,9 @@ class ProductInstallment extends \Google\Protobuf\Internal\Message
      *           Optional. Annual percentage rate for `credit_type` finance
      *     @type \Google\Shopping\Type\Price $total_amount
      *           Optional. Total amount the buyer has to pay, including interest.
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\Mileage $mileage_allowance
+     *           Optional. The mileage allowance for the lease of the vehicle. Only
+     *           applicable to vehicle products.
      * }
      */
     public function __construct($data = NULL) {
@@ -279,6 +289,44 @@ class ProductInstallment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Shopping\Type\Price::class);
         $this->total_amount = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The mileage allowance for the lease of the vehicle. Only
+     * applicable to vehicle products.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.merchant.products.v1.ProductAttributes.Mileage mileage_allowance = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Shopping\Merchant\Products\V1\ProductAttributes\Mileage|null
+     */
+    public function getMileageAllowance()
+    {
+        return $this->mileage_allowance;
+    }
+
+    public function hasMileageAllowance()
+    {
+        return isset($this->mileage_allowance);
+    }
+
+    public function clearMileageAllowance()
+    {
+        unset($this->mileage_allowance);
+    }
+
+    /**
+     * Optional. The mileage allowance for the lease of the vehicle. Only
+     * applicable to vehicle products.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.merchant.products.v1.ProductAttributes.Mileage mileage_allowance = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\Mileage $var
+     * @return $this
+     */
+    public function setMileageAllowance($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\Mileage::class);
+        $this->mileage_allowance = $var;
 
         return $this;
     }

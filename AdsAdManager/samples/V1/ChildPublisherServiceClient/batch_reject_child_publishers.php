@@ -42,12 +42,12 @@ use Google\ApiCore\ApiException;
  * associated with an Ad Manager network.
  *
  * To sever the relationship from the parent publisher's side, use
- * [BatchWithdrawChildPublisher][].
+ * `BatchWithdrawChildPublishers`.
  *
  * @param string $formattedParent       Format: `networks/{network_code}`
  *                                      Please see {@see ChildPublisherServiceClient::networkName()} for help formatting this field.
  * @param string $formattedNamesElement Resource names of the
- *                                      [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s to reject.
+ *                                      [ChildPublishers][google.ads.admanager.v1.ChildPublisher] to reject.
  *                                      Format: `networks/{network_code}/childPublisher/{child_publisher_id}`
  *                                      Please see {@see ChildPublisherServiceClient::childPublisherName()} for help formatting this field.
  */

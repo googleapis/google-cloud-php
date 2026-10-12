@@ -80,7 +80,6 @@ class NetworkProfilesClientTest extends GeneratedTest
         $name = 'name3373707';
         $selfLink = 'selfLink-1691268851';
         $selfLinkWithId = 'selfLinkWithId-1029220862';
-        $zone = 'zone3744684';
         $expectedResponse = new NetworkProfile();
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
@@ -89,7 +88,6 @@ class NetworkProfilesClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setSelfLinkWithId($selfLinkWithId);
-        $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
         // Mock request
         $networkProfile = 'networkProfile709983384';
@@ -242,7 +240,6 @@ class NetworkProfilesClientTest extends GeneratedTest
         $name = 'name3373707';
         $selfLink = 'selfLink-1691268851';
         $selfLinkWithId = 'selfLinkWithId-1029220862';
-        $zone = 'zone3744684';
         $expectedResponse = new NetworkProfile();
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
@@ -251,7 +248,6 @@ class NetworkProfilesClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setSelfLinkWithId($selfLinkWithId);
-        $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
         // Mock request
         $networkProfile = 'networkProfile709983384';

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Token usage metadata for query generation.
+ * Debug information and model metadata for query generation.
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.KnowledgeAssistDebugInfo.QueryGenerationDebugInfo</code>
  */
@@ -33,6 +33,32 @@ class QueryGenerationDebugInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 total_token_count = 3;</code>
      */
     protected $total_token_count = 0;
+    /**
+     * The thinking level configured for the Gemini model.
+     *
+     * Generated from protobuf field <code>string thinking_level = 4;</code>
+     */
+    protected $thinking_level = '';
+    /**
+     * The thinking budget (in number of tokens) configured for the Gemini
+     * model.
+     *
+     * Generated from protobuf field <code>int32 thinking_budget_tokens = 5;</code>
+     */
+    protected $thinking_budget_tokens = 0;
+    /**
+     * The similarity score of the suggested query to the last suggested query.
+     *
+     * Generated from protobuf field <code>float similarity_to_last_query = 6;</code>
+     */
+    protected $similarity_to_last_query = 0.0;
+    /**
+     * The similarity threshold used to filter out queries similar to the last
+     * suggestion.
+     *
+     * Generated from protobuf field <code>float similarity_to_last_query_threshold = 7;</code>
+     */
+    protected $similarity_to_last_query_threshold = 0.0;
 
     /**
      * Constructor.
@@ -46,6 +72,16 @@ class QueryGenerationDebugInfo extends \Google\Protobuf\Internal\Message
      *           The total number of tokens in the generated candidates.
      *     @type int $total_token_count
      *           The total number of tokens for the entire request.
+     *     @type string $thinking_level
+     *           The thinking level configured for the Gemini model.
+     *     @type int $thinking_budget_tokens
+     *           The thinking budget (in number of tokens) configured for the Gemini
+     *           model.
+     *     @type float $similarity_to_last_query
+     *           The similarity score of the suggested query to the last suggested query.
+     *     @type float $similarity_to_last_query_threshold
+     *           The similarity threshold used to filter out queries similar to the last
+     *           suggestion.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +163,114 @@ class QueryGenerationDebugInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->total_token_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * The thinking level configured for the Gemini model.
+     *
+     * Generated from protobuf field <code>string thinking_level = 4;</code>
+     * @return string
+     */
+    public function getThinkingLevel()
+    {
+        return $this->thinking_level;
+    }
+
+    /**
+     * The thinking level configured for the Gemini model.
+     *
+     * Generated from protobuf field <code>string thinking_level = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setThinkingLevel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->thinking_level = $var;
+
+        return $this;
+    }
+
+    /**
+     * The thinking budget (in number of tokens) configured for the Gemini
+     * model.
+     *
+     * Generated from protobuf field <code>int32 thinking_budget_tokens = 5;</code>
+     * @return int
+     */
+    public function getThinkingBudgetTokens()
+    {
+        return $this->thinking_budget_tokens;
+    }
+
+    /**
+     * The thinking budget (in number of tokens) configured for the Gemini
+     * model.
+     *
+     * Generated from protobuf field <code>int32 thinking_budget_tokens = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setThinkingBudgetTokens($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->thinking_budget_tokens = $var;
+
+        return $this;
+    }
+
+    /**
+     * The similarity score of the suggested query to the last suggested query.
+     *
+     * Generated from protobuf field <code>float similarity_to_last_query = 6;</code>
+     * @return float
+     */
+    public function getSimilarityToLastQuery()
+    {
+        return $this->similarity_to_last_query;
+    }
+
+    /**
+     * The similarity score of the suggested query to the last suggested query.
+     *
+     * Generated from protobuf field <code>float similarity_to_last_query = 6;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setSimilarityToLastQuery($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->similarity_to_last_query = $var;
+
+        return $this;
+    }
+
+    /**
+     * The similarity threshold used to filter out queries similar to the last
+     * suggestion.
+     *
+     * Generated from protobuf field <code>float similarity_to_last_query_threshold = 7;</code>
+     * @return float
+     */
+    public function getSimilarityToLastQueryThreshold()
+    {
+        return $this->similarity_to_last_query_threshold;
+    }
+
+    /**
+     * The similarity threshold used to filter out queries similar to the last
+     * suggestion.
+     *
+     * Generated from protobuf field <code>float similarity_to_last_query_threshold = 7;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setSimilarityToLastQueryThreshold($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->similarity_to_last_query_threshold = $var;
 
         return $this;
     }

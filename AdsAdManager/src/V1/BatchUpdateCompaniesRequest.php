@@ -9,17 +9,17 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request object for [BatchUpdateCompanies][] method.
+ * Request object for `BatchUpdateCompanies` method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.BatchUpdateCompaniesRequest</code>
  */
 class BatchUpdateCompaniesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource where [Companies][] will be updated.
-     * Format: `networks/{network_code}`
-     * The parent field in the UpdateCompanyRequest must match this
-     * field.
+     * Required. The parent resource where
+     * [Companies][google.ads.admanager.v1.Company] will be updated. Format:
+     * `networks/{network_code}` The parent field in the UpdateCompanyRequest must
+     * match this field.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -33,10 +33,10 @@ class BatchUpdateCompaniesRequest extends \Google\Protobuf\Internal\Message
     private $requests;
 
     /**
-     * @param string                                          $parent   Required. The parent resource where [Companies][] will be updated.
-     *                                                                  Format: `networks/{network_code}`
-     *                                                                  The parent field in the UpdateCompanyRequest must match this
-     *                                                                  field. Please see
+     * @param string                                          $parent   Required. The parent resource where
+     *                                                                  [Companies][google.ads.admanager.v1.Company] will be updated. Format:
+     *                                                                  `networks/{network_code}` The parent field in the UpdateCompanyRequest must
+     *                                                                  match this field. Please see
      *                                                                  {@see CompanyServiceClient::networkName()} for help formatting this field.
      * @param \Google\Ads\AdManager\V1\UpdateCompanyRequest[] $requests Required. The [Company][google.ads.admanager.v1.Company] objects to update.
      *                                                                  A maximum of 100 objects can be updated in a batch.
@@ -59,10 +59,10 @@ class BatchUpdateCompaniesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource where [Companies][] will be updated.
-     *           Format: `networks/{network_code}`
-     *           The parent field in the UpdateCompanyRequest must match this
-     *           field.
+     *           Required. The parent resource where
+     *           [Companies][google.ads.admanager.v1.Company] will be updated. Format:
+     *           `networks/{network_code}` The parent field in the UpdateCompanyRequest must
+     *           match this field.
      *     @type \Google\Ads\AdManager\V1\UpdateCompanyRequest[] $requests
      *           Required. The [Company][google.ads.admanager.v1.Company] objects to update.
      *           A maximum of 100 objects can be updated in a batch.
@@ -74,10 +74,10 @@ class BatchUpdateCompaniesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource where [Companies][] will be updated.
-     * Format: `networks/{network_code}`
-     * The parent field in the UpdateCompanyRequest must match this
-     * field.
+     * Required. The parent resource where
+     * [Companies][google.ads.admanager.v1.Company] will be updated. Format:
+     * `networks/{network_code}` The parent field in the UpdateCompanyRequest must
+     * match this field.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -88,10 +88,10 @@ class BatchUpdateCompaniesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource where [Companies][] will be updated.
-     * Format: `networks/{network_code}`
-     * The parent field in the UpdateCompanyRequest must match this
-     * field.
+     * Required. The parent resource where
+     * [Companies][google.ads.admanager.v1.Company] will be updated. Format:
+     * `networks/{network_code}` The parent field in the UpdateCompanyRequest must
+     * match this field.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

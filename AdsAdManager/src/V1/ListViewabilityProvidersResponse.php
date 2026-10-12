@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Response object for [ListViewabilityProviders][] containing matching
+ * Response object for `ListViewabilityProviders` containing matching
  * [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider] objects.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.ListViewabilityProvidersResponse</code>

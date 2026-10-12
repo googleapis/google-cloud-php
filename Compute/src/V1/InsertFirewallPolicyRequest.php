@@ -26,9 +26,9 @@ class InsertFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
      * if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the
      * parent is an organization.
      *
-     * Generated from protobuf field <code>string parent_id = 459714768 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "parent_id"];</code>
+     * Generated from protobuf field <code>optional string parent_id = 459714768 [(.google.cloud.operation_request_field) = "parent_id"];</code>
      */
-    protected $parent_id = '';
+    protected $parent_id = null;
     /**
      * An optional request ID to identify requests. Specify a unique request ID so
      * that if you must retry your request, the server will know to ignore the
@@ -47,19 +47,15 @@ class InsertFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = null;
 
     /**
-     * @param string                                  $parentId               Parent ID for this request. The ID can be either be "folders/[FOLDER_ID]"
-     *                                                                        if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the
-     *                                                                        parent is an organization.
      * @param \Google\Cloud\Compute\V1\FirewallPolicy $firewallPolicyResource The body resource for this request
      *
      * @return \Google\Cloud\Compute\V1\InsertFirewallPolicyRequest
      *
      * @experimental
      */
-    public static function build(string $parentId, \Google\Cloud\Compute\V1\FirewallPolicy $firewallPolicyResource): self
+    public static function build(\Google\Cloud\Compute\V1\FirewallPolicy $firewallPolicyResource): self
     {
         return (new self())
-            ->setParentId($parentId)
             ->setFirewallPolicyResource($firewallPolicyResource);
     }
 
@@ -135,12 +131,22 @@ class InsertFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
      * if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the
      * parent is an organization.
      *
-     * Generated from protobuf field <code>string parent_id = 459714768 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "parent_id"];</code>
+     * Generated from protobuf field <code>optional string parent_id = 459714768 [(.google.cloud.operation_request_field) = "parent_id"];</code>
      * @return string
      */
     public function getParentId()
     {
-        return $this->parent_id;
+        return isset($this->parent_id) ? $this->parent_id : '';
+    }
+
+    public function hasParentId()
+    {
+        return isset($this->parent_id);
+    }
+
+    public function clearParentId()
+    {
+        unset($this->parent_id);
     }
 
     /**
@@ -148,7 +154,7 @@ class InsertFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
      * if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the
      * parent is an organization.
      *
-     * Generated from protobuf field <code>string parent_id = 459714768 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "parent_id"];</code>
+     * Generated from protobuf field <code>optional string parent_id = 459714768 [(.google.cloud.operation_request_field) = "parent_id"];</code>
      * @param string $var
      * @return $this
      */

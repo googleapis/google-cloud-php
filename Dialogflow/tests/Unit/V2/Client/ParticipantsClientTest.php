@@ -29,6 +29,8 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\AnalyzeContentRequest;
 use Google\Cloud\Dialogflow\V2\AnalyzeContentResponse;
+use Google\Cloud\Dialogflow\V2\BidiStreamingAnalyzeContentRequest;
+use Google\Cloud\Dialogflow\V2\BidiStreamingAnalyzeContentResponse;
 use Google\Cloud\Dialogflow\V2\Client\ParticipantsClient;
 use Google\Cloud\Dialogflow\V2\CreateParticipantRequest;
 use Google\Cloud\Dialogflow\V2\GetParticipantRequest;
@@ -37,6 +39,8 @@ use Google\Cloud\Dialogflow\V2\ListParticipantsResponse;
 use Google\Cloud\Dialogflow\V2\Participant;
 use Google\Cloud\Dialogflow\V2\StreamingAnalyzeContentRequest;
 use Google\Cloud\Dialogflow\V2\StreamingAnalyzeContentResponse;
+use Google\Cloud\Dialogflow\V2\StreamingReactiveCompanionSuggestionsRequest;
+use Google\Cloud\Dialogflow\V2\StreamingReactiveCompanionSuggestionsResponse;
 use Google\Cloud\Dialogflow\V2\SuggestArticlesRequest;
 use Google\Cloud\Dialogflow\V2\SuggestArticlesResponse;
 use Google\Cloud\Dialogflow\V2\SuggestFaqAnswersRequest;
@@ -139,6 +143,94 @@ class ParticipantsClientTest extends GeneratedTest
         try {
             $gapicClient->analyzeContent($request);
             // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function bidiStreamingAnalyzeContentTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BidiStreamingAnalyzeContentResponse();
+        $transport->addResponse($expectedResponse);
+        $expectedResponse2 = new BidiStreamingAnalyzeContentResponse();
+        $transport->addResponse($expectedResponse2);
+        $expectedResponse3 = new BidiStreamingAnalyzeContentResponse();
+        $transport->addResponse($expectedResponse3);
+        // Mock request
+        $request = new BidiStreamingAnalyzeContentRequest();
+        $request2 = new BidiStreamingAnalyzeContentRequest();
+        $request3 = new BidiStreamingAnalyzeContentRequest();
+        $bidi = $gapicClient->bidiStreamingAnalyzeContent();
+        $this->assertInstanceOf(BidiStream::class, $bidi);
+        $bidi->write($request);
+        $responses = [];
+        $responses[] = $bidi->read();
+        $bidi->writeAll([$request2, $request3]);
+        foreach ($bidi->closeWriteAndReadAll() as $response) {
+            $responses[] = $response;
+        }
+
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+        $createStreamRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($createStreamRequests));
+        $streamFuncCall = $createStreamRequests[0]->getFuncCall();
+        $streamRequestObject = $createStreamRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dialogflow.v2.Participants/BidiStreamingAnalyzeContent', $streamFuncCall);
+        $this->assertNull($streamRequestObject);
+        $callObjects = $transport->popCallObjects();
+        $this->assertSame(1, count($callObjects));
+        $bidiCall = $callObjects[0];
+        $writeRequests = $bidiCall->popReceivedCalls();
+        $expectedRequests = [];
+        $expectedRequests[] = $request;
+        $expectedRequests[] = $request2;
+        $expectedRequests[] = $request3;
+        $this->assertEquals($expectedRequests, $writeRequests);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function bidiStreamingAnalyzeContentExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->setStreamingStatus($status);
+        $this->assertTrue($transport->isExhausted());
+        $bidi = $gapicClient->bidiStreamingAnalyzeContent();
+        $results = $bidi->closeWriteAndReadAll();
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -454,6 +546,127 @@ class ParticipantsClientTest extends GeneratedTest
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         $bidi = $gapicClient->streamingAnalyzeContent();
+        $results = $bidi->closeWriteAndReadAll();
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function streamingReactiveCompanionSuggestionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $responseChunk = 'responseChunk424518895';
+        $isFinal = false;
+        $answerRecord = 'answerRecord1238800370';
+        $textMessageId = 'textMessageId-101801307';
+        $expectedResponse = new StreamingReactiveCompanionSuggestionsResponse();
+        $expectedResponse->setResponseChunk($responseChunk);
+        $expectedResponse->setIsFinal($isFinal);
+        $expectedResponse->setAnswerRecord($answerRecord);
+        $expectedResponse->setTextMessageId($textMessageId);
+        $transport->addResponse($expectedResponse);
+        $responseChunk2 = 'responseChunk2-59232030';
+        $isFinal2 = true;
+        $answerRecord2 = 'answerRecord2781217573';
+        $textMessageId2 = 'textMessageId2953194776';
+        $expectedResponse2 = new StreamingReactiveCompanionSuggestionsResponse();
+        $expectedResponse2->setResponseChunk($responseChunk2);
+        $expectedResponse2->setIsFinal($isFinal2);
+        $expectedResponse2->setAnswerRecord($answerRecord2);
+        $expectedResponse2->setTextMessageId($textMessageId2);
+        $transport->addResponse($expectedResponse2);
+        $responseChunk3 = 'responseChunk3-59232029';
+        $isFinal3 = false;
+        $answerRecord3 = 'answerRecord3781217574';
+        $textMessageId3 = 'textMessageId3953194777';
+        $expectedResponse3 = new StreamingReactiveCompanionSuggestionsResponse();
+        $expectedResponse3->setResponseChunk($responseChunk3);
+        $expectedResponse3->setIsFinal($isFinal3);
+        $expectedResponse3->setAnswerRecord($answerRecord3);
+        $expectedResponse3->setTextMessageId($textMessageId3);
+        $transport->addResponse($expectedResponse3);
+        // Mock request
+        $formattedParticipant = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
+        $request = new StreamingReactiveCompanionSuggestionsRequest();
+        $request->setParticipant($formattedParticipant);
+        $formattedParticipant2 = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
+        $request2 = new StreamingReactiveCompanionSuggestionsRequest();
+        $request2->setParticipant($formattedParticipant2);
+        $formattedParticipant3 = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
+        $request3 = new StreamingReactiveCompanionSuggestionsRequest();
+        $request3->setParticipant($formattedParticipant3);
+        $bidi = $gapicClient->streamingReactiveCompanionSuggestions();
+        $this->assertInstanceOf(BidiStream::class, $bidi);
+        $bidi->write($request);
+        $responses = [];
+        $responses[] = $bidi->read();
+        $bidi->writeAll([$request2, $request3]);
+        foreach ($bidi->closeWriteAndReadAll() as $response) {
+            $responses[] = $response;
+        }
+
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+        $createStreamRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($createStreamRequests));
+        $streamFuncCall = $createStreamRequests[0]->getFuncCall();
+        $streamRequestObject = $createStreamRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.dialogflow.v2.Participants/StreamingReactiveCompanionSuggestions',
+            $streamFuncCall
+        );
+        $this->assertNull($streamRequestObject);
+        $callObjects = $transport->popCallObjects();
+        $this->assertSame(1, count($callObjects));
+        $bidiCall = $callObjects[0];
+        $writeRequests = $bidiCall->popReceivedCalls();
+        $expectedRequests = [];
+        $expectedRequests[] = $request;
+        $expectedRequests[] = $request2;
+        $expectedRequests[] = $request3;
+        $this->assertEquals($expectedRequests, $writeRequests);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function streamingReactiveCompanionSuggestionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->setStreamingStatus($status);
+        $this->assertTrue($transport->isExhausted());
+        $bidi = $gapicClient->streamingReactiveCompanionSuggestions();
         $results = $bidi->closeWriteAndReadAll();
         try {
             iterator_to_array($results);

@@ -46,7 +46,7 @@ class Goal extends \Google\Protobuf\Internal\Message
      * it represents the percentage of remaining impressions reserved. <p>If this
      * is an impression cap goal, it represents the number of impressions or
      * conversions that the line item will stop serving at if reached. For valid
-     * line item types, see [LineItem.impressions_cap][].
+     * line item types, see [LineItem.impressionsCap][LineItem.impressions_cap].
      *
      * Generated from protobuf field <code>optional int64 units = 3;</code>
      */
@@ -80,7 +80,7 @@ class Goal extends \Google\Protobuf\Internal\Message
      *           it represents the percentage of remaining impressions reserved. <p>If this
      *           is an impression cap goal, it represents the number of impressions or
      *           conversions that the line item will stop serving at if reached. For valid
-     *           line item types, see [LineItem.impressions_cap][].
+     *           line item types, see [LineItem.impressionsCap][LineItem.impressions_cap].
      * }
      */
     public function __construct($data = NULL) {
@@ -179,7 +179,7 @@ class Goal extends \Google\Protobuf\Internal\Message
      * it represents the percentage of remaining impressions reserved. <p>If this
      * is an impression cap goal, it represents the number of impressions or
      * conversions that the line item will stop serving at if reached. For valid
-     * line item types, see [LineItem.impressions_cap][].
+     * line item types, see [LineItem.impressionsCap][LineItem.impressions_cap].
      *
      * Generated from protobuf field <code>optional int64 units = 3;</code>
      * @return int|string
@@ -216,7 +216,7 @@ class Goal extends \Google\Protobuf\Internal\Message
      * it represents the percentage of remaining impressions reserved. <p>If this
      * is an impression cap goal, it represents the number of impressions or
      * conversions that the line item will stop serving at if reached. For valid
-     * line item types, see [LineItem.impressions_cap][].
+     * line item types, see [LineItem.impressionsCap][LineItem.impressions_cap].
      *
      * Generated from protobuf field <code>optional int64 units = 3;</code>
      * @param int|string $var

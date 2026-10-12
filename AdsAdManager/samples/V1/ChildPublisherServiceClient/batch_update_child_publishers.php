@@ -36,10 +36,9 @@ use Google\ApiCore\ApiException;
  * objects.
  *
  * @param string $formattedParent                      The parent resource where
- *                                                     [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s will be updated.
- *                                                     Format: `networks/{network_code}`
- *                                                     The parent field in the UpdateChildPublisherRequest must match this
- *                                                     field. Please see
+ *                                                     [ChildPublishers][google.ads.admanager.v1.ChildPublisher] will be updated.
+ *                                                     Format: `networks/{network_code}` The parent field in the
+ *                                                     UpdateChildPublisherRequest must match this field. Please see
  *                                                     {@see ChildPublisherServiceClient::networkName()} for help formatting this field.
  * @param string $requestsChildPublisherDisplayName    The display name of the
  *                                                     [ChildPublisher][google.ads.admanager.v1.ChildPublisher].

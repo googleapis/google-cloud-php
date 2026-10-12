@@ -80,6 +80,17 @@ return [
                     ],
                 ],
             ],
+            'ResolveInstanceConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{app_connector=projects/*/locations/*/appConnectors/*}:resolveInstanceConfig',
+                'placeholders' => [
+                    'app_connector' => [
+                        'getters' => [
+                            'getAppConnector',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateAppConnector' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{app_connector.name=projects/*/locations/*/appConnectors/*}',
@@ -136,11 +147,11 @@ return [
                     ],
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/clientConnectorServices/*}:getIamPolicy',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/securityGateways/*}:getIamPolicy',
                     ],
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/clientGateways/*}:getIamPolicy',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/securityGateways/*/applications/*}:getIamPolicy',
                     ],
                 ],
                 'placeholders' => [
@@ -168,12 +179,12 @@ return [
                     ],
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/clientConnectorServices/*}:setIamPolicy',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/securityGateways/*}:setIamPolicy',
                         'body' => '*',
                     ],
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/clientGateways/*}:setIamPolicy',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/securityGateways/*/applications/*}:setIamPolicy',
                         'body' => '*',
                     ],
                 ],
@@ -202,12 +213,12 @@ return [
                     ],
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/clientConnectorServices/*}:testIamPermissions',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/securityGateways/*}:testIamPermissions',
                         'body' => '*',
                     ],
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/clientGateways/*}:testIamPermissions',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/securityGateways/*/applications/*}:testIamPermissions',
                         'body' => '*',
                     ],
                 ],
@@ -225,6 +236,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/operations/*}:cancel',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -236,6 +254,12 @@ return [
             'DeleteOperation' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/operations/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -247,6 +271,12 @@ return [
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/operations/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -258,6 +288,12 @@ return [
             'ListOperations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*}/operations',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/*}/operations',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [

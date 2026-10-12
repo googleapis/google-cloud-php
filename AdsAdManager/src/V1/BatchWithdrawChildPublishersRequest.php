@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request message for [BatchWithdrawChildPublishers][] method.
+ * Request message for `BatchWithdrawChildPublishers` method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.BatchWithdrawChildPublishersRequest</code>
  */
@@ -23,7 +23,7 @@ class BatchWithdrawChildPublishersRequest extends \Google\Protobuf\Internal\Mess
     protected $parent = '';
     /**
      * Required. Resource names of the
-     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s to withdraw.
+     * [ChildPublishers][google.ads.admanager.v1.ChildPublisher] to withdraw.
      * Format: `networks/{network_code}/childPublisher/{child_publisher_id}`
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -34,7 +34,7 @@ class BatchWithdrawChildPublishersRequest extends \Google\Protobuf\Internal\Mess
      * @param string   $parent Required. Format: `networks/{network_code}`
      *                         Please see {@see ChildPublisherServiceClient::networkName()} for help formatting this field.
      * @param string[] $names  Required. Resource names of the
-     *                         [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s to withdraw.
+     *                         [ChildPublishers][google.ads.admanager.v1.ChildPublisher] to withdraw.
      *                         Format: `networks/{network_code}/childPublisher/{child_publisher_id}`
      *                         Please see {@see ChildPublisherServiceClient::childPublisherName()} for help formatting this field.
      *
@@ -59,7 +59,7 @@ class BatchWithdrawChildPublishersRequest extends \Google\Protobuf\Internal\Mess
      *           Required. Format: `networks/{network_code}`
      *     @type string[] $names
      *           Required. Resource names of the
-     *           [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s to withdraw.
+     *           [ChildPublishers][google.ads.admanager.v1.ChildPublisher] to withdraw.
      *           Format: `networks/{network_code}/childPublisher/{child_publisher_id}`
      * }
      */
@@ -96,7 +96,7 @@ class BatchWithdrawChildPublishersRequest extends \Google\Protobuf\Internal\Mess
 
     /**
      * Required. Resource names of the
-     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s to withdraw.
+     * [ChildPublishers][google.ads.admanager.v1.ChildPublisher] to withdraw.
      * Format: `networks/{network_code}/childPublisher/{child_publisher_id}`
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -109,7 +109,7 @@ class BatchWithdrawChildPublishersRequest extends \Google\Protobuf\Internal\Mess
 
     /**
      * Required. Resource names of the
-     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s to withdraw.
+     * [ChildPublishers][google.ads.admanager.v1.ChildPublisher] to withdraw.
      * Format: `networks/{network_code}/childPublisher/{child_publisher_id}`
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

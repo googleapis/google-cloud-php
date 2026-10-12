@@ -47,6 +47,8 @@ use Psr\Log\LoggerInterface;
 /**
  * Service Description: The Routes API.
  *
+ * This client uses Routes version 2026-09-01.
+ *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
@@ -78,6 +80,9 @@ final class RoutesClient
 
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
+
+    /** The api version of the service */
+    private string $apiVersion = '2026-09-01';
 
     /**
      * The default scopes required by the service.

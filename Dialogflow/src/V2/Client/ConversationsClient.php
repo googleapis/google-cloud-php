@@ -153,6 +153,23 @@ final class ConversationsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * answer_record resource.
+     *
+     * @param string $project
+     * @param string $answerRecord
+     *
+     * @return string The formatted answer_record resource.
+     */
+    public static function answerRecordName(string $project, string $answerRecord): string
+    {
+        return self::getPathTemplate('answerRecord')->render([
+            'project' => $project,
+            'answer_record' => $answerRecord,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a app
      * resource.
      *
@@ -187,6 +204,25 @@ final class ConversationsClient
             'project' => $project,
             'location' => $location,
             'security_settings' => $securitySettings,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * companion_agent resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $companionAgent
+     *
+     * @return string The formatted companion_agent resource.
+     */
+    public static function companionAgentName(string $project, string $location, string $companionAgent): string
+    {
+        return self::getPathTemplate('companionAgent')->render([
+            'project' => $project,
+            'location' => $location,
+            'companion_agent' => $companionAgent,
         ]);
     }
 
@@ -410,6 +446,23 @@ final class ConversationsClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_answer_record resource.
+     *
+     * @param string $project
+     * @param string $answerRecord
+     *
+     * @return string The formatted project_answer_record resource.
+     */
+    public static function projectAnswerRecordName(string $project, string $answerRecord): string
+    {
+        return self::getPathTemplate('projectAnswerRecord')->render([
+            'project' => $project,
+            'answer_record' => $answerRecord,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_conversation resource.
      *
      * @param string $project
@@ -534,6 +587,28 @@ final class ConversationsClient
         return self::getPathTemplate('projectLocationAgent')->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_answer_record resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $answerRecord
+     *
+     * @return string The formatted project_location_answer_record resource.
+     */
+    public static function projectLocationAnswerRecordName(
+        string $project,
+        string $location,
+        string $answerRecord
+    ): string {
+        return self::getPathTemplate('projectLocationAnswerRecord')->render([
+            'project' => $project,
+            'location' => $location,
+            'answer_record' => $answerRecord,
         ]);
     }
 
@@ -764,8 +839,10 @@ final class ConversationsClient
      * The following name formats are supported:
      * Template: Pattern
      * - agent: projects/{project}/agent
+     * - answerRecord: projects/{project}/answerRecords/{answer_record}
      * - app: projects/{project}/locations/{location}/apps/{app}
      * - cXSecuritySettings: projects/{project}/locations/{location}/securitySettings/{security_settings}
+     * - companionAgent: projects/{project}/locations/{location}/companionAgents/{companion_agent}
      * - conversation: projects/{project}/conversations/{conversation}
      * - conversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - conversationProfile: projects/{project}/conversationProfiles/{conversation_profile}
@@ -778,6 +855,7 @@ final class ConversationsClient
      * - phraseSet: projects/{project}/locations/{location}/phraseSets/{phrase_set}
      * - project: projects/{project}
      * - projectAgent: projects/{project}/agent
+     * - projectAnswerRecord: projects/{project}/answerRecords/{answer_record}
      * - projectConversation: projects/{project}/conversations/{conversation}
      * - projectConversationMessage: projects/{project}/conversations/{conversation}/messages/{message}
      * - projectConversationModel: projects/{project}/conversationModels/{conversation_model}
@@ -785,6 +863,7 @@ final class ConversationsClient
      * - projectKnowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - projectKnowledgeBaseDocument: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
      * - projectLocationAgent: projects/{project}/locations/{location}/agent
+     * - projectLocationAnswerRecord: projects/{project}/locations/{location}/answerRecords/{answer_record}
      * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - projectLocationConversation: projects/{project}/locations/{location}/conversations/{conversation}
      * - projectLocationConversationMessage: projects/{project}/locations/{location}/conversations/{conversation}/messages/{message}

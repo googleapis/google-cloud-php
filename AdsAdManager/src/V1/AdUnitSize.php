@@ -30,7 +30,7 @@ class AdUnitSize extends \Google\Protobuf\Internal\Message
     /**
      * The companions for this ad unit size. Companions are only valid if the
      * environment is
-     * [VIDEO_PLAYER][google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType].
+     * [VIDEO_PLAYER][google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType.VIDEO_PLAYER].
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Size companions = 3;</code>
      */
@@ -49,7 +49,7 @@ class AdUnitSize extends \Google\Protobuf\Internal\Message
      *     @type \Google\Ads\AdManager\V1\Size[] $companions
      *           The companions for this ad unit size. Companions are only valid if the
      *           environment is
-     *           [VIDEO_PLAYER][google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType].
+     *           [VIDEO_PLAYER][google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType.VIDEO_PLAYER].
      * }
      */
     public function __construct($data = NULL) {
@@ -132,7 +132,7 @@ class AdUnitSize extends \Google\Protobuf\Internal\Message
     /**
      * The companions for this ad unit size. Companions are only valid if the
      * environment is
-     * [VIDEO_PLAYER][google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType].
+     * [VIDEO_PLAYER][google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType.VIDEO_PLAYER].
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Size companions = 3;</code>
      * @return RepeatedField<\Google\Ads\AdManager\V1\Size>
@@ -145,7 +145,7 @@ class AdUnitSize extends \Google\Protobuf\Internal\Message
     /**
      * The companions for this ad unit size. Companions are only valid if the
      * environment is
-     * [VIDEO_PLAYER][google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType].
+     * [VIDEO_PLAYER][google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType.VIDEO_PLAYER].
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Size companions = 3;</code>
      * @param \Google\Ads\AdManager\V1\Size[] $var

@@ -102,4 +102,12 @@ class ComponentTest extends TestCase
         $this->assertNotEmpty($sample);
         $this->assertStringContainsString('getSecret', $sample);
     }
+
+    public function testIsMigratedRepo()
+    {
+        $this->assertTrue((new Component('Auth'))->isMigratedRepo());
+        $this->assertTrue((new Component('Gax'))->isMigratedRepo());
+        $this->assertTrue((new Component('Jwt'))->isMigratedRepo());
+        $this->assertFalse((new Component('Bigtable'))->isMigratedRepo());
+    }
 }

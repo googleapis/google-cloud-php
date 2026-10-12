@@ -516,6 +516,16 @@ class Metric
      */
     const ADSENSE_REVENUE = 25;
     /**
+     * The cost per item purchased.
+     * Corresponds to "Advertiser cost per attributed item purchased" in the Ad
+     * Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>ADVERTISER_COST_PER_ATTRIBUTED_ITEM_PURCHASED = 747;</code>
+     */
+    const ADVERTISER_COST_PER_ATTRIBUTED_ITEM_PURCHASED = 747;
+    /**
      * Active View AdExchange average time in seconds that specific impressions
      *  are reported as being viewable.
      * Corresponds to "Ad Exchange Active View average viewable time (seconds)"
@@ -1391,7 +1401,7 @@ class Metric
      */
     const AD_SERVER_UNFILTERED_DOWNLOADED_IMPRESSIONS = 260;
     /**
-     * Deprecated. This metric has been renamed to
+     * Deprecated: This metric has been renamed to
      * `AD_SERVER_UNFILTERED_DOWNLOADED_IMPRESSIONS`.
      * The server will normalize any requests using this value to
      * `AD_SERVER_UNFILTERED_DOWNLOADED_IMPRESSIONS`.
@@ -1985,6 +1995,27 @@ class Metric
      * Generated from protobuf enum <code>ATN_YIELD_GROUP_MEDIATION_PASSBACKS = 390;</code>
      */
     const ATN_YIELD_GROUP_MEDIATION_PASSBACKS = 390;
+    /**
+     * The number of purchased items that were attributed to a view or click as
+     *  defined by the sponsored product ad's line item settings.
+     * Corresponds to "Attributed items purchased" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>ATTRIBUTED_ITEMS_PURCHASED = 745;</code>
+     */
+    const ATTRIBUTED_ITEMS_PURCHASED = 745;
+    /**
+     * The percent of revenue the retailer made on attributed items purchased
+     *  compared to the advertiser's ad spend for those items. Return on Ad
+     *  Spend
+     * Corresponds to "Attributed items purchased ROAS" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `PERCENT`
+     *
+     * Generated from protobuf enum <code>ATTRIBUTED_ITEMS_PURCHASED_ROAS = 748;</code>
+     */
+    const ATTRIBUTED_ITEMS_PURCHASED_ROAS = 748;
     /**
      * Cost of the audience segment.
      * Corresponds to "Audience segment cost" in the Ad Manager UI.
@@ -2907,6 +2938,66 @@ class Metric
      */
     const OFF_PROPERTY_SPEND_ECPM = 403;
     /**
+     * The number of times the video played to completion for off-property
+     *  campaigns.
+     * Corresponds to "Off-property completes" in the Ad Manager UI.
+     * Compatible with the following report types: `OFF_PROPERTY_CAMPAIGNS`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>OFF_PROPERTY_VIDEO_COMPLETES = 754;</code>
+     */
+    const OFF_PROPERTY_VIDEO_COMPLETES = 754;
+    /**
+     * The number of engaged views for off-property campaigns: ad is viewed
+     *  to completion or for 30s, whichever comes first.
+     * Corresponds to "Off-property engaged views" in the Ad Manager UI.
+     * Compatible with the following report types: `OFF_PROPERTY_CAMPAIGNS`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>OFF_PROPERTY_VIDEO_ENGAGED_VIEWS = 755;</code>
+     */
+    const OFF_PROPERTY_VIDEO_ENGAGED_VIEWS = 755;
+    /**
+     * The number of times the video played to 25% of its length for
+     *  off-property campaigns.
+     * Corresponds to "Off-property first quartiles" in the Ad Manager UI.
+     * Compatible with the following report types: `OFF_PROPERTY_CAMPAIGNS`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>OFF_PROPERTY_VIDEO_FIRST_QUARTILES = 756;</code>
+     */
+    const OFF_PROPERTY_VIDEO_FIRST_QUARTILES = 756;
+    /**
+     * The number of times the video reached its midpoint during play for off-
+     *  property campaigns.
+     * Corresponds to "Off-property midpoints" in the Ad Manager UI.
+     * Compatible with the following report types: `OFF_PROPERTY_CAMPAIGNS`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>OFF_PROPERTY_VIDEO_MIDPOINTS = 757;</code>
+     */
+    const OFF_PROPERTY_VIDEO_MIDPOINTS = 757;
+    /**
+     * The number of impressions where the video was played for off-property
+     *  campaigns.
+     * Corresponds to "Off-property starts" in the Ad Manager UI.
+     * Compatible with the following report types: `OFF_PROPERTY_CAMPAIGNS`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>OFF_PROPERTY_VIDEO_STARTS = 753;</code>
+     */
+    const OFF_PROPERTY_VIDEO_STARTS = 753;
+    /**
+     * The number of times the video played to 75% of its length for
+     *  off-property campaigns.
+     * Corresponds to "Off-property third quartiles" in the Ad Manager UI.
+     * Compatible with the following report types: `OFF_PROPERTY_CAMPAIGNS`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>OFF_PROPERTY_VIDEO_THIRD_QUARTILES = 758;</code>
+     */
+    const OFF_PROPERTY_VIDEO_THIRD_QUARTILES = 758;
+    /**
      * Average effective cost-per-thousand-impressions earned from the mediation
      *  on-platform multiple call, excluding CPD value.
      * Corresponds to "On-platform multiple call eCPM" in the Ad Manager UI.
@@ -3282,6 +3373,18 @@ class Metric
      * Generated from protobuf enum <code>REVENUE = 36;</code>
      */
     const REVENUE = 36;
+    /**
+     * The total amount users paid for items that were attributed to a view or
+     *  click as defined by the sponsored product ad's line item settings. This
+     *  value is revenue for the retailer.
+     * Corresponds to "Revenue on attributed items purchased" in the Ad Manager
+     * UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>REVENUE_ON_ATTRIBUTED_ITEMS_PURCHASED = 746;</code>
+     */
+    const REVENUE_ON_ATTRIBUTED_ITEMS_PURCHASED = 746;
     /**
      * The total revenue accrued in the child network's own account but paid to
      *  their parent network through auto-payment. This metric is only relevant
@@ -5312,6 +5415,7 @@ class Metric
         self::ADSENSE_PERCENT_REVENUE_WITHOUT_CPD => 'ADSENSE_PERCENT_REVENUE_WITHOUT_CPD',
         self::ADSENSE_RESPONSES_SERVED => 'ADSENSE_RESPONSES_SERVED',
         self::ADSENSE_REVENUE => 'ADSENSE_REVENUE',
+        self::ADVERTISER_COST_PER_ATTRIBUTED_ITEM_PURCHASED => 'ADVERTISER_COST_PER_ATTRIBUTED_ITEM_PURCHASED',
         self::AD_EXCHANGE_ACTIVE_VIEW_AVERAGE_VIEWABLE_TIME => 'AD_EXCHANGE_ACTIVE_VIEW_AVERAGE_VIEWABLE_TIME',
         self::AD_EXCHANGE_ACTIVE_VIEW_ELIGIBLE_IMPRESSIONS => 'AD_EXCHANGE_ACTIVE_VIEW_ELIGIBLE_IMPRESSIONS',
         self::AD_EXCHANGE_ACTIVE_VIEW_MEASURABLE_IMPRESSIONS => 'AD_EXCHANGE_ACTIVE_VIEW_MEASURABLE_IMPRESSIONS',
@@ -5453,6 +5557,8 @@ class Metric
         self::ATN_TOTAL_LOADED_ADS => 'ATN_TOTAL_LOADED_ADS',
         self::ATN_VALID_AD_REQUESTS => 'ATN_VALID_AD_REQUESTS',
         self::ATN_YIELD_GROUP_MEDIATION_PASSBACKS => 'ATN_YIELD_GROUP_MEDIATION_PASSBACKS',
+        self::ATTRIBUTED_ITEMS_PURCHASED => 'ATTRIBUTED_ITEMS_PURCHASED',
+        self::ATTRIBUTED_ITEMS_PURCHASED_ROAS => 'ATTRIBUTED_ITEMS_PURCHASED_ROAS',
         self::AUDIENCE_SEGMENT_COST => 'AUDIENCE_SEGMENT_COST',
         self::AVERAGE_ECPM => 'AVERAGE_ECPM',
         self::AVERAGE_ECPM_WITHOUT_CPD => 'AVERAGE_ECPM_WITHOUT_CPD',
@@ -5548,6 +5654,12 @@ class Metric
         self::OFF_PROPERTY_REVENUE => 'OFF_PROPERTY_REVENUE',
         self::OFF_PROPERTY_SPEND => 'OFF_PROPERTY_SPEND',
         self::OFF_PROPERTY_SPEND_ECPM => 'OFF_PROPERTY_SPEND_ECPM',
+        self::OFF_PROPERTY_VIDEO_COMPLETES => 'OFF_PROPERTY_VIDEO_COMPLETES',
+        self::OFF_PROPERTY_VIDEO_ENGAGED_VIEWS => 'OFF_PROPERTY_VIDEO_ENGAGED_VIEWS',
+        self::OFF_PROPERTY_VIDEO_FIRST_QUARTILES => 'OFF_PROPERTY_VIDEO_FIRST_QUARTILES',
+        self::OFF_PROPERTY_VIDEO_MIDPOINTS => 'OFF_PROPERTY_VIDEO_MIDPOINTS',
+        self::OFF_PROPERTY_VIDEO_STARTS => 'OFF_PROPERTY_VIDEO_STARTS',
+        self::OFF_PROPERTY_VIDEO_THIRD_QUARTILES => 'OFF_PROPERTY_VIDEO_THIRD_QUARTILES',
         self::ON_PLATFORM_MULTIPLE_CALL_ECPM => 'ON_PLATFORM_MULTIPLE_CALL_ECPM',
         self::ON_PLATFORM_MULTIPLE_CALL_IMPRESSIONS => 'ON_PLATFORM_MULTIPLE_CALL_IMPRESSIONS',
         self::ON_PLATFORM_MULTIPLE_CALL_REVENUE => 'ON_PLATFORM_MULTIPLE_CALL_REVENUE',
@@ -5587,6 +5699,7 @@ class Metric
         self::RESPONSES_SERVED => 'RESPONSES_SERVED',
         self::RETENTION => 'RETENTION',
         self::REVENUE => 'REVENUE',
+        self::REVENUE_ON_ATTRIBUTED_ITEMS_PURCHASED => 'REVENUE_ON_ATTRIBUTED_ITEMS_PURCHASED',
         self::REVENUE_PAID_THROUGH_MCM_AUTOPAYMENT => 'REVENUE_PAID_THROUGH_MCM_AUTOPAYMENT',
         self::REVENUE_VERIFICATION_CPD_REVENUE => 'REVENUE_VERIFICATION_CPD_REVENUE',
         self::REVENUE_VERIFICATION_GROSS_CPD_REVENUE => 'REVENUE_VERIFICATION_GROSS_CPD_REVENUE',

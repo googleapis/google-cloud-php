@@ -29,17 +29,17 @@ use Google\Ads\AdManager\V1\Client\ChildPublisherServiceClient;
 use Google\ApiCore\ApiException;
 
 /**
- * Batch withdraws [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s.
+ * Batch withdraws [ChildPublishers][google.ads.admanager.v1.ChildPublisher].
  *
  * Only expired, pending, and accepted
- * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s can be withdrawn.
+ * [ChildPublishers][google.ads.admanager.v1.ChildPublisher] can be withdrawn.
  * Rejected or withdrawn
- * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s will be ignored.
+ * [ChildPublishers][google.ads.admanager.v1.ChildPublisher] will be ignored.
  *
  * @param string $formattedParent       Format: `networks/{network_code}`
  *                                      Please see {@see ChildPublisherServiceClient::networkName()} for help formatting this field.
  * @param string $formattedNamesElement Resource names of the
- *                                      [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s to withdraw.
+ *                                      [ChildPublishers][google.ads.admanager.v1.ChildPublisher] to withdraw.
  *                                      Format: `networks/{network_code}/childPublisher/{child_publisher_id}`
  *                                      Please see {@see ChildPublisherServiceClient::childPublisherName()} for help formatting this field.
  */

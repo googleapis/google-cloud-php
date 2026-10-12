@@ -33,7 +33,7 @@ use Google\ApiCore\PagedListResponse;
  * objects.
  *
  * @param string $formattedParent The parent, which owns this collection of
- *                                [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider]s.
+ *                                [ViewabilityProviders][google.ads.admanager.v1.ViewabilityProvider].
  *                                Format: `networks/{network_code}`
  *                                Please see {@see ViewabilityProviderServiceClient::networkName()} for help formatting this field.
  */

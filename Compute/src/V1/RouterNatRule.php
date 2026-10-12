@@ -34,9 +34,13 @@ class RouterNatRule extends \Google\Protobuf\Internal\Message
      * `inIpRange(destination.ip, '1.1.0.0/16') || inIpRange(destination.ip,
      *      '2.2.0.0/16')`
      * `destination.ip == '1.1.0.1' || destination.ip == '8.8.8.8'`
-     * The following example is a valid match expression for private NAT:
+     * The following examples are valid match expressions for private NAT:
+     * (NAT 44)
      * `nexthop.hub ==
      * '//networkconnectivity.googleapis.com/projects/my-project/locations/global/hubs/hub-1'`
+     * `nexthop.is_hybrid`
+     * (NAT 64)
+     * `isIPv6(source.ip)`
      *
      * Generated from protobuf field <code>optional string match = 103668165;</code>
      */
@@ -68,9 +72,13 @@ class RouterNatRule extends \Google\Protobuf\Internal\Message
      *           `inIpRange(destination.ip, '1.1.0.0/16') || inIpRange(destination.ip,
      *                '2.2.0.0/16')`
      *           `destination.ip == '1.1.0.1' || destination.ip == '8.8.8.8'`
-     *           The following example is a valid match expression for private NAT:
+     *           The following examples are valid match expressions for private NAT:
+     *           (NAT 44)
      *           `nexthop.hub ==
      *           '//networkconnectivity.googleapis.com/projects/my-project/locations/global/hubs/hub-1'`
+     *           `nexthop.is_hybrid`
+     *           (NAT 64)
+     *           `isIPv6(source.ip)`
      *     @type int $rule_number
      *           An integer uniquely identifying a rule in the list. The rule number
      *           must be a positive value between 0 and 65000, and
@@ -162,9 +170,13 @@ class RouterNatRule extends \Google\Protobuf\Internal\Message
      * `inIpRange(destination.ip, '1.1.0.0/16') || inIpRange(destination.ip,
      *      '2.2.0.0/16')`
      * `destination.ip == '1.1.0.1' || destination.ip == '8.8.8.8'`
-     * The following example is a valid match expression for private NAT:
+     * The following examples are valid match expressions for private NAT:
+     * (NAT 44)
      * `nexthop.hub ==
      * '//networkconnectivity.googleapis.com/projects/my-project/locations/global/hubs/hub-1'`
+     * `nexthop.is_hybrid`
+     * (NAT 64)
+     * `isIPv6(source.ip)`
      *
      * Generated from protobuf field <code>optional string match = 103668165;</code>
      * @return string
@@ -192,9 +204,13 @@ class RouterNatRule extends \Google\Protobuf\Internal\Message
      * `inIpRange(destination.ip, '1.1.0.0/16') || inIpRange(destination.ip,
      *      '2.2.0.0/16')`
      * `destination.ip == '1.1.0.1' || destination.ip == '8.8.8.8'`
-     * The following example is a valid match expression for private NAT:
+     * The following examples are valid match expressions for private NAT:
+     * (NAT 44)
      * `nexthop.hub ==
      * '//networkconnectivity.googleapis.com/projects/my-project/locations/global/hubs/hub-1'`
+     * `nexthop.is_hybrid`
+     * (NAT 64)
+     * `isIPv6(source.ip)`
      *
      * Generated from protobuf field <code>optional string match = 103668165;</code>
      * @param string $var

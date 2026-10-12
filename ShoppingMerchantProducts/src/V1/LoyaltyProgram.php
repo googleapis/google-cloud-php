@@ -10,6 +10,9 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * A message that represents loyalty program.
+ * For more information on loyalty programs, see
+ * [Overview of loyalty
+ * programs](/merchant/api/guides/loyalty/loyalty-programs).
  *
  * Generated from protobuf message <code>google.shopping.merchant.products.v1.LoyaltyProgram</code>
  */

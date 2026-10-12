@@ -40,7 +40,7 @@ use Google\ApiCore\ApiException;
  * @param string $formattedParent       Format: `networks/{network_code}`
  *                                      Please see {@see ChildPublisherServiceClient::networkName()} for help formatting this field.
  * @param string $formattedNamesElement Resource names of the
- *                                      [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s that should be
+ *                                      [ChildPublishers][google.ads.admanager.v1.ChildPublisher] that should be
  *                                      resent invitation emails. Format:
  *                                      `networks/{network_code}/childPublisher/{child_publisher_id}`
  *                                      Please see {@see ChildPublisherServiceClient::childPublisherName()} for help formatting this field.

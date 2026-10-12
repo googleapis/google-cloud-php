@@ -37,7 +37,7 @@ use Google\ApiCore\ApiException;
  * @param string $creativeSetDisplayName                        The name of the `CreativeSet`. This attribute has a maximum
  *                                                              length of 255 characters.
  * @param string $formattedCreativeSetMasterCreative            Immutable. The master
- *                                                              [Creative](google.ads.admanager.v1.Creative) to which the `CreativeSet` is
+ *                                                              [Creative][google.ads.admanager.v1.Creative] to which the `CreativeSet` is
  *                                                              associated. Please see
  *                                                              {@see CreativeSetServiceClient::creativeName()} for help formatting this field.
  * @param string $formattedCreativeSetCompanionCreativesElement The resource names of the companion `Creative`s associated with

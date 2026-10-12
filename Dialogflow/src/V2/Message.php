@@ -24,9 +24,10 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Required. The message content.
+     * Optional. The message content.
+     * Only one of `content` and `companion_query` should be set - not both.
      *
-     * Generated from protobuf field <code>string content = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string content = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $content = '';
     /**
@@ -86,7 +87,8 @@ class Message extends \Google\Protobuf\Internal\Message
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
      *     @type string $content
-     *           Required. The message content.
+     *           Optional. The message content.
+     *           Only one of `content` and `companion_query` should be set - not both.
      *     @type string $language_code
      *           Optional. The message language.
      *           This should be a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)
@@ -142,9 +144,10 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The message content.
+     * Optional. The message content.
+     * Only one of `content` and `companion_query` should be set - not both.
      *
-     * Generated from protobuf field <code>string content = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string content = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getContent()
@@ -153,9 +156,10 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The message content.
+     * Optional. The message content.
+     * Only one of `content` and `companion_query` should be set - not both.
      *
-     * Generated from protobuf field <code>string content = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string content = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

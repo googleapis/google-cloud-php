@@ -43,6 +43,8 @@ use Psr\Log\LoggerInterface;
 /**
  * Service Description: The DiskTypes API.
  *
+ * This client uses DiskTypes version 2026-09-01.
+ *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
@@ -72,6 +74,9 @@ final class DiskTypesClient
 
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
+
+    /** The api version of the service */
+    private string $apiVersion = '2026-09-01';
 
     /**
      * The default scopes required by the service.

@@ -77,6 +77,19 @@ class Application extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.apphub.v1.Application.State state = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state = 0;
+    /**
+     * Output only. Properties of an underlying cloud resource that can comprise
+     * an Application.
+     *
+     * Generated from protobuf field <code>.google.cloud.apphub.v1.ApplicationProperties application_properties = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $application_properties = null;
+    /**
+     * Output only. Application type.
+     *
+     * Generated from protobuf field <code>.google.cloud.apphub.v1.ApplicationType application_type = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $application_type = null;
 
     /**
      * Constructor.
@@ -107,6 +120,11 @@ class Application extends \Google\Protobuf\Internal\Message
      *           `Application`.
      *     @type int $state
      *           Output only. Application state.
+     *     @type \Google\Cloud\AppHub\V1\ApplicationProperties $application_properties
+     *           Output only. Properties of an underlying cloud resource that can comprise
+     *           an Application.
+     *     @type \Google\Cloud\AppHub\V1\ApplicationType $application_type
+     *           Output only. Application type.
      * }
      */
     public function __construct($data = NULL) {
@@ -394,6 +412,80 @@ class Application extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\AppHub\V1\Application\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Properties of an underlying cloud resource that can comprise
+     * an Application.
+     *
+     * Generated from protobuf field <code>.google.cloud.apphub.v1.ApplicationProperties application_properties = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AppHub\V1\ApplicationProperties|null
+     */
+    public function getApplicationProperties()
+    {
+        return $this->application_properties;
+    }
+
+    public function hasApplicationProperties()
+    {
+        return isset($this->application_properties);
+    }
+
+    public function clearApplicationProperties()
+    {
+        unset($this->application_properties);
+    }
+
+    /**
+     * Output only. Properties of an underlying cloud resource that can comprise
+     * an Application.
+     *
+     * Generated from protobuf field <code>.google.cloud.apphub.v1.ApplicationProperties application_properties = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AppHub\V1\ApplicationProperties $var
+     * @return $this
+     */
+    public function setApplicationProperties($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AppHub\V1\ApplicationProperties::class);
+        $this->application_properties = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Application type.
+     *
+     * Generated from protobuf field <code>.google.cloud.apphub.v1.ApplicationType application_type = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AppHub\V1\ApplicationType|null
+     */
+    public function getApplicationType()
+    {
+        return $this->application_type;
+    }
+
+    public function hasApplicationType()
+    {
+        return isset($this->application_type);
+    }
+
+    public function clearApplicationType()
+    {
+        unset($this->application_type);
+    }
+
+    /**
+     * Output only. Application type.
+     *
+     * Generated from protobuf field <code>.google.cloud.apphub.v1.ApplicationType application_type = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AppHub\V1\ApplicationType $var
+     * @return $this
+     */
+    public function setApplicationType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AppHub\V1\ApplicationType::class);
+        $this->application_type = $var;
 
         return $this;
     }

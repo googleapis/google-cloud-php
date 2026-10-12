@@ -30,6 +30,23 @@ class CreateNativeStyleRequest extends \Google\Protobuf\Internal\Message
     protected $native_style = null;
 
     /**
+     * @param string                               $parent      Required. The parent resource where this `NativeStyle` will be created.
+     *                                                          Format: `networks/{network_code}`
+     *                                                          Please see {@see NativeStyleServiceClient::networkName()} for help formatting this field.
+     * @param \Google\Ads\AdManager\V1\NativeStyle $nativeStyle Required. The `NativeStyle` to create.
+     *
+     * @return \Google\Ads\AdManager\V1\CreateNativeStyleRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Ads\AdManager\V1\NativeStyle $nativeStyle): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setNativeStyle($nativeStyle);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

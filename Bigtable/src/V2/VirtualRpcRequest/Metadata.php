@@ -36,6 +36,12 @@ class Metadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string traceparent = 3;</code>
      */
     protected $traceparent = '';
+    /**
+     * How long to delay the operation for on the server-side, for testing.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration delay = 4;</code>
+     */
+    protected $delay = null;
 
     /**
      * Constructor.
@@ -52,6 +58,8 @@ class Metadata extends \Google\Protobuf\Internal\Message
      *           Link OpenTelemetry traces (e.g. Tapper). This can be used to link
      *           attempts together for the same logical operation (e.g. in logs / traces).
      *           Note, this may not be needed for V1, TBD.
+     *     @type \Google\Protobuf\Duration $delay
+     *           How long to delay the operation for on the server-side, for testing.
      * }
      */
     public function __construct($data = NULL) {
@@ -149,6 +157,42 @@ class Metadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->traceparent = $var;
+
+        return $this;
+    }
+
+    /**
+     * How long to delay the operation for on the server-side, for testing.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration delay = 4;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getDelay()
+    {
+        return $this->delay;
+    }
+
+    public function hasDelay()
+    {
+        return isset($this->delay);
+    }
+
+    public function clearDelay()
+    {
+        unset($this->delay);
+    }
+
+    /**
+     * How long to delay the operation for on the server-side, for testing.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration delay = 4;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setDelay($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->delay = $var;
 
         return $this;
     }

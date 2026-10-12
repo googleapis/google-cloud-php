@@ -35,10 +35,33 @@ return [
                     ],
                 ],
             ],
+            'BatchApplyAdReviewCenterCustomLabels' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*/webProperties/*}/adReviewCenterAds:batchApplyCustomLabels',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'BatchBlockAdReviewCenterAds' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=networks/*/webProperties/*}/adReviewCenterAds:batchBlock',
                 'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchAdReviewCenterCustomLabels' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=networks/*/webProperties/*}/adReviewCenterAds:fetchCustomLabels',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

@@ -77,10 +77,6 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      */
     protected $self_link_with_id = null;
-    /**
-     * Generated from protobuf field <code>optional string zone = 3744684;</code>
-     */
-    protected $zone = null;
 
     /**
      * Constructor.
@@ -110,7 +106,6 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
      *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type string $self_link_with_id
      *           Output only. [Output Only] Server-defined URL for this resource with the resource id.
-     *     @type string $zone
      * }
      */
     public function __construct($data = NULL) {
@@ -478,38 +473,6 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->self_link_with_id = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>optional string zone = 3744684;</code>
-     * @return string
-     */
-    public function getZone()
-    {
-        return isset($this->zone) ? $this->zone : '';
-    }
-
-    public function hasZone()
-    {
-        return isset($this->zone);
-    }
-
-    public function clearZone()
-    {
-        unset($this->zone);
-    }
-
-    /**
-     * Generated from protobuf field <code>optional string zone = 3744684;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setZone($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->zone = $var;
 
         return $this;
     }

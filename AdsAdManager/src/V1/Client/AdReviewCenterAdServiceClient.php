@@ -26,8 +26,12 @@ namespace Google\Ads\AdManager\V1\Client;
 
 use Google\Ads\AdManager\V1\BatchAllowAdReviewCenterAdsRequest;
 use Google\Ads\AdManager\V1\BatchAllowAdReviewCenterAdsResponse;
+use Google\Ads\AdManager\V1\BatchApplyAdReviewCenterCustomLabelsRequest;
+use Google\Ads\AdManager\V1\BatchApplyAdReviewCenterCustomLabelsResponse;
 use Google\Ads\AdManager\V1\BatchBlockAdReviewCenterAdsRequest;
 use Google\Ads\AdManager\V1\BatchBlockAdReviewCenterAdsResponse;
+use Google\Ads\AdManager\V1\FetchAdReviewCenterCustomLabelsRequest;
+use Google\Ads\AdManager\V1\FetchAdReviewCenterCustomLabelsResponse;
 use Google\Ads\AdManager\V1\SearchAdReviewCenterAdsRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
@@ -46,7 +50,7 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: Provides methods for handling AdReviewCenterAd objects.
+ * Service Description: Provides methods for handling `AdReviewCenterAd` objects.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -57,7 +61,9 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<OperationResponse> batchAllowAdReviewCenterAdsAsync(BatchAllowAdReviewCenterAdsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchApplyAdReviewCenterCustomLabelsResponse> batchApplyAdReviewCenterCustomLabelsAsync(BatchApplyAdReviewCenterCustomLabelsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> batchBlockAdReviewCenterAdsAsync(BatchBlockAdReviewCenterAdsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FetchAdReviewCenterCustomLabelsResponse> fetchAdReviewCenterCustomLabelsAsync(FetchAdReviewCenterCustomLabelsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> searchAdReviewCenterAdsAsync(SearchAdReviewCenterAdsRequest $request, array $optionalArgs = [])
  */
 final class AdReviewCenterAdServiceClient
@@ -359,6 +365,39 @@ final class AdReviewCenterAdServiceClient
     }
 
     /**
+     * Performs batch apply on custom labels associated with Ad review center ads.
+     * Custom labels can help you filter and find creatives with the associated
+     * label. For more information, see
+     * https://support.google.com/admanager/answer/13812863.
+     *
+     * The async variant is
+     * {@see AdReviewCenterAdServiceClient::batchApplyAdReviewCenterCustomLabelsAsync()}
+     * .
+     *
+     * @example samples/V1/AdReviewCenterAdServiceClient/batch_apply_ad_review_center_custom_labels.php
+     *
+     * @param BatchApplyAdReviewCenterCustomLabelsRequest $request     A request to house fields associated with the call.
+     * @param array                                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchApplyAdReviewCenterCustomLabelsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchApplyAdReviewCenterCustomLabels(
+        BatchApplyAdReviewCenterCustomLabelsRequest $request,
+        array $callOptions = []
+    ): BatchApplyAdReviewCenterCustomLabelsResponse {
+        return $this->startApiCall('BatchApplyAdReviewCenterCustomLabels', $request, $callOptions)->wait();
+    }
+
+    /**
      * Batch blocks AdReviewCenterAds.
      * This method supports partial success. Some operations may succeed while
      * others fail. Callers should check the failedRequests field in the response
@@ -388,6 +427,37 @@ final class AdReviewCenterAdServiceClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('BatchBlockAdReviewCenterAds', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetches all custom labels for a publisher. Custom labels can help you
+     * filter and find creatives with the associated label. For more information,
+     * see https://support.google.com/admanager/answer/13812863.
+     *
+     * The async variant is
+     * {@see AdReviewCenterAdServiceClient::fetchAdReviewCenterCustomLabelsAsync()} .
+     *
+     * @example samples/V1/AdReviewCenterAdServiceClient/fetch_ad_review_center_custom_labels.php
+     *
+     * @param FetchAdReviewCenterCustomLabelsRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FetchAdReviewCenterCustomLabelsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchAdReviewCenterCustomLabels(
+        FetchAdReviewCenterCustomLabelsRequest $request,
+        array $callOptions = []
+    ): FetchAdReviewCenterCustomLabelsResponse {
+        return $this->startApiCall('FetchAdReviewCenterCustomLabels', $request, $callOptions)->wait();
     }
 
     /**

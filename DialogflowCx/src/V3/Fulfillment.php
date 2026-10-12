@@ -68,6 +68,14 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      */
     protected $tag = '';
     /**
+     * Optional. The name of the code block function to execute, if this is a code
+     * block fulfillment. The code block itself is implied by the fulfillment's
+     * parent, e.g. a playbook.
+     *
+     * Generated from protobuf field <code>string code_block_function = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $code_block_function = '';
+    /**
      * Set parameter values before executing the webhook.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Fulfillment.SetParameterAction set_parameter_actions = 4;</code>
@@ -133,6 +141,10 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      *           The tag is typically used by the webhook service to identify which
      *           fulfillment is being called, but it could be used for other purposes.
      *           This field is required if `webhook` is specified.
+     *     @type string $code_block_function
+     *           Optional. The name of the code block function to execute, if this is a code
+     *           block fulfillment. The code block itself is implied by the fulfillment's
+     *           parent, e.g. a playbook.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Fulfillment\SetParameterAction[] $set_parameter_actions
      *           Set parameter values before executing the webhook.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Fulfillment\ConditionalCases[] $conditional_cases
@@ -287,6 +299,36 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->tag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the code block function to execute, if this is a code
+     * block fulfillment. The code block itself is implied by the fulfillment's
+     * parent, e.g. a playbook.
+     *
+     * Generated from protobuf field <code>string code_block_function = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCodeBlockFunction()
+    {
+        return $this->code_block_function;
+    }
+
+    /**
+     * Optional. The name of the code block function to execute, if this is a code
+     * block fulfillment. The code block itself is implied by the fulfillment's
+     * parent, e.g. a playbook.
+     *
+     * Generated from protobuf field <code>string code_block_function = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCodeBlockFunction($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->code_block_function = $var;
 
         return $this;
     }

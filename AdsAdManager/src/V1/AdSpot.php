@@ -74,7 +74,7 @@ class AdSpot extends \Google\Protobuf\Internal\Message
     /**
      * Required. The maximum allowed duration for ads in the `AdSpot`. This field
      * is required and must be greater than
-     * [min_ad_duration][google.ads.admanager.v1.AdSpot.min_ad_duration].
+     * [minAdDuration][google.ads.admanager.v1.AdSpot.min_ad_duration].
      *
      * Generated from protobuf field <code>optional .google.protobuf.Duration max_ad_duration = 13 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -154,7 +154,7 @@ class AdSpot extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $max_ad_duration
      *           Required. The maximum allowed duration for ads in the `AdSpot`. This field
      *           is required and must be greater than
-     *           [min_ad_duration][google.ads.admanager.v1.AdSpot.min_ad_duration].
+     *           [minAdDuration][google.ads.admanager.v1.AdSpot.min_ad_duration].
      *     @type int $max_ads
      *           Optional. The maximum number of ads allowed in the AdSpot. This field is
      *           optional and defaults to 0. A value of 0 means that there is no maximum for
@@ -450,7 +450,7 @@ class AdSpot extends \Google\Protobuf\Internal\Message
     /**
      * Required. The maximum allowed duration for ads in the `AdSpot`. This field
      * is required and must be greater than
-     * [min_ad_duration][google.ads.admanager.v1.AdSpot.min_ad_duration].
+     * [minAdDuration][google.ads.admanager.v1.AdSpot.min_ad_duration].
      *
      * Generated from protobuf field <code>optional .google.protobuf.Duration max_ad_duration = 13 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Duration|null
@@ -473,7 +473,7 @@ class AdSpot extends \Google\Protobuf\Internal\Message
     /**
      * Required. The maximum allowed duration for ads in the `AdSpot`. This field
      * is required and must be greater than
-     * [min_ad_duration][google.ads.admanager.v1.AdSpot.min_ad_duration].
+     * [minAdDuration][google.ads.admanager.v1.AdSpot.min_ad_duration].
      *
      * Generated from protobuf field <code>optional .google.protobuf.Duration max_ad_duration = 13 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Duration $var

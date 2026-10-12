@@ -26,28 +26,35 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Dialogflow\V2\Client\SipTrunksClient;
 use Google\Cloud\Dialogflow\V2\CreateSipTrunkRequest;
+use Google\Cloud\Dialogflow\V2\SipHostname;
 use Google\Cloud\Dialogflow\V2\SipTrunk;
 
 /**
  * Creates a SipTrunk for a specified location.
  *
- * @param string $formattedParent                 The location to create a SIP trunk for.
- *                                                Format: `projects/<Project ID>/locations/<Location ID>`. Please see
- *                                                {@see SipTrunksClient::locationName()} for help formatting this field.
- * @param string $sipTrunkExpectedHostnameElement The expected hostnames in the peer certificate from partner that
- *                                                is used for TLS authentication.
+ * @param string $formattedParent                   The location to create a SIP trunk for.
+ *                                                  Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+ *                                                  {@see SipTrunksClient::locationName()} for help formatting this field.
+ * @param string $sipTrunkExpectedHostnameElement   The expected hostnames in the peer certificate from partner that
+ *                                                  is used for TLS authentication.
+ * @param string $sipTrunkPeerHostnamesPeerHostname Peer hostname name.
  */
 function create_sip_trunk_sample(
     string $formattedParent,
-    string $sipTrunkExpectedHostnameElement
+    string $sipTrunkExpectedHostnameElement,
+    string $sipTrunkPeerHostnamesPeerHostname
 ): void {
     // Create a client.
     $sipTrunksClient = new SipTrunksClient();
 
     // Prepare the request message.
     $sipTrunkExpectedHostname = [$sipTrunkExpectedHostnameElement,];
+    $sipHostname = (new SipHostname())
+        ->setPeerHostname($sipTrunkPeerHostnamesPeerHostname);
+    $sipTrunkPeerHostnames = [$sipHostname,];
     $sipTrunk = (new SipTrunk())
-        ->setExpectedHostname($sipTrunkExpectedHostname);
+        ->setExpectedHostname($sipTrunkExpectedHostname)
+        ->setPeerHostnames($sipTrunkPeerHostnames);
     $request = (new CreateSipTrunkRequest())
         ->setParent($formattedParent)
         ->setSipTrunk($sipTrunk);
@@ -75,7 +82,12 @@ function callSample(): void
 {
     $formattedParent = SipTrunksClient::locationName('[PROJECT]', '[LOCATION]');
     $sipTrunkExpectedHostnameElement = '[EXPECTED_HOSTNAME]';
+    $sipTrunkPeerHostnamesPeerHostname = '[PEER_HOSTNAME]';
 
-    create_sip_trunk_sample($formattedParent, $sipTrunkExpectedHostnameElement);
+    create_sip_trunk_sample(
+        $formattedParent,
+        $sipTrunkExpectedHostnameElement,
+        $sipTrunkPeerHostnamesPeerHostname
+    );
 }
 // [END dialogflow_v2_generated_SipTrunks_CreateSipTrunk_sync]

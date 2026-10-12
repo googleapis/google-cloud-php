@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.cloud.apptopology.v1.AppTopology' => [
+            'ExploreSchema' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/domains/*/schema}:explore',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GenerateDiscoveredResourcesTopology' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/discoveredResourcesTopology}:generate',

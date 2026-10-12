@@ -34,10 +34,10 @@ use Google\ApiCore\ApiException;
 /**
  * Batch updates [Company][google.ads.admanager.v1.Company] objects.
  *
- * @param string $formattedParent            The parent resource where [Companies][] will be updated.
- *                                           Format: `networks/{network_code}`
- *                                           The parent field in the UpdateCompanyRequest must match this
- *                                           field. Please see
+ * @param string $formattedParent            The parent resource where
+ *                                           [Companies][google.ads.admanager.v1.Company] will be updated. Format:
+ *                                           `networks/{network_code}` The parent field in the UpdateCompanyRequest must
+ *                                           match this field. Please see
  *                                           {@see CompanyServiceClient::networkName()} for help formatting this field.
  * @param string $requestsCompanyDisplayName The display name of the
  *                                           [Company][google.ads.admanager.v1.Company].

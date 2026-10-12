@@ -788,7 +788,10 @@ return [
             ],
             'templateMap' => [
                 'backup' => 'projects/{project}/backups/{backup}',
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
+                'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
                 'network' => 'projects/{project}/global/networks/{network}',
+                'networkAttachment' => 'projects/{project}/regions/{region}/networkAttachments/{network_attachment}',
                 'projectLocationSecretSecretVersion' => 'projects/{project}/locations/{location}/secrets/{secret}/versions/{secret_version}',
                 'projectSecretSecretVersion' => 'projects/{project}/secrets/{secret}/versions/{secret_version}',
                 'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{secret_version}',

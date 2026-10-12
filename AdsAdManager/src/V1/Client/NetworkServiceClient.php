@@ -282,7 +282,9 @@ final class NetworkServiceClient
     }
 
     /**
-     * Returns the [DefaultThirdPartyDataDeclaration] for this network.
+     * Returns the
+     * [DefaultThirdPartyDataDeclaration][google.ads.admanager.v1.DefaultThirdPartyDataDeclaration]
+     * for this network.
      *
      * The async variant is
      * {@see NetworkServiceClient::getDefaultThirdPartyDataDeclarationAsync()} .

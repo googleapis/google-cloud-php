@@ -82,9 +82,11 @@ class Membership extends \Google\Protobuf\Internal\Message
      *           Optional. The Google Chat user or app the membership corresponds to.
      *           If your Chat app [authenticates as a
      *           user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     *           the output populates the
+     *           the output only populates the
      *           [user](https://developers.google.com/workspace/chat/api/reference/rest/v1/User)
-     *           `name` and `type`.
+     *           `name` and `type` fields for both internal and external users, unless
+     *           they are members of the space or have a prior affinity, like a direct
+     *           message (DM) conversation, with the calling user.
      *     @type \Google\Apps\Chat\V1\Group $group_member
      *           Optional. The Google Group the membership corresponds to.
      *           Reading or mutating memberships for Google Groups requires [user
@@ -196,9 +198,11 @@ class Membership extends \Google\Protobuf\Internal\Message
      * Optional. The Google Chat user or app the membership corresponds to.
      * If your Chat app [authenticates as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     * the output populates the
+     * the output only populates the
      * [user](https://developers.google.com/workspace/chat/api/reference/rest/v1/User)
-     * `name` and `type`.
+     * `name` and `type` fields for both internal and external users, unless
+     * they are members of the space or have a prior affinity, like a direct
+     * message (DM) conversation, with the calling user.
      *
      * Generated from protobuf field <code>.google.chat.v1.User member = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Apps\Chat\V1\User|null
@@ -217,9 +221,11 @@ class Membership extends \Google\Protobuf\Internal\Message
      * Optional. The Google Chat user or app the membership corresponds to.
      * If your Chat app [authenticates as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     * the output populates the
+     * the output only populates the
      * [user](https://developers.google.com/workspace/chat/api/reference/rest/v1/User)
-     * `name` and `type`.
+     * `name` and `type` fields for both internal and external users, unless
+     * they are members of the space or have a prior affinity, like a direct
+     * message (DM) conversation, with the calling user.
      *
      * Generated from protobuf field <code>.google.chat.v1.User member = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Apps\Chat\V1\User $var

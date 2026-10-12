@@ -44,6 +44,26 @@ class ProductCertification extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string certification_value = 4;</code>
      */
     protected $certification_value = null;
+    /**
+     * Optional. URL to the certification document (eg.
+     * `https://www.example.com/document`), for example, the product data sheet or
+     * fiche required by UK's DESNZ or EU's EPREL. Maximum length is 2000
+     * characters. For more information, see
+     * [Certification](https://support.google.com/merchants/answer/13528839).
+     *
+     * Generated from protobuf field <code>optional string certification_document_link = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $certification_document_link = null;
+    /**
+     * Optional. URL to the certification label (eg.
+     * `https://www.example.com/label`), for example, the energy efficiency label
+     * required by UK's DESNZ or EU's EPREL. Maximum length is 2000 characters.
+     * For more information, see
+     * [Certification](https://support.google.com/merchants/answer/13528839).
+     *
+     * Generated from protobuf field <code>optional string certification_label_link = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $certification_label_link = null;
 
     /**
      * Constructor.
@@ -61,6 +81,18 @@ class ProductCertification extends \Google\Protobuf\Internal\Message
      *     @type string $certification_value
      *           The certification value (also known as class, level or grade), for
      *           example "A+", "C", "gold". Maximum length is 2000 characters.
+     *     @type string $certification_document_link
+     *           Optional. URL to the certification document (eg.
+     *           `https://www.example.com/document`), for example, the product data sheet or
+     *           fiche required by UK's DESNZ or EU's EPREL. Maximum length is 2000
+     *           characters. For more information, see
+     *           [Certification](https://support.google.com/merchants/answer/13528839).
+     *     @type string $certification_label_link
+     *           Optional. URL to the certification label (eg.
+     *           `https://www.example.com/label`), for example, the energy efficiency label
+     *           required by UK's DESNZ or EU's EPREL. Maximum length is 2000 characters.
+     *           For more information, see
+     *           [Certification](https://support.google.com/merchants/answer/13528839).
      * }
      */
     public function __construct($data = NULL) {
@@ -212,6 +244,94 @@ class ProductCertification extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->certification_value = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. URL to the certification document (eg.
+     * `https://www.example.com/document`), for example, the product data sheet or
+     * fiche required by UK's DESNZ or EU's EPREL. Maximum length is 2000
+     * characters. For more information, see
+     * [Certification](https://support.google.com/merchants/answer/13528839).
+     *
+     * Generated from protobuf field <code>optional string certification_document_link = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCertificationDocumentLink()
+    {
+        return isset($this->certification_document_link) ? $this->certification_document_link : '';
+    }
+
+    public function hasCertificationDocumentLink()
+    {
+        return isset($this->certification_document_link);
+    }
+
+    public function clearCertificationDocumentLink()
+    {
+        unset($this->certification_document_link);
+    }
+
+    /**
+     * Optional. URL to the certification document (eg.
+     * `https://www.example.com/document`), for example, the product data sheet or
+     * fiche required by UK's DESNZ or EU's EPREL. Maximum length is 2000
+     * characters. For more information, see
+     * [Certification](https://support.google.com/merchants/answer/13528839).
+     *
+     * Generated from protobuf field <code>optional string certification_document_link = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCertificationDocumentLink($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->certification_document_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. URL to the certification label (eg.
+     * `https://www.example.com/label`), for example, the energy efficiency label
+     * required by UK's DESNZ or EU's EPREL. Maximum length is 2000 characters.
+     * For more information, see
+     * [Certification](https://support.google.com/merchants/answer/13528839).
+     *
+     * Generated from protobuf field <code>optional string certification_label_link = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCertificationLabelLink()
+    {
+        return isset($this->certification_label_link) ? $this->certification_label_link : '';
+    }
+
+    public function hasCertificationLabelLink()
+    {
+        return isset($this->certification_label_link);
+    }
+
+    public function clearCertificationLabelLink()
+    {
+        unset($this->certification_label_link);
+    }
+
+    /**
+     * Optional. URL to the certification label (eg.
+     * `https://www.example.com/label`), for example, the energy efficiency label
+     * required by UK's DESNZ or EU's EPREL. Maximum length is 2000 characters.
+     * For more information, see
+     * [Certification](https://support.google.com/merchants/answer/13528839).
+     *
+     * Generated from protobuf field <code>optional string certification_label_link = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCertificationLabelLink($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->certification_label_link = $var;
 
         return $this;
     }

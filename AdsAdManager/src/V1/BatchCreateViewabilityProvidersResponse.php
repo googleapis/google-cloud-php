@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Response object for [BatchCreateViewabilityProviders][] method.
+ * Response object for `BatchCreateViewabilityProviders` method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.BatchCreateViewabilityProvidersResponse</code>
  */

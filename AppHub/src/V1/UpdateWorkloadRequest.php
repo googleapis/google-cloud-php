@@ -16,7 +16,7 @@ use Google\Protobuf\RepeatedField;
 class UpdateWorkloadRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
+     * Optional. Field mask is used to specify the fields to be overwritten in the
      * Workload resource by the update.
      * The fields specified in the update_mask are relative to the resource, not
      * the full request.
@@ -26,7 +26,7 @@ class UpdateWorkloadRequest extends \Google\Protobuf\Internal\Message
      * adding the field to the mask. This clears whatever value the field
      * previously had.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $update_mask = null;
     /**
@@ -48,13 +48,13 @@ class UpdateWorkloadRequest extends \Google\Protobuf\Internal\Message
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
     protected $request_id = '';
 
     /**
      * @param \Google\Cloud\AppHub\V1\Workload $workload   Required. The resource being updated.
-     * @param \Google\Protobuf\FieldMask       $updateMask Required. Field mask is used to specify the fields to be overwritten in the
+     * @param \Google\Protobuf\FieldMask       $updateMask Optional. Field mask is used to specify the fields to be overwritten in the
      *                                                     Workload resource by the update.
      *                                                     The fields specified in the update_mask are relative to the resource, not
      *                                                     the full request.
@@ -82,7 +82,7 @@ class UpdateWorkloadRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. Field mask is used to specify the fields to be overwritten in the
+     *           Optional. Field mask is used to specify the fields to be overwritten in the
      *           Workload resource by the update.
      *           The fields specified in the update_mask are relative to the resource, not
      *           the full request.
@@ -113,7 +113,7 @@ class UpdateWorkloadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
+     * Optional. Field mask is used to specify the fields to be overwritten in the
      * Workload resource by the update.
      * The fields specified in the update_mask are relative to the resource, not
      * the full request.
@@ -123,7 +123,7 @@ class UpdateWorkloadRequest extends \Google\Protobuf\Internal\Message
      * adding the field to the mask. This clears whatever value the field
      * previously had.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
@@ -142,7 +142,7 @@ class UpdateWorkloadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
+     * Optional. Field mask is used to specify the fields to be overwritten in the
      * Workload resource by the update.
      * The fields specified in the update_mask are relative to the resource, not
      * the full request.
@@ -152,7 +152,7 @@ class UpdateWorkloadRequest extends \Google\Protobuf\Internal\Message
      * adding the field to the mask. This clears whatever value the field
      * previously had.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */
@@ -213,7 +213,7 @@ class UpdateWorkloadRequest extends \Google\Protobuf\Internal\Message
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @return string
      */
     public function getRequestId()
@@ -234,7 +234,7 @@ class UpdateWorkloadRequest extends \Google\Protobuf\Internal\Message
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @param string $var
      * @return $this
      */

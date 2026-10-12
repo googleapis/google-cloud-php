@@ -16,9 +16,9 @@ use Google\Protobuf\RepeatedField;
 class DiskEncryptionConfiguration extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name of KMS key for disk encryption
+     * Resource name of KMS key for disk encryption.
      *
-     * Generated from protobuf field <code>string kms_key_name = 1;</code>
+     * Generated from protobuf field <code>string kms_key_name = 1 [(.google.api.resource_reference) = {</code>
      */
     protected $kms_key_name = '';
     /**
@@ -27,6 +27,21 @@ class DiskEncryptionConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string kind = 2;</code>
      */
     protected $kind = '';
+    /**
+     * Optional. If true, enables Confidential Mode for the instance's Hyperdisk
+     * Balanced volumes. Only supported for zonal C4A instances currently.
+     *
+     * Generated from protobuf field <code>optional bool confidential_mode = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $confidential_mode = null;
+    /**
+     * Optional. Whether to enforce CMEK log encryption at source. When enforced,
+     * transaction logs are encrypted prior to being uploaded to Cloud Storage. If
+     * not enforced, then CMEK logs are encrypted by the Cloud Storage service.
+     *
+     * Generated from protobuf field <code>optional bool cmek_source_log_encryption_enforced = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $cmek_source_log_encryption_enforced = null;
 
     /**
      * Constructor.
@@ -35,9 +50,16 @@ class DiskEncryptionConfiguration extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kms_key_name
-     *           Resource name of KMS key for disk encryption
+     *           Resource name of KMS key for disk encryption.
      *     @type string $kind
      *           This is always `sql#diskEncryptionConfiguration`.
+     *     @type bool $confidential_mode
+     *           Optional. If true, enables Confidential Mode for the instance's Hyperdisk
+     *           Balanced volumes. Only supported for zonal C4A instances currently.
+     *     @type bool $cmek_source_log_encryption_enforced
+     *           Optional. Whether to enforce CMEK log encryption at source. When enforced,
+     *           transaction logs are encrypted prior to being uploaded to Cloud Storage. If
+     *           not enforced, then CMEK logs are encrypted by the Cloud Storage service.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,9 +68,9 @@ class DiskEncryptionConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of KMS key for disk encryption
+     * Resource name of KMS key for disk encryption.
      *
-     * Generated from protobuf field <code>string kms_key_name = 1;</code>
+     * Generated from protobuf field <code>string kms_key_name = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getKmsKeyName()
@@ -57,9 +79,9 @@ class DiskEncryptionConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of KMS key for disk encryption
+     * Resource name of KMS key for disk encryption.
      *
-     * Generated from protobuf field <code>string kms_key_name = 1;</code>
+     * Generated from protobuf field <code>string kms_key_name = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -93,6 +115,84 @@ class DiskEncryptionConfiguration extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kind = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, enables Confidential Mode for the instance's Hyperdisk
+     * Balanced volumes. Only supported for zonal C4A instances currently.
+     *
+     * Generated from protobuf field <code>optional bool confidential_mode = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getConfidentialMode()
+    {
+        return isset($this->confidential_mode) ? $this->confidential_mode : false;
+    }
+
+    public function hasConfidentialMode()
+    {
+        return isset($this->confidential_mode);
+    }
+
+    public function clearConfidentialMode()
+    {
+        unset($this->confidential_mode);
+    }
+
+    /**
+     * Optional. If true, enables Confidential Mode for the instance's Hyperdisk
+     * Balanced volumes. Only supported for zonal C4A instances currently.
+     *
+     * Generated from protobuf field <code>optional bool confidential_mode = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setConfidentialMode($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->confidential_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether to enforce CMEK log encryption at source. When enforced,
+     * transaction logs are encrypted prior to being uploaded to Cloud Storage. If
+     * not enforced, then CMEK logs are encrypted by the Cloud Storage service.
+     *
+     * Generated from protobuf field <code>optional bool cmek_source_log_encryption_enforced = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getCmekSourceLogEncryptionEnforced()
+    {
+        return isset($this->cmek_source_log_encryption_enforced) ? $this->cmek_source_log_encryption_enforced : false;
+    }
+
+    public function hasCmekSourceLogEncryptionEnforced()
+    {
+        return isset($this->cmek_source_log_encryption_enforced);
+    }
+
+    public function clearCmekSourceLogEncryptionEnforced()
+    {
+        unset($this->cmek_source_log_encryption_enforced);
+    }
+
+    /**
+     * Optional. Whether to enforce CMEK log encryption at source. When enforced,
+     * transaction logs are encrypted prior to being uploaded to Cloud Storage. If
+     * not enforced, then CMEK logs are encrypted by the Cloud Storage service.
+     *
+     * Generated from protobuf field <code>optional bool cmek_source_log_encryption_enforced = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCmekSourceLogEncryptionEnforced($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->cmek_source_log_encryption_enforced = $var;
 
         return $this;
     }

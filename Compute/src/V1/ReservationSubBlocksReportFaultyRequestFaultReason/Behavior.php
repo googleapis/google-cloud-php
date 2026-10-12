@@ -30,6 +30,24 @@ class Behavior
      */
     const GPU_ERROR = 198817909;
     /**
+     * The subBlock experienced an NVSwitch controller error.
+     *
+     * Generated from protobuf enum <code>NVSWITCH_FAULT_CONTROLLER_ERROR = 250941637;</code>
+     */
+    const NVSWITCH_FAULT_CONTROLLER_ERROR = 250941637;
+    /**
+     * The subBlock experienced NVSwitch degraded bandwidth.
+     *
+     * Generated from protobuf enum <code>NVSWITCH_FAULT_DEGRADED_BANDWIDTH = 202741248;</code>
+     */
+    const NVSWITCH_FAULT_DEGRADED_BANDWIDTH = 202741248;
+    /**
+     * The subBlock experienced an NVSwitch switch error.
+     *
+     * Generated from protobuf enum <code>NVSWITCH_FAULT_SWITCH_ERROR = 287636061;</code>
+     */
+    const NVSWITCH_FAULT_SWITCH_ERROR = 287636061;
+    /**
      * The subBlock experienced performance issues.
      *
      * Generated from protobuf enum <code>PERFORMANCE = 135701520;</code>
@@ -52,6 +70,9 @@ class Behavior
         self::UNDEFINED_BEHAVIOR => 'UNDEFINED_BEHAVIOR',
         self::FAULT_BEHAVIOR_UNSPECIFIED => 'FAULT_BEHAVIOR_UNSPECIFIED',
         self::GPU_ERROR => 'GPU_ERROR',
+        self::NVSWITCH_FAULT_CONTROLLER_ERROR => 'NVSWITCH_FAULT_CONTROLLER_ERROR',
+        self::NVSWITCH_FAULT_DEGRADED_BANDWIDTH => 'NVSWITCH_FAULT_DEGRADED_BANDWIDTH',
+        self::NVSWITCH_FAULT_SWITCH_ERROR => 'NVSWITCH_FAULT_SWITCH_ERROR',
         self::PERFORMANCE => 'PERFORMANCE',
         self::SILENT_DATA_CORRUPTION => 'SILENT_DATA_CORRUPTION',
         self::SWITCH_FAILURE => 'SWITCH_FAILURE',

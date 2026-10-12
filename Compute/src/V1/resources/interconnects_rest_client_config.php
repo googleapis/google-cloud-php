@@ -144,6 +144,23 @@ return [
                     ],
                 ],
             ],
+            'SetName' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/interconnects/{interconnect}/setName',
+                'body' => 'interconnects_set_name_request_resource',
+                'placeholders' => [
+                    'interconnect' => [
+                        'getters' => [
+                            'getInterconnect',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.compute.v1.GlobalOperations' => [
             'AggregatedList' => [

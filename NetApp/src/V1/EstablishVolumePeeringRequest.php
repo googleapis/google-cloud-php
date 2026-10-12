@@ -38,7 +38,7 @@ class EstablishVolumePeeringRequest extends \Google\Protobuf\Internal\Message
      */
     protected $peer_svm_name = '';
     /**
-     * Optional. List of IPv4 ip addresses to be used for peering.
+     * Optional. List of IPv4 IP addresses to be used for peering.
      *
      * Generated from protobuf field <code>repeated string peer_ip_addresses = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -67,7 +67,7 @@ class EstablishVolumePeeringRequest extends \Google\Protobuf\Internal\Message
      *           Required. Name of the user's local source vserver svm to be peered with the
      *           destination vserver svm.
      *     @type string[] $peer_ip_addresses
-     *           Optional. List of IPv4 ip addresses to be used for peering.
+     *           Optional. List of IPv4 IP addresses to be used for peering.
      *     @type string $peer_volume_name
      *           Required. Name of the user's local source volume to be peered with the
      *           destination volume.
@@ -163,7 +163,7 @@ class EstablishVolumePeeringRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of IPv4 ip addresses to be used for peering.
+     * Optional. List of IPv4 IP addresses to be used for peering.
      *
      * Generated from protobuf field <code>repeated string peer_ip_addresses = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<string>
@@ -174,7 +174,7 @@ class EstablishVolumePeeringRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of IPv4 ip addresses to be used for peering.
+     * Optional. List of IPv4 IP addresses to be used for peering.
      *
      * Generated from protobuf field <code>repeated string peer_ip_addresses = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[] $var

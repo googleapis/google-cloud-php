@@ -10,7 +10,7 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Wrapper message for
- * [CdnSecurityPolicy][google.ads.admanager.v1.CdnSecurityPolicy]
+ * [CdnSecurityPolicyType][google.ads.admanager.v1.CdnSecurityPolicyTypeEnum.CdnSecurityPolicyType]
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.CdnSecurityPolicyTypeEnum</code>
  */

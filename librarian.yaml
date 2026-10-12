@@ -12,11 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 language: php
-version: v0.45.0
+version: v0.47.0
 sources:
   googleapis:
-    commit: 9b719a5c153f3ec7a14d5d45d4da720410c7b943
-    sha256: fcceaa2004ccc51874effb9669303c042d21ff3e308f1710ce8280acbab8e2a5
+    commit: 6a8220ce2f0b8f51e60bb2cc0d74a14d380a823b
+    sha256: eb737809a4b1aa6ab7be3c2078b6cbdde44337dcdf464d35813e6345896e3343
 tools:
   composer:
     - name: google-cloud-php/dev
