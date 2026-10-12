@@ -16,7 +16,7 @@ jobs:
       RELEASE_TAG: ${{ inputs.tag }}
     steps:
       - name: Clone libgit2
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: libgit2/libgit2
           ref: v1.5.1
@@ -28,7 +28,7 @@ jobs:
           cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
           sudo cmake --build . --target install
       - name: Clone splitsh/lite
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: splitsh/lite
           ref: v2.0.0
@@ -40,17 +40,17 @@ jobs:
           go build -o splitsh-lite github.com/splitsh/lite
           mv splitsh-lite /usr/local/bin/splitsh-lite
       - name: Checkout google/cloud
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           fetch-depth: 0
       - name: Setup PHP
-        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: '8.2'
           ini-values: memory_limit=2048M
       - name: Install Dependencies
-        uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4
+        uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4.0.0
         with:
           timeout_minutes: 10
           max_attempts: 3
@@ -73,7 +73,7 @@ jobs:
             --packagist-token="$PACKAGIST_TOKEN" \
             --packagist-safe-token="$PACKAGIST_SAFE_TOKEN"
       - name: Verify all releases made it to Packagist
-        uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4
+        uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4.0.0
         with:
           command: |
             ./dev/google-cloud release:verify

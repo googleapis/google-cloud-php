@@ -14,12 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'gcf-owl-bot[bot]'
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           persist-credentials: false
       - name: "Install PHP"
-        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: "8.2"
       - name: "Install dependencies"
@@ -55,7 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'gcf-owl-bot[bot]' && github.event.pull_request.draft == false
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: Ensure
