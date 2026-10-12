@@ -1,0 +1,60 @@
+{
+    "interfaces": {
+        "google.showcase.v1beta1.Identity": {
+            "retry_codes": {
+                "no_retry_codes": [],
+                "retry_policy_2_codes": [
+                    "UNAVAILABLE",
+                    "UNKNOWN"
+                ]
+            },
+            "retry_params": {
+                "no_retry_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 0,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 0,
+                    "total_timeout_millis": 0
+                },
+                "retry_policy_2_params": {
+                    "initial_retry_delay_millis": 200,
+                    "retry_delay_multiplier": 2.0,
+                    "max_retry_delay_millis": 3000,
+                    "initial_rpc_timeout_millis": 5000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 5000,
+                    "total_timeout_millis": 5000
+                }
+            },
+            "methods": {
+                "CreateUser": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "DeleteUser": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "GetUser": {
+                    "timeout_millis": 5000,
+                    "retry_codes_name": "retry_policy_2_codes",
+                    "retry_params_name": "retry_policy_2_params"
+                },
+                "ListUsers": {
+                    "timeout_millis": 5000,
+                    "retry_codes_name": "retry_policy_2_codes",
+                    "retry_params_name": "retry_policy_2_params"
+                },
+                "UpdateUser": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,579 @@
+<?php
+/**
+ * Copyright 2022 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace Google\Cloud\Dev\Tests\Unit\DocFx;
+
+use Google\Cloud\Dev\DocFx\Node\ClassNode;
+use Google\Cloud\Dev\DocFx\Node\DocblockTrait;
+use Google\Cloud\Dev\DocFx\Node\MethodNode;
+use Google\Cloud\Dev\DocFx\Node\XrefTrait;
+use Google\Cloud\Dev\DocFx\Node\FencedCodeBlockTrait;
+use Google\Cloud\Dev\DocFx\XrefValidationTrait;
+use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
+use Symfony\Component\Console\Output\OutputInterface;
+use SimpleXMLElement;
+
+/**
+ * @group dev
+ */
+class NodeTest extends TestCase
+{
+    use ProphecyTrait;
+
+    public function testNestedParameters()
+    {
+        $nestedParamsXml = file_get_contents(__DIR__ . '/../../fixtures/phpdoc/nestedparams.xml');
+        $method = new MethodNode(new SimpleXMLElement($nestedParamsXml), '', [], '');
+
+        $params = $method->getParameters();
+
+        // Assert the parameters have been parsed
+        $this->assertCount(10, $params);
+
+        // Assert parent option parameter
+        $this->assertEquals('data', $params[1]->getName());
+        $this->assertEquals('array', $params[1]->getType());
+        $this->assertEquals(
+            'Optional. Data for populating the Message object.',
+            $params[1]->getDescription()
+        );
+
+        // Assert nested parameter
+        $this->assertEquals('↳ total_pages', $params[4]->getName());
+        $this->assertEquals('int', $params[4]->getType());
+        $this->assertEquals(
+            'This field gives the total number of pages in the file.',
+            $params[4]->getDescription()
+        );
+
+        // Assert nested parameter with whitespace
+        $this->assertEquals('↳ imageContext', $params[6]->getName());
+        $this->assertEquals('ImageContext', $params[6]->getType());
+        $this->assertEquals(
+            'Additional context that may accompany the image.',
+            $params[6]->getDescription()
+        );
+
+        // Assert nested parameter with special characters
+        $this->assertEquals('↳ exampleString', $params[7]->getName());
+        $this->assertEquals('string', $params[7]->getType());
+        $this->assertEquals(
+            'Ensure special chars are decoded, such as alice@example.com.',
+            $params[7]->getDescription()
+        );
+
+        $this->assertEquals('↳ escapedType', $params[8]->getName());
+        $this->assertEquals('string', $params[8]->getType());
+        $this->assertEquals(
+            'Ensure @ is escaped, such as in \@type.',
+            $params[8]->getDescription()
+        );
+    }
+
+    public function testProtoRefInParameters()
+    {
+        $nestedParamsXml = file_get_contents(__DIR__ . '/../../fixtures/phpdoc/nestedparams.xml');
+        $method = new MethodNode(new SimpleXMLElement($nestedParamsXml), '', [], '');
+
+        $params = $method->getParameters();
+
+        // Assert proto ref
+        $this->assertStringContainsString(
+            '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse::getImage()">images</xref>',
+            $params[0]->getDescription()
+        );
+
+        // Assert proto ref in nested param
+        $this->assertStringContainsString(
+            '<xref uid="\Google\Cloud\Vision\V1\Image">Image</xref>',
+            $params[3]->getDescription()
+        );
+    }
+
+    public function testProtoPackage()
+    {
+        $serviceXml = file_get_contents(__DIR__ . '/../../fixtures/phpdoc/service.xml');
+        $class = new ClassNode(new SimpleXMLElement($serviceXml));
+
+        $this->assertTrue($class->isServiceClass());
+        $this->assertEquals('google.cloud.vision.v1', $class->getProtoPackage());
+    }
+
+    public function testSeeTagsInMethodDescription()
+    {
+        $serviceXml = <<<EOF
+<method>
+<docblock>
+    <description></description>
+    <long-description></long-description>
+    <tag name="see"
+         description="Cool External Resource"
+         link="https://wwww.testlink.com"/>
+    <tag name="see"
+         description=""
+         link="\Google\Cloud\Vision\V1\ImageAnnotatorClient"/>
+    <tag name="see"
+         description="Resume Operation method"
+         link="\Google\Cloud\Vision\V1\ImageAnnotatorClient::resumeOperation()"/>
+</docblock>
+</method>
+EOF;
+        $method = new MethodNode(new SimpleXMLElement($serviceXml), '', [], '');
+
+        $content = $method->getContent();
+        $this->assertStringContainsString(
+            'See also:' . "\n" .
+            ' - <a href="https://wwww.testlink.com">Cool External Resource</a>' . "\n" .
+            ' - <xref uid="\Google\Cloud\Vision\V1\ImageAnnotatorClient">\Google\Cloud\Vision\V1\ImageAnnotatorClient</xref>' . "\n" .
+            ' - <xref uid="\Google\Cloud\Vision\V1\ImageAnnotatorClient::resumeOperation()">Resume Operation method</xref>',
+            $content
+        );
+    }
+
+    public function testReplaceGuzzleExternalLink()
+    {
+        $guzzlePromiseClassName = '\GuzzleHttp\Promise\PromiseInterface';
+        $expected = '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>';
+        $xref = new class {
+            use XrefTrait;
+
+            public function replace(string $uid) {
+                return $this->replaceUidWithLink($uid);
+            }
+        };
+
+        $result = $xref->replace($guzzlePromiseClassName);
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testReplaceGenericPromiseClass()
+    {
+        $guzzlePromiseClassName = '\GuzzleHttp\Promise\PromiseInterface';
+        $googleReference = '\Google\Cloud\AdvisoryNotifications\V1\Notification';
+        $uid = $guzzlePromiseClassName . '<' . $googleReference . '>';
+
+        $expected = '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>';
+        $expected .= '&lt;<xref uid="' . $googleReference . '">Google\Cloud\AdvisoryNotifications\V1\Notification</xref>&gt;';
+        $xref = new class {
+            use XrefTrait;
+
+            public function replace(string $uid) {
+                return $this->replaceUidWithLink($uid);
+            }
+        };
+
+        $result = $xref->replace($uid);
+        $this->assertEquals($expected, $result);
+    }
+
+    /**
+     * @dataProvider provideReplaceProtoRefWithXref
+     */
+    public function testReplaceProtoRefWithXref(string $description, string $expected)
+    {
+        $xref = new class {
+            use XrefTrait;
+            private $protoPackages = [
+                'google.cloud.aiplatform.v1' => 'Google\\Cloud\\AIPlatform\\V1',
+                'google.bigtable.admin.v2' => 'Google\\Cloud\\Bigtable\\Admin\\V2',
+                'google.bigtable.v2' => 'Google\\Cloud\\Bigtable\\V2',
+                'google.logging.v2' => 'Google\\Cloud\\Logging\\V2',
+                'google.cloud.servicedirectory.v1' => 'Google\\Cloud\\ServiceDirectory\\V1',
+            ];
+            public function replace(string $description) {
+                return $this->replaceProtoRef($description);
+            }
+        };
+
+        $this->assertEquals($expected, $xref->replace($description));
+    }
+
+    public function provideReplaceProtoRefWithXref()
+    {
+        return [
+            [
+                'Testing that a [ProtoRef][google.cloud.ProtoRef] gets replaced as expected'
+                 . PHP_EOL
+                 . ' and so does a [SecondProtoRef][google.cloud.SecondProtoRef].',
+                'Testing that a <xref uid="\Google\Cloud\ProtoRef">ProtoRef</xref> gets replaced as expected'
+                 . PHP_EOL
+                 . ' and so does a <xref uid="\Google\Cloud\SecondProtoRef">SecondProtoRef</xref>.',
+            ],
+            [
+                // property reference
+                '[google.cloud.Operation.name][google.cloud.Operation.name]',
+                '<xref uid="\Google\Cloud\Operation::getName()">google.cloud.Operation.name</xref>',
+            ],
+            [
+                // property with an underscore reference
+                '[display_name][google.cloud.vision.v1.Product.display_name]',
+                '<xref uid="\Google\Cloud\Vision\V1\Product::getDisplayName()">display_name</xref>',
+            ],
+            [
+                // service method reference
+                '[projects.locations.endpoints.predict][google.cloud.aiplatform.v1.PredictionService.Predict]',
+                '<xref uid="\Google\Cloud\AIPlatform\V1\Client\PredictionServiceClient::predict()">projects.locations.endpoints.predict</xref>',
+            ],
+            [
+                // nested class reference
+                '[TextAnnotation.TextProperty][google.cloud.vision.v1.TextAnnotation.TextProperty]',
+                '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">TextAnnotation.TextProperty</xref>',
+            ],
+            [
+                // nested class reference with property
+                '[PolicyInfo.attached_resource][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.attached_resource]',
+                '<xref uid="\Google\Cloud\Asset\V1\BatchGetEffectiveIamPoliciesResponse\EffectiveIamPolicy\PolicyInfo::getAttachedResource()">PolicyInfo.attached_resource</xref>',
+            ],
+            [
+                // service methods without a "service" suffix
+                '[ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups]',
+                '<xref uid="\Google\Cloud\Bigtable\Admin\V2\Client\BigtableTableAdminClient::listBackups()">ListBackups</xref>'
+            ],
+            [
+                // Enum constants
+                '[google.some.Code.INVALID_ARGUMENT][google.some.Code.INVALID_ARGUMENT]',
+                '<xref uid="\Google\Some\Code::INVALID_ARGUMENT">google.some.Code.INVALID_ARGUMENT</xref>'
+            ],
+            [
+                // Numbers in the class name
+                'Output only. The service account that will be used by the Log Router to access your Cloud KMS key. Before enabling CMEK for Log Router, you must first assign the cloudkms.cryptoKeyEncrypterDecrypter role to the service account that the Log Router will use to access your Cloud KMS key. Use [GetCmekSettings][google.logging.v2.ConfigServiceV2.GetCmekSettings] to obtain the service account ID. See [Enabling CMEK for Log Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.',
+                'Output only. The service account that will be used by the Log Router to access your Cloud KMS key. Before enabling CMEK for Log Router, you must first assign the cloudkms.cryptoKeyEncrypterDecrypter role to the service account that the Log Router will use to access your Cloud KMS key. Use <xref uid="\Google\Cloud\Logging\V2\Client\ConfigServiceV2Client::getCmekSettings()">GetCmekSettings</xref> to obtain the service account ID. See [Enabling CMEK for Log Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.'
+            ],
+            [
+                // Separation between links using newlines
+                'Required. The [Model\'s][google.cloud.aiplatform.v1.BatchPredictionJob.model]' . PHP_EOL
+                . '[PredictSchemata\'s][google.cloud.aiplatform.v1.Model.predict_schemata]' . PHP_EOL
+                . '[instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].',
+                'Required. The <xref uid="\Google\Cloud\AIPlatform\V1\BatchPredictionJob::getModel()">Model\'s</xref>' . PHP_EOL
+                . '<xref uid="\Google\Cloud\AIPlatform\V1\Model::getPredictSchemata()">PredictSchemata\'s</xref>' . PHP_EOL
+                . '<xref uid="\Google\Cloud\AIPlatform\V1\PredictSchemata::getInstanceSchemaUri()">instance_schema_uri</xref>.'
+            ],
+            [
+                // Separation within links using newlines
+                'Required. The [Model\'s]' . PHP_EOL . '[google.cloud.aiplatform.v1.BatchPredictionJob.model]'
+                . ' [PredictSchemata\'s]' . PHP_EOL . '[google.cloud.aiplatform.v1.Model.predict_schemata]'
+                . ' [instance_schema_uri]' . PHP_EOL . '[google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].',
+                'Required. The <xref uid="\Google\Cloud\AIPlatform\V1\BatchPredictionJob::getModel()">Model\'s</xref>'
+                . ' <xref uid="\Google\Cloud\AIPlatform\V1\Model::getPredictSchemata()">PredictSchemata\'s</xref>'
+                . ' <xref uid="\Google\Cloud\AIPlatform\V1\PredictSchemata::getInstanceSchemaUri()">instance_schema_uri</xref>.'
+            ],
+            [
+                // Separation within links using a space - some APIs do this :/
+                'Required. The [Model\'s] [google.cloud.aiplatform.v1.BatchPredictionJob.model]'
+                . ' [PredictSchemata\'s] [google.cloud.aiplatform.v1.Model.predict_schemata]'
+                . ' [instance_schema_uri] [google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].',
+                'Required. The <xref uid="\Google\Cloud\AIPlatform\V1\BatchPredictionJob::getModel()">Model\'s</xref>'
+                . ' <xref uid="\Google\Cloud\AIPlatform\V1\Model::getPredictSchemata()">PredictSchemata\'s</xref>'
+                . ' <xref uid="\Google\Cloud\AIPlatform\V1\PredictSchemata::getInstanceSchemaUri()">instance_schema_uri</xref>.'
+            ],
+            [
+                // Reserved word used in class name
+                '[Namespace][google.cloud.servicedirectory.v1.Namespace]',
+                '<xref uid="\Google\Cloud\ServiceDirectory\V1\PBNamespace">Namespace</xref>',
+            ],
+            [
+                // Reserved word used in path name
+                '[Encoding][google.bigtable.v2.Type.String.Encoding]',
+                '<xref uid="\Google\Cloud\Bigtable\V2\Type\PBString\Encoding">Encoding</xref>',
+            ],
+            [
+                // Parenthesis in code samples should not be modified
+                'Testing that a code sample like $foo["bar"]["baz"] does not get replaced',
+                'Testing that a code sample like $foo["bar"]["baz"] does not get replaced'
+            ],
+        ];
+    }
+
+    public function testProtoRefWithXrefUsingPackageName()
+    {
+        $description = '[ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups]';
+        $protoPackages = ['google.bigtable.admin.v2' => 'Google\\Cloud\\Bigtable\\Admin\\V2'];
+
+        $xref = new class($protoPackages) {
+            use XrefTrait;
+            public function __construct(private array $protoPackages) {
+            }
+            public function replace(string $description) {
+                return $this->replaceProtoRef($description);
+            }
+        };
+
+        $this->assertEquals(
+            '<xref uid="\Google\Cloud\Bigtable\Admin\V2\Client\BigtableTableAdminClient::listBackups()">ListBackups</xref>',
+            $xref->replace($description)
+        );
+
+        $classNode = new ClassNode(new SimpleXMLElement(sprintf(
+            '<class><docblock><description>%s</description></docblock></class>',
+            $description
+        )), $protoPackages);
+
+        $this->assertEquals(
+            '<xref uid="\Google\Cloud\Bigtable\Admin\V2\Client\BigtableTableAdminClient::listBackups()">ListBackups</xref>',
+            $classNode->getContent()
+        );
+    }
+
+    public function testAddingPhpLanguageHintToFencedCodeBlock()
+    {
+        $fencedCodeBlock = new class {
+            use FencedCodeBlockTrait;
+
+            public function replace(string $description) {
+                return $this->addPhpLanguageHintToFencedCodeblock($description);
+            }
+        };
+
+        $description = <<<EOF
+This is a test fenced codeblock
+
+```
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+
+And now you know how to use it!
+EOF;
+
+        $expected = <<<EOF
+This is a test fenced codeblock
+
+```php
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+
+And now you know how to use it!
+EOF;
+
+        $this->assertEquals(
+            $expected,
+            $fencedCodeBlock->replace($description)
+        );
+
+        $descriptionWithIndent = <<<EOF
+This is an indented test fenced codeblock
+
+    ```
+    use Some\TestFoo;
+    \$n = new TestFoo();
+    ```
+
+And now you know how to use it!
+EOF;
+
+        // Ensure the whitespace indentation works as expected
+        $this->assertStringContainsString(
+            "\n    ```php\n",
+            $fencedCodeBlock->replace($descriptionWithIndent)
+        );
+        $this->assertStringContainsString(
+            "\n    ```\n",
+            $fencedCodeBlock->replace($descriptionWithIndent)
+        );
+
+        $descriptionWithMultipleCodeblocks = <<<EOF
+This is a test fenced codeblock
+
+```
+// first codeblock
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+
+```
+// second codeblock
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+EOF;
+
+        $expected = <<<EOF
+This is a test fenced codeblock
+
+```php
+// first codeblock
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+
+```php
+// second codeblock
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+EOF;
+        // Ensure the "php" language hint is added to both fenced code blocks.
+        $this->assertEquals(
+            $expected,
+            $fencedCodeBlock->replace($descriptionWithMultipleCodeblocks)
+        );
+
+        $descriptionWithDifferentLanguageHint = <<<EOF
+This is a test fenced codeblock
+
+```sh
+pecl install grpc
+```
+
+```
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+EOF;
+
+        $expected = <<<EOF
+This is a test fenced codeblock
+
+```sh
+pecl install grpc
+```
+
+```php
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+EOF;
+
+        // Ensure the "php" language hint is added only to the second fenced code block.
+        $this->assertEquals(
+            $expected,
+            $fencedCodeBlock->replace($descriptionWithDifferentLanguageHint)
+        );
+    }
+
+    /**
+     * @dataProvider provideStatusAndVersionByNamespace
+     */
+    public function testStatusAndVersionByNamespace(
+        string $namespace,
+        string $version,
+        bool $isBeta = false
+    ) {
+        $serviceXml = str_replace(
+            '\Google\Cloud\Vision\V1',
+            '\Google\Cloud\Vision\\' . $namespace,
+            file_get_contents(__DIR__ . '/../../fixtures/phpdoc/service.xml')
+        );
+        $class = new ClassNode(new SimpleXMLElement($serviceXml));
+
+        $this->assertTrue($class->isServiceClass());
+        $this->assertEquals($version, $class->getVersion());
+        $this->assertEquals($isBeta, $class->getStatus() === 'beta');
+    }
+
+    public function provideStatusAndVersionByNamespace()
+    {
+        return [
+            ['V1alpha', 'V1alpha', true],
+            ['V1beta', 'V1beta', true],
+            ['V1alpha1', 'V1alpha1', true],
+            ['V1beta1', 'V1beta1', true],
+            ['V1p1alpha1', 'V1p1alpha1', true],
+            ['V1p1beta1', 'V1p1beta1', true],
+            ['V2p2beta2', 'V2p2beta2', true],
+            ['V1beta1\Foo', 'V1beta1', true],
+            ['V1beta\Foo', 'V1beta', true],
+            ['V1betaFoo', ''],
+            ['V1', 'V1'],
+            ['V1\Foo', 'V1'],
+            ['V1p1zeta1', ''],
+            ['V1z1beta', ''],
+            ['Foo', ''],
+        ];
+    }
+
+    /**
+     * @dataProvider provideInvalidXrefs
+     */
+    public function testInvalidXrefs(string $description, array $invalidXrefs = [])
+    {
+        $classXml = '<class><full_name>TestClass</full_name><docblock><description>%s</description></docblock></class>';
+        $class = new ClassNode(new SimpleXMLElement(sprintf($classXml, $description)));
+
+        $validator = new class () {
+            use XrefValidationTrait {
+                getInvalidXrefs as public;
+            }
+        };
+
+        $this->assertEquals($invalidXrefs, $validator->getInvalidXrefs($class->getContent()));
+    }
+
+    public function provideInvalidXrefs()
+    {
+        return [
+            ['{@see \DoesntExist}'], // class doesn't exist, but is still a valid xref
+            ['{@see \SimpleXMLElement::method()}'], // method doesn't exist, but is still a valid xref
+            ['{@see \SimpleXMLElement::addAttribute()}'], // valid method
+            ['{@see \SimpleXMLElement::OUTPUT_FOO}'],  // constant doesn't exist, but is still a valid xref
+            [sprintf('{@see \%s::OUTPUT_NORMAL}', OutputInterface::class)], // valid constant
+            ['Take a look at {@see https://foo.bar} for more.'], // valid
+            ['{@see Foo\Bar}', ['Foo\Bar']], // invalid
+            ['Take a look at {@see Foo\Bar} for more.', ['Foo\Bar']], // invalid
+            [
+                '{@see \Google\Cloud\PubSub\Google\Cloud\PubSub\Foo}',
+                ['\Google\Cloud\PubSub\Google\Cloud\PubSub\Foo']
+            ], // invalid
+        ];
+    }
+
+    /**
+     * @dataProvider provideBrokenXrefs
+     */
+    public function testBrokenXrefs(string $description, array $brokenXrefs = [])
+    {
+        $classXml = '<class><full_name>TestClass</full_name><docblock><description>%s</description></docblock></class>';
+        $class = new ClassNode(new SimpleXMLElement(sprintf($classXml, $description)));
+
+        $validator = new class () {
+            use XrefValidationTrait {
+                getBrokenXrefs as public;
+            }
+        };
+
+        $this->assertEquals($brokenXrefs, $validator->getBrokenXrefs($class->getContent()));
+    }
+
+    public function provideBrokenXrefs()
+    {
+        return [
+            ['{@see \OutputInterface}', ['\OutputInterface']], // invalid class (doesn't exist)
+            ['{@see \SimpleXMLElement}.'], // valid class
+            ['{@see \SimpleXMLElement::method()}', ['\SimpleXMLElement::method()']], // invalid method (doesn't exist)
+            ['{@see \SimpleXMLElement::addAttribute()}'], // valid method
+            ['{@see \SimpleXMLElement::OUTPUT_FOO}', ['\SimpleXMLElement::OUTPUT_FOO']],  // invalid constant (doesn't exist)
+            [sprintf('{@see \%s::OUTPUT_NORMAL}', OutputInterface::class)], // valid constant
+        ];
+    }
+
+    public function testEscapeDocblockClosingTags()
+    {
+        $classXml = '<class><full_name>TestClass</full_name><docblock><description>%s</description></docblock></class>';
+
+        $docblock = new class (new SimpleXMLElement(sprintf($classXml, 'the path must match `foo/{@*}bar/{@*}baz`'))) {
+            use DocblockTrait;
+
+            public function __construct(private SimpleXMLElement $xmlNode)
+            {}
+        };
+
+        $this->assertEquals('the path must match `foo/*/bar/*/baz`', $docblock->getContent());
+    }
+}

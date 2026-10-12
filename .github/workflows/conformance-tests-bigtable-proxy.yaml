@@ -1,0 +1,67 @@
+# Copyright 2025 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# Github action job to test core java library features on
+# downstream client libraries before they are released.
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Bigtable/**'
+      - '.github/workflows/conformance-tests-bigtable-proxy.yaml'
+  pull_request:
+    paths:
+      - 'Bigtable/**'
+      - '.github/workflows/conformance-tests-bigtable-proxy.yaml'
+  workflow_dispatch:
+name: Run Bigtable Conformance Tests With Proxy
+permissions:
+  contents: read
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        with:
+          php-version: '8.2'
+          extensions: grpc
+
+      - name: Checkout Bigtable conformance tests
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          repository: googleapis/cloud-bigtable-clients-test
+          ref: v0.0.3
+          path: cloud-bigtable-clients-test
+          persist-credentials: false
+
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7
+        with:
+          go-version: '>=1.20.2'
+
+      - name: Install Road Runner PHP
+        run: |
+          wget https://github.com/roadrunner-server/roadrunner/releases/download/v2024.3.1/roadrunner-2024.3.1-linux-amd64.deb
+          if ! echo "2b131bc21255a48544c636a233c03b6a859c15bb6714d4819874b8abdaacb5d8  roadrunner-2024.3.1-linux-amd64.deb" | sha256sum --check; then
+            echo "Checksum validation failed!"
+            exit 1
+          fi
+          sudo dpkg -i roadrunner-2024.3.1-linux-amd64.deb
+
+      - run: bash Bigtable/tests/Conformance/proxy/conformance.sh

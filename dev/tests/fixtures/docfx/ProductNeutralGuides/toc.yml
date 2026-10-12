@@ -1,0 +1,28 @@
+-
+  uid: product-neutral-guides
+  name: 'Client library help'
+  items:
+    -
+      name: 'Getting Started'
+      href: getting-started.md
+    -
+      name: Authentication
+      href: authentication.md
+    -
+      name: 'Core Concepts'
+      href: core_concepts.md
+    -
+      name: 'Client Configuration'
+      href: client_configuration.md
+    -
+      name: 'OCC for IAM'
+      href: occ_for_iam.md
+    -
+      name: 'Migrating to V2'
+      href: migrating.md
+    -
+      name: 'Installing gRPC and Protobuf'
+      href: grpc.md
+    -
+      name: Troubleshooting
+      href: debug.md

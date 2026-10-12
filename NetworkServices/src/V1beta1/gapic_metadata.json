@@ -1,0 +1,177 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.networkservices.v1beta1",
+    "libraryPackage": "Google\\Cloud\\NetworkServices\\V1beta1",
+    "services": {
+        "DepService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DepServiceClient",
+                    "rpcs": {
+                        "CreateExtensionBinding": {
+                            "methods": [
+                                "createExtensionBinding"
+                            ]
+                        },
+                        "CreateLbRouteExtension": {
+                            "methods": [
+                                "createLbRouteExtension"
+                            ]
+                        },
+                        "CreateLbTrafficExtension": {
+                            "methods": [
+                                "createLbTrafficExtension"
+                            ]
+                        },
+                        "DeleteExtensionBinding": {
+                            "methods": [
+                                "deleteExtensionBinding"
+                            ]
+                        },
+                        "DeleteLbRouteExtension": {
+                            "methods": [
+                                "deleteLbRouteExtension"
+                            ]
+                        },
+                        "DeleteLbTrafficExtension": {
+                            "methods": [
+                                "deleteLbTrafficExtension"
+                            ]
+                        },
+                        "GetExtensionBinding": {
+                            "methods": [
+                                "getExtensionBinding"
+                            ]
+                        },
+                        "GetLbRouteExtension": {
+                            "methods": [
+                                "getLbRouteExtension"
+                            ]
+                        },
+                        "GetLbTrafficExtension": {
+                            "methods": [
+                                "getLbTrafficExtension"
+                            ]
+                        },
+                        "ListExtensionBindings": {
+                            "methods": [
+                                "listExtensionBindings"
+                            ]
+                        },
+                        "ListLbRouteExtensions": {
+                            "methods": [
+                                "listLbRouteExtensions"
+                            ]
+                        },
+                        "ListLbTrafficExtensions": {
+                            "methods": [
+                                "listLbTrafficExtensions"
+                            ]
+                        },
+                        "UpdateExtensionBinding": {
+                            "methods": [
+                                "updateExtensionBinding"
+                            ]
+                        },
+                        "UpdateLbRouteExtension": {
+                            "methods": [
+                                "updateLbRouteExtension"
+                            ]
+                        },
+                        "UpdateLbTrafficExtension": {
+                            "methods": [
+                                "updateLbTrafficExtension"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "NetworkServices": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "NetworkServicesClient",
+                    "rpcs": {
+                        "CreateEndpointPolicy": {
+                            "methods": [
+                                "createEndpointPolicy"
+                            ]
+                        },
+                        "DeleteEndpointPolicy": {
+                            "methods": [
+                                "deleteEndpointPolicy"
+                            ]
+                        },
+                        "GetEndpointPolicy": {
+                            "methods": [
+                                "getEndpointPolicy"
+                            ]
+                        },
+                        "ListEndpointPolicies": {
+                            "methods": [
+                                "listEndpointPolicies"
+                            ]
+                        },
+                        "UpdateEndpointPolicy": {
+                            "methods": [
+                                "updateEndpointPolicy"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

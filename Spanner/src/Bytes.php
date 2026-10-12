@@ -1,0 +1,111 @@
+<?php
+/**
+ * Copyright 2016 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace Google\Cloud\Spanner;
+
+use GuzzleHttp\Psr7\Utils;
+use Psr\Http\Message\StreamInterface;
+
+/**
+ * Represents a value with a data type of
+ * [bytes](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.TypeCode).
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Spanner\SpannerClient;
+ *
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
+ *
+ * $bytes = $spanner->bytes('hello world');
+ * ```
+ *
+ * ```
+ * // Byte instances can be cast to base64-encoded strings.
+ * echo (string) $bytes;
+ * ```
+ */
+class Bytes implements ValueInterface
+{
+    /**
+     * @var string|resource|StreamInterface
+     */
+    private mixed $value;
+
+    /**
+     * @param string|resource|StreamInterface $value The bytes value.
+     */
+    public function __construct(mixed $value)
+    {
+        $this->value = Utils::streamFor($value);
+    }
+
+    /**
+     * Get the bytes as a stream.
+     *
+     * Example:
+     * ```
+     * $stream = $bytes->get();
+     * ```
+     *
+     * @return StreamInterface
+     */
+    public function get(): StreamInterface
+    {
+        return $this->value;
+    }
+
+    /**
+     * Get the type.
+     *
+     * Example:
+     * ```
+     * echo $bytes->type();
+     * ```
+     *
+     * @return int
+     */
+    public function type(): int
+    {
+        return Database::TYPE_BYTES;
+    }
+
+    /**
+     * Format the value as a string.
+     *
+     * Example:
+     * ```
+     * echo $bytes->formatAsString();
+     * ```
+     *
+     * @return string
+     */
+    public function formatAsString(): string
+    {
+        return base64_encode((string) $this->value);
+    }
+
+    /**
+     * Format the value as a string.
+     *
+     * @return string
+     * @access private
+     */
+    public function __toString()
+    {
+        return $this->formatAsString();
+    }
+}

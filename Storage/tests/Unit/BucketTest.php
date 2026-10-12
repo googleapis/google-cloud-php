@@ -1,0 +1,1296 @@
+<?php
+/**
+ * Copyright 2015 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace Google\Cloud\Storage\Tests\Unit;
+
+use Google\Auth\SignBlobInterface;
+use Google\Cloud\Core\Exception\GoogleException;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\ServerException;
+use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\Upload\ResumableUploader;
+use Google\Cloud\Core\Upload\MultipartUploader;
+use Google\Cloud\PubSub\Topic;
+use Google\Cloud\Storage\Acl;
+use Google\Cloud\Storage\Bucket;
+use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\Connection\Rest;
+use Google\Cloud\Storage\Lifecycle;
+use Google\Cloud\Storage\Notification;
+use Google\Cloud\Storage\SigningHelper;
+use Google\Cloud\Storage\StorageObject;
+use GuzzleHttp\Promise\Create;
+use GuzzleHttp\Promise\PromiseInterface;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
+
+/**
+ * @group storage
+ */
+class BucketTest extends TestCase
+{
+    use ProphecyTrait;
+
+    const TOPIC_NAME = 'my-topic';
+    const BUCKET_NAME = 'my-bucket';
+    const PROJECT_ID = 'my-project';
+    const NOTIFICATION_ID = '1234';
+    const FILE_NAME_TEST = 'test.txt';
+    private $connection;
+    private $resumableUploader;
+    private $multipartUploader;
+
+    public function setUp(): void
+    {
+        $this->connection = $this->prophesize(Rest::class);
+        $this->resumableUploader = $this->prophesize(ResumableUploader::class);
+        $this->multipartUploader = $this->prophesize(MultipartUploader::class);
+    }
+
+    private function getBucket(
+        array $data = [],
+        $shouldExpectProjectIdCall = true,
+        $expectedProjectId = self::PROJECT_ID
+    ) {
+        if ($shouldExpectProjectIdCall) {
+            $this->connection->projectId()
+                ->willReturn($expectedProjectId);
+        }
+
+        return new Bucket(
+            $this->connection->reveal(),
+            self::BUCKET_NAME,
+            $data
+        );
+    }
+
+    public function testGetsAcl()
+    {
+        $bucket = $this->getBucket();
+
+        $this->assertInstanceOf(Acl::class, $bucket->acl());
+    }
+
+    public function testGetsDefaultAcl()
+    {
+        $bucket = $this->getBucket();
+
+        $this->assertInstanceOf(Acl::class, $bucket->defaultAcl());
+    }
+
+    public function testDoesExistTrue()
+    {
+        $this->connection->getBucket(Argument::any())->willReturn(['name' => self::BUCKET_NAME]);
+        $bucket = $this->getBucket();
+
+        $this->assertTrue($bucket->exists());
+    }
+
+    public function testDoesExistFalse()
+    {
+        $this->connection->getBucket(Argument::any())->willThrow(new NotFoundException(null));
+        $bucket = $this->getBucket();
+
+        $this->assertFalse($bucket->exists());
+    }
+
+    public function testUploadData()
+    {
+        $this->resumableUploader->upload()->willReturn([
+            'name' => 'data.txt',
+            'generation' => 123
+        ]);
+        $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader);
+        $bucket = $this->getBucket();
+
+        $this->assertInstanceOf(
+            StorageObject::class,
+            $bucket->upload('some data to upload', ['name' => 'data.txt'])
+        );
+    }
+
+    public function testUploadAsyncData()
+    {
+        $name = 'Foo';
+        $this->connection->insertObject(Argument::any())->willReturn($this->multipartUploader);
+        $this->multipartUploader
+            ->uploadAsync()
+            ->willReturn(
+                Create::promiseFor([
+                    'name' => $name,
+                    'generation' => 'Bar'
+                ])
+            );
+
+        $bucket = $this->getBucket();
+        $promise = $bucket->uploadAsync('some data to upload', ['name' => $name]);
+
+        $this->assertInstanceOf(
+            PromiseInterface::class,
+            $promise
+        );
+        $this->assertInstanceOf(
+            StorageObject::class,
+            $promise->wait()
+        );
+    }
+
+    public function testUploadDataAsStringWithNoName()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $bucket = $this->getBucket();
+
+        $bucket->upload('some more data');
+    }
+
+    public function testGetResumableUploader()
+    {
+        $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader->reveal());
+        $bucket = $this->getBucket();
+
+        $this->assertInstanceOf(
+            ResumableUploader::class,
+            $bucket->getResumableUploader('some data to upload', ['name' => 'data.txt'])
+        );
+    }
+
+    public function testGetResumableUploaderWithStringWithNoName()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $bucket = $this->getBucket();
+
+        $bucket->getResumableUploader('some more data');
+    }
+
+    /**
+     * Verifies that a resumable upload triggered through a Bucket
+     * only sends the X-Goog-Hash on the final chunk.
+     */
+    public function testUploadResumableFinalChunkHashes()
+    {
+        $data = 'chunk1chunk2'; // 12 bytes
+        $name = 'test-resumable.txt';
+        $resumeUri = 'http://example.com/resumable/123';
+        $hash = 'crc32c=mb+64g==,md5=ecA+ttxFBv4gFVBh52kiWA==';
+
+        $rw = $this->prophesize(RequestWrapper::class);
+
+        // Handshake call (POST)
+        $rw->send(Argument::that(function ($request) {
+            return $request->getMethod() === 'POST';
+        }), Argument::any())->willReturn(new \GuzzleHttp\Psr7\Response(200, ['Location' => $resumeUri]));
+
+        // Intermediate chunk (PUT) - Should NOT have X-Goog-Hash
+        $rw->send(Argument::that(function ($request) {
+            return $request->getMethod() === 'PUT'
+                && $request->getHeaderLine('Content-Range') === 'bytes 0-5/12'
+                && !$request->hasHeader('X-Goog-Hash');
+        }), Argument::any())->willReturn(new \GuzzleHttp\Psr7\Response(308, ['Range' => 'bytes=0-5']));
+
+        // FINAL chunk (PUT) - MUST HAVE X-Goog-Hash
+        $rw->send(Argument::that(function ($request) use ($hash) {
+            return $request->getMethod() === 'PUT'
+                && $request->getHeaderLine('Content-Range') === 'bytes 6-11/12'
+                && $request->getHeaderLine('X-Goog-Hash') === $hash;
+        }), Argument::any())->willReturn(
+            new \GuzzleHttp\Psr7\Response(200, [], '{"name":"' . $name . '","generation":"1"}')
+        );
+
+        $this->connection->projectId()->willReturn(self::PROJECT_ID);
+        $this->connection->requestWrapper()->willReturn($rw->reveal());
+
+        $uploader = new ResumableUploader(
+            $rw->reveal(),
+            $data,
+            'http://example.com/upload',
+            [
+                'chunkSize' => 6,
+                'contentType' => 'text/plain',
+                'restOptions' => ['headers' => ['X-Goog-Hash' => $hash]]
+            ]
+        );
+
+        $this->connection->insertObject(Argument::any())
+            ->willReturn($uploader);
+
+        $bucket = $this->getBucket();
+        $object = $bucket->upload($data, [
+            'name' => $name,
+            'resumable' => true,
+            'chunkSize' => 6,
+        ]);
+
+        $this->assertInstanceOf(StorageObject::class, $object);
+        $this->assertEquals($name, $object->name());
+    }
+
+    public function testGetObject()
+    {
+        $bucket = $this->getBucket();
+
+        $this->assertInstanceOf(StorageObject::class, $bucket->object('peter-venkman.jpg'));
+    }
+
+    public function testInstantiateObjectWithOptions()
+    {
+        $bucket = $this->getBucket();
+
+        $object = $bucket->object('peter-venkman.jpg', [
+            'generation' => '5',
+            'encryptionKey' => 'abc',
+            'encryptionKeySHA256' => '123'
+        ]);
+
+        $this->assertInstanceOf(StorageObject::class, $object);
+    }
+
+    public function testGetsObjectsWithoutToken()
+    {
+        $this->connection->listObjects(Argument::any())->willReturn([
+            'items' => [
+                [
+                    'name' => 'file.txt',
+                    'generation' => 'abc'
+                ]
+            ]
+        ]);
+
+        $bucket = $this->getBucket();
+        $objects = iterator_to_array($bucket->objects());
+
+        $this->assertEquals('file.txt', $objects[0]->name());
+    }
+
+    public function testGetsObjectsWithToken()
+    {
+        $this->connection->listObjects(Argument::any())
+            ->willReturn([
+                'nextPageToken' => 'token',
+                'items' => [
+                    [
+                        'name' => 'file.txt',
+                        'generation' => 'abc'
+                    ]
+                ]
+            ], [
+                'items' => [
+                    [
+                        'name' => 'file2.txt',
+                        'generation' => 'def'
+                    ]
+                ]
+            ]);
+
+        $bucket = $this->getBucket();
+        $objects = iterator_to_array($bucket->objects());
+
+        $this->assertEquals('file2.txt', $objects[1]->name());
+    }
+
+    public function testGetsObjectsWithManagedFolders()
+    {
+        $this->connection->listObjects(Argument::any())
+            ->willReturn([
+                'kind' => 'storage#objects',
+                'prefixes' => ['managedFolders/', 'mf/'],
+                'items' => [[
+                    'name' => 'mf/file.txt',
+                    'generation' => 'abc',
+                    'kind' => 'storage#object'
+                ]]
+            ]);
+
+        $bucket = $this->getBucket();
+        $objects = iterator_to_array($bucket->objects([
+            'delimiter' => '/',
+            'includeFoldersAsPrefixes' => true
+        ]));
+
+        $this->assertEquals('mf/file.txt', $objects[0]->name());
+    }
+
+    public function testDelete()
+    {
+        $bucket = $this->getBucket([], false);
+
+        $this->assertNull($bucket->delete());
+    }
+
+    public function testRestore()
+    {
+        $this->connection->restoreObject(Argument::any())
+            ->willReturn([
+                'name' => 'file.txt',
+                'generation' => 'abc'
+            ]);
+
+        $bucket = $this->getBucket();
+        $restoredObject = $bucket->restore('file.txt', 'abc');
+
+        $this->assertInstanceOf(StorageObject::class, $restoredObject);
+        $this->assertEquals('file.txt', $restoredObject->name());
+        $this->assertEquals('abc', $restoredObject->info()['generation']);
+    }
+
+    public function testRestoreWithRestoreToken()
+    {
+        $this->connection->restoreObject(Argument::any())
+            ->willReturn([
+                'name' => 'file.txt',
+                'generation' => 'abc'
+            ]);
+
+        $bucket = $this->getBucket();
+        $restoredObject = $bucket->restore('file.txt', 'abc', ['restoreToken' => 'def']);
+
+        $this->assertInstanceOf(StorageObject::class, $restoredObject);
+        $this->assertEquals('file.txt', $restoredObject->name());
+        $this->assertEquals('abc', $restoredObject->info()['generation']);
+    }
+
+    public function testComposeThrowsExceptionWithLessThanTwoSources()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $bucket = $this->getBucket();
+
+        $bucket->compose(['file1.txt'], 'combined-files.txt');
+    }
+
+    public function testComposeThrowsExceptionWithUnknownContentType()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $bucket = $this->getBucket();
+
+        $bucket->compose(['file1.txt', 'file2.txt'], 'combined-files.abc');
+    }
+
+    /**
+     * @dataProvider composeProvider
+     */
+    public function testComposesObjects(
+        $metadata,
+        $objects,
+        $expectedSourceObjects
+    ) {
+        $acl = 'private';
+        $destinationObject = 'combined-files.txt';
+        $this->connection->composeObject([
+                'destinationBucket' => self::BUCKET_NAME,
+                'destinationObject' => $destinationObject,
+                'destinationPredefinedAcl' => $acl,
+                'destination' => $metadata + ['contentType' => 'text/plain'],
+                'sourceObjects' => $expectedSourceObjects,
+            ])
+            ->willReturn([
+                'name' => $destinationObject,
+                'generation' => 1
+            ])
+            ->shouldBeCalledTimes(1);
+        $bucket = $this->getBucket();
+
+        $object = $bucket->compose($objects, $destinationObject, [
+            'predefinedAcl' => $acl,
+            'metadata' => $metadata
+        ]);
+
+        $this->assertEquals($destinationObject, $object->name());
+    }
+
+    public function testComposeWithDeleteSourceObjects()
+    {
+        $acl = 'private';
+        $destinationObject = 'combined-files.txt';
+        $this->connection->composeObject([
+                'destinationBucket' => self::BUCKET_NAME,
+                'destinationObject' => $destinationObject,
+                'destinationPredefinedAcl' => $acl,
+                'destination' => ['contentType' => 'text/plain'],
+                'sourceObjects' => [['name' => 'file1.txt'], ['name' => 'file2.txt']],
+                'deleteSourceObjects' => true,
+            ])
+            ->willReturn([
+                'name' => $destinationObject,
+                'generation' => 1
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $bucket = $this->getBucket();
+
+        $object = $bucket->compose(['file1.txt', 'file2.txt'], $destinationObject, [
+            'predefinedAcl' => $acl,
+            'deleteSourceObjects' => true
+        ]);
+
+        $this->assertEquals($destinationObject, $object->name());
+    }
+
+    public function testComposeWithDeleteSourceObjectsFalse()
+    {
+        $acl = 'private';
+        $destinationObject = 'combined-files.txt';
+        $this->connection->composeObject([
+                'destinationBucket' => self::BUCKET_NAME,
+                'destinationObject' => $destinationObject,
+                'destinationPredefinedAcl' => $acl,
+                'destination' => ['contentType' => 'text/plain'],
+                'sourceObjects' => [['name' => 'file1.txt'], ['name' => 'file2.txt']],
+            ])
+            ->willReturn([
+                'name' => $destinationObject,
+                'generation' => 1
+            ])
+            ->shouldBeCalledTimes(1);
+        $bucket = $this->getBucket();
+
+        $object = $bucket->compose(['file1.txt', 'file2.txt'], $destinationObject, [
+            'predefinedAcl' => $acl,
+            'deleteSourceObjects' => false
+        ]);
+
+        $this->assertEquals($destinationObject, $object->name());
+    }
+
+    public function testComposeWithDeleteSourceObjectsNull()
+    {
+        $acl = 'private';
+        $destinationObject = 'combined-files.txt';
+        $this->connection->composeObject([
+                'destinationBucket' => self::BUCKET_NAME,
+                'destinationObject' => $destinationObject,
+                'destinationPredefinedAcl' => $acl,
+                'destination' => ['contentType' => 'text/plain'],
+                'sourceObjects' => [['name' => 'file1.txt'], ['name' => 'file2.txt']],
+            ])
+            ->willReturn([
+                'name' => $destinationObject,
+                'generation' => 1
+            ])
+            ->shouldBeCalledTimes(1);
+        $bucket = $this->getBucket();
+
+        $object = $bucket->compose(['file1.txt', 'file2.txt'], $destinationObject, [
+            'predefinedAcl' => $acl,
+            'deleteSourceObjects' => null
+        ]);
+
+        $this->assertEquals($destinationObject, $object->name());
+    }
+
+    public function composeProvider()
+    {
+        $object1 = $this->prophesize(StorageObject::class);
+        $object2 = $this->prophesize(StorageObject::class);
+        $name1 = 'file1.txt';
+        $name2 = 'file2.txt';
+        $object1->name(Argument::any())->willReturn($name1);
+        $object1->identity(Argument::any())->willReturn(['generation' => '1']);
+        $object2->name(Argument::any())->willReturn($name2);
+        $object2->identity(Argument::any())->willReturn(['generation' => '1']);
+
+        return [
+            [
+                ['test' => true],
+                [$name1, $name2],
+                [['name' => $name1], ['name' => $name2]]
+            ],
+            [
+                ['contentType' => 'application/json'],
+                [$object1->reveal(), $object2->reveal()],
+                [
+                    ['name' => $name1, 'generation' => '1'],
+                    ['name' => $name2, 'generation' => '1']
+                ]
+            ]
+        ];
+    }
+
+    public function testUpdatesData()
+    {
+        $versioningData = [
+            'versioning' => [
+                'enabled' => true
+            ]
+        ];
+        $this->connection->patchBucket(Argument::any())->willReturn(['name' => 'bucket'] + $versioningData);
+        $bucket = $this->getBucket([
+            'name' => 'bucket',
+            'versioning' => [
+                'enabled' => false
+            ]
+        ]);
+
+        $bucket->update($versioningData);
+
+        $this->assertTrue($bucket->info()['versioning']['enabled']);
+    }
+
+    /**
+     * @dataProvider terminalStorageClass
+     */
+    public function testUpdateAutoclassConfig($terminalStorageClass)
+    {
+        $autoclassConfig = [
+            'autoclass' => [
+                'enabled' => true,
+                'terminalStorageClass' => $terminalStorageClass
+            ],
+        ];
+        $expectedInfo = array_merge_recursive($autoclassConfig, ['autoclass' => [
+            'toggleTime' => '2022-09-18T01:01:01.045123456Z',
+            'terminalStorageClassUpdateTime' => '2022-09-18T01:01:01.045123456Z'
+        ]]);
+        $this->connection->patchBucket(Argument::any())->willReturn(
+            ['name' => 'bucket'] +
+            $expectedInfo
+        );
+        $bucket = $this->getBucket([
+            'name' => 'bucket',
+        ] + $autoclassConfig);
+
+        $bucket->update($autoclassConfig);
+
+        $this->assertArrayHasKey('autoclass', $bucket->info());
+        $autoclassInfo = $bucket->info()['autoclass'];
+        $this->assertTrue($autoclassInfo['enabled']);
+        $this->assertEquals($terminalStorageClass, $autoclassInfo['terminalStorageClass']);
+        $this->assertArrayHasKey('toggleTime', $autoclassInfo);
+        $this->assertArrayHasKey('terminalStorageClassUpdateTime', $autoclassInfo);
+    }
+
+    public function testUpdatesDataWithLifecycleBuilder()
+    {
+        $lifecycleArr = ['test' => 'test'];
+        $lifecycle = $this->prophesize(Lifecycle::class);
+        $lifecycle->toArray()
+            ->willReturn($lifecycleArr);
+        $this->connection
+            ->patchBucket([
+                'userProject' => null,
+                'bucket' => self::BUCKET_NAME,
+                'lifecycle' => $lifecycleArr
+            ])
+            ->willReturn([
+                'lifecycle' => $lifecycleArr
+            ]);
+        $bucket = $this->getBucket();
+
+        $this->assertEquals(
+            $lifecycleArr,
+            $bucket->update(
+                ['lifecycle' => $lifecycle->reveal()]
+            )['lifecycle']
+        );
+    }
+
+
+    public function testUpdatesEncryptionEnforcementConfig()
+    {
+        $encryptionConfig = [
+            'googleManagedEncryptionEnforcementConfig' => [
+                'restrictionMode' => 'FullyRestricted'
+            ]
+        ];
+        $this->connection->patchBucket(Argument::withEntry('encryption', $encryptionConfig))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => self::BUCKET_NAME,
+                'encryption' => $encryptionConfig
+            ]);
+
+        $bucket = $this->getBucket(['name' => self::BUCKET_NAME]);
+
+        $bucket->update(['encryption' => $encryptionConfig]);
+
+        $this->assertArrayHasKey('encryption', $bucket->info());
+        $this->assertEquals(
+            'FullyRestricted',
+            $bucket->info()['encryption']['googleManagedEncryptionEnforcementConfig']['restrictionMode']
+        );
+    }
+
+    public function testUpdatesIpFilterConfig()
+    {
+        $ipFilterConfig = [
+            'mode' => 'Enabled',
+            'publicNetworkSource' => [
+                'allowedIpCidrRanges' => ['1.2.3.4/32']
+            ],
+            'vpcNetworkSources' => [
+                [
+                    'network' => 'projects/p1/global/networks/n1',
+                    'allowedIpCidrRanges' => ['10.0.0.0/24']
+                ]
+            ],
+            'allowCrossOrgVpcs' => true,
+            'allowAllServiceAgentAccess' => false
+        ];
+        $this->connection->patchBucket(Argument::withEntry('ipFilter', $ipFilterConfig))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => self::BUCKET_NAME,
+                'ipFilter' => $ipFilterConfig
+            ]);
+
+        $bucket = $this->getBucket(['name' => self::BUCKET_NAME]);
+
+        $bucket->update(['ipFilter' => $ipFilterConfig]);
+
+        $this->assertArrayHasKey('ipFilter', $bucket->info());
+        $this->assertEquals(
+            'Enabled',
+            $bucket->info()['ipFilter']['mode']
+        );
+        $this->assertEquals(
+            ['1.2.3.4/32'],
+            $bucket->info()['ipFilter']['publicNetworkSource']['allowedIpCidrRanges']
+        );
+    }
+
+    public function testBucketAccessAllowedWithIpFilter()
+    {
+        $ipFilterConfig = [
+            'mode' => 'Enabled',
+            'publicNetworkSource' => [
+                'allowedIpCidrRanges' => ['12.34.56.78/32']
+            ],
+            'allowAllServiceAgentAccess' => true
+        ];
+        $bucketInfo = [
+            'name' => self::BUCKET_NAME,
+            'ipFilter' => $ipFilterConfig
+        ];
+        $this->connection->getBucket(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($bucketInfo);
+
+        $bucket = $this->getBucket();
+        $info = $bucket->info();
+
+        $this->assertArrayHasKey('ipFilter', $info);
+        $this->assertEquals('Enabled', $info['ipFilter']['mode']);
+    }
+
+    public function testBucketAccessDeniedByIpFilter()
+    {
+        $this->expectException(ServiceException::class);
+        $this->expectExceptionCode(403);
+        $this->expectExceptionMessage('BUCKET_IP_FILTER_DENIED');
+
+        $this->connection->getBucket(Argument::any())
+            ->shouldBeCalled()
+            ->willThrow(new ServiceException('BUCKET_IP_FILTER_DENIED', 403));
+
+        $bucket = $this->getBucket();
+        $bucket->info();
+    }
+
+    public function testGetBucketWithIpFilter()
+    {
+        $ipFilterConfig = [
+            'mode' => 'Disabled',
+            'publicNetworkSource' => [
+                'allowedIpCidrRanges' => ['1.2.3.0/24']
+            ],
+            'allowAllServiceAgentAccess' => true
+        ];
+
+        $bucketInfo = [
+            'name' => self::BUCKET_NAME,
+            'ipFilter' => $ipFilterConfig
+        ];
+
+        $this->connection->getBucket(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($bucketInfo);
+
+        $bucket = $this->getBucket();
+        $info = $bucket->info();
+
+        $this->assertArrayHasKey('ipFilter', $info);
+        $this->assertEquals('Disabled', $info['ipFilter']['mode']);
+        $this->assertEquals(
+            ['1.2.3.0/24'],
+            $info['ipFilter']['publicNetworkSource']['allowedIpCidrRanges']
+        );
+    }
+
+    public function testDisableBucketIpFilter()
+    {
+        $ipFilterConfig = [
+            'mode' => 'Disabled',
+            'publicNetworkSource' => [
+                'allowedIpCidrRanges' => ['1.2.3.0/24']
+            ],
+            'allowAllServiceAgentAccess' => true
+        ];
+
+        $bucketInfo = [
+            'name' => self::BUCKET_NAME,
+            'ipFilter' => $ipFilterConfig
+        ];
+
+        $this->connection->patchBucket(Argument::withEntry('ipFilter', $ipFilterConfig))
+            ->shouldBeCalled()
+            ->willReturn($bucketInfo);
+
+        $bucket = $this->getBucket();
+        $info = $bucket->update(['ipFilter' => $ipFilterConfig]);
+
+        $this->assertArrayHasKey('ipFilter', $info);
+        $this->assertEquals('Disabled', $info['ipFilter']['mode']);
+    }
+
+    public function testDeleteBucketIpFilter()
+    {
+        $bucketInfo = [
+            'name' => self::BUCKET_NAME,
+        ];
+
+        $this->connection->patchBucket(Argument::withEntry('ipFilter', null))
+            ->shouldBeCalled()
+            ->willReturn($bucketInfo);
+
+        $bucket = $this->getBucket();
+        $info = $bucket->update(['ipFilter' => null]);
+
+        $this->assertArrayNotHasKey('ipFilter', $info);
+    }
+
+    public function testGetsInfo()
+    {
+        $bucketInfo = [
+            'name' => 'bucket',
+            'etag' => 'ABC',
+            'kind' => 'storage#bucket'
+        ];
+        $bucket = $this->getBucket($bucketInfo);
+
+        $this->assertEquals($bucketInfo, $bucket->info());
+    }
+
+    public function testGetsInfoWithForce()
+    {
+        $bucketInfo = [
+            'name' => 'bucket',
+            'etag' => 'ABC',
+            'kind' => 'storage#bucket'
+        ];
+        $this->connection->getBucket(Argument::any())
+            ->willReturn($bucketInfo)
+            ->shouldBeCalledTimes(1);
+        $bucket = $this->getBucket();
+
+        $this->assertEquals($bucketInfo, $bucket->info());
+    }
+
+    public function testGetsName()
+    {
+        $bucket = $this->getBucket();
+
+        $this->assertEquals(self::BUCKET_NAME, $bucket->name());
+    }
+
+    public function testLifecycle()
+    {
+        $this->assertInstanceOf(Lifecycle::class, Bucket::lifecycle());
+    }
+
+    public function testCurrentLifecycle()
+    {
+        $this->connection
+            ->getBucket(Argument::any())
+            ->willReturn(['lifecycle' => ['test' => 'test']]);
+
+        $this->assertInstanceOf(
+            Lifecycle::class,
+            $this->getBucket()->currentLifecycle()
+        );
+    }
+
+    public function testCurrentLifecycleWithCachedData()
+    {
+        $this->connection
+            ->getBucket(Argument::any())
+            ->shouldNotBeCalled();
+
+        $this->assertInstanceOf(
+            Lifecycle::class,
+            $this->getBucket([
+                'lifecycle' => ['test' => ['test']]
+            ])->currentLifecycle()
+        );
+    }
+
+    public function testIsWritable()
+    {
+        $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader);
+        $this->resumableUploader->getResumeUri()->willReturn('http://some-uri/');
+        $bucket = $this->getBucket();
+        $this->assertTrue($bucket->isWritable());
+    }
+
+    public function testIsWritableAccessDenied()
+    {
+        $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader);
+        $this->resumableUploader->getResumeUri()->willThrow(new ServiceException('access denied', 403));
+        $bucket = $this->getBucket();
+        $this->assertFalse($bucket->isWritable());
+    }
+
+    public function testIsWritableServerException()
+    {
+        $this->expectException(ServerException::class);
+
+        $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader);
+        $this->resumableUploader->getResumeUri()->willThrow(new ServerException('maintainence'));
+        $bucket = $this->getBucket();
+        $bucket->isWritable(); // raises exception
+    }
+
+    public function testCreateObjectWithValidContexts()
+    {
+        $contexts = [
+            'custom' => [
+                'dept' => ['value' => 'engineering'],
+                'env' => ['value' => 'production']
+            ]
+        ];
+        $this->resumableUploader->upload()->willReturn([
+            'name' => 'data.txt',
+            'generation' => 123,
+            'contexts' => $contexts
+        ]);
+
+        $this->connection->insertObject(Argument::any())
+            ->willReturn($this->resumableUploader->reveal());
+        $object = $this->getBucket()->upload('upload', [
+            'name' => 'data.txt',
+            'contexts' => $contexts
+        ]);
+        $this->assertInstanceOf(StorageObject::class, $object);
+        $this->assertEquals($contexts, $object->info()['contexts']);
+    }
+
+    public function testUpdateReplacesAllMetadataIncludingContexts()
+    {
+        $objectName = 'replace-test.txt';
+        $object = new StorageObject($this->connection->reveal(), $objectName, self::BUCKET_NAME);
+        $newContexts = ['custom' => ['new-key' => ['value' => 'new-val']]];
+
+        $this->connection->patchObject(Argument::withEntry('contexts', $newContexts))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => $objectName,
+                'contexts' => $newContexts,
+            ]);
+
+        $result = $object->update(['contexts' => $newContexts]);
+        $this->assertEquals('new-val', $result['contexts']['custom']['new-key']['value']);
+    }
+
+    public function testAddAndModifyWithIndividualContexts()
+    {
+        $patchMetadata = [
+            'contexts' => [
+                'custom' => [
+                    'new-key' => ['value' => 'added'],
+                    'existing-key' => ['value' => 'modified']
+                ]
+            ]
+        ];
+
+        $this->connection->patchObject(Argument::withEntry('metadata', $patchMetadata))
+        ->willReturn(['metadata' => $patchMetadata]);
+        
+        $file = $this->getBucket()->object(self::FILE_NAME_TEST);
+        $response = $file->update(['metadata' => $patchMetadata]);
+
+        $this->assertArrayHasKey('contexts', $response['metadata']);
+        $this->assertSame('added', $response['metadata']['contexts']['custom']['new-key']['value']);
+        $this->assertSame('modified', $response['metadata']['contexts']['custom']['existing-key']['value']);
+    }
+
+    /**
+    * @dataProvider removeAndClearAllContextsDataProvider
+    */
+    public function testRemoveAndClearAllObjectContexts($objectContexts)
+    {
+        $this->connection->patchObject(
+            Argument::withEntry('contexts', $objectContexts)
+        )->shouldBeCalled()->willReturn([
+            'name' => self::FILE_NAME_TEST,
+            'contexts' => $objectContexts
+        ]);
+
+        $object = new StorageObject(
+            $this->connection->reveal(),
+            self::FILE_NAME_TEST,
+            '',
+            1,
+            ['bucket' => self::BUCKET_NAME]
+        );
+        $object->update(['contexts' => $objectContexts]);
+        $info = $object->info();
+        if ($objectContexts === null) {
+            $hasContexts = isset($info['contexts']) && $info['contexts'] !== null;
+            $this->assertFalse($hasContexts);
+        } else {
+            $actualContexts = $object->info()['contexts'] ?? null;
+            $this->assertEquals($objectContexts, $actualContexts);
+        }
+    }
+
+    public function removeAndClearAllContextsDataProvider()
+    {
+        return [
+            'remove an individual context by setting it to null' => [
+                ['custom' => ['key-to-delete' => null]]
+            ],
+            'clear all contexts by setting custom to null' => [
+                ['custom' => null]
+            ]
+        ];
+    }
+
+    public function testCopyObjectWithMetadataOverrides()
+    {
+        $destFileName = 'destination.txt';
+        $metadata = [
+            'contexts' => [
+                'custom' => ['tag' => ['value' => 'overridden']],
+            ],
+        ];
+
+        $destinationObject = $this->prophesize(StorageObject::class);
+        $destinationObject->info()->willReturn(['metadata' => $metadata]);
+        $sourceObject = $this->prophesize(StorageObject::class);
+        $sourceObject->copy(Argument::any(), Argument::withEntry('metadata', $metadata))
+            ->shouldBeCalled()
+            ->willReturn($destinationObject->reveal());
+
+        $response = $sourceObject->reveal()->copy(self::BUCKET_NAME, [
+            'name' => $destFileName,
+            'metadata' => $metadata
+        ]);
+
+        $this->assertSame(
+            $metadata['contexts'],
+            $response->info()['metadata']['contexts']
+        );
+    }
+
+    public function testListFiltersByPresenceOfKeyValuePair()
+    {
+        $filter = 'contexts."status"="active"';
+        $this->connection->listObjects(Argument::withEntry('filter', $filter))
+            ->shouldBeCalled()
+            ->willReturn([
+                'items' => null
+            ]);
+
+        $bucket = $this->getBucket();
+        $iterator = $bucket->objects([
+            'filter' => $filter
+        ]);
+        $this->assertCount(0, iterator_to_array($iterator));
+    }
+
+    /**
+    * @dataProvider listFilterExistenceDataProvider
+    */
+    public function testListFiltersByExistence($filter)
+    {
+        $this->connection->listObjects(Argument::withEntry('filter', $filter))
+            ->shouldBeCalled()
+            ->willReturn([
+                'items' => null
+            ]);
+
+        $bucket = $this->getBucket();
+        $iterator = $bucket->objects([
+            'filter' => $filter
+        ]);
+
+        $this->assertCount(0, iterator_to_array($iterator));
+    }
+
+    public function listFilterExistenceDataProvider()
+    {
+        return [
+            'presence of key (Existence)' => ['contexts."status":*'],
+            'absence of key (Non-existence)' => ['-contexts."status":*']
+        ];
+    }
+
+    public function testGetFilesIncludesContextsInMetadata()
+    {
+        $fileMetadata = [
+            'name' => 'filename',
+            'metadata' => [
+                'contexts' => [ 'custom' => [ 'dept' =>
+                        [
+                            'value' => 'eng',
+                            'createTime' => '2026-04-16T01:01:01.045123456Z',
+                            'updateTime' => '2026-04-16T01:01:01.045123'
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        $this->connection->listObjects(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'items' => [$fileMetadata]
+            ]);
+
+        $bucket = $this->getBucket();
+        $files = iterator_to_array($bucket->objects());
+
+        $this->assertCount(1, $files);
+        $this->assertInstanceOf(StorageObject::class, $files[0]);
+
+        $this->assertEquals(
+            $fileMetadata['metadata']['contexts'],
+            $files[0]->info()['metadata']['contexts']
+        );
+    }
+
+    public function testIam()
+    {
+        $bucketInfo = [
+            'name' => 'bucket',
+            'etag' => 'ABC',
+            'kind' => 'storage#bucket'
+        ];
+        $bucket = $this->getBucket($bucketInfo);
+
+        $this->assertInstanceOf(Iam::class, $bucket->iam());
+    }
+
+    public function testRequesterPays()
+    {
+        $this->connection->getBucket(Argument::withEntry('userProject', 'foo'))
+            ->willReturn([])
+            ->shouldBeCalled();
+
+        $bucket = $this->getBucket(['requesterProjectId' => 'foo']);
+
+        $bucket->reload();
+    }
+
+    /**
+     * @dataProvider topicDataProvider
+     */
+    public function testCreatesNotification($topic, $expectedTopic)
+    {
+        $this->connection
+            ->insertNotification([
+                'userProject' => null,
+                'bucket' => self::BUCKET_NAME,
+                'topic' => sprintf('//pubsub.googleapis.com/projects/%s/topics/%s', self::PROJECT_ID, $expectedTopic),
+                'payload_format' => 'JSON_API_V1'
+            ])
+            ->willReturn(['id' => self::NOTIFICATION_ID]);
+        $bucket = $this->getBucket();
+        $notification = $bucket->createNotification($topic);
+
+        $this->assertInstanceOf(Notification::class, $notification);
+        $this->assertEquals(self::NOTIFICATION_ID, $notification->id());
+    }
+
+    public function testCreatesNotificationThrowsExceptionWithInvalidTopicType()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('$topic may only be a string or instance of Google\Cloud\PubSub\Topic');
+
+        $bucket = $this->getBucket();
+        $bucket->createNotification(9124);
+    }
+
+    public function testCreatesNotificationThrowsExceptionWithoutProjectId()
+    {
+        $this->expectException(GoogleException::class);
+
+        $bucket = $this->getBucket([], true, null);
+        $bucket->createNotification(self::TOPIC_NAME);
+    }
+
+    public function topicDataProvider()
+    {
+        $topicName = self::TOPIC_NAME;
+        $fullTopicName = sprintf('projects/%s/topics/%s', self::PROJECT_ID, $topicName);
+        $topic = $this->prophesize(Topic::class);
+        $topic->name()
+            ->willReturn($fullTopicName);
+
+        return [
+            [$topicName, $topicName],
+            [$fullTopicName, $topicName],
+            [$topic->reveal(), $topicName]
+        ];
+    }
+
+    public function testGetNotification()
+    {
+        $bucket = $this->getBucket();
+        $notification = $bucket->notification(self::NOTIFICATION_ID);
+
+        $this->assertInstanceOf(Notification::class, $notification);
+        $this->assertEquals(self::NOTIFICATION_ID, $notification->id());
+    }
+
+    public function testGetNotifications()
+    {
+        $notificationID = '1234';
+        $this->connection->listNotifications(Argument::any())->willReturn([
+            'items' => [
+                ['id' => $notificationID]
+            ]
+        ]);
+
+        $bucket = $this->getBucket();
+        $notifications = iterator_to_array($bucket->notifications());
+
+        $this->assertInstanceOf(Notification::class, $notifications[0]);
+        $this->assertEquals($notificationID, $notifications[0]->id());
+    }
+
+    public function testLockRetentionPolicyThrowsExceptionWithoutMetageneration()
+    {
+        $this->expectException(\BadMethodCallException::class);
+
+        $this->getBucket()->lockRetentionPolicy();
+    }
+
+    /**
+     * @dataProvider metagenerationProvider
+     */
+    public function testLockRetentionPolicy($metageneration)
+    {
+        $expectedLockArgs = [
+            'ifMetagenerationMatch' => 1,
+            'bucket' => self::BUCKET_NAME,
+            'userProject' => null
+        ];
+        $expectedReturn = ['metageneration' => 2];
+        $this->connection->getBucket(Argument::any())
+            ->willReturn(['metageneration' => 1]);
+        $this->connection->lockRetentionPolicy($expectedLockArgs)
+            ->shouldBeCalledTimes(1)
+            ->willReturn($expectedReturn);
+        $bucket = $this->getBucket();
+        $bucket->reload();
+
+        $this->assertEquals(
+            $expectedReturn,
+            $bucket->lockRetentionPolicy([
+                'ifMetagenerationMatch' => $metageneration
+            ])
+        );
+    }
+
+    public function metagenerationProvider()
+    {
+        return [
+            [1],
+            [null]
+        ];
+    }
+
+    /**
+     * @group storage-signed-url
+     * @dataProvider urlVersion
+     */
+    public function testSignedUrlVersions($version, $method)
+    {
+        $expectedResource = sprintf('/%s', self::BUCKET_NAME);
+        $expectedExpiration = time() + 10;
+        $return = 'signedUrl';
+
+        $bucket = $this->getBucketForSigning();
+
+        $signingHelper = $this->prophesize(SigningHelper::class);
+
+        $signingHelper->sign(
+            Argument::type(ConnectionInterface::class),
+            $expectedExpiration,
+            $expectedResource,
+            null,
+            $version ? Argument::withEntry('version', $version) : Argument::type('array')
+        )->shouldBeCalled()->willReturn($return);
+
+        $opts = [
+            'helper' => $signingHelper->reveal()
+        ];
+        if ($version) {
+            // test defaults to v2.
+            $opts['version'] = $version;
+        }
+
+        $res = $bucket->signedUrl($expectedExpiration, $opts);
+
+        $this->assertEquals($return, $res);
+    }
+
+    public function urlVersion()
+    {
+        return [
+            [null, SigningHelper::DEFAULT_URL_SIGNING_VERSION . 'Sign'],
+            ['v2', 'v2Sign'],
+            ['v4', 'v4Sign']
+        ];
+    }
+
+    public function terminalStorageClass()
+    {
+        return [
+            ['NEARLINE'],
+            ['ARCHIVE']
+        ];
+    }
+
+    private function getBucketForSigning(
+        ?SignBlobInterface $credentials = null,
+        $scopes = ''
+    ) {
+        if ($credentials === null) {
+            $credentials = $this->prophesize(SignBlobInterface::class);
+            $credentials = $credentials->reveal();
+        }
+
+        $rw = $this->prophesize(RequestWrapper::class);
+        $rw->scopes()->willReturn(is_array($scopes) ? $scopes : [$scopes]);
+        $rw->getCredentialsFetcher()->willReturn($credentials);
+
+        $this->connection->requestWrapper()->willReturn($rw->reveal());
+        $this->connection->projectId()->willReturn(self::PROJECT_ID);
+
+        return TestHelpers::stub(Bucket::class, [
+            $this->connection->reveal(),
+            self::BUCKET_NAME,
+        ], ['connection']);
+    }
+}

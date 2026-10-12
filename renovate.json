@@ -1,0 +1,33 @@
+{
+    "extends": [
+        "config:best-practices"
+    ],
+    "rangeStrategy": "replace",
+    "rebaseWhen": "behind-base-branch",
+    "packageRules": [
+        {
+            "matchPackageNames": [
+                "phpunit/phpunit"
+            ],
+            "allowedVersions": "< 5.0"
+        },
+        {
+            "matchPackageNames": [
+                "squizlabs/php_codesniffer"
+            ],
+            "allowedVersions": "< 3.0"
+        },
+        {
+            "matchPackageNames": [
+                "symfony/console"
+            ],
+            "allowedVersions": "< 4.0"
+        },
+        {
+            "matchDatasources": ["pypi"],
+            "matchUpdateTypes": ["minor", "patch"],
+            "groupName": "python non-major dependencies",
+            "automerge": true
+        }
+    ]
+}

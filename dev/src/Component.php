@@ -1,0 +1,437 @@
+<?php
+/**
+ * Copyright 2023 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace Google\Cloud\Dev;
+
+use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
+use Symfony\Component\Finder\Finder;
+use RuntimeException;
+use DateTime;
+
+/**
+ * @internal
+ */
+class Component
+{
+    const VERSION_REGEX = '/^V([0-9])?(p[0-9])?(beta|alpha)?[0-9]?$/';
+    private const PROTOBUF = 'google/protobuf';
+    /**
+     * Components whose repositories existed before they were migrated into this
+     * monorepo, and which therefore have issues and pull requests of their own.
+     */
+    private const MIGRATED_COMPONENTS = ['Auth', 'Gax', 'Jwt'];
+    public const ROOT_DIR = __DIR__ . '/../../';
+    private string $path;
+    private string $releaseLevel;
+    private string $packageName;
+    private string $repoName;
+    private string $productDocumentation;
+    private string $clientDocumentation;
+    private string $libraryType;
+    private string $description;
+    private string|null $composerVersion;
+    private array $namespaces;
+    /** @var array<Component> */
+    private array $componentDependencies;
+
+    public function __construct(private string $name, ?string $path = null)
+    {
+        $this->path = $path ?: $this->getComponentPath($name);
+        $this->validateComponentFiles();
+    }
+
+    private static function getComponentNames(?string $rootDir): array
+    {
+        $components = scandir($rootDir ?? self::ROOT_DIR);
+        foreach ($components as $i => $name) {
+            if (!is_dir(self::ROOT_DIR . $name) || !preg_match('/^[A-Z]/', $name)) {
+                unset($components[$i]);
+            }
+        }
+
+        return $components;
+    }
+
+    public static function getComponents(array $componentNames = [], ?string $rootDir = null): array
+    {
+        $components = [];
+        foreach ($componentNames ?: self::getComponentNames($rootDir) as $name) {
+            $components[] = new Component($name, $rootDir ? $rootDir . '/' . $name : null);
+        }
+
+        return $components;
+    }
+
+    public function getId(): string
+    {
+        // Strip the vendor prefix (e.g. "google/", "googleads/", "firebase/")
+        $packageName = $this->getPackageName();
+        return false === ($pos = strpos($packageName, '/'))
+            ? $packageName
+            : substr($packageName, $pos + 1);
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * Whether this component's repository existed before it was migrated into
+     * this monorepo. Those repositories have issues and pull requests which our
+     * commit history links to, so they keep both tabs visible.
+     */
+    public function isMigratedRepo(): bool
+    {
+        return in_array($this->name, self::MIGRATED_COMPONENTS, true);
+    }
+
+    public function getPath(): string
+    {
+        return $this->path;
+    }
+
+    public function getRepoName(): string
+    {
+        return $this->repoName;
+    }
+
+    public function getIssueTracker(): string
+    {
+        return sprintf('https://github.com/%s/issues', $this->getRepoName());
+    }
+
+    public function getPackageName(): string
+    {
+        return $this->packageName;
+    }
+
+    public function getReleaseLevel(): string
+    {
+        return $this->releaseLevel;
+    }
+
+    public function getClientDocumentation(): string
+    {
+        return $this->clientDocumentation;
+    }
+
+    public function getProductDocumentation(): string
+    {
+        return $this->productDocumentation;
+    }
+
+    public function getLibraryType(): string
+    {
+        return $this->libraryType;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getNamespaces(): array
+    {
+        return $this->namespaces;
+    }
+
+    /**
+     * Formats distribution name like
+     *   - google-cloud-policy-troubleshooter
+     *   - google-cloud-vision
+     *   - google-grafeas
+     *   - google-analytics-data
+     * This is for the reference documentation URLs
+     */
+    public function getReferenceDocumentationUid(): string
+    {
+        return str_replace('/', '-', $this->getPackageName());
+    }
+
+    private function getComponentPath(string $component): string
+    {
+        $components = $this->getComponentNames(self::ROOT_DIR);
+
+        if (!in_array($component, $components)) {
+            throw new \Exception('Invalid component name provided: ' . $component);
+        }
+
+        $componentPath = realpath(self::ROOT_DIR . '/' . $component);
+
+        if (!is_dir($componentPath)) {
+            throw new RuntimeException(sprintf('component "%s" not found', $component));
+        }
+
+        return $componentPath;
+    }
+
+    private function validateComponentFiles(): void
+    {
+        $composerPath = $this->path . '/composer.json';
+        if (!file_exists($composerPath)) {
+            throw new RuntimeException(
+                sprintf('composer.json not found in path "%s"', $composerPath)
+            );
+        }
+        $composerJson = json_decode(file_get_contents($composerPath), true);
+        if (!$composerJson) {
+            throw new RuntimeException(
+                sprintf('Invalid composer.json for component "%s"', $this->name)
+            );
+        }
+        if (empty($composerJson['name'])) {
+            throw new RuntimeException('composer.json does not contain "name"');
+        }
+        if (empty($composerJson['description'])) {
+            throw new RuntimeException('composer.json does not contain "description"');
+        }
+        if (empty($composerJson['autoload']['psr-4'])) {
+            throw new RuntimeException('composer does not contain autoload.psr-4');
+        }
+
+        $this->packageName = $composerJson['name'];
+        $this->description = $composerJson['description'];
+        $this->composerVersion = $composerJson['version'] ?? null;
+
+        if ($this->packageName === Component::PROTOBUF) {
+            // special handling for protobuf "virtual" package
+            $repoName = 'protocolbuffers/protobuf';
+        } elseif (!$repoName = $composerJson['extra']['component']['target'] ?? null) {
+            if (!str_starts_with($composerJson['homepage'], 'https://github.com/')) {
+                throw new RuntimeException(
+                    'composer does not contain extra.component.target, and homepage is not a github URL'
+                );
+            }
+            $repoName = str_replace('https://github.com', '', $composerJson['homepage']);
+        }
+        $this->repoName = preg_replace('/\.git$/', '', $repoName); // Strip trailing ".git"
+
+        $repoMetadataFullPath = self::ROOT_DIR . '/.repo-metadata-full.json';
+        $repoMetadataFullJson = json_decode(file_get_contents($repoMetadataFullPath), true);
+        if (isset($repoMetadataFullJson[$this->name])) {
+            $repoMetadataJson = $repoMetadataFullJson[$this->name];
+        } elseif (file_exists($repoMetadataPath = $this->path . '/.repo-metadata.json')) {
+            $repoMetadataJson = json_decode(file_get_contents($repoMetadataPath), true);
+        } elseif ($this->packageName === Component::PROTOBUF) {
+            // special handling for protobuf "virtual" package
+            $repoMetadataJson = [
+                'release_level' => 'stable',
+                'client_documentation' => 'https://cloud.google.com/php/docs/reference/auth/latest',
+                'library_type' => 'CORE',
+            ];
+        } else {
+            throw new RuntimeException(sprintf(
+                'repo metadata not found for component "%s" and no .repo-metadata.json file found in %s',
+                $this->name,
+                $repoMetadataPath
+            ));
+        }
+
+        if (empty($repoMetadataJson['release_level'])) {
+            throw new RuntimeException(sprintf(
+                'repo metadata does not contain "release_level" for component "%s"',
+                $this->name
+            ));
+        }
+        if (empty($repoMetadataJson['client_documentation'])) {
+            throw new RuntimeException(sprintf(
+                'repo metadata does not contain "client_documentation" for component "%s"',
+                $this->name
+            ));
+        }
+        if (empty($repoMetadataJson['library_type'])) {
+            throw new RuntimeException(sprintf(
+                'repo metadata does not contain "library_type" for component "%s"',
+                $this->name
+            ));
+        }
+        $this->releaseLevel = $repoMetadataJson['release_level'];
+        $this->clientDocumentation = $repoMetadataJson['client_documentation'];
+        $this->libraryType = $repoMetadataJson['library_type'];
+        $this->productDocumentation = $repoMetadataJson['product_documentation'] ?? '';
+
+        $namespaces = [];
+        foreach ($composerJson['autoload']['psr-4'] as $namespace => $dir) {
+            if (str_starts_with($dir, 'src')) {
+                $namespaces[rtrim($namespace, '\\')] = $dir;
+            }
+        }
+        if (empty($namespaces)) {
+            throw new RuntimeException('composer autoload.psr-4 does not contain a namespace');
+        }
+        $this->namespaces = $namespaces;
+
+        $this->componentDependencies = [];
+
+        // Skip if Auth to avoid recursion, skip if Jwt because Jwt does not rely on Auth
+        if ($this->name !== 'Auth' && $this->name !== 'Jwt') {
+            $this->componentDependencies[] = new Component('Auth');
+        }
+
+        // find dependencies which are google/cloud components
+        foreach ($composerJson['require'] ?? [] as $name => $version) {
+            if ($componentName = key(array_filter(
+                $repoMetadataFullJson,
+                fn ($metadata) => $metadata['distribution_name'] === $name
+            ))) {
+                $this->componentDependencies[] = new Component($componentName);
+            }
+        }
+        // GAX depend on google/common-protos
+        if (isset($composerJson['require']['google/gax'])) {
+            $this->componentDependencies[] = new Component('CommonProtos');
+        }
+        // add protobuf if it's required
+        if (isset($composerJson['require']['google/protobuf'])) {
+            $this->componentDependencies[] = new Component('protobuf', self::ROOT_DIR . '/dev/vendor/google/protobuf');
+        }
+    }
+
+    /**
+     * Get the contents of VERSION in the component directory
+     */
+    public function getPackageVersion(): string
+    {
+        if (!file_exists(sprintf('%s/VERSION', $this->path))) {
+            return '';
+        }
+        return trim(file_get_contents(sprintf('%s/VERSION', $this->path)));
+    }
+
+    /**
+     * Get the contents of the "version" field from the component's composer.json
+     */
+    public function getComposerVersion(): string|null
+    {
+        return $this->composerVersion;
+    }
+
+    public function getComponentPackages(): array
+    {
+        return array_map(fn($path) => new ComponentPackage($this, $path), $this->getPackagePaths());
+    }
+
+    public function getApiShortnames(): array
+    {
+        return array_unique(array_map(fn($pkg) => $pkg->getApiShortname(), $this->getComponentPackages()));
+    }
+
+    public function getMigrationStatuses(): array
+    {
+        return array_map(fn($v) => $v->getMigrationStatus(), $this->getComponentPackages());
+    }
+
+    public function getProtoNamespaces(): array
+    {
+        $protoNamespaces = [];
+        $componentPackages = $this->getComponentPackages();
+        foreach ($this->namespaces as $namespace => $dir) {
+            $componentPackages = $dir === 'src'
+                ? $this->getComponentPackages()
+                : [new ComponentPackage($this, str_replace('src/', '', $dir))];
+
+            $protoNamespaces = array_reduce(
+                $componentPackages,
+                fn($protoNamespaces, $pkg) => array_merge($protoNamespaces, $pkg->getProtoNamespaces()),
+                $protoNamespaces
+            );
+        }
+
+        return $protoNamespaces;
+    }
+
+    public static function getProtoPackageToNamespaceMap(): array
+    {
+        $protoNamespaces = [];
+        foreach (self::getComponents() as $component) {
+            $componentProtoNamespaces = $component->getProtoNamespaces();
+            if ($commonPackages = array_intersect_key($componentProtoNamespaces, $protoNamespaces)) {
+                foreach ($commonPackages as $package => $namespace) {
+                    if ($namespace !== $protoNamespaces[$package]) {
+                        throw new RuntimeException(sprintf(
+                            'Package "%s" has conflicting namespaces: "%s" and "%s"',
+                            $package,
+                            $namespace,
+                            $protoNamespaces[$package]
+                        ));
+                    }
+                }
+            }
+            $protoNamespaces = array_merge($protoNamespaces, $componentProtoNamespaces);
+        }
+
+        return $protoNamespaces;
+    }
+
+    public function getProtoPaths(): array
+    {
+        return array_map(fn($v) => $v->getProtoPath(), $this->getComponentPackages());
+    }
+
+    public function getServiceAddresses(): array
+    {
+        return array_unique(array_map(fn($pkg) => $pkg->getServiceAddress(), $this->getComponentPackages()));
+    }
+
+    /**
+     * Get the API versions supported by this component
+     */
+    public function getApiVersions(): array
+    {
+        return array_map(fn($pkg) => $pkg->getName(), $this->getComponentPackages());
+    }
+
+    public function getCreatedAt(): DateTime
+    {
+        exec(sprintf(
+            'git log --reverse --pretty=format:"%%cd" %s/ | head -1',
+            $this->name,
+        ), $output);
+
+        return new DateTime($output[0]);
+    }
+
+    private function getPackagePaths(): array
+    {
+        $result = (new Finder())->directories()->in($this->path . '/src/')->name(self::VERSION_REGEX);
+        $paths = array_map(fn ($file) => $file->getRelativePathname(), iterator_to_array($result));
+        $paths = array_reverse(array_values($paths));
+        usort($paths, 'version_compare');
+        if (empty($paths)) {
+            $paths = [''];
+        }
+        return array_reverse($paths);
+    }
+
+    public function getComponentDependencies(): array
+    {
+        return $this->componentDependencies;
+    }
+
+    public function getSimplestSample(): string
+    {
+        // Sorted by most recent
+        foreach ($this->getComponentPackages() as $version) {
+            if ($sample = $version->getSimplestSample()) {
+                return $sample;
+            }
+        }
+
+        return '';
+    }
+}

@@ -1,0 +1,48 @@
+-
+  uid: google-cloud-secret-manager
+  name: google/cloud-secret-manager
+  items:
+    -
+      name: Overview
+      href: index.md
+    -
+      name: Migrating
+      href: migrating.md
+    -
+      name: V1
+      uid: 'ns:Google\Cloud\SecretManager\V1'
+      items:
+        -
+          name: Services
+          uid: 'services:Google\Cloud\SecretManager\V1'
+          items:
+            -
+              uid: \Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient
+              name: SecretManagerServiceClient
+            -
+              uid: \Google\Cloud\SecretManager\V1\SecretManagerServiceClient
+              name: SecretManagerServiceClient
+    -
+      name: V1beta1
+      uid: 'ns:Google\Cloud\SecretManager\V1beta1'
+      items:
+        -
+          name: Services
+          uid: 'services:Google\Cloud\SecretManager\V1beta1'
+          items:
+            -
+              uid: \Google\Cloud\SecretManager\V1beta1\SecretManagerServiceClient
+              name: SecretManagerServiceClient
+              status: beta
+    -
+      name: V1beta2
+      uid: 'ns:Google\Cloud\SecretManager\V1beta2'
+      items:
+        -
+          name: Services
+          uid: 'services:Google\Cloud\SecretManager\V1beta2'
+          items:
+            -
+              uid: \Google\Cloud\SecretManager\V1beta2\Client\SecretManagerServiceClient
+              name: SecretManagerServiceClient
+              status: beta

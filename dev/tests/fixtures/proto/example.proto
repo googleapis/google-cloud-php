@@ -1,0 +1,35 @@
+// Copyright 2021 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package example;
+
+service Example {
+  option (google.api.default_host) = "example.googleapis.com";
+
+  // An example method; retry specified in example-grpc-service-config.json
+  rpc ExampleMethod(Request) returns(Response);
+
+  // An example method; retry specified in example-service-config.yaml
+  rpc ExampleMethodRetryServiceYaml(Request) returns(Response);
+
+  // An example Long Running Operation method
+  rpc LroMethod(Request) returns(google.longrunning.Operation) {
+    option (google.longrunning.operation_info) = {
+      response_type: "LroResponse"
+      metadata_type: "LroMetadata"
+    };
+  }
+}

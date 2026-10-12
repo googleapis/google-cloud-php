@@ -1,0 +1,13 @@
+parameters:
+    level: 3
+    treatPhpDocTypesAsCertain: false
+    excludePaths:
+    # Ignore classes not compatible with Monolog2
+    - src/V1/*
+    - src/*/*/V1/*
+    ignoreErrors:
+    -
+        identifier: new.static                 # Ignore this error because changing it would be a breaking change.
+includes:
+    - ../dev/vendor/phpstan/phpstan/conf/bleedingEdge.neon
+

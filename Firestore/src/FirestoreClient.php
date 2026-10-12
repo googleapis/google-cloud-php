@@ -1,0 +1,778 @@
+<?php
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace Google\Cloud\Firestore;
+
+use Google\ApiCore\ApiException;
+use Google\ApiCore\ClientOptionsTrait;
+use Google\ApiCore\Options\CallOptions;
+use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Core\Blob;
+use Google\Cloud\Core\DetectProjectIdTrait;
+use Google\Cloud\Core\EmulatorTrait;
+use Google\Cloud\Core\Exception\AbortedException;
+use Google\Cloud\Core\GeoPoint;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\OptionsValidator;
+use Google\Cloud\Core\RequestProcessorTrait;
+use Google\Cloud\Core\Retry;
+use Google\Cloud\Core\ValidateTrait;
+use Google\Cloud\Firestore\V1\BeginTransactionRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as GapicFirestoreClient;
+use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
+use Google\Cloud\Firestore\V1\TransactionOptions;
+use Google\Cloud\Firestore\V1\TransactionOptions\ReadWrite;
+use InvalidArgumentException;
+use Psr\Http\Message\StreamInterface;
+
+/**
+ * Cloud Firestore is a flexible, scalable, realtime database for mobile, web, and server development.
+ *
+ * In production environments, it is highly recommended that you make use of the
+ * Protobuf PHP extension for improved performance. Protobuf can be installed
+ * via [PECL](https://pecl.php.net).
+ *
+ * ```
+ * $ pecl install protobuf
+ * ```
+ *
+ * To enable the
+ * [Google Cloud Firestore Emulator](https://cloud.google.com/sdk/gcloud/reference/beta/emulators/firestore/),
+ * set the `FIRESTORE_EMULATOR_HOST` to the value provided by the gcloud command.
+ *
+ * Please note that Google Cloud PHP currently does not support IPv6 hostnames.
+ * If the Firestore emulator provides a IPv6 hostname, or a comma-separated list
+ * of both IPv6 and IPv4 names, be sure to set the environment variable to only
+ * an IPv4 address. The equivalent of `[::1]:8080`, for instance, would be
+ * `127.0.0.1:8080`.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Firestore\FirestoreClient;
+ *
+ * $firestore = new FirestoreClient();
+ * ```
+ *
+ * ```
+ * // Using the Firestore Emulator
+ * use Google\Cloud\Firestore\FirestoreClient;
+ *
+ * // Be sure to use the port specified when starting the emulator.
+ * // `8900` is used as an example only.
+ * putenv('FIRESTORE_EMULATOR_HOST=localhost:8900');
+ *
+ * $firestore = new FirestoreClient();
+ * ```
+ */
+class FirestoreClient
+{
+    use DetectProjectIdTrait;
+    use EmulatorTrait;
+    use SnapshotTrait;
+    use ValidateTrait;
+    use ClientOptionsTrait;
+    use RequestProcessorTrait;
+
+    const DEFAULT_DATABASE = '(default)';
+    const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
+    const MAX_RETRIES = 5;
+
+    private string $database = '(default)';
+    private ValueMapper $valueMapper;
+    private GapicFirestoreClient $gapicClient;
+    private Serializer $serializer;
+    private OptionsValidator $optionsValidator;
+
+    /**
+     * Create a Firestore client. Please note that this client requires
+     * [the gRPC extension](https://cloud.google.com/php/grpc).
+     *
+     * @param array $config [optional] {
+     *     Configuration Options.
+     *
+     *     @type string $projectId The project ID from the Google Developer's
+     *           Console.
+     *     @type string $database The database name to use, if different from
+     *           the default.
+    *     @type bool $returnInt64AsObject If true, 64 bit integers will be
+     *           returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
+     *           platform compatibility. **Defaults to** false.
+     *     @type GapicFirestoreClient $firestoreClient
+     *           A pre-instantiated client for the Firestore service.
+     *     @type string $apiEndpoint
+     *           The address of the API remote host. May optionally include the port, formatted
+     *           as "<uri>:<port>". Default 'firestore.googleapis.com:443'.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Firestore\V1\FirestoreClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new FirestoreClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
+     *     @type array $credentialsConfig
+     *           Options used to configure credentials, including auth token caching, for the
+     *           client. For a full list of supporting configuration options, see
+     *           {@see \Google\ApiCore\CredentialsWrapper::build()} .
+     *     @type bool $disableRetries
+     *           Determines whether or not retries defined by the client configuration should be
+     *           disabled. Defaults to `false`.
+     *     @type string|array $clientConfig
+     *           Client method configuration, including retry settings. This option can be either
+     *           a path to a JSON file, or a PHP array containing the decoded JSON data. By
+     *           default this settings points to the default client config file, which is
+     *           provided in the resources folder.
+     *     @type string|TransportInterface $transport
+     *           The transport used for executing network requests. May be either the string
+     *           `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
+     *           *Advanced usage*: Additionally, it is possible to pass in an already
+     *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
+     *           that when this object is provided, any settings in $transportConfig, and any
+     *           $apiEndpoint setting, will be ignored.
+     *     @type array $transportConfig
+     *           Configuration options that will be used to construct the transport. Options for
+     *           each supported transport type should be passed in a key for that transport. For
+     *           example:
+     *           $transportConfig = [
+     *               'grpc' => [...],
+     *               'rest' => [...],
+     *           ];
+     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
+     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
+     *           supported options.
+     *     @type callable $clientCertSource
+     *           A callable which returns the client cert as a string. This can be used to
+     *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
+     * }
+     * @throws \InvalidArgumentException
+     */
+    public function __construct(array $config = [])
+    {
+        $emulatorHost = getenv('FIRESTORE_EMULATOR_HOST');
+
+        $config += [
+            'returnInt64AsObject' => false,
+            'scopes' => [self::FULL_CONTROL_SCOPE],
+            'database' => self::DEFAULT_DATABASE,
+            'hasEmulator' => (bool) $emulatorHost,
+            'emulatorHost' => $emulatorHost,
+        ];
+
+        $gapicOptions = $this->buildClientOptions($config);
+
+        if (isset($gapicOptions['credentialsConfig']['scopes'])) {
+            $options['credentialsConfig']['scopes'] = array_merge(
+                $gapicOptions['credentialsConfig']['scopes'],
+                $config['scopes']
+            );
+        } else {
+            $options['credentialsConfig']['scopes'] = $config['scopes'];
+        }
+
+        if ($emulatorHost) {
+            $emulatorConfig = $this->emulatorGapicConfig($emulatorHost);
+            $gapicOptions = array_merge(
+                $gapicOptions,
+                $emulatorConfig
+            );
+        } else {
+            $gapicOptions['credentials'] = $this->createCredentialsWrapper(
+                $gapicOptions['credentials'],
+                $gapicOptions['credentialsConfig'],
+                $gapicOptions['universeDomain']
+            );
+        }
+
+        $this->projectId = $this->detectProjectId($gapicOptions);
+        $this->database = $config['database'];
+        $this->gapicClient = $this->getGapicClient($gapicOptions);
+
+        $this->valueMapper = new ValueMapper(
+            $this->gapicClient,
+            $config['returnInt64AsObject']
+        );
+
+        $this->serializer = new Serializer();
+        $this->optionsValidator = new OptionsValidator($this->serializer);
+    }
+
+    /**
+     * Get a Bulk Writer
+     *
+     * {@see \Google\Cloud\Firestore\BulkWriter} allows scheduling multiple
+     * writes with auto-retries in batches. Please note:
+     *     - This method is blocking and may execute many sequential batch write requests.
+     *     - Gradually ramps up writes as specified by the 500/50/5 rule.
+     *     - Does not guarantee the order of writes.
+     *     - Accepts unique document references only.
+     * Read more: [Ramping up traffic](https://cloud.google.com/firestore/docs/best-practices#ramping_up_traffic)
+     *
+     * Example:
+     * ```
+     * $batch = $firestore->bulkWriter();
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     Please note that the default values are experiementally derived after
+     *     performance evaluations. The underlying constants may change in backwards-
+     *     incompatible ways. Please use with caution, and test thoroughly when
+     *     upgrading.
+     *
+     *     @type int $maxBatchSize Maximum number of requests per batch.
+     *           **Defaults to** `20`.
+     *     @type bool $greedilySend Flag to indicate whether BulkWriter greedily
+     *           sends batches. **Defaults to** `true`.
+     *     @type bool $isThrottlingEnabled Flag to indicate whether rate of
+     *           sending writes can be throttled. **Defaults to** `true`.
+     *     @type int $initialOpsPerSecond Initial number of operations per second.
+     *           **Defaults to** `20`.
+     *     @type int $maxOpsPerSecond Maximum number of operations per second.
+     *           **Defaults to** `500`.
+     *     @type callable $isRetryable Default retry handler for individial writes
+     *           status code to be retried. Should accept error code and return
+     *           true if retryable.
+     * }
+     * @return BulkWriter
+     */
+    public function bulkWriter(array $options = [])
+    {
+        return new BulkWriter(
+            $this->gapicClient,
+            $this->valueMapper,
+            $this->databaseName(
+                $this->projectId,
+                $this->database
+            ),
+            $options
+        );
+    }
+
+    /**
+     * Lazily instantiate a Collection reference.
+     *
+     * Collections hold Firestore documents. Collections cannot be created or
+     * deleted directly - they exist only as implicit namespaces. Once no child
+     * documents remain in a collection, it ceases to exist.
+     *
+     * Example:
+     * ```
+     * $collection = $firestore->collection('users');
+     * ```
+     *
+     * @param string $name The name of the collection.
+     * @return CollectionReference
+     */
+    public function collection($name)
+    {
+        return $this->getCollectionReference(
+            $this->gapicClient,
+            $this->valueMapper,
+            $this->projectId,
+            $this->database,
+            $name
+        );
+    }
+
+    /**
+     * List root-level collections in the database.
+     *
+     * Example:
+     * ```
+     * $collections = $firestore->collections();
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.ListCollectionIds ListCollectionIds
+     * @codingStandardsIgnoreEnd
+     *
+     * @param array $options [optional] {
+     *     Configuration options
+     *
+     *     @type int $pageSize Maximum number of results to return per
+     *           request.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
+     * }
+     * @return ItemIterator<CollectionReference>
+     * @throws \InvalidArgumentException if an invalid `$options.readTime` is
+     *     specified.
+     */
+    public function collections(array $options = [])
+    {
+        $options = $this->formatReadTimeOption($options);
+
+        $resultLimit = $this->pluck('resultLimit', $options, false);
+
+        $listCollectionCall = function (array $options) {
+            /**
+             * @var ListCollectionIdsRequest $request
+             * @var CallOptions $callOptions
+             */
+            [$request, $callOptions] = $this->validateOptions(
+                $options,
+                new ListCollectionIdsRequest(),
+                CallOptions::class
+            );
+
+            try {
+                $response = $this->gapicClient->listCollectionIds($request, $callOptions);
+            } catch (ApiException $ex) {
+                throw $this->convertToGoogleException($ex);
+            }
+
+            $page = $response->getPage();
+            return $this->serializer->encodeMessage($page->getResponseObject());
+        };
+
+        return new ItemIterator(
+            new PageIterator(
+                function ($collectionId) {
+                    return $this->collection($collectionId);
+                },
+                $listCollectionCall,
+                [
+                    'parent' => $this->fullName($this->projectId, $this->database),
+                ] + $options,
+                [
+                    'itemsKey' => 'collectionIds',
+                    'resultLimit' => $resultLimit,
+                ]
+            )
+        );
+    }
+
+    /**
+     * Get a reference to a Firestore document.
+     *
+     * Example:
+     * ```
+     * $document = $firestore->document('users/john');
+     * ```
+     *
+     * @param string $name The document name or a path, relative to the database.
+     * @return DocumentReference
+     * @throws \InvalidArgumentException If the given path is not a valid document path.
+     */
+    public function document($name)
+    {
+        return $this->getDocumentReference(
+            $this->gapicClient,
+            $this->valueMapper,
+            $this->projectId,
+            $this->database,
+            $name
+        );
+    }
+
+    /**
+     * Get a list of documents by their path.
+     *
+     * The number of results generated will be equal to the number of documents
+     * requested, except in case of error.
+     *
+     * Note that this method will **always** return instances of
+     * {@see \Google\Cloud\Firestore\DocumentSnapshot}, even if the documents
+     * requested do not exist. It is highly recommended that you check for
+     * existence before accessing document data.
+     *
+     * Example:
+     * ```
+     * $documents = $firestore->documents([
+     *     'users/john',
+     *     'users/dave'
+     * ]);
+     * ```
+     *
+     * ```
+     * // To check whether a given document exists, use `DocumentSnapshot::exists()`.
+     * $documents = $firestore->documents([
+     *     'users/deleted-user'
+     * ]);
+     *
+     * foreach ($documents as $document) {
+     *     if (!$document->exists()) {
+     *         echo $document->id() . ' Does Not Exist';
+     *     }
+     * }
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.BatchGetDocuments BatchGetDocuments
+     * @codingStandardsIgnoreEnd
+     *
+     * @param string[]|DocumentReference[] $paths Any combination of string paths or DocumentReference instances.
+     * @param array $options Configuration options.
+     * @return DocumentSnapshot[]
+     */
+    public function documents(array $paths, array $options = [])
+    {
+        return $this->getDocumentsByPaths(
+            $this->gapicClient,
+            $this->valueMapper,
+            $this->projectId,
+            $this->database,
+            $paths,
+            $options
+        );
+    }
+
+    /**
+     * Creates a new Query which includes all documents that are contained in
+     * a collection or subcollection with the given collection ID.
+     *
+     * A collection group query with a collection ID of `foo` will return
+     * documents from `/foo` and `/abc/dce/foo`, but not `/foo/abc/dce`.
+     *
+     * Example:
+     * ```
+     * $query = $firestore->collectionGroup('users');
+     * $querySnapshot = $query->documents();
+     *
+     * echo $querySnapshot->size() . ' documents found!';
+     * ```
+     *
+     * @param string $id Identifies the collection to query over. Every
+     *        collection or subcollection with this ID as the last segment of
+     *        its path will be included. May not contain a slash.
+     * @return Query
+     * @throws \InvalidArgumentException If the collection ID is not well-formed.
+     */
+    public function collectionGroup($id)
+    {
+        if (strpos($id, '/') !== false) {
+            throw new \InvalidArgumentException(
+                'Collection ID may not contain a slash.'
+            );
+        }
+
+        return new Query(
+            $this->gapicClient,
+            $this->valueMapper,
+            $this->fullName($this->projectId, $this->database),
+            [
+                'from' => [
+                    [
+                        'collectionId' => $id,
+                        'allDescendants' => true,
+                    ],
+                ],
+            ]
+        );
+    }
+
+    /**
+     * Executes a function in a Firestore transaction.
+     *
+     * Transactions offer atomic operations, guaranteeing that either all
+     * writes will be applied, or none will be applied. The Google Cloud PHP
+     * Firestore client also handles automatic retry in cases where transactions
+     * fail due to a retryable error.
+     *
+     * Transactions will be committed once the provided callable has finished
+     * execution. Thrown exceptions will prevent commit and trigger a rollback,
+     * and will bubble up to your level to be handled in whatever fashion is
+     * appropriate.
+     *
+     * This method returns the return value of the given transaction callable.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Firestore\Transaction;
+     *
+     * $transferAmount = 500.00;
+     * $from = $firestore->document('users/john');
+     * $to = $firestore->document('users/dave');
+     *
+     * $toNewBalance = $firestore->runTransaction(function (Transaction $t) use ($from, $to, $transferAmount) {
+     *     $fromSnapshot = $t->snapshot($from);
+     *     $toSnapshot = $t->snapshot($to);
+     *
+     *     $fromNewBalance = $fromSnapshot['balance'] - $transferAmount;
+     *     $toNewBalance = $toSnapshot['balance'] + $transferAmount;
+     *
+     *     // If the transaction cannot be completed, throwing any exception
+     *     // will trigger a rollback operation.
+     *     if ($fromNewBalance < 0) {
+     *         throw new \Exception('User 1 has insufficient funds!');
+     *     }
+     *
+     *     $t->update($from, [
+     *         ['path' => 'balance', 'value' => $fromNewBalance]
+     *     ])->update($to, [
+     *         ['path' => 'balance', 'value' => $toNewBalance]
+     *     ]);
+     *
+     *     return $toNewBalance;
+     * });
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.BeginTransaction BeginTransaction
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Rollback Rollback
+     * @codingStandardsIgnoreEnd
+     *
+     * @param callable $callable A callable function, allowing atomic operations
+     *        against the Firestore API. Function signature should be of form:
+     *        `function (Transaction $t)`.
+     * @param array $options {
+     *     Configuration Options.
+     *
+     *     @type array $begin Configuration options for BeginTransaction.
+     *     @type array $commit Configuration options for Commit.
+     *     @type array $rollback Configuration options for rollback.
+     *     @type int $maxRetries The maximum number of times to retry failures.
+     *            **Defaults to** `5`.
+     * }
+     * @return mixed
+     */
+    public function runTransaction(callable $callable, array $options = [])
+    {
+        $options += [
+            'maxRetries' => self::MAX_RETRIES,
+            'begin' => [],
+            'commit' => [],
+            'rollback' => [],
+        ];
+
+        $retryableErrors = [
+            AbortedException::class,
+        ];
+
+        $delayFn = function () {
+            return [
+                'seconds' => 0,
+                'nanos' => 0,
+            ];
+        };
+
+        $retryFn = function (\Exception $e) use ($retryableErrors) {
+            return in_array(get_class($e), $retryableErrors);
+        };
+
+        // Track the Transaction ID outside the retry function.
+        // If the transaction is retried after an abort, the previous transaction
+        // must be provided to the subsequent `beginTransaction` rpc.
+        // It also provides a convenient indication to the user whether the
+        // transaction is retried or not.
+        $transactionId = null;
+
+        $retry = new Retry($options['maxRetries'], $delayFn, $retryFn);
+
+        return $retry->execute(function (
+            callable $callable,
+            array $options
+        ) use (&$transactionId) {
+            $database = $this->databaseName($this->projectId, $this->database);
+
+            $request = new BeginTransactionRequest();
+            $request->setDatabase($database);
+
+            if (!is_null($transactionId)) {
+                $transactionOptions = new TransactionOptions();
+                $readWrite = new ReadWrite();
+                $readWrite->setRetryTransaction($transactionId);
+                $transactionOptions->setReadWrite($readWrite);
+                $request->setOptions($transactionOptions);
+            }
+
+            try {
+                $response = $this->gapicClient->beginTransaction($request, $options);
+            } catch (ApiException $ex) {
+                throw $this->convertToGoogleException($ex);
+            }
+
+            $transactionId = $response->getTransaction();
+
+            $transaction = new Transaction(
+                $this->gapicClient,
+                $this->valueMapper,
+                $database,
+                $response->getTransaction()
+            );
+
+            try {
+                $res = $callable($transaction);
+
+                if (!$transaction->writer()->isEmpty()) {
+                    $transaction->writer()->commit([
+                        'transaction' => $transactionId,
+                    ] + $options['commit']);
+                } else {
+                    // trigger rollback if no writes exist.
+                    $transaction->writer()->rollback($options['rollback']);
+                }
+
+                return $res;
+            } catch (\Exception $e) {
+                $transaction->writer()->rollback($options['rollback']);
+
+                throw $e;
+            }
+        }, [
+            $callable,
+            $options,
+        ]);
+    }
+
+    /**
+     * Create a new GeoPoint
+     *
+     * Example:
+     * ```
+     * $geoPoint = $firestore->geoPoint(37.4220, -122.0841);
+     * ```
+     *
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.type#google.type.LatLng LatLng
+     *
+     * @param float $latitude The latitude
+     * @param float $longitude The longitude
+     * @return GeoPoint
+     */
+    public function geoPoint($latitude, $longitude)
+    {
+        return new GeoPoint($latitude, $longitude);
+    }
+
+    /**
+     * Create a new Blob
+     *
+     * Example:
+     * ```
+     * $blob = $firestore->blob('hello world');
+     * ```
+     *
+     * ```
+     * // Blobs can be used to store binary data
+     * $blob = $firestore->blob(file_get_contents(__DIR__ .'/family-photo.jpg'));
+     * ```
+     *
+     * @param string|resource|StreamInterface $value The value to store in a blob.
+     * @return Blob
+     */
+    public function blob($value)
+    {
+        return new Blob($value);
+    }
+
+    /**
+     * Returns a FieldPath class, referring to a field in a document.
+     *
+     * The path may consist of a single field name (referring to a top-level
+     * field in the document), or a list of field names (referring to a nested
+     * field in the document).
+     *
+     * Example:
+     * ```
+     * $path = $firestore->fieldPath(['accounts', 'usd']);
+     * ```
+     *
+     * @param array $fieldNames A list of field names.
+     * @return FieldPath
+     */
+    public function fieldPath(array $fieldNames)
+    {
+        return new FieldPath($fieldNames);
+    }
+
+    /**
+     * Returns a FirestoreSessionHandler.
+     *
+     * Example:
+     * ```
+     * $handler = $firestore->sessionHandler();
+     *
+     * // Configure PHP to use the Firestore session handler.
+     * session_set_save_handler($handler, true);
+     * session_save_path('sessions');
+     * session_start();
+     *
+     * // Then write and read the $_SESSION array.
+     * $_SESSION['name'] = 'Bob';
+     * echo $_SESSION['name'];
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type int $gcLimit The number of entities to delete in the garbage
+     *        collection. Values larger than 500 will be limited to 500.
+     *        **Defaults to** `0`, indicating garbage collection is disabled by
+     *        default.
+     *     @type string $collectionNameTemplate A sprintf compatible template
+     *        for formatting the collection name where sessions will be stored.
+     *        The template receives two values, the first being the save path
+     *        and the latter being the session name.
+     *     @type array $begin Configuration options for beginTransaction.
+     *     @type array $commit Configuration options for commit.
+     *     @type array $rollback Configuration options for rollback.
+     *     @type array $read Configuration options for read.
+     *     @type array $query Configuration options for runQuery.
+     * }
+     * @return FirestoreSessionHandler
+     */
+    public function sessionHandler(array $options = [])
+    {
+        return new FirestoreSessionHandler(
+            $this->gapicClient,
+            $this->valueMapper,
+            $this->projectId,
+            $this->database,
+            $options
+        );
+    }
+
+    /**
+     * Gets a Firestore Gapic Client instance from the provided configuration or a newly instantiated one.
+     *
+     * @return GapicFirestoreClient
+     */
+    private function getGapicClient(array $config): GapicFirestoreClient
+    {
+        if (!isset($config['firestoreClient'])) {
+            return new GapicFirestoreClient($config);
+        }
+
+        if (!$config['firestoreClient'] instanceof GapicFirestoreClient) {
+            throw new InvalidArgumentException(
+                'The firestoreClient option must be an instance of ' . GapicFirestoreClient::class . '.'
+            );
+        }
+
+        /* @var GapicFirestoreClient */
+        return $config['firestoreClient'];
+    }
+}

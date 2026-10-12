@@ -1,0 +1,111 @@
+{
+  "id": "toc",
+  "type": "object",
+  "properties": {
+    "overview": {
+      "id": "overview",
+      "type": "string",
+      "description": "Optional content to be injected at the top of service pages"
+    },
+    "guides": {
+      "id": "guides",
+      "type": "array",
+      "description": "Table of contents for the Getting Started section",
+      "items": {
+        "id": "guide",
+        "type": "object",
+        "description": "Object that describes a Guide",
+        "properties": {
+          "title": {
+            "id": "title",
+            "type": "string",
+            "description": "Name of the guide as it should appear in the Navigation"
+          },
+          "id": {
+            "id": "id",
+            "type": "string",
+            "description": "Guide id used for routing and mapping JSON content"
+          },
+          "edit": {
+            "id": "edit",
+            "type": "string",
+            "description": "URL to Github edit page for supplied markdown"
+          },
+          "contents": {
+            "id": "contents",
+            "type": ["array", "string"],
+            "description": "List of markdown files to display",
+            "items": [
+              {
+                "id": "guide_url",
+                "type": "string",
+                "description": "Path to markdown file, if it does not begin with http(s), it's assumed to be a local file"
+              }
+            ]
+          }
+        },
+        "required": [
+          "title",
+          "id",
+          "contents"
+        ]
+      }
+    },
+    "services": {
+      "id": "services",
+      "type": "array",
+      "description": "Table of contents for the API section",
+      "items": {
+        "id": "service",
+        "type": "object",
+        "description": "Object that describes a service",
+        "properties": {
+          "title": {
+            "id": "title",
+            "type": "string",
+            "description": "Name of the service as it should appear in the side navigation"
+          },
+          "type": {
+            "id": "type",
+            "type": "string",
+            "description": "ID of type that maps JSON content"
+          },
+          "nav": {
+            "id": "nav",
+            "type": "array",
+            "description": "Concepts to be nested within the Service, e.g. Storage -> Bucket",
+            "items": {
+              "id": "sub-service",
+              "type": "object",
+              "description": "Object describing the sub-service",
+              "properties": {
+                "title": {
+                  "id": "title",
+                  "type": "string",
+                  "description": "Name of the sub-service as it should appear in the side navigation"
+                },
+                "type": {
+                  "id": "type",
+                  "type": "string",
+                  "description": "ID of type that maps JSON content"
+                }
+              },
+              "required": [
+                "title",
+                "type"
+              ]
+            }
+          }
+        },
+        "required": [
+          "title",
+          "type"
+        ]
+      }
+    }
+  },
+  "required": [
+    "guides",
+    "services"
+  ]
+}

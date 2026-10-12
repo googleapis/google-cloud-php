@@ -1,0 +1,41 @@
+{
+    "name": "google/cloud-bigtable",
+    "description": "Cloud Bigtable Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.2",
+        "google/gax": "^1.38.0",
+        "google/cloud-core": "^1.57"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0",
+        "erusev/parsedown": "^1.6",
+        "phpdocumentor/reflection": "^5.3.3||^6.0",
+        "phpdocumentor/reflection-docblock": "^5.3.3||^6.0",
+        "phpspec/prophecy-phpunit": "^2.0",
+        "dg/bypass-finals": "^1.7"
+    },
+    "suggest": {
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-bigtable",
+            "target": "googleapis/google-cloud-php-bigtable.git",
+            "path": "Bigtable",
+            "entry": "src/BigtableClient.php"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Bigtable\\": "src",
+            "GPBMetadata\\Google\\Bigtable\\": "metadata"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Google\\Cloud\\Bigtable\\Tests\\": "tests"
+        }
+    }
+}

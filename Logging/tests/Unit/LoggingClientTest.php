@@ -1,0 +1,336 @@
+<?php
+/**
+ * Copyright 2016 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace Google\Cloud\Logging\Tests\Unit;
+
+use Google\ApiCore\InsecureCredentialsWrapper;
+use Google\Cloud\Core\Batch\BatchRunner;
+use Google\Cloud\Core\Batch\OpisClosureSerializerV4;
+use Google\Cloud\Core\Report\EmptyMetadataProvider;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Logging\Connection\Gapic;
+use Google\Cloud\Logging\Logger;
+use Google\Cloud\Logging\LoggingClient;
+use Google\Cloud\Logging\Metric;
+use Google\Cloud\Logging\PsrLogger;
+use Google\Cloud\Logging\Sink;
+use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
+
+/**
+ * @group logging
+ */
+class LoggingClientTest extends TestCase
+{
+    use GrpcTestTrait;
+    use ProphecyTrait;
+
+    public $connection;
+    public $formattedProjectId;
+    public $sinkName = 'mySink';
+    public $metricName = 'myMetric';
+    public $projectId = 'myProjectId';
+    public $textPayload = 'aPayload';
+    public $client;
+
+    public function setUp(): void
+    {
+        $this->formattedProjectId = "projects/$this->projectId";
+        $this->connection = $this->prophesize(Gapic::class);
+        $this->client = new LoggingClient([
+            'projectId' => $this->projectId,
+            'credentials' => new InsecureCredentialsWrapper(),
+        ]);
+        $refl = new \ReflectionObject($this->client);
+        $reflProp = $refl->getProperty('connection');
+        $reflProp->setValue($this->client, $this->connection->reveal());
+    }
+
+    public function testPsrBatchLogger()
+    {
+        $psrBatchLogger = LoggingClient::psrBatchLogger(
+            'app',
+            [
+                'clientConfig' => [
+                    'projectId' => 'project',
+                    'credentials' => new InsecureCredentialsWrapper(),
+                ]
+            ]
+        );
+        $this->assertInstanceOf(PsrLogger::class, $psrBatchLogger);
+        $r = new \ReflectionObject($psrBatchLogger);
+        $p = $r->getProperty('batchEnabled');
+        $this->assertTrue($p->getValue($psrBatchLogger));
+
+        $psrBatchLogger = LoggingClient::psrBatchLogger(
+            'app',
+            [
+                'clientConfig' => [
+                    'projectId' => 'my-project',
+                    'credentials' => new InsecureCredentialsWrapper(),
+                ]
+            ]
+        );
+
+        $this->assertInstanceOf(PsrLogger::class, $psrBatchLogger);
+
+        $r = new \ReflectionObject($psrBatchLogger);
+        $method = $r->getMethod('getUnwrappedClientConfig');
+
+        $this->assertEquals(
+            [
+                'projectId' => 'my-project',
+                'credentials' => new InsecureCredentialsWrapper(),
+            ],
+            $method->invoke($psrBatchLogger)
+        );
+    }
+
+    public function testCreatesSink()
+    {
+        $destination = 'storage.googleapis.com/my-bucket';
+        $this->connection->createSink([
+            'parent' => $this->formattedProjectId,
+            'name' => $this->sinkName,
+            'destination' => $destination,
+        ])
+            ->willReturn([
+                'name' => $this->sinkName,
+                'destination' => $destination
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $sink = $this->client->createSink($this->sinkName, $destination);
+
+        $this->assertInstanceOf(Sink::class, $sink);
+        $this->assertEquals($this->sinkName, $sink->info()['name']);
+    }
+
+    public function testGetsSink()
+    {
+        $this->assertInstanceOf(Sink::class, $this->client->sink($this->sinkName));
+    }
+
+    public function testGetsSinksWithNoResults()
+    {
+        $this->connection->listSinks(Argument::any())
+            ->willReturn([])
+            ->shouldBeCalledTimes(1);
+
+        $sinks = iterator_to_array($this->client->sinks());
+
+        $this->assertEmpty($sinks);
+    }
+
+    public function testGetsSinksWithoutToken()
+    {
+        $this->connection->listSinks(Argument::any())
+            ->willReturn([
+                'sinks' => [
+                    ['name' => $this->sinkName]
+                ]
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $sinks = iterator_to_array($this->client->sinks());
+
+        $this->assertEquals($this->sinkName, $sinks[0]->name());
+    }
+
+    public function testGetsSinksWithToken()
+    {
+        $this->connection->listSinks(Argument::any())
+            ->willReturn([
+                'nextPageToken' => 'token',
+                'sinks' => [
+                    ['name' => 'someOtherSink']
+                ]
+            ], [
+                'sinks' => [
+                    ['name' => $this->sinkName]
+                ]
+            ])->shouldBeCalledTimes(2);
+
+        $sinks = iterator_to_array($this->client->sinks());
+
+        $this->assertEquals($this->sinkName, $sinks[1]->name());
+    }
+
+    public function testCreatesMetric()
+    {
+        $filter = 'logName = myLog';
+        $this->connection->createLogMetric([
+            'parent' => $this->formattedProjectId,
+            'name' => $this->metricName,
+            'filter' => $filter
+        ])
+            ->willReturn([
+                'name' => $this->metricName,
+                'filter' => $filter
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $metric = $this->client->createMetric($this->metricName, $filter);
+
+        $this->assertInstanceOf(Metric::class, $metric);
+        $this->assertEquals($this->metricName, $metric->info()['name']);
+    }
+
+    public function testGetsMetric()
+    {
+        $this->assertInstanceOf(Metric::class, $this->client->metric($this->metricName));
+    }
+
+    public function testGetsMetricsWithNoResults()
+    {
+        $this->connection->listLogMetrics(Argument::any())
+            ->willReturn([])
+            ->shouldBeCalledTimes(1);
+
+        $metrics = iterator_to_array($this->client->metrics());
+
+        $this->assertEmpty($metrics);
+    }
+
+    public function testGetsMetricsWithoutToken()
+    {
+        $this->connection->listLogMetrics(Argument::any())
+            ->willReturn([
+                'metrics' => [
+                    ['name' => $this->metricName]
+                ]
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $metrics = iterator_to_array($this->client->metrics());
+
+        $this->assertEquals($this->metricName, $metrics[0]->name());
+    }
+
+    public function testGetsMetricsWithToken()
+    {
+        $this->connection->listLogMetrics(Argument::any())
+            ->willReturn([
+                'nextPageToken' => 'token',
+                'metrics' => [
+                    ['name' => 'someOtherMetric']
+                ]
+            ], [
+                'metrics' => [
+                    ['name' => $this->metricName]
+                ]
+            ])->shouldBeCalledTimes(2);
+
+        $metrics = iterator_to_array($this->client->metrics());
+
+        $this->assertEquals($this->metricName, $metrics[1]->name());
+    }
+
+    public function testGetsEntriesWithNoResults()
+    {
+        $secondProjectId = 'secondProjectId';
+        $this->connection->listLogEntries([
+            'resourceNames' => [
+                'projects/' . $this->projectId,
+                'projects/' . $secondProjectId
+            ]
+        ])
+            ->willReturn([])
+            ->shouldBeCalledTimes(1);
+
+        $entries = iterator_to_array($this->client->entries(['projectIds' => [$secondProjectId]]));
+
+        $this->assertEmpty($entries);
+    }
+
+    public function testGetsEntriesWithoutToken()
+    {
+        $this->connection->listLogEntries(Argument::any())
+            ->willReturn([
+                'entries' => [
+                    ['textPayload' => $this->textPayload]
+                ]
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $entries = iterator_to_array($this->client->entries());
+
+        $this->assertEquals($this->textPayload, $entries[0]->info()['textPayload']);
+    }
+
+    public function testGetsEntriesWithToken()
+    {
+        $this->connection->listLogEntries(Argument::any())
+            ->willReturn([
+                'nextPageToken' => 'token',
+                'entries' => [
+                    ['textPayload' => 'someOtherPayload']
+                ]
+            ], [
+                'entries' => [
+                    ['textPayload' => $this->textPayload]
+                ]
+            ])->shouldBeCalledTimes(2);
+
+        $entries = iterator_to_array($this->client->entries());
+
+        $this->assertEquals($this->textPayload, $entries[1]->info()['textPayload']);
+    }
+
+    public function testGetsPsrLogger()
+    {
+        $this->assertInstanceOf(PsrLogger::class, $this->client->psrLogger('myLogger'));
+    }
+
+    public function testOptionsArePassedToPsrLogger()
+    {
+        $opisV4 = class_exists(OpisClosureSerializerV4::class);
+        $options = [
+            'metadataProvider' => new EmptyMetadataProvider,
+            'batchEnabled' => true,
+            'debugOutput' => true,
+            'batchOptions' => [
+                'batchSize' => 100,
+                'callPeriod' => 2.0,
+                'numWorkers' => 2
+            ],
+            'clientConfig' => [
+                'projectId' => 'test'
+            ],
+            'batchRunner' => new BatchRunner,
+            'closureSerializer' => $opisV4 ? new OpisClosureSerializerV4 : new OpisClosureSerializer,
+            'debugOutputResource' => fopen('php://temp', 'wb')
+        ];
+
+        $psrLogger = $this->client->psrLogger('myLogger', $options);
+        $reflection = new \ReflectionClass($psrLogger);
+        foreach ($options as $name => $value) {
+            $attr = $reflection->getProperty($name);
+            $this->assertEquals(
+                $name === 'clientConfig' && $opisV4 ? serialize($value) : $value,
+                $attr->getValue($psrLogger),
+                "$name assertion failed."
+            );
+        }
+    }
+
+    public function testGetsLogger()
+    {
+        $this->assertInstanceOf(Logger::class, $this->client->logger('myLogger'));
+    }
+}

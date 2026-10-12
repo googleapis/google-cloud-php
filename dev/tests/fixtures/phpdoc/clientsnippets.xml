@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<project name="Documentation">
+                <file path="V1/Client/ClientSnippetsClient.php" hash="0a04827d6cb7880dcd29fdbef5604796">
+            <docblock line="0">
+    <description></description>
+    <long-description></long-description>
+                    <tag
+                name="package"
+                description="Application"
+                                                                                                />
+            </docblock>
+
+
+            
+                            <namespace-alias name="\Google\Cloud\ClientSnippets\Client"/>
+            
+
+            
+                        
+                        
+                                        <class final="true" abstract="false" namespace="\Google\Cloud\ClientSnippets\Client" line="5">
+                    <name>ClientSnippetsClient</name>
+                    <full_name>\Google\Cloud\ClientSnippets\Client\ClientSnippetsClient</full_name>
+                    <docblock line="5">
+    <description></description>
+    <long-description></long-description>
+                    <tag
+                name="package"
+                description="Application"
+                                                                                                />
+                        </docblock>
+
+                    
+                    
+                                        
+                                        
+                                            <method final="false" abstract="false" static="false" namespace="\Google\Cloud\ClientSnippets\Client" line="10" visibility="public" returnByReference="false">
+    <name>anRpcMethod</name>
+    <full_name>\Google\Cloud\ClientSnippets\Client\ClientSnippetsClient::anRpcMethod()</full_name>
+    <value></value>
+            <docblock line="10">
+    <description></description>
+    <long-description></long-description>
+                    <tag
+                name="example"
+                description="samples/V1/ClientSnippetsClient/an_rpc_method.php"
+                                                                                                />
+                        </docblock>
+
+</method>
+
+                                                                            </class>
+            
+                        
+            
+            <parse_markers></parse_markers>
+        </file>
+    
+            <namespace name="Client" full_name="\Google\Cloud\ClientSnippets\Client" />
+
+            <namespace name="\" full_name="\">
+            <namespace name="Google" full_name="\Google">
+            <namespace name="Cloud" full_name="\Google\Cloud">
+            <namespace name="ClientSnippets" full_name="\Google\Cloud\ClientSnippets">
+            <namespace name="Client" full_name="\Google\Cloud\ClientSnippets\Client" />
+
+    </namespace>
+
+    </namespace>
+
+    </namespace>
+
+    </namespace>
+
+            <namespace name="ClientSnippets" full_name="\Google\Cloud\ClientSnippets">
+            <namespace name="Client" full_name="\Google\Cloud\ClientSnippets\Client" />
+
+    </namespace>
+
+            <namespace name="Cloud" full_name="\Google\Cloud">
+            <namespace name="ClientSnippets" full_name="\Google\Cloud\ClientSnippets">
+            <namespace name="Client" full_name="\Google\Cloud\ClientSnippets\Client" />
+
+    </namespace>
+
+    </namespace>
+
+            <namespace name="Google" full_name="\Google">
+            <namespace name="Cloud" full_name="\Google\Cloud">
+            <namespace name="ClientSnippets" full_name="\Google\Cloud\ClientSnippets">
+            <namespace name="Client" full_name="\Google\Cloud\ClientSnippets\Client" />
+
+    </namespace>
+
+    </namespace>
+
+    </namespace>
+
+    </project>

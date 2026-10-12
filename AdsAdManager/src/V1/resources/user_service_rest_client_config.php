@@ -1,0 +1,148 @@
+<?php
+/*
+ * Copyright 2026 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
+
+return [
+    'interfaces' => [
+        'google.ads.admanager.v1.UserService' => [
+            'BatchActivateUsers' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/users:batchActivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchCreateUsers' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/users:batchCreate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeactivateUsers' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/users:batchDeactivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateUsers' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/users:batchUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateUser' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/users',
+                'body' => 'user',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'GetUser' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=networks/*/users/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListUsers' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=networks/*}/users',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateUser' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{user.name=networks/*/users/*}',
+                'body' => 'user',
+                'placeholders' => [
+                    'user.name' => [
+                        'getters' => [
+                            'getUser',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.longrunning.Operations' => [
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=networks/*/operations/reports/runs/*}:cancel',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=networks/*/operations/reports/runs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
+    'numericEnums' => true,
+];

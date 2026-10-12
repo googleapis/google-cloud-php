@@ -1,0 +1,128 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.marketingplatform.admin.v1alpha",
+    "libraryPackage": "Google\\Ads\\MarketingPlatform\\Admin\\V1alpha",
+    "services": {
+        "MarketingplatformAdminService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "MarketingplatformAdminServiceClient",
+                    "rpcs": {
+                        "CreateAdminAccessBinding": {
+                            "methods": [
+                                "createAdminAccessBinding"
+                            ]
+                        },
+                        "CreateAnalyticsAccountLink": {
+                            "methods": [
+                                "createAnalyticsAccountLink"
+                            ]
+                        },
+                        "CreateUserGroup": {
+                            "methods": [
+                                "createUserGroup"
+                            ]
+                        },
+                        "CreateUserGroupMember": {
+                            "methods": [
+                                "createUserGroupMember"
+                            ]
+                        },
+                        "DeleteAnalyticsAccountLink": {
+                            "methods": [
+                                "deleteAnalyticsAccountLink"
+                            ]
+                        },
+                        "DeleteUserGroup": {
+                            "methods": [
+                                "deleteUserGroup"
+                            ]
+                        },
+                        "DeleteUserGroupMember": {
+                            "methods": [
+                                "deleteUserGroupMember"
+                            ]
+                        },
+                        "FindSalesPartnerManagedClients": {
+                            "methods": [
+                                "findSalesPartnerManagedClients"
+                            ]
+                        },
+                        "GetAdminAccessBinding": {
+                            "methods": [
+                                "getAdminAccessBinding"
+                            ]
+                        },
+                        "GetOrganization": {
+                            "methods": [
+                                "getOrganization"
+                            ]
+                        },
+                        "GetUserGroup": {
+                            "methods": [
+                                "getUserGroup"
+                            ]
+                        },
+                        "GetUserGroupMember": {
+                            "methods": [
+                                "getUserGroupMember"
+                            ]
+                        },
+                        "ListAdminAccessBindings": {
+                            "methods": [
+                                "listAdminAccessBindings"
+                            ]
+                        },
+                        "ListAnalyticsAccountLinks": {
+                            "methods": [
+                                "listAnalyticsAccountLinks"
+                            ]
+                        },
+                        "ListOrganizations": {
+                            "methods": [
+                                "listOrganizations"
+                            ]
+                        },
+                        "ListUserGroupMembers": {
+                            "methods": [
+                                "listUserGroupMembers"
+                            ]
+                        },
+                        "ListUserGroups": {
+                            "methods": [
+                                "listUserGroups"
+                            ]
+                        },
+                        "ReportPropertyUsage": {
+                            "methods": [
+                                "reportPropertyUsage"
+                            ]
+                        },
+                        "SetPropertyServiceLevel": {
+                            "methods": [
+                                "setPropertyServiceLevel"
+                            ]
+                        },
+                        "UpdateAdminAccessBinding": {
+                            "methods": [
+                                "updateAdminAccessBinding"
+                            ]
+                        },
+                        "UpdateUserGroup": {
+                            "methods": [
+                                "updateUserGroup"
+                            ]
+                        },
+                        "UpdateUserGroupMember": {
+                            "methods": [
+                                "updateUserGroupMember"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

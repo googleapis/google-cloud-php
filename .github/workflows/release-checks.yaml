@@ -1,0 +1,117 @@
+name: Release Checks
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+    branches: ['main']
+permissions:
+  contents: read
+jobs:
+  # More info at https://github.com/Roave/BackwardCompatibilityCheck.
+  backwards-compatibility-check:
+    name: Breaking Change Detector
+    runs-on: ubuntu-latest
+    continue-on-error: ${{ contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: "Install PHP"
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        with:
+          php-version: "8.4"
+      - name: "Install dependencies"
+        run: |
+          composer global require "roave/backward-compatibility-check:^8.22"
+          composer install -d dev --no-interaction --no-progress
+      - name: "Check for BC breaks"
+        if: github.event.pull_request.user.login != 'release-please[bot]'
+        env:
+          HAS_BC_LABEL: ${{ contains(github.event.pull_request.title, '!:') }}
+        run: |
+          ./dev/google-cloud component:breaking-changes \
+            --base-ref="$(git merge-base origin/main HEAD)" \
+            --expect-breaking-changes=${HAS_BC_LABEL} \
+            --ga-only
+
+  # Ensure the release PR does not contain an unexpected (e.g. 2.0.0) major version release
+  # Add "MAJOR_VERSION_ALLOWED=component1,component2" to the PR description to allow major version
+  # releases for those components
+  unexpected-major-version-check:
+    name: Unexpected Major Version Check
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login == 'release-please[bot]'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Parse allowed major versions
+        uses: actions-ecosystem/action-regex-match@9e6c4fb3d5e898f505be7a1fb6e7b0a278f6665b # v2
+        id: allowed-major-versions
+        with:
+          text: ${{ github.event.pull_request.body }}
+          regex: '^MAJOR_VERSION_ALLOWED=(.*)$'
+          flags: gm
+      - name: "Check for unexpected major version"
+        run: |
+          # parse allowed major versions into an array
+          IFS=', ' read -r -a ALLOWED_MAJOR_VERSIONS <<< "${STEPS_ALLOWED_MAJOR_VERSIONS_OUTPUTS_GROUP1}"
+          # get all changed components
+          COMPONENTS=$(git diff origin/main --name-only | grep VERSION | xargs dirname)
+          FAIL=""
+          for COMPONENT in ${COMPONENTS}; do {
+            if [[ "$(cat $COMPONENT/VERSION)" == [123456789].0.0 ]]; then
+              # A new version is being released - make sure it's allowed
+              if [[ ${ALLOWED_MAJOR_VERSIONS[@]} =~ $COMPONENT ]]; then
+                echo "Major version release allowed: $COMPONENT"
+              else
+                echo "Unexpected major version release found: $COMPONENT"
+                FAIL="true"
+              fi
+            fi
+          }; done
+          if [[ "$FAIL" == "true" ]]; then
+            echo "⚠️ IMPORTANT ⚠️ This check is meant to prevent the accidental release of new major versions. New "
+            echo "major versions should only be released intentionally. If you are not explicitly trying to release a "
+            echo "new major version and you don't have explicit approval from the Language Lead, "
+            echo "⚠️ DO NOT BYPASS THIS CHECK ⚠️"
+            echo -e "\nAdd \"MAJOR_VERSION_ALLOWED=component1,component2\" to the PR description to allow "
+            echo "major version releases for those components"
+            exit 1
+          fi
+        env:
+          STEPS_ALLOWED_MAJOR_VERSIONS_OUTPUTS_GROUP1: ${{ steps.allowed-major-versions.outputs.group1 }}
+
+  next-release-label-check:
+    name: Check for "next release" label
+    uses: GoogleCloudPlatform/php-tools/.github/workflows/release-checks.yml@8d707553d2c90c3b614941950814dcc10c19ce47 # main
+    if: github.event.pull_request.user.login == 'release-please[bot]'
+    with:
+      next-release-label-check: true
+
+  # Ensure all repos are in compliance
+  repo-compliance-check:
+    name: Repo Compliance Check
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login == 'release-please[bot]'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: "Install PHP"
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        with:
+          php-version: "8.2"
+      - name: "Install dependencies"
+        run: composer install -d dev
+      - name: "Check repo compliance"
+        env:
+          GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
+          PG_TOKEN: ${{ secrets.PACKAGIST_SAFE_TOKEN }}
+        run: |
+          ./dev/google-cloud repo:compliance \
+            --format=ci  \
+            -t $GH_TOKEN \
+            -p $PG_TOKEN

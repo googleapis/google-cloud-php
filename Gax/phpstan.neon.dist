@@ -1,0 +1,7 @@
+parameters:
+    treatPhpDocTypesAsCertain: false
+    level: 5
+    paths:
+    - src
+    ignoreErrors:
+    - identifier: trait.unused

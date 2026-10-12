@@ -1,0 +1,147 @@
+<?php
+/**
+ * Copyright 2016 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace Google\Cloud\Logging\Tests\Unit;
+
+use Google\ApiCore\ApiException;
+use Google\Cloud\Logging\Metric;
+use Google\Cloud\Logging\Connection\Gapic;
+use Google\Rpc\Code;
+use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
+
+/**
+ * @group logging
+ */
+class MetricTest extends TestCase
+{
+    use ProphecyTrait;
+
+    public $connection;
+    public $formattedName;
+    public $metricName = 'myMetric';
+    public $projectId = 'myProjectId';
+    public $metricData = [
+        'description' => 'wow a description'
+    ];
+
+    public function setUp(): void
+    {
+        $this->formattedName = "projects/$this->projectId/metrics/$this->metricName";
+        $this->connection = $this->prophesize(Gapic::class);
+    }
+
+    public function getMetric($connection, array $data = [])
+    {
+        return new Metric($connection->reveal(), $this->metricName, $this->projectId, $data);
+    }
+
+    public function testDoesExistTrue()
+    {
+        $this->connection->getLogMetric([
+            'metricName' => $this->formattedName,
+        ])
+            ->willReturn([
+                'name' => $this->metricName
+            ])
+            ->shouldBeCalledTimes(1);
+        $metric = $this->getMetric($this->connection);
+
+        $this->assertTrue($metric->exists());
+    }
+
+    public function testDoesExistFalse()
+    {
+        $this->connection->getLogMetric([
+            'metricName' => $this->formattedName,
+        ])
+            ->willThrow(new ApiException('not found', Code::NOT_FOUND))
+            ->shouldBeCalledTimes(1);
+        $metric = $this->getMetric($this->connection);
+
+        $this->assertFalse($metric->exists());
+    }
+
+    public function testDelete()
+    {
+        $this->connection->deleteLogMetric([
+            'metricName' => $this->formattedName,
+        ])
+            ->willReturn([])
+            ->shouldBeCalledTimes(1);
+        $metric = $this->getMetric($this->connection);
+
+        $this->assertNull($metric->delete());
+    }
+
+    public function testUpdatesDataWithCachedData()
+    {
+        $this->connection->updateLogMetric($this->metricData + [
+            'metricName' => $this->formattedName,
+        ])
+            ->willReturn($this->metricData)
+            ->shouldBeCalledTimes(1);
+        $metric = $this->getMetric($this->connection, ['description' => 'another description']);
+        $metric->update($this->metricData);
+
+        $this->assertEquals($this->metricData['description'], $metric->info()['description']);
+    }
+
+    public function testUpdatesDataWithoutCachedData()
+    {
+        $this->connection->updateLogMetric($this->metricData + [
+            'metricName' => $this->formattedName,
+        ])
+            ->willReturn($this->metricData)
+            ->shouldBeCalledTimes(1);
+        $this->connection->getLogMetric(Argument::any())
+            ->willReturn(['description' => 'another description'])
+            ->shouldBeCalledTimes(1);
+        $metric = $this->getMetric($this->connection);
+        $metric->update($this->metricData);
+
+        $this->assertEquals($this->metricData['description'], $metric->info()['description']);
+    }
+
+    public function testGetsInfo()
+    {
+        $this->connection->getLogMetric(Argument::any())->shouldNotBeCalled();
+        $metric = $this->getMetric($this->connection, $this->metricData);
+
+        $this->assertEquals($this->metricData, $metric->info());
+    }
+
+    public function testGetsInfoWithReload()
+    {
+        $this->connection->getLogMetric([
+            'metricName' => $this->formattedName
+        ])
+            ->willReturn($this->metricData)
+            ->shouldBeCalledTimes(1);
+        $metric = $this->getMetric($this->connection);
+
+        $this->assertEquals($this->metricData, $metric->info());
+    }
+
+    public function testGetsName()
+    {
+        $metric = $this->getMetric($this->connection);
+
+        $this->assertEquals($this->metricName, $metric->name());
+    }
+}

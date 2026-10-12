@@ -1,0 +1,241 @@
+<?php
+/**
+ * Copyright 2023 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace Google\Cloud\Dev;
+
+use RuntimeException;
+use Symfony\Component\Finder\Finder;
+
+/**
+ * @internal
+ */
+class NewComponent
+{
+    public string $protoPackage;
+    public string $phpNamespace;
+    public string $displayName;
+    public string $componentName;
+    public string $componentPath;
+    public string $composerPackage;
+    public string $githubRepo;
+    public string $gpbMetadataNamespace;
+    public string $shortName;
+    public string $protoPath;
+    public ?string $version;
+
+    /**
+     * @param array<string, mixed> $options
+     */
+    public static function fromProto(string $protoContents, string $protoFilename, array $options = []): self
+    {
+        $new = new self();
+        $isCommonProtos = self::isCommonProtos($protoContents);
+        $new->protoPackage = $options['proto-package']
+            ?? self::extractPackageNameFromProtoContents($protoContents, $isCommonProtos);
+        $new->phpNamespace = $options['php-namespace']
+            ?? (self::extractPhpNamespaceFromProtoContents($protoContents, $isCommonProtos)
+                ?: self::derivePhpNamespaceFromProtoPackage($new->protoPackage));
+        $new->displayName = self::getDisplayName($new->phpNamespace, $isCommonProtos);
+        $new->componentName = $options['component-name']
+            ?? self::getComponentName($new->displayName, $isCommonProtos);
+        $new->composerPackage = self::getComposerPackage(
+            $new->protoPackage,
+            $new->phpNamespace,
+            $isCommonProtos
+        );
+        $new->githubRepo = self::getGithubRepo($new->composerPackage);
+        $new->gpbMetadataNamespace = self::getGpbMetadataNamespace($new->protoPackage);
+        $new->shortName = $options['api-short-name']
+            ?? self::extractShortNameFromProtoContents($protoContents, $isCommonProtos);
+        $new->version = array_key_exists('api-version', $options)
+            ? $options['api-version']
+            : self::extractVersionFromProtoFilename($protoFilename);
+        $new->protoPath = dirname($protoFilename);
+
+        return $new;
+    }
+
+    /**
+     * @param array<string, mixed> $options
+     */
+    public static function fromOptions(array $options): self
+    {
+        $new = new self();
+        $new->protoPackage = $options['proto-package'] ?? '';
+        $new->phpNamespace = $options['php-namespace'] ?? '';
+        $new->displayName = self::getDisplayName($new->phpNamespace);
+        $new->componentName = $options['component-name'] ?? '';
+        $new->composerPackage = self::getComposerPackage(
+            $new->protoPackage,
+            $new->phpNamespace,
+            str_ends_with($new->componentName, 'CommonProtos')
+        );
+        $new->githubRepo = self::getGithubRepo($new->composerPackage);
+        $new->gpbMetadataNamespace = self::getGpbMetadataNamespace($new->protoPackage);
+        $new->shortName = $options['api-short-name'] ?? '';
+        $new->version = $options['api-version'] ?? null;
+        $new->protoPath = '';
+
+        return $new;
+    }
+
+    public function getDocumentationUrl(): string
+    {
+        return sprintf(
+            'https://cloud.google.com/php/docs/reference/%s/latest',
+            str_replace('google/', '', $this->composerPackage)
+        );
+    }
+
+    private static function getGithubRepo(string $composerPackage): string
+    {
+        if (str_starts_with($composerPackage, 'googleads/')) {
+            return 'googleapis/php-ads-' . substr($composerPackage, 10);
+        }
+        return 0 === strpos($composerPackage, 'google/cloud-')
+            ? 'googleapis/google-cloud-php-' . substr($composerPackage, 13)
+            : 'googleapis/php-' . substr($composerPackage, 7);
+    }
+
+    private static function getComponentName(string $displayName, bool $isCommonProtos = false): string
+    {
+        $componentName = trim(str_replace(['Google', 'Cloud', ' '], '', $displayName));
+        if ($isCommonProtos && !str_ends_with($componentName, 'CommonProtos')) {
+            $componentName .= 'CommonProtos';
+        }
+        return $componentName;
+    }
+
+    private static function getDisplayName(string $phpNamespace, bool $isCommonProtos = false): string
+    {
+        $nameParts = explode('\\', $phpNamespace);
+        foreach ($nameParts as $i => $part) {
+            $nameParts[$i] = ltrim(strtolower(preg_replace('/[A-Z]([A-Z](?![a-z]))*/', ' $0', $part)));
+        }
+        $displayName = ucwords(implode(' ', $nameParts));
+        if ($isCommonProtos && !str_ends_with($displayName, 'Common Protos')) {
+            $displayName .= ' Common Protos';
+        }
+        return $displayName;
+    }
+
+    private static function getGpbMetadataNamespace(string $protoPackage): string
+    {
+        return 'GPBMetadata\\' . implode('\\', array_map('ucfirst', explode('.', $protoPackage)));
+    }
+
+    private static function derivePhpNamespaceFromProtoPackage(string $protoPackage): string
+    {
+        return implode('\\', array_map('ucfirst', explode('.', $protoPackage)));
+    }
+
+    private static function getComposerPackage(
+        string $protoPackage,
+        string $phpNamespace,
+        bool $isCommonProtos = false
+    ): string {
+        $vendor = 'google';
+
+        if (str_starts_with($phpNamespace, 'Google\\Ads')) {
+            $vendor = 'googleads';
+        }
+
+        $name = str_replace(
+            ['google.ads.', 'google.', 'devtools.cloud', '.'],
+            ['', '', 'cloud-', '-'],
+            $protoPackage
+        );
+
+        if ($isCommonProtos && !str_ends_with($name, '-common-protos')) {
+            $name .= '-common-protos';
+        }
+
+        return $vendor . '/' . $name;
+    }
+
+    private static function isCommonProtos(string $protoContents): bool
+    {
+        // Any package which does not contain service clients is considered "Common Protos"
+        return !preg_match('/^\s*service\s+[A-Za-z0-9_]+/m', $protoContents);
+    }
+
+    private static function extractPackageNameFromProtoContents(
+        string $protoContents,
+        bool $isCommonProtos = false
+    ): string {
+        if (!preg_match('/package (.*);/', $protoContents, $matches)) {
+            throw new RuntimeException('package name not found in proto file ');
+        }
+        $parts = explode('.', $matches[1]);
+        $version = array_pop($parts);
+        if ('v' !== $version[0] && (!$isCommonProtos || !in_array($version, ['type', 'common']))) {
+            $parts[] = $version;
+        }
+        return implode('.', $parts);
+    }
+
+    private static function extractShortNameFromProtoContents(
+        string $protoContents,
+        bool $isCommonProtos = false
+    ): string {
+        if (!preg_match(
+            '/option \(google.api.default_host\) =[\n\r\s]+"(.*).googleapis.com";/',
+            $protoContents,
+            $matches
+        )) {
+            if ($isCommonProtos) {
+                // common protos do not have an API shortname
+                return '';
+            }
+            throw new RuntimeException('short name not found in proto file');
+        }
+        return $matches[1];
+    }
+
+    private static function extractPhpNamespaceFromProtoContents(
+        string $protoContents,
+        bool $isCommonProtos = false
+    ): ?string {
+        if (!preg_match('/option php_namespace = "(.*)";/', $protoContents, $matches)) {
+            return null;
+        }
+        // Remove version from namespace
+        $parts = explode('\\\\', $matches[1]);
+        $version = array_pop($parts);
+        if ('v' !== strtolower($version[0])
+            && (!$isCommonProtos || !in_array(strtolower($version), ['type', 'common']))
+        ) {
+            $parts[] = $version;
+        }
+
+        return implode('\\', $parts);
+    }
+
+    private static function extractVersionFromProtoFilename(string $protoFilename): ?string
+    {
+        // Remove version from namespace
+        $parts = explode('/', $protoFilename);
+        while (count($parts)) {
+            $version = array_pop($parts);
+            if (preg_match(Component::VERSION_REGEX . 'i', $version)) {
+                return $version;
+            }
+        }
+
+        return null;
+    }
+}

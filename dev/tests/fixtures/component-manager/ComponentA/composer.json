@@ -1,0 +1,8 @@
+{
+    "name": "test/component-a",
+    "extra": {
+        "component": {
+            "id": "component-a"
+        }
+    }
+}

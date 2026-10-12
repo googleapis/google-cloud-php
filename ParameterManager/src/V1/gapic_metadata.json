@@ -1,0 +1,138 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.parametermanager.v1",
+    "libraryPackage": "Google\\Cloud\\ParameterManager\\V1",
+    "services": {
+        "ParameterManager": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ParameterManagerClient",
+                    "rpcs": {
+                        "CreateParameter": {
+                            "methods": [
+                                "createParameter"
+                            ]
+                        },
+                        "CreateParameterVersion": {
+                            "methods": [
+                                "createParameterVersion"
+                            ]
+                        },
+                        "CreateTemplate": {
+                            "methods": [
+                                "createTemplate"
+                            ]
+                        },
+                        "CreateTemplateVersion": {
+                            "methods": [
+                                "createTemplateVersion"
+                            ]
+                        },
+                        "DeleteParameter": {
+                            "methods": [
+                                "deleteParameter"
+                            ]
+                        },
+                        "DeleteParameterVersion": {
+                            "methods": [
+                                "deleteParameterVersion"
+                            ]
+                        },
+                        "DeleteTemplate": {
+                            "methods": [
+                                "deleteTemplate"
+                            ]
+                        },
+                        "DeleteTemplateVersion": {
+                            "methods": [
+                                "deleteTemplateVersion"
+                            ]
+                        },
+                        "GetParameter": {
+                            "methods": [
+                                "getParameter"
+                            ]
+                        },
+                        "GetParameterVersion": {
+                            "methods": [
+                                "getParameterVersion"
+                            ]
+                        },
+                        "GetTemplate": {
+                            "methods": [
+                                "getTemplate"
+                            ]
+                        },
+                        "GetTemplateVersion": {
+                            "methods": [
+                                "getTemplateVersion"
+                            ]
+                        },
+                        "ListParameterVersions": {
+                            "methods": [
+                                "listParameterVersions"
+                            ]
+                        },
+                        "ListParameters": {
+                            "methods": [
+                                "listParameters"
+                            ]
+                        },
+                        "ListTemplateVersions": {
+                            "methods": [
+                                "listTemplateVersions"
+                            ]
+                        },
+                        "ListTemplates": {
+                            "methods": [
+                                "listTemplates"
+                            ]
+                        },
+                        "RenderParameterVersion": {
+                            "methods": [
+                                "renderParameterVersion"
+                            ]
+                        },
+                        "RenderTemplateVersion": {
+                            "methods": [
+                                "renderTemplateVersion"
+                            ]
+                        },
+                        "UpdateParameter": {
+                            "methods": [
+                                "updateParameter"
+                            ]
+                        },
+                        "UpdateParameterVersion": {
+                            "methods": [
+                                "updateParameterVersion"
+                            ]
+                        },
+                        "UpdateTemplate": {
+                            "methods": [
+                                "updateTemplate"
+                            ]
+                        },
+                        "UpdateTemplateVersion": {
+                            "methods": [
+                                "updateTemplateVersion"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
