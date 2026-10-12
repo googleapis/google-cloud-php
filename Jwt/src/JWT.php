@@ -91,9 +91,11 @@ class JWT
      *                                                                      the public key.
      *                                                                      Each Key object contains an algorithm and
      *                                                                      matching key.
-     *                                                                      Supported algorithms are 'ES384','ES256',
-     *                                                                      'HS256', 'HS384', 'HS512', 'RS256', 'RS384'
-     *                                                                      and 'RS512'.
+     *                                                                      Supported algorithms are 'EdDSA', 'ES384',
+     *                                                                      'ES256', 'ES256K', 'HS256', 'HS384',
+     *                                                                      'HS512', 'RS256', 'RS384', 'PS256',
+     *                                                                      'RS512', 'ML-DSA-44', 'ML-DSA-65' and
+     *                                                                      'ML-DSA-87'.
      * @param stdClass               $headers                               Optional. Populates stdClass with headers.
      *
      * @return stdClass The JWT's payload as a PHP object
@@ -214,9 +216,9 @@ class JWT
      *
      * @param array<mixed>          $payload PHP array
      * @param string|OpenSSLAsymmetricKey|OpenSSLCertificate $key The secret key.
-     * @param string                $alg     Supported algorithms are 'ES384','ES256', 'ES256K', 'HS256',
-     *                                       'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ML-DSA-44',
-     *                                       'ML-DSA-65' and 'ML-DSA-87'
+     * @param string                $alg     Supported algorithms are 'EdDSA', 'ES384', 'ES256',
+     *                                       'ES256K', 'HS256', 'HS384', 'HS512', 'RS256', 'RS384',
+     *                                       'PS256', 'RS512', 'ML-DSA-44', 'ML-DSA-65' and 'ML-DSA-87'
      * @param string                $keyId
      * @param array<string, string|string[]> $head  An array with header elements to attach
      *
@@ -294,17 +296,19 @@ class JWT
                     return self::signPS256($key, $msg);
                 }
                 $signature = '';
-                if (!$key = openssl_pkey_get_private($key)) {
+                $key = openssl_pkey_get_private($key);
+                if (str_starts_with($alg, 'ML-DSA')) {
+                    self::validateMlDsaKey($key, $alg);
+                    // ML-DSA signs the message directly, so no digest algorithm is used
+                    $algorithm = 0;
+                }
+                if (!$key) {
                     throw new DomainException('OpenSSL unable to validate key');
                 }
                 if (str_starts_with($alg, 'RS')) {
                     self::validateRsaKeyLength($key);
                 } elseif (str_starts_with($alg, 'ES')) {
                     self::validateEcKeyLength($key, $alg);
-                } elseif (str_starts_with($alg, 'ML-DSA')) {
-                    self::validateMlDsaKey($key, $alg);
-                    // ML-DSA signs the message directly, so no digest algorithm is used
-                    $algorithm = 0;
                 }
                 $success = \openssl_sign($msg, $signature, $key, $algorithm);
                 if (!$success) {
@@ -357,17 +361,19 @@ class JWT
                 if ($alg === 'PS256') {
                     return self::verifyPS256($keyMaterial, $msg, $signature);
                 }
-                if (!$key = openssl_pkey_get_public($keyMaterial)) {
+                $key = openssl_pkey_get_public($keyMaterial);
+                if (str_starts_with($alg, 'ML-DSA')) {
+                    self::validateMlDsaKey($key, $alg);
+                    // ML-DSA signs the message directly, so no digest algorithm is used
+                    $algorithm = 0;
+                }
+                if (!$key) {
                     throw new DomainException('OpenSSL unable to validate key');
                 }
                 if (str_starts_with($alg, 'RS')) {
                     self::validateRsaKeyLength($key);
                 } elseif (str_starts_with($alg, 'ES')) {
                     self::validateEcKeyLength($key, $alg);
-                } elseif (str_starts_with($alg, 'ML-DSA')) {
-                    self::validateMlDsaKey($key, $alg);
-                    // ML-DSA signs the message directly, so no digest algorithm is used
-                    $algorithm = 0;
                 }
                 $success = \openssl_verify($msg, $signature, $keyMaterial, $algorithm);
                 if ($success === 1) {
@@ -766,18 +772,24 @@ class JWT
     /**
      * Validate that an ML-DSA key matches the parameter set of the algorithm
      *
-     * @param OpenSSLAsymmetricKey $key ML-DSA key material
+     * @param OpenSSLAsymmetricKey|false $key ML-DSA key material
      * @param string $algorithm The algorithm
      * @throws DomainException ML-DSA is not supported or the provided key does not match the algorithm
      */
     private static function validateMlDsaKey(
-        #[\SensitiveParameter] OpenSSLAsymmetricKey $key,
+        #[\SensitiveParameter] OpenSSLAsymmetricKey|false $key,
         string $algorithm
     ): void {
         if (\PHP_VERSION_ID < 80400) {
             // openssl_sign() and openssl_verify() only accept 0 (no digest) as the algorithm
             // for pure signature schemes such as ML-DSA as of PHP 8.4.
             throw new DomainException('PHP 8.4 or later is required for ML-DSA support');
+        }
+        if (!$key) {
+            if (\OPENSSL_VERSION_NUMBER < 0x30500000) {
+                throw new DomainException('OpenSSL 3.5 or later is required for ML-DSA support');
+            }
+            throw new DomainException('OpenSSL unable to validate key');
         }
         if (!$keyDetails = openssl_pkey_get_details($key)) {
             throw new DomainException('Unable to validate key');
