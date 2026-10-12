@@ -1,8 +1,0 @@
-{
-  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/refs/heads/main/schemas/config.json",
-  "release-type": "php-librarian",
-  "bump-minor-pre-major": true,
-  "packages": {
-    ".": {}
-  }
-}
