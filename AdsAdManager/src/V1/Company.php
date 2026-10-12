@@ -92,9 +92,11 @@ class Company extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The credit status of the
      * [Company][google.ads.admanager.v1.Company].
-     * This attribute defaults to [CompanyCreditStatus.ACTIVE][] if basic
-     * settings are enabled and [CompanyCreditStatus.ON_HOLD][] if advance
-     * settings are enabled.
+     * This attribute defaults to
+     * [CompanyCreditStatusEnum.CompanyCreditStatus.ACTIVE][google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus.ACTIVE]
+     * if basic settings are enabled and
+     * [CompanyCreditStatusEnum.CompanyCreditStatus.ON_HOLD][google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus.ON_HOLD]
+     * if advance settings are enabled.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus credit_status = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -180,9 +182,11 @@ class Company extends \Google\Protobuf\Internal\Message
      *     @type int $credit_status
      *           Optional. The credit status of the
      *           [Company][google.ads.admanager.v1.Company].
-     *           This attribute defaults to [CompanyCreditStatus.ACTIVE][] if basic
-     *           settings are enabled and [CompanyCreditStatus.ON_HOLD][] if advance
-     *           settings are enabled.
+     *           This attribute defaults to
+     *           [CompanyCreditStatusEnum.CompanyCreditStatus.ACTIVE][google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus.ACTIVE]
+     *           if basic settings are enabled and
+     *           [CompanyCreditStatusEnum.CompanyCreditStatus.ON_HOLD][google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus.ON_HOLD]
+     *           if advance settings are enabled.
      *     @type \Google\Ads\AdManager\V1\AppliedLabel[] $applied_labels
      *           Optional. The labels that are directly applied to the
      *           [Company][google.ads.admanager.v1.Company].
@@ -597,9 +601,11 @@ class Company extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The credit status of the
      * [Company][google.ads.admanager.v1.Company].
-     * This attribute defaults to [CompanyCreditStatus.ACTIVE][] if basic
-     * settings are enabled and [CompanyCreditStatus.ON_HOLD][] if advance
-     * settings are enabled.
+     * This attribute defaults to
+     * [CompanyCreditStatusEnum.CompanyCreditStatus.ACTIVE][google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus.ACTIVE]
+     * if basic settings are enabled and
+     * [CompanyCreditStatusEnum.CompanyCreditStatus.ON_HOLD][google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus.ON_HOLD]
+     * if advance settings are enabled.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus credit_status = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -622,9 +628,11 @@ class Company extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The credit status of the
      * [Company][google.ads.admanager.v1.Company].
-     * This attribute defaults to [CompanyCreditStatus.ACTIVE][] if basic
-     * settings are enabled and [CompanyCreditStatus.ON_HOLD][] if advance
-     * settings are enabled.
+     * This attribute defaults to
+     * [CompanyCreditStatusEnum.CompanyCreditStatus.ACTIVE][google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus.ACTIVE]
+     * if basic settings are enabled and
+     * [CompanyCreditStatusEnum.CompanyCreditStatus.ON_HOLD][google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus.ON_HOLD]
+     * if advance settings are enabled.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus credit_status = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

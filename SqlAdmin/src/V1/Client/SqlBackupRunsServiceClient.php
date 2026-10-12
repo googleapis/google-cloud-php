@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\Options\ClientOptions;
+use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -48,6 +49,11 @@ use Psr\Log\LoggerInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
+ * Many parameters require resource names to be formatted in a particular way. To
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
+ *
  * @method PromiseInterface<Operation> deleteAsync(SqlBackupRunsDeleteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackupRun> getAsync(SqlBackupRunsGetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> insertAsync(SqlBackupRunsInsertRequest $request, array $optionalArgs = [])
@@ -56,6 +62,7 @@ use Psr\Log\LoggerInterface;
 final class SqlBackupRunsServiceClient
 {
     use GapicClientTrait;
+    use ResourceHelperTrait;
 
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.sql.v1.SqlBackupRunsService';
@@ -103,6 +110,80 @@ final class SqlBackupRunsServiceClient
                 ],
             ],
         ];
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
+        return self::getPathTemplate('cryptoKey')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * crypto_key_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     * @param string $cryptoKeyVersion
+     *
+     * @return string The formatted crypto_key_version resource.
+     */
+    public static function cryptoKeyVersionName(
+        string $project,
+        string $location,
+        string $keyRing,
+        string $cryptoKey,
+        string $cryptoKeyVersion
+    ): string {
+        return self::getPathTemplate('cryptoKeyVersion')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+            'crypto_key_version' => $cryptoKeyVersion,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
+     * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
+     *
+     * The optional $template argument can be supplied to specify a particular pattern,
+     * and must match one of the templates listed above. If no $template argument is
+     * provided, or if the $template argument does not match one of the templates
+     * listed, then parseName will check each of the supported templates, and return
+     * the first match.
+     *
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     */
+    public static function parseName(string $formattedName, ?string $template = null): array
+    {
+        return self::parseFormattedName($formattedName, $template);
     }
 
     /**

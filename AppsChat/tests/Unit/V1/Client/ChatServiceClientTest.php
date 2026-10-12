@@ -33,6 +33,7 @@ use Google\Apps\Chat\V1\CompleteImportSpaceRequest;
 use Google\Apps\Chat\V1\CompleteImportSpaceResponse;
 use Google\Apps\Chat\V1\CreateCustomEmojiRequest;
 use Google\Apps\Chat\V1\CreateMembershipRequest;
+use Google\Apps\Chat\V1\CreateMessagePinRequest;
 use Google\Apps\Chat\V1\CreateMessageRequest;
 use Google\Apps\Chat\V1\CreateReactionRequest;
 use Google\Apps\Chat\V1\CreateSectionRequest;
@@ -40,6 +41,7 @@ use Google\Apps\Chat\V1\CreateSpaceRequest;
 use Google\Apps\Chat\V1\CustomEmoji;
 use Google\Apps\Chat\V1\DeleteCustomEmojiRequest;
 use Google\Apps\Chat\V1\DeleteMembershipRequest;
+use Google\Apps\Chat\V1\DeleteMessagePinRequest;
 use Google\Apps\Chat\V1\DeleteMessageRequest;
 use Google\Apps\Chat\V1\DeleteReactionRequest;
 use Google\Apps\Chat\V1\DeleteSectionRequest;
@@ -62,6 +64,8 @@ use Google\Apps\Chat\V1\ListCustomEmojisRequest;
 use Google\Apps\Chat\V1\ListCustomEmojisResponse;
 use Google\Apps\Chat\V1\ListMembershipsRequest;
 use Google\Apps\Chat\V1\ListMembershipsResponse;
+use Google\Apps\Chat\V1\ListMessagePinsRequest;
+use Google\Apps\Chat\V1\ListMessagePinsResponse;
 use Google\Apps\Chat\V1\ListMessagesRequest;
 use Google\Apps\Chat\V1\ListMessagesResponse;
 use Google\Apps\Chat\V1\ListReactionsRequest;
@@ -79,6 +83,7 @@ use Google\Apps\Chat\V1\MarkAsAwayRequest;
 use Google\Apps\Chat\V1\MarkAsDoNotDisturbRequest;
 use Google\Apps\Chat\V1\Membership;
 use Google\Apps\Chat\V1\Message;
+use Google\Apps\Chat\V1\MessagePin;
 use Google\Apps\Chat\V1\MoveSectionItemRequest;
 use Google\Apps\Chat\V1\MoveSectionItemResponse;
 use Google\Apps\Chat\V1\PositionSectionRequest;
@@ -417,6 +422,81 @@ class ChatServiceClientTest extends GeneratedTest
         $request = (new CreateMessageRequest())->setParent($formattedParent)->setMessage($message);
         try {
             $gapicClient->createMessage($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createMessagePinTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $message = 'message954925063';
+        $expectedResponse = new MessagePin();
+        $expectedResponse->setName($name);
+        $expectedResponse->setMessage($message);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->spaceName('[SPACE]');
+        $messagePin = new MessagePin();
+        $messagePinMessage = $gapicClient->messageName('[SPACE]', '[MESSAGE]');
+        $messagePin->setMessage($messagePinMessage);
+        $request = (new CreateMessagePinRequest())->setParent($formattedParent)->setMessagePin($messagePin);
+        $response = $gapicClient->createMessagePin($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.chat.v1.ChatService/CreateMessagePin', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getMessagePin();
+        $this->assertProtobufEquals($messagePin, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createMessagePinExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->spaceName('[SPACE]');
+        $messagePin = new MessagePin();
+        $messagePinMessage = $gapicClient->messageName('[SPACE]', '[MESSAGE]');
+        $messagePin->setMessage($messagePinMessage);
+        $request = (new CreateMessagePinRequest())->setParent($formattedParent)->setMessagePin($messagePin);
+        try {
+            $gapicClient->createMessagePin($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -837,6 +917,68 @@ class ChatServiceClientTest extends GeneratedTest
         $request = (new DeleteMessageRequest())->setName($formattedName);
         try {
             $gapicClient->deleteMessage($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteMessagePinTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->messagePinName('[SPACE]', '[MESSAGE_PIN]');
+        $request = (new DeleteMessagePinRequest())->setName($formattedName);
+        $gapicClient->deleteMessagePin($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.chat.v1.ChatService/DeleteMessagePin', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteMessagePinExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->messagePinName('[SPACE]', '[MESSAGE_PIN]');
+        $request = (new DeleteMessagePinRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteMessagePin($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2001,6 +2143,77 @@ class ChatServiceClientTest extends GeneratedTest
         $request = (new ListMembershipsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listMemberships($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listMessagePinsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $messagePinsElement = new MessagePin();
+        $messagePins = [$messagePinsElement];
+        $expectedResponse = new ListMessagePinsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setMessagePins($messagePins);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->spaceName('[SPACE]');
+        $request = (new ListMessagePinsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listMessagePins($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getMessagePins()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.chat.v1.ChatService/ListMessagePins', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listMessagePinsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->spaceName('[SPACE]');
+        $request = (new ListMessagePinsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listMessagePins($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

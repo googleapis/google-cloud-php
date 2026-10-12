@@ -27,6 +27,20 @@ class AccessPermissionSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.chat.v1.Space.AccessPermissionSetting join_space_setting = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $join_space_setting = null;
+    /**
+     * Optional. Access permission setting for viewing space membership.
+     * Must be specified together with
+     * `PermissionSettings.view_space_membership` in the update mask and request
+     * body when updating who can view space membership. When granting view
+     * access to a target audience, you must also grant
+     * `PermissionSettings.view_space_membership` to all members in the same
+     * request. To remove an existing target audience (for example, to restrict
+     * view access to space managers or assistant managers only), specify an
+     * empty `AccessPermissionSetting` (with no `principals`).
+     *
+     * Generated from protobuf field <code>.google.chat.v1.Space.AccessPermissionSetting view_space_membership_setting = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $view_space_membership_setting = null;
 
     /**
      * Constructor.
@@ -38,6 +52,16 @@ class AccessPermissionSettings extends \Google\Protobuf\Internal\Message
      *           Optional. Access permission setting for discovering the space.
      *     @type \Google\Apps\Chat\V1\Space\AccessPermissionSetting $join_space_setting
      *           Optional. Access permission setting for joining the space.
+     *     @type \Google\Apps\Chat\V1\Space\AccessPermissionSetting $view_space_membership_setting
+     *           Optional. Access permission setting for viewing space membership.
+     *           Must be specified together with
+     *           `PermissionSettings.view_space_membership` in the update mask and request
+     *           body when updating who can view space membership. When granting view
+     *           access to a target audience, you must also grant
+     *           `PermissionSettings.view_space_membership` to all members in the same
+     *           request. To remove an existing target audience (for example, to restrict
+     *           view access to space managers or assistant managers only), specify an
+     *           empty `AccessPermissionSetting` (with no `principals`).
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +137,58 @@ class AccessPermissionSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\Space\AccessPermissionSetting::class);
         $this->join_space_setting = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Access permission setting for viewing space membership.
+     * Must be specified together with
+     * `PermissionSettings.view_space_membership` in the update mask and request
+     * body when updating who can view space membership. When granting view
+     * access to a target audience, you must also grant
+     * `PermissionSettings.view_space_membership` to all members in the same
+     * request. To remove an existing target audience (for example, to restrict
+     * view access to space managers or assistant managers only), specify an
+     * empty `AccessPermissionSetting` (with no `principals`).
+     *
+     * Generated from protobuf field <code>.google.chat.v1.Space.AccessPermissionSetting view_space_membership_setting = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Apps\Chat\V1\Space\AccessPermissionSetting|null
+     */
+    public function getViewSpaceMembershipSetting()
+    {
+        return $this->view_space_membership_setting;
+    }
+
+    public function hasViewSpaceMembershipSetting()
+    {
+        return isset($this->view_space_membership_setting);
+    }
+
+    public function clearViewSpaceMembershipSetting()
+    {
+        unset($this->view_space_membership_setting);
+    }
+
+    /**
+     * Optional. Access permission setting for viewing space membership.
+     * Must be specified together with
+     * `PermissionSettings.view_space_membership` in the update mask and request
+     * body when updating who can view space membership. When granting view
+     * access to a target audience, you must also grant
+     * `PermissionSettings.view_space_membership` to all members in the same
+     * request. To remove an existing target audience (for example, to restrict
+     * view access to space managers or assistant managers only), specify an
+     * empty `AccessPermissionSetting` (with no `principals`).
+     *
+     * Generated from protobuf field <code>.google.chat.v1.Space.AccessPermissionSetting view_space_membership_setting = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Apps\Chat\V1\Space\AccessPermissionSetting $var
+     * @return $this
+     */
+    public function setViewSpaceMembershipSetting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\Space\AccessPermissionSetting::class);
+        $this->view_space_membership_setting = $var;
 
         return $this;
     }

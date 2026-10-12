@@ -9,10 +9,10 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Output only. Annotations can be associated with the plain-text body of the
- * message or with chips that link to Google Workspace resources like Google
- * Docs or Sheets with `start_index` and `length` of 0. To add basic formatting
- * to a text message, see [Format text
+ * Annotations can be associated with the plain-text body of the message or
+ * with chips that link to Google Workspace resources like Google Docs or Sheets
+ * with `start_index` and `length` of 0. To add basic formatting to a text
+ * message, see [Format text
  * messages](https://developers.google.com/workspace/chat/format-messages).
  * Example plain-text message body:
  * ```

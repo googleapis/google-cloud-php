@@ -31,8 +31,9 @@ use Google\ApiCore\PagedListResponse;
 /**
  * Lists [Company][google.ads.admanager.v1.Company] objects.
  *
- * @param string $formattedParent The parent, which owns this collection of [Companies][].
- *                                Format: `networks/{network_code}`
+ * @param string $formattedParent The parent, which owns this collection of
+ *                                [Companies][google.ads.admanager.v1.Company]. Format:
+ *                                `networks/{network_code}`
  *                                Please see {@see CompanyServiceClient::networkName()} for help formatting this field.
  */
 function list_companies_sample(string $formattedParent): void

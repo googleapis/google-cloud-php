@@ -32,6 +32,7 @@ class ExecuteSqlPayload extends \Google\Protobuf\Internal\Message
     protected $sql_statement = '';
     /**
      * Optional. Name of the database on which the statement will be executed.
+     * For Postgres and SQL Server it's required, for MySQL it's optional.
      *
      * Generated from protobuf field <code>string database = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -75,6 +76,7 @@ class ExecuteSqlPayload extends \Google\Protobuf\Internal\Message
      *           statement or a sequence of statements separated by semicolons.
      *     @type string $database
      *           Optional. Name of the database on which the statement will be executed.
+     *           For Postgres and SQL Server it's required, for MySQL it's optional.
      *     @type string $password_secret_version
      *           Optional. The resource name of the Secret Manager secret holding the
      *           password for the user to log into the database. The secret should be
@@ -165,6 +167,7 @@ class ExecuteSqlPayload extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Name of the database on which the statement will be executed.
+     * For Postgres and SQL Server it's required, for MySQL it's optional.
      *
      * Generated from protobuf field <code>string database = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -176,6 +179,7 @@ class ExecuteSqlPayload extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Name of the database on which the statement will be executed.
+     * For Postgres and SQL Server it's required, for MySQL it's optional.
      *
      * Generated from protobuf field <code>string database = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

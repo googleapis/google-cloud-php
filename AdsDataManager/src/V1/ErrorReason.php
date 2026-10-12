@@ -759,6 +759,12 @@ class ErrorReason
      */
     const CUSTOM_VARIABLE_NOT_FOUND = 120;
     /**
+     * Maximum number of users allowed per request is 10,000.
+     *
+     * Generated from protobuf enum <code>TOO_MANY_USERS = 121;</code>
+     */
+    const TOO_MANY_USERS = 121;
+    /**
      * The
      * [location_auto_detection_enabled][google.ads.datamanager.v1.Baseline.location_auto_detection_enabled]
      * field of the request was set to `true`, but auto detection of baseline
@@ -800,6 +806,18 @@ class ErrorReason
      * Generated from protobuf enum <code>CONVERSION_ACTION_TOO_RECENTLY_CREATED = 127;</code>
      */
     const CONVERSION_ACTION_TOO_RECENTLY_CREATED = 127;
+    /**
+     * The ad identifier does not belong to the account.
+     * For example, the [`gclid`][google.ads.datamanager.v1.AdIdentifiers.gclid]
+     * isn't associated with the
+     * [`operating_account`][google.ads.datamanager.v1.Destination.operating_account]
+     * and
+     * [`product_destination_id`][google.ads.datamanager.v1.Destination.product_destination_id]
+     * of the destination.
+     *
+     * Generated from protobuf enum <code>INVALID_AD_IDENTIFIER_FOR_ACCOUNT = 128;</code>
+     */
+    const INVALID_AD_IDENTIFIER_FOR_ACCOUNT = 128;
 
     private static $valueToName = [
         self::ERROR_REASON_UNSPECIFIED => 'ERROR_REASON_UNSPECIFIED',
@@ -923,12 +941,14 @@ class ErrorReason
         self::CUSTOM_VARIABLE_NOT_ENABLED => 'CUSTOM_VARIABLE_NOT_ENABLED',
         self::INVALID_CUSTOM_VARIABLE_VALUE => 'INVALID_CUSTOM_VARIABLE_VALUE',
         self::CUSTOM_VARIABLE_NOT_FOUND => 'CUSTOM_VARIABLE_NOT_FOUND',
+        self::TOO_MANY_USERS => 'TOO_MANY_USERS',
         self::BASELINE_LOCATION_AUTO_DETECTION_FAILED => 'BASELINE_LOCATION_AUTO_DETECTION_FAILED',
         self::INSIGHTS_MISSING_FOR_DIMENSION => 'INSIGHTS_MISSING_FOR_DIMENSION',
         self::REQUIRED_PREREQUISITE_LINK_MISSING => 'REQUIRED_PREREQUISITE_LINK_MISSING',
         self::INVALID_REMOVE_AS_OF_TIME => 'INVALID_REMOVE_AS_OF_TIME',
         self::REQUEST_TOO_OLD => 'REQUEST_TOO_OLD',
         self::CONVERSION_ACTION_TOO_RECENTLY_CREATED => 'CONVERSION_ACTION_TOO_RECENTLY_CREATED',
+        self::INVALID_AD_IDENTIFIER_FOR_ACCOUNT => 'INVALID_AD_IDENTIFIER_FOR_ACCOUNT',
     ];
 
     public static function name($value)

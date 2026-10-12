@@ -16,10 +16,6 @@ use Google\Protobuf\RepeatedField;
 class Binding extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>optional string binding_id = 441088277;</code>
-     */
-    protected $binding_id = null;
-    /**
      * The condition that is associated with this binding.
      * If the condition evaluates to `true`, then this binding applies to the
      * current request.
@@ -114,7 +110,6 @@ class Binding extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $binding_id
      *     @type \Google\Cloud\Compute\V1\Expr $condition
      *           The condition that is associated with this binding.
      *           If the condition evaluates to `true`, then this binding applies to the
@@ -196,38 +191,6 @@ class Binding extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
-    }
-
-    /**
-     * Generated from protobuf field <code>optional string binding_id = 441088277;</code>
-     * @return string
-     */
-    public function getBindingId()
-    {
-        return isset($this->binding_id) ? $this->binding_id : '';
-    }
-
-    public function hasBindingId()
-    {
-        return isset($this->binding_id);
-    }
-
-    public function clearBindingId()
-    {
-        unset($this->binding_id);
-    }
-
-    /**
-     * Generated from protobuf field <code>optional string binding_id = 441088277;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setBindingId($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->binding_id = $var;
-
-        return $this;
     }
 
     /**

@@ -31,6 +31,10 @@ class AgentAssistantRecord extends \Google\Protobuf\Internal\Message
      *           Output only. Dialogflow assist answer.
      *     @type \Google\Cloud\Dialogflow\V2\GeneratorSuggestion $generator_suggestion
      *           Output only. The generator suggestion.
+     *     @type \Google\Cloud\Dialogflow\V2\CompanionSuggestion $companion_suggestion
+     *           Output only. The companion suggestion.
+     *     @type \Google\Cloud\Dialogflow\V2\StreamingReactiveCompanionSuggestionsResponse\ReactiveModeResponse $reactive_companion_suggestion
+     *           Output only. The reactive companion suggestion.
      * }
      */
     public function __construct($data = NULL) {
@@ -158,6 +162,68 @@ class AgentAssistantRecord extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\GeneratorSuggestion::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The companion suggestion.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.CompanionSuggestion companion_suggestion = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dialogflow\V2\CompanionSuggestion|null
+     */
+    public function getCompanionSuggestion()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasCompanionSuggestion()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * Output only. The companion suggestion.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.CompanionSuggestion companion_suggestion = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dialogflow\V2\CompanionSuggestion $var
+     * @return $this
+     */
+    public function setCompanionSuggestion($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\CompanionSuggestion::class);
+        $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The reactive companion suggestion.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.StreamingReactiveCompanionSuggestionsResponse.ReactiveModeResponse reactive_companion_suggestion = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dialogflow\V2\StreamingReactiveCompanionSuggestionsResponse\ReactiveModeResponse|null
+     */
+    public function getReactiveCompanionSuggestion()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasReactiveCompanionSuggestion()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * Output only. The reactive companion suggestion.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.StreamingReactiveCompanionSuggestionsResponse.ReactiveModeResponse reactive_companion_suggestion = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dialogflow\V2\StreamingReactiveCompanionSuggestionsResponse\ReactiveModeResponse $var
+     * @return $this
+     */
+    public function setReactiveCompanionSuggestion($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\StreamingReactiveCompanionSuggestionsResponse\ReactiveModeResponse::class);
+        $this->writeOneof(10, $var);
 
         return $this;
     }

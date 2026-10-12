@@ -9,9 +9,8 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Response object for
- * [ListPartnersRequest][google.ads.admanager.v1.ListPartnersRequest] containing
- * matching [Partner][google.ads.admanager.v1.Partner] objects.
+ * Response object for `ListPartnersRequest` containing matching
+ * [Partner][google.ads.admanager.v1.Partner] objects.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.ListPartnersResponse</code>
  */

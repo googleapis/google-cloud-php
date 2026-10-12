@@ -25,17 +25,22 @@ class VertexEmbeddingConfig extends \Google\Protobuf\Internal\Message
      */
     protected $model_id = '';
     /**
-     * Required. Required: Text template for the input to the model. The template
-     * must contain one or more references to fields in the DataObject, e.g.:
-     * "Movie Title: {title} ---- Movie Plot: {plot}".
+     * Optional. Text template for the input to the model. The template must
+     * contain one or more references to fields in the DataObject, e.g.: "Movie
+     * Title: {title} ---- Movie Plot: {plot}".
+     * Required when using the text-only path.
      *
-     * Generated from protobuf field <code>string text_template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string text_template = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $text_template = '';
     /**
-     * Required. Required: Task type for the embeddings.
+     * Optional. Optional: Task type for the embeddings. Required for text-only
+     * embedding models, see
+     * https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/embeddings/task-types
+     * Not needed for multi modal embedding models, see
+     * https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/embeddings/get-multimodal-embeddings#specify-task-instructions
      *
-     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.EmbeddingTaskType task_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.EmbeddingTaskType task_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $task_type = 0;
 
@@ -50,11 +55,16 @@ class VertexEmbeddingConfig extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models#embeddings-models
      *           for the list of supported models.
      *     @type string $text_template
-     *           Required. Required: Text template for the input to the model. The template
-     *           must contain one or more references to fields in the DataObject, e.g.:
-     *           "Movie Title: {title} ---- Movie Plot: {plot}".
+     *           Optional. Text template for the input to the model. The template must
+     *           contain one or more references to fields in the DataObject, e.g.: "Movie
+     *           Title: {title} ---- Movie Plot: {plot}".
+     *           Required when using the text-only path.
      *     @type int $task_type
-     *           Required. Required: Task type for the embeddings.
+     *           Optional. Optional: Task type for the embeddings. Required for text-only
+     *           embedding models, see
+     *           https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/embeddings/task-types
+     *           Not needed for multi modal embedding models, see
+     *           https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/embeddings/get-multimodal-embeddings#specify-task-instructions
      * }
      */
     public function __construct($data = NULL) {
@@ -93,11 +103,12 @@ class VertexEmbeddingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Required: Text template for the input to the model. The template
-     * must contain one or more references to fields in the DataObject, e.g.:
-     * "Movie Title: {title} ---- Movie Plot: {plot}".
+     * Optional. Text template for the input to the model. The template must
+     * contain one or more references to fields in the DataObject, e.g.: "Movie
+     * Title: {title} ---- Movie Plot: {plot}".
+     * Required when using the text-only path.
      *
-     * Generated from protobuf field <code>string text_template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string text_template = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getTextTemplate()
@@ -106,11 +117,12 @@ class VertexEmbeddingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Required: Text template for the input to the model. The template
-     * must contain one or more references to fields in the DataObject, e.g.:
-     * "Movie Title: {title} ---- Movie Plot: {plot}".
+     * Optional. Text template for the input to the model. The template must
+     * contain one or more references to fields in the DataObject, e.g.: "Movie
+     * Title: {title} ---- Movie Plot: {plot}".
+     * Required when using the text-only path.
      *
-     * Generated from protobuf field <code>string text_template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string text_template = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -123,9 +135,13 @@ class VertexEmbeddingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Required: Task type for the embeddings.
+     * Optional. Optional: Task type for the embeddings. Required for text-only
+     * embedding models, see
+     * https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/embeddings/task-types
+     * Not needed for multi modal embedding models, see
+     * https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/embeddings/get-multimodal-embeddings#specify-task-instructions
      *
-     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.EmbeddingTaskType task_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.EmbeddingTaskType task_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getTaskType()
@@ -134,9 +150,13 @@ class VertexEmbeddingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Required: Task type for the embeddings.
+     * Optional. Optional: Task type for the embeddings. Required for text-only
+     * embedding models, see
+     * https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/embeddings/task-types
+     * Not needed for multi modal embedding models, see
+     * https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/embeddings/get-multimodal-embeddings#specify-task-instructions
      *
-     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.EmbeddingTaskType task_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.EmbeddingTaskType task_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

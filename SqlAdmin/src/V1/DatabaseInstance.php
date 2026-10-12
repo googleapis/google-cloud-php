@@ -345,6 +345,13 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     protected $include_replicas_for_major_version_upgrade = null;
     /**
+     * Optional. Input only. Determines whether the precheck step is skipped
+     * during a major version upgrade.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.BoolValue skip_precheck = 77 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $skip_precheck = null;
+    /**
      * Optional. Input only. Immutable. Tag keys and tag values that are bound to
      * this instance. You must represent each item in the map as:
      * `"<tag-key-namespaced-name>" : "<tag-value-short-name>"`.
@@ -379,12 +386,26 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     private $dns_names;
     /**
+     * Output only. Deployment info for the instance. This is set if the instance
+     * is currently part of any blue-green setup.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.BlueGreenDeploymentInfo deployment_info = 73 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $deployment_info = null;
+    /**
      * Optional. If true, instance metadata is sent to the Database Center. If
      * false, instance metadata is not sent to the Database Center.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue database_center_integration_enabled = 72 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $database_center_integration_enabled = null;
+    /**
+     * Optional. State of the Database Center integration for this instance.
+     * When unspecified, Database Center integration is enabled by default.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.DatabaseInstance.DatabaseCenterIntegration database_center_integration = 76 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $database_center_integration = null;
 
     /**
      * Constructor.
@@ -530,6 +551,9 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *           Input only. Determines whether an in-place major version upgrade of
      *           replicas happens when an in-place major version upgrade of a primary
      *           instance is initiated.
+     *     @type \Google\Protobuf\BoolValue $skip_precheck
+     *           Optional. Input only. Determines whether the precheck step is skipped
+     *           during a major version upgrade.
      *     @type array|\Google\Protobuf\Internal\MapField $tags
      *           Optional. Input only. Immutable. Tag keys and tag values that are bound to
      *           this instance. You must represent each item in the map as:
@@ -548,9 +572,15 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *           the read pool.
      *     @type \Google\Cloud\Sql\V1\DnsNameMapping[] $dns_names
      *           Output only. The list of DNS names used by this instance.
+     *     @type \Google\Cloud\Sql\V1\BlueGreenDeploymentInfo $deployment_info
+     *           Output only. Deployment info for the instance. This is set if the instance
+     *           is currently part of any blue-green setup.
      *     @type \Google\Protobuf\BoolValue $database_center_integration_enabled
      *           Optional. If true, instance metadata is sent to the Database Center. If
      *           false, instance metadata is not sent to the Database Center.
+     *     @type int $database_center_integration
+     *           Optional. State of the Database Center integration for this instance.
+     *           When unspecified, Database Center integration is enabled by default.
      * }
      */
     public function __construct($data = NULL) {
@@ -2321,6 +2351,73 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
+     * Optional. Input only. Determines whether the precheck step is skipped
+     * during a major version upgrade.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.BoolValue skip_precheck = 77 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getSkipPrecheck()
+    {
+        return $this->skip_precheck;
+    }
+
+    public function hasSkipPrecheck()
+    {
+        return isset($this->skip_precheck);
+    }
+
+    public function clearSkipPrecheck()
+    {
+        unset($this->skip_precheck);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getSkipPrecheck()</code>
+
+     * Optional. Input only. Determines whether the precheck step is skipped
+     * during a major version upgrade.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.BoolValue skip_precheck = 77 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool|null
+     */
+    public function getSkipPrecheckUnwrapped()
+    {
+        return $this->readWrapperValue("skip_precheck");
+    }
+
+    /**
+     * Optional. Input only. Determines whether the precheck step is skipped
+     * during a major version upgrade.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.BoolValue skip_precheck = 77 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setSkipPrecheck($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->skip_precheck = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Optional. Input only. Determines whether the precheck step is skipped
+     * during a major version upgrade.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.BoolValue skip_precheck = 77 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setSkipPrecheckUnwrapped($var)
+    {
+        $this->writeWrapperValue("skip_precheck", $var);
+        return $this;}
+
+    /**
      * Optional. Input only. Immutable. Tag keys and tag values that are bound to
      * this instance. You must represent each item in the map as:
      * `"<tag-key-namespaced-name>" : "<tag-value-short-name>"`.
@@ -2455,6 +2552,44 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Deployment info for the instance. This is set if the instance
+     * is currently part of any blue-green setup.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.BlueGreenDeploymentInfo deployment_info = 73 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Sql\V1\BlueGreenDeploymentInfo|null
+     */
+    public function getDeploymentInfo()
+    {
+        return $this->deployment_info;
+    }
+
+    public function hasDeploymentInfo()
+    {
+        return isset($this->deployment_info);
+    }
+
+    public function clearDeploymentInfo()
+    {
+        unset($this->deployment_info);
+    }
+
+    /**
+     * Output only. Deployment info for the instance. This is set if the instance
+     * is currently part of any blue-green setup.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.BlueGreenDeploymentInfo deployment_info = 73 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Sql\V1\BlueGreenDeploymentInfo $var
+     * @return $this
+     */
+    public function setDeploymentInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\BlueGreenDeploymentInfo::class);
+        $this->deployment_info = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. If true, instance metadata is sent to the Database Center. If
      * false, instance metadata is not sent to the Database Center.
      *
@@ -2520,6 +2655,44 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     {
         $this->writeWrapperValue("database_center_integration_enabled", $var);
         return $this;}
+
+    /**
+     * Optional. State of the Database Center integration for this instance.
+     * When unspecified, Database Center integration is enabled by default.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.DatabaseInstance.DatabaseCenterIntegration database_center_integration = 76 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDatabaseCenterIntegration()
+    {
+        return isset($this->database_center_integration) ? $this->database_center_integration : 0;
+    }
+
+    public function hasDatabaseCenterIntegration()
+    {
+        return isset($this->database_center_integration);
+    }
+
+    public function clearDatabaseCenterIntegration()
+    {
+        unset($this->database_center_integration);
+    }
+
+    /**
+     * Optional. State of the Database Center integration for this instance.
+     * When unspecified, Database Center integration is enabled by default.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.DatabaseInstance.DatabaseCenterIntegration database_center_integration = 76 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDatabaseCenterIntegration($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\DatabaseInstance\DatabaseCenterIntegration::class);
+        $this->database_center_integration = $var;
+
+        return $this;
+    }
 
 }
 

@@ -33,26 +33,27 @@ use Google\Rpc\Status;
 /**
  * Creates a new KMS config.
  *
- * @param string $formattedParent        Value for parent. Please see
- *                                       {@see NetAppClient::locationName()} for help formatting this field.
- * @param string $kmsConfigId            Id of the requesting KmsConfig. Must be unique within the parent
- *                                       resource. Must contain only letters, numbers and hyphen, with the first
- *                                       character a letter, the last a letter or a
- *                                       number, and a 63 character maximum.
- * @param string $kmsConfigCryptoKeyName Customer-managed crypto key resource full name. Format:
- *                                       `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`
+ * @param string $formattedParent                 Value for parent. Please see
+ *                                                {@see NetAppClient::locationName()} for help formatting this field.
+ * @param string $kmsConfigId                     Id of the requesting KmsConfig. Must be unique within the parent
+ *                                                resource. Must contain only letters, numbers and hyphen, with the first
+ *                                                character a letter, the last a letter or a
+ *                                                number, and a 63 character maximum.
+ * @param string $formattedKmsConfigCryptoKeyName Customer-managed crypto key resource full name. Format:
+ *                                                `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`
+ *                                                Please see {@see NetAppClient::cryptoKeyName()} for help formatting this field.
  */
 function create_kms_config_sample(
     string $formattedParent,
     string $kmsConfigId,
-    string $kmsConfigCryptoKeyName
+    string $formattedKmsConfigCryptoKeyName
 ): void {
     // Create a client.
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
     $kmsConfig = (new KmsConfig())
-        ->setCryptoKeyName($kmsConfigCryptoKeyName);
+        ->setCryptoKeyName($formattedKmsConfigCryptoKeyName);
     $request = (new CreateKmsConfigRequest())
         ->setParent($formattedParent)
         ->setKmsConfigId($kmsConfigId)
@@ -91,8 +92,13 @@ function callSample(): void
 {
     $formattedParent = NetAppClient::locationName('[PROJECT]', '[LOCATION]');
     $kmsConfigId = '[KMS_CONFIG_ID]';
-    $kmsConfigCryptoKeyName = '[CRYPTO_KEY_NAME]';
+    $formattedKmsConfigCryptoKeyName = NetAppClient::cryptoKeyName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[KEY_RING]',
+        '[CRYPTO_KEY]'
+    );
 
-    create_kms_config_sample($formattedParent, $kmsConfigId, $kmsConfigCryptoKeyName);
+    create_kms_config_sample($formattedParent, $kmsConfigId, $formattedKmsConfigCryptoKeyName);
 }
 // [END netapp_v1_generated_NetApp_CreateKmsConfig_sync]

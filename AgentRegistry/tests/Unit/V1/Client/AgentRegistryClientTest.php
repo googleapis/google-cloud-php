@@ -28,7 +28,6 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AgentRegistry\V1\Agent;
 use Google\Cloud\AgentRegistry\V1\Binding;
-use Google\Cloud\AgentRegistry\V1\Binding\Source;
 use Google\Cloud\AgentRegistry\V1\Binding\Target;
 use Google\Cloud\AgentRegistry\V1\Client\AgentRegistryClient;
 use Google\Cloud\AgentRegistry\V1\CreateBindingRequest;
@@ -144,8 +143,6 @@ class AgentRegistryClientTest extends GeneratedTest
         $binding = new Binding();
         $bindingName = 'bindingName-285420880';
         $binding->setName($bindingName);
-        $bindingSource = new Source();
-        $binding->setSource($bindingSource);
         $bindingTarget = new Target();
         $binding->setTarget($bindingTarget);
         $request = (new CreateBindingRequest())
@@ -227,8 +224,6 @@ class AgentRegistryClientTest extends GeneratedTest
         $binding = new Binding();
         $bindingName = 'bindingName-285420880';
         $binding->setName($bindingName);
-        $bindingSource = new Source();
-        $binding->setSource($bindingSource);
         $bindingTarget = new Target();
         $binding->setTarget($bindingTarget);
         $request = (new CreateBindingRequest())
@@ -1611,8 +1606,6 @@ class AgentRegistryClientTest extends GeneratedTest
         $binding = new Binding();
         $bindingName = 'bindingName-285420880';
         $binding->setName($bindingName);
-        $bindingSource = new Source();
-        $binding->setSource($bindingSource);
         $bindingTarget = new Target();
         $binding->setTarget($bindingTarget);
         $request = (new UpdateBindingRequest())->setBinding($binding);
@@ -1685,8 +1678,6 @@ class AgentRegistryClientTest extends GeneratedTest
         $binding = new Binding();
         $bindingName = 'bindingName-285420880';
         $binding->setName($bindingName);
-        $bindingSource = new Source();
-        $binding->setSource($bindingSource);
         $bindingTarget = new Target();
         $binding->setTarget($bindingTarget);
         $request = (new UpdateBindingRequest())->setBinding($binding);
@@ -2011,8 +2002,6 @@ class AgentRegistryClientTest extends GeneratedTest
         $binding = new Binding();
         $bindingName = 'bindingName-285420880';
         $binding->setName($bindingName);
-        $bindingSource = new Source();
-        $binding->setSource($bindingSource);
         $bindingTarget = new Target();
         $binding->setTarget($bindingTarget);
         $request = (new CreateBindingRequest())

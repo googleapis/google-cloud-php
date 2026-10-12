@@ -10,7 +10,7 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a ranker using the Vertex AI ranking service.
- * See https://cloud.google.com/generative-ai-app-builder/docs/ranking for
+ * See <https://cloud.google.com/generative-ai-app-builder/docs/ranking> for
  * details.
  *
  * Generated from protobuf message <code>google.cloud.vectorsearch.v1.VertexRanker</code>
@@ -20,7 +20,7 @@ class VertexRanker extends \Google\Protobuf\Internal\Message
     /**
      * Required. The model used for ranking documents. The list of available
      * models is described in
-     * https://docs.cloud.google.com/generative-ai-app-builder/docs/ranking#models.
+     * <https://docs.cloud.google.com/generative-ai-app-builder/docs/ranking#models>.
      * Currently, only `semantic-ranker-fast\@latest` is supported.
      *
      * Generated from protobuf field <code>string model = 4 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -45,7 +45,7 @@ class VertexRanker extends \Google\Protobuf\Internal\Message
      *     @type string $model
      *           Required. The model used for ranking documents. The list of available
      *           models is described in
-     *           https://docs.cloud.google.com/generative-ai-app-builder/docs/ranking#models.
+     *           <https://docs.cloud.google.com/generative-ai-app-builder/docs/ranking#models>.
      *           Currently, only `semantic-ranker-fast\@latest` is supported.
      *     @type int $top_n
      *           Required. The number of documents to be processed for ranking.
@@ -90,7 +90,7 @@ class VertexRanker extends \Google\Protobuf\Internal\Message
     /**
      * Required. The model used for ranking documents. The list of available
      * models is described in
-     * https://docs.cloud.google.com/generative-ai-app-builder/docs/ranking#models.
+     * <https://docs.cloud.google.com/generative-ai-app-builder/docs/ranking#models>.
      * Currently, only `semantic-ranker-fast\@latest` is supported.
      *
      * Generated from protobuf field <code>string model = 4 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -104,7 +104,7 @@ class VertexRanker extends \Google\Protobuf\Internal\Message
     /**
      * Required. The model used for ranking documents. The list of available
      * models is described in
-     * https://docs.cloud.google.com/generative-ai-app-builder/docs/ranking#models.
+     * <https://docs.cloud.google.com/generative-ai-app-builder/docs/ranking#models>.
      * Currently, only `semantic-ranker-fast\@latest` is supported.
      *
      * Generated from protobuf field <code>string model = 4 [(.google.api.field_behavior) = REQUIRED];</code>

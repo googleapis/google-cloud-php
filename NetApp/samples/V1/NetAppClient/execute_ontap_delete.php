@@ -29,7 +29,7 @@ use Google\Cloud\NetApp\V1\ExecuteOntapDeleteRequest;
 use Google\Cloud\NetApp\V1\ExecuteOntapDeleteResponse;
 
 /**
- * `ExecuteOntapDelete` dispatches the ONTAP `DELETE` request to the
+ * `ExecuteOntapDelete` sends the ONTAP `DELETE` request to the
  * `StoragePool` cluster.
  *
  * @param string $ontapPath The resource path of the ONTAP resource.

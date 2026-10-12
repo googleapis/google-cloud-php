@@ -48,6 +48,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "CreateMessagePin": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "CreateReaction": {
                     "timeout_millis": 30000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -77,6 +82,11 @@
                     "timeout_millis": 30000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
+                },
+                "DeleteMessagePin": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "DeleteReaction": {
                     "timeout_millis": 30000,
@@ -162,6 +172,11 @@
                     "timeout_millis": 30000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
+                },
+                "ListMessagePins": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "ListMessages": {
                     "timeout_millis": 30000,

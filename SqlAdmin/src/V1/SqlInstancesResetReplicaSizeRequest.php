@@ -27,6 +27,12 @@ class SqlInstancesResetReplicaSizeRequest extends \Google\Protobuf\Internal\Mess
      * Generated from protobuf field <code>string project = 2;</code>
      */
     protected $project = '';
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $location = '';
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class SqlInstancesResetReplicaSizeRequest extends \Google\Protobuf\Internal\Mess
      *           Cloud SQL read replica instance name.
      *     @type string $project
      *           ID of the project that contains the read replica.
+     *     @type string $location
+     *           Optional. Region of the Cloud SQL instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +101,32 @@ class SqlInstancesResetReplicaSizeRequest extends \Google\Protobuf\Internal\Mess
     {
         GPBUtil::checkString($var, True);
         $this->project = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location = $var;
 
         return $this;
     }

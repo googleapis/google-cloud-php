@@ -14,7 +14,7 @@ $ git clone git@github.com:googleapis/google-cloud-php.git
 ```
 
 * Move your changes into the correct location in that library. Library code
-belongs in `Grafeas/src`, and tests in `Grafeas/tests`.
+belongs in `Jwt/src`, and tests in `Jwt/tests`.
 
 * Push the changes in a new branch to a fork, and open a new pull request
 [here](https://github.com/googleapis/google-cloud-php).

@@ -27,6 +27,8 @@
 namespace Google\Analytics\Data\V1alpha\Client;
 
 use Google\Analytics\Data\V1alpha\AudienceList;
+use Google\Analytics\Data\V1alpha\ChatRequest;
+use Google\Analytics\Data\V1alpha\ChatResponse;
 use Google\Analytics\Data\V1alpha\CreateAudienceListRequest;
 use Google\Analytics\Data\V1alpha\CreateRecurringAudienceListRequest;
 use Google\Analytics\Data\V1alpha\CreateReportTaskRequest;
@@ -82,6 +84,7 @@ use Psr\Log\LoggerInterface;
  *
  * @experimental
  *
+ * @method PromiseInterface<ChatResponse> chatAsync(ChatRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createAudienceListAsync(CreateAudienceListRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RecurringAudienceList> createRecurringAudienceListAsync(CreateRecurringAudienceListRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createReportTaskAsync(CreateReportTaskRequest $request, array $optionalArgs = [])
@@ -129,6 +132,7 @@ final class AlphaAnalyticsDataClient
      */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/analytics',
+        'https://www.googleapis.com/auth/analytics.chatbot.read',
         'https://www.googleapis.com/auth/analytics.readonly',
     ];
 
@@ -433,6 +437,44 @@ final class AlphaAnalyticsDataClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Provides a chat interface for interacting with Google Analytics data
+     * through the API.
+     *
+     * This product uses AI and may display inaccurate info. Your chat activity
+     * may be used to improve the product and your use is subject to Google's
+     * [Terms](https://policies.google.com/terms),
+     * [AI Use
+     * Policy](https://policies.google.com/terms/generative-ai/use-policy), and
+     * [Privacy Policy](https://policies.google.com/privacy).
+     * [Learn more about Chat AI
+     * Privacy](https://support.google.com/helpguide/answer/14185196).
+     *
+     * The async variant is {@see AlphaAnalyticsDataClient::chatAsync()} .
+     *
+     * @example samples/V1alpha/AlphaAnalyticsDataClient/chat.php
+     *
+     * @param ChatRequest $request     A request to house fields associated with the call.
+     * @param array       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ChatResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function chat(ChatRequest $request, array $callOptions = []): ChatResponse
+    {
+        return $this->startApiCall('Chat', $request, $callOptions)->wait();
     }
 
     /**

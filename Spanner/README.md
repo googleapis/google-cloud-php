@@ -197,6 +197,53 @@ All captured metrics are aggregated in-memory and exported synchronously during 
    * If you supply a pre-instantiated credentials object (implementing `FetchAuthTokenInterface` or `CredentialsWrapper`), ensure that `https://www.googleapis.com/auth/monitoring.write` (or `https://www.googleapis.com/auth/cloud-platform`) scope is included when creating your credentials object.
 2. **OpenTelemetry Extension**: Installing the [`ext-opentelemetry`](https://pecl.php.net/package/opentelemetry) PHP extension is highly advised to optimize metrics collection and export performance.
 
+### Setting a Default Timeout for Every Call
+
+Individual calls accept a `timeoutMillis` option. To change the default deadline for *every* call a
+client makes, pass a `clientConfig` array. `SpannerClient` builds three generated clients from the
+same options, so the config has to cover all three interfaces:
+
+```php
+use Google\Cloud\Spanner\SpannerClient;
+
+$timeoutMillis = 5000;
+$configFiles = [
+    'src/V1/resources/spanner_client_config.json',
+    'src/Admin/Instance/V1/resources/instance_admin_client_config.json',
+    'src/Admin/Database/V1/resources/database_admin_client_config.json',
+];
+
+$clientConfig = ['interfaces' => []];
+foreach ($configFiles as $configFile) {
+    $path = $vendorDir . '/google/cloud-spanner/' . $configFile;
+    $decoded = json_decode(file_get_contents($path), true);
+    foreach ($decoded['interfaces'] as $interface => $settings) {
+        foreach (array_keys($settings['methods']) as $method) {
+            $settings['methods'][$method]['timeout_millis'] = $timeoutMillis;
+        }
+        foreach (array_keys($settings['retry_params']) as $name) {
+            $settings['retry_params'][$name]['initial_rpc_timeout_millis'] = $timeoutMillis;
+            $settings['retry_params'][$name]['max_rpc_timeout_millis'] = $timeoutMillis;
+            $settings['retry_params'][$name]['total_timeout_millis'] = $timeoutMillis;
+        }
+        $clientConfig['interfaces'][$interface] = $settings;
+    }
+}
+
+$spanner = new SpannerClient(['clientConfig' => $clientConfig]);
+```
+
+> [!WARNING]
+> Setting `timeout_millis` on its own has no effect on retryable methods — it only supplies
+> `noRetriesRpcTimeoutMillis`. The `retry_params` values are what determine the deadline, which is
+> why they are overridden above. Likewise, a config containing only `google.spanner.v1.Spanner`
+> leaves the admin clients without retry settings and calls to them fail with a `TypeError`. Read
+> the shipped JSON files at runtime rather than copying them into your project, so that methods
+> added in later releases are picked up.
+
+See the [Client Configuration guide](https://github.com/googleapis/google-cloud-php/blob/main/CLIENT_CONFIGURATION.md)
+for the full set of retry and timeout options.
+
 ### Debugging
 
 Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)

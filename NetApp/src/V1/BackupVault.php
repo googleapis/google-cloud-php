@@ -55,10 +55,10 @@ class BackupVault extends \Google\Protobuf\Internal\Message
      */
     protected $backup_vault_type = 0;
     /**
-     * Output only. Region in which the backup vault is created.
+     * Optional. Region in which the backup vault is created.
      * Format: `projects/{project_id}/locations/{location}`
      *
-     * Generated from protobuf field <code>string source_region = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string source_region = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $source_region = '';
     /**
@@ -135,7 +135,7 @@ class BackupVault extends \Google\Protobuf\Internal\Message
      *           Optional. Type of backup vault to be created.
      *           Default is IN_REGION.
      *     @type string $source_region
-     *           Output only. Region in which the backup vault is created.
+     *           Optional. Region in which the backup vault is created.
      *           Format: `projects/{project_id}/locations/{location}`
      *     @type string $backup_region
      *           Optional. Region where the backups are stored.
@@ -340,10 +340,10 @@ class BackupVault extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Region in which the backup vault is created.
+     * Optional. Region in which the backup vault is created.
      * Format: `projects/{project_id}/locations/{location}`
      *
-     * Generated from protobuf field <code>string source_region = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string source_region = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSourceRegion()
@@ -352,10 +352,10 @@ class BackupVault extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Region in which the backup vault is created.
+     * Optional. Region in which the backup vault is created.
      * Format: `projects/{project_id}/locations/{location}`
      *
-     * Generated from protobuf field <code>string source_region = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string source_region = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

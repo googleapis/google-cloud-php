@@ -149,6 +149,11 @@ use Google\Apps\Chat\V1\Space;
  *                      (external_user_allowed = "true" AND display_name:"Hello" AND space_type =
  *                      "SPACE")
  *                      ```
+ *
+ *                      The maximum query length is 1,000 characters.
+ *
+ *                      Invalid queries are rejected by the server with an `INVALID_ARGUMENT`
+ *                      error.
  */
 function search_spaces_sample(string $query): void
 {

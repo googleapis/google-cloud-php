@@ -32,14 +32,14 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
     protected $private_auction_deal_id = null;
     /**
      * Immutable. The ID of the
-     * [PrivateAuction](google.ads.admanager.v1.PrivateAuction).
+     * [PrivateAuction][google.ads.admanager.v1.PrivateAuction].
      *
      * Generated from protobuf field <code>optional int64 private_auction_id = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $private_auction_id = null;
     /**
      * Output only. The display name of the
-     * [PrivateAuction](google.ads.admanager.v1.PrivateAuction).
+     * [PrivateAuction][google.ads.admanager.v1.PrivateAuction].
      *
      * Generated from protobuf field <code>optional string private_auction_display_name = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -166,10 +166,10 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
      *           Output only. Deprecated: `PrivateAuctionDeal` ID.
      *     @type int|string $private_auction_id
      *           Immutable. The ID of the
-     *           [PrivateAuction](google.ads.admanager.v1.PrivateAuction).
+     *           [PrivateAuction][google.ads.admanager.v1.PrivateAuction].
      *     @type string $private_auction_display_name
      *           Output only. The display name of the
-     *           [PrivateAuction](google.ads.admanager.v1.PrivateAuction).
+     *           [PrivateAuction][google.ads.admanager.v1.PrivateAuction].
      *     @type int|string $buyer_account_id
      *           Immutable. The account ID of the buyer of the `PrivateAuctionDeal`.
      *     @type int|string $external_deal_id
@@ -294,7 +294,7 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The ID of the
-     * [PrivateAuction](google.ads.admanager.v1.PrivateAuction).
+     * [PrivateAuction][google.ads.admanager.v1.PrivateAuction].
      *
      * Generated from protobuf field <code>optional int64 private_auction_id = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int|string
@@ -316,7 +316,7 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The ID of the
-     * [PrivateAuction](google.ads.admanager.v1.PrivateAuction).
+     * [PrivateAuction][google.ads.admanager.v1.PrivateAuction].
      *
      * Generated from protobuf field <code>optional int64 private_auction_id = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int|string $var
@@ -332,7 +332,7 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The display name of the
-     * [PrivateAuction](google.ads.admanager.v1.PrivateAuction).
+     * [PrivateAuction][google.ads.admanager.v1.PrivateAuction].
      *
      * Generated from protobuf field <code>optional string private_auction_display_name = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -354,7 +354,7 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The display name of the
-     * [PrivateAuction](google.ads.admanager.v1.PrivateAuction).
+     * [PrivateAuction][google.ads.admanager.v1.PrivateAuction].
      *
      * Generated from protobuf field <code>optional string private_auction_display_name = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

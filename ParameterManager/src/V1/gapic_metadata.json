@@ -20,6 +20,16 @@
                                 "createParameterVersion"
                             ]
                         },
+                        "CreateTemplate": {
+                            "methods": [
+                                "createTemplate"
+                            ]
+                        },
+                        "CreateTemplateVersion": {
+                            "methods": [
+                                "createTemplateVersion"
+                            ]
+                        },
                         "DeleteParameter": {
                             "methods": [
                                 "deleteParameter"
@@ -28,6 +38,16 @@
                         "DeleteParameterVersion": {
                             "methods": [
                                 "deleteParameterVersion"
+                            ]
+                        },
+                        "DeleteTemplate": {
+                            "methods": [
+                                "deleteTemplate"
+                            ]
+                        },
+                        "DeleteTemplateVersion": {
+                            "methods": [
+                                "deleteTemplateVersion"
                             ]
                         },
                         "GetParameter": {
@@ -40,6 +60,16 @@
                                 "getParameterVersion"
                             ]
                         },
+                        "GetTemplate": {
+                            "methods": [
+                                "getTemplate"
+                            ]
+                        },
+                        "GetTemplateVersion": {
+                            "methods": [
+                                "getTemplateVersion"
+                            ]
+                        },
                         "ListParameterVersions": {
                             "methods": [
                                 "listParameterVersions"
@@ -50,9 +80,24 @@
                                 "listParameters"
                             ]
                         },
+                        "ListTemplateVersions": {
+                            "methods": [
+                                "listTemplateVersions"
+                            ]
+                        },
+                        "ListTemplates": {
+                            "methods": [
+                                "listTemplates"
+                            ]
+                        },
                         "RenderParameterVersion": {
                             "methods": [
                                 "renderParameterVersion"
+                            ]
+                        },
+                        "RenderTemplateVersion": {
+                            "methods": [
+                                "renderTemplateVersion"
                             ]
                         },
                         "UpdateParameter": {
@@ -63,6 +108,16 @@
                         "UpdateParameterVersion": {
                             "methods": [
                                 "updateParameterVersion"
+                            ]
+                        },
+                        "UpdateTemplate": {
+                            "methods": [
+                                "updateTemplate"
+                            ]
+                        },
+                        "UpdateTemplateVersion": {
+                            "methods": [
+                                "updateTemplateVersion"
                             ]
                         },
                         "GetLocation": {

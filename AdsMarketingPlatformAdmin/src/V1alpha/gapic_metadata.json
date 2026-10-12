@@ -10,9 +10,24 @@
                 "grpc": {
                     "libraryClient": "MarketingplatformAdminServiceClient",
                     "rpcs": {
+                        "CreateAdminAccessBinding": {
+                            "methods": [
+                                "createAdminAccessBinding"
+                            ]
+                        },
                         "CreateAnalyticsAccountLink": {
                             "methods": [
                                 "createAnalyticsAccountLink"
+                            ]
+                        },
+                        "CreateUserGroup": {
+                            "methods": [
+                                "createUserGroup"
+                            ]
+                        },
+                        "CreateUserGroupMember": {
+                            "methods": [
+                                "createUserGroupMember"
                             ]
                         },
                         "DeleteAnalyticsAccountLink": {
@@ -20,14 +35,44 @@
                                 "deleteAnalyticsAccountLink"
                             ]
                         },
+                        "DeleteUserGroup": {
+                            "methods": [
+                                "deleteUserGroup"
+                            ]
+                        },
+                        "DeleteUserGroupMember": {
+                            "methods": [
+                                "deleteUserGroupMember"
+                            ]
+                        },
                         "FindSalesPartnerManagedClients": {
                             "methods": [
                                 "findSalesPartnerManagedClients"
                             ]
                         },
+                        "GetAdminAccessBinding": {
+                            "methods": [
+                                "getAdminAccessBinding"
+                            ]
+                        },
                         "GetOrganization": {
                             "methods": [
                                 "getOrganization"
+                            ]
+                        },
+                        "GetUserGroup": {
+                            "methods": [
+                                "getUserGroup"
+                            ]
+                        },
+                        "GetUserGroupMember": {
+                            "methods": [
+                                "getUserGroupMember"
+                            ]
+                        },
+                        "ListAdminAccessBindings": {
+                            "methods": [
+                                "listAdminAccessBindings"
                             ]
                         },
                         "ListAnalyticsAccountLinks": {
@@ -40,6 +85,16 @@
                                 "listOrganizations"
                             ]
                         },
+                        "ListUserGroupMembers": {
+                            "methods": [
+                                "listUserGroupMembers"
+                            ]
+                        },
+                        "ListUserGroups": {
+                            "methods": [
+                                "listUserGroups"
+                            ]
+                        },
                         "ReportPropertyUsage": {
                             "methods": [
                                 "reportPropertyUsage"
@@ -48,6 +103,21 @@
                         "SetPropertyServiceLevel": {
                             "methods": [
                                 "setPropertyServiceLevel"
+                            ]
+                        },
+                        "UpdateAdminAccessBinding": {
+                            "methods": [
+                                "updateAdminAccessBinding"
+                            ]
+                        },
+                        "UpdateUserGroup": {
+                            "methods": [
+                                "updateUserGroup"
+                            ]
+                        },
+                        "UpdateUserGroupMember": {
+                            "methods": [
+                                "updateUserGroupMember"
                             ]
                         }
                     }

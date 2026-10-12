@@ -39,6 +39,7 @@ use Google\Apps\Chat\V1\CompleteImportSpaceRequest;
 use Google\Apps\Chat\V1\CompleteImportSpaceResponse;
 use Google\Apps\Chat\V1\CreateCustomEmojiRequest;
 use Google\Apps\Chat\V1\CreateMembershipRequest;
+use Google\Apps\Chat\V1\CreateMessagePinRequest;
 use Google\Apps\Chat\V1\CreateMessageRequest;
 use Google\Apps\Chat\V1\CreateReactionRequest;
 use Google\Apps\Chat\V1\CreateSectionRequest;
@@ -46,6 +47,7 @@ use Google\Apps\Chat\V1\CreateSpaceRequest;
 use Google\Apps\Chat\V1\CustomEmoji;
 use Google\Apps\Chat\V1\DeleteCustomEmojiRequest;
 use Google\Apps\Chat\V1\DeleteMembershipRequest;
+use Google\Apps\Chat\V1\DeleteMessagePinRequest;
 use Google\Apps\Chat\V1\DeleteMessageRequest;
 use Google\Apps\Chat\V1\DeleteReactionRequest;
 use Google\Apps\Chat\V1\DeleteSectionRequest;
@@ -64,6 +66,7 @@ use Google\Apps\Chat\V1\GetSpaceRequest;
 use Google\Apps\Chat\V1\GetThreadReadStateRequest;
 use Google\Apps\Chat\V1\ListCustomEmojisRequest;
 use Google\Apps\Chat\V1\ListMembershipsRequest;
+use Google\Apps\Chat\V1\ListMessagePinsRequest;
 use Google\Apps\Chat\V1\ListMessagesRequest;
 use Google\Apps\Chat\V1\ListReactionsRequest;
 use Google\Apps\Chat\V1\ListSectionItemsRequest;
@@ -75,6 +78,7 @@ use Google\Apps\Chat\V1\MarkAsAwayRequest;
 use Google\Apps\Chat\V1\MarkAsDoNotDisturbRequest;
 use Google\Apps\Chat\V1\Membership;
 use Google\Apps\Chat\V1\Message;
+use Google\Apps\Chat\V1\MessagePin;
 use Google\Apps\Chat\V1\MoveSectionItemRequest;
 use Google\Apps\Chat\V1\MoveSectionItemResponse;
 use Google\Apps\Chat\V1\PositionSectionRequest;
@@ -118,12 +122,14 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<CustomEmoji> createCustomEmojiAsync(CreateCustomEmojiRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Membership> createMembershipAsync(CreateMembershipRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Message> createMessageAsync(CreateMessageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MessagePin> createMessagePinAsync(CreateMessagePinRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Reaction> createReactionAsync(CreateReactionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Section> createSectionAsync(CreateSectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> createSpaceAsync(CreateSpaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteCustomEmojiAsync(DeleteCustomEmojiRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Membership> deleteMembershipAsync(DeleteMembershipRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteMessageAsync(DeleteMessageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteMessagePinAsync(DeleteMessagePinRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteReactionAsync(DeleteReactionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteSectionAsync(DeleteSectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteSpaceAsync(DeleteSpaceRequest $request, array $optionalArgs = [])
@@ -141,6 +147,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<ThreadReadState> getThreadReadStateAsync(GetThreadReadStateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCustomEmojisAsync(ListCustomEmojisRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listMembershipsAsync(ListMembershipsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMessagePinsAsync(ListMessagePinsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listReactionsAsync(ListReactionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSectionItemsAsync(ListSectionItemsRequest $request, array $optionalArgs = [])
@@ -225,6 +232,8 @@ final class ChatServiceClient
         'https://www.googleapis.com/auth/chat.messages.readonly',
         'https://www.googleapis.com/auth/chat.spaces',
         'https://www.googleapis.com/auth/chat.spaces.create',
+        'https://www.googleapis.com/auth/chat.spaces.pins',
+        'https://www.googleapis.com/auth/chat.spaces.pins.readonly',
         'https://www.googleapis.com/auth/chat.spaces.readonly',
         'https://www.googleapis.com/auth/chat.users.availability',
         'https://www.googleapis.com/auth/chat.users.availability.readonly',
@@ -334,6 +343,23 @@ final class ChatServiceClient
         return self::getPathTemplate('message')->render([
             'space' => $space,
             'message' => $message,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a message_pin
+     * resource.
+     *
+     * @param string $space
+     * @param string $messagePin
+     *
+     * @return string The formatted message_pin resource.
+     */
+    public static function messagePinName(string $space, string $messagePin): string
+    {
+        return self::getPathTemplate('messagePin')->render([
+            'space' => $space,
+            'message_pin' => $messagePin,
         ]);
     }
 
@@ -540,6 +566,7 @@ final class ChatServiceClient
      * - customEmoji: customEmojis/{custom_emoji}
      * - membership: spaces/{space}/members/{member}
      * - message: spaces/{space}/messages/{message}
+     * - messagePin: spaces/{space}/messagePins/{message_pin}
      * - quotedMessageMetadata: spaces/{space}/messages/{message}/quotedMessageMetadata/{quoted_message_metadata}
      * - reaction: spaces/{space}/messages/{message}/reactions/{reaction}
      * - section: users/{user}/sections/{section}
@@ -875,6 +902,40 @@ final class ChatServiceClient
     }
 
     /**
+     * Creates a message pin.
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * with one of the following [authorization
+     * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+     *
+     * - `https://www.googleapis.com/auth/chat.spaces.pins`
+     * - `https://www.googleapis.com/auth/chat.spaces`
+     *
+     * The async variant is {@see ChatServiceClient::createMessagePinAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/create_message_pin.php
+     *
+     * @param CreateMessagePinRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return MessagePin
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createMessagePin(CreateMessagePinRequest $request, array $callOptions = []): MessagePin
+    {
+        return $this->startApiCall('CreateMessagePin', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a reaction and adds it to a message. For an example, see
      * [Add a reaction to a
      * message](https://developers.google.com/workspace/chat/create-reactions).
@@ -1160,6 +1221,38 @@ final class ChatServiceClient
     public function deleteMessage(DeleteMessageRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteMessage', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a message pin.
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * with one of the following [authorization
+     * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+     *
+     * - `https://www.googleapis.com/auth/chat.spaces.pins`
+     * - `https://www.googleapis.com/auth/chat.spaces`
+     *
+     * The async variant is {@see ChatServiceClient::deleteMessagePinAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/delete_message_pin.php
+     *
+     * @param DeleteMessagePinRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteMessagePin(DeleteMessagePinRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteMessagePin', $request, $callOptions)->wait();
     }
 
     /**
@@ -1938,6 +2031,44 @@ final class ChatServiceClient
     public function listMemberships(ListMembershipsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListMemberships', $request, $callOptions);
+    }
+
+    /**
+     * Lists message pins in a space. Users can pin important messages in spaces
+     * for easy access. For more information, see [Pin or unpin a conversation in
+     * Google Chat](https://support.google.com/chat/answer/15622437).
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * with one of the following [authorization
+     * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+     *
+     * - `https://www.googleapis.com/auth/chat.spaces.pins.readonly`
+     * - `https://www.googleapis.com/auth/chat.spaces.pins`
+     * - `https://www.googleapis.com/auth/chat.spaces.readonly`
+     * - `https://www.googleapis.com/auth/chat.spaces`
+     *
+     * The async variant is {@see ChatServiceClient::listMessagePinsAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/list_message_pins.php
+     *
+     * @param ListMessagePinsRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listMessagePins(ListMessagePinsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListMessagePins', $request, $callOptions);
     }
 
     /**

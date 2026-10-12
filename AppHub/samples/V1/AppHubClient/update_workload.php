@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\AppHub\V1\Client\AppHubClient;
 use Google\Cloud\AppHub\V1\UpdateWorkloadRequest;
 use Google\Cloud\AppHub\V1\Workload;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -43,11 +42,9 @@ function update_workload_sample(string $formattedWorkloadDiscoveredWorkload): vo
     $appHubClient = new AppHubClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
     $workload = (new Workload())
         ->setDiscoveredWorkload($formattedWorkloadDiscoveredWorkload);
     $request = (new UpdateWorkloadRequest())
-        ->setUpdateMask($updateMask)
         ->setWorkload($workload);
 
     // Call the API and handle any network failures.

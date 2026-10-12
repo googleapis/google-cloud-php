@@ -32,8 +32,6 @@ use Google\Cloud\Dialogflow\V2\TextInput;
 /**
  * Get answers for the given query based on knowledge documents.
  *
- * @param string $queryText                    The UTF-8 encoded natural language text to be processed.
- *                                             Text length must not exceed 256 characters for virtual agent interactions.
  * @param string $queryLanguageCode            The language of this conversational query. See [Language
  *                                             Support](https://cloud.google.com/dialogflow/docs/reference/language)
  *                                             for a list of the currently supported language codes. Note that queries in
@@ -44,7 +42,6 @@ use Google\Cloud\Dialogflow\V2\TextInput;
  *                                             {@see ConversationsClient::conversationProfileName()} for help formatting this field.
  */
 function search_knowledge_sample(
-    string $queryText,
     string $queryLanguageCode,
     string $formattedConversationProfile
 ): void {
@@ -53,7 +50,6 @@ function search_knowledge_sample(
 
     // Prepare the request message.
     $query = (new TextInput())
-        ->setText($queryText)
         ->setLanguageCode($queryLanguageCode);
     $request = (new SearchKnowledgeRequest())
         ->setQuery($query)
@@ -80,13 +76,12 @@ function search_knowledge_sample(
  */
 function callSample(): void
 {
-    $queryText = '[TEXT]';
     $queryLanguageCode = '[LANGUAGE_CODE]';
     $formattedConversationProfile = ConversationsClient::conversationProfileName(
         '[PROJECT]',
         '[CONVERSATION_PROFILE]'
     );
 
-    search_knowledge_sample($queryText, $queryLanguageCode, $formattedConversationProfile);
+    search_knowledge_sample($queryLanguageCode, $formattedConversationProfile);
 }
 // [END dialogflow_v2_generated_Conversations_SearchKnowledge_sync]

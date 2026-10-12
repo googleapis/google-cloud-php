@@ -97,11 +97,11 @@ class DatastoreMultipleDbTest extends DatastoreMultipleDbTestCase
 
         $results = iterator_to_array($client->runQuery($query));
 
+        $this->assertCount(4, $results);
         $this->assertEquals(self::$data[0], $results[0]->get());
         $this->assertEquals(self::$data[1], $results[1]->get());
         $this->assertEquals(self::$data[2], $results[2]->get());
         $this->assertEquals(self::$data[3], $results[3]->get());
-        $this->assertCount(4, $results);
     }
 
     /**

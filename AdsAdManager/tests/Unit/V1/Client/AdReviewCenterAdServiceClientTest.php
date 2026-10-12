@@ -25,9 +25,13 @@ namespace Google\Ads\AdManager\Tests\Unit\V1\Client;
 use Google\Ads\AdManager\V1\AdReviewCenterAd;
 use Google\Ads\AdManager\V1\BatchAllowAdReviewCenterAdsRequest;
 use Google\Ads\AdManager\V1\BatchAllowAdReviewCenterAdsResponse;
+use Google\Ads\AdManager\V1\BatchApplyAdReviewCenterCustomLabelsRequest;
+use Google\Ads\AdManager\V1\BatchApplyAdReviewCenterCustomLabelsResponse;
 use Google\Ads\AdManager\V1\BatchBlockAdReviewCenterAdsRequest;
 use Google\Ads\AdManager\V1\BatchBlockAdReviewCenterAdsResponse;
 use Google\Ads\AdManager\V1\Client\AdReviewCenterAdServiceClient;
+use Google\Ads\AdManager\V1\FetchAdReviewCenterCustomLabelsRequest;
+use Google\Ads\AdManager\V1\FetchAdReviewCenterCustomLabelsResponse;
 use Google\Ads\AdManager\V1\SearchAdReviewCenterAdsRequest;
 use Google\Ads\AdManager\V1\SearchAdReviewCenterAdsResponse;
 use Google\ApiCore\ApiException;
@@ -205,6 +209,72 @@ class AdReviewCenterAdServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function batchApplyAdReviewCenterCustomLabelsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchApplyAdReviewCenterCustomLabelsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->webPropertyName('[NETWORK_CODE]', '[WEB_PROPERTY]');
+        $request = (new BatchApplyAdReviewCenterCustomLabelsRequest())->setParent($formattedParent);
+        $response = $gapicClient->batchApplyAdReviewCenterCustomLabels($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.ads.admanager.v1.AdReviewCenterAdService/BatchApplyAdReviewCenterCustomLabels',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchApplyAdReviewCenterCustomLabelsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->webPropertyName('[NETWORK_CODE]', '[WEB_PROPERTY]');
+        $request = (new BatchApplyAdReviewCenterCustomLabelsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->batchApplyAdReviewCenterCustomLabels($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function batchBlockAdReviewCenterAdsTest()
     {
         $operationsTransport = $this->createTransport();
@@ -335,6 +405,72 @@ class AdReviewCenterAdServiceClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchAdReviewCenterCustomLabelsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new FetchAdReviewCenterCustomLabelsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->webPropertyName('[NETWORK_CODE]', '[WEB_PROPERTY]');
+        $request = (new FetchAdReviewCenterCustomLabelsRequest())->setParent($formattedParent);
+        $response = $gapicClient->fetchAdReviewCenterCustomLabels($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.ads.admanager.v1.AdReviewCenterAdService/FetchAdReviewCenterCustomLabels',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchAdReviewCenterCustomLabelsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->webPropertyName('[NETWORK_CODE]', '[WEB_PROPERTY]');
+        $request = (new FetchAdReviewCenterCustomLabelsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->fetchAdReviewCenterCustomLabels($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */

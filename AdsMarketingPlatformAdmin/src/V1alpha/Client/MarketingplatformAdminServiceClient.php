@@ -26,19 +26,36 @@
 
 namespace Google\Ads\MarketingPlatform\Admin\V1alpha\Client;
 
+use Google\Ads\MarketingPlatform\Admin\V1alpha\AdminAccessBinding;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\AnalyticsAccountLink;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\CreateAdminAccessBindingRequest;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\CreateAnalyticsAccountLinkRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\CreateUserGroupMemberRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\CreateUserGroupRequest;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\DeleteAnalyticsAccountLinkRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\DeleteUserGroupMemberRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\DeleteUserGroupRequest;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\FindSalesPartnerManagedClientsRequest;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\FindSalesPartnerManagedClientsResponse;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\GetAdminAccessBindingRequest;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\GetOrganizationRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\GetUserGroupMemberRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\GetUserGroupRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\ListAdminAccessBindingsRequest;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\ListAnalyticsAccountLinksRequest;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\ListOrganizationsRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\ListUserGroupMembersRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\ListUserGroupsRequest;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\Organization;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\ReportPropertyUsageRequest;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\ReportPropertyUsageResponse;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\SetPropertyServiceLevelRequest;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\SetPropertyServiceLevelResponse;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\UpdateAdminAccessBindingRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\UpdateUserGroupMemberRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\UpdateUserGroupRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\UserGroup;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\UserGroupMember;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -65,14 +82,28 @@ use Psr\Log\LoggerInterface;
  *
  * @experimental
  *
+ * @method PromiseInterface<AdminAccessBinding> createAdminAccessBindingAsync(CreateAdminAccessBindingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AnalyticsAccountLink> createAnalyticsAccountLinkAsync(CreateAnalyticsAccountLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserGroup> createUserGroupAsync(CreateUserGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserGroupMember> createUserGroupMemberAsync(CreateUserGroupMemberRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteAnalyticsAccountLinkAsync(DeleteAnalyticsAccountLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteUserGroupAsync(DeleteUserGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteUserGroupMemberAsync(DeleteUserGroupMemberRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FindSalesPartnerManagedClientsResponse> findSalesPartnerManagedClientsAsync(FindSalesPartnerManagedClientsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AdminAccessBinding> getAdminAccessBindingAsync(GetAdminAccessBindingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Organization> getOrganizationAsync(GetOrganizationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserGroup> getUserGroupAsync(GetUserGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserGroupMember> getUserGroupMemberAsync(GetUserGroupMemberRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAdminAccessBindingsAsync(ListAdminAccessBindingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAnalyticsAccountLinksAsync(ListAnalyticsAccountLinksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listOrganizationsAsync(ListOrganizationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUserGroupMembersAsync(ListUserGroupMembersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUserGroupsAsync(ListUserGroupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ReportPropertyUsageResponse> reportPropertyUsageAsync(ReportPropertyUsageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SetPropertyServiceLevelResponse> setPropertyServiceLevelAsync(SetPropertyServiceLevelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AdminAccessBinding> updateAdminAccessBindingAsync(UpdateAdminAccessBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserGroup> updateUserGroupAsync(UpdateUserGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserGroupMember> updateUserGroupMemberAsync(UpdateUserGroupMemberRequest $request, array $optionalArgs = [])
  */
 final class MarketingplatformAdminServiceClient
 {
@@ -147,6 +178,25 @@ final class MarketingplatformAdminServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * admin_access_binding resource.
+     *
+     * @param string $organization
+     * @param string $adminAccessBinding
+     *
+     * @return string The formatted admin_access_binding resource.
+     *
+     * @experimental
+     */
+    public static function adminAccessBindingName(string $organization, string $adminAccessBinding): string
+    {
+        return self::getPathTemplate('adminAccessBinding')->render([
+            'organization' => $organization,
+            'admin_access_binding' => $adminAccessBinding,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * analytics_account_link resource.
      *
      * @param string $organization
@@ -199,13 +249,56 @@ final class MarketingplatformAdminServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a user_group
+     * resource.
+     *
+     * @param string $organization
+     * @param string $userGroup
+     *
+     * @return string The formatted user_group resource.
+     *
+     * @experimental
+     */
+    public static function userGroupName(string $organization, string $userGroup): string
+    {
+        return self::getPathTemplate('userGroup')->render([
+            'organization' => $organization,
+            'user_group' => $userGroup,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * user_group_member resource.
+     *
+     * @param string $organization
+     * @param string $userGroup
+     * @param string $member
+     *
+     * @return string The formatted user_group_member resource.
+     *
+     * @experimental
+     */
+    public static function userGroupMemberName(string $organization, string $userGroup, string $member): string
+    {
+        return self::getPathTemplate('userGroupMember')->render([
+            'organization' => $organization,
+            'user_group' => $userGroup,
+            'member' => $member,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - account: accounts/{account}
+     * - adminAccessBinding: organizations/{organization}/adminAccessBindings/{admin_access_binding}
      * - analyticsAccountLink: organizations/{organization}/analyticsAccountLinks/{analytics_account_link}
      * - organization: organizations/{organization}
      * - property: properties/{property}
+     * - userGroup: organizations/{organization}/userGroups/{user_group}
+     * - userGroupMember: organizations/{organization}/userGroups/{user_group}/members/{member}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -316,6 +409,37 @@ final class MarketingplatformAdminServiceClient
     }
 
     /**
+     * Creates an admin access binding in the specified GMP organization.
+     *
+     * The async variant is
+     * {@see MarketingplatformAdminServiceClient::createAdminAccessBindingAsync()} .
+     *
+     * @example samples/V1alpha/MarketingplatformAdminServiceClient/create_admin_access_binding.php
+     *
+     * @param CreateAdminAccessBindingRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AdminAccessBinding
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createAdminAccessBinding(
+        CreateAdminAccessBindingRequest $request,
+        array $callOptions = []
+    ): AdminAccessBinding {
+        return $this->startApiCall('CreateAdminAccessBinding', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates the link between the Analytics account and the Google Marketing
      * Platform organization.
      *
@@ -352,6 +476,66 @@ final class MarketingplatformAdminServiceClient
     }
 
     /**
+     * Creates a user group in the specified GMP organization.
+     *
+     * The async variant is
+     * {@see MarketingplatformAdminServiceClient::createUserGroupAsync()} .
+     *
+     * @example samples/V1alpha/MarketingplatformAdminServiceClient/create_user_group.php
+     *
+     * @param CreateUserGroupRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return UserGroup
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createUserGroup(CreateUserGroupRequest $request, array $callOptions = []): UserGroup
+    {
+        return $this->startApiCall('CreateUserGroup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Adds a member to the specified GMP user group.
+     *
+     * The async variant is
+     * {@see MarketingplatformAdminServiceClient::createUserGroupMemberAsync()} .
+     *
+     * @example samples/V1alpha/MarketingplatformAdminServiceClient/create_user_group_member.php
+     *
+     * @param CreateUserGroupMemberRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return UserGroupMember
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createUserGroupMember(
+        CreateUserGroupMemberRequest $request,
+        array $callOptions = []
+    ): UserGroupMember {
+        return $this->startApiCall('CreateUserGroupMember', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes the AnalyticsAccountLink, which detaches the Analytics account from
      * the Google Marketing Platform organization.
      *
@@ -382,6 +566,60 @@ final class MarketingplatformAdminServiceClient
         array $callOptions = []
     ): void {
         $this->startApiCall('DeleteAnalyticsAccountLink', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a user group in the specified GMP organization.
+     *
+     * The async variant is
+     * {@see MarketingplatformAdminServiceClient::deleteUserGroupAsync()} .
+     *
+     * @example samples/V1alpha/MarketingplatformAdminServiceClient/delete_user_group.php
+     *
+     * @param DeleteUserGroupRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteUserGroup(DeleteUserGroupRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteUserGroup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a member in the specified GMP user group.
+     *
+     * The async variant is
+     * {@see MarketingplatformAdminServiceClient::deleteUserGroupMemberAsync()} .
+     *
+     * @example samples/V1alpha/MarketingplatformAdminServiceClient/delete_user_group_member.php
+     *
+     * @param DeleteUserGroupMemberRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteUserGroupMember(DeleteUserGroupMemberRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteUserGroupMember', $request, $callOptions)->wait();
     }
 
     /**
@@ -420,7 +658,38 @@ final class MarketingplatformAdminServiceClient
     }
 
     /**
-     * Lookup for a single organization.
+     * Looks up a single admin access binding.
+     *
+     * The async variant is
+     * {@see MarketingplatformAdminServiceClient::getAdminAccessBindingAsync()} .
+     *
+     * @example samples/V1alpha/MarketingplatformAdminServiceClient/get_admin_access_binding.php
+     *
+     * @param GetAdminAccessBindingRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AdminAccessBinding
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getAdminAccessBinding(
+        GetAdminAccessBindingRequest $request,
+        array $callOptions = []
+    ): AdminAccessBinding {
+        return $this->startApiCall('GetAdminAccessBinding', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Looks up a single organization.
      *
      * The async variant is
      * {@see MarketingplatformAdminServiceClient::getOrganizationAsync()} .
@@ -446,6 +715,95 @@ final class MarketingplatformAdminServiceClient
     public function getOrganization(GetOrganizationRequest $request, array $callOptions = []): Organization
     {
         return $this->startApiCall('GetOrganization', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Looks up a single user group.
+     *
+     * The async variant is
+     * {@see MarketingplatformAdminServiceClient::getUserGroupAsync()} .
+     *
+     * @example samples/V1alpha/MarketingplatformAdminServiceClient/get_user_group.php
+     *
+     * @param GetUserGroupRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return UserGroup
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getUserGroup(GetUserGroupRequest $request, array $callOptions = []): UserGroup
+    {
+        return $this->startApiCall('GetUserGroup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Looks up a single user group member.
+     *
+     * The async variant is
+     * {@see MarketingplatformAdminServiceClient::getUserGroupMemberAsync()} .
+     *
+     * @example samples/V1alpha/MarketingplatformAdminServiceClient/get_user_group_member.php
+     *
+     * @param GetUserGroupMemberRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return UserGroupMember
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getUserGroupMember(GetUserGroupMemberRequest $request, array $callOptions = []): UserGroupMember
+    {
+        return $this->startApiCall('GetUserGroupMember', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns a list of admin access bindings in the specified GMP organization.
+     *
+     * The async variant is
+     * {@see MarketingplatformAdminServiceClient::listAdminAccessBindingsAsync()} .
+     *
+     * @example samples/V1alpha/MarketingplatformAdminServiceClient/list_admin_access_bindings.php
+     *
+     * @param ListAdminAccessBindingsRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listAdminAccessBindings(
+        ListAdminAccessBindingsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListAdminAccessBindings', $request, $callOptions);
     }
 
     /**
@@ -510,7 +868,67 @@ final class MarketingplatformAdminServiceClient
     }
 
     /**
-     * Get the usage and billing data for properties within the organization for
+     * Returns a list of members in the specified user group.
+     *
+     * The async variant is
+     * {@see MarketingplatformAdminServiceClient::listUserGroupMembersAsync()} .
+     *
+     * @example samples/V1alpha/MarketingplatformAdminServiceClient/list_user_group_members.php
+     *
+     * @param ListUserGroupMembersRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listUserGroupMembers(
+        ListUserGroupMembersRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListUserGroupMembers', $request, $callOptions);
+    }
+
+    /**
+     * Returns a list of user groups in the specified GMP organization.
+     *
+     * The async variant is
+     * {@see MarketingplatformAdminServiceClient::listUserGroupsAsync()} .
+     *
+     * @example samples/V1alpha/MarketingplatformAdminServiceClient/list_user_groups.php
+     *
+     * @param ListUserGroupsRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listUserGroups(ListUserGroupsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListUserGroups', $request, $callOptions);
+    }
+
+    /**
+     * Gets the usage and billing data for properties within the organization for
      * the specified month.
      *
      * Per direct client org, user needs to be OrgAdmin/BillingAdmin on the
@@ -578,5 +996,96 @@ final class MarketingplatformAdminServiceClient
         array $callOptions = []
     ): SetPropertyServiceLevelResponse {
         return $this->startApiCall('SetPropertyServiceLevel', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates an admin access binding in the specified GMP organization.
+     *
+     * The async variant is
+     * {@see MarketingplatformAdminServiceClient::updateAdminAccessBindingAsync()} .
+     *
+     * @example samples/V1alpha/MarketingplatformAdminServiceClient/update_admin_access_binding.php
+     *
+     * @param UpdateAdminAccessBindingRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AdminAccessBinding
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateAdminAccessBinding(
+        UpdateAdminAccessBindingRequest $request,
+        array $callOptions = []
+    ): AdminAccessBinding {
+        return $this->startApiCall('UpdateAdminAccessBinding', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a user group in the specified GMP organization.
+     *
+     * The async variant is
+     * {@see MarketingplatformAdminServiceClient::updateUserGroupAsync()} .
+     *
+     * @example samples/V1alpha/MarketingplatformAdminServiceClient/update_user_group.php
+     *
+     * @param UpdateUserGroupRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return UserGroup
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateUserGroup(UpdateUserGroupRequest $request, array $callOptions = []): UserGroup
+    {
+        return $this->startApiCall('UpdateUserGroup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a member in the specified GMP user group.
+     *
+     * The async variant is
+     * {@see MarketingplatformAdminServiceClient::updateUserGroupMemberAsync()} .
+     *
+     * @example samples/V1alpha/MarketingplatformAdminServiceClient/update_user_group_member.php
+     *
+     * @param UpdateUserGroupMemberRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return UserGroupMember
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateUserGroupMember(
+        UpdateUserGroupMemberRequest $request,
+        array $callOptions = []
+    ): UserGroupMember {
+        return $this->startApiCall('UpdateUserGroupMember', $request, $callOptions)->wait();
     }
 }

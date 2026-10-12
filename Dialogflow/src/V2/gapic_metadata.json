@@ -157,6 +157,50 @@
                 }
             }
         },
+        "CompanionAgents": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CompanionAgentsClient",
+                    "rpcs": {
+                        "CreateCompanionAgent": {
+                            "methods": [
+                                "createCompanionAgent"
+                            ]
+                        },
+                        "DeleteCompanionAgent": {
+                            "methods": [
+                                "deleteCompanionAgent"
+                            ]
+                        },
+                        "GetCompanionAgent": {
+                            "methods": [
+                                "getCompanionAgent"
+                            ]
+                        },
+                        "ListCompanionAgents": {
+                            "methods": [
+                                "listCompanionAgents"
+                            ]
+                        },
+                        "UpdateCompanionAgent": {
+                            "methods": [
+                                "updateCompanionAgent"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "Contexts": {
             "clients": {
                 "grpc": {
@@ -412,6 +456,11 @@
                                 "analyzeContent"
                             ]
                         },
+                        "BidiStreamingAnalyzeContent": {
+                            "methods": [
+                                "bidiStreamingAnalyzeContent"
+                            ]
+                        },
                         "CreateParticipant": {
                             "methods": [
                                 "createParticipant"
@@ -430,6 +479,11 @@
                         "StreamingAnalyzeContent": {
                             "methods": [
                                 "streamingAnalyzeContent"
+                            ]
+                        },
+                        "StreamingReactiveCompanionSuggestions": {
+                            "methods": [
+                                "streamingReactiveCompanionSuggestions"
                             ]
                         },
                         "SuggestArticles": {

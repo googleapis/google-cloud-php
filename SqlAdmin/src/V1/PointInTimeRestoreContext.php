@@ -41,7 +41,7 @@ class PointInTimeRestoreContext extends \Google\Protobuf\Internal\Message
      * instance is accessible for private IP. For example,
      * `/projects/myProject/global/networks/default`.
      *
-     * Generated from protobuf field <code>optional string private_network = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string private_network = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $private_network = null;
     /**
@@ -261,7 +261,7 @@ class PointInTimeRestoreContext extends \Google\Protobuf\Internal\Message
      * instance is accessible for private IP. For example,
      * `/projects/myProject/global/networks/default`.
      *
-     * Generated from protobuf field <code>optional string private_network = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string private_network = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getPrivateNetwork()
@@ -284,7 +284,7 @@ class PointInTimeRestoreContext extends \Google\Protobuf\Internal\Message
      * instance is accessible for private IP. For example,
      * `/projects/myProject/global/networks/default`.
      *
-     * Generated from protobuf field <code>optional string private_network = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string private_network = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -24,13 +24,24 @@ class Value extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $dropdown_value
-     *           The custom_field_option_id, if the CustomFieldDataType is DROPDOWN.
+     *           The custom_field_option_id, if the
+     *           [CustomFieldDataType][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType]
+     *           is [DROPDOWN][CustomFieldDataTypeEnum.CustomFieldDataType.DROPDOWN].
      *     @type string $string_value
-     *           The value, if the CustomFieldDataType is STRING.
+     *           The value, if the
+     *           [CustomFieldDataType][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType]
+     *           is
+     *           [STRING][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType.STRING].
      *     @type float $number_value
-     *           The value, if the CustomFieldDataType is NUMBER.
+     *           The value, if the
+     *           [CustomFieldDataType][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType]
+     *           is
+     *           [NUMBER][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType.NUMBER].
      *     @type bool $toggle_value
-     *           The value, if the CustomFieldDataType is TOGGLE.
+     *           The value, if the
+     *           [CustomFieldDataType][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType]
+     *           is
+     *           [TOGGLE][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType.TOGGLE].
      * }
      */
     public function __construct($data = NULL) {
@@ -39,7 +50,9 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The custom_field_option_id, if the CustomFieldDataType is DROPDOWN.
+     * The custom_field_option_id, if the
+     * [CustomFieldDataType][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType]
+     * is [DROPDOWN][CustomFieldDataTypeEnum.CustomFieldDataType.DROPDOWN].
      *
      * Generated from protobuf field <code>int64 dropdown_value = 1;</code>
      * @return int|string
@@ -55,7 +68,9 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The custom_field_option_id, if the CustomFieldDataType is DROPDOWN.
+     * The custom_field_option_id, if the
+     * [CustomFieldDataType][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType]
+     * is [DROPDOWN][CustomFieldDataTypeEnum.CustomFieldDataType.DROPDOWN].
      *
      * Generated from protobuf field <code>int64 dropdown_value = 1;</code>
      * @param int|string $var
@@ -70,7 +85,10 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value, if the CustomFieldDataType is STRING.
+     * The value, if the
+     * [CustomFieldDataType][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType]
+     * is
+     * [STRING][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType.STRING].
      *
      * Generated from protobuf field <code>string string_value = 2;</code>
      * @return string
@@ -86,7 +104,10 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value, if the CustomFieldDataType is STRING.
+     * The value, if the
+     * [CustomFieldDataType][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType]
+     * is
+     * [STRING][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType.STRING].
      *
      * Generated from protobuf field <code>string string_value = 2;</code>
      * @param string $var
@@ -101,7 +122,10 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value, if the CustomFieldDataType is NUMBER.
+     * The value, if the
+     * [CustomFieldDataType][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType]
+     * is
+     * [NUMBER][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType.NUMBER].
      *
      * Generated from protobuf field <code>double number_value = 3;</code>
      * @return float
@@ -117,7 +141,10 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value, if the CustomFieldDataType is NUMBER.
+     * The value, if the
+     * [CustomFieldDataType][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType]
+     * is
+     * [NUMBER][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType.NUMBER].
      *
      * Generated from protobuf field <code>double number_value = 3;</code>
      * @param float $var
@@ -132,7 +159,10 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value, if the CustomFieldDataType is TOGGLE.
+     * The value, if the
+     * [CustomFieldDataType][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType]
+     * is
+     * [TOGGLE][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType.TOGGLE].
      *
      * Generated from protobuf field <code>bool toggle_value = 4;</code>
      * @return bool
@@ -148,7 +178,10 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value, if the CustomFieldDataType is TOGGLE.
+     * The value, if the
+     * [CustomFieldDataType][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType]
+     * is
+     * [TOGGLE][google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType.TOGGLE].
      *
      * Generated from protobuf field <code>bool toggle_value = 4;</code>
      * @param bool $var

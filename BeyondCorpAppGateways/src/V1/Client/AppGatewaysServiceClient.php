@@ -69,6 +69,10 @@ use Psr\Log\LoggerInterface;
  * The AppGatewaysService service provides methods to manage
  * (create/read/update/delete) BeyondCorp AppGateways.
  *
+ *
+ * Deprecated: App Connector is deprecated and creation of new App Connector
+ * resources is no longer permitted. Use Security Gateway instead.
+ *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
@@ -76,6 +80,8 @@ use Psr\Log\LoggerInterface;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * @deprecated This class will be removed in the next major version update.
  *
  * @method PromiseInterface<OperationResponse> createAppGatewayAsync(CreateAppGatewayRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAppGatewayAsync(DeleteAppGatewayRequest $request, array $optionalArgs = [])
@@ -357,6 +363,8 @@ final class AppGatewaysServiceClient
      * @return OperationResponse<AppGateway>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function createAppGateway(CreateAppGatewayRequest $request, array $callOptions = []): OperationResponse
     {
@@ -383,6 +391,8 @@ final class AppGatewaysServiceClient
      * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function deleteAppGateway(DeleteAppGatewayRequest $request, array $callOptions = []): OperationResponse
     {
@@ -409,6 +419,8 @@ final class AppGatewaysServiceClient
      * @return AppGateway
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getAppGateway(GetAppGatewayRequest $request, array $callOptions = []): AppGateway
     {
@@ -435,6 +447,8 @@ final class AppGatewaysServiceClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listAppGateways(ListAppGatewaysRequest $request, array $callOptions = []): PagedListResponse
     {
@@ -469,6 +483,21 @@ final class AppGatewaysServiceClient
 
     /**
      * Lists information about the supported locations for this service.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see AppGatewaysServiceClient::listLocationsAsync()} .
      *

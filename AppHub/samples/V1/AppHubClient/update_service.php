@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\AppHub\V1\Client\AppHubClient;
 use Google\Cloud\AppHub\V1\Service;
 use Google\Cloud\AppHub\V1\UpdateServiceRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -43,11 +42,9 @@ function update_service_sample(string $formattedServiceDiscoveredService): void
     $appHubClient = new AppHubClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
     $service = (new Service())
         ->setDiscoveredService($formattedServiceDiscoveredService);
     $request = (new UpdateServiceRequest())
-        ->setUpdateMask($updateMask)
         ->setService($service);
 
     // Call the API and handle any network failures.

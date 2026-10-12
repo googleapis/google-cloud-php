@@ -741,6 +741,8 @@ class Database
      *           "single-use", and may be used for only a single operation.
      *           **Defaults to** `false`.
      *           Session labels may be applied using the `labels` key.
+     *     @type int $timeoutMillis Timeout to use for the BeginTransaction call.
+     *           Not applicable when `$singleUse` is `true`, as no request is made.
      * }
      * @return TransactionalReadInterface
      * @throws BadMethodCallException If attempting to call this method within
@@ -753,11 +755,15 @@ class Database
             throw new BadMethodCallException('Nested transactions are not supported by this client.');
         }
 
-        $snapshotOptions = [
-            'singleUse' => $options['singleUse'] ?? false,
-            'transactionOptions' => $this->transactionOptionsBuilder
-                ->configureReadOnlyTransactionOptions($options),
-        ];
+        // Forward call options (e.g. `timeoutMillis`) explicitly: the remaining
+        // options are read-only transaction settings consumed by the builder below.
+        $snapshotOptions = $this->optionsValidator->stripUnknownOptions(
+            $options,
+            CallOptions::class
+        );
+        $snapshotOptions['singleUse'] = $options['singleUse'] ?? false;
+        $snapshotOptions['transactionOptions'] = $this->transactionOptionsBuilder
+            ->configureReadOnlyTransactionOptions($options);
 
         return $this->operation->snapshot($this->session, $snapshotOptions);
     }
@@ -795,6 +801,7 @@ class Database
      *           Session labels may be applied using the `labels` key.
      *     @type string $tag A transaction tag. Requests made using this transaction will
      *           use this as the transaction tag.
+     *     @type int $timeoutMillis Timeout to use for the BeginTransaction call.
      * }
      * @return Transaction
      * @throws BadMethodCallException If attempting to call this method within

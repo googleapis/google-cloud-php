@@ -29,7 +29,7 @@ use Google\Ads\MarketingPlatform\Admin\V1alpha\Organization;
 use Google\ApiCore\ApiException;
 
 /**
- * Lookup for a single organization.
+ * Looks up a single organization.
  *
  * @param string $formattedName The name of the Organization to retrieve.
  *                              Format: organizations/{org_id}

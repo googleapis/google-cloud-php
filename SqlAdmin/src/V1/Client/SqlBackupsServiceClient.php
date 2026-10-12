@@ -132,6 +132,74 @@ final class SqlBackupsServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
+        return self::getPathTemplate('cryptoKey')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * crypto_key_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     * @param string $cryptoKeyVersion
+     *
+     * @return string The formatted crypto_key_version resource.
+     */
+    public static function cryptoKeyVersionName(
+        string $project,
+        string $location,
+        string $keyRing,
+        string $cryptoKey,
+        string $cryptoKeyVersion
+    ): string {
+        return self::getPathTemplate('cryptoKeyVersion')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+            'crypto_key_version' => $cryptoKeyVersion,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * network_attachment resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $networkAttachment
+     *
+     * @return string The formatted network_attachment resource.
+     */
+    public static function networkAttachmentName(string $project, string $region, string $networkAttachment): string
+    {
+        return self::getPathTemplate('networkAttachment')->render([
+            'project' => $project,
+            'region' => $region,
+            'network_attachment' => $networkAttachment,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -173,6 +241,9 @@ final class SqlBackupsServiceClient
      * The following name formats are supported:
      * Template: Pattern
      * - backup: projects/{project}/backups/{backup}
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
+     * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
+     * - networkAttachment: projects/{project}/regions/{region}/networkAttachments/{network_attachment}
      * - project: projects/{project}
      * - serviceConnectionPolicy: projects/{project}/regions/{region}/serviceConnectionPolicies/{service_connection_policy}
      *

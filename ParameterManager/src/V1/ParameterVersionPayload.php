@@ -21,6 +21,14 @@ class ParameterVersionPayload extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes data = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $data = '';
+    /**
+     * Optional. [Optional] The integrity checksum of the payload.
+     * If provided, the server will verify that the checksum matches the payload.
+     * If not provided, the server will generate the checksum.
+     *
+     * Generated from protobuf field <code>optional int64 data_crc32c = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $data_crc32c = null;
 
     /**
      * Constructor.
@@ -30,6 +38,10 @@ class ParameterVersionPayload extends \Google\Protobuf\Internal\Message
      *
      *     @type string $data
      *           Required. bytes data for storing payload.
+     *     @type int|string $data_crc32c
+     *           Optional. [Optional] The integrity checksum of the payload.
+     *           If provided, the server will verify that the checksum matches the payload.
+     *           If not provided, the server will generate the checksum.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +71,46 @@ class ParameterVersionPayload extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->data = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. [Optional] The integrity checksum of the payload.
+     * If provided, the server will verify that the checksum matches the payload.
+     * If not provided, the server will generate the checksum.
+     *
+     * Generated from protobuf field <code>optional int64 data_crc32c = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getDataCrc32C()
+    {
+        return isset($this->data_crc32c) ? $this->data_crc32c : 0;
+    }
+
+    public function hasDataCrc32C()
+    {
+        return isset($this->data_crc32c);
+    }
+
+    public function clearDataCrc32C()
+    {
+        unset($this->data_crc32c);
+    }
+
+    /**
+     * Optional. [Optional] The integrity checksum of the payload.
+     * If provided, the server will verify that the checksum matches the payload.
+     * If not provided, the server will generate the checksum.
+     *
+     * Generated from protobuf field <code>optional int64 data_crc32c = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setDataCrc32C($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->data_crc32c = $var;
 
         return $this;
     }

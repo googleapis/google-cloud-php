@@ -61,6 +61,12 @@ class ParameterVersion extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string kms_key_version = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $kms_key_version = null;
+    /**
+     * Optional. Output only. [Output only] The source of the checksum.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.parametermanager.v1.ParameterVersion.ChecksumSource checksum_source = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $checksum_source = null;
 
     /**
      * Constructor.
@@ -90,6 +96,8 @@ class ParameterVersion extends \Google\Protobuf\Internal\Message
      *           version used to encrypt the ParameterVersion payload. This field is
      *           populated only if the Parameter resource has customer managed encryption
      *           key (CMEK) configured.
+     *     @type int $checksum_source
+     *           Optional. Output only. [Output only] The source of the checksum.
      * }
      */
     public function __construct($data = NULL) {
@@ -309,6 +317,42 @@ class ParameterVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kms_key_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Output only. [Output only] The source of the checksum.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.parametermanager.v1.ParameterVersion.ChecksumSource checksum_source = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getChecksumSource()
+    {
+        return isset($this->checksum_source) ? $this->checksum_source : 0;
+    }
+
+    public function hasChecksumSource()
+    {
+        return isset($this->checksum_source);
+    }
+
+    public function clearChecksumSource()
+    {
+        unset($this->checksum_source);
+    }
+
+    /**
+     * Optional. Output only. [Output only] The source of the checksum.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.parametermanager.v1.ParameterVersion.ChecksumSource checksum_source = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setChecksumSource($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\ParameterManager\V1\ParameterVersion\ChecksumSource::class);
+        $this->checksum_source = $var;
 
         return $this;
     }

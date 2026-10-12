@@ -33,19 +33,15 @@ use Google\Rpc\Status;
  * Moves the specified firewall policy.
  *
  * @param string $firewallPolicy Name of the firewall policy to update.
- * @param string $parentId       The new parent of the firewall policy. The ID can be either be
- *                               "folders/[FOLDER_ID]" if the parent is a folder or
- *                               "organizations/[ORGANIZATION_ID]" if the parent is an organization.
  */
-function move_sample(string $firewallPolicy, string $parentId): void
+function move_sample(string $firewallPolicy): void
 {
     // Create a client.
     $firewallPoliciesClient = new FirewallPoliciesClient();
 
     // Prepare the request message.
     $request = (new MoveFirewallPolicyRequest())
-        ->setFirewallPolicy($firewallPolicy)
-        ->setParentId($parentId);
+        ->setFirewallPolicy($firewallPolicy);
 
     // Call the API and handle any network failures.
     try {
@@ -77,8 +73,7 @@ function move_sample(string $firewallPolicy, string $parentId): void
 function callSample(): void
 {
     $firewallPolicy = '[FIREWALL_POLICY]';
-    $parentId = '[PARENT_ID]';
 
-    move_sample($firewallPolicy, $parentId);
+    move_sample($firewallPolicy);
 }
 // [END compute_v1_generated_FirewallPolicies_Move_sync]

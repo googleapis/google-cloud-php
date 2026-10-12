@@ -43,6 +43,12 @@ class Protocols
      * Generated from protobuf enum <code>ISCSI = 4;</code>
      */
     const ISCSI = 4;
+    /**
+     * NVMe protocol
+     *
+     * Generated from protobuf enum <code>NVME = 5;</code>
+     */
+    const NVME = 5;
 
     private static $valueToName = [
         self::PROTOCOLS_UNSPECIFIED => 'PROTOCOLS_UNSPECIFIED',
@@ -50,6 +56,7 @@ class Protocols
         self::NFSV4 => 'NFSV4',
         self::SMB => 'SMB',
         self::ISCSI => 'ISCSI',
+        self::NVME => 'NVME',
     ];
 
     public static function name($value)

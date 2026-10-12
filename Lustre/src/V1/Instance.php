@@ -31,7 +31,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     protected $filesystem = '';
     /**
      * Required. The storage capacity of the instance in gibibytes (GiB). Allowed
-     * values are from `18000` to `954000`, in increments of 9000.
+     * values depend on the `perUnitStorageThroughput`. See [Performance
+     * tiers](https://docs.cloud.google.com/managed-lustre/docs/performance-tiers)
+     * for specific minimums, maximums, and step sizes for each performance tier.
      *
      * Generated from protobuf field <code>int64 capacity_gib = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -82,21 +84,109 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Required. The throughput of the instance in MB/s/TiB.
-     * Valid values are 125, 250, 500, 1000.
+     * Optional. The throughput of the instance in MBps per TiB. Valid values are
+     * 0, 125, 250, 500, 1000. See [Performance
+     * tiers](https://docs.cloud.google.com/managed-lustre/docs/performance-tiers)
+     * for more information.
+     * If the instance is using the Dynamic tier, this field must not be set or
+     * must be set to zero.
      *
-     * Generated from protobuf field <code>int64 per_unit_storage_throughput = 11 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>int64 per_unit_storage_throughput = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $per_unit_storage_throughput = 0;
     /**
-     * Optional. Indicates whether you want to enable support for GKE clients. By
-     * default, GKE clients are not supported. Deprecated. No longer required for
-     * GKE instance creation.
+     * Optional. Deprecated: No longer required for GKE instance creation.
+     * Indicates whether you want to enable support for GKE clients. By default,
+     * GKE clients are not supported.
      *
      * Generated from protobuf field <code>bool gke_support_enabled = 12 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @deprecated
      */
     protected $gke_support_enabled = false;
+    /**
+     * Optional. Immutable. The Cloud KMS key name to use for data encryption.
+     * If not set, the instance will use Google-managed encryption keys.
+     * If set, the instance will use customer-managed encryption keys.
+     * The key must be in the same region as the instance.
+     * The key format is:
+     * projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}
+     *
+     * Generated from protobuf field <code>string kms_key = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     */
+    protected $kms_key = '';
+    /**
+     * Output only. The reason why the instance is in a certain state (e.g.
+     * SUSPENDED).
+     *
+     * Generated from protobuf field <code>string state_reason = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $state_reason = '';
+    /**
+     * Optional. The placement policy name for the instance in the format of
+     * projects/{project}/locations/{location}/resourcePolicies/{resource_policy}
+     *
+     * Generated from protobuf field <code>string placement_policy = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $placement_policy = '';
+    /**
+     * Optional. The access rules options for the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.lustre.v1.AccessRulesOptions access_rules_options = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $access_rules_options = null;
+    /**
+     * Output only. Unique ID of the resource.
+     * This is unrelated to the access rules which allow specifying the root
+     * squash uid.
+     *
+     * Generated from protobuf field <code>string uid = 19 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     */
+    protected $uid = '';
+    /**
+     * Optional. The maintenance policy for the instance to determine when to
+     * allow or exclude the instance from maintenance updates.
+     *
+     * Generated from protobuf field <code>.google.cloud.lustre.v1.MaintenancePolicy maintenance_policy = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $maintenance_policy = null;
+    /**
+     * Output only. Date and time of upcoming maintenance for the instance, if a
+     * maintenance policy is set.
+     *
+     * Generated from protobuf field <code>.google.cloud.lustre.v1.MaintenanceSchedule upcoming_maintenance_schedule = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $upcoming_maintenance_schedule = null;
+    /**
+     * Optional. Immutable. Specifies whether the instance is on the Dynamic tier.
+     * See [Performance
+     * tiers](https://docs.cloud.google.com/managed-lustre/docs/performance-tiers)
+     * for more information.
+     *
+     * Generated from protobuf field <code>.google.cloud.lustre.v1.DynamicTierOptions dynamic_tier_options = 24 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $dynamic_tier_options = null;
+    /**
+     * Output only. The available version that this instance can be upgraded to.
+     * Format: `Lustre_YYYYMMDD.NN_pXX`
+     *
+     * Generated from protobuf field <code>optional string available_version = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $available_version = null;
+    /**
+     * Optional. The target version of the instance. Setting this field triggers a
+     * self-service update to the specified version.
+     * Format: `Lustre_YYYYMMDD.NN_pXX` or `latest`
+     *
+     * Generated from protobuf field <code>optional string target_version = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $target_version = null;
+    /**
+     * Output only. The effective version of the instance.
+     * Format: `Lustre_YYYYMMDD.NN_pXX`
+     *
+     * Generated from protobuf field <code>optional string effective_version = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $effective_version = null;
 
     /**
      * Constructor.
@@ -112,7 +202,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           eight characters or less and can only contain letters and numbers.
      *     @type int|string $capacity_gib
      *           Required. The storage capacity of the instance in gibibytes (GiB). Allowed
-     *           values are from `18000` to `954000`, in increments of 9000.
+     *           values depend on the `perUnitStorageThroughput`. See [Performance
+     *           tiers](https://docs.cloud.google.com/managed-lustre/docs/performance-tiers)
+     *           for specific minimums, maximums, and step sizes for each performance tier.
      *     @type string $network
      *           Required. Immutable. The full name of the VPC network to which the instance
      *           is connected. Must be in the format
@@ -131,12 +223,56 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels as key value pairs.
      *     @type int|string $per_unit_storage_throughput
-     *           Required. The throughput of the instance in MB/s/TiB.
-     *           Valid values are 125, 250, 500, 1000.
+     *           Optional. The throughput of the instance in MBps per TiB. Valid values are
+     *           0, 125, 250, 500, 1000. See [Performance
+     *           tiers](https://docs.cloud.google.com/managed-lustre/docs/performance-tiers)
+     *           for more information.
+     *           If the instance is using the Dynamic tier, this field must not be set or
+     *           must be set to zero.
      *     @type bool $gke_support_enabled
-     *           Optional. Indicates whether you want to enable support for GKE clients. By
-     *           default, GKE clients are not supported. Deprecated. No longer required for
-     *           GKE instance creation.
+     *           Optional. Deprecated: No longer required for GKE instance creation.
+     *           Indicates whether you want to enable support for GKE clients. By default,
+     *           GKE clients are not supported.
+     *     @type string $kms_key
+     *           Optional. Immutable. The Cloud KMS key name to use for data encryption.
+     *           If not set, the instance will use Google-managed encryption keys.
+     *           If set, the instance will use customer-managed encryption keys.
+     *           The key must be in the same region as the instance.
+     *           The key format is:
+     *           projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}
+     *     @type string $state_reason
+     *           Output only. The reason why the instance is in a certain state (e.g.
+     *           SUSPENDED).
+     *     @type string $placement_policy
+     *           Optional. The placement policy name for the instance in the format of
+     *           projects/{project}/locations/{location}/resourcePolicies/{resource_policy}
+     *     @type \Google\Cloud\Lustre\V1\AccessRulesOptions $access_rules_options
+     *           Optional. The access rules options for the instance.
+     *     @type string $uid
+     *           Output only. Unique ID of the resource.
+     *           This is unrelated to the access rules which allow specifying the root
+     *           squash uid.
+     *     @type \Google\Cloud\Lustre\V1\MaintenancePolicy $maintenance_policy
+     *           Optional. The maintenance policy for the instance to determine when to
+     *           allow or exclude the instance from maintenance updates.
+     *     @type \Google\Cloud\Lustre\V1\MaintenanceSchedule $upcoming_maintenance_schedule
+     *           Output only. Date and time of upcoming maintenance for the instance, if a
+     *           maintenance policy is set.
+     *     @type \Google\Cloud\Lustre\V1\DynamicTierOptions $dynamic_tier_options
+     *           Optional. Immutable. Specifies whether the instance is on the Dynamic tier.
+     *           See [Performance
+     *           tiers](https://docs.cloud.google.com/managed-lustre/docs/performance-tiers)
+     *           for more information.
+     *     @type string $available_version
+     *           Output only. The available version that this instance can be upgraded to.
+     *           Format: `Lustre_YYYYMMDD.NN_pXX`
+     *     @type string $target_version
+     *           Optional. The target version of the instance. Setting this field triggers a
+     *           self-service update to the specified version.
+     *           Format: `Lustre_YYYYMMDD.NN_pXX` or `latest`
+     *     @type string $effective_version
+     *           Output only. The effective version of the instance.
+     *           Format: `Lustre_YYYYMMDD.NN_pXX`
      * }
      */
     public function __construct($data = NULL) {
@@ -202,7 +338,9 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The storage capacity of the instance in gibibytes (GiB). Allowed
-     * values are from `18000` to `954000`, in increments of 9000.
+     * values depend on the `perUnitStorageThroughput`. See [Performance
+     * tiers](https://docs.cloud.google.com/managed-lustre/docs/performance-tiers)
+     * for specific minimums, maximums, and step sizes for each performance tier.
      *
      * Generated from protobuf field <code>int64 capacity_gib = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int|string
@@ -214,7 +352,9 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The storage capacity of the instance in gibibytes (GiB). Allowed
-     * values are from `18000` to `954000`, in increments of 9000.
+     * values depend on the `perUnitStorageThroughput`. See [Performance
+     * tiers](https://docs.cloud.google.com/managed-lustre/docs/performance-tiers)
+     * for specific minimums, maximums, and step sizes for each performance tier.
      *
      * Generated from protobuf field <code>int64 capacity_gib = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int|string $var
@@ -437,10 +577,14 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The throughput of the instance in MB/s/TiB.
-     * Valid values are 125, 250, 500, 1000.
+     * Optional. The throughput of the instance in MBps per TiB. Valid values are
+     * 0, 125, 250, 500, 1000. See [Performance
+     * tiers](https://docs.cloud.google.com/managed-lustre/docs/performance-tiers)
+     * for more information.
+     * If the instance is using the Dynamic tier, this field must not be set or
+     * must be set to zero.
      *
-     * Generated from protobuf field <code>int64 per_unit_storage_throughput = 11 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>int64 per_unit_storage_throughput = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
      */
     public function getPerUnitStorageThroughput()
@@ -449,10 +593,14 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The throughput of the instance in MB/s/TiB.
-     * Valid values are 125, 250, 500, 1000.
+     * Optional. The throughput of the instance in MBps per TiB. Valid values are
+     * 0, 125, 250, 500, 1000. See [Performance
+     * tiers](https://docs.cloud.google.com/managed-lustre/docs/performance-tiers)
+     * for more information.
+     * If the instance is using the Dynamic tier, this field must not be set or
+     * must be set to zero.
      *
-     * Generated from protobuf field <code>int64 per_unit_storage_throughput = 11 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>int64 per_unit_storage_throughput = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
      * @return $this
      */
@@ -465,9 +613,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates whether you want to enable support for GKE clients. By
-     * default, GKE clients are not supported. Deprecated. No longer required for
-     * GKE instance creation.
+     * Optional. Deprecated: No longer required for GKE instance creation.
+     * Indicates whether you want to enable support for GKE clients. By default,
+     * GKE clients are not supported.
      *
      * Generated from protobuf field <code>bool gke_support_enabled = 12 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -482,9 +630,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates whether you want to enable support for GKE clients. By
-     * default, GKE clients are not supported. Deprecated. No longer required for
-     * GKE instance creation.
+     * Optional. Deprecated: No longer required for GKE instance creation.
+     * Indicates whether you want to enable support for GKE clients. By default,
+     * GKE clients are not supported.
      *
      * Generated from protobuf field <code>bool gke_support_enabled = 12 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -496,6 +644,398 @@ class Instance extends \Google\Protobuf\Internal\Message
         @trigger_error('gke_support_enabled is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->gke_support_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. The Cloud KMS key name to use for data encryption.
+     * If not set, the instance will use Google-managed encryption keys.
+     * If set, the instance will use customer-managed encryption keys.
+     * The key must be in the same region as the instance.
+     * The key format is:
+     * projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}
+     *
+     * Generated from protobuf field <code>string kms_key = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getKmsKey()
+    {
+        return $this->kms_key;
+    }
+
+    /**
+     * Optional. Immutable. The Cloud KMS key name to use for data encryption.
+     * If not set, the instance will use Google-managed encryption keys.
+     * If set, the instance will use customer-managed encryption keys.
+     * The key must be in the same region as the instance.
+     * The key format is:
+     * projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}
+     *
+     * Generated from protobuf field <code>string kms_key = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKmsKey($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->kms_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The reason why the instance is in a certain state (e.g.
+     * SUSPENDED).
+     *
+     * Generated from protobuf field <code>string state_reason = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getStateReason()
+    {
+        return $this->state_reason;
+    }
+
+    /**
+     * Output only. The reason why the instance is in a certain state (e.g.
+     * SUSPENDED).
+     *
+     * Generated from protobuf field <code>string state_reason = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStateReason($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->state_reason = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The placement policy name for the instance in the format of
+     * projects/{project}/locations/{location}/resourcePolicies/{resource_policy}
+     *
+     * Generated from protobuf field <code>string placement_policy = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getPlacementPolicy()
+    {
+        return $this->placement_policy;
+    }
+
+    /**
+     * Optional. The placement policy name for the instance in the format of
+     * projects/{project}/locations/{location}/resourcePolicies/{resource_policy}
+     *
+     * Generated from protobuf field <code>string placement_policy = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPlacementPolicy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->placement_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The access rules options for the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.lustre.v1.AccessRulesOptions access_rules_options = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Lustre\V1\AccessRulesOptions|null
+     */
+    public function getAccessRulesOptions()
+    {
+        return $this->access_rules_options;
+    }
+
+    public function hasAccessRulesOptions()
+    {
+        return isset($this->access_rules_options);
+    }
+
+    public function clearAccessRulesOptions()
+    {
+        unset($this->access_rules_options);
+    }
+
+    /**
+     * Optional. The access rules options for the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.lustre.v1.AccessRulesOptions access_rules_options = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Lustre\V1\AccessRulesOptions $var
+     * @return $this
+     */
+    public function setAccessRulesOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Lustre\V1\AccessRulesOptions::class);
+        $this->access_rules_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Unique ID of the resource.
+     * This is unrelated to the access rules which allow specifying the root
+     * squash uid.
+     *
+     * Generated from protobuf field <code>string uid = 19 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     * @return string
+     */
+    public function getUid()
+    {
+        return $this->uid;
+    }
+
+    /**
+     * Output only. Unique ID of the resource.
+     * This is unrelated to the access rules which allow specifying the root
+     * squash uid.
+     *
+     * Generated from protobuf field <code>string uid = 19 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->uid = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The maintenance policy for the instance to determine when to
+     * allow or exclude the instance from maintenance updates.
+     *
+     * Generated from protobuf field <code>.google.cloud.lustre.v1.MaintenancePolicy maintenance_policy = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Lustre\V1\MaintenancePolicy|null
+     */
+    public function getMaintenancePolicy()
+    {
+        return $this->maintenance_policy;
+    }
+
+    public function hasMaintenancePolicy()
+    {
+        return isset($this->maintenance_policy);
+    }
+
+    public function clearMaintenancePolicy()
+    {
+        unset($this->maintenance_policy);
+    }
+
+    /**
+     * Optional. The maintenance policy for the instance to determine when to
+     * allow or exclude the instance from maintenance updates.
+     *
+     * Generated from protobuf field <code>.google.cloud.lustre.v1.MaintenancePolicy maintenance_policy = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Lustre\V1\MaintenancePolicy $var
+     * @return $this
+     */
+    public function setMaintenancePolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Lustre\V1\MaintenancePolicy::class);
+        $this->maintenance_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Date and time of upcoming maintenance for the instance, if a
+     * maintenance policy is set.
+     *
+     * Generated from protobuf field <code>.google.cloud.lustre.v1.MaintenanceSchedule upcoming_maintenance_schedule = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Lustre\V1\MaintenanceSchedule|null
+     */
+    public function getUpcomingMaintenanceSchedule()
+    {
+        return $this->upcoming_maintenance_schedule;
+    }
+
+    public function hasUpcomingMaintenanceSchedule()
+    {
+        return isset($this->upcoming_maintenance_schedule);
+    }
+
+    public function clearUpcomingMaintenanceSchedule()
+    {
+        unset($this->upcoming_maintenance_schedule);
+    }
+
+    /**
+     * Output only. Date and time of upcoming maintenance for the instance, if a
+     * maintenance policy is set.
+     *
+     * Generated from protobuf field <code>.google.cloud.lustre.v1.MaintenanceSchedule upcoming_maintenance_schedule = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Lustre\V1\MaintenanceSchedule $var
+     * @return $this
+     */
+    public function setUpcomingMaintenanceSchedule($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Lustre\V1\MaintenanceSchedule::class);
+        $this->upcoming_maintenance_schedule = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. Specifies whether the instance is on the Dynamic tier.
+     * See [Performance
+     * tiers](https://docs.cloud.google.com/managed-lustre/docs/performance-tiers)
+     * for more information.
+     *
+     * Generated from protobuf field <code>.google.cloud.lustre.v1.DynamicTierOptions dynamic_tier_options = 24 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Lustre\V1\DynamicTierOptions|null
+     */
+    public function getDynamicTierOptions()
+    {
+        return $this->dynamic_tier_options;
+    }
+
+    public function hasDynamicTierOptions()
+    {
+        return isset($this->dynamic_tier_options);
+    }
+
+    public function clearDynamicTierOptions()
+    {
+        unset($this->dynamic_tier_options);
+    }
+
+    /**
+     * Optional. Immutable. Specifies whether the instance is on the Dynamic tier.
+     * See [Performance
+     * tiers](https://docs.cloud.google.com/managed-lustre/docs/performance-tiers)
+     * for more information.
+     *
+     * Generated from protobuf field <code>.google.cloud.lustre.v1.DynamicTierOptions dynamic_tier_options = 24 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Lustre\V1\DynamicTierOptions $var
+     * @return $this
+     */
+    public function setDynamicTierOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Lustre\V1\DynamicTierOptions::class);
+        $this->dynamic_tier_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The available version that this instance can be upgraded to.
+     * Format: `Lustre_YYYYMMDD.NN_pXX`
+     *
+     * Generated from protobuf field <code>optional string available_version = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getAvailableVersion()
+    {
+        return isset($this->available_version) ? $this->available_version : '';
+    }
+
+    public function hasAvailableVersion()
+    {
+        return isset($this->available_version);
+    }
+
+    public function clearAvailableVersion()
+    {
+        unset($this->available_version);
+    }
+
+    /**
+     * Output only. The available version that this instance can be upgraded to.
+     * Format: `Lustre_YYYYMMDD.NN_pXX`
+     *
+     * Generated from protobuf field <code>optional string available_version = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAvailableVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->available_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The target version of the instance. Setting this field triggers a
+     * self-service update to the specified version.
+     * Format: `Lustre_YYYYMMDD.NN_pXX` or `latest`
+     *
+     * Generated from protobuf field <code>optional string target_version = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getTargetVersion()
+    {
+        return isset($this->target_version) ? $this->target_version : '';
+    }
+
+    public function hasTargetVersion()
+    {
+        return isset($this->target_version);
+    }
+
+    public function clearTargetVersion()
+    {
+        unset($this->target_version);
+    }
+
+    /**
+     * Optional. The target version of the instance. Setting this field triggers a
+     * self-service update to the specified version.
+     * Format: `Lustre_YYYYMMDD.NN_pXX` or `latest`
+     *
+     * Generated from protobuf field <code>optional string target_version = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTargetVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->target_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The effective version of the instance.
+     * Format: `Lustre_YYYYMMDD.NN_pXX`
+     *
+     * Generated from protobuf field <code>optional string effective_version = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getEffectiveVersion()
+    {
+        return isset($this->effective_version) ? $this->effective_version : '';
+    }
+
+    public function hasEffectiveVersion()
+    {
+        return isset($this->effective_version);
+    }
+
+    public function clearEffectiveVersion()
+    {
+        unset($this->effective_version);
+    }
+
+    /**
+     * Output only. The effective version of the instance.
+     * Format: `Lustre_YYYYMMDD.NN_pXX`
+     *
+     * Generated from protobuf field <code>optional string effective_version = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEffectiveVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->effective_version = $var;
 
         return $this;
     }

@@ -42,6 +42,12 @@ class Report extends \Google\Protobuf\Internal\Message
      */
     protected $report_definition = null;
     /**
+     * Optional. The draft report definition of the report.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ReportDefinition draft_report_definition = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $draft_report_definition = null;
+    /**
      * Optional. Display name for the report.
      *
      * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -89,6 +95,8 @@ class Report extends \Google\Protobuf\Internal\Message
      *           Optional. The visibility of a report.
      *     @type \Google\Ads\AdManager\V1\ReportDefinition $report_definition
      *           Required. The report definition of the report.
+     *     @type \Google\Ads\AdManager\V1\ReportDefinition $draft_report_definition
+     *           Optional. The draft report definition of the report.
      *     @type string $display_name
      *           Optional. Display name for the report.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -221,6 +229,42 @@ class Report extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\ReportDefinition::class);
         $this->report_definition = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The draft report definition of the report.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ReportDefinition draft_report_definition = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\ReportDefinition|null
+     */
+    public function getDraftReportDefinition()
+    {
+        return $this->draft_report_definition;
+    }
+
+    public function hasDraftReportDefinition()
+    {
+        return isset($this->draft_report_definition);
+    }
+
+    public function clearDraftReportDefinition()
+    {
+        unset($this->draft_report_definition);
+    }
+
+    /**
+     * Optional. The draft report definition of the report.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ReportDefinition draft_report_definition = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\ReportDefinition $var
+     * @return $this
+     */
+    public function setDraftReportDefinition($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\ReportDefinition::class);
+        $this->draft_report_definition = $var;
 
         return $this;
     }

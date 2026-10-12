@@ -67,6 +67,12 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.KnowledgeAssistFeedback knowledge_assist_feedback = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $knowledge_assist_feedback = null;
+    /**
+     * Optional. Feedback for companion agent.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.CompanionFeedback companion_feedback = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $companion_feedback = null;
 
     /**
      * Constructor.
@@ -102,6 +108,8 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
      *           Optional. Feedback for knowledge search.
      *     @type \Google\Cloud\Dialogflow\V2\AgentAssistantFeedback\KnowledgeAssistFeedback $knowledge_assist_feedback
      *           Optional. Feedback for knowledge assist.
+     *     @type \Google\Cloud\Dialogflow\V2\AgentAssistantFeedback\CompanionFeedback $companion_feedback
+     *           Optional. Feedback for companion agent.
      * }
      */
     public function __construct($data = NULL) {
@@ -323,6 +331,42 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\AgentAssistantFeedback\KnowledgeAssistFeedback::class);
         $this->knowledge_assist_feedback = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Feedback for companion agent.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.CompanionFeedback companion_feedback = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\V2\AgentAssistantFeedback\CompanionFeedback|null
+     */
+    public function getCompanionFeedback()
+    {
+        return $this->companion_feedback;
+    }
+
+    public function hasCompanionFeedback()
+    {
+        return isset($this->companion_feedback);
+    }
+
+    public function clearCompanionFeedback()
+    {
+        unset($this->companion_feedback);
+    }
+
+    /**
+     * Optional. Feedback for companion agent.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.CompanionFeedback companion_feedback = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\AgentAssistantFeedback\CompanionFeedback $var
+     * @return $this
+     */
+    public function setCompanionFeedback($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\AgentAssistantFeedback\CompanionFeedback::class);
+        $this->companion_feedback = $var;
 
         return $this;
     }

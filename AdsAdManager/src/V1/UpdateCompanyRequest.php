@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request object for [UpdateCompany][] method.
+ * Request object for `UpdateCompany` method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.UpdateCompanyRequest</code>
  */

@@ -43,6 +43,10 @@ use Google\Cloud\GeminiDataAnalytics\V1beta\DeleteDataAgentRequest;
 use Google\Cloud\GeminiDataAnalytics\V1beta\GetDataAgentRequest;
 use Google\Cloud\GeminiDataAnalytics\V1beta\ListAccessibleDataAgentsRequest;
 use Google\Cloud\GeminiDataAnalytics\V1beta\ListDataAgentsRequest;
+use Google\Cloud\GeminiDataAnalytics\V1beta\RetrieveAgentOpsObservabilityRequest;
+use Google\Cloud\GeminiDataAnalytics\V1beta\RetrieveAgentOpsObservabilityResponse;
+use Google\Cloud\GeminiDataAnalytics\V1beta\SetAgentOpsObservabilityRequest;
+use Google\Cloud\GeminiDataAnalytics\V1beta\SetAgentOpsObservabilityResponse;
 use Google\Cloud\GeminiDataAnalytics\V1beta\UpdateDataAgentRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
@@ -76,6 +80,8 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAccessibleDataAgentsAsync(ListAccessibleDataAgentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listDataAgentsAsync(ListDataAgentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RetrieveAgentOpsObservabilityResponse> retrieveAgentOpsObservabilityAsync(RetrieveAgentOpsObservabilityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setAgentOpsObservabilityAsync(SetAgentOpsObservabilityRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateDataAgentAsync(UpdateDataAgentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DataAgent> updateDataAgentSyncAsync(UpdateDataAgentRequest $request, array $optionalArgs = [])
@@ -592,6 +598,70 @@ final class DataAgentServiceClient
     public function listDataAgents(ListDataAgentsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListDataAgents', $request, $callOptions);
+    }
+
+    /**
+     * Gets AgentOps observability settings and status of required services.
+     *
+     * The async variant is
+     * {@see DataAgentServiceClient::retrieveAgentOpsObservabilityAsync()} .
+     *
+     * @example samples/V1beta/DataAgentServiceClient/retrieve_agent_ops_observability.php
+     *
+     * @param RetrieveAgentOpsObservabilityRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RetrieveAgentOpsObservabilityResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function retrieveAgentOpsObservability(
+        RetrieveAgentOpsObservabilityRequest $request,
+        array $callOptions = []
+    ): RetrieveAgentOpsObservabilityResponse {
+        return $this->startApiCall('RetrieveAgentOpsObservability', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Enables/Disables required GCP services and configures AgentOps
+     * observability settings calling the Admin Settings executable node to
+     * update the AgentOps Observability feature.
+     *
+     * The async variant is
+     * {@see DataAgentServiceClient::setAgentOpsObservabilityAsync()} .
+     *
+     * @example samples/V1beta/DataAgentServiceClient/set_agent_ops_observability.php
+     *
+     * @param SetAgentOpsObservabilityRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<SetAgentOpsObservabilityResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function setAgentOpsObservability(
+        SetAgentOpsObservabilityRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('SetAgentOpsObservability', $request, $callOptions)->wait();
     }
 
     /**

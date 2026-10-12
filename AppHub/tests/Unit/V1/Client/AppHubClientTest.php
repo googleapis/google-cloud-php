@@ -27,6 +27,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AppHub\V1\Application;
+use Google\Cloud\AppHub\V1\Boundary;
 use Google\Cloud\AppHub\V1\Client\AppHubClient;
 use Google\Cloud\AppHub\V1\CreateApplicationRequest;
 use Google\Cloud\AppHub\V1\CreateServiceProjectAttachmentRequest;
@@ -40,9 +41,12 @@ use Google\Cloud\AppHub\V1\DetachServiceProjectAttachmentRequest;
 use Google\Cloud\AppHub\V1\DetachServiceProjectAttachmentResponse;
 use Google\Cloud\AppHub\V1\DiscoveredService;
 use Google\Cloud\AppHub\V1\DiscoveredWorkload;
+use Google\Cloud\AppHub\V1\ExtendedMetadataSchema;
 use Google\Cloud\AppHub\V1\GetApplicationRequest;
+use Google\Cloud\AppHub\V1\GetBoundaryRequest;
 use Google\Cloud\AppHub\V1\GetDiscoveredServiceRequest;
 use Google\Cloud\AppHub\V1\GetDiscoveredWorkloadRequest;
+use Google\Cloud\AppHub\V1\GetExtendedMetadataSchemaRequest;
 use Google\Cloud\AppHub\V1\GetServiceProjectAttachmentRequest;
 use Google\Cloud\AppHub\V1\GetServiceRequest;
 use Google\Cloud\AppHub\V1\GetWorkloadRequest;
@@ -52,6 +56,8 @@ use Google\Cloud\AppHub\V1\ListDiscoveredServicesRequest;
 use Google\Cloud\AppHub\V1\ListDiscoveredServicesResponse;
 use Google\Cloud\AppHub\V1\ListDiscoveredWorkloadsRequest;
 use Google\Cloud\AppHub\V1\ListDiscoveredWorkloadsResponse;
+use Google\Cloud\AppHub\V1\ListExtendedMetadataSchemasRequest;
+use Google\Cloud\AppHub\V1\ListExtendedMetadataSchemasResponse;
 use Google\Cloud\AppHub\V1\ListServiceProjectAttachmentsRequest;
 use Google\Cloud\AppHub\V1\ListServiceProjectAttachmentsResponse;
 use Google\Cloud\AppHub\V1\ListServicesRequest;
@@ -69,6 +75,7 @@ use Google\Cloud\AppHub\V1\Scope\Type;
 use Google\Cloud\AppHub\V1\Service;
 use Google\Cloud\AppHub\V1\ServiceProjectAttachment;
 use Google\Cloud\AppHub\V1\UpdateApplicationRequest;
+use Google\Cloud\AppHub\V1\UpdateBoundaryRequest;
 use Google\Cloud\AppHub\V1\UpdateServiceRequest;
 use Google\Cloud\AppHub\V1\UpdateWorkloadRequest;
 use Google\Cloud\AppHub\V1\Workload;
@@ -85,7 +92,6 @@ use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -1349,6 +1355,73 @@ class AppHubClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getBoundaryTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $crmNode = 'crmNode2047434691';
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new Boundary();
+        $expectedResponse->setCrmNode($crmNode);
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->boundaryName('[PROJECT]', '[LOCATION]');
+        $request = (new GetBoundaryRequest())->setName($formattedName);
+        $response = $gapicClient->getBoundary($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.apphub.v1.AppHub/GetBoundary', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getBoundaryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->boundaryName('[PROJECT]', '[LOCATION]');
+        $request = (new GetBoundaryRequest())->setName($formattedName);
+        try {
+            $gapicClient->getBoundary($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getDiscoveredServiceTest()
     {
         $transport = $this->createTransport();
@@ -1467,6 +1540,83 @@ class AppHubClientTest extends GeneratedTest
         $request = (new GetDiscoveredWorkloadRequest())->setName($formattedName);
         try {
             $gapicClient->getDiscoveredWorkload($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getExtendedMetadataSchemaTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $jsonSchema = 'jsonSchema-1150390056';
+        $schemaVersion = 1684719674;
+        $expectedResponse = new ExtendedMetadataSchema();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setJsonSchema($jsonSchema);
+        $expectedResponse->setSchemaVersion($schemaVersion);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->extendedMetadataSchemaName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[EXTENDED_METADATA_SCHEMA]'
+        );
+        $request = (new GetExtendedMetadataSchemaRequest())->setName($formattedName);
+        $response = $gapicClient->getExtendedMetadataSchema($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.apphub.v1.AppHub/GetExtendedMetadataSchema', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getExtendedMetadataSchemaExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->extendedMetadataSchemaName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[EXTENDED_METADATA_SCHEMA]'
+        );
+        $request = (new GetExtendedMetadataSchemaRequest())->setName($formattedName);
+        try {
+            $gapicClient->getExtendedMetadataSchema($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1903,6 +2053,77 @@ class AppHubClientTest extends GeneratedTest
         $request = (new ListDiscoveredWorkloadsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDiscoveredWorkloads($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listExtendedMetadataSchemasTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $extendedMetadataSchemasElement = new ExtendedMetadataSchema();
+        $extendedMetadataSchemas = [$extendedMetadataSchemasElement];
+        $expectedResponse = new ListExtendedMetadataSchemasResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setExtendedMetadataSchemas($extendedMetadataSchemas);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListExtendedMetadataSchemasRequest())->setParent($formattedParent);
+        $response = $gapicClient->listExtendedMetadataSchemas($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getExtendedMetadataSchemas()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.apphub.v1.AppHub/ListExtendedMetadataSchemas', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listExtendedMetadataSchemasExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListExtendedMetadataSchemasRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listExtendedMetadataSchemas($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2362,13 +2583,12 @@ class AppHubClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $updateMask = new FieldMask();
         $application = new Application();
         $applicationScope = new Scope();
         $scopeType = Type::TYPE_UNSPECIFIED;
         $applicationScope->setType($scopeType);
         $application->setScope($applicationScope);
-        $request = (new UpdateApplicationRequest())->setUpdateMask($updateMask)->setApplication($application);
+        $request = (new UpdateApplicationRequest())->setApplication($application);
         $response = $gapicClient->updateApplication($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2379,8 +2599,6 @@ class AppHubClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apphub.v1.AppHub/UpdateApplication', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $actualValue = $actualApiRequestObject->getApplication();
         $this->assertProtobufEquals($application, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2437,18 +2655,143 @@ class AppHubClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $updateMask = new FieldMask();
         $application = new Application();
         $applicationScope = new Scope();
         $scopeType = Type::TYPE_UNSPECIFIED;
         $applicationScope->setType($scopeType);
         $application->setScope($applicationScope);
-        $request = (new UpdateApplicationRequest())->setUpdateMask($updateMask)->setApplication($application);
+        $request = (new UpdateApplicationRequest())->setApplication($application);
         $response = $gapicClient->updateApplication($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateApplicationTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateBoundaryTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateBoundaryTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $crmNode = 'crmNode2047434691';
+        $name = 'name3373707';
+        $expectedResponse = new Boundary();
+        $expectedResponse->setCrmNode($crmNode);
+        $expectedResponse->setName($name);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateBoundaryTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $boundary = new Boundary();
+        $request = (new UpdateBoundaryRequest())->setBoundary($boundary);
+        $response = $gapicClient->updateBoundary($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.apphub.v1.AppHub/UpdateBoundary', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getBoundary();
+        $this->assertProtobufEquals($boundary, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateBoundaryTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateBoundaryExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateBoundaryTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $boundary = new Boundary();
+        $request = (new UpdateBoundaryRequest())->setBoundary($boundary);
+        $response = $gapicClient->updateBoundary($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateBoundaryTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -2506,11 +2849,10 @@ class AppHubClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $updateMask = new FieldMask();
         $service = new Service();
         $serviceDiscoveredService = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $service->setDiscoveredService($serviceDiscoveredService);
-        $request = (new UpdateServiceRequest())->setUpdateMask($updateMask)->setService($service);
+        $request = (new UpdateServiceRequest())->setService($service);
         $response = $gapicClient->updateService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2521,8 +2863,6 @@ class AppHubClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apphub.v1.AppHub/UpdateService', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $actualValue = $actualApiRequestObject->getService();
         $this->assertProtobufEquals($service, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2579,11 +2919,10 @@ class AppHubClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $updateMask = new FieldMask();
         $service = new Service();
         $serviceDiscoveredService = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $service->setDiscoveredService($serviceDiscoveredService);
-        $request = (new UpdateServiceRequest())->setUpdateMask($updateMask)->setService($service);
+        $request = (new UpdateServiceRequest())->setService($service);
         $response = $gapicClient->updateService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2646,11 +2985,10 @@ class AppHubClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $updateMask = new FieldMask();
         $workload = new Workload();
         $workloadDiscoveredWorkload = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $workload->setDiscoveredWorkload($workloadDiscoveredWorkload);
-        $request = (new UpdateWorkloadRequest())->setUpdateMask($updateMask)->setWorkload($workload);
+        $request = (new UpdateWorkloadRequest())->setWorkload($workload);
         $response = $gapicClient->updateWorkload($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2661,8 +2999,6 @@ class AppHubClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apphub.v1.AppHub/UpdateWorkload', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $actualValue = $actualApiRequestObject->getWorkload();
         $this->assertProtobufEquals($workload, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2719,11 +3055,10 @@ class AppHubClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $updateMask = new FieldMask();
         $workload = new Workload();
         $workloadDiscoveredWorkload = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $workload->setDiscoveredWorkload($workloadDiscoveredWorkload);
-        $request = (new UpdateWorkloadRequest())->setUpdateMask($updateMask)->setWorkload($workload);
+        $request = (new UpdateWorkloadRequest())->setWorkload($workload);
         $response = $gapicClient->updateWorkload($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

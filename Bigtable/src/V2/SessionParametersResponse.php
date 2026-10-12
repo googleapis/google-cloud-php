@@ -25,6 +25,14 @@ class SessionParametersResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration keep_alive = 1;</code>
      */
     protected $keep_alive = null;
+    /**
+     * Client will pull this many bytes at most to make messages for steamed
+     * responses. If the last byte is mid-message, it will continue until a full
+     * message comes.
+     *
+     * Generated from protobuf field <code>int32 softmax_streaming_prefetch_buffer_bytes = 2;</code>
+     */
+    protected $softmax_streaming_prefetch_buffer_bytes = 0;
 
     /**
      * Constructor.
@@ -38,6 +46,10 @@ class SessionParametersResponse extends \Google\Protobuf\Internal\Message
      *           to pruning black-holed or otherwise non-responsive sessions. Must be set
      *           and positive.
      *           See also Heartbeats.
+     *     @type int $softmax_streaming_prefetch_buffer_bytes
+     *           Client will pull this many bytes at most to make messages for steamed
+     *           responses. If the last byte is mid-message, it will continue until a full
+     *           message comes.
      * }
      */
     public function __construct($data = NULL) {
@@ -85,6 +97,36 @@ class SessionParametersResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->keep_alive = $var;
+
+        return $this;
+    }
+
+    /**
+     * Client will pull this many bytes at most to make messages for steamed
+     * responses. If the last byte is mid-message, it will continue until a full
+     * message comes.
+     *
+     * Generated from protobuf field <code>int32 softmax_streaming_prefetch_buffer_bytes = 2;</code>
+     * @return int
+     */
+    public function getSoftmaxStreamingPrefetchBufferBytes()
+    {
+        return $this->softmax_streaming_prefetch_buffer_bytes;
+    }
+
+    /**
+     * Client will pull this many bytes at most to make messages for steamed
+     * responses. If the last byte is mid-message, it will continue until a full
+     * message comes.
+     *
+     * Generated from protobuf field <code>int32 softmax_streaming_prefetch_buffer_bytes = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSoftmaxStreamingPrefetchBufferBytes($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->softmax_streaming_prefetch_buffer_bytes = $var;
 
         return $this;
     }

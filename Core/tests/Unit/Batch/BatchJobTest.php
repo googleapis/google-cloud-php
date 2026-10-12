@@ -70,4 +70,58 @@ class BatchJobTest extends TestCase
         }
         return true;
     }
+
+    public function testIsMsgTooBig()
+    {
+        $job = new BatchJob('testing', array($this, 'runJob'), 1);
+        $this->assertTrue($job->isMsgTooBig(7));
+        if (defined('MSG_E2BIG')) {
+            $this->assertTrue($job->isMsgTooBig(constant('MSG_E2BIG')));
+        }
+        if (defined('PCNTL_E2BIG')) {
+            $this->assertTrue($job->isMsgTooBig(PCNTL_E2BIG));
+        }
+        if (defined('SOCKET_E2BIG')) {
+            $this->assertTrue($job->isMsgTooBig(SOCKET_E2BIG));
+        }
+        $this->assertFalse($job->isMsgTooBig(0));
+        $this->assertFalse($job->isMsgTooBig(4));
+        $this->assertFalse($job->isMsgTooBig(35));
+    }
+
+    public function testDrainOversizedMessage()
+    {
+        if (!extension_loaded('sysvmsg')) {
+            $this->markTestSkipped('sysvmsg extension required');
+        }
+        $key = ftok(__FILE__, 'B');
+        $q = msg_get_queue($key);
+        while (@msg_receive($q, 0, $t, 8192, $m, false, MSG_IPC_NOWAIT | MSG_NOERROR, $e)) {
+        }
+        $job = new BatchJob('testing', array($this, 'runJob'), 1);
+
+        // Verify drain on an empty queue returns false.
+        $this->assertFalse($job->drainOversizedMessage($q));
+
+        // Queue an oversized item and a subsequent valid item.
+        $oversizedMessage = str_repeat('A', 100);
+        $nextMessage = 'valid message';
+        $this->assertTrue(msg_send($q, 1, $oversizedMessage, true, false));
+        $this->assertTrue(msg_send($q, 1, $nextMessage, true, false));
+
+        // Attempting to read with a buffer smaller than the message triggers E2BIG.
+        $received = @msg_receive($q, 0, $type, 10, $message, true, MSG_IPC_NOWAIT, $errorcode);
+        $this->assertFalse($received);
+        $this->assertTrue($job->isMsgTooBig($errorcode));
+
+        // Draining with MSG_NOERROR purges the oversized message and unblocks the queue.
+        $this->assertTrue($job->drainOversizedMessage($q));
+
+        // The subsequent message is now at the head of the queue and can be received.
+        $receivedNext = @msg_receive($q, 0, $type, 8192, $message, true, MSG_IPC_NOWAIT, $errorcode);
+        $this->assertTrue($receivedNext);
+        $this->assertSame($nextMessage, $message);
+
+        msg_remove_queue($q);
+    }
 }

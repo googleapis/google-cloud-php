@@ -42,6 +42,12 @@ class Gateway extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string app_gateway = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $app_gateway = '';
+    /**
+     * Output only. L7 private service connection for this resource.
+     *
+     * Generated from protobuf field <code>string l7psc = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $l7psc = '';
 
     /**
      * Constructor.
@@ -59,6 +65,8 @@ class Gateway extends \Google\Protobuf\Internal\Message
      *     @type string $app_gateway
      *           Required. AppGateway name in following format:
      *           `projects/{project_id}/locations/{location_id}/appgateways/{gateway_id}`
+     *     @type string $l7psc
+     *           Output only. L7 private service connection for this resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -170,6 +178,32 @@ class Gateway extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->app_gateway = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. L7 private service connection for this resource.
+     *
+     * Generated from protobuf field <code>string l7psc = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getL7Psc()
+    {
+        return $this->l7psc;
+    }
+
+    /**
+     * Output only. L7 private service connection for this resource.
+     *
+     * Generated from protobuf field <code>string l7psc = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setL7Psc($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->l7psc = $var;
 
         return $this;
     }

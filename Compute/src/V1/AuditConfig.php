@@ -68,10 +68,6 @@ class AuditConfig extends \Google\Protobuf\Internal\Message
      */
     private $audit_log_configs;
     /**
-     * Generated from protobuf field <code>repeated string exempted_members = 232615576;</code>
-     */
-    private $exempted_members;
-    /**
      * Specifies a service that will be enabled for audit logging.
      * For example, `storage.googleapis.com`, `cloudsql.googleapis.com`.
      * `allServices` is a special value that covers all services.
@@ -88,7 +84,6 @@ class AuditConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Compute\V1\AuditLogConfig[] $audit_log_configs
      *           The configuration for logging of each type of permission.
-     *     @type string[] $exempted_members
      *     @type string $service
      *           Specifies a service that will be enabled for audit logging.
      *           For example, `storage.googleapis.com`, `cloudsql.googleapis.com`.
@@ -122,28 +117,6 @@ class AuditConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\AuditLogConfig::class);
         $this->audit_log_configs = $arr;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>repeated string exempted_members = 232615576;</code>
-     * @return RepeatedField<string>
-     */
-    public function getExemptedMembers()
-    {
-        return $this->exempted_members;
-    }
-
-    /**
-     * Generated from protobuf field <code>repeated string exempted_members = 232615576;</code>
-     * @param string[] $var
-     * @return $this
-     */
-    public function setExemptedMembers($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->exempted_members = $arr;
 
         return $this;
     }

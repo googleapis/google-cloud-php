@@ -95,6 +95,18 @@ return [
                     ],
                 ],
             ],
+            'BatchUpdateAudienceSegments' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/audienceSegments:batchUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateAudienceSegment' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=networks/*}/audienceSegments',
@@ -125,6 +137,19 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateAudienceSegment' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{audience_segment.name=networks/*/audienceSegments/*}',
+                'body' => 'audience_segment',
+                'placeholders' => [
+                    'audience_segment.name' => [
+                        'getters' => [
+                            'getAudienceSegment',
+                            'getName',
                         ],
                     ],
                 ],

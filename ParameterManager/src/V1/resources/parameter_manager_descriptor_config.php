@@ -47,6 +47,30 @@ return [
                     ],
                 ],
             ],
+            'CreateTemplate' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ParameterManager\V1\Template',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateTemplateVersion' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ParameterManager\V1\TemplateVersion',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteParameter' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
@@ -60,6 +84,30 @@ return [
                 ],
             ],
             'DeleteParameterVersion' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteTemplate' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteTemplateVersion' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
                 'headerParams' => [
@@ -86,6 +134,30 @@ return [
             'GetParameterVersion' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\ParameterManager\V1\ParameterVersion',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetTemplate' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ParameterManager\V1\Template',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetTemplateVersion' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ParameterManager\V1\TemplateVersion',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -135,9 +207,61 @@ return [
                     ],
                 ],
             ],
+            'ListTemplateVersions' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getTemplateVersions',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\ParameterManager\V1\ListTemplateVersionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListTemplates' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getTemplates',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\ParameterManager\V1\ListTemplatesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'RenderParameterVersion' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\ParameterManager\V1\RenderParameterVersionResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'RenderTemplateVersion' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ParameterManager\V1\RenderTemplateVersionResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -168,6 +292,32 @@ return [
                         'keyName' => 'parameter_version.name',
                         'fieldAccessors' => [
                             'getParameterVersion',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateTemplate' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ParameterManager\V1\Template',
+                'headerParams' => [
+                    [
+                        'keyName' => 'template.name',
+                        'fieldAccessors' => [
+                            'getTemplate',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateTemplateVersion' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ParameterManager\V1\TemplateVersion',
+                'headerParams' => [
+                    [
+                        'keyName' => 'template_version.name',
+                        'fieldAccessors' => [
+                            'getTemplateVersion',
                             'getName',
                         ],
                     ],
@@ -212,6 +362,8 @@ return [
                 'location' => 'projects/{project}/locations/{location}',
                 'parameter' => 'projects/{project}/locations/{location}/parameters/{parameter}',
                 'parameterVersion' => 'projects/{project}/locations/{location}/parameters/{parameter}/versions/{parameter_version}',
+                'template' => 'projects/{project}/locations/{location}/templates/{template}',
+                'templateVersion' => 'projects/{project}/locations/{location}/templates/{template}/versions/{template_version}',
             ],
         ],
     ],

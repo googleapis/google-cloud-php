@@ -39,6 +39,12 @@ class SqlUsersGetRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string host = 4;</code>
      */
     protected $host = '';
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $location = '';
 
     /**
      * Constructor.
@@ -54,6 +60,8 @@ class SqlUsersGetRequest extends \Google\Protobuf\Internal\Message
      *           Project ID of the project that contains the instance.
      *     @type string $host
      *           Host of a user of the instance.
+     *     @type string $location
+     *           Optional. Region of the Cloud SQL instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -161,6 +169,32 @@ class SqlUsersGetRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->host = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location = $var;
 
         return $this;
     }

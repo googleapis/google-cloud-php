@@ -41,6 +41,8 @@ use Google\Cloud\BeyondCorp\AppConnectors\V1\DeleteAppConnectorRequest;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\GetAppConnectorRequest;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\ListAppConnectorsRequest;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\ReportStatusRequest;
+use Google\Cloud\BeyondCorp\AppConnectors\V1\ResolveInstanceConfigRequest;
+use Google\Cloud\BeyondCorp\AppConnectors\V1\ResolveInstanceConfigResponse;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\UpdateAppConnectorRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
@@ -71,6 +73,10 @@ use Psr\Log\LoggerInterface;
  * The AppConnectorsService provides methods to manage
  * (create/read/update/delete) BeyondCorp AppConnectors.
  *
+ *
+ * Deprecated: App Connector is deprecated and creation of new App Connector
+ * resources is no longer permitted. Use Security Gateway instead.
+ *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
@@ -79,11 +85,14 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @deprecated This class will be removed in the next major version update.
+ *
  * @method PromiseInterface<OperationResponse> createAppConnectorAsync(CreateAppConnectorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAppConnectorAsync(DeleteAppConnectorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AppConnector> getAppConnectorAsync(GetAppConnectorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAppConnectorsAsync(ListAppConnectorsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> reportStatusAsync(ReportStatusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ResolveInstanceConfigResponse> resolveInstanceConfigAsync(ResolveInstanceConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAppConnectorAsync(UpdateAppConnectorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -362,6 +371,8 @@ final class AppConnectorsServiceClient
      * @return OperationResponse<AppConnector>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function createAppConnector(CreateAppConnectorRequest $request, array $callOptions = []): OperationResponse
     {
@@ -389,6 +400,8 @@ final class AppConnectorsServiceClient
      * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function deleteAppConnector(DeleteAppConnectorRequest $request, array $callOptions = []): OperationResponse
     {
@@ -415,6 +428,8 @@ final class AppConnectorsServiceClient
      * @return AppConnector
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getAppConnector(GetAppConnectorRequest $request, array $callOptions = []): AppConnector
     {
@@ -442,6 +457,8 @@ final class AppConnectorsServiceClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listAppConnectors(ListAppConnectorsRequest $request, array $callOptions = []): PagedListResponse
     {
@@ -468,10 +485,44 @@ final class AppConnectorsServiceClient
      * @return OperationResponse<AppConnector>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function reportStatus(ReportStatusRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('ReportStatus', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets instance configuration for a given AppConnector.
+     * An internal method called by a AppConnector to get its container config.
+     *
+     * The async variant is
+     * {@see AppConnectorsServiceClient::resolveInstanceConfigAsync()} .
+     *
+     * @example samples/V1/AppConnectorsServiceClient/resolve_instance_config.php
+     *
+     * @param ResolveInstanceConfigRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ResolveInstanceConfigResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
+     */
+    public function resolveInstanceConfig(
+        ResolveInstanceConfigRequest $request,
+        array $callOptions = []
+    ): ResolveInstanceConfigResponse {
+        return $this->startApiCall('ResolveInstanceConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -495,6 +546,8 @@ final class AppConnectorsServiceClient
      * @return OperationResponse<AppConnector>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function updateAppConnector(UpdateAppConnectorRequest $request, array $callOptions = []): OperationResponse
     {
@@ -529,6 +582,21 @@ final class AppConnectorsServiceClient
 
     /**
      * Lists information about the supported locations for this service.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see AppConnectorsServiceClient::listLocationsAsync()} .
      *

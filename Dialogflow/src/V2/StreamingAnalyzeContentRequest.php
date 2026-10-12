@@ -168,6 +168,8 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *           The DTMF digits used to invoke intent and fill in parameter value.
      *           This input is ignored if the previous response indicated that DTMF input
      *           is not accepted.
+     *     @type \Google\Cloud\Dialogflow\V2\SuggestionInput $suggestion_input
+     *           Optional. Input for confirming, revising, or canceling a suggestion.
      *     @type \Google\Cloud\Dialogflow\V2\QueryParameters $query_params
      *           Parameters for a Dialogflow virtual-agent query.
      *     @type \Google\Cloud\Dialogflow\V2\AssistQueryParameters $assist_query_params
@@ -453,6 +455,37 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\TelephonyDtmfEvents::class);
         $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input for confirming, revising, or canceling a suggestion.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SuggestionInput suggestion_input = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\V2\SuggestionInput|null
+     */
+    public function getSuggestionInput()
+    {
+        return $this->readOneof(27);
+    }
+
+    public function hasSuggestionInput()
+    {
+        return $this->hasOneof(27);
+    }
+
+    /**
+     * Optional. Input for confirming, revising, or canceling a suggestion.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SuggestionInput suggestion_input = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\SuggestionInput $var
+     * @return $this
+     */
+    public function setSuggestionInput($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\SuggestionInput::class);
+        $this->writeOneof(27, $var);
 
         return $this;
     }

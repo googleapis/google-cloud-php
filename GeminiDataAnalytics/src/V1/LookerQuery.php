@@ -54,6 +54,12 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
      */
     protected $limit = null;
     /**
+     * Optional. The dynamic fields used in the query.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1.DynamicField dynamic_fields = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $dynamic_fields;
+    /**
      * Optional. The primary identifier for the query resource in Looker, used for
      * API operations. Maps to `id` (or `slug`) in the Looker API `Query`
      * resource.
@@ -88,6 +94,8 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
      *           Optional. The sorts to apply to the explore.
      *     @type string $limit
      *           Optional. Limit in the query.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1\DynamicField[] $dynamic_fields
+     *           Optional. The dynamic fields used in the query.
      *     @type string $query_id
      *           Optional. The primary identifier for the query resource in Looker, used for
      *           API operations. Maps to `id` (or `slug`) in the Looker API `Query`
@@ -265,6 +273,32 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->limit = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The dynamic fields used in the query.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1.DynamicField dynamic_fields = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1\DynamicField>
+     */
+    public function getDynamicFields()
+    {
+        return $this->dynamic_fields;
+    }
+
+    /**
+     * Optional. The dynamic fields used in the query.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1.DynamicField dynamic_fields = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1\DynamicField[] $var
+     * @return $this
+     */
+    public function setDynamicFields($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GeminiDataAnalytics\V1\DynamicField::class);
+        $this->dynamic_fields = $arr;
 
         return $this;
     }

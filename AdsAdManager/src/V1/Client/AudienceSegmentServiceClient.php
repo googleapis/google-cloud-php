@@ -37,9 +37,12 @@ use Google\Ads\AdManager\V1\BatchPopulateAudienceSegmentsRequest;
 use Google\Ads\AdManager\V1\BatchPopulateAudienceSegmentsResponse;
 use Google\Ads\AdManager\V1\BatchRejectAudienceSegmentsRequest;
 use Google\Ads\AdManager\V1\BatchRejectAudienceSegmentsResponse;
+use Google\Ads\AdManager\V1\BatchUpdateAudienceSegmentsRequest;
+use Google\Ads\AdManager\V1\BatchUpdateAudienceSegmentsResponse;
 use Google\Ads\AdManager\V1\CreateAudienceSegmentRequest;
 use Google\Ads\AdManager\V1\GetAudienceSegmentRequest;
 use Google\Ads\AdManager\V1\ListAudienceSegmentsRequest;
+use Google\Ads\AdManager\V1\UpdateAudienceSegmentRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -70,9 +73,11 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<BatchDeactivateAudienceSegmentsResponse> batchDeactivateAudienceSegmentsAsync(BatchDeactivateAudienceSegmentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BatchPopulateAudienceSegmentsResponse> batchPopulateAudienceSegmentsAsync(BatchPopulateAudienceSegmentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BatchRejectAudienceSegmentsResponse> batchRejectAudienceSegmentsAsync(BatchRejectAudienceSegmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateAudienceSegmentsResponse> batchUpdateAudienceSegmentsAsync(BatchUpdateAudienceSegmentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AudienceSegment> createAudienceSegmentAsync(CreateAudienceSegmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AudienceSegment> getAudienceSegmentAsync(GetAudienceSegmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAudienceSegmentsAsync(ListAudienceSegmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AudienceSegment> updateAudienceSegmentAsync(UpdateAudienceSegmentRequest $request, array $optionalArgs = [])
  */
 final class AudienceSegmentServiceClient
 {
@@ -543,6 +548,35 @@ final class AudienceSegmentServiceClient
     }
 
     /**
+     * Batch updates `AudienceSegment` objects.
+     *
+     * The async variant is
+     * {@see AudienceSegmentServiceClient::batchUpdateAudienceSegmentsAsync()} .
+     *
+     * @example samples/V1/AudienceSegmentServiceClient/batch_update_audience_segments.php
+     *
+     * @param BatchUpdateAudienceSegmentsRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchUpdateAudienceSegmentsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchUpdateAudienceSegments(
+        BatchUpdateAudienceSegmentsRequest $request,
+        array $callOptions = []
+    ): BatchUpdateAudienceSegmentsResponse {
+        return $this->startApiCall('BatchUpdateAudienceSegments', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates an `AudienceSegment` object.
      *
      * The async variant is
@@ -625,5 +659,34 @@ final class AudienceSegmentServiceClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListAudienceSegments', $request, $callOptions);
+    }
+
+    /**
+     * Updates an `AudienceSegment` object.
+     *
+     * The async variant is
+     * {@see AudienceSegmentServiceClient::updateAudienceSegmentAsync()} .
+     *
+     * @example samples/V1/AudienceSegmentServiceClient/update_audience_segment.php
+     *
+     * @param UpdateAudienceSegmentRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AudienceSegment
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateAudienceSegment(
+        UpdateAudienceSegmentRequest $request,
+        array $callOptions = []
+    ): AudienceSegment {
+        return $this->startApiCall('UpdateAudienceSegment', $request, $callOptions)->wait();
     }
 }

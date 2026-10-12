@@ -27,6 +27,7 @@ namespace Google\Cloud\Tasks\V2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -42,10 +43,15 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\Cloud\Tasks\V2\BatchCreateTasksRequest;
+use Google\Cloud\Tasks\V2\BatchCreateTasksResponse;
+use Google\Cloud\Tasks\V2\BatchDeleteTasksRequest;
+use Google\Cloud\Tasks\V2\CmekConfig;
 use Google\Cloud\Tasks\V2\CreateQueueRequest;
 use Google\Cloud\Tasks\V2\CreateTaskRequest;
 use Google\Cloud\Tasks\V2\DeleteQueueRequest;
 use Google\Cloud\Tasks\V2\DeleteTaskRequest;
+use Google\Cloud\Tasks\V2\GetCmekConfigRequest;
 use Google\Cloud\Tasks\V2\GetQueueRequest;
 use Google\Cloud\Tasks\V2\GetTaskRequest;
 use Google\Cloud\Tasks\V2\ListQueuesRequest;
@@ -56,7 +62,10 @@ use Google\Cloud\Tasks\V2\Queue;
 use Google\Cloud\Tasks\V2\ResumeQueueRequest;
 use Google\Cloud\Tasks\V2\RunTaskRequest;
 use Google\Cloud\Tasks\V2\Task;
+use Google\Cloud\Tasks\V2\UpdateCmekConfigRequest;
 use Google\Cloud\Tasks\V2\UpdateQueueRequest;
+use Google\LongRunning\Client\OperationsClient;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -72,10 +81,13 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<OperationResponse> batchCreateTasksAsync(BatchCreateTasksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchDeleteTasksAsync(BatchDeleteTasksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Queue> createQueueAsync(CreateQueueRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Task> createTaskAsync(CreateTaskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteQueueAsync(DeleteQueueRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteTaskAsync(DeleteTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CmekConfig> getCmekConfigAsync(GetCmekConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Queue> getQueueAsync(GetQueueRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Task> getTaskAsync(GetTaskRequest $request, array $optionalArgs = [])
@@ -87,6 +99,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Task> runTaskAsync(RunTaskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CmekConfig> updateCmekConfigAsync(UpdateCmekConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Queue> updateQueueAsync(UpdateQueueRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -122,6 +135,8 @@ final class CloudTasksClient
      */
     public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
+    private $operationsClient;
+
     private static function getClientDefaults()
     {
         return [
@@ -139,6 +154,95 @@ final class CloudTasksClient
                 ],
             ],
         ];
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+        return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a cmek_config
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted cmek_config resource.
+     */
+    public static function cmekConfigName(string $project, string $location): string
+    {
+        return self::getPathTemplate('cmekConfig')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
+        return self::getPathTemplate('cryptoKey')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
     }
 
     /**
@@ -202,6 +306,8 @@ final class CloudTasksClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - cmekConfig: projects/{project}/locations/{location}/cmekConfig
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - location: projects/{project}/locations/{location}
      * - queue: projects/{project}/locations/{location}/queues/{queue}
      * - task: projects/{project}/locations/{location}/queues/{queue}/tasks/{task}
@@ -296,6 +402,7 @@ final class CloudTasksClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /** Handles execution of the async variants for each documented method. */
@@ -307,6 +414,65 @@ final class CloudTasksClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Creates a batch of tasks and adds them to a queue.
+     *
+     * All tasks must be for the same queue.
+     * A maximum of 100 tasks can be created in a single batch.
+     *
+     * The async variant is {@see CloudTasksClient::batchCreateTasksAsync()} .
+     *
+     * @example samples/V2/CloudTasksClient/batch_create_tasks.php
+     *
+     * @param BatchCreateTasksRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<BatchCreateTasksResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchCreateTasks(BatchCreateTasksRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('BatchCreateTasks', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a batch of tasks.
+     * This is a non-atomic operation: if deletion fails for some tasks, it
+     * can still succeed for others. The metadata field of
+     * google.longrunning.Operation contains details of failed deletions.
+     * A maximum of 1000 tasks can be deleted in a batch.
+     *
+     * The async variant is {@see CloudTasksClient::batchDeleteTasksAsync()} .
+     *
+     * @example samples/V2/CloudTasksClient/batch_delete_tasks.php
+     *
+     * @param BatchDeleteTasksRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchDeleteTasks(BatchDeleteTasksRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('BatchDeleteTasks', $request, $callOptions)->wait();
     }
 
     /**
@@ -381,8 +547,15 @@ final class CloudTasksClient
      *
      * This command will delete the queue even if it has tasks in it.
      *
-     * Note: If you delete a queue, a queue with the same name can't be created
-     * for 7 days.
+     * Note: If you delete a queue, you may be prevented from creating a new queue
+     * with the same name as the deleted queue for a tombstone window of up to
+     * 3 days. During this window, the CreateQueue operation may appear to
+     * recreate the queue, but this can be misleading. If you attempt to create
+     * a queue with the same name as one that is in the tombstone window, run
+     * GetQueue to confirm that the queue creation was successful. If GetQueue
+     * returns 200 response code, your queue was successfully created with the
+     * name of the previously deleted queue. Otherwise, your queue did not
+     * successfully recreate.
      *
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
@@ -438,6 +611,35 @@ final class CloudTasksClient
     public function deleteTask(DeleteTaskRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteTask', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the CMEK config.
+     *
+     * Gets the Customer Managed Encryption Key configured with the Cloud Tasks
+     * location. By default there is no kms_key configured.
+     *
+     * The async variant is {@see CloudTasksClient::getCmekConfigAsync()} .
+     *
+     * @example samples/V2/CloudTasksClient/get_cmek_config.php
+     *
+     * @param GetCmekConfigRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CmekConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getCmekConfig(GetCmekConfigRequest $request, array $callOptions = []): CmekConfig
+    {
+        return $this->startApiCall('GetCmekConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -502,6 +704,10 @@ final class CloudTasksClient
 
     /**
      * Gets a task.
+     *
+     * After a task is successfully executed or has exhausted its retry attempts,
+     * the task is deleted. A `GetTask` request for a deleted task returns a
+     * `NOT_FOUND` error.
      *
      * The async variant is {@see CloudTasksClient::getTaskAsync()} .
      *
@@ -704,10 +910,6 @@ final class CloudTasksClient
      * retry a failed task after a fix has been made or to manually force a task
      * to be dispatched now.
      *
-     * The dispatched task is returned. That is, the task that is returned
-     * contains the [status][Task.status] after the task is dispatched but
-     * before the task is received by its target.
-     *
      * If Cloud Tasks receives a successful response from the task's
      * target, then the task will be deleted; otherwise the task's
      * [schedule_time][google.cloud.tasks.v2.Task.schedule_time] will be reset to
@@ -814,6 +1016,37 @@ final class CloudTasksClient
     }
 
     /**
+     * Creates or Updates a CMEK config.
+     *
+     * Updates the Customer Managed Encryption Key associated with the Cloud Tasks
+     * location (Creates if the key does not already exist). All new tasks created
+     * in the location will be encrypted at-rest with the KMS-key provided in the
+     * config.
+     *
+     * The async variant is {@see CloudTasksClient::updateCmekConfigAsync()} .
+     *
+     * @example samples/V2/CloudTasksClient/update_cmek_config.php
+     *
+     * @param UpdateCmekConfigRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CmekConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateCmekConfig(UpdateCmekConfigRequest $request, array $callOptions = []): CmekConfig
+    {
+        return $this->startApiCall('UpdateCmekConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates a queue.
      *
      * This method creates the queue if it does not exist and updates
@@ -881,6 +1114,21 @@ final class CloudTasksClient
 
     /**
      * Lists information about the supported locations for this service.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see CloudTasksClient::listLocationsAsync()} .
      *

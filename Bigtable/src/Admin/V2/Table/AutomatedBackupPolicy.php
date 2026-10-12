@@ -39,6 +39,24 @@ class AutomatedBackupPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string locations = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $locations;
+    /**
+     * Optional. The amount of time that the automated backups remain hot.
+     * If specified, the backups created by this policy are `HOT` backups.
+     * If not specified, the backups are `STANDARD` backups.
+     * The value must be at least 24 hours and at most 10 days, and can't
+     * exceed the policy's `retention_period`.
+     * Only SSD instances support `HOT` automated backups.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration keep_hot_duration = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $keep_hot_duration = null;
+    /**
+     * Optional. If `true`, automated backups are explicitly disabled on this
+     * table. This allows users to opt out of default enablement.
+     *
+     * Generated from protobuf field <code>bool disabled = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $disabled = false;
 
     /**
      * Constructor.
@@ -58,6 +76,16 @@ class AutomatedBackupPolicy extends \Google\Protobuf\Internal\Message
      *           zones of the instance. Locations are in the format
      *           `projects/{project}/locations/{zone}`.
      *           This field can only set for tables in Enterprise Plus instances.
+     *     @type \Google\Protobuf\Duration $keep_hot_duration
+     *           Optional. The amount of time that the automated backups remain hot.
+     *           If specified, the backups created by this policy are `HOT` backups.
+     *           If not specified, the backups are `STANDARD` backups.
+     *           The value must be at least 24 hours and at most 10 days, and can't
+     *           exceed the policy's `retention_period`.
+     *           Only SSD instances support `HOT` automated backups.
+     *     @type bool $disabled
+     *           Optional. If `true`, automated backups are explicitly disabled on this
+     *           table. This allows users to opt out of default enablement.
      * }
      */
     public function __construct($data = NULL) {
@@ -171,6 +199,80 @@ class AutomatedBackupPolicy extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->locations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The amount of time that the automated backups remain hot.
+     * If specified, the backups created by this policy are `HOT` backups.
+     * If not specified, the backups are `STANDARD` backups.
+     * The value must be at least 24 hours and at most 10 days, and can't
+     * exceed the policy's `retention_period`.
+     * Only SSD instances support `HOT` automated backups.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration keep_hot_duration = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getKeepHotDuration()
+    {
+        return $this->keep_hot_duration;
+    }
+
+    public function hasKeepHotDuration()
+    {
+        return isset($this->keep_hot_duration);
+    }
+
+    public function clearKeepHotDuration()
+    {
+        unset($this->keep_hot_duration);
+    }
+
+    /**
+     * Optional. The amount of time that the automated backups remain hot.
+     * If specified, the backups created by this policy are `HOT` backups.
+     * If not specified, the backups are `STANDARD` backups.
+     * The value must be at least 24 hours and at most 10 days, and can't
+     * exceed the policy's `retention_period`.
+     * Only SSD instances support `HOT` automated backups.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration keep_hot_duration = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setKeepHotDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->keep_hot_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If `true`, automated backups are explicitly disabled on this
+     * table. This allows users to opt out of default enablement.
+     *
+     * Generated from protobuf field <code>bool disabled = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDisabled()
+    {
+        return $this->disabled;
+    }
+
+    /**
+     * Optional. If `true`, automated backups are explicitly disabled on this
+     * table. This allows users to opt out of default enablement.
+     *
+     * Generated from protobuf field <code>bool disabled = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disabled = $var;
 
         return $this;
     }

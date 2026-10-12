@@ -80,9 +80,11 @@ class Generator extends \Google\Protobuf\Internal\Message
      */
     private $ces_tool_specs;
     /**
-     * Optional. List of CES app specs that the generator can choose from.
+     * Optional. Deprecated: Use `ces_tool_specs` instead.
+     * List of CES app specs that the generator can choose from.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.CesAppSpec ces_app_specs = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.CesAppSpec ces_app_specs = 29 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     private $ces_app_specs;
     protected $context;
@@ -131,7 +133,8 @@ class Generator extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\V2\CesToolSpec[] $ces_tool_specs
      *           Optional. List of CES tool specs that the generator can choose from.
      *     @type \Google\Cloud\Dialogflow\V2\CesAppSpec[] $ces_app_specs
-     *           Optional. List of CES app specs that the generator can choose from.
+     *           Optional. Deprecated: Use `ces_tool_specs` instead.
+     *           List of CES app specs that the generator can choose from.
      * }
      */
     public function __construct($data = NULL) {
@@ -580,26 +583,36 @@ class Generator extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of CES app specs that the generator can choose from.
+     * Optional. Deprecated: Use `ces_tool_specs` instead.
+     * List of CES app specs that the generator can choose from.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.CesAppSpec ces_app_specs = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.CesAppSpec ces_app_specs = 29 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<\Google\Cloud\Dialogflow\V2\CesAppSpec>
+     * @deprecated
      */
     public function getCesAppSpecs()
     {
+        if (count($this->ces_app_specs) !== 0) {
+            @trigger_error('ces_app_specs is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->ces_app_specs;
     }
 
     /**
-     * Optional. List of CES app specs that the generator can choose from.
+     * Optional. Deprecated: Use `ces_tool_specs` instead.
+     * List of CES app specs that the generator can choose from.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.CesAppSpec ces_app_specs = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.CesAppSpec ces_app_specs = 29 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dialogflow\V2\CesAppSpec[] $var
      * @return $this
+     * @deprecated
      */
     public function setCesAppSpecs($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\CesAppSpec::class);
+        if (count($arr) !== 0) {
+            @trigger_error('ces_app_specs is deprecated.', E_USER_DEPRECATED);
+        }
         $this->ces_app_specs = $arr;
 
         return $this;

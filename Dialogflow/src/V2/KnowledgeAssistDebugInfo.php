@@ -53,7 +53,7 @@ class KnowledgeAssistDebugInfo extends \Google\Protobuf\Internal\Message
      */
     protected $service_latency = null;
     /**
-     * Token usage metadata for query generation.
+     * Debug information and model metadata for query generation.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.KnowledgeAssistDebugInfo.QueryGenerationDebugInfo query_generation_debug_info = 7;</code>
      */
@@ -85,7 +85,7 @@ class KnowledgeAssistDebugInfo extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\V2\ServiceLatency $service_latency
      *           The latency of the service.
      *     @type \Google\Cloud\Dialogflow\V2\KnowledgeAssistDebugInfo\QueryGenerationDebugInfo $query_generation_debug_info
-     *           Token usage metadata for query generation.
+     *           Debug information and model metadata for query generation.
      *     @type \Google\Protobuf\Struct $ces_debug_info
      *           Debug information from CES runtime API.
      * }
@@ -284,7 +284,7 @@ class KnowledgeAssistDebugInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Token usage metadata for query generation.
+     * Debug information and model metadata for query generation.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.KnowledgeAssistDebugInfo.QueryGenerationDebugInfo query_generation_debug_info = 7;</code>
      * @return \Google\Cloud\Dialogflow\V2\KnowledgeAssistDebugInfo\QueryGenerationDebugInfo|null
@@ -305,7 +305,7 @@ class KnowledgeAssistDebugInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Token usage metadata for query generation.
+     * Debug information and model metadata for query generation.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.KnowledgeAssistDebugInfo.QueryGenerationDebugInfo query_generation_debug_info = 7;</code>
      * @param \Google\Cloud\Dialogflow\V2\KnowledgeAssistDebugInfo\QueryGenerationDebugInfo $var

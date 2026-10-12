@@ -16,6 +16,18 @@ use Google\Protobuf\RepeatedField;
 class CapacityHistoryRequestInstanceProperties extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Local SSDs.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.CapacityHistoryRequestInstancePropertiesAttachedDisk disks = 95594102;</code>
+     */
+    private $disks;
+    /**
+     * Accelerators configuration.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 463595119;</code>
+     */
+    private $guest_accelerators;
+    /**
      * The machine type for the VM, such as `n2-standard-4`.
      *
      * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
@@ -34,6 +46,10 @@ class CapacityHistoryRequestInstanceProperties extends \Google\Protobuf\Internal
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\CapacityHistoryRequestInstancePropertiesAttachedDisk[] $disks
+     *           Local SSDs.
+     *     @type \Google\Cloud\Compute\V1\AcceleratorConfig[] $guest_accelerators
+     *           Accelerators configuration.
      *     @type string $machine_type
      *           The machine type for the VM, such as `n2-standard-4`.
      *     @type \Google\Cloud\Compute\V1\CapacityHistoryRequestInstancePropertiesScheduling $scheduling
@@ -43,6 +59,58 @@ class CapacityHistoryRequestInstanceProperties extends \Google\Protobuf\Internal
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Local SSDs.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.CapacityHistoryRequestInstancePropertiesAttachedDisk disks = 95594102;</code>
+     * @return RepeatedField<\Google\Cloud\Compute\V1\CapacityHistoryRequestInstancePropertiesAttachedDisk>
+     */
+    public function getDisks()
+    {
+        return $this->disks;
+    }
+
+    /**
+     * Local SSDs.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.CapacityHistoryRequestInstancePropertiesAttachedDisk disks = 95594102;</code>
+     * @param \Google\Cloud\Compute\V1\CapacityHistoryRequestInstancePropertiesAttachedDisk[] $var
+     * @return $this
+     */
+    public function setDisks($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\CapacityHistoryRequestInstancePropertiesAttachedDisk::class);
+        $this->disks = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Accelerators configuration.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 463595119;</code>
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AcceleratorConfig>
+     */
+    public function getGuestAccelerators()
+    {
+        return $this->guest_accelerators;
+    }
+
+    /**
+     * Accelerators configuration.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 463595119;</code>
+     * @param \Google\Cloud\Compute\V1\AcceleratorConfig[] $var
+     * @return $this
+     */
+    public function setGuestAccelerators($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\AcceleratorConfig::class);
+        $this->guest_accelerators = $arr;
+
+        return $this;
     }
 
     /**

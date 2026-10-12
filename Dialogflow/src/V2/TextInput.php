@@ -17,10 +17,11 @@ use Google\Protobuf\RepeatedField;
 class TextInput extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The UTF-8 encoded natural language text to be processed.
+     * Optional. The UTF-8 encoded natural language text to be processed.
      * Text length must not exceed 256 characters for virtual agent interactions.
+     * Only one of `text` and `companion_query` should be set - not both.
      *
-     * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $text = '';
     /**
@@ -40,8 +41,9 @@ class TextInput extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $text
-     *           Required. The UTF-8 encoded natural language text to be processed.
+     *           Optional. The UTF-8 encoded natural language text to be processed.
      *           Text length must not exceed 256 characters for virtual agent interactions.
+     *           Only one of `text` and `companion_query` should be set - not both.
      *     @type string $language_code
      *           Required. The language of this conversational query. See [Language
      *           Support](https://cloud.google.com/dialogflow/docs/reference/language)
@@ -55,10 +57,11 @@ class TextInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The UTF-8 encoded natural language text to be processed.
+     * Optional. The UTF-8 encoded natural language text to be processed.
      * Text length must not exceed 256 characters for virtual agent interactions.
+     * Only one of `text` and `companion_query` should be set - not both.
      *
-     * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getText()
@@ -67,10 +70,11 @@ class TextInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The UTF-8 encoded natural language text to be processed.
+     * Optional. The UTF-8 encoded natural language text to be processed.
      * Text length must not exceed 256 characters for virtual agent interactions.
+     * Only one of `text` and `companion_query` should be set - not both.
      *
-     * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

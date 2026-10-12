@@ -92,6 +92,8 @@ class SipTrunksClientTest extends GeneratedTest
         $sipTrunk = new SipTrunk();
         $sipTrunkExpectedHostname = [];
         $sipTrunk->setExpectedHostname($sipTrunkExpectedHostname);
+        $sipTrunkPeerHostnames = [];
+        $sipTrunk->setPeerHostnames($sipTrunkPeerHostnames);
         $request = (new CreateSipTrunkRequest())->setParent($formattedParent)->setSipTrunk($sipTrunk);
         $response = $gapicClient->createSipTrunk($request);
         $this->assertEquals($expectedResponse, $response);
@@ -133,6 +135,8 @@ class SipTrunksClientTest extends GeneratedTest
         $sipTrunk = new SipTrunk();
         $sipTrunkExpectedHostname = [];
         $sipTrunk->setExpectedHostname($sipTrunkExpectedHostname);
+        $sipTrunkPeerHostnames = [];
+        $sipTrunk->setPeerHostnames($sipTrunkPeerHostnames);
         $request = (new CreateSipTrunkRequest())->setParent($formattedParent)->setSipTrunk($sipTrunk);
         try {
             $gapicClient->createSipTrunk($request);
@@ -366,6 +370,8 @@ class SipTrunksClientTest extends GeneratedTest
         $sipTrunk = new SipTrunk();
         $sipTrunkExpectedHostname = [];
         $sipTrunk->setExpectedHostname($sipTrunkExpectedHostname);
+        $sipTrunkPeerHostnames = [];
+        $sipTrunk->setPeerHostnames($sipTrunkPeerHostnames);
         $request = (new UpdateSipTrunkRequest())->setSipTrunk($sipTrunk);
         $response = $gapicClient->updateSipTrunk($request);
         $this->assertEquals($expectedResponse, $response);
@@ -404,6 +410,8 @@ class SipTrunksClientTest extends GeneratedTest
         $sipTrunk = new SipTrunk();
         $sipTrunkExpectedHostname = [];
         $sipTrunk->setExpectedHostname($sipTrunkExpectedHostname);
+        $sipTrunkPeerHostnames = [];
+        $sipTrunk->setPeerHostnames($sipTrunkPeerHostnames);
         $request = (new UpdateSipTrunkRequest())->setSipTrunk($sipTrunk);
         try {
             $gapicClient->updateSipTrunk($request);
@@ -566,6 +574,8 @@ class SipTrunksClientTest extends GeneratedTest
         $sipTrunk = new SipTrunk();
         $sipTrunkExpectedHostname = [];
         $sipTrunk->setExpectedHostname($sipTrunkExpectedHostname);
+        $sipTrunkPeerHostnames = [];
+        $sipTrunk->setPeerHostnames($sipTrunkPeerHostnames);
         $request = (new CreateSipTrunkRequest())->setParent($formattedParent)->setSipTrunk($sipTrunk);
         $response = $gapicClient->createSipTrunkAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);

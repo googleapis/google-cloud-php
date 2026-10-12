@@ -34,6 +34,12 @@ class SqlInstancesPreCheckMajorVersionUpgradeRequest extends \Google\Protobuf\In
      * Generated from protobuf field <code>.google.cloud.sql.v1.InstancesPreCheckMajorVersionUpgradeRequest body = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $body = null;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $location = '';
 
     /**
      * Constructor.
@@ -48,6 +54,8 @@ class SqlInstancesPreCheckMajorVersionUpgradeRequest extends \Google\Protobuf\In
      *     @type \Google\Cloud\Sql\V1\InstancesPreCheckMajorVersionUpgradeRequest $body
      *           Required. The context for request to perform the pre-check major version
      *           upgrade operation.
+     *     @type string $location
+     *           Optional. Region of the Cloud SQL instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -141,6 +149,32 @@ class SqlInstancesPreCheckMajorVersionUpgradeRequest extends \Google\Protobuf\In
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\InstancesPreCheckMajorVersionUpgradeRequest::class);
         $this->body = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location = $var;
 
         return $this;
     }

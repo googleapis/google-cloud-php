@@ -123,6 +123,39 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     protected $pre_check_major_version_upgrade_context = null;
     /**
+     * The context for the `StartWorkloadCapture` operation, which contains
+     * details to start recording the workload (SQL queries) on a Cloud SQL
+     * instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.StartWorkloadCaptureContext start_workload_capture_context = 59;</code>
+     */
+    protected $start_workload_capture_context = null;
+    /**
+     * The context for the `StopWorkloadCapture` operation, which contains
+     * details to stop recording the workload (SQL queries) on a Cloud SQL
+     * instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.StopWorkloadCaptureContext stop_workload_capture_context = 60;</code>
+     */
+    protected $stop_workload_capture_context = null;
+    /**
+     * The context for the `StartWorkloadReplay` operation, which contains details
+     * about starting the execution of a captured workload (recorded read and
+     * write SQL queries) on a replay instance (the Cloud SQL
+     * instance where the recorded SQL queries are executed).
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.StartWorkloadReplayContext start_workload_replay_context = 61;</code>
+     */
+    protected $start_workload_replay_context = null;
+    /**
+     * The context for the `StopWorkloadReplay` operation, which contains details
+     * about stopping the execution of a captured workload (recorded read and
+     * write SQL queries) on a replay instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.StopWorkloadReplayContext stop_workload_replay_context = 62;</code>
+     */
+    protected $stop_workload_replay_context = null;
+    /**
      * An identifier that uniquely identifies the operation. You can use this
      * identifier to retrieve the Operations resource that has information about
      * the operation.
@@ -217,6 +250,23 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           The PreCheckMajorVersionUpgradeContext message itself contains the details
      *           for that pre-check, such as the target database version for the upgrade
      *           and the results of the check (including any warnings or errors found).
+     *     @type \Google\Cloud\Sql\V1\StartWorkloadCaptureContext $start_workload_capture_context
+     *           The context for the `StartWorkloadCapture` operation, which contains
+     *           details to start recording the workload (SQL queries) on a Cloud SQL
+     *           instance.
+     *     @type \Google\Cloud\Sql\V1\StopWorkloadCaptureContext $stop_workload_capture_context
+     *           The context for the `StopWorkloadCapture` operation, which contains
+     *           details to stop recording the workload (SQL queries) on a Cloud SQL
+     *           instance.
+     *     @type \Google\Cloud\Sql\V1\StartWorkloadReplayContext $start_workload_replay_context
+     *           The context for the `StartWorkloadReplay` operation, which contains details
+     *           about starting the execution of a captured workload (recorded read and
+     *           write SQL queries) on a replay instance (the Cloud SQL
+     *           instance where the recorded SQL queries are executed).
+     *     @type \Google\Cloud\Sql\V1\StopWorkloadReplayContext $stop_workload_replay_context
+     *           The context for the `StopWorkloadReplay` operation, which contains details
+     *           about stopping the execution of a captured workload (recorded read and
+     *           write SQL queries) on a replay instance.
      *     @type string $name
      *           An identifier that uniquely identifies the operation. You can use this
      *           identifier to retrieve the Operations resource that has information about
@@ -730,6 +780,168 @@ class Operation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\PreCheckMajorVersionUpgradeContext::class);
         $this->pre_check_major_version_upgrade_context = $var;
+
+        return $this;
+    }
+
+    /**
+     * The context for the `StartWorkloadCapture` operation, which contains
+     * details to start recording the workload (SQL queries) on a Cloud SQL
+     * instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.StartWorkloadCaptureContext start_workload_capture_context = 59;</code>
+     * @return \Google\Cloud\Sql\V1\StartWorkloadCaptureContext|null
+     */
+    public function getStartWorkloadCaptureContext()
+    {
+        return $this->start_workload_capture_context;
+    }
+
+    public function hasStartWorkloadCaptureContext()
+    {
+        return isset($this->start_workload_capture_context);
+    }
+
+    public function clearStartWorkloadCaptureContext()
+    {
+        unset($this->start_workload_capture_context);
+    }
+
+    /**
+     * The context for the `StartWorkloadCapture` operation, which contains
+     * details to start recording the workload (SQL queries) on a Cloud SQL
+     * instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.StartWorkloadCaptureContext start_workload_capture_context = 59;</code>
+     * @param \Google\Cloud\Sql\V1\StartWorkloadCaptureContext $var
+     * @return $this
+     */
+    public function setStartWorkloadCaptureContext($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\StartWorkloadCaptureContext::class);
+        $this->start_workload_capture_context = $var;
+
+        return $this;
+    }
+
+    /**
+     * The context for the `StopWorkloadCapture` operation, which contains
+     * details to stop recording the workload (SQL queries) on a Cloud SQL
+     * instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.StopWorkloadCaptureContext stop_workload_capture_context = 60;</code>
+     * @return \Google\Cloud\Sql\V1\StopWorkloadCaptureContext|null
+     */
+    public function getStopWorkloadCaptureContext()
+    {
+        return $this->stop_workload_capture_context;
+    }
+
+    public function hasStopWorkloadCaptureContext()
+    {
+        return isset($this->stop_workload_capture_context);
+    }
+
+    public function clearStopWorkloadCaptureContext()
+    {
+        unset($this->stop_workload_capture_context);
+    }
+
+    /**
+     * The context for the `StopWorkloadCapture` operation, which contains
+     * details to stop recording the workload (SQL queries) on a Cloud SQL
+     * instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.StopWorkloadCaptureContext stop_workload_capture_context = 60;</code>
+     * @param \Google\Cloud\Sql\V1\StopWorkloadCaptureContext $var
+     * @return $this
+     */
+    public function setStopWorkloadCaptureContext($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\StopWorkloadCaptureContext::class);
+        $this->stop_workload_capture_context = $var;
+
+        return $this;
+    }
+
+    /**
+     * The context for the `StartWorkloadReplay` operation, which contains details
+     * about starting the execution of a captured workload (recorded read and
+     * write SQL queries) on a replay instance (the Cloud SQL
+     * instance where the recorded SQL queries are executed).
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.StartWorkloadReplayContext start_workload_replay_context = 61;</code>
+     * @return \Google\Cloud\Sql\V1\StartWorkloadReplayContext|null
+     */
+    public function getStartWorkloadReplayContext()
+    {
+        return $this->start_workload_replay_context;
+    }
+
+    public function hasStartWorkloadReplayContext()
+    {
+        return isset($this->start_workload_replay_context);
+    }
+
+    public function clearStartWorkloadReplayContext()
+    {
+        unset($this->start_workload_replay_context);
+    }
+
+    /**
+     * The context for the `StartWorkloadReplay` operation, which contains details
+     * about starting the execution of a captured workload (recorded read and
+     * write SQL queries) on a replay instance (the Cloud SQL
+     * instance where the recorded SQL queries are executed).
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.StartWorkloadReplayContext start_workload_replay_context = 61;</code>
+     * @param \Google\Cloud\Sql\V1\StartWorkloadReplayContext $var
+     * @return $this
+     */
+    public function setStartWorkloadReplayContext($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\StartWorkloadReplayContext::class);
+        $this->start_workload_replay_context = $var;
+
+        return $this;
+    }
+
+    /**
+     * The context for the `StopWorkloadReplay` operation, which contains details
+     * about stopping the execution of a captured workload (recorded read and
+     * write SQL queries) on a replay instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.StopWorkloadReplayContext stop_workload_replay_context = 62;</code>
+     * @return \Google\Cloud\Sql\V1\StopWorkloadReplayContext|null
+     */
+    public function getStopWorkloadReplayContext()
+    {
+        return $this->stop_workload_replay_context;
+    }
+
+    public function hasStopWorkloadReplayContext()
+    {
+        return isset($this->stop_workload_replay_context);
+    }
+
+    public function clearStopWorkloadReplayContext()
+    {
+        unset($this->stop_workload_replay_context);
+    }
+
+    /**
+     * The context for the `StopWorkloadReplay` operation, which contains details
+     * about stopping the execution of a captured workload (recorded read and
+     * write SQL queries) on a replay instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.StopWorkloadReplayContext stop_workload_replay_context = 62;</code>
+     * @param \Google\Cloud\Sql\V1\StopWorkloadReplayContext $var
+     * @return $this
+     */
+    public function setStopWorkloadReplayContext($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\StopWorkloadReplayContext::class);
+        $this->stop_workload_replay_context = $var;
 
         return $this;
     }

@@ -57,6 +57,14 @@ class InstancesRestoreBackupRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string restore_instance_clear_overrides_field_names = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $restore_instance_clear_overrides_field_names;
+    /**
+     * Optional. If true, the restore operation proceeds even if the target
+     * instance's maintenance version is older than the source instance's
+     * maintenance version.
+     *
+     * Generated from protobuf field <code>bool ignore_maintenance_version = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ignore_maintenance_version = false;
 
     /**
      * Constructor.
@@ -86,6 +94,10 @@ class InstancesRestoreBackupRequest extends \Google\Protobuf\Internal\Message
      *           Optional. This field has the same purpose as restore_instance_settings,
      *           changes any instance settings stored in the backup you are restoring from.
      *           With the difference that these fields are cleared in the settings.
+     *     @type bool $ignore_maintenance_version
+     *           Optional. If true, the restore operation proceeds even if the target
+     *           instance's maintenance version is older than the source instance's
+     *           maintenance version.
      * }
      */
     public function __construct($data = NULL) {
@@ -263,6 +275,36 @@ class InstancesRestoreBackupRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->restore_instance_clear_overrides_field_names = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, the restore operation proceeds even if the target
+     * instance's maintenance version is older than the source instance's
+     * maintenance version.
+     *
+     * Generated from protobuf field <code>bool ignore_maintenance_version = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIgnoreMaintenanceVersion()
+    {
+        return $this->ignore_maintenance_version;
+    }
+
+    /**
+     * Optional. If true, the restore operation proceeds even if the target
+     * instance's maintenance version is older than the source instance's
+     * maintenance version.
+     *
+     * Generated from protobuf field <code>bool ignore_maintenance_version = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIgnoreMaintenanceVersion($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ignore_maintenance_version = $var;
 
         return $this;
     }

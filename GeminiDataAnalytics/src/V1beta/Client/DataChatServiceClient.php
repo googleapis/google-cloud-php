@@ -47,6 +47,7 @@ use Google\Cloud\GeminiDataAnalytics\V1beta\ListMessagesRequest;
 use Google\Cloud\GeminiDataAnalytics\V1beta\Message;
 use Google\Cloud\GeminiDataAnalytics\V1beta\QueryDataRequest;
 use Google\Cloud\GeminiDataAnalytics\V1beta\QueryDataResponse;
+use Google\Cloud\GeminiDataAnalytics\V1beta\UpdateConversationRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
@@ -74,6 +75,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<QueryDataResponse> queryDataAsync(QueryDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Conversation> updateConversationAsync(UpdateConversationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
@@ -535,6 +537,34 @@ final class DataChatServiceClient
     public function queryData(QueryDataRequest $request, array $callOptions = []): QueryDataResponse
     {
         return $this->startApiCall('QueryData', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a conversation.
+     *
+     * The async variant is {@see DataChatServiceClient::updateConversationAsync()} .
+     *
+     * @example samples/V1beta/DataChatServiceClient/update_conversation.php
+     *
+     * @param UpdateConversationRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Conversation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateConversation(UpdateConversationRequest $request, array $callOptions = []): Conversation
+    {
+        return $this->startApiCall('UpdateConversation', $request, $callOptions)->wait();
     }
 
     /**

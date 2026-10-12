@@ -39,12 +39,22 @@ class SetUpSpaceRequest extends \Google\Protobuf\Internal\Message
      */
     protected $space = null;
     /**
-     * Optional. A unique identifier for this request.
-     * A random UUID is recommended.
-     * Specifying an existing request ID returns the space created with that ID
-     * instead of creating a new space.
-     * Specifying an existing request ID from the same Chat app with a different
-     * authenticated user returns an error.
+     * Optional. A unique ID for this request. A random UUID is recommended.
+     * Specifying a request ID makes the request idempotent, which ensures that
+     * multiple identical requests with the same request ID result in only a
+     * single space being created. Subsequent requests with the same request ID
+     * return the existing space and do not update the space, even if the
+     * requested details differ from the current state.
+     * To use this field effectively:
+     * - Ensure that subsequent requests are identical and use the same
+     * authentication credentials as the original request.
+     * - If a space was already created with the provided request ID, the request
+     * returns that space. Note that the returned space might not be fully
+     * populated; the API echoes the space in your request with the
+     * system-assigned resource name populated. To retrieve the latest metadata
+     * for the space, call `GetSpace`.
+     * - Reusing an existing request ID with a different authenticated user
+     * results in an error.
      *
      * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -103,12 +113,22 @@ class SetUpSpaceRequest extends \Google\Protobuf\Internal\Message
      *           If a `DIRECT_MESSAGE` space already exists, that space is returned instead
      *           of creating a new space.
      *     @type string $request_id
-     *           Optional. A unique identifier for this request.
-     *           A random UUID is recommended.
-     *           Specifying an existing request ID returns the space created with that ID
-     *           instead of creating a new space.
-     *           Specifying an existing request ID from the same Chat app with a different
-     *           authenticated user returns an error.
+     *           Optional. A unique ID for this request. A random UUID is recommended.
+     *           Specifying a request ID makes the request idempotent, which ensures that
+     *           multiple identical requests with the same request ID result in only a
+     *           single space being created. Subsequent requests with the same request ID
+     *           return the existing space and do not update the space, even if the
+     *           requested details differ from the current state.
+     *           To use this field effectively:
+     *           - Ensure that subsequent requests are identical and use the same
+     *           authentication credentials as the original request.
+     *           - If a space was already created with the provided request ID, the request
+     *           returns that space. Note that the returned space might not be fully
+     *           populated; the API echoes the space in your request with the
+     *           system-assigned resource name populated. To retrieve the latest metadata
+     *           for the space, call `GetSpace`.
+     *           - Reusing an existing request ID with a different authenticated user
+     *           results in an error.
      *     @type \Google\Apps\Chat\V1\Membership[] $memberships
      *           Optional. The Google Chat users or groups to invite to join the space. Omit
      *           the calling user, as they are added automatically.
@@ -210,12 +230,22 @@ class SetUpSpaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A unique identifier for this request.
-     * A random UUID is recommended.
-     * Specifying an existing request ID returns the space created with that ID
-     * instead of creating a new space.
-     * Specifying an existing request ID from the same Chat app with a different
-     * authenticated user returns an error.
+     * Optional. A unique ID for this request. A random UUID is recommended.
+     * Specifying a request ID makes the request idempotent, which ensures that
+     * multiple identical requests with the same request ID result in only a
+     * single space being created. Subsequent requests with the same request ID
+     * return the existing space and do not update the space, even if the
+     * requested details differ from the current state.
+     * To use this field effectively:
+     * - Ensure that subsequent requests are identical and use the same
+     * authentication credentials as the original request.
+     * - If a space was already created with the provided request ID, the request
+     * returns that space. Note that the returned space might not be fully
+     * populated; the API echoes the space in your request with the
+     * system-assigned resource name populated. To retrieve the latest metadata
+     * for the space, call `GetSpace`.
+     * - Reusing an existing request ID with a different authenticated user
+     * results in an error.
      *
      * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -226,12 +256,22 @@ class SetUpSpaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A unique identifier for this request.
-     * A random UUID is recommended.
-     * Specifying an existing request ID returns the space created with that ID
-     * instead of creating a new space.
-     * Specifying an existing request ID from the same Chat app with a different
-     * authenticated user returns an error.
+     * Optional. A unique ID for this request. A random UUID is recommended.
+     * Specifying a request ID makes the request idempotent, which ensures that
+     * multiple identical requests with the same request ID result in only a
+     * single space being created. Subsequent requests with the same request ID
+     * return the existing space and do not update the space, even if the
+     * requested details differ from the current state.
+     * To use this field effectively:
+     * - Ensure that subsequent requests are identical and use the same
+     * authentication credentials as the original request.
+     * - If a space was already created with the provided request ID, the request
+     * returns that space. Note that the returned space might not be fully
+     * populated; the API echoes the space in your request with the
+     * system-assigned resource name populated. To retrieve the latest metadata
+     * for the space, call `GetSpace`.
+     * - Reusing an existing request ID with a different authenticated user
+     * results in an error.
      *
      * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

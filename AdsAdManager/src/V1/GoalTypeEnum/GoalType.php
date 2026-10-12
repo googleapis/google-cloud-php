@@ -21,8 +21,9 @@ class GoalType
     const GOAL_TYPE_UNSPECIFIED = 0;
     /**
      * No goal is specified for the number of ads delivered.
-     * The line item [type][google.ads.admanager.v1.LineItem.line_item_type]
-     * must be one of:
+     * The line item
+     * [lineItemType][google.ads.admanager.v1.LineItem.line_item_type] must be
+     * one of:
      * * [LineItemTypeEnum.LineItemType.PRICE_PRIORITY][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY]
      * * [LineItemTypeEnum.LineItemType.AD_EXCHANGE][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.AD_EXCHANGE]
      * * [LineItemTypeEnum.LineItemType.CLICK_TRACKING][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.CLICK_TRACKING]
@@ -33,8 +34,9 @@ class GoalType
     /**
      * There is a goal on the number of ads delivered for this line item during
      * its entire lifetime.
-     * The line item [type][google.ads.admanager.v1.LineItem.line_item_type]
-     * must be one of:
+     * The line item
+     * [lineItemType][google.ads.admanager.v1.LineItem.line_item_type] must be
+     * one of:
      * * [LineItemTypeEnum.LineItemType.STANDARD][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD]
      * * [LineItemTypeEnum.LineItemType.BULK][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BULK]
      * * [LineItemTypeEnum.LineItemType.PRICE_PRIORITY][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY]
@@ -48,8 +50,9 @@ class GoalType
     const LIFETIME = 2;
     /**
      * There is a daily goal on the number of ads delivered for this line item.
-     * The line item [type][google.ads.admanager.v1.LineItem.line_item_type]
-     * must be one of:
+     * The line item
+     * [lineItemType][google.ads.admanager.v1.LineItem.line_item_type] must be
+     * one of:
      * * [LineItemTypeEnum.LineItemType.SPONSORSHIP][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP]
      * * [LineItemTypeEnum.LineItemType.NETWORK][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.NETWORK]
      * * [LineItemTypeEnum.LineItemType.PRICE_PRIORITY][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.PRICE_PRIORITY]

@@ -114,6 +114,29 @@ return [
                     ],
                 ],
             ],
+            'RetrieveAgentOpsObservability' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}:retrieveAgentOpsObservability',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'SetAgentOpsObservability' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}/observabilitySettings:setAgentOpsObservability',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'SetIamPolicy' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/dataAgents/*}:setIamPolicy',

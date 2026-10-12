@@ -9,11 +9,12 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * A user in Google Chat.
- * When returned as an output from a request, if your Chat app [authenticates as
- * a
+ * If your Chat app [authenticates as a
  * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
- * the output for a `User` resource only populates the user's `name` and `type`.
+ * the output for a `User` resource (such as in the Messages and Memberships
+ * APIs) only populates the `name` and `type` fields for both internal and
+ * external users, unless they are members of the space or have prior affinity
+ * with the calling user.
  *
  * Generated from protobuf message <code>google.chat.v1.User</code>
  */
@@ -43,10 +44,43 @@ class User extends \Google\Protobuf\Internal\Message
     protected $name = '';
     /**
      * Output only. The user's display name.
+     * Populated for both app authentication and user authentication.
+     * This field is always populated for requests made with [app
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
+     * When calling the Messages and Memberships APIs with [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * this field is populated for both internal and external users for the
+     * `sender` of a message, users within `annotations` (such as user
+     * mentions), and within `Membership` resources, provided the user is a
+     * member of the space or has prior affinity with the calling user.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $display_name = '';
+    /**
+     * Output only. The user's avatar image URL.
+     * When calling the Messages and Memberships APIs with [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * this field is populated for both internal and external users for the
+     * `sender` of a message, users within `annotations` (such as user
+     * mentions), and within `Membership` resources, provided the user is a
+     * member of the space or has prior affinity with the calling user.
+     *
+     * Generated from protobuf field <code>string avatar_url = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $avatar_url = '';
+    /**
+     * Output only. The user's email address.
+     * When calling the Messages and Memberships APIs with [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * this field is populated for both internal and external users for the
+     * `sender` of a message, users within `annotations` (such as user
+     * mentions), and within `Membership` resources, provided the user is a
+     * member of the space or has prior affinity with the calling user.
+     *
+     * Generated from protobuf field <code>string email = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $email = '';
     /**
      * Unique identifier of the user's Google Workspace domain.
      *
@@ -61,7 +95,8 @@ class User extends \Google\Protobuf\Internal\Message
     protected $type = 0;
     /**
      * Output only. When `true`, the user is deleted or their profile is not
-     * visible.
+     * visible, such as when a user is mentioned in a space without being a member
+     * and without prior affinity with the calling user.
      *
      * Generated from protobuf field <code>bool is_anonymous = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -93,13 +128,39 @@ class User extends \Google\Protobuf\Internal\Message
      *           (for example `users/123456789`) will be returned from the API.
      *     @type string $display_name
      *           Output only. The user's display name.
+     *           Populated for both app authentication and user authentication.
+     *           This field is always populated for requests made with [app
+     *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
+     *           When calling the Messages and Memberships APIs with [user
+     *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     *           this field is populated for both internal and external users for the
+     *           `sender` of a message, users within `annotations` (such as user
+     *           mentions), and within `Membership` resources, provided the user is a
+     *           member of the space or has prior affinity with the calling user.
+     *     @type string $avatar_url
+     *           Output only. The user's avatar image URL.
+     *           When calling the Messages and Memberships APIs with [user
+     *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     *           this field is populated for both internal and external users for the
+     *           `sender` of a message, users within `annotations` (such as user
+     *           mentions), and within `Membership` resources, provided the user is a
+     *           member of the space or has prior affinity with the calling user.
+     *     @type string $email
+     *           Output only. The user's email address.
+     *           When calling the Messages and Memberships APIs with [user
+     *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     *           this field is populated for both internal and external users for the
+     *           `sender` of a message, users within `annotations` (such as user
+     *           mentions), and within `Membership` resources, provided the user is a
+     *           member of the space or has prior affinity with the calling user.
      *     @type string $domain_id
      *           Unique identifier of the user's Google Workspace domain.
      *     @type int $type
      *           User type.
      *     @type bool $is_anonymous
      *           Output only. When `true`, the user is deleted or their profile is not
-     *           visible.
+     *           visible, such as when a user is mentioned in a space without being a member
+     *           and without prior affinity with the calling user.
      * }
      */
     public function __construct($data = NULL) {
@@ -167,6 +228,15 @@ class User extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The user's display name.
+     * Populated for both app authentication and user authentication.
+     * This field is always populated for requests made with [app
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
+     * When calling the Messages and Memberships APIs with [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * this field is populated for both internal and external users for the
+     * `sender` of a message, users within `annotations` (such as user
+     * mentions), and within `Membership` resources, provided the user is a
+     * member of the space or has prior affinity with the calling user.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -178,6 +248,15 @@ class User extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The user's display name.
+     * Populated for both app authentication and user authentication.
+     * This field is always populated for requests made with [app
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
+     * When calling the Messages and Memberships APIs with [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * this field is populated for both internal and external users for the
+     * `sender` of a message, users within `annotations` (such as user
+     * mentions), and within `Membership` resources, provided the user is a
+     * member of the space or has prior affinity with the calling user.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -187,6 +266,82 @@ class User extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The user's avatar image URL.
+     * When calling the Messages and Memberships APIs with [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * this field is populated for both internal and external users for the
+     * `sender` of a message, users within `annotations` (such as user
+     * mentions), and within `Membership` resources, provided the user is a
+     * member of the space or has prior affinity with the calling user.
+     *
+     * Generated from protobuf field <code>string avatar_url = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getAvatarUrl()
+    {
+        return $this->avatar_url;
+    }
+
+    /**
+     * Output only. The user's avatar image URL.
+     * When calling the Messages and Memberships APIs with [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * this field is populated for both internal and external users for the
+     * `sender` of a message, users within `annotations` (such as user
+     * mentions), and within `Membership` resources, provided the user is a
+     * member of the space or has prior affinity with the calling user.
+     *
+     * Generated from protobuf field <code>string avatar_url = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAvatarUrl($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->avatar_url = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The user's email address.
+     * When calling the Messages and Memberships APIs with [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * this field is populated for both internal and external users for the
+     * `sender` of a message, users within `annotations` (such as user
+     * mentions), and within `Membership` resources, provided the user is a
+     * member of the space or has prior affinity with the calling user.
+     *
+     * Generated from protobuf field <code>string email = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Output only. The user's email address.
+     * When calling the Messages and Memberships APIs with [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * this field is populated for both internal and external users for the
+     * `sender` of a message, users within `annotations` (such as user
+     * mentions), and within `Membership` resources, provided the user is a
+     * member of the space or has prior affinity with the calling user.
+     *
+     * Generated from protobuf field <code>string email = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEmail($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->email = $var;
 
         return $this;
     }
@@ -245,7 +400,8 @@ class User extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. When `true`, the user is deleted or their profile is not
-     * visible.
+     * visible, such as when a user is mentioned in a space without being a member
+     * and without prior affinity with the calling user.
      *
      * Generated from protobuf field <code>bool is_anonymous = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -257,7 +413,8 @@ class User extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. When `true`, the user is deleted or their profile is not
-     * visible.
+     * visible, such as when a user is mentioned in a space without being a member
+     * and without prior affinity with the calling user.
      *
      * Generated from protobuf field <code>bool is_anonymous = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var

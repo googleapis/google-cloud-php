@@ -915,12 +915,14 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $firewallPolicyId = 'firewallPolicyId1430953673';
         $name2 = 'name2-1052831874';
+        $priority = 1165461084;
         $shortName = 'shortName1565793390';
         $expectedResponse = new FirewallPolicyAssociation();
         $expectedResponse->setAttachmentTarget($attachmentTarget);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setFirewallPolicyId($firewallPolicyId);
         $expectedResponse->setName($name2);
+        $expectedResponse->setPriority($priority);
         $expectedResponse->setShortName($shortName);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -993,11 +995,9 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $etag = 'etag3123477';
-        $iamOwned = false;
         $version = 351608024;
         $expectedResponse = new Policy();
         $expectedResponse->setEtag($etag);
-        $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -2216,11 +2216,9 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $etag = 'etag3123477';
-        $iamOwned = false;
         $version = 351608024;
         $expectedResponse = new Policy();
         $expectedResponse->setEtag($etag);
-        $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
         // Mock request

@@ -195,7 +195,11 @@ class Operation
      *        Note that the session MUST be the same one in which the
      *        transaction was created.
      * @param string $transactionId The transaction to roll back.
-     * @param array $options [optional] Configuration Options.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type int $timeoutMillis Timeout to use for this call.
+     * }
      * @return void
      * @throws InvalidArgumentException If the transaction is not yet initialized.
      */
@@ -677,6 +681,7 @@ class Operation
      *           that commit mutations but do not perform any reads or queries. If not supplied,
      *           one of the mutations from the mutation set will be selected and sent as a part of
      *           this request.
+     *     @type int $timeoutMillis Timeout to use for this call.
      * }
      * @return Transaction
      */

@@ -33,35 +33,34 @@ use Google\Rpc\Status;
 /**
  * Creates a new instance in a given project and location.
  *
- * @param string $formattedParent                  The instance's project and location, in the format
- *                                                 `projects/{project}/locations/{location}`. Locations map to Google Cloud
- *                                                 zones; for example, `us-west1-b`. Please see
- *                                                 {@see LustreClient::locationName()} for help formatting this field.
- * @param string $instanceId                       The name of the Managed Lustre instance.
+ * @param string $formattedParent          The instance's project and location, in the format
+ *                                         `projects/{project}/locations/{location}`. Locations map to Google Cloud
+ *                                         zones; for example, `us-west1-b`. Please see
+ *                                         {@see LustreClient::locationName()} for help formatting this field.
+ * @param string $instanceId               The name of the Managed Lustre instance.
  *
- *                                                 * Must contain only lowercase letters, numbers, and hyphens.
- *                                                 * Must start with a letter.
- *                                                 * Must be between 1-63 characters.
- *                                                 * Must end with a number or a letter.
- * @param string $instanceFilesystem               Immutable. The filesystem name for this instance. This name is
- *                                                 used by client-side tools, including when mounting the instance. Must be
- *                                                 eight characters or less and can only contain letters and numbers.
- * @param int    $instanceCapacityGib              The storage capacity of the instance in gibibytes (GiB). Allowed
- *                                                 values are from `18000` to `954000`, in increments of 9000.
- * @param string $formattedInstanceNetwork         Immutable. The full name of the VPC network to which the instance
- *                                                 is connected. Must be in the format
- *                                                 `projects/{project_id}/global/networks/{network_name}`. Please see
- *                                                 {@see LustreClient::networkName()} for help formatting this field.
- * @param int    $instancePerUnitStorageThroughput The throughput of the instance in MB/s/TiB.
- *                                                 Valid values are 125, 250, 500, 1000.
+ *                                         * Must contain only lowercase letters, numbers, and hyphens.
+ *                                         * Must start with a letter.
+ *                                         * Must be between 1-63 characters.
+ *                                         * Must end with a number or a letter.
+ * @param string $instanceFilesystem       Immutable. The filesystem name for this instance. This name is
+ *                                         used by client-side tools, including when mounting the instance. Must be
+ *                                         eight characters or less and can only contain letters and numbers.
+ * @param int    $instanceCapacityGib      The storage capacity of the instance in gibibytes (GiB). Allowed
+ *                                         values depend on the `perUnitStorageThroughput`. See [Performance
+ *                                         tiers](https://docs.cloud.google.com/managed-lustre/docs/performance-tiers)
+ *                                         for specific minimums, maximums, and step sizes for each performance tier.
+ * @param string $formattedInstanceNetwork Immutable. The full name of the VPC network to which the instance
+ *                                         is connected. Must be in the format
+ *                                         `projects/{project_id}/global/networks/{network_name}`. Please see
+ *                                         {@see LustreClient::networkName()} for help formatting this field.
  */
 function create_instance_sample(
     string $formattedParent,
     string $instanceId,
     string $instanceFilesystem,
     int $instanceCapacityGib,
-    string $formattedInstanceNetwork,
-    int $instancePerUnitStorageThroughput
+    string $formattedInstanceNetwork
 ): void {
     // Create a client.
     $lustreClient = new LustreClient();
@@ -70,8 +69,7 @@ function create_instance_sample(
     $instance = (new Instance())
         ->setFilesystem($instanceFilesystem)
         ->setCapacityGib($instanceCapacityGib)
-        ->setNetwork($formattedInstanceNetwork)
-        ->setPerUnitStorageThroughput($instancePerUnitStorageThroughput);
+        ->setNetwork($formattedInstanceNetwork);
     $request = (new CreateInstanceRequest())
         ->setParent($formattedParent)
         ->setInstanceId($instanceId)
@@ -113,15 +111,13 @@ function callSample(): void
     $instanceFilesystem = '[FILESYSTEM]';
     $instanceCapacityGib = 0;
     $formattedInstanceNetwork = LustreClient::networkName('[PROJECT]', '[NETWORK]');
-    $instancePerUnitStorageThroughput = 0;
 
     create_instance_sample(
         $formattedParent,
         $instanceId,
         $instanceFilesystem,
         $instanceCapacityGib,
-        $formattedInstanceNetwork,
-        $instancePerUnitStorageThroughput
+        $formattedInstanceNetwork
     );
 }
 // [END lustre_v1_generated_Lustre_CreateInstance_sync]

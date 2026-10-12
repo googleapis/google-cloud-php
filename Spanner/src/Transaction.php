@@ -390,7 +390,11 @@ class Transaction implements TransactionalReadInterface
      * $transaction->rollback();
      * ```
      *
-     * @param array $options [optional] Configuration Options.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type int $timeoutMillis Timeout to use for this call.
+     * }
      * @return void
      */
     public function rollback(array $options = []): void

@@ -132,6 +132,18 @@ return [
                     ],
                 ],
             ],
+            'ResolveInstanceConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\BeyondCorp\AppConnectors\V1\ResolveInstanceConfigResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'app_connector',
+                        'fieldAccessors' => [
+                            'getAppConnector',
+                        ],
+                    ],
+                ],
+            ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Location\Location',
