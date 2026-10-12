@@ -127,20 +127,9 @@ class SchemaTest extends PubSubTestCase
             ]
         ]);
 
-        $data = [
-            'name' => 'Alaska',
-            'post_abbr' => 'AK',
-        ];
-
-        // wow this is a pain.
-        $io = new \AvroStringIO();
-        $schema = \AvroSchema::parse($definition);
-        $writer = new \AvroIODatumWriter($schema);
-        $encoder = new \AvroIOBinaryEncoder($io);
-        $writer->write($data, $encoder);
-
+        // Avro binary encoding for ['name' => 'Alaska', 'post_abbr' => 'AK']
         $messageIds = $topic->publish(new Message([
-            'data' => $io->string(),
+            'data' => "\x0cAlaska\x04AK",
         ]));
         $this->assertNotEmpty($messageIds);
     }
