@@ -249,8 +249,6 @@ class AwsNativeSourceTest extends TestCase
             $this->audience,
             $this->regionalCredVerificationUrl,
             $this->regionUrl,
-            null,
-            $this->imdsv2SessionTokenUrl,
         );
         $httpHandler = function (RequestInterface $request): ResponseInterface {
             $this->fail('HTTP handler should not be called');

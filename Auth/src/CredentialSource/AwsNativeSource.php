@@ -71,23 +71,27 @@ class AwsNativeSource implements ExternalAccountCredentialSourceInterface
             $httpHandler = HttpHandlerFactory::build(HttpClientCache::getHttpClient());
         }
 
-        $headers = [];
         $signingVars = self::getSigningVarsFromEnv()
             ?? self::getSigningVarsFromEcs($httpHandler);
+        $region = self::getRegionFromEnv();
+
+        $headers = [];
+        // Only fetch the IMDSv2 session token if credentials or region were not
+        // resolved from the environment or ECS container metadata.
+        if ($this->imdsv2SessionTokenUrl && (!$signingVars || !$region)) {
+            $headers = [
+                'X-aws-ec2-metadata-token' => self::getImdsV2SessionToken(
+                    $this->imdsv2SessionTokenUrl,
+                    $httpHandler
+                ),
+            ];
+        }
 
         if (!$signingVars) {
             if (!$this->securityCredentialsUrl) {
                 throw new \LogicException(
                     'Unable to get credentials from ENV, and no security credentials URL provided'
                 );
-            }
-            if ($this->imdsv2SessionTokenUrl) {
-                $headers = [
-                    'X-aws-ec2-metadata-token' => self::getImdsV2SessionToken(
-                        $this->imdsv2SessionTokenUrl,
-                        $httpHandler
-                    ),
-                ];
             }
             $signingVars = self::getSigningVarsFromUrl(
                 $httpHandler,
@@ -97,17 +101,9 @@ class AwsNativeSource implements ExternalAccountCredentialSourceInterface
             );
         }
 
-        if (!$region = self::getRegionFromEnv()) {
+        if (!$region) {
             if (!$this->regionUrl) {
                 throw new \LogicException('Unable to get region from ENV, and no region URL provided');
-            }
-            if (!$headers && $this->imdsv2SessionTokenUrl) {
-                $headers = [
-                    'X-aws-ec2-metadata-token' => self::getImdsV2SessionToken(
-                        $this->imdsv2SessionTokenUrl,
-                        $httpHandler
-                    ),
-                ];
             }
             $region = self::getRegionFromUrl($httpHandler, $this->regionUrl, $headers);
         }
