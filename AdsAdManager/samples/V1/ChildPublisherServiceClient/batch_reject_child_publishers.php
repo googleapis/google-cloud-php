@@ -59,7 +59,7 @@ function batch_reject_child_publishers_sample(
     $childPublisherServiceClient = new ChildPublisherServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchRejectChildPublishersRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

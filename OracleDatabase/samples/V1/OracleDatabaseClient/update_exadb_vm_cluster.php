@@ -87,7 +87,7 @@ function update_exadb_vm_cluster_sample(
     // Prepare the request message.
     $exadbVmClusterPropertiesVmFileSystemStorage = (new ExadbVmClusterStorageDetails())
         ->setSizeInGbsPerNode($exadbVmClusterPropertiesVmFileSystemStorageSizeInGbsPerNode);
-    $exadbVmClusterPropertiesSshPublicKeys = [$exadbVmClusterPropertiesSshPublicKeysElement,];
+    $exadbVmClusterPropertiesSshPublicKeys = [$exadbVmClusterPropertiesSshPublicKeysElement];
     $exadbVmClusterProperties = (new ExadbVmClusterProperties())
         ->setGridImageId($exadbVmClusterPropertiesGridImageId)
         ->setNodeCount($exadbVmClusterPropertiesNodeCount)

@@ -62,8 +62,8 @@ function streaming_read_feature_values_sample(
     $featurestoreOnlineServingServiceClient = new FeaturestoreOnlineServingServiceClient();
 
     // Prepare the request message.
-    $entityIds = [$entityIdsElement,];
-    $featureSelectorIdMatcherIds = [$featureSelectorIdMatcherIdsElement,];
+    $entityIds = [$entityIdsElement];
+    $featureSelectorIdMatcherIds = [$featureSelectorIdMatcherIdsElement];
     $featureSelectorIdMatcher = (new IdMatcher())
         ->setIds($featureSelectorIdMatcherIds);
     $featureSelector = (new FeatureSelector())

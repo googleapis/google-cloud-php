@@ -44,7 +44,7 @@ function add_address_group_items_sample(string $formattedAddressGroup, string $i
     $organizationAddressGroupServiceClient = new OrganizationAddressGroupServiceClient();
 
     // Prepare the request message.
-    $items = [$itemsElement,];
+    $items = [$itemsElement];
     $request = (new AddAddressGroupItemsRequest())
         ->setAddressGroup($formattedAddressGroup)
         ->setItems($items);

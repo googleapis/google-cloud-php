@@ -48,12 +48,12 @@ function bulk_update_data_table_rows_sample(
     $dataTableServiceClient = new DataTableServiceClient();
 
     // Prepare the request message.
-    $requestsDataTableRowValues = [$requestsDataTableRowValuesElement,];
+    $requestsDataTableRowValues = [$requestsDataTableRowValuesElement];
     $requestsDataTableRow = (new DataTableRow())
         ->setValues($requestsDataTableRowValues);
     $updateDataTableRowRequest = (new UpdateDataTableRowRequest())
         ->setDataTableRow($requestsDataTableRow);
-    $requests = [$updateDataTableRowRequest,];
+    $requests = [$updateDataTableRowRequest];
     $request = (new BulkUpdateDataTableRowsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

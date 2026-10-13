@@ -61,7 +61,7 @@ function batch_update_users_sample(
         ->setRole($formattedRequestsUserRole);
     $updateUserRequest = (new UpdateUserRequest())
         ->setUser($requestsUser);
-    $requests = [$updateUserRequest,];
+    $requests = [$updateUserRequest];
     $request = (new BatchUpdateUsersRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

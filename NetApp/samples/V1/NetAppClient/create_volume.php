@@ -58,7 +58,7 @@ function create_volume_sample(
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $volumeProtocols = [$volumeProtocolsElement,];
+    $volumeProtocols = [$volumeProtocolsElement];
     $volume = (new Volume())
         ->setShareName($volumeShareName)
         ->setStoragePool($formattedVolumeStoragePool)

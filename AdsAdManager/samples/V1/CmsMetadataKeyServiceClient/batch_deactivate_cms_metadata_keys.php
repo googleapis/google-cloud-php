@@ -47,7 +47,7 @@ function batch_deactivate_cms_metadata_keys_sample(
     $cmsMetadataKeyServiceClient = new CmsMetadataKeyServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchDeactivateCmsMetadataKeysRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

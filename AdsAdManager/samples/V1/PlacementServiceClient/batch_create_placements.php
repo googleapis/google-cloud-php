@@ -58,7 +58,7 @@ function batch_create_placements_sample(
     $createPlacementRequest = (new CreatePlacementRequest())
         ->setParent($formattedRequestsParent)
         ->setPlacement($requestsPlacement);
-    $requests = [$createPlacementRequest,];
+    $requests = [$createPlacementRequest];
     $request = (new BatchCreatePlacementsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

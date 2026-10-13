@@ -44,7 +44,7 @@ function batch_delete_versions_sample(string $formattedNamesElement): void
     $artifactRegistryClient = new ArtifactRegistryClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchDeleteVersionsRequest())
         ->setNames($formattedNames);
 

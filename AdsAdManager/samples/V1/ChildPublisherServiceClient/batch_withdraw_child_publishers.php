@@ -51,7 +51,7 @@ function batch_withdraw_child_publishers_sample(
     $childPublisherServiceClient = new ChildPublisherServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchWithdrawChildPublishersRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

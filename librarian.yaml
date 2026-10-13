@@ -23,14 +23,14 @@ tools:
       version: ""
       local_path: dev
     - name: google/gapic-generator-php
-      version: v1.25.0
+      version: v1.25.1
       repo: github.com/googleapis/gapic-generator-php
-      sha256: fff773dd9f87b3f6cdd8807a330d820e1572f20a739e53c1efce8215210a2f47
+      sha256: 376495a57ff6e960ca995ab4996255c3ca46c2791512e72cb02268975bad39c3
       entrypoint: src/Main.php
     - name: php-post-processor
-      version: v1.25.0
+      version: v1.25.1
       repo: github.com/googleapis/gapic-generator-php
-      sha256: fff773dd9f87b3f6cdd8807a330d820e1572f20a739e53c1efce8215210a2f47
+      sha256: 376495a57ff6e960ca995ab4996255c3ca46c2791512e72cb02268975bad39c3
       entrypoint: src/PostProcessor/Main.php
   pip:
     - name: synthtool

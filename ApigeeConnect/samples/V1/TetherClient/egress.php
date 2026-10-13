@@ -56,7 +56,7 @@ function egress_sample(): void
     try {
         /** @var BidiStream $stream */
         $stream = $tetherClient->egress();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var EgressRequest $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

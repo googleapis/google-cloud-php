@@ -41,7 +41,7 @@ function batch_deactivate_users_sample(string $formattedParent, string $namesEle
     $userServiceClient = new UserServiceClient();
 
     // Prepare the request message.
-    $names = [$namesElement,];
+    $names = [$namesElement];
     $request = (new BatchDeactivateUsersRequest())
         ->setParent($formattedParent)
         ->setNames($names);

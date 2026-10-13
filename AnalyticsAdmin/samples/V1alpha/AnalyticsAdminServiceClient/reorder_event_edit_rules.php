@@ -44,7 +44,7 @@ function reorder_event_edit_rules_sample(
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $eventEditRules = [$eventEditRulesElement,];
+    $eventEditRules = [$eventEditRulesElement];
     $request = (new ReorderEventEditRulesRequest())
         ->setParent($formattedParent)
         ->setEventEditRules($eventEditRules);

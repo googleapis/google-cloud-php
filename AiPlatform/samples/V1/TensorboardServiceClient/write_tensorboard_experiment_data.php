@@ -64,11 +64,11 @@ function write_tensorboard_experiment_data_sample(
         ->setTensorboardTimeSeriesId($writeRunDataRequestsTimeSeriesDataTensorboardTimeSeriesId)
         ->setValueType($writeRunDataRequestsTimeSeriesDataValueType)
         ->setValues($writeRunDataRequestsTimeSeriesDataValues);
-    $writeRunDataRequestsTimeSeriesData = [$timeSeriesData,];
+    $writeRunDataRequestsTimeSeriesData = [$timeSeriesData];
     $writeTensorboardRunDataRequest = (new WriteTensorboardRunDataRequest())
         ->setTensorboardRun($formattedWriteRunDataRequestsTensorboardRun)
         ->setTimeSeriesData($writeRunDataRequestsTimeSeriesData);
-    $writeRunDataRequests = [$writeTensorboardRunDataRequest,];
+    $writeRunDataRequests = [$writeTensorboardRunDataRequest];
     $request = (new WriteTensorboardExperimentDataRequest())
         ->setTensorboardExperiment($formattedTensorboardExperiment)
         ->setWriteRunDataRequests($writeRunDataRequests);

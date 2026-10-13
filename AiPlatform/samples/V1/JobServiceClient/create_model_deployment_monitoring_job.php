@@ -56,9 +56,7 @@ function create_model_deployment_monitoring_job_sample(
     $jobServiceClient = new JobServiceClient();
 
     // Prepare the request message.
-    $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs = [
-        new ModelDeploymentMonitoringObjectiveConfig()
-    ];
+    $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs = [new ModelDeploymentMonitoringObjectiveConfig()];
     $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfigMonitorInterval = new Duration();
     $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig = (new ModelDeploymentMonitoringScheduleConfig())
         ->setMonitorInterval(

@@ -63,7 +63,7 @@ function create_trigger_sample(
     $eventFilter = (new EventFilter())
         ->setAttribute($triggerEventFiltersAttribute)
         ->setValue($triggerEventFiltersValue);
-    $triggerEventFilters = [$eventFilter,];
+    $triggerEventFilters = [$eventFilter];
     $triggerDestination = new Destination();
     $trigger = (new Trigger())
         ->setName($triggerName)

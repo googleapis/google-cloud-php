@@ -62,7 +62,7 @@ function batch_update_viewability_providers_sample(
         ->setVerificationScriptUrl($requestsViewabilityProviderVerificationScriptUrl);
     $updateViewabilityProviderRequest = (new UpdateViewabilityProviderRequest())
         ->setViewabilityProvider($requestsViewabilityProvider);
-    $requests = [$updateViewabilityProviderRequest,];
+    $requests = [$updateViewabilityProviderRequest];
     $request = (new BatchUpdateViewabilityProvidersRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

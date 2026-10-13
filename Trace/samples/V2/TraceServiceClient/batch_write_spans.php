@@ -69,7 +69,7 @@ function batch_write_spans_sample(
         ->setDisplayName($spansDisplayName)
         ->setStartTime($spansStartTime)
         ->setEndTime($spansEndTime);
-    $spans = [$span,];
+    $spans = [$span];
     $request = (new BatchWriteSpansRequest())
         ->setName($formattedName)
         ->setSpans($spans);

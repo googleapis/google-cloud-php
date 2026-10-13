@@ -51,7 +51,7 @@ function batch_deactivate_custom_targeting_values_sample(
     // Prepare the request message.
     $deactivateCustomTargetingValueRequest = (new DeactivateCustomTargetingValueRequest())
         ->setName($formattedRequestsName);
-    $requests = [$deactivateCustomTargetingValueRequest,];
+    $requests = [$deactivateCustomTargetingValueRequest];
     $request = (new BatchDeactivateCustomTargetingValuesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

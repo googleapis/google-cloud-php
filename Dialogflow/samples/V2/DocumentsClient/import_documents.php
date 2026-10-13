@@ -62,7 +62,7 @@ function import_documents_sample(
     $documentsClient = new DocumentsClient();
 
     // Prepare the request message.
-    $documentTemplateKnowledgeTypes = [$documentTemplateKnowledgeTypesElement,];
+    $documentTemplateKnowledgeTypes = [$documentTemplateKnowledgeTypesElement];
     $documentTemplate = (new ImportDocumentTemplate())
         ->setMimeType($documentTemplateMimeType)
         ->setKnowledgeTypes($documentTemplateKnowledgeTypes);

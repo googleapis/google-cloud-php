@@ -46,7 +46,7 @@ function batch_release_line_items_sample(
     $lineItemServiceClient = new LineItemServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchReleaseLineItemsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

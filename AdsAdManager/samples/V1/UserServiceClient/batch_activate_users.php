@@ -41,7 +41,7 @@ function batch_activate_users_sample(string $formattedParent, string $namesEleme
     $userServiceClient = new UserServiceClient();
 
     // Prepare the request message.
-    $names = [$namesElement,];
+    $names = [$namesElement];
     $request = (new BatchActivateUsersRequest())
         ->setParent($formattedParent)
         ->setNames($names);

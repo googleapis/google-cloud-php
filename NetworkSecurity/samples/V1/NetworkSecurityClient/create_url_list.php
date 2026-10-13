@@ -56,7 +56,7 @@ function create_url_list_sample(
     $networkSecurityClient = new NetworkSecurityClient();
 
     // Prepare the request message.
-    $urlListValues = [$urlListValuesElement,];
+    $urlListValues = [$urlListValuesElement];
     $urlList = (new UrlList())
         ->setName($urlListName)
         ->setValues($urlListValues);

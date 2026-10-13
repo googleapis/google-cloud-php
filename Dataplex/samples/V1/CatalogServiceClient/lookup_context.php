@@ -47,7 +47,7 @@ function lookup_context_sample(string $name, string $formattedResourcesElement):
     $catalogServiceClient = new CatalogServiceClient();
 
     // Prepare the request message.
-    $formattedResources = [$formattedResourcesElement,];
+    $formattedResources = [$formattedResourcesElement];
     $request = (new LookupContextRequest())
         ->setName($name)
         ->setResources($formattedResources);

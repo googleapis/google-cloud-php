@@ -60,7 +60,7 @@ function batch_write_sample(string $formattedSession): void
     $mutationGroupsMutations = [new Mutation()];
     $mutationGroup = (new MutationGroup())
         ->setMutations($mutationGroupsMutations);
-    $mutationGroups = [$mutationGroup,];
+    $mutationGroups = [$mutationGroup];
     $request = (new BatchWriteRequest())
         ->setSession($formattedSession)
         ->setMutationGroups($mutationGroups);

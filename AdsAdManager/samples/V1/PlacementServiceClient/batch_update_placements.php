@@ -53,7 +53,7 @@ function batch_update_placements_sample(
         ->setDisplayName($requestsPlacementDisplayName);
     $updatePlacementRequest = (new UpdatePlacementRequest())
         ->setPlacement($requestsPlacement);
-    $requests = [$updatePlacementRequest,];
+    $requests = [$updatePlacementRequest];
     $request = (new BatchUpdatePlacementsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

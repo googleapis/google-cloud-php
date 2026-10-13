@@ -62,7 +62,7 @@ function streaming_pull_sample(string $formattedSubscription, int $streamAckDead
     try {
         /** @var BidiStream $stream */
         $stream = $subscriberClient->streamingPull();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var StreamingPullResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

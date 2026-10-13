@@ -101,12 +101,8 @@ function update_azure_cluster_sample(
     $azureClustersClient = new AzureClustersClient();
 
     // Prepare the request message.
-    $azureClusterNetworkingPodAddressCidrBlocks = [
-        $azureClusterNetworkingPodAddressCidrBlocksElement,
-    ];
-    $azureClusterNetworkingServiceAddressCidrBlocks = [
-        $azureClusterNetworkingServiceAddressCidrBlocksElement,
-    ];
+    $azureClusterNetworkingPodAddressCidrBlocks = [$azureClusterNetworkingPodAddressCidrBlocksElement];
+    $azureClusterNetworkingServiceAddressCidrBlocks = [$azureClusterNetworkingServiceAddressCidrBlocksElement];
     $azureClusterNetworking = (new AzureClusterNetworking())
         ->setVirtualNetworkId($azureClusterNetworkingVirtualNetworkId)
         ->setPodAddressCidrBlocks($azureClusterNetworkingPodAddressCidrBlocks)

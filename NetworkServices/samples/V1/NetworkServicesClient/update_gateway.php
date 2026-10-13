@@ -45,7 +45,7 @@ function update_gateway_sample(int $gatewayPortsElement): void
     $networkServicesClient = new NetworkServicesClient();
 
     // Prepare the request message.
-    $gatewayPorts = [$gatewayPortsElement,];
+    $gatewayPorts = [$gatewayPortsElement];
     $gateway = (new Gateway())
         ->setPorts($gatewayPorts);
     $request = (new UpdateGatewayRequest())

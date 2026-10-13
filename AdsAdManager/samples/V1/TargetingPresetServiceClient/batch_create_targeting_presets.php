@@ -61,7 +61,7 @@ function batch_create_targeting_presets_sample(
     $createTargetingPresetRequest = (new CreateTargetingPresetRequest())
         ->setParent($formattedRequestsParent)
         ->setTargetingPreset($requestsTargetingPreset);
-    $requests = [$createTargetingPresetRequest,];
+    $requests = [$createTargetingPresetRequest];
     $request = (new BatchCreateTargetingPresetsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

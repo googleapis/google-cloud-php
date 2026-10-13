@@ -57,14 +57,14 @@ function batch_create_resource_value_configs_sample(
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $requestsResourceValueConfigTagValues = [$requestsResourceValueConfigTagValuesElement,];
+    $requestsResourceValueConfigTagValues = [$requestsResourceValueConfigTagValuesElement];
     $requestsResourceValueConfig = (new ResourceValueConfig())
         ->setResourceValue($requestsResourceValueConfigResourceValue)
         ->setTagValues($requestsResourceValueConfigTagValues);
     $createResourceValueConfigRequest = (new CreateResourceValueConfigRequest())
         ->setParent($formattedRequestsParent)
         ->setResourceValueConfig($requestsResourceValueConfig);
-    $requests = [$createResourceValueConfigRequest,];
+    $requests = [$createResourceValueConfigRequest];
     $request = (new BatchCreateResourceValueConfigsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

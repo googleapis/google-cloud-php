@@ -53,7 +53,7 @@ function batch_resend_child_publisher_invitation_emails_sample(
     $childPublisherServiceClient = new ChildPublisherServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchResendChildPublisherInvitationEmailsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

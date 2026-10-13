@@ -64,7 +64,7 @@ function batch_update_orders_sample(
         ->setAdvertiser($formattedRequestsOrderAdvertiser);
     $updateOrderRequest = (new UpdateOrderRequest())
         ->setOrder($requestsOrder);
-    $requests = [$updateOrderRequest,];
+    $requests = [$updateOrderRequest];
     $request = (new BatchUpdateOrdersRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);
