@@ -238,6 +238,10 @@ class StreamWrapper
                 unset($options['flush']);
             }
 
+            if (array_key_exists('stat_permission_check', $options)) {
+                unset($options['stat_permission_check']);
+            }
+
             $this->options = $options;
         }
 
@@ -735,22 +739,17 @@ class StreamWrapper
     }
 
     /**
-     * Determine if the bucket is writable.
+     * Determine if we should bypass the permission check.
      * Allows bypassing the expensive API call via context options.
      *
      * @return bool
      */
-    private function isBucketWritable()
+    private function bypassPermissionsCheck()
     {
         $contextOptions = stream_context_get_options($this->context ?: stream_context_get_default());
 
-        if (isset($contextOptions[$this->protocol]['stat_permission_check'])
-            && $contextOptions[$this->protocol]['stat_permission_check'] === false
-        ) {
-            return true;
-        }
-
-        return $this->bucket->isWritable();
+        return isset($contextOptions[$this->protocol]['stat_permission_check'])
+            && $contextOptions[$this->protocol]['stat_permission_check'] === false;
     }
 
     /**
@@ -764,7 +763,7 @@ class StreamWrapper
         $info = $object->info();
 
         // equivalent to 40777 and 40444 in octal
-        $stats['mode'] = $this->isBucketWritable()
+        $stats['mode'] = $this->bypassPermissionsCheck() || $this->bucket->isWritable()
             ? self::DIRECTORY_WRITABLE_MODE
             : self::DIRECTORY_READABLE_MODE;
         $this->statsFromFileInfo($info, $stats);
@@ -789,7 +788,7 @@ class StreamWrapper
 
         // equivalent to 100666 and 100444 in octal
         $stats = [
-            'mode' => $this->isBucketWritable()
+            'mode' => $this->bypassPermissionsCheck() || $this->bucket->isWritable()
                 ? self::FILE_WRITABLE_MODE
                 : self::FILE_READABLE_MODE
         ];
