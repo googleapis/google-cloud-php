@@ -33,6 +33,13 @@ class JWT
 
     private const RSA_KEY_MIN_LENGTH = 2048;
 
+    private const EC_KEY_LENGTH = [
+        'ES256' => 256,
+        'ES256K' => 256,
+        'ES384' => 384,
+        'ES512' => 521,
+    ];
+
     /**
      * When checking nbf, iat or expiration times,
      * we want to provide some extra leeway time to
@@ -58,6 +65,7 @@ class JWT
         'ES384' => ['openssl', 'SHA384'],
         'ES256' => ['openssl', 'SHA256'],
         'ES256K' => ['openssl', 'SHA256'],
+        'ES512' => ['openssl', 'SHA512'],
         'HS256' => ['hash_hmac', 'SHA256'],
         'HS384' => ['hash_hmac', 'SHA384'],
         'HS512' => ['hash_hmac', 'SHA512'],
@@ -79,8 +87,8 @@ class JWT
      *                                                                      Each Key object contains an algorithm and
      *                                                                      matching key.
      *                                                                      Supported algorithms are 'ES384','ES256',
-     *                                                                      'HS256', 'HS384', 'HS512', 'RS256', 'RS384'
-     *                                                                      and 'RS512'.
+     *                                                                      'ES256K', 'ES512', 'HS256', 'HS384',
+     *                                                                      'HS512', 'RS256', 'RS384', and 'RS512'.
      * @param stdClass               $headers                               Optional. Populates stdClass with headers.
      *
      * @return stdClass The JWT's payload as a PHP object
@@ -156,9 +164,9 @@ class JWT
             // See issue #351
             throw new UnexpectedValueException('Incorrect key for this algorithm');
         }
-        if (\in_array($header->alg, ['ES256', 'ES256K', 'ES384'], true)) {
-            // OpenSSL expects an ASN.1 DER sequence for ES256/ES256K/ES384 signatures
-            $sig = self::signatureToDER($sig);
+        if (isset(self::EC_KEY_LENGTH[$header->alg])) {
+            // OpenSSL expects an ASN.1 DER sequence for ES256/ES256K/ES384/ES512 signatures
+            $sig = self::signatureToDER($sig, self::EC_KEY_LENGTH[$header->alg]);
         }
         if (!self::verify("{$headb64}.{$bodyb64}", $sig, $key->getKeyMaterial(), $header->alg)) {
             throw new SignatureInvalidException('Signature verification failed');
@@ -201,8 +209,8 @@ class JWT
      *
      * @param array<mixed>          $payload PHP array
      * @param string|OpenSSLAsymmetricKey|OpenSSLCertificate $key The secret key.
-     * @param string                $alg     Supported algorithms are 'ES384','ES256', 'ES256K', 'HS256',
-     *                                       'HS384', 'HS512', 'RS256', 'RS384', and 'RS512'
+     * @param string                $alg     Supported algorithms are 'ES384','ES256', 'ES256K', 'ES512',
+     *                                       'HS256', 'HS384', 'HS512', 'RS256', 'RS384', and 'RS512'
      * @param string                $keyId
      * @param array<string, string|string[]> $head  An array with header elements to attach
      *
@@ -251,8 +259,8 @@ class JWT
      *
      * @param string $msg  The message to sign
      * @param string|OpenSSLAsymmetricKey|OpenSSLCertificate  $key  The secret key.
-     * @param string $alg  Supported algorithms are 'EdDSA', 'ES384', 'ES256', 'ES256K', 'HS256',
-     *                    'HS384', 'HS512', 'RS256', 'RS384', 'PS256' and 'RS512'
+     * @param string $alg  Supported algorithms are 'EdDSA', 'ES384', 'ES256', 'ES256K', 'ES512',
+     *                    'HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'PS256' and 'RS512'
      *
      * @return string An encrypted message
      *
@@ -291,10 +299,8 @@ class JWT
                 if (!$success) {
                     throw new DomainException('OpenSSL unable to sign data');
                 }
-                if ($alg === 'ES256' || $alg === 'ES256K') {
-                    $signature = self::signatureFromDER($signature, 256);
-                } elseif ($alg === 'ES384') {
-                    $signature = self::signatureFromDER($signature, 384);
+                if (isset(self::EC_KEY_LENGTH[$alg])) {
+                    $signature = self::signatureFromDER($signature, self::EC_KEY_LENGTH[$alg]);
                 }
                 return $signature;
             case 'sodium_crypto':
@@ -566,18 +572,30 @@ class JWT
     /**
      * Convert an ECDSA signature to an ASN.1 DER sequence
      *
-     * @param   string $sig The ECDSA signature to convert
+     * @param   string   $sig The ECDSA signature to convert
+     * @param   int|null $keySize The number of bits in the key
      * @return  string The encoded DER object
      */
-    private static function signatureToDER(string $sig): string
+    private static function signatureToDER(string $sig, ?int $keySize = null): string
     {
         // Separate the signature into r-value and s-value
-        $length = max(1, (int) (\strlen($sig) / 2));
+        $length = \max(
+            1,
+            $keySize !== null
+                ? (int) \ceil($keySize / 8)
+                : (int) (\strlen($sig) / 2)
+        );
+        if (\strlen($sig) !== $length * 2) {
+            return '';
+        }
         list($r, $s) = \str_split($sig, $length);
 
         // Trim leading zeros
         $r = \ltrim($r, "\x00");
         $s = \ltrim($s, "\x00");
+        if ($r === '' || $s === '') {
+            return '';
+        }
 
         // Convert r-value and s-value from unsigned big-endian integers to
         // signed two's complement
@@ -593,6 +611,27 @@ class JWT
             self::encodeDER(self::ASN1_INTEGER, $r) .
             self::encodeDER(self::ASN1_INTEGER, $s)
         );
+    }
+
+    /**
+     * DER-encode the length
+     *
+     * DER supports lengths up to (2**8)**127, however, we'll only support lengths up to (2**8)**4.  See
+     * {@link http://itu.int/ITU-T/studygroups/com17/languages/X.690-0207.pdf#p=13 X.690 paragraph 8.1.3}
+     * for more information.
+     *
+     * @param int $length
+     * @return string
+     */
+    private static function encodeLength(int $length): string
+    {
+        if ($length <= 0x7F) {
+            return \chr($length);
+        }
+
+        $temp = \ltrim(\pack('N', $length), \chr(0));
+
+        return \pack('Ca*', 0x80 | \strlen($temp), $temp);
     }
 
     /**
@@ -614,7 +653,7 @@ class JWT
         $der = \chr($tag_header | $type);
 
         // Length
-        $der .= \chr(\strlen($value));
+        $der .= self::encodeLength(\strlen($value));
 
         return $der . $value;
     }
@@ -640,8 +679,9 @@ class JWT
         $s = \ltrim($s, "\x00");
 
         // Pad out r and s so that they are $keySize bits long
-        $r = \str_pad($r, $keySize / 8, "\x00", STR_PAD_LEFT);
-        $s = \str_pad($s, $keySize / 8, "\x00", STR_PAD_LEFT);
+        $length = (int) \ceil($keySize / 8);
+        $r = \str_pad($r, $length, "\x00", STR_PAD_LEFT);
+        $s = \str_pad($s, $length, "\x00", STR_PAD_LEFT);
 
         return $r . $s;
     }
@@ -734,8 +774,7 @@ class JWT
         if (!$keyDetails = openssl_pkey_get_details($key)) {
             throw new DomainException('Unable to validate key');
         }
-        $minKeyLength = (int) \str_replace('ES', '', $algorithm);
-        if ($keyDetails['bits'] < $minKeyLength) {
+        if ($keyDetails['bits'] < self::EC_KEY_LENGTH[$algorithm]) {
             throw new DomainException('Provided key is too short');
         }
     }
