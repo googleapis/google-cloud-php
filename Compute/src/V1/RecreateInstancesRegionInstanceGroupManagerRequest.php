@@ -79,7 +79,9 @@ class RecreateInstancesRegionInstanceGroupManagerRequest extends \Google\Protobu
             ->setProject($project)
             ->setRegion($region)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setRegionInstanceGroupManagersRecreateRequestResource($regionInstanceGroupManagersRecreateRequestResource);
+            ->setRegionInstanceGroupManagersRecreateRequestResource(
+                $regionInstanceGroupManagersRecreateRequestResource
+            );
     }
 
     /**

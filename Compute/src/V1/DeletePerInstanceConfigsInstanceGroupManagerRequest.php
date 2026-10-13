@@ -64,7 +64,9 @@ class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
             ->setProject($project)
             ->setZone($zone)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersDeletePerInstanceConfigsReqResource($instanceGroupManagersDeletePerInstanceConfigsReqResource);
+            ->setInstanceGroupManagersDeletePerInstanceConfigsReqResource(
+                $instanceGroupManagersDeletePerInstanceConfigsReqResource
+            );
     }
 
     /**

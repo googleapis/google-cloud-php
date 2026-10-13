@@ -72,7 +72,9 @@ class StartWithEncryptionKeyInstanceRequest extends \Google\Protobuf\Internal\Me
             ->setProject($project)
             ->setZone($zone)
             ->setInstance($instance)
-            ->setInstancesStartWithEncryptionKeyRequestResource($instancesStartWithEncryptionKeyRequestResource);
+            ->setInstancesStartWithEncryptionKeyRequestResource(
+                $instancesStartWithEncryptionKeyRequestResource
+            );
     }
 
     /**
