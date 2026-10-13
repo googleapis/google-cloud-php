@@ -24,7 +24,8 @@
         "phpunit/phpunit": "^9.6",
         "phpspec/prophecy-phpunit": "^2.1",
         "phpstan/phpstan": "^2.0",
-        "google/cloud-tools": "^0.16.1"
+        "google/cloud-tools": "^0.16.1",
+        "open-telemetry/sdk": "^1.13"
     },
     "extra": {
         "component": {
