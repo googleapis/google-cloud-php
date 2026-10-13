@@ -17,6 +17,7 @@
 
 namespace Google\Auth\Tests;
 
+use Google\Auth\Credentials\ExternalAccountCredentials;
 use Google\Auth\CredentialsLoader;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
@@ -210,5 +211,16 @@ class CredentialsLoaderTest extends TestCase
 
         $this->assertArrayHasKey('type', $json);
         $this->assertEquals('getenv', $json['type']);
+    }
+
+    public function testMakeCredentialsWithSubjectTokenSupplierWithoutType(): void
+    {
+        $creds = CredentialsLoader::makeCredentials('a-scope', [
+            'audience' => 'my-audience',
+            'subject_token_type' => 'urn:ietf:params:oauth:token-type:jwt',
+            'subject_token_supplier' => fn () => 'token',
+        ]);
+
+        $this->assertInstanceOf(ExternalAccountCredentials::class, $creds);
     }
 }
