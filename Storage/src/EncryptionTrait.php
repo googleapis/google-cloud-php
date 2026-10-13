@@ -19,6 +19,7 @@ namespace Google\Cloud\Storage;
 
 use phpseclib\Crypt\RSA as RSA2;
 use phpseclib3\Crypt\RSA as RSA3;
+use phpseclib4\Crypt\RSA as RSA4;
 
 /**
  * Trait which provides helper methods for customer-supplied encryption.
@@ -126,7 +127,13 @@ trait EncryptionTrait
     {
         $signature = '';
 
-        if (class_exists(RSA3::class) && !$forceOpenssl) {
+        if (class_exists(RSA4::class) && !$forceOpenssl) {
+            $rsa = RSA4::loadPrivateKey($privateKey);
+            $rsa = $rsa->withPadding(RSA4::SIGNATURE_PKCS1)
+                ->withHash('sha256');
+
+            $signature = $rsa->sign($data);
+        } elseif (class_exists(RSA3::class) && !$forceOpenssl) {
             $rsa = RSA3::loadPrivateKey($privateKey);
             $rsa = $rsa->withPadding(RSA3::SIGNATURE_PKCS1)
                 ->withHash('sha256');

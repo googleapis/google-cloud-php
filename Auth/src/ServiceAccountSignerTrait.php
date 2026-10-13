@@ -17,8 +17,10 @@
 
 namespace Google\Auth;
 
-use phpseclib3\Crypt\PublicKeyLoader;
-use phpseclib3\Crypt\RSA;
+use phpseclib3\Crypt\PublicKeyLoader as PublicKeyLoader3;
+use phpseclib3\Crypt\RSA as RSA3;
+use phpseclib4\Crypt\PublicKeyLoader as PublicKeyLoader4;
+use phpseclib4\Crypt\RSA as RSA4;
 
 /**
  * Sign a string using a Service Account private key.
@@ -38,9 +40,14 @@ trait ServiceAccountSignerTrait
         $privateKey = $this->auth->getSigningKey();
 
         $signedString = '';
-        if (class_exists(phpseclib3\Crypt\RSA::class) && !$forceOpenssl) {
-            $key = PublicKeyLoader::load($privateKey);
-            $rsa = $key->withHash('sha256')->withPadding(RSA::SIGNATURE_PKCS1);
+        if (class_exists(RSA4::class) && !$forceOpenssl) {
+            $key = PublicKeyLoader4::load($privateKey);
+            $rsa = $key->withHash('sha256')->withPadding(RSA4::SIGNATURE_PKCS1);
+
+            $signedString = $rsa->sign($stringToSign);
+        } elseif (class_exists(RSA3::class) && !$forceOpenssl) {
+            $key = PublicKeyLoader3::load($privateKey);
+            $rsa = $key->withHash('sha256')->withPadding(RSA3::SIGNATURE_PKCS1);
 
             $signedString = $rsa->sign($stringToSign);
         } elseif (extension_loaded('openssl')) {

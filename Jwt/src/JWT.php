@@ -772,9 +772,7 @@ class JWT
         #[\SensitiveParameter] string|OpenSSLAsymmetricKey|OpenSSLCertificate $key,
         string $message
     ): string {
-        if (!class_exists('\phpseclib3\Crypt\RSA')) {
-            throw new DomainException('phpseclib/phpseclib is required for PS256 support');
-        }
+        $phpseclib = self::getPhpseclibNamespace();
 
         if ($key instanceof OpenSSLCertificate) {
             throw new DomainException('Cannot sign with an X.509 certificate. A private key is required.');
@@ -787,10 +785,13 @@ class JWT
             $key = $pem;
         }
 
-        /** @var \phpseclib3\Crypt\RSA\PrivateKey $rsa */
-        $rsa = \phpseclib3\Crypt\PublicKeyLoader::load($key);
+        $publicKeyLoader = $phpseclib . '\\Crypt\\PublicKeyLoader';
+        $rsaClass = $phpseclib . '\\Crypt\\RSA';
 
-        return $rsa->withPadding(\phpseclib3\Crypt\RSA::SIGNATURE_PSS)
+        /** @var \phpseclib3\Crypt\RSA\PrivateKey $rsa */
+        $rsa = $publicKeyLoader::load($key);
+
+        return $rsa->withPadding($rsaClass::SIGNATURE_PSS)
             ->withHash('sha256')
             ->sign($message);
     }
@@ -808,9 +809,7 @@ class JWT
         string $message,
         string $signature
     ): bool {
-        if (!class_exists('\phpseclib3\Crypt\RSA')) {
-            throw new DomainException('phpseclib/phpseclib is required for PS256 support');
-        }
+        $phpseclib = self::getPhpseclibNamespace();
 
         if ($key instanceof OpenSSLAsymmetricKey) {
             $details = openssl_pkey_get_details($key);
@@ -825,11 +824,31 @@ class JWT
             $key = $pem;
         }
 
-        /** @var \phpseclib3\Crypt\RSA\PublicKey $rsa */
-        $rsa = \phpseclib3\Crypt\PublicKeyLoader::load($key);
+        $publicKeyLoader = $phpseclib . '\\Crypt\\PublicKeyLoader';
+        $rsaClass = $phpseclib . '\\Crypt\\RSA';
 
-        return $rsa->withPadding(\phpseclib3\Crypt\RSA::SIGNATURE_PSS)
+        /** @var \phpseclib3\Crypt\RSA\PublicKey $rsa */
+        $rsa = $publicKeyLoader::load($key);
+
+        return $rsa->withPadding($rsaClass::SIGNATURE_PSS)
             ->withHash('sha256')
             ->verify($message, $signature);
+    }
+
+    /**
+     * Resolves the namespace of the installed phpseclib version, preferring the
+     * most recent one supported.
+     *
+     * @throws DomainException phpseclib is not installed
+     */
+    private static function getPhpseclibNamespace(): string
+    {
+        foreach (['\\phpseclib4', '\\phpseclib3'] as $namespace) {
+            if (class_exists($namespace . '\\Crypt\\RSA')) {
+                return $namespace;
+            }
+        }
+
+        throw new DomainException('phpseclib/phpseclib is required for PS256 support');
     }
 }
