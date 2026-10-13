@@ -579,12 +579,8 @@ class JWT
     private static function signatureToDER(string $sig, ?int $keySize = null): string
     {
         // Separate the signature into r-value and s-value
-        $length = \max(
-            1,
-            $keySize !== null
-                ? (int) \ceil($keySize / 8)
-                : (int) (\strlen($sig) / 2)
-        );
+        $length = $keySize !== null ? (int) \ceil($keySize / 8) : (int) (\strlen($sig) / 2);
+        $length = \max(1, $length);
         if (\strlen($sig) !== $length * 2) {
             return '';
         }
