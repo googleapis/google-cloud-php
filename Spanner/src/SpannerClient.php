@@ -227,7 +227,6 @@ class SpannerClient
             'returnInt64AsObject' => false,
             'projectIdRequired' => true,
             'hasEmulator' => (bool) $emulatorHost,
-            'emulatorHost' => $emulatorHost,
             'queryOptions' => [],
             'directedReadOptions' => [],
             'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED,

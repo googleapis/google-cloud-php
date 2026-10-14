@@ -150,7 +150,9 @@ class ManageBucketsTest extends StorageTestCase
 
         // remove soft delete policy
         self::$bucket->update([
-            'softDeletePolicy' => []
+            'softDeletePolicy' => [
+                'retentionDurationSeconds' => 0
+            ]
         ]);
         $this->assertArrayHasKey('softDeletePolicy', self::$bucket->info());
         $this->assertEquals(
@@ -733,10 +735,19 @@ class ManageBucketsTest extends StorageTestCase
      */
     public function testDeleteBucketIpFilter(Bucket $bucket)
     {
-        $bucket->update(['ipFilter' => null]);
+        $bucket->update([
+            'ipFilter' => [
+                'mode' => 'Disabled',
+                'publicNetworkSource' => null,
+                'vpcNetworkSources' => [],
+            ]
+        ]);
         $info = $bucket->reload();
 
-        $this->assertArrayNotHasKey('ipFilter', $info);
+        $this->assertArrayHasKey('ipFilter', $info);
+        $this->assertEquals('Disabled', $info['ipFilter']['mode']);
+        $this->assertEmpty($info['ipFilter']['publicNetworkSource'] ?? []);
+        $this->assertArrayNotHasKey('vpcNetworkSources', $info['ipFilter']);
     }
 
     /**
