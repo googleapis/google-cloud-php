@@ -17,18 +17,14 @@
 
 namespace Google\Auth\Tests\Credentials;
 
-use Google\Auth\AwsSecurityCredentials;
-use Google\Auth\AwsSecurityCredentialsSupplierInterface;
 use Google\Auth\Credentials\ExternalAccountCredentials;
 use Google\Auth\CredentialSource\AwsNativeSource;
 use Google\Auth\CredentialSource\FileSource;
-use Google\Auth\CredentialSource\SubjectTokenSupplierSource;
 use Google\Auth\CredentialSource\UrlSource;
-use Google\Auth\ExternalAccountSupplierContext;
+use Google\Auth\ExternalAccountCredentialSourceInterface;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\OAuth2;
-use Google\Auth\SubjectTokenSupplierInterface;
 use Google\Auth\Tests\HelperTrait;
 use GuzzleHttp\Psr7\Response;
 use InvalidArgumentException;
@@ -234,54 +230,13 @@ class ExternalAccountCredentialsTest extends TestCase
             ],
             [
                 [
-                    'audience' => 'aud',
-                    'subject_token_type' => 'jwt',
-                    'credential_source' => ['file' => 'foo'],
-                    'subject_token_supplier' => fn () => 'token',
+                    'type' => 'external_account',
+                    'token_url' => '',
+                    'audience' => '',
+                    'subject_token_type' => '',
+                    'credential_source' => 'invalid',
                 ],
-                'ExternalAccountCredentials requires exactly one of credential_source, '
-                . 'subject_token_supplier, or aws_security_credentials_supplier'
-            ],
-            [
-                [
-                    'audience' => 'aud',
-                    'subject_token_type' => 'jwt',
-                    'subject_token_supplier' => fn () => 'token',
-                    'aws_security_credentials_supplier' => new class() implements
-                        AwsSecurityCredentialsSupplierInterface {
-                        public function getCredentials(
-                            ExternalAccountSupplierContext $context,
-                            ?callable $httpHandler = null
-                        ): AwsSecurityCredentials {
-                            return new AwsSecurityCredentials('a', 'b');
-                        }
-
-                        public function getRegion(
-                            ExternalAccountSupplierContext $context,
-                            ?callable $httpHandler = null
-                        ): string {
-                            return 'us-east-1';
-                        }
-                    },
-                ],
-                'ExternalAccountCredentials requires exactly one of credential_source, '
-                . 'subject_token_supplier, or aws_security_credentials_supplier'
-            ],
-            [
-                [
-                    'audience' => 'aud',
-                    'subject_token_type' => 'jwt',
-                    'subject_token_supplier' => 'not-a-valid-supplier-or-callable-object',
-                ],
-                'subject_token_supplier must be an instance of SubjectTokenSupplierInterface or a callable.'
-            ],
-            [
-                [
-                    'audience' => 'aud',
-                    'subject_token_type' => 'urn:ietf:params:aws:token-type:aws4_request',
-                    'aws_security_credentials_supplier' => 'not-an-aws-supplier',
-                ],
-                'aws_security_credentials_supplier must be an instance of AwsSecurityCredentialsSupplierInterface.'
+                'credential_source must be an array or an instance of ExternalAccountCredentialSourceInterface.'
             ],
         ];
     }
@@ -811,24 +766,24 @@ class ExternalAccountCredentialsTest extends TestCase
         $this->assertEquals('foo', $metadata['x-allowed-locations']);
     }
 
-    public function testFetchAuthTokenWithSubjectTokenSupplierInterface()
+    public function testFetchAuthTokenWithCustomCredentialSource()
     {
-        $supplier = new class() implements SubjectTokenSupplierInterface {
-            public ?ExternalAccountSupplierContext $receivedContext = null;
+        $source = new class() implements ExternalAccountCredentialSourceInterface {
+            public function fetchSubjectToken(?callable $httpHandler = null): string
+            {
+                return 'custom-subject-token';
+            }
 
-            public function getSubjectToken(
-                ExternalAccountSupplierContext $context,
-                ?callable $httpHandler = null
-            ): string {
-                $this->receivedContext = $context;
-                return 'supplied-subject-token';
+            public function getCacheKey(): ?string
+            {
+                return 'custom-source-key';
             }
         };
 
         $jsonCreds = [
             'audience' => 'my-audience',
             'subject_token_type' => 'urn:ietf:params:oauth:token-type:jwt',
-            'subject_token_supplier' => $supplier,
+            'credential_source' => $source,
         ];
 
         $creds = new ExternalAccountCredentials('a-scope', $jsonCreds);
@@ -836,7 +791,7 @@ class ExternalAccountCredentialsTest extends TestCase
         $httpHandler = function (RequestInterface $request) {
             $this->assertEquals('https://sts.googleapis.com/v1/token', (string) $request->getUri());
             parse_str((string) $request->getBody(), $requestBody);
-            $this->assertEquals('supplied-subject-token', $requestBody['subject_token']);
+            $this->assertEquals('custom-subject-token', $requestBody['subject_token']);
             $this->assertEquals('my-audience', $requestBody['audience']);
             $this->assertEquals('urn:ietf:params:oauth:token-type:jwt', $requestBody['subject_token_type']);
 
@@ -845,34 +800,31 @@ class ExternalAccountCredentialsTest extends TestCase
 
         $authToken = $creds->fetchAuthToken($httpHandler);
         $this->assertEquals('sts-access-token', $authToken['access_token']);
-        $this->assertNotNull($supplier->receivedContext);
-        $this->assertEquals('my-audience', $supplier->receivedContext->getAudience());
         $this->assertEquals(
-            'urn:ietf:params:oauth:token-type:jwt',
-            $supplier->receivedContext->getSubjectTokenType()
-        );
-        $this->assertEquals(
-            spl_object_hash($supplier) . '.my-audience..urn:ietf:params:oauth:token-type:jwt.',
+            'custom-source-key.my-audience..urn:ietf:params:oauth:token-type:jwt.',
             $creds->getCacheKey()
         );
     }
 
-    public function testFetchAuthTokenWithCallableSubjectTokenSupplier()
+    public function testFetchAuthTokenWithCustomCredentialSourceAndCustomUniverseDomain()
     {
-        $receivedContext = null;
-        $supplier = function (
-            ExternalAccountSupplierContext $context,
-            ?callable $httpHandler = null
-        ) use (&$receivedContext): string {
-            $receivedContext = $context;
-            return 'callable-subject-token';
+        $source = new class() implements ExternalAccountCredentialSourceInterface {
+            public function fetchSubjectToken(?callable $httpHandler = null): string
+            {
+                return 'custom-subject-token';
+            }
+
+            public function getCacheKey(): ?string
+            {
+                return 'custom-source-key';
+            }
         };
 
         $jsonCreds = [
             'audience' => 'my-audience',
             'subject_token_type' => 'urn:ietf:params:oauth:token-type:id_token',
             'universe_domain' => 'custom.universe.com',
-            'subject_token_supplier' => $supplier,
+            'credential_source' => $source,
         ];
 
         $creds = new ExternalAccountCredentials('a-scope', $jsonCreds);
@@ -880,84 +832,12 @@ class ExternalAccountCredentialsTest extends TestCase
         $httpHandler = function (RequestInterface $request) {
             $this->assertEquals('https://sts.custom.universe.com/v1/token', (string) $request->getUri());
             parse_str((string) $request->getBody(), $requestBody);
-            $this->assertEquals('callable-subject-token', $requestBody['subject_token']);
+            $this->assertEquals('custom-subject-token', $requestBody['subject_token']);
 
-            return new Response(200, [], '{"access_token": "callable-sts-token", "expires_in": 3600}');
+            return new Response(200, [], '{"access_token": "custom-sts-token", "expires_in": 3600}');
         };
 
         $authToken = $creds->fetchAuthToken($httpHandler);
-        $this->assertEquals('callable-sts-token', $authToken['access_token']);
-        $this->assertNotNull($receivedContext);
-        $this->assertEquals('my-audience', $receivedContext->getAudience());
-        $this->assertEquals('urn:ietf:params:oauth:token-type:id_token', $receivedContext->getSubjectTokenType());
-    }
-
-    public function testFetchAuthTokenWithAwsSecurityCredentialsSupplier()
-    {
-        $supplier = new class() implements AwsSecurityCredentialsSupplierInterface {
-            public ?ExternalAccountSupplierContext $receivedContext = null;
-
-            public function getCredentials(
-                ExternalAccountSupplierContext $context,
-                ?callable $httpHandler = null
-            ): AwsSecurityCredentials {
-                $this->receivedContext = $context;
-                return new AwsSecurityCredentials('akid-123', 'secret-456', 'session-789');
-            }
-
-            public function getRegion(
-                ExternalAccountSupplierContext $context,
-                ?callable $httpHandler = null
-            ): string {
-                return 'us-west-2';
-            }
-        };
-
-        $jsonCreds = [
-            'audience' => 'aws-audience',
-            'subject_token_type' => 'urn:ietf:params:aws:token-type:aws4_request',
-            'aws_security_credentials_supplier' => $supplier,
-        ];
-
-        $creds = new ExternalAccountCredentials('a-scope', $jsonCreds);
-
-        $httpHandler = function (RequestInterface $request) {
-            $this->assertEquals('https://sts.googleapis.com/v1/token', (string) $request->getUri());
-            parse_str((string) $request->getBody(), $requestBody);
-            $subjectToken = json_decode(urldecode($requestBody['subject_token']), true);
-            $this->assertEquals('POST', $subjectToken['method']);
-            $this->assertEquals(
-                'https://sts.us-west-2.amazonaws.com?Action=GetCallerIdentity&Version=2011-06-15',
-                $subjectToken['url']
-            );
-
-            return new Response(200, [], '{"access_token": "aws-sts-token", "expires_in": 3600}');
-        };
-
-        $authToken = $creds->fetchAuthToken($httpHandler);
-        $this->assertEquals('aws-sts-token', $authToken['access_token']);
-        $this->assertNotNull($supplier->receivedContext);
-        $this->assertEquals('aws-audience', $supplier->receivedContext->getAudience());
-        $this->assertEquals(
-            'urn:ietf:params:aws:token-type:aws4_request',
-            $supplier->receivedContext->getSubjectTokenType()
-        );
-    }
-
-    public function testSubjectTokenSupplierExceptionPropagates()
-    {
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('Supplier failed to fetch token');
-
-        $jsonCreds = [
-            'audience' => 'my-audience',
-            'subject_token_type' => 'urn:ietf:params:oauth:token-type:jwt',
-            'subject_token_supplier' => function (): string {
-                throw new \RuntimeException('Supplier failed to fetch token');
-            },
-        ];
-
-        $creds = new ExternalAccountCredentials('a-scope', $jsonCreds);
-        $creds->fetchAuthToken();
+        $this->assertEquals('custom-sts-token', $authToken['access_token']);
     }
 }

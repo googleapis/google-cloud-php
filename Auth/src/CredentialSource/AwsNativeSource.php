@@ -17,9 +17,7 @@
 
 namespace Google\Auth\CredentialSource;
 
-use Google\Auth\AwsSecurityCredentialsSupplierInterface;
 use Google\Auth\ExternalAccountCredentialSourceInterface;
-use Google\Auth\ExternalAccountSupplierContext;
 use Google\Auth\HttpHandler\HttpClientCache;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use GuzzleHttp\Psr7\Request;
@@ -31,15 +29,12 @@ class AwsNativeSource implements ExternalAccountCredentialSourceInterface
 {
     private const CRED_VERIFICATION_QUERY = 'Action=GetCallerIdentity&Version=2011-06-15';
     private const ECS_CONTAINER_METADATA_URL = 'http://169.254.170.2';
-    private const AWS_SUBJECT_TOKEN_TYPE = 'urn:ietf:params:aws:token-type:aws4_request';
 
     private string $audience;
     private string $regionalCredVerificationUrl;
     private ?string $regionUrl;
     private ?string $securityCredentialsUrl;
     private ?string $imdsv2SessionTokenUrl;
-    private AwsSecurityCredentialsSupplierInterface $securityCredentialsSupplier;
-    private ExternalAccountSupplierContext $supplierContext;
 
     /**
      * @param string $audience The audience for the credential.
@@ -52,33 +47,19 @@ class AwsNativeSource implements ExternalAccountCredentialSourceInterface
      *                                            key and security token needed to sign the GetCallerIdentity request.
      * @param string|null $imdsv2SessionTokenUrl Presence of this URL enforces the auth libraries to fetch a Session
      *                                           Token from AWS. This field is required for EC2 instances using IMDSv2.
-     * @param AwsSecurityCredentialsSupplierInterface|null $securityCredentialsSupplier Custom AWS security credentials
-     *                                                                                  supplier.
-     * @param ExternalAccountSupplierContext|null $supplierContext Context passed to the security credentials supplier.
      */
     public function __construct(
         string $audience,
         string $regionalCredVerificationUrl,
         ?string $regionUrl = null,
         ?string $securityCredentialsUrl = null,
-        ?string $imdsv2SessionTokenUrl = null,
-        ?AwsSecurityCredentialsSupplierInterface $securityCredentialsSupplier = null,
-        ?ExternalAccountSupplierContext $supplierContext = null
+        ?string $imdsv2SessionTokenUrl = null
     ) {
         $this->audience = $audience;
         $this->regionalCredVerificationUrl = $regionalCredVerificationUrl;
         $this->regionUrl = $regionUrl;
         $this->securityCredentialsUrl = $securityCredentialsUrl;
         $this->imdsv2SessionTokenUrl = $imdsv2SessionTokenUrl;
-        $this->securityCredentialsSupplier = $securityCredentialsSupplier ?? new AwsSecurityCredentialsSupplier(
-            $regionUrl,
-            $securityCredentialsUrl,
-            $imdsv2SessionTokenUrl
-        );
-        $this->supplierContext = $supplierContext ?? new ExternalAccountSupplierContext(
-            $audience,
-            self::AWS_SUBJECT_TOKEN_TYPE
-        );
     }
 
     public function fetchSubjectToken(?callable $httpHandler = null): string
@@ -87,20 +68,42 @@ class AwsNativeSource implements ExternalAccountCredentialSourceInterface
             $httpHandler = HttpHandlerFactory::build(HttpClientCache::getHttpClient());
         }
 
-        $awsCredentials = $this->securityCredentialsSupplier->getCredentials($this->supplierContext, $httpHandler);
-        $region = $this->securityCredentialsSupplier->getRegion($this->supplierContext, $httpHandler);
+        $headers = [];
+        if ($this->imdsv2SessionTokenUrl) {
+            $headers = [
+                'X-aws-ec2-metadata-token' => self::getImdsV2SessionToken($this->imdsv2SessionTokenUrl, $httpHandler)
+            ];
+        }
 
+        $signingVars = self::getSigningVarsFromEnv()
+            ?? self::getSigningVarsFromEcs($httpHandler);
+
+        if (!$signingVars) {
+            if (!$this->securityCredentialsUrl) {
+                throw new \LogicException(
+                    'Unable to get credentials from ENV, and no security credentials URL provided'
+                );
+            }
+            $signingVars = self::getSigningVarsFromUrl(
+                $httpHandler,
+                $this->securityCredentialsUrl,
+                self::getRoleName($httpHandler, $this->securityCredentialsUrl, $headers),
+                $headers
+            );
+        }
+
+        if (!$region = self::getRegionFromEnv()) {
+            if (!$this->regionUrl) {
+                throw new \LogicException('Unable to get region from ENV, and no region URL provided');
+            }
+            $region = self::getRegionFromUrl($httpHandler, $this->regionUrl, $headers);
+        }
         $url = str_replace('{region}', $region, $this->regionalCredVerificationUrl);
         $host = parse_url($url)['host'] ?? '';
 
         // From here we use the signing vars to create the signed request to receive a token
-        $headers = self::getSignedRequestHeaders(
-            $region,
-            $host,
-            $awsCredentials->getAccessKeyId(),
-            $awsCredentials->getSecretAccessKey(),
-            $awsCredentials->getSessionToken()
-        );
+        [$accessKeyId, $secretAccessKey, $securityToken] = $signingVars;
+        $headers = self::getSignedRequestHeaders($region, $host, $accessKeyId, $secretAccessKey, $securityToken);
 
         // Inject x-goog-cloud-target-resource into header
         $headers['x-goog-cloud-target-resource'] = $this->audience;
@@ -397,14 +400,9 @@ class AwsNativeSource implements ExternalAccountCredentialSourceInterface
      */
     public function getCacheKey(): string
     {
-        if ($this->securityCredentialsSupplier instanceof AwsSecurityCredentialsSupplier) {
-            return ($this->imdsv2SessionTokenUrl ?? '') .
-                '.' . ($this->securityCredentialsUrl ?? '') .
-                '.' . $this->regionUrl .
-                '.' . $this->regionalCredVerificationUrl;
-        }
-
-        return spl_object_hash($this->securityCredentialsSupplier) .
+        return ($this->imdsv2SessionTokenUrl ?? '') .
+            '.' . ($this->securityCredentialsUrl ?? '') .
+            '.' . $this->regionUrl .
             '.' . $this->regionalCredVerificationUrl;
     }
 

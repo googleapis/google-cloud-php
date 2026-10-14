@@ -163,8 +163,7 @@ abstract class CredentialsLoader implements
         bool $enableRegionalAccessBoundary = false
     ) {
         if (!array_key_exists('type', $jsonKey)
-            && (array_key_exists('subject_token_supplier', $jsonKey)
-                || array_key_exists('aws_security_credentials_supplier', $jsonKey))
+            && ($jsonKey['credential_source'] ?? null) instanceof ExternalAccountCredentialSourceInterface
         ) {
             $jsonKey['type'] = 'external_account';
         }

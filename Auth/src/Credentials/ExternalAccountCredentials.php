@@ -17,16 +17,13 @@
 
 namespace Google\Auth\Credentials;
 
-use Google\Auth\AwsSecurityCredentialsSupplierInterface;
 use Google\Auth\CredentialSource\AwsNativeSource;
 use Google\Auth\CredentialSource\ExecutableSource;
 use Google\Auth\CredentialSource\FileSource;
-use Google\Auth\CredentialSource\SubjectTokenSupplierSource;
 use Google\Auth\CredentialSource\UrlSource;
 use Google\Auth\CredentialSource\X509Source;
 use Google\Auth\ExecutableHandler\ExecutableHandler;
 use Google\Auth\ExternalAccountCredentialSourceInterface;
-use Google\Auth\ExternalAccountSupplierContext;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetQuotaProjectInterface;
 use Google\Auth\GetUniverseDomainInterface;
@@ -34,7 +31,6 @@ use Google\Auth\HttpHandler\HttpClientCache;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Auth\OAuth2;
 use Google\Auth\ProjectIdProviderInterface;
-use Google\Auth\SubjectTokenSupplierInterface;
 use Google\Auth\UpdateMetadataInterface;
 use Google\Auth\UpdateMetadataTrait;
 use GuzzleHttp\Psr7\Request;
@@ -66,8 +62,6 @@ class ExternalAccountCredentials implements
 
     private const EXTERNAL_ACCOUNT_TYPE = 'external_account';
     private const DEFAULT_TOKEN_URL = 'https://sts.UNIVERSE_DOMAIN/v1/token';
-    private const DEFAULT_AWS_REGIONAL_CRED_VERIFICATION_URL =
-        'https://sts.{region}.amazonaws.com?Action=GetCallerIdentity&Version=2011-06-15';
     private const CLOUD_RESOURCE_MANAGER_URL = 'https://cloudresourcemanager.UNIVERSE_DOMAIN/v1/projects/%s';
 
     private OAuth2 $auth;
@@ -90,10 +84,9 @@ class ExternalAccountCredentials implements
         array $jsonKey,
         bool $enableRegionalAccessBoundary = false
     ) {
-        $hasSupplier = array_key_exists('subject_token_supplier', $jsonKey)
-            || array_key_exists('aws_security_credentials_supplier', $jsonKey);
+        $isCustomSource = ($jsonKey['credential_source'] ?? null) instanceof ExternalAccountCredentialSourceInterface;
 
-        if ($hasSupplier) {
+        if ($isCustomSource) {
             $jsonKey['type'] ??= self::EXTERNAL_ACCOUNT_TYPE;
         }
 
@@ -110,7 +103,7 @@ class ExternalAccountCredentials implements
 
         $this->universeDomain = $jsonKey['universe_domain'] ?? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
 
-        if ($hasSupplier) {
+        if ($isCustomSource) {
             $jsonKey['token_url'] ??= str_replace(
                 'UNIVERSE_DOMAIN',
                 $this->universeDomain,
@@ -136,20 +129,9 @@ class ExternalAccountCredentials implements
             );
         }
 
-        $sourceCount = (int) array_key_exists('credential_source', $jsonKey)
-            + (int) array_key_exists('subject_token_supplier', $jsonKey)
-            + (int) array_key_exists('aws_security_credentials_supplier', $jsonKey);
-
-        if ($sourceCount === 0) {
+        if (!array_key_exists('credential_source', $jsonKey)) {
             throw new InvalidArgumentException(
                 'json key is missing the credential_source field'
-            );
-        }
-
-        if ($sourceCount > 1) {
-            throw new InvalidArgumentException(
-                'ExternalAccountCredentials requires exactly one of credential_source, '
-                . 'subject_token_supplier, or aws_security_credentials_supplier'
             );
         }
 
@@ -182,42 +164,15 @@ class ExternalAccountCredentials implements
      */
     private static function buildCredentialSource(array $jsonKey): ExternalAccountCredentialSourceInterface
     {
-        $supplierContext = new ExternalAccountSupplierContext(
-            $jsonKey['audience'],
-            $jsonKey['subject_token_type']
-        );
-
-        if (array_key_exists('subject_token_supplier', $jsonKey)) {
-            $supplier = $jsonKey['subject_token_supplier'];
-            if (!$supplier instanceof SubjectTokenSupplierInterface && !is_callable($supplier)) {
-                throw new InvalidArgumentException(
-                    'subject_token_supplier must be an instance of SubjectTokenSupplierInterface or a callable.'
-                );
-            }
-
-            return new SubjectTokenSupplierSource($supplier, $supplierContext);
+        $credentialSource = $jsonKey['credential_source'];
+        if ($credentialSource instanceof ExternalAccountCredentialSourceInterface) {
+            return $credentialSource;
         }
-
-        if (array_key_exists('aws_security_credentials_supplier', $jsonKey)) {
-            $supplier = $jsonKey['aws_security_credentials_supplier'];
-            if (!$supplier instanceof AwsSecurityCredentialsSupplierInterface) {
-                throw new InvalidArgumentException(
-                    'aws_security_credentials_supplier must be an instance of AwsSecurityCredentialsSupplierInterface.'
-                );
-            }
-
-            return new AwsNativeSource(
-                $jsonKey['audience'],
-                $jsonKey['regional_cred_verification_url'] ?? self::DEFAULT_AWS_REGIONAL_CRED_VERIFICATION_URL,
-                null,
-                null,
-                null,
-                $supplier,
-                $supplierContext
+        if (!is_array($credentialSource)) {
+            throw new InvalidArgumentException(
+                'credential_source must be an array or an instance of ExternalAccountCredentialSourceInterface.'
             );
         }
-
-        $credentialSource = $jsonKey['credential_source'];
         if (isset($credentialSource['file'])) {
             return new FileSource(
                 $credentialSource['file'],
@@ -246,8 +201,6 @@ class ExternalAccountCredentials implements
                 $credentialSource['region_url'] ?? null,               // $regionUrl
                 $credentialSource['url'] ?? null,                      // $securityCredentialsUrl
                 $credentialSource['imdsv2_session_token_url'] ?? null, // $imdsV2TokenUrl
-                null,
-                $supplierContext
             );
         }
 

@@ -17,11 +17,7 @@
 
 namespace Google\Auth\Tests\CredentialSource;
 
-use Google\Auth\AwsSecurityCredentials;
-use Google\Auth\AwsSecurityCredentialsSupplierInterface;
 use Google\Auth\CredentialSource\AwsNativeSource;
-use Google\Auth\CredentialSource\AwsSecurityCredentialsSupplier;
-use Google\Auth\ExternalAccountSupplierContext;
 use LogicException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -611,97 +607,5 @@ class AwsNativeSourceTest extends TestCase
         $this->assertArrayHasKey('headers', $unserializedToken);
         $this->assertArrayHasKey('method', $unserializedToken);
         $this->assertArrayHasKey('url', $unserializedToken);
-    }
-
-    /**
-     * @runInSeparateProcess
-     */
-    public function testFetchSubjectTokenFromEnvAndRegionEnvDoesNotCallImdsV2()
-    {
-        $aws = new AwsNativeSource(
-            $this->audience,
-            $this->regionalCredVerificationUrl,
-            $this->regionUrl,
-            $this->securityCredentialsUrl,
-            $this->imdsv2SessionTokenUrl,
-        );
-
-        putenv('AWS_ACCESS_KEY_ID=expected-access-key-id');
-        putenv('AWS_SECRET_ACCESS_KEY=expected-secret-access-key');
-        putenv('AWS_SESSION_TOKEN=expected-session-token');
-        putenv('AWS_REGION=us-east-2');
-
-        $httpHandler = function (RequestInterface $request): ResponseInterface {
-            $this->fail('HTTP handler should not be called when credentials and region are in ENV');
-        };
-
-        $subjectToken = $aws->fetchSubjectToken($httpHandler);
-        $unserializedToken = json_decode(urldecode($subjectToken), true);
-        $this->assertEquals('POST', $unserializedToken['method']);
-        $this->assertEquals('https://us-east-2.regional.cred.verification.url', $unserializedToken['url']);
-    }
-
-    public function testFetchSubjectTokenWithCustomSupplier()
-    {
-        $context = new ExternalAccountSupplierContext($this->audience, 'urn:ietf:params:aws:token-type:aws4_request');
-        $supplier = new class() implements AwsSecurityCredentialsSupplierInterface {
-            public ?ExternalAccountSupplierContext $receivedContext = null;
-
-            public function getCredentials(
-                ExternalAccountSupplierContext $context,
-                ?callable $httpHandler = null
-            ): AwsSecurityCredentials {
-                $this->receivedContext = $context;
-                return new AwsSecurityCredentials(
-                    'custom-access-key-id',
-                    'custom-secret-access-key',
-                    'custom-session-token'
-                );
-            }
-
-            public function getRegion(
-                ExternalAccountSupplierContext $context,
-                ?callable $httpHandler = null
-            ): string {
-                return 'eu-west-1';
-            }
-        };
-
-        $aws = new AwsNativeSource(
-            $this->audience,
-            $this->regionalCredVerificationUrl,
-            null,
-            null,
-            null,
-            $supplier,
-            $context
-        );
-
-        $subjectToken = $aws->fetchSubjectToken();
-        $unserializedToken = json_decode(urldecode($subjectToken), true);
-
-        $this->assertSame($context, $supplier->receivedContext);
-        $this->assertEquals($this->audience, $supplier->receivedContext->getAudience());
-        $this->assertEquals(
-            'urn:ietf:params:aws:token-type:aws4_request',
-            $supplier->receivedContext->getSubjectTokenType()
-        );
-        $this->assertEquals('POST', $unserializedToken['method']);
-        $this->assertEquals('https://eu-west-1.regional.cred.verification.url', $unserializedToken['url']);
-        $this->assertEquals(
-            spl_object_hash($supplier) . '.' . $this->regionalCredVerificationUrl,
-            $aws->getCacheKey()
-        );
-    }
-
-    public function testAwsSecurityCredentialsValueObject()
-    {
-        $creds = new AwsSecurityCredentials('akid', 'secret', 'token');
-        $this->assertEquals('akid', $creds->getAccessKeyId());
-        $this->assertEquals('secret', $creds->getSecretAccessKey());
-        $this->assertEquals('token', $creds->getSessionToken());
-
-        $credsWithoutToken = new AwsSecurityCredentials('akid2', 'secret2');
-        $this->assertNull($credsWithoutToken->getSessionToken());
     }
 }
