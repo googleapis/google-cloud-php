@@ -101,6 +101,7 @@ jobs:
                 owner: context.repo.owner,
                 repo,
                 state: 'open',
+                per_page: 100,
               });
 
               pulls.filter(pr =>
