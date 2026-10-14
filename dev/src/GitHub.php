@@ -103,7 +103,8 @@ class GitHub
 
             return ($res->getStatusCode() === 200);
         } catch (\Exception $e) {
-            if ($e->getCode() === 404) {
+            $response = method_exists($e, 'getResponse') ? $e->getResponse() : null;
+            if ($e->getCode() === 404 || $response?->getStatusCode() === 404) {
                 return false;
             }
             $this->logException($e);
@@ -201,16 +202,34 @@ class GitHub
      */
     public function getChangelog($target, $tagName): string|null|false
     {
+        $release = $this->getRelease($target, $tagName);
+        if (!is_array($release)) {
+            return $release;
+        }
+
+        return $release['body'] ?? null;
+    }
+
+    /**
+     * Get release details for a tag. False if the release doesn't exist.
+     *
+     * @param string $target The GitHub organization and repository ID separated
+     *        by a forward slash, i.e. `organization/repository'.
+     * @param string $tagName The name of the tag to fetch from.
+     * @return array|null|false
+     */
+    public function getRelease($target, $tagName): array|null|false
+    {
         try {
             $res = $this->client->get(sprintf(
                 self::GITHUB_RELEASE_ENDPOINT,
-                $target,
+                $this->cleanTarget($target),
                 $tagName
             ), [
                 'auth' => ['', $this->token]
             ]);
 
-            return json_decode((string) $res->getBody(), true)['body'];
+            return json_decode((string) $res->getBody(), true);
         } catch (RequestException $e) {
             $this->logException($e);
             // Guzzle 7 carries the response on RequestException, Guzzle 8 only

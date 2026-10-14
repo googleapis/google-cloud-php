@@ -1,0 +1,50 @@
+name: Verify Releases
+on:
+  schedule:
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag to verify (defaults to releases from the last 14 days)'
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    name: Verify Releases
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Setup PHP
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        with:
+          php-version: '8.2'
+      - name: Install dependencies
+        run: composer --no-interaction --no-ansi --no-progress update -d dev
+      - name: Verify releases
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          if [ -n "$RELEASE_TAG" ]; then
+            ./dev/google-cloud release:verify "$RELEASE_TAG" -t "$GITHUB_TOKEN"
+          else
+            ./dev/google-cloud release:verify --from="-14 days" -t "$GITHUB_TOKEN"
+          fi
+      - name: Create issue if previous step fails
+        if: ${{ failure() && github.ref == 'refs/heads/main' }}
+        uses: googleapis/librarian/.github/actions/create-issue-on-failure@45ada77d3adcdf7f54e94b5ea674a5fa48cb6a75 # v0.46.0
+        with:
+          title: "Release verification failed"
+          body: |
+            `release:verify` detected missing split repository tags, Packagist releases, or overdue Cloud RAD reference documentation (>7 days).
+
+            Please check the logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          mention: "@googleapis/cloud-sdk-php-team"

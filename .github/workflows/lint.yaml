@@ -7,11 +7,14 @@ on:
 
 permissions:
   contents: read
-  issues: write
+
 jobs:
   style_phpcs:
     runs-on: ubuntu-latest
     name: PHP Style Check
+    permissions:
+      contents: read
+      issues: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -64,6 +67,9 @@ jobs:
   staticanalysis:
     runs-on: ubuntu-latest
     name: PHPStan Static Analysis
+    permissions:
+      contents: read
+      issues: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -92,6 +98,9 @@ jobs:
   tidy-check:
     runs-on: ubuntu-latest
     name: Verify librarian.yaml is tidy
+    permissions:
+      contents: read
+      issues: write
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

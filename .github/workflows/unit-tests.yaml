@@ -7,10 +7,12 @@ on:
 
 permissions:
   contents: read
-  issues: write
 
 jobs:
   test:
+    permissions:
+      contents: read
+      issues: write
     strategy:
       matrix:
         platform: [ubuntu-latest, windows-latest]
@@ -87,6 +89,9 @@ jobs:
   test_packages:
     name: Package Tests
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -112,6 +117,9 @@ jobs:
   test_packages_lowest:
     name: Package Tests (Lowest Dependencies)
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -139,6 +147,9 @@ jobs:
   test_dev_commands:
     name: Dev Commands Unit Tests
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:

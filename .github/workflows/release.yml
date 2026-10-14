@@ -73,10 +73,13 @@ jobs:
             --packagist-token="$PACKAGIST_TOKEN" \
             --packagist-safe-token="$PACKAGIST_SAFE_TOKEN"
       - name: Verify all releases made it to Packagist
+        env:
+          RELEASE_TAG: ${{ inputs.tag != '' && inputs.tag || steps.getTag.outputs.tag }}
+          SPLIT_TOKEN: ${{ secrets.SPLIT_TOKEN }}
         uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4
         with:
           command: |
-            ./dev/google-cloud release:verify
+            ./dev/google-cloud release:verify "$RELEASE_TAG" --skip-docs -t "$SPLIT_TOKEN"
           timeout_minutes: 1
           max_attempts: 3
           retry_wait_seconds: 30
