@@ -351,6 +351,9 @@ class JWT
                     self::validateRsaKeyLength($key);
                 } elseif (str_starts_with($alg, 'ES')) {
                     self::validateEcKeyLength($key, $alg);
+                    if ($signature === '') {
+                        return false;
+                    }
                 }
                 $success = \openssl_verify($msg, $signature, $keyMaterial, $algorithm);
                 if ($success === 1) {
