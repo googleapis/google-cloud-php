@@ -14,6 +14,8 @@
 # Github action job to test core java library features on
 # downstream client libraries before they are released.
 on:
+  release:
+    types: [published]
   pull_request:
     paths:
       - 'Bigtable/**'
@@ -22,6 +24,7 @@ on:
 name: Run Bigtable Conformance Tests With Proxy
 permissions:
   contents: read
+  issues: write
 jobs:
   conformance:
     runs-on: ubuntu-latest
@@ -59,3 +62,13 @@ jobs:
           sudo dpkg -i roadrunner-2024.3.1-linux-amd64.deb
 
       - run: bash Bigtable/tests/Conformance/proxy/conformance.sh
+      - name: Create issue if previous step fails
+        if: ${{ failure() && github.event_name == 'release' }}
+        uses: googleapis/librarian/.github/actions/create-issue-on-failure@45ada77d3adcdf7f54e94b5ea674a5fa48cb6a75 # v0.46.0
+        with:
+          title: "Bigtable Conformance Tests check failed on release"
+          body: |
+            The `Run Bigtable Conformance Tests With Proxy` post-release check failed on `${{ github.ref_name }}`.
+
+            Please check the logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          mention: "@googleapis/cloud-sdk-php-team"

@@ -1,8 +1,11 @@
 name: Run GAX Conformance Tests With Showcase
 on:
+  release:
+    types: [published]
   pull_request:
 permissions:
   contents: read
+  issues: write
 jobs:
   gapic-showcase:
     name: GAPIC Showcase Conformance Tests
@@ -55,3 +58,13 @@ jobs:
 
       - name: Run PHPUnit
         run: Gax/vendor/bin/phpunit -c Gax/phpunit-conformance.xml.dist
+      - name: Create issue if previous step fails
+        if: ${{ failure() && github.event_name == 'release' }}
+        uses: googleapis/librarian/.github/actions/create-issue-on-failure@45ada77d3adcdf7f54e94b5ea674a5fa48cb6a75 # v0.46.0
+        with:
+          title: "GAX Conformance Tests check failed on release"
+          body: |
+            The `Run GAX Conformance Tests With Showcase` post-release check failed on `${{ github.ref_name }}`.
+
+            Please check the logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          mention: "@googleapis/cloud-sdk-php-team"
