@@ -9,20 +9,20 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * SQLServer data source configuration
+ * Configuration for syncing data from a SQLServer source.
  *
  * Generated from protobuf message <code>google.cloud.datastream.v1.SqlServerSourceConfig</code>
  */
 class SqlServerSourceConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * SQLServer objects to include in the stream.
+     * The SQLServer objects to include in the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerRdbms include_objects = 1;</code>
      */
     protected $include_objects = null;
     /**
-     * SQLServer objects to exclude from the stream.
+     * The SQLServer objects to exclude from the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerRdbms exclude_objects = 2;</code>
      */
@@ -48,9 +48,9 @@ class SqlServerSourceConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Datastream\V1\SqlServerRdbms $include_objects
-     *           SQLServer objects to include in the stream.
+     *           The SQLServer objects to include in the stream.
      *     @type \Google\Cloud\Datastream\V1\SqlServerRdbms $exclude_objects
-     *           SQLServer objects to exclude from the stream.
+     *           The SQLServer objects to exclude from the stream.
      *     @type int $max_concurrent_cdc_tasks
      *           Max concurrent CDC tasks.
      *     @type int $max_concurrent_backfill_tasks
@@ -67,7 +67,7 @@ class SqlServerSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * SQLServer objects to include in the stream.
+     * The SQLServer objects to include in the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerRdbms include_objects = 1;</code>
      * @return \Google\Cloud\Datastream\V1\SqlServerRdbms|null
@@ -88,7 +88,7 @@ class SqlServerSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * SQLServer objects to include in the stream.
+     * The SQLServer objects to include in the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerRdbms include_objects = 1;</code>
      * @param \Google\Cloud\Datastream\V1\SqlServerRdbms $var
@@ -103,7 +103,7 @@ class SqlServerSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * SQLServer objects to exclude from the stream.
+     * The SQLServer objects to exclude from the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerRdbms exclude_objects = 2;</code>
      * @return \Google\Cloud\Datastream\V1\SqlServerRdbms|null
@@ -124,7 +124,7 @@ class SqlServerSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * SQLServer objects to exclude from the stream.
+     * The SQLServer objects to exclude from the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerRdbms exclude_objects = 2;</code>
      * @param \Google\Cloud\Datastream\V1\SqlServerRdbms $var

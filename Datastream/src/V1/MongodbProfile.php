@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * MongoDB profile.
+ * Profile for connecting to a MongoDB source.
  *
  * Generated from protobuf message <code>google.cloud.datastream.v1.MongodbProfile</code>
  */
@@ -59,6 +59,19 @@ class MongodbProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbSslConfig ssl_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $ssl_config = null;
+    /**
+     * Optional. Specifies additional options for the MongoDB connection.
+     * The options should be sent as key-value pairs, for example:
+     * `additional_options =
+     * {"serverSelectionTimeoutMS": "10000", "directConnection": "true"}`.
+     * Keys are case-sensitive and should match the official MongoDB connection
+     * string options:
+     * https://www.mongodb.com/docs/manual/reference/connection-string-options/
+     * The server will not modify the values provided by the user.
+     *
+     * Generated from protobuf field <code>map<string, string> additional_options = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $additional_options;
     protected $mongodb_connection_format;
 
     /**
@@ -91,6 +104,15 @@ class MongodbProfile extends \Google\Protobuf\Internal\Message
      *           Srv connection format.
      *     @type \Google\Cloud\Datastream\V1\StandardConnectionFormat $standard_connection_format
      *           Standard connection format.
+     *     @type array|\Google\Protobuf\Internal\MapField $additional_options
+     *           Optional. Specifies additional options for the MongoDB connection.
+     *           The options should be sent as key-value pairs, for example:
+     *           `additional_options =
+     *           {"serverSelectionTimeoutMS": "10000", "directConnection": "true"}`.
+     *           Keys are case-sensitive and should match the official MongoDB connection
+     *           string options:
+     *           https://www.mongodb.com/docs/manual/reference/connection-string-options/
+     *           The server will not modify the values provided by the user.
      * }
      */
     public function __construct($data = NULL) {
@@ -338,6 +360,46 @@ class MongodbProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\StandardConnectionFormat::class);
         $this->writeOneof(102, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies additional options for the MongoDB connection.
+     * The options should be sent as key-value pairs, for example:
+     * `additional_options =
+     * {"serverSelectionTimeoutMS": "10000", "directConnection": "true"}`.
+     * Keys are case-sensitive and should match the official MongoDB connection
+     * string options:
+     * https://www.mongodb.com/docs/manual/reference/connection-string-options/
+     * The server will not modify the values provided by the user.
+     *
+     * Generated from protobuf field <code>map<string, string> additional_options = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getAdditionalOptions()
+    {
+        return $this->additional_options;
+    }
+
+    /**
+     * Optional. Specifies additional options for the MongoDB connection.
+     * The options should be sent as key-value pairs, for example:
+     * `additional_options =
+     * {"serverSelectionTimeoutMS": "10000", "directConnection": "true"}`.
+     * Keys are case-sensitive and should match the official MongoDB connection
+     * string options:
+     * https://www.mongodb.com/docs/manual/reference/connection-string-options/
+     * The server will not modify the values provided by the user.
+     *
+     * Generated from protobuf field <code>map<string, string> additional_options = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setAdditionalOptions($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->additional_options = $arr;
 
         return $this;
     }

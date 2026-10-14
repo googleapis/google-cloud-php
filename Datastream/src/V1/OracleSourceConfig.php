@@ -9,20 +9,20 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Oracle data source configuration
+ * Configuration for syncing data from an Oracle source.
  *
  * Generated from protobuf message <code>google.cloud.datastream.v1.OracleSourceConfig</code>
  */
 class OracleSourceConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Oracle objects to include in the stream.
+     * The Oracle objects to include in the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleRdbms include_objects = 1;</code>
      */
     protected $include_objects = null;
     /**
-     * Oracle objects to exclude from the stream.
+     * The Oracle objects to exclude from the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleRdbms exclude_objects = 2;</code>
      */
@@ -51,9 +51,9 @@ class OracleSourceConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Datastream\V1\OracleRdbms $include_objects
-     *           Oracle objects to include in the stream.
+     *           The Oracle objects to include in the stream.
      *     @type \Google\Cloud\Datastream\V1\OracleRdbms $exclude_objects
-     *           Oracle objects to exclude from the stream.
+     *           The Oracle objects to exclude from the stream.
      *     @type int $max_concurrent_cdc_tasks
      *           Maximum number of concurrent CDC tasks. The number should be non-negative.
      *           If not set (or set to 0), the system's default value is used.
@@ -76,7 +76,7 @@ class OracleSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Oracle objects to include in the stream.
+     * The Oracle objects to include in the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleRdbms include_objects = 1;</code>
      * @return \Google\Cloud\Datastream\V1\OracleRdbms|null
@@ -97,7 +97,7 @@ class OracleSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Oracle objects to include in the stream.
+     * The Oracle objects to include in the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleRdbms include_objects = 1;</code>
      * @param \Google\Cloud\Datastream\V1\OracleRdbms $var
@@ -112,7 +112,7 @@ class OracleSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Oracle objects to exclude from the stream.
+     * The Oracle objects to exclude from the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleRdbms exclude_objects = 2;</code>
      * @return \Google\Cloud\Datastream\V1\OracleRdbms|null
@@ -133,7 +133,7 @@ class OracleSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Oracle objects to exclude from the stream.
+     * The Oracle objects to exclude from the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleRdbms exclude_objects = 2;</code>
      * @param \Google\Cloud\Datastream\V1\OracleRdbms $var

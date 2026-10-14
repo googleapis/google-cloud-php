@@ -15,6 +15,12 @@ use Google\Protobuf\RepeatedField;
  */
 class SqlServerChangeTables extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Optional. DDL configuration for change tables.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerChangeTables.SqlServerDdlConfig ddl_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ddl_config = null;
 
     /**
      * Constructor.
@@ -22,11 +28,49 @@ class SqlServerChangeTables extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Datastream\V1\SqlServerChangeTables\SqlServerDdlConfig $ddl_config
+     *           Optional. DDL configuration for change tables.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Datastream\V1\DatastreamResources::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. DDL configuration for change tables.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerChangeTables.SqlServerDdlConfig ddl_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Datastream\V1\SqlServerChangeTables\SqlServerDdlConfig|null
+     */
+    public function getDdlConfig()
+    {
+        return $this->ddl_config;
+    }
+
+    public function hasDdlConfig()
+    {
+        return isset($this->ddl_config);
+    }
+
+    public function clearDdlConfig()
+    {
+        unset($this->ddl_config);
+    }
+
+    /**
+     * Optional. DDL configuration for change tables.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerChangeTables.SqlServerDdlConfig ddl_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Datastream\V1\SqlServerChangeTables\SqlServerDdlConfig $var
+     * @return $this
+     */
+    public function setDdlConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SqlServerChangeTables\SqlServerDdlConfig::class);
+        $this->ddl_config = $var;
+
+        return $this;
     }
 
 }

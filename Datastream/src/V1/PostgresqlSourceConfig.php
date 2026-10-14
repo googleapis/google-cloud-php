@@ -9,20 +9,20 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * PostgreSQL data source configuration
+ * Configuration for syncing data from a PostgreSQL source.
  *
  * Generated from protobuf message <code>google.cloud.datastream.v1.PostgresqlSourceConfig</code>
  */
 class PostgresqlSourceConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * PostgreSQL objects to include in the stream.
+     * The PostgreSQL objects to include in the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlRdbms include_objects = 1;</code>
      */
     protected $include_objects = null;
     /**
-     * PostgreSQL objects to exclude from the stream.
+     * The PostgreSQL objects to exclude from the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlRdbms exclude_objects = 2;</code>
      */
@@ -57,9 +57,9 @@ class PostgresqlSourceConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Datastream\V1\PostgresqlRdbms $include_objects
-     *           PostgreSQL objects to include in the stream.
+     *           The PostgreSQL objects to include in the stream.
      *     @type \Google\Cloud\Datastream\V1\PostgresqlRdbms $exclude_objects
-     *           PostgreSQL objects to exclude from the stream.
+     *           The PostgreSQL objects to exclude from the stream.
      *     @type string $replication_slot
      *           Required. Immutable. The name of the logical replication slot that's
      *           configured with the pgoutput plugin.
@@ -78,7 +78,7 @@ class PostgresqlSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * PostgreSQL objects to include in the stream.
+     * The PostgreSQL objects to include in the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlRdbms include_objects = 1;</code>
      * @return \Google\Cloud\Datastream\V1\PostgresqlRdbms|null
@@ -99,7 +99,7 @@ class PostgresqlSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * PostgreSQL objects to include in the stream.
+     * The PostgreSQL objects to include in the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlRdbms include_objects = 1;</code>
      * @param \Google\Cloud\Datastream\V1\PostgresqlRdbms $var
@@ -114,7 +114,7 @@ class PostgresqlSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * PostgreSQL objects to exclude from the stream.
+     * The PostgreSQL objects to exclude from the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlRdbms exclude_objects = 2;</code>
      * @return \Google\Cloud\Datastream\V1\PostgresqlRdbms|null
@@ -135,7 +135,7 @@ class PostgresqlSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * PostgreSQL objects to exclude from the stream.
+     * The PostgreSQL objects to exclude from the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlRdbms exclude_objects = 2;</code>
      * @param \Google\Cloud\Datastream\V1\PostgresqlRdbms $var

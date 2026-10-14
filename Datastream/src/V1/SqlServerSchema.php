@@ -16,7 +16,7 @@ use Google\Protobuf\RepeatedField;
 class SqlServerSchema extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Schema name.
+     * The schema name.
      *
      * Generated from protobuf field <code>string schema = 1;</code>
      */
@@ -35,7 +35,7 @@ class SqlServerSchema extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $schema
-     *           Schema name.
+     *           The schema name.
      *     @type \Google\Cloud\Datastream\V1\SqlServerTable[] $tables
      *           Tables in the schema.
      * }
@@ -46,7 +46,7 @@ class SqlServerSchema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Schema name.
+     * The schema name.
      *
      * Generated from protobuf field <code>string schema = 1;</code>
      * @return string
@@ -57,7 +57,7 @@ class SqlServerSchema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Schema name.
+     * The schema name.
      *
      * Generated from protobuf field <code>string schema = 1;</code>
      * @param string $var

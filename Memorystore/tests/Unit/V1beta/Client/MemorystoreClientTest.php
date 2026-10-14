@@ -30,6 +30,8 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Cloud\Memorystore\V1beta\AclPolicy;
+use Google\Cloud\Memorystore\V1beta\AclPolicyRevision;
 use Google\Cloud\Memorystore\V1beta\AddAuthTokenRequest;
 use Google\Cloud\Memorystore\V1beta\AddTokenAuthUserRequest;
 use Google\Cloud\Memorystore\V1beta\AuthToken;
@@ -38,13 +40,17 @@ use Google\Cloud\Memorystore\V1beta\BackupCollection;
 use Google\Cloud\Memorystore\V1beta\BackupInstanceRequest;
 use Google\Cloud\Memorystore\V1beta\CertificateAuthority;
 use Google\Cloud\Memorystore\V1beta\Client\MemorystoreClient;
+use Google\Cloud\Memorystore\V1beta\CreateAclPolicyRequest;
 use Google\Cloud\Memorystore\V1beta\CreateInstanceRequest;
+use Google\Cloud\Memorystore\V1beta\DeleteAclPolicyRequest;
 use Google\Cloud\Memorystore\V1beta\DeleteAuthTokenRequest;
 use Google\Cloud\Memorystore\V1beta\DeleteBackupRequest;
 use Google\Cloud\Memorystore\V1beta\DeleteInstanceRequest;
 use Google\Cloud\Memorystore\V1beta\DeleteTokenAuthUserRequest;
 use Google\Cloud\Memorystore\V1beta\ExportBackupRequest;
 use Google\Cloud\Memorystore\V1beta\FinishMigrationRequest;
+use Google\Cloud\Memorystore\V1beta\GetAclPolicyRequest;
+use Google\Cloud\Memorystore\V1beta\GetAclPolicyRevisionRequest;
 use Google\Cloud\Memorystore\V1beta\GetAuthTokenRequest;
 use Google\Cloud\Memorystore\V1beta\GetBackupCollectionRequest;
 use Google\Cloud\Memorystore\V1beta\GetBackupRequest;
@@ -53,6 +59,10 @@ use Google\Cloud\Memorystore\V1beta\GetInstanceRequest;
 use Google\Cloud\Memorystore\V1beta\GetSharedRegionalCertificateAuthorityRequest;
 use Google\Cloud\Memorystore\V1beta\GetTokenAuthUserRequest;
 use Google\Cloud\Memorystore\V1beta\Instance;
+use Google\Cloud\Memorystore\V1beta\ListAclPoliciesRequest;
+use Google\Cloud\Memorystore\V1beta\ListAclPoliciesResponse;
+use Google\Cloud\Memorystore\V1beta\ListAclPolicyRevisionsRequest;
+use Google\Cloud\Memorystore\V1beta\ListAclPolicyRevisionsResponse;
 use Google\Cloud\Memorystore\V1beta\ListAuthTokensRequest;
 use Google\Cloud\Memorystore\V1beta\ListAuthTokensResponse;
 use Google\Cloud\Memorystore\V1beta\ListBackupCollectionsRequest;
@@ -69,6 +79,7 @@ use Google\Cloud\Memorystore\V1beta\SelfManagedSource;
 use Google\Cloud\Memorystore\V1beta\SharedRegionalCertificateAuthority;
 use Google\Cloud\Memorystore\V1beta\StartMigrationRequest;
 use Google\Cloud\Memorystore\V1beta\TokenAuthUser;
+use Google\Cloud\Memorystore\V1beta\UpdateAclPolicyRequest;
 use Google\Cloud\Memorystore\V1beta\UpdateInstanceRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
@@ -285,6 +296,7 @@ class MemorystoreClientTest extends GeneratedTest
         $allowFewerZonesDeployment = false;
         $serverCaPool = 'serverCaPool-1294323103';
         $rotateServerCertificate = false;
+        $aclPolicy = 'aclPolicy539449991';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -304,6 +316,7 @@ class MemorystoreClientTest extends GeneratedTest
         $expectedResponse->setAllowFewerZonesDeployment($allowFewerZonesDeployment);
         $expectedResponse->setServerCaPool($serverCaPool);
         $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
+        $expectedResponse->setAclPolicy($aclPolicy);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -447,6 +460,7 @@ class MemorystoreClientTest extends GeneratedTest
         $allowFewerZonesDeployment = false;
         $serverCaPool = 'serverCaPool-1294323103';
         $rotateServerCertificate = false;
+        $aclPolicy = 'aclPolicy539449991';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -466,6 +480,7 @@ class MemorystoreClientTest extends GeneratedTest
         $expectedResponse->setAllowFewerZonesDeployment($allowFewerZonesDeployment);
         $expectedResponse->setServerCaPool($serverCaPool);
         $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
+        $expectedResponse->setAclPolicy($aclPolicy);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -567,6 +582,91 @@ class MemorystoreClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createAclPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $etag = 'etag3123477';
+        $expectedResponse = new AclPolicy();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $aclPolicyId = 'aclPolicyId-1012845101';
+        $aclPolicy = new AclPolicy();
+        $aclPolicyRules = [];
+        $aclPolicy->setRules($aclPolicyRules);
+        $request = (new CreateAclPolicyRequest())
+            ->setParent($formattedParent)
+            ->setAclPolicyId($aclPolicyId)
+            ->setAclPolicy($aclPolicy);
+        $response = $gapicClient->createAclPolicy($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.memorystore.v1beta.Memorystore/CreateAclPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getAclPolicyId();
+        $this->assertProtobufEquals($aclPolicyId, $actualValue);
+        $actualValue = $actualRequestObject->getAclPolicy();
+        $this->assertProtobufEquals($aclPolicy, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createAclPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $aclPolicyId = 'aclPolicyId-1012845101';
+        $aclPolicy = new AclPolicy();
+        $aclPolicyRules = [];
+        $aclPolicy->setRules($aclPolicyRules);
+        $request = (new CreateAclPolicyRequest())
+            ->setParent($formattedParent)
+            ->setAclPolicyId($aclPolicyId)
+            ->setAclPolicy($aclPolicy);
+        try {
+            $gapicClient->createAclPolicy($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function createInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -605,6 +705,7 @@ class MemorystoreClientTest extends GeneratedTest
         $allowFewerZonesDeployment = false;
         $serverCaPool = 'serverCaPool-1294323103';
         $rotateServerCertificate = false;
+        $aclPolicy = 'aclPolicy539449991';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -624,6 +725,7 @@ class MemorystoreClientTest extends GeneratedTest
         $expectedResponse->setAllowFewerZonesDeployment($allowFewerZonesDeployment);
         $expectedResponse->setServerCaPool($serverCaPool);
         $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
+        $expectedResponse->setAclPolicy($aclPolicy);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -721,6 +823,128 @@ class MemorystoreClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createInstanceTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAclPolicyTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteAclPolicyTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteAclPolicyTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->aclPolicyName('[PROJECT]', '[LOCATION]', '[ACL_POLICY]');
+        $request = (new DeleteAclPolicyRequest())->setName($formattedName);
+        $response = $gapicClient->deleteAclPolicy($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.memorystore.v1beta.Memorystore/DeleteAclPolicy', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteAclPolicyTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAclPolicyExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteAclPolicyTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->aclPolicyName('[PROJECT]', '[LOCATION]', '[ACL_POLICY]');
+        $request = (new DeleteAclPolicyRequest())->setName($formattedName);
+        $response = $gapicClient->deleteAclPolicy($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteAclPolicyTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -1415,6 +1639,7 @@ class MemorystoreClientTest extends GeneratedTest
         $allowFewerZonesDeployment = false;
         $serverCaPool = 'serverCaPool-1294323103';
         $rotateServerCertificate = false;
+        $aclPolicy = 'aclPolicy539449991';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -1434,6 +1659,7 @@ class MemorystoreClientTest extends GeneratedTest
         $expectedResponse->setAllowFewerZonesDeployment($allowFewerZonesDeployment);
         $expectedResponse->setServerCaPool($serverCaPool);
         $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
+        $expectedResponse->setAclPolicy($aclPolicy);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1532,6 +1758,140 @@ class MemorystoreClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function getAclPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $etag = 'etag3123477';
+        $expectedResponse = new AclPolicy();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->aclPolicyName('[PROJECT]', '[LOCATION]', '[ACL_POLICY]');
+        $request = (new GetAclPolicyRequest())->setName($formattedName);
+        $response = $gapicClient->getAclPolicy($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.memorystore.v1beta.Memorystore/GetAclPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAclPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->aclPolicyName('[PROJECT]', '[LOCATION]', '[ACL_POLICY]');
+        $request = (new GetAclPolicyRequest())->setName($formattedName);
+        try {
+            $gapicClient->getAclPolicy($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAclPolicyRevisionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $revisionNumber = 1651923923;
+        $expectedResponse = new AclPolicyRevision();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setRevisionNumber($revisionNumber);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->aclPolicyRevisionName('[PROJECT]', '[LOCATION]', '[ACL_POLICY]', '[REVISION]');
+        $request = (new GetAclPolicyRevisionRequest())->setName($formattedName);
+        $response = $gapicClient->getAclPolicyRevision($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.memorystore.v1beta.Memorystore/GetAclPolicyRevision', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAclPolicyRevisionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->aclPolicyRevisionName('[PROJECT]', '[LOCATION]', '[ACL_POLICY]', '[REVISION]');
+        $request = (new GetAclPolicyRevisionRequest())->setName($formattedName);
+        try {
+            $gapicClient->getAclPolicyRevision($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -1861,6 +2221,7 @@ class MemorystoreClientTest extends GeneratedTest
         $allowFewerZonesDeployment = false;
         $serverCaPool = 'serverCaPool-1294323103';
         $rotateServerCertificate = false;
+        $aclPolicy = 'aclPolicy539449991';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -1880,6 +2241,7 @@ class MemorystoreClientTest extends GeneratedTest
         $expectedResponse->setAllowFewerZonesDeployment($allowFewerZonesDeployment);
         $expectedResponse->setServerCaPool($serverCaPool);
         $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
+        $expectedResponse->setAclPolicy($aclPolicy);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
@@ -2055,6 +2417,148 @@ class MemorystoreClientTest extends GeneratedTest
         $request = (new GetTokenAuthUserRequest())->setName($formattedName);
         try {
             $gapicClient->getTokenAuthUser($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAclPoliciesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $aclPoliciesElement = new AclPolicy();
+        $aclPolicies = [$aclPoliciesElement];
+        $expectedResponse = new ListAclPoliciesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAclPolicies($aclPolicies);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListAclPoliciesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listAclPolicies($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAclPolicies()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.memorystore.v1beta.Memorystore/ListAclPolicies', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAclPoliciesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListAclPoliciesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listAclPolicies($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAclPolicyRevisionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $aclPolicyRevisionsElement = new AclPolicyRevision();
+        $aclPolicyRevisions = [$aclPolicyRevisionsElement];
+        $expectedResponse = new ListAclPolicyRevisionsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAclPolicyRevisions($aclPolicyRevisions);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->aclPolicyName('[PROJECT]', '[LOCATION]', '[ACL_POLICY]');
+        $request = (new ListAclPolicyRevisionsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listAclPolicyRevisions($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAclPolicyRevisions()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.memorystore.v1beta.Memorystore/ListAclPolicyRevisions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAclPolicyRevisionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->aclPolicyName('[PROJECT]', '[LOCATION]', '[ACL_POLICY]');
+        $request = (new ListAclPolicyRevisionsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listAclPolicyRevisions($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2470,6 +2974,7 @@ class MemorystoreClientTest extends GeneratedTest
         $allowFewerZonesDeployment = false;
         $serverCaPool = 'serverCaPool-1294323103';
         $rotateServerCertificate = false;
+        $aclPolicy = 'aclPolicy539449991';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -2489,6 +2994,7 @@ class MemorystoreClientTest extends GeneratedTest
         $expectedResponse->setAllowFewerZonesDeployment($allowFewerZonesDeployment);
         $expectedResponse->setServerCaPool($serverCaPool);
         $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
+        $expectedResponse->setAclPolicy($aclPolicy);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2632,6 +3138,7 @@ class MemorystoreClientTest extends GeneratedTest
         $allowFewerZonesDeployment = false;
         $serverCaPool = 'serverCaPool-1294323103';
         $rotateServerCertificate = false;
+        $aclPolicy = 'aclPolicy539449991';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -2651,6 +3158,7 @@ class MemorystoreClientTest extends GeneratedTest
         $expectedResponse->setAllowFewerZonesDeployment($allowFewerZonesDeployment);
         $expectedResponse->setServerCaPool($serverCaPool);
         $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
+        $expectedResponse->setAclPolicy($aclPolicy);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2776,6 +3284,136 @@ class MemorystoreClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function updateAclPolicyTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateAclPolicyTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $etag = 'etag3123477';
+        $expectedResponse = new AclPolicy();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEtag($etag);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateAclPolicyTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $aclPolicy = new AclPolicy();
+        $aclPolicyRules = [];
+        $aclPolicy->setRules($aclPolicyRules);
+        $request = (new UpdateAclPolicyRequest())->setAclPolicy($aclPolicy);
+        $response = $gapicClient->updateAclPolicy($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.memorystore.v1beta.Memorystore/UpdateAclPolicy', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getAclPolicy();
+        $this->assertProtobufEquals($aclPolicy, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateAclPolicyTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateAclPolicyExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateAclPolicyTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $aclPolicy = new AclPolicy();
+        $aclPolicyRules = [];
+        $aclPolicy->setRules($aclPolicyRules);
+        $request = (new UpdateAclPolicyRequest())->setAclPolicy($aclPolicy);
+        $response = $gapicClient->updateAclPolicy($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateAclPolicyTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function updateInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2814,6 +3452,7 @@ class MemorystoreClientTest extends GeneratedTest
         $allowFewerZonesDeployment = false;
         $serverCaPool = 'serverCaPool-1294323103';
         $rotateServerCertificate = false;
+        $aclPolicy = 'aclPolicy539449991';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -2833,6 +3472,7 @@ class MemorystoreClientTest extends GeneratedTest
         $expectedResponse->setAllowFewerZonesDeployment($allowFewerZonesDeployment);
         $expectedResponse->setServerCaPool($serverCaPool);
         $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
+        $expectedResponse->setAclPolicy($aclPolicy);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

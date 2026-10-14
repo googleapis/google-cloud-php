@@ -38,25 +38,44 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\Cloud\Redis\Cluster\V1\AclPolicy;
+use Google\Cloud\Redis\Cluster\V1\AclPolicyRevision;
+use Google\Cloud\Redis\Cluster\V1\AddAuthTokenRequest;
+use Google\Cloud\Redis\Cluster\V1\AddTokenAuthUserRequest;
+use Google\Cloud\Redis\Cluster\V1\AuthToken;
 use Google\Cloud\Redis\Cluster\V1\Backup;
 use Google\Cloud\Redis\Cluster\V1\BackupClusterRequest;
 use Google\Cloud\Redis\Cluster\V1\BackupCollection;
 use Google\Cloud\Redis\Cluster\V1\CertificateAuthority;
 use Google\Cloud\Redis\Cluster\V1\Cluster;
+use Google\Cloud\Redis\Cluster\V1\CreateAclPolicyRequest;
 use Google\Cloud\Redis\Cluster\V1\CreateClusterRequest;
+use Google\Cloud\Redis\Cluster\V1\DeleteAclPolicyRequest;
+use Google\Cloud\Redis\Cluster\V1\DeleteAuthTokenRequest;
 use Google\Cloud\Redis\Cluster\V1\DeleteBackupRequest;
 use Google\Cloud\Redis\Cluster\V1\DeleteClusterRequest;
+use Google\Cloud\Redis\Cluster\V1\DeleteTokenAuthUserRequest;
 use Google\Cloud\Redis\Cluster\V1\ExportBackupRequest;
+use Google\Cloud\Redis\Cluster\V1\GetAclPolicyRequest;
+use Google\Cloud\Redis\Cluster\V1\GetAclPolicyRevisionRequest;
+use Google\Cloud\Redis\Cluster\V1\GetAuthTokenRequest;
 use Google\Cloud\Redis\Cluster\V1\GetBackupCollectionRequest;
 use Google\Cloud\Redis\Cluster\V1\GetBackupRequest;
 use Google\Cloud\Redis\Cluster\V1\GetClusterCertificateAuthorityRequest;
 use Google\Cloud\Redis\Cluster\V1\GetClusterRequest;
 use Google\Cloud\Redis\Cluster\V1\GetSharedRegionalCertificateAuthorityRequest;
+use Google\Cloud\Redis\Cluster\V1\GetTokenAuthUserRequest;
+use Google\Cloud\Redis\Cluster\V1\ListAclPoliciesRequest;
+use Google\Cloud\Redis\Cluster\V1\ListAclPolicyRevisionsRequest;
+use Google\Cloud\Redis\Cluster\V1\ListAuthTokensRequest;
 use Google\Cloud\Redis\Cluster\V1\ListBackupCollectionsRequest;
 use Google\Cloud\Redis\Cluster\V1\ListBackupsRequest;
 use Google\Cloud\Redis\Cluster\V1\ListClustersRequest;
+use Google\Cloud\Redis\Cluster\V1\ListTokenAuthUsersRequest;
 use Google\Cloud\Redis\Cluster\V1\RescheduleClusterMaintenanceRequest;
 use Google\Cloud\Redis\Cluster\V1\SharedRegionalCertificateAuthority;
+use Google\Cloud\Redis\Cluster\V1\TokenAuthUser;
+use Google\Cloud\Redis\Cluster\V1\UpdateAclPolicyRequest;
 use Google\Cloud\Redis\Cluster\V1\UpdateClusterRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
@@ -89,20 +108,35 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<OperationResponse> addAuthTokenAsync(AddAuthTokenRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addTokenAuthUserAsync(AddTokenAuthUserRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> backupClusterAsync(BackupClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AclPolicy> createAclPolicyAsync(CreateAclPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAclPolicyAsync(DeleteAclPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAuthTokenAsync(DeleteAuthTokenRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTokenAuthUserAsync(DeleteTokenAuthUserRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> exportBackupAsync(ExportBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AclPolicy> getAclPolicyAsync(GetAclPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AclPolicyRevision> getAclPolicyRevisionAsync(GetAclPolicyRevisionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuthToken> getAuthTokenAsync(GetAuthTokenRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackupCollection> getBackupCollectionAsync(GetBackupCollectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Cluster> getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CertificateAuthority> getClusterCertificateAuthorityAsync(GetClusterCertificateAuthorityRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SharedRegionalCertificateAuthority> getSharedRegionalCertificateAuthorityAsync(GetSharedRegionalCertificateAuthorityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TokenAuthUser> getTokenAuthUserAsync(GetTokenAuthUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAclPoliciesAsync(ListAclPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAclPolicyRevisionsAsync(ListAclPolicyRevisionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAuthTokensAsync(ListAuthTokensRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupCollectionsAsync(ListBackupCollectionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTokenAuthUsersAsync(ListTokenAuthUsersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> rescheduleClusterMaintenanceAsync(RescheduleClusterMaintenanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAclPolicyAsync(UpdateAclPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -208,6 +242,78 @@ final class CloudRedisClusterClient
         }
 
         return new OperationsClient($options);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a acl_policy
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $aclPolicy
+     *
+     * @return string The formatted acl_policy resource.
+     */
+    public static function aclPolicyName(string $project, string $location, string $aclPolicy): string
+    {
+        return self::getPathTemplate('aclPolicy')->render([
+            'project' => $project,
+            'location' => $location,
+            'acl_policy' => $aclPolicy,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * acl_policy_revision resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $aclPolicy
+     * @param string $revision
+     *
+     * @return string The formatted acl_policy_revision resource.
+     */
+    public static function aclPolicyRevisionName(
+        string $project,
+        string $location,
+        string $aclPolicy,
+        string $revision
+    ): string {
+        return self::getPathTemplate('aclPolicyRevision')->render([
+            'project' => $project,
+            'location' => $location,
+            'acl_policy' => $aclPolicy,
+            'revision' => $revision,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a auth_token
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $cluster
+     * @param string $tokenAuthUser
+     * @param string $authToken
+     *
+     * @return string The formatted auth_token resource.
+     */
+    public static function authTokenName(
+        string $project,
+        string $location,
+        string $cluster,
+        string $tokenAuthUser,
+        string $authToken
+    ): string {
+        return self::getPathTemplate('authToken')->render([
+            'project' => $project,
+            'location' => $location,
+            'cluster' => $cluster,
+            'token_auth_user' => $tokenAuthUser,
+            'auth_token' => $authToken,
+        ]);
     }
 
     /**
@@ -450,9 +556,37 @@ final class CloudRedisClusterClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * token_auth_user resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $cluster
+     * @param string $tokenAuthUser
+     *
+     * @return string The formatted token_auth_user resource.
+     */
+    public static function tokenAuthUserName(
+        string $project,
+        string $location,
+        string $cluster,
+        string $tokenAuthUser
+    ): string {
+        return self::getPathTemplate('tokenAuthUser')->render([
+            'project' => $project,
+            'location' => $location,
+            'cluster' => $cluster,
+            'token_auth_user' => $tokenAuthUser,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - aclPolicy: projects/{project}/locations/{location}/aclPolicies/{acl_policy}
+     * - aclPolicyRevision: projects/{project}/locations/{location}/aclPolicies/{acl_policy}/revisions/{revision}
+     * - authToken: projects/{project}/locations/{location}/clusters/{cluster}/tokenAuthUsers/{token_auth_user}/authTokens/{auth_token}
      * - backup: projects/{project}/locations/{location}/backupCollections/{backup_collection}/backups/{backup}
      * - backupCollection: projects/{project}/locations/{location}/backupCollections/{backup_collection}
      * - caPool: projects/{project}/locations/{location}/caPools/{ca_pool}
@@ -465,6 +599,7 @@ final class CloudRedisClusterClient
      * - network: projects/{project}/global/networks/{network}
      * - serviceAttachment: projects/{project}/regions/{region}/serviceAttachments/{service_attachment}
      * - sharedRegionalCertificateAuthority: projects/{project}/locations/{location}/sharedRegionalCertificateAuthority
+     * - tokenAuthUser: projects/{project}/locations/{location}/clusters/{cluster}/tokenAuthUsers/{token_auth_user}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -571,6 +706,58 @@ final class CloudRedisClusterClient
     }
 
     /**
+     * Adds a auth token for a user of a token based auth enabled cluster.
+     *
+     * The async variant is {@see CloudRedisClusterClient::addAuthTokenAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/add_auth_token.php
+     *
+     * @param AddAuthTokenRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<TokenAuthUser>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function addAuthToken(AddAuthTokenRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('AddAuthToken', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Adds a token auth user for a token based auth enabled cluster.
+     *
+     * The async variant is {@see CloudRedisClusterClient::addTokenAuthUserAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/add_token_auth_user.php
+     *
+     * @param AddTokenAuthUserRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Cluster>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function addTokenAuthUser(AddTokenAuthUserRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('AddTokenAuthUser', $request, $callOptions)->wait();
+    }
+
+    /**
      * Backup Redis Cluster.
      * If this is the first time a backup is being created, a backup collection
      * will be created at the backend, and this backup belongs to this collection.
@@ -608,6 +795,34 @@ final class CloudRedisClusterClient
     }
 
     /**
+     * Creates an ACL policy.
+     * The creation is executed synchronously and the policy is available for use
+     * immediately after the RPC returns.
+     *
+     * The async variant is {@see CloudRedisClusterClient::createAclPolicyAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/create_acl_policy.php
+     *
+     * @param CreateAclPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AclPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createAclPolicy(CreateAclPolicyRequest $request, array $callOptions = []): AclPolicy
+    {
+        return $this->startApiCall('CreateAclPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a Redis cluster based on the specified properties.
      * The creation is executed asynchronously and callers may check the returned
      * operation to track its progress. Once the operation is completed the Redis
@@ -638,6 +853,60 @@ final class CloudRedisClusterClient
     public function createCluster(CreateClusterRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('CreateCluster', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a specific ACL policy. This action will delete the ACL policy and
+     * all the rules associated with it. An ACL policy cannot be deleted if it is
+     * attached to a cluster.
+     *
+     * The async variant is {@see CloudRedisClusterClient::deleteAclPolicyAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/delete_acl_policy.php
+     *
+     * @param DeleteAclPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteAclPolicy(DeleteAclPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteAclPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Removes a auth token for a user of a token based auth enabled instance.
+     *
+     * The async variant is {@see CloudRedisClusterClient::deleteAuthTokenAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/delete_auth_token.php
+     *
+     * @param DeleteAuthTokenRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteAuthToken(DeleteAuthTokenRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteAuthToken', $request, $callOptions)->wait();
     }
 
     /**
@@ -694,6 +963,33 @@ final class CloudRedisClusterClient
     }
 
     /**
+     * Deletes a token auth user for a token based auth enabled cluster.
+     *
+     * The async variant is {@see CloudRedisClusterClient::deleteTokenAuthUserAsync()}
+     * .
+     *
+     * @example samples/V1/CloudRedisClusterClient/delete_token_auth_user.php
+     *
+     * @param DeleteTokenAuthUserRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteTokenAuthUser(DeleteTokenAuthUserRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteTokenAuthUser', $request, $callOptions)->wait();
+    }
+
+    /**
      * Exports a specific backup to a customer target Cloud Storage URI.
      *
      * The async variant is {@see CloudRedisClusterClient::exportBackupAsync()} .
@@ -717,6 +1013,87 @@ final class CloudRedisClusterClient
     public function exportBackup(ExportBackupRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('ExportBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the details of a specific Redis Cluster ACL policy.
+     *
+     * The async variant is {@see CloudRedisClusterClient::getAclPolicyAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/get_acl_policy.php
+     *
+     * @param GetAclPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AclPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAclPolicy(GetAclPolicyRequest $request, array $callOptions = []): AclPolicy
+    {
+        return $this->startApiCall('GetAclPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a specific ACL policy revision.
+     *
+     * The async variant is {@see CloudRedisClusterClient::getAclPolicyRevisionAsync()}
+     * .
+     *
+     * @example samples/V1/CloudRedisClusterClient/get_acl_policy_revision.php
+     *
+     * @param GetAclPolicyRevisionRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AclPolicyRevision
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAclPolicyRevision(
+        GetAclPolicyRevisionRequest $request,
+        array $callOptions = []
+    ): AclPolicyRevision {
+        return $this->startApiCall('GetAclPolicyRevision', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets a specific auth token for a specific token auth user.
+     *
+     * The async variant is {@see CloudRedisClusterClient::getAuthTokenAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/get_auth_token.php
+     *
+     * @param GetAuthTokenRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AuthToken
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAuthToken(GetAuthTokenRequest $request, array $callOptions = []): AuthToken
+    {
+        return $this->startApiCall('GetAuthToken', $request, $callOptions)->wait();
     }
 
     /**
@@ -858,6 +1235,121 @@ final class CloudRedisClusterClient
     }
 
     /**
+     * Gets a specific token auth user for a basic auth enabled cluster.
+     *
+     * The async variant is {@see CloudRedisClusterClient::getTokenAuthUserAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/get_token_auth_user.php
+     *
+     * @param GetTokenAuthUserRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TokenAuthUser
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getTokenAuthUser(GetTokenAuthUserRequest $request, array $callOptions = []): TokenAuthUser
+    {
+        return $this->startApiCall('GetTokenAuthUser', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists all ACL policies owned by a project in either the specified
+     * location (region) or all locations.
+     *
+     * The location should have the following format:
+     *
+     * * `projects/{project_id}/locations/{location_id}`
+     *
+     * If `location_id` is specified as `-` (wildcard), then all regions
+     * available to the project are queried, and the results are aggregated.
+     *
+     * The async variant is {@see CloudRedisClusterClient::listAclPoliciesAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/list_acl_policies.php
+     *
+     * @param ListAclPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAclPolicies(ListAclPoliciesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListAclPolicies', $request, $callOptions);
+    }
+
+    /**
+     * Lists all ACL policy revisions in a given ACL policy.
+     *
+     * The async variant is
+     * {@see CloudRedisClusterClient::listAclPolicyRevisionsAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/list_acl_policy_revisions.php
+     *
+     * @param ListAclPolicyRevisionsRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAclPolicyRevisions(
+        ListAclPolicyRevisionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListAclPolicyRevisions', $request, $callOptions);
+    }
+
+    /**
+     * Lists all the auth tokens for a specific token auth user.
+     *
+     * The async variant is {@see CloudRedisClusterClient::listAuthTokensAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/list_auth_tokens.php
+     *
+     * @param ListAuthTokensRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAuthTokens(ListAuthTokensRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListAuthTokens', $request, $callOptions);
+    }
+
+    /**
      * Lists all backup collections owned by a consumer project in either the
      * specified location (region) or all locations.
      *
@@ -951,6 +1443,32 @@ final class CloudRedisClusterClient
     }
 
     /**
+     * Lists all the token auth users for a token based auth enabled cluster.
+     *
+     * The async variant is {@see CloudRedisClusterClient::listTokenAuthUsersAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/list_token_auth_users.php
+     *
+     * @param ListTokenAuthUsersRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listTokenAuthUsers(ListTokenAuthUsersRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListTokenAuthUsers', $request, $callOptions);
+    }
+
+    /**
      * Reschedules upcoming maintenance event.
      *
      * The async variant is
@@ -977,6 +1495,41 @@ final class CloudRedisClusterClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('RescheduleClusterMaintenance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the ACL policy.
+     *
+     * The operation applies the updated ACL policy to all of the linked clusters.
+     * If Memorystore can apply the policy to all clusters, then the operation
+     * returns a SUCCESS status. If Memorystore can't apply the policy to all
+     * clusters, then to ensure eventual consistency, Memorystore uses
+     * reconciliation to apply the policy to the failed clusters.
+     *
+     * Completed longrunning.Operation will contain the new ACL policy object in
+     * the response field.
+     *
+     * The async variant is {@see CloudRedisClusterClient::updateAclPolicyAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/update_acl_policy.php
+     *
+     * @param UpdateAclPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<AclPolicy>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateAclPolicy(UpdateAclPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateAclPolicy', $request, $callOptions)->wait();
     }
 
     /**

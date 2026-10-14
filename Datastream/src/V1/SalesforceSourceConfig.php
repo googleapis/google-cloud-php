@@ -9,28 +9,28 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Salesforce source configuration
+ * Configuration for syncing data from a Salesforce source.
  *
  * Generated from protobuf message <code>google.cloud.datastream.v1.SalesforceSourceConfig</code>
  */
 class SalesforceSourceConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Salesforce objects to retrieve from the source.
+     * The Salesforce objects to retrieve from the source.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceOrg include_objects = 1;</code>
      */
     protected $include_objects = null;
     /**
-     * Salesforce objects to exclude from the stream.
+     * The Salesforce objects to exclude from the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceOrg exclude_objects = 2;</code>
      */
     protected $exclude_objects = null;
     /**
      * Required. Salesforce objects polling interval. The interval at which new
-     * changes will be polled for each object. The duration must be between 5
-     * minutes and 24 hours.
+     * changes will be polled for each object. The duration must be from `5
+     * minutes` to `24 hours`, inclusive.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration polling_interval = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -43,13 +43,13 @@ class SalesforceSourceConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Datastream\V1\SalesforceOrg $include_objects
-     *           Salesforce objects to retrieve from the source.
+     *           The Salesforce objects to retrieve from the source.
      *     @type \Google\Cloud\Datastream\V1\SalesforceOrg $exclude_objects
-     *           Salesforce objects to exclude from the stream.
+     *           The Salesforce objects to exclude from the stream.
      *     @type \Google\Protobuf\Duration $polling_interval
      *           Required. Salesforce objects polling interval. The interval at which new
-     *           changes will be polled for each object. The duration must be between 5
-     *           minutes and 24 hours.
+     *           changes will be polled for each object. The duration must be from `5
+     *           minutes` to `24 hours`, inclusive.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,7 +58,7 @@ class SalesforceSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Salesforce objects to retrieve from the source.
+     * The Salesforce objects to retrieve from the source.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceOrg include_objects = 1;</code>
      * @return \Google\Cloud\Datastream\V1\SalesforceOrg|null
@@ -79,7 +79,7 @@ class SalesforceSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Salesforce objects to retrieve from the source.
+     * The Salesforce objects to retrieve from the source.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceOrg include_objects = 1;</code>
      * @param \Google\Cloud\Datastream\V1\SalesforceOrg $var
@@ -94,7 +94,7 @@ class SalesforceSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Salesforce objects to exclude from the stream.
+     * The Salesforce objects to exclude from the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceOrg exclude_objects = 2;</code>
      * @return \Google\Cloud\Datastream\V1\SalesforceOrg|null
@@ -115,7 +115,7 @@ class SalesforceSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Salesforce objects to exclude from the stream.
+     * The Salesforce objects to exclude from the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceOrg exclude_objects = 2;</code>
      * @param \Google\Cloud\Datastream\V1\SalesforceOrg $var
@@ -131,8 +131,8 @@ class SalesforceSourceConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Salesforce objects polling interval. The interval at which new
-     * changes will be polled for each object. The duration must be between 5
-     * minutes and 24 hours.
+     * changes will be polled for each object. The duration must be from `5
+     * minutes` to `24 hours`, inclusive.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration polling_interval = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Duration|null
@@ -154,8 +154,8 @@ class SalesforceSourceConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Salesforce objects polling interval. The interval at which new
-     * changes will be polled for each object. The duration must be between 5
-     * minutes and 24 hours.
+     * changes will be polled for each object. The duration must be from `5
+     * minutes` to `24 hours`, inclusive.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration polling_interval = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Duration $var
