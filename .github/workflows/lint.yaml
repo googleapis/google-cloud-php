@@ -90,3 +90,23 @@ jobs:
             echo "to tidy librarian.yaml and commit the changes."
             exit 1
           fi
+
+  composer-audit:
+    runs-on: ubuntu-latest
+    name: Composer Audit
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Setup PHP
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        with:
+          php-version: '8.2'
+      - name: Install dependencies
+        run: |
+          composer --no-interaction --no-ansi --no-progress update
+          composer --no-interaction --no-ansi --no-progress update -d dev
+      - name: Audit dependencies
+        run: |
+          composer audit --abandoned=fail
+          composer audit --abandoned=fail -d dev
