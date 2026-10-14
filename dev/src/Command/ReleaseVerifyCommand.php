@@ -72,29 +72,11 @@ class ReleaseVerifyCommand extends Command
                 'The version to check for'
             )
             ->addOption(
-                'from',
-                '',
-                InputOption::VALUE_REQUIRED,
-                'Date string representing how far back to verify releases (e.g. "-14 days")'
-            )
-            ->addOption(
                 'token',
                 't',
                 InputOption::VALUE_REQUIRED,
                 'GitHub token to use for authentication',
                 ''
-            )
-            ->addOption(
-                'docs-only',
-                '',
-                InputOption::VALUE_NONE,
-                'Only verify Cloud RAD reference documentation'
-            )
-            ->addOption(
-                'skip-docs',
-                '',
-                InputOption::VALUE_NONE,
-                'Skip Cloud RAD reference documentation verification'
             )
             ->addOption(
                 'update-release',
@@ -106,18 +88,8 @@ class ReleaseVerifyCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $docsOnly = (bool) $input->getOption('docs-only');
-        $skipDocs = (bool) $input->getOption('skip-docs');
         $updateRelease = (bool) $input->getOption('update-release');
-        if ($docsOnly && $skipDocs) {
-            throw new \InvalidArgumentException('Cannot specify both --docs-only and --skip-docs');
-        }
-
         $tag = $input->getArgument('tag');
-        $from = $input->getOption('from');
-        if ($from && $tag) {
-            throw new \InvalidArgumentException('cannot specify both a tag and a from date');
-        }
 
         $token = $input->getOption('token') ?: (getenv('GH_OAUTH_TOKEN') ?: (getenv('GITHUB_TOKEN') ?: ''));
         $github = new GitHub(new RunShell(), $this->httpClient, $token, $output);
@@ -126,149 +98,123 @@ class ReleaseVerifyCommand extends Command
         $componentOption = $input->getOption('component');
         $overrideVersion = $input->getOption('package-version');
 
-        $batches = $this->resolveBatches($github, $tag, $from, $componentOption, $overrideVersion);
+        [$releaseBody, $publishedAt, $items] = $this->resolveTarget(
+            $github,
+            $tag,
+            $componentOption,
+            $overrideVersion
+        );
 
-        $checkSplit = !$docsOnly;
-        $checkPackagist = !$docsOnly;
-        $checkDocs = !$skipDocs;
+        $headers = ['Component', 'Version', 'Split Repo', 'Packagist', 'Docs'];
 
-        $headers = ['Component', 'Version'];
-        if ($checkSplit) {
-            $headers[] = 'Split Repo';
-        }
-        if ($checkPackagist) {
-            $headers[] = 'Packagist';
-        }
-        if ($checkDocs) {
-            $headers[] = 'Docs';
-        }
+        $ageInSeconds = $publishedAt ? (time() - $publishedAt->getTimestamp()) : null;
+        $ageInDays = $ageInSeconds !== null ? max(0, (int) floor($ageInSeconds / 86400)) : null;
+        $isDocsWithinGracePeriod = $ageInSeconds !== null
+            && $ageInSeconds < (self::DOCS_GRACE_PERIOD_DAYS * 86400);
 
         $notFound = [];
         $pending = [];
+        $checkRuns = [];
 
-        foreach ($batches as $batch) {
-            $batchTag = $batch['tag'];
-            $releaseBody = $batch['releaseBody'];
-            /** @var ?DateTime $publishedAt */
-            $publishedAt = $batch['publishedAt'];
-            $ageInSeconds = $publishedAt ? (time() - $publishedAt->getTimestamp()) : null;
-            $ageInDays = $ageInSeconds !== null ? max(0, (int) floor($ageInSeconds / 86400)) : null;
-            $isDocsWithinGracePeriod = $ageInSeconds !== null
-                && $ageInSeconds < (self::DOCS_GRACE_PERIOD_DAYS * 86400);
+        if ($tag !== null && !$componentOption) {
+            $checkRuns = $github->getCheckRuns(self::REPO_ID, $tag) ?? [];
+            usort($checkRuns, fn (array $a, array $b) => strcmp($a['name'] ?? '', $b['name'] ?? ''));
 
-            $batchNotFound = [];
-            $batchPending = [];
-            $checkRuns = [];
-
-            if ($batchTag !== null && !$docsOnly && !$componentOption) {
-                $checkRuns = $github->getCheckRuns(self::REPO_ID, $batchTag) ?? [];
-                usort($checkRuns, fn (array $a, array $b) => strcmp($a['name'] ?? '', $b['name'] ?? ''));
-
-                foreach ($checkRuns as $run) {
-                    $runName = $run['name'] ?? 'Unknown';
-                    $runUrl = $run['html_url'] ?? '';
-                    if (($run['status'] ?? '') !== 'completed') {
-                        $batchPending[] = sprintf('%s: %s (Check Run)', $batchTag, $runName);
-                    } elseif (in_array($run['conclusion'] ?? '', self::FAILED_CHECK_CONCLUSIONS, true)) {
-                        $batchNotFound[] = $runUrl
-                            ? sprintf('- [%s (Check Run)](%s)', $runName, $runUrl)
-                            : sprintf('- %s (Check Run)', $runName);
-                    }
+            foreach ($checkRuns as $run) {
+                $runName = $run['name'] ?? 'Unknown';
+                $runUrl = $run['html_url'] ?? '';
+                if (($run['status'] ?? '') !== 'completed') {
+                    $pending[] = sprintf('%s: %s (Check Run)', $tag, $runName);
+                } elseif (in_array($run['conclusion'] ?? '', self::FAILED_CHECK_CONCLUSIONS, true)) {
+                    $notFound[] = $runUrl
+                        ? sprintf('- [%s (Check Run)](%s)', $runName, $runUrl)
+                        : sprintf('- %s (Check Run)', $runName);
                 }
             }
+        }
 
-            $rows = [];
-            $mdRows = [];
-            foreach ($batch['items'] as $item) {
-                /** @var Component $component */
-                $component = $item['component'];
-                $version = $item['version'];
-                $tagVersion = 'v' . $version;
-                $packageName = $component->getPackageName();
+        $rows = [];
+        $mdRows = [];
+        foreach ($items as $item) {
+            /** @var Component $component */
+            $component = $item['component'];
+            $version = $item['version'];
+            $tagVersion = 'v' . $version;
+            $packageName = $component->getPackageName();
 
-                $row = [$packageName, $version];
-                $mdRow = ['`' . $packageName . '`', '`' . $version . '`'];
+            $row = [$packageName, $version];
+            $mdRow = ['`' . $packageName . '`', '`' . $version . '`'];
 
-                if ($checkSplit) {
-                    $splitUrl = sprintf('https://github.com/%s/releases/tag/%s', $component->getRepoName(), $tagVersion);
-                    if ($github->doesTagExist($component->getRepoName(), $tagVersion)) {
-                        $row[] = '<info>OK</info>';
-                        $mdRow[] = sprintf('[OK](%s)', $splitUrl);
-                    } else {
-                        $row[] = '<error>NOT FOUND</error>';
-                        $mdRow[] = 'NOT FOUND';
-                        $batchNotFound[] = sprintf('- [%s:%s (Split Repo)](%s)', $packageName, $tagVersion, $splitUrl);
-                    }
-                }
-
-                if ($checkPackagist) {
-                    $packagistUrl = sprintf('https://packagist.org/packages/%s#%s', $packageName, $tagVersion);
-                    if ($packagist->versionExists($packageName, $tagVersion)) {
-                        $row[] = '<info>OK</info>';
-                        $mdRow[] = sprintf('[OK](%s)', $packagistUrl);
-                    } else {
-                        $row[] = '<error>NOT FOUND</error>';
-                        $mdRow[] = 'NOT FOUND';
-                        $batchNotFound[] = sprintf('- [%s:%s (Packagist)](%s)', $packageName, $tagVersion, $packagistUrl);
-                    }
-                }
-
-                if ($checkDocs) {
-                    $docsUrl = sprintf(self::DOCS_URL, $component->getId());
-                    if ($this->docsVersionExists($component->getId(), $version)) {
-                        $row[] = '<info>OK</info>';
-                        $mdRow[] = sprintf('[OK](%s)', $docsUrl);
-                    } elseif ($isDocsWithinGracePeriod) {
-                        $row[] = sprintf('<comment>PENDING (%dd old)</comment>', $ageInDays);
-                        $mdRow[] = sprintf('PENDING (%dd old)', $ageInDays);
-                        $batchPending[] = sprintf('%s:%s (Docs)', $packageName, $tagVersion);
-                    } else {
-                        $row[] = '<error>NOT FOUND</error>';
-                        $mdRow[] = 'NOT FOUND';
-                        $batchNotFound[] = sprintf('- [%s:%s (Docs)](%s)', $packageName, $tagVersion, $docsUrl);
-                    }
-                }
-
-                $rows[] = $row;
-                $mdRows[] = $mdRow;
+            $splitUrl = sprintf('https://github.com/%s/releases/tag/%s', $component->getRepoName(), $tagVersion);
+            if ($github->doesTagExist($component->getRepoName(), $tagVersion)) {
+                $row[] = '<info>OK</info>';
+                $mdRow[] = sprintf('[OK](%s)', $splitUrl);
+            } else {
+                $row[] = '<error>NOT FOUND</error>';
+                $mdRow[] = 'NOT FOUND';
+                $notFound[] = sprintf('- [%s:%s (Split Repo)](%s)', $packageName, $tagVersion, $splitUrl);
             }
 
-            $notFound = array_merge($notFound, $batchNotFound);
-            $pending = array_merge($pending, $batchPending);
+            $packagistUrl = sprintf('https://packagist.org/packages/%s#%s', $packageName, $tagVersion);
+            if ($packagist->versionExists($packageName, $tagVersion)) {
+                $row[] = '<info>OK</info>';
+                $mdRow[] = sprintf('[OK](%s)', $packagistUrl);
+            } else {
+                $row[] = '<error>NOT FOUND</error>';
+                $mdRow[] = 'NOT FOUND';
+                $notFound[] = sprintf('- [%s:%s (Packagist)](%s)', $packageName, $tagVersion, $packagistUrl);
+            }
 
-            $tableHeaders = $batchTag
-                ? [
-                    [
-                        new TableCell($batchTag, [
-                            'rowspan' => 1,
-                            'colspan' => count($headers),
-                            'style' => new TableCellStyle(['align' => 'center', 'cellFormat' => '<info>%s</info>']),
-                        ]),
-                    ],
-                    $headers,
-                ]
-                : [$headers];
+            $docsUrl = sprintf(self::DOCS_URL, $component->getId());
+            if ($this->docsVersionExists($component->getId(), $version)) {
+                $row[] = '<info>OK</info>';
+                $mdRow[] = sprintf('[OK](%s)', $docsUrl);
+            } elseif ($isDocsWithinGracePeriod) {
+                $row[] = sprintf('<comment>PENDING (%dd old)</comment>', $ageInDays);
+                $mdRow[] = sprintf('PENDING (%dd old)', $ageInDays);
+                $pending[] = sprintf('%s:%s (Docs)', $packageName, $tagVersion);
+            } else {
+                $row[] = '<error>NOT FOUND</error>';
+                $mdRow[] = 'NOT FOUND';
+                $notFound[] = sprintf('- [%s:%s (Docs)](%s)', $packageName, $tagVersion, $docsUrl);
+            }
 
-            (new Table($output))
-                ->setHeaders($tableHeaders)
-                ->setRows($rows)
-                ->render();
+            $rows[] = $row;
+            $mdRows[] = $mdRow;
+        }
 
-            if ($updateRelease && $batchTag !== null && $releaseBody !== null) {
-                $verifyMarkdown = $this->buildReleaseVerificationMarkdown(
-                    $headers,
-                    $mdRows,
-                    $checkRuns,
-                    count($batchNotFound) > 0,
-                    count($batchPending) > 0
-                );
-                $updatedBody = $this->upsertReleaseVerificationSection($releaseBody, $verifyMarkdown);
-                if ($updatedBody !== $releaseBody) {
-                    if ($github->updateReleaseNotes(self::REPO_ID, $batchTag, $updatedBody)) {
-                        $output->writeln(sprintf('<info>Updated release verification table for %s</info>', $batchTag));
-                    } else {
-                        $output->writeln(sprintf('<error>Failed to update release notes for %s</error>', $batchTag));
-                    }
+        $tableHeaders = $tag
+            ? [
+                [
+                    new TableCell($tag, [
+                        'rowspan' => 1,
+                        'colspan' => count($headers),
+                        'style' => new TableCellStyle(['align' => 'center', 'cellFormat' => '<info>%s</info>']),
+                    ]),
+                ],
+                $headers,
+            ]
+            : [$headers];
+
+        (new Table($output))
+            ->setHeaders($tableHeaders)
+            ->setRows($rows)
+            ->render();
+
+        if ($updateRelease && $tag !== null && $releaseBody !== null) {
+            $verifyMarkdown = $this->buildReleaseVerificationMarkdown(
+                $headers,
+                $mdRows,
+                $checkRuns,
+                count($notFound) > 0,
+                count($pending) > 0
+            );
+            $updatedBody = $this->upsertReleaseVerificationSection($releaseBody, $verifyMarkdown);
+            if ($updatedBody !== $releaseBody) {
+                if ($github->updateReleaseNotes(self::REPO_ID, $tag, $updatedBody)) {
+                    $output->writeln(sprintf('<info>Updated release verification table for %s</info>', $tag));
+                } else {
+                    $output->writeln(sprintf('<error>Failed to update release notes for %s</error>', $tag));
                 }
             }
         }
@@ -293,45 +239,15 @@ class ReleaseVerifyCommand extends Command
     }
 
     /**
-     * @return array<int, array{tag: ?string, releaseBody: ?string, publishedAt: ?DateTime, items: array<int, array{component: Component, version: string}>}>
+     * @return array{0: ?string, 1: ?DateTime, 2: array<int, array{component: Component, version: string}>}
      */
-    private function resolveBatches(
+    private function resolveTarget(
         GitHub $github,
         ?string $tag,
-        ?string $from,
         ?string $componentOption,
         ?string $overrideVersion
     ): array {
         $components = Component::getComponents($componentOption ? [$componentOption] : []);
-
-        if ($from) {
-            $releases = $github->getReleases(self::REPO_ID, new DateTime($from));
-            if ($releases === null) {
-                throw new \RuntimeException('Unable to retrieve releases');
-            }
-            $batches = [];
-            foreach ($releases as $release) {
-                $releaseTag = $release['tag_name'];
-                $changelog = $release['body'] ?? $github->getChangelog(self::REPO_ID, $releaseTag);
-                if (false === $changelog) {
-                    throw new \InvalidArgumentException(sprintf('Tag "%s" not found', $releaseTag));
-                }
-                if (null === $changelog) {
-                    throw new \RuntimeException('Unable to retrieve tag');
-                }
-                $publishedAt = isset($release['published_at']) ? new DateTime($release['published_at']) : null;
-                $items = $this->getReleaseItemsFromChangelog($changelog, $components, $overrideVersion);
-                if ($items) {
-                    $batches[] = [
-                        'tag' => $releaseTag,
-                        'releaseBody' => $changelog,
-                        'publishedAt' => $publishedAt,
-                        'items' => $items,
-                    ];
-                }
-            }
-            return $batches;
-        }
 
         if ($tag) {
             $release = $github->getRelease(self::REPO_ID, $tag);
@@ -343,12 +259,9 @@ class ReleaseVerifyCommand extends Command
             }
             $publishedAt = isset($release['published_at']) ? new DateTime($release['published_at']) : null;
             return [
-                [
-                    'tag' => $tag,
-                    'releaseBody' => $release['body'],
-                    'publishedAt' => $publishedAt,
-                    'items' => $this->getReleaseItemsFromChangelog($release['body'], $components, $overrideVersion),
-                ],
+                $release['body'],
+                $publishedAt,
+                $this->getReleaseItemsFromChangelog($release['body'], $components, $overrideVersion),
             ];
         }
 
@@ -363,14 +276,7 @@ class ReleaseVerifyCommand extends Command
             ];
         }
 
-        return [
-            [
-                'tag' => null,
-                'releaseBody' => null,
-                'publishedAt' => null,
-                'items' => $items,
-            ],
-        ];
+        return [null, null, $items];
     }
 
     /**

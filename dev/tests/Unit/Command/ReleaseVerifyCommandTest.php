@@ -225,6 +225,17 @@ class ReleaseVerifyCommandTest extends TestCase
         ])));
 
         $http->get(
+            'https://api.github.com/repos/googleapis/google-cloud-php-billing-budgets/releases/tags/v1.2.0',
+            ['auth' => ['', 'test-token']]
+        )->shouldBeCalledOnce()->willReturn(new Response(200));
+
+        $http->get(Argument::that(
+            fn ($url) => str_starts_with($url, 'https://packagist.org/packages/google/cloud-billing-budgets.json')
+        ))->shouldBeCalledOnce()->willReturn(new Response(200, [], json_encode([
+            'package' => ['versions' => ['v1.2.0' => []]],
+        ])));
+
+        $http->get(
             'https://docs.cloud.google.com/php/docs/reference/cloud-billing-budgets/latest',
             ['allow_redirects' => false, 'http_errors' => false]
         )->shouldBeCalledOnce()->willReturn(new Response(
@@ -238,7 +249,6 @@ class ReleaseVerifyCommandTest extends TestCase
             'tag' => $tag,
             '--component' => 'BillingBudgets',
             '--token' => 'test-token',
-            '--docs-only' => true,
         ]);
 
         $this->assertSame(0, $exitCode);
@@ -262,6 +272,17 @@ class ReleaseVerifyCommandTest extends TestCase
         ])));
 
         $http->get(
+            'https://api.github.com/repos/googleapis/google-cloud-php-billing-budgets/releases/tags/v1.2.0',
+            ['auth' => ['', 'test-token']]
+        )->shouldBeCalledOnce()->willReturn(new Response(200));
+
+        $http->get(Argument::that(
+            fn ($url) => str_starts_with($url, 'https://packagist.org/packages/google/cloud-billing-budgets.json')
+        ))->shouldBeCalledOnce()->willReturn(new Response(200, [], json_encode([
+            'package' => ['versions' => ['v1.2.0' => []]],
+        ])));
+
+        $http->get(
             'https://docs.cloud.google.com/php/docs/reference/cloud-billing-budgets/latest',
             ['allow_redirects' => false, 'http_errors' => false]
         )->shouldBeCalledOnce()->willReturn(new Response(
@@ -275,7 +296,6 @@ class ReleaseVerifyCommandTest extends TestCase
             'tag' => $tag,
             '--component' => 'BillingBudgets',
             '--token' => 'test-token',
-            '--docs-only' => true,
         ]);
 
         $this->assertSame(1, $exitCode);
@@ -284,7 +304,7 @@ class ReleaseVerifyCommandTest extends TestCase
         $this->assertStringContainsString('google/cloud-billing-budgets:v1.2.0 (Docs)', $display);
     }
 
-    public function testVerifyComponentWithoutTagAndSkipDocs()
+    public function testVerifyComponentWithoutTag()
     {
         $http = $this->prophesize(Client::class);
 
@@ -299,39 +319,6 @@ class ReleaseVerifyCommandTest extends TestCase
             'package' => ['versions' => []],
         ])));
 
-        $commandTester = new CommandTester(new ReleaseVerifyCommand($http->reveal()));
-        $exitCode = $commandTester->execute([
-            '--component' => 'BillingBudgets',
-            '--package-version' => '1.2.0',
-            '--skip-docs' => true,
-            '--token' => 'test-token',
-        ]);
-
-        $this->assertSame(1, $exitCode);
-        $display = $commandTester->getDisplay();
-        $this->assertStringContainsString('google/cloud-billing-budgets:v1.2.0 (Packagist)', $display);
-    }
-
-    public function testVerifyFromOption()
-    {
-        $http = $this->prophesize(Client::class);
-
-        $http->get(
-            'https://api.github.com/repos/googleapis/google-cloud-php/releases',
-            ['auth' => ['', 'test-token']]
-        )->shouldBeCalledOnce()->willReturn(new Response(200, [], json_encode([
-            [
-                'tag_name' => 'v0.349.0',
-                'published_at' => (new \DateTime('-3 days'))->format(\DateTime::ATOM),
-                'body' => '<details><summary>google/cloud-billing-budgets: 1.2.0</summary></details>',
-            ],
-            [
-                'tag_name' => 'v0.340.0',
-                'published_at' => (new \DateTime('-60 days'))->format(\DateTime::ATOM),
-                'body' => '<details><summary>google/cloud-build: 0.7.2</summary></details>',
-            ],
-        ])));
-
         $http->get(
             'https://docs.cloud.google.com/php/docs/reference/cloud-billing-budgets/latest',
             ['allow_redirects' => false, 'http_errors' => false]
@@ -343,27 +330,13 @@ class ReleaseVerifyCommandTest extends TestCase
 
         $commandTester = new CommandTester(new ReleaseVerifyCommand($http->reveal()));
         $exitCode = $commandTester->execute([
-            '--from' => '-14 days',
             '--component' => 'BillingBudgets',
-            '--docs-only' => true,
+            '--package-version' => '1.2.0',
             '--token' => 'test-token',
         ]);
 
-        $this->assertSame(0, $exitCode);
+        $this->assertSame(1, $exitCode);
         $display = $commandTester->getDisplay();
-        $this->assertStringContainsString('v0.349.0', $display);
-        $this->assertStringNotContainsString('v0.340.0', $display);
-    }
-
-    public function testMutuallyExclusiveOptionsThrowException()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Cannot specify both --docs-only and --skip-docs');
-
-        $commandTester = new CommandTester(new ReleaseVerifyCommand());
-        $commandTester->execute([
-            '--docs-only' => true,
-            '--skip-docs' => true,
-        ]);
+        $this->assertStringContainsString('google/cloud-billing-budgets:v1.2.0 (Packagist)', $display);
     }
 }
