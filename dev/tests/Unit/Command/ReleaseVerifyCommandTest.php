@@ -18,8 +18,8 @@
 namespace Google\Cloud\Dev\Tests\Unit\Command;
 
 use Google\Cloud\Dev\Command\ReleaseVerifyCommand;
+use Google\Cloud\Dev\ReleaseNotes;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -50,6 +50,23 @@ class ReleaseVerifyCommandTest extends TestCase
             'tag_name' => $tag,
             'published_at' => (new \DateTime('-10 days'))->format(\DateTime::ATOM),
             'body' => self::$changelogBody,
+        ])));
+
+        $http->get(
+            'https://api.github.com/repos/googleapis/google-cloud-php/commits/' . $tag . '/check-runs',
+            [
+                'auth' => ['', 'test-token'],
+                'query' => ['filter' => 'latest', 'per_page' => 100],
+            ]
+        )->shouldBeCalledOnce()->willReturn(new Response(200, [], json_encode([
+            'check_runs' => [
+                [
+                    'name' => 'Coding Standards',
+                    'status' => 'completed',
+                    'conclusion' => 'success',
+                    'html_url' => 'https://github.com/googleapis/google-cloud-php/actions/runs/1/job/1',
+                ],
+            ],
         ])));
 
         // BillingBudgets (1.2.0)
@@ -102,6 +119,95 @@ class ReleaseVerifyCommandTest extends TestCase
         $this->assertStringContainsString('v0.349.0', $display);
         $this->assertStringContainsString('google/cloud-billing-budgets', $display);
         $this->assertStringContainsString('google/cloud-build', $display);
+    }
+
+    public function testVerifyTagWithFailedCheckRunAndUpdateRelease()
+    {
+        $tag = 'v0.349.0';
+        $http = $this->prophesize(Client::class);
+
+        $http->get(
+            'https://api.github.com/repos/googleapis/google-cloud-php/releases/tags/' . $tag,
+            ['auth' => ['', 'test-token']]
+        )->shouldBeCalledTimes(2)->willReturn(new Response(200, [], json_encode([
+            'id' => 999,
+            'tag_name' => $tag,
+            'published_at' => (new \DateTime('-2 days'))->format(\DateTime::ATOM),
+            'body' => '<details><summary>google/cloud-billing-budgets: 1.2.0</summary></details>',
+        ])));
+
+        $http->get(
+            'https://api.github.com/repos/googleapis/google-cloud-php/commits/' . $tag . '/check-runs',
+            [
+                'auth' => ['', 'test-token'],
+                'query' => ['filter' => 'latest', 'per_page' => 100],
+            ]
+        )->shouldBeCalledOnce()->willReturn(new Response(200, [], json_encode([
+            'check_runs' => [
+                [
+                    'name' => 'Coding Standards',
+                    'status' => 'completed',
+                    'conclusion' => 'failure',
+                    'html_url' => 'https://github.com/googleapis/google-cloud-php/actions/runs/1/job/2',
+                ],
+            ],
+        ])));
+
+        $http->get(
+            'https://api.github.com/repos/googleapis/google-cloud-php-billing-budgets/releases/tags/v1.2.0',
+            ['auth' => ['', 'test-token']]
+        )->shouldBeCalledOnce()->willReturn(new Response(200));
+
+        $http->get(Argument::that(
+            fn ($url) => str_starts_with($url, 'https://packagist.org/packages/google/cloud-billing-budgets.json')
+        ))->shouldBeCalledOnce()->willReturn(new Response(200, [], json_encode([
+            'package' => ['versions' => ['v1.2.0' => []]],
+        ])));
+
+        $http->get(
+            'https://docs.cloud.google.com/php/docs/reference/cloud-billing-budgets/latest',
+            ['allow_redirects' => false, 'http_errors' => false]
+        )->shouldBeCalledOnce()->willReturn(new Response(
+            200,
+            [],
+            '<option data-href="/php/docs/reference/cloud-billing-budgets/latest" selected>1.2.0 (latest)</option>'
+        ));
+
+        $capturedBody = null;
+        $http->post(
+            'https://api.github.com/repos/googleapis/google-cloud-php/releases/999',
+            Argument::that(function (array $options) use (&$capturedBody) {
+                $capturedBody = $options['json']['body'] ?? null;
+                return $options['auth'] === ['', 'test-token'] && is_string($capturedBody);
+            })
+        )->shouldBeCalledOnce()->willReturn(new Response(200));
+
+        $commandTester = new CommandTester(new ReleaseVerifyCommand($http->reveal()));
+        $exitCode = $commandTester->execute([
+            'tag' => $tag,
+            '--token' => 'test-token',
+            '--update-release' => true,
+        ]);
+
+        $this->assertSame(1, $exitCode);
+        $display = $commandTester->getDisplay();
+        $this->assertStringContainsString(
+            '- [Coding Standards (Check Run)](https://github.com/googleapis/google-cloud-php/actions/runs/1/job/2)',
+            $display
+        );
+        $this->assertStringContainsString('Updated release verification table for v0.349.0', $display);
+
+        $this->assertNotNull($capturedBody);
+        $this->assertStringContainsString('<!-- RELEASE_VERIFY_START -->', $capturedBody);
+        $this->assertStringContainsString('Release Verification (FAILED)', $capturedBody);
+        $this->assertStringContainsString(
+            '| [Coding Standards](https://github.com/googleapis/google-cloud-php/actions/runs/1/job/2) | FAILED |',
+            $capturedBody
+        );
+
+        // Verify ReleaseNotes ignores the appended verification section
+        $releaseNotes = new ReleaseNotes($capturedBody);
+        $this->assertSame('1.2.0', $releaseNotes->getVersion('cloud-billing-budgets'));
     }
 
     public function testVerifyDocsPendingWithinGracePeriodExitsZero()

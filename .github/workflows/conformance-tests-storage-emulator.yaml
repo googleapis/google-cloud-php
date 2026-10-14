@@ -8,7 +8,6 @@ on:
 name: Run Storage Retry Conformance Tests With Emulator
 permissions:
   contents: read
-  issues: write
 jobs:
   test:
     runs-on: 'ubuntu-26.04'
@@ -39,13 +38,3 @@ jobs:
           vendor/bin/phpunit -c Storage/phpunit-conformance.xml.dist
         env:
           STORAGE_EMULATOR_HOST: http://localhost:9000
-      - name: Create issue if previous step fails
-        if: ${{ failure() && github.event_name == 'release' }}
-        uses: googleapis/librarian/.github/actions/create-issue-on-failure@45ada77d3adcdf7f54e94b5ea674a5fa48cb6a75 # v0.46.0
-        with:
-          title: "Storage Retry Conformance Tests check failed on release"
-          body: |
-            The `Run Storage Retry Conformance Tests With Emulator` post-release check failed on `${{ github.ref_name }}`.
-
-            Please check the logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          mention: "@googleapis/cloud-sdk-php-team"

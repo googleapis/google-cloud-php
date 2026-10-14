@@ -9,7 +9,6 @@ on:
 name: Emulator System Tests
 permissions:
   contents: read
-  issues: write
 jobs:
   test:
     name: Datastore
@@ -41,13 +40,3 @@ jobs:
           DATASTORE_EMULATOR_HOST: localhost:8085
           GOOGLE_CLOUD_PHP_TESTS_KEY_PATH: '.github/emulator/example-key.json'
           GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH: '.github/emulator/example-key.json'
-      - name: Create issue if previous step fails
-        if: ${{ failure() && github.event_name == 'release' }}
-        uses: googleapis/librarian/.github/actions/create-issue-on-failure@45ada77d3adcdf7f54e94b5ea674a5fa48cb6a75 # v0.46.0
-        with:
-          title: "Datastore Emulator System Tests check failed on release"
-          body: |
-            The `Emulator System Tests (Datastore)` post-release check failed on `${{ github.ref_name }}`.
-
-            Please check the logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          mention: "@googleapis/cloud-sdk-php-team"

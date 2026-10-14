@@ -10,9 +10,6 @@ permissions:
 
 jobs:
   test:
-    permissions:
-      contents: read
-      issues: write
     strategy:
       matrix:
         platform: [ubuntu-latest, windows-latest]
@@ -75,23 +72,10 @@ jobs:
         name: Run Snippet Test Suite
         run: |
           vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose
-      - name: Create issue if previous step fails
-        if: ${{ failure() && github.event_name == 'release' }}
-        uses: googleapis/librarian/.github/actions/create-issue-on-failure@45ada77d3adcdf7f54e94b5ea674a5fa48cb6a75 # v0.46.0
-        with:
-          title: "Test Suite check failed on release"
-          body: |
-            The `Test Suite` post-release check failed on `${{ github.ref_name }}`.
-
-            Please check the logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          mention: "@googleapis/cloud-sdk-php-team"
 
   test_packages:
     name: Package Tests
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      issues: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -103,23 +87,10 @@ jobs:
           extensions: grpc
       - name: Run Package Test Suites
         run: bash .github/run-package-tests.sh
-      - name: Create issue if previous step fails
-        if: ${{ failure() && github.event_name == 'release' }}
-        uses: googleapis/librarian/.github/actions/create-issue-on-failure@45ada77d3adcdf7f54e94b5ea674a5fa48cb6a75 # v0.46.0
-        with:
-          title: "Test Suite check failed on release"
-          body: |
-            The `Test Suite` post-release check failed on `${{ github.ref_name }}`.
-
-            Please check the logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          mention: "@googleapis/cloud-sdk-php-team"
 
   test_packages_lowest:
     name: Package Tests (Lowest Dependencies)
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      issues: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -133,23 +104,10 @@ jobs:
         env:
           PREFER_LOWEST: ${{ (github.event.pull_request.user.login == 'release-please[bot]' || github.event_name == 'release') && '--prefer-lowest-strict' || '--prefer-lowest' }}
         run: bash .github/run-package-tests.sh $PREFER_LOWEST
-      - name: Create issue if previous step fails
-        if: ${{ failure() && github.event_name == 'release' }}
-        uses: googleapis/librarian/.github/actions/create-issue-on-failure@45ada77d3adcdf7f54e94b5ea674a5fa48cb6a75 # v0.46.0
-        with:
-          title: "Test Suite check failed on release"
-          body: |
-            The `Test Suite` post-release check failed on `${{ github.ref_name }}`.
-
-            Please check the logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          mention: "@googleapis/cloud-sdk-php-team"
 
   test_dev_commands:
     name: Dev Commands Unit Tests
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      issues: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -164,13 +122,3 @@ jobs:
         run: dev/vendor/bin/phpunit -c dev/phpunit.xml.dist
       - name: Run Dev Snippet Test Suite
         run: dev/vendor/bin/phpunit -c dev/phpunit-snippets.xml.dist
-      - name: Create issue if previous step fails
-        if: ${{ failure() && github.event_name == 'release' }}
-        uses: googleapis/librarian/.github/actions/create-issue-on-failure@45ada77d3adcdf7f54e94b5ea674a5fa48cb6a75 # v0.46.0
-        with:
-          title: "Test Suite check failed on release"
-          body: |
-            The `Test Suite` post-release check failed on `${{ github.ref_name }}`.
-
-            Please check the logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          mention: "@googleapis/cloud-sdk-php-team"

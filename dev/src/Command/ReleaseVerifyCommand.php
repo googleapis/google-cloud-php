@@ -39,6 +39,9 @@ class ReleaseVerifyCommand extends Command
     private const REPO_ID = 'googleapis/google-cloud-php';
     private const DOCS_URL = 'https://docs.cloud.google.com/php/docs/reference/%s/latest';
     private const DOCS_GRACE_PERIOD_DAYS = 7;
+    private const VERIFY_MARKER_START = '<!-- RELEASE_VERIFY_START -->';
+    private const VERIFY_MARKER_END = '<!-- RELEASE_VERIFY_END -->';
+    private const FAILED_CHECK_CONCLUSIONS = ['failure', 'timed_out', 'cancelled', 'action_required'];
 
     private Client $httpClient;
 
@@ -92,6 +95,12 @@ class ReleaseVerifyCommand extends Command
                 '',
                 InputOption::VALUE_NONE,
                 'Skip Cloud RAD reference documentation verification'
+            )
+            ->addOption(
+                'update-release',
+                '',
+                InputOption::VALUE_NONE,
+                'Update the GitHub release body with the verification status table'
             );
     }
 
@@ -99,6 +108,7 @@ class ReleaseVerifyCommand extends Command
     {
         $docsOnly = (bool) $input->getOption('docs-only');
         $skipDocs = (bool) $input->getOption('skip-docs');
+        $updateRelease = (bool) $input->getOption('update-release');
         if ($docsOnly && $skipDocs) {
             throw new \InvalidArgumentException('Cannot specify both --docs-only and --skip-docs');
         }
@@ -138,6 +148,7 @@ class ReleaseVerifyCommand extends Command
 
         foreach ($batches as $batch) {
             $batchTag = $batch['tag'];
+            $releaseBody = $batch['releaseBody'];
             /** @var ?DateTime $publishedAt */
             $publishedAt = $batch['publishedAt'];
             $ageInSeconds = $publishedAt ? (time() - $publishedAt->getTimestamp()) : null;
@@ -145,7 +156,29 @@ class ReleaseVerifyCommand extends Command
             $isDocsWithinGracePeriod = $ageInSeconds !== null
                 && $ageInSeconds < (self::DOCS_GRACE_PERIOD_DAYS * 86400);
 
+            $batchNotFound = [];
+            $batchPending = [];
+            $checkRuns = [];
+
+            if ($batchTag !== null && !$docsOnly && !$componentOption) {
+                $checkRuns = $github->getCheckRuns(self::REPO_ID, $batchTag) ?? [];
+                usort($checkRuns, fn (array $a, array $b) => strcmp($a['name'] ?? '', $b['name'] ?? ''));
+
+                foreach ($checkRuns as $run) {
+                    $runName = $run['name'] ?? 'Unknown';
+                    $runUrl = $run['html_url'] ?? '';
+                    if (($run['status'] ?? '') !== 'completed') {
+                        $batchPending[] = sprintf('%s: %s (Check Run)', $batchTag, $runName);
+                    } elseif (in_array($run['conclusion'] ?? '', self::FAILED_CHECK_CONCLUSIONS, true)) {
+                        $batchNotFound[] = $runUrl
+                            ? sprintf('- [%s (Check Run)](%s)', $runName, $runUrl)
+                            : sprintf('- %s (Check Run)', $runName);
+                    }
+                }
+            }
+
             $rows = [];
+            $mdRows = [];
             foreach ($batch['items'] as $item) {
                 /** @var Component $component */
                 $component = $item['component'];
@@ -154,39 +187,54 @@ class ReleaseVerifyCommand extends Command
                 $packageName = $component->getPackageName();
 
                 $row = [$packageName, $version];
+                $mdRow = ['`' . $packageName . '`', '`' . $version . '`'];
 
                 if ($checkSplit) {
+                    $splitUrl = sprintf('https://github.com/%s/releases/tag/%s', $component->getRepoName(), $tagVersion);
                     if ($github->doesTagExist($component->getRepoName(), $tagVersion)) {
                         $row[] = '<info>OK</info>';
+                        $mdRow[] = sprintf('[OK](%s)', $splitUrl);
                     } else {
                         $row[] = '<error>NOT FOUND</error>';
-                        $notFound[] = sprintf('%s:%s (Split Repo)', $packageName, $tagVersion);
+                        $mdRow[] = 'NOT FOUND';
+                        $batchNotFound[] = sprintf('- [%s:%s (Split Repo)](%s)', $packageName, $tagVersion, $splitUrl);
                     }
                 }
 
                 if ($checkPackagist) {
+                    $packagistUrl = sprintf('https://packagist.org/packages/%s#%s', $packageName, $tagVersion);
                     if ($packagist->versionExists($packageName, $tagVersion)) {
                         $row[] = '<info>OK</info>';
+                        $mdRow[] = sprintf('[OK](%s)', $packagistUrl);
                     } else {
                         $row[] = '<error>NOT FOUND</error>';
-                        $notFound[] = sprintf('%s:%s (Packagist)', $packageName, $tagVersion);
+                        $mdRow[] = 'NOT FOUND';
+                        $batchNotFound[] = sprintf('- [%s:%s (Packagist)](%s)', $packageName, $tagVersion, $packagistUrl);
                     }
                 }
 
                 if ($checkDocs) {
+                    $docsUrl = sprintf(self::DOCS_URL, $component->getId());
                     if ($this->docsVersionExists($component->getId(), $version)) {
                         $row[] = '<info>OK</info>';
+                        $mdRow[] = sprintf('[OK](%s)', $docsUrl);
                     } elseif ($isDocsWithinGracePeriod) {
                         $row[] = sprintf('<comment>PENDING (%dd old)</comment>', $ageInDays);
-                        $pending[] = sprintf('%s:%s (Docs)', $packageName, $tagVersion);
+                        $mdRow[] = sprintf('PENDING (%dd old)', $ageInDays);
+                        $batchPending[] = sprintf('%s:%s (Docs)', $packageName, $tagVersion);
                     } else {
                         $row[] = '<error>NOT FOUND</error>';
-                        $notFound[] = sprintf('%s:%s (Docs)', $packageName, $tagVersion);
+                        $mdRow[] = 'NOT FOUND';
+                        $batchNotFound[] = sprintf('- [%s:%s (Docs)](%s)', $packageName, $tagVersion, $docsUrl);
                     }
                 }
 
                 $rows[] = $row;
+                $mdRows[] = $mdRow;
             }
+
+            $notFound = array_merge($notFound, $batchNotFound);
+            $pending = array_merge($pending, $batchPending);
 
             $tableHeaders = $batchTag
                 ? [
@@ -205,6 +253,24 @@ class ReleaseVerifyCommand extends Command
                 ->setHeaders($tableHeaders)
                 ->setRows($rows)
                 ->render();
+
+            if ($updateRelease && $batchTag !== null && $releaseBody !== null) {
+                $verifyMarkdown = $this->buildReleaseVerificationMarkdown(
+                    $headers,
+                    $mdRows,
+                    $checkRuns,
+                    count($batchNotFound) > 0,
+                    count($batchPending) > 0
+                );
+                $updatedBody = $this->upsertReleaseVerificationSection($releaseBody, $verifyMarkdown);
+                if ($updatedBody !== $releaseBody) {
+                    if ($github->updateReleaseNotes(self::REPO_ID, $batchTag, $updatedBody)) {
+                        $output->writeln(sprintf('<info>Updated release verification table for %s</info>', $batchTag));
+                    } else {
+                        $output->writeln(sprintf('<error>Failed to update release notes for %s</error>', $batchTag));
+                    }
+                }
+            }
         }
 
         if (count($pending) > 0) {
@@ -216,9 +282,9 @@ class ReleaseVerifyCommand extends Command
         }
 
         if (count($notFound) > 0) {
-            $output->writeln(sprintf('<error>%s package version(s) NOT FOUND</error>', count($notFound)));
-            foreach ($notFound as $notFoundPackageName) {
-                $output->writeln(sprintf('<error>%s</error>', $notFoundPackageName));
+            $output->writeln(sprintf('<error>%s verification check(s) FAILED</error>', count($notFound)));
+            foreach ($notFound as $notFoundItem) {
+                $output->writeln(sprintf('<error>%s</error>', $notFoundItem));
             }
             return 1;
         }
@@ -227,7 +293,7 @@ class ReleaseVerifyCommand extends Command
     }
 
     /**
-     * @return array<int, array{tag: ?string, publishedAt: ?DateTime, items: array<int, array{component: Component, version: string}>}>
+     * @return array<int, array{tag: ?string, releaseBody: ?string, publishedAt: ?DateTime, items: array<int, array{component: Component, version: string}>}>
      */
     private function resolveBatches(
         GitHub $github,
@@ -258,6 +324,7 @@ class ReleaseVerifyCommand extends Command
                 if ($items) {
                     $batches[] = [
                         'tag' => $releaseTag,
+                        'releaseBody' => $changelog,
                         'publishedAt' => $publishedAt,
                         'items' => $items,
                     ];
@@ -278,6 +345,7 @@ class ReleaseVerifyCommand extends Command
             return [
                 [
                     'tag' => $tag,
+                    'releaseBody' => $release['body'],
                     'publishedAt' => $publishedAt,
                     'items' => $this->getReleaseItemsFromChangelog($release['body'], $components, $overrideVersion),
                 ],
@@ -298,10 +366,78 @@ class ReleaseVerifyCommand extends Command
         return [
             [
                 'tag' => null,
+                'releaseBody' => null,
                 'publishedAt' => null,
                 'items' => $items,
             ],
         ];
+    }
+
+    /**
+     * @param string[] $headers
+     * @param array<int, string[]> $mdRows
+     * @param array<int, array<string, mixed>> $checkRuns
+     */
+    private function buildReleaseVerificationMarkdown(
+        array $headers,
+        array $mdRows,
+        array $checkRuns,
+        bool $hasFailures,
+        bool $hasPending
+    ): string {
+        $statusLabel = $hasFailures ? 'FAILED' : ($hasPending ? 'PENDING' : 'VERIFIED');
+        $lines = [
+            self::VERIFY_MARKER_START,
+            sprintf('<details><summary>Release Verification (%s)</summary>', $statusLabel),
+            '',
+        ];
+
+        if (!empty($checkRuns)) {
+            $lines[] = '### Post-Submit Checks';
+            $lines[] = '| Check | Status |';
+            $lines[] = '| --- | --- |';
+            foreach ($checkRuns as $run) {
+                $runName = $run['name'] ?? 'Unknown';
+                $runUrl = $run['html_url'] ?? '';
+                $label = $runUrl ? sprintf('[%s](%s)', $runName, $runUrl) : $runName;
+                if (($run['status'] ?? '') !== 'completed') {
+                    $status = 'PENDING';
+                } elseif (in_array($run['conclusion'] ?? '', self::FAILED_CHECK_CONCLUSIONS, true)) {
+                    $status = 'FAILED';
+                } else {
+                    $status = 'OK';
+                }
+                $lines[] = sprintf('| %s | %s |', $label, $status);
+            }
+            $lines[] = '';
+        }
+
+        $lines[] = '### Component Releases';
+        $lines[] = '| ' . implode(' | ', $headers) . ' |';
+        $lines[] = '| ' . implode(' | ', array_fill(0, count($headers), '---')) . ' |';
+        foreach ($mdRows as $mdRow) {
+            $lines[] = '| ' . implode(' | ', $mdRow) . ' |';
+        }
+
+        $lines[] = '';
+        $lines[] = '</details>';
+        $lines[] = self::VERIFY_MARKER_END;
+
+        return implode("\n", $lines);
+    }
+
+    private function upsertReleaseVerificationSection(string $releaseBody, string $verifyMarkdown): string
+    {
+        $pattern = sprintf(
+            '/%s.*?%s/s',
+            preg_quote(self::VERIFY_MARKER_START, '/'),
+            preg_quote(self::VERIFY_MARKER_END, '/')
+        );
+        if (preg_match($pattern, $releaseBody)) {
+            return (string) preg_replace($pattern, $verifyMarkdown, $releaseBody);
+        }
+
+        return rtrim($releaseBody) . "\n\n" . $verifyMarkdown;
     }
 
     /**

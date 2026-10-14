@@ -38,6 +38,7 @@ class GitHub
     const GITHUB_WEBHOOK_CREATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/hooks';
     const GITHUB_WEBHOOKS_LIST_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/hooks';
     const GITHUB_WEBHOOK_UPDATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/hooks/%s';
+    const GITHUB_CHECK_RUNS_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/commits/%s/check-runs';
     private const GITHUB_TEAMS_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/teams';
     private const GITHUB_TEAMS_ADD_ENDPOINT = 'https://api.github.com/orgs/%s/teams/%s/repos/%s';
 
@@ -185,7 +186,7 @@ class GitHub
                 'auth' => ['', $this->token]
             ]);
 
-            return $res->getStatusCode() === 201;
+            return in_array($res->getStatusCode(), [200, 201], true);
         } catch (\Exception $e) {
             $this->logException($e);
             return false;
@@ -223,7 +224,7 @@ class GitHub
         try {
             $res = $this->client->get(sprintf(
                 self::GITHUB_RELEASE_ENDPOINT,
-                $this->cleanTarget($target),
+                $target,
                 $tagName
             ), [
                 'auth' => ['', $this->token]
@@ -357,6 +358,37 @@ class GitHub
         }
 
         return $releases;
+    }
+
+    /**
+     * Get check runs for a commit ref or tag from the GitHub API.
+     *
+     * @param string $target The GitHub organization and repository ID separated
+     *        by a forward slash, i.e. `organization/repository'.
+     * @param string $ref The commit SHA, branch, or tag name.
+     * @return array|null
+     */
+    public function getCheckRuns(string $target, string $ref): ?array
+    {
+        try {
+            $res = $this->client->get(sprintf(
+                self::GITHUB_CHECK_RUNS_ENDPOINT,
+                $this->cleanTarget($target),
+                $ref
+            ), [
+                'auth' => ['', $this->token],
+                'query' => [
+                    'filter' => 'latest',
+                    'per_page' => 100,
+                ],
+            ]);
+
+            $body = json_decode((string) $res->getBody(), true);
+            return $body['check_runs'] ?? null;
+        } catch (\Exception $e) {
+            $this->logException($e);
+            return null;
+        }
     }
 
     public function updateRepoDetails(string $repoName, array $settings): bool

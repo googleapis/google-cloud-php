@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Verify Releases
     permissions:
-      contents: read
+      contents: write
       issues: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -30,21 +30,47 @@ jobs:
         run: composer --no-interaction --no-ansi --no-progress update -d dev
       - name: Verify releases
         env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
           RELEASE_TAG: ${{ inputs.tag }}
+          GITHUB_REF: ${{ github.ref }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           if [ -n "$RELEASE_TAG" ]; then
-            ./dev/google-cloud release:verify "$RELEASE_TAG" -t "$GITHUB_TOKEN"
+            TAGS="$RELEASE_TAG"
           else
-            ./dev/google-cloud release:verify --from="-14 days" -t "$GITHUB_TOKEN"
+            CUTOFF=$(date -u -d "-14 days" +"%Y-%m-%dT%H:%M:%SZ")
+            TAGS=$(gh api "repos/$GH_REPO/releases?per_page=20" --jq ".[] | select(.published_at >= \"$CUTOFF\") | .tag_name")
           fi
-      - name: Create issue if previous step fails
-        if: ${{ failure() && github.ref == 'refs/heads/main' }}
-        uses: googleapis/librarian/.github/actions/create-issue-on-failure@45ada77d3adcdf7f54e94b5ea674a5fa48cb6a75 # v0.46.0
-        with:
-          title: "Release verification failed"
-          body: |
-            `release:verify` detected missing split repository tags, Packagist releases, or overdue Cloud RAD reference documentation (>7 days).
 
-            Please check the logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          mention: "@googleapis/cloud-sdk-php-team"
+          OVERALL_EXIT=0
+          for TAG in $TAGS; do
+            echo "Verifying release $TAG..."
+            set +e
+            OUTPUT=$(./dev/google-cloud release:verify "$TAG" --update-release --no-ansi -t "$GITHUB_TOKEN" 2>&1)
+            EXIT_CODE=$?
+            set -e
+            echo "$OUTPUT"
+
+            if [ $EXIT_CODE -ne 0 ]; then
+              OVERALL_EXIT=1
+              if [ "$GITHUB_REF" = "refs/heads/main" ]; then
+                TITLE="Release verification failed: $TAG"
+                FAILURES=$(echo "$OUTPUT" | grep -E "^- " || echo "$OUTPUT")
+                BODY="**Release verification failed for [\`$TAG\`](https://github.com/$GH_REPO/releases/tag/$TAG):**"$'\n\n'"$FAILURES"$'\n\n'"**Workflow Run:** $RUN_URL"
+
+                EXISTING_ISSUE=$(gh issue list --repo "$GH_REPO" --search "\"$TITLE\" in:title" --state open --json number --jq '.[0].number')
+                if [[ -n "$EXISTING_ISSUE" && "$EXISTING_ISSUE" != "null" ]]; then
+                  echo "Updating existing open issue #$EXISTING_ISSUE for $TAG."
+                  gh issue edit "$EXISTING_ISSUE" --repo "$GH_REPO" --body "$BODY"
+                else
+                  echo "Creating new issue for $TAG."
+                  LINK=$(gh issue create --repo "$GH_REPO" --title "$TITLE" --body "$BODY" --label ":rotating_light: critical")
+                  NUM=${LINK##*/}
+                  gh issue comment "$NUM" --repo "$GH_REPO" --body "@googleapis/cloud-sdk-php-team Release verification failed for \`$TAG\`, please investigate."
+                fi
+              fi
+            fi
+          done
+          exit $OVERALL_EXIT
