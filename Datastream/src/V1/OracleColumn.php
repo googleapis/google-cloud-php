@@ -16,7 +16,7 @@ use Google\Protobuf\RepeatedField;
 class OracleColumn extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Column name.
+     * The column name.
      *
      * Generated from protobuf field <code>string column = 1;</code>
      */
@@ -77,7 +77,7 @@ class OracleColumn extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $column
-     *           Column name.
+     *           The column name.
      *     @type string $data_type
      *           The Oracle data type.
      *     @type int $length
@@ -102,7 +102,7 @@ class OracleColumn extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Column name.
+     * The column name.
      *
      * Generated from protobuf field <code>string column = 1;</code>
      * @return string
@@ -113,7 +113,7 @@ class OracleColumn extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Column name.
+     * The column name.
      *
      * Generated from protobuf field <code>string column = 1;</code>
      * @param string $var

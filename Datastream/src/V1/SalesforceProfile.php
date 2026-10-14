@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Salesforce profile
+ * Profile for connecting to a Salesforce source.
  *
  * Generated from protobuf message <code>google.cloud.datastream.v1.SalesforceProfile</code>
  */
@@ -32,7 +32,8 @@ class SalesforceProfile extends \Google\Protobuf\Internal\Message
      *     @type string $domain
      *           Required. Domain endpoint for the Salesforce connection.
      *     @type \Google\Cloud\Datastream\V1\SalesforceProfile\UserCredentials $user_credentials
-     *           User-password authentication.
+     *           Deprecated: Salesforce is retiring Username-Password authentication.
+     *           Use `oauth2_client_credentials` instead.
      *     @type \Google\Cloud\Datastream\V1\SalesforceProfile\Oauth2ClientCredentials $oauth2_client_credentials
      *           Connected app authentication.
      * }
@@ -69,30 +70,41 @@ class SalesforceProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-password authentication.
+     * Deprecated: Salesforce is retiring Username-Password authentication.
+     * Use `oauth2_client_credentials` instead.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceProfile.UserCredentials user_credentials = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceProfile.UserCredentials user_credentials = 2 [deprecated = true];</code>
      * @return \Google\Cloud\Datastream\V1\SalesforceProfile\UserCredentials|null
+     * @deprecated
      */
     public function getUserCredentials()
     {
+        if ($this->hasOneof(2)) {
+            @trigger_error('user_credentials is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(2);
     }
 
     public function hasUserCredentials()
     {
+        if ($this->hasOneof(2)) {
+            @trigger_error('user_credentials is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(2);
     }
 
     /**
-     * User-password authentication.
+     * Deprecated: Salesforce is retiring Username-Password authentication.
+     * Use `oauth2_client_credentials` instead.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceProfile.UserCredentials user_credentials = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceProfile.UserCredentials user_credentials = 2 [deprecated = true];</code>
      * @param \Google\Cloud\Datastream\V1\SalesforceProfile\UserCredentials $var
      * @return $this
+     * @deprecated
      */
     public function setUserCredentials($var)
     {
+        @trigger_error('user_credentials is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SalesforceProfile\UserCredentials::class);
         $this->writeOneof(2, $var);
 

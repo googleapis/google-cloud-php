@@ -45,6 +45,12 @@ class BackfillJob extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.Error errors = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $errors;
+    /**
+     * Output only. The filter for performing a partial backfill.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.EventFilter event_filter = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $event_filter = null;
 
     /**
      * Constructor.
@@ -62,6 +68,8 @@ class BackfillJob extends \Google\Protobuf\Internal\Message
      *           Output only. Backfill job's end time.
      *     @type \Google\Cloud\Datastream\V1\Error[] $errors
      *           Output only. Errors which caused the backfill job to fail.
+     *     @type \Google\Cloud\Datastream\V1\EventFilter $event_filter
+     *           Output only. The filter for performing a partial backfill.
      * }
      */
     public function __construct($data = NULL) {
@@ -215,6 +223,42 @@ class BackfillJob extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Datastream\V1\Error::class);
         $this->errors = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The filter for performing a partial backfill.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.EventFilter event_filter = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Datastream\V1\EventFilter|null
+     */
+    public function getEventFilter()
+    {
+        return $this->event_filter;
+    }
+
+    public function hasEventFilter()
+    {
+        return isset($this->event_filter);
+    }
+
+    public function clearEventFilter()
+    {
+        unset($this->event_filter);
+    }
+
+    /**
+     * Output only. The filter for performing a partial backfill.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.EventFilter event_filter = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Datastream\V1\EventFilter $var
+     * @return $this
+     */
+    public function setEventFilter($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\EventFilter::class);
+        $this->event_filter = $var;
 
         return $this;
     }

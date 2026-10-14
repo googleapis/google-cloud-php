@@ -9,13 +9,9 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Configuration for a Bigtable subscription. The Pub/Sub message will be
- * written to a Bigtable row as follows:
- * - row key: subscription name, message ID hash, and message ID delimited by
- *   `#`.
- * - columns: message bytes written to a single column family `data` with an
- *   empty-string column qualifier.
- * - cell timestamp: the message publish timestamp.
+ * Configuration for a Bigtable subscription, which will write a Pub/Sub message
+ * to a Bigtable row. See the ColumnFamilyMapping documentation below for
+ * details on how the row keys and columns will be written.
  *
  * Generated from protobuf message <code>google.pubsub.v1.BigtableConfig</code>
  */
@@ -66,6 +62,7 @@ class BigtableConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.pubsub.v1.BigtableConfig.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
+    protected $message_mapping;
 
     /**
      * Constructor.
@@ -95,6 +92,10 @@ class BigtableConfig extends \Google\Protobuf\Internal\Message
      *           publish_time fields are put in their own columns while all other message
      *           properties (other than data) are written to a JSON object in the attributes
      *           column.
+     *     @type \Google\Cloud\PubSub\V1\BigtableConfig\ColumnFamilyMapping $column_family_mapping
+     *           Optional. Configuration that allows writing row keys and/or columns based
+     *           on fields in the input message. The input message format must be JSON if
+     *           this field is set.
      *     @type int $state
      *           Output only. An output-only field that indicates whether or not the
      *           subscription can receive messages.
@@ -238,6 +239,41 @@ class BigtableConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Configuration that allows writing row keys and/or columns based
+     * on fields in the input message. The input message format must be JSON if
+     * this field is set.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.BigtableConfig.ColumnFamilyMapping column_family_mapping = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\PubSub\V1\BigtableConfig\ColumnFamilyMapping|null
+     */
+    public function getColumnFamilyMapping()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasColumnFamilyMapping()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Optional. Configuration that allows writing row keys and/or columns based
+     * on fields in the input message. The input message format must be JSON if
+     * this field is set.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.BigtableConfig.ColumnFamilyMapping column_family_mapping = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\PubSub\V1\BigtableConfig\ColumnFamilyMapping $var
+     * @return $this
+     */
+    public function setColumnFamilyMapping($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\BigtableConfig\ColumnFamilyMapping::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
      * Output only. An output-only field that indicates whether or not the
      * subscription can receive messages.
      *
@@ -263,6 +299,14 @@ class BigtableConfig extends \Google\Protobuf\Internal\Message
         $this->state = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessageMapping()
+    {
+        return $this->whichOneof("message_mapping");
     }
 
 }

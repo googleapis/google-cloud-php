@@ -228,6 +228,18 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool rotate_server_certificate = 55 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     protected $rotate_server_certificate = null;
+    /**
+     * Optional. The ACL policy to be applied to the cluster.
+     *
+     * Generated from protobuf field <code>string acl_policy = 56 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $acl_policy = '';
+    /**
+     * Output only. Details of the applied ACL policy.
+     *
+     * Generated from protobuf field <code>.google.cloud.redis.cluster.v1.AclPolicyInfo acl_policy_info = 58 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $acl_policy_info = null;
     protected $import_sources;
 
     /**
@@ -328,6 +340,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Format: "projects/{project}/locations/{region}/caPools/{ca_pool}".
      *     @type bool $rotate_server_certificate
      *           Optional. Input only. Rotate the server certificates.
+     *     @type string $acl_policy
+     *           Optional. The ACL policy to be applied to the cluster.
+     *     @type \Google\Cloud\Redis\Cluster\V1\AclPolicyInfo $acl_policy_info
+     *           Output only. Details of the applied ACL policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -1473,6 +1489,68 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->rotate_server_certificate = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The ACL policy to be applied to the cluster.
+     *
+     * Generated from protobuf field <code>string acl_policy = 56 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getAclPolicy()
+    {
+        return $this->acl_policy;
+    }
+
+    /**
+     * Optional. The ACL policy to be applied to the cluster.
+     *
+     * Generated from protobuf field <code>string acl_policy = 56 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAclPolicy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->acl_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Details of the applied ACL policy.
+     *
+     * Generated from protobuf field <code>.google.cloud.redis.cluster.v1.AclPolicyInfo acl_policy_info = 58 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Redis\Cluster\V1\AclPolicyInfo|null
+     */
+    public function getAclPolicyInfo()
+    {
+        return $this->acl_policy_info;
+    }
+
+    public function hasAclPolicyInfo()
+    {
+        return isset($this->acl_policy_info);
+    }
+
+    public function clearAclPolicyInfo()
+    {
+        unset($this->acl_policy_info);
+    }
+
+    /**
+     * Output only. Details of the applied ACL policy.
+     *
+     * Generated from protobuf field <code>.google.cloud.redis.cluster.v1.AclPolicyInfo acl_policy_info = 58 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Redis\Cluster\V1\AclPolicyInfo $var
+     * @return $this
+     */
+    public function setAclPolicyInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Redis\Cluster\V1\AclPolicyInfo::class);
+        $this->acl_policy_info = $var;
 
         return $this;
     }

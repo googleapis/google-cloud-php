@@ -73,6 +73,12 @@ class Type
      */
     const COMPUTE_OPTIMIZED_H4D = 383251320;
     /**
+     * CUD bucket for COMPUTE_OPTIMIZED_H4D_3TB machines.
+     *
+     * Generated from protobuf enum <code>COMPUTE_OPTIMIZED_H4D_3TB = 443379866;</code>
+     */
+    const COMPUTE_OPTIMIZED_H4D_3TB = 443379866;
+    /**
      * Generated from protobuf enum <code>GENERAL_PURPOSE = 299793543;</code>
      */
     const GENERAL_PURPOSE = 299793543;
@@ -266,6 +272,7 @@ class Type
         self::COMPUTE_OPTIMIZED_C3D => 'COMPUTE_OPTIMIZED_C3D',
         self::COMPUTE_OPTIMIZED_H3 => 'COMPUTE_OPTIMIZED_H3',
         self::COMPUTE_OPTIMIZED_H4D => 'COMPUTE_OPTIMIZED_H4D',
+        self::COMPUTE_OPTIMIZED_H4D_3TB => 'COMPUTE_OPTIMIZED_H4D_3TB',
         self::GENERAL_PURPOSE => 'GENERAL_PURPOSE',
         self::GENERAL_PURPOSE_C4 => 'GENERAL_PURPOSE_C4',
         self::GENERAL_PURPOSE_C4A => 'GENERAL_PURPOSE_C4A',

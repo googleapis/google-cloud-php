@@ -36,6 +36,11 @@ class BackfillAllStrategy extends \Google\Protobuf\Internal\Message
      *           Salesforce data source objects to avoid backfilling
      *     @type \Google\Cloud\Datastream\V1\MongodbCluster $mongodb_excluded_objects
      *           MongoDB data source objects to avoid backfilling
+     *     @type \Google\Cloud\Datastream\V1\SpannerDatabase $spanner_excluded_objects
+     *           Spanner data source objects to avoid backfilling.
+     *     @type \Google\Cloud\Datastream\V1\SourceCatalog $saas_excluded_objects
+     *           Source catalog data source objects to avoid backfilling. This is mainly
+     *           used to represent SaaS applications objects.
      * }
      */
     public function __construct($data = NULL) {
@@ -225,6 +230,70 @@ class BackfillAllStrategy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MongodbCluster::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Spanner data source objects to avoid backfilling.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SpannerDatabase spanner_excluded_objects = 7;</code>
+     * @return \Google\Cloud\Datastream\V1\SpannerDatabase|null
+     */
+    public function getSpannerExcludedObjects()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasSpannerExcludedObjects()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Spanner data source objects to avoid backfilling.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SpannerDatabase spanner_excluded_objects = 7;</code>
+     * @param \Google\Cloud\Datastream\V1\SpannerDatabase $var
+     * @return $this
+     */
+    public function setSpannerExcludedObjects($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SpannerDatabase::class);
+        $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Source catalog data source objects to avoid backfilling. This is mainly
+     * used to represent SaaS applications objects.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SourceCatalog saas_excluded_objects = 9;</code>
+     * @return \Google\Cloud\Datastream\V1\SourceCatalog|null
+     */
+    public function getSaasExcludedObjects()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasSaasExcludedObjects()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * Source catalog data source objects to avoid backfilling. This is mainly
+     * used to represent SaaS applications objects.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SourceCatalog saas_excluded_objects = 9;</code>
+     * @param \Google\Cloud\Datastream\V1\SourceCatalog $var
+     * @return $this
+     */
+    public function setSaasExcludedObjects($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SourceCatalog::class);
+        $this->writeOneof(9, $var);
 
         return $this;
     }

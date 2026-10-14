@@ -45,6 +45,16 @@ class SourceConfig extends \Google\Protobuf\Internal\Message
      *           Salesforce data source configuration.
      *     @type \Google\Cloud\Datastream\V1\MongodbSourceConfig $mongodb_source_config
      *           MongoDB data source configuration.
+     *     @type \Google\Cloud\Datastream\V1\SpannerSourceConfig $spanner_source_config
+     *           Spanner data source configuration.
+     *     @type \Google\Cloud\Datastream\V1\DataverseSourceConfig $dataverse_source_config
+     *           Dataverse data source configuration.
+     *     @type \Google\Cloud\Datastream\V1\SalesforceMarketingCloudSourceConfig $salesforce_marketing_cloud_source_config
+     *           Salesforce Marketing Cloud data source configuration.
+     *     @type \Google\Cloud\Datastream\V1\ServiceNowSourceConfig $service_now_source_config
+     *           ServiceNow data source configuration.
+     *     @type \Google\Cloud\Datastream\V1\WorkdaySourceConfig $workday_source_config
+     *           Optional. Workday data source configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -262,6 +272,161 @@ class SourceConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MongodbSourceConfig::class);
         $this->writeOneof(105, $var);
+
+        return $this;
+    }
+
+    /**
+     * Spanner data source configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SpannerSourceConfig spanner_source_config = 106;</code>
+     * @return \Google\Cloud\Datastream\V1\SpannerSourceConfig|null
+     */
+    public function getSpannerSourceConfig()
+    {
+        return $this->readOneof(106);
+    }
+
+    public function hasSpannerSourceConfig()
+    {
+        return $this->hasOneof(106);
+    }
+
+    /**
+     * Spanner data source configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SpannerSourceConfig spanner_source_config = 106;</code>
+     * @param \Google\Cloud\Datastream\V1\SpannerSourceConfig $var
+     * @return $this
+     */
+    public function setSpannerSourceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SpannerSourceConfig::class);
+        $this->writeOneof(106, $var);
+
+        return $this;
+    }
+
+    /**
+     * Dataverse data source configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.DataverseSourceConfig dataverse_source_config = 111;</code>
+     * @return \Google\Cloud\Datastream\V1\DataverseSourceConfig|null
+     */
+    public function getDataverseSourceConfig()
+    {
+        return $this->readOneof(111);
+    }
+
+    public function hasDataverseSourceConfig()
+    {
+        return $this->hasOneof(111);
+    }
+
+    /**
+     * Dataverse data source configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.DataverseSourceConfig dataverse_source_config = 111;</code>
+     * @param \Google\Cloud\Datastream\V1\DataverseSourceConfig $var
+     * @return $this
+     */
+    public function setDataverseSourceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\DataverseSourceConfig::class);
+        $this->writeOneof(111, $var);
+
+        return $this;
+    }
+
+    /**
+     * Salesforce Marketing Cloud data source configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceMarketingCloudSourceConfig salesforce_marketing_cloud_source_config = 116;</code>
+     * @return \Google\Cloud\Datastream\V1\SalesforceMarketingCloudSourceConfig|null
+     */
+    public function getSalesforceMarketingCloudSourceConfig()
+    {
+        return $this->readOneof(116);
+    }
+
+    public function hasSalesforceMarketingCloudSourceConfig()
+    {
+        return $this->hasOneof(116);
+    }
+
+    /**
+     * Salesforce Marketing Cloud data source configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceMarketingCloudSourceConfig salesforce_marketing_cloud_source_config = 116;</code>
+     * @param \Google\Cloud\Datastream\V1\SalesforceMarketingCloudSourceConfig $var
+     * @return $this
+     */
+    public function setSalesforceMarketingCloudSourceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SalesforceMarketingCloudSourceConfig::class);
+        $this->writeOneof(116, $var);
+
+        return $this;
+    }
+
+    /**
+     * ServiceNow data source configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.ServiceNowSourceConfig service_now_source_config = 117;</code>
+     * @return \Google\Cloud\Datastream\V1\ServiceNowSourceConfig|null
+     */
+    public function getServiceNowSourceConfig()
+    {
+        return $this->readOneof(117);
+    }
+
+    public function hasServiceNowSourceConfig()
+    {
+        return $this->hasOneof(117);
+    }
+
+    /**
+     * ServiceNow data source configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.ServiceNowSourceConfig service_now_source_config = 117;</code>
+     * @param \Google\Cloud\Datastream\V1\ServiceNowSourceConfig $var
+     * @return $this
+     */
+    public function setServiceNowSourceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\ServiceNowSourceConfig::class);
+        $this->writeOneof(117, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Workday data source configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.WorkdaySourceConfig workday_source_config = 118 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Datastream\V1\WorkdaySourceConfig|null
+     */
+    public function getWorkdaySourceConfig()
+    {
+        return $this->readOneof(118);
+    }
+
+    public function hasWorkdaySourceConfig()
+    {
+        return $this->hasOneof(118);
+    }
+
+    /**
+     * Optional. Workday data source configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.WorkdaySourceConfig workday_source_config = 118 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Datastream\V1\WorkdaySourceConfig $var
+     * @return $this
+     */
+    public function setWorkdaySourceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\WorkdaySourceConfig::class);
+        $this->writeOneof(118, $var);
 
         return $this;
     }
