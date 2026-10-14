@@ -51,7 +51,7 @@ function streaming_translate_speech_sample(): void
     try {
         /** @var BidiStream $stream */
         $stream = $speechTranslationServiceClient->streamingTranslateSpeech();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var StreamingTranslateSpeechResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

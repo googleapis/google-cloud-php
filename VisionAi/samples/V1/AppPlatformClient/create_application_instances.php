@@ -59,7 +59,7 @@ function create_application_instances_sample(
     $applicationInstance = (new ApplicationInstance())
         ->setInstanceId($applicationInstancesInstanceId)
         ->setInstance($applicationInstancesInstance);
-    $applicationInstances = [$applicationInstance,];
+    $applicationInstances = [$applicationInstance];
     $request = (new CreateApplicationInstancesRequest())
         ->setName($formattedName)
         ->setApplicationInstances($applicationInstances);

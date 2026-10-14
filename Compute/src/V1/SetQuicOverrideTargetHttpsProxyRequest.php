@@ -66,7 +66,9 @@ class SetQuicOverrideTargetHttpsProxyRequest extends \Google\Protobuf\Internal\M
         return (new self())
             ->setProject($project)
             ->setTargetHttpsProxy($targetHttpsProxy)
-            ->setTargetHttpsProxiesSetQuicOverrideRequestResource($targetHttpsProxiesSetQuicOverrideRequestResource);
+            ->setTargetHttpsProxiesSetQuicOverrideRequestResource(
+                $targetHttpsProxiesSetQuicOverrideRequestResource
+            );
     }
 
     /**

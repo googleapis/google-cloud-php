@@ -72,7 +72,9 @@ class StartAsyncReplicationRegionDiskRequest extends \Google\Protobuf\Internal\M
             ->setProject($project)
             ->setRegion($region)
             ->setDisk($disk)
-            ->setRegionDisksStartAsyncReplicationRequestResource($regionDisksStartAsyncReplicationRequestResource);
+            ->setRegionDisksStartAsyncReplicationRequestResource(
+                $regionDisksStartAsyncReplicationRequestResource
+            );
     }
 
     /**

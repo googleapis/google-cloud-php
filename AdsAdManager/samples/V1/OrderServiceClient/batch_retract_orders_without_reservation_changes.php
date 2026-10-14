@@ -46,7 +46,7 @@ function batch_retract_orders_without_reservation_changes_sample(
     $orderServiceClient = new OrderServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchRetractOrdersWithoutReservationChangesRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

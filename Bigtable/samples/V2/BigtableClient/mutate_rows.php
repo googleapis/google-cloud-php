@@ -52,7 +52,7 @@ function mutate_rows_sample(string $formattedTableName): void
     $entriesMutations = [new Mutation()];
     $entry = (new Entry())
         ->setMutations($entriesMutations);
-    $entries = [$entry,];
+    $entries = [$entry];
     $request = (new MutateRowsRequest())
         ->setTableName($formattedTableName)
         ->setEntries($entries);

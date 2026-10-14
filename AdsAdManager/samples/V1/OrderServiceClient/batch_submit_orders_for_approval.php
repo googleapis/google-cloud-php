@@ -46,7 +46,7 @@ function batch_submit_orders_for_approval_sample(
     $orderServiceClient = new OrderServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchSubmitOrdersForApprovalRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

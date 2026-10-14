@@ -78,11 +78,11 @@ function batch_create_entities_sample(
     $entityTypesClient = new EntityTypesClient();
 
     // Prepare the request message.
-    $entitiesSynonyms = [$entitiesSynonymsElement,];
+    $entitiesSynonyms = [$entitiesSynonymsElement];
     $entity = (new Entity())
         ->setValue($entitiesValue)
         ->setSynonyms($entitiesSynonyms);
-    $entities = [$entity,];
+    $entities = [$entity];
     $request = (new BatchCreateEntitiesRequest())
         ->setParent($formattedParent)
         ->setEntities($entities);

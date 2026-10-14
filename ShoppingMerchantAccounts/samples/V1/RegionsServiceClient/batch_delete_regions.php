@@ -47,7 +47,7 @@ function batch_delete_regions_sample(string $formattedParent, string $formattedR
     // Prepare the request message.
     $deleteRegionRequest = (new DeleteRegionRequest())
         ->setName($formattedRequestsName);
-    $requests = [$deleteRegionRequest,];
+    $requests = [$deleteRegionRequest];
     $request = (new BatchDeleteRegionsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

@@ -79,7 +79,9 @@ class DeleteInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\
             ->setProject($project)
             ->setRegion($region)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setRegionInstanceGroupManagersDeleteInstancesRequestResource($regionInstanceGroupManagersDeleteInstancesRequestResource);
+            ->setRegionInstanceGroupManagersDeleteInstancesRequestResource(
+                $regionInstanceGroupManagersDeleteInstancesRequestResource
+            );
     }
 
     /**

@@ -57,7 +57,7 @@ function batch_create_applications_sample(
     $createApplicationRequest = (new CreateApplicationRequest())
         ->setParent($formattedRequestsParent)
         ->setApplication($requestsApplication);
-    $requests = [$createApplicationRequest,];
+    $requests = [$createApplicationRequest];
     $request = (new BatchCreateApplicationsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

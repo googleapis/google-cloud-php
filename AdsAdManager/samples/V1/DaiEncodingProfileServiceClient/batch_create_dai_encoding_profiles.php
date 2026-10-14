@@ -70,7 +70,7 @@ function batch_create_dai_encoding_profiles_sample(
     $createDaiEncodingProfileRequest = (new CreateDaiEncodingProfileRequest())
         ->setParent($formattedRequestsParent)
         ->setDaiEncodingProfile($requestsDaiEncodingProfile);
-    $requests = [$createDaiEncodingProfileRequest,];
+    $requests = [$createDaiEncodingProfileRequest];
     $request = (new BatchCreateDaiEncodingProfilesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

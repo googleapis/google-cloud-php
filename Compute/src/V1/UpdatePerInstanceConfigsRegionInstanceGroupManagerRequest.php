@@ -74,7 +74,9 @@ class UpdatePerInstanceConfigsRegionInstanceGroupManagerRequest extends \Google\
             ->setProject($project)
             ->setRegion($region)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setRegionInstanceGroupManagerUpdateInstanceConfigReqResource($regionInstanceGroupManagerUpdateInstanceConfigReqResource);
+            ->setRegionInstanceGroupManagerUpdateInstanceConfigReqResource(
+                $regionInstanceGroupManagerUpdateInstanceConfigReqResource
+            );
     }
 
     /**

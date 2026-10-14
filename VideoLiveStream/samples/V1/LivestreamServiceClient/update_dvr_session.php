@@ -49,7 +49,7 @@ function update_dvr_session_sample(string $dvrSessionDvrManifestsManifestKey): v
     $updateMask = new FieldMask();
     $dvrManifest = (new DvrManifest())
         ->setManifestKey($dvrSessionDvrManifestsManifestKey);
-    $dvrSessionDvrManifests = [$dvrManifest,];
+    $dvrSessionDvrManifests = [$dvrManifest];
     $dvrSessionDvrWindows = [new DvrWindow()];
     $dvrSession = (new DvrSession())
         ->setDvrManifests($dvrSessionDvrManifests)

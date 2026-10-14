@@ -52,7 +52,7 @@ function batch_update_applications_sample(
         ->setDisplayName($requestsApplicationDisplayName);
     $updateApplicationRequest = (new UpdateApplicationRequest())
         ->setApplication($requestsApplication);
-    $requests = [$updateApplicationRequest,];
+    $requests = [$updateApplicationRequest];
     $request = (new BatchUpdateApplicationsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

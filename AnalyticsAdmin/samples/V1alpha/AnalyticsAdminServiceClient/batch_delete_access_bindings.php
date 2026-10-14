@@ -52,7 +52,7 @@ function batch_delete_access_bindings_sample(
     // Prepare the request message.
     $deleteAccessBindingRequest = (new DeleteAccessBindingRequest())
         ->setName($formattedRequestsName);
-    $requests = [$deleteAccessBindingRequest,];
+    $requests = [$deleteAccessBindingRequest];
     $request = (new BatchDeleteAccessBindingsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

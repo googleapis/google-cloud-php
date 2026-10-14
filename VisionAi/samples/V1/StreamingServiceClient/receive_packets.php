@@ -50,7 +50,7 @@ function receive_packets_sample(): void
     try {
         /** @var BidiStream $stream */
         $stream = $streamingServiceClient->receivePackets();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var ReceivePacketsResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

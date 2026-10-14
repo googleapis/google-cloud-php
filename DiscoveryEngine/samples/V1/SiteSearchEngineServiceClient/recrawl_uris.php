@@ -48,7 +48,7 @@ function recrawl_uris_sample(string $formattedSiteSearchEngine, string $urisElem
     $siteSearchEngineServiceClient = new SiteSearchEngineServiceClient();
 
     // Prepare the request message.
-    $uris = [$urisElement,];
+    $uris = [$urisElement];
     $request = (new RecrawlUrisRequest())
         ->setSiteSearchEngine($formattedSiteSearchEngine)
         ->setUris($uris);

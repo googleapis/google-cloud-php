@@ -63,7 +63,7 @@ function create_auto_protection_policy_sample(
     $backupPlanDetail = (new BackupPlanDetail())
         ->setResourceType($autoProtectionPolicyBackupPlanDetailsResourceType)
         ->setBackupPlan($formattedAutoProtectionPolicyBackupPlanDetailsBackupPlan);
-    $autoProtectionPolicyBackupPlanDetails = [$backupPlanDetail,];
+    $autoProtectionPolicyBackupPlanDetails = [$backupPlanDetail];
     $autoProtectionPolicyCriteriaMatchingConditions = [new MatchingCondition()];
     $autoProtectionPolicyCriteria = (new Criteria())
         ->setMatchingConditions($autoProtectionPolicyCriteriaMatchingConditions);

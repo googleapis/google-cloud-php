@@ -65,7 +65,7 @@ function create_data_labeling_job_sample(
     $jobServiceClient = new JobServiceClient();
 
     // Prepare the request message.
-    $formattedDataLabelingJobDatasets = [$formattedDataLabelingJobDatasetsElement,];
+    $formattedDataLabelingJobDatasets = [$formattedDataLabelingJobDatasetsElement];
     $dataLabelingJobInputs = new Value();
     $dataLabelingJob = (new DataLabelingJob())
         ->setDisplayName($dataLabelingJobDisplayName)

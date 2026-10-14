@@ -53,7 +53,7 @@ function create_instance_sample(
     // Prepare the request message.
     $container = (new Container())
         ->setImage($instanceContainersImage);
-    $instanceContainers = [$container,];
+    $instanceContainers = [$container];
     $instance = (new Instance())
         ->setContainers($instanceContainers);
     $request = (new CreateInstanceRequest())

@@ -43,7 +43,7 @@ function batch_submit_sites_for_approval_sample(
     $siteServiceClient = new SiteServiceClient();
 
     // Prepare the request message.
-    $names = [$namesElement,];
+    $names = [$namesElement];
     $request = (new BatchSubmitSitesForApprovalRequest())
         ->setParent($formattedParent)
         ->setNames($names);

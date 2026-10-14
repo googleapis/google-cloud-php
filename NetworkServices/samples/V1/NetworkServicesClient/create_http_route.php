@@ -72,7 +72,7 @@ function create_http_route_sample(
     $networkServicesClient = new NetworkServicesClient();
 
     // Prepare the request message.
-    $httpRouteHostnames = [$httpRouteHostnamesElement,];
+    $httpRouteHostnames = [$httpRouteHostnamesElement];
     $httpRouteRules = [new RouteRule()];
     $httpRoute = (new HttpRoute())
         ->setHostnames($httpRouteHostnames)

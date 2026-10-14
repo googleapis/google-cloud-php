@@ -74,7 +74,7 @@ function update_deployment_sample(
 
     // Prepare the request message.
     $deploymentDeploymentType = new AttributeValues();
-    $deploymentEndpoints = [$deploymentEndpointsElement,];
+    $deploymentEndpoints = [$deploymentEndpointsElement];
     $deployment = (new Deployment())
         ->setDisplayName($deploymentDisplayName)
         ->setDeploymentType($deploymentDeploymentType)

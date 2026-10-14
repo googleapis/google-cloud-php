@@ -66,7 +66,9 @@ class SetSslCertificatesTargetSslProxyRequest extends \Google\Protobuf\Internal\
         return (new self())
             ->setProject($project)
             ->setTargetSslProxy($targetSslProxy)
-            ->setTargetSslProxiesSetSslCertificatesRequestResource($targetSslProxiesSetSslCertificatesRequestResource);
+            ->setTargetSslProxiesSetSslCertificatesRequestResource(
+                $targetSslProxiesSetSslCertificatesRequestResource
+            );
     }
 
     /**

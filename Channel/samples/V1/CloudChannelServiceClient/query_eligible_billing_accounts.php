@@ -56,7 +56,7 @@ function query_eligible_billing_accounts_sample(
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $skus = [$skusElement,];
+    $skus = [$skusElement];
     $request = (new QueryEligibleBillingAccountsRequest())
         ->setCustomer($formattedCustomer)
         ->setSkus($skus);

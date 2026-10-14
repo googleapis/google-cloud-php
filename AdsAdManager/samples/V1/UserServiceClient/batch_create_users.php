@@ -66,7 +66,7 @@ function batch_create_users_sample(
     $createUserRequest = (new CreateUserRequest())
         ->setParent($formattedRequestsParent)
         ->setUser($requestsUser);
-    $requests = [$createUserRequest,];
+    $requests = [$createUserRequest];
     $request = (new BatchCreateUsersRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

@@ -53,7 +53,7 @@ function unresolve_pull_request_comments_sample(
     $secureSourceManagerClient = new SecureSourceManagerClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new UnresolvePullRequestCommentsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

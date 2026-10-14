@@ -44,7 +44,7 @@ function batch_archive_slates_sample(string $formattedParent, string $formattedN
     $slateServiceClient = new SlateServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchArchiveSlatesRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

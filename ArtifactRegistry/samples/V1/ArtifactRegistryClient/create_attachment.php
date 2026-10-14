@@ -56,7 +56,7 @@ function create_attachment_sample(
     $artifactRegistryClient = new ArtifactRegistryClient();
 
     // Prepare the request message.
-    $formattedAttachmentFiles = [$formattedAttachmentFilesElement,];
+    $formattedAttachmentFiles = [$formattedAttachmentFilesElement];
     $attachment = (new Attachment())
         ->setTarget($attachmentTarget)
         ->setFiles($formattedAttachmentFiles);

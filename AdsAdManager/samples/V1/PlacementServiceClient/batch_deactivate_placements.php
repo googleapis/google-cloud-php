@@ -45,7 +45,7 @@ function batch_deactivate_placements_sample(
     $placementServiceClient = new PlacementServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchDeactivatePlacementsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

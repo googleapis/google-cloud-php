@@ -44,10 +44,10 @@ function update_sip_trunk_sample(
     $sipTrunksClient = new SipTrunksClient();
 
     // Prepare the request message.
-    $sipTrunkExpectedHostname = [$sipTrunkExpectedHostnameElement,];
+    $sipTrunkExpectedHostname = [$sipTrunkExpectedHostnameElement];
     $sipHostname = (new SipHostname())
         ->setPeerHostname($sipTrunkPeerHostnamesPeerHostname);
-    $sipTrunkPeerHostnames = [$sipHostname,];
+    $sipTrunkPeerHostnames = [$sipHostname];
     $sipTrunk = (new SipTrunk())
         ->setExpectedHostname($sipTrunkExpectedHostname)
         ->setPeerHostnames($sipTrunkPeerHostnames);

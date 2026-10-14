@@ -45,7 +45,7 @@ function batch_submit_orders_for_approval_and_overbook_sample(
     $orderServiceClient = new OrderServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchSubmitOrdersForApprovalAndOverbookRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

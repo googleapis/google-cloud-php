@@ -43,7 +43,7 @@ function batch_activate_teams_sample(string $formattedParent, string $formattedN
     $teamServiceClient = new TeamServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchActivateTeamsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

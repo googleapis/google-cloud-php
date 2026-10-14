@@ -49,7 +49,7 @@ function create_partition_sample(
     $metadataServiceClient = new MetadataServiceClient();
 
     // Prepare the request message.
-    $partitionValues = [$partitionValuesElement,];
+    $partitionValues = [$partitionValuesElement];
     $partition = (new Partition())
         ->setValues($partitionValues)
         ->setLocation($partitionLocation);

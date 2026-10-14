@@ -56,7 +56,7 @@ function batch_update_targeting_presets_sample(
         ->setTargeting($requestsTargetingPresetTargeting);
     $updateTargetingPresetRequest = (new UpdateTargetingPresetRequest())
         ->setTargetingPreset($requestsTargetingPreset);
-    $requests = [$updateTargetingPresetRequest,];
+    $requests = [$updateTargetingPresetRequest];
     $request = (new BatchUpdateTargetingPresetsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

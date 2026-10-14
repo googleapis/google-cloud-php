@@ -68,7 +68,7 @@ function batch_create_tensorboard_runs_sample(
         ->setParent($formattedRequestsParent)
         ->setTensorboardRun($requestsTensorboardRun)
         ->setTensorboardRunId($requestsTensorboardRunId);
-    $requests = [$createTensorboardRunRequest,];
+    $requests = [$createTensorboardRunRequest];
     $request = (new BatchCreateTensorboardRunsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

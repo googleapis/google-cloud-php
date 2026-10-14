@@ -57,7 +57,7 @@ function batch_create_ad_spots_sample(
     $createAdSpotRequest = (new CreateAdSpotRequest())
         ->setParent($formattedRequestsParent)
         ->setAdSpot($requestsAdSpot);
-    $requests = [$createAdSpotRequest,];
+    $requests = [$createAdSpotRequest];
     $request = (new BatchCreateAdSpotsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

@@ -53,7 +53,7 @@ function batch_update_audience_segments_sample(
         ->setDisplayName($requestsAudienceSegmentDisplayName);
     $updateAudienceSegmentRequest = (new UpdateAudienceSegmentRequest())
         ->setAudienceSegment($requestsAudienceSegment);
-    $requests = [$updateAudienceSegmentRequest,];
+    $requests = [$updateAudienceSegmentRequest];
     $request = (new BatchUpdateAudienceSegmentsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

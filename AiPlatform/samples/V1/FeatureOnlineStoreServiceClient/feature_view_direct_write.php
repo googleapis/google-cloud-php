@@ -55,7 +55,7 @@ function feature_view_direct_write_sample(): void
     try {
         /** @var BidiStream $stream */
         $stream = $featureOnlineStoreServiceClient->featureViewDirectWrite();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var FeatureViewDirectWriteResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

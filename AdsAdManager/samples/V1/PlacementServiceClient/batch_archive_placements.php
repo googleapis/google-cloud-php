@@ -45,7 +45,7 @@ function batch_archive_placements_sample(
     $placementServiceClient = new PlacementServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchArchivePlacementsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

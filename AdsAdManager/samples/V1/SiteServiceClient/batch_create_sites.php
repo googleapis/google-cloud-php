@@ -57,7 +57,7 @@ function batch_create_sites_sample(
     $createSiteRequest = (new CreateSiteRequest())
         ->setParent($formattedRequestsParent)
         ->setSite($requestsSite);
-    $requests = [$createSiteRequest,];
+    $requests = [$createSiteRequest];
     $request = (new BatchCreateSitesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

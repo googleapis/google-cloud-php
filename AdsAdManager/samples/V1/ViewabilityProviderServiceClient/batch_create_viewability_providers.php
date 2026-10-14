@@ -68,7 +68,7 @@ function batch_create_viewability_providers_sample(
     $createViewabilityProviderRequest = (new CreateViewabilityProviderRequest())
         ->setParent($formattedRequestsParent)
         ->setViewabilityProvider($requestsViewabilityProvider);
-    $requests = [$createViewabilityProviderRequest,];
+    $requests = [$createViewabilityProviderRequest];
     $request = (new BatchCreateViewabilityProvidersRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

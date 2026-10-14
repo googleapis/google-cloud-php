@@ -74,7 +74,9 @@ class StartInstancesInstanceGroupManagerRequest extends \Google\Protobuf\Interna
             ->setProject($project)
             ->setZone($zone)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersStartInstancesRequestResource($instanceGroupManagersStartInstancesRequestResource);
+            ->setInstanceGroupManagersStartInstancesRequestResource(
+                $instanceGroupManagersStartInstancesRequestResource
+            );
     }
 
     /**

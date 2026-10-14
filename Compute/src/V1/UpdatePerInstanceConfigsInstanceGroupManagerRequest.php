@@ -78,7 +78,9 @@ class UpdatePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
             ->setProject($project)
             ->setZone($zone)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersUpdatePerInstanceConfigsReqResource($instanceGroupManagersUpdatePerInstanceConfigsReqResource);
+            ->setInstanceGroupManagersUpdatePerInstanceConfigsReqResource(
+                $instanceGroupManagersUpdatePerInstanceConfigsReqResource
+            );
     }
 
     /**

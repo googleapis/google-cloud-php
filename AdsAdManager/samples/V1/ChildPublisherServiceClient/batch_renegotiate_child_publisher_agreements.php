@@ -56,7 +56,7 @@ function batch_renegotiate_child_publisher_agreements_sample(
     // Prepare the request message.
     $renegotiateChildPublisherAgreementRequest = (new RenegotiateChildPublisherAgreementRequest())
         ->setName($formattedRequestsName);
-    $requests = [$renegotiateChildPublisherAgreementRequest,];
+    $requests = [$renegotiateChildPublisherAgreementRequest];
     $request = (new BatchRenegotiateChildPublisherAgreementsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

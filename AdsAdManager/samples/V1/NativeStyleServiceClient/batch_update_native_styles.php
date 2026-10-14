@@ -75,7 +75,7 @@ function batch_update_native_styles_sample(
         ->setSize($requestsNativeStyleSize);
     $updateNativeStyleRequest = (new UpdateNativeStyleRequest())
         ->setNativeStyle($requestsNativeStyle);
-    $requests = [$updateNativeStyleRequest,];
+    $requests = [$updateNativeStyleRequest];
     $request = (new BatchUpdateNativeStylesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

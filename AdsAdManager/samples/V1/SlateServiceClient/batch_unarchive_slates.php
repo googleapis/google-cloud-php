@@ -46,7 +46,7 @@ function batch_unarchive_slates_sample(
     $slateServiceClient = new SlateServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchUnarchiveSlatesRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

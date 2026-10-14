@@ -59,9 +59,7 @@ function update_gcp_user_access_binding_sample(
     $accessContextManagerClient = new AccessContextManagerClient();
 
     // Prepare the request message.
-    $formattedGcpUserAccessBindingAccessLevels = [
-        $formattedGcpUserAccessBindingAccessLevelsElement,
-    ];
+    $formattedGcpUserAccessBindingAccessLevels = [$formattedGcpUserAccessBindingAccessLevelsElement];
     $gcpUserAccessBinding = (new GcpUserAccessBinding())
         ->setGroupKey($gcpUserAccessBindingGroupKey)
         ->setAccessLevels($formattedGcpUserAccessBindingAccessLevels);

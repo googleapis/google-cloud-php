@@ -51,8 +51,8 @@ function update_report_sample(
     $reportServiceClient = new ReportServiceClient();
 
     // Prepare the request message.
-    $reportReportDefinitionDimensions = [$reportReportDefinitionDimensionsElement,];
-    $reportReportDefinitionMetrics = [$reportReportDefinitionMetricsElement,];
+    $reportReportDefinitionDimensions = [$reportReportDefinitionDimensionsElement];
+    $reportReportDefinitionMetrics = [$reportReportDefinitionMetricsElement];
     $reportReportDefinitionDateRange = new DateRange();
     $reportReportDefinition = (new ReportDefinition())
         ->setDimensions($reportReportDefinitionDimensions)

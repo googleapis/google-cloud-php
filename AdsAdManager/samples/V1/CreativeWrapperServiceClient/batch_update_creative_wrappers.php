@@ -64,7 +64,7 @@ function batch_update_creative_wrappers_sample(
         ->setCreativeWrapperType($requestsCreativeWrapperCreativeWrapperType);
     $updateCreativeWrapperRequest = (new UpdateCreativeWrapperRequest())
         ->setCreativeWrapper($requestsCreativeWrapper);
-    $requests = [$updateCreativeWrapperRequest,];
+    $requests = [$updateCreativeWrapperRequest];
     $request = (new BatchUpdateCreativeWrappersRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

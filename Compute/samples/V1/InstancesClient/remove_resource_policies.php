@@ -46,7 +46,9 @@ function remove_resource_policies_sample(string $instance, string $project, stri
     $instancesRemoveResourcePoliciesRequestResource = new InstancesRemoveResourcePoliciesRequest();
     $request = (new RemoveResourcePoliciesInstanceRequest())
         ->setInstance($instance)
-        ->setInstancesRemoveResourcePoliciesRequestResource($instancesRemoveResourcePoliciesRequestResource)
+        ->setInstancesRemoveResourcePoliciesRequestResource(
+            $instancesRemoveResourcePoliciesRequestResource
+        )
         ->setProject($project)
         ->setZone($zone);
 
