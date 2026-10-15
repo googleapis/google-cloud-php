@@ -387,6 +387,14 @@ class GitHub
             $body = json_decode((string) $res->getBody(), true);
             $checkRuns = $body['check_runs'] ?? null;
             if (is_array($checkRuns)) {
+                $deduped = [];
+                foreach ($checkRuns as $run) {
+                    $name = $run['name'] ?? '';
+                    if (!isset($deduped[$name])) {
+                        $deduped[$name] = $run;
+                    }
+                }
+                $checkRuns = array_values($deduped);
                 usort($checkRuns, fn (array $a, array $b) => strcmp($a['name'] ?? '', $b['name'] ?? ''));
             }
             return $checkRuns;
