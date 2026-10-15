@@ -59,7 +59,7 @@ function batch_update_companies_sample(
         ->setType($requestsCompanyType);
     $updateCompanyRequest = (new UpdateCompanyRequest())
         ->setCompany($requestsCompany);
-    $requests = [$updateCompanyRequest,];
+    $requests = [$updateCompanyRequest];
     $request = (new BatchUpdateCompaniesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

@@ -60,11 +60,11 @@ function remove_users_sample(
         ->setAccountType($destinationsOperatingAccountAccountType);
     $destination = (new Destination())
         ->setOperatingAccount($destinationsOperatingAccount);
-    $destinations = [$destination,];
+    $destinations = [$destination];
     $userDataUserIdentifiers = [new UserIdentifier()];
     $userData = (new UserData())
         ->setUserIdentifiers($userDataUserIdentifiers);
-    $userData = [$userData,];
+    $userData = [$userData];
     $request = (new RemoveUsersRequest())
         ->setDestinations($destinations)
         ->setUserData($userData)

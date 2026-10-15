@@ -76,15 +76,15 @@ function update_os_policy_assignment_sample(
     // Prepare the request message.
     $resource = (new Resource())
         ->setId($osPolicyAssignmentOsPoliciesResourceGroupsResourcesId);
-    $osPolicyAssignmentOsPoliciesResourceGroupsResources = [$resource,];
+    $osPolicyAssignmentOsPoliciesResourceGroupsResources = [$resource];
     $resourceGroup = (new ResourceGroup())
         ->setResources($osPolicyAssignmentOsPoliciesResourceGroupsResources);
-    $osPolicyAssignmentOsPoliciesResourceGroups = [$resourceGroup,];
+    $osPolicyAssignmentOsPoliciesResourceGroups = [$resourceGroup];
     $oSPolicy = (new OSPolicy())
         ->setId($osPolicyAssignmentOsPoliciesId)
         ->setMode($osPolicyAssignmentOsPoliciesMode)
         ->setResourceGroups($osPolicyAssignmentOsPoliciesResourceGroups);
-    $osPolicyAssignmentOsPolicies = [$oSPolicy,];
+    $osPolicyAssignmentOsPolicies = [$oSPolicy];
     $osPolicyAssignmentInstanceFilter = new InstanceFilter();
     $osPolicyAssignmentRolloutDisruptionBudget = new FixedOrPercent();
     $osPolicyAssignmentRolloutMinWaitDuration = new Duration();

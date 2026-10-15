@@ -79,7 +79,9 @@ class DetachNetworkEndpointsRegionNetworkEndpointGroupRequest extends \Google\Pr
             ->setProject($project)
             ->setRegion($region)
             ->setNetworkEndpointGroup($networkEndpointGroup)
-            ->setRegionNetworkEndpointGroupsDetachEndpointsRequestResource($regionNetworkEndpointGroupsDetachEndpointsRequestResource);
+            ->setRegionNetworkEndpointGroupsDetachEndpointsRequestResource(
+                $regionNetworkEndpointGroupsDetachEndpointsRequestResource
+            );
     }
 
     /**

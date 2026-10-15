@@ -57,7 +57,7 @@ function batch_update_cdn_configs_sample(
         ->setCdnConfigType($requestsCdnConfigCdnConfigType);
     $updateCdnConfigRequest = (new UpdateCdnConfigRequest())
         ->setCdnConfig($requestsCdnConfig);
-    $requests = [$updateCdnConfigRequest,];
+    $requests = [$updateCdnConfigRequest];
     $request = (new BatchUpdateCdnConfigsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

@@ -77,7 +77,9 @@ class CreateInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\
             ->setProject($project)
             ->setRegion($region)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setRegionInstanceGroupManagersCreateInstancesRequestResource($regionInstanceGroupManagersCreateInstancesRequestResource);
+            ->setRegionInstanceGroupManagersCreateInstancesRequestResource(
+                $regionInstanceGroupManagersCreateInstancesRequestResource
+            );
     }
 
     /**

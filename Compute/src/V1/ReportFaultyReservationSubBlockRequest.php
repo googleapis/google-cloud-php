@@ -84,7 +84,9 @@ class ReportFaultyReservationSubBlockRequest extends \Google\Protobuf\Internal\M
             ->setZone($zone)
             ->setParentName($parentName)
             ->setReservationSubBlock($reservationSubBlock)
-            ->setReservationSubBlocksReportFaultyRequestResource($reservationSubBlocksReportFaultyRequestResource);
+            ->setReservationSubBlocksReportFaultyRequestResource(
+                $reservationSubBlocksReportFaultyRequestResource
+            );
     }
 
     /**

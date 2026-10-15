@@ -65,7 +65,7 @@ function batch_create_companies_sample(
     $createCompanyRequest = (new CreateCompanyRequest())
         ->setParent($formattedRequestsParent)
         ->setCompany($requestsCompany);
-    $requests = [$createCompanyRequest,];
+    $requests = [$createCompanyRequest];
     $request = (new BatchCreateCompaniesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

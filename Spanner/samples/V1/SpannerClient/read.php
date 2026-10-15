@@ -57,7 +57,7 @@ function read_sample(string $formattedSession, string $table, string $columnsEle
     $spannerClient = new SpannerClient();
 
     // Prepare the request message.
-    $columns = [$columnsElement,];
+    $columns = [$columnsElement];
     $keySet = new KeySet();
     $request = (new ReadRequest())
         ->setSession($formattedSession)

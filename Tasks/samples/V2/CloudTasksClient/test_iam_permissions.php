@@ -51,7 +51,7 @@ function test_iam_permissions_sample(string $resource, string $permissionsElemen
     $cloudTasksClient = new CloudTasksClient();
 
     // Prepare the request message.
-    $permissions = [$permissionsElement,];
+    $permissions = [$permissionsElement];
     $request = (new TestIamPermissionsRequest())
         ->setResource($resource)
         ->setPermissions($permissions);

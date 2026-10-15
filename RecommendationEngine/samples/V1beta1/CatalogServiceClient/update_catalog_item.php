@@ -60,10 +60,10 @@ function update_catalog_item_sample(
     $catalogServiceClient = new CatalogServiceClient();
 
     // Prepare the request message.
-    $catalogItemCategoryHierarchiesCategories = [$catalogItemCategoryHierarchiesCategoriesElement,];
+    $catalogItemCategoryHierarchiesCategories = [$catalogItemCategoryHierarchiesCategoriesElement];
     $categoryHierarchy = (new CategoryHierarchy())
         ->setCategories($catalogItemCategoryHierarchiesCategories);
-    $catalogItemCategoryHierarchies = [$categoryHierarchy,];
+    $catalogItemCategoryHierarchies = [$categoryHierarchy];
     $catalogItem = (new CatalogItem())
         ->setId($catalogItemId)
         ->setCategoryHierarchies($catalogItemCategoryHierarchies)

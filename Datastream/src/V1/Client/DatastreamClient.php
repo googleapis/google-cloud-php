@@ -240,6 +240,25 @@ final class DatastreamClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a database
+     * resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $database
+     *
+     * @return string The formatted database resource.
+     */
+    public static function databaseName(string $project, string $instance, string $database): string
+    {
+        return self::getPathTemplate('database')->render([
+            'project' => $project,
+            'instance' => $instance,
+            'database' => $database,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -381,6 +400,7 @@ final class DatastreamClient
      * The following name formats are supported:
      * Template: Pattern
      * - connectionProfile: projects/{project}/locations/{location}/connectionProfiles/{connection_profile}
+     * - database: projects/{project}/instances/{instance}/databases/{database}
      * - location: projects/{project}/locations/{location}
      * - networkAttachment: projects/{project}/regions/{region}/networkAttachments/{network_attachment}
      * - networks: projects/{project}/global/networks/{network}
@@ -1228,6 +1248,21 @@ final class DatastreamClient
 
     /**
      * Lists information about the supported locations for this service.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see DatastreamClient::listLocationsAsync()} .
      *

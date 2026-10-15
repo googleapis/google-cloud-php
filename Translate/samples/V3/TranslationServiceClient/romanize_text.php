@@ -48,7 +48,7 @@ function romanize_text_sample(string $formattedParent, string $contentsElement):
     $translationServiceClient = new TranslationServiceClient();
 
     // Prepare the request message.
-    $contents = [$contentsElement,];
+    $contents = [$contentsElement];
     $request = (new RomanizeTextRequest())
         ->setParent($formattedParent)
         ->setContents($contents);

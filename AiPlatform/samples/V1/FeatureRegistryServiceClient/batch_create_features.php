@@ -68,7 +68,7 @@ function batch_create_features_sample(
         ->setParent($formattedRequestsParent)
         ->setFeature($requestsFeature)
         ->setFeatureId($requestsFeatureId);
-    $requests = [$createFeatureRequest,];
+    $requests = [$createFeatureRequest];
     $request = (new BatchCreateFeaturesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

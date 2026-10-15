@@ -58,15 +58,15 @@ function batch_update_live_streams_sample(
     $liveStreamServiceClient = new LiveStreamServiceClient();
 
     // Prepare the request message.
-    $requestsLiveStreamContentUrls = [$requestsLiveStreamContentUrlsElement,];
-    $requestsLiveStreamAdTags = [$requestsLiveStreamAdTagsElement,];
+    $requestsLiveStreamContentUrls = [$requestsLiveStreamContentUrlsElement];
+    $requestsLiveStreamAdTags = [$requestsLiveStreamAdTagsElement];
     $requestsLiveStream = (new LiveStream())
         ->setDisplayName($requestsLiveStreamDisplayName)
         ->setContentUrls($requestsLiveStreamContentUrls)
         ->setAdTags($requestsLiveStreamAdTags);
     $updateLiveStreamRequest = (new UpdateLiveStreamRequest())
         ->setLiveStream($requestsLiveStream);
-    $requests = [$updateLiveStreamRequest,];
+    $requests = [$updateLiveStreamRequest];
     $request = (new BatchUpdateLiveStreamsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

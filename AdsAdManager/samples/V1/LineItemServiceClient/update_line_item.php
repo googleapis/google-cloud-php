@@ -80,7 +80,7 @@ function update_line_item_sample(
         ->setSizeType($lineItemCreativePlaceholdersSizeSizeType);
     $creativePlaceholder = (new CreativePlaceholder())
         ->setSize($lineItemCreativePlaceholdersSize);
-    $lineItemCreativePlaceholders = [$creativePlaceholder,];
+    $lineItemCreativePlaceholders = [$creativePlaceholder];
     $lineItemTargeting = new Targeting();
     $lineItem = (new LineItem())
         ->setOrder($formattedLineItemOrder)

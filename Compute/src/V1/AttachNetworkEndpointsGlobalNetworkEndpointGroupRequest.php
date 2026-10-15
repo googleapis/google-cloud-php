@@ -66,7 +66,9 @@ class AttachNetworkEndpointsGlobalNetworkEndpointGroupRequest extends \Google\Pr
         return (new self())
             ->setProject($project)
             ->setNetworkEndpointGroup($networkEndpointGroup)
-            ->setGlobalNetworkEndpointGroupsAttachEndpointsRequestResource($globalNetworkEndpointGroupsAttachEndpointsRequestResource);
+            ->setGlobalNetworkEndpointGroupsAttachEndpointsRequestResource(
+                $globalNetworkEndpointGroupsAttachEndpointsRequestResource
+            );
     }
 
     /**

@@ -49,7 +49,7 @@ function adaptive_mt_translate_sample(
     $translationServiceClient = new TranslationServiceClient();
 
     // Prepare the request message.
-    $content = [$contentElement,];
+    $content = [$contentElement];
     $request = (new AdaptiveMtTranslateRequest())
         ->setParent($formattedParent)
         ->setDataset($formattedDataset)

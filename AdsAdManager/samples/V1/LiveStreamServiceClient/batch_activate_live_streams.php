@@ -45,7 +45,7 @@ function batch_activate_live_streams_sample(
     $liveStreamServiceClient = new LiveStreamServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchActivateLiveStreamsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

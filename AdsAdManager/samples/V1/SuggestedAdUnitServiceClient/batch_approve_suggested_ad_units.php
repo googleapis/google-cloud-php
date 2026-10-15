@@ -45,7 +45,7 @@ function batch_approve_suggested_ad_units_sample(
     $suggestedAdUnitServiceClient = new SuggestedAdUnitServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchApproveSuggestedAdUnitsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

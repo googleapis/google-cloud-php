@@ -41,7 +41,7 @@ function assign_sample(string $parent, string $usernamesElement): void
     $licenseManagementServiceClient = new LicenseManagementServiceClient();
 
     // Prepare the request message.
-    $usernames = [$usernamesElement,];
+    $usernames = [$usernamesElement];
     $request = (new AssignRequest())
         ->setParent($parent)
         ->setUsernames($usernames);

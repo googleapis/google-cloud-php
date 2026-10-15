@@ -47,7 +47,7 @@ function remove_virtual_machine_exadb_vm_cluster_sample(
     $oracleDatabaseClient = new OracleDatabaseClient();
 
     // Prepare the request message.
-    $hostnames = [$hostnamesElement,];
+    $hostnames = [$hostnamesElement];
     $request = (new RemoveVirtualMachineExadbVmClusterRequest())
         ->setName($formattedName)
         ->setHostnames($hostnames);

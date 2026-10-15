@@ -50,7 +50,7 @@ function update_creative_set_sample(
     $creativeSetServiceClient = new CreativeSetServiceClient();
 
     // Prepare the request message.
-    $formattedCreativeSetCompanionCreatives = [$formattedCreativeSetCompanionCreativesElement,];
+    $formattedCreativeSetCompanionCreatives = [$formattedCreativeSetCompanionCreativesElement];
     $creativeSet = (new CreativeSet())
         ->setDisplayName($creativeSetDisplayName)
         ->setMasterCreative($formattedCreativeSetMasterCreative)

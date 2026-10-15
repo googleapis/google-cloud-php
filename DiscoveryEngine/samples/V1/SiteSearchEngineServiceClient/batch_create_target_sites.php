@@ -62,7 +62,7 @@ function batch_create_target_sites_sample(
     $createTargetSiteRequest = (new CreateTargetSiteRequest())
         ->setParent($formattedRequestsParent)
         ->setTargetSite($requestsTargetSite);
-    $requests = [$createTargetSiteRequest,];
+    $requests = [$createTargetSiteRequest];
     $request = (new BatchCreateTargetSitesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

@@ -51,7 +51,7 @@ function restore_backup_files_sample(
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $fileList = [$fileListElement,];
+    $fileList = [$fileListElement];
     $request = (new RestoreBackupFilesRequest())
         ->setName($formattedName)
         ->setBackup($formattedBackup)

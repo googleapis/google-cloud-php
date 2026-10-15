@@ -120,15 +120,13 @@ function create_aws_cluster_sample(
     $awsClustersClient = new AwsClustersClient();
 
     // Prepare the request message.
-    $awsClusterNetworkingPodAddressCidrBlocks = [$awsClusterNetworkingPodAddressCidrBlocksElement,];
-    $awsClusterNetworkingServiceAddressCidrBlocks = [
-        $awsClusterNetworkingServiceAddressCidrBlocksElement,
-    ];
+    $awsClusterNetworkingPodAddressCidrBlocks = [$awsClusterNetworkingPodAddressCidrBlocksElement];
+    $awsClusterNetworkingServiceAddressCidrBlocks = [$awsClusterNetworkingServiceAddressCidrBlocksElement];
     $awsClusterNetworking = (new AwsClusterNetworking())
         ->setVpcId($awsClusterNetworkingVpcId)
         ->setPodAddressCidrBlocks($awsClusterNetworkingPodAddressCidrBlocks)
         ->setServiceAddressCidrBlocks($awsClusterNetworkingServiceAddressCidrBlocks);
-    $awsClusterControlPlaneSubnetIds = [$awsClusterControlPlaneSubnetIdsElement,];
+    $awsClusterControlPlaneSubnetIds = [$awsClusterControlPlaneSubnetIdsElement];
     $awsClusterControlPlaneDatabaseEncryption = (new AwsDatabaseEncryption())
         ->setKmsKeyArn($awsClusterControlPlaneDatabaseEncryptionKmsKeyArn);
     $awsClusterControlPlaneAwsServicesAuthentication = (new AwsServicesAuthentication())

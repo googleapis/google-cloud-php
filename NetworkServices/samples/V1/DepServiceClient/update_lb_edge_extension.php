@@ -93,17 +93,17 @@ function update_lb_edge_extension_sample(
     $depServiceClient = new DepServiceClient();
 
     // Prepare the request message.
-    $lbEdgeExtensionForwardingRules = [$lbEdgeExtensionForwardingRulesElement,];
+    $lbEdgeExtensionForwardingRules = [$lbEdgeExtensionForwardingRulesElement];
     $lbEdgeExtensionExtensionChainsMatchCondition = (new MatchCondition())
         ->setCelExpression($lbEdgeExtensionExtensionChainsMatchConditionCelExpression);
     $extension = (new Extension())
         ->setService($lbEdgeExtensionExtensionChainsExtensionsService);
-    $lbEdgeExtensionExtensionChainsExtensions = [$extension,];
+    $lbEdgeExtensionExtensionChainsExtensions = [$extension];
     $extensionChain = (new ExtensionChain())
         ->setName($lbEdgeExtensionExtensionChainsName)
         ->setMatchCondition($lbEdgeExtensionExtensionChainsMatchCondition)
         ->setExtensions($lbEdgeExtensionExtensionChainsExtensions);
-    $lbEdgeExtensionExtensionChains = [$extensionChain,];
+    $lbEdgeExtensionExtensionChains = [$extensionChain];
     $lbEdgeExtension = (new LbEdgeExtension())
         ->setName($lbEdgeExtensionName)
         ->setForwardingRules($lbEdgeExtensionForwardingRules)

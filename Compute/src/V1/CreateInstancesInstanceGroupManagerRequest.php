@@ -77,7 +77,9 @@ class CreateInstancesInstanceGroupManagerRequest extends \Google\Protobuf\Intern
             ->setProject($project)
             ->setZone($zone)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersCreateInstancesRequestResource($instanceGroupManagersCreateInstancesRequestResource);
+            ->setInstanceGroupManagersCreateInstancesRequestResource(
+                $instanceGroupManagersCreateInstancesRequestResource
+            );
     }
 
     /**

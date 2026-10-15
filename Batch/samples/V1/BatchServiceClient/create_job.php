@@ -46,7 +46,7 @@ function create_job_sample(string $formattedParent): void
     $jobTaskGroupsTaskSpec = new TaskSpec();
     $taskGroup = (new TaskGroup())
         ->setTaskSpec($jobTaskGroupsTaskSpec);
-    $jobTaskGroups = [$taskGroup,];
+    $jobTaskGroups = [$taskGroup];
     $job = (new Job())
         ->setTaskGroups($jobTaskGroups);
     $request = (new CreateJobRequest())

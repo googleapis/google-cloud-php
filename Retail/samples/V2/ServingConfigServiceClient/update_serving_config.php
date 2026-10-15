@@ -48,7 +48,7 @@ function update_serving_config_sample(
     $servingConfigServiceClient = new ServingConfigServiceClient();
 
     // Prepare the request message.
-    $servingConfigSolutionTypes = [$servingConfigSolutionTypesElement,];
+    $servingConfigSolutionTypes = [$servingConfigSolutionTypesElement];
     $servingConfig = (new ServingConfig())
         ->setDisplayName($servingConfigDisplayName)
         ->setSolutionTypes($servingConfigSolutionTypes);

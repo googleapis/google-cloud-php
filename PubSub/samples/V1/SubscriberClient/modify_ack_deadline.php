@@ -57,7 +57,7 @@ function modify_ack_deadline_sample(
     $subscriberClient = new SubscriberClient();
 
     // Prepare the request message.
-    $ackIds = [$ackIdsElement,];
+    $ackIds = [$ackIdsElement];
     $request = (new ModifyAckDeadlineRequest())
         ->setSubscription($formattedSubscription)
         ->setAckIds($ackIds)

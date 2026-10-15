@@ -45,7 +45,7 @@ function batch_archive_applications_sample(
     $applicationServiceClient = new ApplicationServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchArchiveApplicationsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

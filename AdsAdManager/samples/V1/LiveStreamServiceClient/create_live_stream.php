@@ -54,8 +54,8 @@ function create_live_stream_sample(
     $liveStreamServiceClient = new LiveStreamServiceClient();
 
     // Prepare the request message.
-    $liveStreamContentUrls = [$liveStreamContentUrlsElement,];
-    $liveStreamAdTags = [$liveStreamAdTagsElement,];
+    $liveStreamContentUrls = [$liveStreamContentUrlsElement];
+    $liveStreamAdTags = [$liveStreamAdTagsElement];
     $liveStream = (new LiveStream())
         ->setDisplayName($liveStreamDisplayName)
         ->setContentUrls($liveStreamContentUrls)

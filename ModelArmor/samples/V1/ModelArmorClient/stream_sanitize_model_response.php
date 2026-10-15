@@ -52,7 +52,7 @@ function stream_sanitize_model_response_sample(string $formattedName): void
     try {
         /** @var BidiStream $stream */
         $stream = $modelArmorClient->streamSanitizeModelResponse();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var SanitizeModelResponseResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

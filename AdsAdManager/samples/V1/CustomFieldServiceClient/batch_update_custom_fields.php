@@ -64,7 +64,7 @@ function batch_update_custom_fields_sample(
         ->setVisibility($requestsCustomFieldVisibility);
     $updateCustomFieldRequest = (new UpdateCustomFieldRequest())
         ->setCustomField($requestsCustomField);
-    $requests = [$updateCustomFieldRequest,];
+    $requests = [$updateCustomFieldRequest];
     $request = (new BatchUpdateCustomFieldsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

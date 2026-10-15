@@ -9,8 +9,10 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Username-password credentials.
+ * Deprecated: Salesforce is retiring Username-Password authentication.
+ * Use `Oauth2ClientCredentials` instead.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.datastream.v1.SalesforceProfile.UserCredentials</code>
  */
 class UserCredentials extends \Google\Protobuf\Internal\Message

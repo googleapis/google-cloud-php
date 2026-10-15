@@ -93,18 +93,18 @@ function update_lb_route_extension_sample(
 
     // Prepare the request message.
     $updateMask = new FieldMask();
-    $lbRouteExtensionForwardingRules = [$lbRouteExtensionForwardingRulesElement,];
+    $lbRouteExtensionForwardingRules = [$lbRouteExtensionForwardingRulesElement];
     $lbRouteExtensionExtensionChainsMatchCondition = (new MatchCondition())
         ->setCelExpression($lbRouteExtensionExtensionChainsMatchConditionCelExpression);
     $extension = (new Extension())
         ->setName($lbRouteExtensionExtensionChainsExtensionsName)
         ->setService($lbRouteExtensionExtensionChainsExtensionsService);
-    $lbRouteExtensionExtensionChainsExtensions = [$extension,];
+    $lbRouteExtensionExtensionChainsExtensions = [$extension];
     $extensionChain = (new ExtensionChain())
         ->setName($lbRouteExtensionExtensionChainsName)
         ->setMatchCondition($lbRouteExtensionExtensionChainsMatchCondition)
         ->setExtensions($lbRouteExtensionExtensionChainsExtensions);
-    $lbRouteExtensionExtensionChains = [$extensionChain,];
+    $lbRouteExtensionExtensionChains = [$extensionChain];
     $lbRouteExtension = (new LbRouteExtension())
         ->setName($lbRouteExtensionName)
         ->setForwardingRules($lbRouteExtensionForwardingRules)

@@ -81,7 +81,9 @@ class RecreateInstancesInstanceGroupManagerRequest extends \Google\Protobuf\Inte
             ->setProject($project)
             ->setZone($zone)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersRecreateInstancesRequestResource($instanceGroupManagersRecreateInstancesRequestResource);
+            ->setInstanceGroupManagersRecreateInstancesRequestResource(
+                $instanceGroupManagersRecreateInstancesRequestResource
+            );
     }
 
     /**

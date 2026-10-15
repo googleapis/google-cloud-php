@@ -57,7 +57,7 @@ function batch_create_regions_sample(
         ->setParent($formattedRequestsParent)
         ->setRegionId($requestsRegionId)
         ->setRegion($requestsRegion);
-    $requests = [$createRegionRequest,];
+    $requests = [$createRegionRequest];
     $request = (new BatchCreateRegionsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

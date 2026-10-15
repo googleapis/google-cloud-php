@@ -65,7 +65,7 @@ function batch_update_child_publishers_sample(
         ->setDelegationType($requestsChildPublisherDelegationType);
     $updateChildPublisherRequest = (new UpdateChildPublisherRequest())
         ->setChildPublisher($requestsChildPublisher);
-    $requests = [$updateChildPublisherRequest,];
+    $requests = [$updateChildPublisherRequest];
     $request = (new BatchUpdateChildPublishersRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

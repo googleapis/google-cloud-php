@@ -69,7 +69,7 @@ function batch_create_orders_sample(
     $createOrderRequest = (new CreateOrderRequest())
         ->setParent($formattedRequestsParent)
         ->setOrder($requestsOrder);
-    $requests = [$createOrderRequest,];
+    $requests = [$createOrderRequest];
     $request = (new BatchCreateOrdersRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

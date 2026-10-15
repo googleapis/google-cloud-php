@@ -68,10 +68,10 @@ function create_hyperparameter_tuning_job_sample(
     $metricSpec = (new MetricSpec())
         ->setMetricId($hyperparameterTuningJobStudySpecMetricsMetricId)
         ->setGoal($hyperparameterTuningJobStudySpecMetricsGoal);
-    $hyperparameterTuningJobStudySpecMetrics = [$metricSpec,];
+    $hyperparameterTuningJobStudySpecMetrics = [$metricSpec];
     $parameterSpec = (new ParameterSpec())
         ->setParameterId($hyperparameterTuningJobStudySpecParametersParameterId);
-    $hyperparameterTuningJobStudySpecParameters = [$parameterSpec,];
+    $hyperparameterTuningJobStudySpecParameters = [$parameterSpec];
     $hyperparameterTuningJobStudySpec = (new StudySpec())
         ->setMetrics($hyperparameterTuningJobStudySpecMetrics)
         ->setParameters($hyperparameterTuningJobStudySpecParameters);

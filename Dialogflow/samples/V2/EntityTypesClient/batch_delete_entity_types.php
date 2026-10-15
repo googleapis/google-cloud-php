@@ -59,7 +59,7 @@ function batch_delete_entity_types_sample(
     $entityTypesClient = new EntityTypesClient();
 
     // Prepare the request message.
-    $entityTypeNames = [$entityTypeNamesElement,];
+    $entityTypeNames = [$entityTypeNamesElement];
     $request = (new BatchDeleteEntityTypesRequest())
         ->setParent($formattedParent)
         ->setEntityTypeNames($entityTypeNames);

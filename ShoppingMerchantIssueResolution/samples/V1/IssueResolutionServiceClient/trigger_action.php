@@ -70,7 +70,7 @@ function trigger_action_sample(
     // Prepare the request message.
     $inputValue = (new InputValue())
         ->setInputFieldId($payloadActionInputInputValuesInputFieldId);
-    $payloadActionInputInputValues = [$inputValue,];
+    $payloadActionInputInputValues = [$inputValue];
     $payloadActionInput = (new ActionInput())
         ->setActionFlowId($payloadActionInputActionFlowId)
         ->setInputValues($payloadActionInputInputValues);

@@ -51,7 +51,7 @@ function batch_update_teams_sample(string $formattedParent, string $requestsTeam
         ->setDisplayName($requestsTeamDisplayName);
     $updateTeamRequest = (new UpdateTeamRequest())
         ->setTeam($requestsTeam);
-    $requests = [$updateTeamRequest,];
+    $requests = [$updateTeamRequest];
     $request = (new BatchUpdateTeamsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

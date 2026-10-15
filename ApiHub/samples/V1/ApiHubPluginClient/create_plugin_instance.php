@@ -55,7 +55,7 @@ function create_plugin_instance_sample(
     // Prepare the request message.
     $pluginInstanceAction = (new PluginInstanceAction())
         ->setActionId($pluginInstanceActionsActionId);
-    $pluginInstanceActions = [$pluginInstanceAction,];
+    $pluginInstanceActions = [$pluginInstanceAction];
     $pluginInstance = (new PluginInstance())
         ->setDisplayName($pluginInstanceDisplayName)
         ->setActions($pluginInstanceActions);
