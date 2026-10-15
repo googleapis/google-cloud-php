@@ -39,7 +39,7 @@ class ReleaseVerifyCommand extends Command
     private const REPO_ID = 'googleapis/google-cloud-php';
     private const DOCS_URL = 'https://docs.cloud.google.com/php/docs/reference/%s/latest';
     private const DOCS_GRACE_PERIOD_DAYS = 7;
-    private const TABLE_HEADERS = ['Component', 'Version', 'Split Repo', 'Packagist', 'Docs'];
+    private const TABLE_HEADERS = ['Component', 'Version', 'Packagist', 'Docs'];
     private const VERIFY_MARKER_START = '<!-- RELEASE_VERIFY_START -->';
     private const VERIFY_MARKER_END = '<!-- RELEASE_VERIFY_END -->';
     private const FAILED_CHECK_CONCLUSIONS = ['failure', 'timed_out', 'cancelled', 'action_required'];
@@ -58,7 +58,7 @@ class ReleaseVerifyCommand extends Command
     protected function configure()
     {
         $this->setName('release:verify')
-            ->setDescription('Verifies that component releases exist on split repositories, Packagist, and Cloud RAD reference documentation.')
+            ->setDescription('Verifies that component releases exist on Packagist and Cloud RAD reference documentation.')
             ->addArgument('tag', InputArgument::OPTIONAL, 'The git tag of the release (e.g. v0.349.0)')
             ->addOption(
                 'component',
@@ -114,14 +114,13 @@ class ReleaseVerifyCommand extends Command
             $checkRuns = $this->verifyReleaseCheckRuns($github, $tag, $notFound, $pending);
         }
 
-        // 2. Verify each component release across Split Repo, Packagist, and Cloud RAD Docs
+        // 2. Verify each component release across Packagist and Cloud RAD Docs
         $cliRows = [];
         $markdownRows = [];
         $ageInDays = $this->getReleaseAgeInDays($publishedAt);
 
         foreach ($items as $item) {
             [$cliRow, $markdownRow] = $this->verifyComponentRelease(
-                $github,
                 $packagist,
                 $item['component'],
                 $item['version'],
@@ -260,7 +259,7 @@ class ReleaseVerifyCommand extends Command
     }
 
     /**
-     * Verify a single component release across Split Repo, Packagist, and Cloud RAD Docs,
+     * Verify a single component release across Packagist and Cloud RAD Docs,
      * returning both the CLI table row and the Markdown table row.
      *
      * @param string[] $notFound
@@ -268,7 +267,6 @@ class ReleaseVerifyCommand extends Command
      * @return array{0: string[], 1: string[]}
      */
     private function verifyComponentRelease(
-        GitHub $github,
         Packagist $packagist,
         Component $component,
         string $version,
@@ -281,17 +279,6 @@ class ReleaseVerifyCommand extends Command
 
         $cliRow = [$packageName, $version];
         $markdownRow = ['`' . $packageName . '`', '`' . $version . '`'];
-
-        // Check Split Repo tag
-        $splitUrl = sprintf('https://github.com/%s/releases/tag/%s', $component->getRepoName(), $tagVersion);
-        if ($github->doesTagExist($component->getRepoName(), $tagVersion)) {
-            $cliRow[] = '<info>OK</info>';
-            $markdownRow[] = sprintf('[OK](%s)', $splitUrl);
-        } else {
-            $cliRow[] = '<error>NOT FOUND</error>';
-            $markdownRow[] = 'NOT FOUND';
-            $notFound[] = sprintf('- [%s:%s (Split Repo)](%s)', $packageName, $tagVersion, $splitUrl);
-        }
 
         // Check Packagist version
         $packagistUrl = sprintf('https://packagist.org/packages/%s#%s', $packageName, $tagVersion);

@@ -70,11 +70,6 @@ class ReleaseVerifyCommandTest extends TestCase
         ])));
 
         // BillingBudgets (1.2.0)
-        $http->get(
-            'https://api.github.com/repos/googleapis/google-cloud-php-billing-budgets/releases/tags/v1.2.0',
-            ['auth' => ['', 'test-token']]
-        )->shouldBeCalledOnce()->willReturn(new Response(200));
-
         $http->get(Argument::that(
             fn ($url) => str_starts_with($url, 'https://packagist.org/packages/google/cloud-billing-budgets.json')
         ))->shouldBeCalledOnce()->willReturn(new Response(200, [], json_encode([
@@ -91,11 +86,6 @@ class ReleaseVerifyCommandTest extends TestCase
         ));
 
         // Build (0.7.2)
-        $http->get(
-            'https://api.github.com/repos/googleapis/google-cloud-php-build/releases/tags/v0.7.2',
-            ['auth' => ['', 'test-token']]
-        )->shouldBeCalledOnce()->willReturn(new Response(200));
-
         $http->get(Argument::that(
             fn ($url) => str_starts_with($url, 'https://packagist.org/packages/google/cloud-build.json')
         ))->shouldBeCalledOnce()->willReturn(new Response(200, [], json_encode([
@@ -152,11 +142,6 @@ class ReleaseVerifyCommandTest extends TestCase
                 ],
             ],
         ])));
-
-        $http->get(
-            'https://api.github.com/repos/googleapis/google-cloud-php-billing-budgets/releases/tags/v1.2.0',
-            ['auth' => ['', 'test-token']]
-        )->shouldBeCalledOnce()->willReturn(new Response(200));
 
         $http->get(Argument::that(
             fn ($url) => str_starts_with($url, 'https://packagist.org/packages/google/cloud-billing-budgets.json')
@@ -224,11 +209,6 @@ class ReleaseVerifyCommandTest extends TestCase
             'body' => '<details><summary>google/cloud-billing-budgets: 1.2.0</summary></details>',
         ])));
 
-        $http->get(
-            'https://api.github.com/repos/googleapis/google-cloud-php-billing-budgets/releases/tags/v1.2.0',
-            ['auth' => ['', 'test-token']]
-        )->shouldBeCalledOnce()->willReturn(new Response(200));
-
         $http->get(Argument::that(
             fn ($url) => str_starts_with($url, 'https://packagist.org/packages/google/cloud-billing-budgets.json')
         ))->shouldBeCalledOnce()->willReturn(new Response(200, [], json_encode([
@@ -271,11 +251,6 @@ class ReleaseVerifyCommandTest extends TestCase
             'body' => '<details><summary>google/cloud-billing-budgets: 1.2.0</summary></details>',
         ])));
 
-        $http->get(
-            'https://api.github.com/repos/googleapis/google-cloud-php-billing-budgets/releases/tags/v1.2.0',
-            ['auth' => ['', 'test-token']]
-        )->shouldBeCalledOnce()->willReturn(new Response(200));
-
         $http->get(Argument::that(
             fn ($url) => str_starts_with($url, 'https://packagist.org/packages/google/cloud-billing-budgets.json')
         ))->shouldBeCalledOnce()->willReturn(new Response(200, [], json_encode([
@@ -307,11 +282,6 @@ class ReleaseVerifyCommandTest extends TestCase
     public function testVerifyComponentWithoutTag()
     {
         $http = $this->prophesize(Client::class);
-
-        $http->get(
-            'https://api.github.com/repos/googleapis/google-cloud-php-billing-budgets/releases/tags/v1.2.0',
-            ['auth' => ['', 'test-token']]
-        )->shouldBeCalledOnce()->willReturn(new Response(200));
 
         $http->get(Argument::that(
             fn ($url) => str_starts_with($url, 'https://packagist.org/packages/google/cloud-billing-budgets.json')
