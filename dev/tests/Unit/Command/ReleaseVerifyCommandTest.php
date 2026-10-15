@@ -190,7 +190,8 @@ class ReleaseVerifyCommandTest extends TestCase
 
         $this->assertNotNull($capturedBody);
         $this->assertStringContainsString('<!-- RELEASE_VERIFY_START -->', $capturedBody);
-        $this->assertStringContainsString('## Release Verification: ❌ Failed', $capturedBody);
+        $this->assertStringContainsString("## Release Verification\n", $capturedBody);
+        $this->assertStringNotContainsString('## Release Verification: ✅ Verified', $capturedBody);
         $this->assertStringContainsString('<details><summary>❌ Post-Submit Checks</summary>', $capturedBody);
         $this->assertStringContainsString(
             '| [Coding Standards](https://github.com/googleapis/google-cloud-php/actions/runs/1/job/2) | ❌ FAILED |',

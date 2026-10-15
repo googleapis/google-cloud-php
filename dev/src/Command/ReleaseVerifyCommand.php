@@ -148,8 +148,7 @@ class ReleaseVerifyCommand extends Command
                 $releaseBody,
                 $markdownRows,
                 $checkMarkdownRows,
-                count($notFound) > 0,
-                count($pending) > 0
+                empty($notFound) && empty($pending)
             );
             $releaseUrl = sprintf('https://github.com/%s/releases/tag/%s', self::REPO_ID, $tag);
             $output->writeln('');
@@ -370,13 +369,11 @@ class ReleaseVerifyCommand extends Command
         string $releaseBody,
         array $componentRows,
         array $checkRows,
-        bool $hasFailures,
-        bool $hasPending
+        bool $isVerified
     ): string {
-        $statusLabel = $hasFailures ? '❌ Failed' : ($hasPending ? '⏳ Pending' : '✅ Verified');
         $lines = [
             self::VERIFY_MARKER_START,
-            sprintf('## Release Verification: %s', $statusLabel),
+            $isVerified ? '## Release Verification: ✅ Verified' : '## Release Verification',
             '',
         ];
 
