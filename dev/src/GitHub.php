@@ -39,6 +39,7 @@ class GitHub
     const GITHUB_WEBHOOKS_LIST_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/hooks';
     const GITHUB_WEBHOOK_UPDATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/hooks/%s';
     const GITHUB_CHECK_RUNS_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/commits/%s/check-runs';
+    private const FAILED_CHECK_CONCLUSIONS = ['failure', 'timed_out', 'cancelled', 'action_required'];
     private const GITHUB_TEAMS_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/teams';
     private const GITHUB_TEAMS_ADD_ENDPOINT = 'https://api.github.com/orgs/%s/teams/%s/repos/%s';
 
@@ -361,7 +362,7 @@ class GitHub
     }
 
     /**
-     * Get check runs for a commit ref or tag from the GitHub API.
+     * Get check runs for a commit ref or tag from the GitHub API, sorted by name.
      *
      * @param string $target The GitHub organization and repository ID separated
      *        by a forward slash, i.e. `organization/repository'.
@@ -384,11 +385,25 @@ class GitHub
             ]);
 
             $body = json_decode((string) $res->getBody(), true);
-            return $body['check_runs'] ?? null;
+            $checkRuns = $body['check_runs'] ?? null;
+            if (is_array($checkRuns)) {
+                usort($checkRuns, fn (array $a, array $b) => strcmp($a['name'] ?? '', $b['name'] ?? ''));
+            }
+            return $checkRuns;
         } catch (\Exception $e) {
             $this->logException($e);
             return null;
         }
+    }
+
+    /**
+     * Determine whether a GitHub Actions check run concluded with a failure status.
+     *
+     * @param array<string, mixed> $run
+     */
+    public static function isCheckRunFailed(array $run): bool
+    {
+        return in_array($run['conclusion'] ?? '', self::FAILED_CHECK_CONCLUSIONS, true);
     }
 
     public function updateRepoDetails(string $repoName, array $settings): bool
