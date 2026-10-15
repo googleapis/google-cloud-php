@@ -37,6 +37,7 @@ class ReleaseVerifyCommand extends Command
 {
     private const REPO_ID = 'googleapis/google-cloud-php';
     private const DOCS_GRACE_PERIOD_DAYS = 7;
+    private const CHECK_TABLE_HEADERS = ['Check', 'Status'];
     private const TABLE_HEADERS = ['Component', 'Version', 'Packagist', 'Docs'];
     private const VERIFY_MARKER_START = '<!-- RELEASE_VERIFY_START -->';
     private const VERIFY_MARKER_END = '<!-- RELEASE_VERIFY_END -->';
@@ -106,9 +107,18 @@ class ReleaseVerifyCommand extends Command
         $pending = [];
 
         // 1. Verify post-submit GitHub Actions check runs on the release tag
-        $checkRuns = [];
+        $checkCliRows = [];
+        $checkMarkdownRows = [];
         if ($tag !== null && !$componentOption) {
-            $checkRuns = $this->verifyReleaseCheckRuns($github, $tag, $notFound, $pending);
+            [$checkCliRows, $checkMarkdownRows] = $this->verifyReleaseCheckRuns(
+                $github,
+                $tag,
+                $notFound,
+                $pending
+            );
+            if (!empty($checkCliRows)) {
+                $this->renderCliTable($output, $tag, self::CHECK_TABLE_HEADERS, $checkCliRows);
+            }
         }
 
         // 2. Verify each component release across Packagist and Cloud RAD Docs
@@ -130,14 +140,14 @@ class ReleaseVerifyCommand extends Command
         }
 
         // 3. Render the CLI table
-        $this->renderCliTable($output, $tag, $cliRows);
+        $this->renderCliTable($output, $tag, self::TABLE_HEADERS, $cliRows);
 
         // 4. Optionally update the GitHub Release body with the collapsible verification table
         if ($updateRelease && $tag !== null && $releaseBody !== null) {
             $updatedBody = $this->withVerificationTable(
                 $releaseBody,
                 $markdownRows,
-                $checkRuns,
+                $checkMarkdownRows,
                 count($notFound) > 0,
                 count($pending) > 0
             );
@@ -231,11 +241,12 @@ class ReleaseVerifyCommand extends Command
     }
 
     /**
-     * Fetch and evaluate GitHub Actions check runs for a release tag.
+     * Fetch and evaluate GitHub Actions check runs for a release tag,
+     * returning both the CLI table rows and the Markdown table rows.
      *
      * @param string[] $notFound
      * @param string[] $pending
-     * @return array<int, array<string, mixed>>
+     * @return array{0: array<int, string[]>, 1: array<int, string[]>}
      */
     private function verifyReleaseCheckRuns(
         GitHub $github,
@@ -243,20 +254,31 @@ class ReleaseVerifyCommand extends Command
         array &$notFound,
         array &$pending
     ): array {
+        $cliRows = [];
+        $markdownRows = [];
         $checkRuns = $github->getCheckRuns(self::REPO_ID, $tag) ?? [];
         foreach ($checkRuns as $run) {
             $runName = $run['name'] ?? 'Unknown';
             $runUrl = $run['html_url'] ?? '';
+            $markdownLabel = $runUrl ? sprintf('[%s](%s)', $runName, $runUrl) : $runName;
+
             if (($run['status'] ?? '') !== 'completed') {
+                $cliRows[] = [$runName, '<comment>PENDING</comment>'];
+                $markdownRows[] = [$markdownLabel, '⏳ PENDING'];
                 $pending[] = sprintf('%s: %s (Check Run)', $tag, $runName);
             } elseif (GitHub::isCheckRunFailed($run)) {
+                $cliRows[] = [$runName, '<error>FAILED</error>'];
+                $markdownRows[] = [$markdownLabel, '❌ FAILED'];
                 $notFound[] = $runUrl
                     ? sprintf('- [%s (Check Run)](%s)', $runName, $runUrl)
                     : sprintf('- %s (Check Run)', $runName);
+            } else {
+                $cliRows[] = [$runName, '<info>OK</info>'];
+                $markdownRows[] = [$markdownLabel, '✅ OK'];
             }
         }
 
-        return $checkRuns;
+        return [$cliRows, $markdownRows];
     }
 
     /**
@@ -312,17 +334,18 @@ class ReleaseVerifyCommand extends Command
     }
 
     /**
-     * Render the verification results table to the console output.
+     * Render a verification results table to the console output.
      *
+     * @param string[] $headers
      * @param array<int, string[]> $rows
      */
-    private function renderCliTable(OutputInterface $output, ?string $tag, array $rows): void
+    private function renderCliTable(OutputInterface $output, ?string $tag, array $headers, array $rows): void
     {
-        $tableHeaders = [self::TABLE_HEADERS];
+        $tableHeaders = [$headers];
         if ($tag !== null) {
             // Prepend a full-width banner row displaying the release tag name
             $tagBanner = new TableCell($tag, [
-                'colspan' => count(self::TABLE_HEADERS),
+                'colspan' => count($headers),
                 'style' => new TableCellStyle([
                     'align' => 'center',
                     'cellFormat' => '<info>%s</info>',
@@ -341,12 +364,12 @@ class ReleaseVerifyCommand extends Command
      * Build and upsert the collapsible release verification Markdown section into the release body.
      *
      * @param array<int, string[]> $componentRows
-     * @param array<int, array<string, mixed>> $checkRuns
+     * @param array<int, string[]> $checkRows
      */
     private function withVerificationTable(
         string $releaseBody,
         array $componentRows,
-        array $checkRuns,
+        array $checkRows,
         bool $hasFailures,
         bool $hasPending
     ): string {
@@ -357,58 +380,18 @@ class ReleaseVerifyCommand extends Command
             '',
         ];
 
-        if (!empty($checkRuns)) {
-            $checksFailed = false;
-            $checksPending = false;
-            $checkRows = [];
-            foreach ($checkRuns as $run) {
-                $runName = $run['name'] ?? 'Unknown';
-                $runUrl = $run['html_url'] ?? '';
-                $label = $runUrl ? sprintf('[%s](%s)', $runName, $runUrl) : $runName;
-                if (($run['status'] ?? '') !== 'completed') {
-                    $status = '⏳ PENDING';
-                    $checksPending = true;
-                } elseif (GitHub::isCheckRunFailed($run)) {
-                    $status = '❌ FAILED';
-                    $checksFailed = true;
-                } else {
-                    $status = '✅ OK';
-                }
-                $checkRows[] = sprintf('| %s | %s |', $label, $status);
-            }
-
-            $checksIcon = $checksFailed ? '❌' : ($checksPending ? '⏳' : '✅');
-            $lines[] = sprintf('<details><summary>%s Post-Submit Checks</summary>', $checksIcon);
-            $lines[] = '';
-            $lines[] = '| Check | Status |';
-            $lines[] = '| --- | --- |';
-            array_push($lines, ...$checkRows);
-            $lines[] = '';
-            $lines[] = '</details>';
+        if (!empty($checkRows)) {
+            array_push(
+                $lines,
+                ...$this->formatDetailsTable('Post-Submit Checks', self::CHECK_TABLE_HEADERS, $checkRows)
+            );
             $lines[] = '';
         }
 
-        $componentsFailed = false;
-        $componentsPending = false;
-        foreach ($componentRows as $row) {
-            $rowText = implode(' ', $row);
-            if (str_contains($rowText, 'NOT FOUND')) {
-                $componentsFailed = true;
-            } elseif (str_contains($rowText, 'PENDING')) {
-                $componentsPending = true;
-            }
-        }
-        $componentsIcon = $componentsFailed ? '❌' : ($componentsPending ? '⏳' : '✅');
-
-        $lines[] = sprintf('<details><summary>%s Component Releases</summary>', $componentsIcon);
-        $lines[] = '';
-        $lines[] = '| ' . implode(' | ', self::TABLE_HEADERS) . ' |';
-        $lines[] = '| ' . implode(' | ', array_fill(0, count(self::TABLE_HEADERS), '---')) . ' |';
-        foreach ($componentRows as $row) {
-            $lines[] = '| ' . implode(' | ', $row) . ' |';
-        }
-        $lines[] = '';
-        $lines[] = '</details>';
+        array_push(
+            $lines,
+            ...$this->formatDetailsTable('Component Releases', self::TABLE_HEADERS, $componentRows)
+        );
         $lines[] = self::VERIFY_MARKER_END;
 
         $verifyMarkdown = implode("\n", $lines);
@@ -422,5 +405,41 @@ class ReleaseVerifyCommand extends Command
         }
 
         return rtrim($releaseBody) . "\n\n" . $verifyMarkdown;
+    }
+
+    /**
+     * Format a collapsible Markdown `<details>` table with a status emoji in the summary.
+     *
+     * @param string[] $headers
+     * @param array<int, string[]> $rows
+     * @return string[]
+     */
+    private function formatDetailsTable(string $title, array $headers, array $rows): array
+    {
+        $hasFailed = false;
+        $hasPending = false;
+        foreach ($rows as $row) {
+            $rowText = implode(' ', $row);
+            if (str_contains($rowText, '❌')) {
+                $hasFailed = true;
+            } elseif (str_contains($rowText, '⏳')) {
+                $hasPending = true;
+            }
+        }
+        $icon = $hasFailed ? '❌' : ($hasPending ? '⏳' : '✅');
+
+        $lines = [
+            sprintf('<details><summary>%s %s</summary>', $icon, $title),
+            '',
+            '| ' . implode(' | ', $headers) . ' |',
+            '| ' . implode(' | ', array_fill(0, count($headers), '---')) . ' |',
+        ];
+        foreach ($rows as $row) {
+            $lines[] = '| ' . implode(' | ', $row) . ' |';
+        }
+        $lines[] = '';
+        $lines[] = '</details>';
+
+        return $lines;
     }
 }

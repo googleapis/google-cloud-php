@@ -107,6 +107,7 @@ class ReleaseVerifyCommandTest extends TestCase
         $this->assertSame(0, $exitCode);
         $display = $commandTester->getDisplay();
         $this->assertStringContainsString('v0.349.0', $display);
+        $this->assertStringContainsString('Coding Standards', $display);
         $this->assertStringContainsString('google/cloud-billing-budgets', $display);
         $this->assertStringContainsString('google/cloud-build', $display);
     }
@@ -176,6 +177,8 @@ class ReleaseVerifyCommandTest extends TestCase
 
         $this->assertSame(1, $exitCode);
         $display = $commandTester->getDisplay();
+        $this->assertStringContainsString('Coding Standards', $display);
+        $this->assertStringContainsString('FAILED', $display);
         $this->assertStringContainsString(
             '- [Coding Standards (Check Run)](https://github.com/googleapis/google-cloud-php/actions/runs/1/job/2)',
             $display
