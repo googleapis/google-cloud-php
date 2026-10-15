@@ -275,10 +275,10 @@ class ReleaseVerifyCommand extends Command
         $packagistUrl = sprintf('https://packagist.org/packages/%s#%s', $packageName, $tagVersion);
         if ($packagist->versionExists($packageName, $tagVersion)) {
             $cliRow[] = '<info>OK</info>';
-            $markdownRow[] = sprintf('[OK](%s)', $packagistUrl);
+            $markdownRow[] = sprintf('[✅ OK](%s)', $packagistUrl);
         } else {
             $cliRow[] = '<error>NOT FOUND</error>';
-            $markdownRow[] = 'NOT FOUND';
+            $markdownRow[] = '❌ NOT FOUND';
             $notFound[] = sprintf('- [%s:%s (Packagist)](%s)', $packageName, $tagVersion, $packagistUrl);
         }
 
@@ -287,14 +287,14 @@ class ReleaseVerifyCommand extends Command
         $isWithinGracePeriod = $ageInDays !== null && $ageInDays < self::DOCS_GRACE_PERIOD_DAYS;
         if ($component->docsVersionExists($version, $this->httpClient)) {
             $cliRow[] = '<info>OK</info>';
-            $markdownRow[] = sprintf('[OK](%s)', $docsUrl);
+            $markdownRow[] = sprintf('[✅ OK](%s)', $docsUrl);
         } elseif ($isWithinGracePeriod) {
             $cliRow[] = sprintf('<comment>PENDING (%dd old)</comment>', $ageInDays);
-            $markdownRow[] = sprintf('PENDING (%dd old)', $ageInDays);
+            $markdownRow[] = sprintf('⏳ PENDING (%dd old)', $ageInDays);
             $pending[] = sprintf('%s:%s (Docs)', $packageName, $tagVersion);
         } else {
             $cliRow[] = '<error>NOT FOUND</error>';
-            $markdownRow[] = 'NOT FOUND';
+            $markdownRow[] = '❌ NOT FOUND';
             $notFound[] = sprintf('- [%s:%s (Docs)](%s)', $packageName, $tagVersion, $docsUrl);
         }
 
@@ -340,40 +340,63 @@ class ReleaseVerifyCommand extends Command
         bool $hasFailures,
         bool $hasPending
     ): string {
-        $statusLabel = $hasFailures ? 'FAILED' : ($hasPending ? 'PENDING' : 'VERIFIED');
+        $statusLabel = $hasFailures ? '❌ Failed' : ($hasPending ? '⏳ Pending' : '✅ Verified');
         $lines = [
             self::VERIFY_MARKER_START,
-            sprintf('<details><summary>Release Verification (%s)</summary>', $statusLabel),
+            sprintf('## Release Verification: %s', $statusLabel),
             '',
         ];
 
         if (!empty($checkRuns)) {
-            $lines[] = '### Post-Submit Checks';
-            $lines[] = '| Check | Status |';
-            $lines[] = '| --- | --- |';
+            $checksFailed = false;
+            $checksPending = false;
+            $checkRows = [];
             foreach ($checkRuns as $run) {
                 $runName = $run['name'] ?? 'Unknown';
                 $runUrl = $run['html_url'] ?? '';
                 $label = $runUrl ? sprintf('[%s](%s)', $runName, $runUrl) : $runName;
                 if (($run['status'] ?? '') !== 'completed') {
-                    $status = 'PENDING';
+                    $status = '⏳ PENDING';
+                    $checksPending = true;
                 } elseif (GitHub::isCheckRunFailed($run)) {
-                    $status = 'FAILED';
+                    $status = '❌ FAILED';
+                    $checksFailed = true;
                 } else {
-                    $status = 'OK';
+                    $status = '✅ OK';
                 }
-                $lines[] = sprintf('| %s | %s |', $label, $status);
+                $checkRows[] = sprintf('| %s | %s |', $label, $status);
             }
+
+            $checksIcon = $checksFailed ? '❌' : ($checksPending ? '⏳' : '✅');
+            $lines[] = sprintf('<details><summary>%s Post-Submit Checks</summary>', $checksIcon);
+            $lines[] = '';
+            $lines[] = '| Check | Status |';
+            $lines[] = '| --- | --- |';
+            array_push($lines, ...$checkRows);
+            $lines[] = '';
+            $lines[] = '</details>';
             $lines[] = '';
         }
 
-        $lines[] = '### Component Releases';
+        $componentsFailed = false;
+        $componentsPending = false;
+        foreach ($componentRows as $row) {
+            $rowText = implode(' ', $row);
+            if (str_contains($rowText, 'NOT FOUND')) {
+                $componentsFailed = true;
+            } elseif (str_contains($rowText, 'PENDING')) {
+                $componentsPending = true;
+            }
+        }
+        $componentsIcon = $componentsFailed ? '❌' : ($componentsPending ? '⏳' : '✅');
+
+        $lines[] = sprintf('<details><summary>%s Component Releases</summary>', $componentsIcon);
+        $lines[] = '';
         $lines[] = '| ' . implode(' | ', self::TABLE_HEADERS) . ' |';
         $lines[] = '| ' . implode(' | ', array_fill(0, count(self::TABLE_HEADERS), '---')) . ' |';
         foreach ($componentRows as $row) {
             $lines[] = '| ' . implode(' | ', $row) . ' |';
         }
-
         $lines[] = '';
         $lines[] = '</details>';
         $lines[] = self::VERIFY_MARKER_END;

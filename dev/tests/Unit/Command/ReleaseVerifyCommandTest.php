@@ -184,11 +184,13 @@ class ReleaseVerifyCommandTest extends TestCase
 
         $this->assertNotNull($capturedBody);
         $this->assertStringContainsString('<!-- RELEASE_VERIFY_START -->', $capturedBody);
-        $this->assertStringContainsString('Release Verification (FAILED)', $capturedBody);
+        $this->assertStringContainsString('## Release Verification: ❌ Failed', $capturedBody);
+        $this->assertStringContainsString('<details><summary>❌ Post-Submit Checks</summary>', $capturedBody);
         $this->assertStringContainsString(
-            '| [Coding Standards](https://github.com/googleapis/google-cloud-php/actions/runs/1/job/2) | FAILED |',
+            '| [Coding Standards](https://github.com/googleapis/google-cloud-php/actions/runs/1/job/2) | ❌ FAILED |',
             $capturedBody
         );
+        $this->assertStringContainsString('<details><summary>✅ Component Releases</summary>', $capturedBody);
 
         // Verify ReleaseNotes ignores the appended verification section
         $releaseNotes = new ReleaseNotes($capturedBody);
