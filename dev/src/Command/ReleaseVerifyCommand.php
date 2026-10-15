@@ -38,6 +38,8 @@ class ReleaseVerifyCommand extends Command
     private const REPO_ID = 'googleapis/google-cloud-php';
     private const DOCS_GRACE_PERIOD_DAYS = 7;
     private const TABLE_HEADERS = ['Component', 'Version', 'Packagist', 'Docs'];
+    private const VERIFY_MARKER_START = '<!-- RELEASE_VERIFY_START -->';
+    private const VERIFY_MARKER_END = '<!-- RELEASE_VERIFY_END -->';
 
     private Client $httpClient;
 
@@ -93,7 +95,7 @@ class ReleaseVerifyCommand extends Command
         $github = new GitHub(new RunShell(), $this->httpClient, $token, $output);
         $packagist = new Packagist($this->httpClient, '', '', null, $output);
 
-        [$releaseNotes, $publishedAt, $items] = $this->getComponentsToVerify(
+        [$releaseBody, $publishedAt, $items] = $this->getComponentsToVerify(
             $github,
             $tag,
             $componentOption,
@@ -131,9 +133,9 @@ class ReleaseVerifyCommand extends Command
         $this->renderCliTable($output, $tag, $cliRows);
 
         // 4. Optionally update the GitHub Release body with the collapsible verification table
-        if ($updateRelease && $tag !== null && $releaseNotes !== null) {
-            $updatedBody = $releaseNotes->withVerificationTable(
-                self::TABLE_HEADERS,
+        if ($updateRelease && $tag !== null && $releaseBody !== null) {
+            $updatedBody = $this->withVerificationTable(
+                $releaseBody,
                 $markdownRows,
                 $checkRuns,
                 count($notFound) > 0,
@@ -166,11 +168,11 @@ class ReleaseVerifyCommand extends Command
     }
 
     /**
-     * Resolve the release notes, publish date, and component versions to verify:
+     * Resolve the release body, publish date, and component versions to verify:
      * - If `tag` is provided, fetches that monorepo GitHub release and extracts the released component versions.
      * - Otherwise, returns the current local version of all components (or `-c` component).
      *
-     * @return array{0: ?ReleaseNotes, 1: ?DateTime, 2: array<int, array{component: Component, version: string}>}
+     * @return array{0: ?string, 1: ?DateTime, 2: array<int, array{component: Component, version: string}>}
      */
     private function getComponentsToVerify(
         GitHub $github,
@@ -201,7 +203,7 @@ class ReleaseVerifyCommand extends Command
                 }
             }
 
-            return [$releaseNotes, $publishedAt, $items];
+            return [$release['body'], $publishedAt, $items];
         }
 
         $items = [];
@@ -323,5 +325,69 @@ class ReleaseVerifyCommand extends Command
             ->setHeaders($tableHeaders)
             ->setRows($rows)
             ->render();
+    }
+
+    /**
+     * Build and upsert the collapsible release verification Markdown section into the release body.
+     *
+     * @param array<int, string[]> $componentRows
+     * @param array<int, array<string, mixed>> $checkRuns
+     */
+    private function withVerificationTable(
+        string $releaseBody,
+        array $componentRows,
+        array $checkRuns,
+        bool $hasFailures,
+        bool $hasPending
+    ): string {
+        $statusLabel = $hasFailures ? 'FAILED' : ($hasPending ? 'PENDING' : 'VERIFIED');
+        $lines = [
+            self::VERIFY_MARKER_START,
+            sprintf('<details><summary>Release Verification (%s)</summary>', $statusLabel),
+            '',
+        ];
+
+        if (!empty($checkRuns)) {
+            $lines[] = '### Post-Submit Checks';
+            $lines[] = '| Check | Status |';
+            $lines[] = '| --- | --- |';
+            foreach ($checkRuns as $run) {
+                $runName = $run['name'] ?? 'Unknown';
+                $runUrl = $run['html_url'] ?? '';
+                $label = $runUrl ? sprintf('[%s](%s)', $runName, $runUrl) : $runName;
+                if (($run['status'] ?? '') !== 'completed') {
+                    $status = 'PENDING';
+                } elseif (GitHub::isCheckRunFailed($run)) {
+                    $status = 'FAILED';
+                } else {
+                    $status = 'OK';
+                }
+                $lines[] = sprintf('| %s | %s |', $label, $status);
+            }
+            $lines[] = '';
+        }
+
+        $lines[] = '### Component Releases';
+        $lines[] = '| ' . implode(' | ', self::TABLE_HEADERS) . ' |';
+        $lines[] = '| ' . implode(' | ', array_fill(0, count(self::TABLE_HEADERS), '---')) . ' |';
+        foreach ($componentRows as $row) {
+            $lines[] = '| ' . implode(' | ', $row) . ' |';
+        }
+
+        $lines[] = '';
+        $lines[] = '</details>';
+        $lines[] = self::VERIFY_MARKER_END;
+
+        $verifyMarkdown = implode("\n", $lines);
+        $pattern = sprintf(
+            '/%s.*?%s/s',
+            preg_quote(self::VERIFY_MARKER_START, '/'),
+            preg_quote(self::VERIFY_MARKER_END, '/')
+        );
+        if (preg_match($pattern, $releaseBody)) {
+            return (string) preg_replace($pattern, $verifyMarkdown, $releaseBody);
+        }
+
+        return rtrim($releaseBody) . "\n\n" . $verifyMarkdown;
     }
 }
