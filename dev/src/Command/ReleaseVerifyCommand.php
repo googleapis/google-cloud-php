@@ -25,6 +25,7 @@ use Google\Cloud\Dev\ReleaseNotes;
 use Google\Cloud\Dev\RunShell;
 use GuzzleHttp\Client;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableCell;
 use Symfony\Component\Console\Helper\TableCellStyle;
@@ -96,6 +97,13 @@ class ReleaseVerifyCommand extends Command
         $github = new GitHub(new RunShell(), $this->httpClient, $token, $output);
         $packagist = new Packagist($this->httpClient, '', '', null, $output);
 
+        $statusBar = new ProgressBar($output);
+        $statusBar->setFormat(' %message%');
+        if ($tag !== null) {
+            $statusBar->setMessage(sprintf('<comment>Fetching release %s...</comment>', $tag));
+            $statusBar->start();
+        }
+
         [$releaseBody, $publishedAt, $items] = $this->getComponentsToVerify(
             $github,
             $tag,
@@ -110,14 +118,25 @@ class ReleaseVerifyCommand extends Command
         $checkCliRows = [];
         $checkMarkdownRows = [];
         if ($tag !== null && !$componentOption) {
+            $statusBar->setMessage(sprintf('<comment>Verifying post-submit checks for %s...</comment>', $tag));
+            $statusBar->display();
             [$checkCliRows, $checkMarkdownRows] = $this->verifyReleaseCheckRuns(
                 $github,
                 $tag,
                 $notFound,
                 $pending
             );
+            $statusBar->clear();
+            if (!$output->isDecorated()) {
+                $output->writeln('');
+            }
             if (!empty($checkCliRows)) {
                 $this->renderCliTable($output, $tag, self::CHECK_TABLE_HEADERS, $checkCliRows);
+            }
+        } elseif ($tag !== null) {
+            $statusBar->clear();
+            if (!$output->isDecorated()) {
+                $output->writeln('');
             }
         }
 
@@ -126,17 +145,47 @@ class ReleaseVerifyCommand extends Command
         $markdownRows = [];
         $ageInDays = $publishedAt ? max(0, (int) floor((time() - $publishedAt->getTimestamp()) / 86400)) : null;
 
-        foreach ($items as $item) {
-            [$cliRow, $markdownRow] = $this->verifyComponentRelease(
-                $packagist,
-                $item['component'],
-                $item['version'],
-                $ageInDays,
-                $notFound,
-                $pending
-            );
-            $cliRows[] = $cliRow;
-            $markdownRows[] = $markdownRow;
+        if (!empty($items)) {
+            $progressBar = new ProgressBar($output, count($items));
+            $progressBar->setRedrawFrequency(1);
+            $progressBar->minSecondsBetweenRedraws(0);
+            $progressBar->setFormat(' %current%/%max% [%bar%] %percent:3s%% %message%');
+            $progressBar->setMessage(sprintf(
+                '<comment>Verifying %s (%s)...</comment>',
+                $items[0]['component']->getPackageName(),
+                $items[0]['version']
+            ));
+            $progressBar->start();
+
+            foreach ($items as $i => $item) {
+                [$cliRow, $markdownRow] = $this->verifyComponentRelease(
+                    $packagist,
+                    $item['component'],
+                    $item['version'],
+                    $ageInDays,
+                    $notFound,
+                    $pending
+                );
+                $cliRows[] = $cliRow;
+                $markdownRows[] = $markdownRow;
+
+                $nextItem = $items[$i + 1] ?? null;
+                $progressBar->setMessage($nextItem
+                    ? sprintf(
+                        '<comment>Verifying %s (%s)...</comment>',
+                        $nextItem['component']->getPackageName(),
+                        $nextItem['version']
+                    )
+                    : '<info>Component verification complete.</info>'
+                );
+                $progressBar->advance();
+            }
+
+            $progressBar->finish();
+            $progressBar->clear();
+            if (!$output->isDecorated()) {
+                $output->writeln('');
+            }
         }
 
         // 3. Render the CLI table
