@@ -141,10 +141,20 @@ class ReleaseVerifyCommand extends Command
                 count($notFound) > 0,
                 count($pending) > 0
             );
+            $releaseUrl = sprintf('https://github.com/%s/releases/tag/%s', self::REPO_ID, $tag);
+            $output->writeln('');
             if ($github->updateReleaseNotes(self::REPO_ID, $tag, $updatedBody)) {
-                $output->writeln(sprintf('<info>Updated release verification table for %s</info>', $tag));
+                $output->writeln(sprintf(
+                    '<bg=green;fg=black;options=bold> RELEASE UPDATED </> <info>Updated release verification table for %s:</info> %s',
+                    $tag,
+                    $releaseUrl
+                ));
             } else {
-                $output->writeln(sprintf('<error>Failed to update release notes for %s</error>', $tag));
+                $output->writeln(sprintf(
+                    '<error>Failed to update release notes for %s (%s)</error>',
+                    $tag,
+                    $releaseUrl
+                ));
             }
         }
 

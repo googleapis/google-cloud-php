@@ -180,7 +180,10 @@ class ReleaseVerifyCommandTest extends TestCase
             '- [Coding Standards (Check Run)](https://github.com/googleapis/google-cloud-php/actions/runs/1/job/2)',
             $display
         );
-        $this->assertStringContainsString('Updated release verification table for v0.349.0', $display);
+        $this->assertStringContainsString(
+            'Updated release verification table for v0.349.0: https://github.com/googleapis/google-cloud-php/releases/tag/v0.349.0',
+            $display
+        );
 
         $this->assertNotNull($capturedBody);
         $this->assertStringContainsString('<!-- RELEASE_VERIFY_START -->', $capturedBody);
