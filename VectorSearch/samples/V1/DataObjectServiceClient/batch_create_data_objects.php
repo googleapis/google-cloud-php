@@ -61,7 +61,7 @@ function batch_create_data_objects_sample(
         ->setParent($formattedRequestsParent)
         ->setDataObjectId($requestsDataObjectId)
         ->setDataObject($requestsDataObject);
-    $requests = [$createDataObjectRequest,];
+    $requests = [$createDataObjectRequest];
     $request = (new BatchCreateDataObjectsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

@@ -47,7 +47,7 @@ function remove_assets_from_group_sample(
     $migrationCenterClient = new MigrationCenterClient();
 
     // Prepare the request message.
-    $formattedAssetsAssetIds = [$formattedAssetsAssetIdsElement,];
+    $formattedAssetsAssetIds = [$formattedAssetsAssetIdsElement];
     $assets = (new AssetList())
         ->setAssetIds($formattedAssetsAssetIds);
     $request = (new RemoveAssetsFromGroupRequest())

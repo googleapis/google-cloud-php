@@ -49,7 +49,7 @@ function acknowledge_sample(string $formattedSubscription, string $ackIdsElement
     $subscriberClient = new SubscriberClient();
 
     // Prepare the request message.
-    $ackIds = [$ackIdsElement,];
+    $ackIds = [$ackIdsElement];
     $request = (new AcknowledgeRequest())
         ->setSubscription($formattedSubscription)
         ->setAckIds($ackIds);

@@ -58,7 +58,7 @@ function batch_update_contacts_sample(
         ->setCompany($formattedRequestsContactCompany);
     $updateContactRequest = (new UpdateContactRequest())
         ->setContact($requestsContact);
-    $requests = [$updateContactRequest,];
+    $requests = [$updateContactRequest];
     $request = (new BatchUpdateContactsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

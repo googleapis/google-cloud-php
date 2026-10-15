@@ -53,7 +53,7 @@ function batch_update_partners_sample(
         ->setDisplayName($requestsPartnerDisplayName);
     $updatePartnerRequest = (new UpdatePartnerRequest())
         ->setPartner($requestsPartner);
-    $requests = [$updatePartnerRequest,];
+    $requests = [$updatePartnerRequest];
     $request = (new BatchUpdatePartnersRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

@@ -50,7 +50,7 @@ function test_iam_permissions_sample(string $resource, string $permissionsElemen
     $genAiCacheServiceClient = new GenAiCacheServiceClient();
 
     // Prepare the request message.
-    $permissions = [$permissionsElement,];
+    $permissions = [$permissionsElement];
     $request = (new TestIamPermissionsRequest())
         ->setResource($resource)
         ->setPermissions($permissions);

@@ -46,7 +46,7 @@ function batch_activate_line_items_sample(
     $lineItemServiceClient = new LineItemServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchActivateLineItemsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

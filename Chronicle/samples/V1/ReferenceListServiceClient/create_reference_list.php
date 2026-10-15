@@ -59,7 +59,7 @@ function create_reference_list_sample(
     // Prepare the request message.
     $referenceListEntry = (new ReferenceListEntry())
         ->setValue($referenceListEntriesValue);
-    $referenceListEntries = [$referenceListEntry,];
+    $referenceListEntries = [$referenceListEntry];
     $referenceList = (new ReferenceList())
         ->setDescription($referenceListDescription)
         ->setEntries($referenceListEntries)

@@ -65,7 +65,7 @@ function batch_update_dai_encoding_profiles_sample(
         ->setContainerType($requestsDaiEncodingProfileContainerType);
     $updateDaiEncodingProfileRequest = (new UpdateDaiEncodingProfileRequest())
         ->setDaiEncodingProfile($requestsDaiEncodingProfile);
-    $requests = [$updateDaiEncodingProfileRequest,];
+    $requests = [$updateDaiEncodingProfileRequest];
     $request = (new BatchUpdateDaiEncodingProfilesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

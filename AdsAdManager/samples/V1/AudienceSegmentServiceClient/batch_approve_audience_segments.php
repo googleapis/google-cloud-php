@@ -45,7 +45,7 @@ function batch_approve_audience_segments_sample(
     $audienceSegmentServiceClient = new AudienceSegmentServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchApproveAudienceSegmentsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

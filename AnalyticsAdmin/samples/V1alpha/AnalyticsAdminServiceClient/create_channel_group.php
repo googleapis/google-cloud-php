@@ -53,7 +53,7 @@ function create_channel_group_sample(
     $groupingRule = (new GroupingRule())
         ->setDisplayName($channelGroupGroupingRuleDisplayName)
         ->setExpression($channelGroupGroupingRuleExpression);
-    $channelGroupGroupingRule = [$groupingRule,];
+    $channelGroupGroupingRule = [$groupingRule];
     $channelGroup = (new ChannelGroup())
         ->setDisplayName($channelGroupDisplayName)
         ->setGroupingRule($channelGroupGroupingRule);

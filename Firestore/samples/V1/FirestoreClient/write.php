@@ -50,7 +50,7 @@ function write_sample(string $database): void
     try {
         /** @var BidiStream $stream */
         $stream = $firestoreClient->write();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var WriteResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

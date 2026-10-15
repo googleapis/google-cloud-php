@@ -48,6 +48,14 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string service_account = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $service_account = '';
+    /**
+     * Optional. Indicates whether the notifications will be sent for deleted
+     * findings. When enabled, the filter defined in the streaming config is still
+     * respected when sending deletion notifications.
+     *
+     * Generated from protobuf field <code>bool deletion_notifications_enabled = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $deletion_notifications_enabled = false;
     protected $notify_config;
 
     /**
@@ -73,6 +81,10 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      *           permission to publish to the Pub/Sub topic.
      *     @type \Google\Cloud\SecurityCenter\V1\NotificationConfig\StreamingConfig $streaming_config
      *           The config for triggering streaming-based notifications.
+     *     @type bool $deletion_notifications_enabled
+     *           Optional. Indicates whether the notifications will be sent for deleted
+     *           findings. When enabled, the filter defined in the streaming config is still
+     *           respected when sending deletion notifications.
      * }
      */
     public function __construct($data = NULL) {
@@ -225,6 +237,36 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\NotificationConfig\StreamingConfig::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates whether the notifications will be sent for deleted
+     * findings. When enabled, the filter defined in the streaming config is still
+     * respected when sending deletion notifications.
+     *
+     * Generated from protobuf field <code>bool deletion_notifications_enabled = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDeletionNotificationsEnabled()
+    {
+        return $this->deletion_notifications_enabled;
+    }
+
+    /**
+     * Optional. Indicates whether the notifications will be sent for deleted
+     * findings. When enabled, the filter defined in the streaming config is still
+     * respected when sending deletion notifications.
+     *
+     * Generated from protobuf field <code>bool deletion_notifications_enabled = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDeletionNotificationsEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->deletion_notifications_enabled = $var;
 
         return $this;
     }

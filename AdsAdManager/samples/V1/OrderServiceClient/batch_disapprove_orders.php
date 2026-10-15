@@ -46,7 +46,7 @@ function batch_disapprove_orders_sample(
     $orderServiceClient = new OrderServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchDisapproveOrdersRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

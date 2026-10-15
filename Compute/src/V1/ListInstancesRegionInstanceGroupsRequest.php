@@ -143,7 +143,9 @@ class ListInstancesRegionInstanceGroupsRequest extends \Google\Protobuf\Internal
             ->setProject($project)
             ->setRegion($region)
             ->setInstanceGroup($instanceGroup)
-            ->setRegionInstanceGroupsListInstancesRequestResource($regionInstanceGroupsListInstancesRequestResource);
+            ->setRegionInstanceGroupsListInstancesRequestResource(
+                $regionInstanceGroupsListInstancesRequestResource
+            );
     }
 
     /**

@@ -52,7 +52,7 @@ function update_volume_sample(
 
     // Prepare the request message.
     $updateMask = new FieldMask();
-    $volumeProtocols = [$volumeProtocolsElement,];
+    $volumeProtocols = [$volumeProtocolsElement];
     $volume = (new Volume())
         ->setShareName($volumeShareName)
         ->setStoragePool($formattedVolumeStoragePool)

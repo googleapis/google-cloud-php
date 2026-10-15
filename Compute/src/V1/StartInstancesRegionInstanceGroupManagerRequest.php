@@ -72,7 +72,9 @@ class StartInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\I
             ->setProject($project)
             ->setRegion($region)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setRegionInstanceGroupManagersStartInstancesRequestResource($regionInstanceGroupManagersStartInstancesRequestResource);
+            ->setRegionInstanceGroupManagersStartInstancesRequestResource(
+                $regionInstanceGroupManagersStartInstancesRequestResource
+            );
     }
 
     /**

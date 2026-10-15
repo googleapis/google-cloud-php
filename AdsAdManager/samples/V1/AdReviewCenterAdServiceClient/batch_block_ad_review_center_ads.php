@@ -64,7 +64,7 @@ function batch_block_ad_review_center_ads_sample(
     $adReviewCenterAdServiceClient = new AdReviewCenterAdServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchBlockAdReviewCenterAdsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

@@ -54,7 +54,7 @@ function batch_create_break_templates_sample(
     $createBreakTemplateRequest = (new CreateBreakTemplateRequest())
         ->setParent($formattedRequestsParent)
         ->setBreakTemplate($requestsBreakTemplate);
-    $requests = [$createBreakTemplateRequest,];
+    $requests = [$createBreakTemplateRequest];
     $request = (new BatchCreateBreakTemplatesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

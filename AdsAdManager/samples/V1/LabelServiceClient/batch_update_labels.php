@@ -52,13 +52,13 @@ function batch_update_labels_sample(
     $labelServiceClient = new LabelServiceClient();
 
     // Prepare the request message.
-    $requestsLabelTypes = [$requestsLabelTypesElement,];
+    $requestsLabelTypes = [$requestsLabelTypesElement];
     $requestsLabel = (new Label())
         ->setDisplayName($requestsLabelDisplayName)
         ->setTypes($requestsLabelTypes);
     $updateLabelRequest = (new UpdateLabelRequest())
         ->setLabel($requestsLabel);
-    $requests = [$updateLabelRequest,];
+    $requests = [$updateLabelRequest];
     $request = (new BatchUpdateLabelsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

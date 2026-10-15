@@ -70,7 +70,7 @@ function create_subscription_sample(
     $subscriptionsServiceClient = new SubscriptionsServiceClient();
 
     // Prepare the request message.
-    $subscriptionEventTypes = [$subscriptionEventTypesElement,];
+    $subscriptionEventTypes = [$subscriptionEventTypesElement];
     $subscriptionNotificationEndpoint = new NotificationEndpoint();
     $subscription = (new Subscription())
         ->setTargetResource($subscriptionTargetResource)

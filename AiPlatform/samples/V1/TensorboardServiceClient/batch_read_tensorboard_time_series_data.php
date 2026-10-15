@@ -55,7 +55,7 @@ function batch_read_tensorboard_time_series_data_sample(
     $tensorboardServiceClient = new TensorboardServiceClient();
 
     // Prepare the request message.
-    $formattedTimeSeries = [$formattedTimeSeriesElement,];
+    $formattedTimeSeries = [$formattedTimeSeriesElement];
     $request = (new BatchReadTensorboardTimeSeriesDataRequest())
         ->setTensorboard($formattedTensorboard)
         ->setTimeSeries($formattedTimeSeries);

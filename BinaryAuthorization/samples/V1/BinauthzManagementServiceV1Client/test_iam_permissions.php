@@ -50,7 +50,7 @@ function test_iam_permissions_sample(string $resource, string $permissionsElemen
     $binauthzManagementServiceV1Client = new BinauthzManagementServiceV1Client();
 
     // Prepare the request message.
-    $permissions = [$permissionsElement,];
+    $permissions = [$permissionsElement];
     $request = (new TestIamPermissionsRequest())
         ->setResource($resource)
         ->setPermissions($permissions);

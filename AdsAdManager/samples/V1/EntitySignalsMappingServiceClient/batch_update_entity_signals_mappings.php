@@ -47,7 +47,7 @@ function batch_update_entity_signals_mappings_sample(string $formattedParent): v
     $requestsEntitySignalsMapping = new EntitySignalsMapping();
     $updateEntitySignalsMappingRequest = (new UpdateEntitySignalsMappingRequest())
         ->setEntitySignalsMapping($requestsEntitySignalsMapping);
-    $requests = [$updateEntitySignalsMappingRequest,];
+    $requests = [$updateEntitySignalsMappingRequest];
     $request = (new BatchUpdateEntitySignalsMappingsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

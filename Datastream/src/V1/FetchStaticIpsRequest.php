@@ -23,16 +23,16 @@ class FetchStaticIpsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Maximum number of Ips to return, will likely not be specified.
+     * Optional. Maximum number of Ips to return, will likely not be specified.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * A page token, received from a previous `ListStaticIps` call.
+     * Optional. A page token, received from a previous `ListStaticIps` call.
      * will likely not be specified.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
 
@@ -61,9 +61,9 @@ class FetchStaticIpsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name for the location for which static IPs should be
      *           returned. Must be in the format `projects/{@*}locations/*`.
      *     @type int $page_size
-     *           Maximum number of Ips to return, will likely not be specified.
+     *           Optional. Maximum number of Ips to return, will likely not be specified.
      *     @type string $page_token
-     *           A page token, received from a previous `ListStaticIps` call.
+     *           Optional. A page token, received from a previous `ListStaticIps` call.
      *           will likely not be specified.
      * }
      */
@@ -101,9 +101,9 @@ class FetchStaticIpsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of Ips to return, will likely not be specified.
+     * Optional. Maximum number of Ips to return, will likely not be specified.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -112,9 +112,9 @@ class FetchStaticIpsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of Ips to return, will likely not be specified.
+     * Optional. Maximum number of Ips to return, will likely not be specified.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -127,10 +127,10 @@ class FetchStaticIpsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token, received from a previous `ListStaticIps` call.
+     * Optional. A page token, received from a previous `ListStaticIps` call.
      * will likely not be specified.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -139,10 +139,10 @@ class FetchStaticIpsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token, received from a previous `ListStaticIps` call.
+     * Optional. A page token, received from a previous `ListStaticIps` call.
      * will likely not be specified.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

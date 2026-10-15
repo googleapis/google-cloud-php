@@ -80,7 +80,7 @@ function batch_create_native_styles_sample(
     $createNativeStyleRequest = (new CreateNativeStyleRequest())
         ->setParent($formattedRequestsParent)
         ->setNativeStyle($requestsNativeStyle);
-    $requests = [$createNativeStyleRequest,];
+    $requests = [$createNativeStyleRequest];
     $request = (new BatchCreateNativeStylesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

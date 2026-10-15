@@ -76,7 +76,9 @@ class AttachNetworkEndpointsNetworkEndpointGroupRequest extends \Google\Protobuf
             ->setProject($project)
             ->setZone($zone)
             ->setNetworkEndpointGroup($networkEndpointGroup)
-            ->setNetworkEndpointGroupsAttachEndpointsRequestResource($networkEndpointGroupsAttachEndpointsRequestResource);
+            ->setNetworkEndpointGroupsAttachEndpointsRequestResource(
+                $networkEndpointGroupsAttachEndpointsRequestResource
+            );
     }
 
     /**

@@ -31,11 +31,18 @@ class AuthorizationMode
      * Generated from protobuf enum <code>AUTH_MODE_DISABLED = 2;</code>
      */
     const AUTH_MODE_DISABLED = 2;
+    /**
+     * Token based authorization mode
+     *
+     * Generated from protobuf enum <code>AUTH_MODE_TOKEN_AUTH = 3;</code>
+     */
+    const AUTH_MODE_TOKEN_AUTH = 3;
 
     private static $valueToName = [
         self::AUTH_MODE_UNSPECIFIED => 'AUTH_MODE_UNSPECIFIED',
         self::AUTH_MODE_IAM_AUTH => 'AUTH_MODE_IAM_AUTH',
         self::AUTH_MODE_DISABLED => 'AUTH_MODE_DISABLED',
+        self::AUTH_MODE_TOKEN_AUTH => 'AUTH_MODE_TOKEN_AUTH',
     ];
 
     public static function name($value)

@@ -84,7 +84,7 @@ function batch_optimize_tours_sample(
     $asyncModelConfig = (new AsyncModelConfig())
         ->setInputConfig($modelConfigsInputConfig)
         ->setOutputConfig($modelConfigsOutputConfig);
-    $modelConfigs = [$asyncModelConfig,];
+    $modelConfigs = [$asyncModelConfig];
     $request = (new BatchOptimizeToursRequest())
         ->setParent($parent)
         ->setModelConfigs($modelConfigs);

@@ -56,11 +56,11 @@ function ingest_events_sample(
         ->setAccountType($destinationsOperatingAccountAccountType);
     $destination = (new Destination())
         ->setOperatingAccount($destinationsOperatingAccount);
-    $destinations = [$destination,];
+    $destinations = [$destination];
     $eventsEventTimestamp = new Timestamp();
     $event = (new Event())
         ->setEventTimestamp($eventsEventTimestamp);
-    $events = [$event,];
+    $events = [$event];
     $request = (new IngestEventsRequest())
         ->setDestinations($destinations)
         ->setEvents($events);

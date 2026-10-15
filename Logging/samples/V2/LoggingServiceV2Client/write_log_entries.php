@@ -73,7 +73,7 @@ function write_log_entries_sample(string $entriesLogName): void
     $logEntry = (new LogEntry())
         ->setLogName($entriesLogName)
         ->setResource($entriesResource);
-    $entries = [$logEntry,];
+    $entries = [$logEntry];
     $request = (new WriteLogEntriesRequest())
         ->setEntries($entries);
 

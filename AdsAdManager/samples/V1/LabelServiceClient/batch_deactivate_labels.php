@@ -45,7 +45,7 @@ function batch_deactivate_labels_sample(
     $labelServiceClient = new LabelServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchDeactivateLabelsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

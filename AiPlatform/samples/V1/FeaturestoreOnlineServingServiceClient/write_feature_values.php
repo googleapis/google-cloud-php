@@ -55,7 +55,7 @@ function write_feature_values_sample(string $formattedEntityType, string $payloa
     $writeFeatureValuesPayload = (new WriteFeatureValuesPayload())
         ->setEntityId($payloadsEntityId)
         ->setFeatureValues($payloadsFeatureValues);
-    $payloads = [$writeFeatureValuesPayload,];
+    $payloads = [$writeFeatureValuesPayload];
     $request = (new WriteFeatureValuesRequest())
         ->setEntityType($formattedEntityType)
         ->setPayloads($payloads);

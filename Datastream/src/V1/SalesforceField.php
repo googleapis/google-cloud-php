@@ -16,7 +16,7 @@ use Google\Protobuf\RepeatedField;
 class SalesforceField extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Field name.
+     * The field name.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -41,7 +41,7 @@ class SalesforceField extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Field name.
+     *           The field name.
      *     @type string $data_type
      *           The data type.
      *     @type bool $nillable
@@ -54,7 +54,7 @@ class SalesforceField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Field name.
+     * The field name.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -65,7 +65,7 @@ class SalesforceField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Field name.
+     * The field name.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

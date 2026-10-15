@@ -22,32 +22,32 @@ class ListStreamsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * Maximum number of streams to return.
+     * Optional. Maximum number of streams to return.
      * If unspecified, at most 50 streams will  be returned. The maximum
      * value is 1000; values above 1000 will be coerced to 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * Page token received from a previous `ListStreams` call.
+     * Optional. Page token received from a previous `ListStreams` call.
      * Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListStreams`
      * must match the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
     /**
-     * Filter request.
+     * Optional. Filter request.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = '';
     /**
-     * Order by fields for the result.
+     * Optional. Order by fields for the result.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $order_by = '';
 
@@ -74,18 +74,18 @@ class ListStreamsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent that owns the collection of streams.
      *     @type int $page_size
-     *           Maximum number of streams to return.
+     *           Optional. Maximum number of streams to return.
      *           If unspecified, at most 50 streams will  be returned. The maximum
      *           value is 1000; values above 1000 will be coerced to 1000.
      *     @type string $page_token
-     *           Page token received from a previous `ListStreams` call.
+     *           Optional. Page token received from a previous `ListStreams` call.
      *           Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to `ListStreams`
      *           must match the call that provided the page token.
      *     @type string $filter
-     *           Filter request.
+     *           Optional. Filter request.
      *     @type string $order_by
-     *           Order by fields for the result.
+     *           Optional. Order by fields for the result.
      * }
      */
     public function __construct($data = NULL) {
@@ -120,11 +120,11 @@ class ListStreamsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of streams to return.
+     * Optional. Maximum number of streams to return.
      * If unspecified, at most 50 streams will  be returned. The maximum
      * value is 1000; values above 1000 will be coerced to 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -133,11 +133,11 @@ class ListStreamsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of streams to return.
+     * Optional. Maximum number of streams to return.
      * If unspecified, at most 50 streams will  be returned. The maximum
      * value is 1000; values above 1000 will be coerced to 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -150,12 +150,12 @@ class ListStreamsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Page token received from a previous `ListStreams` call.
+     * Optional. Page token received from a previous `ListStreams` call.
      * Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListStreams`
      * must match the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -164,12 +164,12 @@ class ListStreamsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Page token received from a previous `ListStreams` call.
+     * Optional. Page token received from a previous `ListStreams` call.
      * Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListStreams`
      * must match the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -182,9 +182,9 @@ class ListStreamsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filter request.
+     * Optional. Filter request.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFilter()
@@ -193,9 +193,9 @@ class ListStreamsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filter request.
+     * Optional. Filter request.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -208,9 +208,9 @@ class ListStreamsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Order by fields for the result.
+     * Optional. Order by fields for the result.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getOrderBy()
@@ -219,9 +219,9 @@ class ListStreamsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Order by fields for the result.
+     * Optional. Order by fields for the result.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

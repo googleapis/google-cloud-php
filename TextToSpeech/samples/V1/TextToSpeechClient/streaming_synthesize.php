@@ -51,7 +51,7 @@ function streaming_synthesize_sample(): void
     try {
         /** @var BidiStream $stream */
         $stream = $textToSpeechClient->streamingSynthesize();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var StreamingSynthesizeResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

@@ -45,7 +45,7 @@ function batch_delete_test_cases_sample(
     $testCasesClient = new TestCasesClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchDeleteTestCasesRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

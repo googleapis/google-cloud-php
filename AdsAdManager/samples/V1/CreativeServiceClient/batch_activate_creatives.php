@@ -45,7 +45,7 @@ function batch_activate_creatives_sample(
     $creativeServiceClient = new CreativeServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchActivateCreativesRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

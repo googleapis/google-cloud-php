@@ -46,7 +46,7 @@ function remove_address_group_items_sample(
     $organizationAddressGroupServiceClient = new OrganizationAddressGroupServiceClient();
 
     // Prepare the request message.
-    $items = [$itemsElement,];
+    $items = [$itemsElement];
     $request = (new RemoveAddressGroupItemsRequest())
         ->setAddressGroup($formattedAddressGroup)
         ->setItems($items);

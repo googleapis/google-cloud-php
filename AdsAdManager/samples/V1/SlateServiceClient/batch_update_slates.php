@@ -53,7 +53,7 @@ function batch_update_slates_sample(
         ->setDisplayName($requestsSlateDisplayName);
     $updateSlateRequest = (new UpdateSlateRequest())
         ->setSlate($requestsSlate);
-    $requests = [$updateSlateRequest,];
+    $requests = [$updateSlateRequest];
     $request = (new BatchUpdateSlatesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

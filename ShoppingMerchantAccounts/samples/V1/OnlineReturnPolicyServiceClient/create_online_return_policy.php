@@ -48,7 +48,7 @@ function create_online_return_policy_sample(
     $onlineReturnPolicyServiceClient = new OnlineReturnPolicyServiceClient();
 
     // Prepare the request message.
-    $onlineReturnPolicyCountries = [$onlineReturnPolicyCountriesElement,];
+    $onlineReturnPolicyCountries = [$onlineReturnPolicyCountriesElement];
     $onlineReturnPolicy = (new OnlineReturnPolicy())
         ->setCountries($onlineReturnPolicyCountries)
         ->setReturnPolicyUri($onlineReturnPolicyReturnPolicyUri);

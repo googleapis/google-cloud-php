@@ -75,7 +75,7 @@ function remove_local_inventories_sample(string $formattedProduct, string $place
     $productServiceClient = new ProductServiceClient();
 
     // Prepare the request message.
-    $placeIds = [$placeIdsElement,];
+    $placeIds = [$placeIdsElement];
     $request = (new RemoveLocalInventoriesRequest())
         ->setProduct($formattedProduct)
         ->setPlaceIds($placeIds);

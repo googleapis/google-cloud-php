@@ -48,7 +48,7 @@ function batch_update_break_templates_sample(string $formattedParent): void
     $requestsBreakTemplate = new BreakTemplate();
     $updateBreakTemplateRequest = (new UpdateBreakTemplateRequest())
         ->setBreakTemplate($requestsBreakTemplate);
-    $requests = [$updateBreakTemplateRequest,];
+    $requests = [$updateBreakTemplateRequest];
     $request = (new BatchUpdateBreakTemplatesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

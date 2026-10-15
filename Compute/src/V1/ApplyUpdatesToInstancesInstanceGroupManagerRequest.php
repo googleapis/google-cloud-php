@@ -58,7 +58,9 @@ class ApplyUpdatesToInstancesInstanceGroupManagerRequest extends \Google\Protobu
             ->setProject($project)
             ->setZone($zone)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersApplyUpdatesRequestResource($instanceGroupManagersApplyUpdatesRequestResource);
+            ->setInstanceGroupManagersApplyUpdatesRequestResource(
+                $instanceGroupManagersApplyUpdatesRequestResource
+            );
     }
 
     /**

@@ -56,7 +56,7 @@ function batch_create_dai_authentication_keys_sample(
     $createDaiAuthenticationKeyRequest = (new CreateDaiAuthenticationKeyRequest())
         ->setParent($formattedRequestsParent)
         ->setDaiAuthenticationKey($requestsDaiAuthenticationKey);
-    $requests = [$createDaiAuthenticationKeyRequest,];
+    $requests = [$createDaiAuthenticationKeyRequest];
     $request = (new BatchCreateDaiAuthenticationKeysRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

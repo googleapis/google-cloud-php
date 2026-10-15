@@ -35,6 +35,11 @@ class DiscoverConnectionProfileResponse extends \Google\Protobuf\Internal\Messag
      *           Enriched Salesforce organization.
      *     @type \Google\Cloud\Datastream\V1\MongodbCluster $mongodb_cluster
      *           Enriched MongoDB cluster.
+     *     @type \Google\Cloud\Datastream\V1\SpannerDatabase $spanner_database
+     *           Enriched Spanner database.
+     *     @type \Google\Cloud\Datastream\V1\SourceCatalog $source_catalog
+     *           Enriched source catalog. This is mainly used to represent SaaS sources
+     *           databases.
      * }
      */
     public function __construct($data = NULL) {
@@ -224,6 +229,70 @@ class DiscoverConnectionProfileResponse extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MongodbCluster::class);
         $this->writeOneof(105, $var);
+
+        return $this;
+    }
+
+    /**
+     * Enriched Spanner database.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SpannerDatabase spanner_database = 106;</code>
+     * @return \Google\Cloud\Datastream\V1\SpannerDatabase|null
+     */
+    public function getSpannerDatabase()
+    {
+        return $this->readOneof(106);
+    }
+
+    public function hasSpannerDatabase()
+    {
+        return $this->hasOneof(106);
+    }
+
+    /**
+     * Enriched Spanner database.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SpannerDatabase spanner_database = 106;</code>
+     * @param \Google\Cloud\Datastream\V1\SpannerDatabase $var
+     * @return $this
+     */
+    public function setSpannerDatabase($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SpannerDatabase::class);
+        $this->writeOneof(106, $var);
+
+        return $this;
+    }
+
+    /**
+     * Enriched source catalog. This is mainly used to represent SaaS sources
+     * databases.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SourceCatalog source_catalog = 108;</code>
+     * @return \Google\Cloud\Datastream\V1\SourceCatalog|null
+     */
+    public function getSourceCatalog()
+    {
+        return $this->readOneof(108);
+    }
+
+    public function hasSourceCatalog()
+    {
+        return $this->hasOneof(108);
+    }
+
+    /**
+     * Enriched source catalog. This is mainly used to represent SaaS sources
+     * databases.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SourceCatalog source_catalog = 108;</code>
+     * @param \Google\Cloud\Datastream\V1\SourceCatalog $var
+     * @return $this
+     */
+    public function setSourceCatalog($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SourceCatalog::class);
+        $this->writeOneof(108, $var);
 
         return $this;
     }

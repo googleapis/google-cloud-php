@@ -49,7 +49,7 @@ function batch_delete_data_objects_sample(
     // Prepare the request message.
     $deleteDataObjectRequest = (new DeleteDataObjectRequest())
         ->setName($formattedRequestsName);
-    $requests = [$deleteDataObjectRequest,];
+    $requests = [$deleteDataObjectRequest];
     $request = (new BatchDeleteDataObjectsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

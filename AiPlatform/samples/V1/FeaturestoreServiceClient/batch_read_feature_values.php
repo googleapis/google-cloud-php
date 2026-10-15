@@ -67,9 +67,7 @@ function batch_read_feature_values_sample(
 
     // Prepare the request message.
     $destination = new FeatureValueDestination();
-    $entityTypeSpecsFeatureSelectorIdMatcherIds = [
-        $entityTypeSpecsFeatureSelectorIdMatcherIdsElement,
-    ];
+    $entityTypeSpecsFeatureSelectorIdMatcherIds = [$entityTypeSpecsFeatureSelectorIdMatcherIdsElement];
     $entityTypeSpecsFeatureSelectorIdMatcher = (new IdMatcher())
         ->setIds($entityTypeSpecsFeatureSelectorIdMatcherIds);
     $entityTypeSpecsFeatureSelector = (new FeatureSelector())
@@ -77,7 +75,7 @@ function batch_read_feature_values_sample(
     $entityTypeSpec = (new EntityTypeSpec())
         ->setEntityTypeId($entityTypeSpecsEntityTypeId)
         ->setFeatureSelector($entityTypeSpecsFeatureSelector);
-    $entityTypeSpecs = [$entityTypeSpec,];
+    $entityTypeSpecs = [$entityTypeSpec];
     $request = (new BatchReadFeatureValuesRequest())
         ->setFeaturestore($formattedFeaturestore)
         ->setDestination($destination)

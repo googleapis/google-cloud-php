@@ -46,7 +46,7 @@ function batch_unarchive_orders_sample(
     $orderServiceClient = new OrderServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchUnarchiveOrdersRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

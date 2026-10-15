@@ -65,7 +65,7 @@ function update_event_create_rule_sample(
         ->setField($eventCreateRuleEventConditionsField)
         ->setComparisonType($eventCreateRuleEventConditionsComparisonType)
         ->setValue($eventCreateRuleEventConditionsValue);
-    $eventCreateRuleEventConditions = [$matchingCondition,];
+    $eventCreateRuleEventConditions = [$matchingCondition];
     $eventCreateRule = (new EventCreateRule())
         ->setDestinationEvent($eventCreateRuleDestinationEvent)
         ->setEventConditions($eventCreateRuleEventConditions);

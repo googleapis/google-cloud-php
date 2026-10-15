@@ -68,7 +68,7 @@ function batch_create_tensorboard_time_series_sample(
     $createTensorboardTimeSeriesRequest = (new CreateTensorboardTimeSeriesRequest())
         ->setParent($formattedRequestsParent)
         ->setTensorboardTimeSeries($requestsTensorboardTimeSeries);
-    $requests = [$createTensorboardTimeSeriesRequest,];
+    $requests = [$createTensorboardTimeSeriesRequest];
     $request = (new BatchCreateTensorboardTimeSeriesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

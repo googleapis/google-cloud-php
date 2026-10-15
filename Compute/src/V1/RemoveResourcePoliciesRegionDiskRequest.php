@@ -72,7 +72,9 @@ class RemoveResourcePoliciesRegionDiskRequest extends \Google\Protobuf\Internal\
             ->setProject($project)
             ->setRegion($region)
             ->setDisk($disk)
-            ->setRegionDisksRemoveResourcePoliciesRequestResource($regionDisksRemoveResourcePoliciesRequestResource);
+            ->setRegionDisksRemoveResourcePoliciesRequestResource(
+                $regionDisksRemoveResourcePoliciesRequestResource
+            );
     }
 
     /**

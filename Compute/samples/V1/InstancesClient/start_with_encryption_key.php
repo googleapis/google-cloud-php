@@ -48,7 +48,9 @@ function start_with_encryption_key_sample(string $instance, string $project, str
     $instancesStartWithEncryptionKeyRequestResource = new InstancesStartWithEncryptionKeyRequest();
     $request = (new StartWithEncryptionKeyInstanceRequest())
         ->setInstance($instance)
-        ->setInstancesStartWithEncryptionKeyRequestResource($instancesStartWithEncryptionKeyRequestResource)
+        ->setInstancesStartWithEncryptionKeyRequestResource(
+            $instancesStartWithEncryptionKeyRequestResource
+        )
         ->setProject($project)
         ->setZone($zone);
 

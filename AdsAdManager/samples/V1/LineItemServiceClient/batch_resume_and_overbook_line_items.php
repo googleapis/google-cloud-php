@@ -46,7 +46,7 @@ function batch_resume_and_overbook_line_items_sample(
     $lineItemServiceClient = new LineItemServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchResumeAndOverbookLineItemsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

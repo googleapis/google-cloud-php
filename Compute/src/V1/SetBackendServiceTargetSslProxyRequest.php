@@ -66,7 +66,9 @@ class SetBackendServiceTargetSslProxyRequest extends \Google\Protobuf\Internal\M
         return (new self())
             ->setProject($project)
             ->setTargetSslProxy($targetSslProxy)
-            ->setTargetSslProxiesSetBackendServiceRequestResource($targetSslProxiesSetBackendServiceRequestResource);
+            ->setTargetSslProxiesSetBackendServiceRequestResource(
+                $targetSslProxiesSetBackendServiceRequestResource
+            );
     }
 
     /**

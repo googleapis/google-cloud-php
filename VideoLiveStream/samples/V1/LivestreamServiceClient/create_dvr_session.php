@@ -59,7 +59,7 @@ function create_dvr_session_sample(
     // Prepare the request message.
     $dvrManifest = (new DvrManifest())
         ->setManifestKey($dvrSessionDvrManifestsManifestKey);
-    $dvrSessionDvrManifests = [$dvrManifest,];
+    $dvrSessionDvrManifests = [$dvrManifest];
     $dvrSessionDvrWindows = [new DvrWindow()];
     $dvrSession = (new DvrSession())
         ->setDvrManifests($dvrSessionDvrManifests)

@@ -45,7 +45,7 @@ function batch_deactivate_creatives_sample(
     $creativeServiceClient = new CreativeServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchDeactivateCreativesRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

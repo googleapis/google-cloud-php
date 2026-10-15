@@ -73,7 +73,7 @@ function insert_promotion_sample(
     $promotionsServiceClient = new PromotionsServiceClient();
 
     // Prepare the request message.
-    $promotionRedemptionChannel = [$promotionRedemptionChannelElement,];
+    $promotionRedemptionChannel = [$promotionRedemptionChannelElement];
     $promotion = (new Promotion())
         ->setPromotionId($promotionPromotionId)
         ->setContentLanguage($promotionContentLanguage)

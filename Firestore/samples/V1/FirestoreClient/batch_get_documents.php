@@ -48,7 +48,7 @@ function batch_get_documents_sample(string $database, string $documentsElement):
     $firestoreClient = new FirestoreClient();
 
     // Prepare the request message.
-    $documents = [$documentsElement,];
+    $documents = [$documentsElement];
     $request = (new BatchGetDocumentsRequest())
         ->setDatabase($database)
         ->setDocuments($documents);

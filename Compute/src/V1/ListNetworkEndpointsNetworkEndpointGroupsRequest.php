@@ -145,7 +145,9 @@ class ListNetworkEndpointsNetworkEndpointGroupsRequest extends \Google\Protobuf\
             ->setProject($project)
             ->setZone($zone)
             ->setNetworkEndpointGroup($networkEndpointGroup)
-            ->setNetworkEndpointGroupsListEndpointsRequestResource($networkEndpointGroupsListEndpointsRequestResource);
+            ->setNetworkEndpointGroupsListEndpointsRequestResource(
+                $networkEndpointGroupsListEndpointsRequestResource
+            );
     }
 
     /**

@@ -45,7 +45,7 @@ function batch_delete_line_items_sample(
     $lineItemServiceClient = new LineItemServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchDeleteLineItemsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

@@ -72,7 +72,9 @@ class RemoveResourcePoliciesInstanceRequest extends \Google\Protobuf\Internal\Me
             ->setProject($project)
             ->setZone($zone)
             ->setInstance($instance)
-            ->setInstancesRemoveResourcePoliciesRequestResource($instancesRemoveResourcePoliciesRequestResource);
+            ->setInstancesRemoveResourcePoliciesRequestResource(
+                $instancesRemoveResourcePoliciesRequestResource
+            );
     }
 
     /**

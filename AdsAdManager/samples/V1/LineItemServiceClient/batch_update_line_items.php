@@ -88,7 +88,7 @@ function batch_update_line_items_sample(
         ->setSizeType($requestsLineItemCreativePlaceholdersSizeSizeType);
     $creativePlaceholder = (new CreativePlaceholder())
         ->setSize($requestsLineItemCreativePlaceholdersSize);
-    $requestsLineItemCreativePlaceholders = [$creativePlaceholder,];
+    $requestsLineItemCreativePlaceholders = [$creativePlaceholder];
     $requestsLineItemTargeting = new Targeting();
     $requestsLineItem = (new LineItem())
         ->setOrder($formattedRequestsLineItemOrder)
@@ -102,7 +102,7 @@ function batch_update_line_items_sample(
         ->setTargeting($requestsLineItemTargeting);
     $updateLineItemRequest = (new UpdateLineItemRequest())
         ->setLineItem($requestsLineItem);
-    $requests = [$updateLineItemRequest,];
+    $requests = [$updateLineItemRequest];
     $request = (new BatchUpdateLineItemsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);
