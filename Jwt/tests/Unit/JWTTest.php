@@ -605,6 +605,7 @@ class JWTTest extends TestCase
         return [
             [__DIR__ . '/data/ecdsa-private.pem', __DIR__ . '/data/ecdsa-public.pem', 'ES256'],
             [__DIR__ . '/data/ecdsa384-private.pem', __DIR__ . '/data/ecdsa384-public.pem', 'ES384'],
+            [__DIR__ . '/data/ecdsa512-private.pem', __DIR__ . '/data/ecdsa512-public.pem', 'ES512'],
             [__DIR__ . '/data/rsa1-private.pem', __DIR__ . '/data/rsa1-public.pub', 'RS512'],
             [__DIR__ . '/data/ed25519-1.sec', __DIR__ . '/data/ed25519-1.pub', 'EdDSA'],
             [__DIR__ . '/data/secp256k1-private.pem', __DIR__ . '/data/secp256k1-public.pem', 'ES256K'],
@@ -880,6 +881,7 @@ class JWTTest extends TestCase
         return [
             ['ecdsa192-private.pem', 'ES256'],
             ['ecdsa-private.pem', 'ES384'],
+            ['ecdsa384-private.pem', 'ES512'],
         ];
     }
 
@@ -888,6 +890,82 @@ class JWTTest extends TestCase
         return [
             ['ecdsa-private.pem', 'ecdsa-public.pem', 'ES256'],
             ['ecdsa384-private.pem', 'ecdsa384-public.pem', 'ES384'],
+            ['ecdsa512-private.pem', 'ecdsa512-public.pem', 'ES512'],
+        ];
+    }
+
+    public function testEcKey512BitCurveThrowsExceptionForEs512(): void
+    {
+        $this->expectException(DomainException::class);
+        $this->expectExceptionMessage('Provided key is too short');
+
+        $brainpool512Key = openssl_pkey_new([
+            'private_key_type' => OPENSSL_KEYTYPE_EC,
+            'curve_name' => 'brainpoolP512r1',
+        ]);
+        self::assertNotFalse($brainpool512Key);
+
+        JWT::encode(['message' => 'abc'], $brainpool512Key, 'ES512');
+    }
+
+    public function testEs512VerifiesRfc7515AppendixA4Example(): void
+    {
+        // JWK and JWS from RFC 7515 Appendix A.4 ("Example JWS Using ECDSA P-521 SHA-512")
+        $jwk = [
+            'kty' => 'EC',
+            'crv' => 'P-521',
+            'x' => 'AekpBQ8ST8a8VcfVOTNl353vSrDCLLJXmPk06wTjxrrjcBpXp5EOnYG_NjFZ6OvLFV1jSfS9tsz4qUxcWceqwQGk',
+            'y' => 'ADSmRA43Z1DSNx_RvcLI87cdL07l6jQyyBXMoxVg_l2Th-x3S1WDhjDly79ajL4Kkd0AZMaZmh9ubmf63e3kyMj2',
+            'alg' => 'ES512',
+        ];
+        $jws = 'eyJhbGciOiJFUzUxMiJ9.UGF5bG9hZA.'
+            . 'AdwMgeerwtHoh-l192l60hp9wAHZFVJbLfD_UxMi70cwnZOYaRI1bKPWROc-mZZqwqT2SI-KGDKB34XO0aw_7Xdt'
+            . 'AG8GaSwFKdCAPZgoXD2YBJZCPEX3xKpRwcdOO8KpEHwJjyqOgzDO7iKvU8vcnwNrmxYbSW9ERBXukOXolLzeO_Jn';
+
+        $key = JWK::parseKey($jwk);
+        $this->assertNotNull($key);
+
+        list($headb64, $bodyb64, $cryptob64) = explode('.', $jws);
+        $sigToDer = new \ReflectionMethod(JWT::class, 'signatureToDER');
+        $sigToDer->setAccessible(true);
+        $verify = new \ReflectionMethod(JWT::class, 'verify');
+        $verify->setAccessible(true);
+
+        $derSig = $sigToDer->invoke(null, JWT::urlsafeB64Decode($cryptob64), 521);
+        $msg = $headb64 . '.' . $bodyb64;
+
+        $this->assertTrue($verify->invoke(null, $msg, $derSig, $key->getKeyMaterial(), 'ES512'));
+        $this->assertFalse($verify->invoke(null, $msg . 'x', $derSig, $key->getKeyMaterial(), 'ES512'));
+    }
+
+    /** @dataProvider provideMalformedEs512Signatures */
+    public function testEs512MalformedSignatureThrowsSignatureInvalidException(callable $mutateSig): void
+    {
+        $privateKey = file_get_contents(__DIR__ . '/data/ecdsa512-private.pem');
+        $publicKey = file_get_contents(__DIR__ . '/data/ecdsa512-public.pem');
+
+        $encoded = JWT::encode(['foo' => 'bar'], $privateKey, 'ES512');
+        list($headb64, $bodyb64, $cryptob64) = explode('.', $encoded);
+        $rawSig = JWT::urlsafeB64Decode($cryptob64);
+        $tampered = $headb64 . '.' . $bodyb64 . '.' . JWT::urlsafeB64Encode($mutateSig($rawSig));
+
+        $this->expectException(SignatureInvalidException::class);
+        $this->expectExceptionMessage('Signature verification failed');
+        JWT::decode($tampered, new Key($publicKey, 'ES512'));
+    }
+
+    public function provideMalformedEs512Signatures(): array
+    {
+        return [
+            'empty signature' => [fn (string $sig) => ''],
+            'single byte signature' => [fn (string $sig) => 'x'],
+            'all-zero signature' => [fn (string $sig) => str_repeat("\x00", 132)],
+            'zero-padded r and s (134 bytes)' => [
+                fn (string $sig) => "\x00" . substr($sig, 0, 66) . "\x00" . substr($sig, 66),
+            ],
+            'truncated r and s (130 bytes)' => [
+                fn (string $sig) => substr($sig, 1, 65) . substr($sig, 67, 65),
+            ],
         ];
     }
 
