@@ -15,21 +15,21 @@ jobs:
     env:
       PHPDOC_ENV: prod
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: Setup Python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: '3.15'
       - run: pip install --require-hashes -r .kokoro/docs/docker/requirements.txt
       - name: Setup PHP
-        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: "8.2"
       - name: Extract phpDocumentor
         id: extract
-        uses: shrink/actions-docker-extract@f1ef61065b78731fe3310b4e84e511f6a927a77e # v4
+        uses: shrink/actions-docker-extract@f1ef61065b78731fe3310b4e84e511f6a927a77e # v4.0.0
         with:
           image: "phpdoc/phpdoc:3.5.3"
           path: "/opt/phpdoc/."
@@ -38,7 +38,7 @@ jobs:
         env:
           STEPS_EXTRACT_OUTPUTS_DESTINATION: ${{ steps.extract.outputs.destination }}
       - name: Install Dependencies
-        uses: nick-invision/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4
+        uses: nick-invision/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4.0.0
         with:
           timeout_minutes: 10
           max_attempts: 3
@@ -46,7 +46,7 @@ jobs:
       - name: Run DocFX Unit Test Suite
         run: dev/vendor/bin/phpunit -c dev/phpunit-docfx.xml.dist
       - name: Install Dependencies (--no-dev)
-        uses: nick-invision/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4
+        uses: nick-invision/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4.0.0
         with:
           timeout_minutes: 10
           max_attempts: 3
