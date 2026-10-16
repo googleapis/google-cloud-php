@@ -178,6 +178,8 @@ class Operation
             ]);
             if ($precommitToken = $response->getPrecommitToken()) {
                 $commitRequest->setPrecommitToken($precommitToken);
+                // Mutations from the initial CommitRequest have already been buffered
+                // by the server; clear them so the retry does not apply them a second time.
                 $commitRequest->setMutations([]);
             }
         } while ($precommitToken && $retryAttempt++ < $maxRetries);
