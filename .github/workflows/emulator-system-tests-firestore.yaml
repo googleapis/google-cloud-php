@@ -1,6 +1,11 @@
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - main
+    paths:
+      - 'Firestore/**'
+      - '.github/workflows/emulator-system-tests-firestore.yaml'
+      - '.github/emulator/**'
   pull_request:
     paths:
       - 'Firestore/**'

@@ -1,6 +1,11 @@
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - main
+    paths:
+      - 'Bigtable/**'
+      - '.github/workflows/emulator-system-tests-bigtable.yaml'
+      - '.github/emulator/**'
   pull_request:
     paths:
       - 'Bigtable/**'

@@ -14,8 +14,12 @@
 # Github action job to test core java library features on
 # downstream client libraries before they are released.
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - main
+    paths:
+      - 'Bigtable/**'
+      - '.github/workflows/conformance-tests-bigtable-proxy.yaml'
   pull_request:
     paths:
       - 'Bigtable/**'

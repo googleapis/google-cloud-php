@@ -1,6 +1,11 @@
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - main
+    paths:
+      - 'PubSub/**'
+      - '.github/workflows/emulator-system-tests-pubsub.yaml'
+      - '.github/emulator/**'
   pull_request:
     paths:
       - 'PubSub/**'

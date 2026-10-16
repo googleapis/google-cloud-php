@@ -1,6 +1,11 @@
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - main
+    paths:
+      - 'Datastore/**'
+      - '.github/workflows/emulator-system-tests-datastore.yaml'
+      - '.github/emulator/**'
   pull_request:
     paths:
       - 'Datastore/**'
