@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   docfx:
-    name: "Run DocFX tests"
+    name: "Docs: Generation Check"
     runs-on: ubuntu-latest
     env:
       PHPDOC_ENV: prod

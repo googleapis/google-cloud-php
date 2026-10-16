@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   gapic-showcase:
-    name: GAPIC Showcase Conformance Tests
+    name: "Conformance Tests: GAPIC Showcase"
     runs-on: ubuntu-latest
     env:
       GAPIC_SHOWCASE_VERSION: 0.44.0

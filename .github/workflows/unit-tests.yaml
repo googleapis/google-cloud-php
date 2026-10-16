@@ -15,21 +15,17 @@ jobs:
         platform: [ubuntu-latest, windows-latest]
         php: [ "8.2", "8.3", "8.4", "8.5" ]
         extensions: ["grpc"]
-        type: ["Unit Test"]
+        variant: [""]
         include:
           - platform: "ubuntu-latest"
             php: "8.2"
-            extensions: "grpc"
-            type: "Unit Test"
-          - platform: "ubuntu-latest"
-            php: "8.2"
             extensions: "protobuf,grpc"
-            type: "Unit Test + protobuf extension"
+            variant: " + protobuf ext"
           - platform: "ubuntu-latest"
             php: "8.2"
             extensions: ""
-            type: "Unit Test (no gRPC)"
-    name: PHP ${{ matrix.php }} ${{ matrix.type }} (${{ matrix.platform }})
+            variant: " (no gRPC)"
+    name: "Unit Tests: PHP ${{ matrix.php }}${{ matrix.variant }} (${{ matrix.platform }})"
     runs-on: ${{ matrix.platform }}
     continue-on-error: true
     steps:
@@ -74,7 +70,7 @@ jobs:
           vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose
 
   test_packages:
-    name: Package Tests
+    name: "Unit Tests: Packages"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -89,7 +85,7 @@ jobs:
         run: bash .github/run-package-tests.sh
 
   test_packages_lowest:
-    name: Package Tests (Lowest Dependencies)
+    name: "Unit Tests: Packages (Lowest Dependencies)"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -106,7 +102,7 @@ jobs:
         run: bash .github/run-package-tests.sh $PREFER_LOWEST
 
   test_dev_commands:
-    name: Dev Commands Unit Tests
+    name: "Unit Tests: Dev Commands"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

@@ -8,7 +8,7 @@ permissions:
 jobs:
   # More info at https://github.com/Roave/BackwardCompatibilityCheck.
   backwards-compatibility-check:
-    name: Breaking Change Detector
+    name: "Release Checks: Breaking Change Detector"
     runs-on: ubuntu-latest
     continue-on-error: ${{ contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
     steps:
@@ -38,7 +38,7 @@ jobs:
   # Add "MAJOR_VERSION_ALLOWED=component1,component2" to the PR description to allow major version
   # releases for those components
   unexpected-major-version-check:
-    name: Unexpected Major Version Check
+    name: "Release Checks: Unexpected Major Version"
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'release-please[bot]'
     steps:
@@ -84,7 +84,7 @@ jobs:
           STEPS_ALLOWED_MAJOR_VERSIONS_OUTPUTS_GROUP1: ${{ steps.allowed-major-versions.outputs.group1 }}
 
   next-release-label-check:
-    name: Check for "next release" label
+    name: "Release Checks: Next Release Label"
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'release-please[bot]'
     steps:
@@ -123,7 +123,7 @@ jobs:
 
   # Ensure all repos are in compliance
   repo-compliance-check:
-    name: Repo Compliance Check
+    name: "Release Checks: Repo Compliance"
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'release-please[bot]'
     steps:
