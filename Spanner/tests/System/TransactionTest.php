@@ -477,6 +477,50 @@ class TransactionTest extends SystemTestCase
         $this->assertEquals([1], $res->rowCounts());
     }
 
+    public function testBufferedMutationsWithMultiplexedPrecommitToken()
+    {
+        $db = self::$database;
+        $makeRow = fn () => [
+            'id' => self::randId(),
+            'name' => uniqid(self::TESTING_PREFIX),
+            'birthday' => new Date(new \DateTime('2000-01-01'))
+        ];
+
+        // 1. Inline begin via executeUpdate + buffered insertBatch
+        $db->runTransaction(function (Transaction $t) use ($makeRow) {
+            $dmlRow = $makeRow();
+            $t->executeUpdate(
+                'INSERT INTO ' . self::TEST_TABLE_NAME . ' (id, name, birthday) VALUES (@id, @name, @birthday)',
+                ['parameters' => $dmlRow]
+            );
+            $t->insertBatch(self::TEST_TABLE_NAME, [$makeRow()]);
+            $t->commit();
+        });
+
+        // 2. Inline begin via execute + buffered insertBatch
+        $db->runTransaction(function (Transaction $t) use ($makeRow) {
+            iterator_to_array($t->execute('SELECT 1'));
+            $t->insertBatch(self::TEST_TABLE_NAME, [$makeRow()]);
+            $t->commit();
+        });
+
+        // 3. Inline begin via read + buffered insertBatch
+        $db->runTransaction(function (Transaction $t) use ($makeRow) {
+            iterator_to_array($t->read(self::TEST_TABLE_NAME, new KeySet(['all' => true]), ['id']));
+            $t->insertBatch(self::TEST_TABLE_NAME, [$makeRow()]);
+            $t->commit();
+        });
+
+        // 4. Explicit begin via transaction() + buffered insertBatch
+        $t = $db->transaction();
+        $row = $makeRow();
+        $t->insertBatch(self::TEST_TABLE_NAME, [$row]);
+        $t->commit();
+
+        $res = $db->read(self::TEST_TABLE_NAME, new KeySet(['keys' => [$row['id']]]), ['id', 'name']);
+        $this->assertEquals($row['name'], $res->rows()->current()['name']);
+    }
+
     public function testTransactionToChannelAffinity()
     {
         $db = self::$database;

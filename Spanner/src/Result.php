@@ -524,15 +524,23 @@ class Result implements \IteratorAggregate
                     [],
                     $this->mapper
                 );
-                if (isset($result['precommitToken']['precommitToken'])) {
-                    // @TODO: Can we move this logic to the serializer or value mapper?
-                    $this->transaction->setPrecommitToken(
-                        (new MultiplexedSessionPrecommitToken())
-                            ->setPrecommitToken(base64_decode($result['precommitToken']['precommitToken']))
-                            ->setSeqNum($result['precommitToken']['seqNum'] ?? 0)
-                    );
-                }
             }
+        }
+
+        if (isset($result['precommitToken']) && $this->transactionContext !== Database::CONTEXT_READ) {
+            $this->transaction = $this->transaction ?? new Transaction(
+                $this->operation,
+                $this->session,
+                null,
+                [],
+                $this->mapper
+            );
+            // @TODO: Can we move this logic to the serializer or value mapper?
+            $this->transaction->setPrecommitToken(
+                (new MultiplexedSessionPrecommitToken())
+                    ->setPrecommitToken(base64_decode($result['precommitToken']['precommitToken'] ?? ''))
+                    ->setSeqNum($result['precommitToken']['seqNum'] ?? 0)
+            );
         }
     }
 }
