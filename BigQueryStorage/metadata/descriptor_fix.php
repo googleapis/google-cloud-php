@@ -45,16 +45,19 @@ namespace GPBMetadata\Google\Protobuf {
         }
     }
 
-    DescriptorFix::initOnce();
+    if (!class_exists(\Google\Protobuf\DescriptorProto::class)) {
+        DescriptorFix::initOnce();
+    }
 }
 
 namespace Google\Protobuf {
-
-    class DescriptorProto
-    {
-        public function __construct()
+    if (!class_exists(DescriptorProto::class)) {
+        class DescriptorProto
         {
-            throw new \LogicException('Proto2 classes are not supported');
+            public function __construct()
+            {
+                throw new \LogicException('Proto2 classes are not supported');
+            }
         }
     }
 }
