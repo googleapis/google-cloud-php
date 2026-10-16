@@ -1,7 +1,7 @@
 name: DocFX Test Suite
 on:
-  push:
-    branches: [ main ]
+  release:
+    types: [published]
   pull_request:
   workflow_dispatch:
 

@@ -1,7 +1,7 @@
 name: Test Suite
 on:
-  push:
-    branches: [ main ]
+  release:
+    types: [published]
   pull_request:
   workflow_dispatch:
 
@@ -102,7 +102,7 @@ jobs:
           extensions: grpc
       - name: Run Package Test Suites
         env:
-          PREFER_LOWEST: ${{ github.event.pull_request.user.login == 'release-please[bot]' && '--prefer-lowest-strict' || '--prefer-lowest' }}
+          PREFER_LOWEST: ${{ (github.event.pull_request.user.login == 'release-please[bot]' || github.event_name == 'release') && '--prefer-lowest-strict' || '--prefer-lowest' }}
         run: bash .github/run-package-tests.sh $PREFER_LOWEST
 
   test_dev_commands:

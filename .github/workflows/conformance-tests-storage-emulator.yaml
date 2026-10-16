@@ -1,10 +1,6 @@
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'Storage/**'
-      - '.github/workflows/conformance-tests-storage-emulator.yaml'
+  release:
+    types: [published]
   pull_request:
     paths:
       - 'Storage/**'

@@ -1,8 +1,7 @@
 name: Run GAX Conformance Tests With Showcase
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [published]
   pull_request:
 permissions:
   contents: read
