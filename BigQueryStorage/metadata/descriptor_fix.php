@@ -25,37 +25,41 @@
  * @see https://github.com/protocolbuffers/protobuf/issues/11649
  */
 namespace GPBMetadata\Google\Protobuf {
+    if (!class_exists(DescriptorFix::class)) {
+        class DescriptorFix
+        {
+            public static $is_initialized = false;
 
-    class DescriptorFix
-    {
-        public static $is_initialized = false;
+            public static function initOnce()
+            {
+                $pool = \Google\Protobuf\Internal\DescriptorPool::getGeneratedPool();
 
-        public static function initOnce() {
-            $pool = \Google\Protobuf\Internal\DescriptorPool::getGeneratedPool();
+                if (static::$is_initialized == true) {
+                    return;
+                }
 
-            if (static::$is_initialized == true) {
-            return;
+                if ($pool instanceof \Google\Protobuf\Internal\DescriptorPool) {
+                    // add a no-op reference for "google.protobuf.DescriptorProto"
+                    $pool->addMessage('google.protobuf.DescriptorProto', \Google\Protobuf\DescriptorProto::class)->finalizeToPool();
+                }
+                static::$is_initialized = true;
             }
-
-            if ($pool instanceof \Google\Protobuf\Internal\DescriptorPool) {
-                // add a no-op reference for "google.protobuf.DescriptorProto"
-                $pool->addMessage('google.protobuf.DescriptorProto', \Google\Protobuf\DescriptorProto::class)->finalizeToPool();
-            }
-            static::$is_initialized = true;
         }
     }
 
-    DescriptorFix::initOnce();
+    if (!class_exists(\Google\Protobuf\DescriptorProto::class)) {
+        DescriptorFix::initOnce();
+    }
 }
 
 namespace Google\Protobuf {
-
-    class DescriptorProto
-    {
-        public function __construct()
+    if (!class_exists(DescriptorProto::class)) {
+        class DescriptorProto
         {
-            throw new \LogicException('Proto2 classes are not supported');
+            public function __construct()
+            {
+                throw new \LogicException('Proto2 classes are not supported');
+            }
         }
     }
 }
-
