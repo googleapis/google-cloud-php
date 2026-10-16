@@ -629,10 +629,13 @@ class Transaction implements TransactionalReadInterface
 
         if (empty($this->transactionId)) {
             $this->transactionId = $transaction->id();
+        } elseif (empty($transaction->id())) {
+            $transaction->setId($this->transactionId);
         }
 
         if (isset($transaction->precommitToken)) {
             $this->setPrecommitToken($transaction->precommitToken);
         }
+        $transaction->precommitToken = &$this->precommitToken;
     }
 }
