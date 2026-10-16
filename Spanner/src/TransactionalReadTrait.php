@@ -293,7 +293,9 @@ trait TransactionalReadTrait
         $executeSqlOptions['route-to-leader'] = $this->context === Database::CONTEXT_READWRITE;
         $result = $this->operation->execute($this->session, $sql, $executeSqlOptions);
 
-        if (empty($this->id()) && $result->transaction()) {
+        if ($this instanceof Transaction) {
+            $this->updateFromResult($result->transaction());
+        } elseif (empty($this->id()) && $result->transaction()) {
             $this->setId($result->transaction()->id());
         }
         return $result;
@@ -384,7 +386,9 @@ trait TransactionalReadTrait
         $readOptions['route-to-leader'] = $this->context === Database::CONTEXT_READWRITE;
         $result = $this->operation->read($this->session, $table, $keySet, $columns, $readOptions);
 
-        if (empty($this->id()) && $result->transaction()) {
+        if ($this instanceof Transaction) {
+            $this->updateFromResult($result->transaction());
+        } elseif (empty($this->id()) && $result->transaction()) {
             $this->setId($result->transaction()->id());
         }
 
