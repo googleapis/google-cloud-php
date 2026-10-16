@@ -6,11 +6,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>googleads/ad-manager 0.15.1</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -18,11 +26,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-ai-platform 1.66.3</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -32,7 +48,7 @@
 
 ### Features
 
-* update API sources and regenerate ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
+* add output only fields for Observability and Query Insights instance information ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
 
 </details>
 
@@ -40,11 +56,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-apihub 0.5.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -52,11 +76,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-apphub 0.6.1</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -64,11 +96,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-apptopology 0.2.1</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -76,11 +116,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/apps-meet 0.7.2</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -88,11 +136,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-asset 2.4.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -100,11 +156,19 @@
 
 
 
+### Miscellaneous Chores
+
+* remove unused or low-adoption dev dependencies ([#9764](https://github.com/googleapis/google-cloud-php/issues/9764)) ([0f8fd9c](https://github.com/googleapis/google-cloud-php/commit/0f8fd9c604d8b413aab05ffc88f777d9e60b7f0d))
+
 </details>
 
 <details><summary>google/cloud-automl 2.2.5</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -112,11 +176,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-batch 1.6.3</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -124,11 +196,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-beyondcorp-appconnectors 1.3.1</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -136,11 +216,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-beyondcorp-clientconnectorservices 1.2.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -148,11 +236,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-bigquery-analyticshub 1.6.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -160,11 +256,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-bigquery-data-exchange 0.7.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -172,11 +276,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-bigquery-reservation 2.10.3</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -204,11 +316,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-binary-authorization 1.3.5</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -216,11 +336,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-ces 0.4.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -228,17 +356,29 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-chronicle 0.7.2</summary>
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-commerce-consumer-procurement 1.4.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -248,7 +388,8 @@
 
 ### Features
 
-* update API sources and regenerate ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
+* update Compute Engine v1 API artifacts to revision 20261007 ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
+* add COMPUTE_OPTIMIZED_H4D_3TB to Commitment.Type enum ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
 
 </details>
 
@@ -256,11 +397,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-configdelivery 0.4.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -270,7 +419,12 @@
 
 ### Features
 
-* update API sources and regenerate ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
+* add deployment, version, and subagent metadata fields to AgentInfo ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
+
+
+### Documentation
+
+* mark AgentInfo.team as deprecated in favor of teams ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
 
 </details>
 
@@ -278,11 +432,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-container-analysis 1.3.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -290,11 +452,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-datacatalog-lineage 1.5.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -302,11 +472,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-dataplex 1.15.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -316,7 +494,8 @@
 
 ### Features
 
-* update API sources and regenerate ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
+* Add `FlexibleInstanceGroupConfig` and `master_flexible_config`, `worker_flexible_config`, `secondary_worker_flexible_config` fields to `ClusterConfig` to support Dataproc High Obtainability (HO) mode ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
+* Add `MultiZoneConfig` and `multi_zone_config` field to `GceClusterConfig` to support multi-zonal clusters ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
 
 </details>
 
@@ -324,11 +503,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-datastore 2.3.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* remove unused emulatorHost option key from Spanner, Firestore, and Datastore clients ([#9790](https://github.com/googleapis/google-cloud-php/issues/9790)) ([0c3c9af](https://github.com/googleapis/google-cloud-php/commit/0c3c9afbd2ff2a074d7558f2f2ff17cbf7238384))
 
 </details>
 
@@ -338,7 +525,14 @@
 
 ### Features
 
-* update API sources and regenerate ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
+* add Spanner, Dataverse, Salesforce Marketing Cloud, ServiceNow, and Workday source configs ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
+* add BigQuery partitioning and clustering customization rules to Stream ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
+* add EventFilter for partial backfills and SQL Server SSL/DDL configs ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
+
+
+### Documentation
+
+* update field and message documentation across Datastream v1 resources ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
 
 </details>
 
@@ -346,15 +540,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/developer-knowledge 0.6.0</summary>
 
 
 
-### Features
+### Documentation
 
-* update API sources and regenerate ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
+* update service and URI documentation in public protos ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
 
 </details>
 
@@ -362,11 +560,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-dialogflow 2.8.1</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -374,11 +580,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-discoveryengine 1.15.2</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -386,11 +600,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-essential-contacts 1.2.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -398,11 +620,20 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-firestore 2.3.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* remove unused emulatorHost option key from Spanner, Firestore, and Datastore clients ([#9790](https://github.com/googleapis/google-cloud-php/issues/9790)) ([0c3c9af](https://github.com/googleapis/google-cloud-php/commit/0c3c9afbd2ff2a074d7558f2f2ff17cbf7238384))
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -410,11 +641,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-functions 2.2.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -422,11 +661,20 @@
 
 
 
+### Miscellaneous Chores
+
+* remove unused or low-adoption dev dependencies ([#9764](https://github.com/googleapis/google-cloud-php/issues/9764)) ([0f8fd9c](https://github.com/googleapis/google-cloud-php/commit/0f8fd9c604d8b413aab05ffc88f777d9e60b7f0d))
+* remove google/cloud-tools and shared php-tools workflows ([#9785](https://github.com/googleapis/google-cloud-php/issues/9785)) ([d8a22b7](https://github.com/googleapis/google-cloud-php/commit/d8a22b7991b0ab26818a5f8c34f7af9f6cff418e))
+
 </details>
 
 <details><summary>google/cloud-geminidataanalytics 0.14.1</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -434,11 +682,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-gke-multi-cloud 1.5.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -446,11 +702,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-iap 2.4.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -458,11 +722,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-logging 2.2.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -470,11 +742,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-managedkafka 0.9.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -482,11 +762,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/maps-fleetengine-delivery 0.6.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -494,11 +782,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-media-translation 0.7.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -508,7 +804,7 @@
 
 ### Features
 
-* update API sources and regenerate ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
+* [Memorystore] Add support for ACL policies ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
 
 </details>
 
@@ -516,11 +812,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-modelarmor 0.8.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -528,11 +832,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-network-connectivity 2.6.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -540,11 +852,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-network-security 1.5.5</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -552,11 +872,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-notebooks 1.2.5</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -564,17 +892,29 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-oracledatabase 0.12.3</summary>
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-osconfig 2.3.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -584,7 +924,12 @@
 
 ### Features
 
-* update API sources and regenerate ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
+* Add `BigtableConfig::ColumnFamilyMapping` type ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
+
+
+### Documentation
+
+* A comment for message `BigtableConfig` is changed ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
 
 </details>
 
@@ -592,11 +937,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-recommendations-ai 0.10.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -606,7 +959,8 @@
 
 ### Features
 
-* update API sources and regenerate ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
+* Add support for Basic Auth feature to Memorystore for Redis Cluster ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
+* [Memorystore for Redis Cluster] Add support for ACL policies ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
 
 </details>
 
@@ -614,11 +968,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-retail 2.6.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -626,17 +988,29 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-secret-manager 2.5.5</summary>
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-securesourcemanager 1.11.2</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -646,7 +1020,7 @@
 
 ### Features
 
-* update API sources and regenerate ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
+* add deletion_notifications_enabled to BigQueryExport and NotificationConfig and deleted_finding to NotificationMessage ([#9798](https://github.com/googleapis/google-cloud-php/issues/9798)) ([f618cc0](https://github.com/googleapis/google-cloud-php/commit/f618cc0bceb6ac7ed0b9ab4c8457389d0a77f680))
 
 </details>
 
@@ -654,11 +1028,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-security-private-ca 2.4.7</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -666,11 +1048,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-service-management 2.2.6</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -678,11 +1068,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/shopping-merchant-issueresolution 1.3.7</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -690,11 +1088,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/shopping-merchant-promotions 1.2.7</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -712,11 +1118,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-storage 2.6.1</summary>
 
 
+
+### Miscellaneous Chores
+
+* **Storage:** fix softDeletePolicy and ipFilter assertions in ManageBucketsTest ([#9768](https://github.com/googleapis/google-cloud-php/issues/9768)) ([fccd07f](https://github.com/googleapis/google-cloud-php/commit/fccd07f8166a689a620d79fead9c2667ef43faa8))
 
 </details>
 
@@ -724,11 +1138,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-talent 2.3.6</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -736,11 +1158,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-text-to-speech 2.8.5</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -748,11 +1178,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-translate 2.3.7</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -760,11 +1198,19 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-video-live-stream 1.5.4</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
@@ -772,17 +1218,29 @@
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-vmware-engine 1.4.4</summary>
 
 
 
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
+
 </details>
 
 <details><summary>google/cloud-web-risk 2.4.5</summary>
 
 
+
+### Miscellaneous Chores
+
+* update Samples ([#9794](https://github.com/googleapis/google-cloud-php/issues/9794)) ([2f6f097](https://github.com/googleapis/google-cloud-php/commit/2f6f09794475a3ee36063de0a2557db6fb4e4ab8))
 
 </details>
 
