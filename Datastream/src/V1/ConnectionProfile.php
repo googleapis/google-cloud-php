@@ -82,21 +82,31 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
      *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use.
      *     @type \Google\Cloud\Datastream\V1\OracleProfile $oracle_profile
-     *           Oracle ConnectionProfile configuration.
+     *           Profile for connecting to an Oracle source.
      *     @type \Google\Cloud\Datastream\V1\GcsProfile $gcs_profile
-     *           Cloud Storage ConnectionProfile configuration.
+     *           Profile for connecting to a Cloud Storage destination.
      *     @type \Google\Cloud\Datastream\V1\MysqlProfile $mysql_profile
-     *           MySQL ConnectionProfile configuration.
+     *           Profile for connecting to a MySQL source.
      *     @type \Google\Cloud\Datastream\V1\BigQueryProfile $bigquery_profile
-     *           BigQuery Connection Profile configuration.
+     *           Profile for connecting to a BigQuery destination.
      *     @type \Google\Cloud\Datastream\V1\PostgresqlProfile $postgresql_profile
-     *           PostgreSQL Connection Profile configuration.
+     *           Profile for connecting to a PostgreSQL source.
      *     @type \Google\Cloud\Datastream\V1\SqlServerProfile $sql_server_profile
-     *           SQLServer Connection Profile configuration.
+     *           Profile for connecting to a SQLServer source.
      *     @type \Google\Cloud\Datastream\V1\SalesforceProfile $salesforce_profile
-     *           Salesforce Connection Profile configuration.
+     *           Profile for connecting to a Salesforce source.
      *     @type \Google\Cloud\Datastream\V1\MongodbProfile $mongodb_profile
-     *           MongoDB Connection Profile configuration.
+     *           Profile for connecting to a MongoDB source.
+     *     @type \Google\Cloud\Datastream\V1\SpannerProfile $spanner_profile
+     *           Profile for connecting to a Spanner source.
+     *     @type \Google\Cloud\Datastream\V1\DataverseProfile $dataverse_profile
+     *           Profile for connecting to a Dataverse source.
+     *     @type \Google\Cloud\Datastream\V1\SalesforceMarketingCloudProfile $salesforce_marketing_cloud_profile
+     *           Profile for connecting to a Salesforce Marketing Cloud source.
+     *     @type \Google\Cloud\Datastream\V1\ServiceNowProfile $service_now_profile
+     *           Profile for connecting to a ServiceNow source.
+     *     @type \Google\Cloud\Datastream\V1\WorkdayProfile $workday_profile
+     *           Optional. Profile for connecting to a Workday source.
      *     @type \Google\Cloud\Datastream\V1\StaticServiceIpConnectivity $static_service_ip_connectivity
      *           Static Service IP connectivity.
      *     @type \Google\Cloud\Datastream\V1\ForwardSshTunnelConnectivity $forward_ssh_connectivity
@@ -333,7 +343,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Oracle ConnectionProfile configuration.
+     * Profile for connecting to an Oracle source.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleProfile oracle_profile = 100;</code>
      * @return \Google\Cloud\Datastream\V1\OracleProfile|null
@@ -349,7 +359,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Oracle ConnectionProfile configuration.
+     * Profile for connecting to an Oracle source.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleProfile oracle_profile = 100;</code>
      * @param \Google\Cloud\Datastream\V1\OracleProfile $var
@@ -364,7 +374,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud Storage ConnectionProfile configuration.
+     * Profile for connecting to a Cloud Storage destination.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.GcsProfile gcs_profile = 101;</code>
      * @return \Google\Cloud\Datastream\V1\GcsProfile|null
@@ -380,7 +390,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud Storage ConnectionProfile configuration.
+     * Profile for connecting to a Cloud Storage destination.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.GcsProfile gcs_profile = 101;</code>
      * @param \Google\Cloud\Datastream\V1\GcsProfile $var
@@ -395,7 +405,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * MySQL ConnectionProfile configuration.
+     * Profile for connecting to a MySQL source.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlProfile mysql_profile = 102;</code>
      * @return \Google\Cloud\Datastream\V1\MysqlProfile|null
@@ -411,7 +421,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * MySQL ConnectionProfile configuration.
+     * Profile for connecting to a MySQL source.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlProfile mysql_profile = 102;</code>
      * @param \Google\Cloud\Datastream\V1\MysqlProfile $var
@@ -426,7 +436,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * BigQuery Connection Profile configuration.
+     * Profile for connecting to a BigQuery destination.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryProfile bigquery_profile = 103;</code>
      * @return \Google\Cloud\Datastream\V1\BigQueryProfile|null
@@ -442,7 +452,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * BigQuery Connection Profile configuration.
+     * Profile for connecting to a BigQuery destination.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryProfile bigquery_profile = 103;</code>
      * @param \Google\Cloud\Datastream\V1\BigQueryProfile $var
@@ -457,7 +467,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * PostgreSQL Connection Profile configuration.
+     * Profile for connecting to a PostgreSQL source.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlProfile postgresql_profile = 104;</code>
      * @return \Google\Cloud\Datastream\V1\PostgresqlProfile|null
@@ -473,7 +483,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * PostgreSQL Connection Profile configuration.
+     * Profile for connecting to a PostgreSQL source.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlProfile postgresql_profile = 104;</code>
      * @param \Google\Cloud\Datastream\V1\PostgresqlProfile $var
@@ -488,7 +498,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * SQLServer Connection Profile configuration.
+     * Profile for connecting to a SQLServer source.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerProfile sql_server_profile = 105;</code>
      * @return \Google\Cloud\Datastream\V1\SqlServerProfile|null
@@ -504,7 +514,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * SQLServer Connection Profile configuration.
+     * Profile for connecting to a SQLServer source.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerProfile sql_server_profile = 105;</code>
      * @param \Google\Cloud\Datastream\V1\SqlServerProfile $var
@@ -519,7 +529,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Salesforce Connection Profile configuration.
+     * Profile for connecting to a Salesforce source.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceProfile salesforce_profile = 107;</code>
      * @return \Google\Cloud\Datastream\V1\SalesforceProfile|null
@@ -535,7 +545,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Salesforce Connection Profile configuration.
+     * Profile for connecting to a Salesforce source.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceProfile salesforce_profile = 107;</code>
      * @param \Google\Cloud\Datastream\V1\SalesforceProfile $var
@@ -550,7 +560,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * MongoDB Connection Profile configuration.
+     * Profile for connecting to a MongoDB source.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbProfile mongodb_profile = 108;</code>
      * @return \Google\Cloud\Datastream\V1\MongodbProfile|null
@@ -566,7 +576,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * MongoDB Connection Profile configuration.
+     * Profile for connecting to a MongoDB source.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbProfile mongodb_profile = 108;</code>
      * @param \Google\Cloud\Datastream\V1\MongodbProfile $var
@@ -576,6 +586,161 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MongodbProfile::class);
         $this->writeOneof(108, $var);
+
+        return $this;
+    }
+
+    /**
+     * Profile for connecting to a Spanner source.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SpannerProfile spanner_profile = 109;</code>
+     * @return \Google\Cloud\Datastream\V1\SpannerProfile|null
+     */
+    public function getSpannerProfile()
+    {
+        return $this->readOneof(109);
+    }
+
+    public function hasSpannerProfile()
+    {
+        return $this->hasOneof(109);
+    }
+
+    /**
+     * Profile for connecting to a Spanner source.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SpannerProfile spanner_profile = 109;</code>
+     * @param \Google\Cloud\Datastream\V1\SpannerProfile $var
+     * @return $this
+     */
+    public function setSpannerProfile($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SpannerProfile::class);
+        $this->writeOneof(109, $var);
+
+        return $this;
+    }
+
+    /**
+     * Profile for connecting to a Dataverse source.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.DataverseProfile dataverse_profile = 114;</code>
+     * @return \Google\Cloud\Datastream\V1\DataverseProfile|null
+     */
+    public function getDataverseProfile()
+    {
+        return $this->readOneof(114);
+    }
+
+    public function hasDataverseProfile()
+    {
+        return $this->hasOneof(114);
+    }
+
+    /**
+     * Profile for connecting to a Dataverse source.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.DataverseProfile dataverse_profile = 114;</code>
+     * @param \Google\Cloud\Datastream\V1\DataverseProfile $var
+     * @return $this
+     */
+    public function setDataverseProfile($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\DataverseProfile::class);
+        $this->writeOneof(114, $var);
+
+        return $this;
+    }
+
+    /**
+     * Profile for connecting to a Salesforce Marketing Cloud source.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceMarketingCloudProfile salesforce_marketing_cloud_profile = 119;</code>
+     * @return \Google\Cloud\Datastream\V1\SalesforceMarketingCloudProfile|null
+     */
+    public function getSalesforceMarketingCloudProfile()
+    {
+        return $this->readOneof(119);
+    }
+
+    public function hasSalesforceMarketingCloudProfile()
+    {
+        return $this->hasOneof(119);
+    }
+
+    /**
+     * Profile for connecting to a Salesforce Marketing Cloud source.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceMarketingCloudProfile salesforce_marketing_cloud_profile = 119;</code>
+     * @param \Google\Cloud\Datastream\V1\SalesforceMarketingCloudProfile $var
+     * @return $this
+     */
+    public function setSalesforceMarketingCloudProfile($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SalesforceMarketingCloudProfile::class);
+        $this->writeOneof(119, $var);
+
+        return $this;
+    }
+
+    /**
+     * Profile for connecting to a ServiceNow source.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.ServiceNowProfile service_now_profile = 120;</code>
+     * @return \Google\Cloud\Datastream\V1\ServiceNowProfile|null
+     */
+    public function getServiceNowProfile()
+    {
+        return $this->readOneof(120);
+    }
+
+    public function hasServiceNowProfile()
+    {
+        return $this->hasOneof(120);
+    }
+
+    /**
+     * Profile for connecting to a ServiceNow source.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.ServiceNowProfile service_now_profile = 120;</code>
+     * @param \Google\Cloud\Datastream\V1\ServiceNowProfile $var
+     * @return $this
+     */
+    public function setServiceNowProfile($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\ServiceNowProfile::class);
+        $this->writeOneof(120, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Profile for connecting to a Workday source.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.WorkdayProfile workday_profile = 121 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Datastream\V1\WorkdayProfile|null
+     */
+    public function getWorkdayProfile()
+    {
+        return $this->readOneof(121);
+    }
+
+    public function hasWorkdayProfile()
+    {
+        return $this->hasOneof(121);
+    }
+
+    /**
+     * Optional. Profile for connecting to a Workday source.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.WorkdayProfile workday_profile = 121 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Datastream\V1\WorkdayProfile $var
+     * @return $this
+     */
+    public function setWorkdayProfile($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\WorkdayProfile::class);
+        $this->writeOneof(121, $var);
 
         return $this;
     }

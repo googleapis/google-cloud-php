@@ -55,7 +55,7 @@ function create_persistent_resource_sample(
     $persistentResourceResourcePoolsMachineSpec = new MachineSpec();
     $resourcePool = (new ResourcePool())
         ->setMachineSpec($persistentResourceResourcePoolsMachineSpec);
-    $persistentResourceResourcePools = [$resourcePool,];
+    $persistentResourceResourcePools = [$resourcePool];
     $persistentResource = (new PersistentResource())
         ->setResourcePools($persistentResourceResourcePools);
     $request = (new CreatePersistentResourceRequest())

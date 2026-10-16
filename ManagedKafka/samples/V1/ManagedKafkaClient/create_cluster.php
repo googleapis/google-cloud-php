@@ -71,7 +71,7 @@ function create_cluster_sample(
     // Prepare the request message.
     $networkConfig = (new NetworkConfig())
         ->setSubnet($clusterGcpConfigAccessConfigNetworkConfigsSubnet);
-    $clusterGcpConfigAccessConfigNetworkConfigs = [$networkConfig,];
+    $clusterGcpConfigAccessConfigNetworkConfigs = [$networkConfig];
     $clusterGcpConfigAccessConfig = (new AccessConfig())
         ->setNetworkConfigs($clusterGcpConfigAccessConfigNetworkConfigs);
     $clusterGcpConfig = (new GcpConfig())

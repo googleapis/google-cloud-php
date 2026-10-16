@@ -72,7 +72,9 @@ class ResumeInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\
             ->setProject($project)
             ->setRegion($region)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setRegionInstanceGroupManagersResumeInstancesRequestResource($regionInstanceGroupManagersResumeInstancesRequestResource);
+            ->setRegionInstanceGroupManagersResumeInstancesRequestResource(
+                $regionInstanceGroupManagersResumeInstancesRequestResource
+            );
     }
 
     /**

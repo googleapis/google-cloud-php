@@ -71,7 +71,7 @@ function batch_create_ad_rules_sample(
     $createAdRuleRequest = (new CreateAdRuleRequest())
         ->setParent($formattedRequestsParent)
         ->setAdRule($requestsAdRule);
-    $requests = [$createAdRuleRequest,];
+    $requests = [$createAdRuleRequest];
     $request = (new BatchCreateAdRulesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

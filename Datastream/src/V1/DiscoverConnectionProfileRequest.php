@@ -36,26 +36,35 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      *           Required. The parent resource of the connection profile type. Must be in
      *           the format `projects/{@*}locations/*`.
      *     @type \Google\Cloud\Datastream\V1\ConnectionProfile $connection_profile
-     *           An ad-hoc connection profile configuration.
+     *           Optional. An ad-hoc connection profile configuration.
      *     @type string $connection_profile_name
-     *           A reference to an existing connection profile.
+     *           Optional. A reference to an existing connection profile.
      *     @type bool $full_hierarchy
-     *           Whether to retrieve the full hierarchy of data objects (TRUE) or only the
-     *           current level (FALSE).
+     *           Optional. Whether to retrieve the full hierarchy of data objects (TRUE)
+     *           or only the current level (FALSE).
      *     @type int $hierarchy_depth
-     *           The number of hierarchy levels below the current level to be retrieved.
+     *           Optional. The number of hierarchy levels below the current level to be
+     *           retrieved.
      *     @type \Google\Cloud\Datastream\V1\OracleRdbms $oracle_rdbms
-     *           Oracle RDBMS to enrich with child data objects and metadata.
+     *           Optional. Oracle RDBMS to enrich with child data objects and metadata.
      *     @type \Google\Cloud\Datastream\V1\MysqlRdbms $mysql_rdbms
-     *           MySQL RDBMS to enrich with child data objects and metadata.
+     *           Optional. MySQL RDBMS to enrich with child data objects and metadata.
      *     @type \Google\Cloud\Datastream\V1\PostgresqlRdbms $postgresql_rdbms
-     *           PostgreSQL RDBMS to enrich with child data objects and metadata.
+     *           Optional. PostgreSQL RDBMS to enrich with child data objects and
+     *           metadata.
      *     @type \Google\Cloud\Datastream\V1\SqlServerRdbms $sql_server_rdbms
-     *           SQLServer RDBMS to enrich with child data objects and metadata.
+     *           Optional. SQLServer RDBMS to enrich with child data objects and metadata.
      *     @type \Google\Cloud\Datastream\V1\SalesforceOrg $salesforce_org
-     *           Salesforce organization to enrich with child data objects and metadata.
+     *           Optional. Salesforce organization to enrich with child data objects and
+     *           metadata.
      *     @type \Google\Cloud\Datastream\V1\MongodbCluster $mongodb_cluster
-     *           MongoDB cluster to enrich with child data objects and metadata.
+     *           Optional. MongoDB cluster to enrich with child data objects and metadata.
+     *     @type \Google\Cloud\Datastream\V1\SpannerDatabase $spanner_database
+     *           Optional. Spanner database to enrich with child data objects and
+     *           metadata.
+     *     @type \Google\Cloud\Datastream\V1\SourceCatalog $source_catalog
+     *           Optional. Source catalog to enrich with child data objects and metadata.
+     *           This is mainly used to represent SaaS sources databases.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,9 +101,9 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An ad-hoc connection profile configuration.
+     * Optional. An ad-hoc connection profile configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.ConnectionProfile connection_profile = 200;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.ConnectionProfile connection_profile = 200 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Datastream\V1\ConnectionProfile|null
      */
     public function getConnectionProfile()
@@ -108,9 +117,9 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An ad-hoc connection profile configuration.
+     * Optional. An ad-hoc connection profile configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.ConnectionProfile connection_profile = 200;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.ConnectionProfile connection_profile = 200 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Datastream\V1\ConnectionProfile $var
      * @return $this
      */
@@ -123,9 +132,9 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A reference to an existing connection profile.
+     * Optional. A reference to an existing connection profile.
      *
-     * Generated from protobuf field <code>string connection_profile_name = 201;</code>
+     * Generated from protobuf field <code>string connection_profile_name = 201 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getConnectionProfileName()
@@ -139,9 +148,9 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A reference to an existing connection profile.
+     * Optional. A reference to an existing connection profile.
      *
-     * Generated from protobuf field <code>string connection_profile_name = 201;</code>
+     * Generated from protobuf field <code>string connection_profile_name = 201 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -154,10 +163,10 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to retrieve the full hierarchy of data objects (TRUE) or only the
-     * current level (FALSE).
+     * Optional. Whether to retrieve the full hierarchy of data objects (TRUE)
+     * or only the current level (FALSE).
      *
-     * Generated from protobuf field <code>bool full_hierarchy = 3;</code>
+     * Generated from protobuf field <code>bool full_hierarchy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getFullHierarchy()
@@ -171,10 +180,10 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to retrieve the full hierarchy of data objects (TRUE) or only the
-     * current level (FALSE).
+     * Optional. Whether to retrieve the full hierarchy of data objects (TRUE)
+     * or only the current level (FALSE).
      *
-     * Generated from protobuf field <code>bool full_hierarchy = 3;</code>
+     * Generated from protobuf field <code>bool full_hierarchy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -187,9 +196,10 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of hierarchy levels below the current level to be retrieved.
+     * Optional. The number of hierarchy levels below the current level to be
+     * retrieved.
      *
-     * Generated from protobuf field <code>int32 hierarchy_depth = 4;</code>
+     * Generated from protobuf field <code>int32 hierarchy_depth = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getHierarchyDepth()
@@ -203,9 +213,10 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of hierarchy levels below the current level to be retrieved.
+     * Optional. The number of hierarchy levels below the current level to be
+     * retrieved.
      *
-     * Generated from protobuf field <code>int32 hierarchy_depth = 4;</code>
+     * Generated from protobuf field <code>int32 hierarchy_depth = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -218,9 +229,9 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Oracle RDBMS to enrich with child data objects and metadata.
+     * Optional. Oracle RDBMS to enrich with child data objects and metadata.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleRdbms oracle_rdbms = 100;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleRdbms oracle_rdbms = 100 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Datastream\V1\OracleRdbms|null
      */
     public function getOracleRdbms()
@@ -234,9 +245,9 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Oracle RDBMS to enrich with child data objects and metadata.
+     * Optional. Oracle RDBMS to enrich with child data objects and metadata.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleRdbms oracle_rdbms = 100;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleRdbms oracle_rdbms = 100 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Datastream\V1\OracleRdbms $var
      * @return $this
      */
@@ -249,9 +260,9 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * MySQL RDBMS to enrich with child data objects and metadata.
+     * Optional. MySQL RDBMS to enrich with child data objects and metadata.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlRdbms mysql_rdbms = 101;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlRdbms mysql_rdbms = 101 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Datastream\V1\MysqlRdbms|null
      */
     public function getMysqlRdbms()
@@ -265,9 +276,9 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * MySQL RDBMS to enrich with child data objects and metadata.
+     * Optional. MySQL RDBMS to enrich with child data objects and metadata.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlRdbms mysql_rdbms = 101;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlRdbms mysql_rdbms = 101 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Datastream\V1\MysqlRdbms $var
      * @return $this
      */
@@ -280,9 +291,10 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * PostgreSQL RDBMS to enrich with child data objects and metadata.
+     * Optional. PostgreSQL RDBMS to enrich with child data objects and
+     * metadata.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlRdbms postgresql_rdbms = 102;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlRdbms postgresql_rdbms = 102 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Datastream\V1\PostgresqlRdbms|null
      */
     public function getPostgresqlRdbms()
@@ -296,9 +308,10 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * PostgreSQL RDBMS to enrich with child data objects and metadata.
+     * Optional. PostgreSQL RDBMS to enrich with child data objects and
+     * metadata.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlRdbms postgresql_rdbms = 102;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlRdbms postgresql_rdbms = 102 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Datastream\V1\PostgresqlRdbms $var
      * @return $this
      */
@@ -311,9 +324,9 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * SQLServer RDBMS to enrich with child data objects and metadata.
+     * Optional. SQLServer RDBMS to enrich with child data objects and metadata.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerRdbms sql_server_rdbms = 103;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerRdbms sql_server_rdbms = 103 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Datastream\V1\SqlServerRdbms|null
      */
     public function getSqlServerRdbms()
@@ -327,9 +340,9 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * SQLServer RDBMS to enrich with child data objects and metadata.
+     * Optional. SQLServer RDBMS to enrich with child data objects and metadata.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerRdbms sql_server_rdbms = 103;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerRdbms sql_server_rdbms = 103 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Datastream\V1\SqlServerRdbms $var
      * @return $this
      */
@@ -342,9 +355,10 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Salesforce organization to enrich with child data objects and metadata.
+     * Optional. Salesforce organization to enrich with child data objects and
+     * metadata.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceOrg salesforce_org = 104;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceOrg salesforce_org = 104 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Datastream\V1\SalesforceOrg|null
      */
     public function getSalesforceOrg()
@@ -358,9 +372,10 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Salesforce organization to enrich with child data objects and metadata.
+     * Optional. Salesforce organization to enrich with child data objects and
+     * metadata.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceOrg salesforce_org = 104;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceOrg salesforce_org = 104 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Datastream\V1\SalesforceOrg $var
      * @return $this
      */
@@ -373,9 +388,9 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * MongoDB cluster to enrich with child data objects and metadata.
+     * Optional. MongoDB cluster to enrich with child data objects and metadata.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbCluster mongodb_cluster = 105;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbCluster mongodb_cluster = 105 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Datastream\V1\MongodbCluster|null
      */
     public function getMongodbCluster()
@@ -389,9 +404,9 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * MongoDB cluster to enrich with child data objects and metadata.
+     * Optional. MongoDB cluster to enrich with child data objects and metadata.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbCluster mongodb_cluster = 105;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbCluster mongodb_cluster = 105 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Datastream\V1\MongodbCluster $var
      * @return $this
      */
@@ -399,6 +414,72 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MongodbCluster::class);
         $this->writeOneof(105, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Spanner database to enrich with child data objects and
+     * metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SpannerDatabase spanner_database = 106 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Datastream\V1\SpannerDatabase|null
+     */
+    public function getSpannerDatabase()
+    {
+        return $this->readOneof(106);
+    }
+
+    public function hasSpannerDatabase()
+    {
+        return $this->hasOneof(106);
+    }
+
+    /**
+     * Optional. Spanner database to enrich with child data objects and
+     * metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SpannerDatabase spanner_database = 106 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Datastream\V1\SpannerDatabase $var
+     * @return $this
+     */
+    public function setSpannerDatabase($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SpannerDatabase::class);
+        $this->writeOneof(106, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Source catalog to enrich with child data objects and metadata.
+     * This is mainly used to represent SaaS sources databases.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SourceCatalog source_catalog = 108 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Datastream\V1\SourceCatalog|null
+     */
+    public function getSourceCatalog()
+    {
+        return $this->readOneof(108);
+    }
+
+    public function hasSourceCatalog()
+    {
+        return $this->hasOneof(108);
+    }
+
+    /**
+     * Optional. Source catalog to enrich with child data objects and metadata.
+     * This is mainly used to represent SaaS sources databases.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SourceCatalog source_catalog = 108 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Datastream\V1\SourceCatalog $var
+     * @return $this
+     */
+    public function setSourceCatalog($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SourceCatalog::class);
+        $this->writeOneof(108, $var);
 
         return $this;
     }

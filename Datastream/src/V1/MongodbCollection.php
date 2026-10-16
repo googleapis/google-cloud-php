@@ -16,7 +16,7 @@ use Google\Protobuf\RepeatedField;
 class MongodbCollection extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Collection name.
+     * The collection name.
      *
      * Generated from protobuf field <code>string collection = 1;</code>
      */
@@ -35,7 +35,7 @@ class MongodbCollection extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $collection
-     *           Collection name.
+     *           The collection name.
      *     @type \Google\Cloud\Datastream\V1\MongodbField[] $fields
      *           Fields in the collection.
      * }
@@ -46,7 +46,7 @@ class MongodbCollection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Collection name.
+     * The collection name.
      *
      * Generated from protobuf field <code>string collection = 1;</code>
      * @return string
@@ -57,7 +57,7 @@ class MongodbCollection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Collection name.
+     * The collection name.
      *
      * Generated from protobuf field <code>string collection = 1;</code>
      * @param string $var

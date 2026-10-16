@@ -112,7 +112,7 @@ function bidi_run_session_sample(): void
     try {
         /** @var BidiStream $stream */
         $stream = $sessionServiceClient->bidiRunSession();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var BidiSessionServerMessage $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

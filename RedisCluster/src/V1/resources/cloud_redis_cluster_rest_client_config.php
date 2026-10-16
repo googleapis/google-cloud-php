@@ -47,6 +47,30 @@ return [
             ],
         ],
         'google.cloud.redis.cluster.v1.CloudRedisCluster' => [
+            'AddAuthToken' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{token_auth_user=projects/*/locations/*/clusters/*/tokenAuthUsers/*}:addAuthToken',
+                'body' => '*',
+                'placeholders' => [
+                    'token_auth_user' => [
+                        'getters' => [
+                            'getTokenAuthUser',
+                        ],
+                    ],
+                ],
+            ],
+            'AddTokenAuthUser' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{cluster=projects/*/locations/*/clusters/*}:addTokenAuthUser',
+                'body' => '*',
+                'placeholders' => [
+                    'cluster' => [
+                        'getters' => [
+                            'getCluster',
+                        ],
+                    ],
+                ],
+            ],
             'BackupCluster' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:backup',
@@ -57,6 +81,21 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+            ],
+            'CreateAclPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/aclPolicies',
+                'body' => 'acl_policy',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'acl_policy_id',
                 ],
             ],
             'CreateCluster' => [
@@ -72,6 +111,28 @@ return [
                 ],
                 'queryParams' => [
                     'cluster_id',
+                ],
+            ],
+            'DeleteAclPolicy' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/aclPolicies/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAuthToken' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/tokenAuthUsers/*/authTokens/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'DeleteBackup' => [
@@ -96,10 +157,54 @@ return [
                     ],
                 ],
             ],
+            'DeleteTokenAuthUser' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/tokenAuthUsers/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ExportBackup' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/backupCollections/*/backups/*}:export',
                 'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAclPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/aclPolicies/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAclPolicyRevision' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/aclPolicies/*/revisions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAuthToken' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/tokenAuthUsers/*/authTokens/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -163,6 +268,50 @@ return [
                     ],
                 ],
             ],
+            'GetTokenAuthUser' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/tokenAuthUsers/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAclPolicies' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/aclPolicies',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAclPolicyRevisions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/aclPolicies/*}/revisions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAuthTokens' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/clusters/*/tokenAuthUsers/*}/authTokens',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListBackupCollections' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupCollections',
@@ -196,6 +345,17 @@ return [
                     ],
                 ],
             ],
+            'ListTokenAuthUsers' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/clusters/*}/tokenAuthUsers',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'RescheduleClusterMaintenance' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:rescheduleClusterMaintenance',
@@ -203,6 +363,19 @@ return [
                 'placeholders' => [
                     'name' => [
                         'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateAclPolicy' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{acl_policy.name=projects/*/locations/*/aclPolicies/*}',
+                'body' => 'acl_policy',
+                'placeholders' => [
+                    'acl_policy.name' => [
+                        'getters' => [
+                            'getAclPolicy',
                             'getName',
                         ],
                     ],

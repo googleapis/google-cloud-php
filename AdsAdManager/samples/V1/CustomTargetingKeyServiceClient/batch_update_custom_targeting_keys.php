@@ -59,7 +59,7 @@ function batch_update_custom_targeting_keys_sample(
         ->setReportableType($requestsCustomTargetingKeyReportableType);
     $updateCustomTargetingKeyRequest = (new UpdateCustomTargetingKeyRequest())
         ->setCustomTargetingKey($requestsCustomTargetingKey);
-    $requests = [$updateCustomTargetingKeyRequest,];
+    $requests = [$updateCustomTargetingKeyRequest];
     $request = (new BatchUpdateCustomTargetingKeysRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

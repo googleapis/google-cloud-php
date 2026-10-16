@@ -27,7 +27,7 @@ class Document extends \Google\Protobuf\Internal\Message
     protected $name = '';
     /**
      * Output only. Provides the URI of the content, such as
-     * `docs.cloud.google.com/storage/docs/creating-buckets`.
+     * `https://docs.cloud.google.com/storage/docs/creating-buckets`.
      *
      * Generated from protobuf field <code>string uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -91,7 +91,7 @@ class Document extends \Google\Protobuf\Internal\Message
      *           Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
      *     @type string $uri
      *           Output only. Provides the URI of the content, such as
-     *           `docs.cloud.google.com/storage/docs/creating-buckets`.
+     *           `https://docs.cloud.google.com/storage/docs/creating-buckets`.
      *     @type string $content
      *           Output only. Contains the full content of the document in Markdown format.
      *     @type string $description
@@ -149,7 +149,7 @@ class Document extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Provides the URI of the content, such as
-     * `docs.cloud.google.com/storage/docs/creating-buckets`.
+     * `https://docs.cloud.google.com/storage/docs/creating-buckets`.
      *
      * Generated from protobuf field <code>string uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -161,7 +161,7 @@ class Document extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Provides the URI of the content, such as
-     * `docs.cloud.google.com/storage/docs/creating-buckets`.
+     * `https://docs.cloud.google.com/storage/docs/creating-buckets`.
      *
      * Generated from protobuf field <code>string uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

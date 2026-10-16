@@ -69,7 +69,7 @@ function batch_create_creative_wrappers_sample(
     $createCreativeWrapperRequest = (new CreateCreativeWrapperRequest())
         ->setParent($formattedRequestsParent)
         ->setCreativeWrapper($requestsCreativeWrapper);
-    $requests = [$createCreativeWrapperRequest,];
+    $requests = [$createCreativeWrapperRequest];
     $request = (new BatchCreateCreativeWrappersRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

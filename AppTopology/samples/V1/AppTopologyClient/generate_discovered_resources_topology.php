@@ -53,7 +53,7 @@ function generate_discovered_resources_topology_sample(
     $appTopologyClient = new AppTopologyClient();
 
     // Prepare the request message.
-    $formattedTopologyDomains = [$formattedTopologyDomainsElement,];
+    $formattedTopologyDomains = [$formattedTopologyDomainsElement];
     $request = (new GenerateDiscoveredResourcesTopologyRequest())
         ->setName($formattedName)
         ->setTopologyDomains($formattedTopologyDomains);

@@ -75,12 +75,12 @@ function create_order_tracking_signal_sample(
         ->setShippingStatus($orderTrackingSignalShippingInfoShippingStatus)
         ->setOriginPostalCode($orderTrackingSignalShippingInfoOriginPostalCode)
         ->setOriginRegionCode($orderTrackingSignalShippingInfoOriginRegionCode);
-    $orderTrackingSignalShippingInfo = [$shippingInfo,];
+    $orderTrackingSignalShippingInfo = [$shippingInfo];
     $lineItemDetails = (new LineItemDetails())
         ->setLineItemId($orderTrackingSignalLineItemsLineItemId)
         ->setProductId($orderTrackingSignalLineItemsProductId)
         ->setQuantity($orderTrackingSignalLineItemsQuantity);
-    $orderTrackingSignalLineItems = [$lineItemDetails,];
+    $orderTrackingSignalLineItems = [$lineItemDetails];
     $orderTrackingSignal = (new OrderTrackingSignal())
         ->setOrderCreatedTime($orderTrackingSignalOrderCreatedTime)
         ->setOrderId($orderTrackingSignalOrderId)

@@ -70,7 +70,7 @@ function batch_create_child_publishers_sample(
     $createChildPublisherRequest = (new CreateChildPublisherRequest())
         ->setParent($formattedRequestsParent)
         ->setChildPublisher($requestsChildPublisher);
-    $requests = [$createChildPublisherRequest,];
+    $requests = [$createChildPublisherRequest];
     $request = (new BatchCreateChildPublishersRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

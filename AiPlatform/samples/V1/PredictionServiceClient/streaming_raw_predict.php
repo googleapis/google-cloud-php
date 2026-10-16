@@ -50,7 +50,7 @@ function streaming_raw_predict_sample(string $formattedEndpoint): void
     try {
         /** @var BidiStream $stream */
         $stream = $predictionServiceClient->streamingRawPredict();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var StreamingRawPredictResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

@@ -66,7 +66,7 @@ function batch_update_ad_rules_sample(
         ->setTargeting($requestsAdRuleTargeting);
     $updateAdRuleRequest = (new UpdateAdRuleRequest())
         ->setAdRule($requestsAdRule);
-    $requests = [$updateAdRuleRequest,];
+    $requests = [$updateAdRuleRequest];
     $request = (new BatchUpdateAdRulesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

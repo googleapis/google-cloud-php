@@ -72,11 +72,11 @@ function update_session_entity_type_sample(
     $sessionEntityTypesClient = new SessionEntityTypesClient();
 
     // Prepare the request message.
-    $sessionEntityTypeEntitiesSynonyms = [$sessionEntityTypeEntitiesSynonymsElement,];
+    $sessionEntityTypeEntitiesSynonyms = [$sessionEntityTypeEntitiesSynonymsElement];
     $entity = (new Entity())
         ->setValue($sessionEntityTypeEntitiesValue)
         ->setSynonyms($sessionEntityTypeEntitiesSynonyms);
-    $sessionEntityTypeEntities = [$entity,];
+    $sessionEntityTypeEntities = [$entity];
     $sessionEntityType = (new SessionEntityType())
         ->setName($sessionEntityTypeName)
         ->setEntityOverrideMode($sessionEntityTypeEntityOverrideMode)

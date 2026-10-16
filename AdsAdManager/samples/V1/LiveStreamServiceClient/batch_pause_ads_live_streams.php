@@ -45,7 +45,7 @@ function batch_pause_ads_live_streams_sample(
     $liveStreamServiceClient = new LiveStreamServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchPauseAdsLiveStreamsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

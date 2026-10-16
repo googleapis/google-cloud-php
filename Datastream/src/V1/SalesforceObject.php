@@ -16,7 +16,7 @@ use Google\Protobuf\RepeatedField;
 class SalesforceObject extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Object name.
+     * The object name.
      *
      * Generated from protobuf field <code>string object_name = 1;</code>
      */
@@ -38,7 +38,7 @@ class SalesforceObject extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $object_name
-     *           Object name.
+     *           The object name.
      *     @type \Google\Cloud\Datastream\V1\SalesforceField[] $fields
      *           Salesforce fields.
      *           When unspecified as part of include objects,
@@ -52,7 +52,7 @@ class SalesforceObject extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Object name.
+     * The object name.
      *
      * Generated from protobuf field <code>string object_name = 1;</code>
      * @return string
@@ -63,7 +63,7 @@ class SalesforceObject extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Object name.
+     * The object name.
      *
      * Generated from protobuf field <code>string object_name = 1;</code>
      * @param string $var

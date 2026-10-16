@@ -65,7 +65,7 @@ function batch_create_custom_targeting_values_sample(
     $createCustomTargetingValueRequest = (new CreateCustomTargetingValueRequest())
         ->setParent($formattedRequestsParent)
         ->setCustomTargetingValue($requestsCustomTargetingValue);
-    $requests = [$createCustomTargetingValueRequest,];
+    $requests = [$createCustomTargetingValueRequest];
     $request = (new BatchCreateCustomTargetingValuesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

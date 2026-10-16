@@ -49,7 +49,7 @@ function batch_archive_dai_encoding_profiles_sample(
     // Prepare the request message.
     $archiveDaiEncodingProfileRequest = (new ArchiveDaiEncodingProfileRequest())
         ->setName($formattedRequestsName);
-    $requests = [$archiveDaiEncodingProfileRequest,];
+    $requests = [$archiveDaiEncodingProfileRequest];
     $request = (new BatchArchiveDaiEncodingProfilesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

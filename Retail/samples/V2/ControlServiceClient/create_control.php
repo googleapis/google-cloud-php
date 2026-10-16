@@ -64,7 +64,7 @@ function create_control_sample(
     $controlServiceClient = new ControlServiceClient();
 
     // Prepare the request message.
-    $controlSolutionTypes = [$controlSolutionTypesElement,];
+    $controlSolutionTypes = [$controlSolutionTypesElement];
     $control = (new Control())
         ->setDisplayName($controlDisplayName)
         ->setSolutionTypes($controlSolutionTypes);

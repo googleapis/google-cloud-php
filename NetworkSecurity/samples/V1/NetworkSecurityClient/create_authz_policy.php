@@ -80,7 +80,7 @@ function create_authz_policy_sample(
     $networkSecurityClient = new NetworkSecurityClient();
 
     // Prepare the request message.
-    $authzPolicyTargetResources = [$authzPolicyTargetResourcesElement,];
+    $authzPolicyTargetResources = [$authzPolicyTargetResourcesElement];
     $authzPolicyTarget = (new Target())
         ->setResources($authzPolicyTargetResources);
     $authzPolicy = (new AuthzPolicy())

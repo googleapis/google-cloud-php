@@ -45,7 +45,7 @@ function batch_deactivate_native_styles_sample(
     $nativeStyleServiceClient = new NativeStyleServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchDeactivateNativeStylesRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

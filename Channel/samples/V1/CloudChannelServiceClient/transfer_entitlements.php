@@ -80,7 +80,7 @@ function transfer_entitlements_sample(string $parent, string $formattedEntitleme
     // Prepare the request message.
     $entitlement = (new Entitlement())
         ->setOffer($formattedEntitlementsOffer);
-    $entitlements = [$entitlement,];
+    $entitlements = [$entitlement];
     $request = (new TransferEntitlementsRequest())
         ->setParent($parent)
         ->setEntitlements($entitlements);

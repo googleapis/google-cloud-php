@@ -16,7 +16,7 @@ use Google\Protobuf\RepeatedField;
 class PostgresqlColumn extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Column name.
+     * The column name.
      *
      * Generated from protobuf field <code>string column = 1;</code>
      */
@@ -71,7 +71,7 @@ class PostgresqlColumn extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $column
-     *           Column name.
+     *           The column name.
      *     @type string $data_type
      *           The PostgreSQL data type.
      *     @type int $length
@@ -94,7 +94,7 @@ class PostgresqlColumn extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Column name.
+     * The column name.
      *
      * Generated from protobuf field <code>string column = 1;</code>
      * @return string
@@ -105,7 +105,7 @@ class PostgresqlColumn extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Column name.
+     * The column name.
      *
      * Generated from protobuf field <code>string column = 1;</code>
      * @param string $var

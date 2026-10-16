@@ -78,7 +78,9 @@ class PatchPerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protobu
             ->setProject($project)
             ->setZone($zone)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersPatchPerInstanceConfigsReqResource($instanceGroupManagersPatchPerInstanceConfigsReqResource);
+            ->setInstanceGroupManagersPatchPerInstanceConfigsReqResource(
+                $instanceGroupManagersPatchPerInstanceConfigsReqResource
+            );
     }
 
     /**

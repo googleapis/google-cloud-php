@@ -99,18 +99,18 @@ function create_lb_traffic_extension_sample(
     $depServiceClient = new DepServiceClient();
 
     // Prepare the request message.
-    $lbTrafficExtensionForwardingRules = [$lbTrafficExtensionForwardingRulesElement,];
+    $lbTrafficExtensionForwardingRules = [$lbTrafficExtensionForwardingRulesElement];
     $lbTrafficExtensionExtensionChainsMatchCondition = (new MatchCondition())
         ->setCelExpression($lbTrafficExtensionExtensionChainsMatchConditionCelExpression);
     $extension = (new Extension())
         ->setName($lbTrafficExtensionExtensionChainsExtensionsName)
         ->setService($lbTrafficExtensionExtensionChainsExtensionsService);
-    $lbTrafficExtensionExtensionChainsExtensions = [$extension,];
+    $lbTrafficExtensionExtensionChainsExtensions = [$extension];
     $extensionChain = (new ExtensionChain())
         ->setName($lbTrafficExtensionExtensionChainsName)
         ->setMatchCondition($lbTrafficExtensionExtensionChainsMatchCondition)
         ->setExtensions($lbTrafficExtensionExtensionChainsExtensions);
-    $lbTrafficExtensionExtensionChains = [$extensionChain,];
+    $lbTrafficExtensionExtensionChains = [$extensionChain];
     $lbTrafficExtension = (new LbTrafficExtension())
         ->setName($lbTrafficExtensionName)
         ->setForwardingRules($lbTrafficExtensionForwardingRules)

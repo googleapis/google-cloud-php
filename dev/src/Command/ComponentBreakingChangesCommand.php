@@ -306,6 +306,7 @@ EOF)
         $this->git([
             '-c', 'user.name=BC Detector',
             '-c', 'user.email=noreply@google.com',
+            '-c', 'maintenance.auto=false',
             'commit', '--quiet', '--allow-empty', '-m', $msg,
         ], $cwd);
     }

@@ -68,7 +68,7 @@ function search_vehicles_sample(
     $pickupPointPoint = new LatLng();
     $pickupPoint = (new TerminalLocation())
         ->setPoint($pickupPointPoint);
-    $tripTypes = [$tripTypesElement,];
+    $tripTypes = [$tripTypesElement];
     $vehicleTypes = [new VehicleType()];
     $request = (new SearchVehiclesRequest())
         ->setParent($parent)

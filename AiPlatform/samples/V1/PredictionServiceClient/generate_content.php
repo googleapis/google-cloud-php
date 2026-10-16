@@ -51,7 +51,7 @@ function generate_content_sample(string $model): void
     $contentsParts = [new Part()];
     $content = (new Content())
         ->setParts($contentsParts);
-    $contents = [$content,];
+    $contents = [$content];
     $request = (new GenerateContentRequest())
         ->setModel($model)
         ->setContents($contents);

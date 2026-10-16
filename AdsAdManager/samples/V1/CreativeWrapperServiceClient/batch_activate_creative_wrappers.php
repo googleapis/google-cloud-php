@@ -45,7 +45,7 @@ function batch_activate_creative_wrappers_sample(
     $creativeWrapperServiceClient = new CreativeWrapperServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchActivateCreativeWrappersRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

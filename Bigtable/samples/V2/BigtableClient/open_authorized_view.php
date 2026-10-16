@@ -52,7 +52,7 @@ function open_authorized_view_sample(): void
     try {
         /** @var BidiStream $stream */
         $stream = $bigtableClient->openAuthorizedView();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var SessionResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

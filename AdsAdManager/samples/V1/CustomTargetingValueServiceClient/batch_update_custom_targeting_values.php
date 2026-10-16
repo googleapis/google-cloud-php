@@ -59,7 +59,7 @@ function batch_update_custom_targeting_values_sample(
         ->setMatchType($requestsCustomTargetingValueMatchType);
     $updateCustomTargetingValueRequest = (new UpdateCustomTargetingValueRequest())
         ->setCustomTargetingValue($requestsCustomTargetingValue);
-    $requests = [$updateCustomTargetingValueRequest,];
+    $requests = [$updateCustomTargetingValueRequest];
     $request = (new BatchUpdateCustomTargetingValuesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

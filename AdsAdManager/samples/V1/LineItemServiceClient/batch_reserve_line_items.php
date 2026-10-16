@@ -46,7 +46,7 @@ function batch_reserve_line_items_sample(
     $lineItemServiceClient = new LineItemServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchReserveLineItemsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

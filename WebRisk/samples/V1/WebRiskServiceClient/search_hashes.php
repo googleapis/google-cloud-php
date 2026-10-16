@@ -45,7 +45,7 @@ function search_hashes_sample(int $threatTypesElement): void
     $webRiskServiceClient = new WebRiskServiceClient();
 
     // Prepare the request message.
-    $threatTypes = [$threatTypesElement,];
+    $threatTypes = [$threatTypesElement];
     $request = (new SearchHashesRequest())
         ->setThreatTypes($threatTypes);
 

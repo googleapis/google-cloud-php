@@ -46,7 +46,7 @@ function batch_deactivate_ad_rules_sample(
     $adRuleServiceClient = new AdRuleServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchDeactivateAdRulesRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

@@ -50,7 +50,7 @@ function generate_synthetic_data_sample(
     // Prepare the request message.
     $outputFieldSpec = (new OutputFieldSpec())
         ->setFieldName($outputFieldSpecsFieldName);
-    $outputFieldSpecs = [$outputFieldSpec,];
+    $outputFieldSpecs = [$outputFieldSpec];
     $request = (new GenerateSyntheticDataRequest())
         ->setLocation($formattedLocation)
         ->setCount($count)

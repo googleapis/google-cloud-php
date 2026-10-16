@@ -48,7 +48,7 @@ function update_subproperty_event_filter_sample(
     $subpropertyEventFilterClause = (new SubpropertyEventFilterClause())
         ->setFilterClauseType($subpropertyEventFilterFilterClausesFilterClauseType)
         ->setFilterExpression($subpropertyEventFilterFilterClausesFilterExpression);
-    $subpropertyEventFilterFilterClauses = [$subpropertyEventFilterClause,];
+    $subpropertyEventFilterFilterClauses = [$subpropertyEventFilterClause];
     $subpropertyEventFilter = (new SubpropertyEventFilter())
         ->setFilterClauses($subpropertyEventFilterFilterClauses);
     $updateMask = new FieldMask();

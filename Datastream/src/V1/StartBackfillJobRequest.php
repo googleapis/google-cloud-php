@@ -22,6 +22,14 @@ class StartBackfillJobRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string object = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $object = '';
+    /**
+     * Optional. Optional event filter. If not set, or empty, the backfill will be
+     * performed on the entire object. This is currently used for partial backfill
+     * and only supported for SQL sources.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.EventFilter event_filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $event_filter = null;
 
     /**
      * @param string $object Required. The name of the stream object resource to start a backfill job
@@ -47,6 +55,10 @@ class StartBackfillJobRequest extends \Google\Protobuf\Internal\Message
      *     @type string $object
      *           Required. The name of the stream object resource to start a backfill job
      *           for.
+     *     @type \Google\Cloud\Datastream\V1\EventFilter $event_filter
+     *           Optional. Optional event filter. If not set, or empty, the backfill will be
+     *           performed on the entire object. This is currently used for partial backfill
+     *           and only supported for SQL sources.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,6 +90,46 @@ class StartBackfillJobRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->object = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Optional event filter. If not set, or empty, the backfill will be
+     * performed on the entire object. This is currently used for partial backfill
+     * and only supported for SQL sources.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.EventFilter event_filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Datastream\V1\EventFilter|null
+     */
+    public function getEventFilter()
+    {
+        return $this->event_filter;
+    }
+
+    public function hasEventFilter()
+    {
+        return isset($this->event_filter);
+    }
+
+    public function clearEventFilter()
+    {
+        unset($this->event_filter);
+    }
+
+    /**
+     * Optional. Optional event filter. If not set, or empty, the backfill will be
+     * performed on the entire object. This is currently used for partial backfill
+     * and only supported for SQL sources.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.EventFilter event_filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Datastream\V1\EventFilter $var
+     * @return $this
+     */
+    public function setEventFilter($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\EventFilter::class);
+        $this->event_filter = $var;
 
         return $this;
     }

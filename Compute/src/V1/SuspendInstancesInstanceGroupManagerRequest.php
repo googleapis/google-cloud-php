@@ -74,7 +74,9 @@ class SuspendInstancesInstanceGroupManagerRequest extends \Google\Protobuf\Inter
             ->setProject($project)
             ->setZone($zone)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersSuspendInstancesRequestResource($instanceGroupManagersSuspendInstancesRequestResource);
+            ->setInstanceGroupManagersSuspendInstancesRequestResource(
+                $instanceGroupManagersSuspendInstancesRequestResource
+            );
     }
 
     /**

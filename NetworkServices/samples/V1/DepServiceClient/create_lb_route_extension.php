@@ -102,17 +102,17 @@ function create_lb_route_extension_sample(
     $depServiceClient = new DepServiceClient();
 
     // Prepare the request message.
-    $lbRouteExtensionForwardingRules = [$lbRouteExtensionForwardingRulesElement,];
+    $lbRouteExtensionForwardingRules = [$lbRouteExtensionForwardingRulesElement];
     $lbRouteExtensionExtensionChainsMatchCondition = (new MatchCondition())
         ->setCelExpression($lbRouteExtensionExtensionChainsMatchConditionCelExpression);
     $extension = (new Extension())
         ->setService($lbRouteExtensionExtensionChainsExtensionsService);
-    $lbRouteExtensionExtensionChainsExtensions = [$extension,];
+    $lbRouteExtensionExtensionChainsExtensions = [$extension];
     $extensionChain = (new ExtensionChain())
         ->setName($lbRouteExtensionExtensionChainsName)
         ->setMatchCondition($lbRouteExtensionExtensionChainsMatchCondition)
         ->setExtensions($lbRouteExtensionExtensionChainsExtensions);
-    $lbRouteExtensionExtensionChains = [$extensionChain,];
+    $lbRouteExtensionExtensionChains = [$extensionChain];
     $lbRouteExtension = (new LbRouteExtension())
         ->setName($lbRouteExtensionName)
         ->setForwardingRules($lbRouteExtensionForwardingRules)

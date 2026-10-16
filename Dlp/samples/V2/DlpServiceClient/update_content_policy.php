@@ -46,7 +46,7 @@ function update_content_policy_sample(string $formattedName): void
     $contentPolicyRulesAction = new PolicyAction();
     $policyRule = (new PolicyRule())
         ->setAction($contentPolicyRulesAction);
-    $contentPolicyRules = [$policyRule,];
+    $contentPolicyRules = [$policyRule];
     $contentPolicy = (new ContentPolicy())
         ->setRules($contentPolicyRules);
     $request = (new UpdateContentPolicyRequest())

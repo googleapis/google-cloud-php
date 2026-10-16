@@ -56,7 +56,7 @@ function update_document_sample(
     $documentsClient = new DocumentsClient();
 
     // Prepare the request message.
-    $documentKnowledgeTypes = [$documentKnowledgeTypesElement,];
+    $documentKnowledgeTypes = [$documentKnowledgeTypesElement];
     $document = (new Document())
         ->setDisplayName($documentDisplayName)
         ->setMimeType($documentMimeType)

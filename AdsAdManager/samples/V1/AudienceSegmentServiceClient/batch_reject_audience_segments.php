@@ -45,7 +45,7 @@ function batch_reject_audience_segments_sample(
     $audienceSegmentServiceClient = new AudienceSegmentServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchRejectAudienceSegmentsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

@@ -79,7 +79,7 @@ function create_framework_deployment_sample(
     $cloudControlMetadata = (new CloudControlMetadata())
         ->setCloudControlDetails($frameworkDeploymentCloudControlMetadataCloudControlDetails)
         ->setEnforcementMode($frameworkDeploymentCloudControlMetadataEnforcementMode);
-    $frameworkDeploymentCloudControlMetadata = [$cloudControlMetadata,];
+    $frameworkDeploymentCloudControlMetadata = [$cloudControlMetadata];
     $frameworkDeployment = (new FrameworkDeployment())
         ->setTargetResourceConfig($frameworkDeploymentTargetResourceConfig)
         ->setFramework($frameworkDeploymentFramework)

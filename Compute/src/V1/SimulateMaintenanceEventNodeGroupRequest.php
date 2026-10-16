@@ -74,7 +74,9 @@ class SimulateMaintenanceEventNodeGroupRequest extends \Google\Protobuf\Internal
             ->setProject($project)
             ->setZone($zone)
             ->setNodeGroup($nodeGroup)
-            ->setNodeGroupsSimulateMaintenanceEventRequestResource($nodeGroupsSimulateMaintenanceEventRequestResource);
+            ->setNodeGroupsSimulateMaintenanceEventRequestResource(
+                $nodeGroupsSimulateMaintenanceEventRequestResource
+            );
     }
 
     /**

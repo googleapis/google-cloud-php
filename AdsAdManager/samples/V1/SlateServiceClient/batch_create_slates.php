@@ -58,7 +58,7 @@ function batch_create_slates_sample(
     $createSlateRequest = (new CreateSlateRequest())
         ->setParent($formattedRequestsParent)
         ->setSlate($requestsSlate);
-    $requests = [$createSlateRequest,];
+    $requests = [$createSlateRequest];
     $request = (new BatchCreateSlatesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

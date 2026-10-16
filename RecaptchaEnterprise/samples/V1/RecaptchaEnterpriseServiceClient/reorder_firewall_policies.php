@@ -46,7 +46,7 @@ function reorder_firewall_policies_sample(
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new ReorderFirewallPoliciesRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

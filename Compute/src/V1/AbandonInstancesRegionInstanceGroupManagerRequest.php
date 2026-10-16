@@ -72,7 +72,9 @@ class AbandonInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf
             ->setProject($project)
             ->setRegion($region)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setRegionInstanceGroupManagersAbandonInstancesRequestResource($regionInstanceGroupManagersAbandonInstancesRequestResource);
+            ->setRegionInstanceGroupManagersAbandonInstancesRequestResource(
+                $regionInstanceGroupManagersAbandonInstancesRequestResource
+            );
     }
 
     /**
