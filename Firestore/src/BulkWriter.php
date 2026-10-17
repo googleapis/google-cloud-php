@@ -686,6 +686,9 @@ class BulkWriter
             CallOptions::class
         );
 
+        $isTransaction = !empty($request->getTransaction());
+        $callOptions['headers']['x-goog-is-transaction'] = [$isTransaction ? 'true' : 'false'];
+
         try {
             $response = $this->gapicClient->commit($request, $callOptions);
         } catch (ApiException $ex) {
@@ -745,6 +748,8 @@ class BulkWriter
             new RollbackRequest(),
             CallOptions::class
         );
+
+        $callOptions['headers']['x-goog-is-transaction'] = ['true'];
 
         try {
             $this->gapicClient->rollback($request, $callOptions);
@@ -962,6 +967,8 @@ class BulkWriter
             new BatchWriteRequest(),
             CallOptions::class,
         );
+
+        $callOptions['headers']['x-goog-is-transaction'] = ['false'];
 
         try {
             $response = $this->gapicClient->batchWrite($request, $callOptions);
