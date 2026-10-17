@@ -43,8 +43,7 @@ final class SpanAttributes
     public const RPC_SYSTEM_NAME = 'rpc.system.name';
     public const RPC_RESPONSE_STATUS_CODE = 'rpc.response.status_code';
 
-    // HTTP & Network attributes
-    public const HTTP_RESPONSE_STATUS_CODE = 'http.response.status_code';
+    // Network attributes
     public const SERVER_ADDRESS = 'server.address';
     public const SERVER_PORT = 'server.port';
 
