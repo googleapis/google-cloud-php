@@ -74,7 +74,7 @@ class FirestoreSessionHandlerTest extends TestCase
                 $this->assertEquals($this->dbName(), $request->getDatabase());
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
         )->shouldBeCalledTimes(1)
             ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => '']));
 
@@ -531,7 +531,7 @@ class FirestoreSessionHandlerTest extends TestCase
                 $this->assertEquals($this->dbName(), $request->getDatabase());
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
         )->shouldBeCalledTimes(2)
             ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => '123']));
 
@@ -555,7 +555,7 @@ class FirestoreSessionHandlerTest extends TestCase
 
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
         )->shouldBeCalledTimes(1)
             ->willReturn($serverStream->reveal());
 
@@ -577,7 +577,7 @@ class FirestoreSessionHandlerTest extends TestCase
                 $this->assertEquals('123', $request->getTransaction());
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
         )->shouldBeCalledTimes(1)
             ->willReturn(self::generateProto(CommitResponse::class, []));
 
