@@ -29,6 +29,9 @@ class AwsNativeSource implements ExternalAccountCredentialSourceInterface
 {
     private const CRED_VERIFICATION_QUERY = 'Action=GetCallerIdentity&Version=2011-06-15';
     private const ECS_CONTAINER_METADATA_URL = 'http://169.254.170.2';
+    private const ECS_METADATA_HOST = '169.254.170.2';
+    private const EKS_POD_IDENTITY_IPV4_HOST = '169.254.170.23';
+    private const EKS_POD_IDENTITY_IPV6_HOST = 'fd00:ec2::23';
 
     private string $audience;
     private string $regionalCredVerificationUrl;
@@ -68,15 +71,21 @@ class AwsNativeSource implements ExternalAccountCredentialSourceInterface
             $httpHandler = HttpHandlerFactory::build(HttpClientCache::getHttpClient());
         }
 
-        $headers = [];
-        if ($this->imdsv2SessionTokenUrl) {
-            $headers = [
-                'X-aws-ec2-metadata-token' => self::getImdsV2SessionToken($this->imdsv2SessionTokenUrl, $httpHandler)
-            ];
-        }
-
         $signingVars = self::getSigningVarsFromEnv()
             ?? self::getSigningVarsFromEcs($httpHandler);
+        $region = self::getRegionFromEnv();
+
+        $headers = [];
+        // Only fetch the IMDSv2 session token if credentials or region were not
+        // resolved from the environment or ECS container metadata.
+        if ($this->imdsv2SessionTokenUrl && (!$signingVars || !$region)) {
+            $headers = [
+                'X-aws-ec2-metadata-token' => self::getImdsV2SessionToken(
+                    $this->imdsv2SessionTokenUrl,
+                    $httpHandler
+                ),
+            ];
+        }
 
         if (!$signingVars) {
             if (!$this->securityCredentialsUrl) {
@@ -92,7 +101,7 @@ class AwsNativeSource implements ExternalAccountCredentialSourceInterface
             );
         }
 
-        if (!$region = self::getRegionFromEnv()) {
+        if (!$region) {
             if (!$this->regionUrl) {
                 throw new \LogicException('Unable to get region from ENV, and no region URL provided');
             }
@@ -329,12 +338,23 @@ class AwsNativeSource implements ExternalAccountCredentialSourceInterface
         $ecsContainerAuthorizationTokenFile = getenv('AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE');
 
         $credentialsUrl = '';
-        // The full URI takes precedence over the relative URI if both are defined.
-        if ($ecsContainerCredentialsFullUri) {
-            $credentialsUrl = $ecsContainerCredentialsFullUri;
-        } elseif ($ecsContainerCredentialsRelativeUri) {
+        // The relative URI takes precedence over the full URI if both are defined.
+        if ($ecsContainerCredentialsRelativeUri) {
+            if (!str_starts_with($ecsContainerCredentialsRelativeUri, '/')) {
+                throw new \InvalidArgumentException(
+                    'Invalid AWS_CONTAINER_CREDENTIALS_RELATIVE_URI: relative URI must start with "/"'
+                );
+            }
             // The relative URI is appended to the default ECS Task Metadata Endpoint.
             $credentialsUrl = self::ECS_CONTAINER_METADATA_URL . $ecsContainerCredentialsRelativeUri;
+        } elseif ($ecsContainerCredentialsFullUri) {
+            if (!self::isValidEcsFullUri($ecsContainerCredentialsFullUri)) {
+                throw new \InvalidArgumentException(
+                    'Invalid AWS_CONTAINER_CREDENTIALS_FULL_URI: must be a valid HTTPS URI or an HTTP URI '
+                    . 'targeting a loopback or AWS container metadata host'
+                );
+            }
+            $credentialsUrl = $ecsContainerCredentialsFullUri;
         } else {
             // Not running in an ECS environment, or metadata is not enabled.
             return null;
@@ -420,6 +440,39 @@ class AwsNativeSource implements ExternalAccountCredentialSourceInterface
     private static function utf8Encode(string $string): string
     {
         return (string) mb_convert_encoding($string, 'UTF-8', 'ISO-8859-1');
+    }
+
+    private static function isValidEcsFullUri(string $uri): bool
+    {
+        $parsed = parse_url($uri);
+        if (!is_array($parsed) || empty($parsed['scheme']) || empty($parsed['host'])) {
+            return false;
+        }
+
+        $scheme = strtolower($parsed['scheme']);
+        if ($scheme === 'https') {
+            return true;
+        }
+        if ($scheme !== 'http') {
+            return false;
+        }
+
+        $host = strtolower(trim($parsed['host'], '[]'));
+        if (in_array($host, ['localhost', self::ECS_METADATA_HOST, self::EKS_POD_IDENTITY_IPV4_HOST], true)) {
+            return true;
+        }
+
+        if (filter_var($host, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+            return str_starts_with($host, '127.');
+        }
+
+        if (filter_var($host, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+            $packed = inet_pton($host);
+            return $packed === inet_pton('::1')
+                || $packed === inet_pton(self::EKS_POD_IDENTITY_IPV6_HOST);
+        }
+
+        return false;
     }
 
     private static function getSignatureKey(

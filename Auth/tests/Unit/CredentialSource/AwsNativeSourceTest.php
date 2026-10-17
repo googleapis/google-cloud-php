@@ -185,13 +185,14 @@ class AwsNativeSourceTest extends TestCase
         $secretAccessKey = 'expected-secret-access-key';
         $securityToken = null;
         $headers = AwsNativeSource::getSignedRequestHeaders(
-            $host,
             $region,
+            $host,
             $accessKeyId,
             $secretAccessKey,
             $securityToken
         );
 
+        $this->assertEquals($host, $headers['host']);
         $this->assertArrayHasKey('x-amz-date', $headers);
         $this->assertArrayHasKey('Authorization', $headers);
         $this->assertArrayNotHasKey('x-amz-security-token', $headers);
@@ -201,7 +202,7 @@ class AwsNativeSourceTest extends TestCase
             $headers['Authorization']
         );
         $this->assertStringContainsString(
-            '/sts/aws4_request, SignedHeaders=host;x-amz-date, ',
+            sprintf('/%s/sts/aws4_request, SignedHeaders=host;x-amz-date, ', $region),
             $headers['Authorization']
         );
         $this->assertStringContainsString(
@@ -218,6 +219,7 @@ class AwsNativeSourceTest extends TestCase
             $securityToken
         );
 
+        $this->assertEquals($host, $headers['host']);
         $this->assertArrayHasKey('x-amz-date', $headers);
         $this->assertArrayHasKey('Authorization', $headers);
         $this->assertArrayHasKey('x-amz-security-token', $headers);
@@ -227,7 +229,7 @@ class AwsNativeSourceTest extends TestCase
             $headers['Authorization']
         );
         $this->assertStringContainsString(
-            '/sts/aws4_request, SignedHeaders=host;x-amz-date;x-amz-security-token, ',
+            sprintf('/%s/sts/aws4_request, SignedHeaders=host;x-amz-date;x-amz-security-token, ', $region),
             $headers['Authorization']
         );
         $this->assertStringContainsString(
@@ -245,16 +247,11 @@ class AwsNativeSourceTest extends TestCase
 
         $aws = new AwsNativeSource(
             $this->audience,
-            $this->regionUrl,
             $this->regionalCredVerificationUrl,
+            $this->regionUrl,
         );
         $httpHandler = function (RequestInterface $request): ResponseInterface {
-            // Mock response from AWS Metadata Server
-            $awsTokenBody = $this->prophesize(StreamInterface::class);
-            $awsTokenBody->__toString()->willReturn('aws-token');
-            $awsTokenResponse = $this->prophesize(ResponseInterface::class);
-            $awsTokenResponse->getBody()->willReturn($awsTokenBody->reveal());
-            return $awsTokenResponse->reveal();
+            $this->fail('HTTP handler should not be called');
         };
         $aws->fetchSubjectToken($httpHandler);
     }
@@ -428,6 +425,142 @@ class AwsNativeSourceTest extends TestCase
     }
 
     /** @runInSeparateProcess */
+    public function testGetSigningVarsFromEcsRelativeUriTakesPrecedenceOverFullUri()
+    {
+        putenv('AWS_CONTAINER_CREDENTIALS_RELATIVE_URI=/v2/credentials/relative');
+        putenv('AWS_CONTAINER_CREDENTIALS_FULL_URI=http://localhost:8080/credentials');
+
+        $httpHandler = function (RequestInterface $request): ResponseInterface {
+            $this->assertEquals('GET', $request->getMethod());
+            $this->assertEquals(
+                'http://169.254.170.2/v2/credentials/relative',
+                (string) $request->getUri()
+            );
+
+            $body = $this->prophesize(StreamInterface::class);
+            $body->__toString()->willReturn(json_encode([
+                'AccessKeyId' => 'expected-access-key-id',
+                'SecretAccessKey' => 'expected-secret-access-key',
+                'Token' => 'expected-token',
+            ]));
+            $response = $this->prophesize(ResponseInterface::class);
+            $response->getBody()->willReturn($body->reveal());
+
+            return $response->reveal();
+        };
+
+        $signingVars = AwsNativeSource::getSigningVarsFromEcs($httpHandler);
+
+        $this->assertEquals('expected-access-key-id', $signingVars[0]);
+        $this->assertEquals('expected-secret-access-key', $signingVars[1]);
+        $this->assertEquals('expected-token', $signingVars[2]);
+    }
+
+    /**
+     * @dataProvider provideInvalidRelativeUris
+     * @runInSeparateProcess
+     */
+    public function testGetSigningVarsFromEcsWithInvalidRelativeUri(string $relativeUri)
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid AWS_CONTAINER_CREDENTIALS_RELATIVE_URI');
+
+        putenv('AWS_CONTAINER_CREDENTIALS_RELATIVE_URI=' . $relativeUri);
+
+        $httpHandler = function (RequestInterface $request): ResponseInterface {
+            $this->fail('HTTP handler should not be called');
+        };
+
+        AwsNativeSource::getSigningVarsFromEcs($httpHandler);
+    }
+
+    public function provideInvalidRelativeUris(): array
+    {
+        return [
+            ['v2/credentials/test'],
+            ['@evil.com/credentials'],
+            [':80@evil.com/credentials'],
+        ];
+    }
+
+    /**
+     * @dataProvider provideValidFullUris
+     * @runInSeparateProcess
+     */
+    public function testGetSigningVarsFromEcsWithValidFullUris(string $fullUri, ?string $expectedUri = null)
+    {
+        putenv('AWS_CONTAINER_CREDENTIALS_FULL_URI=' . $fullUri);
+
+        $httpHandler = function (RequestInterface $request) use ($fullUri, $expectedUri): ResponseInterface {
+            $this->assertEquals('GET', $request->getMethod());
+            $this->assertEquals($expectedUri ?? $fullUri, (string) $request->getUri());
+
+            $body = $this->prophesize(StreamInterface::class);
+            $body->__toString()->willReturn(json_encode([
+                'AccessKeyId' => 'expected-access-key-id',
+                'SecretAccessKey' => 'expected-secret-access-key',
+            ]));
+            $response = $this->prophesize(ResponseInterface::class);
+            $response->getBody()->willReturn($body->reveal());
+
+            return $response->reveal();
+        };
+
+        $signingVars = AwsNativeSource::getSigningVarsFromEcs($httpHandler);
+
+        $this->assertEquals('expected-access-key-id', $signingVars[0]);
+        $this->assertEquals('expected-secret-access-key', $signingVars[1]);
+        $this->assertNull($signingVars[2]);
+    }
+
+    public function provideValidFullUris(): array
+    {
+        return [
+            ['https://example.com/credentials'],
+            ['http://localhost:8080/credentials'],
+            ['http://127.0.0.1:51679/v2/credentials'],
+            ['http://127.255.255.254/credentials'],
+            ['http://[::1]:8080/credentials'],
+            ['http://[0:0:0:0:0:0:0:1]:8080/credentials', 'http://[::1]:8080/credentials'],
+            ['http://169.254.170.2/v2/credentials'],
+            ['http://169.254.170.23/v1/credentials'],
+            ['http://[fd00:ec2::23]/v1/credentials'],
+            ['http://[fd00:ec2:0:0:0:0:0:23]/v1/credentials', 'http://[fd00:ec2::23]/v1/credentials'],
+        ];
+    }
+
+    /**
+     * @dataProvider provideInvalidFullUris
+     * @runInSeparateProcess
+     */
+    public function testGetSigningVarsFromEcsWithInvalidFullUri(string $fullUri)
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid AWS_CONTAINER_CREDENTIALS_FULL_URI');
+
+        putenv('AWS_CONTAINER_CREDENTIALS_FULL_URI=' . $fullUri);
+
+        $httpHandler = function (RequestInterface $request): ResponseInterface {
+            $this->fail('HTTP handler should not be called');
+        };
+
+        AwsNativeSource::getSigningVarsFromEcs($httpHandler);
+    }
+
+    public function provideInvalidFullUris(): array
+    {
+        return [
+            ['http://example.com/credentials'],
+            ['http://169.254.169.254/latest/meta-data/'],
+            ['http://169.254.170.3/credentials'],
+            ['http://10.0.0.1/credentials'],
+            ['http://[fd00:ec2::24]/v1/credentials'],
+            ['ftp://localhost/credentials'],
+            ['not-a-valid-uri'],
+        ];
+    }
+
+    /** @runInSeparateProcess */
     public function testGetSigningVarsFromEcsReturnsNullWhenUrisNotSet()
     {
         // No environment variables set
@@ -443,15 +576,18 @@ class AwsNativeSourceTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testFetchSubjectTokenFromEcs()
+    public function testFetchSubjectTokenFromEcsWithRegionInEnvSkipsImdsV2()
     {
         $aws = new AwsNativeSource(
             $this->audience,
-            $this->regionUrl,
             $this->regionalCredVerificationUrl,
+            $this->regionUrl,
+            $this->securityCredentialsUrl,
+            $this->imdsv2SessionTokenUrl,
         );
 
         putenv('AWS_CONTAINER_CREDENTIALS_RELATIVE_URI=/v2/credentials/test');
+        putenv('AWS_REGION=us-east-2');
 
         // Mock response from AWS ECS Metadata Server
         $awsTokenBody = $this->prophesize(StreamInterface::class);
@@ -463,6 +599,57 @@ class AwsNativeSourceTest extends TestCase
         $awsTokenResponse = $this->prophesize(ResponseInterface::class);
         $awsTokenResponse->getBody()->willReturn($awsTokenBody->reveal());
 
+        $requestCount = 0;
+        $httpHandler = function (RequestInterface $request) use (
+            $awsTokenResponse,
+            &$requestCount
+        ): ResponseInterface {
+            $requestCount++;
+            $this->assertEquals(1, $requestCount);
+            $this->assertEquals('GET', $request->getMethod());
+            $this->assertEquals('http://169.254.170.2/v2/credentials/test', (string) $request->getUri());
+            return $awsTokenResponse->reveal();
+        };
+
+        $subjectToken = $aws->fetchSubjectToken($httpHandler);
+        $this->assertEquals(1, $requestCount);
+        $unserializedToken = json_decode(urldecode($subjectToken), true);
+        $this->assertArrayHasKey('headers', $unserializedToken);
+        $this->assertEquals('POST', $unserializedToken['method']);
+        $this->assertEquals('https://us-east-2.regional.cred.verification.url', $unserializedToken['url']);
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testFetchSubjectTokenFromEcs()
+    {
+        $aws = new AwsNativeSource(
+            $this->audience,
+            $this->regionalCredVerificationUrl,
+            $this->regionUrl,
+            $this->securityCredentialsUrl,
+            $this->imdsv2SessionTokenUrl,
+        );
+
+        putenv('AWS_CONTAINER_CREDENTIALS_RELATIVE_URI=/v2/credentials/test');
+
+        // Mock response from AWS ECS Metadata Server
+        $ecsCredsBody = $this->prophesize(StreamInterface::class);
+        $ecsCredsBody->__toString()->willReturn(json_encode([
+            'AccessKeyId' => 'expected-access-key-id',
+            'SecretAccessKey' => 'expected-secret-access-key',
+            'Token' => 'expected-token',
+        ]));
+        $ecsCredsResponse = $this->prophesize(ResponseInterface::class);
+        $ecsCredsResponse->getBody()->willReturn($ecsCredsBody->reveal());
+
+        // Mock response from AWS IMDSv2 Session Token URL (for Region URL fallback)
+        $imdsTokenBody = $this->prophesize(StreamInterface::class);
+        $imdsTokenBody->__toString()->willReturn('aws-token');
+        $imdsTokenResponse = $this->prophesize(ResponseInterface::class);
+        $imdsTokenResponse->getBody()->willReturn($imdsTokenBody->reveal());
+
         // Mock response from Region URL
         $regionBody = $this->prophesize(StreamInterface::class);
         $regionBody->__toString()->willReturn('us-east-2b');
@@ -471,25 +658,36 @@ class AwsNativeSourceTest extends TestCase
 
         $requestCount = 0;
         $httpHandler = function (RequestInterface $request) use (
-            $awsTokenResponse,
+            $ecsCredsResponse,
+            $imdsTokenResponse,
             $regionResponse,
             &$requestCount
         ): ResponseInterface {
             $requestCount++;
             switch ($requestCount) {
                 case 1:
-                    return $awsTokenResponse->reveal();
+                    $this->assertEquals('GET', $request->getMethod());
+                    $this->assertEquals('http://169.254.170.2/v2/credentials/test', (string) $request->getUri());
+                    return $ecsCredsResponse->reveal();
                 case 2:
+                    $this->assertEquals('PUT', $request->getMethod());
+                    $this->assertEquals($this->imdsv2SessionTokenUrl, (string) $request->getUri());
+                    return $imdsTokenResponse->reveal();
+                case 3:
+                    $this->assertEquals('GET', $request->getMethod());
+                    $this->assertEquals($this->regionUrl, (string) $request->getUri());
+                    $this->assertEquals('aws-token', $request->getHeaderLine('X-aws-ec2-metadata-token'));
                     return $regionResponse->reveal();
             }
             throw new \Exception('Unexpected request');
         };
 
         $subjectToken = $aws->fetchSubjectToken($httpHandler);
+        $this->assertEquals(3, $requestCount);
         $unserializedToken = json_decode(urldecode($subjectToken), true);
         $this->assertArrayHasKey('headers', $unserializedToken);
-        $this->assertArrayHasKey('method', $unserializedToken);
-        $this->assertArrayHasKey('url', $unserializedToken);
+        $this->assertEquals('POST', $unserializedToken['method']);
+        $this->assertEquals('https://us-east-2.regional.cred.verification.url', $unserializedToken['url']);
     }
 
     /**
@@ -499,19 +697,13 @@ class AwsNativeSourceTest extends TestCase
     {
         $aws = new AwsNativeSource(
             $this->audience,
-            $this->regionUrl,
             $this->regionalCredVerificationUrl,
+            $this->regionUrl,
         );
 
         // Set minimum number of environment variables required
         putenv('AWS_ACCESS_KEY_ID=expected-access-key-id');
         putenv('AWS_SECRET_ACCESS_KEY=expected-secret-access-key');
-
-        // Mock response from AWS Metadata Server
-        $awsTokenBody = $this->prophesize(StreamInterface::class);
-        $awsTokenBody->__toString()->willReturn('aws-token');
-        $awsTokenResponse = $this->prophesize(ResponseInterface::class);
-        $awsTokenResponse->getBody()->willReturn($awsTokenBody->reveal());
 
         // Mock response from Region URL
         $regionBody = $this->prophesize(StreamInterface::class);
@@ -521,33 +713,30 @@ class AwsNativeSourceTest extends TestCase
 
         $requestCount = 0;
         $httpHandler = function (RequestInterface $request) use (
-            $awsTokenResponse,
             $regionResponse,
             &$requestCount
         ): ResponseInterface {
             $requestCount++;
-            switch ($requestCount) {
-                case 1:
-                    return $awsTokenResponse->reveal();
-                case 2:
-                    return $regionResponse->reveal();
-            }
-            throw new \Exception('Unexpected request');
+            $this->assertEquals(1, $requestCount);
+            $this->assertEquals('GET', $request->getMethod());
+            $this->assertEquals($this->regionUrl, (string) $request->getUri());
+            return $regionResponse->reveal();
         };
 
         $subjectToken = $aws->fetchSubjectToken($httpHandler);
+        $this->assertEquals(1, $requestCount);
         $unserializedToken = json_decode(urldecode($subjectToken), true);
         $this->assertArrayHasKey('headers', $unserializedToken);
-        $this->assertArrayHasKey('method', $unserializedToken);
-        $this->assertArrayHasKey('url', $unserializedToken);
+        $this->assertEquals('POST', $unserializedToken['method']);
+        $this->assertEquals('https://us-east-2.regional.cred.verification.url', $unserializedToken['url']);
     }
 
     public function testFetchSubjectTokenFromUrl()
     {
         $aws = new AwsNativeSource(
             $this->audience,
-            $this->regionUrl,
             $this->regionalCredVerificationUrl,
+            $this->regionUrl,
             $this->securityCredentialsUrl,
             $this->imdsv2SessionTokenUrl,
         );
@@ -603,9 +792,10 @@ class AwsNativeSourceTest extends TestCase
         };
 
         $subjectToken = $aws->fetchSubjectToken($httpHandler);
+        $this->assertEquals(4, $requestCount);
         $unserializedToken = json_decode(urldecode($subjectToken), true);
         $this->assertArrayHasKey('headers', $unserializedToken);
-        $this->assertArrayHasKey('method', $unserializedToken);
-        $this->assertArrayHasKey('url', $unserializedToken);
+        $this->assertEquals('POST', $unserializedToken['method']);
+        $this->assertEquals('https://us-east-2.regional.cred.verification.url', $unserializedToken['url']);
     }
 }
