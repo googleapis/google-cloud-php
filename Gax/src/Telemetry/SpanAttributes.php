@@ -43,6 +43,13 @@ final class SpanAttributes
     public const RPC_SYSTEM_NAME = 'rpc.system.name';
     public const RPC_RESPONSE_STATUS_CODE = 'rpc.response.status_code';
 
+    // HTTP & URL attributes
+    public const HTTP_REQUEST_METHOD = 'http.request.method';
+    public const HTTP_RESPONSE_STATUS_CODE = 'http.response.status_code';
+    public const HTTP_REQUEST_RESEND_COUNT = 'http.request.resend_count';
+    public const URL_FULL = 'url.full';
+    public const URL_TEMPLATE = 'url.template';
+
     // Network attributes
     public const SERVER_ADDRESS = 'server.address';
     public const SERVER_PORT = 'server.port';

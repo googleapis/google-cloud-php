@@ -482,4 +482,32 @@ class RequestBuilderTest extends TestCase
 
         $this->builder->build('myResource/doesntExist', $message);
     }
+
+    public function testGetUriTemplate(): void
+    {
+        $message = new MockRequestBody();
+        $message->setName('message/foo');
+
+        $this->assertSame(
+            '/v1/{name=message/**}',
+            $this->builder->getUriTemplate(self::SERVICE_NAME . '/MethodWithUrlPlaceholder', $message)
+        );
+        $this->assertSame(
+            '/v1/{name=message/*}:action',
+            $this->builder->getUriTemplate(self::SERVICE_NAME . '/MethodWithColonInUrl', $message)
+        );
+
+        $nested = new MockRequestBody();
+        $nested->setName('nested/bar');
+        $additionalMessage = new MockRequestBody();
+        $additionalMessage->setNestedMessage($nested);
+        $this->assertSame(
+            '/v2/{nested_message=nested/**}/additional/bindings',
+            $this->builder->getUriTemplate(self::SERVICE_NAME . '/MethodWithAdditionalBindings', $additionalMessage)
+        );
+
+        $this->assertNull($this->builder->getUriTemplate('myResource/doesntExist', $message));
+        $this->assertNull($this->builder->getUriTemplate('InvalidMethodWithoutSlash', $message));
+        $this->assertNull($this->builder->getUriTemplate(self::SERVICE_NAME . '/MethodWithUrlPlaceholder', null));
+    }
 }

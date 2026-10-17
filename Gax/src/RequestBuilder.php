@@ -76,6 +76,38 @@ class RequestBuilder
     }
 
     /**
+     * Returns the matched URI template for the given path and message, or null if not found.
+     *
+     * @param string $path
+     * @param Message|null $message
+     * @return string|null
+     */
+    public function getUriTemplate(string $path, ?Message $message = null): ?string
+    {
+        if (!$message || !str_contains($path, '/')) {
+            return null;
+        }
+
+        [$interface, $method] = explode('/', $path, 2);
+        if (!isset($this->restConfig['interfaces'][$interface][$method])) {
+            return null;
+        }
+
+        $methodConfig = $this->restConfig['interfaces'][$interface][$method] + [
+            'placeholders' => [],
+            'additionalBindings' => null,
+        ];
+        $bindings = $this->buildBindings($methodConfig['placeholders'], $message);
+        foreach ($this->getConfigsForUriTemplates($methodConfig) as $config) {
+            if ($this->tryRenderPathTemplate($config['uriTemplate'], $bindings)) {
+                return $config['uriTemplate'];
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * @param string $path
      * @param Message $message
      * @param array $headers
