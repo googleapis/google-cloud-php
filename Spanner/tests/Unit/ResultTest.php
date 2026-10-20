@@ -26,6 +26,7 @@ use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Transaction;
+use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
 use Google\Cloud\Spanner\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -554,6 +555,33 @@ class ResultTest extends TestCase
         );
 
         $this->assertInstanceOf(Transaction::class, $result->transaction());
+    }
+
+    public function testTransactionWithEmptyPrecommitToken()
+    {
+        $chunks = [
+            json_encode([
+                'metadata' => self::METADATA + ['transaction' => ['id' => 'tx-1']],
+                'precommitToken' => [],
+            ]),
+        ];
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
+            function () use ($chunks) {
+                return $this->resultGeneratorJson($chunks);
+            },
+            'rw',
+            $this->mapper->reveal()
+        );
+
+        $transaction = $result->transaction();
+        $this->assertInstanceOf(Transaction::class, $transaction);
+        $prop = (new \ReflectionClass(Transaction::class))->getProperty('precommitToken');
+        $this->assertEquals(
+            new MultiplexedSessionPrecommitToken(['precommit_token' => '', 'seq_num' => 0]),
+            $prop->getValue($transaction)
+        );
     }
 
     public function testSnapshot()

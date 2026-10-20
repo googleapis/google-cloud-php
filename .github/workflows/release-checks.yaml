@@ -8,16 +8,16 @@ permissions:
 jobs:
   # More info at https://github.com/Roave/BackwardCompatibilityCheck.
   backwards-compatibility-check:
-    name: Breaking Change Detector
+    name: "Release Checks: Breaking Change Detector"
     runs-on: ubuntu-latest
     continue-on-error: ${{ contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           persist-credentials: false
       - name: "Install PHP"
-        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: "8.4"
       - name: "Install dependencies"
@@ -38,16 +38,16 @@ jobs:
   # Add "MAJOR_VERSION_ALLOWED=component1,component2" to the PR description to allow major version
   # releases for those components
   unexpected-major-version-check:
-    name: Unexpected Major Version Check
+    name: "Release Checks: Unexpected Major Version"
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'release-please[bot]'
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           persist-credentials: false
       - name: Parse allowed major versions
-        uses: actions-ecosystem/action-regex-match@9e6c4fb3d5e898f505be7a1fb6e7b0a278f6665b # v2
+        uses: actions-ecosystem/action-regex-match@9e6c4fb3d5e898f505be7a1fb6e7b0a278f6665b # v2.0.2
         id: allowed-major-versions
         with:
           text: ${{ github.event.pull_request.body }}
@@ -84,12 +84,12 @@ jobs:
           STEPS_ALLOWED_MAJOR_VERSIONS_OUTPUTS_GROUP1: ${{ steps.allowed-major-versions.outputs.group1 }}
 
   next-release-label-check:
-    name: Check for "next release" label
+    name: "Release Checks: Next Release Label"
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'release-please[bot]'
     steps:
       - name: Check for "next release" label
-        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             const repos = [context.repo.repo, 'gapic-generator-php'];
@@ -123,16 +123,16 @@ jobs:
 
   # Ensure all repos are in compliance
   repo-compliance-check:
-    name: Repo Compliance Check
+    name: "Release Checks: Repo Compliance"
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'release-please[bot]'
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           persist-credentials: false
       - name: "Install PHP"
-        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: "8.2"
       - name: "Install dependencies"

@@ -1,7 +1,7 @@
 name: CS Test Suite
 on:
-  push:
-    branches: [ main ]
+  release:
+    types: [published]
   pull_request:
   workflow_dispatch:
 
@@ -10,13 +10,13 @@ permissions:
 jobs:
   style_phpcs:
     runs-on: ubuntu-latest
-    name: PHP Style Check
+    name: "Lint: PHPCS Style Check"
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: Setup PHP
-        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: '8.2'
       - name: Install Dependencies
@@ -26,13 +26,13 @@ jobs:
 
   style_csfixer:
     runs-on: ubuntu-latest
-    name: PHP CS Fixer / PHP Code Standards
+    name: "Lint: PHP CS Fixer"
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: Setup PHP
-        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: '8.2'
       - name: Install Dependencies
@@ -42,13 +42,13 @@ jobs:
 
   staticanalysis:
     runs-on: ubuntu-latest
-    name: PHPStan Static Analysis
+    name: "Lint: PHPStan Static Analysis"
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: Install PHP
-        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: '8.2'
       - name: "Install dependencies"
@@ -60,7 +60,7 @@ jobs:
           dev/sh/static-analysis
   tidy-check:
     runs-on: ubuntu-latest
-    name: Verify librarian.yaml is tidy
+    name: "Librarian: Tidy Check"
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -68,7 +68,7 @@ jobs:
           persist-credentials: false
       # Version of librarian is pulled from librarian.yaml,
       # action is pinned to commit SHA to satisfy blanket security policy.
-      - uses: googleapis/librarian@45ada77d3adcdf7f54e94b5ea674a5fa48cb6a75 # v0.46.0
+      - uses: googleapis/librarian@12a22e42421675219c659a288446a5306da919d5 # v0.48.0
       - name: Run librarian tidy
         run: librarian tidy
       - name: Check for diff
