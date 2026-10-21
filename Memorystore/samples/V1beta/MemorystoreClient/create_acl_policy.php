@@ -65,7 +65,7 @@ function create_acl_policy_sample(
     $aclRule = (new AclRule())
         ->setUsername($aclPolicyRulesUsername)
         ->setRule($aclPolicyRulesRule);
-    $aclPolicyRules = [$aclRule,];
+    $aclPolicyRules = [$aclRule];
     $aclPolicy = (new AclPolicy())
         ->setRules($aclPolicyRules);
     $request = (new CreateAclPolicyRequest())
