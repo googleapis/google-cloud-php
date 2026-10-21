@@ -17,7 +17,7 @@ class ToolsetTool
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\x94\x02\x0A&google/cloud/ces/v1/toolset_tool.proto\x12\x13google.cloud.ces.v1\x1A\x19google/api/resource.proto\"X\x0A\x0BToolsetTool\x123\x0A\x07toolset\x18\x01 \x01(\x09B\"\xE0A\x02\xFAA\x1C\x0A\x1Aces.googleapis.com/Toolset\x12\x14\x0A\x07tool_id\x18\x03 \x01(\x09B\x03\xE0A\x01BX\x0A\x17com.google.cloud.ces.v1B\x10ToolsetToolProtoP\x01Z)cloud.google.com/go/ces/apiv1/cespb;cespbb\x06proto3"
+            "\x0A\x96\x02\x0A&google/cloud/ces/v1/toolset_tool.proto\x12\x13google.cloud.ces.v1\x1A\x19google/api/resource.proto\"Z\x0A\x0BToolsetTool\x124\x0A\x07toolset\x18\x01 \x01(\x09B#\xE2A\x01\x02\xFAA\x1C\x0A\x1Aces.googleapis.com/Toolset\x12\x15\x0A\x07tool_id\x18\x03 \x01(\x09B\x04\xE2A\x01\x01BX\x0A\x17com.google.cloud.ces.v1B\x10ToolsetToolProtoP\x01Z)cloud.google.com/go/ces/apiv1/cespb;cespbb\x06proto3"
         , true);
 
         static::$is_initialized = true;

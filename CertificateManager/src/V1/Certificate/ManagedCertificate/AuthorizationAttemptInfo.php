@@ -17,9 +17,9 @@ use Google\Protobuf\RepeatedField;
 class AuthorizationAttemptInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Domain name of the authorization attempt.
+     * Output only. Domain name of the authorization attempt.
      *
-     * Generated from protobuf field <code>string domain = 1;</code>
+     * Generated from protobuf field <code>string domain = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $domain = '';
     /**
@@ -43,6 +43,19 @@ class AuthorizationAttemptInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string details = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $details = '';
+    /**
+     * Output only. The timestamp, when the authorization attempt was made.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp attempt_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $attempt_time = null;
+    /**
+     * Output only. Troubleshooting information for the authorization attempt.
+     * This field is only populated if the authorization attempt failed.
+     *
+     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.Troubleshooting troubleshooting = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $troubleshooting = null;
 
     /**
      * Constructor.
@@ -51,7 +64,7 @@ class AuthorizationAttemptInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $domain
-     *           Domain name of the authorization attempt.
+     *           Output only. Domain name of the authorization attempt.
      *     @type int $state
      *           Output only. State of the domain for managed certificate issuance.
      *     @type int $failure_reason
@@ -61,6 +74,11 @@ class AuthorizationAttemptInfo extends \Google\Protobuf\Internal\Message
      *           Output only. Human readable explanation for reaching the state.
      *           Provided to help address the configuration issues. Not guaranteed to be
      *           stable. For programmatic access use FailureReason enum.
+     *     @type \Google\Protobuf\Timestamp $attempt_time
+     *           Output only. The timestamp, when the authorization attempt was made.
+     *     @type \Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate\AuthorizationAttemptInfo\Troubleshooting $troubleshooting
+     *           Output only. Troubleshooting information for the authorization attempt.
+     *           This field is only populated if the authorization attempt failed.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,9 +87,9 @@ class AuthorizationAttemptInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Domain name of the authorization attempt.
+     * Output only. Domain name of the authorization attempt.
      *
-     * Generated from protobuf field <code>string domain = 1;</code>
+     * Generated from protobuf field <code>string domain = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getDomain()
@@ -80,9 +98,9 @@ class AuthorizationAttemptInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Domain name of the authorization attempt.
+     * Output only. Domain name of the authorization attempt.
      *
-     * Generated from protobuf field <code>string domain = 1;</code>
+     * Generated from protobuf field <code>string domain = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -174,6 +192,80 @@ class AuthorizationAttemptInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->details = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp, when the authorization attempt was made.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp attempt_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getAttemptTime()
+    {
+        return $this->attempt_time;
+    }
+
+    public function hasAttemptTime()
+    {
+        return isset($this->attempt_time);
+    }
+
+    public function clearAttemptTime()
+    {
+        unset($this->attempt_time);
+    }
+
+    /**
+     * Output only. The timestamp, when the authorization attempt was made.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp attempt_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setAttemptTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->attempt_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Troubleshooting information for the authorization attempt.
+     * This field is only populated if the authorization attempt failed.
+     *
+     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.Troubleshooting troubleshooting = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate\AuthorizationAttemptInfo\Troubleshooting|null
+     */
+    public function getTroubleshooting()
+    {
+        return $this->troubleshooting;
+    }
+
+    public function hasTroubleshooting()
+    {
+        return isset($this->troubleshooting);
+    }
+
+    public function clearTroubleshooting()
+    {
+        unset($this->troubleshooting);
+    }
+
+    /**
+     * Output only. Troubleshooting information for the authorization attempt.
+     * This field is only populated if the authorization attempt failed.
+     *
+     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.Troubleshooting troubleshooting = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate\AuthorizationAttemptInfo\Troubleshooting $var
+     * @return $this
+     */
+    public function setTroubleshooting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate\AuthorizationAttemptInfo\Troubleshooting::class);
+        $this->troubleshooting = $var;
 
         return $this;
     }

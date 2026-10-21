@@ -17,7 +17,7 @@ class Size
         \GPBMetadata\Google\Ads\Admanager\V1\SizeTypeEnum::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\x9F\x03\x0A\"google/ads/admanager/v1/size.proto\x12\x17google.ads.admanager.v1\x1A\x1Fgoogle/api/field_behavior.proto\"w\x0A\x04Size\x12\x12\x0A\x05width\x18\x01 \x01(\x05B\x03\xE0A\x02\x12\x13\x0A\x06height\x18\x02 \x01(\x05B\x03\xE0A\x02\x12F\x0A\x09size_type\x18\x03 \x01(\x0E2..google.ads.admanager.v1.SizeTypeEnum.SizeTypeB\x03\xE0A\x02B\xBD\x01\x0A\x1Bcom.google.ads.admanager.v1B\x09SizeProtoP\x01Z@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager\xAA\x02\x17Google.Ads.AdManager.V1\xCA\x02\x17Google\\Ads\\AdManager\\V1\xEA\x02\x1AGoogle::Ads::AdManager::V1b\x06proto3"
+            "\x0A\xA2\x03\x0A\"google/ads/admanager/v1/size.proto\x12\x17google.ads.admanager.v1\x1A\x1Fgoogle/api/field_behavior.proto\"z\x0A\x04Size\x12\x13\x0A\x05width\x18\x01 \x01(\x05B\x04\xE2A\x01\x02\x12\x14\x0A\x06height\x18\x02 \x01(\x05B\x04\xE2A\x01\x02\x12G\x0A\x09size_type\x18\x03 \x01(\x0E2..google.ads.admanager.v1.SizeTypeEnum.SizeTypeB\x04\xE2A\x01\x02B\xBD\x01\x0A\x1Bcom.google.ads.admanager.v1B\x09SizeProtoP\x01Z@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager\xAA\x02\x17Google.Ads.AdManager.V1\xCA\x02\x17Google\\Ads\\AdManager\\V1\xEA\x02\x1AGoogle::Ads::AdManager::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

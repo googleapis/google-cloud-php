@@ -16,11 +16,11 @@ use Google\Protobuf\RepeatedField;
 class TrustConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A user-defined name of the trust config. TrustConfig names must be
-     * unique globally and match pattern
+     * Identifier. A user-defined name of the trust config. TrustConfig names must
+     * be unique globally and match pattern
      * `projects/{@*}locations/{@*}trustConfigs/*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -36,15 +36,15 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
      */
     protected $update_time = null;
     /**
-     * Set of labels associated with a TrustConfig.
+     * Optional. Set of labels associated with a TrustConfig.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
-     * One or more paragraphs of text description of a TrustConfig.
+     * Optional. One or more paragraphs of text description of a TrustConfig.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $description = '';
     /**
@@ -56,14 +56,39 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
      */
     protected $etag = '';
     /**
-     * Set of trust stores to perform validation against.
+     * Optional. Defines a mapping from a trust domain to a TrustStore. This is
+     * used for SPIFFE certificate validation.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.certificatemanager.v1.TrustConfig.TrustStore> spiffe_trust_stores = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $spiffe_trust_stores;
+    /**
+     * Optional. Set of trust stores to perform validation against.
      * This field is supported when TrustConfig is configured with Load Balancers,
      * currently not supported for SPIFFE certificate validation.
      * Only one TrustStore specified is currently allowed.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.TrustStore trust_stores = 8;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.TrustStore trust_stores = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $trust_stores;
+    /**
+     * Optional. A certificate matching an allowlisted certificate is always
+     * considered valid as long as the certificate is parseable, proof of private
+     * key possession is established, and constraints on the certificate's SAN
+     * field are met.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.AllowlistedCertificate allowlisted_certificates = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $allowlisted_certificates;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 10 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tags;
 
     /**
      * Constructor.
@@ -72,26 +97,39 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           A user-defined name of the trust config. TrustConfig names must be
-     *           unique globally and match pattern
+     *           Identifier. A user-defined name of the trust config. TrustConfig names must
+     *           be unique globally and match pattern
      *           `projects/{@*}locations/{@*}trustConfigs/*`.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The creation timestamp of a TrustConfig.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last update timestamp of a TrustConfig.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Set of labels associated with a TrustConfig.
+     *           Optional. Set of labels associated with a TrustConfig.
      *     @type string $description
-     *           One or more paragraphs of text description of a TrustConfig.
+     *           Optional. One or more paragraphs of text description of a TrustConfig.
      *     @type string $etag
      *           This checksum is computed by the server based on the value of other
      *           fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
+     *     @type array|\Google\Protobuf\Internal\MapField $spiffe_trust_stores
+     *           Optional. Defines a mapping from a trust domain to a TrustStore. This is
+     *           used for SPIFFE certificate validation.
      *     @type \Google\Cloud\CertificateManager\V1\TrustConfig\TrustStore[] $trust_stores
-     *           Set of trust stores to perform validation against.
+     *           Optional. Set of trust stores to perform validation against.
      *           This field is supported when TrustConfig is configured with Load Balancers,
      *           currently not supported for SPIFFE certificate validation.
      *           Only one TrustStore specified is currently allowed.
+     *     @type \Google\Cloud\CertificateManager\V1\TrustConfig\AllowlistedCertificate[] $allowlisted_certificates
+     *           Optional. A certificate matching an allowlisted certificate is always
+     *           considered valid as long as the certificate is parseable, proof of private
+     *           key possession is established, and constraints on the certificate's SAN
+     *           field are met.
+     *     @type array|\Google\Protobuf\Internal\MapField $tags
+     *           Optional. Input only. Immutable. Tag keys/values directly bound to this
+     *           resource. For example:
+     *             "123/environment": "production",
+     *             "123/costCenter": "marketing"
      * }
      */
     public function __construct($data = NULL) {
@@ -100,11 +138,11 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A user-defined name of the trust config. TrustConfig names must be
-     * unique globally and match pattern
+     * Identifier. A user-defined name of the trust config. TrustConfig names must
+     * be unique globally and match pattern
      * `projects/{@*}locations/{@*}trustConfigs/*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -113,11 +151,11 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A user-defined name of the trust config. TrustConfig names must be
-     * unique globally and match pattern
+     * Identifier. A user-defined name of the trust config. TrustConfig names must
+     * be unique globally and match pattern
      * `projects/{@*}locations/{@*}trustConfigs/*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -202,9 +240,9 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set of labels associated with a TrustConfig.
+     * Optional. Set of labels associated with a TrustConfig.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -213,9 +251,9 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set of labels associated with a TrustConfig.
+     * Optional. Set of labels associated with a TrustConfig.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -228,9 +266,9 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One or more paragraphs of text description of a TrustConfig.
+     * Optional. One or more paragraphs of text description of a TrustConfig.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -239,9 +277,9 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One or more paragraphs of text description of a TrustConfig.
+     * Optional. One or more paragraphs of text description of a TrustConfig.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -284,12 +322,40 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set of trust stores to perform validation against.
+     * Optional. Defines a mapping from a trust domain to a TrustStore. This is
+     * used for SPIFFE certificate validation.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.certificatemanager.v1.TrustConfig.TrustStore> spiffe_trust_stores = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getSpiffeTrustStores()
+    {
+        return $this->spiffe_trust_stores;
+    }
+
+    /**
+     * Optional. Defines a mapping from a trust domain to a TrustStore. This is
+     * used for SPIFFE certificate validation.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.certificatemanager.v1.TrustConfig.TrustStore> spiffe_trust_stores = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setSpiffeTrustStores($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\CertificateManager\V1\TrustConfig\TrustStore::class);
+        $this->spiffe_trust_stores = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Set of trust stores to perform validation against.
      * This field is supported when TrustConfig is configured with Load Balancers,
      * currently not supported for SPIFFE certificate validation.
      * Only one TrustStore specified is currently allowed.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.TrustStore trust_stores = 8;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.TrustStore trust_stores = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<\Google\Cloud\CertificateManager\V1\TrustConfig\TrustStore>
      */
     public function getTrustStores()
@@ -298,12 +364,12 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set of trust stores to perform validation against.
+     * Optional. Set of trust stores to perform validation against.
      * This field is supported when TrustConfig is configured with Load Balancers,
      * currently not supported for SPIFFE certificate validation.
      * Only one TrustStore specified is currently allowed.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.TrustStore trust_stores = 8;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.TrustStore trust_stores = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\CertificateManager\V1\TrustConfig\TrustStore[] $var
      * @return $this
      */
@@ -311,6 +377,70 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\CertificateManager\V1\TrustConfig\TrustStore::class);
         $this->trust_stores = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A certificate matching an allowlisted certificate is always
+     * considered valid as long as the certificate is parseable, proof of private
+     * key possession is established, and constraints on the certificate's SAN
+     * field are met.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.AllowlistedCertificate allowlisted_certificates = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\CertificateManager\V1\TrustConfig\AllowlistedCertificate>
+     */
+    public function getAllowlistedCertificates()
+    {
+        return $this->allowlisted_certificates;
+    }
+
+    /**
+     * Optional. A certificate matching an allowlisted certificate is always
+     * considered valid as long as the certificate is parseable, proof of private
+     * key possession is established, and constraints on the certificate's SAN
+     * field are met.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.AllowlistedCertificate allowlisted_certificates = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\CertificateManager\V1\TrustConfig\AllowlistedCertificate[] $var
+     * @return $this
+     */
+    public function setAllowlistedCertificates($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\CertificateManager\V1\TrustConfig\AllowlistedCertificate::class);
+        $this->allowlisted_certificates = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 10 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 10 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tags = $arr;
 
         return $this;
     }

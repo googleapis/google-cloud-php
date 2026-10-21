@@ -18,7 +18,7 @@ class User
         \GPBMetadata\Google\Ads\Datamanager\V1\UserData::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xE5\x03\x0A\$google/ads/datamanager/v1/user.proto\x12\x19google.ads.datamanager.v1\x1A)google/ads/datamanager/v1/user_data.proto\x1A\x1Fgoogle/api/field_behavior.proto\"\x84\x01\x0A\x04User\x12;\x0A\x09user_data\x18\x01 \x01(\x0B2#.google.ads.datamanager.v1.UserDataB\x03\xE0A\x02\x12?\x0A\x0Bmobile_data\x18\x02 \x01(\x0B2%.google.ads.datamanager.v1.MobileDataB\x03\xE0A\x02B\xC6\x01\x0A\x1Dcom.google.ads.datamanager.v1B\x09UserProtoP\x01ZAcloud.google.com/go/datamanager/apiv1/datamanagerpb;datamanagerpb\xAA\x02\x19Google.Ads.DataManager.V1\xCA\x02\x19Google\\Ads\\DataManager\\V1\xEA\x02\x1CGoogle::Ads::DataManager::V1b\x06proto3"
+            "\x0A\xE7\x03\x0A\$google/ads/datamanager/v1/user.proto\x12\x19google.ads.datamanager.v1\x1A)google/ads/datamanager/v1/user_data.proto\x1A\x1Fgoogle/api/field_behavior.proto\"\x86\x01\x0A\x04User\x12<\x0A\x09user_data\x18\x01 \x01(\x0B2#.google.ads.datamanager.v1.UserDataB\x04\xE2A\x01\x02\x12@\x0A\x0Bmobile_data\x18\x02 \x01(\x0B2%.google.ads.datamanager.v1.MobileDataB\x04\xE2A\x01\x02B\xC6\x01\x0A\x1Dcom.google.ads.datamanager.v1B\x09UserProtoP\x01ZAcloud.google.com/go/datamanager/apiv1/datamanagerpb;datamanagerpb\xAA\x02\x19Google.Ads.DataManager.V1\xCA\x02\x19Google\\Ads\\DataManager\\V1\xEA\x02\x1CGoogle::Ads::DataManager::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

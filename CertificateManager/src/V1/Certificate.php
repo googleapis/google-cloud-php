@@ -16,16 +16,17 @@ use Google\Protobuf\RepeatedField;
 class Certificate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A user-defined name of the certificate. Certificate names must be unique
-     * globally and match pattern `projects/{@*}locations/{@*}certificates/*`.
+     * Identifier. A user-defined name of the certificate. Certificate names must
+     * be unique globally and match pattern
+     * `projects/{@*}locations/{@*}certificates/*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * One or more paragraphs of text description of a certificate.
+     * Optional. One or more paragraphs of text description of a certificate.
      *
-     * Generated from protobuf field <code>string description = 8;</code>
+     * Generated from protobuf field <code>string description = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $description = '';
     /**
@@ -41,9 +42,9 @@ class Certificate extends \Google\Protobuf\Internal\Message
      */
     protected $update_time = null;
     /**
-     * Set of labels associated with a Certificate.
+     * Optional. Set of labels associated with a Certificate.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
@@ -68,11 +69,26 @@ class Certificate extends \Google\Protobuf\Internal\Message
      */
     protected $expire_time = null;
     /**
-     * Immutable. The scope of the certificate.
+     * Optional. Immutable. The scope of the certificate.
      *
-     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.Scope scope = 12 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.Scope scope = 12 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $scope = 0;
+    /**
+     * Output only. The list of resources that use this Certificate.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.Certificate.UsedBy used_by = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $used_by;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 17 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tags;
     protected $type;
 
     /**
@@ -82,20 +98,24 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           A user-defined name of the certificate. Certificate names must be unique
-     *           globally and match pattern `projects/{@*}locations/{@*}certificates/*`.
+     *           Identifier. A user-defined name of the certificate. Certificate names must
+     *           be unique globally and match pattern
+     *           `projects/{@*}locations/{@*}certificates/*`.
      *     @type string $description
-     *           One or more paragraphs of text description of a certificate.
+     *           Optional. One or more paragraphs of text description of a certificate.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The creation timestamp of a Certificate.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last update timestamp of a Certificate.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Set of labels associated with a Certificate.
+     *           Optional. Set of labels associated with a Certificate.
      *     @type \Google\Cloud\CertificateManager\V1\Certificate\SelfManagedCertificate $self_managed
      *           If set, defines data of a self-managed certificate.
      *     @type \Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate $managed
      *           If set, contains configuration and state of a managed certificate.
+     *     @type \Google\Cloud\CertificateManager\V1\Certificate\ManagedIdentityCertificate $managed_identity
+     *           If set, contains configuration and state of a managed identity
+     *           certificate.
      *     @type string[] $san_dnsnames
      *           Output only. The list of Subject Alternative Names of dnsName type defined
      *           in the certificate (see RFC 5280 4.2.1.6). Managed certificates that
@@ -106,7 +126,14 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $expire_time
      *           Output only. The expiry timestamp of a Certificate.
      *     @type int $scope
-     *           Immutable. The scope of the certificate.
+     *           Optional. Immutable. The scope of the certificate.
+     *     @type \Google\Cloud\CertificateManager\V1\Certificate\UsedBy[] $used_by
+     *           Output only. The list of resources that use this Certificate.
+     *     @type array|\Google\Protobuf\Internal\MapField $tags
+     *           Optional. Input only. Immutable. Tag keys/values directly bound to this
+     *           resource. For example:
+     *             "123/environment": "production",
+     *             "123/costCenter": "marketing"
      * }
      */
     public function __construct($data = NULL) {
@@ -115,10 +142,11 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A user-defined name of the certificate. Certificate names must be unique
-     * globally and match pattern `projects/{@*}locations/{@*}certificates/*`.
+     * Identifier. A user-defined name of the certificate. Certificate names must
+     * be unique globally and match pattern
+     * `projects/{@*}locations/{@*}certificates/*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -127,10 +155,11 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A user-defined name of the certificate. Certificate names must be unique
-     * globally and match pattern `projects/{@*}locations/{@*}certificates/*`.
+     * Identifier. A user-defined name of the certificate. Certificate names must
+     * be unique globally and match pattern
+     * `projects/{@*}locations/{@*}certificates/*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -143,9 +172,9 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One or more paragraphs of text description of a certificate.
+     * Optional. One or more paragraphs of text description of a certificate.
      *
-     * Generated from protobuf field <code>string description = 8;</code>
+     * Generated from protobuf field <code>string description = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -154,9 +183,9 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One or more paragraphs of text description of a certificate.
+     * Optional. One or more paragraphs of text description of a certificate.
      *
-     * Generated from protobuf field <code>string description = 8;</code>
+     * Generated from protobuf field <code>string description = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -241,9 +270,9 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set of labels associated with a Certificate.
+     * Optional. Set of labels associated with a Certificate.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -252,9 +281,9 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set of labels associated with a Certificate.
+     * Optional. Set of labels associated with a Certificate.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -324,6 +353,39 @@ class Certificate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate::class);
         $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * If set, contains configuration and state of a managed identity
+     * certificate.
+     *
+     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedIdentityCertificate managed_identity = 18;</code>
+     * @return \Google\Cloud\CertificateManager\V1\Certificate\ManagedIdentityCertificate|null
+     */
+    public function getManagedIdentity()
+    {
+        return $this->readOneof(18);
+    }
+
+    public function hasManagedIdentity()
+    {
+        return $this->hasOneof(18);
+    }
+
+    /**
+     * If set, contains configuration and state of a managed identity
+     * certificate.
+     *
+     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedIdentityCertificate managed_identity = 18;</code>
+     * @param \Google\Cloud\CertificateManager\V1\Certificate\ManagedIdentityCertificate $var
+     * @return $this
+     */
+    public function setManagedIdentity($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\CertificateManager\V1\Certificate\ManagedIdentityCertificate::class);
+        $this->writeOneof(18, $var);
 
         return $this;
     }
@@ -423,9 +485,9 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The scope of the certificate.
+     * Optional. Immutable. The scope of the certificate.
      *
-     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.Scope scope = 12 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.Scope scope = 12 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getScope()
@@ -434,9 +496,9 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The scope of the certificate.
+     * Optional. Immutable. The scope of the certificate.
      *
-     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.Scope scope = 12 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.Scope scope = 12 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -444,6 +506,64 @@ class Certificate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\CertificateManager\V1\Certificate\Scope::class);
         $this->scope = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The list of resources that use this Certificate.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.Certificate.UsedBy used_by = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<\Google\Cloud\CertificateManager\V1\Certificate\UsedBy>
+     */
+    public function getUsedBy()
+    {
+        return $this->used_by;
+    }
+
+    /**
+     * Output only. The list of resources that use this Certificate.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.Certificate.UsedBy used_by = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\CertificateManager\V1\Certificate\UsedBy[] $var
+     * @return $this
+     */
+    public function setUsedBy($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\CertificateManager\V1\Certificate\UsedBy::class);
+        $this->used_by = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 17 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 17 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tags = $arr;
 
         return $this;
     }

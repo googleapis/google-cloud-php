@@ -17,11 +17,11 @@ use Google\Protobuf\RepeatedField;
 class DnsAuthorization extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A user-defined name of the dns authorization. DnsAuthorization names must
-     * be unique globally and match pattern
+     * Identifier. A user-defined name of the dns authorization. DnsAuthorization
+     * names must be unique globally and match pattern
      * `projects/{@*}locations/{@*}dnsAuthorizations/*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -37,15 +37,15 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
      */
     protected $update_time = null;
     /**
-     * Set of labels associated with a DnsAuthorization.
+     * Optional. Set of labels associated with a DnsAuthorization.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
-     * One or more paragraphs of text description of a DnsAuthorization.
+     * Optional. One or more paragraphs of text description of a DnsAuthorization.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $description = '';
     /**
@@ -65,13 +65,23 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
      */
     protected $dns_resource_record = null;
     /**
-     * Immutable. Type of DnsAuthorization. If unset during resource creation the
-     * following default will be used:
-     * - in location global: FIXED_RECORD.
+     * Optional. Immutable. Type of DnsAuthorization. If unset during resource
+     * creation the following default will be used:
+     * - in location `global`: FIXED_RECORD,
+     * - in other locations: PER_PROJECT_RECORD.
      *
-     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.DnsAuthorization.Type type = 11 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.DnsAuthorization.Type type = 11 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $type = 0;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 12 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tags;
 
     /**
      * Constructor.
@@ -80,17 +90,17 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           A user-defined name of the dns authorization. DnsAuthorization names must
-     *           be unique globally and match pattern
+     *           Identifier. A user-defined name of the dns authorization. DnsAuthorization
+     *           names must be unique globally and match pattern
      *           `projects/{@*}locations/{@*}dnsAuthorizations/*`.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The creation timestamp of a DnsAuthorization.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last update timestamp of a DnsAuthorization.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Set of labels associated with a DnsAuthorization.
+     *           Optional. Set of labels associated with a DnsAuthorization.
      *     @type string $description
-     *           One or more paragraphs of text description of a DnsAuthorization.
+     *           Optional. One or more paragraphs of text description of a DnsAuthorization.
      *     @type string $domain
      *           Required. Immutable. A domain that is being authorized. A DnsAuthorization
      *           resource covers a single domain and its wildcard, e.g. authorization for
@@ -100,9 +110,15 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
      *           Output only. DNS Resource Record that needs to be added to DNS
      *           configuration.
      *     @type int $type
-     *           Immutable. Type of DnsAuthorization. If unset during resource creation the
-     *           following default will be used:
-     *           - in location global: FIXED_RECORD.
+     *           Optional. Immutable. Type of DnsAuthorization. If unset during resource
+     *           creation the following default will be used:
+     *           - in location `global`: FIXED_RECORD,
+     *           - in other locations: PER_PROJECT_RECORD.
+     *     @type array|\Google\Protobuf\Internal\MapField $tags
+     *           Optional. Input only. Immutable. Tag keys/values directly bound to this
+     *           resource. For example:
+     *             "123/environment": "production",
+     *             "123/costCenter": "marketing"
      * }
      */
     public function __construct($data = NULL) {
@@ -111,11 +127,11 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A user-defined name of the dns authorization. DnsAuthorization names must
-     * be unique globally and match pattern
+     * Identifier. A user-defined name of the dns authorization. DnsAuthorization
+     * names must be unique globally and match pattern
      * `projects/{@*}locations/{@*}dnsAuthorizations/*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -124,11 +140,11 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A user-defined name of the dns authorization. DnsAuthorization names must
-     * be unique globally and match pattern
+     * Identifier. A user-defined name of the dns authorization. DnsAuthorization
+     * names must be unique globally and match pattern
      * `projects/{@*}locations/{@*}dnsAuthorizations/*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -213,9 +229,9 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set of labels associated with a DnsAuthorization.
+     * Optional. Set of labels associated with a DnsAuthorization.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -224,9 +240,9 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set of labels associated with a DnsAuthorization.
+     * Optional. Set of labels associated with a DnsAuthorization.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -239,9 +255,9 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One or more paragraphs of text description of a DnsAuthorization.
+     * Optional. One or more paragraphs of text description of a DnsAuthorization.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -250,9 +266,9 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One or more paragraphs of text description of a DnsAuthorization.
+     * Optional. One or more paragraphs of text description of a DnsAuthorization.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -335,11 +351,12 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Type of DnsAuthorization. If unset during resource creation the
-     * following default will be used:
-     * - in location global: FIXED_RECORD.
+     * Optional. Immutable. Type of DnsAuthorization. If unset during resource
+     * creation the following default will be used:
+     * - in location `global`: FIXED_RECORD,
+     * - in other locations: PER_PROJECT_RECORD.
      *
-     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.DnsAuthorization.Type type = 11 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.DnsAuthorization.Type type = 11 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getType()
@@ -348,11 +365,12 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Type of DnsAuthorization. If unset during resource creation the
-     * following default will be used:
-     * - in location global: FIXED_RECORD.
+     * Optional. Immutable. Type of DnsAuthorization. If unset during resource
+     * creation the following default will be used:
+     * - in location `global`: FIXED_RECORD,
+     * - in other locations: PER_PROJECT_RECORD.
      *
-     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.DnsAuthorization.Type type = 11 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.DnsAuthorization.Type type = 11 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -360,6 +378,38 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\CertificateManager\V1\DnsAuthorization\Type::class);
         $this->type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 12 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 12 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tags = $arr;
 
         return $this;
     }

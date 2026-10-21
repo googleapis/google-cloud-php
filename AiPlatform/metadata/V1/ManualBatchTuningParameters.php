@@ -16,7 +16,7 @@ class ManualBatchTuningParameters
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xFE\x02\x0A?google/cloud/aiplatform/v1/manual_batch_tuning_parameters.proto\x12\x1Agoogle.cloud.aiplatform.v1\"6\x0A\x1BManualBatchTuningParameters\x12\x17\x0A\x0Abatch_size\x18\x01 \x01(\x05B\x03\xE0A\x05B\xDE\x01\x0A\x1Ecom.google.cloud.aiplatform.v1B ManualBatchTuningParametersProtoP\x01Z>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb\xAA\x02\x1AGoogle.Cloud.AIPlatform.V1\xCA\x02\x1AGoogle\\Cloud\\AIPlatform\\V1\xEA\x02\x1DGoogle::Cloud::AIPlatform::V1b\x06proto3"
+            "\x0A\xFF\x02\x0A?google/cloud/aiplatform/v1/manual_batch_tuning_parameters.proto\x12\x1Agoogle.cloud.aiplatform.v1\"7\x0A\x1BManualBatchTuningParameters\x12\x18\x0A\x0Abatch_size\x18\x01 \x01(\x05B\x04\xE2A\x01\x05B\xDE\x01\x0A\x1Ecom.google.cloud.aiplatform.v1B ManualBatchTuningParametersProtoP\x01Z>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb\xAA\x02\x1AGoogle.Cloud.AIPlatform.V1\xCA\x02\x1AGoogle\\Cloud\\AIPlatform\\V1\xEA\x02\x1DGoogle::Cloud::AIPlatform::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

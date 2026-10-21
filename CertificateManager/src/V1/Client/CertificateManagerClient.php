@@ -65,6 +65,7 @@ use Google\Cloud\CertificateManager\V1\ListCertificatesRequest;
 use Google\Cloud\CertificateManager\V1\ListDnsAuthorizationsRequest;
 use Google\Cloud\CertificateManager\V1\ListTrustConfigsRequest;
 use Google\Cloud\CertificateManager\V1\TrustConfig;
+use Google\Cloud\CertificateManager\V1\UpdateCertificateIssuanceConfigRequest;
 use Google\Cloud\CertificateManager\V1\UpdateCertificateMapEntryRequest;
 use Google\Cloud\CertificateManager\V1\UpdateCertificateMapRequest;
 use Google\Cloud\CertificateManager\V1\UpdateCertificateRequest;
@@ -139,6 +140,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listDnsAuthorizationsAsync(ListDnsAuthorizationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listTrustConfigsAsync(ListTrustConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateCertificateAsync(UpdateCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateCertificateIssuanceConfigAsync(UpdateCertificateIssuanceConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateCertificateMapAsync(UpdateCertificateMapRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateCertificateMapEntryAsync(UpdateCertificateMapEntryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateDnsAuthorizationAsync(UpdateDnsAuthorizationRequest $request, array $optionalArgs = [])
@@ -1219,6 +1221,35 @@ final class CertificateManagerClient
     }
 
     /**
+     * Updates a CertificateIssuanceConfig.
+     *
+     * The async variant is
+     * {@see CertificateManagerClient::updateCertificateIssuanceConfigAsync()} .
+     *
+     * @example samples/V1/CertificateManagerClient/update_certificate_issuance_config.php
+     *
+     * @param UpdateCertificateIssuanceConfigRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<CertificateIssuanceConfig>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateCertificateIssuanceConfig(
+        UpdateCertificateIssuanceConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateCertificateIssuanceConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates a CertificateMap.
      *
      * The async variant is
@@ -1359,6 +1390,21 @@ final class CertificateManagerClient
 
     /**
      * Lists information about the supported locations for this service.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see CertificateManagerClient::listLocationsAsync()} .
      *

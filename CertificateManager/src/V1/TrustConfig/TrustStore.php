@@ -16,19 +16,19 @@ use Google\Protobuf\RepeatedField;
 class TrustStore extends \Google\Protobuf\Internal\Message
 {
     /**
-     * List of Trust Anchors to be used while performing validation
+     * Optional. List of Trust Anchors to be used while performing validation
      * against a given TrustStore.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.TrustAnchor trust_anchors = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.TrustAnchor trust_anchors = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $trust_anchors;
     /**
-     * Set of intermediate CA certificates used for the path building
+     * Optional. Set of intermediate CA certificates used for the path building
      * phase of chain validation.
      * The field is currently not supported if TrustConfig is used for the
      * workload certificate feature.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.IntermediateCA intermediate_cas = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.IntermediateCA intermediate_cas = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $intermediate_cas;
 
@@ -39,10 +39,10 @@ class TrustStore extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\CertificateManager\V1\TrustConfig\TrustAnchor[] $trust_anchors
-     *           List of Trust Anchors to be used while performing validation
+     *           Optional. List of Trust Anchors to be used while performing validation
      *           against a given TrustStore.
      *     @type \Google\Cloud\CertificateManager\V1\TrustConfig\IntermediateCA[] $intermediate_cas
-     *           Set of intermediate CA certificates used for the path building
+     *           Optional. Set of intermediate CA certificates used for the path building
      *           phase of chain validation.
      *           The field is currently not supported if TrustConfig is used for the
      *           workload certificate feature.
@@ -54,10 +54,10 @@ class TrustStore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of Trust Anchors to be used while performing validation
+     * Optional. List of Trust Anchors to be used while performing validation
      * against a given TrustStore.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.TrustAnchor trust_anchors = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.TrustAnchor trust_anchors = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<\Google\Cloud\CertificateManager\V1\TrustConfig\TrustAnchor>
      */
     public function getTrustAnchors()
@@ -66,10 +66,10 @@ class TrustStore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of Trust Anchors to be used while performing validation
+     * Optional. List of Trust Anchors to be used while performing validation
      * against a given TrustStore.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.TrustAnchor trust_anchors = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.TrustAnchor trust_anchors = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\CertificateManager\V1\TrustConfig\TrustAnchor[] $var
      * @return $this
      */
@@ -82,12 +82,12 @@ class TrustStore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set of intermediate CA certificates used for the path building
+     * Optional. Set of intermediate CA certificates used for the path building
      * phase of chain validation.
      * The field is currently not supported if TrustConfig is used for the
      * workload certificate feature.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.IntermediateCA intermediate_cas = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.IntermediateCA intermediate_cas = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<\Google\Cloud\CertificateManager\V1\TrustConfig\IntermediateCA>
      */
     public function getIntermediateCas()
@@ -96,12 +96,12 @@ class TrustStore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set of intermediate CA certificates used for the path building
+     * Optional. Set of intermediate CA certificates used for the path building
      * phase of chain validation.
      * The field is currently not supported if TrustConfig is used for the
      * workload certificate feature.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.IntermediateCA intermediate_cas = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.IntermediateCA intermediate_cas = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\CertificateManager\V1\TrustConfig\IntermediateCA[] $var
      * @return $this
      */

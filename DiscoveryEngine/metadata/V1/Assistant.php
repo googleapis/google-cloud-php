@@ -17,7 +17,7 @@ class Assistant
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xB5\x04\x0A/google/cloud/discoveryengine/v1/assistant.proto\x12\x1Fgoogle.cloud.discoveryengine.v1\x1A\x19google/api/resource.proto\"\xB9\x01\x0A\x09Assistant\x12\x11\x0A\x04name\x18\x01 \x01(\x09B\x03\xE0A\x05:\x98\x01\xEAA\x94\x01\x0A(discoveryengine.googleapis.com/Assistant\x12hprojects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}B\x81\x02\x0A#com.google.cloud.discoveryengine.v1B\x0EAssistantProtoP\x01ZMcloud.google.com/go/discoveryengine/apiv1/discoveryenginepb;discoveryenginepb\xA2\x02\x0FDISCOVERYENGINE\xAA\x02\x1FGoogle.Cloud.DiscoveryEngine.V1\xCA\x02\x1FGoogle\\Cloud\\DiscoveryEngine\\V1\xEA\x02\"Google::Cloud::DiscoveryEngine::V1b\x06proto3"
+            "\x0A\xB6\x04\x0A/google/cloud/discoveryengine/v1/assistant.proto\x12\x1Fgoogle.cloud.discoveryengine.v1\x1A\x19google/api/resource.proto\"\xBA\x01\x0A\x09Assistant\x12\x12\x0A\x04name\x18\x01 \x01(\x09B\x04\xE2A\x01\x05:\x98\x01\xEAA\x94\x01\x0A(discoveryengine.googleapis.com/Assistant\x12hprojects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}B\x81\x02\x0A#com.google.cloud.discoveryengine.v1B\x0EAssistantProtoP\x01ZMcloud.google.com/go/discoveryengine/apiv1/discoveryenginepb;discoveryenginepb\xA2\x02\x0FDISCOVERYENGINE\xAA\x02\x1FGoogle.Cloud.DiscoveryEngine.V1\xCA\x02\x1FGoogle\\Cloud\\DiscoveryEngine\\V1\xEA\x02\"Google::Cloud::DiscoveryEngine::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

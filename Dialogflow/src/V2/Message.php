@@ -31,6 +31,12 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     protected $content = '';
     /**
+     * Optional. Automated agent responses.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.ResponseMessage response_messages = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $response_messages;
+    /**
      * Optional. The message language.
      * This should be a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)
      * language tag. Example: "en-US".
@@ -89,6 +95,8 @@ class Message extends \Google\Protobuf\Internal\Message
      *     @type string $content
      *           Optional. The message content.
      *           Only one of `content` and `companion_query` should be set - not both.
+     *     @type \Google\Cloud\Dialogflow\V2\ResponseMessage[] $response_messages
+     *           Optional. Automated agent responses.
      *     @type string $language_code
      *           Optional. The message language.
      *           This should be a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)
@@ -167,6 +175,32 @@ class Message extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->content = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Automated agent responses.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.ResponseMessage response_messages = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\ResponseMessage>
+     */
+    public function getResponseMessages()
+    {
+        return $this->response_messages;
+    }
+
+    /**
+     * Optional. Automated agent responses.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.ResponseMessage response_messages = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\ResponseMessage[] $var
+     * @return $this
+     */
+    public function setResponseMessages($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\ResponseMessage::class);
+        $this->response_messages = $arr;
 
         return $this;
     }
