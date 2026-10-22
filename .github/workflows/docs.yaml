@@ -25,8 +25,11 @@ jobs:
       - run: pip install --require-hashes -r .kokoro/docs/docker/requirements.txt
       - name: Setup PHP
         uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        env:
+          update: true
         with:
           php-version: "8.2"
+          ini-values: session.upload_progress.enabled=0
       - name: Extract phpDocumentor
         id: extract
         uses: shrink/actions-docker-extract@f1ef61065b78731fe3310b4e84e511f6a927a77e # v4.0.0

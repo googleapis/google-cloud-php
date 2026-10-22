@@ -18,8 +18,11 @@ jobs:
           persist-credentials: false
       - name: "Install PHP"
         uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        env:
+          update: true
         with:
           php-version: "8.4"
+          ini-values: session.upload_progress.enabled=0
       - name: "Install dependencies"
         run: |
           composer global require "roave/backward-compatibility-check:^8.22"
@@ -133,8 +136,11 @@ jobs:
           persist-credentials: false
       - name: "Install PHP"
         uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        env:
+          update: true
         with:
           php-version: "8.2"
+          ini-values: session.upload_progress.enabled=0
       - name: "Install dependencies"
         run: composer install -d dev
       - name: "Check repo compliance"
