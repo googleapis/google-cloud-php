@@ -30,7 +30,7 @@ jobs:
           composer audit --abandoned=fail -d dev
       - name: Create issue if previous step fails
         if: ${{ failure() && github.ref == 'refs/heads/main' }}
-        uses: googleapis/librarian/.github/actions/create-issue-on-failure@12a22e42421675219c659a288446a5306da919d5 # v0.48.0
+        uses: googleapis/librarian/.github/actions/create-issue-on-failure@b20d5aacda59661432a57ef0e626edfdec07a39b # v1.0.1
         with:
           title: "Composer Audit check failed on main branch"
           body: |
