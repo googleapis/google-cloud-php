@@ -1422,6 +1422,16 @@ libraries:
             - google/iam/v1/iam_policy.proto
     copyright_year: "2026"
     output: Notebooks
+  - name: observability
+    version: 0.0.0
+    apis:
+      - path: google/cloud/observability/v1
+        php:
+          additional_protos:
+            - google/cloud/location/locations.proto
+          staging_subdir: v1
+    copyright_year: "2026"
+    output: Observability
   - name: optimization
     version: 1.2.1
     apis:
