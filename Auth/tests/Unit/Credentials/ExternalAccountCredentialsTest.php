@@ -21,6 +21,7 @@ use Google\Auth\Credentials\ExternalAccountCredentials;
 use Google\Auth\CredentialSource\AwsNativeSource;
 use Google\Auth\CredentialSource\FileSource;
 use Google\Auth\CredentialSource\UrlSource;
+use Google\Auth\ExternalAccountCredentialSourceInterface;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\OAuth2;
@@ -226,6 +227,16 @@ class ExternalAccountCredentialsTest extends TestCase
                     ]
                 ],
                 'The regional_cred_verification_url field is required for aws1 credential source.'
+            ],
+            [
+                [
+                    'type' => 'external_account',
+                    'token_url' => '',
+                    'audience' => '',
+                    'subject_token_type' => '',
+                    'credential_source' => 'invalid',
+                ],
+                'credential_source must be an array or an instance of ExternalAccountCredentialSourceInterface.'
             ],
         ];
     }
@@ -753,5 +764,80 @@ class ExternalAccountCredentialsTest extends TestCase
 
         $this->assertArrayHasKey('x-allowed-locations', $metadata);
         $this->assertEquals('foo', $metadata['x-allowed-locations']);
+    }
+
+    public function testFetchAuthTokenWithCustomCredentialSource()
+    {
+        $source = new class() implements ExternalAccountCredentialSourceInterface {
+            public function fetchSubjectToken(?callable $httpHandler = null): string
+            {
+                return 'custom-subject-token';
+            }
+
+            public function getCacheKey(): ?string
+            {
+                return 'custom-source-key';
+            }
+        };
+
+        $jsonCreds = [
+            'audience' => 'my-audience',
+            'subject_token_type' => 'urn:ietf:params:oauth:token-type:jwt',
+            'credential_source' => $source,
+        ];
+
+        $creds = new ExternalAccountCredentials('a-scope', $jsonCreds);
+
+        $httpHandler = function (RequestInterface $request) {
+            $this->assertEquals('https://sts.googleapis.com/v1/token', (string) $request->getUri());
+            parse_str((string) $request->getBody(), $requestBody);
+            $this->assertEquals('custom-subject-token', $requestBody['subject_token']);
+            $this->assertEquals('my-audience', $requestBody['audience']);
+            $this->assertEquals('urn:ietf:params:oauth:token-type:jwt', $requestBody['subject_token_type']);
+
+            return new Response(200, [], '{"access_token": "sts-access-token", "expires_in": 3600}');
+        };
+
+        $authToken = $creds->fetchAuthToken($httpHandler);
+        $this->assertEquals('sts-access-token', $authToken['access_token']);
+        $this->assertEquals(
+            'custom-source-key.my-audience..urn:ietf:params:oauth:token-type:jwt.',
+            $creds->getCacheKey()
+        );
+    }
+
+    public function testFetchAuthTokenWithCustomCredentialSourceAndCustomUniverseDomain()
+    {
+        $source = new class() implements ExternalAccountCredentialSourceInterface {
+            public function fetchSubjectToken(?callable $httpHandler = null): string
+            {
+                return 'custom-subject-token';
+            }
+
+            public function getCacheKey(): ?string
+            {
+                return 'custom-source-key';
+            }
+        };
+
+        $jsonCreds = [
+            'audience' => 'my-audience',
+            'subject_token_type' => 'urn:ietf:params:oauth:token-type:id_token',
+            'universe_domain' => 'custom.universe.com',
+            'credential_source' => $source,
+        ];
+
+        $creds = new ExternalAccountCredentials('a-scope', $jsonCreds);
+
+        $httpHandler = function (RequestInterface $request) {
+            $this->assertEquals('https://sts.custom.universe.com/v1/token', (string) $request->getUri());
+            parse_str((string) $request->getBody(), $requestBody);
+            $this->assertEquals('custom-subject-token', $requestBody['subject_token']);
+
+            return new Response(200, [], '{"access_token": "custom-sts-token", "expires_in": 3600}');
+        };
+
+        $authToken = $creds->fetchAuthToken($httpHandler);
+        $this->assertEquals('custom-sts-token', $authToken['access_token']);
     }
 }

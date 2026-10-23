@@ -162,6 +162,12 @@ abstract class CredentialsLoader implements
         $defaultScope = null,
         bool $enableRegionalAccessBoundary = false
     ) {
+        if (!array_key_exists('type', $jsonKey)
+            && ($jsonKey['credential_source'] ?? null) instanceof ExternalAccountCredentialSourceInterface
+        ) {
+            $jsonKey['type'] = 'external_account';
+        }
+
         if (!array_key_exists('type', $jsonKey)) {
             throw new \InvalidArgumentException('json key is missing the type field');
         }
