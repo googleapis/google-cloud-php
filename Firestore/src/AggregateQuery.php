@@ -135,6 +135,9 @@ class AggregateQuery
             CallOptions::class
         );
 
+        $isTransaction = !empty($request->getTransaction()) || $request->hasNewTransaction();
+        $callOptions['headers']['x-goog-is-transaction'] = [$isTransaction ? 'true' : 'false'];
+
         try {
             $snapshot = $this->gapicClient->runAggregationQuery($request, $callOptions)->readAll()->current();
         } catch (ApiException $ex) {

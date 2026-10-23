@@ -215,6 +215,8 @@ class FirestoreSessionHandler implements SessionHandlerInterface
             CallOptions::class
         );
 
+        $callOptions['headers']['x-goog-is-transaction'] = ['true'];
+
         try {
             $response = $this->gapicClient->beginTransaction($request, $callOptions);
             $beginTransaction = $this->serializer->encodeMessage($response);
@@ -363,6 +365,8 @@ class FirestoreSessionHandler implements SessionHandlerInterface
                 new BeginTransactionRequest(),
                 CallOptions::class
             );
+
+            $callOptions['headers']['x-goog-is-transaction'] = ['true'];
 
             $response = $this->gapicClient->beginTransaction($request, $callOptions);
             $beginTransaction = $this->serializer->encodeMessage($response);
