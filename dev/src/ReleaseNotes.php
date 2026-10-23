@@ -77,6 +77,11 @@ class ReleaseNotes
      */
     private function parseChangelog($changelog)
     {
+        $changelog = (string) preg_replace(
+            '/<!-- RELEASE_VERIFY_START -->.*?<!-- RELEASE_VERIFY_END -->/s',
+            '',
+            $changelog
+        );
         libxml_use_internal_errors(true);
         $d = new \DOMDocument;
         $d->loadHTML($changelog);
