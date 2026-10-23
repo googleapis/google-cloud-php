@@ -1799,7 +1799,12 @@ libraries:
   - name: shopping-merchant-reviews
     version: 0.6.4
     apis:
+      - path: google/shopping/merchant/reviews/v1
+        php:
+          staging_subdir: v1
       - path: google/shopping/merchant/reviews/v1beta
+        php:
+          staging_subdir: v1beta
     copyright_year: "2026"
     output: ShoppingMerchantReviews
   - name: shopping-type
