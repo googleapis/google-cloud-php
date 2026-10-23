@@ -134,6 +134,22 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      */
     protected $free_instance_availability = 0;
     /**
+     * Output only. Defines the ranges of allowed processing units supported by
+     * this instance configuration. If multiple ranges are specified, an instance
+     * using this configuration may use a valid increment in any of the given
+     * ranges. For example, an allowed_processing_units specification of
+     * `[{min_processing_units:100, max_processing_units:900,
+     * processing_unit_increment:100}, {min_processing_units:1000,
+     * processing_unit_increment:1000}]` specifies that the instance configuration
+     * supports instances with quantities of processing units in multiples of 100
+     * processing units (100, 200, 300 and so on) up to and including 900
+     * processing units and quantities that are at least 1000 processing units and
+     * multiples of 1000 processing units (1000, 2000, 3000 and so on).
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.InstanceConfig.AllowedProcessingUnits allowed_processing_units = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $allowed_processing_units;
+    /**
      * Output only. The `QuorumType` of the instance configuration.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.QuorumType quorum_type = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -221,6 +237,18 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *     @type int $free_instance_availability
      *           Output only. Describes whether free instances are available to be created
      *           in this instance configuration.
+     *     @type \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\AllowedProcessingUnits[] $allowed_processing_units
+     *           Output only. Defines the ranges of allowed processing units supported by
+     *           this instance configuration. If multiple ranges are specified, an instance
+     *           using this configuration may use a valid increment in any of the given
+     *           ranges. For example, an allowed_processing_units specification of
+     *           `[{min_processing_units:100, max_processing_units:900,
+     *           processing_unit_increment:100}, {min_processing_units:1000,
+     *           processing_unit_increment:1000}]` specifies that the instance configuration
+     *           supports instances with quantities of processing units in multiples of 100
+     *           processing units (100, 200, 300 and so on) up to and including 900
+     *           processing units and quantities that are at least 1000 processing units and
+     *           multiples of 1000 processing units (1000, 2000, 3000 and so on).
      *     @type int $quorum_type
      *           Output only. The `QuorumType` of the instance configuration.
      *     @type int|string $storage_limit_per_processing_unit
@@ -630,6 +658,52 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\FreeInstanceAvailability::class);
         $this->free_instance_availability = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Defines the ranges of allowed processing units supported by
+     * this instance configuration. If multiple ranges are specified, an instance
+     * using this configuration may use a valid increment in any of the given
+     * ranges. For example, an allowed_processing_units specification of
+     * `[{min_processing_units:100, max_processing_units:900,
+     * processing_unit_increment:100}, {min_processing_units:1000,
+     * processing_unit_increment:1000}]` specifies that the instance configuration
+     * supports instances with quantities of processing units in multiples of 100
+     * processing units (100, 200, 300 and so on) up to and including 900
+     * processing units and quantities that are at least 1000 processing units and
+     * multiples of 1000 processing units (1000, 2000, 3000 and so on).
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.InstanceConfig.AllowedProcessingUnits allowed_processing_units = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<\Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\AllowedProcessingUnits>
+     */
+    public function getAllowedProcessingUnits()
+    {
+        return $this->allowed_processing_units;
+    }
+
+    /**
+     * Output only. Defines the ranges of allowed processing units supported by
+     * this instance configuration. If multiple ranges are specified, an instance
+     * using this configuration may use a valid increment in any of the given
+     * ranges. For example, an allowed_processing_units specification of
+     * `[{min_processing_units:100, max_processing_units:900,
+     * processing_unit_increment:100}, {min_processing_units:1000,
+     * processing_unit_increment:1000}]` specifies that the instance configuration
+     * supports instances with quantities of processing units in multiples of 100
+     * processing units (100, 200, 300 and so on) up to and including 900
+     * processing units and quantities that are at least 1000 processing units and
+     * multiples of 1000 processing units (1000, 2000, 3000 and so on).
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.InstanceConfig.AllowedProcessingUnits allowed_processing_units = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\AllowedProcessingUnits[] $var
+     * @return $this
+     */
+    public function setAllowedProcessingUnits($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\AllowedProcessingUnits::class);
+        $this->allowed_processing_units = $arr;
 
         return $this;
     }

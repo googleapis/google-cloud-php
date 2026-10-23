@@ -20,7 +20,7 @@ class OmnichannelService
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xEF\x03\x0A-google/cloud/ces/v1/omnichannel_service.proto\x12\x13google.cloud.ces.v1\x1A\x17google/api/client.proto\x1A\x1Fgoogle/api/field_behavior.proto\x1A\x19google/api/resource.proto\x1A\x1Fgoogle/protobuf/timestamp.proto\"\xC9\x01\x0A\x1COmnichannelOperationMetadata\x124\x0A\x0Bcreate_time\x18\x01 \x01(\x0B2\x1A.google.protobuf.TimestampB\x03\xE0A\x03\x121\x0A\x08end_time\x18\x02 \x01(\x0B2\x1A.google.protobuf.TimestampB\x03\xE0A\x03\x12\x1B\x0A\x0Estatus_message\x18\x03 \x01(\x09B\x03\xE0A\x03\x12#\x0A\x16requested_cancellation\x18\x04 \x01(\x08B\x03\xE0A\x03B_\x0A\x17com.google.cloud.ces.v1B\x17OmnichannelServiceProtoP\x01Z)cloud.google.com/go/ces/apiv1/cespb;cespbb\x06proto3"
+            "\x0A\xF3\x03\x0A-google/cloud/ces/v1/omnichannel_service.proto\x12\x13google.cloud.ces.v1\x1A\x17google/api/client.proto\x1A\x1Fgoogle/api/field_behavior.proto\x1A\x19google/api/resource.proto\x1A\x1Fgoogle/protobuf/timestamp.proto\"\xCD\x01\x0A\x1COmnichannelOperationMetadata\x125\x0A\x0Bcreate_time\x18\x01 \x01(\x0B2\x1A.google.protobuf.TimestampB\x04\xE2A\x01\x03\x122\x0A\x08end_time\x18\x02 \x01(\x0B2\x1A.google.protobuf.TimestampB\x04\xE2A\x01\x03\x12\x1C\x0A\x0Estatus_message\x18\x03 \x01(\x09B\x04\xE2A\x01\x03\x12\$\x0A\x16requested_cancellation\x18\x04 \x01(\x08B\x04\xE2A\x01\x03B_\x0A\x17com.google.cloud.ces.v1B\x17OmnichannelServiceProtoP\x01Z)cloud.google.com/go/ces/apiv1/cespb;cespbb\x06proto3"
         , true);
 
         static::$is_initialized = true;

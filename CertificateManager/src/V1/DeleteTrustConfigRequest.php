@@ -23,11 +23,11 @@ class DeleteTrustConfigRequest extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * The current etag of the TrustConfig.
+     * Optional. The current etag of the TrustConfig.
      * If an etag is provided and does not match the current etag of the resource,
      * deletion will be blocked and an ABORTED error will be returned.
      *
-     * Generated from protobuf field <code>string etag = 2;</code>
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $etag = '';
 
@@ -56,7 +56,7 @@ class DeleteTrustConfigRequest extends \Google\Protobuf\Internal\Message
      *           Required. A name of the TrustConfig to delete. Must be in the format
      *           `projects/{@*}locations/{@*}trustConfigs/*`.
      *     @type string $etag
-     *           The current etag of the TrustConfig.
+     *           Optional. The current etag of the TrustConfig.
      *           If an etag is provided and does not match the current etag of the resource,
      *           deletion will be blocked and an ABORTED error will be returned.
      * }
@@ -95,11 +95,11 @@ class DeleteTrustConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current etag of the TrustConfig.
+     * Optional. The current etag of the TrustConfig.
      * If an etag is provided and does not match the current etag of the resource,
      * deletion will be blocked and an ABORTED error will be returned.
      *
-     * Generated from protobuf field <code>string etag = 2;</code>
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getEtag()
@@ -108,11 +108,11 @@ class DeleteTrustConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current etag of the TrustConfig.
+     * Optional. The current etag of the TrustConfig.
      * If an etag is provided and does not match the current etag of the resource,
      * deletion will be blocked and an ABORTED error will be returned.
      *
-     * Generated from protobuf field <code>string etag = 2;</code>
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

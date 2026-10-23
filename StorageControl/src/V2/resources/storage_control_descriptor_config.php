@@ -63,6 +63,9 @@ return [
                         ],
                     ],
                 ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
             ],
             'DeleteFolderRecursive' => [
                 'longRunning' => [
@@ -109,6 +112,9 @@ return [
                             '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
+                ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
                 ],
             ],
             'RenameFolder' => [
@@ -183,6 +189,9 @@ return [
                             '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
+                ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
                 ],
             ],
             'CreateFolder' => [
@@ -412,6 +421,9 @@ return [
                         ],
                     ],
                 ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
             ],
             'GetStorageLayout' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -472,6 +484,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
                 ],
             ],
             'ListIntelligenceFindingRevisions' => [
@@ -555,6 +570,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
                 ],
             ],
             'PauseAnywhereCache' => [
@@ -656,6 +674,9 @@ return [
                         ],
                     ],
                 ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
             ],
             'UpdateManagedFolder' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -672,6 +693,9 @@ return [
                         ],
                     ],
                 ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
             ],
             'UpdateOrganizationIntelligenceConfig' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -685,6 +709,9 @@ return [
                         ],
                     ],
                 ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
             ],
             'UpdateProjectIntelligenceConfig' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -697,6 +724,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
                 ],
             ],
             'ViewObjectFullContext' => [

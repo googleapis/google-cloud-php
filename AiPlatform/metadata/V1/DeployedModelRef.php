@@ -17,7 +17,7 @@ class DeployedModelRef
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xBD\x03\x0A3google/cloud/aiplatform/v1/deployed_model_ref.proto\x12\x1Agoogle.cloud.aiplatform.v1\x1A\x19google/api/resource.proto\"p\x0A\x10DeployedModelRef\x12<\x0A\x08endpoint\x18\x01 \x01(\x09B*\xE0A\x05\xFAA\$\x0A\"aiplatform.googleapis.com/Endpoint\x12\x1E\x0A\x11deployed_model_id\x18\x02 \x01(\x09B\x03\xE0A\x05B\xD4\x01\x0A\x1Ecom.google.cloud.aiplatform.v1B\x16DeployedModelNameProtoP\x01Z>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb\xAA\x02\x1AGoogle.Cloud.AIPlatform.V1\xCA\x02\x1AGoogle\\Cloud\\AIPlatform\\V1\xEA\x02\x1DGoogle::Cloud::AIPlatform::V1b\x06proto3"
+            "\x0A\xBF\x03\x0A3google/cloud/aiplatform/v1/deployed_model_ref.proto\x12\x1Agoogle.cloud.aiplatform.v1\x1A\x19google/api/resource.proto\"r\x0A\x10DeployedModelRef\x12=\x0A\x08endpoint\x18\x01 \x01(\x09B+\xE2A\x01\x05\xFAA\$\x0A\"aiplatform.googleapis.com/Endpoint\x12\x1F\x0A\x11deployed_model_id\x18\x02 \x01(\x09B\x04\xE2A\x01\x05B\xD4\x01\x0A\x1Ecom.google.cloud.aiplatform.v1B\x16DeployedModelNameProtoP\x01Z>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb\xAA\x02\x1AGoogle.Cloud.AIPlatform.V1\xCA\x02\x1AGoogle\\Cloud\\AIPlatform\\V1\xEA\x02\x1DGoogle::Cloud::AIPlatform::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

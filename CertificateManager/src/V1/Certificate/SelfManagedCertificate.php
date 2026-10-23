@@ -18,16 +18,17 @@ use Google\Protobuf\RepeatedField;
 class SelfManagedCertificate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Input only. The PEM-encoded certificate chain.
+     * Optional. Input only. The PEM-encoded certificate chain.
      * Leaf certificate comes first, followed by intermediate ones if any.
      *
-     * Generated from protobuf field <code>string pem_certificate = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string pem_certificate = 1 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $pem_certificate = '';
     /**
-     * Input only. The PEM-encoded private key of the leaf certificate.
+     * Optional. Input only. The PEM-encoded private key of the leaf
+     * certificate.
      *
-     * Generated from protobuf field <code>string pem_private_key = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string pem_private_key = 2 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $pem_private_key = '';
 
@@ -38,10 +39,11 @@ class SelfManagedCertificate extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $pem_certificate
-     *           Input only. The PEM-encoded certificate chain.
+     *           Optional. Input only. The PEM-encoded certificate chain.
      *           Leaf certificate comes first, followed by intermediate ones if any.
      *     @type string $pem_private_key
-     *           Input only. The PEM-encoded private key of the leaf certificate.
+     *           Optional. Input only. The PEM-encoded private key of the leaf
+     *           certificate.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,10 +52,10 @@ class SelfManagedCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The PEM-encoded certificate chain.
+     * Optional. Input only. The PEM-encoded certificate chain.
      * Leaf certificate comes first, followed by intermediate ones if any.
      *
-     * Generated from protobuf field <code>string pem_certificate = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string pem_certificate = 1 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPemCertificate()
@@ -62,10 +64,10 @@ class SelfManagedCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The PEM-encoded certificate chain.
+     * Optional. Input only. The PEM-encoded certificate chain.
      * Leaf certificate comes first, followed by intermediate ones if any.
      *
-     * Generated from protobuf field <code>string pem_certificate = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string pem_certificate = 1 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -78,9 +80,10 @@ class SelfManagedCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The PEM-encoded private key of the leaf certificate.
+     * Optional. Input only. The PEM-encoded private key of the leaf
+     * certificate.
      *
-     * Generated from protobuf field <code>string pem_private_key = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string pem_private_key = 2 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPemPrivateKey()
@@ -89,9 +92,10 @@ class SelfManagedCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The PEM-encoded private key of the leaf certificate.
+     * Optional. Input only. The PEM-encoded private key of the leaf
+     * certificate.
      *
-     * Generated from protobuf field <code>string pem_private_key = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string pem_private_key = 2 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

@@ -16,7 +16,7 @@ class CodeBlock
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xAB\x02\x0A.google/cloud/dialogflow/cx/v3/code_block.proto\x12\x1Dgoogle.cloud.dialogflow.cx.v3\"\x1E\x0A\x09CodeBlock\x12\x11\x0A\x04code\x18\x01 \x01(\x09B\x03\xE0A\x01B\xB1\x01\x0A!com.google.cloud.dialogflow.cx.v3B\x0ECodeBlockProtoP\x01Z1cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpb\xA2\x02\x02DF\xAA\x02\x1DGoogle.Cloud.Dialogflow.Cx.V3\xEA\x02!Google::Cloud::Dialogflow::CX::V3b\x06proto3"
+            "\x0A\xAC\x02\x0A.google/cloud/dialogflow/cx/v3/code_block.proto\x12\x1Dgoogle.cloud.dialogflow.cx.v3\"\x1F\x0A\x09CodeBlock\x12\x12\x0A\x04code\x18\x01 \x01(\x09B\x04\xE2A\x01\x01B\xB1\x01\x0A!com.google.cloud.dialogflow.cx.v3B\x0ECodeBlockProtoP\x01Z1cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpb\xA2\x02\x02DF\xAA\x02\x1DGoogle.Cloud.Dialogflow.Cx.V3\xEA\x02!Google::Cloud::Dialogflow::CX::V3b\x06proto3"
         , true);
 
         static::$is_initialized = true;

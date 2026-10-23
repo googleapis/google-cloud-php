@@ -23,31 +23,31 @@ class ListCertificateMapsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * Maximum number of certificate maps to return per call.
+     * Optional. Maximum number of certificate maps to return per call.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * The value returned by the last `ListCertificateMapsResponse`. Indicates
-     * that this is a continuation of a prior `ListCertificateMaps` call, and that
-     * the system should return the next page of data.
+     * Optional. The value returned by the last `ListCertificateMapsResponse`.
+     * Indicates that this is a continuation of a prior `ListCertificateMaps`
+     * call, and that the system should return the next page of data.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
     /**
-     * Filter expression to restrict the Certificates Maps returned.
+     * Optional. Filter expression to restrict the Certificates Maps returned.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = '';
     /**
-     * A list of Certificate Map field names used to specify the order of the
-     * returned results. The default sorting order is ascending. To specify
+     * Optional. A list of Certificate Map field names used to specify the order
+     * of the returned results. The default sorting order is ascending. To specify
      * descending order for a field, add a suffix `" desc"`.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $order_by = '';
 
@@ -76,16 +76,16 @@ class ListCertificateMapsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The project and location from which the certificate maps should
      *           be listed, specified in the format `projects/{@*}locations/*`.
      *     @type int $page_size
-     *           Maximum number of certificate maps to return per call.
+     *           Optional. Maximum number of certificate maps to return per call.
      *     @type string $page_token
-     *           The value returned by the last `ListCertificateMapsResponse`. Indicates
-     *           that this is a continuation of a prior `ListCertificateMaps` call, and that
-     *           the system should return the next page of data.
+     *           Optional. The value returned by the last `ListCertificateMapsResponse`.
+     *           Indicates that this is a continuation of a prior `ListCertificateMaps`
+     *           call, and that the system should return the next page of data.
      *     @type string $filter
-     *           Filter expression to restrict the Certificates Maps returned.
+     *           Optional. Filter expression to restrict the Certificates Maps returned.
      *     @type string $order_by
-     *           A list of Certificate Map field names used to specify the order of the
-     *           returned results. The default sorting order is ascending. To specify
+     *           Optional. A list of Certificate Map field names used to specify the order
+     *           of the returned results. The default sorting order is ascending. To specify
      *           descending order for a field, add a suffix `" desc"`.
      * }
      */
@@ -123,9 +123,9 @@ class ListCertificateMapsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of certificate maps to return per call.
+     * Optional. Maximum number of certificate maps to return per call.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -134,9 +134,9 @@ class ListCertificateMapsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of certificate maps to return per call.
+     * Optional. Maximum number of certificate maps to return per call.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -149,11 +149,11 @@ class ListCertificateMapsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value returned by the last `ListCertificateMapsResponse`. Indicates
-     * that this is a continuation of a prior `ListCertificateMaps` call, and that
-     * the system should return the next page of data.
+     * Optional. The value returned by the last `ListCertificateMapsResponse`.
+     * Indicates that this is a continuation of a prior `ListCertificateMaps`
+     * call, and that the system should return the next page of data.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -162,11 +162,11 @@ class ListCertificateMapsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value returned by the last `ListCertificateMapsResponse`. Indicates
-     * that this is a continuation of a prior `ListCertificateMaps` call, and that
-     * the system should return the next page of data.
+     * Optional. The value returned by the last `ListCertificateMapsResponse`.
+     * Indicates that this is a continuation of a prior `ListCertificateMaps`
+     * call, and that the system should return the next page of data.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -179,9 +179,9 @@ class ListCertificateMapsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filter expression to restrict the Certificates Maps returned.
+     * Optional. Filter expression to restrict the Certificates Maps returned.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFilter()
@@ -190,9 +190,9 @@ class ListCertificateMapsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filter expression to restrict the Certificates Maps returned.
+     * Optional. Filter expression to restrict the Certificates Maps returned.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -205,11 +205,11 @@ class ListCertificateMapsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of Certificate Map field names used to specify the order of the
-     * returned results. The default sorting order is ascending. To specify
+     * Optional. A list of Certificate Map field names used to specify the order
+     * of the returned results. The default sorting order is ascending. To specify
      * descending order for a field, add a suffix `" desc"`.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getOrderBy()
@@ -218,11 +218,11 @@ class ListCertificateMapsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of Certificate Map field names used to specify the order of the
-     * returned results. The default sorting order is ascending. To specify
+     * Optional. A list of Certificate Map field names used to specify the order
+     * of the returned results. The default sorting order is ascending. To specify
      * descending order for a field, add a suffix `" desc"`.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
