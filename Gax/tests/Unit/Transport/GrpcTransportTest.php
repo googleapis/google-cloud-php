@@ -37,6 +37,7 @@ use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\MockGrpcTransport;
 use Google\ApiCore\Testing\MockRequest;
+use Google\ApiCore\Telemetry\SpanAttributes;
 use Google\ApiCore\Tests\Unit\TestTrait;
 use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\ValidationException;
@@ -54,12 +55,19 @@ use Grpc\Interceptor;
 use Grpc\ServerStreamingCall;
 use Grpc\UnaryCall;
 use GuzzleHttp\Promise\Promise;
+use OpenTelemetry\API\Trace\SpanBuilderInterface;
+use OpenTelemetry\API\Trace\SpanInterface;
+use OpenTelemetry\API\Trace\SpanKind;
+use OpenTelemetry\API\Trace\StatusCode;
+use OpenTelemetry\API\Trace\TracerInterface;
+use OpenTelemetry\API\Trace\TracerProviderInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Psr\Log\LoggerInterface;
+use ReflectionClass;
 use stdClass;
 use TypeError;
-use Psr\Log\LoggerInterface;
 
 class GrpcTransportTest extends TestCase
 {
@@ -713,5 +721,158 @@ class GrpcTransportTest extends TestCase
         }
 
         return $mockCall->reveal();
+    }
+
+    public function testStartUnaryCallEmitsT4ClientSpanOnSuccess(): void
+    {
+        $tracerProvider = $this->createMock(TracerProviderInterface::class);
+        $tracer = $this->createMock(TracerInterface::class);
+        $spanBuilder = $this->createMock(SpanBuilderInterface::class);
+        $span = $this->createMock(SpanInterface::class);
+
+        $method = 'google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion';
+
+        $tracerProvider->expects($this->once())
+            ->method('getTracer')
+            ->with('google-cloud-php', '1.0.0')
+            ->willReturn($tracer);
+
+        $tracer->expects($this->once())
+            ->method('spanBuilder')
+            ->with($method)
+            ->willReturn($spanBuilder);
+
+        $spanBuilder->expects($this->once())
+            ->method('setSpanKind')
+            ->with(SpanKind::KIND_CLIENT)
+            ->willReturnSelf();
+
+        $attributes = [];
+        $spanBuilder->method('setAttribute')
+            ->willReturnCallback(function ($key, $val) use (&$attributes, $spanBuilder) {
+                $attributes[$key] = $val;
+                return $spanBuilder;
+            });
+
+        $spanBuilder->expects($this->once())
+            ->method('startSpan')
+            ->willReturn($span);
+
+        $recordedSpanAttributes = [];
+        $span->method('setAttribute')
+            ->willReturnCallback(function ($key, $val) use (&$recordedSpanAttributes, $span) {
+                $recordedSpanAttributes[$key] = $val;
+                return $span;
+            });
+
+        $span->expects($this->once())
+            ->method('setStatus')
+            ->with(StatusCode::STATUS_OK);
+
+        $span->expects($this->once())
+            ->method('end');
+
+        $response = new Status();
+        $response->setCode(Code::OK);
+
+        $status = new stdClass();
+        $status->code = Code::OK;
+
+        $unaryCall = $this->prophesize(UnaryCall::class);
+        $unaryCall->wait()
+            ->shouldBeCalledOnce()
+            ->willReturn([$response, $status]);
+
+        $transport = new MockGrpcTransport($unaryCall->reveal());
+        $transport->setTelemetryOptions([
+            'clientVersion' => '1.0.0',
+        ], $tracerProvider);
+
+        $call = new Call($method, Status::class, new MockRequest());
+        $promise = $transport->startUnaryCall($call, []);
+        $result = $promise->wait();
+
+        $this->assertSame($response, $result);
+        $this->assertSame('grpc', $attributes[SpanAttributes::RPC_SYSTEM_NAME]);
+        $this->assertSame($method, $attributes[SpanAttributes::RPC_METHOD]);
+        $this->assertSame('OK', $recordedSpanAttributes[SpanAttributes::RPC_RESPONSE_STATUS_CODE]);
+    }
+
+    public function testStartUnaryCallEmitsT4ClientSpanOnFailure(): void
+    {
+        $tracerProvider = $this->createMock(TracerProviderInterface::class);
+        $tracer = $this->createMock(TracerInterface::class);
+        $spanBuilder = $this->createMock(SpanBuilderInterface::class);
+        $span = $this->createMock(SpanInterface::class);
+
+        $method = 'google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion';
+
+        $tracerProvider->method('getTracer')->willReturn($tracer);
+        $tracer->method('spanBuilder')->willReturn($spanBuilder);
+        $spanBuilder->method('setSpanKind')->willReturnSelf();
+        $spanBuilder->method('setAttribute')->willReturnSelf();
+        $spanBuilder->method('startSpan')->willReturn($span);
+
+        $recordedSpanAttributes = [];
+        $span->method('setAttribute')
+            ->willReturnCallback(function ($key, $val) use (&$recordedSpanAttributes, $span) {
+                $recordedSpanAttributes[$key] = $val;
+                return $span;
+            });
+
+        $span->expects($this->once())
+            ->method('setStatus')
+            ->with($this->equalTo(StatusCode::STATUS_ERROR), $this->stringContains('Resource not found'));
+
+        $span->expects($this->once())
+            ->method('end');
+
+        $status = new stdClass();
+        $status->code = Code::NOT_FOUND;
+        $status->details = 'Resource not found';
+
+        $unaryCall = $this->prophesize(UnaryCall::class);
+        $unaryCall->wait()
+            ->shouldBeCalledOnce()
+            ->willReturn([null, $status]);
+
+        $transport = new MockGrpcTransport($unaryCall->reveal());
+        $transport->setTelemetryOptions([], $tracerProvider);
+
+        $call = new Call($method, Status::class, new MockRequest());
+        $promise = $transport->startUnaryCall($call, []);
+
+        $this->expectException(ApiException::class);
+
+        try {
+            $promise->wait();
+        } finally {
+            $this->assertSame('NOT_FOUND', $recordedSpanAttributes[SpanAttributes::RPC_RESPONSE_STATUS_CODE]);
+            $this->assertSame('NOT_FOUND', $recordedSpanAttributes[SpanAttributes::ERROR_TYPE]);
+            $this->assertStringContainsString(
+                'Resource not found',
+                $recordedSpanAttributes[SpanAttributes::STATUS_MESSAGE]
+            );
+        }
+    }
+
+    public function testBuildSetsTelemetryOptions(): void
+    {
+        $tracerProvider = $this->createMock(TracerProviderInterface::class);
+
+        $transport = GrpcTransport::build('secretmanager.googleapis.com:443', [
+            'openTelemetryTracerProvider' => $tracerProvider,
+            'clientVersion' => '1.0.0',
+        ]);
+
+        $ref = new ReflectionClass($transport);
+        $prop = $ref->getProperty('openTelemetryTracerProvider');
+        $this->assertSame($tracerProvider, $prop->getValue($transport));
+
+        $addrProp = $ref->getProperty('serverAddress');
+        $this->assertSame('secretmanager.googleapis.com', $addrProp->getValue($transport));
+
+        $portProp = $ref->getProperty('serverPort');
+        $this->assertSame(443, $portProp->getValue($transport));
     }
 }
