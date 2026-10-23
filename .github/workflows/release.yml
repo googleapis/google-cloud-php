@@ -46,9 +46,11 @@ jobs:
           fetch-depth: 0
       - name: Setup PHP
         uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        env:
+          update: true
         with:
           php-version: '8.2'
-          ini-values: memory_limit=2048M
+          ini-values: memory_limit=2048M, session.upload_progress.enabled=0
       - name: Install Dependencies
         uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4.0.0
         with:

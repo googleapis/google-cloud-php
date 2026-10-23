@@ -22,10 +22,12 @@ jobs:
           persist-credentials: false
       - name: Setup PHP
         uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        env:
+          update: true
         with:
           php-version: "8.2"
           extensions: grpc
-          ini-values: grpc.grpc_verbosity=error
+          ini-values: grpc.grpc_verbosity=error, session.upload_progress.enabled=0
       - name: Save secrets to file
         env:
           TESTS_KEY: ${{ secrets.GOOGLE_CLOUD_PHP_TESTS_KEY }}
