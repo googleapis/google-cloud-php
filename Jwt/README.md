@@ -311,6 +311,36 @@ $decoded = JWT::decode($jwt, new Key($publicKey, 'PS256'));
 echo "Decode:\n" . print_r((array) $decoded, true) . "\n";
 ```
 
+## Example with ML-DSA (post-quantum signature)
+
+ML-DSA ([FIPS 204](https://csrc.nist.gov/pubs/fips/204/final)) signatures are supported with the
+`ML-DSA-44`, `ML-DSA-65` and `ML-DSA-87` algorithms defined in [RFC 9964](https://www.rfc-editor.org/rfc/rfc9964).
+Signing and verifying with these algorithms requires PHP 8.4 or later with OpenSSL 3.5 or later.
+
+```php
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+
+// Keys can be generated with OpenSSL 3.5 or later:
+//   openssl genpkey -algorithm ML-DSA-65 -out ml-dsa-65-private.pem
+//   openssl pkey -in ml-dsa-65-private.pem -pubout -out ml-dsa-65-public.pem
+$privateKey = file_get_contents('/path/to/ml-dsa-65-private.pem');
+$publicKey = file_get_contents('/path/to/ml-dsa-65-public.pem');
+
+$payload = [
+    'iss' => 'example.org',
+    'aud' => 'example.com',
+    'iat' => 1356999524,
+    'nbf' => 1357000000
+];
+
+$jwt = JWT::encode($payload, $privateKey, 'ML-DSA-65');
+echo "Encode:\n" . print_r($jwt, true) . "\n";
+
+$decoded = JWT::decode($jwt, new Key($publicKey, 'ML-DSA-65'));
+echo "Decode:\n" . print_r((array) $decoded, true) . "\n";
+```
+
 ## Using JWKs
 
 ```php
