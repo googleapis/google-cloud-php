@@ -391,7 +391,7 @@ class DatastoreClientTest extends TestCase
                     return false;
             }
             return true;
-        }), Argument::any())->shouldBeCalledTimes(4)
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))->shouldBeCalledTimes(4)
             ->willReturn($commitResponse);
 
         $this->client->insert($entity);
@@ -433,7 +433,7 @@ class DatastoreClientTest extends TestCase
                 return false;
             }
             return $mutations[0]->getOperation() == 'insert' && $mutations[1]->getOperation() == 'insert';
-        }), Argument::any())->shouldBeCalledTimes(1)->willReturn($commitResponse);
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))->shouldBeCalledTimes(1)->willReturn($commitResponse);
 
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
             $mutations = $request->getMutations();
@@ -441,7 +441,7 @@ class DatastoreClientTest extends TestCase
                 return false;
             }
             return $mutations[0]->getOperation() == 'update' && $mutations[1]->getOperation() == 'update';
-        }), Argument::any())->shouldBeCalledTimes(1)->willReturn($commitResponse);
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))->shouldBeCalledTimes(1)->willReturn($commitResponse);
 
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
             $mutations = $request->getMutations();
@@ -449,7 +449,7 @@ class DatastoreClientTest extends TestCase
                 return false;
             }
             return $mutations[0]->getOperation() == 'upsert' && $mutations[1]->getOperation() == 'upsert';
-        }), Argument::any())->shouldBeCalledTimes(1)->willReturn($commitResponse);
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))->shouldBeCalledTimes(1)->willReturn($commitResponse);
 
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
             $mutations = $request->getMutations();
@@ -457,7 +457,7 @@ class DatastoreClientTest extends TestCase
                 return false;
             }
             return $mutations[0]->getOperation() == 'delete' && $mutations[1]->getOperation() == 'delete';
-        }), Argument::any())->shouldBeCalledTimes(1)->willReturn($commitResponse);
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))->shouldBeCalledTimes(1)->willReturn($commitResponse);
 
         // Execute the operations
         // 1. Test insertBatch
@@ -497,7 +497,7 @@ class DatastoreClientTest extends TestCase
 
             return $request->getMutations()[0]->getOperation() == 'insert'
                 && $request->getMutations()[1]->getOperation() == 'insert';
-        }), Argument::any())
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
             ->shouldBeCalled(1)
             ->willReturn($commitResponse);
 
@@ -524,7 +524,7 @@ class DatastoreClientTest extends TestCase
 
             return $request->getMutations()[0]->getOperation() == 'upsert'
                 && $request->getMutations()[1]->getOperation() == 'upsert';
-        }), Argument::any())
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
             ->shouldBeCalled(1)
             ->willReturn($commitResponse);
 
@@ -538,7 +538,7 @@ class DatastoreClientTest extends TestCase
         $commitResponse = new CommitResponse();
         $commitResponse->mergeFromJsonString(json_encode($this->conflictCommitResponse()));
 
-        $this->gapicClient->commit(Argument::type(CommitRequest::class), Argument::any())
+        $this->gapicClient->commit(Argument::type(CommitRequest::class), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
             ->shouldBeCalled(1)
             ->willReturn($commitResponse);
 
@@ -560,7 +560,7 @@ class DatastoreClientTest extends TestCase
         $response = new LookupResponse();
         $response->mergeFromJsonString(json_encode($data));
 
-        $this->gapicClient->lookup(Argument::type(LookupRequest::class), Argument::any())
+        $this->gapicClient->lookup(Argument::type(LookupRequest::class), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
             ->shouldBeCalled(1)
             ->willReturn($response);
 
@@ -584,7 +584,7 @@ class DatastoreClientTest extends TestCase
         $response = new LookupResponse();
         $response->mergeFromJsonString(json_encode($data));
 
-        $this->gapicClient->lookup(Argument::type(LookupRequest::class), Argument::any())
+        $this->gapicClient->lookup(Argument::type(LookupRequest::class), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
             ->shouldBeCalled(1)
             ->willReturn($response);
 
@@ -616,7 +616,7 @@ class DatastoreClientTest extends TestCase
         $response = new LookupResponse();
         $response->mergeFromJsonString(json_encode($data));
 
-        $this->gapicClient->lookup(Argument::type(LookupRequest::class), Argument::any())
+        $this->gapicClient->lookup(Argument::type(LookupRequest::class), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
             ->shouldBeCalled(1)
             ->willReturn($response);
 
@@ -648,7 +648,7 @@ class DatastoreClientTest extends TestCase
 
         $this->gapicClient->lookup(Argument::that(function (LookupRequest $request) use ($protoTime) {
             return $request->getReadOptions()->getReadTime()->getSeconds() === $protoTime->getSeconds();
-        }), Argument::any())
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
             ->shouldBeCalled(1)
             ->willReturn($response);
 
@@ -676,7 +676,7 @@ class DatastoreClientTest extends TestCase
 
         $this->gapicClient->lookup(Argument::that(function (LookupRequest $request) use ($protoTime) {
             return $request->getReadOptions()->getReadTime()->getSeconds() === $protoTime->getSeconds();
-        }), Argument::any())
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
             ->shouldBeCalled(1)
             ->willReturn($response);
 
@@ -716,7 +716,7 @@ class DatastoreClientTest extends TestCase
         $response = new RunQueryResponse();
         $response->mergeFromJsonString(json_encode($data));
 
-        $this->gapicClient->runQuery(Argument::type(RunQueryRequest::class), Argument::any())
+        $this->gapicClient->runQuery(Argument::type(RunQueryRequest::class), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
             ->shouldBeCalled(1)
             ->willReturn($response);
 
@@ -750,7 +750,7 @@ class DatastoreClientTest extends TestCase
         $response = new RunAggregationQueryResponse();
         $response->mergeFromJsonString(json_encode($data));
 
-        $this->gapicClient->runAggregationQuery(Argument::type(RunAggregationQueryRequest::class), Argument::any())
+        $this->gapicClient->runAggregationQuery(Argument::type(RunAggregationQueryRequest::class), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
             ->shouldBeCalled(1)
             ->willReturn($response);
 
@@ -784,7 +784,7 @@ class DatastoreClientTest extends TestCase
         $response = new RunAggregationQueryResponse();
         $response->mergeFromJsonString(json_encode($responseData));
 
-        $this->gapicClient->runAggregationQuery(Argument::type(RunAggregationQueryRequest::class), Argument::any())
+        $this->gapicClient->runAggregationQuery(Argument::type(RunAggregationQueryRequest::class), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
             ->shouldBeCalled(1)
             ->willReturn($response);
 
@@ -818,7 +818,7 @@ class DatastoreClientTest extends TestCase
         $response = new RunQueryResponse();
         $response->mergeFromJsonString(json_encode($responseData));
 
-        $this->gapicClient->runQuery(Argument::type(RunQueryRequest::class), Argument::any())
+        $this->gapicClient->runQuery(Argument::type(RunQueryRequest::class), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
             ->shouldBeCalled(1)
             ->willReturn($response);
 
@@ -849,7 +849,7 @@ class DatastoreClientTest extends TestCase
         $response = new RunQueryResponse();
         $response->mergeFromJsonString(json_encode($responseData));
 
-        $this->gapicClient->runQuery(Argument::type(RunQueryRequest::class), Argument::any())
+        $this->gapicClient->runQuery(Argument::type(RunQueryRequest::class), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
             ->shouldBeCalled(1)
             ->willReturn($response);
 
