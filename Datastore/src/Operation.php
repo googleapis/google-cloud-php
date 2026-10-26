@@ -298,6 +298,8 @@ class Operation
             CallOptions::class
         );
 
+        $callOptions['headers']['x-goog-is-transaction'] = ['true'];
+
         try {
             $res = $this->gapicClient->beginTransaction($beginTransactionRequest, $callOptions);
         } catch (ApiException $ex) {
@@ -363,6 +365,8 @@ class Operation
             new AllocateIdsRequest(),
             CallOptions::class
         );
+
+        $callOptions['headers']['x-goog-is-transaction'] = ['false'];
 
         try {
             $allocateIdsResponse = $this->gapicClient->allocateIds($allocateIdsRequest, $callOptions);
@@ -454,6 +458,8 @@ class Operation
         if ($readOptions) {
             $lookupRequest->setReadOptions($readOptions);
         }
+        $isTransaction = $this->isReadOptionsTransactional($lookupRequest->getReadOptions());
+        $callOptions['headers']['x-goog-is-transaction'] = [$isTransaction ? 'true' : 'false'];
 
         try {
             $lookupResponse = $this->gapicClient->lookup($lookupRequest, $callOptions);
@@ -604,6 +610,8 @@ class Operation
             if (!empty($readOptions)) {
                 $runQueryRequest->setReadOptions($readOptions);
             }
+            $isTransaction = $this->isReadOptionsTransactional($runQueryRequest->getReadOptions());
+            $callOptions['headers']['x-goog-is-transaction'] = [$isTransaction ? 'true' : 'false'];
 
             try {
                 $runQueryResponse = $this->gapicClient->runQuery($runQueryRequest, $callOptions);
@@ -712,6 +720,8 @@ class Operation
         if (!empty($readOptions)) {
             $runAggregationQueryRequest->setReadOptions($readOptions);
         }
+        $isTransaction = $this->isReadOptionsTransactional($runAggregationQueryRequest->getReadOptions());
+        $callOptions['headers']['x-goog-is-transaction'] = [$isTransaction ? 'true' : 'false'];
 
         try {
             $runAggregationQueryResponse = $this->gapicClient
@@ -761,11 +771,19 @@ class Operation
             CallOptions::class,
         );
 
-        $commitRequest->setMode(
-            empty($commitRequest->getTransaction())
-            ? Mode::NON_TRANSACTIONAL
-            : Mode::TRANSACTIONAL
-        );
+        if ($commitRequest->getMode() === Mode::MODE_UNSPECIFIED) {
+            $commitRequest->setMode(
+                $commitRequest->getTransaction() === ''
+                && !$commitRequest->hasSingleUseTransaction()
+                ? Mode::NON_TRANSACTIONAL
+                : Mode::TRANSACTIONAL
+            );
+        }
+
+        $isTransaction = $commitRequest->getMode() === Mode::TRANSACTIONAL
+            || $commitRequest->getTransaction() !== ''
+            || $commitRequest->hasSingleUseTransaction();
+        $callOptions['headers']['x-goog-is-transaction'] = [$isTransaction ? 'true' : 'false'];
 
         try {
             $commitResponse = $this->gapicClient->commit($commitRequest, $callOptions);
@@ -863,8 +881,10 @@ class Operation
             ->setDatabaseId($this->databaseId)
             ->setTransaction(base64_decode($transactionId));
 
+        $callOptions = ['headers' => ['x-goog-is-transaction' => ['true']]];
+
         try {
-            $this->gapicClient->rollback($rollbackRequest);
+            $this->gapicClient->rollback($rollbackRequest, $callOptions);
         } catch (ApiException $ex) {
             throw $this->convertToGoogleException($ex);
         }
@@ -1029,5 +1049,17 @@ class Operation
         }
 
         return $readOptions;
+    }
+
+    /**
+     * Check whether the given ReadOptions represent a transactional read.
+     *
+     * @param null|ReadOptions $readOptions The read options.
+     * @return bool
+     */
+    private function isReadOptionsTransactional(?ReadOptions $readOptions): bool
+    {
+        return $readOptions !== null
+            && ($readOptions->getTransaction() !== '' || $readOptions->hasNewTransaction());
     }
 }
