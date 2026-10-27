@@ -17,7 +17,7 @@ class AppliedLabel
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\x89\x03\x0A+google/ads/admanager/v1/applied_label.proto\x12\x17google.ads.admanager.v1\x1A\x19google/api/resource.proto\"V\x0A\x0CAppliedLabel\x125\x0A\x05label\x18\x01 \x01(\x09B&\xE0A\x02\xFAA \x0A\x1Eadmanager.googleapis.com/Label\x12\x0F\x0A\x07negated\x18\x02 \x01(\x08B\xC5\x01\x0A\x1Bcom.google.ads.admanager.v1B\x11AppliedLabelProtoP\x01Z@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager\xAA\x02\x17Google.Ads.AdManager.V1\xCA\x02\x17Google\\Ads\\AdManager\\V1\xEA\x02\x1AGoogle::Ads::AdManager::V1b\x06proto3"
+            "\x0A\x8A\x03\x0A+google/ads/admanager/v1/applied_label.proto\x12\x17google.ads.admanager.v1\x1A\x19google/api/resource.proto\"W\x0A\x0CAppliedLabel\x126\x0A\x05label\x18\x01 \x01(\x09B'\xE2A\x01\x02\xFAA \x0A\x1Eadmanager.googleapis.com/Label\x12\x0F\x0A\x07negated\x18\x02 \x01(\x08B\xC5\x01\x0A\x1Bcom.google.ads.admanager.v1B\x11AppliedLabelProtoP\x01Z@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager\xAA\x02\x17Google.Ads.AdManager.V1\xCA\x02\x17Google\\Ads\\AdManager\\V1\xEA\x02\x1AGoogle::Ads::AdManager::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

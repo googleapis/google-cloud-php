@@ -17,7 +17,7 @@ class LineItemDiscount
         \GPBMetadata\Google\Ads\Admanager\V1\DiscountTypeEnum::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xE9\x03\x0A0google/ads/admanager/v1/line_item_discount.proto\x12\x17google.ads.admanager.v1\x1A\x1Fgoogle/api/field_behavior.proto\"\xA6\x01\x0A\x10LineItemDiscount\x12W\x0A\x0Ddiscount_type\x18\x01 \x01(\x0E26.google.ads.admanager.v1.DiscountTypeEnum.DiscountTypeB\x03\xE0A\x01H\x00\x88\x01\x01\x12\x1A\x0A\x08discount\x18\x02 \x01(\x01B\x03\xE0A\x01H\x01\x88\x01\x01B\x10\x0A\x0E_discount_typeB\x0B\x0A\x09_discountB\xC9\x01\x0A\x1Bcom.google.ads.admanager.v1B\x15LineItemDiscountProtoP\x01Z@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager\xAA\x02\x17Google.Ads.AdManager.V1\xCA\x02\x17Google\\Ads\\AdManager\\V1\xEA\x02\x1AGoogle::Ads::AdManager::V1b\x06proto3"
+            "\x0A\xEB\x03\x0A0google/ads/admanager/v1/line_item_discount.proto\x12\x17google.ads.admanager.v1\x1A\x1Fgoogle/api/field_behavior.proto\"\xA8\x01\x0A\x10LineItemDiscount\x12X\x0A\x0Ddiscount_type\x18\x01 \x01(\x0E26.google.ads.admanager.v1.DiscountTypeEnum.DiscountTypeB\x04\xE2A\x01\x01H\x00\x88\x01\x01\x12\x1B\x0A\x08discount\x18\x02 \x01(\x01B\x04\xE2A\x01\x01H\x01\x88\x01\x01B\x10\x0A\x0E_discount_typeB\x0B\x0A\x09_discountB\xC9\x01\x0A\x1Bcom.google.ads.admanager.v1B\x15LineItemDiscountProtoP\x01Z@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager\xAA\x02\x17Google.Ads.AdManager.V1\xCA\x02\x17Google\\Ads\\AdManager\\V1\xEA\x02\x1AGoogle::Ads::AdManager::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

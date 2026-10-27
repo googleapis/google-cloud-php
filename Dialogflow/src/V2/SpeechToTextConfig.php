@@ -124,6 +124,13 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool use_gemini_asr = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $use_gemini_asr = false;
+    /**
+     * Optional. Disables emission of interim input transcriptions when set to
+     * `true`.
+     *
+     * Generated from protobuf field <code>optional bool disable_interim_input_transcripts = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $disable_interim_input_transcripts = null;
 
     /**
      * Constructor.
@@ -199,6 +206,9 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $use_gemini_asr
      *           Optional. If true, Gemini ASR will be used for transcription instead of
      *           Cloud Speech-to-Text.
+     *     @type bool $disable_interim_input_transcripts
+     *           Optional. Disables emission of interim input transcriptions when set to
+     *           `true`.
      * }
      */
     public function __construct($data = NULL) {
@@ -568,6 +578,44 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->use_gemini_asr = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Disables emission of interim input transcriptions when set to
+     * `true`.
+     *
+     * Generated from protobuf field <code>optional bool disable_interim_input_transcripts = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDisableInterimInputTranscripts()
+    {
+        return isset($this->disable_interim_input_transcripts) ? $this->disable_interim_input_transcripts : false;
+    }
+
+    public function hasDisableInterimInputTranscripts()
+    {
+        return isset($this->disable_interim_input_transcripts);
+    }
+
+    public function clearDisableInterimInputTranscripts()
+    {
+        unset($this->disable_interim_input_transcripts);
+    }
+
+    /**
+     * Optional. Disables emission of interim input transcriptions when set to
+     * `true`.
+     *
+     * Generated from protobuf field <code>optional bool disable_interim_input_transcripts = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableInterimInputTranscripts($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_interim_input_transcripts = $var;
 
         return $this;
     }

@@ -16,7 +16,7 @@ class ExperimentalField
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xEA\x02\x0A2google/ads/datamanager/v1/experimental_field.proto\x12\x19google.ads.datamanager.v1\";\x0A\x11ExperimentalField\x12\x12\x0A\x05field\x18\x01 \x01(\x09B\x03\xE0A\x01\x12\x12\x0A\x05value\x18\x02 \x01(\x09B\x03\xE0A\x01B\xD3\x01\x0A\x1Dcom.google.ads.datamanager.v1B\x16ExperimentalFieldProtoP\x01ZAcloud.google.com/go/datamanager/apiv1/datamanagerpb;datamanagerpb\xAA\x02\x19Google.Ads.DataManager.V1\xCA\x02\x19Google\\Ads\\DataManager\\V1\xEA\x02\x1CGoogle::Ads::DataManager::V1b\x06proto3"
+            "\x0A\xEC\x02\x0A2google/ads/datamanager/v1/experimental_field.proto\x12\x19google.ads.datamanager.v1\"=\x0A\x11ExperimentalField\x12\x13\x0A\x05field\x18\x01 \x01(\x09B\x04\xE2A\x01\x01\x12\x13\x0A\x05value\x18\x02 \x01(\x09B\x04\xE2A\x01\x01B\xD3\x01\x0A\x1Dcom.google.ads.datamanager.v1B\x16ExperimentalFieldProtoP\x01ZAcloud.google.com/go/datamanager/apiv1/datamanagerpb;datamanagerpb\xAA\x02\x19Google.Ads.DataManager.V1\xCA\x02\x19Google\\Ads\\DataManager\\V1\xEA\x02\x1CGoogle::Ads::DataManager::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

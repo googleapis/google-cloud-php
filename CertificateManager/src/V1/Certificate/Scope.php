@@ -14,32 +14,43 @@ use UnexpectedValueException;
 class Scope
 {
     /**
-     * Certificates with default scope are served from core Google data centers.
-     * If unsure, choose this option.
+     * Use the DEFAULT scope if you plan to use the certificate with global
+     * external Application Load Balancer, global external proxy Network
+     * Load Balancer, or any of the regional Google Cloud services.
      *
      * Generated from protobuf enum <code>DEFAULT = 0;</code>
      */
     const PBDEFAULT = 0;
     /**
-     * Certificates with scope EDGE_CACHE are special-purposed certificates,
-     * served from Edge Points of Presence.
+     * Use the EDGE_CACHE scope if you plan to use the certificate with Media
+     * CDN.
+     * The certificates are served from Edge Points of Presence.
      * See https://cloud.google.com/vpc/docs/edge-locations.
      *
      * Generated from protobuf enum <code>EDGE_CACHE = 1;</code>
      */
     const EDGE_CACHE = 1;
     /**
-     * Certificates with ALL_REGIONS scope are served from all Google Cloud
+     * Use the ALL_REGIONS scope if you plan to use the certificate with
+     * cross-region internal Application Load Balancer.
+     * The certificates are served from all Google Cloud
      * regions. See https://cloud.google.com/compute/docs/regions-zones.
      *
      * Generated from protobuf enum <code>ALL_REGIONS = 2;</code>
      */
     const ALL_REGIONS = 2;
+    /**
+     * Associated with certificates used as client certificates in Backend mTLS.
+     *
+     * Generated from protobuf enum <code>CLIENT_AUTH = 3;</code>
+     */
+    const CLIENT_AUTH = 3;
 
     private static $valueToName = [
         self::PBDEFAULT => 'DEFAULT',
         self::EDGE_CACHE => 'EDGE_CACHE',
         self::ALL_REGIONS => 'ALL_REGIONS',
+        self::CLIENT_AUTH => 'CLIENT_AUTH',
     ];
 
     public static function name($value)

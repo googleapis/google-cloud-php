@@ -17,7 +17,7 @@ class NonGuaranteedDealPriority
         \GPBMetadata\Google\Ads\Admanager\V1\DealPriorityTierEnum::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xE4\x03\x0A:google/ads/admanager/v1/non_guaranteed_deal_priority.proto\x12\x17google.ads.admanager.v1\x1A\x1Fgoogle/api/field_behavior.proto\"\x8E\x01\x0A\x19NonGuaranteedDealPriority\x12_\x0A\x0Dpriority_tier\x18\x01 \x01(\x0E2>.google.ads.admanager.v1.DealPriorityTierEnum.DealPriorityTierB\x03\xE0A\x02H\x00\x88\x01\x01B\x10\x0A\x0E_priority_tierB\xD2\x01\x0A\x1Bcom.google.ads.admanager.v1B\x1ENonGuaranteedDealPriorityProtoP\x01Z@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager\xAA\x02\x17Google.Ads.AdManager.V1\xCA\x02\x17Google\\Ads\\AdManager\\V1\xEA\x02\x1AGoogle::Ads::AdManager::V1b\x06proto3"
+            "\x0A\xE5\x03\x0A:google/ads/admanager/v1/non_guaranteed_deal_priority.proto\x12\x17google.ads.admanager.v1\x1A\x1Fgoogle/api/field_behavior.proto\"\x8F\x01\x0A\x19NonGuaranteedDealPriority\x12`\x0A\x0Dpriority_tier\x18\x01 \x01(\x0E2>.google.ads.admanager.v1.DealPriorityTierEnum.DealPriorityTierB\x04\xE2A\x01\x02H\x00\x88\x01\x01B\x10\x0A\x0E_priority_tierB\xD2\x01\x0A\x1Bcom.google.ads.admanager.v1B\x1ENonGuaranteedDealPriorityProtoP\x01Z@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager\xAA\x02\x17Google.Ads.AdManager.V1\xCA\x02\x17Google\\Ads\\AdManager\\V1\xEA\x02\x1AGoogle::Ads::AdManager::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

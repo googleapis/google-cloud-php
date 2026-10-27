@@ -16,7 +16,7 @@ class CsqlResources
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xEF\x02\x0A,google/cloud/alloydb/v1/csql_resources.proto\x12\x17google.cloud.alloydb.v1\"`\x0A\x17CloudSQLBackupRunSource\x12\x0F\x0A\x07project\x18\x01 \x01(\x09\x12\x18\x0A\x0Binstance_id\x18\x02 \x01(\x09B\x03\xE0A\x02\x12\x1A\x0A\x0Dbackup_run_id\x18\x03 \x01(\x03B\x03\xE0A\x02B\xBB\x01\x0A\x1Bcom.google.cloud.alloydb.v1B\x12CsqlResourcesProtoP\x01Z5cloud.google.com/go/alloydb/apiv1/alloydbpb;alloydbpb\xAA\x02\x17Google.Cloud.AlloyDb.V1\xCA\x02\x17Google\\Cloud\\AlloyDb\\V1\xEA\x02\x1AGoogle::Cloud::AlloyDB::V1b\x06proto3"
+            "\x0A\xF1\x02\x0A,google/cloud/alloydb/v1/csql_resources.proto\x12\x17google.cloud.alloydb.v1\"b\x0A\x17CloudSQLBackupRunSource\x12\x0F\x0A\x07project\x18\x01 \x01(\x09\x12\x19\x0A\x0Binstance_id\x18\x02 \x01(\x09B\x04\xE2A\x01\x02\x12\x1B\x0A\x0Dbackup_run_id\x18\x03 \x01(\x03B\x04\xE2A\x01\x02B\xBB\x01\x0A\x1Bcom.google.cloud.alloydb.v1B\x12CsqlResourcesProtoP\x01Z5cloud.google.com/go/alloydb/apiv1/alloydbpb;alloydbpb\xAA\x02\x17Google.Cloud.AlloyDb.V1\xCA\x02\x17Google\\Cloud\\AlloyDb\\V1\xEA\x02\x1AGoogle::Cloud::AlloyDB::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

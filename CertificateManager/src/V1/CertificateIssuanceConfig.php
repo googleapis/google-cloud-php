@@ -16,11 +16,11 @@ use Google\Protobuf\RepeatedField;
 class CertificateIssuanceConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A user-defined name of the certificate issuance config.
+     * Identifier. A user-defined name of the certificate issuance config.
      * CertificateIssuanceConfig names must be unique globally and match pattern
      * `projects/{@*}locations/{@*}certificateIssuanceConfigs/*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -36,15 +36,16 @@ class CertificateIssuanceConfig extends \Google\Protobuf\Internal\Message
      */
     protected $update_time = null;
     /**
-     * Set of labels associated with a CertificateIssuanceConfig.
+     * Optional. Set of labels associated with a CertificateIssuanceConfig.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
-     * One or more paragraphs of text description of a CertificateIssuanceConfig.
+     * Optional. One or more paragraphs of text description of a
+     * CertificateIssuanceConfig.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $description = '';
     /**
@@ -74,6 +75,15 @@ class CertificateIssuanceConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.CertificateIssuanceConfig.KeyAlgorithm key_algorithm = 9 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $key_algorithm = 0;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 10 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tags;
 
     /**
      * Constructor.
@@ -82,7 +92,7 @@ class CertificateIssuanceConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           A user-defined name of the certificate issuance config.
+     *           Identifier. A user-defined name of the certificate issuance config.
      *           CertificateIssuanceConfig names must be unique globally and match pattern
      *           `projects/{@*}locations/{@*}certificateIssuanceConfigs/*`.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -90,9 +100,10 @@ class CertificateIssuanceConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last update timestamp of a CertificateIssuanceConfig.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Set of labels associated with a CertificateIssuanceConfig.
+     *           Optional. Set of labels associated with a CertificateIssuanceConfig.
      *     @type string $description
-     *           One or more paragraphs of text description of a CertificateIssuanceConfig.
+     *           Optional. One or more paragraphs of text description of a
+     *           CertificateIssuanceConfig.
      *     @type \Google\Cloud\CertificateManager\V1\CertificateIssuanceConfig\CertificateAuthorityConfig $certificate_authority_config
      *           Required. The CA that issues the workload certificate. It includes the CA
      *           address, type, authentication to CA service, etc.
@@ -104,6 +115,11 @@ class CertificateIssuanceConfig extends \Google\Protobuf\Internal\Message
      *           1-99, inclusive.
      *     @type int $key_algorithm
      *           Required. The key algorithm to use when generating the private key.
+     *     @type array|\Google\Protobuf\Internal\MapField $tags
+     *           Optional. Input only. Immutable. Tag keys/values directly bound to this
+     *           resource. For example:
+     *             "123/environment": "production",
+     *             "123/costCenter": "marketing"
      * }
      */
     public function __construct($data = NULL) {
@@ -112,11 +128,11 @@ class CertificateIssuanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A user-defined name of the certificate issuance config.
+     * Identifier. A user-defined name of the certificate issuance config.
      * CertificateIssuanceConfig names must be unique globally and match pattern
      * `projects/{@*}locations/{@*}certificateIssuanceConfigs/*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -125,11 +141,11 @@ class CertificateIssuanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A user-defined name of the certificate issuance config.
+     * Identifier. A user-defined name of the certificate issuance config.
      * CertificateIssuanceConfig names must be unique globally and match pattern
      * `projects/{@*}locations/{@*}certificateIssuanceConfigs/*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -214,9 +230,9 @@ class CertificateIssuanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set of labels associated with a CertificateIssuanceConfig.
+     * Optional. Set of labels associated with a CertificateIssuanceConfig.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -225,9 +241,9 @@ class CertificateIssuanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set of labels associated with a CertificateIssuanceConfig.
+     * Optional. Set of labels associated with a CertificateIssuanceConfig.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -240,9 +256,10 @@ class CertificateIssuanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One or more paragraphs of text description of a CertificateIssuanceConfig.
+     * Optional. One or more paragraphs of text description of a
+     * CertificateIssuanceConfig.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -251,9 +268,10 @@ class CertificateIssuanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One or more paragraphs of text description of a CertificateIssuanceConfig.
+     * Optional. One or more paragraphs of text description of a
+     * CertificateIssuanceConfig.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -391,6 +409,38 @@ class CertificateIssuanceConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\CertificateManager\V1\CertificateIssuanceConfig\KeyAlgorithm::class);
         $this->key_algorithm = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 10 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 10 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tags = $arr;
 
         return $this;
     }

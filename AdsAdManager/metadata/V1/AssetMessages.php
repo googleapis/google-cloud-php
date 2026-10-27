@@ -17,7 +17,7 @@ class AssetMessages
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xAB\x03\x0A,google/ads/admanager/v1/asset_messages.proto\x12\x17google.ads.admanager.v1\x1A\x19google/api/resource.proto\"v\x0A\x05Asset\x12\x11\x0A\x04name\x18\x01 \x01(\x09B\x03\xE0A\x08:Z\xEAAW\x0A\x1Eadmanager.googleapis.com/Asset\x12&networks/{network_code}/assets/{asset}*\x06assets2\x05assetB\xC6\x01\x0A\x1Bcom.google.ads.admanager.v1B\x12AssetMessagesProtoP\x01Z@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager\xAA\x02\x17Google.Ads.AdManager.V1\xCA\x02\x17Google\\Ads\\AdManager\\V1\xEA\x02\x1AGoogle::Ads::AdManager::V1b\x06proto3"
+            "\x0A\xAC\x03\x0A,google/ads/admanager/v1/asset_messages.proto\x12\x17google.ads.admanager.v1\x1A\x19google/api/resource.proto\"w\x0A\x05Asset\x12\x12\x0A\x04name\x18\x01 \x01(\x09B\x04\xE2A\x01\x08:Z\xEAAW\x0A\x1Eadmanager.googleapis.com/Asset\x12&networks/{network_code}/assets/{asset}*\x06assets2\x05assetB\xC6\x01\x0A\x1Bcom.google.ads.admanager.v1B\x12AssetMessagesProtoP\x01Z@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager\xAA\x02\x17Google.Ads.AdManager.V1\xCA\x02\x17Google\\Ads\\AdManager\\V1\xEA\x02\x1AGoogle::Ads::AdManager::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;
