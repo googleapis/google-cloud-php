@@ -10,7 +10,7 @@
     "require": {
         "php": "^8.2",
         "google/auth": "^1.53",
-        "google/grpc-gcp": "^0.4",
+        "google/grpc-gcp": "^0.5",
         "grpc/grpc": "^1.84.1",
         "google/protobuf": "^4.31||^5.34",
         "guzzlehttp/promises": "^2.0.3||^3.0",
