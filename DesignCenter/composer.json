@@ -18,7 +18,9 @@
     },
     "require": {
         "php": "^8.2",
-        "google/gax": "^1.51.0"
+        "google/gax": "^1.51.0",
+        "google/cloud-apphub": "^0.7",
+        "google/cloud-config": "^1.11"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0"
