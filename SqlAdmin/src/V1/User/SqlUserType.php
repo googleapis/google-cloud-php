@@ -63,6 +63,12 @@ class SqlUserType
      * Generated from protobuf enum <code>ENTRAID_USER = 7;</code>
      */
     const ENTRAID_USER = 7;
+    /**
+     * Active Directory user.
+     *
+     * Generated from protobuf enum <code>ACTIVE_DIRECTORY_USER = 8;</code>
+     */
+    const ACTIVE_DIRECTORY_USER = 8;
 
     private static $valueToName = [
         self::BUILT_IN => 'BUILT_IN',
@@ -73,6 +79,7 @@ class SqlUserType
         self::CLOUD_IAM_GROUP_SERVICE_ACCOUNT => 'CLOUD_IAM_GROUP_SERVICE_ACCOUNT',
         self::CLOUD_IAM_WORKFORCE_IDENTITY => 'CLOUD_IAM_WORKFORCE_IDENTITY',
         self::ENTRAID_USER => 'ENTRAID_USER',
+        self::ACTIVE_DIRECTORY_USER => 'ACTIVE_DIRECTORY_USER',
     ];
 
     public static function name($value)

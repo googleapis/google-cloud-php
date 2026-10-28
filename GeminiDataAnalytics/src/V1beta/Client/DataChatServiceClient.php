@@ -349,7 +349,7 @@ final class DataChatServiceClient
 
     /**
      * Answers a data question by generating a stream of
-     * [Message][google.cloud.geminidataanalytics.v1.Message] objects.
+     * [Message][google.cloud.geminidataanalytics.v1beta.Message] objects.
      *
      * @example samples/V1beta/DataChatServiceClient/chat.php
      *

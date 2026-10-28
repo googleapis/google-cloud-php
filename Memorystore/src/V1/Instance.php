@@ -298,6 +298,19 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.memorystore.v1.MigrationConfig migration_config = 59 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $migration_config = null;
+    /**
+     * Optional. The ACL policy for the instance.
+     * Format: projects/{project}/locations/{location}/aclPolicies/{acl_policy}
+     *
+     * Generated from protobuf field <code>optional string acl_policy = 60 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $acl_policy = null;
+    /**
+     * Output only. Details of the applied ACL policy.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.AclPolicyInfo acl_policy_info = 62 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $acl_policy_info = null;
     protected $import_sources;
 
     /**
@@ -421,6 +434,11 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Optional. Input only. Rotate the server certificates.
      *     @type \Google\Cloud\Memorystore\V1\MigrationConfig $migration_config
      *           Output only. Migration config for the instance.
+     *     @type string $acl_policy
+     *           Optional. The ACL policy for the instance.
+     *           Format: projects/{project}/locations/{location}/aclPolicies/{acl_policy}
+     *     @type \Google\Cloud\Memorystore\V1\AclPolicyInfo $acl_policy_info
+     *           Output only. Details of the applied ACL policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -1946,6 +1964,80 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Memorystore\V1\MigrationConfig::class);
         $this->migration_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The ACL policy for the instance.
+     * Format: projects/{project}/locations/{location}/aclPolicies/{acl_policy}
+     *
+     * Generated from protobuf field <code>optional string acl_policy = 60 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getAclPolicy()
+    {
+        return isset($this->acl_policy) ? $this->acl_policy : '';
+    }
+
+    public function hasAclPolicy()
+    {
+        return isset($this->acl_policy);
+    }
+
+    public function clearAclPolicy()
+    {
+        unset($this->acl_policy);
+    }
+
+    /**
+     * Optional. The ACL policy for the instance.
+     * Format: projects/{project}/locations/{location}/aclPolicies/{acl_policy}
+     *
+     * Generated from protobuf field <code>optional string acl_policy = 60 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAclPolicy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->acl_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Details of the applied ACL policy.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.AclPolicyInfo acl_policy_info = 62 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Memorystore\V1\AclPolicyInfo|null
+     */
+    public function getAclPolicyInfo()
+    {
+        return $this->acl_policy_info;
+    }
+
+    public function hasAclPolicyInfo()
+    {
+        return isset($this->acl_policy_info);
+    }
+
+    public function clearAclPolicyInfo()
+    {
+        unset($this->acl_policy_info);
+    }
+
+    /**
+     * Output only. Details of the applied ACL policy.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.AclPolicyInfo acl_policy_info = 62 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Memorystore\V1\AclPolicyInfo $var
+     * @return $this
+     */
+    public function setAclPolicyInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Memorystore\V1\AclPolicyInfo::class);
+        $this->acl_policy_info = $var;
 
         return $this;
     }

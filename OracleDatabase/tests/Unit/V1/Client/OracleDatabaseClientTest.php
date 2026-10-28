@@ -48,6 +48,7 @@ use Google\Cloud\OracleDatabase\V1\CreateExascaleDbStorageVaultRequest;
 use Google\Cloud\OracleDatabase\V1\CreateGoldengateConnectionAssignmentRequest;
 use Google\Cloud\OracleDatabase\V1\CreateGoldengateConnectionRequest;
 use Google\Cloud\OracleDatabase\V1\CreateGoldengateDeploymentRequest;
+use Google\Cloud\OracleDatabase\V1\CreateOdbDnsZoneRequest;
 use Google\Cloud\OracleDatabase\V1\CreateOdbNetworkRequest;
 use Google\Cloud\OracleDatabase\V1\CreateOdbSubnetRequest;
 use Google\Cloud\OracleDatabase\V1\Database;
@@ -67,6 +68,7 @@ use Google\Cloud\OracleDatabase\V1\DeleteExascaleDbStorageVaultRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteGoldengateConnectionAssignmentRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteGoldengateConnectionRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteGoldengateDeploymentRequest;
+use Google\Cloud\OracleDatabase\V1\DeleteOdbDnsZoneRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteOdbNetworkRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteOdbSubnetRequest;
 use Google\Cloud\OracleDatabase\V1\Entitlement;
@@ -91,6 +93,7 @@ use Google\Cloud\OracleDatabase\V1\GetExascaleDbStorageVaultRequest;
 use Google\Cloud\OracleDatabase\V1\GetGoldengateConnectionAssignmentRequest;
 use Google\Cloud\OracleDatabase\V1\GetGoldengateConnectionRequest;
 use Google\Cloud\OracleDatabase\V1\GetGoldengateDeploymentRequest;
+use Google\Cloud\OracleDatabase\V1\GetOdbDnsZoneRequest;
 use Google\Cloud\OracleDatabase\V1\GetOdbNetworkRequest;
 use Google\Cloud\OracleDatabase\V1\GetOdbSubnetRequest;
 use Google\Cloud\OracleDatabase\V1\GetPluggableDatabaseRequest;
@@ -158,6 +161,8 @@ use Google\Cloud\OracleDatabase\V1\ListGoldengateDeploymentsRequest;
 use Google\Cloud\OracleDatabase\V1\ListGoldengateDeploymentsResponse;
 use Google\Cloud\OracleDatabase\V1\ListMinorVersionsRequest;
 use Google\Cloud\OracleDatabase\V1\ListMinorVersionsResponse;
+use Google\Cloud\OracleDatabase\V1\ListOdbDnsZonesRequest;
+use Google\Cloud\OracleDatabase\V1\ListOdbDnsZonesResponse;
 use Google\Cloud\OracleDatabase\V1\ListOdbNetworksRequest;
 use Google\Cloud\OracleDatabase\V1\ListOdbNetworksResponse;
 use Google\Cloud\OracleDatabase\V1\ListOdbSubnetsRequest;
@@ -165,6 +170,7 @@ use Google\Cloud\OracleDatabase\V1\ListOdbSubnetsResponse;
 use Google\Cloud\OracleDatabase\V1\ListPluggableDatabasesRequest;
 use Google\Cloud\OracleDatabase\V1\ListPluggableDatabasesResponse;
 use Google\Cloud\OracleDatabase\V1\MinorVersion;
+use Google\Cloud\OracleDatabase\V1\OdbDnsZone;
 use Google\Cloud\OracleDatabase\V1\OdbNetwork;
 use Google\Cloud\OracleDatabase\V1\OdbSubnet;
 use Google\Cloud\OracleDatabase\V1\OdbSubnet\Purpose;
@@ -707,6 +713,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $odbNetwork = 'odbNetwork-1199754980';
         $odbSubnet = 'odbSubnet118675119';
         $backupOdbSubnet = 'backupOdbSubnet677701964';
+        $odbDnsZone = 'odbDnsZone561197012';
         $exascaleDbStorageVault = 'exascaleDbStorageVault-2059486384';
         $expectedResponse = new CloudVmCluster();
         $expectedResponse->setName($name);
@@ -719,6 +726,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $expectedResponse->setOdbNetwork($odbNetwork);
         $expectedResponse->setOdbSubnet($odbSubnet);
         $expectedResponse->setBackupOdbSubnet($backupOdbSubnet);
+        $expectedResponse->setOdbDnsZone($odbDnsZone);
         $expectedResponse->setExascaleDbStorageVault($exascaleDbStorageVault);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -1909,6 +1917,150 @@ class OracleDatabaseClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createGoldengateDeploymentTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createOdbDnsZoneTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createOdbDnsZoneTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $domain = 'domain-1326197564';
+        $expectedResponse = new OdbDnsZone();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDomain($domain);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createOdbDnsZoneTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->odbNetworkName('[PROJECT]', '[LOCATION]', '[ODB_NETWORK]');
+        $odbDnsZoneId = 'odbDnsZoneId-1687404186';
+        $odbDnsZone = new OdbDnsZone();
+        $odbDnsZoneDomain = 'odbDnsZoneDomain304630124';
+        $odbDnsZone->setDomain($odbDnsZoneDomain);
+        $request = (new CreateOdbDnsZoneRequest())
+            ->setParent($formattedParent)
+            ->setOdbDnsZoneId($odbDnsZoneId)
+            ->setOdbDnsZone($odbDnsZone);
+        $response = $gapicClient->createOdbDnsZone($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.oracledatabase.v1.OracleDatabase/CreateOdbDnsZone', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getOdbDnsZoneId();
+        $this->assertProtobufEquals($odbDnsZoneId, $actualValue);
+        $actualValue = $actualApiRequestObject->getOdbDnsZone();
+        $this->assertProtobufEquals($odbDnsZone, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createOdbDnsZoneTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createOdbDnsZoneExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createOdbDnsZoneTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->odbNetworkName('[PROJECT]', '[LOCATION]', '[ODB_NETWORK]');
+        $odbDnsZoneId = 'odbDnsZoneId-1687404186';
+        $odbDnsZone = new OdbDnsZone();
+        $odbDnsZoneDomain = 'odbDnsZoneDomain304630124';
+        $odbDnsZone->setDomain($odbDnsZoneDomain);
+        $request = (new CreateOdbDnsZoneRequest())
+            ->setParent($formattedParent)
+            ->setOdbDnsZoneId($odbDnsZoneId)
+            ->setOdbDnsZone($odbDnsZone);
+        $response = $gapicClient->createOdbDnsZone($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createOdbDnsZoneTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -3363,6 +3515,128 @@ class OracleDatabaseClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteOdbDnsZoneTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteOdbDnsZoneTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteOdbDnsZoneTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->odbDnsZoneName('[PROJECT]', '[LOCATION]', '[ODB_NETWORK]', '[ODB_DNS_ZONE]');
+        $request = (new DeleteOdbDnsZoneRequest())->setName($formattedName);
+        $response = $gapicClient->deleteOdbDnsZone($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.oracledatabase.v1.OracleDatabase/DeleteOdbDnsZone', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteOdbDnsZoneTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteOdbDnsZoneExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteOdbDnsZoneTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->odbDnsZoneName('[PROJECT]', '[LOCATION]', '[ODB_NETWORK]', '[ODB_DNS_ZONE]');
+        $request = (new DeleteOdbDnsZoneRequest())->setName($formattedName);
+        $response = $gapicClient->deleteOdbDnsZone($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteOdbDnsZoneTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function deleteOdbNetworkTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4073,6 +4347,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $odbNetwork = 'odbNetwork-1199754980';
         $odbSubnet = 'odbSubnet118675119';
         $backupOdbSubnet = 'backupOdbSubnet677701964';
+        $odbDnsZone = 'odbDnsZone561197012';
         $exascaleDbStorageVault = 'exascaleDbStorageVault-2059486384';
         $expectedResponse = new CloudVmCluster();
         $expectedResponse->setName($name2);
@@ -4085,6 +4360,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $expectedResponse->setOdbNetwork($odbNetwork);
         $expectedResponse->setOdbSubnet($odbSubnet);
         $expectedResponse->setBackupOdbSubnet($backupOdbSubnet);
+        $expectedResponse->setOdbDnsZone($odbDnsZone);
         $expectedResponse->setExascaleDbStorageVault($exascaleDbStorageVault);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -4688,6 +4964,73 @@ class OracleDatabaseClientTest extends GeneratedTest
         $request = (new GetGoldengateDeploymentRequest())->setName($formattedName);
         try {
             $gapicClient->getGoldengateDeployment($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getOdbDnsZoneTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $domain = 'domain-1326197564';
+        $expectedResponse = new OdbDnsZone();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDomain($domain);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->odbDnsZoneName('[PROJECT]', '[LOCATION]', '[ODB_NETWORK]', '[ODB_DNS_ZONE]');
+        $request = (new GetOdbDnsZoneRequest())->setName($formattedName);
+        $response = $gapicClient->getOdbDnsZone($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.oracledatabase.v1.OracleDatabase/GetOdbDnsZone', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getOdbDnsZoneExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->odbDnsZoneName('[PROJECT]', '[LOCATION]', '[ODB_NETWORK]', '[ODB_DNS_ZONE]');
+        $request = (new GetOdbDnsZoneRequest())->setName($formattedName);
+        try {
+            $gapicClient->getOdbDnsZone($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6777,6 +7120,77 @@ class OracleDatabaseClientTest extends GeneratedTest
         $request = (new ListMinorVersionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listMinorVersions($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listOdbDnsZonesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $odbDnsZonesElement = new OdbDnsZone();
+        $odbDnsZones = [$odbDnsZonesElement];
+        $expectedResponse = new ListOdbDnsZonesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setOdbDnsZones($odbDnsZones);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->odbNetworkName('[PROJECT]', '[LOCATION]', '[ODB_NETWORK]');
+        $request = (new ListOdbDnsZonesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listOdbDnsZones($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getOdbDnsZones()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.oracledatabase.v1.OracleDatabase/ListOdbDnsZones', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listOdbDnsZonesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->odbNetworkName('[PROJECT]', '[LOCATION]', '[ODB_NETWORK]');
+        $request = (new ListOdbDnsZonesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listOdbDnsZones($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
