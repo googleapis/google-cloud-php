@@ -36,7 +36,8 @@ class ReleaseVerifyCommandTest extends TestCase
     private static string $changelogBody =
         '<details><summary>google/cloud-billing-budgets: 1.2.0</summary>' .
         '### Features' . "\r\n\r\n" . '* Add resource_ancestors field</details>' .
-        '<details><summary>google/cloud-build: 0.7.2</summary></details>';
+        '<details><summary>google/cloud-build: 0.7.2</summary></details>' .
+        '<details><summary>google/common-protos: 4.15.0</summary></details>';
 
     public function testVerifyTagSuccess()
     {
@@ -101,6 +102,22 @@ class ReleaseVerifyCommandTest extends TestCase
             '<option data-href="/php/docs/reference/cloud-build/latest" selected>0.8.0 (latest)</option>'
         ));
 
+        // CommonProtos (4.15.0 - defines "version" in composer.json without "v" prefix)
+        $http->get(Argument::that(
+            fn ($url) => str_starts_with($url, 'https://packagist.org/packages/google/common-protos.json')
+        ))->shouldBeCalledOnce()->willReturn(new Response(200, [], json_encode([
+            'package' => ['versions' => ['4.15.0' => []]],
+        ])));
+
+        $http->get(
+            'https://docs.cloud.google.com/php/docs/reference/common-protos/latest',
+            ['allow_redirects' => false, 'http_errors' => false]
+        )->shouldBeCalledOnce()->willReturn(new Response(
+            200,
+            [],
+            '<option data-href="/php/docs/reference/common-protos/latest" selected>4.15.0 (latest)</option>'
+        ));
+
         $commandTester = new CommandTester(new ReleaseVerifyCommand($http->reveal()));
         $exitCode = $commandTester->execute(['tag' => $tag, '--token' => 'test-token']);
 
@@ -110,6 +127,7 @@ class ReleaseVerifyCommandTest extends TestCase
         $this->assertStringContainsString('Coding Standards', $display);
         $this->assertStringContainsString('google/cloud-billing-budgets', $display);
         $this->assertStringContainsString('google/cloud-build', $display);
+        $this->assertStringContainsString('google/common-protos', $display);
     }
 
     public function testVerifyTagWithFailedCheckRunAndUpdateRelease()

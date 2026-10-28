@@ -345,7 +345,7 @@ class ReleaseVerifyCommand extends Command
         array &$notFound,
         array &$pending
     ): array {
-        $tagVersion = 'v' . $version;
+        $tagVersion = $component->getComposerVersion() ? $version : 'v' . $version;
         $packageName = $component->getPackageName();
 
         $cliRow = [$packageName, $version];
