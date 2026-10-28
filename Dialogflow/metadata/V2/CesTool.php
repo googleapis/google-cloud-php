@@ -18,7 +18,7 @@ class CesTool
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Tool::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xCA\x03\x0A)google/cloud/dialogflow/v2/ces_tool.proto\x12\x1Agoogle.cloud.dialogflow.v2\x1A\x19google/api/resource.proto\x1A%google/cloud/dialogflow/v2/tool.proto\"\xA1\x01\x0A\x0BCesToolSpec\x121\x0A\x08ces_tool\x18\x01 \x01(\x09B\x1F\xE0A\x01\xFAA\x19\x0A\x17ces.googleapis.com/Tool\x12_\x0A\x18confirmation_requirement\x18\x02 \x01(\x0E28.google.cloud.dialogflow.v2.Tool.ConfirmationRequirementB\x03\xE0A\x01B\x92\x01\x0A\x1Ecom.google.cloud.dialogflow.v2B\x0CCesToolProtoP\x01Z>cloud.google.com/go/dialogflow/apiv2/dialogflowpb;dialogflowpb\xA2\x02\x02DF\xAA\x02\x1AGoogle.Cloud.Dialogflow.V2b\x06proto3"
+            "\x0A\xCC\x03\x0A)google/cloud/dialogflow/v2/ces_tool.proto\x12\x1Agoogle.cloud.dialogflow.v2\x1A\x19google/api/resource.proto\x1A%google/cloud/dialogflow/v2/tool.proto\"\xA3\x01\x0A\x0BCesToolSpec\x122\x0A\x08ces_tool\x18\x01 \x01(\x09B \xE2A\x01\x01\xFAA\x19\x0A\x17ces.googleapis.com/Tool\x12`\x0A\x18confirmation_requirement\x18\x02 \x01(\x0E28.google.cloud.dialogflow.v2.Tool.ConfirmationRequirementB\x04\xE2A\x01\x01B\x92\x01\x0A\x1Ecom.google.cloud.dialogflow.v2B\x0CCesToolProtoP\x01Z>cloud.google.com/go/dialogflow/apiv2/dialogflowpb;dialogflowpb\xA2\x02\x02DF\xAA\x02\x1AGoogle.Cloud.Dialogflow.V2b\x06proto3"
         , true);
 
         static::$is_initialized = true;

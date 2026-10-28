@@ -135,6 +135,11 @@
                                 "updateCertificate"
                             ]
                         },
+                        "UpdateCertificateIssuanceConfig": {
+                            "methods": [
+                                "updateCertificateIssuanceConfig"
+                            ]
+                        },
                         "UpdateCertificateMap": {
                             "methods": [
                                 "updateCertificateMap"

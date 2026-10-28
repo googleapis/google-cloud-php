@@ -16,7 +16,7 @@ class LocationMetadata
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\x85\x03\x0A6google/cloud/oracledatabase/v1/location_metadata.proto\x12\x1Egoogle.cloud.oracledatabase.v1\"1\x0A\x10LocationMetadata\x12\x1D\x0A\x10gcp_oracle_zones\x18\x02 \x03(\x09B\x03\xE0A\x03B\xEF\x01\x0A\"com.google.cloud.oracledatabase.v1B\x15LocationMetadataProtoP\x01ZJcloud.google.com/go/oracledatabase/apiv1/oracledatabasepb;oracledatabasepb\xAA\x02\x1EGoogle.Cloud.OracleDatabase.V1\xCA\x02\x1EGoogle\\Cloud\\OracleDatabase\\V1\xEA\x02!Google::Cloud::OracleDatabase::V1b\x06proto3"
+            "\x0A\x86\x03\x0A6google/cloud/oracledatabase/v1/location_metadata.proto\x12\x1Egoogle.cloud.oracledatabase.v1\"2\x0A\x10LocationMetadata\x12\x1E\x0A\x10gcp_oracle_zones\x18\x02 \x03(\x09B\x04\xE2A\x01\x03B\xEF\x01\x0A\"com.google.cloud.oracledatabase.v1B\x15LocationMetadataProtoP\x01ZJcloud.google.com/go/oracledatabase/apiv1/oracledatabasepb;oracledatabasepb\xAA\x02\x1EGoogle.Cloud.OracleDatabase.V1\xCA\x02\x1EGoogle\\Cloud\\OracleDatabase\\V1\xEA\x02!Google::Cloud::OracleDatabase::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

@@ -17,7 +17,7 @@ class Tenant
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xBF\x02\x0A#google/cloud/talent/v4/tenant.proto\x12\x16google.cloud.talent.v4\x1A\x19google/api/resource.proto\"v\x0A\x06Tenant\x12\x0C\x0A\x04name\x18\x01 \x01(\x09\x12\x18\x0A\x0Bexternal_id\x18\x02 \x01(\x09B\x03\xE0A\x02:D\xEAAA\x0A\x1Ajobs.googleapis.com/Tenant\x12#projects/{project}/tenants/{tenant}Be\x0A\x1Acom.google.cloud.talent.v4B\x0BTenantProtoP\x01Z2cloud.google.com/go/talent/apiv4/talentpb;talentpb\xA2\x02\x03CTSb\x06proto3"
+            "\x0A\xC0\x02\x0A#google/cloud/talent/v4/tenant.proto\x12\x16google.cloud.talent.v4\x1A\x19google/api/resource.proto\"w\x0A\x06Tenant\x12\x0C\x0A\x04name\x18\x01 \x01(\x09\x12\x19\x0A\x0Bexternal_id\x18\x02 \x01(\x09B\x04\xE2A\x01\x02:D\xEAAA\x0A\x1Ajobs.googleapis.com/Tenant\x12#projects/{project}/tenants/{tenant}Be\x0A\x1Acom.google.cloud.talent.v4B\x0BTenantProtoP\x01Z2cloud.google.com/go/talent/apiv4/talentpb;talentpb\xA2\x02\x03CTSb\x06proto3"
         , true);
 
         static::$is_initialized = true;

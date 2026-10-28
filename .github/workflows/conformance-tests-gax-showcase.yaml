@@ -1,14 +1,13 @@
 name: Run GAX Conformance Tests With Showcase
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [published]
   pull_request:
 permissions:
   contents: read
 jobs:
   gapic-showcase:
-    name: GAPIC Showcase Conformance Tests
+    name: "Conformance Tests: GAPIC Showcase"
     runs-on: ubuntu-latest
     env:
       GAPIC_SHOWCASE_VERSION: 0.44.0
@@ -22,7 +21,7 @@ jobs:
 
       - name: Setup cache environment
         id: extcache
-        uses: shivammathur/cache-extensions@22e24453af1bf3851994136f122ce065ab828a74 # 1.15.2
+        uses: shivammathur/cache-extensions@d894929efeece5f8d386bd667369b321947064ad # 1.15.6
         with:
           php-version: '8.2'
           extensions: grpc

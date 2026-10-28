@@ -75,12 +75,30 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
      */
     protected $multi_language_detection = null;
     /**
+     * Optional. Specifies the configuration for the Filter version to be used.
+     * If this field is populated, it takes precedence over any values set in
+     * the deprecated `filter_version` fields within `RaiFilterSettings`,
+     * `PiAndJailbreakFilterSettings`.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.modelarmor.v1.FilterVersionSelector filter_version_selector = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $filter_version_selector = null;
+    /**
      * Optional. Specifies the modalities to scan.
      * If empty, only text modality will be scanned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.Modality modalities = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $modalities;
+    /**
+     * Optional. Indicates whether the template is subject to data residency
+     * compliance. If true (default for new templates), the template is subject
+     * to data residency compliance. If false, the template bypasses data
+     * residency compliance checks.
+     *
+     * Generated from protobuf field <code>optional bool data_residency_compliant = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $data_residency_compliant = null;
 
     /**
      * Constructor.
@@ -111,9 +129,19 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
      *           Optional. Enforcement type for Model Armor filters.
      *     @type \Google\Cloud\ModelArmor\V1\Template\TemplateMetadata\MultiLanguageDetection $multi_language_detection
      *           Optional. Metadata for multi language detection.
+     *     @type \Google\Cloud\ModelArmor\V1\FilterVersionSelector $filter_version_selector
+     *           Optional. Specifies the configuration for the Filter version to be used.
+     *           If this field is populated, it takes precedence over any values set in
+     *           the deprecated `filter_version` fields within `RaiFilterSettings`,
+     *           `PiAndJailbreakFilterSettings`.
      *     @type int[] $modalities
      *           Optional. Specifies the modalities to scan.
      *           If empty, only text modality will be scanned.
+     *     @type bool $data_residency_compliant
+     *           Optional. Indicates whether the template is subject to data residency
+     *           compliance. If true (default for new templates), the template is subject
+     *           to data residency compliance. If false, the template bypasses data
+     *           residency compliance checks.
      * }
      */
     public function __construct($data = NULL) {
@@ -376,6 +404,48 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Specifies the configuration for the Filter version to be used.
+     * If this field is populated, it takes precedence over any values set in
+     * the deprecated `filter_version` fields within `RaiFilterSettings`,
+     * `PiAndJailbreakFilterSettings`.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.modelarmor.v1.FilterVersionSelector filter_version_selector = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ModelArmor\V1\FilterVersionSelector|null
+     */
+    public function getFilterVersionSelector()
+    {
+        return $this->filter_version_selector;
+    }
+
+    public function hasFilterVersionSelector()
+    {
+        return isset($this->filter_version_selector);
+    }
+
+    public function clearFilterVersionSelector()
+    {
+        unset($this->filter_version_selector);
+    }
+
+    /**
+     * Optional. Specifies the configuration for the Filter version to be used.
+     * If this field is populated, it takes precedence over any values set in
+     * the deprecated `filter_version` fields within `RaiFilterSettings`,
+     * `PiAndJailbreakFilterSettings`.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.modelarmor.v1.FilterVersionSelector filter_version_selector = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ModelArmor\V1\FilterVersionSelector $var
+     * @return $this
+     */
+    public function setFilterVersionSelector($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ModelArmor\V1\FilterVersionSelector::class);
+        $this->filter_version_selector = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Specifies the modalities to scan.
      * If empty, only text modality will be scanned.
      *
@@ -399,6 +469,48 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\ModelArmor\V1\Modality::class);
         $this->modalities = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates whether the template is subject to data residency
+     * compliance. If true (default for new templates), the template is subject
+     * to data residency compliance. If false, the template bypasses data
+     * residency compliance checks.
+     *
+     * Generated from protobuf field <code>optional bool data_residency_compliant = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDataResidencyCompliant()
+    {
+        return isset($this->data_residency_compliant) ? $this->data_residency_compliant : false;
+    }
+
+    public function hasDataResidencyCompliant()
+    {
+        return isset($this->data_residency_compliant);
+    }
+
+    public function clearDataResidencyCompliant()
+    {
+        unset($this->data_residency_compliant);
+    }
+
+    /**
+     * Optional. Indicates whether the template is subject to data residency
+     * compliance. If true (default for new templates), the template is subject
+     * to data residency compliance. If false, the template bypasses data
+     * residency compliance checks.
+     *
+     * Generated from protobuf field <code>optional bool data_residency_compliant = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDataResidencyCompliant($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->data_residency_compliant = $var;
 
         return $this;
     }

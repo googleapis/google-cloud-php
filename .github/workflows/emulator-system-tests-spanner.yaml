@@ -1,10 +1,6 @@
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'Spanner/**'
-      - '.github/workflows/emulator-system-tests-spanner.yaml'
+  release:
+    types: [published]
   pull_request:
     paths:
       - 'Spanner/**'
@@ -14,7 +10,7 @@ permissions:
   contents: read
 jobs:
   test:
-    name: Spanner
+    name: "Emulator System Tests: Spanner"
     runs-on: 'ubuntu-26.04'
     services:
       emulator:

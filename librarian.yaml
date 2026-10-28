@@ -12,11 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 language: php
-version: v0.48.0
+version: v0.49.0
 sources:
   googleapis:
-    commit: b6efa15f5537f053786e5d8875d75bc3a6246455
-    sha256: d432e85ea4bb83e7b0ed83415d24fae57a52e7c51afc7a96c6147a27da85eb02
+    commit: 14a161a98ef045be80c12ab69d924504a756f109
+    sha256: ce3cee2da77fbdff0e269bc520dc61e8b32efcdec7628b39b9e474a02bc951f6
 tools:
   composer:
     - name: google-cloud-php/dev
@@ -1422,6 +1422,16 @@ libraries:
             - google/iam/v1/iam_policy.proto
     copyright_year: "2026"
     output: Notebooks
+  - name: observability
+    version: 0.0.0
+    apis:
+      - path: google/cloud/observability/v1
+        php:
+          additional_protos:
+            - google/cloud/location/locations.proto
+          staging_subdir: v1
+    copyright_year: "2026"
+    output: Observability
   - name: optimization
     version: 1.2.1
     apis:
@@ -1799,7 +1809,12 @@ libraries:
   - name: shopping-merchant-reviews
     version: 0.6.4
     apis:
+      - path: google/shopping/merchant/reviews/v1
+        php:
+          staging_subdir: v1
       - path: google/shopping/merchant/reviews/v1beta
+        php:
+          staging_subdir: v1beta
     copyright_year: "2026"
     output: ShoppingMerchantReviews
   - name: shopping-type

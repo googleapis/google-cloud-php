@@ -17,7 +17,7 @@ class KfpArtifact
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xC5\x04\x0A6google/devtools/artifactregistry/v1/kfp_artifact.proto\x12#google.devtools.artifactregistry.v1\x1A\x19google/api/resource.proto\"\xC4\x01\x0A\x0BKfpArtifact\x12\x11\x0A\x04name\x18\x01 \x01(\x09B\x03\xE0A\x03\x12\x0F\x0A\x07version\x18\x02 \x01(\x09:\x90\x01\xEAA\x8C\x01\x0A+artifactregistry.googleapis.com/KfpArtifact\x12]projects/{project}/locations/{location}/repositories/{repository}/kfpArtifacts/{kfp_artifact}B\xFB\x01\x0A'com.google.devtools.artifactregistry.v1B\x10KfpArtifactProtoP\x01ZPcloud.google.com/go/artifactregistry/apiv1/artifactregistrypb;artifactregistrypb\xAA\x02 Google.Cloud.ArtifactRegistry.V1\xCA\x02 Google\\Cloud\\ArtifactRegistry\\V1\xEA\x02#Google::Cloud::ArtifactRegistry::V1b\x06proto3"
+            "\x0A\xC6\x04\x0A6google/devtools/artifactregistry/v1/kfp_artifact.proto\x12#google.devtools.artifactregistry.v1\x1A\x19google/api/resource.proto\"\xC5\x01\x0A\x0BKfpArtifact\x12\x12\x0A\x04name\x18\x01 \x01(\x09B\x04\xE2A\x01\x03\x12\x0F\x0A\x07version\x18\x02 \x01(\x09:\x90\x01\xEAA\x8C\x01\x0A+artifactregistry.googleapis.com/KfpArtifact\x12]projects/{project}/locations/{location}/repositories/{repository}/kfpArtifacts/{kfp_artifact}B\xFB\x01\x0A'com.google.devtools.artifactregistry.v1B\x10KfpArtifactProtoP\x01ZPcloud.google.com/go/artifactregistry/apiv1/artifactregistrypb;artifactregistrypb\xAA\x02 Google.Cloud.ArtifactRegistry.V1\xCA\x02 Google\\Cloud\\ArtifactRegistry\\V1\xEA\x02#Google::Cloud::ArtifactRegistry::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

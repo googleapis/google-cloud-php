@@ -16,7 +16,7 @@ class Location
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\x8A\x03\x0A\"google/appengine/v1/location.proto\x12\x13google.appengine.v1\"\x85\x01\x0A\x10LocationMetadata\x12&\x0A\x1Estandard_environment_available\x18\x02 \x01(\x08\x12&\x0A\x1Eflexible_environment_available\x18\x04 \x01(\x08\x12!\x0A\x14search_api_available\x18\x06 \x01(\x08B\x03\xE0A\x03B\xBE\x01\x0A\x17com.google.appengine.v1B\x0DLocationProtoP\x01Z;cloud.google.com/go/appengine/apiv1/appenginepb;appenginepb\xAA\x02\x19Google.Cloud.AppEngine.V1\xCA\x02\x19Google\\Cloud\\AppEngine\\V1\xEA\x02\x1CGoogle::Cloud::AppEngine::V1b\x06proto3"
+            "\x0A\x8B\x03\x0A\"google/appengine/v1/location.proto\x12\x13google.appengine.v1\"\x86\x01\x0A\x10LocationMetadata\x12&\x0A\x1Estandard_environment_available\x18\x02 \x01(\x08\x12&\x0A\x1Eflexible_environment_available\x18\x04 \x01(\x08\x12\"\x0A\x14search_api_available\x18\x06 \x01(\x08B\x04\xE2A\x01\x03B\xBE\x01\x0A\x17com.google.appengine.v1B\x0DLocationProtoP\x01Z;cloud.google.com/go/appengine/apiv1/appenginepb;appenginepb\xAA\x02\x19Google.Cloud.AppEngine.V1\xCA\x02\x19Google\\Cloud\\AppEngine\\V1\xEA\x02\x1CGoogle::Cloud::AppEngine::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

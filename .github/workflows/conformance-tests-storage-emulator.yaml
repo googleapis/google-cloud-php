@@ -1,10 +1,6 @@
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'Storage/**'
-      - '.github/workflows/conformance-tests-storage-emulator.yaml'
+  release:
+    types: [published]
   pull_request:
     paths:
       - 'Storage/**'
@@ -14,6 +10,7 @@ permissions:
   contents: read
 jobs:
   test:
+    name: "Conformance Tests: Storage Retry"
     runs-on: 'ubuntu-26.04'
 
     services:

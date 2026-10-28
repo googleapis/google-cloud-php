@@ -18,7 +18,7 @@ class IpConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. An external IP address.
      *
-     * Generated from protobuf field <code>string ip_address = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string ip_address = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      */
     protected $ip_address = '';
     /**
@@ -48,7 +48,7 @@ class IpConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. An external IP address.
      *
-     * Generated from protobuf field <code>string ip_address = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string ip_address = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      * @return string
      */
     public function getIpAddress()
@@ -59,7 +59,7 @@ class IpConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. An external IP address.
      *
-     * Generated from protobuf field <code>string ip_address = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string ip_address = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      * @param string $var
      * @return $this
      */

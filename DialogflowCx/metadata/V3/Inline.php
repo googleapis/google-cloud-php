@@ -16,7 +16,7 @@ class Inline
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xD0\x02\x0A*google/cloud/dialogflow/cx/v3/inline.proto\x12\x1Dgoogle.cloud.dialogflow.cx.v3\")\x0A\x11InlineDestination\x12\x14\x0A\x07content\x18\x01 \x01(\x0CB\x03\xE0A\x03\"\x1F\x0A\x0CInlineSource\x12\x0F\x0A\x07content\x18\x01 \x01(\x0CB\xAE\x01\x0A!com.google.cloud.dialogflow.cx.v3B\x0BInlineProtoP\x01Z1cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpb\xA2\x02\x02DF\xAA\x02\x1DGoogle.Cloud.Dialogflow.Cx.V3\xEA\x02!Google::Cloud::Dialogflow::CX::V3b\x06proto3"
+            "\x0A\xD1\x02\x0A*google/cloud/dialogflow/cx/v3/inline.proto\x12\x1Dgoogle.cloud.dialogflow.cx.v3\"*\x0A\x11InlineDestination\x12\x15\x0A\x07content\x18\x01 \x01(\x0CB\x04\xE2A\x01\x03\"\x1F\x0A\x0CInlineSource\x12\x0F\x0A\x07content\x18\x01 \x01(\x0CB\xAE\x01\x0A!com.google.cloud.dialogflow.cx.v3B\x0BInlineProtoP\x01Z1cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpb\xA2\x02\x02DF\xAA\x02\x1DGoogle.Cloud.Dialogflow.Cx.V3\xEA\x02!Google::Cloud::Dialogflow::CX::V3b\x06proto3"
         , true);
 
         static::$is_initialized = true;

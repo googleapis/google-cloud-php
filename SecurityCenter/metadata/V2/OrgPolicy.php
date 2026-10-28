@@ -17,7 +17,7 @@ class OrgPolicy
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xBD\x04\x0A/google/cloud/securitycenter/v2/org_policy.proto\x12\x1Egoogle.cloud.securitycenter.v2\x1A\x19google/api/resource.proto\"\xDB\x01\x0A\x09OrgPolicy\x12\x11\x0A\x04name\x18\x01 \x01(\x09B\x03\xE0A\x08:\xBA\x01\xEAA\xB6\x01\x0A\x1Forgpolicy.googleapis.com/Policy\x127organizations/{organization}/policies/{constraint_name}\x12+folders/{folder}/policies/{constraint_name}\x12-projects/{project}/policies/{constraint_name}B\xE8\x01\x0A\"com.google.cloud.securitycenter.v2B\x0EOrgPolicyProtoP\x01ZJcloud.google.com/go/securitycenter/apiv2/securitycenterpb;securitycenterpb\xAA\x02\x1EGoogle.Cloud.SecurityCenter.V2\xCA\x02\x1EGoogle\\Cloud\\SecurityCenter\\V2\xEA\x02!Google::Cloud::SecurityCenter::V2b\x06proto3"
+            "\x0A\xBE\x04\x0A/google/cloud/securitycenter/v2/org_policy.proto\x12\x1Egoogle.cloud.securitycenter.v2\x1A\x19google/api/resource.proto\"\xDC\x01\x0A\x09OrgPolicy\x12\x12\x0A\x04name\x18\x01 \x01(\x09B\x04\xE2A\x01\x08:\xBA\x01\xEAA\xB6\x01\x0A\x1Forgpolicy.googleapis.com/Policy\x127organizations/{organization}/policies/{constraint_name}\x12+folders/{folder}/policies/{constraint_name}\x12-projects/{project}/policies/{constraint_name}B\xE8\x01\x0A\"com.google.cloud.securitycenter.v2B\x0EOrgPolicyProtoP\x01ZJcloud.google.com/go/securitycenter/apiv2/securitycenterpb;securitycenterpb\xAA\x02\x1EGoogle.Cloud.SecurityCenter.V2\xCA\x02\x1EGoogle\\Cloud\\SecurityCenter\\V2\xEA\x02!Google::Cloud::SecurityCenter::V2b\x06proto3"
         , true);
 
         static::$is_initialized = true;

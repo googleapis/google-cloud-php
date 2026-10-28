@@ -17,7 +17,7 @@ class DeployedIndexRef
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xE3\x03\x0A3google/cloud/aiplatform/v1/deployed_index_ref.proto\x12\x1Agoogle.cloud.aiplatform.v1\x1A\x19google/api/resource.proto\"\x96\x01\x0A\x10DeployedIndexRef\x12G\x0A\x0Eindex_endpoint\x18\x01 \x01(\x09B/\xE0A\x05\xFAA)\x0A'aiplatform.googleapis.com/IndexEndpoint\x12\x1E\x0A\x11deployed_index_id\x18\x02 \x01(\x09B\x03\xE0A\x05\x12\x19\x0A\x0Cdisplay_name\x18\x03 \x01(\x09B\x03\xE0A\x03B\xD3\x01\x0A\x1Ecom.google.cloud.aiplatform.v1B\x15DeployedIndexRefProtoP\x01Z>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb\xAA\x02\x1AGoogle.Cloud.AIPlatform.V1\xCA\x02\x1AGoogle\\Cloud\\AIPlatform\\V1\xEA\x02\x1DGoogle::Cloud::AIPlatform::V1b\x06proto3"
+            "\x0A\xE6\x03\x0A3google/cloud/aiplatform/v1/deployed_index_ref.proto\x12\x1Agoogle.cloud.aiplatform.v1\x1A\x19google/api/resource.proto\"\x99\x01\x0A\x10DeployedIndexRef\x12H\x0A\x0Eindex_endpoint\x18\x01 \x01(\x09B0\xE2A\x01\x05\xFAA)\x0A'aiplatform.googleapis.com/IndexEndpoint\x12\x1F\x0A\x11deployed_index_id\x18\x02 \x01(\x09B\x04\xE2A\x01\x05\x12\x1A\x0A\x0Cdisplay_name\x18\x03 \x01(\x09B\x04\xE2A\x01\x03B\xD3\x01\x0A\x1Ecom.google.cloud.aiplatform.v1B\x15DeployedIndexRefProtoP\x01Z>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb\xAA\x02\x1AGoogle.Cloud.AIPlatform.V1\xCA\x02\x1AGoogle\\Cloud\\AIPlatform\\V1\xEA\x02\x1DGoogle::Cloud::AIPlatform::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

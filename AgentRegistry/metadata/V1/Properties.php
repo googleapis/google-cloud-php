@@ -16,7 +16,7 @@ class Properties
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\x90\x04\x0A.google/cloud/agentregistry/v1/properties.proto\x12\x1Dgoogle.cloud.agentregistry.v1\"\xD1\x01\x0A\x09Interface\x12\x10\x0A\x03url\x18\x01 \x01(\x09B\x03\xE0A\x02\x12W\x0A\x10protocol_binding\x18\x02 \x01(\x0E28.google.cloud.agentregistry.v1.Interface.ProtocolBindingB\x03\xE0A\x02\"Y\x0A\x0FProtocolBinding\x12 \x0A\x1CPROTOCOL_BINDING_UNSPECIFIED\x10\x00\x12\x0B\x0A\x07JSONRPC\x10\x01\x12\x08\x0A\x04GRPC\x10\x02\x12\x0D\x0A\x09HTTP_JSON\x10\x03B\xE2\x01\x0A!com.google.cloud.agentregistry.v1B\x0FPropertiesProtoP\x01ZGcloud.google.com/go/agentregistry/apiv1/agentregistrypb;agentregistrypb\xAA\x02\x1DGoogle.Cloud.AgentRegistry.V1\xCA\x02\x1DGoogle\\Cloud\\AgentRegistry\\V1\xEA\x02 Google::Cloud::AgentRegistry::V1b\x06proto3"
+            "\x0A\x92\x04\x0A.google/cloud/agentregistry/v1/properties.proto\x12\x1Dgoogle.cloud.agentregistry.v1\"\xD3\x01\x0A\x09Interface\x12\x11\x0A\x03url\x18\x01 \x01(\x09B\x04\xE2A\x01\x02\x12X\x0A\x10protocol_binding\x18\x02 \x01(\x0E28.google.cloud.agentregistry.v1.Interface.ProtocolBindingB\x04\xE2A\x01\x02\"Y\x0A\x0FProtocolBinding\x12 \x0A\x1CPROTOCOL_BINDING_UNSPECIFIED\x10\x00\x12\x0B\x0A\x07JSONRPC\x10\x01\x12\x08\x0A\x04GRPC\x10\x02\x12\x0D\x0A\x09HTTP_JSON\x10\x03B\xE2\x01\x0A!com.google.cloud.agentregistry.v1B\x0FPropertiesProtoP\x01ZGcloud.google.com/go/agentregistry/apiv1/agentregistrypb;agentregistrypb\xAA\x02\x1DGoogle.Cloud.AgentRegistry.V1\xCA\x02\x1DGoogle\\Cloud\\AgentRegistry\\V1\xEA\x02 Google::Cloud::AgentRegistry::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;
