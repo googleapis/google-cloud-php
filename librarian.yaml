@@ -808,6 +808,17 @@ libraries:
             - google/iam/v1/iam_policy.proto
     copyright_year: "2026"
     output: Deploy
+  - name: designcenter
+    version: 0.0.0
+    apis:
+      - path: google/cloud/designcenter/v1
+        php:
+          additional_protos:
+            - google/cloud/location/locations.proto
+            - google/iam/v1/iam_policy.proto
+          staging_subdir: v1
+    copyright_year: "2026"
+    output: DesignCenter
   - name: developerconnect
     version: 0.7.1
     apis:
