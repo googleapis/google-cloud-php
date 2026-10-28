@@ -8,7 +8,8 @@
 
 ### Features
 
-* update API sources and regenerate ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* Add ReplaceMessageCards API to replace the cards in a message ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* Add owner_user field to CardWithId ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
 
 </details>
 
@@ -48,7 +49,19 @@
 
 ### Features
 
-* update API sources and regenerate ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* add SearchScope, BigQueryDatasetReference, and BigQueryTableReferences.search_scope for discovering relevant BigQuery tables in standalone conversations ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* add SpannerDatabaseReference.graph_ids ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+
+### Bug Fixes
+
+* remove unreleased DataA2AService proto and service config ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+
+### Documentation
+
+* clarify BigQuery Agent Analytics trace table validation on CreateDataAgent and UpdateDataAgent ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* clarify the default ChatRequest.ThinkingMode behavior and simplify the SetAgentOpsObservability description ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
 
 </details>
 
@@ -58,7 +71,9 @@
 
 ### Features
 
-* update API sources and regenerate ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* Add support to specify the zones of a multi-zone instance where Memorystore allocates resources ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* Add support to list the zones where the Memorystore instance currently has active VMs. ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* [Memorystore] Add support for ACL policies ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
 
 </details>
 
@@ -68,7 +83,12 @@
 
 ### Features
 
-* update API sources and regenerate ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* add FilterRuleSettings, FilterRuleSet, FilterRule, ExclusionRule, Dictionary, WordList, Regex, MatchingScope, and RuleFilterType for custom exclusion rules ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+
+### Documentation
+
+* update Modality, RaiFilterResult, and FilterVersionAlias documentation comments ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
 
 </details>
 
@@ -78,7 +98,7 @@
 
 ### Features
 
-* update API sources and regenerate ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* add OdbDnsZone and CloudVmCluster `odb_dns_zone` for custom DNS domains ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
 
 </details>
 
@@ -88,7 +108,8 @@
 
 ### Features
 
-* update API sources and regenerate ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* Add support to specify the zones of a multi-zone instance where Memorystore allocates resources ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* Add support to list the zones where the Memorystore instance currently has active VMs. ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
 
 </details>
 
@@ -96,9 +117,14 @@
 
 
 
-### Features
+### Bug Fixes
 
-* update API sources and regenerate ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* Use the /quota/v1 REST paths for the AccountLimitsService methods, which replace the unserved /accounts/v1 paths ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+
+### Documentation
+
+* Fix a typo in the QuotaGroup.quota_usage comment ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
 
 </details>
 
@@ -108,7 +134,17 @@
 
 ### Features
 
-* update API sources and regenerate ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* add ACTIVE_DIRECTORY_USER to DualPasswordType enum ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+
+### Bug Fixes
+
+* A type of an existing resource_reference option of the field `instance` in message `.google.cloud.sql.v1.BlueGreenDeployment` is changed from `sqladmin.googleapis.com/Instance` to `cloudsql.googleapis.com/Instance` ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* A type of an existing resource_reference option of the field `source_instance` in message `.google.cloud.sql.v1.BlueGreenDeployment` is changed from `sqladmin.googleapis.com/Instance` to `cloudsql.googleapis.com/Instance` ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* A type of an existing resource_reference option of the field `switchover_target_instance` in message `.google.cloud.sql.v1.BlueGreenDeployment` is changed from `sqladmin.googleapis.com/Instance` to `cloudsql.googleapis.com/Instance` ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* An existing resource_definition `sqladmin.googleapis.com/Instance` is removed ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* A type of an existing resource_reference option of the field `source_instance` in message `.google.cloud.sql.v1.WorkloadCapture` is changed from `sqladmin.googleapis.com/Instance` to `cloudsql.googleapis.com/Instance` ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* A type of an existing resource_reference option of the field `replay_instance` in message `.google.cloud.sql.v1.WorkloadCapture` is changed from `sqladmin.googleapis.com/Instance` to `cloudsql.googleapis.com/Instance` ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
 
 </details>
 
