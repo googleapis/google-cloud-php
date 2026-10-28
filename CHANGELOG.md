@@ -1,5 +1,117 @@
 # Changelog
 
+## 0.352.0
+
+<details><summary>google/apps-chat 0.30.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+</details>
+
+<details><summary>google/auth 1.55.3</summary>
+
+
+
+### Bug Fixes
+
+* **tests:** prevent PHP 8.5 grpc shutdown segfault in unit tests ([#9820](https://github.com/googleapis/google-cloud-php/issues/9820)) ([2a846d1](https://github.com/googleapis/google-cloud-php/commit/2a846d16c54b65e5f6873a66de460445cc5f0f0b))
+
+</details>
+
+<details><summary>google/cloud-designcenter 0.1.0</summary>
+
+
+
+### Features
+
+* **DesignCenter:** add google/cloud/designcenter/v1 ([#9831](https://github.com/googleapis/google-cloud-php/issues/9831)) ([883d1d7](https://github.com/googleapis/google-cloud-php/commit/883d1d7dae99618346b8fc3b8793227f2eb90e6f))
+
+</details>
+
+<details><summary>google/gax 1.51.2</summary>
+
+
+
+### Bug Fixes
+
+* **Gax:** bump grpc/grpc to ^1.84.1 ([#9822](https://github.com/googleapis/google-cloud-php/issues/9822)) ([625398a](https://github.com/googleapis/google-cloud-php/commit/625398aa725e37d4504dff9d0f5279adb69299d8))
+
+</details>
+
+<details><summary>google/cloud-geminidataanalytics 0.16.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+</details>
+
+<details><summary>google/cloud-memorystore 0.16.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+</details>
+
+<details><summary>google/cloud-modelarmor 0.10.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+</details>
+
+<details><summary>google/cloud-oracledatabase 0.14.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+</details>
+
+<details><summary>google/cloud-redis-cluster 0.13.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+</details>
+
+<details><summary>google/shopping-merchant-quota 1.5.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.15.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+</details>
+
 ## 0.351.0
 
 <details><summary>google/cloud-access-approval 2.3.0</summary>
