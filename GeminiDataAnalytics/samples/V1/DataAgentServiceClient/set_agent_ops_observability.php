@@ -32,8 +32,7 @@ use Google\Rpc\Status;
 
 /**
  * Enables/Disables required GCP services and configures AgentOps
- * observability settings calling the Admin Settings executable node to
- * update the AgentOps Observability feature.
+ * observability settings.
  *
  * @param string $formattedParent Parent value for SetAgentOpsObservabilityRequest.
  *                                Format: projects/{project}/locations/{location}

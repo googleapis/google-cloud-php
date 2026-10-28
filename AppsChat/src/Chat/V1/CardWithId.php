@@ -41,6 +41,12 @@ class CardWithId extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.apps.card.v1.Card card = 2;</code>
      */
     protected $card = null;
+    /**
+     * Output only. The app that owns the card.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.User owner_user = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $owner_user = null;
 
     /**
      * Constructor.
@@ -53,6 +59,8 @@ class CardWithId extends \Google\Protobuf\Internal\Message
      *           a card in a message.
      *     @type \Google\Apps\Card\V1\Card $card
      *           A card. Maximum size is 32 KB.
+     *     @type \Google\Apps\Chat\V1\User $owner_user
+     *           Output only. The app that owns the card.
      * }
      */
     public function __construct($data = NULL) {
@@ -120,6 +128,42 @@ class CardWithId extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Apps\Card\V1\Card::class);
         $this->card = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The app that owns the card.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.User owner_user = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Apps\Chat\V1\User|null
+     */
+    public function getOwnerUser()
+    {
+        return $this->owner_user;
+    }
+
+    public function hasOwnerUser()
+    {
+        return isset($this->owner_user);
+    }
+
+    public function clearOwnerUser()
+    {
+        unset($this->owner_user);
+    }
+
+    /**
+     * Output only. The app that owns the card.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.User owner_user = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Apps\Chat\V1\User $var
+     * @return $this
+     */
+    public function setOwnerUser($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\User::class);
+        $this->owner_user = $var;
 
         return $this;
     }

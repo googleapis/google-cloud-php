@@ -89,6 +89,8 @@ use Google\Apps\Chat\V1\MoveSectionItemResponse;
 use Google\Apps\Chat\V1\PositionSectionRequest;
 use Google\Apps\Chat\V1\PositionSectionResponse;
 use Google\Apps\Chat\V1\Reaction;
+use Google\Apps\Chat\V1\ReplaceMessageCardsRequest;
+use Google\Apps\Chat\V1\ReplaceMessageCardsResponse;
 use Google\Apps\Chat\V1\SearchMessageResult;
 use Google\Apps\Chat\V1\SearchMessagesRequest;
 use Google\Apps\Chat\V1\SearchMessagesResponse;
@@ -2963,6 +2965,69 @@ class ChatServiceClientTest extends GeneratedTest
         $request = (new PositionSectionRequest())->setName($formattedName);
         try {
             $gapicClient->positionSection($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function replaceMessageCardsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ReplaceMessageCardsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->messageName('[SPACE]', '[MESSAGE]');
+        $request = (new ReplaceMessageCardsRequest())->setName($formattedName);
+        $response = $gapicClient->replaceMessageCards($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.chat.v1.ChatService/ReplaceMessageCards', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function replaceMessageCardsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->messageName('[SPACE]', '[MESSAGE]');
+        $request = (new ReplaceMessageCardsRequest())->setName($formattedName);
+        try {
+            $gapicClient->replaceMessageCards($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
