@@ -66,7 +66,7 @@
         "psr/http-client": "^1.0",
         "psr/cache": "^2.0||^3.0",
         "psr/log": "^2.0||^3.0",
-        "grpc/grpc": "^1.13",
+        "grpc/grpc": "^1.84.1",
         "google/common-protos": "^4.4",
         "google/protobuf": "^4.31||^5.34",
         "google/grpc-gcp": "^0.4",

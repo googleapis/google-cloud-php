@@ -70,6 +70,12 @@ class SpannerDatabaseReference extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string request_tag = 9;</code>
      */
     protected $request_tag = '';
+    /**
+     * Optional. The graph IDs to query.
+     *
+     * Generated from protobuf field <code>repeated string graph_ids = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $graph_ids;
 
     /**
      * Constructor.
@@ -100,6 +106,8 @@ class SpannerDatabaseReference extends \Google\Protobuf\Internal\Message
      *     @type string $request_tag
      *           Tag to be attached to all queries to Spanner. Allows to identify and
      *           monitor queries sent to Spanner by the GDA service.
+     *     @type string[] $graph_ids
+     *           Optional. The graph IDs to query.
      * }
      */
     public function __construct($data = NULL) {
@@ -325,6 +333,32 @@ class SpannerDatabaseReference extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->request_tag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The graph IDs to query.
+     *
+     * Generated from protobuf field <code>repeated string graph_ids = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getGraphIds()
+    {
+        return $this->graph_ids;
+    }
+
+    /**
+     * Optional. The graph IDs to query.
+     *
+     * Generated from protobuf field <code>repeated string graph_ids = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setGraphIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->graph_ids = $arr;
 
         return $this;
     }

@@ -62,6 +62,8 @@ jobs:
           command: composer --no-interaction --no-ansi --no-progress update
 
       - name: Run Unit Test Suite ${{ matrix.platform != 'windows-latest' || '(Windows)' }}
+        env:
+          ZEND_DONT_UNLOAD_MODULES: 1
         run: |
           vendor/bin/phpunit -c phpunit.xml.dist
       - if: ${{ matrix.platform != 'windows-latest' && matrix.php != '8.5' }}

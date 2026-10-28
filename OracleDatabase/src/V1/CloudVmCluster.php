@@ -109,6 +109,14 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
      */
     protected $backup_odb_subnet = '';
     /**
+     * Optional. Immutable. The name of the OdbDnsZone for using custom domain
+     * name for the VM Cluster. Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbDnsZones/{odb_dns_zone}
+     *
+     * Generated from protobuf field <code>string odb_dns_zone = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     */
+    protected $odb_dns_zone = '';
+    /**
      * Output only. The identity connector details which will allow OCI to
      * securely access the resources in the customer project.
      *
@@ -170,6 +178,10 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
      *           Optional. The name of the backup OdbSubnet associated with the VM Cluster.
      *           Format:
      *           projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
+     *     @type string $odb_dns_zone
+     *           Optional. Immutable. The name of the OdbDnsZone for using custom domain
+     *           name for the VM Cluster. Format:
+     *           projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbDnsZones/{odb_dns_zone}
      *     @type \Google\Cloud\OracleDatabase\V1\IdentityConnector $identity_connector
      *           Output only. The identity connector details which will allow OCI to
      *           securely access the resources in the customer project.
@@ -566,6 +578,36 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->backup_odb_subnet = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. The name of the OdbDnsZone for using custom domain
+     * name for the VM Cluster. Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbDnsZones/{odb_dns_zone}
+     *
+     * Generated from protobuf field <code>string odb_dns_zone = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getOdbDnsZone()
+    {
+        return $this->odb_dns_zone;
+    }
+
+    /**
+     * Optional. Immutable. The name of the OdbDnsZone for using custom domain
+     * name for the VM Cluster. Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbDnsZones/{odb_dns_zone}
+     *
+     * Generated from protobuf field <code>string odb_dns_zone = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOdbDnsZone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->odb_dns_zone = $var;
 
         return $this;
     }
