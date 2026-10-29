@@ -1,5 +1,153 @@
 # Changelog
 
+## 0.352.0
+
+<details><summary>google/apps-chat 0.30.0</summary>
+
+
+
+### Features
+
+* Add ReplaceMessageCards API to replace the cards in a message ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* Add owner_user field to CardWithId ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+</details>
+
+<details><summary>google/auth 1.55.3</summary>
+
+
+
+### Bug Fixes
+
+* **tests:** prevent PHP 8.5 grpc shutdown segfault in unit tests ([#9820](https://github.com/googleapis/google-cloud-php/issues/9820)) ([2a846d1](https://github.com/googleapis/google-cloud-php/commit/2a846d16c54b65e5f6873a66de460445cc5f0f0b))
+
+</details>
+
+<details><summary>google/cloud-designcenter 0.1.0</summary>
+
+
+
+### Features
+
+* **DesignCenter:** add google/cloud/designcenter/v1 ([#9831](https://github.com/googleapis/google-cloud-php/issues/9831)) ([883d1d7](https://github.com/googleapis/google-cloud-php/commit/883d1d7dae99618346b8fc3b8793227f2eb90e6f))
+
+</details>
+
+<details><summary>google/gax 1.51.2</summary>
+
+
+
+### Bug Fixes
+
+* **Gax:** bump grpc/grpc to ^1.84.1 ([#9822](https://github.com/googleapis/google-cloud-php/issues/9822)) ([625398a](https://github.com/googleapis/google-cloud-php/commit/625398aa725e37d4504dff9d0f5279adb69299d8))
+
+</details>
+
+<details><summary>google/cloud-geminidataanalytics 0.16.0</summary>
+
+
+
+### Features
+
+* add SearchScope, BigQueryDatasetReference, and BigQueryTableReferences.search_scope for discovering relevant BigQuery tables in standalone conversations ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* add SpannerDatabaseReference.graph_ids ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+
+### Bug Fixes
+
+* remove unreleased DataA2AService proto and service config ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+
+### Documentation
+
+* clarify BigQuery Agent Analytics trace table validation on CreateDataAgent and UpdateDataAgent ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* clarify the default ChatRequest.ThinkingMode behavior and simplify the SetAgentOpsObservability description ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+</details>
+
+<details><summary>google/cloud-memorystore 0.16.0</summary>
+
+
+
+### Features
+
+* Add support to specify the zones of a multi-zone instance where Memorystore allocates resources ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* Add support to list the zones where the Memorystore instance currently has active VMs. ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* [Memorystore] Add support for ACL policies ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+</details>
+
+<details><summary>google/cloud-modelarmor 0.10.0</summary>
+
+
+
+### Features
+
+* add FilterRuleSettings, FilterRuleSet, FilterRule, ExclusionRule, Dictionary, WordList, Regex, MatchingScope, and RuleFilterType for custom exclusion rules ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+
+### Documentation
+
+* update Modality, RaiFilterResult, and FilterVersionAlias documentation comments ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+</details>
+
+<details><summary>google/cloud-oracledatabase 0.14.0</summary>
+
+
+
+### Features
+
+* add OdbDnsZone and CloudVmCluster `odb_dns_zone` for custom DNS domains ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+</details>
+
+<details><summary>google/cloud-redis-cluster 0.13.0</summary>
+
+
+
+### Features
+
+* Add support to specify the zones of a multi-zone instance where Memorystore allocates resources ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* Add support to list the zones where the Memorystore instance currently has active VMs. ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+</details>
+
+<details><summary>google/shopping-merchant-quota 1.5.0</summary>
+
+
+
+### Bug Fixes
+
+* Use the /quota/v1 REST paths for the AccountLimitsService methods, which replace the unserved /accounts/v1 paths ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+
+### Documentation
+
+* Fix a typo in the QuotaGroup.quota_usage comment ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.15.0</summary>
+
+
+
+### Features
+
+* add ACTIVE_DIRECTORY_USER to DualPasswordType enum ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+
+### Bug Fixes
+
+* A type of an existing resource_reference option of the field `instance` in message `.google.cloud.sql.v1.BlueGreenDeployment` is changed from `sqladmin.googleapis.com/Instance` to `cloudsql.googleapis.com/Instance` ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* A type of an existing resource_reference option of the field `source_instance` in message `.google.cloud.sql.v1.BlueGreenDeployment` is changed from `sqladmin.googleapis.com/Instance` to `cloudsql.googleapis.com/Instance` ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* A type of an existing resource_reference option of the field `switchover_target_instance` in message `.google.cloud.sql.v1.BlueGreenDeployment` is changed from `sqladmin.googleapis.com/Instance` to `cloudsql.googleapis.com/Instance` ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* An existing resource_definition `sqladmin.googleapis.com/Instance` is removed ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* A type of an existing resource_reference option of the field `source_instance` in message `.google.cloud.sql.v1.WorkloadCapture` is changed from `sqladmin.googleapis.com/Instance` to `cloudsql.googleapis.com/Instance` ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+* A type of an existing resource_reference option of the field `replay_instance` in message `.google.cloud.sql.v1.WorkloadCapture` is changed from `sqladmin.googleapis.com/Instance` to `cloudsql.googleapis.com/Instance` ([#9829](https://github.com/googleapis/google-cloud-php/issues/9829)) ([94a7a23](https://github.com/googleapis/google-cloud-php/commit/94a7a237d985f3badf5734e3601da021400d43c4))
+
+</details>
+
 ## 0.351.0
 
 <details><summary>google/cloud-access-approval 2.3.0</summary>

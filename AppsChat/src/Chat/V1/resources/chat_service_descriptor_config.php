@@ -547,6 +547,18 @@ return [
                     ],
                 ],
             ],
+            'ReplaceMessageCards' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\ReplaceMessageCardsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'SearchMessages' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

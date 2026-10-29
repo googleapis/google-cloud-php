@@ -213,6 +213,25 @@ return [
                     ],
                 ],
             ],
+            'CreateOdbDnsZone' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\OdbDnsZone',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateOdbNetwork' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\OdbNetwork',
@@ -404,6 +423,25 @@ return [
                 ],
             ],
             'DeleteGoldengateDeployment' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteOdbDnsZone' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
@@ -825,6 +863,18 @@ return [
             'GetGoldengateDeployment' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\OracleDatabase\V1\GoldengateDeployment',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetOdbDnsZone' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\OracleDatabase\V1\OdbDnsZone',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -1390,6 +1440,26 @@ return [
                     ],
                 ],
             ],
+            'ListOdbDnsZones' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getOdbDnsZones',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\OracleDatabase\V1\ListOdbDnsZonesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListOdbNetworks' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -1512,6 +1582,7 @@ return [
                 'goldengateDeployment' => 'projects/{project}/locations/{location}/goldengateDeployments/{goldengate_deployment}',
                 'location' => 'projects/{project}/locations/{location}',
                 'network' => 'projects/{project}/global/networks/{network}',
+                'odbDnsZone' => 'projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbDnsZones/{odb_dns_zone}',
                 'odbNetwork' => 'projects/{project}/locations/{location}/odbNetworks/{odb_network}',
                 'odbSubnet' => 'projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}',
                 'pluggableDatabase' => 'projects/{project}/locations/{location}/pluggableDatabases/{pluggable_database}',
