@@ -85,7 +85,7 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
     protected $filter_version_selector = null;
     /**
      * Optional. Specifies the modalities to scan.
-     * If empty, only text modality will be scanned.
+     * If not specified or empty, only text modality will be scanned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.Modality modalities = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -136,7 +136,7 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
      *           `PiAndJailbreakFilterSettings`.
      *     @type int[] $modalities
      *           Optional. Specifies the modalities to scan.
-     *           If empty, only text modality will be scanned.
+     *           If not specified or empty, only text modality will be scanned.
      *     @type bool $data_residency_compliant
      *           Optional. Indicates whether the template is subject to data residency
      *           compliance. If true (default for new templates), the template is subject
@@ -447,7 +447,7 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Specifies the modalities to scan.
-     * If empty, only text modality will be scanned.
+     * If not specified or empty, only text modality will be scanned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.Modality modalities = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<int>
@@ -459,7 +459,7 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Specifies the modalities to scan.
-     * If empty, only text modality will be scanned.
+     * If not specified or empty, only text modality will be scanned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.Modality modalities = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int[] $var

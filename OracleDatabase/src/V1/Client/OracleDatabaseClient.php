@@ -52,6 +52,7 @@ use Google\Cloud\OracleDatabase\V1\CreateExascaleDbStorageVaultRequest;
 use Google\Cloud\OracleDatabase\V1\CreateGoldengateConnectionAssignmentRequest;
 use Google\Cloud\OracleDatabase\V1\CreateGoldengateConnectionRequest;
 use Google\Cloud\OracleDatabase\V1\CreateGoldengateDeploymentRequest;
+use Google\Cloud\OracleDatabase\V1\CreateOdbDnsZoneRequest;
 use Google\Cloud\OracleDatabase\V1\CreateOdbNetworkRequest;
 use Google\Cloud\OracleDatabase\V1\CreateOdbSubnetRequest;
 use Google\Cloud\OracleDatabase\V1\Database;
@@ -65,6 +66,7 @@ use Google\Cloud\OracleDatabase\V1\DeleteExascaleDbStorageVaultRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteGoldengateConnectionAssignmentRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteGoldengateConnectionRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteGoldengateDeploymentRequest;
+use Google\Cloud\OracleDatabase\V1\DeleteOdbDnsZoneRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteOdbNetworkRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteOdbSubnetRequest;
 use Google\Cloud\OracleDatabase\V1\ExadbVmCluster;
@@ -83,6 +85,7 @@ use Google\Cloud\OracleDatabase\V1\GetExascaleDbStorageVaultRequest;
 use Google\Cloud\OracleDatabase\V1\GetGoldengateConnectionAssignmentRequest;
 use Google\Cloud\OracleDatabase\V1\GetGoldengateConnectionRequest;
 use Google\Cloud\OracleDatabase\V1\GetGoldengateDeploymentRequest;
+use Google\Cloud\OracleDatabase\V1\GetOdbDnsZoneRequest;
 use Google\Cloud\OracleDatabase\V1\GetOdbNetworkRequest;
 use Google\Cloud\OracleDatabase\V1\GetOdbSubnetRequest;
 use Google\Cloud\OracleDatabase\V1\GetPluggableDatabaseRequest;
@@ -115,9 +118,11 @@ use Google\Cloud\OracleDatabase\V1\ListGoldengateDeploymentTypesRequest;
 use Google\Cloud\OracleDatabase\V1\ListGoldengateDeploymentVersionsRequest;
 use Google\Cloud\OracleDatabase\V1\ListGoldengateDeploymentsRequest;
 use Google\Cloud\OracleDatabase\V1\ListMinorVersionsRequest;
+use Google\Cloud\OracleDatabase\V1\ListOdbDnsZonesRequest;
 use Google\Cloud\OracleDatabase\V1\ListOdbNetworksRequest;
 use Google\Cloud\OracleDatabase\V1\ListOdbSubnetsRequest;
 use Google\Cloud\OracleDatabase\V1\ListPluggableDatabasesRequest;
+use Google\Cloud\OracleDatabase\V1\OdbDnsZone;
 use Google\Cloud\OracleDatabase\V1\OdbNetwork;
 use Google\Cloud\OracleDatabase\V1\OdbSubnet;
 use Google\Cloud\OracleDatabase\V1\PluggableDatabase;
@@ -160,6 +165,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> createGoldengateConnectionAsync(CreateGoldengateConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createGoldengateConnectionAssignmentAsync(CreateGoldengateConnectionAssignmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createGoldengateDeploymentAsync(CreateGoldengateDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createOdbDnsZoneAsync(CreateOdbDnsZoneRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createOdbNetworkAsync(CreateOdbNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createOdbSubnetAsync(CreateOdbSubnetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAutonomousDatabaseAsync(DeleteAutonomousDatabaseRequest $request, array $optionalArgs = [])
@@ -171,6 +177,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deleteGoldengateConnectionAsync(DeleteGoldengateConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteGoldengateConnectionAssignmentAsync(DeleteGoldengateConnectionAssignmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteGoldengateDeploymentAsync(DeleteGoldengateDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteOdbDnsZoneAsync(DeleteOdbDnsZoneRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteOdbNetworkAsync(DeleteOdbNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteOdbSubnetAsync(DeleteOdbSubnetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> failoverAutonomousDatabaseAsync(FailoverAutonomousDatabaseRequest $request, array $optionalArgs = [])
@@ -186,6 +193,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<GoldengateConnection> getGoldengateConnectionAsync(GetGoldengateConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GoldengateConnectionAssignment> getGoldengateConnectionAssignmentAsync(GetGoldengateConnectionAssignmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GoldengateDeployment> getGoldengateDeploymentAsync(GetGoldengateDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OdbDnsZone> getOdbDnsZoneAsync(GetOdbDnsZoneRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OdbNetwork> getOdbNetworkAsync(GetOdbNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OdbSubnet> getOdbSubnetAsync(GetOdbSubnetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PluggableDatabase> getPluggableDatabaseAsync(GetPluggableDatabaseRequest $request, array $optionalArgs = [])
@@ -215,6 +223,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listGoldengateDeploymentVersionsAsync(ListGoldengateDeploymentVersionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listGoldengateDeploymentsAsync(ListGoldengateDeploymentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listMinorVersionsAsync(ListMinorVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOdbDnsZonesAsync(ListOdbDnsZonesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listOdbNetworksAsync(ListOdbNetworksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listOdbSubnetsAsync(ListOdbSubnetsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listPluggableDatabasesAsync(ListPluggableDatabasesRequest $request, array $optionalArgs = [])
@@ -638,6 +647,31 @@ final class OracleDatabaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a odb_dns_zone
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $odbNetwork
+     * @param string $odbDnsZone
+     *
+     * @return string The formatted odb_dns_zone resource.
+     */
+    public static function odbDnsZoneName(
+        string $project,
+        string $location,
+        string $odbNetwork,
+        string $odbDnsZone
+    ): string {
+        return self::getPathTemplate('odbDnsZone')->render([
+            'project' => $project,
+            'location' => $location,
+            'odb_network' => $odbNetwork,
+            'odb_dns_zone' => $odbDnsZone,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a odb_network
      * resource.
      *
@@ -738,6 +772,7 @@ final class OracleDatabaseClient
      * - goldengateDeployment: projects/{project}/locations/{location}/goldengateDeployments/{goldengate_deployment}
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
+     * - odbDnsZone: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbDnsZones/{odb_dns_zone}
      * - odbNetwork: projects/{project}/locations/{location}/odbNetworks/{odb_network}
      * - odbSubnet: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      * - pluggableDatabase: projects/{project}/locations/{location}/pluggableDatabases/{pluggable_database}
@@ -1135,6 +1170,32 @@ final class OracleDatabaseClient
     }
 
     /**
+     * Creates a new ODB DNS Zone in a given ODB Network.
+     *
+     * The async variant is {@see OracleDatabaseClient::createOdbDnsZoneAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/create_odb_dns_zone.php
+     *
+     * @param CreateOdbDnsZoneRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<OdbDnsZone>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createOdbDnsZone(CreateOdbDnsZoneRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateOdbDnsZone', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new ODB Network in a given project and location.
      *
      * The async variant is {@see OracleDatabaseClient::createOdbNetworkAsync()} .
@@ -1440,6 +1501,32 @@ final class OracleDatabaseClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('DeleteGoldengateDeployment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single ODB DNS Zone.
+     *
+     * The async variant is {@see OracleDatabaseClient::deleteOdbDnsZoneAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/delete_odb_dns_zone.php
+     *
+     * @param DeleteOdbDnsZoneRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteOdbDnsZone(DeleteOdbDnsZoneRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteOdbDnsZone', $request, $callOptions)->wait();
     }
 
     /**
@@ -1857,6 +1944,32 @@ final class OracleDatabaseClient
         array $callOptions = []
     ): GoldengateDeployment {
         return $this->startApiCall('GetGoldengateDeployment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single ODB DNS Zone.
+     *
+     * The async variant is {@see OracleDatabaseClient::getOdbDnsZoneAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/get_odb_dns_zone.php
+     *
+     * @param GetOdbDnsZoneRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OdbDnsZone
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getOdbDnsZone(GetOdbDnsZoneRequest $request, array $callOptions = []): OdbDnsZone
+    {
+        return $this->startApiCall('GetOdbDnsZone', $request, $callOptions)->wait();
     }
 
     /**
@@ -2664,6 +2777,32 @@ final class OracleDatabaseClient
     public function listMinorVersions(ListMinorVersionsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListMinorVersions', $request, $callOptions);
+    }
+
+    /**
+     * Lists all the ODB DNS Zones in a given ODB Network.
+     *
+     * The async variant is {@see OracleDatabaseClient::listOdbDnsZonesAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/list_odb_dns_zones.php
+     *
+     * @param ListOdbDnsZonesRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listOdbDnsZones(ListOdbDnsZonesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListOdbDnsZones', $request, $callOptions);
     }
 
     /**

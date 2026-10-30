@@ -633,8 +633,7 @@ final class DataAgentServiceClient
 
     /**
      * Enables/Disables required GCP services and configures AgentOps
-     * observability settings calling the Admin Settings executable node to
-     * update the AgentOps Observability feature.
+     * observability settings.
      *
      * The async variant is
      * {@see DataAgentServiceClient::setAgentOpsObservabilityAsync()} .

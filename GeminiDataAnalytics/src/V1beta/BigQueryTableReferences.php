@@ -33,6 +33,20 @@ class BigQueryTableReferences extends \Google\Protobuf\Internal\Message
      */
     private $property_graph_references;
     /**
+     * Optional. Search over BigQuery resources to discover most relevant tables
+     * to the query.
+     * When set, at least one of `include_project_ids` or
+     * `include_dataset_references` must be populated with non-blank identifiers.
+     * Matches from the two fields are unioned (OR-ed).
+     * Note: `search_scope` is only supported for standalone conversations
+     * (`ChatRequest.inline_context` or
+     * `ClientManagedResourceContext.inline_context`) and is not supported in
+     * [DataAgent][google.cloud.geminidataanalytics.v1beta.DataAgent].
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.SearchScope search_scope = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $search_scope = null;
+    /**
      * Optional. Parameters for retrieving data from Agent Context.
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.AgentContextReference agent_context_reference = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -52,6 +66,16 @@ class BigQueryTableReferences extends \Google\Protobuf\Internal\Message
      *           Note: "property graph" is the former name for BigQuery Graph. The field and
      *           message names retain the original term for backward compatibility; both
      *           refer to the same resource.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\SearchScope $search_scope
+     *           Optional. Search over BigQuery resources to discover most relevant tables
+     *           to the query.
+     *           When set, at least one of `include_project_ids` or
+     *           `include_dataset_references` must be populated with non-blank identifiers.
+     *           Matches from the two fields are unioned (OR-ed).
+     *           Note: `search_scope` is only supported for standalone conversations
+     *           (`ChatRequest.inline_context` or
+     *           `ClientManagedResourceContext.inline_context`) and is not supported in
+     *           [DataAgent][google.cloud.geminidataanalytics.v1beta.DataAgent].
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\AgentContextReference $agent_context_reference
      *           Optional. Parameters for retrieving data from Agent Context.
      * }
@@ -115,6 +139,58 @@ class BigQueryTableReferences extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryPropertyGraphReference::class);
         $this->property_graph_references = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Search over BigQuery resources to discover most relevant tables
+     * to the query.
+     * When set, at least one of `include_project_ids` or
+     * `include_dataset_references` must be populated with non-blank identifiers.
+     * Matches from the two fields are unioned (OR-ed).
+     * Note: `search_scope` is only supported for standalone conversations
+     * (`ChatRequest.inline_context` or
+     * `ClientManagedResourceContext.inline_context`) and is not supported in
+     * [DataAgent][google.cloud.geminidataanalytics.v1beta.DataAgent].
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.SearchScope search_scope = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GeminiDataAnalytics\V1beta\SearchScope|null
+     */
+    public function getSearchScope()
+    {
+        return $this->search_scope;
+    }
+
+    public function hasSearchScope()
+    {
+        return isset($this->search_scope);
+    }
+
+    public function clearSearchScope()
+    {
+        unset($this->search_scope);
+    }
+
+    /**
+     * Optional. Search over BigQuery resources to discover most relevant tables
+     * to the query.
+     * When set, at least one of `include_project_ids` or
+     * `include_dataset_references` must be populated with non-blank identifiers.
+     * Matches from the two fields are unioned (OR-ed).
+     * Note: `search_scope` is only supported for standalone conversations
+     * (`ChatRequest.inline_context` or
+     * `ClientManagedResourceContext.inline_context`) and is not supported in
+     * [DataAgent][google.cloud.geminidataanalytics.v1beta.DataAgent].
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.SearchScope search_scope = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\SearchScope $var
+     * @return $this
+     */
+    public function setSearchScope($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\SearchScope::class);
+        $this->search_scope = $var;
 
         return $this;
     }

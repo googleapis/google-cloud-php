@@ -194,6 +194,21 @@ return [
                     'goldengate_deployment_id',
                 ],
             ],
+            'CreateOdbDnsZone' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/odbNetworks/*}/odbDnsZones',
+                'body' => 'odb_dns_zone',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'odb_dns_zone_id',
+                ],
+            ],
             'CreateOdbNetwork' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/odbNetworks',
@@ -315,6 +330,17 @@ return [
             'DeleteGoldengateDeployment' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateDeployments/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteOdbDnsZone' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/odbNetworks/*/odbDnsZones/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -482,6 +508,17 @@ return [
             'GetGoldengateDeployment' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateDeployments/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetOdbDnsZone' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/odbNetworks/*/odbDnsZones/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -807,6 +844,17 @@ return [
             'ListMinorVersions' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/giVersions/*}/minorVersions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOdbDnsZones' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/odbNetworks/*}/odbDnsZones',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

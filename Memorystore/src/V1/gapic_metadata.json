@@ -25,9 +25,19 @@
                                 "backupInstance"
                             ]
                         },
+                        "CreateAclPolicy": {
+                            "methods": [
+                                "createAclPolicy"
+                            ]
+                        },
                         "CreateInstance": {
                             "methods": [
                                 "createInstance"
+                            ]
+                        },
+                        "DeleteAclPolicy": {
+                            "methods": [
+                                "deleteAclPolicy"
                             ]
                         },
                         "DeleteAuthToken": {
@@ -58,6 +68,16 @@
                         "FinishMigration": {
                             "methods": [
                                 "finishMigration"
+                            ]
+                        },
+                        "GetAclPolicy": {
+                            "methods": [
+                                "getAclPolicy"
+                            ]
+                        },
+                        "GetAclPolicyRevision": {
+                            "methods": [
+                                "getAclPolicyRevision"
                             ]
                         },
                         "GetAuthToken": {
@@ -95,6 +115,16 @@
                                 "getTokenAuthUser"
                             ]
                         },
+                        "ListAclPolicies": {
+                            "methods": [
+                                "listAclPolicies"
+                            ]
+                        },
+                        "ListAclPolicyRevisions": {
+                            "methods": [
+                                "listAclPolicyRevisions"
+                            ]
+                        },
                         "ListAuthTokens": {
                             "methods": [
                                 "listAuthTokens"
@@ -128,6 +158,11 @@
                         "StartMigration": {
                             "methods": [
                                 "startMigration"
+                            ]
+                        },
+                        "UpdateAclPolicy": {
+                            "methods": [
+                                "updateAclPolicy"
                             ]
                         },
                         "UpdateInstance": {

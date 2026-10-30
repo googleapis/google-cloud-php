@@ -30,6 +30,20 @@ class ZoneDistributionConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string zone = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $zone = '';
+    /**
+     * Optional. Specify the zones of a multi-zone cluster where Redis Cluster
+     * allocates resources. This flag isn't applicable for single-zone clusters.
+     *
+     * Generated from protobuf field <code>repeated string zones = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $zones;
+    /**
+     * Output only. The exact list of zones where the cluster currently has active
+     * VMs.
+     *
+     * Generated from protobuf field <code>repeated string active_zones = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $active_zones;
 
     /**
      * Constructor.
@@ -44,6 +58,12 @@ class ZoneDistributionConfig extends \Google\Protobuf\Internal\Message
      *           Optional. When SINGLE ZONE distribution is selected, zone field would be
      *           used to allocate all resources in that zone. This is not applicable to
      *           MULTI_ZONE, and would be ignored for MULTI_ZONE clusters.
+     *     @type string[] $zones
+     *           Optional. Specify the zones of a multi-zone cluster where Redis Cluster
+     *           allocates resources. This flag isn't applicable for single-zone clusters.
+     *     @type string[] $active_zones
+     *           Output only. The exact list of zones where the cluster currently has active
+     *           VMs.
      * }
      */
     public function __construct($data = NULL) {
@@ -105,6 +125,62 @@ class ZoneDistributionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specify the zones of a multi-zone cluster where Redis Cluster
+     * allocates resources. This flag isn't applicable for single-zone clusters.
+     *
+     * Generated from protobuf field <code>repeated string zones = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getZones()
+    {
+        return $this->zones;
+    }
+
+    /**
+     * Optional. Specify the zones of a multi-zone cluster where Redis Cluster
+     * allocates resources. This flag isn't applicable for single-zone clusters.
+     *
+     * Generated from protobuf field <code>repeated string zones = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setZones($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->zones = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The exact list of zones where the cluster currently has active
+     * VMs.
+     *
+     * Generated from protobuf field <code>repeated string active_zones = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<string>
+     */
+    public function getActiveZones()
+    {
+        return $this->active_zones;
+    }
+
+    /**
+     * Output only. The exact list of zones where the cluster currently has active
+     * VMs.
+     *
+     * Generated from protobuf field <code>repeated string active_zones = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setActiveZones($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->active_zones = $arr;
 
         return $this;
     }
