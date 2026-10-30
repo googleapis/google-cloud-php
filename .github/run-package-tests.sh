@@ -67,6 +67,9 @@ run_package_test() {
     local DIR=$1
     echo "--- Processing ${DIR} ---"
     cp "${DIR}/composer.json" "${DIR}/composer-local.json"
+    local COMPOSER_ROOT_VERSION
+    COMPOSER_ROOT_VERSION=$(cat "${DIR}/VERSION")
+    export COMPOSER_ROOT_VERSION
 
     # Update composer to use local packages
     local PACKAGE_DEPENDENCIES=(
