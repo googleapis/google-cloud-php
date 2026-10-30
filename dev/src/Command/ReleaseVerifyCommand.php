@@ -37,7 +37,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class ReleaseVerifyCommand extends Command
 {
     private const REPO_ID = 'googleapis/google-cloud-php';
-    private const DOCS_GRACE_PERIOD_DAYS = 7;
+    private const DOCS_GRACE_PERIOD_HOURS = 72;
     private const CHECK_TABLE_HEADERS = ['Check', 'Status'];
     private const TABLE_HEADERS = ['Component', 'Version', 'Packagist', 'Docs'];
     private const VERIFY_MARKER_START = '<!-- RELEASE_VERIFY_START -->';
@@ -143,7 +143,7 @@ class ReleaseVerifyCommand extends Command
         // 2. Verify each component release across Packagist and Cloud RAD Docs
         $cliRows = [];
         $markdownRows = [];
-        $ageInDays = $publishedAt ? max(0, (int) floor((time() - $publishedAt->getTimestamp()) / 86400)) : null;
+        $ageInHours = $publishedAt ? max(0, (int) floor((time() - $publishedAt->getTimestamp()) / 3600)) : null;
 
         if (!empty($items)) {
             $progressBar = new ProgressBar($output, count($items));
@@ -162,7 +162,7 @@ class ReleaseVerifyCommand extends Command
                     $packagist,
                     $item['component'],
                     $item['version'],
-                    $ageInDays,
+                    $ageInHours,
                     $notFound,
                     $pending
                 );
@@ -218,9 +218,9 @@ class ReleaseVerifyCommand extends Command
 
         if (count($pending) > 0) {
             $output->writeln(sprintf(
-                '<comment>%d documentation version(s) PENDING (within %d-day grace period)</comment>',
+                '<comment>%d documentation version(s) PENDING (within %d-hour grace period)</comment>',
                 count($pending),
-                self::DOCS_GRACE_PERIOD_DAYS
+                self::DOCS_GRACE_PERIOD_HOURS
             ));
         }
 
@@ -341,7 +341,7 @@ class ReleaseVerifyCommand extends Command
         Packagist $packagist,
         Component $component,
         string $version,
-        ?int $ageInDays,
+        ?int $ageInHours,
         array &$notFound,
         array &$pending
     ): array {
@@ -362,15 +362,15 @@ class ReleaseVerifyCommand extends Command
             $notFound[] = sprintf('- [%s:%s (Packagist)](%s)', $packageName, $tagVersion, $packagistUrl);
         }
 
-        // Check Cloud RAD reference docs (with 7-day grace period for recent releases)
+        // Check Cloud RAD reference docs (with 72-hour grace period for recent releases)
         $docsUrl = $component->getDocumentationUrl();
-        $isWithinGracePeriod = $ageInDays !== null && $ageInDays < self::DOCS_GRACE_PERIOD_DAYS;
+        $isWithinGracePeriod = $ageInHours !== null && $ageInHours < self::DOCS_GRACE_PERIOD_HOURS;
         if ($component->docsVersionExists($version, $this->httpClient)) {
             $cliRow[] = '<info>OK</info>';
             $markdownRow[] = sprintf('[✅ OK](%s)', $docsUrl);
         } elseif ($isWithinGracePeriod) {
-            $cliRow[] = sprintf('<comment>PENDING (%dd old)</comment>', $ageInDays);
-            $markdownRow[] = sprintf('⏳ PENDING (%dd old)', $ageInDays);
+            $cliRow[] = sprintf('<comment>PENDING (%dh old)</comment>', $ageInHours);
+            $markdownRow[] = sprintf('⏳ PENDING (%dh old)', $ageInHours);
             $pending[] = sprintf('%s:%s (Docs)', $packageName, $tagVersion);
         } else {
             $cliRow[] = '<error>NOT FOUND</error>';

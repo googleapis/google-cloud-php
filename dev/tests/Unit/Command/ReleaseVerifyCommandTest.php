@@ -260,7 +260,7 @@ class ReleaseVerifyCommandTest extends TestCase
 
         $this->assertSame(0, $exitCode);
         $display = $commandTester->getDisplay();
-        $this->assertStringContainsString('PENDING (2d old)', $display);
+        $this->assertStringContainsString('PENDING (48h old)', $display);
         $this->assertStringContainsString('1 documentation version(s) PENDING', $display);
     }
 
@@ -274,7 +274,7 @@ class ReleaseVerifyCommandTest extends TestCase
             ['auth' => ['', 'test-token']]
         )->shouldBeCalledOnce()->willReturn(new Response(200, [], json_encode([
             'tag_name' => $tag,
-            'published_at' => (new \DateTime('-8 days'))->format(\DateTime::ATOM),
+            'published_at' => (new \DateTime('-80 hours'))->format(\DateTime::ATOM),
             'body' => '<details><summary>google/cloud-billing-budgets: 1.2.0</summary></details>',
         ])));
 
