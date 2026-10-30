@@ -21,7 +21,7 @@ jobs:
 
       - name: Setup cache environment
         id: extcache
-        uses: shivammathur/cache-extensions@ef484fc4b573eeecdc4f58d949eb6803357a93e4 # 1.15.7
+        uses: shivammathur/cache-extensions@c33688ce81fd884ddd70d51cadeb62b6fb974750 # 1.15.8
         with:
           php-version: '8.2'
           extensions: grpc
