@@ -43,7 +43,7 @@ jobs:
           exit $FAILED
       - name: Create issue if previous step fails
         if: ${{ failure() && github.ref == 'refs/heads/main' }}
-        uses: googleapis/librarian/.github/actions/create-issue-on-failure@45ada77d3adcdf7f54e94b5ea674a5fa48cb6a75 # v0.46.0
+        uses: googleapis/librarian/.github/actions/create-issue-on-failure@b20d5aacda59661432a57ef0e626edfdec07a39b # v1.0.1
         with:
           title: "Release verification failed"
           body: |
