@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.353.0
+
+<details><summary>google/cloud-storage 2.7.0</summary>
+
+
+
+### Features
+
+* **Storage:** allow bypassing StreamWrapper permissions check to reduce cost/latency ([#9733](https://github.com/googleapis/google-cloud-php/issues/9733)) ([56ed02e](https://github.com/googleapis/google-cloud-php/commit/56ed02ee55ae6f14fa9e1892f928dc8950ba398e))
+
+</details>
+
 ## 0.352.0
 
 <details><summary>google/apps-chat 0.30.0</summary>
