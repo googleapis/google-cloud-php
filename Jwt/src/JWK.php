@@ -208,6 +208,17 @@ class JWK
     /**
      * Create a JWK array from a Key, OpenSSL key/certificate, or key string
      *
+     * ```php
+     * use Firebase\JWT\JWK;
+     * use Firebase\JWT\JWT;
+     *
+     * $jwk = JWK::createFromKey($privateKey);
+     * $dpopProof = JWT::encode($payload, $privateKey, 'ES256', null, [
+     *     'typ' => 'dpop+jwt',
+     *     'jwk' => $jwk,
+     * ]);
+     * ```
+     *
      * @param Key|OpenSSLAsymmetricKey|OpenSSLCertificate|string $key
      * @param string|null $alg Optional algorithm to include in the JWK (defaults to $key->getAlgorithm() when $key
      *                         is a Key)
