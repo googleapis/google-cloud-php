@@ -4,6 +4,8 @@ namespace Firebase\JWT;
 
 use DomainException;
 use InvalidArgumentException;
+use OpenSSLAsymmetricKey;
+use OpenSSLCertificate;
 use UnexpectedValueException;
 
 /**
@@ -29,6 +31,12 @@ class JWK
         'secp256k1' => '1.3.132.0.10', // Len: 64
         'P-384' => '1.3.132.0.34', // Len: 96
         // 'P-521' => '1.3.132.0.35', // Len: 132 (not supported)
+    ];
+
+    private const OPENSSL_EC_CURVES = [
+        'prime256v1' => 'P-256',
+        'secp256k1' => 'secp256k1',
+        'secp384r1' => 'P-384',
     ];
 
     // Known standard curves from the IANA JOSE registry which are not supported
@@ -195,6 +203,116 @@ class JWK
         }
 
         return null;
+    }
+
+    /**
+     * Create a JWK array from a Key, OpenSSL key/certificate, or key string
+     *
+     * @param Key|OpenSSLAsymmetricKey|OpenSSLCertificate|string $key
+     * @param string|null $alg Optional algorithm to include in the JWK (defaults to $key->getAlgorithm() when $key
+     *                         is a Key)
+     * @param string|null $kid Optional key ID to include in the JWK
+     *
+     * @return array<string, string> The JWK as an associative array
+     *
+     * @throws InvalidArgumentException     Provided key is empty or invalid for the algorithm
+     * @throws UnexpectedValueException     Provided key type is unsupported
+     * @throws DomainException              OpenSSL failure or unrecognised EC curve
+     */
+    public static function createFromKey(
+        #[\SensitiveParameter] Key|OpenSSLAsymmetricKey|OpenSSLCertificate|string $key,
+        ?string $alg = null,
+        ?string $kid = null
+    ): array {
+        if ($key instanceof Key) {
+            $alg = $alg ?? $key->getAlgorithm();
+            $key = $key->getKeyMaterial();
+        }
+
+        if (\is_string($key) && $key === '') {
+            throw new InvalidArgumentException('Key material must not be empty');
+        }
+
+        if ($alg === 'EdDSA') {
+            if (!\is_string($key)) {
+                throw new InvalidArgumentException('key must be a string when using EdDSA');
+            }
+            $lines = \array_filter(\explode("\n", $key));
+            $rawKey = JWT::urlsafeB64Decode((string) \end($lines));
+            if (\strlen($rawKey) === 64) {
+                $rawKey = \substr($rawKey, 32, 32);
+            } elseif (\strlen($rawKey) !== 32) {
+                throw new DomainException('Invalid EdDSA key length');
+            }
+            $jwk = [
+                'kty' => 'OKP',
+                'crv' => 'Ed25519',
+                'x' => JWT::urlsafeB64Encode($rawKey),
+            ];
+        } elseif ($alg !== null && isset(JWT::$supported_algs[$alg]) && JWT::$supported_algs[$alg][0] === 'hash_hmac') {
+            if (!\is_string($key)) {
+                throw new InvalidArgumentException('key must be a string when using hmac');
+            }
+            $jwk = [
+                'kty' => 'oct',
+                'k' => JWT::urlsafeB64Encode($key),
+            ];
+        } else {
+            if ($key instanceof OpenSSLAsymmetricKey) {
+                $openSslKey = $key;
+            } elseif (\is_string($key) && \str_contains($key, 'PRIVATE KEY')) {
+                $openSslKey = \openssl_pkey_get_private($key);
+            } else {
+                $openSslKey = \openssl_pkey_get_public($key);
+            }
+
+            if (false === $openSslKey) {
+                throw new DomainException('OpenSSL unable to validate key');
+            }
+
+            $details = \openssl_pkey_get_details($openSslKey);
+            if (false === $details) {
+                throw new DomainException('OpenSSL error: ' . \openssl_error_string());
+            }
+
+            switch ($details['type']) {
+                case \OPENSSL_KEYTYPE_RSA:
+                    $jwk = [
+                        'kty' => 'RSA',
+                        'n' => JWT::urlsafeB64Encode($details['rsa']['n']),
+                        'e' => JWT::urlsafeB64Encode($details['rsa']['e']),
+                    ];
+                    break;
+                case \OPENSSL_KEYTYPE_EC:
+                    $curveName = $details['ec']['curve_name'] ?? '';
+                    if (!isset(self::OPENSSL_EC_CURVES[$curveName])) {
+                        throw new DomainException('Unrecognised EC curve');
+                    }
+                    $coordLength = (int) \ceil($details['bits'] / 8);
+                    $jwk = [
+                        'kty' => 'EC',
+                        'crv' => self::OPENSSL_EC_CURVES[$curveName],
+                        'x' => JWT::urlsafeB64Encode(
+                            \str_pad($details['ec']['x'], $coordLength, "\x00", \STR_PAD_LEFT)
+                        ),
+                        'y' => JWT::urlsafeB64Encode(
+                            \str_pad($details['ec']['y'], $coordLength, "\x00", \STR_PAD_LEFT)
+                        ),
+                    ];
+                    break;
+                default:
+                    throw new UnexpectedValueException('Unsupported OpenSSL key type');
+            }
+        }
+
+        if ($alg !== null) {
+            $jwk['alg'] = $alg;
+        }
+        if ($kid !== null) {
+            $jwk['kid'] = $kid;
+        }
+
+        return $jwk;
     }
 
     /**
