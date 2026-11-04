@@ -61,6 +61,7 @@ class ExternalAccountCredentials implements
     }
 
     private const EXTERNAL_ACCOUNT_TYPE = 'external_account';
+    private const DEFAULT_TOKEN_URL = 'https://sts.UNIVERSE_DOMAIN/v1/token';
     private const CLOUD_RESOURCE_MANAGER_URL = 'https://cloudresourcemanager.UNIVERSE_DOMAIN/v1/projects/%s';
 
     private OAuth2 $auth;
@@ -83,6 +84,12 @@ class ExternalAccountCredentials implements
         array $jsonKey,
         bool $enableRegionalAccessBoundary = false
     ) {
+        $isCustomSource = ($jsonKey['credential_source'] ?? null) instanceof ExternalAccountCredentialSourceInterface;
+
+        if ($isCustomSource) {
+            $jsonKey['type'] ??= self::EXTERNAL_ACCOUNT_TYPE;
+        }
+
         if (!array_key_exists('type', $jsonKey)) {
             throw new InvalidArgumentException('json key is missing the type field');
         }
@@ -92,6 +99,16 @@ class ExternalAccountCredentials implements
                 self::EXTERNAL_ACCOUNT_TYPE,
                 $jsonKey['type']
             ));
+        }
+
+        $this->universeDomain = $jsonKey['universe_domain'] ?? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
+
+        if ($isCustomSource) {
+            $jsonKey['token_url'] ??= str_replace(
+                'UNIVERSE_DOMAIN',
+                $this->universeDomain,
+                self::DEFAULT_TOKEN_URL
+            );
         }
 
         if (!array_key_exists('token_url', $jsonKey)) {
@@ -122,7 +139,6 @@ class ExternalAccountCredentials implements
 
         $this->quotaProject = $jsonKey['quota_project_id'] ?? null;
         $this->workforcePoolUserProject = $jsonKey['workforce_pool_user_project'] ?? null;
-        $this->universeDomain = $jsonKey['universe_domain'] ?? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
         $this->enableRegionalAccessBoundary = $enableRegionalAccessBoundary;
 
         $this->auth = new OAuth2([
@@ -149,6 +165,14 @@ class ExternalAccountCredentials implements
     private static function buildCredentialSource(array $jsonKey): ExternalAccountCredentialSourceInterface
     {
         $credentialSource = $jsonKey['credential_source'];
+        if ($credentialSource instanceof ExternalAccountCredentialSourceInterface) {
+            return $credentialSource;
+        }
+        if (!is_array($credentialSource)) {
+            throw new InvalidArgumentException(
+                'credential_source must be an array or an instance of ExternalAccountCredentialSourceInterface.'
+            );
+        }
         if (isset($credentialSource['file'])) {
             return new FileSource(
                 $credentialSource['file'],
