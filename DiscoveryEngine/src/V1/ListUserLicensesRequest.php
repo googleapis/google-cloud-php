@@ -17,7 +17,8 @@ use Google\Protobuf\RepeatedField;
 class ListUserLicensesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent [UserStore][] resource name, format:
+     * Required. The parent [UserStore][google.cloud.discoveryengine.v1.UserStore]
+     * resource name, format:
      * `projects/{project}/locations/{location}/userStores/{user_store_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -25,8 +26,8 @@ class ListUserLicensesRequest extends \Google\Protobuf\Internal\Message
     protected $parent = '';
     /**
      * Optional. Requested page size. Server may return fewer items than
-     * requested. If unspecified, defaults to 10. The maximum value is 50; values
-     * above 50 will be coerced to 50.
+     * requested. If unspecified, defaults to 100. The maximum value is 1000;
+     * values above 1000 will be coerced to 1000.
      * If this field is negative, an INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -45,6 +46,8 @@ class ListUserLicensesRequest extends \Google\Protobuf\Internal\Message
      * Optional. Filter for the list request.
      * Supported fields:
      * * `license_assignment_state`
+     * * `user_principal`
+     * *
      * Examples:
      * * `license_assignment_state = ASSIGNED` to list assigned user licenses.
      * * `license_assignment_state = NO_LICENSE` to list not licensed users.
@@ -52,13 +55,32 @@ class ListUserLicensesRequest extends \Google\Protobuf\Internal\Message
      * who attempted login but no license assigned.
      * * `license_assignment_state != NO_LICENSE_ATTEMPTED_LOGIN` to filter
      * out users who attempted login but no license assigned.
+     * * `user_principal = user1\@example.com` to list user license for
+     * `user1\@example.com`.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = '';
+    /**
+     * Optional. The order in which the
+     * [UserLicense][google.cloud.discoveryengine.v1.UserLicense]s are listed. The
+     * value must be a comma-separated list of fields. Default sorting order is
+     * ascending. To specify descending order for a field, append a " desc"
+     * suffix. Redundant space characters in the syntax are insignificant.
+     * Supported fields (only `user_principal` is supported for now):
+     * * `user_principal`
+     * If not set, the default ordering is by `user_principal`.
+     * Examples:
+     * * `user_principal` to order by `user_principal` in ascending order.
+     * * `user_principal desc` to order by `user_principal` in descending order.
+     *
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $order_by = '';
 
     /**
-     * @param string $parent Required. The parent [UserStore][] resource name, format:
+     * @param string $parent Required. The parent [UserStore][google.cloud.discoveryengine.v1.UserStore]
+     *                       resource name, format:
      *                       `projects/{project}/locations/{location}/userStores/{user_store_id}`. Please see
      *                       {@see UserLicenseServiceClient::userStoreName()} for help formatting this field.
      *
@@ -79,12 +101,13 @@ class ListUserLicensesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent [UserStore][] resource name, format:
+     *           Required. The parent [UserStore][google.cloud.discoveryengine.v1.UserStore]
+     *           resource name, format:
      *           `projects/{project}/locations/{location}/userStores/{user_store_id}`.
      *     @type int $page_size
      *           Optional. Requested page size. Server may return fewer items than
-     *           requested. If unspecified, defaults to 10. The maximum value is 50; values
-     *           above 50 will be coerced to 50.
+     *           requested. If unspecified, defaults to 100. The maximum value is 1000;
+     *           values above 1000 will be coerced to 1000.
      *           If this field is negative, an INVALID_ARGUMENT error is returned.
      *     @type string $page_token
      *           Optional. A page token, received from a previous `ListUserLicenses` call.
@@ -95,6 +118,8 @@ class ListUserLicensesRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Filter for the list request.
      *           Supported fields:
      *           * `license_assignment_state`
+     *           * `user_principal`
+     *           *
      *           Examples:
      *           * `license_assignment_state = ASSIGNED` to list assigned user licenses.
      *           * `license_assignment_state = NO_LICENSE` to list not licensed users.
@@ -102,6 +127,20 @@ class ListUserLicensesRequest extends \Google\Protobuf\Internal\Message
      *           who attempted login but no license assigned.
      *           * `license_assignment_state != NO_LICENSE_ATTEMPTED_LOGIN` to filter
      *           out users who attempted login but no license assigned.
+     *           * `user_principal = user1\@example.com` to list user license for
+     *           `user1\@example.com`.
+     *     @type string $order_by
+     *           Optional. The order in which the
+     *           [UserLicense][google.cloud.discoveryengine.v1.UserLicense]s are listed. The
+     *           value must be a comma-separated list of fields. Default sorting order is
+     *           ascending. To specify descending order for a field, append a " desc"
+     *           suffix. Redundant space characters in the syntax are insignificant.
+     *           Supported fields (only `user_principal` is supported for now):
+     *           * `user_principal`
+     *           If not set, the default ordering is by `user_principal`.
+     *           Examples:
+     *           * `user_principal` to order by `user_principal` in ascending order.
+     *           * `user_principal desc` to order by `user_principal` in descending order.
      * }
      */
     public function __construct($data = NULL) {
@@ -110,7 +149,8 @@ class ListUserLicensesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent [UserStore][] resource name, format:
+     * Required. The parent [UserStore][google.cloud.discoveryengine.v1.UserStore]
+     * resource name, format:
      * `projects/{project}/locations/{location}/userStores/{user_store_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -122,7 +162,8 @@ class ListUserLicensesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent [UserStore][] resource name, format:
+     * Required. The parent [UserStore][google.cloud.discoveryengine.v1.UserStore]
+     * resource name, format:
      * `projects/{project}/locations/{location}/userStores/{user_store_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -139,8 +180,8 @@ class ListUserLicensesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Requested page size. Server may return fewer items than
-     * requested. If unspecified, defaults to 10. The maximum value is 50; values
-     * above 50 will be coerced to 50.
+     * requested. If unspecified, defaults to 100. The maximum value is 1000;
+     * values above 1000 will be coerced to 1000.
      * If this field is negative, an INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -153,8 +194,8 @@ class ListUserLicensesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Requested page size. Server may return fewer items than
-     * requested. If unspecified, defaults to 10. The maximum value is 50; values
-     * above 50 will be coerced to 50.
+     * requested. If unspecified, defaults to 100. The maximum value is 1000;
+     * values above 1000 will be coerced to 1000.
      * If this field is negative, an INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -205,6 +246,8 @@ class ListUserLicensesRequest extends \Google\Protobuf\Internal\Message
      * Optional. Filter for the list request.
      * Supported fields:
      * * `license_assignment_state`
+     * * `user_principal`
+     * *
      * Examples:
      * * `license_assignment_state = ASSIGNED` to list assigned user licenses.
      * * `license_assignment_state = NO_LICENSE` to list not licensed users.
@@ -212,6 +255,8 @@ class ListUserLicensesRequest extends \Google\Protobuf\Internal\Message
      * who attempted login but no license assigned.
      * * `license_assignment_state != NO_LICENSE_ATTEMPTED_LOGIN` to filter
      * out users who attempted login but no license assigned.
+     * * `user_principal = user1\@example.com` to list user license for
+     * `user1\@example.com`.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -225,6 +270,8 @@ class ListUserLicensesRequest extends \Google\Protobuf\Internal\Message
      * Optional. Filter for the list request.
      * Supported fields:
      * * `license_assignment_state`
+     * * `user_principal`
+     * *
      * Examples:
      * * `license_assignment_state = ASSIGNED` to list assigned user licenses.
      * * `license_assignment_state = NO_LICENSE` to list not licensed users.
@@ -232,6 +279,8 @@ class ListUserLicensesRequest extends \Google\Protobuf\Internal\Message
      * who attempted login but no license assigned.
      * * `license_assignment_state != NO_LICENSE_ATTEMPTED_LOGIN` to filter
      * out users who attempted login but no license assigned.
+     * * `user_principal = user1\@example.com` to list user license for
+     * `user1\@example.com`.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -241,6 +290,52 @@ class ListUserLicensesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The order in which the
+     * [UserLicense][google.cloud.discoveryengine.v1.UserLicense]s are listed. The
+     * value must be a comma-separated list of fields. Default sorting order is
+     * ascending. To specify descending order for a field, append a " desc"
+     * suffix. Redundant space characters in the syntax are insignificant.
+     * Supported fields (only `user_principal` is supported for now):
+     * * `user_principal`
+     * If not set, the default ordering is by `user_principal`.
+     * Examples:
+     * * `user_principal` to order by `user_principal` in ascending order.
+     * * `user_principal desc` to order by `user_principal` in descending order.
+     *
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getOrderBy()
+    {
+        return $this->order_by;
+    }
+
+    /**
+     * Optional. The order in which the
+     * [UserLicense][google.cloud.discoveryengine.v1.UserLicense]s are listed. The
+     * value must be a comma-separated list of fields. Default sorting order is
+     * ascending. To specify descending order for a field, append a " desc"
+     * suffix. Redundant space characters in the syntax are insignificant.
+     * Supported fields (only `user_principal` is supported for now):
+     * * `user_principal`
+     * If not set, the default ordering is by `user_principal`.
+     * Examples:
+     * * `user_principal` to order by `user_principal` in ascending order.
+     * * `user_principal desc` to order by `user_principal` in descending order.
+     *
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrderBy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->order_by = $var;
 
         return $this;
     }

@@ -40,6 +40,21 @@
                                 "createManagementServer"
                             ]
                         },
+                        "CreateRestoreTemplate": {
+                            "methods": [
+                                "createRestoreTemplate"
+                            ]
+                        },
+                        "CreateRestoreVerificationPlan": {
+                            "methods": [
+                                "createRestoreVerificationPlan"
+                            ]
+                        },
+                        "CreateRestoreVerificationPlanAssociation": {
+                            "methods": [
+                                "createRestoreVerificationPlanAssociation"
+                            ]
+                        },
                         "DeleteAutoProtectionPolicy": {
                             "methods": [
                                 "deleteAutoProtectionPolicy"
@@ -68,6 +83,21 @@
                         "DeleteManagementServer": {
                             "methods": [
                                 "deleteManagementServer"
+                            ]
+                        },
+                        "DeleteRestoreTemplate": {
+                            "methods": [
+                                "deleteRestoreTemplate"
+                            ]
+                        },
+                        "DeleteRestoreVerificationPlan": {
+                            "methods": [
+                                "deleteRestoreVerificationPlan"
+                            ]
+                        },
+                        "DeleteRestoreVerificationPlanAssociation": {
+                            "methods": [
+                                "deleteRestoreVerificationPlanAssociation"
                             ]
                         },
                         "FetchBackupPlanAssociationsForResourceType": {
@@ -145,6 +175,26 @@
                                 "getManagementServer"
                             ]
                         },
+                        "GetRestoreTemplate": {
+                            "methods": [
+                                "getRestoreTemplate"
+                            ]
+                        },
+                        "GetRestoreTemplateExecution": {
+                            "methods": [
+                                "getRestoreTemplateExecution"
+                            ]
+                        },
+                        "GetRestoreVerificationPlan": {
+                            "methods": [
+                                "getRestoreVerificationPlan"
+                            ]
+                        },
+                        "GetRestoreVerificationPlanAssociation": {
+                            "methods": [
+                                "getRestoreVerificationPlanAssociation"
+                            ]
+                        },
                         "InitializeService": {
                             "methods": [
                                 "initializeService"
@@ -215,14 +265,49 @@
                                 "listManagementServers"
                             ]
                         },
+                        "ListRestoreTemplateExecutions": {
+                            "methods": [
+                                "listRestoreTemplateExecutions"
+                            ]
+                        },
+                        "ListRestoreTemplates": {
+                            "methods": [
+                                "listRestoreTemplates"
+                            ]
+                        },
+                        "ListRestoreVerificationPlanAssociations": {
+                            "methods": [
+                                "listRestoreVerificationPlanAssociations"
+                            ]
+                        },
+                        "ListRestoreVerificationPlans": {
+                            "methods": [
+                                "listRestoreVerificationPlans"
+                            ]
+                        },
                         "RestoreBackup": {
                             "methods": [
                                 "restoreBackup"
                             ]
                         },
+                        "RunRestoreTemplate": {
+                            "methods": [
+                                "runRestoreTemplate"
+                            ]
+                        },
                         "TriggerBackup": {
                             "methods": [
                                 "triggerBackup"
+                            ]
+                        },
+                        "TriggerRestoreCleanup": {
+                            "methods": [
+                                "triggerRestoreCleanup"
+                            ]
+                        },
+                        "TriggerRestoreVerification": {
+                            "methods": [
+                                "triggerRestoreVerification"
                             ]
                         },
                         "UpdateAutoProtectionPolicy": {
@@ -253,6 +338,11 @@
                         "UpdateDataSource": {
                             "methods": [
                                 "updateDataSource"
+                            ]
+                        },
+                        "UpdateRestoreTemplate": {
+                            "methods": [
+                                "updateRestoreTemplate"
                             ]
                         },
                         "GetLocation": {

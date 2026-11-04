@@ -16,7 +16,7 @@ use Google\Protobuf\RepeatedField;
 class FileSearchResult extends \Google\Protobuf\Internal\Message
 {
     /**
-     * File system path relative to the workspace root.
+     * File system path relative to the file tree root.
      *
      * Generated from protobuf field <code>string path = 1;</code>
      */
@@ -29,7 +29,7 @@ class FileSearchResult extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $path
-     *           File system path relative to the workspace root.
+     *           File system path relative to the file tree root.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class FileSearchResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * File system path relative to the workspace root.
+     * File system path relative to the file tree root.
      *
      * Generated from protobuf field <code>string path = 1;</code>
      * @return string
@@ -49,7 +49,7 @@ class FileSearchResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * File system path relative to the workspace root.
+     * File system path relative to the file tree root.
      *
      * Generated from protobuf field <code>string path = 1;</code>
      * @param string $var

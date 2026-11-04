@@ -28,6 +28,8 @@ class SourceCodeSpec extends \Google\Protobuf\Internal\Message
      *           Source code is provided directly in the request.
      *     @type \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\DeveloperConnectSource $developer_connect_source
      *           Source code is in a Git repository managed by Developer Connect.
+     *     @type \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\GitSource $git_source
+     *           Source code is in a public Git repository.
      *     @type \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\PythonSpec $python_spec
      *           Configuration for a Python application.
      *     @type \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\ImageSpec $image_spec
@@ -97,6 +99,37 @@ class SourceCodeSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\DeveloperConnectSource::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Source code is in a public Git repository.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.SourceCodeSpec.GitSource git_source = 6;</code>
+     * @return \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\GitSource|null
+     */
+    public function getGitSource()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasGitSource()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Source code is in a public Git repository.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.SourceCodeSpec.GitSource git_source = 6;</code>
+     * @param \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\GitSource $var
+     * @return $this
+     */
+    public function setGitSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\GitSource::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

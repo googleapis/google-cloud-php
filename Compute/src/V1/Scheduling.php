@@ -141,7 +141,9 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      */
     protected $provisioning_model = null;
     /**
-     * Default is false and there will be 120 seconds between GCE ACPI G2 Soft
+     * Defines whether GCE ACPI G2 Soft
+     * Off signal should be skipped during shutdown operation of VM.
+     * Default is false, meaning there will be 120 seconds between GCE ACPI G2 Soft
      * Off and ACPI G3 Mechanical
      * Off for Standard VMs and 30 seconds for Spot VMs.
      *
@@ -226,7 +228,9 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *           Specifies the provisioning model of the instance.
      *           Check the ProvisioningModel enum for the list of possible values.
      *     @type bool $skip_guest_os_shutdown
-     *           Default is false and there will be 120 seconds between GCE ACPI G2 Soft
+     *           Defines whether GCE ACPI G2 Soft
+     *           Off signal should be skipped during shutdown operation of VM.
+     *           Default is false, meaning there will be 120 seconds between GCE ACPI G2 Soft
      *           Off and ACPI G3 Mechanical
      *           Off for Standard VMs and 30 seconds for Spot VMs.
      *     @type string $termination_time
@@ -864,7 +868,9 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Default is false and there will be 120 seconds between GCE ACPI G2 Soft
+     * Defines whether GCE ACPI G2 Soft
+     * Off signal should be skipped during shutdown operation of VM.
+     * Default is false, meaning there will be 120 seconds between GCE ACPI G2 Soft
      * Off and ACPI G3 Mechanical
      * Off for Standard VMs and 30 seconds for Spot VMs.
      *
@@ -887,7 +893,9 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Default is false and there will be 120 seconds between GCE ACPI G2 Soft
+     * Defines whether GCE ACPI G2 Soft
+     * Off signal should be skipped during shutdown operation of VM.
+     * Default is false, meaning there will be 120 seconds between GCE ACPI G2 Soft
      * Off and ACPI G3 Mechanical
      * Off for Standard VMs and 30 seconds for Spot VMs.
      *

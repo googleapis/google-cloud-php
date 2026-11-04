@@ -17,10 +17,10 @@ use Google\Protobuf\RepeatedField;
 class CompletionInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * End user selected
+     * Optional. End user selected
      * [CompleteQueryResponse.QuerySuggestion.suggestion][google.cloud.discoveryengine.v1.CompleteQueryResponse.QuerySuggestion.suggestion].
      *
-     * Generated from protobuf field <code>string selected_suggestion = 1;</code>
+     * Generated from protobuf field <code>string selected_suggestion = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $selected_suggestion = '';
     /**
@@ -39,7 +39,7 @@ class CompletionInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $selected_suggestion
-     *           End user selected
+     *           Optional. End user selected
      *           [CompleteQueryResponse.QuerySuggestion.suggestion][google.cloud.discoveryengine.v1.CompleteQueryResponse.QuerySuggestion.suggestion].
      *     @type int $selected_position
      *           End user selected
@@ -53,10 +53,10 @@ class CompletionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * End user selected
+     * Optional. End user selected
      * [CompleteQueryResponse.QuerySuggestion.suggestion][google.cloud.discoveryengine.v1.CompleteQueryResponse.QuerySuggestion.suggestion].
      *
-     * Generated from protobuf field <code>string selected_suggestion = 1;</code>
+     * Generated from protobuf field <code>string selected_suggestion = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSelectedSuggestion()
@@ -65,10 +65,10 @@ class CompletionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * End user selected
+     * Optional. End user selected
      * [CompleteQueryResponse.QuerySuggestion.suggestion][google.cloud.discoveryengine.v1.CompleteQueryResponse.QuerySuggestion.suggestion].
      *
-     * Generated from protobuf field <code>string selected_suggestion = 1;</code>
+     * Generated from protobuf field <code>string selected_suggestion = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

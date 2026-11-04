@@ -22,6 +22,10 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      * `projects/{@*}locations/global/collections/default_collection/engines/{@*}servingConfigs/default_serving_config`,
      * or
      * `projects/{@*}locations/global/collections/default_collection/dataStores/{@*}servingConfigs/default_serving_config`.
+     * Or the resource name of the agent engine serving config, such as:
+     * `projects/{@*}locations/global/collections/default_collection/engines/{@*}servingConfigs/default_agent_answer`.
+     * (use when `enable_agent_invocation` set to true, and you have custom
+     * `AI_MODE` agent engine configured)
      * This field is used to identify the serving configuration name, set
      * of models used to make the search.
      *
@@ -145,6 +149,10 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{@*}locations/global/collections/default_collection/engines/{@*}servingConfigs/default_serving_config`,
      *           or
      *           `projects/{@*}locations/global/collections/default_collection/dataStores/{@*}servingConfigs/default_serving_config`.
+     *           Or the resource name of the agent engine serving config, such as:
+     *           `projects/{@*}locations/global/collections/default_collection/engines/{@*}servingConfigs/default_agent_answer`.
+     *           (use when `enable_agent_invocation` set to true, and you have custom
+     *           `AI_MODE` agent engine configured)
      *           This field is used to identify the serving configuration name, set
      *           of models used to make the search.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Query $query
@@ -215,6 +223,10 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      * `projects/{@*}locations/global/collections/default_collection/engines/{@*}servingConfigs/default_serving_config`,
      * or
      * `projects/{@*}locations/global/collections/default_collection/dataStores/{@*}servingConfigs/default_serving_config`.
+     * Or the resource name of the agent engine serving config, such as:
+     * `projects/{@*}locations/global/collections/default_collection/engines/{@*}servingConfigs/default_agent_answer`.
+     * (use when `enable_agent_invocation` set to true, and you have custom
+     * `AI_MODE` agent engine configured)
      * This field is used to identify the serving configuration name, set
      * of models used to make the search.
      *
@@ -231,6 +243,10 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      * `projects/{@*}locations/global/collections/default_collection/engines/{@*}servingConfigs/default_serving_config`,
      * or
      * `projects/{@*}locations/global/collections/default_collection/dataStores/{@*}servingConfigs/default_serving_config`.
+     * Or the resource name of the agent engine serving config, such as:
+     * `projects/{@*}locations/global/collections/default_collection/engines/{@*}servingConfigs/default_agent_answer`.
+     * (use when `enable_agent_invocation` set to true, and you have custom
+     * `AI_MODE` agent engine configured)
      * This field is used to identify the serving configuration name, set
      * of models used to make the search.
      *

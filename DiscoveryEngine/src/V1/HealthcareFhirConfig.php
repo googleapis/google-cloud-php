@@ -33,6 +33,17 @@ class HealthcareFhirConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_static_indexing_for_batch_ingestion = 2;</code>
      */
     protected $enable_static_indexing_for_batch_ingestion = false;
+    /**
+     * Optional. Names of the Group resources to use as a basis for the initial
+     * patient filter, in format
+     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Group/{group_id}`.
+     * The filter group must be a FHIR resource name of
+     * type Group, and the filter will be constructed from the direct members of
+     * the group which are Patient resources.
+     *
+     * Generated from protobuf field <code>repeated string initial_filter_groups = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $initial_filter_groups;
 
     /**
      * Constructor.
@@ -50,6 +61,13 @@ class HealthcareFhirConfig extends \Google\Protobuf\Internal\Message
      *           If set to `true`, the batch ingestion will be processed in a static
      *           indexing mode which is slower but more capable of handling larger
      *           volume.
+     *     @type string[] $initial_filter_groups
+     *           Optional. Names of the Group resources to use as a basis for the initial
+     *           patient filter, in format
+     *           `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Group/{group_id}`.
+     *           The filter group must be a FHIR resource name of
+     *           type Group, and the filter will be constructed from the direct members of
+     *           the group which are Patient resources.
      * }
      */
     public function __construct($data = NULL) {
@@ -117,6 +135,42 @@ class HealthcareFhirConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_static_indexing_for_batch_ingestion = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Names of the Group resources to use as a basis for the initial
+     * patient filter, in format
+     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Group/{group_id}`.
+     * The filter group must be a FHIR resource name of
+     * type Group, and the filter will be constructed from the direct members of
+     * the group which are Patient resources.
+     *
+     * Generated from protobuf field <code>repeated string initial_filter_groups = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getInitialFilterGroups()
+    {
+        return $this->initial_filter_groups;
+    }
+
+    /**
+     * Optional. Names of the Group resources to use as a basis for the initial
+     * patient filter, in format
+     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Group/{group_id}`.
+     * The filter group must be a FHIR resource name of
+     * type Group, and the filter will be constructed from the direct members of
+     * the group which are Patient resources.
+     *
+     * Generated from protobuf field <code>repeated string initial_filter_groups = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setInitialFilterGroups($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->initial_filter_groups = $arr;
 
         return $this;
     }

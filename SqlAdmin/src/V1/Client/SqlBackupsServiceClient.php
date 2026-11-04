@@ -45,7 +45,7 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description:
+ * Service Description: Service for managing database backups for Cloud SQL instances.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.

@@ -105,6 +105,15 @@ class Visit extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional int32 injected_solution_location_token = 13;</code>
      */
     protected $injected_solution_location_token = null;
+    /**
+     * Optional. Specifies the type of the visit.
+     * Overrides the
+     * [Visit.is_pickup][google.maps.routeoptimization.v1.ShipmentRoute.Visit.is_pickup]
+     * field.
+     *
+     * Generated from protobuf field <code>.google.maps.routeoptimization.v1.ShipmentRoute.Visit.VisitType visit_type = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $visit_type = 0;
 
     /**
      * Constructor.
@@ -165,6 +174,11 @@ class Visit extends \Google\Protobuf\Internal\Message
      *           Experimental: See
      *           https://developers.google.com/maps/tt/route-optimization/experimental/u-turn-avoidance/make-request
      *           for more details.
+     *     @type int $visit_type
+     *           Optional. Specifies the type of the visit.
+     *           Overrides the
+     *           [Visit.is_pickup][google.maps.routeoptimization.v1.ShipmentRoute.Visit.is_pickup]
+     *           field.
      * }
      */
     public function __construct($data = NULL) {
@@ -502,6 +516,38 @@ class Visit extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->injected_solution_location_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the type of the visit.
+     * Overrides the
+     * [Visit.is_pickup][google.maps.routeoptimization.v1.ShipmentRoute.Visit.is_pickup]
+     * field.
+     *
+     * Generated from protobuf field <code>.google.maps.routeoptimization.v1.ShipmentRoute.Visit.VisitType visit_type = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getVisitType()
+    {
+        return $this->visit_type;
+    }
+
+    /**
+     * Optional. Specifies the type of the visit.
+     * Overrides the
+     * [Visit.is_pickup][google.maps.routeoptimization.v1.ShipmentRoute.Visit.is_pickup]
+     * field.
+     *
+     * Generated from protobuf field <code>.google.maps.routeoptimization.v1.ShipmentRoute.Visit.VisitType visit_type = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setVisitType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Maps\RouteOptimization\V1\ShipmentRoute\Visit\VisitType::class);
+        $this->visit_type = $var;
 
         return $this;
     }

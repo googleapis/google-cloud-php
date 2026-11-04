@@ -73,6 +73,18 @@ return [
                     ],
                 ],
             ],
+            'GetIamPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Iam\V1\Policy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'ListDataStores' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -93,6 +105,18 @@ return [
                     ],
                 ],
             ],
+            'SetIamPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Iam\V1\Policy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateDataStore' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\DiscoveryEngine\V1\DataStore',
@@ -109,15 +133,19 @@ return [
             'templateMap' => [
                 'cmekConfig' => 'projects/{project}/locations/{location}/cmekConfig',
                 'collection' => 'projects/{project}/locations/{location}/collections/{collection}',
+                'contentPolicy' => 'organizations/{organization}/locations/{location}/contentPolicies/{content_policy}',
                 'cryptoKeyVersions' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
                 'cryptoKeys' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'dataStore' => 'projects/{project}/locations/{location}/dataStores/{data_store}',
                 'documentProcessingConfig' => 'projects/{project}/locations/{location}/dataStores/{data_store}/documentProcessingConfig',
                 'identityMappingStore' => 'projects/{project}/locations/{location}/identityMappingStores/{identity_mapping_store}',
+                'notebook' => 'projects/{project}/locations/{location}/notebooks/{notebook}',
+                'organizationLocationContentPolicy' => 'organizations/{organization}/locations/{location}/contentPolicies/{content_policy}',
                 'projectLocationCmekConfig' => 'projects/{project}/locations/{location}/cmekConfig',
                 'projectLocationCollectionDataStore' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}',
                 'projectLocationCollectionDataStoreDocumentProcessingConfig' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/documentProcessingConfig',
                 'projectLocationCollectionDataStoreSchema' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/schemas/{schema}',
+                'projectLocationContentPolicy' => 'projects/{project}/locations/{location}/contentPolicies/{content_policy}',
                 'projectLocationDataStore' => 'projects/{project}/locations/{location}/dataStores/{data_store}',
                 'projectLocationDataStoreDocumentProcessingConfig' => 'projects/{project}/locations/{location}/dataStores/{data_store}/documentProcessingConfig',
                 'projectLocationDataStoreSchema' => 'projects/{project}/locations/{location}/dataStores/{data_store}/schemas/{schema}',

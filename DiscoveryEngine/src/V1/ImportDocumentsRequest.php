@@ -98,7 +98,6 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      * must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown.
      * * [SpannerSource][google.cloud.discoveryengine.v1.SpannerSource].
      * * [CloudSqlSource][google.cloud.discoveryengine.v1.CloudSqlSource].
-     * * [FirestoreSource][google.cloud.discoveryengine.v1.FirestoreSource].
      * * [BigtableSource][google.cloud.discoveryengine.v1.BigtableSource].
      *
      * Generated from protobuf field <code>string id_field = 9;</code>
@@ -202,7 +201,6 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown.
      *           * [SpannerSource][google.cloud.discoveryengine.v1.SpannerSource].
      *           * [CloudSqlSource][google.cloud.discoveryengine.v1.CloudSqlSource].
-     *           * [FirestoreSource][google.cloud.discoveryengine.v1.FirestoreSource].
      *           * [BigtableSource][google.cloud.discoveryengine.v1.BigtableSource].
      *     @type bool $force_refresh_content
      *           Optional. Whether to force refresh the unstructured content of the
@@ -724,7 +722,6 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      * must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown.
      * * [SpannerSource][google.cloud.discoveryengine.v1.SpannerSource].
      * * [CloudSqlSource][google.cloud.discoveryengine.v1.CloudSqlSource].
-     * * [FirestoreSource][google.cloud.discoveryengine.v1.FirestoreSource].
      * * [BigtableSource][google.cloud.discoveryengine.v1.BigtableSource].
      *
      * Generated from protobuf field <code>string id_field = 9;</code>
@@ -762,7 +759,6 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      * must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown.
      * * [SpannerSource][google.cloud.discoveryengine.v1.SpannerSource].
      * * [CloudSqlSource][google.cloud.discoveryengine.v1.CloudSqlSource].
-     * * [FirestoreSource][google.cloud.discoveryengine.v1.FirestoreSource].
      * * [BigtableSource][google.cloud.discoveryengine.v1.BigtableSource].
      *
      * Generated from protobuf field <code>string id_field = 9;</code>

@@ -50,11 +50,13 @@ class DurationLimit extends \Google\Protobuf\Internal\Message
      * A soft limit not enforcing a maximum duration limit, but when violated
      * makes the route incur a cost, quadratic in the duration. This cost adds
      * up to other costs defined in the model, with the same unit.
-     * If defined, `quadratic_soft_max_duration` must be nonnegative. If
-     * `max_duration` is also defined, `quadratic_soft_max_duration` must be
-     * less than `max_duration`, and the difference must be no larger than one
-     * day:
-     *    `max_duration - quadratic_soft_max_duration <= 86400 seconds`
+     * If `quadratic_soft_max_duration` is set, the following conditions must be
+     * met:
+     * *   It must be non-negative.
+     * *   `max_duration` must be defined.
+     * *   `quadratic_soft_max_duration` must be less than `max_duration`.
+     * *   The difference must be no more than one day:
+     *     `max_duration - quadratic_soft_max_duration <= 86400 seconds`
      *
      * Generated from protobuf field <code>.google.protobuf.Duration quadratic_soft_max_duration = 4;</code>
      */
@@ -100,11 +102,13 @@ class DurationLimit extends \Google\Protobuf\Internal\Message
      *           A soft limit not enforcing a maximum duration limit, but when violated
      *           makes the route incur a cost, quadratic in the duration. This cost adds
      *           up to other costs defined in the model, with the same unit.
-     *           If defined, `quadratic_soft_max_duration` must be nonnegative. If
-     *           `max_duration` is also defined, `quadratic_soft_max_duration` must be
-     *           less than `max_duration`, and the difference must be no larger than one
-     *           day:
-     *              `max_duration - quadratic_soft_max_duration <= 86400 seconds`
+     *           If `quadratic_soft_max_duration` is set, the following conditions must be
+     *           met:
+     *           *   It must be non-negative.
+     *           *   `max_duration` must be defined.
+     *           *   `quadratic_soft_max_duration` must be less than `max_duration`.
+     *           *   The difference must be no more than one day:
+     *               `max_duration - quadratic_soft_max_duration <= 86400 seconds`
      *     @type float $cost_per_square_hour_after_quadratic_soft_max
      *           Cost per square hour incurred if the
      *           `quadratic_soft_max_duration` threshold is violated.
@@ -254,11 +258,13 @@ class DurationLimit extends \Google\Protobuf\Internal\Message
      * A soft limit not enforcing a maximum duration limit, but when violated
      * makes the route incur a cost, quadratic in the duration. This cost adds
      * up to other costs defined in the model, with the same unit.
-     * If defined, `quadratic_soft_max_duration` must be nonnegative. If
-     * `max_duration` is also defined, `quadratic_soft_max_duration` must be
-     * less than `max_duration`, and the difference must be no larger than one
-     * day:
-     *    `max_duration - quadratic_soft_max_duration <= 86400 seconds`
+     * If `quadratic_soft_max_duration` is set, the following conditions must be
+     * met:
+     * *   It must be non-negative.
+     * *   `max_duration` must be defined.
+     * *   `quadratic_soft_max_duration` must be less than `max_duration`.
+     * *   The difference must be no more than one day:
+     *     `max_duration - quadratic_soft_max_duration <= 86400 seconds`
      *
      * Generated from protobuf field <code>.google.protobuf.Duration quadratic_soft_max_duration = 4;</code>
      * @return \Google\Protobuf\Duration|null
@@ -282,11 +288,13 @@ class DurationLimit extends \Google\Protobuf\Internal\Message
      * A soft limit not enforcing a maximum duration limit, but when violated
      * makes the route incur a cost, quadratic in the duration. This cost adds
      * up to other costs defined in the model, with the same unit.
-     * If defined, `quadratic_soft_max_duration` must be nonnegative. If
-     * `max_duration` is also defined, `quadratic_soft_max_duration` must be
-     * less than `max_duration`, and the difference must be no larger than one
-     * day:
-     *    `max_duration - quadratic_soft_max_duration <= 86400 seconds`
+     * If `quadratic_soft_max_duration` is set, the following conditions must be
+     * met:
+     * *   It must be non-negative.
+     * *   `max_duration` must be defined.
+     * *   `quadratic_soft_max_duration` must be less than `max_duration`.
+     * *   The difference must be no more than one day:
+     *     `max_duration - quadratic_soft_max_duration <= 86400 seconds`
      *
      * Generated from protobuf field <code>.google.protobuf.Duration quadratic_soft_max_duration = 4;</code>
      * @param \Google\Protobuf\Duration $var

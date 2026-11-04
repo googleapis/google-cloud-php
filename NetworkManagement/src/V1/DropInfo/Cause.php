@@ -286,6 +286,12 @@ class Cause
      */
     const DROPPED_INSIDE_DMS_PRIVATE_CONNECTION = 114;
     /**
+     * Packet was dropped inside Datastream Private Connection.
+     *
+     * Generated from protobuf enum <code>DROPPED_INSIDE_DATASTREAM_PRIVATE_CONNECTION = 115;</code>
+     */
+    const DROPPED_INSIDE_DATASTREAM_PRIVATE_CONNECTION = 115;
+    /**
      * Packet was dropped because there is no peering between the originating
      * network and the Google Managed Services Network.
      *
@@ -804,6 +810,7 @@ class Cause
         self::DROPPED_INSIDE_GKE_SERVICE => 'DROPPED_INSIDE_GKE_SERVICE',
         self::DROPPED_INSIDE_CLOUD_SQL_SERVICE => 'DROPPED_INSIDE_CLOUD_SQL_SERVICE',
         self::DROPPED_INSIDE_DMS_PRIVATE_CONNECTION => 'DROPPED_INSIDE_DMS_PRIVATE_CONNECTION',
+        self::DROPPED_INSIDE_DATASTREAM_PRIVATE_CONNECTION => 'DROPPED_INSIDE_DATASTREAM_PRIVATE_CONNECTION',
         self::GOOGLE_MANAGED_SERVICE_NO_PEERING => 'GOOGLE_MANAGED_SERVICE_NO_PEERING',
         self::GOOGLE_MANAGED_SERVICE_NO_PSC_ENDPOINT => 'GOOGLE_MANAGED_SERVICE_NO_PSC_ENDPOINT',
         self::GKE_PSC_ENDPOINT_MISSING => 'GKE_PSC_ENDPOINT_MISSING',

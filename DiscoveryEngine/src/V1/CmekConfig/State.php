@@ -69,6 +69,13 @@ class State
      * Generated from protobuf enum <code>DELETED = 8;</code>
      */
     const DELETED = 8;
+    /**
+     * The KMS key is expired, meaning the key has been disabled for 30+ days.
+     * The customer can call DeleteCmekConfig to change the state to DELETED.
+     *
+     * Generated from protobuf enum <code>EXPIRED = 9;</code>
+     */
+    const EXPIRED = 9;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -80,6 +87,7 @@ class State
         self::UNUSABLE => 'UNUSABLE',
         self::ACTIVE_ROTATING => 'ACTIVE_ROTATING',
         self::DELETED => 'DELETED',
+        self::EXPIRED => 'EXPIRED',
     ];
 
     public static function name($value)

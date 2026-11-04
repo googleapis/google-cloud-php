@@ -26,23 +26,38 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\BackupDR\V1\AppliedAutoProtectionPolicy;
+use Google\Cloud\BackupDR\V1\AutoProtectionPolicy;
+use Google\Cloud\BackupDR\V1\AutoProtectionPolicyBinding;
 use Google\Cloud\BackupDR\V1\Backup;
 use Google\Cloud\BackupDR\V1\BackupPlan;
 use Google\Cloud\BackupDR\V1\BackupPlanAssociation;
 use Google\Cloud\BackupDR\V1\BackupPlanRevision;
+use Google\Cloud\BackupDR\V1\BackupSelectionConfig;
 use Google\Cloud\BackupDR\V1\BackupVault;
+use Google\Cloud\BackupDR\V1\BindingMatchingResource;
 use Google\Cloud\BackupDR\V1\Client\BackupDRClient;
+use Google\Cloud\BackupDR\V1\CreateAutoProtectionPolicyBindingRequest;
+use Google\Cloud\BackupDR\V1\CreateAutoProtectionPolicyRequest;
 use Google\Cloud\BackupDR\V1\CreateBackupPlanAssociationRequest;
 use Google\Cloud\BackupDR\V1\CreateBackupPlanRequest;
 use Google\Cloud\BackupDR\V1\CreateBackupVaultRequest;
 use Google\Cloud\BackupDR\V1\CreateManagementServerRequest;
+use Google\Cloud\BackupDR\V1\CreateRestoreTemplateRequest;
+use Google\Cloud\BackupDR\V1\CreateRestoreVerificationPlanAssociationRequest;
+use Google\Cloud\BackupDR\V1\CreateRestoreVerificationPlanRequest;
+use Google\Cloud\BackupDR\V1\Criteria;
 use Google\Cloud\BackupDR\V1\DataSource;
 use Google\Cloud\BackupDR\V1\DataSourceReference;
+use Google\Cloud\BackupDR\V1\DeleteAutoProtectionPolicyRequest;
 use Google\Cloud\BackupDR\V1\DeleteBackupPlanAssociationRequest;
 use Google\Cloud\BackupDR\V1\DeleteBackupPlanRequest;
 use Google\Cloud\BackupDR\V1\DeleteBackupRequest;
 use Google\Cloud\BackupDR\V1\DeleteBackupVaultRequest;
 use Google\Cloud\BackupDR\V1\DeleteManagementServerRequest;
+use Google\Cloud\BackupDR\V1\DeleteRestoreTemplateRequest;
+use Google\Cloud\BackupDR\V1\DeleteRestoreVerificationPlanAssociationRequest;
+use Google\Cloud\BackupDR\V1\DeleteRestoreVerificationPlanRequest;
 use Google\Cloud\BackupDR\V1\FetchBackupPlanAssociationsForResourceTypeRequest;
 use Google\Cloud\BackupDR\V1\FetchBackupPlanAssociationsForResourceTypeResponse;
 use Google\Cloud\BackupDR\V1\FetchBackupsForResourceTypeRequest;
@@ -51,6 +66,8 @@ use Google\Cloud\BackupDR\V1\FetchDataSourceReferencesForResourceTypeRequest;
 use Google\Cloud\BackupDR\V1\FetchDataSourceReferencesForResourceTypeResponse;
 use Google\Cloud\BackupDR\V1\FetchUsableBackupVaultsRequest;
 use Google\Cloud\BackupDR\V1\FetchUsableBackupVaultsResponse;
+use Google\Cloud\BackupDR\V1\GetAutoProtectionPolicyBindingRequest;
+use Google\Cloud\BackupDR\V1\GetAutoProtectionPolicyRequest;
 use Google\Cloud\BackupDR\V1\GetBackupPlanAssociationRequest;
 use Google\Cloud\BackupDR\V1\GetBackupPlanRequest;
 use Google\Cloud\BackupDR\V1\GetBackupPlanRevisionRequest;
@@ -59,8 +76,19 @@ use Google\Cloud\BackupDR\V1\GetBackupVaultRequest;
 use Google\Cloud\BackupDR\V1\GetDataSourceReferenceRequest;
 use Google\Cloud\BackupDR\V1\GetDataSourceRequest;
 use Google\Cloud\BackupDR\V1\GetManagementServerRequest;
+use Google\Cloud\BackupDR\V1\GetRestoreTemplateExecutionRequest;
+use Google\Cloud\BackupDR\V1\GetRestoreTemplateRequest;
+use Google\Cloud\BackupDR\V1\GetRestoreVerificationPlanAssociationRequest;
+use Google\Cloud\BackupDR\V1\GetRestoreVerificationPlanRequest;
 use Google\Cloud\BackupDR\V1\InitializeServiceRequest;
 use Google\Cloud\BackupDR\V1\InitializeServiceResponse;
+use Google\Cloud\BackupDR\V1\InitiateDeleteAutoProtectionPolicyBindingRequest;
+use Google\Cloud\BackupDR\V1\ListAppliedAutoProtectionPoliciesRequest;
+use Google\Cloud\BackupDR\V1\ListAppliedAutoProtectionPoliciesResponse;
+use Google\Cloud\BackupDR\V1\ListAutoProtectionPoliciesRequest;
+use Google\Cloud\BackupDR\V1\ListAutoProtectionPoliciesResponse;
+use Google\Cloud\BackupDR\V1\ListAutoProtectionPolicyBindingsRequest;
+use Google\Cloud\BackupDR\V1\ListAutoProtectionPolicyBindingsResponse;
 use Google\Cloud\BackupDR\V1\ListBackupPlanAssociationsRequest;
 use Google\Cloud\BackupDR\V1\ListBackupPlanAssociationsResponse;
 use Google\Cloud\BackupDR\V1\ListBackupPlanRevisionsRequest;
@@ -71,21 +99,42 @@ use Google\Cloud\BackupDR\V1\ListBackupVaultsRequest;
 use Google\Cloud\BackupDR\V1\ListBackupVaultsResponse;
 use Google\Cloud\BackupDR\V1\ListBackupsRequest;
 use Google\Cloud\BackupDR\V1\ListBackupsResponse;
+use Google\Cloud\BackupDR\V1\ListBindingMatchingResourcesRequest;
+use Google\Cloud\BackupDR\V1\ListBindingMatchingResourcesResponse;
 use Google\Cloud\BackupDR\V1\ListDataSourceReferencesRequest;
 use Google\Cloud\BackupDR\V1\ListDataSourceReferencesResponse;
 use Google\Cloud\BackupDR\V1\ListDataSourcesRequest;
 use Google\Cloud\BackupDR\V1\ListDataSourcesResponse;
 use Google\Cloud\BackupDR\V1\ListManagementServersRequest;
 use Google\Cloud\BackupDR\V1\ListManagementServersResponse;
+use Google\Cloud\BackupDR\V1\ListRestoreTemplateExecutionsRequest;
+use Google\Cloud\BackupDR\V1\ListRestoreTemplateExecutionsResponse;
+use Google\Cloud\BackupDR\V1\ListRestoreTemplatesRequest;
+use Google\Cloud\BackupDR\V1\ListRestoreTemplatesResponse;
+use Google\Cloud\BackupDR\V1\ListRestoreVerificationPlanAssociationsRequest;
+use Google\Cloud\BackupDR\V1\ListRestoreVerificationPlanAssociationsResponse;
+use Google\Cloud\BackupDR\V1\ListRestoreVerificationPlansRequest;
+use Google\Cloud\BackupDR\V1\ListRestoreVerificationPlansResponse;
 use Google\Cloud\BackupDR\V1\ManagementServer;
 use Google\Cloud\BackupDR\V1\RestoreBackupRequest;
 use Google\Cloud\BackupDR\V1\RestoreBackupResponse;
+use Google\Cloud\BackupDR\V1\RestoreTemplate;
+use Google\Cloud\BackupDR\V1\RestoreTemplateExecution;
+use Google\Cloud\BackupDR\V1\RestoreVerificationPlan;
+use Google\Cloud\BackupDR\V1\RestoreVerificationPlanAssociation;
+use Google\Cloud\BackupDR\V1\RunRestoreTemplateRequest;
+use Google\Cloud\BackupDR\V1\RunRestoreTemplateResponse;
 use Google\Cloud\BackupDR\V1\TriggerBackupRequest;
+use Google\Cloud\BackupDR\V1\TriggerRestoreCleanupRequest;
+use Google\Cloud\BackupDR\V1\TriggerRestoreVerificationRequest;
+use Google\Cloud\BackupDR\V1\TriggerRestoreVerificationResponse;
+use Google\Cloud\BackupDR\V1\UpdateAutoProtectionPolicyRequest;
 use Google\Cloud\BackupDR\V1\UpdateBackupPlanAssociationRequest;
 use Google\Cloud\BackupDR\V1\UpdateBackupPlanRequest;
 use Google\Cloud\BackupDR\V1\UpdateBackupRequest;
 use Google\Cloud\BackupDR\V1\UpdateBackupVaultRequest;
 use Google\Cloud\BackupDR\V1\UpdateDataSourceRequest;
+use Google\Cloud\BackupDR\V1\UpdateRestoreTemplateRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -102,6 +151,7 @@ use Google\Protobuf\Any;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Struct;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -133,6 +183,316 @@ class BackupDRClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new BackupDRClient($options);
+    }
+
+    /** @test */
+    public function createAutoProtectionPolicyTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createAutoProtectionPolicyTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $etag = 'etag3123477';
+        $expectedResponse = new AutoProtectionPolicy();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setEtag($etag);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createAutoProtectionPolicyTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $autoProtectionPolicyId = 'autoProtectionPolicyId1809805810';
+        $autoProtectionPolicy = new AutoProtectionPolicy();
+        $autoProtectionPolicyBackupPlanDetails = [];
+        $autoProtectionPolicy->setBackupPlanDetails($autoProtectionPolicyBackupPlanDetails);
+        $autoProtectionPolicyCriteria = new Criteria();
+        $criteriaMatchingConditions = [];
+        $autoProtectionPolicyCriteria->setMatchingConditions($criteriaMatchingConditions);
+        $autoProtectionPolicy->setCriteria($autoProtectionPolicyCriteria);
+        $request = (new CreateAutoProtectionPolicyRequest())
+            ->setParent($formattedParent)
+            ->setAutoProtectionPolicyId($autoProtectionPolicyId)
+            ->setAutoProtectionPolicy($autoProtectionPolicy);
+        $response = $gapicClient->createAutoProtectionPolicy($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/CreateAutoProtectionPolicy', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getAutoProtectionPolicyId();
+        $this->assertProtobufEquals($autoProtectionPolicyId, $actualValue);
+        $actualValue = $actualApiRequestObject->getAutoProtectionPolicy();
+        $this->assertProtobufEquals($autoProtectionPolicy, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createAutoProtectionPolicyTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createAutoProtectionPolicyExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createAutoProtectionPolicyTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $autoProtectionPolicyId = 'autoProtectionPolicyId1809805810';
+        $autoProtectionPolicy = new AutoProtectionPolicy();
+        $autoProtectionPolicyBackupPlanDetails = [];
+        $autoProtectionPolicy->setBackupPlanDetails($autoProtectionPolicyBackupPlanDetails);
+        $autoProtectionPolicyCriteria = new Criteria();
+        $criteriaMatchingConditions = [];
+        $autoProtectionPolicyCriteria->setMatchingConditions($criteriaMatchingConditions);
+        $autoProtectionPolicy->setCriteria($autoProtectionPolicyCriteria);
+        $request = (new CreateAutoProtectionPolicyRequest())
+            ->setParent($formattedParent)
+            ->setAutoProtectionPolicyId($autoProtectionPolicyId)
+            ->setAutoProtectionPolicy($autoProtectionPolicy);
+        $response = $gapicClient->createAutoProtectionPolicy($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createAutoProtectionPolicyTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createAutoProtectionPolicyBindingTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createAutoProtectionPolicyBindingTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $scope = 'scope109264468';
+        $etag = 'etag3123477';
+        $expectedResponse = new AutoProtectionPolicyBinding();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setScope($scope);
+        $expectedResponse->setEtag($etag);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createAutoProtectionPolicyBindingTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->autoProtectionPolicyName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[AUTO_PROTECTION_POLICY]'
+        );
+        $autoProtectionPolicyBindingId = 'autoProtectionPolicyBindingId-1208019220';
+        $autoProtectionPolicyBinding = new AutoProtectionPolicyBinding();
+        $autoProtectionPolicyBindingScope = 'autoProtectionPolicyBindingScope1640202537';
+        $autoProtectionPolicyBinding->setScope($autoProtectionPolicyBindingScope);
+        $request = (new CreateAutoProtectionPolicyBindingRequest())
+            ->setParent($formattedParent)
+            ->setAutoProtectionPolicyBindingId($autoProtectionPolicyBindingId)
+            ->setAutoProtectionPolicyBinding($autoProtectionPolicyBinding);
+        $response = $gapicClient->createAutoProtectionPolicyBinding($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/CreateAutoProtectionPolicyBinding', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getAutoProtectionPolicyBindingId();
+        $this->assertProtobufEquals($autoProtectionPolicyBindingId, $actualValue);
+        $actualValue = $actualApiRequestObject->getAutoProtectionPolicyBinding();
+        $this->assertProtobufEquals($autoProtectionPolicyBinding, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createAutoProtectionPolicyBindingTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createAutoProtectionPolicyBindingExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createAutoProtectionPolicyBindingTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->autoProtectionPolicyName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[AUTO_PROTECTION_POLICY]'
+        );
+        $autoProtectionPolicyBindingId = 'autoProtectionPolicyBindingId-1208019220';
+        $autoProtectionPolicyBinding = new AutoProtectionPolicyBinding();
+        $autoProtectionPolicyBindingScope = 'autoProtectionPolicyBindingScope1640202537';
+        $autoProtectionPolicyBinding->setScope($autoProtectionPolicyBindingScope);
+        $request = (new CreateAutoProtectionPolicyBindingRequest())
+            ->setParent($formattedParent)
+            ->setAutoProtectionPolicyBindingId($autoProtectionPolicyBindingId)
+            ->setAutoProtectionPolicyBinding($autoProtectionPolicyBinding);
+        $response = $gapicClient->createAutoProtectionPolicyBinding($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createAutoProtectionPolicyBindingTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -329,6 +689,7 @@ class BackupDRClientTest extends GeneratedTest
         $dataSource = 'dataSource-1333894576';
         $backupPlanRevisionId = 'backupPlanRevisionId-1602992954';
         $backupPlanRevisionName = 'backupPlanRevisionName1417180022';
+        $autoProtectionPolicyBinding = 'autoProtectionPolicyBinding881702926';
         $expectedResponse = new BackupPlanAssociation();
         $expectedResponse->setName($name);
         $expectedResponse->setResourceType($resourceType);
@@ -337,6 +698,7 @@ class BackupDRClientTest extends GeneratedTest
         $expectedResponse->setDataSource($dataSource);
         $expectedResponse->setBackupPlanRevisionId($backupPlanRevisionId);
         $expectedResponse->setBackupPlanRevisionName($backupPlanRevisionName);
+        $expectedResponse->setAutoProtectionPolicyBinding($autoProtectionPolicyBinding);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -748,6 +1110,617 @@ class BackupDRClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createManagementServerTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createRestoreTemplateTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createRestoreTemplateTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $resourceType = 'resourceType979623115';
+        $etag = 'etag3123477';
+        $expectedResponse = new RestoreTemplate();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setResourceType($resourceType);
+        $expectedResponse->setEtag($etag);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createRestoreTemplateTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $restoreTemplateId = 'restoreTemplateId2127849167';
+        $restoreTemplate = new RestoreTemplate();
+        $restoreTemplateResourceType = 'restoreTemplateResourceType-1691910736';
+        $restoreTemplate->setResourceType($restoreTemplateResourceType);
+        $restoreTemplateBackupSelectionConfig = new BackupSelectionConfig();
+        $backupSelectionConfigDataSource = $gapicClient->dataSourceName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[BACKUPVAULT]',
+            '[DATASOURCE]'
+        );
+        $restoreTemplateBackupSelectionConfig->setDataSource($backupSelectionConfigDataSource);
+        $restoreTemplate->setBackupSelectionConfig($restoreTemplateBackupSelectionConfig);
+        $restoreTemplateRestoreProperties = new Struct();
+        $restoreTemplate->setRestoreProperties($restoreTemplateRestoreProperties);
+        $request = (new CreateRestoreTemplateRequest())
+            ->setParent($formattedParent)
+            ->setRestoreTemplateId($restoreTemplateId)
+            ->setRestoreTemplate($restoreTemplate);
+        $response = $gapicClient->createRestoreTemplate($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/CreateRestoreTemplate', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getRestoreTemplateId();
+        $this->assertProtobufEquals($restoreTemplateId, $actualValue);
+        $actualValue = $actualApiRequestObject->getRestoreTemplate();
+        $this->assertProtobufEquals($restoreTemplate, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createRestoreTemplateTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createRestoreTemplateExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createRestoreTemplateTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $restoreTemplateId = 'restoreTemplateId2127849167';
+        $restoreTemplate = new RestoreTemplate();
+        $restoreTemplateResourceType = 'restoreTemplateResourceType-1691910736';
+        $restoreTemplate->setResourceType($restoreTemplateResourceType);
+        $restoreTemplateBackupSelectionConfig = new BackupSelectionConfig();
+        $backupSelectionConfigDataSource = $gapicClient->dataSourceName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[BACKUPVAULT]',
+            '[DATASOURCE]'
+        );
+        $restoreTemplateBackupSelectionConfig->setDataSource($backupSelectionConfigDataSource);
+        $restoreTemplate->setBackupSelectionConfig($restoreTemplateBackupSelectionConfig);
+        $restoreTemplateRestoreProperties = new Struct();
+        $restoreTemplate->setRestoreProperties($restoreTemplateRestoreProperties);
+        $request = (new CreateRestoreTemplateRequest())
+            ->setParent($formattedParent)
+            ->setRestoreTemplateId($restoreTemplateId)
+            ->setRestoreTemplate($restoreTemplate);
+        $response = $gapicClient->createRestoreTemplate($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createRestoreTemplateTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createRestoreVerificationPlanTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createRestoreVerificationPlanTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $schedule = 'schedule-697920873';
+        $timeZone = 'timeZone36848094';
+        $expectedResponse = new RestoreVerificationPlan();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setSchedule($schedule);
+        $expectedResponse->setTimeZone($timeZone);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createRestoreVerificationPlanTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $restoreVerificationPlanId = 'restoreVerificationPlanId1015277790';
+        $restoreVerificationPlan = new RestoreVerificationPlan();
+        $restoreVerificationPlanSchedule = 'restoreVerificationPlanSchedule602918729';
+        $restoreVerificationPlan->setSchedule($restoreVerificationPlanSchedule);
+        $request = (new CreateRestoreVerificationPlanRequest())
+            ->setParent($formattedParent)
+            ->setRestoreVerificationPlanId($restoreVerificationPlanId)
+            ->setRestoreVerificationPlan($restoreVerificationPlan);
+        $response = $gapicClient->createRestoreVerificationPlan($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/CreateRestoreVerificationPlan', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getRestoreVerificationPlanId();
+        $this->assertProtobufEquals($restoreVerificationPlanId, $actualValue);
+        $actualValue = $actualApiRequestObject->getRestoreVerificationPlan();
+        $this->assertProtobufEquals($restoreVerificationPlan, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createRestoreVerificationPlanTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createRestoreVerificationPlanExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createRestoreVerificationPlanTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $restoreVerificationPlanId = 'restoreVerificationPlanId1015277790';
+        $restoreVerificationPlan = new RestoreVerificationPlan();
+        $restoreVerificationPlanSchedule = 'restoreVerificationPlanSchedule602918729';
+        $restoreVerificationPlan->setSchedule($restoreVerificationPlanSchedule);
+        $request = (new CreateRestoreVerificationPlanRequest())
+            ->setParent($formattedParent)
+            ->setRestoreVerificationPlanId($restoreVerificationPlanId)
+            ->setRestoreVerificationPlan($restoreVerificationPlan);
+        $response = $gapicClient->createRestoreVerificationPlan($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createRestoreVerificationPlanTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createRestoreVerificationPlanAssociationTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createRestoreVerificationPlanAssociationTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $resourceType = 'resourceType979623115';
+        $restoreTemplate = 'restoreTemplate738077451';
+        $expectedResponse = new RestoreVerificationPlanAssociation();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setResourceType($resourceType);
+        $expectedResponse->setRestoreTemplate($restoreTemplate);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createRestoreVerificationPlanAssociationTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->restoreVerificationPlanName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTOREVERIFICATIONPLAN]'
+        );
+        $restoreVerificationPlanAssociationId = 'restoreVerificationPlanAssociationId1758922972';
+        $restoreVerificationPlanAssociation = new RestoreVerificationPlanAssociation();
+        $restoreVerificationPlanAssociationResourceType = 'restoreVerificationPlanAssociationResourceType-1576333161';
+        $restoreVerificationPlanAssociation->setResourceType($restoreVerificationPlanAssociationResourceType);
+        $restoreVerificationPlanAssociationRestoreTemplate = $gapicClient->restoreTemplateName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTORE_TEMPLATE]'
+        );
+        $restoreVerificationPlanAssociation->setRestoreTemplate($restoreVerificationPlanAssociationRestoreTemplate);
+        $request = (new CreateRestoreVerificationPlanAssociationRequest())
+            ->setParent($formattedParent)
+            ->setRestoreVerificationPlanAssociationId($restoreVerificationPlanAssociationId)
+            ->setRestoreVerificationPlanAssociation($restoreVerificationPlanAssociation);
+        $response = $gapicClient->createRestoreVerificationPlanAssociation($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.backupdr.v1.BackupDR/CreateRestoreVerificationPlanAssociation',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getRestoreVerificationPlanAssociationId();
+        $this->assertProtobufEquals($restoreVerificationPlanAssociationId, $actualValue);
+        $actualValue = $actualApiRequestObject->getRestoreVerificationPlanAssociation();
+        $this->assertProtobufEquals($restoreVerificationPlanAssociation, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createRestoreVerificationPlanAssociationTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createRestoreVerificationPlanAssociationExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createRestoreVerificationPlanAssociationTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->restoreVerificationPlanName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTOREVERIFICATIONPLAN]'
+        );
+        $restoreVerificationPlanAssociationId = 'restoreVerificationPlanAssociationId1758922972';
+        $restoreVerificationPlanAssociation = new RestoreVerificationPlanAssociation();
+        $restoreVerificationPlanAssociationResourceType = 'restoreVerificationPlanAssociationResourceType-1576333161';
+        $restoreVerificationPlanAssociation->setResourceType($restoreVerificationPlanAssociationResourceType);
+        $restoreVerificationPlanAssociationRestoreTemplate = $gapicClient->restoreTemplateName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTORE_TEMPLATE]'
+        );
+        $restoreVerificationPlanAssociation->setRestoreTemplate($restoreVerificationPlanAssociationRestoreTemplate);
+        $request = (new CreateRestoreVerificationPlanAssociationRequest())
+            ->setParent($formattedParent)
+            ->setRestoreVerificationPlanAssociationId($restoreVerificationPlanAssociationId)
+            ->setRestoreVerificationPlanAssociation($restoreVerificationPlanAssociation);
+        $response = $gapicClient->createRestoreVerificationPlanAssociation($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createRestoreVerificationPlanAssociationTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAutoProtectionPolicyTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteAutoProtectionPolicyTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteAutoProtectionPolicyTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->autoProtectionPolicyName('[PROJECT]', '[LOCATION]', '[AUTO_PROTECTION_POLICY]');
+        $request = (new DeleteAutoProtectionPolicyRequest())->setName($formattedName);
+        $response = $gapicClient->deleteAutoProtectionPolicy($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/DeleteAutoProtectionPolicy', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteAutoProtectionPolicyTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAutoProtectionPolicyExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteAutoProtectionPolicyTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->autoProtectionPolicyName('[PROJECT]', '[LOCATION]', '[AUTO_PROTECTION_POLICY]');
+        $request = (new DeleteAutoProtectionPolicyRequest())->setName($formattedName);
+        $response = $gapicClient->deleteAutoProtectionPolicy($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteAutoProtectionPolicyTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -1408,6 +2381,393 @@ class BackupDRClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteRestoreTemplateTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteRestoreTemplateTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteRestoreTemplateTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->restoreTemplateName('[PROJECT]', '[LOCATION]', '[RESTORE_TEMPLATE]');
+        $request = (new DeleteRestoreTemplateRequest())->setName($formattedName);
+        $response = $gapicClient->deleteRestoreTemplate($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/DeleteRestoreTemplate', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteRestoreTemplateTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteRestoreTemplateExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteRestoreTemplateTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->restoreTemplateName('[PROJECT]', '[LOCATION]', '[RESTORE_TEMPLATE]');
+        $request = (new DeleteRestoreTemplateRequest())->setName($formattedName);
+        $response = $gapicClient->deleteRestoreTemplate($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteRestoreTemplateTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteRestoreVerificationPlanTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteRestoreVerificationPlanTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteRestoreVerificationPlanTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->restoreVerificationPlanName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTOREVERIFICATIONPLAN]'
+        );
+        $request = (new DeleteRestoreVerificationPlanRequest())->setName($formattedName);
+        $response = $gapicClient->deleteRestoreVerificationPlan($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/DeleteRestoreVerificationPlan', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteRestoreVerificationPlanTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteRestoreVerificationPlanExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteRestoreVerificationPlanTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->restoreVerificationPlanName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTOREVERIFICATIONPLAN]'
+        );
+        $request = (new DeleteRestoreVerificationPlanRequest())->setName($formattedName);
+        $response = $gapicClient->deleteRestoreVerificationPlan($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteRestoreVerificationPlanTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteRestoreVerificationPlanAssociationTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteRestoreVerificationPlanAssociationTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteRestoreVerificationPlanAssociationTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->restoreVerificationPlanAssociationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTORE_VERIFICATION_PLAN]',
+            '[ASSOCIATION]'
+        );
+        $request = (new DeleteRestoreVerificationPlanAssociationRequest())->setName($formattedName);
+        $response = $gapicClient->deleteRestoreVerificationPlanAssociation($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.backupdr.v1.BackupDR/DeleteRestoreVerificationPlanAssociation',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteRestoreVerificationPlanAssociationTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteRestoreVerificationPlanAssociationExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteRestoreVerificationPlanAssociationTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->restoreVerificationPlanAssociationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTORE_VERIFICATION_PLAN]',
+            '[ASSOCIATION]'
+        );
+        $request = (new DeleteRestoreVerificationPlanAssociationRequest())->setName($formattedName);
+        $response = $gapicClient->deleteRestoreVerificationPlanAssociation($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteRestoreVerificationPlanAssociationTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function fetchBackupPlanAssociationsForResourceTypeTest()
     {
         $transport = $this->createTransport();
@@ -1722,6 +3082,156 @@ class BackupDRClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getAutoProtectionPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $etag = 'etag3123477';
+        $expectedResponse = new AutoProtectionPolicy();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->autoProtectionPolicyName('[PROJECT]', '[LOCATION]', '[AUTO_PROTECTION_POLICY]');
+        $request = (new GetAutoProtectionPolicyRequest())->setName($formattedName);
+        $response = $gapicClient->getAutoProtectionPolicy($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/GetAutoProtectionPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAutoProtectionPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->autoProtectionPolicyName('[PROJECT]', '[LOCATION]', '[AUTO_PROTECTION_POLICY]');
+        $request = (new GetAutoProtectionPolicyRequest())->setName($formattedName);
+        try {
+            $gapicClient->getAutoProtectionPolicy($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAutoProtectionPolicyBindingTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $scope = 'scope109264468';
+        $etag = 'etag3123477';
+        $expectedResponse = new AutoProtectionPolicyBinding();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setScope($scope);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->autoProtectionPolicyBindingName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[AUTO_PROTECTION_POLICY]',
+            '[BINDING]'
+        );
+        $request = (new GetAutoProtectionPolicyBindingRequest())->setName($formattedName);
+        $response = $gapicClient->getAutoProtectionPolicyBinding($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/GetAutoProtectionPolicyBinding', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAutoProtectionPolicyBindingExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->autoProtectionPolicyBindingName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[AUTO_PROTECTION_POLICY]',
+            '[BINDING]'
+        );
+        $request = (new GetAutoProtectionPolicyBindingRequest())->setName($formattedName);
+        try {
+            $gapicClient->getAutoProtectionPolicyBinding($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getBackupTest()
     {
         $transport = $this->createTransport();
@@ -1905,6 +3415,7 @@ class BackupDRClientTest extends GeneratedTest
         $dataSource = 'dataSource-1333894576';
         $backupPlanRevisionId = 'backupPlanRevisionId-1602992954';
         $backupPlanRevisionName = 'backupPlanRevisionName1417180022';
+        $autoProtectionPolicyBinding = 'autoProtectionPolicyBinding881702926';
         $expectedResponse = new BackupPlanAssociation();
         $expectedResponse->setName($name2);
         $expectedResponse->setResourceType($resourceType);
@@ -1913,6 +3424,7 @@ class BackupDRClientTest extends GeneratedTest
         $expectedResponse->setDataSource($dataSource);
         $expectedResponse->setBackupPlanRevisionId($backupPlanRevisionId);
         $expectedResponse->setBackupPlanRevisionName($backupPlanRevisionName);
+        $expectedResponse->setAutoProtectionPolicyBinding($autoProtectionPolicyBinding);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupPlanAssociationName(
@@ -2338,6 +3850,314 @@ class BackupDRClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getRestoreTemplateTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $resourceType = 'resourceType979623115';
+        $etag = 'etag3123477';
+        $expectedResponse = new RestoreTemplate();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setResourceType($resourceType);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->restoreTemplateName('[PROJECT]', '[LOCATION]', '[RESTORE_TEMPLATE]');
+        $request = (new GetRestoreTemplateRequest())->setName($formattedName);
+        $response = $gapicClient->getRestoreTemplate($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/GetRestoreTemplate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getRestoreTemplateExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->restoreTemplateName('[PROJECT]', '[LOCATION]', '[RESTORE_TEMPLATE]');
+        $request = (new GetRestoreTemplateRequest())->setName($formattedName);
+        try {
+            $gapicClient->getRestoreTemplate($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getRestoreTemplateExecutionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $resourceType = 'resourceType979623115';
+        $expectedResponse = new RestoreTemplateExecution();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setResourceType($resourceType);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->restoreTemplateExecutionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTORE_TEMPLATE]',
+            '[EXECUTION]'
+        );
+        $request = (new GetRestoreTemplateExecutionRequest())->setName($formattedName);
+        $response = $gapicClient->getRestoreTemplateExecution($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/GetRestoreTemplateExecution', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getRestoreTemplateExecutionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->restoreTemplateExecutionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTORE_TEMPLATE]',
+            '[EXECUTION]'
+        );
+        $request = (new GetRestoreTemplateExecutionRequest())->setName($formattedName);
+        try {
+            $gapicClient->getRestoreTemplateExecution($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getRestoreVerificationPlanTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $schedule = 'schedule-697920873';
+        $timeZone = 'timeZone36848094';
+        $expectedResponse = new RestoreVerificationPlan();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setSchedule($schedule);
+        $expectedResponse->setTimeZone($timeZone);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->restoreVerificationPlanName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTOREVERIFICATIONPLAN]'
+        );
+        $request = (new GetRestoreVerificationPlanRequest())->setName($formattedName);
+        $response = $gapicClient->getRestoreVerificationPlan($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/GetRestoreVerificationPlan', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getRestoreVerificationPlanExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->restoreVerificationPlanName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTOREVERIFICATIONPLAN]'
+        );
+        $request = (new GetRestoreVerificationPlanRequest())->setName($formattedName);
+        try {
+            $gapicClient->getRestoreVerificationPlan($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getRestoreVerificationPlanAssociationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $resourceType = 'resourceType979623115';
+        $restoreTemplate = 'restoreTemplate738077451';
+        $expectedResponse = new RestoreVerificationPlanAssociation();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setResourceType($resourceType);
+        $expectedResponse->setRestoreTemplate($restoreTemplate);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->restoreVerificationPlanAssociationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTORE_VERIFICATION_PLAN]',
+            '[ASSOCIATION]'
+        );
+        $request = (new GetRestoreVerificationPlanAssociationRequest())->setName($formattedName);
+        $response = $gapicClient->getRestoreVerificationPlanAssociation($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/GetRestoreVerificationPlanAssociation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getRestoreVerificationPlanAssociationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->restoreVerificationPlanAssociationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTORE_VERIFICATION_PLAN]',
+            '[ASSOCIATION]'
+        );
+        $request = (new GetRestoreVerificationPlanAssociationRequest())->setName($formattedName);
+        try {
+            $gapicClient->getRestoreVerificationPlanAssociation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function initializeServiceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2465,6 +4285,370 @@ class BackupDRClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function initiateDeleteAutoProtectionPolicyBindingTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/initiateDeleteAutoProtectionPolicyBindingTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $scope = 'scope109264468';
+        $etag2 = 'etag2-1293302904';
+        $expectedResponse = new AutoProtectionPolicyBinding();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setScope($scope);
+        $expectedResponse->setEtag($etag2);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/initiateDeleteAutoProtectionPolicyBindingTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->autoProtectionPolicyBindingName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[AUTO_PROTECTION_POLICY]',
+            '[BINDING]'
+        );
+        $request = (new InitiateDeleteAutoProtectionPolicyBindingRequest())->setName($formattedName);
+        $response = $gapicClient->initiateDeleteAutoProtectionPolicyBinding($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.backupdr.v1.BackupDR/InitiateDeleteAutoProtectionPolicyBinding',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/initiateDeleteAutoProtectionPolicyBindingTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function initiateDeleteAutoProtectionPolicyBindingExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/initiateDeleteAutoProtectionPolicyBindingTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->autoProtectionPolicyBindingName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[AUTO_PROTECTION_POLICY]',
+            '[BINDING]'
+        );
+        $request = (new InitiateDeleteAutoProtectionPolicyBindingRequest())->setName($formattedName);
+        $response = $gapicClient->initiateDeleteAutoProtectionPolicyBinding($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/initiateDeleteAutoProtectionPolicyBindingTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function listAppliedAutoProtectionPoliciesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $appliedAutoProtectionPoliciesElement = new AppliedAutoProtectionPolicy();
+        $appliedAutoProtectionPolicies = [$appliedAutoProtectionPoliciesElement];
+        $expectedResponse = new ListAppliedAutoProtectionPoliciesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAppliedAutoProtectionPolicies($appliedAutoProtectionPolicies);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListAppliedAutoProtectionPoliciesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listAppliedAutoProtectionPolicies($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAppliedAutoProtectionPolicies()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/ListAppliedAutoProtectionPolicies', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAppliedAutoProtectionPoliciesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListAppliedAutoProtectionPoliciesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listAppliedAutoProtectionPolicies($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAutoProtectionPoliciesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $autoProtectionPoliciesElement = new AutoProtectionPolicy();
+        $autoProtectionPolicies = [$autoProtectionPoliciesElement];
+        $expectedResponse = new ListAutoProtectionPoliciesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAutoProtectionPolicies($autoProtectionPolicies);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListAutoProtectionPoliciesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listAutoProtectionPolicies($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAutoProtectionPolicies()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/ListAutoProtectionPolicies', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAutoProtectionPoliciesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListAutoProtectionPoliciesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listAutoProtectionPolicies($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAutoProtectionPolicyBindingsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $autoProtectionPolicyBindingsElement = new AutoProtectionPolicyBinding();
+        $autoProtectionPolicyBindings = [$autoProtectionPolicyBindingsElement];
+        $expectedResponse = new ListAutoProtectionPolicyBindingsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAutoProtectionPolicyBindings($autoProtectionPolicyBindings);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->autoProtectionPolicyName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[AUTO_PROTECTION_POLICY]'
+        );
+        $request = (new ListAutoProtectionPolicyBindingsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listAutoProtectionPolicyBindings($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAutoProtectionPolicyBindings()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/ListAutoProtectionPolicyBindings', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAutoProtectionPolicyBindingsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->autoProtectionPolicyName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[AUTO_PROTECTION_POLICY]'
+        );
+        $request = (new ListAutoProtectionPolicyBindingsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listAutoProtectionPolicyBindings($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -2823,6 +5007,87 @@ class BackupDRClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listBindingMatchingResourcesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $matchingResourcesElement = new BindingMatchingResource();
+        $matchingResources = [$matchingResourcesElement];
+        $expectedResponse = new ListBindingMatchingResourcesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setMatchingResources($matchingResources);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->autoProtectionPolicyBindingName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[AUTO_PROTECTION_POLICY]',
+            '[BINDING]'
+        );
+        $request = (new ListBindingMatchingResourcesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listBindingMatchingResources($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getMatchingResources()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/ListBindingMatchingResources', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listBindingMatchingResourcesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->autoProtectionPolicyBindingName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[AUTO_PROTECTION_POLICY]',
+            '[BINDING]'
+        );
+        $request = (new ListBindingMatchingResourcesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listBindingMatchingResources($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listDataSourceReferencesTest()
     {
         $transport = $this->createTransport();
@@ -3036,6 +5301,301 @@ class BackupDRClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listRestoreTemplateExecutionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $restoreTemplateExecutionsElement = new RestoreTemplateExecution();
+        $restoreTemplateExecutions = [$restoreTemplateExecutionsElement];
+        $expectedResponse = new ListRestoreTemplateExecutionsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setRestoreTemplateExecutions($restoreTemplateExecutions);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->restoreTemplateName('[PROJECT]', '[LOCATION]', '[RESTORE_TEMPLATE]');
+        $request = (new ListRestoreTemplateExecutionsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listRestoreTemplateExecutions($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getRestoreTemplateExecutions()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/ListRestoreTemplateExecutions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listRestoreTemplateExecutionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->restoreTemplateName('[PROJECT]', '[LOCATION]', '[RESTORE_TEMPLATE]');
+        $request = (new ListRestoreTemplateExecutionsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listRestoreTemplateExecutions($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listRestoreTemplatesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $restoreTemplatesElement = new RestoreTemplate();
+        $restoreTemplates = [$restoreTemplatesElement];
+        $expectedResponse = new ListRestoreTemplatesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setRestoreTemplates($restoreTemplates);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListRestoreTemplatesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listRestoreTemplates($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getRestoreTemplates()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/ListRestoreTemplates', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listRestoreTemplatesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListRestoreTemplatesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listRestoreTemplates($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listRestoreVerificationPlanAssociationsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $restoreVerificationPlanAssociationsElement = new RestoreVerificationPlanAssociation();
+        $restoreVerificationPlanAssociations = [$restoreVerificationPlanAssociationsElement];
+        $expectedResponse = new ListRestoreVerificationPlanAssociationsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setRestoreVerificationPlanAssociations($restoreVerificationPlanAssociations);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->restoreVerificationPlanName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTOREVERIFICATIONPLAN]'
+        );
+        $request = (new ListRestoreVerificationPlanAssociationsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listRestoreVerificationPlanAssociations($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getRestoreVerificationPlanAssociations()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.backupdr.v1.BackupDR/ListRestoreVerificationPlanAssociations',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listRestoreVerificationPlanAssociationsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->restoreVerificationPlanName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTOREVERIFICATIONPLAN]'
+        );
+        $request = (new ListRestoreVerificationPlanAssociationsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listRestoreVerificationPlanAssociations($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listRestoreVerificationPlansTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $restoreVerificationPlansElement = new RestoreVerificationPlan();
+        $restoreVerificationPlans = [$restoreVerificationPlansElement];
+        $expectedResponse = new ListRestoreVerificationPlansResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setRestoreVerificationPlans($restoreVerificationPlans);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListRestoreVerificationPlansRequest())->setParent($formattedParent);
+        $response = $gapicClient->listRestoreVerificationPlans($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getRestoreVerificationPlans()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/ListRestoreVerificationPlans', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listRestoreVerificationPlansExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListRestoreVerificationPlansRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listRestoreVerificationPlans($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function restoreBackupTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3170,6 +5730,130 @@ class BackupDRClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function runRestoreTemplateTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/runRestoreTemplateTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $restoreTemplateExecution = 'restoreTemplateExecution-57532700';
+        $expectedResponse = new RunRestoreTemplateResponse();
+        $expectedResponse->setRestoreTemplateExecution($restoreTemplateExecution);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/runRestoreTemplateTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->restoreTemplateName('[PROJECT]', '[LOCATION]', '[RESTORE_TEMPLATE]');
+        $request = (new RunRestoreTemplateRequest())->setName($formattedName);
+        $response = $gapicClient->runRestoreTemplate($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/RunRestoreTemplate', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/runRestoreTemplateTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function runRestoreTemplateExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/runRestoreTemplateTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->restoreTemplateName('[PROJECT]', '[LOCATION]', '[RESTORE_TEMPLATE]');
+        $request = (new RunRestoreTemplateRequest())->setName($formattedName);
+        $response = $gapicClient->runRestoreTemplate($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/runRestoreTemplateTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function triggerBackupTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3197,6 +5881,7 @@ class BackupDRClientTest extends GeneratedTest
         $dataSource = 'dataSource-1333894576';
         $backupPlanRevisionId = 'backupPlanRevisionId-1602992954';
         $backupPlanRevisionName = 'backupPlanRevisionName1417180022';
+        $autoProtectionPolicyBinding = 'autoProtectionPolicyBinding881702926';
         $expectedResponse = new BackupPlanAssociation();
         $expectedResponse->setName($name2);
         $expectedResponse->setResourceType($resourceType);
@@ -3205,6 +5890,7 @@ class BackupDRClientTest extends GeneratedTest
         $expectedResponse->setDataSource($dataSource);
         $expectedResponse->setBackupPlanRevisionId($backupPlanRevisionId);
         $expectedResponse->setBackupPlanRevisionName($backupPlanRevisionName);
+        $expectedResponse->setAutoProtectionPolicyBinding($autoProtectionPolicyBinding);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -3300,6 +5986,416 @@ class BackupDRClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/triggerBackupTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function triggerRestoreCleanupTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/triggerRestoreCleanupTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $resourceType = 'resourceType979623115';
+        $expectedResponse = new RestoreTemplateExecution();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setResourceType($resourceType);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/triggerRestoreCleanupTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->restoreTemplateExecutionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTORE_TEMPLATE]',
+            '[EXECUTION]'
+        );
+        $request = (new TriggerRestoreCleanupRequest())->setName($formattedName);
+        $response = $gapicClient->triggerRestoreCleanup($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/TriggerRestoreCleanup', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/triggerRestoreCleanupTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function triggerRestoreCleanupExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/triggerRestoreCleanupTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->restoreTemplateExecutionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTORE_TEMPLATE]',
+            '[EXECUTION]'
+        );
+        $request = (new TriggerRestoreCleanupRequest())->setName($formattedName);
+        $response = $gapicClient->triggerRestoreCleanup($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/triggerRestoreCleanupTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function triggerRestoreVerificationTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/triggerRestoreVerificationTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $restoreTemplateExecution = 'restoreTemplateExecution-57532700';
+        $expectedResponse = new TriggerRestoreVerificationResponse();
+        $expectedResponse->setRestoreTemplateExecution($restoreTemplateExecution);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/triggerRestoreVerificationTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->restoreVerificationPlanAssociationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTORE_VERIFICATION_PLAN]',
+            '[ASSOCIATION]'
+        );
+        $request = (new TriggerRestoreVerificationRequest())->setName($formattedName);
+        $response = $gapicClient->triggerRestoreVerification($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/TriggerRestoreVerification', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/triggerRestoreVerificationTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function triggerRestoreVerificationExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/triggerRestoreVerificationTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->restoreVerificationPlanAssociationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTORE_VERIFICATION_PLAN]',
+            '[ASSOCIATION]'
+        );
+        $request = (new TriggerRestoreVerificationRequest())->setName($formattedName);
+        $response = $gapicClient->triggerRestoreVerification($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/triggerRestoreVerificationTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateAutoProtectionPolicyTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateAutoProtectionPolicyTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $etag = 'etag3123477';
+        $expectedResponse = new AutoProtectionPolicy();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setEtag($etag);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateAutoProtectionPolicyTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $autoProtectionPolicy = new AutoProtectionPolicy();
+        $autoProtectionPolicyBackupPlanDetails = [];
+        $autoProtectionPolicy->setBackupPlanDetails($autoProtectionPolicyBackupPlanDetails);
+        $autoProtectionPolicyCriteria = new Criteria();
+        $criteriaMatchingConditions = [];
+        $autoProtectionPolicyCriteria->setMatchingConditions($criteriaMatchingConditions);
+        $autoProtectionPolicy->setCriteria($autoProtectionPolicyCriteria);
+        $request = (new UpdateAutoProtectionPolicyRequest())->setAutoProtectionPolicy($autoProtectionPolicy);
+        $response = $gapicClient->updateAutoProtectionPolicy($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/UpdateAutoProtectionPolicy', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getAutoProtectionPolicy();
+        $this->assertProtobufEquals($autoProtectionPolicy, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateAutoProtectionPolicyTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateAutoProtectionPolicyExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateAutoProtectionPolicyTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $autoProtectionPolicy = new AutoProtectionPolicy();
+        $autoProtectionPolicyBackupPlanDetails = [];
+        $autoProtectionPolicy->setBackupPlanDetails($autoProtectionPolicyBackupPlanDetails);
+        $autoProtectionPolicyCriteria = new Criteria();
+        $criteriaMatchingConditions = [];
+        $autoProtectionPolicyCriteria->setMatchingConditions($criteriaMatchingConditions);
+        $autoProtectionPolicy->setCriteria($autoProtectionPolicyCriteria);
+        $request = (new UpdateAutoProtectionPolicyRequest())->setAutoProtectionPolicy($autoProtectionPolicy);
+        $response = $gapicClient->updateAutoProtectionPolicy($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateAutoProtectionPolicyTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -3639,6 +6735,7 @@ class BackupDRClientTest extends GeneratedTest
         $dataSource = 'dataSource-1333894576';
         $backupPlanRevisionId = 'backupPlanRevisionId-1602992954';
         $backupPlanRevisionName = 'backupPlanRevisionName1417180022';
+        $autoProtectionPolicyBinding = 'autoProtectionPolicyBinding881702926';
         $expectedResponse = new BackupPlanAssociation();
         $expectedResponse->setName($name);
         $expectedResponse->setResourceType($resourceType);
@@ -3647,6 +6744,7 @@ class BackupDRClientTest extends GeneratedTest
         $expectedResponse->setDataSource($dataSource);
         $expectedResponse->setBackupPlanRevisionId($backupPlanRevisionId);
         $expectedResponse->setBackupPlanRevisionName($backupPlanRevisionName);
+        $expectedResponse->setAutoProtectionPolicyBinding($autoProtectionPolicyBinding);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -4050,6 +7148,162 @@ class BackupDRClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function updateRestoreTemplateTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateRestoreTemplateTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $resourceType = 'resourceType979623115';
+        $etag = 'etag3123477';
+        $expectedResponse = new RestoreTemplate();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setResourceType($resourceType);
+        $expectedResponse->setEtag($etag);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateRestoreTemplateTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $restoreTemplate = new RestoreTemplate();
+        $restoreTemplateResourceType = 'restoreTemplateResourceType-1691910736';
+        $restoreTemplate->setResourceType($restoreTemplateResourceType);
+        $restoreTemplateBackupSelectionConfig = new BackupSelectionConfig();
+        $backupSelectionConfigDataSource = $gapicClient->dataSourceName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[BACKUPVAULT]',
+            '[DATASOURCE]'
+        );
+        $restoreTemplateBackupSelectionConfig->setDataSource($backupSelectionConfigDataSource);
+        $restoreTemplate->setBackupSelectionConfig($restoreTemplateBackupSelectionConfig);
+        $restoreTemplateRestoreProperties = new Struct();
+        $restoreTemplate->setRestoreProperties($restoreTemplateRestoreProperties);
+        $request = (new UpdateRestoreTemplateRequest())->setRestoreTemplate($restoreTemplate);
+        $response = $gapicClient->updateRestoreTemplate($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/UpdateRestoreTemplate', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getRestoreTemplate();
+        $this->assertProtobufEquals($restoreTemplate, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateRestoreTemplateTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateRestoreTemplateExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateRestoreTemplateTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $restoreTemplate = new RestoreTemplate();
+        $restoreTemplateResourceType = 'restoreTemplateResourceType-1691910736';
+        $restoreTemplate->setResourceType($restoreTemplateResourceType);
+        $restoreTemplateBackupSelectionConfig = new BackupSelectionConfig();
+        $backupSelectionConfigDataSource = $gapicClient->dataSourceName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[BACKUPVAULT]',
+            '[DATASOURCE]'
+        );
+        $restoreTemplateBackupSelectionConfig->setDataSource($backupSelectionConfigDataSource);
+        $restoreTemplate->setBackupSelectionConfig($restoreTemplateBackupSelectionConfig);
+        $restoreTemplateRestoreProperties = new Struct();
+        $restoreTemplate->setRestoreProperties($restoreTemplateRestoreProperties);
+        $request = (new UpdateRestoreTemplateRequest())->setRestoreTemplate($restoreTemplate);
+        $response = $gapicClient->updateRestoreTemplate($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateRestoreTemplateTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -4383,7 +7637,7 @@ class BackupDRClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createBackupPlanAsyncTest()
+    public function createAutoProtectionPolicyAsyncTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -4400,50 +7654,38 @@ class BackupDRClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createBackupPlanTest');
+        $incompleteOperation->setName('operations/createAutoProtectionPolicyTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $description = 'description-1724546052';
-        $resourceType = 'resourceType979623115';
         $etag = 'etag3123477';
-        $backupVault = 'backupVault353808757';
-        $backupVaultServiceAccount = 'backupVaultServiceAccount-1170477095';
-        $logRetentionDays = 1566369587;
-        $revisionId = 'revisionId513861631';
-        $revisionName = 'revisionName-100062097';
-        $expectedResponse = new BackupPlan();
+        $expectedResponse = new AutoProtectionPolicy();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
-        $expectedResponse->setResourceType($resourceType);
         $expectedResponse->setEtag($etag);
-        $expectedResponse->setBackupVault($backupVault);
-        $expectedResponse->setBackupVaultServiceAccount($backupVaultServiceAccount);
-        $expectedResponse->setLogRetentionDays($logRetentionDays);
-        $expectedResponse->setRevisionId($revisionId);
-        $expectedResponse->setRevisionName($revisionName);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/createBackupPlanTest');
+        $completeOperation->setName('operations/createAutoProtectionPolicyTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $backupPlanId = 'backupPlanId-25762700';
-        $backupPlan = new BackupPlan();
-        $backupPlanBackupRules = [];
-        $backupPlan->setBackupRules($backupPlanBackupRules);
-        $backupPlanResourceType = 'backupPlanResourceType1515155475';
-        $backupPlan->setResourceType($backupPlanResourceType);
-        $backupPlanBackupVault = $gapicClient->backupVaultName('[PROJECT]', '[LOCATION]', '[BACKUPVAULT]');
-        $backupPlan->setBackupVault($backupPlanBackupVault);
-        $request = (new CreateBackupPlanRequest())
+        $autoProtectionPolicyId = 'autoProtectionPolicyId1809805810';
+        $autoProtectionPolicy = new AutoProtectionPolicy();
+        $autoProtectionPolicyBackupPlanDetails = [];
+        $autoProtectionPolicy->setBackupPlanDetails($autoProtectionPolicyBackupPlanDetails);
+        $autoProtectionPolicyCriteria = new Criteria();
+        $criteriaMatchingConditions = [];
+        $autoProtectionPolicyCriteria->setMatchingConditions($criteriaMatchingConditions);
+        $autoProtectionPolicy->setCriteria($autoProtectionPolicyCriteria);
+        $request = (new CreateAutoProtectionPolicyRequest())
             ->setParent($formattedParent)
-            ->setBackupPlanId($backupPlanId)
-            ->setBackupPlan($backupPlan);
-        $response = $gapicClient->createBackupPlanAsync($request)->wait();
+            ->setAutoProtectionPolicyId($autoProtectionPolicyId)
+            ->setAutoProtectionPolicy($autoProtectionPolicy);
+        $response = $gapicClient->createAutoProtectionPolicyAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -4452,15 +7694,15 @@ class BackupDRClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/CreateBackupPlan', $actualApiFuncCall);
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/CreateAutoProtectionPolicy', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackupPlanId();
-        $this->assertProtobufEquals($backupPlanId, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackupPlan();
-        $this->assertProtobufEquals($backupPlan, $actualValue);
+        $actualValue = $actualApiRequestObject->getAutoProtectionPolicyId();
+        $this->assertProtobufEquals($autoProtectionPolicyId, $actualValue);
+        $actualValue = $actualApiRequestObject->getAutoProtectionPolicy();
+        $this->assertProtobufEquals($autoProtectionPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createBackupPlanTest');
+        $expectedOperationsRequestObject->setName('operations/createAutoProtectionPolicyTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
