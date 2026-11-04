@@ -86,6 +86,25 @@ class ReadmeTest extends TestCase
         );
     }
 
+    public function testExampleWithMlDsa()
+    {
+        if (PHP_VERSION_ID < 80400 || OPENSSL_VERSION_NUMBER < 0x30500000) {
+            $this->markTestSkipped('ML-DSA requires PHP 8.4+ and OpenSSL 3.5+');
+        }
+
+        $codeblock = $this->extractCodeBlock('Example with ML-DSA (post-quantum signature)');
+
+        $codeblock->replace('/path/to/ml-dsa-65-private.pem', __DIR__ . '/data/ml-dsa-65-private.pem');
+        $codeblock->replace('/path/to/ml-dsa-65-public.pem', __DIR__ . '/data/ml-dsa-65-public.pem');
+
+        $output = $codeblock->invoke();
+
+        $this->assertStringContainsString(
+            "Decode:\n" . print_r($this->payload, true),
+            $output
+        );
+    }
+
     public function testExampleWithMultipleKeys()
     {
         $codeblock = $this->extractCodeBlock('Example with multiple keys');
