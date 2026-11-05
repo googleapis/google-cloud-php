@@ -10,7 +10,6 @@ jobs:
   backwards-compatibility-check:
     name: "Release Checks: Breaking Change Detector"
     runs-on: ubuntu-latest
-    continue-on-error: ${{ contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -26,6 +25,7 @@ jobs:
           composer install -d dev --no-interaction --no-progress
       - name: "Check for BC breaks"
         if: github.event.pull_request.user.login != 'release-please[bot]'
+        continue-on-error: ${{ contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
         env:
           HAS_BC_LABEL: ${{ contains(github.event.pull_request.title, '!:') }}
         run: |
