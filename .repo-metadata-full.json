@@ -1424,6 +1424,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "run"
     },
+    "SaasPlatformSaasServiceMgmt": {
+        "language": "php",
+        "distribution_name": "google/cloud-saasplatform-saasservicemgmt",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-saasplatform-saasservicemgmt/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "saasservicemgmt"
+    },
     "Scheduler": {
         "language": "php",
         "distribution_name": "google/cloud-scheduler",

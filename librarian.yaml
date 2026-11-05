@@ -1635,6 +1635,16 @@ libraries:
             - google/cloud/location/locations.proto
     copyright_year: "2026"
     output: Run
+  - name: saasplatform-saasservicemgmt
+    version: 0.0.0
+    apis:
+      - path: google/cloud/saasplatform/saasservicemgmt/v1
+        php:
+          additional_protos:
+            - google/cloud/location/locations.proto
+          staging_subdir: v1
+    copyright_year: "2026"
+    output: SaasPlatformSaasServiceMgmt
   - name: scheduler
     version: 2.3.1
     apis:
