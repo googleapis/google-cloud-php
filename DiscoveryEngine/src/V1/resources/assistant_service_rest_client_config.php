@@ -23,6 +23,54 @@
 return [
     'interfaces' => [
         'google.cloud.discoveryengine.v1.AssistantService' => [
+            'CreateAssistant' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/collections/*/engines/*}/assistants',
+                'body' => 'assistant',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'assistant_id',
+                ],
+            ],
+            'DeleteAssistant' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/engines/*/assistants/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAssistant' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/engines/*/assistants/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAssistants' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/collections/*/engines/*}/assistants',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'StreamAssist' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/engines/*/assistants/*}:streamAssist',
@@ -30,6 +78,19 @@ return [
                 'placeholders' => [
                     'name' => [
                         'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateAssistant' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{assistant.name=projects/*/locations/*/collections/*/engines/*/assistants/*}',
+                'body' => 'assistant',
+                'placeholders' => [
+                    'assistant.name' => [
+                        'getters' => [
+                            'getAssistant',
                             'getName',
                         ],
                     ],
@@ -97,6 +158,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/dataStores/*/siteSearchEngine/targetSites/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/engines/*/assistants/*/agents/*/operations/*}',
                     ],
                     [
                         'method' => 'get',

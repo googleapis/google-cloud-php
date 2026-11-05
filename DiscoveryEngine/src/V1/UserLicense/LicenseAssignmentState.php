@@ -48,6 +48,12 @@ class LicenseAssignmentState
      * Generated from protobuf enum <code>NO_LICENSE_ATTEMPTED_LOGIN = 4;</code>
      */
     const NO_LICENSE_ATTEMPTED_LOGIN = 4;
+    /**
+     * User is blocked from assigning a license.
+     *
+     * Generated from protobuf enum <code>BLOCKED = 5;</code>
+     */
+    const BLOCKED = 5;
 
     private static $valueToName = [
         self::LICENSE_ASSIGNMENT_STATE_UNSPECIFIED => 'LICENSE_ASSIGNMENT_STATE_UNSPECIFIED',
@@ -55,6 +61,7 @@ class LicenseAssignmentState
         self::UNASSIGNED => 'UNASSIGNED',
         self::NO_LICENSE => 'NO_LICENSE',
         self::NO_LICENSE_ATTEMPTED_LOGIN => 'NO_LICENSE_ATTEMPTED_LOGIN',
+        self::BLOCKED => 'BLOCKED',
     ];
 
     public static function name($value)

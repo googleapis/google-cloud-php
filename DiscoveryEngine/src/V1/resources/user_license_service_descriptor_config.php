@@ -42,6 +42,18 @@ return [
                     ],
                 ],
             ],
+            'ListLicenseConfigsUsageStats' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\DiscoveryEngine\V1\ListLicenseConfigsUsageStatsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListUserLicenses' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

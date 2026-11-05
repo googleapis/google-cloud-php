@@ -28,6 +28,16 @@
                 }
             },
             "methods": {
+                "AddGitRepositoryLinkPullRequestComment": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "AddGitRepositoryLinkPullRequestReviewComment": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "CreateAccountConnector": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
@@ -68,6 +78,11 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "DiffGitRepositoryLinkCommit": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "FetchAccessToken": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
@@ -79,6 +94,31 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "FetchGitRefs": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "FetchGitRepositoryLinkCommit": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "FetchGitRepositoryLinkCommitList": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "FetchGitRepositoryLinkFileBlame": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "FetchGitRepositoryLinkPullRequest": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "FetchGitRepositoryLinkPullRequestList": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
@@ -139,6 +179,16 @@
                     "retry_params_name": "no_retry_params"
                 },
                 "ListUsers": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "ModifyGitRepositoryLinkPullRequest": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "OpenGitRepositoryLinkPullRequest": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"

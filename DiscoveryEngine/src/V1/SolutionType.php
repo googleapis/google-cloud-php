@@ -45,6 +45,12 @@ class SolutionType
      * Generated from protobuf enum <code>SOLUTION_TYPE_GENERATIVE_CHAT = 4;</code>
      */
     const SOLUTION_TYPE_GENERATIVE_CHAT = 4;
+    /**
+     * Used for AI Mode.
+     *
+     * Generated from protobuf enum <code>SOLUTION_TYPE_AI_MODE = 5;</code>
+     */
+    const SOLUTION_TYPE_AI_MODE = 5;
 
     private static $valueToName = [
         self::SOLUTION_TYPE_UNSPECIFIED => 'SOLUTION_TYPE_UNSPECIFIED',
@@ -52,6 +58,7 @@ class SolutionType
         self::SOLUTION_TYPE_SEARCH => 'SOLUTION_TYPE_SEARCH',
         self::SOLUTION_TYPE_CHAT => 'SOLUTION_TYPE_CHAT',
         self::SOLUTION_TYPE_GENERATIVE_CHAT => 'SOLUTION_TYPE_GENERATIVE_CHAT',
+        self::SOLUTION_TYPE_AI_MODE => 'SOLUTION_TYPE_AI_MODE',
     ];
 
     public static function name($value)

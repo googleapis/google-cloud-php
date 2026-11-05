@@ -61,10 +61,11 @@ use Google\Rpc\Status;
  * @param string $parent                             Target project and location to make a call.
  *
  *                                                   Format:
- *                                                   * `projects/{project-id}`
- *                                                   * `projects/{project-id}/locations/{location-id}`
  *
- *                                                   If no location is specified, a region will be chosen automatically.
+ *                                                   * `projects/{project-id}`
+ *                                                   * `projects/{project-id}/locations/-`
+ *
+ *                                                   Regional `{location-id}` values are not supported.
  * @param int    $modelConfigsInputConfigDataFormat  The input data format.
  * @param int    $modelConfigsOutputConfigDataFormat The output data format.
  */

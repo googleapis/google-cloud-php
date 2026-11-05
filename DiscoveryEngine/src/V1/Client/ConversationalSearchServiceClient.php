@@ -110,7 +110,11 @@ final class ConversationalSearchServiceClient
      *
      * @internal
      */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/discoveryengine.readwrite',
+        'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+    ];
 
     private static function getClientDefaults()
     {
@@ -501,6 +505,37 @@ final class ConversationalSearchServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_engine_collaborative_project_session resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     * @param string $collaborativeProject
+     * @param string $session
+     *
+     * @return string The formatted project_location_collection_engine_collaborative_project_session resource.
+     */
+    public static function projectLocationCollectionEngineCollaborativeProjectSessionName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine,
+        string $collaborativeProject,
+        string $session
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionEngineCollaborativeProjectSession')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
+            'collaborative_project' => $collaborativeProject,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_collection_engine_conversation resource.
      *
      * @param string $project
@@ -858,6 +893,7 @@ final class ConversationalSearchServiceClient
      * - projectLocationCollectionDataStoreServingConfig: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config}
      * - projectLocationCollectionDataStoreSession: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/sessions/{session}
      * - projectLocationCollectionDataStoreSessionAnswer: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/sessions/{session}/answers/{answer}
+     * - projectLocationCollectionEngineCollaborativeProjectSession: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/collaborativeProjects/{collaborative_project}/sessions/{session}
      * - projectLocationCollectionEngineConversation: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/conversations/{conversation}
      * - projectLocationCollectionEngineServingConfig: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config}
      * - projectLocationCollectionEngineSession: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}

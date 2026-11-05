@@ -23,6 +23,12 @@ class IdentityMappingEntry extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string external_identity = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $external_identity = '';
+    /**
+     * Optional. The name of the external identity.
+     *
+     * Generated from protobuf field <code>string external_identity_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $external_identity_name = '';
     protected $identity_provider_id;
 
     /**
@@ -46,6 +52,8 @@ class IdentityMappingEntry extends \Google\Protobuf\Internal\Message
      *     @type string $external_identity
      *           Required. Identity outside the customer identity provider.
      *           The length limit of external identity will be of 100 characters.
+     *     @type string $external_identity_name
+     *           Optional. The name of the external identity.
      * }
      */
     public function __construct($data = NULL) {
@@ -155,6 +163,32 @@ class IdentityMappingEntry extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->external_identity = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the external identity.
+     *
+     * Generated from protobuf field <code>string external_identity_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getExternalIdentityName()
+    {
+        return $this->external_identity_name;
+    }
+
+    /**
+     * Optional. The name of the external identity.
+     *
+     * Generated from protobuf field <code>string external_identity_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setExternalIdentityName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->external_identity_name = $var;
 
         return $this;
     }

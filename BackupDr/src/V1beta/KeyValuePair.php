@@ -26,7 +26,7 @@ class KeyValuePair extends \Google\Protobuf\Internal\Message
     protected $key = '';
     /**
      * Required. The values of the label to match.
-     * There will be explicit “OR” between values of array.
+     * There will be explicit "OR" between values of array.
      * Each value must be in the format `{label_value}`.
      * The value must match the regex
      * Format: `[\\p{Ll}\\p{Lo}\\p{N}_-]{1,63}`.
@@ -48,7 +48,7 @@ class KeyValuePair extends \Google\Protobuf\Internal\Message
      *           Format:`[\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}`.
      *     @type string[] $values
      *           Required. The values of the label to match.
-     *           There will be explicit “OR” between values of array.
+     *           There will be explicit "OR" between values of array.
      *           Each value must be in the format `{label_value}`.
      *           The value must match the regex
      *           Format: `[\\p{Ll}\\p{Lo}\\p{N}_-]{1,63}`.
@@ -93,7 +93,7 @@ class KeyValuePair extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The values of the label to match.
-     * There will be explicit “OR” between values of array.
+     * There will be explicit "OR" between values of array.
      * Each value must be in the format `{label_value}`.
      * The value must match the regex
      * Format: `[\\p{Ll}\\p{Lo}\\p{N}_-]{1,63}`.
@@ -108,7 +108,7 @@ class KeyValuePair extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The values of the label to match.
-     * There will be explicit “OR” between values of array.
+     * There will be explicit "OR" between values of array.
      * Each value must be in the format `{label_value}`.
      * The value must match the regex
      * Format: `[\\p{Ll}\\p{Lo}\\p{N}_-]{1,63}`.

@@ -47,10 +47,11 @@ use Google\Maps\RouteOptimization\V1\OptimizeToursResponse;
  * @param string $parent Target project or location to make a call.
  *
  *                       Format:
- *                       * `projects/{project-id}`
- *                       * `projects/{project-id}/locations/{location-id}`
  *
- *                       If no location is specified, a region will be chosen automatically.
+ *                       * `projects/{project-id}`
+ *                       * `projects/{project-id}/locations/-`
+ *
+ *                       Regional `{location-id}` values are not supported.
  */
 function optimize_tours_sample(string $parent): void
 {

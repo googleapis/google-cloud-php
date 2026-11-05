@@ -32,7 +32,8 @@ use Google\Cloud\DiscoveryEngine\V1\UserLicense;
 /**
  * Lists the User Licenses.
  *
- * @param string $formattedParent The parent [UserStore][] resource name, format:
+ * @param string $formattedParent The parent [UserStore][google.cloud.discoveryengine.v1.UserStore]
+ *                                resource name, format:
  *                                `projects/{project}/locations/{location}/userStores/{user_store_id}`. Please see
  *                                {@see UserLicenseServiceClient::userStoreName()} for help formatting this field.
  */

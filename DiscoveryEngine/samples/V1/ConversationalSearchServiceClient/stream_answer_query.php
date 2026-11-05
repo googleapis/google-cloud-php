@@ -43,6 +43,12 @@ use Google\Cloud\DiscoveryEngine\V1\Query;
  *                                       `projects/&#42;/locations/global/collections/default_collection/engines/&#42;/servingConfigs/default_serving_config`,
  *                                       or
  *                                       `projects/&#42;/locations/global/collections/default_collection/dataStores/&#42;/servingConfigs/default_serving_config`.
+ *
+ *                                       Or the resource name of the agent engine serving config, such as:
+ *                                       `projects/&#42;/locations/global/collections/default_collection/engines/&#42;/servingConfigs/default_agent_answer`.
+ *                                       (use when `enable_agent_invocation` set to true, and you have custom
+ *                                       `AI_MODE` agent engine configured)
+ *
  *                                       This field is used to identify the serving configuration name, set
  *                                       of models used to make the search. Please see
  *                                       {@see ConversationalSearchServiceClient::servingConfigName()} for help formatting this field.

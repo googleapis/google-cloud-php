@@ -29,6 +29,8 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DiscoveryEngine\V1\BatchUpdateUserLicensesRequest;
 use Google\Cloud\DiscoveryEngine\V1\BatchUpdateUserLicensesResponse;
 use Google\Cloud\DiscoveryEngine\V1\Client\UserLicenseServiceClient;
+use Google\Cloud\DiscoveryEngine\V1\ListLicenseConfigsUsageStatsRequest;
+use Google\Cloud\DiscoveryEngine\V1\ListLicenseConfigsUsageStatsResponse;
 use Google\Cloud\DiscoveryEngine\V1\ListUserLicensesRequest;
 use Google\Cloud\DiscoveryEngine\V1\ListUserLicensesResponse;
 use Google\Cloud\DiscoveryEngine\V1\UserLicense;
@@ -192,6 +194,72 @@ class UserLicenseServiceClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function listLicenseConfigsUsageStatsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ListLicenseConfigsUsageStatsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->userStoreName('[PROJECT]', '[LOCATION]', '[USER_STORE]');
+        $request = (new ListLicenseConfigsUsageStatsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listLicenseConfigsUsageStats($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.discoveryengine.v1.UserLicenseService/ListLicenseConfigsUsageStats',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listLicenseConfigsUsageStatsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->userStoreName('[PROJECT]', '[LOCATION]', '[USER_STORE]');
+        $request = (new ListLicenseConfigsUsageStatsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listLicenseConfigsUsageStats($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */

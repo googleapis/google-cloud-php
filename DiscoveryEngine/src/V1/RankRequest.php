@@ -46,7 +46,7 @@ class RankRequest extends \Google\Protobuf\Internal\Message
      */
     protected $query = '';
     /**
-     * Required. A list of records to rank. At most 200 records to rank.
+     * Required. A list of records to rank.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.RankingRecord records = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -99,7 +99,7 @@ class RankRequest extends \Google\Protobuf\Internal\Message
      *     @type string $query
      *           The query to use.
      *     @type \Google\Cloud\DiscoveryEngine\V1\RankingRecord[] $records
-     *           Required. A list of records to rank. At most 200 records to rank.
+     *           Required. A list of records to rank.
      *     @type bool $ignore_record_details_in_response
      *           If true, the response will contain only record ID and score. By default, it
      *           is false, the response will contain record details.
@@ -241,7 +241,7 @@ class RankRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A list of records to rank. At most 200 records to rank.
+     * Required. A list of records to rank.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.RankingRecord records = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\RankingRecord>
@@ -252,7 +252,7 @@ class RankRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A list of records to rank. At most 200 records to rank.
+     * Required. A list of records to rank.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.RankingRecord records = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\DiscoveryEngine\V1\RankingRecord[] $var

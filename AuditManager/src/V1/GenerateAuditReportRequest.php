@@ -48,6 +48,15 @@ class GenerateAuditReportRequest extends \Google\Protobuf\Internal\Message
      */
     protected $compliance_framework = '';
     /**
+     * Optional. Maps dynamic parameter overrides by Cloud Control resource name
+     * at execution time. For example,
+     * `{"organizations/123/locations/global/cloudControls/control-1":
+     * {parameters: [...]}}`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.auditmanager.v1.ParameterOverrides> parameter_overrides = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $parameter_overrides;
+    /**
      * Optional. If `true`, only validates the request and does not generate the
      * audit report. This executes standard request validation (such as schema,
      * framework existence, scope, and IAM checks) and skips the apply phase.
@@ -119,6 +128,11 @@ class GenerateAuditReportRequest extends \Google\Protobuf\Internal\Message
      *     @type string $compliance_framework
      *           Required. The framework that's used for the audit report. For example,
      *           `NIST_800_53`.
+     *     @type array|\Google\Protobuf\Internal\MapField $parameter_overrides
+     *           Optional. Maps dynamic parameter overrides by Cloud Control resource name
+     *           at execution time. For example,
+     *           `{"organizations/123/locations/global/cloudControls/control-1":
+     *           {parameters: [...]}}`
      *     @type bool $validate_only
      *           Optional. If `true`, only validates the request and does not generate the
      *           audit report. This executes standard request validation (such as schema,
@@ -292,6 +306,38 @@ class GenerateAuditReportRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->compliance_framework = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Maps dynamic parameter overrides by Cloud Control resource name
+     * at execution time. For example,
+     * `{"organizations/123/locations/global/cloudControls/control-1":
+     * {parameters: [...]}}`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.auditmanager.v1.ParameterOverrides> parameter_overrides = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getParameterOverrides()
+    {
+        return $this->parameter_overrides;
+    }
+
+    /**
+     * Optional. Maps dynamic parameter overrides by Cloud Control resource name
+     * at execution time. For example,
+     * `{"organizations/123/locations/global/cloudControls/control-1":
+     * {parameters: [...]}}`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.auditmanager.v1.ParameterOverrides> parameter_overrides = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setParameterOverrides($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AuditManager\V1\ParameterOverrides::class);
+        $this->parameter_overrides = $arr;
 
         return $this;
     }

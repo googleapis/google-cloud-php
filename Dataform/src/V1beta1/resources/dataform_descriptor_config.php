@@ -23,6 +23,25 @@
 return [
     'interfaces' => [
         'google.cloud.dataform.v1beta1.Dataform' => [
+            'CreateCompilationResultLongRunning' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Dataform\V1beta1\CompilationResult',
+                    'metadataReturnType' => '\Google\Cloud\Dataform\V1beta1\CreateCompilationResultMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteFolderTree' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
@@ -461,6 +480,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Dataform\V1beta1\FetchWorkspaceBranchesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchWorkspaceHistory' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getCommits',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\FetchWorkspaceHistoryResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -1243,6 +1282,7 @@ return [
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'templateMap' => [
+                'accountConnector' => 'projects/{project}/locations/{location}/accountConnectors/{account_connector}',
                 'compilationResult' => 'projects/{project}/locations/{location}/repositories/{repository}/compilationResults/{compilation_result}',
                 'config' => 'projects/{project}/locations/{location}/config',
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',

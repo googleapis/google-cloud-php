@@ -42,6 +42,12 @@ class ProvisionProjectRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string data_use_terms_version = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $data_use_terms_version = '';
+    /**
+     * Optional. Parameters for Agentspace.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.ProvisionProjectRequest.SaasParams saas_params = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $saas_params = null;
 
     /**
      * @param string $name Required. Full resource name of a
@@ -78,6 +84,8 @@ class ProvisionProjectRequest extends \Google\Protobuf\Internal\Message
      *           use](https://cloud.google.com/retail/data-use-terms) that caller has read
      *           and would like to give consent to.
      *           Acceptable version is `2022-11-23`, and this may change over time.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\ProvisionProjectRequest\SaasParams $saas_params
+     *           Optional. Parameters for Agentspace.
      * }
      */
     public function __construct($data = NULL) {
@@ -173,6 +181,42 @@ class ProvisionProjectRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->data_use_terms_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Parameters for Agentspace.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.ProvisionProjectRequest.SaasParams saas_params = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\ProvisionProjectRequest\SaasParams|null
+     */
+    public function getSaasParams()
+    {
+        return $this->saas_params;
+    }
+
+    public function hasSaasParams()
+    {
+        return isset($this->saas_params);
+    }
+
+    public function clearSaasParams()
+    {
+        unset($this->saas_params);
+    }
+
+    /**
+     * Optional. Parameters for Agentspace.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.ProvisionProjectRequest.SaasParams saas_params = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\ProvisionProjectRequest\SaasParams $var
+     * @return $this
+     */
+    public function setSaasParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\ProvisionProjectRequest\SaasParams::class);
+        $this->saas_params = $var;
 
         return $this;
     }

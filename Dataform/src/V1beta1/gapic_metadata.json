@@ -40,6 +40,11 @@
                                 "createCompilationResult"
                             ]
                         },
+                        "CreateCompilationResultLongRunning": {
+                            "methods": [
+                                "createCompilationResultLongRunning"
+                            ]
+                        },
                         "CreateFolder": {
                             "methods": [
                                 "createFolder"
@@ -163,6 +168,11 @@
                         "FetchWorkspaceBranches": {
                             "methods": [
                                 "fetchWorkspaceBranches"
+                            ]
+                        },
+                        "FetchWorkspaceHistory": {
+                            "methods": [
+                                "fetchWorkspaceHistory"
                             ]
                         },
                         "GetCompilationResult": {

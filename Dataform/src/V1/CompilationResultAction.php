@@ -63,6 +63,8 @@ class CompilationResultAction extends \Google\Protobuf\Internal\Message
      *           The notebook executed by this action.
      *     @type \Google\Cloud\Dataform\V1\CompilationResultAction\DataPreparation $data_preparation
      *           The data preparation executed by this action.
+     *     @type \Google\Cloud\Dataform\V1\CompilationResultAction\BigQueryUnitTest $bigquery_unit_test
+     *           The unit test executed by this action.
      *     @type \Google\Cloud\Dataform\V1\Target $target
      *           This action's identifier. Unique within the compilation result.
      *     @type \Google\Cloud\Dataform\V1\Target $canonical_target
@@ -264,6 +266,37 @@ class CompilationResultAction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1\CompilationResultAction\DataPreparation::class);
         $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * The unit test executed by this action.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1.CompilationResultAction.BigQueryUnitTest bigquery_unit_test = 11;</code>
+     * @return \Google\Cloud\Dataform\V1\CompilationResultAction\BigQueryUnitTest|null
+     */
+    public function getBigqueryUnitTest()
+    {
+        return $this->readOneof(11);
+    }
+
+    public function hasBigqueryUnitTest()
+    {
+        return $this->hasOneof(11);
+    }
+
+    /**
+     * The unit test executed by this action.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1.CompilationResultAction.BigQueryUnitTest bigquery_unit_test = 11;</code>
+     * @param \Google\Cloud\Dataform\V1\CompilationResultAction\BigQueryUnitTest $var
+     * @return $this
+     */
+    public function setBigqueryUnitTest($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1\CompilationResultAction\BigQueryUnitTest::class);
+        $this->writeOneof(11, $var);
 
         return $this;
     }

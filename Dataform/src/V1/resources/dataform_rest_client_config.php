@@ -82,6 +82,18 @@ return [
                     ],
                 ],
             ],
+            'CreateCompilationResultLongRunning' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/repositories/*}/compilationResults:createLongRunning',
+                'body' => 'compilation_result',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateFolder' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/folders',

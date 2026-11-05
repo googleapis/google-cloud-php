@@ -16,6 +16,10 @@ use Google\Protobuf\RepeatedField;
 class DocumentMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AssistantGroundedContent.TextGroundingMetadata.Reference.DocumentMetadata.Language language = 8;</code>
+     */
+    protected $language = 0;
+    /**
      * Document resource name.
      *
      * Generated from protobuf field <code>optional string document = 1 [(.google.api.resource_reference) = {</code>
@@ -48,6 +52,13 @@ class DocumentMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string domain = 5;</code>
      */
     protected $domain = null;
+    /**
+     * The mime type of the document.
+     * https://www.iana.org/assignments/media-types/media-types.xhtml.
+     *
+     * Generated from protobuf field <code>optional string mime_type = 7;</code>
+     */
+    protected $mime_type = null;
 
     /**
      * Constructor.
@@ -55,6 +66,7 @@ class DocumentMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type int $language
      *     @type string $document
      *           Document resource name.
      *     @type string $uri
@@ -68,11 +80,36 @@ class DocumentMetadata extends \Google\Protobuf\Internal\Message
      *           Domain name from the document URI. Note that the `uri` field may
      *           contain a URL that redirects to the actual website, in which case
      *           this will contain the domain name of the target site.
+     *     @type string $mime_type
+     *           The mime type of the document.
+     *           https://www.iana.org/assignments/media-types/media-types.xhtml.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Discoveryengine\V1\AssistAnswer::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AssistantGroundedContent.TextGroundingMetadata.Reference.DocumentMetadata.Language language = 8;</code>
+     * @return int
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AssistantGroundedContent.TextGroundingMetadata.Reference.DocumentMetadata.Language language = 8;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setLanguage($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata\Reference\DocumentMetadata\Language::class);
+        $this->language = $var;
+
+        return $this;
     }
 
     /**
@@ -257,6 +294,44 @@ class DocumentMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->domain = $var;
+
+        return $this;
+    }
+
+    /**
+     * The mime type of the document.
+     * https://www.iana.org/assignments/media-types/media-types.xhtml.
+     *
+     * Generated from protobuf field <code>optional string mime_type = 7;</code>
+     * @return string
+     */
+    public function getMimeType()
+    {
+        return isset($this->mime_type) ? $this->mime_type : '';
+    }
+
+    public function hasMimeType()
+    {
+        return isset($this->mime_type);
+    }
+
+    public function clearMimeType()
+    {
+        unset($this->mime_type);
+    }
+
+    /**
+     * The mime type of the document.
+     * https://www.iana.org/assignments/media-types/media-types.xhtml.
+     *
+     * Generated from protobuf field <code>optional string mime_type = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMimeType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->mime_type = $var;
 
         return $this;
     }

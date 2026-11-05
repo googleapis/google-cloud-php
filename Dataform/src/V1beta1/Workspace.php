@@ -77,7 +77,7 @@ class Workspace extends \Google\Protobuf\Internal\Message
      * checkout for this workspace. If defined and greater than 0, the Git
      * repository will be created as a shallow clone with the given depth,
      * otherwise a full clone will be performed. This field is available only for
-     * GitHub, Gitlab and 1p repositories with enabled branch management.
+     * GitHub, GitLab and 1p repositories with enabled branch management.
      *
      * Generated from protobuf field <code>int32 depth = 10 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      */
@@ -127,7 +127,7 @@ class Workspace extends \Google\Protobuf\Internal\Message
      *           checkout for this workspace. If defined and greater than 0, the Git
      *           repository will be created as a shallow clone with the given depth,
      *           otherwise a full clone will be performed. This field is available only for
-     *           GitHub, Gitlab and 1p repositories with enabled branch management.
+     *           GitHub, GitLab and 1p repositories with enabled branch management.
      *     @type bool $shallow
      *           Output only. If set to true, the workspace was created as a shallow clone.
      *           Will be set to true if the depth field is set to a value greater than 0,
@@ -440,7 +440,7 @@ class Workspace extends \Google\Protobuf\Internal\Message
      * checkout for this workspace. If defined and greater than 0, the Git
      * repository will be created as a shallow clone with the given depth,
      * otherwise a full clone will be performed. This field is available only for
-     * GitHub, Gitlab and 1p repositories with enabled branch management.
+     * GitHub, GitLab and 1p repositories with enabled branch management.
      *
      * Generated from protobuf field <code>int32 depth = 10 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return int
@@ -455,7 +455,7 @@ class Workspace extends \Google\Protobuf\Internal\Message
      * checkout for this workspace. If defined and greater than 0, the Git
      * repository will be created as a shallow clone with the given depth,
      * otherwise a full clone will be performed. This field is available only for
-     * GitHub, Gitlab and 1p repositories with enabled branch management.
+     * GitHub, GitLab and 1p repositories with enabled branch management.
      *
      * Generated from protobuf field <code>int32 depth = 10 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param int $var
