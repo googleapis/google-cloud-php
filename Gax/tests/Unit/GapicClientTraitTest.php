@@ -39,12 +39,15 @@ use Google\ApiCore\Call;
 use Google\ApiCore\ClientStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\IamProviderInterface;
+use Google\ApiCore\LongRunning\OperationsClient as DeprecatedOperationsClient;
+use Google\ApiCore\LongRunningOperationProviderInterface;
 use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ServerStream;
+use Google\ApiCore\ServiceInterface;
 use Google\ApiCore\Testing\MockRequest;
 use Google\ApiCore\Testing\MockRequestBody;
 use Google\ApiCore\Testing\MockResponse;
@@ -54,6 +57,13 @@ use Google\ApiCore\Transport\RestTransport;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\LongRunning\Client\OperationsClient;
+use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Grpc\Gcp\Config;
 use GuzzleHttp\Promise\FulfilledPromise;
@@ -1968,6 +1978,113 @@ class GapicClientTraitTest extends TestCase
             DefaultScopeAndAudienceGapicClient::getServiceScopes()
         );
     }
+
+    public function testCreateOperationsClientDefaultClass()
+    {
+        $v1Client = new StubGapicClient();
+        $this->assertInstanceOf(
+            DeprecatedOperationsClient::class,
+            $v1Client->createOperationsClient([])
+        );
+
+        $v2Client = new GapicV2SurfaceClient();
+        $method = new \ReflectionMethod($v2Client, 'createOperationsClient');
+        $this->assertInstanceOf(
+            OperationsClient::class,
+            $method->invoke($v2Client, [])
+        );
+    }
+
+    public function testServiceInterface()
+    {
+        $transport = $this->prophesize(TransportInterface::class);
+        $transport->close()->shouldBeCalledOnce();
+
+        $client = new GapicV2SurfaceClient([
+            'transport' => $transport->reveal(),
+        ]);
+
+        $this->assertInstanceOf(ServiceInterface::class, $client);
+        $this->assertEquals([], GapicV2SurfaceClient::getServiceScopes());
+        $client->close();
+    }
+
+    public function testLongRunningOperationProviderInterface()
+    {
+        $operationsClient = $this->prophesize(OperationsClient::class);
+        $operationsClient->getOperation(
+            Argument::that(fn (GetOperationRequest $req) => $req->getName() === 'operations/test-op')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new Operation(['name' => 'operations/test-op', 'done' => true]));
+
+        $client = new GapicV2SurfaceClient([
+            'operationsClient' => $operationsClient->reveal(),
+        ]);
+
+        $this->assertInstanceOf(LongRunningOperationProviderInterface::class, $client);
+        $this->assertSame($operationsClient->reveal(), $client->getOperationsClient());
+
+        $operation = $client->resumeOperation('operations/test-op');
+        $this->assertInstanceOf(OperationResponse::class, $operation);
+        $this->assertEquals('operations/test-op', $operation->getName());
+        $this->assertTrue($operation->isDone());
+    }
+
+    public function testIamProviderInterface()
+    {
+        $policy = new Policy();
+        $permissionsResponse = new TestIamPermissionsResponse();
+
+        $transport = $this->prophesize(TransportInterface::class);
+        $transport->startUnaryCall(
+            Argument::that(fn (Call $call) => $call->getMethod() === 'test.interface.v1.api/GetIamPolicy'),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new FulfilledPromise($policy));
+        $transport->startUnaryCall(
+            Argument::that(fn (Call $call) => $call->getMethod() === 'test.interface.v1.api/SetIamPolicy'),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new FulfilledPromise($policy));
+        $transport->startUnaryCall(
+            Argument::that(fn (Call $call) => $call->getMethod() === 'test.interface.v1.api/TestIamPermissions'),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new FulfilledPromise($permissionsResponse));
+
+        $client = new GapicV2SurfaceClient([
+            'transport' => $transport->reveal(),
+        ]);
+        $client->set('descriptors', [
+            'GetIamPolicy' => [
+                'callType' => Call::UNARY_CALL,
+                'responseType' => Policy::class,
+            ],
+            'SetIamPolicy' => [
+                'callType' => Call::UNARY_CALL,
+                'responseType' => Policy::class,
+            ],
+            'TestIamPermissions' => [
+                'callType' => Call::UNARY_CALL,
+                'responseType' => TestIamPermissionsResponse::class,
+            ],
+        ]);
+        $retrySettings = RetrySettings::constructDefault();
+        $client->set('retrySettings', [
+            'GetIamPolicy' => $retrySettings,
+            'SetIamPolicy' => $retrySettings,
+            'TestIamPermissions' => $retrySettings,
+        ]);
+
+        $this->assertInstanceOf(IamProviderInterface::class, $client);
+        $this->assertSame($policy, $client->getIamPolicy(new GetIamPolicyRequest()));
+        $this->assertSame($policy, $client->setIamPolicy(new SetIamPolicyRequest()));
+        $this->assertSame($permissionsResponse, $client->testIamPermissions(new TestIamPermissionsRequest()));
+    }
 }
 
 class StubGapicClient
@@ -2158,7 +2275,7 @@ class CustomOperationsClient
     }
 }
 
-class GapicV2SurfaceClient
+class GapicV2SurfaceClient implements ServiceInterface, LongRunningOperationProviderInterface, IamProviderInterface
 {
     use GapicClientTrait {
         startCall as public;
@@ -2168,10 +2285,14 @@ class GapicV2SurfaceClient
         ClientDefaultsTrait::getClientDefaults insteadof GapicClientTrait;
     }
 
+    public static array $serviceScopes = [];
+    private OperationsClient $operationsClient;
+
     public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     public function getAgentHeader()
@@ -2179,4 +2300,33 @@ class GapicV2SurfaceClient
         return $this->agentHeader;
     }
 
+    public function getOperationsClient(): OperationsClient
+    {
+        return $this->operationsClient;
+    }
+
+    public function resumeOperation(string $operationName, ?string $methodName = null): OperationResponse
+    {
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+        return $operation;
+    }
+
+    public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
+    }
 }
