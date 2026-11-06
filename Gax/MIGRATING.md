@@ -58,7 +58,7 @@ Update your `google/gax` dependency to `^2.0`:
   - `__construct(string $operationName, object $operationsClient, array $options = [])` now requires non-null `$operationName` (`string`) and `$operationsClient` (`object`).
   - `getName()` now returns non-nullable `string`.
   - `getError()` now returns `?Google\Rpc\Status`.
-  - `getLastProtoResponse()` now returns `?Google\LongRunning\Operation`.
+  - `getLastProtoResponse()` now returns `?object` (annotated as `Operation|Message|null`), preserving the raw custom operation message (e.g. `Google\Cloud\Compute\V1\Operation`) for custom operation services such as Compute.
   - `getOperationsClient()` now returns `Google\LongRunning\Client\OperationsClient|Google\ApiCore\OperationsClientInterface`.
   - Custom operations clients (e.g., Compute's `ZoneOperationsClient`) and custom operation options are now encapsulated in `Google\ApiCore\CustomOperationsClient` (implementing `Google\ApiCore\OperationsClientInterface`), which normalizes custom operation proto responses into `Google\LongRunning\Operation`.
 
