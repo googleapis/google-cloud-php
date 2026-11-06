@@ -115,6 +115,7 @@ class OperationResponse
         array $options = []
     ) {
         $this->operationName = $operationName;
+        // @TODO: Remove check for OperationsClient once support for google/longrunning:0.4 is dropped
         $isStandardClient = $operationsClient instanceof OperationsClient
             || $operationsClient instanceof OperationsClientInterface;
         if (!$isStandardClient || CustomOperationsClient::hasCustomOptions($options)) {
