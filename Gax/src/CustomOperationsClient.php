@@ -37,15 +37,11 @@ namespace Google\ApiCore;
 use Google\LongRunning\CancelOperationRequest;
 use Google\LongRunning\DeleteOperationRequest;
 use Google\LongRunning\GetOperationRequest;
-use Google\LongRunning\Operation;
-use Google\Rpc\Code;
-use Google\Rpc\Status;
 use LogicException;
 
 /**
  * Adapter that wraps a custom operations client (e.g. Compute's ZoneOperationsClient)
- * to implement {@see \Google\ApiCore\OperationsClientWrapperInterface} and normalize custom operation messages
- * into {@see \Google\LongRunning\Operation}.
+ * to implement {@see \Google\ApiCore\OperationsClientWrapperInterface}.
  */
 class CustomOperationsClient implements OperationsClientWrapperInterface
 {
@@ -57,11 +53,6 @@ class CustomOperationsClient implements OperationsClientWrapperInterface
         'cancelOperationRequest',
         'deleteOperationRequest',
         'additionalOperationArguments',
-        'operationNameMethod',
-        'operationStatusMethod',
-        'operationStatusDoneValue',
-        'operationErrorCodeMethod',
-        'operationErrorMessageMethod',
     ];
 
     private object $client;
@@ -72,12 +63,6 @@ class CustomOperationsClient implements OperationsClientWrapperInterface
     private string $getOperationRequest;
     private ?string $cancelOperationRequest;
     private ?string $deleteOperationRequest;
-    private string $operationNameMethod;
-    private string $operationStatusMethod;
-    private mixed $operationStatusDoneValue;
-    private ?string $operationErrorCodeMethod;
-    private ?string $operationErrorMessageMethod;
-    private ?object $lastProtoResponse = null;
 
     public function __construct(object $client, array $options = [])
     {
@@ -90,11 +75,6 @@ class CustomOperationsClient implements OperationsClientWrapperInterface
             'cancelOperationRequest' => CancelOperationRequest::class,
             'deleteOperationRequest' => DeleteOperationRequest::class,
             'additionalOperationArguments' => [],
-            'operationNameMethod' => 'getName',
-            'operationStatusMethod' => 'getDone',
-            'operationStatusDoneValue' => true,
-            'operationErrorCodeMethod' => null,
-            'operationErrorMessageMethod' => null,
         ];
 
         $this->getOperationMethod = $options['getOperationMethod'];
@@ -104,11 +84,6 @@ class CustomOperationsClient implements OperationsClientWrapperInterface
         $this->cancelOperationRequest = $options['cancelOperationRequest'];
         $this->deleteOperationRequest = $options['deleteOperationRequest'];
         $this->additionalArgs = $options['additionalOperationArguments'];
-        $this->operationNameMethod = $options['operationNameMethod'];
-        $this->operationStatusMethod = $options['operationStatusMethod'];
-        $this->operationStatusDoneValue = $options['operationStatusDoneValue'];
-        $this->operationErrorCodeMethod = $options['operationErrorCodeMethod'];
-        $this->operationErrorMessageMethod = $options['operationErrorMessageMethod'];
     }
 
     public static function hasCustomOptions(array $options): bool
@@ -122,18 +97,14 @@ class CustomOperationsClient implements OperationsClientWrapperInterface
         return false;
     }
 
-    public function getOperation(GetOperationRequest $request, array $callOptions = []): Operation
+    public function getOperation(GetOperationRequest $request, array $callOptions = []): object
     {
-        $response = $this->operationsCall(
+        return $this->operationsCall(
             $this->getOperationMethod,
             $this->getOperationRequest,
             $request->getName(),
             $callOptions
         );
-
-        $this->lastProtoResponse = is_object($response) ? $response : null;
-
-        return $this->toOperation($response);
     }
 
     public function cancelOperation(CancelOperationRequest $request, array $callOptions = []): void
@@ -164,70 +135,9 @@ class CustomOperationsClient implements OperationsClientWrapperInterface
         );
     }
 
-    public function toOperation(?object $response): Operation
-    {
-        if (is_null($response)) {
-            return new Operation();
-        }
-
-        $this->lastProtoResponse = $response;
-
-        if ($response instanceof Operation) {
-            return $response;
-        }
-
-        $operation = new Operation();
-        if (method_exists($response, $this->operationNameMethod)) {
-            $name = $response->{$this->operationNameMethod}();
-            if (is_string($name)) {
-                $operation->setName($name);
-            }
-        }
-
-        if (!method_exists($response, $this->operationStatusMethod)) {
-            return $operation;
-        }
-
-        $status = $response->{$this->operationStatusMethod}();
-        $done = !is_null($status) && $status === $this->operationStatusDoneValue;
-        $operation->setDone($done);
-
-        if ($this->operationErrorCodeMethod || $this->operationErrorMessageMethod) {
-            $errorCode = $this->operationErrorCodeMethod
-                ? $response->{$this->operationErrorCodeMethod}()
-                : null;
-            if (!empty($errorCode)) {
-                $errorMessage = $this->operationErrorMessageMethod
-                    ? $response->{$this->operationErrorMessageMethod}()
-                    : '';
-                $operation->setError(
-                    (new Status())
-                        ->setCode(ApiStatus::rpcCodeFromHttpStatusCode($errorCode))
-                        ->setMessage((string) $errorMessage)
-                );
-            }
-        } elseif (method_exists($response, 'getError')) {
-            $error = $response->getError();
-            if (!empty($error)) {
-                $operation->setError(
-                    $error instanceof Status ? $error : (new Status())->setCode(Code::UNKNOWN)
-                );
-            }
-        } elseif ($done) {
-            throw new LogicException('Unable to determine operation error status for this service');
-        }
-
-        return $operation;
-    }
-
     public function getOperationsClient(): object
     {
         return $this->client;
-    }
-
-    public function getLastProtoResponse(): ?object
-    {
-        return $this->lastProtoResponse;
     }
 
     private function operationsCall(

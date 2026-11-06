@@ -34,17 +34,7 @@ declare(strict_types=1);
 
 namespace Google\ApiCore;
 
-use Google\LongRunning\Operation;
-use Google\Protobuf\Internal\Message;
-
 interface OperationsClientWrapperInterface extends OperationsClientInterface
 {
     public function getOperationsClient(): object;
-
-    /**
-     * @return Operation|Message|null
-     */
-    public function getLastProtoResponse(): ?object;
-
-    public function toOperation(?object $response): Operation;
 }

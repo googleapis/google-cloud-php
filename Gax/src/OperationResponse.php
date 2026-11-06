@@ -81,8 +81,13 @@ class OperationResponse
         'totalPollTimeoutMillis' => self::DEFAULT_MAX_POLLING_DURATION,
     ];
 
-    private ?Operation $lastProtoResponse;
+    private ?object $lastProtoResponse;
     private bool $deleted = false;
+
+    private string $operationStatusMethod;
+    private mixed $operationStatusDoneValue;
+    private ?string $operationErrorCodeMethod;
+    private ?string $operationErrorMessageMethod;
 
     /**
      * OperationResponse constructor.
@@ -122,17 +127,22 @@ class OperationResponse
             $operationsClient = new CustomOperationsClient($operationsClient, $options);
         }
         $this->operationsClient = $operationsClient;
-        $this->operationReturnType = $options['operationReturnType'] ?? null;
-        $this->metadataReturnType = $options['metadataReturnType'] ?? null;
-
-        $lastProtoResponse = $options['lastProtoResponse'] ?? null;
-        if ($lastProtoResponse !== null && !$lastProtoResponse instanceof Operation) {
-            $wrapper = $this->operationsClient instanceof OperationsClientWrapperInterface
-                ? $this->operationsClient
-                : new CustomOperationsClient($this->operationsClient, $options);
-            $lastProtoResponse = $wrapper->toOperation($lastProtoResponse);
-        }
-        $this->lastProtoResponse = $lastProtoResponse;
+        $options += [
+            'operationReturnType' => null,
+            'metadataReturnType' => null,
+            'lastProtoResponse' => null,
+            'operationStatusMethod' => 'getDone',
+            'operationStatusDoneValue' => true,
+            'operationErrorCodeMethod' => null,
+            'operationErrorMessageMethod' => null,
+        ];
+        $this->operationReturnType = $options['operationReturnType'];
+        $this->metadataReturnType = $options['metadataReturnType'];
+        $this->lastProtoResponse = $options['lastProtoResponse'];
+        $this->operationStatusMethod = $options['operationStatusMethod'];
+        $this->operationStatusDoneValue = $options['operationStatusDoneValue'];
+        $this->operationErrorCodeMethod = $options['operationErrorCodeMethod'];
+        $this->operationErrorMessageMethod = $options['operationErrorMessageMethod'];
 
         if (isset($options['initialPollDelayMillis'])) {
             $this->defaultPollSettings['initialPollDelayMillis'] = $options['initialPollDelayMillis'];
@@ -155,7 +165,16 @@ class OperationResponse
      */
     public function isDone(): bool
     {
-        return (bool) $this->lastProtoResponse?->getDone();
+        if (!$this->hasProtoResponse()) {
+            return false;
+        }
+
+        $status = call_user_func([$this->lastProtoResponse, $this->operationStatusMethod]);
+        if (is_null($status)) {
+            return false;
+        }
+
+        return $status === $this->operationStatusDoneValue;
     }
 
     /**
@@ -166,7 +185,17 @@ class OperationResponse
      */
     public function operationSucceeded(): bool
     {
-        return $this->isDone() && !$this->operationFailed();
+        if (!$this->hasProtoResponse()) {
+            return false;
+        }
+
+        if (!$this->canHaveResult()) {
+            // For Operations which do not have a result, we consider a successful
+            // operation when the operation has completed without errors.
+            return $this->isDone() && !$this->hasErrors();
+        }
+
+        return !is_null($this->getResult());
     }
 
     /**
@@ -177,7 +206,7 @@ class OperationResponse
      */
     public function operationFailed(): bool
     {
-        return !is_null($this->lastProtoResponse?->getError());
+        return $this->hasErrors();
     }
 
     /**
@@ -247,12 +276,20 @@ class OperationResponse
      */
     public function getResult(): mixed
     {
-        if (!$this->operationSucceeded()) {
+        if (!$this->hasProtoResponse()) {
+            return null;
+        }
+
+        if (!$this->canHaveResult()) {
+            return null;
+        }
+
+        if (!$this->isDone()) {
             return null;
         }
 
         /** @var Any|null $anyResponse */
-        $anyResponse = $this->lastProtoResponse?->getResponse();
+        $anyResponse = $this->lastProtoResponse->getResponse();
         if (is_null($anyResponse)) {
             return null;
         }
@@ -274,11 +311,27 @@ class OperationResponse
      */
     public function getError(): ?Status
     {
-        if (!$this->isDone()) {
+        if (!$this->hasProtoResponse() || !$this->isDone()) {
             return null;
         }
 
-        return $this->lastProtoResponse?->getError();
+        if ($this->operationErrorCodeMethod || $this->operationErrorMessageMethod) {
+            $errorCode = $this->operationErrorCodeMethod
+                ? call_user_func([$this->lastProtoResponse, $this->operationErrorCodeMethod])
+                : null;
+            $errorMessage = $this->operationErrorMessageMethod
+                ? call_user_func([$this->lastProtoResponse, $this->operationErrorMessageMethod])
+                : null;
+            return (new Status())
+                ->setCode(ApiStatus::rpcCodeFromHttpStatusCode((int) $errorCode))
+                ->setMessage((string) $errorMessage);
+        }
+
+        if (method_exists($this->lastProtoResponse, 'getError')) {
+            return $this->lastProtoResponse->getError();
+        }
+
+        return null;
     }
 
     /**
@@ -302,10 +355,6 @@ class OperationResponse
      */
     public function getLastProtoResponse(): ?object
     {
-        if ($this->operationsClient instanceof OperationsClientWrapperInterface) {
-            return $this->operationsClient->getLastProtoResponse() ?? $this->lastProtoResponse;
-        }
-
         return $this->lastProtoResponse;
     }
 
@@ -372,15 +421,59 @@ class OperationResponse
      */
     public function getMetadata(): mixed
     {
+        if (!$this->hasProtoResponse()) {
+            return null;
+        }
+
+        if (!method_exists($this->lastProtoResponse, 'getMetadata')) {
+            // The call to getMetadata is only for OnePlatform LROs, and is not
+            // supported by other LRO GAPIC clients (e.g. Compute)
+            return null;
+        }
+
         /** @var Any|null $any */
-        $any = $this->lastProtoResponse?->getMetadata();
-        if (is_null($any) || is_null($this->metadataReturnType)) {
+        $any = $this->lastProtoResponse->getMetadata();
+        if (is_null($this->metadataReturnType)) {
             return $any;
+        }
+        if (is_null($any)) {
+            return null;
         }
         $metadataReturnType = $this->metadataReturnType;
         /** @var Message $metadata */
         $metadata = new $metadataReturnType();
         $metadata->mergeFromString($any->getValue());
         return $metadata;
+    }
+
+    private function canHaveResult(): bool
+    {
+        // The call to getResponse is only for OnePlatform LROs, and is not
+        // supported by other LRO GAPIC clients (e.g. Compute)
+        return method_exists($this->lastProtoResponse, 'getResponse');
+    }
+
+    private function hasErrors(): bool
+    {
+        if (!$this->hasProtoResponse()) {
+            return false;
+        }
+
+        if (method_exists($this->lastProtoResponse, 'getError')) {
+            return !empty($this->lastProtoResponse->getError());
+        }
+
+        if ($this->operationErrorCodeMethod) {
+            $errorCode = call_user_func([$this->lastProtoResponse, $this->operationErrorCodeMethod]);
+            return !empty($errorCode);
+        }
+
+        // This should never happen unless an API is misconfigured
+        throw new LogicException('Unable to determine operation error status for this service');
+    }
+
+    private function hasProtoResponse(): bool
+    {
+        return !is_null($this->lastProtoResponse);
     }
 }
