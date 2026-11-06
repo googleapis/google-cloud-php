@@ -117,6 +117,8 @@ class SpannerClientTest extends TestCase
         ]);
 
         $this->operationResponse = $this->prophesize(OperationResponse::class);
+        $this->operationResponse->getName()->willReturn('operation-name');
+        $this->operationResponse->getLastProtoResponse()->willReturn(null);
     }
 
     public function testBatch()

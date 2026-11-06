@@ -71,7 +71,9 @@ class OperationsMiddleware implements MiddlewareInterface
                 'lastProtoResponse' => $response
             ];
             $operationNameMethod = $options['operationNameMethod'] ?? 'getName';
-            $operationName = call_user_func([$response, $operationNameMethod]);
+            $operationName = method_exists($response, $operationNameMethod)
+                ? (string) $response->$operationNameMethod()
+                : '';
             return new OperationResponse($operationName, $this->operationsClient, $options);
         });
     }

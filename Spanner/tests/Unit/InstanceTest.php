@@ -99,6 +99,8 @@ class InstanceTest extends TestCase
         $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
         $this->databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
         $this->operationResponse = $this->prophesize(OperationResponse::class);
+        $this->operationResponse->getName()->willReturn('operation-name');
+        $this->operationResponse->getLastProtoResponse()->willReturn(null);
         $this->page = $this->prophesize(Page::class);
         $this->pagedListResponse = $this->prophesize(PagedListResponse::class);
         $this->pagedListResponse->getPage()->willReturn($this->page->reveal());
