@@ -573,8 +573,7 @@ class OperationResponseTest extends TestCase
         $operationResponse->reload();
         $this->assertTrue($operationResponse->isDone());
         $this->assertTrue($operationResponse->operationSucceeded());
-        $this->assertInstanceOf(Operation::class, $operationResponse->getLastProtoResponse());
-        $this->assertTrue($operationResponse->getLastProtoResponse()->getDone());
+        $this->assertSame($customOp->reveal(), $operationResponse->getLastProtoResponse());
     }
 
     private function createOperationResponse($options, $reloadCount)

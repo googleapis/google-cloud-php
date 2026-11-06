@@ -77,6 +77,7 @@ class CustomOperationsClient implements OperationsClientInterface
     private mixed $operationStatusDoneValue;
     private ?string $operationErrorCodeMethod;
     private ?string $operationErrorMessageMethod;
+    private ?object $lastCustomResponse = null;
 
     public function __construct(object $client, array $options = [])
     {
@@ -130,6 +131,8 @@ class CustomOperationsClient implements OperationsClientInterface
             $callOptions
         );
 
+        $this->lastCustomResponse = is_object($response) ? $response : null;
+
         return $this->toOperation($response);
     }
 
@@ -166,6 +169,8 @@ class CustomOperationsClient implements OperationsClientInterface
         if (is_null($response)) {
             return new Operation();
         }
+
+        $this->lastCustomResponse = $response;
 
         if ($response instanceof Operation) {
             return $response;
@@ -213,6 +218,11 @@ class CustomOperationsClient implements OperationsClientInterface
         }
 
         return $operation;
+    }
+
+    public function getLastCustomResponse(): ?object
+    {
+        return $this->lastCustomResponse;
     }
 
     private function operationsCall(
