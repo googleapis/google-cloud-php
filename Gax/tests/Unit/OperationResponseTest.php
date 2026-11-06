@@ -234,7 +234,7 @@ class OperationResponseTest extends TestCase
         $operationName = 'test-123';
         $operation = $this->prophesize(CustomOperation::class);
         $operation->isThisOperationDoneOrWhat()
-            ->shouldBeCalledOnce()
+            ->shouldBeCalledTimes(2)
             ->willReturn('Yes, it is!');
         $operation->getError()
             ->shouldBeCalledOnce()
@@ -367,10 +367,10 @@ class OperationResponseTest extends TestCase
         $operationName = 'test-123';
         $operation = $this->prophesize(CustomOperationWithErrorAnnotations::class);
         $operation->isThisOperationDoneOrWhat()
-            ->shouldBeCalledOnce()
+            ->shouldBeCalledTimes(2)
             ->willReturn('Yes, it is!');
         $operation->getTheErrorCode()
-            ->shouldBeCalledOnce()
+            ->shouldBeCalledTimes(2)
             ->willReturn(500);
         $operation->getTheErrorMessage()
             ->shouldBeCalledOnce()
@@ -550,7 +550,7 @@ class OperationResponseTest extends TestCase
         $operationName = 'test-123';
         $customOp = $this->prophesize(CustomOperation::class);
         $customOp->isThisOperationDoneOrWhat()
-            ->shouldBeCalledOnce()
+            ->shouldBeCalledTimes(2)
             ->willReturn('Yes, it is!');
         $customOp->getError()
             ->shouldBeCalledOnce()
@@ -563,12 +563,13 @@ class OperationResponseTest extends TestCase
 
         $adapter = new CustomOperationsClient($rawClient->reveal(), [
             'getOperationMethod' => 'getMyOperationPlease',
-            'operationStatusMethod' => 'isThisOperationDoneOrWhat',
-            'operationStatusDoneValue' => 'Yes, it is!',
         ]);
         $this->assertInstanceOf(OperationsClientWrapperInterface::class, $adapter);
 
-        $operationResponse = new OperationResponse($operationName, $adapter);
+        $operationResponse = new OperationResponse($operationName, $adapter, [
+            'operationStatusMethod' => 'isThisOperationDoneOrWhat',
+            'operationStatusDoneValue' => 'Yes, it is!',
+        ]);
         $this->assertSame($rawClient->reveal(), $operationResponse->getOperationsClient());
 
         $operationResponse->reload();

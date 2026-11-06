@@ -38,10 +38,14 @@ use Google\LongRunning\CancelOperationRequest;
 use Google\LongRunning\DeleteOperationRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
+use Google\Protobuf\Internal\Message;
 
 interface OperationsClientInterface
 {
-    public function getOperation(GetOperationRequest $request, array $callOptions = []): Operation;
+    /**
+     * @return Operation|Message
+     */
+    public function getOperation(GetOperationRequest $request, array $callOptions = []): object;
 
     public function cancelOperation(CancelOperationRequest $request, array $callOptions = []): void;
 

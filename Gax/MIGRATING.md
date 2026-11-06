@@ -60,5 +60,5 @@ Update your `google/gax` dependency to `^2.0`:
   - `getError()` now returns `?Google\Rpc\Status`.
   - `getLastProtoResponse()` now returns `?object` (annotated as `Operation|Message|null`), preserving the raw custom operation message (e.g. `Google\Cloud\Compute\V1\Operation`) for custom operation services such as Compute.
   - `getOperationsClient()` now returns non-nullable `object` (annotated as `OperationsClient|OperationsClientInterface|object`), unwrapping `OperationsClientWrapperInterface` adapters so custom operation services still receive their underlying operations client.
-  - Custom operations clients (e.g., Compute's `ZoneOperationsClient`) and custom operation options are now encapsulated in `Google\ApiCore\CustomOperationsClient` (implementing `Google\ApiCore\OperationsClientWrapperInterface`).
+  - Custom operations clients (e.g., Compute's `ZoneOperationsClient`) and custom operation RPC options are now encapsulated in `Google\ApiCore\CustomOperationsClient` (implementing `Google\ApiCore\OperationsClientWrapperInterface`).
 
