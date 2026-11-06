@@ -62,6 +62,26 @@ class OperationResponseTraitTest extends TestCase
     {
         $serializer = $this->prophesize(Serializer::class);
         $serializer->encodeMessage(Argument::any())->will(function ($arg) {
+            if ($arg[0] instanceof Operation) {
+                $result = [
+                    'done' => $arg[0]->getDone(),
+                    'metadata' => [
+                        'typeUrl' => $arg[0]->getMetadata()->getTypeUrl(),
+                        'value' => $arg[0]->getMetadata()->getValue(),
+                    ],
+                ];
+                if ($arg[0]->hasResponse()) {
+                    $result['response'] = [
+                        'typeUrl' => $arg[0]->getResponse()->getTypeUrl(),
+                        'value' => $arg[0]->getResponse()->getValue(),
+                    ];
+                }
+                if ($arg[0]->hasError()) {
+                    $result['error'] = $arg[0]->getError();
+                }
+
+                return $result;
+            }
             $json = $arg[0]->serializeToJsonString();
             return json_decode($json, true);
         });
@@ -79,7 +99,7 @@ class OperationResponseTraitTest extends TestCase
         $meta = new RequestMetadata([
             'caller_ip' => '127.8.9.10', // Sic(!)
         ]);
-        $response = new Response(self::METADATA_TYPE, $meta, self::RESULT_TYPE, $result);
+        $response = $this->createOperation(self::METADATA_TYPE, $meta, self::RESULT_TYPE, $result);
         $operation = new OperationResponse(
             self::OPERATION_NAME,
             $this->operationsClient,
@@ -112,8 +132,8 @@ class OperationResponseTraitTest extends TestCase
         $meta = new RequestMetadata([
             'caller_ip' => '127.8.9.10', // Sic(!)
         ]);
-        $response = new Response(self::METADATA_TYPE, $meta);
-        $response->error = $error;
+        $response = $this->createOperation(self::METADATA_TYPE, $meta);
+        $response->setError($error);
         $operation = new OperationResponse(
             self::OPERATION_NAME,
             $this->operationsClient,
@@ -153,7 +173,7 @@ class OperationResponseTraitTest extends TestCase
         $meta = new RequestMetadata([
             'caller_ip' => '127.8.9.10',
         ]);
-        $response = new Response(self::METADATA_TYPE, $meta, self::RESULT_TYPE, $result);
+        $response = $this->createOperation(self::METADATA_TYPE, $meta, self::RESULT_TYPE, $result);
         $operation = new OperationResponse(
             self::OPERATION_NAME,
             $this->operationsClient,
@@ -178,81 +198,23 @@ class OperationResponseTraitTest extends TestCase
         $expected = 'any|all|1';
         $this->assertEquals($expected, $got);
     }
-}
 
-//@codingStandardsIgnoreStart
-
-class Value extends Any
-{
-    public $value;
-
-    public function __construct($value = null)
+    private function createOperation($metaType, $metadata, $respType = null, $response = null): Operation
     {
-        $this->value = $value;
-    }
-
-    public function getValue(): string
-    {
-        return (string) $this->value;
-    }
-}
-
-class Response extends Operation
-{
-    public $metadataType;
-    public $metadata;
-    public $responseType;
-    public $response = null;
-    public $error = null;
-
-    public function __construct($metaType, $metadata, $respType = null, $response = null)
-    {
-        $this->metadataType = $metaType;
-        $this->metadata = $metadata->serializeToString();
-        $this->responseType = $respType;
-        if (isset($response)) {
-            $this->response = $response->serializeToString();
-        }
-    }
-
-    public function getResponse(): ?Any
-    {
-        return new Value($this->response);
-    }
-
-    public function getMetadata(): ?Any
-    {
-        return new Value($this->metadata);
-    }
-
-    public function getDone(): bool
-    {
-        return (isset($this->response) or isset($this->error));
-    }
-
-    public function getError(): ?Status
-    {
-        return $this->error;
-    }
-
-    public function serializeToJsonString($options = 0): string
-    {
-        $result = [
+        $operation = new Operation([
             'done' => true,
-            'metadata' => [
-                'typeUrl' => $this->metadataType,
-                'value' => $this->metadata,
-            ],
-        ];
-        if (isset($this->response)) {
-            $result['response'] = [
-                'typeUrl' => $this->responseType,
-                'value' => $this->response,
-            ];
+            'metadata' => new Any([
+                'type_url' => $metaType,
+                'value' => $metadata->serializeToString(),
+            ]),
+        ]);
+        if (isset($response)) {
+            $operation->setResponse(new Any([
+                'type_url' => $respType,
+                'value' => $response->serializeToString(),
+            ]));
         }
 
-        return json_encode($result);
+        return $operation;
     }
 }
-
-//@codingStandardsIgnoreEnd
