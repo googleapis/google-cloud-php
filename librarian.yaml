@@ -1183,13 +1183,8 @@ libraries:
       - path: google/longrunning
         php:
           common_resources: false
-          samples: false
           staging_subdir: .
     copyright_year: "2026"
-    keep:
-      - src/LongRunning/Gapic/OperationsGapicClient.php
-      - src/LongRunning/OperationsClient.php
-      - tests/Unit/OperationsClientTest.php
     output: LongRunning
   - name: lustre
     version: 0.5.1
