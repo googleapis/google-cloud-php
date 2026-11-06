@@ -82,7 +82,6 @@ class OperationResponse
     ];
 
     private ?Operation $lastProtoResponse;
-    private ?object $lastCustomResponse = null;
     private bool $deleted = false;
 
     /**
@@ -128,7 +127,6 @@ class OperationResponse
 
         $lastProtoResponse = $options['lastProtoResponse'] ?? null;
         if ($lastProtoResponse !== null && !$lastProtoResponse instanceof Operation) {
-            $this->lastCustomResponse = $lastProtoResponse;
             $customClient = $this->operationsClient instanceof CustomOperationsClient
                 ? $this->operationsClient
                 : new CustomOperationsClient($this->operationsClient, $options);
@@ -239,9 +237,6 @@ class OperationResponse
 
         $request = GetOperationRequest::build($this->getName());
         $this->lastProtoResponse = $this->operationsClient->getOperation($request);
-        if ($this->operationsClient instanceof CustomOperationsClient) {
-            $this->lastCustomResponse = $this->operationsClient->getLastCustomResponse();
-        }
     }
 
     /**
@@ -307,7 +302,11 @@ class OperationResponse
      */
     public function getLastProtoResponse(): ?object
     {
-        return $this->lastCustomResponse ?? $this->lastProtoResponse;
+        if ($this->operationsClient instanceof CustomOperationsClient) {
+            return $this->operationsClient->getLastProtoResponse() ?? $this->lastProtoResponse;
+        }
+
+        return $this->lastProtoResponse;
     }
 
     /**
