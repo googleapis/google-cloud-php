@@ -289,4 +289,132 @@ class JWKTest extends TestCase
 
         $this->assertEquals(str_replace("\r\n", "\n", $expectedPublicKey), $keyData['key']);
     }
+
+    public function testCreateFromKeyRsa()
+    {
+        $jwkSet = json_decode(
+            file_get_contents(__DIR__ . '/data/rsa-jwkset.json'),
+            true
+        );
+        $expectedJwk = $jwkSet['keys'][0];
+
+        $privatePem = file_get_contents(__DIR__ . '/data/rsa1-private.pem');
+        $publicPem = file_get_contents(__DIR__ . '/data/rsa1-public.pub');
+
+        $this->assertEquals($expectedJwk, JWK::createFromKey($privatePem, 'RS256', 'jwk1'));
+        $this->assertEquals($expectedJwk, JWK::createFromKey(new Key($publicPem, 'RS256'), null, 'jwk1'));
+        $this->assertEquals(
+            ['kty' => 'RSA', 'n' => $expectedJwk['n'], 'e' => $expectedJwk['e']],
+            JWK::createFromKey(openssl_pkey_get_public($publicPem))
+        );
+    }
+
+    /**
+     * @dataProvider provideCreateFromKeyEc
+     */
+    public function testCreateFromKeyEc($pemFile, $jwkIndex, $alg, $kid)
+    {
+        $jwkSet = json_decode(
+            file_get_contents(__DIR__ . '/data/ec-jwkset.json'),
+            true
+        );
+        $expectedJwk = $jwkSet['keys'][$jwkIndex];
+        unset($expectedJwk['use']);
+
+        $pem = file_get_contents(__DIR__ . '/data/' . $pemFile);
+        $jwk = JWK::createFromKey($pem, $alg, $kid);
+
+        $this->assertEquals($expectedJwk, $jwk);
+
+        $msg = JWT::encode(['sub' => 'dpop'], $pem, $alg, null, [
+            'typ' => 'dpop+jwt',
+            'jwk' => JWK::createFromKey($pem),
+        ]);
+        $headers = new \stdClass();
+        $decoded = JWT::decode($msg, JWK::parseKey($jwk), $headers);
+        $this->assertSame('dpop', $decoded->sub);
+        $this->assertSame('dpop+jwt', $headers->typ);
+        $this->assertSame($expectedJwk['x'], $headers->jwk->x);
+    }
+
+    public function provideCreateFromKeyEc()
+    {
+        return [
+            ['ecdsa256-private.pem', 0, 'ES256', 'jwk1'],
+            ['ecdsa384-private.pem', 3, 'ES384', 'jwk4'],
+        ];
+    }
+
+    public function testCreateFromKeySecp256k1()
+    {
+        $privatePem = file_get_contents(__DIR__ . '/data/secp256k1-private.pem');
+        $publicPem = file_get_contents(__DIR__ . '/data/secp256k1-public.pem');
+
+        $jwk = JWK::createFromKey($privatePem, 'ES256K', 'jwk3');
+        $this->assertSame('EC', $jwk['kty']);
+        $this->assertSame('secp256k1', $jwk['crv']);
+        $this->assertSame('ES256K', $jwk['alg']);
+        $this->assertSame('jwk3', $jwk['kid']);
+        $this->assertEquals($jwk, JWK::createFromKey($publicPem, 'ES256K', 'jwk3'));
+
+        $parsedKey = JWK::parseKey($jwk);
+        $this->assertEquals(
+            trim(str_replace("\r\n", "\n", $publicPem)),
+            trim($parsedKey->getKeyMaterial())
+        );
+    }
+
+    public function testCreateFromKeyEdDsa()
+    {
+        $jwkSet = json_decode(
+            file_get_contents(__DIR__ . '/data/ed25519-jwkset.json'),
+            true
+        );
+        $expectedJwk = $jwkSet['keys'][0];
+
+        $pubKey = file_get_contents(__DIR__ . '/data/ed25519-1.pub');
+        $secKey = file_get_contents(__DIR__ . '/data/ed25519-1.sec');
+
+        $this->assertEquals($expectedJwk, JWK::createFromKey(new Key($pubKey, 'EdDSA'), null, 'jwk1'));
+        $this->assertEquals($expectedJwk, JWK::createFromKey($secKey, 'EdDSA', 'jwk1'));
+    }
+
+    public function testCreateFromKeyOctet()
+    {
+        $jwkSet = json_decode(
+            file_get_contents(__DIR__ . '/data/octet-jwkset.json'),
+            true
+        );
+        $keys = JWK::parseKeySet($jwkSet);
+
+        foreach ($jwkSet['keys'] as $expectedJwk) {
+            $kid = $expectedJwk['kid'];
+            $this->assertEquals($expectedJwk, JWK::createFromKey($keys[$kid], null, $kid));
+        }
+    }
+
+    public function testCreateFromKeyEmptyThrowsException()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Key material must not be empty');
+
+        JWK::createFromKey('');
+    }
+
+    public function testCreateFromKeyInvalidKeyThrowsException()
+    {
+        $this->expectException(DomainException::class);
+        $this->expectExceptionMessage('OpenSSL unable to validate key');
+
+        JWK::createFromKey('invalid-key-material');
+    }
+
+    public function testCreateFromKeyUnsupportedCurveThrowsException()
+    {
+        $this->expectException(DomainException::class);
+        $this->expectExceptionMessage('Unrecognised EC curve');
+
+        $pem = file_get_contents(__DIR__ . '/data/ecdsa192-private.pem');
+        JWK::createFromKey($pem, 'ES256');
+    }
 }
