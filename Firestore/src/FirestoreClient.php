@@ -346,6 +346,8 @@ class FirestoreClient
                 CallOptions::class
             );
 
+            $callOptions['headers']['x-goog-is-transaction'] = ['false'];
+
             try {
                 $response = $this->gapicClient->listCollectionIds($request, $callOptions);
             } catch (ApiException $ex) {
@@ -607,6 +609,8 @@ class FirestoreClient
                 $transactionOptions->setReadWrite($readWrite);
                 $request->setOptions($transactionOptions);
             }
+
+            $options['headers']['x-goog-is-transaction'] = ['true'];
 
             try {
                 $response = $this->gapicClient->beginTransaction($request, $options);
