@@ -6,7 +6,9 @@
     "autoload": {
         "psr-4": {
             "Google\\Cloud\\Chronicle\\": "src",
-            "GPBMetadata\\Google\\Cloud\\Chronicle\\": "metadata"
+            "GPBMetadata\\Google\\Cloud\\Chronicle\\": "metadata",
+            "Google\\Backstory\\": "src/Backstory",
+            "GPBMetadata\\Backstory\\": "metadata/Backstory"
         }
     },
     "extra": {

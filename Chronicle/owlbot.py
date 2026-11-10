@@ -32,6 +32,13 @@ _tracked_paths.add(src)
 
 php.owlbot_main(src=src, dest=dest)
 
+# Copy unversioned backstory protos and metadata if present in staging
+backstory_proto_src = src / "backstory/proto/src"
+if backstory_proto_src.is_dir():
+    s.move([backstory_proto_src / "Google/Backstory"], dest / "src/Backstory")
+    s.move([backstory_proto_src / "GPBMetadata/Backstory"], dest / "metadata/Backstory")
+
+
 # format generated clients
 subprocess.run([
     'npm',
