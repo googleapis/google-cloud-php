@@ -337,6 +337,7 @@
     "autoload": {
         "psr-4": {
             "Firebase\\JWT\\": "Jwt/src",
+            "GPBMetadata\\Backstory\\": "Chronicle/metadata/Backstory",
             "GPBMetadata\\Google\\Ads\\Admanager\\": "AdsAdManager/metadata",
             "GPBMetadata\\Google\\Ads\\Datamanager\\": "AdsDataManager/metadata",
             "GPBMetadata\\Google\\Analytics\\Admin\\": "AnalyticsAdmin/metadata",
@@ -601,6 +602,7 @@
             "Google\\Apps\\Meet\\": "AppsMeet/src",
             "Google\\Apps\\Script\\Type\\": "GSuiteAddOns/external/protos",
             "Google\\Auth\\": "Auth/src",
+            "Google\\Backstory\\": "Chronicle/src/Backstory",
             "Google\\Cloud\\": [
                 "CloudCommonProtos/src",
                 "CommonProtos/src/Cloud"
