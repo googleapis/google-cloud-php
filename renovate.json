@@ -5,6 +5,21 @@
     ],
     "rangeStrategy": "replace",
     "rebaseWhen": "behind-base-branch",
+    "vulnerabilityAlerts": {
+        "enabled": false
+    },
+    "pip_requirements": {
+        "enabled": false
+    },
+    "pip-compile": {
+        "managerFilePatterns": [
+            "/(^|/)requirements\\.txt$/"
+        ],
+        "rangeStrategy": "update-lockfile",
+        "lockFileMaintenance": {
+            "enabled": false
+        }
+    },
     "packageRules": [
         {
             "matchManagers": [
