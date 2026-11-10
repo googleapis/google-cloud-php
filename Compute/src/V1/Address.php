@@ -143,6 +143,14 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     protected $network = null;
     /**
+     * Optional. The URL of the network attachment that this address comes from in the
+     * following format:
+     * projects/{project}/regions/{region_name}/networkAttachments/{network_attachment_name}.
+     *
+     * Generated from protobuf field <code>optional string network_attachment = 224644052;</code>
+     */
+    protected $network_attachment = null;
+    /**
      * This signifies the networking tier used for configuring this address and
      * can only take the following values: PREMIUM orSTANDARD. Internal IP addresses are always Premium Tier;
      * global external IP addresses are always Premium Tier; regional external IP
@@ -207,6 +215,14 @@ class Address extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
+    /**
+     * Optional. Producer Service's Service class ID for the region of this address. Can
+     * only be used with network_attachment. It is not possible to use on its own;
+     * however, network_attachment can be used without service_class_id.
+     *
+     * Generated from protobuf field <code>optional string service_class_id = 422763404;</code>
+     */
+    protected $service_class_id = null;
     /**
      * Output only. [Output Only] The status of the address, which can be one ofRESERVING, RESERVED, or IN_USE.
      * An address that is RESERVING is currently in the process of
@@ -307,6 +323,10 @@ class Address extends \Google\Protobuf\Internal\Message
      *     @type string $network
      *           The URL of the network in which to reserve the address. This field can
      *           only be used with INTERNAL type with theVPC_PEERING purpose.
+     *     @type string $network_attachment
+     *           Optional. The URL of the network attachment that this address comes from in the
+     *           following format:
+     *           projects/{project}/regions/{region_name}/networkAttachments/{network_attachment_name}.
      *     @type string $network_tier
      *           This signifies the networking tier used for configuring this address and
      *           can only take the following values: PREMIUM orSTANDARD. Internal IP addresses are always Premium Tier;
@@ -352,6 +372,10 @@ class Address extends \Google\Protobuf\Internal\Message
      *           addresses.*
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
+     *     @type string $service_class_id
+     *           Optional. Producer Service's Service class ID for the region of this address. Can
+     *           only be used with network_attachment. It is not possible to use on its own;
+     *           however, network_attachment can be used without service_class_id.
      *     @type string $status
      *           Output only. [Output Only] The status of the address, which can be one ofRESERVING, RESERVED, or IN_USE.
      *           An address that is RESERVING is currently in the process of
@@ -915,6 +939,46 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The URL of the network attachment that this address comes from in the
+     * following format:
+     * projects/{project}/regions/{region_name}/networkAttachments/{network_attachment_name}.
+     *
+     * Generated from protobuf field <code>optional string network_attachment = 224644052;</code>
+     * @return string
+     */
+    public function getNetworkAttachment()
+    {
+        return isset($this->network_attachment) ? $this->network_attachment : '';
+    }
+
+    public function hasNetworkAttachment()
+    {
+        return isset($this->network_attachment);
+    }
+
+    public function clearNetworkAttachment()
+    {
+        unset($this->network_attachment);
+    }
+
+    /**
+     * Optional. The URL of the network attachment that this address comes from in the
+     * following format:
+     * projects/{project}/regions/{region_name}/networkAttachments/{network_attachment_name}.
+     *
+     * Generated from protobuf field <code>optional string network_attachment = 224644052;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNetworkAttachment($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->network_attachment = $var;
+
+        return $this;
+    }
+
+    /**
      * This signifies the networking tier used for configuring this address and
      * can only take the following values: PREMIUM orSTANDARD. Internal IP addresses are always Premium Tier;
      * global external IP addresses are always Premium Tier; regional external IP
@@ -1160,6 +1224,46 @@ class Address extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->self_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Producer Service's Service class ID for the region of this address. Can
+     * only be used with network_attachment. It is not possible to use on its own;
+     * however, network_attachment can be used without service_class_id.
+     *
+     * Generated from protobuf field <code>optional string service_class_id = 422763404;</code>
+     * @return string
+     */
+    public function getServiceClassId()
+    {
+        return isset($this->service_class_id) ? $this->service_class_id : '';
+    }
+
+    public function hasServiceClassId()
+    {
+        return isset($this->service_class_id);
+    }
+
+    public function clearServiceClassId()
+    {
+        unset($this->service_class_id);
+    }
+
+    /**
+     * Optional. Producer Service's Service class ID for the region of this address. Can
+     * only be used with network_attachment. It is not possible to use on its own;
+     * however, network_attachment can be used without service_class_id.
+     *
+     * Generated from protobuf field <code>optional string service_class_id = 422763404;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceClassId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_class_id = $var;
 
         return $this;
     }

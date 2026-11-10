@@ -17,8 +17,6 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The location and project to list resources on.
-     * Format: projects/{project}/locations/{location}, where {project} can be
-     * project id or number.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -45,9 +43,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     protected $show_deleted = false;
 
     /**
-     * @param string $parent Required. The location and project to list resources on.
-     *                       Format: projects/{project}/locations/{location}, where {project} can be
-     *                       project id or number. Please see
+     * @param string $parent Required. The location and project to list resources on. Please see
      *                       {@see InstancesClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Run\V2\ListInstancesRequest
@@ -68,8 +64,6 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The location and project to list resources on.
-     *           Format: projects/{project}/locations/{location}, where {project} can be
-     *           project id or number.
      *     @type int $page_size
      *           Optional. Maximum number of Instances to return in this call.
      *     @type string $page_token
@@ -87,8 +81,6 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The location and project to list resources on.
-     * Format: projects/{project}/locations/{location}, where {project} can be
-     * project id or number.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -100,8 +92,6 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The location and project to list resources on.
-     * Format: projects/{project}/locations/{location}, where {project} can be
-     * project id or number.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

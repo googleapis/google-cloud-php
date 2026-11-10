@@ -42,8 +42,9 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * URI of a route. SUBNET, STATIC, PEERING_SUBNET (only for peering network)
-     * and POLICY_BASED routes only.
+     * URI of a route in format
+     * "projects/{project}/global/routes/{route}". SUBNET, STATIC,
+     * PEERING_SUBNET (only for peering network) and POLICY_BASED routes only.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
@@ -74,7 +75,8 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      */
     protected $next_hop = '';
     /**
-     * URI of a VPC network where route is located.
+     * URI of a VPC network where route is located in format
+     * "projects/{project}/global/networks/{network}".
      *
      * Generated from protobuf field <code>string network_uri = 5;</code>
      */
@@ -116,22 +118,27 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      */
     private $protocols;
     /**
-     * URI of the NCC Hub the route is advertised by. PEERING_SUBNET and
+     * URI of the NCC Hub the route is advertised by in format
+     * "projects/{project}/locations/global/hubs/{hub}". PEERING_SUBNET and
      * PEERING_DYNAMIC routes that are advertised by NCC Hub only.
      *
      * Generated from protobuf field <code>optional string ncc_hub_uri = 15;</code>
      */
     protected $ncc_hub_uri = null;
     /**
-     * URI of the destination NCC Spoke. PEERING_SUBNET and PEERING_DYNAMIC routes
-     * that are advertised by NCC Hub only.
+     * URI of the destination NCC Spoke in format
+     * "projects/{project}/locations/{location}/spokes/{spoke}" (regional) or
+     * "projects/{project}/locations/global/spokes/{spoke}" (global).
+     * PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC Hub
+     * only.
      *
      * Generated from protobuf field <code>optional string ncc_spoke_uri = 16;</code>
      */
     protected $ncc_spoke_uri = null;
     /**
      * For ADVERTISED dynamic routes, the URI of the Cloud Router that advertised
-     * the corresponding IP prefix.
+     * the corresponding IP prefix in format
+     * "projects/{project}/regions/{region}/routers/{router}".
      *
      * Generated from protobuf field <code>optional string advertised_route_source_router_uri = 17;</code>
      */
@@ -154,7 +161,8 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      */
     protected $next_hop_uri = '';
     /**
-     * URI of a VPC network where the next hop resource is located.
+     * URI of a VPC network where the next hop resource is located in format
+     * "projects/{project}/global/networks/{network}".
      *
      * Generated from protobuf field <code>string next_hop_network_uri = 21;</code>
      */
@@ -162,6 +170,7 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     /**
      * For PEERING_SUBNET and PEERING_STATIC routes, the URI of the originating
      * SUBNET/STATIC route.
+     * Format: `projects/{project_id}/global/routes/{route_id}`
      *
      * Generated from protobuf field <code>string originating_route_uri = 22;</code>
      */
@@ -176,6 +185,8 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     /**
      * For PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC
      * Hub, the URI of the corresponding route in NCC Hub's routing table.
+     * Format:
+     * `projects/{project_id}/locations/global/hubs/{hub_id}/routeTables/{route_table_id}/routes/{route_id}`
      *
      * Generated from protobuf field <code>string ncc_hub_route_uri = 24;</code>
      */
@@ -197,8 +208,9 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Name of a route.
      *     @type string $uri
-     *           URI of a route. SUBNET, STATIC, PEERING_SUBNET (only for peering network)
-     *           and POLICY_BASED routes only.
+     *           URI of a route in format
+     *           "projects/{project}/global/routes/{route}". SUBNET, STATIC,
+     *           PEERING_SUBNET (only for peering network) and POLICY_BASED routes only.
      *     @type string $region
      *           Region of the route. DYNAMIC, PEERING_DYNAMIC, POLICY_BASED and ADVERTISED
      *           routes only. If set for POLICY_BASED route, this is a region of VLAN
@@ -212,7 +224,8 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      *           Deprecated in favor of the next_hop_type and next_hop_uri fields, not used
      *           in new tests.
      *     @type string $network_uri
-     *           URI of a VPC network where route is located.
+     *           URI of a VPC network where route is located in format
+     *           "projects/{project}/global/networks/{network}".
      *     @type int $priority
      *           Priority of the route.
      *     @type string[] $instance_tags
@@ -226,14 +239,19 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      *     @type string[] $protocols
      *           Protocols of the route. POLICY_BASED routes only.
      *     @type string $ncc_hub_uri
-     *           URI of the NCC Hub the route is advertised by. PEERING_SUBNET and
+     *           URI of the NCC Hub the route is advertised by in format
+     *           "projects/{project}/locations/global/hubs/{hub}". PEERING_SUBNET and
      *           PEERING_DYNAMIC routes that are advertised by NCC Hub only.
      *     @type string $ncc_spoke_uri
-     *           URI of the destination NCC Spoke. PEERING_SUBNET and PEERING_DYNAMIC routes
-     *           that are advertised by NCC Hub only.
+     *           URI of the destination NCC Spoke in format
+     *           "projects/{project}/locations/{location}/spokes/{spoke}" (regional) or
+     *           "projects/{project}/locations/global/spokes/{spoke}" (global).
+     *           PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC Hub
+     *           only.
      *     @type string $advertised_route_source_router_uri
      *           For ADVERTISED dynamic routes, the URI of the Cloud Router that advertised
-     *           the corresponding IP prefix.
+     *           the corresponding IP prefix in format
+     *           "projects/{project}/regions/{region}/routers/{router}".
      *     @type string $advertised_route_next_hop_uri
      *           For ADVERTISED routes, the URI of their next hop, i.e. the URI of the
      *           hybrid endpoint (VPN tunnel, Interconnect attachment, NCC router appliance)
@@ -243,16 +261,20 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      *     @type string $next_hop_uri
      *           URI of the next hop resource.
      *     @type string $next_hop_network_uri
-     *           URI of a VPC network where the next hop resource is located.
+     *           URI of a VPC network where the next hop resource is located in format
+     *           "projects/{project}/global/networks/{network}".
      *     @type string $originating_route_uri
      *           For PEERING_SUBNET and PEERING_STATIC routes, the URI of the originating
      *           SUBNET/STATIC route.
+     *           Format: `projects/{project_id}/global/routes/{route_id}`
      *     @type string $originating_route_display_name
      *           For PEERING_SUBNET, PEERING_STATIC and PEERING_DYNAMIC routes, the name of
      *           the originating SUBNET/STATIC/DYNAMIC route.
      *     @type string $ncc_hub_route_uri
      *           For PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC
      *           Hub, the URI of the corresponding route in NCC Hub's routing table.
+     *           Format:
+     *           `projects/{project_id}/locations/global/hubs/{hub_id}/routeTables/{route_table_id}/routes/{route_id}`
      * }
      */
     public function __construct($data = NULL) {
@@ -373,8 +395,9 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a route. SUBNET, STATIC, PEERING_SUBNET (only for peering network)
-     * and POLICY_BASED routes only.
+     * URI of a route in format
+     * "projects/{project}/global/routes/{route}". SUBNET, STATIC,
+     * PEERING_SUBNET (only for peering network) and POLICY_BASED routes only.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -385,8 +408,9 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a route. SUBNET, STATIC, PEERING_SUBNET (only for peering network)
-     * and POLICY_BASED routes only.
+     * URI of a route in format
+     * "projects/{project}/global/routes/{route}". SUBNET, STATIC,
+     * PEERING_SUBNET (only for peering network) and POLICY_BASED routes only.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var
@@ -497,7 +521,8 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a VPC network where route is located.
+     * URI of a VPC network where route is located in format
+     * "projects/{project}/global/networks/{network}".
      *
      * Generated from protobuf field <code>string network_uri = 5;</code>
      * @return string
@@ -508,7 +533,8 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a VPC network where route is located.
+     * URI of a VPC network where route is located in format
+     * "projects/{project}/global/networks/{network}".
      *
      * Generated from protobuf field <code>string network_uri = 5;</code>
      * @param string $var
@@ -679,7 +705,8 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the NCC Hub the route is advertised by. PEERING_SUBNET and
+     * URI of the NCC Hub the route is advertised by in format
+     * "projects/{project}/locations/global/hubs/{hub}". PEERING_SUBNET and
      * PEERING_DYNAMIC routes that are advertised by NCC Hub only.
      *
      * Generated from protobuf field <code>optional string ncc_hub_uri = 15;</code>
@@ -701,7 +728,8 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the NCC Hub the route is advertised by. PEERING_SUBNET and
+     * URI of the NCC Hub the route is advertised by in format
+     * "projects/{project}/locations/global/hubs/{hub}". PEERING_SUBNET and
      * PEERING_DYNAMIC routes that are advertised by NCC Hub only.
      *
      * Generated from protobuf field <code>optional string ncc_hub_uri = 15;</code>
@@ -717,8 +745,11 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the destination NCC Spoke. PEERING_SUBNET and PEERING_DYNAMIC routes
-     * that are advertised by NCC Hub only.
+     * URI of the destination NCC Spoke in format
+     * "projects/{project}/locations/{location}/spokes/{spoke}" (regional) or
+     * "projects/{project}/locations/global/spokes/{spoke}" (global).
+     * PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC Hub
+     * only.
      *
      * Generated from protobuf field <code>optional string ncc_spoke_uri = 16;</code>
      * @return string
@@ -739,8 +770,11 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the destination NCC Spoke. PEERING_SUBNET and PEERING_DYNAMIC routes
-     * that are advertised by NCC Hub only.
+     * URI of the destination NCC Spoke in format
+     * "projects/{project}/locations/{location}/spokes/{spoke}" (regional) or
+     * "projects/{project}/locations/global/spokes/{spoke}" (global).
+     * PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC Hub
+     * only.
      *
      * Generated from protobuf field <code>optional string ncc_spoke_uri = 16;</code>
      * @param string $var
@@ -756,7 +790,8 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * For ADVERTISED dynamic routes, the URI of the Cloud Router that advertised
-     * the corresponding IP prefix.
+     * the corresponding IP prefix in format
+     * "projects/{project}/regions/{region}/routers/{router}".
      *
      * Generated from protobuf field <code>optional string advertised_route_source_router_uri = 17;</code>
      * @return string
@@ -778,7 +813,8 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * For ADVERTISED dynamic routes, the URI of the Cloud Router that advertised
-     * the corresponding IP prefix.
+     * the corresponding IP prefix in format
+     * "projects/{project}/regions/{region}/routers/{router}".
      *
      * Generated from protobuf field <code>optional string advertised_route_source_router_uri = 17;</code>
      * @param string $var
@@ -873,7 +909,8 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a VPC network where the next hop resource is located.
+     * URI of a VPC network where the next hop resource is located in format
+     * "projects/{project}/global/networks/{network}".
      *
      * Generated from protobuf field <code>string next_hop_network_uri = 21;</code>
      * @return string
@@ -884,7 +921,8 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a VPC network where the next hop resource is located.
+     * URI of a VPC network where the next hop resource is located in format
+     * "projects/{project}/global/networks/{network}".
      *
      * Generated from protobuf field <code>string next_hop_network_uri = 21;</code>
      * @param string $var
@@ -901,6 +939,7 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     /**
      * For PEERING_SUBNET and PEERING_STATIC routes, the URI of the originating
      * SUBNET/STATIC route.
+     * Format: `projects/{project_id}/global/routes/{route_id}`
      *
      * Generated from protobuf field <code>string originating_route_uri = 22;</code>
      * @return string
@@ -913,6 +952,7 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     /**
      * For PEERING_SUBNET and PEERING_STATIC routes, the URI of the originating
      * SUBNET/STATIC route.
+     * Format: `projects/{project_id}/global/routes/{route_id}`
      *
      * Generated from protobuf field <code>string originating_route_uri = 22;</code>
      * @param string $var
@@ -957,6 +997,8 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     /**
      * For PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC
      * Hub, the URI of the corresponding route in NCC Hub's routing table.
+     * Format:
+     * `projects/{project_id}/locations/global/hubs/{hub_id}/routeTables/{route_table_id}/routes/{route_id}`
      *
      * Generated from protobuf field <code>string ncc_hub_route_uri = 24;</code>
      * @return string
@@ -969,6 +1011,8 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     /**
      * For PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC
      * Hub, the URI of the corresponding route in NCC Hub's routing table.
+     * Format:
+     * `projects/{project_id}/locations/global/hubs/{hub_id}/routeTables/{route_table_id}/routes/{route_id}`
      *
      * Generated from protobuf field <code>string ncc_hub_route_uri = 24;</code>
      * @param string $var

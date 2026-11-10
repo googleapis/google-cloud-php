@@ -297,6 +297,37 @@ class ProcessingErrorReason
      * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_EXTERNAL_ATTRIBUTION_DATA_MISSING = 44;</code>
      */
     const PROCESSING_ERROR_REASON_EXTERNAL_ATTRIBUTION_DATA_MISSING = 44;
+    /**
+     * The destination was created too recently. Try again in a few hours.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_DESTINATION_TOO_RECENTLY_CREATED = 45;</code>
+     */
+    const PROCESSING_ERROR_REASON_DESTINATION_TOO_RECENTLY_CREATED = 45;
+    /**
+     * The matched click is older than the conversion action's configured
+     * click-through conversion lookback window (or the 90-day click TTL).
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_EXPIRED_CLICK = 46;</code>
+     */
+    const PROCESSING_ERROR_REASON_EXPIRED_CLICK = 46;
+    /**
+     * The call is still being processed.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_TOO_RECENT_CALL = 47;</code>
+     */
+    const PROCESSING_ERROR_REASON_TOO_RECENT_CALL = 47;
+    /**
+     * The call is too old for this conversion to be imported.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_EXPIRED_CALL = 48;</code>
+     */
+    const PROCESSING_ERROR_REASON_EXPIRED_CALL = 48;
+    /**
+     * The call was not found.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_INVALID_CALL = 49;</code>
+     */
+    const PROCESSING_ERROR_REASON_INVALID_CALL = 49;
 
     private static $valueToName = [
         self::PROCESSING_ERROR_REASON_UNSPECIFIED => 'PROCESSING_ERROR_REASON_UNSPECIFIED',
@@ -344,6 +375,11 @@ class ProcessingErrorReason
         self::PROCESSING_ERROR_REASON_INVALID_OPERATING_ACCOUNT_FOR_CLICK => 'PROCESSING_ERROR_REASON_INVALID_OPERATING_ACCOUNT_FOR_CLICK',
         self::PROCESSING_ERROR_REASON_CLICK_NOT_FOUND => 'PROCESSING_ERROR_REASON_CLICK_NOT_FOUND',
         self::PROCESSING_ERROR_REASON_EXTERNAL_ATTRIBUTION_DATA_MISSING => 'PROCESSING_ERROR_REASON_EXTERNAL_ATTRIBUTION_DATA_MISSING',
+        self::PROCESSING_ERROR_REASON_DESTINATION_TOO_RECENTLY_CREATED => 'PROCESSING_ERROR_REASON_DESTINATION_TOO_RECENTLY_CREATED',
+        self::PROCESSING_ERROR_REASON_EXPIRED_CLICK => 'PROCESSING_ERROR_REASON_EXPIRED_CLICK',
+        self::PROCESSING_ERROR_REASON_TOO_RECENT_CALL => 'PROCESSING_ERROR_REASON_TOO_RECENT_CALL',
+        self::PROCESSING_ERROR_REASON_EXPIRED_CALL => 'PROCESSING_ERROR_REASON_EXPIRED_CALL',
+        self::PROCESSING_ERROR_REASON_INVALID_CALL => 'PROCESSING_ERROR_REASON_INVALID_CALL',
     ];
 
     public static function name($value)

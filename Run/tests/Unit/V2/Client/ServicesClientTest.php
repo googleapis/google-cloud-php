@@ -109,6 +109,7 @@ class ServicesClientTest extends GeneratedTest
         $invokerIamDisabled = false;
         $defaultUriDisabled = false;
         $iapEnabled = true;
+        $sshEnabled = true;
         $observedGeneration = 900833007;
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
@@ -129,6 +130,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setInvokerIamDisabled($invokerIamDisabled);
         $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setIapEnabled($iapEnabled);
+        $expectedResponse->setSshEnabled($sshEnabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
@@ -149,11 +151,7 @@ class ServicesClientTest extends GeneratedTest
         $service = new Service();
         $serviceTemplate = new RevisionTemplate();
         $service->setTemplate($serviceTemplate);
-        $serviceId = 'serviceId-1724763419';
-        $request = (new CreateServiceRequest())
-            ->setParent($formattedParent)
-            ->setService($service)
-            ->setServiceId($serviceId);
+        $request = (new CreateServiceRequest())->setParent($formattedParent)->setService($service);
         $response = $gapicClient->createService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -168,8 +166,6 @@ class ServicesClientTest extends GeneratedTest
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getService();
         $this->assertProtobufEquals($service, $actualValue);
-        $actualValue = $actualApiRequestObject->getServiceId();
-        $this->assertProtobufEquals($serviceId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createServiceTest');
         $response->pollUntilComplete([
@@ -228,11 +224,7 @@ class ServicesClientTest extends GeneratedTest
         $service = new Service();
         $serviceTemplate = new RevisionTemplate();
         $service->setTemplate($serviceTemplate);
-        $serviceId = 'serviceId-1724763419';
-        $request = (new CreateServiceRequest())
-            ->setParent($formattedParent)
-            ->setService($service)
-            ->setServiceId($serviceId);
+        $request = (new CreateServiceRequest())->setParent($formattedParent)->setService($service);
         $response = $gapicClient->createService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -287,6 +279,7 @@ class ServicesClientTest extends GeneratedTest
         $invokerIamDisabled = false;
         $defaultUriDisabled = false;
         $iapEnabled = true;
+        $sshEnabled = true;
         $observedGeneration = 900833007;
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
@@ -307,6 +300,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setInvokerIamDisabled($invokerIamDisabled);
         $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setIapEnabled($iapEnabled);
+        $expectedResponse->setSshEnabled($sshEnabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
@@ -502,6 +496,7 @@ class ServicesClientTest extends GeneratedTest
         $invokerIamDisabled = false;
         $defaultUriDisabled = false;
         $iapEnabled = true;
+        $sshEnabled = true;
         $observedGeneration = 900833007;
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
@@ -522,6 +517,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setInvokerIamDisabled($invokerIamDisabled);
         $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setIapEnabled($iapEnabled);
+        $expectedResponse->setSshEnabled($sshEnabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
@@ -824,6 +820,7 @@ class ServicesClientTest extends GeneratedTest
         $invokerIamDisabled = false;
         $defaultUriDisabled = false;
         $iapEnabled = true;
+        $sshEnabled = true;
         $observedGeneration = 900833007;
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
@@ -844,6 +841,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setInvokerIamDisabled($invokerIamDisabled);
         $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setIapEnabled($iapEnabled);
+        $expectedResponse->setSshEnabled($sshEnabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
@@ -988,6 +986,7 @@ class ServicesClientTest extends GeneratedTest
         $invokerIamDisabled = false;
         $defaultUriDisabled = false;
         $iapEnabled = true;
+        $sshEnabled = true;
         $observedGeneration = 900833007;
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
@@ -1008,6 +1007,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setInvokerIamDisabled($invokerIamDisabled);
         $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setIapEnabled($iapEnabled);
+        $expectedResponse->setSshEnabled($sshEnabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
@@ -1028,11 +1028,7 @@ class ServicesClientTest extends GeneratedTest
         $service = new Service();
         $serviceTemplate = new RevisionTemplate();
         $service->setTemplate($serviceTemplate);
-        $serviceId = 'serviceId-1724763419';
-        $request = (new CreateServiceRequest())
-            ->setParent($formattedParent)
-            ->setService($service)
-            ->setServiceId($serviceId);
+        $request = (new CreateServiceRequest())->setParent($formattedParent)->setService($service);
         $response = $gapicClient->createServiceAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1047,8 +1043,6 @@ class ServicesClientTest extends GeneratedTest
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getService();
         $this->assertProtobufEquals($service, $actualValue);
-        $actualValue = $actualApiRequestObject->getServiceId();
-        $this->assertProtobufEquals($serviceId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createServiceTest');
         $response->pollUntilComplete([

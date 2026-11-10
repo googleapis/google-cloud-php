@@ -94,6 +94,12 @@ class AdIdentifiers extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string visitor_ppid = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $visitor_ppid = '';
+    /**
+     * Optional. Google generated ID issued when user submits a lead form.
+     *
+     * Generated from protobuf field <code>string lead_id = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $lead_id = '';
 
     /**
      * Constructor.
@@ -131,6 +137,8 @@ class AdIdentifiers extends \Google\Protobuf\Internal\Message
      *     @type string $visitor_ppid
      *           Optional. A unique identifier for an unauthenticated user (user who is not
      *           signed-in), as defined by the publisher.
+     *     @type string $lead_id
+     *           Optional. Google generated ID issued when user submits a lead form.
      * }
      */
     public function __construct($data = NULL) {
@@ -468,6 +476,32 @@ class AdIdentifiers extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->visitor_ppid = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Google generated ID issued when user submits a lead form.
+     *
+     * Generated from protobuf field <code>string lead_id = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLeadId()
+    {
+        return $this->lead_id;
+    }
+
+    /**
+     * Optional. Google generated ID issued when user submits a lead form.
+     *
+     * Generated from protobuf field <code>string lead_id = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLeadId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->lead_id = $var;
 
         return $this;
     }

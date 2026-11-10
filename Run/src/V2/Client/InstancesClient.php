@@ -35,6 +35,11 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Run\V2\CreateInstanceRequest;
 use Google\Cloud\Run\V2\DeleteInstanceRequest;
 use Google\Cloud\Run\V2\GetInstanceRequest;
@@ -42,6 +47,7 @@ use Google\Cloud\Run\V2\Instance;
 use Google\Cloud\Run\V2\ListInstancesRequest;
 use Google\Cloud\Run\V2\StartInstanceRequest;
 use Google\Cloud\Run\V2\StopInstanceRequest;
+use Google\Cloud\Run\V2\UpdateInstanceRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -60,10 +66,14 @@ use Psr\Log\LoggerInterface;
  *
  * @method PromiseInterface<OperationResponse> createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Instance> getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> startInstanceAsync(StartInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> stopInstanceAsync(StopInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
  */
 final class InstancesClient
 {
@@ -94,7 +104,11 @@ final class InstancesClient
      *
      * @internal
      */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/run',
+        'https://www.googleapis.com/auth/run.readonly',
+    ];
 
     private $operationsClient;
 
@@ -470,7 +484,7 @@ final class InstancesClient
     }
 
     /**
-     * Deletes a Instance
+     * Deletes an Instance
      *
      * The async variant is {@see InstancesClient::deleteInstanceAsync()} .
      *
@@ -496,7 +510,34 @@ final class InstancesClient
     }
 
     /**
-     * Gets a Instance
+     * Gets the IAM Access Control policy currently in effect for the given
+     * Instance. This result does not include any inherited policies.
+     *
+     * The async variant is {@see InstancesClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V2/InstancesClient/get_iam_policy.php
+     *
+     * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets an Instance
      *
      * The async variant is {@see InstancesClient::getInstanceAsync()} .
      *
@@ -545,6 +586,33 @@ final class InstancesClient
     public function listInstances(ListInstancesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListInstances', $request, $callOptions);
+    }
+
+    /**
+     * Sets the IAM Access control policy for the specified Instance. Overwrites
+     * any existing policy.
+     *
+     * The async variant is {@see InstancesClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V2/InstancesClient/set_iam_policy.php
+     *
+     * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
     }
 
     /**
@@ -597,5 +665,61 @@ final class InstancesClient
     public function stopInstance(StopInstanceRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('StopInstance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified Instance.
+     *
+     * There are no permissions required for making this API call.
+     *
+     * The async variant is {@see InstancesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V2/InstancesClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestIamPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates an Instance.
+     *
+     * The async variant is {@see InstancesClient::updateInstanceAsync()} .
+     *
+     * @example samples/V2/InstancesClient/update_instance.php
+     *
+     * @param UpdateInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Instance>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateInstance(UpdateInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateInstance', $request, $callOptions)->wait();
     }
 }

@@ -96,6 +96,7 @@ return [
                 'backup' => 'projects/{project}/backups/{backup}',
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
+                'instance' => 'projects/{project}/instances/{instance}',
                 'networkAttachment' => 'projects/{project}/regions/{region}/networkAttachments/{network_attachment}',
                 'project' => 'projects/{project}',
                 'serviceConnectionPolicy' => 'projects/{project}/regions/{region}/serviceConnectionPolicies/{service_connection_policy}',

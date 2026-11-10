@@ -105,8 +105,12 @@ return [
                 ],
             ],
             'templateMap' => [
+                'audienceSegment' => 'networks/{network_code}/audienceSegments/{audience_segment}',
+                'contentBundle' => 'networks/{network_code}/contentBundles/{content_bundle}',
+                'customTargetingValue' => 'networks/{network_code}/customTargetingValues/{custom_targeting_value}',
                 'entitySignalsMapping' => 'networks/{network_code}/entitySignalsMappings/{entity_signals_mapping}',
                 'network' => 'networks/{network_code}',
+                'taxonomyCategory' => 'networks/{network_code}/taxonomyCategories/{taxonomy_category}',
             ],
         ],
     ],

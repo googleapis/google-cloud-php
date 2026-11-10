@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\Snapshot;
 use UnexpectedValueException;
 
 /**
- * Indicates the type of the snapshot.
+ * Indicates the type of the snapshot. Valid values are ARCHIVE
+ * or STANDARD. The default is STANDARD.
  *
  * Protobuf type <code>google.cloud.compute.v1.Snapshot.SnapshotType</code>
  */
@@ -20,10 +21,16 @@ class SnapshotType
      */
     const UNDEFINED_SNAPSHOT_TYPE = 0;
     /**
+     * Indicates an archive snapshot, which is recommended for long-term
+     * retention and compliance.
+     *
      * Generated from protobuf enum <code>ARCHIVE = 506752162;</code>
      */
     const ARCHIVE = 506752162;
     /**
+     * Indicates a standard snapshot, which is recommended for frequent
+     * restores.
+     *
      * Generated from protobuf enum <code>STANDARD = 484642493;</code>
      */
     const STANDARD = 484642493;

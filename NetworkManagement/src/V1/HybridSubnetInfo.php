@@ -22,7 +22,9 @@ class HybridSubnetInfo extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * URI of a hybrid subnet.
+     * URI of the hybrid subnet.
+     * Format:
+     * `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
@@ -43,7 +45,9 @@ class HybridSubnetInfo extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Name of a hybrid subnet.
      *     @type string $uri
-     *           URI of a hybrid subnet.
+     *           URI of the hybrid subnet.
+     *           Format:
+     *           `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`
      *     @type string $region
      *           Name of a Google Cloud region where the hybrid subnet is configured.
      * }
@@ -80,7 +84,9 @@ class HybridSubnetInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a hybrid subnet.
+     * URI of the hybrid subnet.
+     * Format:
+     * `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -91,7 +97,9 @@ class HybridSubnetInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a hybrid subnet.
+     * URI of the hybrid subnet.
+     * Format:
+     * `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var

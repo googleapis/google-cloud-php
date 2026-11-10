@@ -24,6 +24,7 @@
   <exclude-pattern>Asset/external</exclude-pattern>
   <exclude-pattern>BigQueryDataExchange/src/Common</exclude-pattern>
   <exclude-pattern>Bigtable/tests/Conformance/proxy/src</exclude-pattern>
+  <exclude-pattern>Chronicle/src/Backstory</exclude-pattern>
   <exclude-pattern>Core/src/Testing</exclude-pattern>
   <exclude-pattern>Gax/src/Testing</exclude-pattern>
   <exclude-pattern>Gax/tests/Unit/GapicClientTraitTest.php</exclude-pattern>

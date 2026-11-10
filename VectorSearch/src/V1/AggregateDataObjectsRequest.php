@@ -24,8 +24,20 @@ class AggregateDataObjectsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * Optional. A JSON filter expression, e.g. {"genre": {"$eq": "sci-fi"}},
-     * represented as a google.protobuf.Struct.
+     * Optional. A JSON filter expression, e.g. `{"genre": {"$eq": "sci-fi"}}`,
+     * represented as a `google.protobuf.Struct`.
+     * An empty filter (`{}`) matches all data objects. Otherwise, each JSON
+     * object in the filter must have exactly one key: either a field name mapped
+     * to one operator (`{"price": {"$lt": 100}}`), or a logical operator: `$and`
+     * or `$or` with a list of filters, or `$not` with one filter. Field
+     * operators and their values: `$eq` and `$ne` take a string, number or bool;
+     * `$lt`, `$lte`, `$gt` and `$gte` take a number; `$in`, `$nin` and `$all`
+     * take a list of strings; `$exists` takes a bool. Several keys in one object
+     * (implicit AND) and implicit equality (`{"genre": "sci-fi"}`) are rejected;
+     * use `$and` and `$eq` instead.
+     * Logical operators can be nested at most 2 levels deep, e.g.
+     * `{"$and": [{"$or": [{"a": {"$eq": 1}}, {"b": {"$eq": 2}}]}]}`. Deeper
+     * filters are rejected with `INVALID_ARGUMENT`.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -47,8 +59,20 @@ class AggregateDataObjectsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the Collection for which to query.
      *           Format: `projects/{project}/locations/{location}/collections/{collection}`
      *     @type \Google\Protobuf\Struct $filter
-     *           Optional. A JSON filter expression, e.g. {"genre": {"$eq": "sci-fi"}},
-     *           represented as a google.protobuf.Struct.
+     *           Optional. A JSON filter expression, e.g. `{"genre": {"$eq": "sci-fi"}}`,
+     *           represented as a `google.protobuf.Struct`.
+     *           An empty filter (`{}`) matches all data objects. Otherwise, each JSON
+     *           object in the filter must have exactly one key: either a field name mapped
+     *           to one operator (`{"price": {"$lt": 100}}`), or a logical operator: `$and`
+     *           or `$or` with a list of filters, or `$not` with one filter. Field
+     *           operators and their values: `$eq` and `$ne` take a string, number or bool;
+     *           `$lt`, `$lte`, `$gt` and `$gte` take a number; `$in`, `$nin` and `$all`
+     *           take a list of strings; `$exists` takes a bool. Several keys in one object
+     *           (implicit AND) and implicit equality (`{"genre": "sci-fi"}`) are rejected;
+     *           use `$and` and `$eq` instead.
+     *           Logical operators can be nested at most 2 levels deep, e.g.
+     *           `{"$and": [{"$or": [{"a": {"$eq": 1}}, {"b": {"$eq": 2}}]}]}`. Deeper
+     *           filters are rejected with `INVALID_ARGUMENT`.
      *     @type int $aggregate
      *           Required. The aggregation method to apply to the query.
      * }
@@ -87,8 +111,20 @@ class AggregateDataObjectsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A JSON filter expression, e.g. {"genre": {"$eq": "sci-fi"}},
-     * represented as a google.protobuf.Struct.
+     * Optional. A JSON filter expression, e.g. `{"genre": {"$eq": "sci-fi"}}`,
+     * represented as a `google.protobuf.Struct`.
+     * An empty filter (`{}`) matches all data objects. Otherwise, each JSON
+     * object in the filter must have exactly one key: either a field name mapped
+     * to one operator (`{"price": {"$lt": 100}}`), or a logical operator: `$and`
+     * or `$or` with a list of filters, or `$not` with one filter. Field
+     * operators and their values: `$eq` and `$ne` take a string, number or bool;
+     * `$lt`, `$lte`, `$gt` and `$gte` take a number; `$in`, `$nin` and `$all`
+     * take a list of strings; `$exists` takes a bool. Several keys in one object
+     * (implicit AND) and implicit equality (`{"genre": "sci-fi"}`) are rejected;
+     * use `$and` and `$eq` instead.
+     * Logical operators can be nested at most 2 levels deep, e.g.
+     * `{"$and": [{"$or": [{"a": {"$eq": 1}}, {"b": {"$eq": 2}}]}]}`. Deeper
+     * filters are rejected with `INVALID_ARGUMENT`.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Struct|null
@@ -109,8 +145,20 @@ class AggregateDataObjectsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A JSON filter expression, e.g. {"genre": {"$eq": "sci-fi"}},
-     * represented as a google.protobuf.Struct.
+     * Optional. A JSON filter expression, e.g. `{"genre": {"$eq": "sci-fi"}}`,
+     * represented as a `google.protobuf.Struct`.
+     * An empty filter (`{}`) matches all data objects. Otherwise, each JSON
+     * object in the filter must have exactly one key: either a field name mapped
+     * to one operator (`{"price": {"$lt": 100}}`), or a logical operator: `$and`
+     * or `$or` with a list of filters, or `$not` with one filter. Field
+     * operators and their values: `$eq` and `$ne` take a string, number or bool;
+     * `$lt`, `$lte`, `$gt` and `$gte` take a number; `$in`, `$nin` and `$all`
+     * take a list of strings; `$exists` takes a bool. Several keys in one object
+     * (implicit AND) and implicit equality (`{"genre": "sci-fi"}`) are rejected;
+     * use `$and` and `$eq` instead.
+     * Logical operators can be nested at most 2 levels deep, e.g.
+     * `{"$and": [{"$or": [{"a": {"$eq": 1}}, {"b": {"$eq": 2}}]}]}`. Deeper
+     * filters are rejected with `INVALID_ARGUMENT`.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Struct $var

@@ -30,10 +30,11 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      */
     protected $job = null;
     /**
-     * Required. The unique identifier for the Job. The name of the job becomes
+     * Optional. The unique identifier for the Job. The name of the job becomes
      * {parent}/jobs/{job_id}.
+     * If not provided, the server will generate a unique `job_id`.
      *
-     * Generated from protobuf field <code>string job_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string job_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $job_id = '';
     /**
@@ -50,8 +51,9 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      *                                         project id or number. Please see
      *                                         {@see JobsClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Run\V2\Job $job    Required. The Job instance to create.
-     * @param string                   $jobId  Required. The unique identifier for the Job. The name of the job becomes
+     * @param string                   $jobId  Optional. The unique identifier for the Job. The name of the job becomes
      *                                         {parent}/jobs/{job_id}.
+     *                                         If not provided, the server will generate a unique `job_id`.
      *
      * @return \Google\Cloud\Run\V2\CreateJobRequest
      *
@@ -78,8 +80,9 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Run\V2\Job $job
      *           Required. The Job instance to create.
      *     @type string $job_id
-     *           Required. The unique identifier for the Job. The name of the job becomes
+     *           Optional. The unique identifier for the Job. The name of the job becomes
      *           {parent}/jobs/{job_id}.
+     *           If not provided, the server will generate a unique `job_id`.
      *     @type bool $validate_only
      *           Indicates that the request should be validated and default values
      *           populated, without persisting the request or creating any resources.
@@ -157,10 +160,11 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique identifier for the Job. The name of the job becomes
+     * Optional. The unique identifier for the Job. The name of the job becomes
      * {parent}/jobs/{job_id}.
+     * If not provided, the server will generate a unique `job_id`.
      *
-     * Generated from protobuf field <code>string job_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string job_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getJobId()
@@ -169,10 +173,11 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique identifier for the Job. The name of the job becomes
+     * Optional. The unique identifier for the Job. The name of the job becomes
      * {parent}/jobs/{job_id}.
+     * If not provided, the server will generate a unique `job_id`.
      *
-     * Generated from protobuf field <code>string job_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string job_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

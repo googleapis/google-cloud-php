@@ -23,15 +23,15 @@ class OdbSubnet extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Required. The CIDR range of the subnet.
+     * Required. Immutable. The CIDR range of the subnet.
      *
-     * Generated from protobuf field <code>string cidr_range = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cidr_range = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $cidr_range = '';
     /**
-     * Required. Purpose of the subnet.
+     * Required. Immutable. Purpose of the subnet.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.OdbSubnet.Purpose purpose = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.OdbSubnet.Purpose purpose = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $purpose = 0;
     /**
@@ -63,9 +63,9 @@ class OdbSubnet extends \Google\Protobuf\Internal\Message
      *           Identifier. The name of the OdbSubnet resource in the following format:
      *           projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *     @type string $cidr_range
-     *           Required. The CIDR range of the subnet.
+     *           Required. Immutable. The CIDR range of the subnet.
      *     @type int $purpose
-     *           Required. Purpose of the subnet.
+     *           Required. Immutable. Purpose of the subnet.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels or tags associated with the resource.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -108,9 +108,9 @@ class OdbSubnet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The CIDR range of the subnet.
+     * Required. Immutable. The CIDR range of the subnet.
      *
-     * Generated from protobuf field <code>string cidr_range = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cidr_range = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getCidrRange()
@@ -119,9 +119,9 @@ class OdbSubnet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The CIDR range of the subnet.
+     * Required. Immutable. The CIDR range of the subnet.
      *
-     * Generated from protobuf field <code>string cidr_range = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cidr_range = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -134,9 +134,9 @@ class OdbSubnet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Purpose of the subnet.
+     * Required. Immutable. Purpose of the subnet.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.OdbSubnet.Purpose purpose = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.OdbSubnet.Purpose purpose = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
      */
     public function getPurpose()
@@ -145,9 +145,9 @@ class OdbSubnet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Purpose of the subnet.
+     * Required. Immutable. Purpose of the subnet.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.OdbSubnet.Purpose purpose = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.OdbSubnet.Purpose purpose = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
      * @return $this
      */

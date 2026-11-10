@@ -126,6 +126,12 @@ class WarningReason
      * Generated from protobuf enum <code>WARNING_REASON_INVALID_MERCHANT_ID = 14;</code>
      */
     const WARNING_REASON_INVALID_MERCHANT_ID = 14;
+    /**
+     * The number format is invalid.
+     *
+     * Generated from protobuf enum <code>WARNING_REASON_INVALID_NUMBER_FORMAT = 15;</code>
+     */
+    const WARNING_REASON_INVALID_NUMBER_FORMAT = 15;
 
     private static $valueToName = [
         self::WARNING_REASON_UNSPECIFIED => 'WARNING_REASON_UNSPECIFIED',
@@ -143,6 +149,7 @@ class WarningReason
         self::WARNING_REASON_INVALID_DEVICE_CATEGORY => 'WARNING_REASON_INVALID_DEVICE_CATEGORY',
         self::WARNING_REASON_INVALID_DEVICE_SCREEN_RESOLUTION => 'WARNING_REASON_INVALID_DEVICE_SCREEN_RESOLUTION',
         self::WARNING_REASON_INVALID_MERCHANT_ID => 'WARNING_REASON_INVALID_MERCHANT_ID',
+        self::WARNING_REASON_INVALID_NUMBER_FORMAT => 'WARNING_REASON_INVALID_NUMBER_FORMAT',
     ];
 
     public static function name($value)

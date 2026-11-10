@@ -125,11 +125,19 @@ class Order extends \Google\Protobuf\Internal\Message
      */
     protected $end_time = null;
     /**
-     * Output only. Indicates whether or not this Order has an end time.
+     * Output only. Deprecated: Indicates whether or not this Order has an end
+     * time.
      *
-     * Generated from protobuf field <code>optional bool unlimited_end_time = 45 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool unlimited_end_time = 45 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $unlimited_end_time = null;
+    /**
+     * Output only. Indicates whether or not this Order has an end time.
+     *
+     * Generated from protobuf field <code>optional bool end_time_unlimited = 82 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $end_time_unlimited = null;
     /**
      * Optional. An arbitrary ID to associate to the Order, which can be used as a
      * key to an external system.
@@ -297,6 +305,9 @@ class Order extends \Google\Protobuf\Internal\Message
      *           stop being served. This attribute is derived from the Line item of the
      *           order that has the latest `LineItem.end_time`.
      *     @type bool $unlimited_end_time
+     *           Output only. Deprecated: Indicates whether or not this Order has an end
+     *           time.
+     *     @type bool $end_time_unlimited
      *           Output only. Indicates whether or not this Order has an end time.
      *     @type int $external_order_id
      *           Optional. An arbitrary ID to associate to the Order, which can be used as a
@@ -889,37 +900,85 @@ class Order extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Indicates whether or not this Order has an end time.
+     * Output only. Deprecated: Indicates whether or not this Order has an end
+     * time.
      *
-     * Generated from protobuf field <code>optional bool unlimited_end_time = 45 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool unlimited_end_time = 45 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
+     * @deprecated
      */
     public function getUnlimitedEndTime()
     {
+        if (isset($this->unlimited_end_time)) {
+            @trigger_error('unlimited_end_time is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->unlimited_end_time) ? $this->unlimited_end_time : false;
     }
 
     public function hasUnlimitedEndTime()
     {
+        if (isset($this->unlimited_end_time)) {
+            @trigger_error('unlimited_end_time is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->unlimited_end_time);
     }
 
     public function clearUnlimitedEndTime()
     {
+        @trigger_error('unlimited_end_time is deprecated.', E_USER_DEPRECATED);
         unset($this->unlimited_end_time);
+    }
+
+    /**
+     * Output only. Deprecated: Indicates whether or not this Order has an end
+     * time.
+     *
+     * Generated from protobuf field <code>optional bool unlimited_end_time = 45 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     * @deprecated
+     */
+    public function setUnlimitedEndTime($var)
+    {
+        @trigger_error('unlimited_end_time is deprecated.', E_USER_DEPRECATED);
+        GPBUtil::checkBool($var);
+        $this->unlimited_end_time = $var;
+
+        return $this;
     }
 
     /**
      * Output only. Indicates whether or not this Order has an end time.
      *
-     * Generated from protobuf field <code>optional bool unlimited_end_time = 45 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool end_time_unlimited = 82 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getEndTimeUnlimited()
+    {
+        return isset($this->end_time_unlimited) ? $this->end_time_unlimited : false;
+    }
+
+    public function hasEndTimeUnlimited()
+    {
+        return isset($this->end_time_unlimited);
+    }
+
+    public function clearEndTimeUnlimited()
+    {
+        unset($this->end_time_unlimited);
+    }
+
+    /**
+     * Output only. Indicates whether or not this Order has an end time.
+     *
+     * Generated from protobuf field <code>optional bool end_time_unlimited = 82 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */
-    public function setUnlimitedEndTime($var)
+    public function setEndTimeUnlimited($var)
     {
         GPBUtil::checkBool($var);
-        $this->unlimited_end_time = $var;
+        $this->end_time_unlimited = $var;
 
         return $this;
     }

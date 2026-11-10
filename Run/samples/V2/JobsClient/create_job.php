@@ -39,10 +39,8 @@ use Google\Rpc\Status;
  *                                Format: projects/{project}/locations/{location}, where {project} can be
  *                                project id or number. Please see
  *                                {@see JobsClient::locationName()} for help formatting this field.
- * @param string $jobId           The unique identifier for the Job. The name of the job becomes
- *                                {parent}/jobs/{job_id}.
  */
-function create_job_sample(string $formattedParent, string $jobId): void
+function create_job_sample(string $formattedParent): void
 {
     // Create a client.
     $jobsClient = new JobsClient();
@@ -55,8 +53,7 @@ function create_job_sample(string $formattedParent, string $jobId): void
         ->setTemplate($jobTemplate);
     $request = (new CreateJobRequest())
         ->setParent($formattedParent)
-        ->setJob($job)
-        ->setJobId($jobId);
+        ->setJob($job);
 
     // Call the API and handle any network failures.
     try {
@@ -90,8 +87,7 @@ function create_job_sample(string $formattedParent, string $jobId): void
 function callSample(): void
 {
     $formattedParent = JobsClient::locationName('[PROJECT]', '[LOCATION]');
-    $jobId = '[JOB_ID]';
 
-    create_job_sample($formattedParent, $jobId);
+    create_job_sample($formattedParent);
 }
 // [END run_v2_generated_Jobs_CreateJob_sync]

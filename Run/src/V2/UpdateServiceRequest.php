@@ -42,6 +42,18 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool allow_missing = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $allow_missing = false;
+    /**
+     * Optional. If set to true, a new revision will be created from the template
+     * even if the system doesn't detect any changes from the previously deployed
+     * revision.
+     * This may be useful for cases where the underlying resources need to be
+     * recreated or reinitialized. For example if the image is specified by label,
+     * but the underlying image digest has changed) or if the container performs
+     * deployment initialization work that needs to be performed again.
+     *
+     * Generated from protobuf field <code>bool force_new_revision = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $force_new_revision = false;
 
     /**
      * @param \Google\Cloud\Run\V2\Service $service Required. The Service to be updated.
@@ -88,6 +100,14 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
      *           Optional. If set to true, and if the Service does not exist, it will create
      *           a new one. The caller must have 'run.services.create' permissions if this
      *           is set to true and the Service does not exist.
+     *     @type bool $force_new_revision
+     *           Optional. If set to true, a new revision will be created from the template
+     *           even if the system doesn't detect any changes from the previously deployed
+     *           revision.
+     *           This may be useful for cases where the underlying resources need to be
+     *           recreated or reinitialized. For example if the image is specified by label,
+     *           but the underlying image digest has changed) or if the container performs
+     *           deployment initialization work that needs to be performed again.
      * }
      */
     public function __construct($data = NULL) {
@@ -221,6 +241,44 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->allow_missing = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to true, a new revision will be created from the template
+     * even if the system doesn't detect any changes from the previously deployed
+     * revision.
+     * This may be useful for cases where the underlying resources need to be
+     * recreated or reinitialized. For example if the image is specified by label,
+     * but the underlying image digest has changed) or if the container performs
+     * deployment initialization work that needs to be performed again.
+     *
+     * Generated from protobuf field <code>bool force_new_revision = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getForceNewRevision()
+    {
+        return $this->force_new_revision;
+    }
+
+    /**
+     * Optional. If set to true, a new revision will be created from the template
+     * even if the system doesn't detect any changes from the previously deployed
+     * revision.
+     * This may be useful for cases where the underlying resources need to be
+     * recreated or reinitialized. For example if the image is specified by label,
+     * but the underlying image digest has changed) or if the container performs
+     * deployment initialization work that needs to be performed again.
+     *
+     * Generated from protobuf field <code>bool force_new_revision = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setForceNewRevision($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->force_new_revision = $var;
 
         return $this;
     }

@@ -28,6 +28,9 @@ class Orchestrator extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\HypercomputeCluster\V1beta\SlurmOrchestrator $slurm
      *           Optional. If set, indicates that the cluster should use Slurm as the
      *           orchestrator.
+     *     @type \Google\Cloud\HypercomputeCluster\V1beta\ComputeEngineOrchestrator $compute_engine
+     *           Optional. If set, indicates that the cluster should use Compute Engine as
+     *           the orchestrator.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,6 +67,39 @@ class Orchestrator extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\HypercomputeCluster\V1beta\SlurmOrchestrator::class);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, indicates that the cluster should use Compute Engine as
+     * the orchestrator.
+     *
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.ComputeEngineOrchestrator compute_engine = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\HypercomputeCluster\V1beta\ComputeEngineOrchestrator|null
+     */
+    public function getComputeEngine()
+    {
+        return $this->readOneof(2);
+    }
+
+    public function hasComputeEngine()
+    {
+        return $this->hasOneof(2);
+    }
+
+    /**
+     * Optional. If set, indicates that the cluster should use Compute Engine as
+     * the orchestrator.
+     *
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.ComputeEngineOrchestrator compute_engine = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\HypercomputeCluster\V1beta\ComputeEngineOrchestrator $var
+     * @return $this
+     */
+    public function setComputeEngine($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\HypercomputeCluster\V1beta\ComputeEngineOrchestrator::class);
+        $this->writeOneof(2, $var);
 
         return $this;
     }

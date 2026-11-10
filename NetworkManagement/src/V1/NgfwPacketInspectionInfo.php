@@ -19,6 +19,8 @@ class NgfwPacketInspectionInfo extends \Google\Protobuf\Internal\Message
     /**
      * URI of the security profile group associated with this firewall packet
      * inspection.
+     * Format:
+     * `organizations/{organization_id}/locations/global/securityProfileGroups/{security_profile_group_id}`
      *
      * Generated from protobuf field <code>string security_profile_group_uri = 1;</code>
      */
@@ -33,6 +35,8 @@ class NgfwPacketInspectionInfo extends \Google\Protobuf\Internal\Message
      *     @type string $security_profile_group_uri
      *           URI of the security profile group associated with this firewall packet
      *           inspection.
+     *           Format:
+     *           `organizations/{organization_id}/locations/global/securityProfileGroups/{security_profile_group_id}`
      * }
      */
     public function __construct($data = NULL) {
@@ -43,6 +47,8 @@ class NgfwPacketInspectionInfo extends \Google\Protobuf\Internal\Message
     /**
      * URI of the security profile group associated with this firewall packet
      * inspection.
+     * Format:
+     * `organizations/{organization_id}/locations/global/securityProfileGroups/{security_profile_group_id}`
      *
      * Generated from protobuf field <code>string security_profile_group_uri = 1;</code>
      * @return string
@@ -55,6 +61,8 @@ class NgfwPacketInspectionInfo extends \Google\Protobuf\Internal\Message
     /**
      * URI of the security profile group associated with this firewall packet
      * inspection.
+     * Format:
+     * `organizations/{organization_id}/locations/global/securityProfileGroups/{security_profile_group_id}`
      *
      * Generated from protobuf field <code>string security_profile_group_uri = 1;</code>
      * @param string $var

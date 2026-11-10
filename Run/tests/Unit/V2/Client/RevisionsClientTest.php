@@ -104,6 +104,8 @@ class RevisionsClientTest extends GeneratedTest
         $sessionAffinity = false;
         $gpuZonalRedundancyDisabled = true;
         $creator = 'creator1028554796';
+        $client = 'client-1357712437';
+        $clientVersion = 'clientVersion-1506231196';
         $etag2 = 'etag2-1293302904';
         $expectedResponse = new Revision();
         $expectedResponse->setName($name2);
@@ -120,6 +122,8 @@ class RevisionsClientTest extends GeneratedTest
         $expectedResponse->setSessionAffinity($sessionAffinity);
         $expectedResponse->setGpuZonalRedundancyDisabled($gpuZonalRedundancyDisabled);
         $expectedResponse->setCreator($creator);
+        $expectedResponse->setClient($client);
+        $expectedResponse->setClientVersion($clientVersion);
         $expectedResponse->setEtag($etag2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -244,6 +248,8 @@ class RevisionsClientTest extends GeneratedTest
         $sessionAffinity = false;
         $gpuZonalRedundancyDisabled = true;
         $creator = 'creator1028554796';
+        $client = 'client-1357712437';
+        $clientVersion = 'clientVersion-1506231196';
         $etag = 'etag3123477';
         $expectedResponse = new Revision();
         $expectedResponse->setName($name2);
@@ -260,6 +266,8 @@ class RevisionsClientTest extends GeneratedTest
         $expectedResponse->setSessionAffinity($sessionAffinity);
         $expectedResponse->setGpuZonalRedundancyDisabled($gpuZonalRedundancyDisabled);
         $expectedResponse->setCreator($creator);
+        $expectedResponse->setClient($client);
+        $expectedResponse->setClientVersion($clientVersion);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -420,6 +428,8 @@ class RevisionsClientTest extends GeneratedTest
         $sessionAffinity = false;
         $gpuZonalRedundancyDisabled = true;
         $creator = 'creator1028554796';
+        $client = 'client-1357712437';
+        $clientVersion = 'clientVersion-1506231196';
         $etag2 = 'etag2-1293302904';
         $expectedResponse = new Revision();
         $expectedResponse->setName($name2);
@@ -436,6 +446,8 @@ class RevisionsClientTest extends GeneratedTest
         $expectedResponse->setSessionAffinity($sessionAffinity);
         $expectedResponse->setGpuZonalRedundancyDisabled($gpuZonalRedundancyDisabled);
         $expectedResponse->setCreator($creator);
+        $expectedResponse->setClient($client);
+        $expectedResponse->setClientVersion($clientVersion);
         $expectedResponse->setEtag($etag2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());

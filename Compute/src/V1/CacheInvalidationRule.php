@@ -15,6 +15,17 @@ use Google\Protobuf\RepeatedField;
 class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
 {
     /**
+     * If set, this invalidation rule will only apply to requests routed to the
+     * given backend service or backend bucket.
+     * For example, for a backend bucket `bb1` in the same scope as the URL map,
+     * the path would be `projects/my-project/global/backendBuckets/bb1`; and
+     * for a backend service `bs1` in the same scope as the URL map, the path
+     * would be `projects/my-project/global/backendServices/bs1`.
+     *
+     * Generated from protobuf field <code>optional string backend_service = 306946058;</code>
+     */
+    protected $backend_service = null;
+    /**
      * A list of cache tags used to identify cached objects.
      *    - Cache tags are specified when the response is first cached, by setting
      *    the `Cache-Tag` response header at the origin.
@@ -28,6 +39,14 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
      */
     private $cache_tags;
     /**
+     * If set, this invalidation rule will only apply to responses with the given
+     * content-type. Parameters are not allowed and are ignored from the response
+     * when matching. Wildcards are not allowed.
+     *
+     * Generated from protobuf field <code>optional string content_type = 294975296;</code>
+     */
+    protected $content_type = null;
+    /**
      * If set, this invalidation rule will only apply to requests with a Host
      * header matching host. This field also accepts wildcards (*) to replace the
      * leftmost (or first) label of a hostname. For example, *.example.com will
@@ -36,6 +55,13 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string host = 3208616;</code>
      */
     protected $host = null;
+    /**
+     * If set, this invalidation rule will only apply to responses with the
+     * given HTTP status. Valid range is 200-599.
+     *
+     * Generated from protobuf field <code>optional int32 http_status = 468949897;</code>
+     */
+    protected $http_status = null;
     /**
      * Generated from protobuf field <code>optional string path = 3433509;</code>
      */
@@ -47,6 +73,13 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $backend_service
+     *           If set, this invalidation rule will only apply to requests routed to the
+     *           given backend service or backend bucket.
+     *           For example, for a backend bucket `bb1` in the same scope as the URL map,
+     *           the path would be `projects/my-project/global/backendBuckets/bb1`; and
+     *           for a backend service `bs1` in the same scope as the URL map, the path
+     *           would be `projects/my-project/global/backendServices/bs1`.
      *     @type string[] $cache_tags
      *           A list of cache tags used to identify cached objects.
      *              - Cache tags are specified when the response is first cached, by setting
@@ -56,17 +89,70 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
      *              - If other fields are also specified, these are treated as Boolean `AND`
      *              with any tags.
      *           Up to 10 tags can be specified in a single invalidation request.
+     *     @type string $content_type
+     *           If set, this invalidation rule will only apply to responses with the given
+     *           content-type. Parameters are not allowed and are ignored from the response
+     *           when matching. Wildcards are not allowed.
      *     @type string $host
      *           If set, this invalidation rule will only apply to requests with a Host
      *           header matching host. This field also accepts wildcards (*) to replace the
      *           leftmost (or first) label of a hostname. For example, *.example.com will
      *           match www.example.com, but not sub1.dev.example.com.
+     *     @type int $http_status
+     *           If set, this invalidation rule will only apply to responses with the
+     *           given HTTP status. Valid range is 200-599.
      *     @type string $path
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * If set, this invalidation rule will only apply to requests routed to the
+     * given backend service or backend bucket.
+     * For example, for a backend bucket `bb1` in the same scope as the URL map,
+     * the path would be `projects/my-project/global/backendBuckets/bb1`; and
+     * for a backend service `bs1` in the same scope as the URL map, the path
+     * would be `projects/my-project/global/backendServices/bs1`.
+     *
+     * Generated from protobuf field <code>optional string backend_service = 306946058;</code>
+     * @return string
+     */
+    public function getBackendService()
+    {
+        return isset($this->backend_service) ? $this->backend_service : '';
+    }
+
+    public function hasBackendService()
+    {
+        return isset($this->backend_service);
+    }
+
+    public function clearBackendService()
+    {
+        unset($this->backend_service);
+    }
+
+    /**
+     * If set, this invalidation rule will only apply to requests routed to the
+     * given backend service or backend bucket.
+     * For example, for a backend bucket `bb1` in the same scope as the URL map,
+     * the path would be `projects/my-project/global/backendBuckets/bb1`; and
+     * for a backend service `bs1` in the same scope as the URL map, the path
+     * would be `projects/my-project/global/backendServices/bs1`.
+     *
+     * Generated from protobuf field <code>optional string backend_service = 306946058;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBackendService($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->backend_service = $var;
+
+        return $this;
     }
 
     /**
@@ -110,6 +196,46 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * If set, this invalidation rule will only apply to responses with the given
+     * content-type. Parameters are not allowed and are ignored from the response
+     * when matching. Wildcards are not allowed.
+     *
+     * Generated from protobuf field <code>optional string content_type = 294975296;</code>
+     * @return string
+     */
+    public function getContentType()
+    {
+        return isset($this->content_type) ? $this->content_type : '';
+    }
+
+    public function hasContentType()
+    {
+        return isset($this->content_type);
+    }
+
+    public function clearContentType()
+    {
+        unset($this->content_type);
+    }
+
+    /**
+     * If set, this invalidation rule will only apply to responses with the given
+     * content-type. Parameters are not allowed and are ignored from the response
+     * when matching. Wildcards are not allowed.
+     *
+     * Generated from protobuf field <code>optional string content_type = 294975296;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setContentType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->content_type = $var;
+
+        return $this;
+    }
+
+    /**
      * If set, this invalidation rule will only apply to requests with a Host
      * header matching host. This field also accepts wildcards (*) to replace the
      * leftmost (or first) label of a hostname. For example, *.example.com will
@@ -147,6 +273,44 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->host = $var;
+
+        return $this;
+    }
+
+    /**
+     * If set, this invalidation rule will only apply to responses with the
+     * given HTTP status. Valid range is 200-599.
+     *
+     * Generated from protobuf field <code>optional int32 http_status = 468949897;</code>
+     * @return int
+     */
+    public function getHttpStatus()
+    {
+        return isset($this->http_status) ? $this->http_status : 0;
+    }
+
+    public function hasHttpStatus()
+    {
+        return isset($this->http_status);
+    }
+
+    public function clearHttpStatus()
+    {
+        unset($this->http_status);
+    }
+
+    /**
+     * If set, this invalidation rule will only apply to responses with the
+     * given HTTP status. Valid range is 200-599.
+     *
+     * Generated from protobuf field <code>optional int32 http_status = 468949897;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setHttpStatus($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->http_status = $var;
 
         return $this;
     }

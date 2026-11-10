@@ -142,11 +142,7 @@ class JobsClientTest extends GeneratedTest
         $templateTemplate = new TaskTemplate();
         $jobTemplate->setTemplate($templateTemplate);
         $job->setTemplate($jobTemplate);
-        $jobId = 'jobId-1154752291';
-        $request = (new CreateJobRequest())
-            ->setParent($formattedParent)
-            ->setJob($job)
-            ->setJobId($jobId);
+        $request = (new CreateJobRequest())->setParent($formattedParent)->setJob($job);
         $response = $gapicClient->createJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -161,8 +157,6 @@ class JobsClientTest extends GeneratedTest
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getJob();
         $this->assertProtobufEquals($job, $actualValue);
-        $actualValue = $actualApiRequestObject->getJobId();
-        $this->assertProtobufEquals($jobId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createJobTest');
         $response->pollUntilComplete([
@@ -223,11 +217,7 @@ class JobsClientTest extends GeneratedTest
         $templateTemplate = new TaskTemplate();
         $jobTemplate->setTemplate($templateTemplate);
         $job->setTemplate($jobTemplate);
-        $jobId = 'jobId-1154752291';
-        $request = (new CreateJobRequest())
-            ->setParent($formattedParent)
-            ->setJob($job)
-            ->setJobId($jobId);
+        $request = (new CreateJobRequest())->setParent($formattedParent)->setJob($job);
         $response = $gapicClient->createJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -662,6 +652,8 @@ class JobsClientTest extends GeneratedTest
         $retriedCount = 1654679545;
         $logUri = 'logUri342054385';
         $satisfiesPzs = false;
+        $client = 'client-1357712437';
+        $clientVersion = 'clientVersion-1506231196';
         $etag2 = 'etag2-1293302904';
         $expectedResponse = new Execution();
         $expectedResponse->setName($name2);
@@ -680,6 +672,8 @@ class JobsClientTest extends GeneratedTest
         $expectedResponse->setRetriedCount($retriedCount);
         $expectedResponse->setLogUri($logUri);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setClient($client);
+        $expectedResponse->setClientVersion($clientVersion);
         $expectedResponse->setEtag($etag2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -1137,11 +1131,7 @@ class JobsClientTest extends GeneratedTest
         $templateTemplate = new TaskTemplate();
         $jobTemplate->setTemplate($templateTemplate);
         $job->setTemplate($jobTemplate);
-        $jobId = 'jobId-1154752291';
-        $request = (new CreateJobRequest())
-            ->setParent($formattedParent)
-            ->setJob($job)
-            ->setJobId($jobId);
+        $request = (new CreateJobRequest())->setParent($formattedParent)->setJob($job);
         $response = $gapicClient->createJobAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1156,8 +1146,6 @@ class JobsClientTest extends GeneratedTest
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getJob();
         $this->assertProtobufEquals($job, $actualValue);
-        $actualValue = $actualApiRequestObject->getJobId();
-        $this->assertProtobufEquals($jobId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createJobTest');
         $response->pollUntilComplete([

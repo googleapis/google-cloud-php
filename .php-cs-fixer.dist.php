@@ -46,6 +46,7 @@ return (new PhpCsFixer\Config())
                 'AccessContextManager/src/Type',
                 'Asset/external',
                 'BigQueryDataExchange/src/Common',
+                'Chronicle/src/Backstory',
                 'CommonProtos',
                 'Core/src/Testing',
                 'GSuiteAddOns/external',

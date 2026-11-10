@@ -22,7 +22,10 @@ class ForwardingRuleInfo extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * URI of the forwarding rule.
+     * URI of the forwarding rule in format
+     * "projects/{project}/global/forwardingRules/{forwarding_rule}" (global) or
+     * "projects/{project}/regions/{region}/forwardingRules/{forwarding_rule}"
+     * (regional).
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
@@ -52,7 +55,8 @@ class ForwardingRuleInfo extends \Google\Protobuf\Internal\Message
      */
     protected $target = '';
     /**
-     * Network URI.
+     * URI of a VPC network where the forwarding rule is located in format
+     * "projects/{project}/global/networks/{network}".
      *
      * Generated from protobuf field <code>string network_uri = 7;</code>
      */
@@ -72,7 +76,8 @@ class ForwardingRuleInfo extends \Google\Protobuf\Internal\Message
     protected $load_balancer_name = '';
     /**
      * URI of the PSC service attachment this forwarding rule targets (if
-     * applicable).
+     * applicable) in format
+     * "projects/{project}/regions/{region}/serviceAttachments/{service_attachment}".
      *
      * Generated from protobuf field <code>string psc_service_attachment_uri = 10;</code>
      */
@@ -93,7 +98,10 @@ class ForwardingRuleInfo extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Name of the forwarding rule.
      *     @type string $uri
-     *           URI of the forwarding rule.
+     *           URI of the forwarding rule in format
+     *           "projects/{project}/global/forwardingRules/{forwarding_rule}" (global) or
+     *           "projects/{project}/regions/{region}/forwardingRules/{forwarding_rule}"
+     *           (regional).
      *     @type string $matched_protocol
      *           Protocol defined in the forwarding rule that matches the packet.
      *     @type string $matched_port_range
@@ -103,7 +111,8 @@ class ForwardingRuleInfo extends \Google\Protobuf\Internal\Message
      *     @type string $target
      *           Target type of the forwarding rule.
      *     @type string $network_uri
-     *           Network URI.
+     *           URI of a VPC network where the forwarding rule is located in format
+     *           "projects/{project}/global/networks/{network}".
      *     @type string $region
      *           Region of the forwarding rule. Set only for regional forwarding rules.
      *     @type string $load_balancer_name
@@ -111,7 +120,8 @@ class ForwardingRuleInfo extends \Google\Protobuf\Internal\Message
      *           forwarding rules not related to load balancers (like PSC forwarding rules).
      *     @type string $psc_service_attachment_uri
      *           URI of the PSC service attachment this forwarding rule targets (if
-     *           applicable).
+     *           applicable) in format
+     *           "projects/{project}/regions/{region}/serviceAttachments/{service_attachment}".
      *     @type string $psc_google_api_target
      *           PSC Google API target this forwarding rule targets (if applicable).
      * }
@@ -148,7 +158,10 @@ class ForwardingRuleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the forwarding rule.
+     * URI of the forwarding rule in format
+     * "projects/{project}/global/forwardingRules/{forwarding_rule}" (global) or
+     * "projects/{project}/regions/{region}/forwardingRules/{forwarding_rule}"
+     * (regional).
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -159,7 +172,10 @@ class ForwardingRuleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the forwarding rule.
+     * URI of the forwarding rule in format
+     * "projects/{project}/global/forwardingRules/{forwarding_rule}" (global) or
+     * "projects/{project}/regions/{region}/forwardingRules/{forwarding_rule}"
+     * (regional).
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var
@@ -278,7 +294,8 @@ class ForwardingRuleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Network URI.
+     * URI of a VPC network where the forwarding rule is located in format
+     * "projects/{project}/global/networks/{network}".
      *
      * Generated from protobuf field <code>string network_uri = 7;</code>
      * @return string
@@ -289,7 +306,8 @@ class ForwardingRuleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Network URI.
+     * URI of a VPC network where the forwarding rule is located in format
+     * "projects/{project}/global/networks/{network}".
      *
      * Generated from protobuf field <code>string network_uri = 7;</code>
      * @param string $var
@@ -359,7 +377,8 @@ class ForwardingRuleInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the PSC service attachment this forwarding rule targets (if
-     * applicable).
+     * applicable) in format
+     * "projects/{project}/regions/{region}/serviceAttachments/{service_attachment}".
      *
      * Generated from protobuf field <code>string psc_service_attachment_uri = 10;</code>
      * @return string
@@ -371,7 +390,8 @@ class ForwardingRuleInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the PSC service attachment this forwarding rule targets (if
-     * applicable).
+     * applicable) in format
+     * "projects/{project}/regions/{region}/serviceAttachments/{service_attachment}".
      *
      * Generated from protobuf field <code>string psc_service_attachment_uri = 10;</code>
      * @param string $var

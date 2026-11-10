@@ -33,6 +33,35 @@ class RemoteAgentTool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.ces.v1.AgentCard agent_card = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $agent_card = null;
+    /**
+     * Optional. Authentication configuration for calling the remote agent.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ApiAuthentication api_authentication = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $api_authentication = null;
+    /**
+     * Optional. When enabled, the interaction between the CXAS app and the remote
+     * agent will share the same context. If the remote agent returns a
+     * context_id, it will be persisted for the entirety of the session for this
+     * remote agent tool.
+     *
+     * Generated from protobuf field <code>bool stateful_agent = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $stateful_agent = false;
+    /**
+     * Optional. Mapping of input variable names of remote agent to GECX variable
+     * names.
+     *
+     * Generated from protobuf field <code>map<string, string> input_variable_mapping = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $input_variable_mapping;
+    /**
+     * Optional. Mapping of output variable names of remote agent to GECX variable
+     * names.
+     *
+     * Generated from protobuf field <code>map<string, string> output_variable_mapping = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $output_variable_mapping;
 
     /**
      * Constructor.
@@ -46,6 +75,19 @@ class RemoteAgentTool extends \Google\Protobuf\Internal\Message
      *           Required. The description of the tool.
      *     @type \Google\Cloud\Ces\V1\AgentCard $agent_card
      *           Required. The agent card of the remote agent that this tool invokes.
+     *     @type \Google\Cloud\Ces\V1\ApiAuthentication $api_authentication
+     *           Optional. Authentication configuration for calling the remote agent.
+     *     @type bool $stateful_agent
+     *           Optional. When enabled, the interaction between the CXAS app and the remote
+     *           agent will share the same context. If the remote agent returns a
+     *           context_id, it will be persisted for the entirety of the session for this
+     *           remote agent tool.
+     *     @type array|\Google\Protobuf\Internal\MapField $input_variable_mapping
+     *           Optional. Mapping of input variable names of remote agent to GECX variable
+     *           names.
+     *     @type array|\Google\Protobuf\Internal\MapField $output_variable_mapping
+     *           Optional. Mapping of output variable names of remote agent to GECX variable
+     *           names.
      * }
      */
     public function __construct($data = NULL) {
@@ -137,6 +179,130 @@ class RemoteAgentTool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\AgentCard::class);
         $this->agent_card = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Authentication configuration for calling the remote agent.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ApiAuthentication api_authentication = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Ces\V1\ApiAuthentication|null
+     */
+    public function getApiAuthentication()
+    {
+        return $this->api_authentication;
+    }
+
+    public function hasApiAuthentication()
+    {
+        return isset($this->api_authentication);
+    }
+
+    public function clearApiAuthentication()
+    {
+        unset($this->api_authentication);
+    }
+
+    /**
+     * Optional. Authentication configuration for calling the remote agent.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ApiAuthentication api_authentication = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Ces\V1\ApiAuthentication $var
+     * @return $this
+     */
+    public function setApiAuthentication($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\ApiAuthentication::class);
+        $this->api_authentication = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. When enabled, the interaction between the CXAS app and the remote
+     * agent will share the same context. If the remote agent returns a
+     * context_id, it will be persisted for the entirety of the session for this
+     * remote agent tool.
+     *
+     * Generated from protobuf field <code>bool stateful_agent = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getStatefulAgent()
+    {
+        return $this->stateful_agent;
+    }
+
+    /**
+     * Optional. When enabled, the interaction between the CXAS app and the remote
+     * agent will share the same context. If the remote agent returns a
+     * context_id, it will be persisted for the entirety of the session for this
+     * remote agent tool.
+     *
+     * Generated from protobuf field <code>bool stateful_agent = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setStatefulAgent($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->stateful_agent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Mapping of input variable names of remote agent to GECX variable
+     * names.
+     *
+     * Generated from protobuf field <code>map<string, string> input_variable_mapping = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getInputVariableMapping()
+    {
+        return $this->input_variable_mapping;
+    }
+
+    /**
+     * Optional. Mapping of input variable names of remote agent to GECX variable
+     * names.
+     *
+     * Generated from protobuf field <code>map<string, string> input_variable_mapping = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setInputVariableMapping($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->input_variable_mapping = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Mapping of output variable names of remote agent to GECX variable
+     * names.
+     *
+     * Generated from protobuf field <code>map<string, string> output_variable_mapping = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getOutputVariableMapping()
+    {
+        return $this->output_variable_mapping;
+    }
+
+    /**
+     * Optional. Mapping of output variable names of remote agent to GECX variable
+     * names.
+     *
+     * Generated from protobuf field <code>map<string, string> output_variable_mapping = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setOutputVariableMapping($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->output_variable_mapping = $arr;
 
         return $this;
     }

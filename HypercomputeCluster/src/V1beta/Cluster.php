@@ -29,7 +29,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Optional. User-provided description of the cluster.
+     * Optional. A description for your cluster. You can use up to 2,048
+     * characters.
      *
      * Generated from protobuf field <code>string description = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -64,7 +65,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $reconciling = false;
     /**
-     * Optional. Network resources available to the cluster. Must contain at most
+     * Optional. Network resources available to the cluster. Must contain exactly
      * one value. Keys specify the ID of the network resource by which it can be
      * referenced elsewhere, and must conform to
      * [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034) (lower-case,
@@ -98,6 +99,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.Orchestrator orchestrator = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $orchestrator = null;
+    /**
+     * Output only. The globally unique identifier for this Cluster.
+     *
+     * Generated from protobuf field <code>string uid = 16 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     */
+    protected $uid = '';
 
     /**
      * Constructor.
@@ -110,7 +117,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           cluster, in the format
      *           `projects/{project}/locations/{location}/clusters/{cluster}`.
      *     @type string $description
-     *           Optional. User-provided description of the cluster.
+     *           Optional. A description for your cluster. You can use up to 2,048
+     *           characters.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional.
      *           [Labels](https://cloud.google.com/compute/docs/labeling-resources) applied
@@ -125,7 +133,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           flight. If this is `true`, then the current state might not match the
      *           cluster's intended state.
      *     @type array|\Google\Protobuf\Internal\MapField $network_resources
-     *           Optional. Network resources available to the cluster. Must contain at most
+     *           Optional. Network resources available to the cluster. Must contain exactly
      *           one value. Keys specify the ID of the network resource by which it can be
      *           referenced elsewhere, and must conform to
      *           [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034) (lower-case,
@@ -143,6 +151,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\HypercomputeCluster\V1beta\Orchestrator $orchestrator
      *           Optional. Orchestrator that is responsible for scheduling and running jobs
      *           on the cluster.
+     *     @type string $uid
+     *           Output only. The globally unique identifier for this Cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -181,7 +191,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User-provided description of the cluster.
+     * Optional. A description for your cluster. You can use up to 2,048
+     * characters.
      *
      * Generated from protobuf field <code>string description = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -192,7 +203,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User-provided description of the cluster.
+     * Optional. A description for your cluster. You can use up to 2,048
+     * characters.
      *
      * Generated from protobuf field <code>string description = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -341,7 +353,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Network resources available to the cluster. Must contain at most
+     * Optional. Network resources available to the cluster. Must contain exactly
      * one value. Keys specify the ID of the network resource by which it can be
      * referenced elsewhere, and must conform to
      * [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034) (lower-case,
@@ -356,7 +368,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Network resources available to the cluster. Must contain at most
+     * Optional. Network resources available to the cluster. Must contain exactly
      * one value. Keys specify the ID of the network resource by which it can be
      * referenced elsewhere, and must conform to
      * [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034) (lower-case,
@@ -472,6 +484,32 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\HypercomputeCluster\V1beta\Orchestrator::class);
         $this->orchestrator = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The globally unique identifier for this Cluster.
+     *
+     * Generated from protobuf field <code>string uid = 16 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     * @return string
+     */
+    public function getUid()
+    {
+        return $this->uid;
+    }
+
+    /**
+     * Output only. The globally unique identifier for this Cluster.
+     *
+     * Generated from protobuf field <code>string uid = 16 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->uid = $var;
 
         return $this;
     }

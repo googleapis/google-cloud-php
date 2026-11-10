@@ -49,6 +49,22 @@ class AddressPurposes
      */
     const NAT_AUTO = 163666477;
     /**
+     * The global external address can only be assigned to Global External
+     * Passthrough Network Load Balancer forwarding rules, as an Availability
+     * Group 0 address.
+     *
+     * Generated from protobuf enum <code>PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0 = 119932186;</code>
+     */
+    const PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0 = 119932186;
+    /**
+     * The global external address can only be assigned to Global External
+     * Passthrough Network Load Balancer forwarding rules, as an Availability
+     * Group 1 address.
+     *
+     * Generated from protobuf enum <code>PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1 = 119932187;</code>
+     */
+    const PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1 = 119932187;
+    /**
      * A private network IP address that can be used to configure Private
      * Service Connect. This purpose can be specified only forGLOBAL addresses of Type INTERNAL
      *
@@ -81,6 +97,8 @@ class AddressPurposes
         self::GCE_ENDPOINT => 'GCE_ENDPOINT',
         self::IPSEC_INTERCONNECT => 'IPSEC_INTERCONNECT',
         self::NAT_AUTO => 'NAT_AUTO',
+        self::PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0 => 'PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0',
+        self::PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1 => 'PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1',
         self::PRIVATE_SERVICE_CONNECT => 'PRIVATE_SERVICE_CONNECT',
         self::SERVERLESS => 'SERVERLESS',
         self::SHARED_LOADBALANCER_VIP => 'SHARED_LOADBALANCER_VIP',

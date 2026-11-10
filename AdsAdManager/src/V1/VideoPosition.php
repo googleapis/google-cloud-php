@@ -32,13 +32,20 @@ class VideoPosition extends \Google\Protobuf\Internal\Message
      */
     protected $reverse_midroll_index = null;
     /**
-     * Optional. The video position within a pod to target. This field must be
-     * unset in order to target a specific video position (e.g. position_type),
-     * bumper type (e.g. bumper_type), or custom ad spot (e.g. custom_spot_id).
+     * Optional. The video position within a pod to target. If set, `adSpot`,
+     * `bumperType`, and `positionType` must be unset.
      *
      * Generated from protobuf field <code>optional int64 pod_position = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $pod_position = null;
+    /**
+     * Optional. The resource name of the custom ad spot to target. If set,
+     * `bumperType`, `podPosition`, and `positionType` must be unset. Format:
+     * `networks/{network_code}/adSpots/{ad_spot_id}`
+     *
+     * Generated from protobuf field <code>optional string ad_spot = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $ad_spot = null;
     /**
      * Optional. The position within a video to target. A video ad can target a
      * position (pre-roll, all mid-rolls, or post-roll) or a specific mid-roll
@@ -48,9 +55,8 @@ class VideoPosition extends \Google\Protobuf\Internal\Message
      */
     protected $position_type = null;
     /**
-     * Optional. The video bumper type to target. This field must be unset in
-     * order to target a specific video position (e.g. position_type), pod
-     * position (e.g. pod_position), or custom ad spot (e.g. custom_spot_id).
+     * Optional. The video bumper type to target. If set, `adSpot`, `podPosition`,
+     * and `positionType` must be unset.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.TargetedVideoBumperTypeEnum.TargetedVideoBumperType bumper_type = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -71,17 +77,19 @@ class VideoPosition extends \Google\Protobuf\Internal\Message
      *           position_type) other than MIDROLL or if targeting a specific midroll index
      *           (e.g. midroll_index != 0).
      *     @type int|string $pod_position
-     *           Optional. The video position within a pod to target. This field must be
-     *           unset in order to target a specific video position (e.g. position_type),
-     *           bumper type (e.g. bumper_type), or custom ad spot (e.g. custom_spot_id).
+     *           Optional. The video position within a pod to target. If set, `adSpot`,
+     *           `bumperType`, and `positionType` must be unset.
+     *     @type string $ad_spot
+     *           Optional. The resource name of the custom ad spot to target. If set,
+     *           `bumperType`, `podPosition`, and `positionType` must be unset. Format:
+     *           `networks/{network_code}/adSpots/{ad_spot_id}`
      *     @type int $position_type
      *           Optional. The position within a video to target. A video ad can target a
      *           position (pre-roll, all mid-rolls, or post-roll) or a specific mid-roll
      *           index.
      *     @type int $bumper_type
-     *           Optional. The video bumper type to target. This field must be unset in
-     *           order to target a specific video position (e.g. position_type), pod
-     *           position (e.g. pod_position), or custom ad spot (e.g. custom_spot_id).
+     *           Optional. The video bumper type to target. If set, `adSpot`, `podPosition`,
+     *           and `positionType` must be unset.
      * }
      */
     public function __construct($data = NULL) {
@@ -170,9 +178,8 @@ class VideoPosition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The video position within a pod to target. This field must be
-     * unset in order to target a specific video position (e.g. position_type),
-     * bumper type (e.g. bumper_type), or custom ad spot (e.g. custom_spot_id).
+     * Optional. The video position within a pod to target. If set, `adSpot`,
+     * `bumperType`, and `positionType` must be unset.
      *
      * Generated from protobuf field <code>optional int64 pod_position = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
@@ -193,9 +200,8 @@ class VideoPosition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The video position within a pod to target. This field must be
-     * unset in order to target a specific video position (e.g. position_type),
-     * bumper type (e.g. bumper_type), or custom ad spot (e.g. custom_spot_id).
+     * Optional. The video position within a pod to target. If set, `adSpot`,
+     * `bumperType`, and `positionType` must be unset.
      *
      * Generated from protobuf field <code>optional int64 pod_position = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
@@ -205,6 +211,46 @@ class VideoPosition extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->pod_position = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The resource name of the custom ad spot to target. If set,
+     * `bumperType`, `podPosition`, and `positionType` must be unset. Format:
+     * `networks/{network_code}/adSpots/{ad_spot_id}`
+     *
+     * Generated from protobuf field <code>optional string ad_spot = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getAdSpot()
+    {
+        return isset($this->ad_spot) ? $this->ad_spot : '';
+    }
+
+    public function hasAdSpot()
+    {
+        return isset($this->ad_spot);
+    }
+
+    public function clearAdSpot()
+    {
+        unset($this->ad_spot);
+    }
+
+    /**
+     * Optional. The resource name of the custom ad spot to target. If set,
+     * `bumperType`, `podPosition`, and `positionType` must be unset. Format:
+     * `networks/{network_code}/adSpots/{ad_spot_id}`
+     *
+     * Generated from protobuf field <code>optional string ad_spot = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAdSpot($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ad_spot = $var;
 
         return $this;
     }
@@ -250,9 +296,8 @@ class VideoPosition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The video bumper type to target. This field must be unset in
-     * order to target a specific video position (e.g. position_type), pod
-     * position (e.g. pod_position), or custom ad spot (e.g. custom_spot_id).
+     * Optional. The video bumper type to target. If set, `adSpot`, `podPosition`,
+     * and `positionType` must be unset.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.TargetedVideoBumperTypeEnum.TargetedVideoBumperType bumper_type = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -273,9 +318,8 @@ class VideoPosition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The video bumper type to target. This field must be unset in
-     * order to target a specific video position (e.g. position_type), pod
-     * position (e.g. pod_position), or custom ad spot (e.g. custom_spot_id).
+     * Optional. The video bumper type to target. If set, `adSpot`, `podPosition`,
+     * and `positionType` must be unset.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.TargetedVideoBumperTypeEnum.TargetedVideoBumperType bumper_type = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

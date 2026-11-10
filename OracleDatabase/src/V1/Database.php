@@ -38,38 +38,38 @@ class Database extends \Google\Protobuf\Internal\Message
      */
     protected $db_unique_name = '';
     /**
-     * Optional. The password for the default ADMIN user.
+     * Optional. Input only. The password for the default ADMIN user.
      * Note: Only one of `admin_password_secret_version` or `admin_password` can
      * be populated.
      *
-     * Generated from protobuf field <code>string admin_password = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string admin_password = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     protected $admin_password = '';
     /**
-     * Optional. The resource name of a secret version in Secret Manager which
-     * contains the database admin user's password. Format:
+     * Optional. Input only. The resource name of a secret version in Secret
+     * Manager which contains the database admin user's password. Format:
      * projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
      * `admin_password_secret_version` or `admin_password` can be populated.
      *
-     * Generated from protobuf field <code>string admin_password_secret_version = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string admin_password_secret_version = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     protected $admin_password_secret_version = '';
     /**
-     * Optional. The TDE wallet password for the database.
+     * Optional. Input only. The TDE wallet password for the database.
      * Note: Only one of `tde_wallet_password_secret_version` or
      * `tde_wallet_password` can be populated.
      *
-     * Generated from protobuf field <code>string tde_wallet_password = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string tde_wallet_password = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     protected $tde_wallet_password = '';
     /**
-     * Optional. The resource name of a secret version in Secret Manager which
-     * contains the TDE wallet password for the database. Format:
+     * Optional. Input only. The resource name of a secret version in Secret
+     * Manager which contains the TDE wallet password for the database. Format:
      * projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
      * `tde_wallet_password_secret_version` or `tde_wallet_password` can be
      * populated.
      *
-     * Generated from protobuf field <code>string tde_wallet_password_secret_version = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string tde_wallet_password_secret_version = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     protected $tde_wallet_password_secret_version = '';
     /**
@@ -160,21 +160,21 @@ class Database extends \Google\Protobuf\Internal\Message
      *     @type string $db_unique_name
      *           Optional. The DB_UNIQUE_NAME of the Oracle Database being backed up.
      *     @type string $admin_password
-     *           Optional. The password for the default ADMIN user.
+     *           Optional. Input only. The password for the default ADMIN user.
      *           Note: Only one of `admin_password_secret_version` or `admin_password` can
      *           be populated.
      *     @type string $admin_password_secret_version
-     *           Optional. The resource name of a secret version in Secret Manager which
-     *           contains the database admin user's password. Format:
+     *           Optional. Input only. The resource name of a secret version in Secret
+     *           Manager which contains the database admin user's password. Format:
      *           projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
      *           `admin_password_secret_version` or `admin_password` can be populated.
      *     @type string $tde_wallet_password
-     *           Optional. The TDE wallet password for the database.
+     *           Optional. Input only. The TDE wallet password for the database.
      *           Note: Only one of `tde_wallet_password_secret_version` or
      *           `tde_wallet_password` can be populated.
      *     @type string $tde_wallet_password_secret_version
-     *           Optional. The resource name of a secret version in Secret Manager which
-     *           contains the TDE wallet password for the database. Format:
+     *           Optional. Input only. The resource name of a secret version in Secret
+     *           Manager which contains the TDE wallet password for the database. Format:
      *           projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
      *           `tde_wallet_password_secret_version` or `tde_wallet_password` can be
      *           populated.
@@ -297,11 +297,11 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The password for the default ADMIN user.
+     * Optional. Input only. The password for the default ADMIN user.
      * Note: Only one of `admin_password_secret_version` or `admin_password` can
      * be populated.
      *
-     * Generated from protobuf field <code>string admin_password = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string admin_password = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return string
      */
     public function getAdminPassword()
@@ -310,11 +310,11 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The password for the default ADMIN user.
+     * Optional. Input only. The password for the default ADMIN user.
      * Note: Only one of `admin_password_secret_version` or `admin_password` can
      * be populated.
      *
-     * Generated from protobuf field <code>string admin_password = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string admin_password = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -327,12 +327,12 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The resource name of a secret version in Secret Manager which
-     * contains the database admin user's password. Format:
+     * Optional. Input only. The resource name of a secret version in Secret
+     * Manager which contains the database admin user's password. Format:
      * projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
      * `admin_password_secret_version` or `admin_password` can be populated.
      *
-     * Generated from protobuf field <code>string admin_password_secret_version = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string admin_password_secret_version = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getAdminPasswordSecretVersion()
@@ -341,12 +341,12 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The resource name of a secret version in Secret Manager which
-     * contains the database admin user's password. Format:
+     * Optional. Input only. The resource name of a secret version in Secret
+     * Manager which contains the database admin user's password. Format:
      * projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
      * `admin_password_secret_version` or `admin_password` can be populated.
      *
-     * Generated from protobuf field <code>string admin_password_secret_version = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string admin_password_secret_version = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -359,11 +359,11 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The TDE wallet password for the database.
+     * Optional. Input only. The TDE wallet password for the database.
      * Note: Only one of `tde_wallet_password_secret_version` or
      * `tde_wallet_password` can be populated.
      *
-     * Generated from protobuf field <code>string tde_wallet_password = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string tde_wallet_password = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return string
      */
     public function getTdeWalletPassword()
@@ -372,11 +372,11 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The TDE wallet password for the database.
+     * Optional. Input only. The TDE wallet password for the database.
      * Note: Only one of `tde_wallet_password_secret_version` or
      * `tde_wallet_password` can be populated.
      *
-     * Generated from protobuf field <code>string tde_wallet_password = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string tde_wallet_password = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -389,13 +389,13 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The resource name of a secret version in Secret Manager which
-     * contains the TDE wallet password for the database. Format:
+     * Optional. Input only. The resource name of a secret version in Secret
+     * Manager which contains the TDE wallet password for the database. Format:
      * projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
      * `tde_wallet_password_secret_version` or `tde_wallet_password` can be
      * populated.
      *
-     * Generated from protobuf field <code>string tde_wallet_password_secret_version = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string tde_wallet_password_secret_version = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getTdeWalletPasswordSecretVersion()
@@ -404,13 +404,13 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The resource name of a secret version in Secret Manager which
-     * contains the TDE wallet password for the database. Format:
+     * Optional. Input only. The resource name of a secret version in Secret
+     * Manager which contains the TDE wallet password for the database. Format:
      * projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
      * `tde_wallet_password_secret_version` or `tde_wallet_password` can be
      * populated.
      *
-     * Generated from protobuf field <code>string tde_wallet_password_secret_version = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string tde_wallet_password_secret_version = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

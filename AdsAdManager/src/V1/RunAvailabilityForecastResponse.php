@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Response object for [RunAvailabilityForecast][] method.
+ * Response object for `RunAvailabilityForecast` method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.RunAvailabilityForecastResponse</code>
  */

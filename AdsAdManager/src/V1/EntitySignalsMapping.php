@@ -31,13 +31,24 @@ class EntitySignalsMapping extends \Google\Protobuf\Internal\Message
      */
     protected $entity_signals_mapping_id = null;
     /**
-     * Optional. The IDs of the categories that are associated with the
-     * referencing entity.
+     * Optional. Deprecated: The IDs of the categories that are associated with
+     * the referencing entity.
      *
-     * Generated from protobuf field <code>repeated int64 taxonomy_category_ids = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated int64 taxonomy_category_ids = 6 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     private $taxonomy_category_ids;
+    /**
+     * Optional. The resource names of the
+     * [TaxonomyCategory][google.ads.admanager.v1.TaxonomyCategory] that are
+     * associated with the referencing entity. Format:
+     * `networks/{network_code}/taxonomyCategories/{taxonomyCategoryId}`
+     *
+     * Generated from protobuf field <code>repeated string taxonomy_categories = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $taxonomy_categories;
     protected $entity;
+    protected $entity_name;
 
     /**
      * Constructor.
@@ -46,11 +57,26 @@ class EntitySignalsMapping extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $audience_segment_id
-     *           ID of an AudienceSegment that this mapping belongs to.
+     *           Deprecated: ID of an AudienceSegment that this mapping belongs to.
      *     @type int|string $content_bundle_id
-     *           ID of a ContentBundle that this mapping belongs to.
+     *           Deprecated: ID of a ContentBundle that this mapping belongs to.
      *     @type int|string $custom_targeting_value_id
-     *           ID of a CustomValue that this mapping belongs to.
+     *           Deprecated: ID of a CustomTargetingValue that this mapping belongs to.
+     *     @type string $audience_segment
+     *           The resource name of an
+     *           [AudienceSegment][google.ads.admanager.v1.AudienceSegment] that this
+     *           mapping belongs to. Format:
+     *           `networks/{network_code}/audienceSegments/{audience_segment_id}`
+     *     @type string $content_bundle
+     *           The resource name of a
+     *           [ContentBundle][google.ads.admanager.v1.ContentBundle] that this mapping
+     *           belongs to. Format:
+     *           `networks/{network_code}/contentBundles/{content_bundle_id}`
+     *     @type string $custom_targeting_value
+     *           The resource name of a
+     *           [CustomTargetingValue][google.ads.admanager.v1.CustomTargetingValue] that
+     *           this mapping belongs to. Format:
+     *           `networks/{network_code}/customTargetingValues/{custom_targeting_value_id}`
      *     @type string $name
      *           Identifier. The resource name of the `EntitySignalsMapping`.
      *           Format:
@@ -58,8 +84,13 @@ class EntitySignalsMapping extends \Google\Protobuf\Internal\Message
      *     @type int|string $entity_signals_mapping_id
      *           Output only. Deprecated: `EntitySignalsMapping` ID.
      *     @type int[]|string[] $taxonomy_category_ids
-     *           Optional. The IDs of the categories that are associated with the
-     *           referencing entity.
+     *           Optional. Deprecated: The IDs of the categories that are associated with
+     *           the referencing entity.
+     *     @type string[] $taxonomy_categories
+     *           Optional. The resource names of the
+     *           [TaxonomyCategory][google.ads.admanager.v1.TaxonomyCategory] that are
+     *           associated with the referencing entity. Format:
+     *           `networks/{network_code}/taxonomyCategories/{taxonomyCategoryId}`
      * }
      */
     public function __construct($data = NULL) {
@@ -68,30 +99,39 @@ class EntitySignalsMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ID of an AudienceSegment that this mapping belongs to.
+     * Deprecated: ID of an AudienceSegment that this mapping belongs to.
      *
-     * Generated from protobuf field <code>int64 audience_segment_id = 3;</code>
+     * Generated from protobuf field <code>int64 audience_segment_id = 3 [deprecated = true];</code>
      * @return int|string
+     * @deprecated
      */
     public function getAudienceSegmentId()
     {
+        if ($this->hasOneof(3)) {
+            @trigger_error('audience_segment_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(3);
     }
 
     public function hasAudienceSegmentId()
     {
+        if ($this->hasOneof(3)) {
+            @trigger_error('audience_segment_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(3);
     }
 
     /**
-     * ID of an AudienceSegment that this mapping belongs to.
+     * Deprecated: ID of an AudienceSegment that this mapping belongs to.
      *
-     * Generated from protobuf field <code>int64 audience_segment_id = 3;</code>
+     * Generated from protobuf field <code>int64 audience_segment_id = 3 [deprecated = true];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setAudienceSegmentId($var)
     {
+        @trigger_error('audience_segment_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->writeOneof(3, $var);
 
@@ -99,30 +139,39 @@ class EntitySignalsMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ID of a ContentBundle that this mapping belongs to.
+     * Deprecated: ID of a ContentBundle that this mapping belongs to.
      *
-     * Generated from protobuf field <code>int64 content_bundle_id = 4;</code>
+     * Generated from protobuf field <code>int64 content_bundle_id = 4 [deprecated = true];</code>
      * @return int|string
+     * @deprecated
      */
     public function getContentBundleId()
     {
+        if ($this->hasOneof(4)) {
+            @trigger_error('content_bundle_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(4);
     }
 
     public function hasContentBundleId()
     {
+        if ($this->hasOneof(4)) {
+            @trigger_error('content_bundle_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(4);
     }
 
     /**
-     * ID of a ContentBundle that this mapping belongs to.
+     * Deprecated: ID of a ContentBundle that this mapping belongs to.
      *
-     * Generated from protobuf field <code>int64 content_bundle_id = 4;</code>
+     * Generated from protobuf field <code>int64 content_bundle_id = 4 [deprecated = true];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setContentBundleId($var)
     {
+        @trigger_error('content_bundle_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->writeOneof(4, $var);
 
@@ -130,32 +179,152 @@ class EntitySignalsMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ID of a CustomValue that this mapping belongs to.
+     * Deprecated: ID of a CustomTargetingValue that this mapping belongs to.
      *
-     * Generated from protobuf field <code>int64 custom_targeting_value_id = 5;</code>
+     * Generated from protobuf field <code>int64 custom_targeting_value_id = 5 [deprecated = true];</code>
      * @return int|string
+     * @deprecated
      */
     public function getCustomTargetingValueId()
     {
+        if ($this->hasOneof(5)) {
+            @trigger_error('custom_targeting_value_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(5);
     }
 
     public function hasCustomTargetingValueId()
     {
+        if ($this->hasOneof(5)) {
+            @trigger_error('custom_targeting_value_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(5);
     }
 
     /**
-     * ID of a CustomValue that this mapping belongs to.
+     * Deprecated: ID of a CustomTargetingValue that this mapping belongs to.
      *
-     * Generated from protobuf field <code>int64 custom_targeting_value_id = 5;</code>
+     * Generated from protobuf field <code>int64 custom_targeting_value_id = 5 [deprecated = true];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setCustomTargetingValueId($var)
     {
+        @trigger_error('custom_targeting_value_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * The resource name of an
+     * [AudienceSegment][google.ads.admanager.v1.AudienceSegment] that this
+     * mapping belongs to. Format:
+     * `networks/{network_code}/audienceSegments/{audience_segment_id}`
+     *
+     * Generated from protobuf field <code>string audience_segment = 10 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getAudienceSegment()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasAudienceSegment()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * The resource name of an
+     * [AudienceSegment][google.ads.admanager.v1.AudienceSegment] that this
+     * mapping belongs to. Format:
+     * `networks/{network_code}/audienceSegments/{audience_segment_id}`
+     *
+     * Generated from protobuf field <code>string audience_segment = 10 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAudienceSegment($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
+     * The resource name of a
+     * [ContentBundle][google.ads.admanager.v1.ContentBundle] that this mapping
+     * belongs to. Format:
+     * `networks/{network_code}/contentBundles/{content_bundle_id}`
+     *
+     * Generated from protobuf field <code>string content_bundle = 11 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getContentBundle()
+    {
+        return $this->readOneof(11);
+    }
+
+    public function hasContentBundle()
+    {
+        return $this->hasOneof(11);
+    }
+
+    /**
+     * The resource name of a
+     * [ContentBundle][google.ads.admanager.v1.ContentBundle] that this mapping
+     * belongs to. Format:
+     * `networks/{network_code}/contentBundles/{content_bundle_id}`
+     *
+     * Generated from protobuf field <code>string content_bundle = 11 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setContentBundle($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * The resource name of a
+     * [CustomTargetingValue][google.ads.admanager.v1.CustomTargetingValue] that
+     * this mapping belongs to. Format:
+     * `networks/{network_code}/customTargetingValues/{custom_targeting_value_id}`
+     *
+     * Generated from protobuf field <code>string custom_targeting_value = 12 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getCustomTargetingValue()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasCustomTargetingValue()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * The resource name of a
+     * [CustomTargetingValue][google.ads.admanager.v1.CustomTargetingValue] that
+     * this mapping belongs to. Format:
+     * `networks/{network_code}/customTargetingValues/{custom_targeting_value_id}`
+     *
+     * Generated from protobuf field <code>string custom_targeting_value = 12 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCustomTargetingValue($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(12, $var);
 
         return $this;
     }
@@ -237,29 +406,69 @@ class EntitySignalsMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The IDs of the categories that are associated with the
-     * referencing entity.
+     * Optional. Deprecated: The IDs of the categories that are associated with
+     * the referencing entity.
      *
-     * Generated from protobuf field <code>repeated int64 taxonomy_category_ids = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated int64 taxonomy_category_ids = 6 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<int>|RepeatedField<string>
+     * @deprecated
      */
     public function getTaxonomyCategoryIds()
     {
+        if (count($this->taxonomy_category_ids) !== 0) {
+            @trigger_error('taxonomy_category_ids is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->taxonomy_category_ids;
     }
 
     /**
-     * Optional. The IDs of the categories that are associated with the
-     * referencing entity.
+     * Optional. Deprecated: The IDs of the categories that are associated with
+     * the referencing entity.
      *
-     * Generated from protobuf field <code>repeated int64 taxonomy_category_ids = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated int64 taxonomy_category_ids = 6 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param int[]|string[] $var
      * @return $this
+     * @deprecated
      */
     public function setTaxonomyCategoryIds($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT64);
+        if (count($arr) !== 0) {
+            @trigger_error('taxonomy_category_ids is deprecated.', E_USER_DEPRECATED);
+        }
         $this->taxonomy_category_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The resource names of the
+     * [TaxonomyCategory][google.ads.admanager.v1.TaxonomyCategory] that are
+     * associated with the referencing entity. Format:
+     * `networks/{network_code}/taxonomyCategories/{taxonomyCategoryId}`
+     *
+     * Generated from protobuf field <code>repeated string taxonomy_categories = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return RepeatedField<string>
+     */
+    public function getTaxonomyCategories()
+    {
+        return $this->taxonomy_categories;
+    }
+
+    /**
+     * Optional. The resource names of the
+     * [TaxonomyCategory][google.ads.admanager.v1.TaxonomyCategory] that are
+     * associated with the referencing entity. Format:
+     * `networks/{network_code}/taxonomyCategories/{taxonomyCategoryId}`
+     *
+     * Generated from protobuf field <code>repeated string taxonomy_categories = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setTaxonomyCategories($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->taxonomy_categories = $arr;
 
         return $this;
     }
@@ -270,6 +479,14 @@ class EntitySignalsMapping extends \Google\Protobuf\Internal\Message
     public function getEntity()
     {
         return $this->whichOneof("entity");
+    }
+
+    /**
+     * @return string
+     */
+    public function getEntityName()
+    {
+        return $this->whichOneof("entity_name");
     }
 
 }

@@ -203,6 +203,24 @@ return [
                     ],
                 ],
             ],
+            'ExecuteSqlReadOnly' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Sql\V1\SqlInstancesExecuteSqlReadOnlyResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'instance',
+                        'fieldAccessors' => [
+                            'getInstance',
+                        ],
+                    ],
+                ],
+            ],
             'Export' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Sql\V1\Operation',
@@ -480,6 +498,24 @@ return [
                     ],
                 ],
             ],
+            'ReconcileNetworking' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Sql\V1\Operation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'instance',
+                        'fieldAccessors' => [
+                            'getInstance',
+                        ],
+                    ],
+                ],
+            ],
             'Reencrypt' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Sql\V1\Operation',
@@ -660,6 +696,24 @@ return [
                     ],
                 ],
             ],
+            'Start' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Sql\V1\Operation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'instance',
+                        'fieldAccessors' => [
+                            'getInstance',
+                        ],
+                    ],
+                ],
+            ],
             'StartExternalSync' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Sql\V1\Operation',
@@ -679,6 +733,24 @@ return [
                 ],
             ],
             'StartReplica' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Sql\V1\Operation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'instance',
+                        'fieldAccessors' => [
+                            'getInstance',
+                        ],
+                    ],
+                ],
+            ],
+            'Stop' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Sql\V1\Operation',
                 'headerParams' => [
@@ -790,6 +862,7 @@ return [
                 'backup' => 'projects/{project}/backups/{backup}',
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
+                'instance' => 'projects/{project}/instances/{instance}',
                 'network' => 'projects/{project}/global/networks/{network}',
                 'networkAttachment' => 'projects/{project}/regions/{region}/networkAttachments/{network_attachment}',
                 'projectLocationSecretSecretVersion' => 'projects/{project}/locations/{location}/secrets/{secret}/versions/{secret_version}',

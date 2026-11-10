@@ -21,6 +21,13 @@ class CacheMode
      */
     const UNDEFINED_CACHE_MODE = 0;
     /**
+     * Bypasses the cache for this route. All requests are forwarded to the
+     * origin, and responses are not cached.
+     *
+     * Generated from protobuf enum <code>BYPASS_CACHE = 372518219;</code>
+     */
+    const BYPASS_CACHE = 372518219;
+    /**
      * Automatically cache static content, including common image formats,
      * media (video and audio), and web assets (JavaScript and CSS).
      * Requests and responses that are marked as uncacheable, as well as
@@ -50,6 +57,7 @@ class CacheMode
 
     private static $valueToName = [
         self::UNDEFINED_CACHE_MODE => 'UNDEFINED_CACHE_MODE',
+        self::BYPASS_CACHE => 'BYPASS_CACHE',
         self::CACHE_ALL_STATIC => 'CACHE_ALL_STATIC',
         self::FORCE_CACHE_ALL => 'FORCE_CACHE_ALL',
         self::USE_ORIGIN_HEADERS => 'USE_ORIGIN_HEADERS',

@@ -135,6 +135,31 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      */
     private $public_delegated_sub_prefixs;
     /**
+     * Immutable. The purpose of the public delegated prefix.
+     * This field can only be set for the top-level global public delegated
+     * prefix. It is an output-only field for the sub-delegates that inherit the
+     * value from the top-level global public delegated prefix. Once the value is
+     * set, it cannot be changed.
+     * The field cannot be set for regional public delegated prefixes.
+     * The supported values are:
+     *      - APPLICATION_AND_PROXY_LOAD_BALANCERS: The global public
+     *      delegated prefix can only be used by Global External Application and
+     *      Proxy Load Balancers to allocate addresses for forwarding rules. This is
+     *      the default value.
+     *      - PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0: The
+     *      global public delegated prefix can only be used by Global External
+     *      Passthrough Network Load Balancers to allocate Availability Group 0
+     *      addresses for forwarding rules.
+     *      - PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1: The
+     *      global public delegated prefix can only be used by Global External
+     *      Passthrough Network Load Balancers to allocate Availability Group 1
+     *      addresses for forwarding rules.
+     * Check the Purpose enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string purpose = 316407070;</code>
+     */
+    protected $purpose = null;
+    /**
      * Output only. [Output Only] URL of the region where the public delegated prefix resides.
      * This field applies only to the region resource. You must specify this
      * field as part of the HTTP request URL. It is not settable as a field in
@@ -227,6 +252,27 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\PublicDelegatedPrefixPublicDelegatedSubPrefix[] $public_delegated_sub_prefixs
      *           The list of sub public delegated prefixes that exist for this public
      *           delegated prefix.
+     *     @type string $purpose
+     *           Immutable. The purpose of the public delegated prefix.
+     *           This field can only be set for the top-level global public delegated
+     *           prefix. It is an output-only field for the sub-delegates that inherit the
+     *           value from the top-level global public delegated prefix. Once the value is
+     *           set, it cannot be changed.
+     *           The field cannot be set for regional public delegated prefixes.
+     *           The supported values are:
+     *                - APPLICATION_AND_PROXY_LOAD_BALANCERS: The global public
+     *                delegated prefix can only be used by Global External Application and
+     *                Proxy Load Balancers to allocate addresses for forwarding rules. This is
+     *                the default value.
+     *                - PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0: The
+     *                global public delegated prefix can only be used by Global External
+     *                Passthrough Network Load Balancers to allocate Availability Group 0
+     *                addresses for forwarding rules.
+     *                - PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1: The
+     *                global public delegated prefix can only be used by Global External
+     *                Passthrough Network Load Balancers to allocate Availability Group 1
+     *                addresses for forwarding rules.
+     *           Check the Purpose enum for the list of possible values.
      *     @type string $region
      *           Output only. [Output Only] URL of the region where the public delegated prefix resides.
      *           This field applies only to the region resource. You must specify this
@@ -829,6 +875,80 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\PublicDelegatedPrefixPublicDelegatedSubPrefix::class);
         $this->public_delegated_sub_prefixs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The purpose of the public delegated prefix.
+     * This field can only be set for the top-level global public delegated
+     * prefix. It is an output-only field for the sub-delegates that inherit the
+     * value from the top-level global public delegated prefix. Once the value is
+     * set, it cannot be changed.
+     * The field cannot be set for regional public delegated prefixes.
+     * The supported values are:
+     *      - APPLICATION_AND_PROXY_LOAD_BALANCERS: The global public
+     *      delegated prefix can only be used by Global External Application and
+     *      Proxy Load Balancers to allocate addresses for forwarding rules. This is
+     *      the default value.
+     *      - PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0: The
+     *      global public delegated prefix can only be used by Global External
+     *      Passthrough Network Load Balancers to allocate Availability Group 0
+     *      addresses for forwarding rules.
+     *      - PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1: The
+     *      global public delegated prefix can only be used by Global External
+     *      Passthrough Network Load Balancers to allocate Availability Group 1
+     *      addresses for forwarding rules.
+     * Check the Purpose enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string purpose = 316407070;</code>
+     * @return string
+     */
+    public function getPurpose()
+    {
+        return isset($this->purpose) ? $this->purpose : '';
+    }
+
+    public function hasPurpose()
+    {
+        return isset($this->purpose);
+    }
+
+    public function clearPurpose()
+    {
+        unset($this->purpose);
+    }
+
+    /**
+     * Immutable. The purpose of the public delegated prefix.
+     * This field can only be set for the top-level global public delegated
+     * prefix. It is an output-only field for the sub-delegates that inherit the
+     * value from the top-level global public delegated prefix. Once the value is
+     * set, it cannot be changed.
+     * The field cannot be set for regional public delegated prefixes.
+     * The supported values are:
+     *      - APPLICATION_AND_PROXY_LOAD_BALANCERS: The global public
+     *      delegated prefix can only be used by Global External Application and
+     *      Proxy Load Balancers to allocate addresses for forwarding rules. This is
+     *      the default value.
+     *      - PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0: The
+     *      global public delegated prefix can only be used by Global External
+     *      Passthrough Network Load Balancers to allocate Availability Group 0
+     *      addresses for forwarding rules.
+     *      - PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1: The
+     *      global public delegated prefix can only be used by Global External
+     *      Passthrough Network Load Balancers to allocate Availability Group 1
+     *      addresses for forwarding rules.
+     * Check the Purpose enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string purpose = 316407070;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPurpose($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->purpose = $var;
 
         return $this;
     }

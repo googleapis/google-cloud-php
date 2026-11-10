@@ -19,6 +19,13 @@ class MaintenanceReasons
      */
     const UNDEFINED_MAINTENANCE_REASONS = 0;
     /**
+     * Maintenance due to a fault reported by the customer via the R&R
+     * (Report-and-Replace) API.
+     *
+     * Generated from protobuf enum <code>FAILURE_CUSTOMER_REPORTED = 42889343;</code>
+     */
+    const FAILURE_CUSTOMER_REPORTED = 42889343;
+    /**
      * Maintenance due to disk errors.
      *
      * Generated from protobuf enum <code>FAILURE_DISK = 8573778;</code>
@@ -125,6 +132,7 @@ class MaintenanceReasons
 
     private static $valueToName = [
         self::UNDEFINED_MAINTENANCE_REASONS => 'UNDEFINED_MAINTENANCE_REASONS',
+        self::FAILURE_CUSTOMER_REPORTED => 'FAILURE_CUSTOMER_REPORTED',
         self::FAILURE_DISK => 'FAILURE_DISK',
         self::FAILURE_GPU => 'FAILURE_GPU',
         self::FAILURE_GPU_MULTIPLE_FAULTY_HOSTS_CUSTOMER_REPORTED => 'FAILURE_GPU_MULTIPLE_FAULTY_HOSTS_CUSTOMER_REPORTED',

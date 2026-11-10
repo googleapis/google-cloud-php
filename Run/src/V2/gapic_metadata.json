@@ -63,6 +63,11 @@
                                 "deleteInstance"
                             ]
                         },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
                         "GetInstance": {
                             "methods": [
                                 "getInstance"
@@ -73,6 +78,11 @@
                                 "listInstances"
                             ]
                         },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
                         "StartInstance": {
                             "methods": [
                                 "startInstance"
@@ -81,6 +91,16 @@
                         "StopInstance": {
                             "methods": [
                                 "stopInstance"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateInstance": {
+                            "methods": [
+                                "updateInstance"
                             ]
                         }
                     }
@@ -208,6 +228,20 @@
                         "UpdateService": {
                             "methods": [
                                 "updateService"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SourceUpload": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SourceUploadClient",
+                    "rpcs": {
+                        "UploadSource": {
+                            "methods": [
+                                "uploadSource"
                             ]
                         }
                     }

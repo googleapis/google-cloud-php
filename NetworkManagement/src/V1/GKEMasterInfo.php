@@ -17,13 +17,19 @@ use Google\Protobuf\RepeatedField;
 class GKEMasterInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * URI of a GKE cluster.
+     * URI of the GKE cluster.
+     * Format:
+     * * `projects/{project_id}/locations/{location}/clusters/{cluster_id}`
+     * (regional cluster)
+     * * `projects/{project_id}/zones/{zone}/clusters/{cluster_id}` (zonal
+     * cluster)
      *
      * Generated from protobuf field <code>string cluster_uri = 2;</code>
      */
     protected $cluster_uri = '';
     /**
-     * URI of a GKE cluster network.
+     * URI of the GKE cluster network.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string cluster_network_uri = 4;</code>
      */
@@ -54,9 +60,15 @@ class GKEMasterInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $cluster_uri
-     *           URI of a GKE cluster.
+     *           URI of the GKE cluster.
+     *           Format:
+     *           * `projects/{project_id}/locations/{location}/clusters/{cluster_id}`
+     *           (regional cluster)
+     *           * `projects/{project_id}/zones/{zone}/clusters/{cluster_id}` (zonal
+     *           cluster)
      *     @type string $cluster_network_uri
-     *           URI of a GKE cluster network.
+     *           URI of the GKE cluster network.
+     *           Format: `projects/{project_id}/global/networks/{network_id}`
      *     @type string $internal_ip
      *           Internal IP address of a GKE cluster control plane.
      *     @type string $external_ip
@@ -71,7 +83,12 @@ class GKEMasterInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a GKE cluster.
+     * URI of the GKE cluster.
+     * Format:
+     * * `projects/{project_id}/locations/{location}/clusters/{cluster_id}`
+     * (regional cluster)
+     * * `projects/{project_id}/zones/{zone}/clusters/{cluster_id}` (zonal
+     * cluster)
      *
      * Generated from protobuf field <code>string cluster_uri = 2;</code>
      * @return string
@@ -82,7 +99,12 @@ class GKEMasterInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a GKE cluster.
+     * URI of the GKE cluster.
+     * Format:
+     * * `projects/{project_id}/locations/{location}/clusters/{cluster_id}`
+     * (regional cluster)
+     * * `projects/{project_id}/zones/{zone}/clusters/{cluster_id}` (zonal
+     * cluster)
      *
      * Generated from protobuf field <code>string cluster_uri = 2;</code>
      * @param string $var
@@ -97,7 +119,8 @@ class GKEMasterInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a GKE cluster network.
+     * URI of the GKE cluster network.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string cluster_network_uri = 4;</code>
      * @return string
@@ -108,7 +131,8 @@ class GKEMasterInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a GKE cluster network.
+     * URI of the GKE cluster network.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string cluster_network_uri = 4;</code>
      * @param string $var

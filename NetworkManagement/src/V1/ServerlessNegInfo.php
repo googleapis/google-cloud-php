@@ -17,7 +17,8 @@ use Google\Protobuf\RepeatedField;
 class ServerlessNegInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * URI of the serverless network endpoint group.
+     * URI of the serverless network endpoint group in format
+     * "projects/{project}/regions/{region}/networkEndpointGroups/{network_endpoint_group}".
      *
      * Generated from protobuf field <code>string neg_uri = 1;</code>
      */
@@ -30,7 +31,8 @@ class ServerlessNegInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $neg_uri
-     *           URI of the serverless network endpoint group.
+     *           URI of the serverless network endpoint group in format
+     *           "projects/{project}/regions/{region}/networkEndpointGroups/{network_endpoint_group}".
      * }
      */
     public function __construct($data = NULL) {
@@ -39,7 +41,8 @@ class ServerlessNegInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the serverless network endpoint group.
+     * URI of the serverless network endpoint group in format
+     * "projects/{project}/regions/{region}/networkEndpointGroups/{network_endpoint_group}".
      *
      * Generated from protobuf field <code>string neg_uri = 1;</code>
      * @return string
@@ -50,7 +53,8 @@ class ServerlessNegInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the serverless network endpoint group.
+     * URI of the serverless network endpoint group in format
+     * "projects/{project}/regions/{region}/networkEndpointGroups/{network_endpoint_group}".
      *
      * Generated from protobuf field <code>string neg_uri = 1;</code>
      * @param string $var

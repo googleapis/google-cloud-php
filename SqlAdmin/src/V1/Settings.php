@@ -196,6 +196,20 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     protected $insights_config = null;
     /**
+     * Optional. Enables Microsoft Distributed Transaction Coordinator (MSDTC) for
+     * SQL Server.
+     *
+     * Generated from protobuf field <code>optional bool msdtc_enabled = 58 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $msdtc_enabled = null;
+    /**
+     * Optional. RPC authentication mode for Microsoft Distributed Transaction
+     * Coordinator (MSDTC).
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.Settings.MsdtcRpcAuthMode msdtc_rpc_auth_mode = 60 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $msdtc_rpc_auth_mode = null;
+    /**
      * The local user password validation policy of the instance for PostgreSQL
      * and MySQL.
      *
@@ -353,6 +367,13 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1.PerformanceCaptureConfig performance_capture_config = 54 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $performance_capture_config = null;
+    /**
+     * Optional. Input only. Users to be created on the instance during instance
+     * creation.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.InitialUsersConfig initial_users_config = 55 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    protected $initial_users_config = null;
 
     /**
      * Constructor.
@@ -441,6 +462,12 @@ class Settings extends \Google\Protobuf\Internal\Message
      *           Deny maintenance periods
      *     @type \Google\Cloud\Sql\V1\InsightsConfig $insights_config
      *           Insights configuration, for now relevant only for Postgres.
+     *     @type bool $msdtc_enabled
+     *           Optional. Enables Microsoft Distributed Transaction Coordinator (MSDTC) for
+     *           SQL Server.
+     *     @type int $msdtc_rpc_auth_mode
+     *           Optional. RPC authentication mode for Microsoft Distributed Transaction
+     *           Coordinator (MSDTC).
      *     @type \Google\Cloud\Sql\V1\PasswordValidationPolicy $password_validation_policy
      *           The local user password validation policy of the instance for PostgreSQL
      *           and MySQL.
@@ -511,6 +538,9 @@ class Settings extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Sql\V1\PerformanceCaptureConfig $performance_capture_config
      *           Optional. Configuration for Performance Capture, provides diagnostic
      *           metrics during high load situations.
+     *     @type \Google\Cloud\Sql\V1\InitialUsersConfig $initial_users_config
+     *           Optional. Input only. Users to be created on the instance during instance
+     *           creation.
      * }
      */
     public function __construct($data = NULL) {
@@ -1536,6 +1566,82 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Enables Microsoft Distributed Transaction Coordinator (MSDTC) for
+     * SQL Server.
+     *
+     * Generated from protobuf field <code>optional bool msdtc_enabled = 58 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getMsdtcEnabled()
+    {
+        return isset($this->msdtc_enabled) ? $this->msdtc_enabled : false;
+    }
+
+    public function hasMsdtcEnabled()
+    {
+        return isset($this->msdtc_enabled);
+    }
+
+    public function clearMsdtcEnabled()
+    {
+        unset($this->msdtc_enabled);
+    }
+
+    /**
+     * Optional. Enables Microsoft Distributed Transaction Coordinator (MSDTC) for
+     * SQL Server.
+     *
+     * Generated from protobuf field <code>optional bool msdtc_enabled = 58 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setMsdtcEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->msdtc_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. RPC authentication mode for Microsoft Distributed Transaction
+     * Coordinator (MSDTC).
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.Settings.MsdtcRpcAuthMode msdtc_rpc_auth_mode = 60 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMsdtcRpcAuthMode()
+    {
+        return isset($this->msdtc_rpc_auth_mode) ? $this->msdtc_rpc_auth_mode : 0;
+    }
+
+    public function hasMsdtcRpcAuthMode()
+    {
+        return isset($this->msdtc_rpc_auth_mode);
+    }
+
+    public function clearMsdtcRpcAuthMode()
+    {
+        unset($this->msdtc_rpc_auth_mode);
+    }
+
+    /**
+     * Optional. RPC authentication mode for Microsoft Distributed Transaction
+     * Coordinator (MSDTC).
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.Settings.MsdtcRpcAuthMode msdtc_rpc_auth_mode = 60 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMsdtcRpcAuthMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\Settings\MsdtcRpcAuthMode::class);
+        $this->msdtc_rpc_auth_mode = $var;
+
+        return $this;
+    }
+
+    /**
      * The local user password validation policy of the instance for PostgreSQL
      * and MySQL.
      *
@@ -2527,6 +2633,44 @@ class Settings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\PerformanceCaptureConfig::class);
         $this->performance_capture_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Users to be created on the instance during instance
+     * creation.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.InitialUsersConfig initial_users_config = 55 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return \Google\Cloud\Sql\V1\InitialUsersConfig|null
+     */
+    public function getInitialUsersConfig()
+    {
+        return $this->initial_users_config;
+    }
+
+    public function hasInitialUsersConfig()
+    {
+        return isset($this->initial_users_config);
+    }
+
+    public function clearInitialUsersConfig()
+    {
+        unset($this->initial_users_config);
+    }
+
+    /**
+     * Optional. Input only. Users to be created on the instance during instance
+     * creation.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.InitialUsersConfig initial_users_config = 55 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param \Google\Cloud\Sql\V1\InitialUsersConfig $var
+     * @return $this
+     */
+    public function setInitialUsersConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\InitialUsersConfig::class);
+        $this->initial_users_config = $var;
 
         return $this;
     }

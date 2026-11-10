@@ -22,14 +22,15 @@ class CloudSQLInstanceInfo extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * URI of a Cloud SQL instance.
+     * URI of a Cloud SQL instance in format
+     * "projects/{project}/instances/{instance}"
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
     protected $uri = '';
     /**
      * URI of a Cloud SQL instance network or empty string if the instance does
-     * not have one.
+     * not have one. In format "projects/{project}/global/networks/{network}".
      *
      * Generated from protobuf field <code>string network_uri = 4;</code>
      */
@@ -62,10 +63,11 @@ class CloudSQLInstanceInfo extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Name of a Cloud SQL instance.
      *     @type string $uri
-     *           URI of a Cloud SQL instance.
+     *           URI of a Cloud SQL instance in format
+     *           "projects/{project}/instances/{instance}"
      *     @type string $network_uri
      *           URI of a Cloud SQL instance network or empty string if the instance does
-     *           not have one.
+     *           not have one. In format "projects/{project}/global/networks/{network}".
      *     @type string $internal_ip
      *           Internal IP address of a Cloud SQL instance.
      *     @type string $external_ip
@@ -106,7 +108,8 @@ class CloudSQLInstanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Cloud SQL instance.
+     * URI of a Cloud SQL instance in format
+     * "projects/{project}/instances/{instance}"
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -117,7 +120,8 @@ class CloudSQLInstanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Cloud SQL instance.
+     * URI of a Cloud SQL instance in format
+     * "projects/{project}/instances/{instance}"
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var
@@ -133,7 +137,7 @@ class CloudSQLInstanceInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of a Cloud SQL instance network or empty string if the instance does
-     * not have one.
+     * not have one. In format "projects/{project}/global/networks/{network}".
      *
      * Generated from protobuf field <code>string network_uri = 4;</code>
      * @return string
@@ -145,7 +149,7 @@ class CloudSQLInstanceInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of a Cloud SQL instance network or empty string if the instance does
-     * not have one.
+     * not have one. In format "projects/{project}/global/networks/{network}".
      *
      * Generated from protobuf field <code>string network_uri = 4;</code>
      * @param string $var

@@ -24,9 +24,10 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * Required. ID of the cluster to create. Must conform to
-     * [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034) (lower-case,
-     * alphanumeric, and at most 63 characters).
+     * Required. The ID of the cluster to create.
+     * The cluster ID must start with a lowercase letter (`a`-`z`), use only
+     * lowercase letters or numbers, and contain up to 10 characters. For example,
+     * specify `cluster001`.
      *
      * Generated from protobuf field <code>string cluster_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -51,9 +52,10 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *                                                                    format `projects/{project}/locations/{location}`. Please see
      *                                                                    {@see HypercomputeClusterClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\HypercomputeCluster\V1beta\Cluster $cluster   Required. Cluster to create.
-     * @param string                                           $clusterId Required. ID of the cluster to create. Must conform to
-     *                                                                    [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034) (lower-case,
-     *                                                                    alphanumeric, and at most 63 characters).
+     * @param string                                           $clusterId Required. The ID of the cluster to create.
+     *                                                                    The cluster ID must start with a lowercase letter (`a`-`z`), use only
+     *                                                                    lowercase letters or numbers, and contain up to 10 characters. For example,
+     *                                                                    specify `cluster001`.
      *
      * @return \Google\Cloud\HypercomputeCluster\V1beta\CreateClusterRequest
      *
@@ -77,9 +79,10 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *           Required. Parent location in which the cluster should be created, in the
      *           format `projects/{project}/locations/{location}`.
      *     @type string $cluster_id
-     *           Required. ID of the cluster to create. Must conform to
-     *           [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034) (lower-case,
-     *           alphanumeric, and at most 63 characters).
+     *           Required. The ID of the cluster to create.
+     *           The cluster ID must start with a lowercase letter (`a`-`z`), use only
+     *           lowercase letters or numbers, and contain up to 10 characters. For example,
+     *           specify `cluster001`.
      *     @type \Google\Cloud\HypercomputeCluster\V1beta\Cluster $cluster
      *           Required. Cluster to create.
      *     @type string $request_id
@@ -122,9 +125,10 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. ID of the cluster to create. Must conform to
-     * [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034) (lower-case,
-     * alphanumeric, and at most 63 characters).
+     * Required. The ID of the cluster to create.
+     * The cluster ID must start with a lowercase letter (`a`-`z`), use only
+     * lowercase letters or numbers, and contain up to 10 characters. For example,
+     * specify `cluster001`.
      *
      * Generated from protobuf field <code>string cluster_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -135,9 +139,10 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. ID of the cluster to create. Must conform to
-     * [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034) (lower-case,
-     * alphanumeric, and at most 63 characters).
+     * Required. The ID of the cluster to create.
+     * The cluster ID must start with a lowercase letter (`a`-`z`), use only
+     * lowercase letters or numbers, and contain up to 10 characters. For example,
+     * specify `cluster001`.
      *
      * Generated from protobuf field <code>string cluster_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

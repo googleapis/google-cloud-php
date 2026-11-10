@@ -27,6 +27,8 @@ class DataDocumentationResult extends \Google\Protobuf\Internal\Message
      *           Output only. Insights for a Dataset resource.
      *     @type \Google\Cloud\Dataplex\V1\DataDocumentationResult\TableResult $table_result
      *           Output only. Insights for a Table resource.
+     *     @type \Google\Cloud\Dataplex\V1\DataDocumentationResult\DataProductResult $data_product_result
+     *           Output only. Insights for a data product.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,6 +94,37 @@ class DataDocumentationResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataDocumentationResult\TableResult::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Insights for a data product.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDocumentationResult.DataProductResult data_product_result = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataplex\V1\DataDocumentationResult\DataProductResult|null
+     */
+    public function getDataProductResult()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasDataProductResult()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * Output only. Insights for a data product.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDocumentationResult.DataProductResult data_product_result = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataplex\V1\DataDocumentationResult\DataProductResult $var
+     * @return $this
+     */
+    public function setDataProductResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataDocumentationResult\DataProductResult::class);
+        $this->writeOneof(9, $var);
 
         return $this;
     }

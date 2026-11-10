@@ -23,6 +23,8 @@ class VpcConnectorInfo extends \Google\Protobuf\Internal\Message
     protected $display_name = '';
     /**
      * URI of a VPC connector.
+     * Format:
+     * `projects/{project_id}/locations/{location}/connectors/{connector_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
@@ -44,6 +46,8 @@ class VpcConnectorInfo extends \Google\Protobuf\Internal\Message
      *           Name of a VPC connector.
      *     @type string $uri
      *           URI of a VPC connector.
+     *           Format:
+     *           `projects/{project_id}/locations/{location}/connectors/{connector_id}`
      *     @type string $location
      *           Location in which the VPC connector is deployed.
      * }
@@ -81,6 +85,8 @@ class VpcConnectorInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of a VPC connector.
+     * Format:
+     * `projects/{project_id}/locations/{location}/connectors/{connector_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -92,6 +98,8 @@ class VpcConnectorInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of a VPC connector.
+     * Format:
+     * `projects/{project_id}/locations/{location}/connectors/{connector_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var

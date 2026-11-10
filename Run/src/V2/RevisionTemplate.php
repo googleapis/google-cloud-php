@@ -82,12 +82,18 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      */
     protected $service_account = '';
     /**
-     * Holds the single container that defines the unit of execution for this
+     * Holds the list which define the units of execution for this
      * Revision.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Container containers = 10;</code>
      */
     private $containers;
+    /**
+     * Optional. Configuration for sandboxes.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.SandboxConfiguration sandboxes = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $sandboxes = null;
     /**
      * Optional. A list of Volumes to make available to containers.
      *
@@ -154,11 +160,35 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      */
     protected $node_selector = null;
     /**
+     * Optional. The Revision's workload identity settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.WorkloadIdentityConfig workload_identity_config = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $workload_identity_config = null;
+    /**
      * Optional. True if GPU zonal redundancy is disabled on this revision.
      *
      * Generated from protobuf field <code>optional bool gpu_zonal_redundancy_disabled = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $gpu_zonal_redundancy_disabled = null;
+    /**
+     * Optional. Arbitrary identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $client = '';
+    /**
+     * Optional. Arbitrary version identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client_version = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $client_version = '';
+    /**
+     * Optional. The ambient networking configuration for this revision.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.AmbientNetworking ambient_networking = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ambient_networking = null;
 
     /**
      * Constructor.
@@ -204,8 +234,10 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      *           running revision, and determines what permissions the revision has. If not
      *           provided, the revision will use the project's default service account.
      *     @type \Google\Cloud\Run\V2\Container[] $containers
-     *           Holds the single container that defines the unit of execution for this
+     *           Holds the list which define the units of execution for this
      *           Revision.
+     *     @type \Google\Cloud\Run\V2\SandboxConfiguration $sandboxes
+     *           Optional. Configuration for sandboxes.
      *     @type \Google\Cloud\Run\V2\Volume[] $volumes
      *           Optional. A list of Volumes to make available to containers.
      *     @type int $execution_environment
@@ -231,8 +263,16 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      *           Optional. Disables health checking containers during deployment.
      *     @type \Google\Cloud\Run\V2\NodeSelector $node_selector
      *           Optional. The node selector for the revision template.
+     *     @type \Google\Cloud\Run\V2\WorkloadIdentityConfig $workload_identity_config
+     *           Optional. The Revision's workload identity settings.
      *     @type bool $gpu_zonal_redundancy_disabled
      *           Optional. True if GPU zonal redundancy is disabled on this revision.
+     *     @type string $client
+     *           Optional. Arbitrary identifier for the API client.
+     *     @type string $client_version
+     *           Optional. Arbitrary version identifier for the API client.
+     *     @type \Google\Cloud\Run\V2\AmbientNetworking $ambient_networking
+     *           Optional. The ambient networking configuration for this revision.
      * }
      */
     public function __construct($data = NULL) {
@@ -499,7 +539,7 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Holds the single container that defines the unit of execution for this
+     * Holds the list which define the units of execution for this
      * Revision.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Container containers = 10;</code>
@@ -511,7 +551,7 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Holds the single container that defines the unit of execution for this
+     * Holds the list which define the units of execution for this
      * Revision.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Container containers = 10;</code>
@@ -522,6 +562,42 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Run\V2\Container::class);
         $this->containers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for sandboxes.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.SandboxConfiguration sandboxes = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Run\V2\SandboxConfiguration|null
+     */
+    public function getSandboxes()
+    {
+        return $this->sandboxes;
+    }
+
+    public function hasSandboxes()
+    {
+        return isset($this->sandboxes);
+    }
+
+    public function clearSandboxes()
+    {
+        unset($this->sandboxes);
+    }
+
+    /**
+     * Optional. Configuration for sandboxes.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.SandboxConfiguration sandboxes = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Run\V2\SandboxConfiguration $var
+     * @return $this
+     */
+    public function setSandboxes($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\SandboxConfiguration::class);
+        $this->sandboxes = $var;
 
         return $this;
     }
@@ -827,6 +903,42 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The Revision's workload identity settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.WorkloadIdentityConfig workload_identity_config = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Run\V2\WorkloadIdentityConfig|null
+     */
+    public function getWorkloadIdentityConfig()
+    {
+        return $this->workload_identity_config;
+    }
+
+    public function hasWorkloadIdentityConfig()
+    {
+        return isset($this->workload_identity_config);
+    }
+
+    public function clearWorkloadIdentityConfig()
+    {
+        unset($this->workload_identity_config);
+    }
+
+    /**
+     * Optional. The Revision's workload identity settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.WorkloadIdentityConfig workload_identity_config = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Run\V2\WorkloadIdentityConfig $var
+     * @return $this
+     */
+    public function setWorkloadIdentityConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\WorkloadIdentityConfig::class);
+        $this->workload_identity_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. True if GPU zonal redundancy is disabled on this revision.
      *
      * Generated from protobuf field <code>optional bool gpu_zonal_redundancy_disabled = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -858,6 +970,94 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->gpu_zonal_redundancy_disabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Arbitrary identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * Optional. Arbitrary identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setClient($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->client = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Arbitrary version identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client_version = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getClientVersion()
+    {
+        return $this->client_version;
+    }
+
+    /**
+     * Optional. Arbitrary version identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client_version = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setClientVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->client_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The ambient networking configuration for this revision.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.AmbientNetworking ambient_networking = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Run\V2\AmbientNetworking|null
+     */
+    public function getAmbientNetworking()
+    {
+        return $this->ambient_networking;
+    }
+
+    public function hasAmbientNetworking()
+    {
+        return isset($this->ambient_networking);
+    }
+
+    public function clearAmbientNetworking()
+    {
+        unset($this->ambient_networking);
+    }
+
+    /**
+     * Optional. The ambient networking configuration for this revision.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.AmbientNetworking ambient_networking = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Run\V2\AmbientNetworking $var
+     * @return $this
+     */
+    public function setAmbientNetworking($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\AmbientNetworking::class);
+        $this->ambient_networking = $var;
 
         return $this;
     }

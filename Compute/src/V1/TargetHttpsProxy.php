@@ -187,7 +187,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      * Certificate Manager Certificates.
      * Certificate Manager Certificates accepted formats are:
      *    - //certificatemanager.googleapis.com/projects/{project}/locations/{location}/certificates/{resourceName}.
-     *    - https://certificatemanager.googleapis.com/v1alpha1/projects/{project}/locations/{location}/certificates/{resourceName}.
+     *    - https://certificatemanager.{universeDomain}/v1alpha1/projects/{project}/locations/{location}/certificates/{resourceName}.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      */
@@ -345,7 +345,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      *           Certificate Manager Certificates.
      *           Certificate Manager Certificates accepted formats are:
      *              - //certificatemanager.googleapis.com/projects/{project}/locations/{location}/certificates/{resourceName}.
-     *              - https://certificatemanager.googleapis.com/v1alpha1/projects/{project}/locations/{location}/certificates/{resourceName}.
+     *              - https://certificatemanager.{universeDomain}/v1alpha1/projects/{project}/locations/{location}/certificates/{resourceName}.
      *     @type string $ssl_policy
      *           URL of SslPolicy resource that will be associated with the TargetHttpsProxy
      *           resource. If not set, the TargetHttpsProxy resource has no
@@ -1022,7 +1022,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      * Certificate Manager Certificates.
      * Certificate Manager Certificates accepted formats are:
      *    - //certificatemanager.googleapis.com/projects/{project}/locations/{location}/certificates/{resourceName}.
-     *    - https://certificatemanager.googleapis.com/v1alpha1/projects/{project}/locations/{location}/certificates/{resourceName}.
+     *    - https://certificatemanager.{universeDomain}/v1alpha1/projects/{project}/locations/{location}/certificates/{resourceName}.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      * @return RepeatedField<string>
@@ -1048,7 +1048,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      * Certificate Manager Certificates.
      * Certificate Manager Certificates accepted formats are:
      *    - //certificatemanager.googleapis.com/projects/{project}/locations/{location}/certificates/{resourceName}.
-     *    - https://certificatemanager.googleapis.com/v1alpha1/projects/{project}/locations/{location}/certificates/{resourceName}.
+     *    - https://certificatemanager.{universeDomain}/v1alpha1/projects/{project}/locations/{location}/certificates/{resourceName}.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      * @param string[] $var

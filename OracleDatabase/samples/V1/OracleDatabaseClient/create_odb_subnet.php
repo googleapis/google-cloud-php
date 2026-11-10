@@ -41,8 +41,8 @@ use Google\Rpc\Status;
  *                                   to (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$) and must be a maximum of 63
  *                                   characters in length. The value must start with a letter and end with
  *                                   a letter or a number.
- * @param string $odbSubnetCidrRange The CIDR range of the subnet.
- * @param int    $odbSubnetPurpose   Purpose of the subnet.
+ * @param string $odbSubnetCidrRange Immutable. The CIDR range of the subnet.
+ * @param int    $odbSubnetPurpose   Immutable. Purpose of the subnet.
  */
 function create_odb_subnet_sample(
     string $formattedParent,

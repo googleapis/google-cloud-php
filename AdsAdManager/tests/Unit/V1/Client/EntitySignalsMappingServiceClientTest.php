@@ -220,10 +220,12 @@ class EntitySignalsMappingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $audienceSegmentId = 321086146;
+        $audienceSegment = 'audienceSegment-1797067784';
         $name = 'name3373707';
         $entitySignalsMappingId = 350688772;
         $expectedResponse = new EntitySignalsMapping();
         $expectedResponse->setAudienceSegmentId($audienceSegmentId);
+        $expectedResponse->setAudienceSegment($audienceSegment);
         $expectedResponse->setName($name);
         $expectedResponse->setEntitySignalsMappingId($entitySignalsMappingId);
         $transport->addResponse($expectedResponse);
@@ -300,10 +302,12 @@ class EntitySignalsMappingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $audienceSegmentId = 321086146;
+        $audienceSegment = 'audienceSegment-1797067784';
         $name2 = 'name2-1052831874';
         $entitySignalsMappingId = 350688772;
         $expectedResponse = new EntitySignalsMapping();
         $expectedResponse->setAudienceSegmentId($audienceSegmentId);
+        $expectedResponse->setAudienceSegment($audienceSegment);
         $expectedResponse->setName($name2);
         $expectedResponse->setEntitySignalsMappingId($entitySignalsMappingId);
         $transport->addResponse($expectedResponse);
@@ -448,10 +452,12 @@ class EntitySignalsMappingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $audienceSegmentId = 321086146;
+        $audienceSegment = 'audienceSegment-1797067784';
         $name = 'name3373707';
         $entitySignalsMappingId = 350688772;
         $expectedResponse = new EntitySignalsMapping();
         $expectedResponse->setAudienceSegmentId($audienceSegmentId);
+        $expectedResponse->setAudienceSegment($audienceSegment);
         $expectedResponse->setName($name);
         $expectedResponse->setEntitySignalsMappingId($entitySignalsMappingId);
         $transport->addResponse($expectedResponse);

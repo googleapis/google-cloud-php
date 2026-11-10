@@ -16,6 +16,20 @@ use Google\Protobuf\RepeatedField;
 class MachineImageParams extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Input only. Specifies the list of disk device names that must be excluded from the
+     * new machine image.
+     *
+     * Generated from protobuf field <code>repeated string excluded_disks = 301656001;</code>
+     */
+    private $excluded_disks;
+    /**
+     * Input only. Specifies the list of disk device names that must be included with the
+     * new machine image.
+     *
+     * Generated from protobuf field <code>repeated string included_disks = 139709747;</code>
+     */
+    private $included_disks;
+    /**
      * Input only. Resource manager tags to be bound to the machine image. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
@@ -34,6 +48,12 @@ class MachineImageParams extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string[] $excluded_disks
+     *           Input only. Specifies the list of disk device names that must be excluded from the
+     *           new machine image.
+     *     @type string[] $included_disks
+     *           Input only. Specifies the list of disk device names that must be included with the
+     *           new machine image.
      *     @type array|\Google\Protobuf\Internal\MapField $resource_manager_tags
      *           Input only. Resource manager tags to be bound to the machine image. Tag keys and values
      *           have the same definition as resource
@@ -47,6 +67,62 @@ class MachineImageParams extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Input only. Specifies the list of disk device names that must be excluded from the
+     * new machine image.
+     *
+     * Generated from protobuf field <code>repeated string excluded_disks = 301656001;</code>
+     * @return RepeatedField<string>
+     */
+    public function getExcludedDisks()
+    {
+        return $this->excluded_disks;
+    }
+
+    /**
+     * Input only. Specifies the list of disk device names that must be excluded from the
+     * new machine image.
+     *
+     * Generated from protobuf field <code>repeated string excluded_disks = 301656001;</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setExcludedDisks($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->excluded_disks = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Input only. Specifies the list of disk device names that must be included with the
+     * new machine image.
+     *
+     * Generated from protobuf field <code>repeated string included_disks = 139709747;</code>
+     * @return RepeatedField<string>
+     */
+    public function getIncludedDisks()
+    {
+        return $this->included_disks;
+    }
+
+    /**
+     * Input only. Specifies the list of disk device names that must be included with the
+     * new machine image.
+     *
+     * Generated from protobuf field <code>repeated string included_disks = 139709747;</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setIncludedDisks($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->included_disks = $arr;
+
+        return $this;
     }
 
     /**

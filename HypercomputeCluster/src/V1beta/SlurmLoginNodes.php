@@ -44,6 +44,9 @@ class SlurmLoginNodes extends \Google\Protobuf\Internal\Message
      * Optional. [Startup
      * script](https://cloud.google.com/compute/docs/instances/startup-scripts/linux)
      * to be run on each login node instance. Max 256KB.
+     * The script must complete within the system-defined default timeout of 5
+     * minutes. For tasks that require more time, consider running them in the
+     * background using methods such as `&` or `nohup`.
      *
      * Generated from protobuf field <code>string startup_script = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -91,6 +94,13 @@ class SlurmLoginNodes extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.BootDisk boot_disk = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $boot_disk = null;
+    /**
+     * Optional. Network tags to be applied to each login node instance.
+     * A maximum of 64 network tags are allowed.
+     *
+     * Generated from protobuf field <code>repeated string network_tags = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $network_tags;
 
     /**
      * Constructor.
@@ -112,6 +122,9 @@ class SlurmLoginNodes extends \Google\Protobuf\Internal\Message
      *           Optional. [Startup
      *           script](https://cloud.google.com/compute/docs/instances/startup-scripts/linux)
      *           to be run on each login node instance. Max 256KB.
+     *           The script must complete within the system-defined default timeout of 5
+     *           minutes. For tasks that require more time, consider running them in the
+     *           background using methods such as `&` or `nohup`.
      *     @type bool $enable_os_login
      *           Optional. Whether [OS Login](https://cloud.google.com/compute/docs/oslogin)
      *           should be enabled on login node instances.
@@ -131,6 +144,9 @@ class SlurmLoginNodes extends \Google\Protobuf\Internal\Message
      *           in Compute Engine.
      *     @type \Google\Cloud\HypercomputeCluster\V1beta\BootDisk $boot_disk
      *           Optional. Boot disk for the login node.
+     *     @type string[] $network_tags
+     *           Optional. Network tags to be applied to each login node instance.
+     *           A maximum of 64 network tags are allowed.
      * }
      */
     public function __construct($data = NULL) {
@@ -228,6 +244,9 @@ class SlurmLoginNodes extends \Google\Protobuf\Internal\Message
      * Optional. [Startup
      * script](https://cloud.google.com/compute/docs/instances/startup-scripts/linux)
      * to be run on each login node instance. Max 256KB.
+     * The script must complete within the system-defined default timeout of 5
+     * minutes. For tasks that require more time, consider running them in the
+     * background using methods such as `&` or `nohup`.
      *
      * Generated from protobuf field <code>string startup_script = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -241,6 +260,9 @@ class SlurmLoginNodes extends \Google\Protobuf\Internal\Message
      * Optional. [Startup
      * script](https://cloud.google.com/compute/docs/instances/startup-scripts/linux)
      * to be run on each login node instance. Max 256KB.
+     * The script must complete within the system-defined default timeout of 5
+     * minutes. For tasks that require more time, consider running them in the
+     * background using methods such as `&` or `nohup`.
      *
      * Generated from protobuf field <code>string startup_script = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -430,6 +452,34 @@ class SlurmLoginNodes extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\HypercomputeCluster\V1beta\BootDisk::class);
         $this->boot_disk = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Network tags to be applied to each login node instance.
+     * A maximum of 64 network tags are allowed.
+     *
+     * Generated from protobuf field <code>repeated string network_tags = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getNetworkTags()
+    {
+        return $this->network_tags;
+    }
+
+    /**
+     * Optional. Network tags to be applied to each login node instance.
+     * A maximum of 64 network tags are allowed.
+     *
+     * Generated from protobuf field <code>repeated string network_tags = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setNetworkTags($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->network_tags = $arr;
 
         return $this;
     }

@@ -22,7 +22,9 @@ class CloudRunRevisionInfo extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * URI of a Cloud Run revision.
+     * URI of the Cloud Run revision.
+     * Format:
+     * `projects/{project_id}/locations/{location}/revisions/{revision_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
@@ -35,6 +37,8 @@ class CloudRunRevisionInfo extends \Google\Protobuf\Internal\Message
     protected $location = '';
     /**
      * URI of Cloud Run service this revision belongs to.
+     * Format: `projects/{project_id}/locations/{location}/services/{service_id}`
+     * Mutually exclusive with `worker_pool_uri`.
      *
      * Generated from protobuf field <code>string service_uri = 5;</code>
      */
@@ -49,11 +53,15 @@ class CloudRunRevisionInfo extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Name of a Cloud Run revision.
      *     @type string $uri
-     *           URI of a Cloud Run revision.
+     *           URI of the Cloud Run revision.
+     *           Format:
+     *           `projects/{project_id}/locations/{location}/revisions/{revision_id}`
      *     @type string $location
      *           Location in which this revision is deployed.
      *     @type string $service_uri
      *           URI of Cloud Run service this revision belongs to.
+     *           Format: `projects/{project_id}/locations/{location}/services/{service_id}`
+     *           Mutually exclusive with `worker_pool_uri`.
      * }
      */
     public function __construct($data = NULL) {
@@ -88,7 +96,9 @@ class CloudRunRevisionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Cloud Run revision.
+     * URI of the Cloud Run revision.
+     * Format:
+     * `projects/{project_id}/locations/{location}/revisions/{revision_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -99,7 +109,9 @@ class CloudRunRevisionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Cloud Run revision.
+     * URI of the Cloud Run revision.
+     * Format:
+     * `projects/{project_id}/locations/{location}/revisions/{revision_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var
@@ -141,6 +153,8 @@ class CloudRunRevisionInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of Cloud Run service this revision belongs to.
+     * Format: `projects/{project_id}/locations/{location}/services/{service_id}`
+     * Mutually exclusive with `worker_pool_uri`.
      *
      * Generated from protobuf field <code>string service_uri = 5;</code>
      * @return string
@@ -152,6 +166,8 @@ class CloudRunRevisionInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of Cloud Run service this revision belongs to.
+     * Format: `projects/{project_id}/locations/{location}/services/{service_id}`
+     * Mutually exclusive with `worker_pool_uri`.
      *
      * Generated from protobuf field <code>string service_uri = 5;</code>
      * @param string $var

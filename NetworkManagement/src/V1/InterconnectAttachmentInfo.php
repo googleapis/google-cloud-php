@@ -22,14 +22,16 @@ class InterconnectAttachmentInfo extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * URI of an Interconnect attachment.
+     * URI of the Interconnect attachment.
+     * Format:
+     * `projects/{project_id}/regions/{region}/interconnectAttachments/{attachment_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
     protected $uri = '';
     /**
-     * URI of the Interconnect where the Interconnect attachment is
-     * configured.
+     * URI of the Interconnect.
+     * Format: `projects/{project_id}/global/interconnects/{interconnect_id}`
      *
      * Generated from protobuf field <code>string interconnect_uri = 3;</code>
      */
@@ -43,6 +45,7 @@ class InterconnectAttachmentInfo extends \Google\Protobuf\Internal\Message
     protected $region = '';
     /**
      * URI of the Cloud Router to be used for dynamic routing.
+     * Format: `projects/{project_id}/regions/{region}/routers/{router_id}`
      *
      * Generated from protobuf field <code>string cloud_router_uri = 5;</code>
      */
@@ -69,15 +72,18 @@ class InterconnectAttachmentInfo extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Name of an Interconnect attachment.
      *     @type string $uri
-     *           URI of an Interconnect attachment.
+     *           URI of the Interconnect attachment.
+     *           Format:
+     *           `projects/{project_id}/regions/{region}/interconnectAttachments/{attachment_id}`
      *     @type string $interconnect_uri
-     *           URI of the Interconnect where the Interconnect attachment is
-     *           configured.
+     *           URI of the Interconnect.
+     *           Format: `projects/{project_id}/global/interconnects/{interconnect_id}`
      *     @type string $region
      *           Name of a Google Cloud region where the Interconnect attachment is
      *           configured.
      *     @type string $cloud_router_uri
      *           URI of the Cloud Router to be used for dynamic routing.
+     *           Format: `projects/{project_id}/regions/{region}/routers/{router_id}`
      *     @type int $type
      *           The type of interconnect attachment this is.
      *     @type string $l2_attachment_matched_ip_address
@@ -116,7 +122,9 @@ class InterconnectAttachmentInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of an Interconnect attachment.
+     * URI of the Interconnect attachment.
+     * Format:
+     * `projects/{project_id}/regions/{region}/interconnectAttachments/{attachment_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -127,7 +135,9 @@ class InterconnectAttachmentInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of an Interconnect attachment.
+     * URI of the Interconnect attachment.
+     * Format:
+     * `projects/{project_id}/regions/{region}/interconnectAttachments/{attachment_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var
@@ -142,8 +152,8 @@ class InterconnectAttachmentInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the Interconnect where the Interconnect attachment is
-     * configured.
+     * URI of the Interconnect.
+     * Format: `projects/{project_id}/global/interconnects/{interconnect_id}`
      *
      * Generated from protobuf field <code>string interconnect_uri = 3;</code>
      * @return string
@@ -154,8 +164,8 @@ class InterconnectAttachmentInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the Interconnect where the Interconnect attachment is
-     * configured.
+     * URI of the Interconnect.
+     * Format: `projects/{project_id}/global/interconnects/{interconnect_id}`
      *
      * Generated from protobuf field <code>string interconnect_uri = 3;</code>
      * @param string $var
@@ -199,6 +209,7 @@ class InterconnectAttachmentInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the Cloud Router to be used for dynamic routing.
+     * Format: `projects/{project_id}/regions/{region}/routers/{router_id}`
      *
      * Generated from protobuf field <code>string cloud_router_uri = 5;</code>
      * @return string
@@ -210,6 +221,7 @@ class InterconnectAttachmentInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the Cloud Router to be used for dynamic routing.
+     * Format: `projects/{project_id}/regions/{region}/routers/{router_id}`
      *
      * Generated from protobuf field <code>string cloud_router_uri = 5;</code>
      * @param string $var

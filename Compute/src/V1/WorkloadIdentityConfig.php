@@ -22,6 +22,13 @@ class WorkloadIdentityConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool identity_certificate_enabled = 342892440;</code>
      */
     protected $identity_certificate_enabled = null;
+    /**
+     * 
+     * Check the IdentityType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string identity_type = 25665051;</code>
+     */
+    protected $identity_type = null;
 
     /**
      * Constructor.
@@ -31,6 +38,9 @@ class WorkloadIdentityConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $identity
      *     @type bool $identity_certificate_enabled
+     *     @type string $identity_type
+     *           
+     *           Check the IdentityType enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -98,6 +108,44 @@ class WorkloadIdentityConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->identity_certificate_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * 
+     * Check the IdentityType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string identity_type = 25665051;</code>
+     * @return string
+     */
+    public function getIdentityType()
+    {
+        return isset($this->identity_type) ? $this->identity_type : '';
+    }
+
+    public function hasIdentityType()
+    {
+        return isset($this->identity_type);
+    }
+
+    public function clearIdentityType()
+    {
+        unset($this->identity_type);
+    }
+
+    /**
+     * 
+     * Check the IdentityType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string identity_type = 25665051;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIdentityType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->identity_type = $var;
 
         return $this;
     }

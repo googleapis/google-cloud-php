@@ -36,6 +36,13 @@ class Overrides extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 4;</code>
      */
     protected $timeout = null;
+    /**
+     * Optional. If true, the system will start the execution within the next 12
+     * hours depending on available capacity.
+     *
+     * Generated from protobuf field <code>optional bool delay_execution = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $delay_execution = null;
 
     /**
      * Constructor.
@@ -52,6 +59,9 @@ class Overrides extends \Google\Protobuf\Internal\Message
      *           Duration in seconds the task may be active before the system will
      *           actively try to mark it failed and kill associated containers. Will
      *           replace existing timeout_seconds value.
+     *     @type bool $delay_execution
+     *           Optional. If true, the system will start the execution within the next 12
+     *           hours depending on available capacity.
      * }
      */
     public function __construct($data = NULL) {
@@ -149,6 +159,44 @@ class Overrides extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->timeout = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, the system will start the execution within the next 12
+     * hours depending on available capacity.
+     *
+     * Generated from protobuf field <code>optional bool delay_execution = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDelayExecution()
+    {
+        return isset($this->delay_execution) ? $this->delay_execution : false;
+    }
+
+    public function hasDelayExecution()
+    {
+        return isset($this->delay_execution);
+    }
+
+    public function clearDelayExecution()
+    {
+        unset($this->delay_execution);
+    }
+
+    /**
+     * Optional. If true, the system will start the execution within the next 12
+     * hours depending on available capacity.
+     *
+     * Generated from protobuf field <code>optional bool delay_execution = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDelayExecution($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->delay_execution = $var;
 
         return $this;
     }

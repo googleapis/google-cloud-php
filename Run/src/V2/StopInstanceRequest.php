@@ -17,9 +17,6 @@ class StopInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the Instance to stop.
-     * Format:
-     * `projects/{project}/locations/{location}/instances/{instance}`,
-     * where `{project}` can be project id or number.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -40,10 +37,7 @@ class StopInstanceRequest extends \Google\Protobuf\Internal\Message
     protected $etag = '';
 
     /**
-     * @param string $name Required. The name of the Instance to stop.
-     *                     Format:
-     *                     `projects/{project}/locations/{location}/instances/{instance}`,
-     *                     where `{project}` can be project id or number. Please see
+     * @param string $name Required. The name of the Instance to stop. Please see
      *                     {@see InstancesClient::instanceName()} for help formatting this field.
      *
      * @return \Google\Cloud\Run\V2\StopInstanceRequest
@@ -64,9 +58,6 @@ class StopInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the Instance to stop.
-     *           Format:
-     *           `projects/{project}/locations/{location}/instances/{instance}`,
-     *           where `{project}` can be project id or number.
      *     @type bool $validate_only
      *           Optional. Indicates that the request should be validated without actually
      *           stopping any resources.
@@ -82,9 +73,6 @@ class StopInstanceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the Instance to stop.
-     * Format:
-     * `projects/{project}/locations/{location}/instances/{instance}`,
-     * where `{project}` can be project id or number.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -96,9 +84,6 @@ class StopInstanceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the Instance to stop.
-     * Format:
-     * `projects/{project}/locations/{location}/instances/{instance}`,
-     * where `{project}` can be project id or number.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

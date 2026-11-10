@@ -48,10 +48,10 @@ use Google\Rpc\Status;
  *                                                                   must be 1 to 32 characters long, must contain only alphanumeric characters
  *                                                                   and must start with a letter.
  * @param string $goldengateDeploymentPropertiesOggDataAdminUsername The Goldengate deployment console username.
- * @param string $formattedGoldengateDeploymentOdbSubnet             The name of the OdbSubnet associated with the
+ * @param string $formattedGoldengateDeploymentOdbSubnet             Immutable. The name of the OdbSubnet associated with the
  *                                                                   GoldengateDeployment for IP allocation. Please see
  *                                                                   {@see OracleDatabaseClient::odbSubnetName()} for help formatting this field.
- * @param string $goldengateDeploymentDisplayName                    The display name for the GoldengateDeployment.
+ * @param string $goldengateDeploymentDisplayName                    Immutable. The display name for the GoldengateDeployment.
  */
 function create_goldengate_deployment_sample(
     string $formattedParent,

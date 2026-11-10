@@ -25,25 +25,25 @@ class ExascaleDbStorageVault extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Required. The display name for the ExascaleDbStorageVault. The name does
-     * not have to be unique within your project. The name must be 1-255
+     * Required. Immutable. The display name for the ExascaleDbStorageVault. The
+     * name does not have to be unique within your project. The name must be 1-255
      * characters long and can only contain alphanumeric characters.
      *
-     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $display_name = '';
     /**
-     * Optional. The GCP Oracle zone where Oracle ExascaleDbStorageVault is
-     * hosted. Example: us-east4-b-r2. If not specified, the system will pick a
-     * zone based on availability.
+     * Optional. Immutable. The GCP Oracle zone where Oracle
+     * ExascaleDbStorageVault is hosted. Example: us-east4-b-r2. If not specified,
+     * the system will pick a zone based on availability.
      *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $gcp_oracle_zone = '';
     /**
-     * Required. The properties of the ExascaleDbStorageVault.
+     * Required. Immutable. The properties of the ExascaleDbStorageVault.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ExascaleDbStorageVaultProperties properties = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ExascaleDbStorageVaultProperties properties = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $properties = null;
     /**
@@ -66,12 +66,12 @@ class ExascaleDbStorageVault extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Optional. The Exadata Infrastructure resource on which
+     * Optional. Immutable. The Exadata Infrastructure resource on which
      * ExascaleDbStorageVault
      * resource is created, in the following format:
      * projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}
      *
-     * Generated from protobuf field <code>string exadata_infrastructure = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string exadata_infrastructure = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     protected $exadata_infrastructure = '';
 
@@ -86,15 +86,15 @@ class ExascaleDbStorageVault extends \Google\Protobuf\Internal\Message
      *           Format:
      *           projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}
      *     @type string $display_name
-     *           Required. The display name for the ExascaleDbStorageVault. The name does
-     *           not have to be unique within your project. The name must be 1-255
+     *           Required. Immutable. The display name for the ExascaleDbStorageVault. The
+     *           name does not have to be unique within your project. The name must be 1-255
      *           characters long and can only contain alphanumeric characters.
      *     @type string $gcp_oracle_zone
-     *           Optional. The GCP Oracle zone where Oracle ExascaleDbStorageVault is
-     *           hosted. Example: us-east4-b-r2. If not specified, the system will pick a
-     *           zone based on availability.
+     *           Optional. Immutable. The GCP Oracle zone where Oracle
+     *           ExascaleDbStorageVault is hosted. Example: us-east4-b-r2. If not specified,
+     *           the system will pick a zone based on availability.
      *     @type \Google\Cloud\OracleDatabase\V1\ExascaleDbStorageVaultProperties $properties
-     *           Required. The properties of the ExascaleDbStorageVault.
+     *           Required. Immutable. The properties of the ExascaleDbStorageVault.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The date and time when the ExascaleDbStorageVault was created.
      *     @type string $entitlement_id
@@ -103,7 +103,7 @@ class ExascaleDbStorageVault extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels or tags associated with the ExascaleDbStorageVault.
      *     @type string $exadata_infrastructure
-     *           Optional. The Exadata Infrastructure resource on which
+     *           Optional. Immutable. The Exadata Infrastructure resource on which
      *           ExascaleDbStorageVault
      *           resource is created, in the following format:
      *           projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}
@@ -145,11 +145,11 @@ class ExascaleDbStorageVault extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The display name for the ExascaleDbStorageVault. The name does
-     * not have to be unique within your project. The name must be 1-255
+     * Required. Immutable. The display name for the ExascaleDbStorageVault. The
+     * name does not have to be unique within your project. The name must be 1-255
      * characters long and can only contain alphanumeric characters.
      *
-     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getDisplayName()
@@ -158,11 +158,11 @@ class ExascaleDbStorageVault extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The display name for the ExascaleDbStorageVault. The name does
-     * not have to be unique within your project. The name must be 1-255
+     * Required. Immutable. The display name for the ExascaleDbStorageVault. The
+     * name does not have to be unique within your project. The name must be 1-255
      * characters long and can only contain alphanumeric characters.
      *
-     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -175,11 +175,11 @@ class ExascaleDbStorageVault extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The GCP Oracle zone where Oracle ExascaleDbStorageVault is
-     * hosted. Example: us-east4-b-r2. If not specified, the system will pick a
-     * zone based on availability.
+     * Optional. Immutable. The GCP Oracle zone where Oracle
+     * ExascaleDbStorageVault is hosted. Example: us-east4-b-r2. If not specified,
+     * the system will pick a zone based on availability.
      *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getGcpOracleZone()
@@ -188,11 +188,11 @@ class ExascaleDbStorageVault extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The GCP Oracle zone where Oracle ExascaleDbStorageVault is
-     * hosted. Example: us-east4-b-r2. If not specified, the system will pick a
-     * zone based on availability.
+     * Optional. Immutable. The GCP Oracle zone where Oracle
+     * ExascaleDbStorageVault is hosted. Example: us-east4-b-r2. If not specified,
+     * the system will pick a zone based on availability.
      *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -205,9 +205,9 @@ class ExascaleDbStorageVault extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The properties of the ExascaleDbStorageVault.
+     * Required. Immutable. The properties of the ExascaleDbStorageVault.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ExascaleDbStorageVaultProperties properties = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ExascaleDbStorageVaultProperties properties = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Cloud\OracleDatabase\V1\ExascaleDbStorageVaultProperties|null
      */
     public function getProperties()
@@ -226,9 +226,9 @@ class ExascaleDbStorageVault extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The properties of the ExascaleDbStorageVault.
+     * Required. Immutable. The properties of the ExascaleDbStorageVault.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ExascaleDbStorageVaultProperties properties = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ExascaleDbStorageVaultProperties properties = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\OracleDatabase\V1\ExascaleDbStorageVaultProperties $var
      * @return $this
      */
@@ -331,12 +331,12 @@ class ExascaleDbStorageVault extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Exadata Infrastructure resource on which
+     * Optional. Immutable. The Exadata Infrastructure resource on which
      * ExascaleDbStorageVault
      * resource is created, in the following format:
      * projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}
      *
-     * Generated from protobuf field <code>string exadata_infrastructure = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string exadata_infrastructure = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getExadataInfrastructure()
@@ -345,12 +345,12 @@ class ExascaleDbStorageVault extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Exadata Infrastructure resource on which
+     * Optional. Immutable. The Exadata Infrastructure resource on which
      * ExascaleDbStorageVault
      * resource is created, in the following format:
      * projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}
      *
-     * Generated from protobuf field <code>string exadata_infrastructure = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string exadata_infrastructure = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

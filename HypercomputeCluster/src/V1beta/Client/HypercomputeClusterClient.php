@@ -42,6 +42,7 @@ use Google\Cloud\HypercomputeCluster\V1beta\CreateClusterRequest;
 use Google\Cloud\HypercomputeCluster\V1beta\DeleteClusterRequest;
 use Google\Cloud\HypercomputeCluster\V1beta\GetClusterRequest;
 use Google\Cloud\HypercomputeCluster\V1beta\ListClustersRequest;
+use Google\Cloud\HypercomputeCluster\V1beta\ListNodesRequest;
 use Google\Cloud\HypercomputeCluster\V1beta\UpdateClusterRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
@@ -68,6 +69,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Cluster> getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNodesAsync(ListNodesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -241,6 +243,27 @@ final class HypercomputeClusterClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a disk
+     * resource.
+     *
+     * @param string $project
+     * @param string $zone
+     * @param string $disk
+     *
+     * @return string The formatted disk resource.
+     *
+     * @experimental
+     */
+    public static function diskName(string $project, string $zone, string $disk): string
+    {
+        return self::getPathTemplate('disk')->render([
+            'project' => $project,
+            'zone' => $zone,
+            'disk' => $disk,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a disk_type
      * resource.
      *
@@ -283,6 +306,86 @@ final class HypercomputeClusterClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a image
+     * resource.
+     *
+     * @param string $project
+     * @param string $image
+     *
+     * @return string The formatted image resource.
+     *
+     * @experimental
+     */
+    public static function imageName(string $project, string $image): string
+    {
+        return self::getPathTemplate('image')->render([
+            'project' => $project,
+            'image' => $image,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a instance
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $instance
+     *
+     * @return string The formatted instance resource.
+     *
+     * @experimental
+     */
+    public static function instanceName(string $project, string $location, string $instance): string
+    {
+        return self::getPathTemplate('instance')->render([
+            'project' => $project,
+            'location' => $location,
+            'instance' => $instance,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * instance_group_manager resource.
+     *
+     * @param string $project
+     * @param string $zone
+     * @param string $instanceGroupManager
+     *
+     * @return string The formatted instance_group_manager resource.
+     *
+     * @experimental
+     */
+    public static function instanceGroupManagerName(string $project, string $zone, string $instanceGroupManager): string
+    {
+        return self::getPathTemplate('instanceGroupManager')->render([
+            'project' => $project,
+            'zone' => $zone,
+            'instance_group_manager' => $instanceGroupManager,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * instance_template resource.
+     *
+     * @param string $project
+     * @param string $instanceTemplate
+     *
+     * @return string The formatted instance_template resource.
+     *
+     * @experimental
+     */
+    public static function instanceTemplateName(string $project, string $instanceTemplate): string
+    {
+        return self::getPathTemplate('instanceTemplate')->render([
+            'project' => $project,
+            'instance_template' => $instanceTemplate,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -298,27 +401,6 @@ final class HypercomputeClusterClient
         return self::getPathTemplate('location')->render([
             'project' => $project,
             'location' => $location,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent a
-     * lustre_instance resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $instance
-     *
-     * @return string The formatted lustre_instance resource.
-     *
-     * @experimental
-     */
-    public static function lustreInstanceName(string $project, string $location, string $instance): string
-    {
-        return self::getPathTemplate('lustreInstance')->render([
-            'project' => $project,
-            'location' => $location,
-            'instance' => $instance,
         ]);
     }
 
@@ -342,6 +424,111 @@ final class HypercomputeClusterClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a project
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     *
+     * @experimental
+     */
+    public static function projectName(string $project): string
+    {
+        return self::getPathTemplate('project')->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_region_instance_group_manager resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $instanceGroupManager
+     *
+     * @return string The formatted project_region_instance_group_manager resource.
+     *
+     * @experimental
+     */
+    public static function projectRegionInstanceGroupManagerName(
+        string $project,
+        string $region,
+        string $instanceGroupManager
+    ): string {
+        return self::getPathTemplate('projectRegionInstanceGroupManager')->render([
+            'project' => $project,
+            'region' => $region,
+            'instance_group_manager' => $instanceGroupManager,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_region_snapshot resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $snapshot
+     *
+     * @return string The formatted project_region_snapshot resource.
+     *
+     * @experimental
+     */
+    public static function projectRegionSnapshotName(string $project, string $region, string $snapshot): string
+    {
+        return self::getPathTemplate('projectRegionSnapshot')->render([
+            'project' => $project,
+            'region' => $region,
+            'snapshot' => $snapshot,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_snapshot resource.
+     *
+     * @param string $project
+     * @param string $snapshot
+     *
+     * @return string The formatted project_snapshot resource.
+     *
+     * @experimental
+     */
+    public static function projectSnapshotName(string $project, string $snapshot): string
+    {
+        return self::getPathTemplate('projectSnapshot')->render([
+            'project' => $project,
+            'snapshot' => $snapshot,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_zone_instance_group_manager resource.
+     *
+     * @param string $project
+     * @param string $zone
+     * @param string $instanceGroupManager
+     *
+     * @return string The formatted project_zone_instance_group_manager resource.
+     *
+     * @experimental
+     */
+    public static function projectZoneInstanceGroupManagerName(
+        string $project,
+        string $zone,
+        string $instanceGroupManager
+    ): string {
+        return self::getPathTemplate('projectZoneInstanceGroupManager')->render([
+            'project' => $project,
+            'zone' => $zone,
+            'instance_group_manager' => $instanceGroupManager,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a reservation
      * resource.
      *
@@ -359,6 +546,103 @@ final class HypercomputeClusterClient
             'project' => $project,
             'zone' => $zone,
             'reservation' => $reservation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * reservation_block resource.
+     *
+     * @param string $project
+     * @param string $zone
+     * @param string $reservation
+     * @param string $reservationBlock
+     *
+     * @return string The formatted reservation_block resource.
+     *
+     * @experimental
+     */
+    public static function reservationBlockName(
+        string $project,
+        string $zone,
+        string $reservation,
+        string $reservationBlock
+    ): string {
+        return self::getPathTemplate('reservationBlock')->render([
+            'project' => $project,
+            'zone' => $zone,
+            'reservation' => $reservation,
+            'reservation_block' => $reservationBlock,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * reservation_sub_block resource.
+     *
+     * @param string $project
+     * @param string $zone
+     * @param string $reservation
+     * @param string $reservationBlock
+     * @param string $reservationSubBlock
+     *
+     * @return string The formatted reservation_sub_block resource.
+     *
+     * @experimental
+     */
+    public static function reservationSubBlockName(
+        string $project,
+        string $zone,
+        string $reservation,
+        string $reservationBlock,
+        string $reservationSubBlock
+    ): string {
+        return self::getPathTemplate('reservationSubBlock')->render([
+            'project' => $project,
+            'zone' => $zone,
+            'reservation' => $reservation,
+            'reservation_block' => $reservationBlock,
+            'reservation_sub_block' => $reservationSubBlock,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a snapshot
+     * resource.
+     *
+     * @param string $project
+     * @param string $snapshot
+     *
+     * @return string The formatted snapshot resource.
+     *
+     * @experimental
+     */
+    public static function snapshotName(string $project, string $snapshot): string
+    {
+        return self::getPathTemplate('snapshot')->render([
+            'project' => $project,
+            'snapshot' => $snapshot,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a storage_pool
+     * resource.
+     *
+     * @param string $project
+     * @param string $zone
+     * @param string $storagePool
+     *
+     * @return string The formatted storage_pool resource.
+     *
+     * @experimental
+     */
+    public static function storagePoolName(string $project, string $zone, string $storagePool): string
+    {
+        return self::getPathTemplate('storagePool')->render([
+            'project' => $project,
+            'zone' => $zone,
+            'storage_pool' => $storagePool,
         ]);
     }
 
@@ -390,12 +674,25 @@ final class HypercomputeClusterClient
      * - bucket: projects/{project}/buckets/{bucket}
      * - cluster: projects/{project}/locations/{location}/clusters/{cluster}
      * - computeInstance: projects/{project}/zones/{zone}/instances/{instance}
+     * - disk: projects/{project}/zones/{zone}/disks/{disk}
      * - diskType: projects/{project}/zones/{zone}/diskTypes/{disk_type}
      * - fileInstance: projects/{project}/locations/{location}/instances/{instance}
+     * - image: projects/{project}/global/images/{image}
+     * - instance: projects/{project}/locations/{location}/instances/{instance}
+     * - instanceGroupManager: projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}
+     * - instanceTemplate: projects/{project}/global/instanceTemplates/{instance_template}
      * - location: projects/{project}/locations/{location}
-     * - lustreInstance: projects/{project}/locations/{location}/instances/{instance}
      * - network: projects/{project}/global/networks/{network}
+     * - project: projects/{project}
+     * - projectRegionInstanceGroupManager: projects/{project}/regions/{region}/instanceGroupManagers/{instance_group_manager}
+     * - projectRegionSnapshot: projects/{project}/regions/{region}/snapshots/{snapshot}
+     * - projectSnapshot: projects/{project}/global/snapshots/{snapshot}
+     * - projectZoneInstanceGroupManager: projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}
      * - reservation: projects/{project}/zones/{zone}/reservations/{reservation}
+     * - reservationBlock: projects/{project}/zones/{zone}/reservations/{reservation}/reservationBlocks/{reservation_block}
+     * - reservationSubBlock: projects/{project}/zones/{zone}/reservations/{reservation}/reservationBlocks/{reservation_block}/reservationSubBlocks/{reservation_sub_block}
+     * - snapshot: projects/{project}/global/snapshots/{snapshot}
+     * - storagePool: projects/{project}/zones/{zone}/storagePools/{storage_pool}
      * - subnetwork: projects/{project}/regions/{region}/subnetworks/{subnetwork}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -619,6 +916,34 @@ final class HypercomputeClusterClient
     }
 
     /**
+     * Lists Nodes in a given cluster.
+     *
+     * The async variant is {@see HypercomputeClusterClient::listNodesAsync()} .
+     *
+     * @example samples/V1beta/HypercomputeClusterClient/list_nodes.php
+     *
+     * @param ListNodesRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listNodes(ListNodesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListNodes', $request, $callOptions);
+    }
+
+    /**
      * Updates the parameters of a single Cluster.
      *
      * The async variant is {@see HypercomputeClusterClient::updateClusterAsync()} .
@@ -676,6 +1001,21 @@ final class HypercomputeClusterClient
 
     /**
      * Lists information about the supported locations for this service.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see HypercomputeClusterClient::listLocationsAsync()} .
      *

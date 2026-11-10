@@ -71,6 +71,17 @@ return [
                     ],
                 ],
             ],
+            'ListNodes' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/clusters/*}/nodes',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateCluster' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1beta/{cluster.name=projects/*/locations/*/clusters/*}',

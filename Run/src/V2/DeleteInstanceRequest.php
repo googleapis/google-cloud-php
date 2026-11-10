@@ -14,6 +14,8 @@ use Google\Protobuf\RepeatedField;
 class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Required. The name of the Instance to delete.
+     *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
@@ -33,7 +35,8 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     protected $etag = '';
 
     /**
-     * @param string $name Please see {@see InstancesClient::instanceName()} for help formatting this field.
+     * @param string $name Required. The name of the Instance to delete. Please see
+     *                     {@see InstancesClient::instanceName()} for help formatting this field.
      *
      * @return \Google\Cloud\Run\V2\DeleteInstanceRequest
      *
@@ -52,6 +55,7 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
+     *           Required. The name of the Instance to delete.
      *     @type bool $validate_only
      *           Optional. Indicates that the request should be validated without actually
      *           deleting any resources.
@@ -66,6 +70,8 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Required. The name of the Instance to delete.
+     *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
@@ -75,6 +81,8 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Required. The name of the Instance to delete.
+     *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this

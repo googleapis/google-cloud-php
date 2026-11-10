@@ -92,6 +92,20 @@
                 }
             }
         },
+        "ReportingService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ReportingServiceClient",
+                    "rpcs": {
+                        "RetrievePartnerMatchReport": {
+                            "methods": [
+                                "retrievePartnerMatchReport"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "UserListDirectLicenseService": {
             "clients": {
                 "grpc": {

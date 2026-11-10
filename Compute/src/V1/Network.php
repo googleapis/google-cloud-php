@@ -27,6 +27,12 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     protected $I_pv4_range = null;
     /**
+     * Output only. [Output Only] Additional tags for this resource.
+     *
+     * Generated from protobuf field <code>repeated string additional_tags = 418903345;</code>
+     */
+    private $additional_tags;
+    /**
      * Must be set to create a VPC network. If not set, a legacy network is
      * created.
      * When set to true, the VPC network is created in auto mode.
@@ -192,6 +198,8 @@ class Network extends \Google\Protobuf\Internal\Message
      *           The range of internal addresses that are legal on this network. This
      *           range is aCIDR specification, for example:192.168.0.0/16. Provided by the client when the network is
      *           created.
+     *     @type string[] $additional_tags
+     *           Output only. [Output Only] Additional tags for this resource.
      *     @type bool $auto_create_subnetworks
      *           Must be set to create a VPC network. If not set, a legacy network is
      *           created.
@@ -315,6 +323,32 @@ class Network extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->I_pv4_range = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] Additional tags for this resource.
+     *
+     * Generated from protobuf field <code>repeated string additional_tags = 418903345;</code>
+     * @return RepeatedField<string>
+     */
+    public function getAdditionalTags()
+    {
+        return $this->additional_tags;
+    }
+
+    /**
+     * Output only. [Output Only] Additional tags for this resource.
+     *
+     * Generated from protobuf field <code>repeated string additional_tags = 418903345;</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setAdditionalTags($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->additional_tags = $arr;
 
         return $this;
     }

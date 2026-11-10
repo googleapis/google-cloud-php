@@ -39,6 +39,13 @@ class LoadBalancingScheme
      */
     const EXTERNAL_MANAGED = 512006923;
     /**
+     * Signifies that this will be used for global external passthrough Network
+     * Load Balancers.
+     *
+     * Generated from protobuf enum <code>EXTERNAL_PASSTHROUGH = 216895232;</code>
+     */
+    const EXTERNAL_PASSTHROUGH = 216895232;
+    /**
      * Signifies that this will be used for internal passthrough Network Load
      * Balancers.
      *
@@ -66,6 +73,7 @@ class LoadBalancingScheme
         self::UNDEFINED_LOAD_BALANCING_SCHEME => 'UNDEFINED_LOAD_BALANCING_SCHEME',
         self::EXTERNAL => 'EXTERNAL',
         self::EXTERNAL_MANAGED => 'EXTERNAL_MANAGED',
+        self::EXTERNAL_PASSTHROUGH => 'EXTERNAL_PASSTHROUGH',
         self::INTERNAL => 'INTERNAL',
         self::INTERNAL_MANAGED => 'INTERNAL_MANAGED',
         self::INTERNAL_SELF_MANAGED => 'INTERNAL_SELF_MANAGED',
