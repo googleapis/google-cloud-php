@@ -252,6 +252,86 @@ class JWKTest extends TestCase
         $keys = JWK::parseKeySet(['keys' => [$badJwk]]);
     }
 
+    /** @dataProvider provideMlDsaJwk */
+    public function testParseMlDsaJwk(array $jwk)
+    {
+        $key = JWK::parseKey($jwk);
+
+        $this->assertSame($jwk['alg'], $key->getAlgorithm());
+        $this->assertEquals(
+            str_replace("\r\n", "\n", file_get_contents(__DIR__ . '/data/' . strtolower($jwk['alg']) . '-public.pem')),
+            $key->getKeyMaterial()
+        );
+    }
+
+    /** @dataProvider provideMlDsaJwk */
+    public function testDecodeByMlDsaJwkKeySet(array $jwk)
+    {
+        if (PHP_VERSION_ID < 80400 || OPENSSL_VERSION_NUMBER < 0x30500000) {
+            $this->markTestSkipped('ML-DSA requires PHP 8.4+ and OpenSSL 3.5+');
+        }
+
+        $privKey = file_get_contents(__DIR__ . '/data/' . strtolower($jwk['alg']) . '-private.pem');
+        $payload = ['sub' => 'foo', 'exp' => strtotime('+10 seconds')];
+        $msg = JWT::encode($payload, $privKey, $jwk['alg'], $jwk['kid']);
+
+        $keys = JWK::parseKeySet(['keys' => [$jwk]]);
+        $result = JWT::decode($msg, $keys);
+
+        $this->assertSame('foo', $result->sub);
+    }
+
+    public function provideMlDsaJwk()
+    {
+        // Public keys from the RFC 9964 examples (Appendix A.1), which use an all-zeros seed
+        $examples = json_decode(file_get_contents(__DIR__ . '/data/ml-dsa-rfc9964-examples.json'), true);
+        foreach ($examples as $example) {
+            yield $example['jwk']['alg'] => [$example['jwk']];
+        }
+    }
+
+    /** @dataProvider provideInvalidAkpJwk */
+    public function testParseInvalidAkpJwkThrowsException(array $jwk, string $exception, string $message)
+    {
+        $this->expectException($exception);
+        $this->expectExceptionMessage($message);
+
+        JWK::parseKey($jwk);
+    }
+
+    public function provideInvalidAkpJwk()
+    {
+        $pub = JWT::urlsafeB64Encode(str_repeat("\x00", 1312));
+
+        return [
+            'private key' => [
+                [
+                    'kty' => 'AKP',
+                    'alg' => 'ML-DSA-44',
+                    'pub' => $pub,
+                    'priv' => JWT::urlsafeB64Encode(str_repeat("\x00", 32)),
+                ],
+                UnexpectedValueException::class,
+                'Key data must be for a public key',
+            ],
+            'unsupported algorithm' => [
+                ['kty' => 'AKP', 'alg' => 'SLH-DSA-SHA2-128s', 'pub' => $pub],
+                DomainException::class,
+                'Unrecognised or unsupported AKP algorithm',
+            ],
+            'missing pub' => [
+                ['kty' => 'AKP', 'alg' => 'ML-DSA-44'],
+                UnexpectedValueException::class,
+                'pub not set',
+            ],
+            'invalid pub length' => [
+                ['kty' => 'AKP', 'alg' => 'ML-DSA-65', 'pub' => $pub],
+                UnexpectedValueException::class,
+                'Invalid public key length for ML-DSA-65',
+            ],
+        ];
+    }
+
     public function testParseKey()
     {
         // Use a known module and exponent, and ensure it parses as expected
