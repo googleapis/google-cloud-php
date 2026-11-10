@@ -606,6 +606,13 @@ libraries:
     apis:
       - path: google/cloud/chronicle/v1
         php:
+          additional_protos:
+            - backstory/collection.proto
+            - backstory/data_access.proto
+            - backstory/entity.proto
+            - backstory/entity_risk.proto
+            - backstory/id.proto
+            - backstory/udm.proto
           gapic_yaml: google/cloud/chronicle/v1/chronicle_gapic.yaml
     copyright_year: "2026"
     output: Chronicle
