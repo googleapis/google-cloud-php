@@ -118,7 +118,7 @@ class AggregateQueryTest extends TestCase
 
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
         )->shouldBeCalledTimes(1)
             ->willReturn($stream->reveal());
 
@@ -217,7 +217,7 @@ class AggregateQueryTest extends TestCase
 
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
         )->shouldBeCalledTimes(1)
             ->willReturn($stream->reveal());
 

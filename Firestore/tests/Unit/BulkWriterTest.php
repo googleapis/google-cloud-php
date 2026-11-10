@@ -1123,7 +1123,7 @@ class BulkWriterTest extends TestCase
                 $this->assertEquals($expectedRequest, $request);
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
         )->shouldBeCalled()
             ->willReturn(self::generateProto(BatchWriteResponse::class, $response));
 
