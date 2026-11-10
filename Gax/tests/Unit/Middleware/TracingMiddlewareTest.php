@@ -54,7 +54,7 @@ class TracingMiddlewareTest extends TestCase
 {
     public function testTracingDisabledReturnsHandlerResult(): void
     {
-        $call = $this->createMock(Call::class);
+        $call = new Call('test/method');
         $nextHandlerCalled = false;
         $nextHandler = function ($call, $options) use (&$nextHandlerCalled) {
             $nextHandlerCalled = true;
@@ -119,8 +119,7 @@ class TracingMiddlewareTest extends TestCase
         $scope->expects($this->once())
             ->method('detach');
 
-        $call = $this->createMock(Call::class);
-        $call->method('getMethod')->willReturn($method);
+        $call = new Call($method);
 
         $nextHandler = function ($c, $opts) {
             return new FulfilledPromise('response-payload');
@@ -128,11 +127,13 @@ class TracingMiddlewareTest extends TestCase
 
         $middleware = new TracingMiddleware(
             $nextHandler,
-            $tracerProvider,
             'secretmanager.googleapis.com',
             443,
             'grpc',
-            ['clientVersion' => '1.0.0']
+            [
+                'openTelemetryTracerProvider' => $tracerProvider,
+                'clientVersion' => '1.0.0',
+            ]
         );
 
         $promise = $middleware($call, []);
@@ -179,20 +180,19 @@ class TracingMiddlewareTest extends TestCase
         $scope->expects($this->once())
             ->method('detach');
 
-        $call = $this->createMock(Call::class);
-        $call->method('getMethod')->willReturn($method);
+        $call = new Call($method);
 
-        $apiException = new ApiException('Secret not found', 5, 'NOT_FOUND');
+        $apiException = ApiException::createFromRestApiResponse('Secret not found', 5);
         $nextHandler = function ($c, $opts) use ($apiException) {
             return new RejectedPromise($apiException);
         };
 
         $middleware = new TracingMiddleware(
             $nextHandler,
-            $tracerProvider,
             'secretmanager.googleapis.com',
             443,
-            'grpc'
+            'grpc',
+            ['openTelemetryTracerProvider' => $tracerProvider]
         );
 
         $promise = $middleware($call, []);
@@ -206,6 +206,74 @@ class TracingMiddlewareTest extends TestCase
             $this->assertSame('NOT_FOUND', $recordedAttributes[SpanAttributes::ERROR_TYPE]);
             $this->assertSame(ApiException::class, $recordedAttributes[SpanAttributes::EXCEPTION_TYPE]);
             $this->assertSame('Secret not found', $recordedAttributes[SpanAttributes::STATUS_MESSAGE]);
+        }
+    }
+
+    public function testUnaryCallFailureUsesErrorInfoReasonWhenPresent(): void
+    {
+        $tracerProvider = $this->createMock(TracerProviderInterface::class);
+        $tracer = $this->createMock(TracerInterface::class);
+        $spanBuilder = $this->createMock(SpanBuilderInterface::class);
+        $span = $this->createMock(SpanInterface::class);
+        $scope = $this->createMock(ScopeInterface::class);
+
+        $tracerProvider->method('getTracer')->willReturn($tracer);
+        $tracer->method('spanBuilder')->willReturn($spanBuilder);
+        $spanBuilder->method('setSpanKind')->willReturnSelf();
+        $spanBuilder->method('setAttribute')->willReturnSelf();
+        $spanBuilder->method('startSpan')->willReturn($span);
+        $span->method('activate')->willReturn($scope);
+
+        $recordedAttributes = [];
+        $span->method('setAttribute')
+            ->willReturnCallback(function ($key, $val) use (&$recordedAttributes, $span) {
+                $recordedAttributes[$key] = $val;
+                return $span;
+            });
+
+        $span->expects($this->once())
+            ->method('setStatus')
+            ->with(StatusCode::STATUS_ERROR, 'API key not valid');
+
+        $span->expects($this->once())
+            ->method('end');
+
+        $call = new Call('google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion');
+
+        $apiException = ApiException::createFromRestApiResponse(
+            'API key not valid',
+            3,
+            [
+                [
+                    '@type' => 'type.googleapis.com/google.rpc.ErrorInfo',
+                    'reason' => 'API_KEY_INVALID',
+                    'domain' => 'googleapis.com',
+                    'metadata' => ['service' => 'secretmanager.googleapis.com'],
+                ],
+            ]
+        );
+        $nextHandler = function () use ($apiException) {
+            return new RejectedPromise($apiException);
+        };
+
+        $middleware = new TracingMiddleware(
+            $nextHandler,
+            'secretmanager.googleapis.com',
+            443,
+            'http',
+            ['openTelemetryTracerProvider' => $tracerProvider]
+        );
+
+        $promise = $middleware($call, []);
+
+        $this->expectException(ApiException::class);
+
+        try {
+            $promise->wait();
+        } finally {
+            $this->assertSame('API_KEY_INVALID', $recordedAttributes[SpanAttributes::ERROR_TYPE]);
+            $this->assertSame(ApiException::class, $recordedAttributes[SpanAttributes::EXCEPTION_TYPE]);
+            $this->assertSame('API key not valid', $recordedAttributes[SpanAttributes::STATUS_MESSAGE]);
         }
     }
 
@@ -243,8 +311,7 @@ class TracingMiddlewareTest extends TestCase
         $scope->expects($this->once())
             ->method('detach');
 
-        $call = $this->createMock(Call::class);
-        $call->method('getMethod')->willReturn($method);
+        $call = new Call($method);
 
         $nextHandler = function ($c, $opts) {
             throw new ValidationException('Validation failed');
@@ -252,10 +319,10 @@ class TracingMiddlewareTest extends TestCase
 
         $middleware = new TracingMiddleware(
             $nextHandler,
-            $tracerProvider,
             'secretmanager.googleapis.com',
             443,
-            'grpc'
+            'grpc',
+            ['openTelemetryTracerProvider' => $tracerProvider]
         );
 
         $this->expectException(ValidationException::class);
@@ -270,35 +337,13 @@ class TracingMiddlewareTest extends TestCase
         }
     }
 
-    public function testStreamingCallSuccess(): void
+    public function testStreamingCallSkipsTracing(): void
     {
         $tracerProvider = $this->createMock(TracerProviderInterface::class);
-        $tracer = $this->createMock(TracerInterface::class);
-        $spanBuilder = $this->createMock(SpanBuilderInterface::class);
-        $span = $this->createMock(SpanInterface::class);
-        $scope = $this->createMock(ScopeInterface::class);
+        $tracerProvider->expects($this->never())->method('getTracer');
 
         $method = 'google.cloud.pubsub.v1.Subscriber/StreamingPull';
-
-        $tracerProvider->method('getTracer')->willReturn($tracer);
-        $tracer->method('spanBuilder')->willReturn($spanBuilder);
-        $spanBuilder->method('setSpanKind')->willReturnSelf();
-        $spanBuilder->method('setAttribute')->willReturnSelf();
-        $spanBuilder->method('startSpan')->willReturn($span);
-        $span->method('activate')->willReturn($scope);
-
-        $span->expects($this->once())
-            ->method('setStatus')
-            ->with(StatusCode::STATUS_OK);
-
-        $span->expects($this->once())
-            ->method('end');
-
-        $scope->expects($this->once())
-            ->method('detach');
-
-        $call = $this->createMock(Call::class);
-        $call->method('getMethod')->willReturn($method);
+        $call = new Call($method, null, null, [], Call::BIDI_STREAMING_CALL);
 
         $mockStream = new stdClass();
         $nextHandler = function ($c, $opts) use ($mockStream) {
@@ -307,10 +352,10 @@ class TracingMiddlewareTest extends TestCase
 
         $middleware = new TracingMiddleware(
             $nextHandler,
-            $tracerProvider,
             'pubsub.googleapis.com',
             443,
-            'grpc'
+            'grpc',
+            ['openTelemetryTracerProvider' => $tracerProvider]
         );
 
         $result = $middleware($call, []);
@@ -363,8 +408,7 @@ class TracingMiddlewareTest extends TestCase
         $span->expects($this->once())
             ->method('end');
 
-        $call = $this->createMock(Call::class);
-        $call->method('getMethod')->willReturn($method);
+        $call = new Call($method);
 
         // Create a pending promise whose waitfn verifies scopes
         $innerWaitExecuted = false;
@@ -388,10 +432,10 @@ class TracingMiddlewareTest extends TestCase
 
         $middleware = new TracingMiddleware(
             $nextHandler,
-            $tracerProvider,
             'secretmanager.googleapis.com',
             443,
-            'grpc'
+            'grpc',
+            ['openTelemetryTracerProvider' => $tracerProvider]
         );
 
         $wrappedPromise = $middleware($call, []);
@@ -451,8 +495,7 @@ class TracingMiddlewareTest extends TestCase
         $span->expects($this->once())
             ->method('end');
 
-        $call = $this->createMock(Call::class);
-        $call->method('getMethod')->willReturn($method);
+        $call = new Call($method);
 
         $apiException = new ApiException('Call failed in wait', 14, 'UNAVAILABLE');
         $innerPromise = new Promise(function () use (&$innerPromise, $apiException) {
@@ -465,10 +508,10 @@ class TracingMiddlewareTest extends TestCase
 
         $middleware = new TracingMiddleware(
             $nextHandler,
-            $tracerProvider,
             'secretmanager.googleapis.com',
             443,
-            'grpc'
+            'grpc',
+            ['openTelemetryTracerProvider' => $tracerProvider]
         );
 
         $wrappedPromise = $middleware($call, []);
@@ -484,7 +527,7 @@ class TracingMiddlewareTest extends TestCase
         }
     }
 
-    public function testPendingPromiseCancellationCancelsInnerPromise(): void
+    public function testPendingPromiseWaitFalseDoesNotThrowOnRejection(): void
     {
         $tracerProvider = $this->createMock(TracerProviderInterface::class);
         $tracer = $this->createMock(TracerInterface::class);
@@ -499,8 +542,60 @@ class TracingMiddlewareTest extends TestCase
         $spanBuilder->method('startSpan')->willReturn($span);
         $span->method('activate')->willReturn($scope);
 
-        $call = $this->createMock(Call::class);
-        $call->method('getMethod')->willReturn('some/method');
+        $span->expects($this->once())
+            ->method('setStatus')
+            ->with(StatusCode::STATUS_ERROR, 'Call failed in wait');
+        $span->expects($this->once())
+            ->method('end');
+
+        $call = new Call('some/method');
+        $apiException = new ApiException('Call failed in wait', 14, 'UNAVAILABLE');
+        $innerPromise = new Promise(function () use (&$innerPromise, $apiException) {
+            $innerPromise->reject($apiException);
+        });
+
+        $middleware = new TracingMiddleware(
+            fn () => $innerPromise,
+            'secretmanager.googleapis.com',
+            443,
+            'grpc',
+            ['openTelemetryTracerProvider' => $tracerProvider]
+        );
+
+        $wrappedPromise = $middleware($call, []);
+        $wrappedPromise->wait(false);
+        $this->assertSame('rejected', $wrappedPromise->getState());
+    }
+
+    public function testPendingPromiseCancellationEndsSpanAndCancelsInnerPromise(): void
+    {
+        $tracerProvider = $this->createMock(TracerProviderInterface::class);
+        $tracer = $this->createMock(TracerInterface::class);
+        $spanBuilder = $this->createMock(SpanBuilderInterface::class);
+        $span = $this->createMock(SpanInterface::class);
+        $scope = $this->createMock(ScopeInterface::class);
+
+        $tracerProvider->method('getTracer')->willReturn($tracer);
+        $tracer->method('spanBuilder')->willReturn($spanBuilder);
+        $spanBuilder->method('setSpanKind')->willReturnSelf();
+        $spanBuilder->method('setAttribute')->willReturnSelf();
+        $spanBuilder->method('startSpan')->willReturn($span);
+        $span->method('activate')->willReturn($scope);
+
+        $recordedAttributes = [];
+        $span->method('setAttribute')
+            ->willReturnCallback(function ($key, $val) use (&$recordedAttributes, $span) {
+                $recordedAttributes[$key] = $val;
+                return $span;
+            });
+
+        $span->expects($this->once())
+            ->method('setStatus')
+            ->with(StatusCode::STATUS_ERROR, 'Call cancelled');
+        $span->expects($this->once())
+            ->method('end');
+
+        $call = new Call('some/method');
 
         $cancelled = false;
         $innerPromise = new Promise(
@@ -515,15 +610,16 @@ class TracingMiddlewareTest extends TestCase
             function () use ($innerPromise) {
                 return $innerPromise;
             },
-            $tracerProvider,
             'test.googleapis.com',
             443,
-            'grpc'
+            'grpc',
+            ['openTelemetryTracerProvider' => $tracerProvider]
         );
 
         $wrappedPromise = $middleware($call, []);
         $wrappedPromise->cancel();
 
         $this->assertTrue($cancelled);
+        $this->assertSame('CANCELLED', $recordedAttributes[SpanAttributes::ERROR_TYPE]);
     }
 }
