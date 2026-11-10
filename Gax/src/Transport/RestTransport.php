@@ -38,13 +38,21 @@ use Google\ApiCore\RequestBuilder;
 use Google\ApiCore\ResumableUpload\ResumableUploadTransportInterface;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\ServiceAddressTrait;
+use Google\ApiCore\Telemetry\SpanAttributes;
+use Google\ApiCore\Telemetry\TelemetryTrait;
 use Google\ApiCore\Transport\Rest\RestServerStreamingCall;
 use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
 use Google\Protobuf\Internal\Message;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Promise\CancellationException;
+use GuzzleHttp\Promise\Promise;
+use GuzzleHttp\Promise\PromiseInterface;
+use OpenTelemetry\API\Trace\SpanKind;
+use OpenTelemetry\API\Trace\StatusCode;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Throwable;
 
 /**
  * A REST based transport implementation.
@@ -56,6 +64,7 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
     use HttpUnaryTransportTrait {
         startServerStreamingCall as protected unsupportedServerStreamingCall;
     }
+    use TelemetryTrait;
 
     private RequestBuilder $requestBuilder;
 
@@ -97,13 +106,15 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
             'clientCertSource' => null,
             'hasEmulator' => false,
             'logger' => null,
-        ];
+        ] + self::getTelemetryDefaultConfig();
         list($baseUri, $port) = self::normalizeServiceAddress($apiEndpoint);
+        $host = "$baseUri:$port";
         $requestBuilder = $config['hasEmulator']
-            ? new InsecureRequestBuilder("$baseUri:$port", $restConfigPath)
-            : new RequestBuilder("$baseUri:$port", $restConfigPath);
+            ? new InsecureRequestBuilder($host, $restConfigPath)
+            : new RequestBuilder($host, $restConfigPath);
         $httpHandler = $config['httpHandler'] ?: self::buildHttpHandlerAsync($config['logger']);
         $transport = new RestTransport($requestBuilder, $httpHandler);
+        $transport->setTelemetryOptions($config, $host);
         if ($config['clientCertSource']) {
             $transport->configureMtlsChannel($config['clientCertSource']);
         }
@@ -115,71 +126,194 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
      */
     public function startUnaryCall(Call $call, array $options)
     {
-        $headers = self::buildCommonHeaders($options);
+        $span = null;
+        try {
+            $headers = self::buildCommonHeaders($options);
 
-        // Add the $call object ID for logging
-        $options['requestId'] = crc32((string) spl_object_id($call) . getmypid());
+            // Add the $call object ID for logging
+            $options['requestId'] = crc32((string) spl_object_id($call) . getmypid());
 
-        // call the HTTP handler
-        $httpHandler = $this->httpHandler;
-        return $httpHandler(
-            $this->requestBuilder->build(
+            $request = $this->requestBuilder->build(
                 $call->getMethod(),
                 $call->getMessage(),
                 $headers
-            ),
-            $this->getCallOptions($options)
-        )->then(
-            function (ResponseInterface $response) use ($call, $options) {
-                $decodeType = $call->getDecodeType();
-                /** @var Message $return */
-                $return = new $decodeType();
-                $body = (string) $response->getBody();
+            );
 
-                // In some rare cases LRO response metadata may not be loaded
-                // in the descriptor pool, triggering an exception. The catch
-                // statement handles this case and attempts to add the LRO
-                // metadata type to the pool by directly instantiating the
-                // metadata class.
+            if ($this->openTelemetryTracerProvider && $call->getMethod()) {
+                $httpMethod = $request->getMethod();
+                $urlTemplate = $this->requestBuilder->getUriTemplate(
+                    $call->getMethod(),
+                    $call->getMessage()
+                );
+                $uri = $request->getUri();
+                $serverAddress = $this->serverAddress ?? ($uri->getHost() ?: null);
+                $serverPort = $this->serverPort
+                    ?? $uri->getPort()
+                    ?? ($serverAddress ? ($uri->getScheme() === 'http' ? 80 : 443) : null);
+
+                $span = $this->startSpan(
+                    $urlTemplate ? "$httpMethod $urlTemplate" : $httpMethod,
+                    [
+                        SpanAttributes::RPC_SYSTEM_NAME => 'http',
+                        SpanAttributes::RPC_METHOD => $call->getMethod(),
+                        SpanAttributes::HTTP_REQUEST_METHOD => $httpMethod,
+                        SpanAttributes::URL_FULL => (string) $uri,
+                        SpanAttributes::URL_TEMPLATE => $urlTemplate,
+                        SpanAttributes::SERVER_ADDRESS => $serverAddress,
+                        SpanAttributes::SERVER_PORT => $serverPort,
+                        SpanAttributes::HTTP_REQUEST_RESEND_COUNT => ($options['retryAttempt'] ?? 0) > 0
+                            ? $options['retryAttempt']
+                            : null,
+                    ],
+                    SpanKind::KIND_CLIENT
+                );
+            }
+
+            // call the HTTP handler
+            $httpHandler = $this->httpHandler;
+            $promise = $httpHandler(
+                $request,
+                $this->getCallOptions($options)
+            );
+        } catch (Throwable $e) {
+            if (!$span && $this->openTelemetryTracerProvider && $call->getMethod()) {
+                $span = $this->startSpan(
+                    $call->getMethod(),
+                    [
+                        SpanAttributes::RPC_SYSTEM_NAME => 'http',
+                        SpanAttributes::RPC_METHOD => $call->getMethod(),
+                        SpanAttributes::SERVER_ADDRESS => $this->serverAddress,
+                        SpanAttributes::SERVER_PORT => $this->serverPort,
+                        SpanAttributes::HTTP_REQUEST_RESEND_COUNT => ($options['retryAttempt'] ?? 0) > 0
+                            ? $options['retryAttempt']
+                            : null,
+                    ],
+                    SpanKind::KIND_CLIENT
+                );
+            }
+            if ($span) {
+                $this->recordException($span, $e, true);
+            }
+            throw $e;
+        }
+
+        $resultPromise = $promise->then(
+            function (ResponseInterface $response) use ($call, $options, $span) {
                 try {
-                    $return->mergeFromJsonString(
-                        $body,
-                        true
-                    );
-                } catch (\Exception $ex) {
-                    if (!isset($options['metadataReturnType'])) {
-                        throw $ex;
+                    if ($span) {
+                        $span->setAttribute(
+                            SpanAttributes::HTTP_RESPONSE_STATUS_CODE,
+                            $response->getStatusCode()
+                        );
                     }
 
-                    if (strpos($ex->getMessage(), 'Error occurred during parsing:') !== 0) {
-                        throw $ex;
+                    $decodeType = $call->getDecodeType();
+                    /** @var Message $return */
+                    $return = new $decodeType();
+                    $body = (string) $response->getBody();
+
+                    // In some rare cases LRO response metadata may not be loaded
+                    // in the descriptor pool, triggering an exception. The catch
+                    // statement handles this case and attempts to add the LRO
+                    // metadata type to the pool by directly instantiating the
+                    // metadata class.
+                    try {
+                        $return->mergeFromJsonString(
+                            $body,
+                            true
+                        );
+                    } catch (\Exception $ex) {
+                        if (!isset($options['metadataReturnType'])) {
+                            throw $ex;
+                        }
+
+                        if (strpos($ex->getMessage(), 'Error occurred during parsing:') !== 0) {
+                            throw $ex;
+                        }
+
+                        new $options['metadataReturnType']();
+                        $return->mergeFromJsonString(
+                            $body,
+                            true
+                        );
                     }
 
-                    new $options['metadataReturnType']();
-                    $return->mergeFromJsonString(
-                        $body,
-                        true
-                    );
-                }
+                    if (isset($options['metadataCallback'])) {
+                        $metadataCallback = $options['metadataCallback'];
+                        $metadataCallback($response->getHeaders());
+                    }
 
-                if (isset($options['metadataCallback'])) {
-                    $metadataCallback = $options['metadataCallback'];
-                    $metadataCallback($response->getHeaders());
-                }
+                    if ($span) {
+                        $span->setAttribute(SpanAttributes::RPC_RESPONSE_STATUS_CODE, 'OK');
+                        $span->setStatus(StatusCode::STATUS_OK);
+                    }
 
-                return $return;
+                    return $return;
+                } catch (Throwable $e) {
+                    if ($span) {
+                        $this->recordException($span, $e);
+                    }
+                    throw $e;
+                } finally {
+                    if ($span) {
+                        $span->end();
+                    }
+                }
             },
-            function (\Throwable $ex) {
+            function (Throwable $ex) use ($span) {
+                if ($ex instanceof CancellationException) {
+                    if ($span) {
+                        $span->setStatus(StatusCode::STATUS_ERROR, 'Call cancelled');
+                        $span->setAttribute(SpanAttributes::ERROR_TYPE, 'CANCELLED');
+                        $span->end();
+                    }
+                    throw $ex;
+                }
+
                 // Guzzle 7 carries the response on RequestException, Guzzle 8
                 // only on its ResponseException subclass, hence the
                 // method_exists() check.
                 if ($ex instanceof RequestException && method_exists($ex, 'getResponse') && $ex->getResponse()) {
-                    throw ApiException::createFromRequestException($ex);
+                    $apiException = ApiException::createFromRequestException($ex);
+                    if ($span) {
+                        $span->setAttribute(
+                            SpanAttributes::HTTP_RESPONSE_STATUS_CODE,
+                            $ex->getResponse()->getStatusCode()
+                        );
+                        $span->setAttribute(
+                            SpanAttributes::RPC_RESPONSE_STATUS_CODE,
+                            $apiException->getStatus()
+                        );
+                        $this->recordException($span, $apiException, true);
+                    }
+                    throw $apiException;
                 }
 
+                if ($span) {
+                    $this->recordException($span, $ex, true);
+                }
                 throw $ex;
             }
         );
+
+        if (!$span || $resultPromise->getState() !== PromiseInterface::PENDING) {
+            return $resultPromise;
+        }
+
+        $wrapper = new Promise(
+            function () use ($resultPromise) {
+                $resultPromise->wait(false);
+            },
+            function () use ($resultPromise, $span) {
+                $span->setStatus(StatusCode::STATUS_ERROR, 'Call cancelled');
+                $span->setAttribute(SpanAttributes::ERROR_TYPE, 'CANCELLED');
+                $span->end();
+                $resultPromise->cancel();
+            }
+        );
+        $resultPromise->then([$wrapper, 'resolve'], [$wrapper, 'reject']);
+
+        return $wrapper;
     }
 
     /**
