@@ -1740,28 +1740,24 @@ libraries:
     version: 1.4.4
     apis:
       - path: google/shopping/merchant/accounts/v1
-      - path: google/shopping/merchant/accounts/v1beta
     copyright_year: "2026"
     output: ShoppingMerchantAccounts
   - name: shopping-merchant-conversions
     version: 1.2.2
     apis:
       - path: google/shopping/merchant/conversions/v1
-      - path: google/shopping/merchant/conversions/v1beta
     copyright_year: "2026"
     output: ShoppingMerchantConversions
   - name: shopping-merchant-datasources
     version: 1.3.4
     apis:
       - path: google/shopping/merchant/datasources/v1
-      - path: google/shopping/merchant/datasources/v1beta
     copyright_year: "2026"
     output: ShoppingMerchantDataSources
   - name: shopping-merchant-inventories
     version: 1.5.5
     apis:
       - path: google/shopping/merchant/inventories/v1
-      - path: google/shopping/merchant/inventories/v1beta
     copyright_year: "2026"
     output: ShoppingMerchantInventories
   - name: shopping-merchant-issueresolution
@@ -1774,7 +1770,6 @@ libraries:
     version: 1.2.4
     apis:
       - path: google/shopping/merchant/lfp/v1
-      - path: google/shopping/merchant/lfp/v1beta
     copyright_year: "2026"
     output: ShoppingMerchantLfp
   - name: shopping-merchant-loyaltycustomers
@@ -1789,42 +1784,36 @@ libraries:
     version: 1.2.4
     apis:
       - path: google/shopping/merchant/notifications/v1
-      - path: google/shopping/merchant/notifications/v1beta
     copyright_year: "2026"
     output: ShoppingMerchantNotifications
   - name: shopping-merchant-ordertracking
     version: 1.2.4
     apis:
       - path: google/shopping/merchant/ordertracking/v1
-      - path: google/shopping/merchant/ordertracking/v1beta
     copyright_year: "2026"
     output: ShoppingMerchantOrderTracking
   - name: shopping-merchant-products
     version: 1.7.3
     apis:
       - path: google/shopping/merchant/products/v1
-      - path: google/shopping/merchant/products/v1beta
     copyright_year: "2026"
     output: ShoppingMerchantProducts
   - name: shopping-merchant-promotions
     version: 1.2.4
     apis:
       - path: google/shopping/merchant/promotions/v1
-      - path: google/shopping/merchant/promotions/v1beta
     copyright_year: "2026"
     output: ShoppingMerchantPromotions
   - name: shopping-merchant-quota
     version: 1.3.2
     apis:
       - path: google/shopping/merchant/quota/v1
-      - path: google/shopping/merchant/quota/v1beta
     copyright_year: "2026"
     output: ShoppingMerchantQuota
   - name: shopping-merchant-reports
     version: 1.4.0
     apis:
       - path: google/shopping/merchant/reports/v1
-      - path: google/shopping/merchant/reports/v1beta
     copyright_year: "2026"
     output: ShoppingMerchantReports
   - name: shopping-merchant-reviews
@@ -1833,9 +1822,6 @@ libraries:
       - path: google/shopping/merchant/reviews/v1
         php:
           staging_subdir: v1
-      - path: google/shopping/merchant/reviews/v1beta
-        php:
-          staging_subdir: v1beta
     copyright_year: "2026"
     output: ShoppingMerchantReviews
   - name: shopping-type

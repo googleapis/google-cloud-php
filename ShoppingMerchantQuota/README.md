@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/shopping-merchant-quota/v/stable)](https://packagist.org/packages/google/shopping-merchant-quota) [![Packagist](https://img.shields.io/packagist/dm/google/shopping-merchant-quota.svg)](https://packagist.org/packages/google/shopping-merchant-quota)
 
-* [API documentation](https://developers.google.com/merchant/api/reference/rpc/google.shopping.merchant.quota.v1beta)
+* [API documentation](https://developers.google.com/merchant/api/reference/rpc/google.shopping.merchant.quota.v1/QuotaService)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
