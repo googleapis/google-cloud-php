@@ -34,6 +34,7 @@ class VolumeMount extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Path within the volume from which the container's volume should
      * be mounted. Defaults to "" (volume's root).
+     * This field is currently rejected in Secret volume mounts.
      *
      * Generated from protobuf field <code>string sub_path = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -56,6 +57,7 @@ class VolumeMount extends \Google\Protobuf\Internal\Message
      *     @type string $sub_path
      *           Optional. Path within the volume from which the container's volume should
      *           be mounted. Defaults to "" (volume's root).
+     *           This field is currently rejected in Secret volume mounts.
      * }
      */
     public function __construct($data = NULL) {
@@ -126,6 +128,7 @@ class VolumeMount extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Path within the volume from which the container's volume should
      * be mounted. Defaults to "" (volume's root).
+     * This field is currently rejected in Secret volume mounts.
      *
      * Generated from protobuf field <code>string sub_path = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -138,6 +141,7 @@ class VolumeMount extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Path within the volume from which the container's volume should
      * be mounted. Defaults to "" (volume's root).
+     * This field is currently rejected in Secret volume mounts.
      *
      * Generated from protobuf field <code>string sub_path = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

@@ -34,19 +34,15 @@ use Google\Rpc\Status;
 /**
  * Creates an Instance.
  *
- * @param string $formattedParent         Please see {@see InstancesClient::locationName()} for help formatting this field.
+ * @param string $formattedParent         The location and project in which this Instance should be
+ *                                        created. Please see
+ *                                        {@see InstancesClient::locationName()} for help formatting this field.
  * @param string $instanceContainersImage Name of the container image in Dockerhub, Google Artifact
  *                                        Registry, or Google Container Registry. If the host is not provided,
  *                                        Dockerhub is assumed.
- * @param string $instanceId              The unique identifier for the Instance. It must begin with
- *                                        letter, and cannot end with hyphen; must contain fewer than 50 characters.
- *                                        The name of the instance becomes {parent}/instances/{instance_id}.
  */
-function create_instance_sample(
-    string $formattedParent,
-    string $instanceContainersImage,
-    string $instanceId
-): void {
+function create_instance_sample(string $formattedParent, string $instanceContainersImage): void
+{
     // Create a client.
     $instancesClient = new InstancesClient();
 
@@ -58,8 +54,7 @@ function create_instance_sample(
         ->setContainers($instanceContainers);
     $request = (new CreateInstanceRequest())
         ->setParent($formattedParent)
-        ->setInstance($instance)
-        ->setInstanceId($instanceId);
+        ->setInstance($instance);
 
     // Call the API and handle any network failures.
     try {
@@ -94,8 +89,7 @@ function callSample(): void
 {
     $formattedParent = InstancesClient::locationName('[PROJECT]', '[LOCATION]');
     $instanceContainersImage = '[IMAGE]';
-    $instanceId = '[INSTANCE_ID]';
 
-    create_instance_sample($formattedParent, $instanceContainersImage, $instanceId);
+    create_instance_sample($formattedParent, $instanceContainersImage);
 }
 // [END run_v2_generated_Instances_CreateInstance_sync]

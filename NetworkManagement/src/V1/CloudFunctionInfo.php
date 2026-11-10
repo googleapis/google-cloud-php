@@ -22,7 +22,9 @@ class CloudFunctionInfo extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * URI of a Cloud Function.
+     * URI of the Cloud Function.
+     * Format:
+     * `projects/{project_id}/locations/{location}/functions/{function_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
@@ -49,7 +51,9 @@ class CloudFunctionInfo extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Name of a Cloud Function.
      *     @type string $uri
-     *           URI of a Cloud Function.
+     *           URI of the Cloud Function.
+     *           Format:
+     *           `projects/{project_id}/locations/{location}/functions/{function_id}`
      *     @type string $location
      *           Location in which the Cloud Function is deployed.
      *     @type int|string $version_id
@@ -88,7 +92,9 @@ class CloudFunctionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Cloud Function.
+     * URI of the Cloud Function.
+     * Format:
+     * `projects/{project_id}/locations/{location}/functions/{function_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -99,7 +105,9 @@ class CloudFunctionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Cloud Function.
+     * URI of the Cloud Function.
+     * Format:
+     * `projects/{project_id}/locations/{location}/functions/{function_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var

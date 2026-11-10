@@ -135,6 +135,14 @@ class BackendService extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
+     * Dynamic forwarding configuration. This field is used to configure the
+     * backend service with dynamic forwarding feature which together with Service
+     * Extension allows customized and complex routing logic.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceDynamicForwarding dynamic_forwarding = 719613;</code>
+     */
+    protected $dynamic_forwarding = null;
+    /**
      * [Output Only] The resource URL for the edge security policy associated with
      * this backend service.
      *
@@ -697,6 +705,10 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
+     *     @type \Google\Cloud\Compute\V1\BackendServiceDynamicForwarding $dynamic_forwarding
+     *           Dynamic forwarding configuration. This field is used to configure the
+     *           backend service with dynamic forwarding feature which together with Service
+     *           Extension allows customized and complex routing logic.
      *     @type string $edge_security_policy
      *           [Output Only] The resource URL for the edge security policy associated with
      *           this backend service.
@@ -1529,6 +1541,46 @@ class BackendService extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Dynamic forwarding configuration. This field is used to configure the
+     * backend service with dynamic forwarding feature which together with Service
+     * Extension allows customized and complex routing logic.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceDynamicForwarding dynamic_forwarding = 719613;</code>
+     * @return \Google\Cloud\Compute\V1\BackendServiceDynamicForwarding|null
+     */
+    public function getDynamicForwarding()
+    {
+        return $this->dynamic_forwarding;
+    }
+
+    public function hasDynamicForwarding()
+    {
+        return isset($this->dynamic_forwarding);
+    }
+
+    public function clearDynamicForwarding()
+    {
+        unset($this->dynamic_forwarding);
+    }
+
+    /**
+     * Dynamic forwarding configuration. This field is used to configure the
+     * backend service with dynamic forwarding feature which together with Service
+     * Extension allows customized and complex routing logic.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceDynamicForwarding dynamic_forwarding = 719613;</code>
+     * @param \Google\Cloud\Compute\V1\BackendServiceDynamicForwarding $var
+     * @return $this
+     */
+    public function setDynamicForwarding($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\BackendServiceDynamicForwarding::class);
+        $this->dynamic_forwarding = $var;
 
         return $this;
     }

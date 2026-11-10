@@ -35,9 +35,45 @@ return [
                     ],
                 ],
             ],
+            'BatchCreateCreatives' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchCreateCreativesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'BatchDeactivateCreatives' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\AdManager\V1\BatchDeactivateCreativesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateCreatives' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchUpdateCreativesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateCreative' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\Creative',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -79,9 +115,28 @@ return [
                     ],
                 ],
             ],
+            'UpdateCreative' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\Creative',
+                'headerParams' => [
+                    [
+                        'keyName' => 'creative.name',
+                        'fieldAccessors' => [
+                            'getCreative',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
+                'asset' => 'networks/{network_code}/assets/{asset}',
+                'company' => 'networks/{network_code}/companies/{company}',
                 'creative' => 'networks/{network_code}/creatives/{creative}',
+                'creativeSet' => 'networks/{network_code}/creativeSets/{creative_set}',
+                'customField' => 'networks/{network_code}/customFields/{custom_field}',
+                'label' => 'networks/{network_code}/labels/{label}',
                 'network' => 'networks/{network_code}',
+                'thirdPartyCompany' => 'networks/{network_code}/thirdPartyCompanies/{third_party_company}',
             ],
         ],
     ],

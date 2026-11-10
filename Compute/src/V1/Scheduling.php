@@ -134,6 +134,15 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      */
     protected $preemption_notice_duration = null;
     /**
+     * Protection tier for the workload which specifies the workload
+     * expectations in the event of infrastructure failures at data center
+     * (e.g. power and/or cooling failures).
+     * Check the ProtectionTier enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string protection_tier = 503959432;</code>
+     */
+    protected $protection_tier = null;
+    /**
      * Specifies the provisioning model of the instance.
      * Check the ProvisioningModel enum for the list of possible values.
      *
@@ -224,6 +233,11 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *           Specifies the Metadata Service preemption notice duration before the GCE ACPI G2
      *           Soft Off signal is triggered for Spot VMs only. If not specified,
      *           there will be no wait before the G2 Soft Off signal is triggered.
+     *     @type string $protection_tier
+     *           Protection tier for the workload which specifies the workload
+     *           expectations in the event of infrastructure failures at data center
+     *           (e.g. power and/or cooling failures).
+     *           Check the ProtectionTier enum for the list of possible values.
      *     @type string $provisioning_model
      *           Specifies the provisioning model of the instance.
      *           Check the ProvisioningModel enum for the list of possible values.
@@ -825,6 +839,48 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\Duration::class);
         $this->preemption_notice_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Protection tier for the workload which specifies the workload
+     * expectations in the event of infrastructure failures at data center
+     * (e.g. power and/or cooling failures).
+     * Check the ProtectionTier enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string protection_tier = 503959432;</code>
+     * @return string
+     */
+    public function getProtectionTier()
+    {
+        return isset($this->protection_tier) ? $this->protection_tier : '';
+    }
+
+    public function hasProtectionTier()
+    {
+        return isset($this->protection_tier);
+    }
+
+    public function clearProtectionTier()
+    {
+        unset($this->protection_tier);
+    }
+
+    /**
+     * Protection tier for the workload which specifies the workload
+     * expectations in the event of infrastructure failures at data center
+     * (e.g. power and/or cooling failures).
+     * Check the ProtectionTier enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string protection_tier = 503959432;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProtectionTier($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->protection_tier = $var;
 
         return $this;
     }

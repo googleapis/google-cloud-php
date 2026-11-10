@@ -31,6 +31,24 @@ class RevisionScaling extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 max_instance_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $max_instance_count = 0;
+    /**
+     * Optional. Determines a threshold for CPU utilization before scaling begins.
+     * Accepted values are between `0.1` and `0.90` (inclusive) or `0.0` to
+     * disable CPU utilization as threshold for scaling. CPU and concurrency
+     * scaling cannot both be disabled.
+     *
+     * Generated from protobuf field <code>optional float cpu_utilization = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $cpu_utilization = null;
+    /**
+     * Optional. Determines a threshold for concurrency utilization before scaling
+     * begins. Accepted values are between `0.1` and `0.95` (inclusive) or `0.0`
+     * to disable concurrency utilization as threshold for scaling. CPU and
+     * concurrency scaling cannot both be disabled.
+     *
+     * Generated from protobuf field <code>optional float concurrency_utilization = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $concurrency_utilization = null;
 
     /**
      * Constructor.
@@ -46,6 +64,16 @@ class RevisionScaling extends \Google\Protobuf\Internal\Message
      *           have. When unspecified, the field is set to the server default value of
      *           100. For more information see
      *           https://cloud.google.com/run/docs/configuring/max-instances
+     *     @type float $cpu_utilization
+     *           Optional. Determines a threshold for CPU utilization before scaling begins.
+     *           Accepted values are between `0.1` and `0.90` (inclusive) or `0.0` to
+     *           disable CPU utilization as threshold for scaling. CPU and concurrency
+     *           scaling cannot both be disabled.
+     *     @type float $concurrency_utilization
+     *           Optional. Determines a threshold for concurrency utilization before scaling
+     *           begins. Accepted values are between `0.1` and `0.95` (inclusive) or `0.0`
+     *           to disable concurrency utilization as threshold for scaling. CPU and
+     *           concurrency scaling cannot both be disabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -109,6 +137,90 @@ class RevisionScaling extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_instance_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Determines a threshold for CPU utilization before scaling begins.
+     * Accepted values are between `0.1` and `0.90` (inclusive) or `0.0` to
+     * disable CPU utilization as threshold for scaling. CPU and concurrency
+     * scaling cannot both be disabled.
+     *
+     * Generated from protobuf field <code>optional float cpu_utilization = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
+     */
+    public function getCpuUtilization()
+    {
+        return isset($this->cpu_utilization) ? $this->cpu_utilization : 0.0;
+    }
+
+    public function hasCpuUtilization()
+    {
+        return isset($this->cpu_utilization);
+    }
+
+    public function clearCpuUtilization()
+    {
+        unset($this->cpu_utilization);
+    }
+
+    /**
+     * Optional. Determines a threshold for CPU utilization before scaling begins.
+     * Accepted values are between `0.1` and `0.90` (inclusive) or `0.0` to
+     * disable CPU utilization as threshold for scaling. CPU and concurrency
+     * scaling cannot both be disabled.
+     *
+     * Generated from protobuf field <code>optional float cpu_utilization = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setCpuUtilization($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->cpu_utilization = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Determines a threshold for concurrency utilization before scaling
+     * begins. Accepted values are between `0.1` and `0.95` (inclusive) or `0.0`
+     * to disable concurrency utilization as threshold for scaling. CPU and
+     * concurrency scaling cannot both be disabled.
+     *
+     * Generated from protobuf field <code>optional float concurrency_utilization = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
+     */
+    public function getConcurrencyUtilization()
+    {
+        return isset($this->concurrency_utilization) ? $this->concurrency_utilization : 0.0;
+    }
+
+    public function hasConcurrencyUtilization()
+    {
+        return isset($this->concurrency_utilization);
+    }
+
+    public function clearConcurrencyUtilization()
+    {
+        unset($this->concurrency_utilization);
+    }
+
+    /**
+     * Optional. Determines a threshold for concurrency utilization before scaling
+     * begins. Accepted values are between `0.1` and `0.95` (inclusive) or `0.0`
+     * to disable concurrency utilization as threshold for scaling. CPU and
+     * concurrency scaling cannot both be disabled.
+     *
+     * Generated from protobuf field <code>optional float concurrency_utilization = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setConcurrencyUtilization($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->concurrency_utilization = $var;
 
         return $this;
     }

@@ -44,6 +44,27 @@ return [
                     ],
                 ],
             ],
+            'DeleteCustomerManagedCertificate' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/customerManagedCertificates/{certificate_bundle}',
+                'placeholders' => [
+                    'certificate_bundle' => [
+                        'getters' => [
+                            'getCertificateBundle',
+                        ],
+                    ],
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'Get' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/projects/{project}/instances/{instance}/sslCerts/{sha1_fingerprint}',
@@ -86,6 +107,44 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1/projects/{project}/instances/{instance}/sslCerts',
                 'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'ListCustomerManagedCertificates' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/customerManagedCertificates',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateCustomerManagedCertificate' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/customerManagedCertificates/{certificate_bundle}',
+                'body' => '*',
+                'placeholders' => [
+                    'certificate_bundle' => [
+                        'getters' => [
+                            'getCertificateBundle',
+                        ],
+                    ],
                     'instance' => [
                         'getters' => [
                             'getInstance',

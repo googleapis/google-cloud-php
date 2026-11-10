@@ -33,10 +33,7 @@ use Google\Rpc\Status;
 /**
  * Starts an Instance.
  *
- * @param string $formattedName The name of the Instance to stop.
- *                              Format:
- *                              `projects/{project}/locations/{location}/instances/{instance}`,
- *                              where `{project}` can be project id or number. Please see
+ * @param string $formattedName The name of the Instance to start. Please see
  *                              {@see InstancesClient::instanceName()} for help formatting this field.
  */
 function start_instance_sample(string $formattedName): void

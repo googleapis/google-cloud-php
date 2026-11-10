@@ -34,7 +34,8 @@ class Container extends \Google\Protobuf\Internal\Message
      */
     protected $image = '';
     /**
-     * Optional. Location of the source.
+     * Optional. Location of the source. This field is only supported in Cloud Run
+     * Service.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.SourceCode source_code = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -130,6 +131,13 @@ class Container extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.run.v2.BuildInfo build_info = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $build_info = null;
+    /**
+     * Optional. Indicates that this container can act as a sandbox supervisor and
+     * launch sandboxes.
+     *
+     * Generated from protobuf field <code>optional bool sandbox_launcher = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $sandbox_launcher = null;
 
     /**
      * Constructor.
@@ -144,7 +152,8 @@ class Container extends \Google\Protobuf\Internal\Message
      *           Registry, or Google Container Registry. If the host is not provided,
      *           Dockerhub is assumed.
      *     @type \Google\Cloud\Run\V2\SourceCode $source_code
-     *           Optional. Location of the source.
+     *           Optional. Location of the source. This field is only supported in Cloud Run
+     *           Service.
      *     @type string[] $command
      *           Entrypoint array. Not executed within a shell.
      *           The docker image's ENTRYPOINT is used if this is not provided.
@@ -184,6 +193,9 @@ class Container extends \Google\Protobuf\Internal\Message
      *           indicates that the service is enrolled into automatic base image update.
      *     @type \Google\Cloud\Run\V2\BuildInfo $build_info
      *           Output only. The build info of the container image.
+     *     @type bool $sandbox_launcher
+     *           Optional. Indicates that this container can act as a sandbox supervisor and
+     *           launch sandboxes.
      * }
      */
     public function __construct($data = NULL) {
@@ -248,7 +260,8 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Location of the source.
+     * Optional. Location of the source. This field is only supported in Cloud Run
+     * Service.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.SourceCode source_code = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Run\V2\SourceCode|null
@@ -269,7 +282,8 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Location of the source.
+     * Optional. Location of the source. This field is only supported in Cloud Run
+     * Service.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.SourceCode source_code = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Run\V2\SourceCode $var
@@ -693,6 +707,44 @@ class Container extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\BuildInfo::class);
         $this->build_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates that this container can act as a sandbox supervisor and
+     * launch sandboxes.
+     *
+     * Generated from protobuf field <code>optional bool sandbox_launcher = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSandboxLauncher()
+    {
+        return isset($this->sandbox_launcher) ? $this->sandbox_launcher : false;
+    }
+
+    public function hasSandboxLauncher()
+    {
+        return isset($this->sandbox_launcher);
+    }
+
+    public function clearSandboxLauncher()
+    {
+        unset($this->sandbox_launcher);
+    }
+
+    /**
+     * Optional. Indicates that this container can act as a sandbox supervisor and
+     * launch sandboxes.
+     *
+     * Generated from protobuf field <code>optional bool sandbox_launcher = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSandboxLauncher($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->sandbox_launcher = $var;
 
         return $this;
     }

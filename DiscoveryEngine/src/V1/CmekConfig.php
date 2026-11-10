@@ -24,10 +24,10 @@ class CmekConfig extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * KMS key resource name which will be used to encrypt resources
+     * Required. KMS key resource name which will be used to encrypt resources
      * `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.
      *
-     * Generated from protobuf field <code>string kms_key = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string kms_key = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $kms_key = '';
     /**
@@ -80,7 +80,7 @@ class CmekConfig extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/cmekConfig` or
      *           `projects/{project}/locations/{location}/cmekConfigs/{cmek_config}`.
      *     @type string $kms_key
-     *           KMS key resource name which will be used to encrypt resources
+     *           Required. KMS key resource name which will be used to encrypt resources
      *           `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.
      *     @type string $kms_key_version
      *           Output only. KMS key version resource name which will be used to encrypt
@@ -134,10 +134,10 @@ class CmekConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KMS key resource name which will be used to encrypt resources
+     * Required. KMS key resource name which will be used to encrypt resources
      * `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.
      *
-     * Generated from protobuf field <code>string kms_key = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string kms_key = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getKmsKey()
@@ -146,10 +146,10 @@ class CmekConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KMS key resource name which will be used to encrypt resources
+     * Required. KMS key resource name which will be used to encrypt resources
      * `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.
      *
-     * Generated from protobuf field <code>string kms_key = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string kms_key = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

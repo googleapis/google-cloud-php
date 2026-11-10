@@ -141,11 +141,7 @@ class WorkerPoolsClientTest extends GeneratedTest
         $workerPool = new WorkerPool();
         $workerPoolTemplate = new WorkerPoolRevisionTemplate();
         $workerPool->setTemplate($workerPoolTemplate);
-        $workerPoolId = 'workerPoolId-300928931';
-        $request = (new CreateWorkerPoolRequest())
-            ->setParent($formattedParent)
-            ->setWorkerPool($workerPool)
-            ->setWorkerPoolId($workerPoolId);
+        $request = (new CreateWorkerPoolRequest())->setParent($formattedParent)->setWorkerPool($workerPool);
         $response = $gapicClient->createWorkerPool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -160,8 +156,6 @@ class WorkerPoolsClientTest extends GeneratedTest
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getWorkerPool();
         $this->assertProtobufEquals($workerPool, $actualValue);
-        $actualValue = $actualApiRequestObject->getWorkerPoolId();
-        $this->assertProtobufEquals($workerPoolId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createWorkerPoolTest');
         $response->pollUntilComplete([
@@ -220,11 +214,7 @@ class WorkerPoolsClientTest extends GeneratedTest
         $workerPool = new WorkerPool();
         $workerPoolTemplate = new WorkerPoolRevisionTemplate();
         $workerPool->setTemplate($workerPoolTemplate);
-        $workerPoolId = 'workerPoolId-300928931';
-        $request = (new CreateWorkerPoolRequest())
-            ->setParent($formattedParent)
-            ->setWorkerPool($workerPool)
-            ->setWorkerPoolId($workerPoolId);
+        $request = (new CreateWorkerPoolRequest())->setParent($formattedParent)->setWorkerPool($workerPool);
         $response = $gapicClient->createWorkerPool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -988,11 +978,7 @@ class WorkerPoolsClientTest extends GeneratedTest
         $workerPool = new WorkerPool();
         $workerPoolTemplate = new WorkerPoolRevisionTemplate();
         $workerPool->setTemplate($workerPoolTemplate);
-        $workerPoolId = 'workerPoolId-300928931';
-        $request = (new CreateWorkerPoolRequest())
-            ->setParent($formattedParent)
-            ->setWorkerPool($workerPool)
-            ->setWorkerPoolId($workerPoolId);
+        $request = (new CreateWorkerPoolRequest())->setParent($formattedParent)->setWorkerPool($workerPool);
         $response = $gapicClient->createWorkerPoolAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1007,8 +993,6 @@ class WorkerPoolsClientTest extends GeneratedTest
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getWorkerPool();
         $this->assertProtobufEquals($workerPool, $actualValue);
-        $actualValue = $actualApiRequestObject->getWorkerPoolId();
-        $this->assertProtobufEquals($workerPoolId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createWorkerPoolTest');
         $response->pollUntilComplete([

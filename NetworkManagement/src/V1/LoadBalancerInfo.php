@@ -43,7 +43,12 @@ class LoadBalancerInfo extends \Google\Protobuf\Internal\Message
      */
     protected $backend_type = 0;
     /**
-     * Backend configuration URI.
+     * URI of the backend associated with the load balancer.
+     * Format:
+     * * `projects/{project_id}/regions/{region}/backendServices/{backend_service_id}`
+     * * `projects/{project_id}/global/backendServices/{backend_service_id}`
+     * * `projects/{project_id}/regions/{region}/targetPools/{target_pool_id}`
+     * * `projects/{project_id}/zones/{zone}/targetInstances/{target_instance_id}`
      *
      * Generated from protobuf field <code>string backend_uri = 5;</code>
      */
@@ -66,7 +71,12 @@ class LoadBalancerInfo extends \Google\Protobuf\Internal\Message
      *     @type int $backend_type
      *           Type of load balancer's backend configuration.
      *     @type string $backend_uri
-     *           Backend configuration URI.
+     *           URI of the backend associated with the load balancer.
+     *           Format:
+     *           * `projects/{project_id}/regions/{region}/backendServices/{backend_service_id}`
+     *           * `projects/{project_id}/global/backendServices/{backend_service_id}`
+     *           * `projects/{project_id}/regions/{region}/targetPools/{target_pool_id}`
+     *           * `projects/{project_id}/zones/{zone}/targetInstances/{target_instance_id}`
      * }
      */
     public function __construct($data = NULL) {
@@ -189,7 +199,12 @@ class LoadBalancerInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Backend configuration URI.
+     * URI of the backend associated with the load balancer.
+     * Format:
+     * * `projects/{project_id}/regions/{region}/backendServices/{backend_service_id}`
+     * * `projects/{project_id}/global/backendServices/{backend_service_id}`
+     * * `projects/{project_id}/regions/{region}/targetPools/{target_pool_id}`
+     * * `projects/{project_id}/zones/{zone}/targetInstances/{target_instance_id}`
      *
      * Generated from protobuf field <code>string backend_uri = 5;</code>
      * @return string
@@ -200,7 +215,12 @@ class LoadBalancerInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Backend configuration URI.
+     * URI of the backend associated with the load balancer.
+     * Format:
+     * * `projects/{project_id}/regions/{region}/backendServices/{backend_service_id}`
+     * * `projects/{project_id}/global/backendServices/{backend_service_id}`
+     * * `projects/{project_id}/regions/{region}/targetPools/{target_pool_id}`
+     * * `projects/{project_id}/zones/{zone}/targetInstances/{target_instance_id}`
      *
      * Generated from protobuf field <code>string backend_uri = 5;</code>
      * @param string $var

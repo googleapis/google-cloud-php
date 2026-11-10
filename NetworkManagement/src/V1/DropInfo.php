@@ -23,6 +23,9 @@ class DropInfo extends \Google\Protobuf\Internal\Message
     protected $cause = 0;
     /**
      * URI of the resource that caused the drop.
+     * Format:
+     * * `projects/{project_id}/global/firewalls/{firewall_id}` (firewall rule)
+     * * `projects/{project_id}/global/routes/{route_id}` (route)
      *
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      */
@@ -68,6 +71,9 @@ class DropInfo extends \Google\Protobuf\Internal\Message
      *           Cause that the packet is dropped.
      *     @type string $resource_uri
      *           URI of the resource that caused the drop.
+     *           Format:
+     *           * `projects/{project_id}/global/firewalls/{firewall_id}` (firewall rule)
+     *           * `projects/{project_id}/global/routes/{route_id}` (route)
      *     @type string $source_ip
      *           Source IP address of the dropped packet (if relevant).
      *     @type string $destination_ip
@@ -113,6 +119,9 @@ class DropInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the resource that caused the drop.
+     * Format:
+     * * `projects/{project_id}/global/firewalls/{firewall_id}` (firewall rule)
+     * * `projects/{project_id}/global/routes/{route_id}` (route)
      *
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      * @return string
@@ -124,6 +133,9 @@ class DropInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the resource that caused the drop.
+     * Format:
+     * * `projects/{project_id}/global/firewalls/{firewall_id}` (firewall rule)
+     * * `projects/{project_id}/global/routes/{route_id}` (route)
      *
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      * @param string $var

@@ -99,6 +99,25 @@ return [
                     ],
                 ],
             ],
+            'CreateDatabaseConnection' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\DatabaseConnection',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateDbSystem' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\DbSystem',
@@ -327,6 +346,25 @@ return [
                     ],
                 ],
             ],
+            'DeleteDatabaseConnection' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteDbSystem' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
@@ -482,6 +520,82 @@ return [
             'DeleteOdbSubnet' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DisableCloudVmClusterIdentityConnector' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\CloudVmCluster',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DisableExadbVmClusterIdentityConnector' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\ExadbVmCluster',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'EnableCloudVmClusterIdentityConnector' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\CloudVmCluster',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'EnableExadbVmClusterIdentityConnector' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\ExadbVmCluster',
                     'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -708,6 +822,86 @@ return [
                     ],
                 ],
             ],
+            'UpdateCloudExadataInfrastructure' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\CloudExadataInfrastructure',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'cloud_exadata_infrastructure.name',
+                        'fieldAccessors' => [
+                            'getCloudExadataInfrastructure',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateCloudVmCluster' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\CloudVmCluster',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'cloud_vm_cluster.name',
+                        'fieldAccessors' => [
+                            'getCloudVmCluster',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateDatabaseConnection' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\DatabaseConnection',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'database_connection.name',
+                        'fieldAccessors' => [
+                            'getDatabaseConnection',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateDbSystem' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\DbSystem',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'db_system.name',
+                        'fieldAccessors' => [
+                            'getDbSystem',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateExadbVmCluster' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\ExadbVmCluster',
@@ -723,6 +917,138 @@ return [
                         'keyName' => 'exadb_vm_cluster.name',
                         'fieldAccessors' => [
                             'getExadbVmCluster',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateExascaleDbStorageVault' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\ExascaleDbStorageVault',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'exascale_db_storage_vault.name',
+                        'fieldAccessors' => [
+                            'getExascaleDbStorageVault',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateGoldengateConnection' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\GoldengateConnection',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'goldengate_connection.name',
+                        'fieldAccessors' => [
+                            'getGoldengateConnection',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateGoldengateConnectionAssignment' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\GoldengateConnectionAssignment',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'goldengate_connection_assignment.name',
+                        'fieldAccessors' => [
+                            'getGoldengateConnectionAssignment',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateGoldengateDeployment' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\GoldengateDeployment',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'goldengate_deployment.name',
+                        'fieldAccessors' => [
+                            'getGoldengateDeployment',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateOdbNetwork' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\OdbNetwork',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'odb_network.name',
+                        'fieldAccessors' => [
+                            'getOdbNetwork',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateOdbSubnet' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\OdbSubnet',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'odb_subnet.name',
+                        'fieldAccessors' => [
+                            'getOdbSubnet',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ExecuteSql' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\OracleDatabase\V1\ExecuteSqlResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
                             'getName',
                         ],
                     ],
@@ -791,6 +1117,18 @@ return [
             'GetDatabase' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\OracleDatabase\V1\Database',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDatabaseConnection' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\OracleDatabase\V1\DatabaseConnection',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -1060,6 +1398,26 @@ return [
                     ],
                 ],
             ],
+            'ListDatabaseConnections' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDatabaseConnections',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\OracleDatabase\V1\ListDatabaseConnectionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListDatabases' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -1111,6 +1469,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\OracleDatabase\V1\ListDbServersResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDbSystemComputePerformances' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDbSystemComputePerformances',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\OracleDatabase\V1\ListDbSystemComputePerformancesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -1251,6 +1629,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\OracleDatabase\V1\ListExascaleDbStorageVaultsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListFlexComponents' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getFlexComponents',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\OracleDatabase\V1\ListFlexComponentsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -1520,6 +1918,18 @@ return [
                     ],
                 ],
             ],
+            'TestDatabaseConnection' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\OracleDatabase\V1\TestDatabaseConnectionResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'TestGoldengateConnectionAssignment' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\OracleDatabase\V1\TestGoldengateConnectionAssignmentResponse',
@@ -1573,6 +1983,7 @@ return [
                 'cloudVmCluster' => 'projects/{project}/locations/{location}/cloudVmClusters/{cloud_vm_cluster}',
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'database' => 'projects/{project}/locations/{location}/databases/{database}',
+                'databaseConnection' => 'projects/{project}/locations/{location}/databaseConnections/{database_connection}',
                 'dbSystem' => 'projects/{project}/locations/{location}/dbSystems/{db_system}',
                 'exadbVmCluster' => 'projects/{project}/locations/{location}/exadbVmClusters/{exadb_vm_cluster}',
                 'exascaleDbStorageVault' => 'projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}',
@@ -1582,11 +1993,13 @@ return [
                 'goldengateDeployment' => 'projects/{project}/locations/{location}/goldengateDeployments/{goldengate_deployment}',
                 'location' => 'projects/{project}/locations/{location}',
                 'network' => 'projects/{project}/global/networks/{network}',
+                'networkAttachment' => 'projects/{project}/regions/{region}/networkAttachments/{network_attachment}',
                 'odbDnsZone' => 'projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbDnsZones/{odb_dns_zone}',
                 'odbNetwork' => 'projects/{project}/locations/{location}/odbNetworks/{odb_network}',
                 'odbSubnet' => 'projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}',
                 'pluggableDatabase' => 'projects/{project}/locations/{location}/pluggableDatabases/{pluggable_database}',
                 'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{secret_version}',
+                'workloadIdentityPool' => 'projects/{project}/locations/{location}/workloadIdentityPools/{workload_identity_pool}',
             ],
         ],
     ],

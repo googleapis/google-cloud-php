@@ -372,9 +372,11 @@ class DaiAuthenticationKeyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $key = 'key106079';
         $displayName = 'displayName1615086568';
         $expectedResponse = new DaiAuthenticationKey();
         $expectedResponse->setName($name);
+        $expectedResponse->setKey($key);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -454,9 +456,11 @@ class DaiAuthenticationKeyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $key = 'key106079';
         $displayName = 'displayName1615086568';
         $expectedResponse = new DaiAuthenticationKey();
         $expectedResponse->setName($name2);
+        $expectedResponse->setKey($key);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -600,9 +604,11 @@ class DaiAuthenticationKeyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $key = 'key106079';
         $displayName = 'displayName1615086568';
         $expectedResponse = new DaiAuthenticationKey();
         $expectedResponse->setName($name);
+        $expectedResponse->setKey($key);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request

@@ -17,7 +17,8 @@ class ForecastBreakdownEntry extends \Google\Protobuf\Internal\Message
 {
     /**
      * The optional name of this entry, as specified in the corresponding
-     * [ForecastBreakdownTarget.displayName][] field.
+     * [ForecastBreakdownTarget.displayName][google.ads.admanager.v1.ForecastBreakdownTarget.display_name]
+     * field.
      *
      * Generated from protobuf field <code>optional string display_name = 1;</code>
      */
@@ -37,7 +38,8 @@ class ForecastBreakdownEntry extends \Google\Protobuf\Internal\Message
      *
      *     @type string $display_name
      *           The optional name of this entry, as specified in the corresponding
-     *           [ForecastBreakdownTarget.displayName][] field.
+     *           [ForecastBreakdownTarget.displayName][google.ads.admanager.v1.ForecastBreakdownTarget.display_name]
+     *           field.
      *     @type \Google\Ads\AdManager\V1\DeliveryForecast $forecast
      *           The forecast of this entry.
      * }
@@ -49,7 +51,8 @@ class ForecastBreakdownEntry extends \Google\Protobuf\Internal\Message
 
     /**
      * The optional name of this entry, as specified in the corresponding
-     * [ForecastBreakdownTarget.displayName][] field.
+     * [ForecastBreakdownTarget.displayName][google.ads.admanager.v1.ForecastBreakdownTarget.display_name]
+     * field.
      *
      * Generated from protobuf field <code>optional string display_name = 1;</code>
      * @return string
@@ -71,7 +74,8 @@ class ForecastBreakdownEntry extends \Google\Protobuf\Internal\Message
 
     /**
      * The optional name of this entry, as specified in the corresponding
-     * [ForecastBreakdownTarget.displayName][] field.
+     * [ForecastBreakdownTarget.displayName][google.ads.admanager.v1.ForecastBreakdownTarget.display_name]
+     * field.
      *
      * Generated from protobuf field <code>optional string display_name = 1;</code>
      * @param string $var

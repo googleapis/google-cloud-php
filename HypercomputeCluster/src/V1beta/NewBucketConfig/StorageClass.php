@@ -45,6 +45,12 @@ class StorageClass
      * Generated from protobuf enum <code>ARCHIVE = 4;</code>
      */
     const ARCHIVE = 4;
+    /**
+     * Storage class optimized for I/O intensive workloads.
+     *
+     * Generated from protobuf enum <code>RAPID = 5;</code>
+     */
+    const RAPID = 5;
 
     private static $valueToName = [
         self::STORAGE_CLASS_UNSPECIFIED => 'STORAGE_CLASS_UNSPECIFIED',
@@ -52,6 +58,7 @@ class StorageClass
         self::NEARLINE => 'NEARLINE',
         self::COLDLINE => 'COLDLINE',
         self::ARCHIVE => 'ARCHIVE',
+        self::RAPID => 'RAPID',
     ];
 
     public static function name($value)

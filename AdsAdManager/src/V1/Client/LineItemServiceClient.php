@@ -159,6 +159,40 @@ final class LineItemServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a ad_category
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $adCategory
+     *
+     * @return string The formatted ad_category resource.
+     */
+    public static function adCategoryName(string $networkCode, string $adCategory): string
+    {
+        return self::getPathTemplate('adCategory')->render([
+            'network_code' => $networkCode,
+            'ad_category' => $adCategory,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a ad_spot
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $adSpot
+     *
+     * @return string The formatted ad_spot resource.
+     */
+    public static function adSpotName(string $networkCode, string $adSpot): string
+    {
+        return self::getPathTemplate('adSpot')->render([
+            'network_code' => $networkCode,
+            'ad_spot' => $adSpot,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a ad_unit
      * resource.
      *
@@ -172,6 +206,23 @@ final class LineItemServiceClient
         return self::getPathTemplate('adUnit')->render([
             'network_code' => $networkCode,
             'ad_unit' => $adUnit,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * allocation_delivery_profile resource.
+     *
+     * @param string $networkCode
+     * @param string $allocationDeliveryProfile
+     *
+     * @return string The formatted allocation_delivery_profile resource.
+     */
+    public static function allocationDeliveryProfileName(string $networkCode, string $allocationDeliveryProfile): string
+    {
+        return self::getPathTemplate('allocationDeliveryProfile')->render([
+            'network_code' => $networkCode,
+            'allocation_delivery_profile' => $allocationDeliveryProfile,
         ]);
     }
 
@@ -329,6 +380,23 @@ final class LineItemServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * content_label resource.
+     *
+     * @param string $networkCode
+     * @param string $contentLabel
+     *
+     * @return string The formatted content_label resource.
+     */
+    public static function contentLabelName(string $networkCode, string $contentLabel): string
+    {
+        return self::getPathTemplate('contentLabel')->render([
+            'network_code' => $networkCode,
+            'content_label' => $contentLabel,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a custom_field
      * resource.
      *
@@ -444,6 +512,23 @@ final class LineItemServiceClient
         return self::getPathTemplate('geoTarget')->render([
             'network_code' => $networkCode,
             'geo_target' => $geoTarget,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * inventory_url resource.
+     *
+     * @param string $networkCode
+     * @param string $inventoryUrl
+     *
+     * @return string The formatted inventory_url resource.
+     */
+    public static function inventoryUrlName(string $networkCode, string $inventoryUrl): string
+    {
+        return self::getPathTemplate('inventoryUrl')->render([
+            'network_code' => $networkCode,
+            'inventory_url' => $inventoryUrl,
         ]);
     }
 
@@ -616,10 +701,30 @@ final class LineItemServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * taxonomy_category resource.
+     *
+     * @param string $networkCode
+     * @param string $taxonomyCategory
+     *
+     * @return string The formatted taxonomy_category resource.
+     */
+    public static function taxonomyCategoryName(string $networkCode, string $taxonomyCategory): string
+    {
+        return self::getPathTemplate('taxonomyCategory')->render([
+            'network_code' => $networkCode,
+            'taxonomy_category' => $taxonomyCategory,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - adCategory: networks/{network_code}/adCategories/{ad_category}
+     * - adSpot: networks/{network_code}/adSpots/{ad_spot}
      * - adUnit: networks/{network_code}/adUnits/{ad_unit}
+     * - allocationDeliveryProfile: networks/{network_code}/allocationDeliveryProfiles/{allocation_delivery_profile}
      * - application: networks/{network_code}/applications/{application}
      * - audienceSegment: networks/{network_code}/audienceSegments/{audience_segment}
      * - bandwidthGroup: networks/{network_code}/bandwidthGroups/{bandwidth_group}
@@ -629,6 +734,7 @@ final class LineItemServiceClient
      * - company: networks/{network_code}/companies/{company}
      * - content: networks/{network_code}/content/{content}
      * - contentBundle: networks/{network_code}/contentBundles/{content_bundle}
+     * - contentLabel: networks/{network_code}/contentLabels/{content_label}
      * - customField: networks/{network_code}/customFields/{custom_field}
      * - customTargetingKey: networks/{network_code}/customTargetingKeys/{custom_targeting_key}
      * - customTargetingValue: networks/{network_code}/customTargetingValues/{custom_targeting_value}
@@ -636,6 +742,7 @@ final class LineItemServiceClient
      * - deviceCategory: networks/{network_code}/deviceCategories/{device_category}
      * - deviceManufacturer: networks/{network_code}/deviceManufacturers/{device_manufacturer}
      * - geoTarget: networks/{network_code}/geoTargets/{geo_target}
+     * - inventoryUrl: networks/{network_code}/inventoryUrls/{inventory_url}
      * - label: networks/{network_code}/labels/{label}
      * - lineItem: networks/{network_code}/lineItems/{line_item}
      * - mobileCarrier: networks/{network_code}/mobileCarriers/{mobile_carrier}
@@ -646,6 +753,7 @@ final class LineItemServiceClient
      * - operatingSystemVersion: networks/{network_code}/operatingSystemVersions/{operating_system_version}
      * - order: networks/{network_code}/orders/{order}
      * - placement: networks/{network_code}/placements/{placement}
+     * - taxonomyCategory: networks/{network_code}/taxonomyCategories/{taxonomy_category}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

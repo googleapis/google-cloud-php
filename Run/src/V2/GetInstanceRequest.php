@@ -14,12 +14,15 @@ use Google\Protobuf\RepeatedField;
 class GetInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Required. The name of the Instance to retrieve.
+     *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
 
     /**
-     * @param string $name Please see {@see InstancesClient::instanceName()} for help formatting this field.
+     * @param string $name Required. The name of the Instance to retrieve. Please see
+     *                     {@see InstancesClient::instanceName()} for help formatting this field.
      *
      * @return \Google\Cloud\Run\V2\GetInstanceRequest
      *
@@ -38,6 +41,7 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
+     *           Required. The name of the Instance to retrieve.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,6 +50,8 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Required. The name of the Instance to retrieve.
+     *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
@@ -55,6 +61,8 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Required. The name of the Instance to retrieve.
+     *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this

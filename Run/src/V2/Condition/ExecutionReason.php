@@ -56,6 +56,12 @@ class ExecutionReason
      * Generated from protobuf enum <code>DELAYED_START_PENDING = 6;</code>
      */
     const DELAYED_START_PENDING = 6;
+    /**
+     * A delayed execution exceeded the maximum runtime duration.
+     *
+     * Generated from protobuf enum <code>DELAYED_EXECUTION_EXCEEDING_DURATION_LIMIT = 7;</code>
+     */
+    const DELAYED_EXECUTION_EXCEEDING_DURATION_LIMIT = 7;
 
     private static $valueToName = [
         self::EXECUTION_REASON_UNDEFINED => 'EXECUTION_REASON_UNDEFINED',
@@ -65,6 +71,7 @@ class ExecutionReason
         self::CANCELLING => 'CANCELLING',
         self::DELETED => 'DELETED',
         self::DELAYED_START_PENDING => 'DELAYED_START_PENDING',
+        self::DELAYED_EXECUTION_EXCEEDING_DURATION_LIMIT => 'DELAYED_EXECUTION_EXCEEDING_DURATION_LIMIT',
     ];
 
     public static function name($value)

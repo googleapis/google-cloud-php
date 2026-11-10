@@ -30,6 +30,15 @@ class ResourceStatusScheduling extends \Google\Protobuf\Internal\Message
      */
     protected $graceful_shutdown_timestamp = null;
     /**
+     * Output only. Protection tier for the workload which specifies the workload
+     * expectations in the event of infrastructure failures at data center
+     * (e.g. power and/or cooling failures).
+     * Check the ProtectionTier enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string protection_tier = 503959432;</code>
+     */
+    protected $protection_tier = null;
+    /**
      * Time in future when the instance will be terminated inRFC3339 text format.
      *
      * Generated from protobuf field <code>optional string termination_timestamp = 364180891;</code>
@@ -49,6 +58,11 @@ class ResourceStatusScheduling extends \Google\Protobuf\Internal\Message
      *     @type string $graceful_shutdown_timestamp
      *           Output only. Specifies the timestamp, when the instance will start graceful shutdown
      *           process, in RFC3339 text format.
+     *     @type string $protection_tier
+     *           Output only. Protection tier for the workload which specifies the workload
+     *           expectations in the event of infrastructure failures at data center
+     *           (e.g. power and/or cooling failures).
+     *           Check the ProtectionTier enum for the list of possible values.
      *     @type string $termination_timestamp
      *           Time in future when the instance will be terminated inRFC3339 text format.
      * }
@@ -132,6 +146,48 @@ class ResourceStatusScheduling extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->graceful_shutdown_timestamp = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Protection tier for the workload which specifies the workload
+     * expectations in the event of infrastructure failures at data center
+     * (e.g. power and/or cooling failures).
+     * Check the ProtectionTier enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string protection_tier = 503959432;</code>
+     * @return string
+     */
+    public function getProtectionTier()
+    {
+        return isset($this->protection_tier) ? $this->protection_tier : '';
+    }
+
+    public function hasProtectionTier()
+    {
+        return isset($this->protection_tier);
+    }
+
+    public function clearProtectionTier()
+    {
+        unset($this->protection_tier);
+    }
+
+    /**
+     * Output only. Protection tier for the workload which specifies the workload
+     * expectations in the event of infrastructure failures at data center
+     * (e.g. power and/or cooling failures).
+     * Check the ProtectionTier enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string protection_tier = 503959432;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProtectionTier($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->protection_tier = $var;
 
         return $this;
     }

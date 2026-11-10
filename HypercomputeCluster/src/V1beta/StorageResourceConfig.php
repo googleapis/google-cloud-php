@@ -43,6 +43,9 @@ class StorageResourceConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\HypercomputeCluster\V1beta\ExistingLustreConfig $existing_lustre
      *           Optional. Immutable. If set, indicates that an existing Managed Lustre
      *           instance should be imported.
+     *     @type \Google\Cloud\HypercomputeCluster\V1beta\ExistingNfsConfig $existing_nfs
+     *           Optional. Immutable. If set, indicates that an existing NFS share should
+     *           be imported.
      * }
      */
     public function __construct($data = NULL) {
@@ -244,6 +247,39 @@ class StorageResourceConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\HypercomputeCluster\V1beta\ExistingLustreConfig::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. If set, indicates that an existing NFS share should
+     * be imported.
+     *
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.ExistingNfsConfig existing_nfs = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Cloud\HypercomputeCluster\V1beta\ExistingNfsConfig|null
+     */
+    public function getExistingNfs()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasExistingNfs()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Optional. Immutable. If set, indicates that an existing NFS share should
+     * be imported.
+     *
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.ExistingNfsConfig existing_nfs = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Cloud\HypercomputeCluster\V1beta\ExistingNfsConfig $var
+     * @return $this
+     */
+    public function setExistingNfs($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\HypercomputeCluster\V1beta\ExistingNfsConfig::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

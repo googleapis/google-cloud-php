@@ -21,7 +21,22 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "BatchCreateCreatives": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "BatchDeactivateCreatives": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "BatchUpdateCreatives": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "CreateCreative": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
@@ -32,6 +47,11 @@
                     "retry_params_name": "no_retry_params"
                 },
                 "ListCreatives": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "UpdateCreative": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"

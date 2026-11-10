@@ -24,8 +24,9 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * The URI of the firewall rule. This field is not applicable to implied
-     * VPC firewall rules.
+     * The URI of the firewall rule in format
+     * "projects/{project}/global/firewalls/{firewall}". This field is not
+     * applicable to implied VPC firewall rules.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
@@ -49,7 +50,8 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      */
     protected $priority = 0;
     /**
-     * The URI of the VPC network that the firewall rule is associated with.
+     * The URI of the VPC network that the firewall rule is associated with in
+     * format "projects/{project}/global/networks/{network}".
      * This field is not applicable to hierarchical firewall policy rules.
      *
      * Generated from protobuf field <code>string network_uri = 6;</code>
@@ -80,6 +82,12 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      * The URI of the firewall policy that this rule is associated with.
      * This field is not applicable to VPC firewall rules and implied VPC firewall
      * rules.
+     * Format:
+     * * `locations/global/firewallPolicies/{policy_id}` (hierarchical policy)
+     * * `projects/{project_id}/global/firewallPolicies/{policy_id}` (global
+     * network firewall policy)
+     * * `projects/{project_id}/regions/{region}/firewallPolicies/{policy_id}`
+     * (regional network firewall policy)
      *
      * Generated from protobuf field <code>string policy_uri = 11;</code>
      */
@@ -115,8 +123,9 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      *           The display name of the firewall rule. This field might be empty for
      *           firewall policy rules.
      *     @type string $uri
-     *           The URI of the firewall rule. This field is not applicable to implied
-     *           VPC firewall rules.
+     *           The URI of the firewall rule in format
+     *           "projects/{project}/global/firewalls/{firewall}". This field is not
+     *           applicable to implied VPC firewall rules.
      *     @type string $direction
      *           Possible values: INGRESS, EGRESS
      *     @type string $action
@@ -124,7 +133,8 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      *     @type int $priority
      *           The priority of the firewall rule.
      *     @type string $network_uri
-     *           The URI of the VPC network that the firewall rule is associated with.
+     *           The URI of the VPC network that the firewall rule is associated with in
+     *           format "projects/{project}/global/networks/{network}".
      *           This field is not applicable to hierarchical firewall policy rules.
      *     @type string[] $target_tags
      *           The target tags defined by the VPC firewall rule. This field is not
@@ -139,6 +149,12 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      *           The URI of the firewall policy that this rule is associated with.
      *           This field is not applicable to VPC firewall rules and implied VPC firewall
      *           rules.
+     *           Format:
+     *           * `locations/global/firewallPolicies/{policy_id}` (hierarchical policy)
+     *           * `projects/{project_id}/global/firewallPolicies/{policy_id}` (global
+     *           network firewall policy)
+     *           * `projects/{project_id}/regions/{region}/firewallPolicies/{policy_id}`
+     *           (regional network firewall policy)
      *     @type int $firewall_rule_type
      *           The firewall rule's type.
      *     @type int $policy_priority
@@ -183,8 +199,9 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI of the firewall rule. This field is not applicable to implied
-     * VPC firewall rules.
+     * The URI of the firewall rule in format
+     * "projects/{project}/global/firewalls/{firewall}". This field is not
+     * applicable to implied VPC firewall rules.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -195,8 +212,9 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI of the firewall rule. This field is not applicable to implied
-     * VPC firewall rules.
+     * The URI of the firewall rule in format
+     * "projects/{project}/global/firewalls/{firewall}". This field is not
+     * applicable to implied VPC firewall rules.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var
@@ -289,7 +307,8 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI of the VPC network that the firewall rule is associated with.
+     * The URI of the VPC network that the firewall rule is associated with in
+     * format "projects/{project}/global/networks/{network}".
      * This field is not applicable to hierarchical firewall policy rules.
      *
      * Generated from protobuf field <code>string network_uri = 6;</code>
@@ -301,7 +320,8 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI of the VPC network that the firewall rule is associated with.
+     * The URI of the VPC network that the firewall rule is associated with in
+     * format "projects/{project}/global/networks/{network}".
      * This field is not applicable to hierarchical firewall policy rules.
      *
      * Generated from protobuf field <code>string network_uri = 6;</code>
@@ -404,6 +424,12 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      * The URI of the firewall policy that this rule is associated with.
      * This field is not applicable to VPC firewall rules and implied VPC firewall
      * rules.
+     * Format:
+     * * `locations/global/firewallPolicies/{policy_id}` (hierarchical policy)
+     * * `projects/{project_id}/global/firewallPolicies/{policy_id}` (global
+     * network firewall policy)
+     * * `projects/{project_id}/regions/{region}/firewallPolicies/{policy_id}`
+     * (regional network firewall policy)
      *
      * Generated from protobuf field <code>string policy_uri = 11;</code>
      * @return string
@@ -417,6 +443,12 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      * The URI of the firewall policy that this rule is associated with.
      * This field is not applicable to VPC firewall rules and implied VPC firewall
      * rules.
+     * Format:
+     * * `locations/global/firewallPolicies/{policy_id}` (hierarchical policy)
+     * * `projects/{project_id}/global/firewallPolicies/{policy_id}` (global
+     * network firewall policy)
+     * * `projects/{project_id}/regions/{region}/firewallPolicies/{policy_id}`
+     * (regional network firewall policy)
      *
      * Generated from protobuf field <code>string policy_uri = 11;</code>
      * @param string $var

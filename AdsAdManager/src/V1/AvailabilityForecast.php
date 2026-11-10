@@ -54,37 +54,40 @@ class AvailabilityForecast extends \Google\Protobuf\Internal\Message
     protected $order = null;
     /**
      * The unit with which the goal or cap of the LineItem is defined. Will be the
-     * same value as [Goal.unitType][] for both a set line item or a
-     * prospective one.
+     * same value as [Goal.unitType][google.ads.admanager.v1.Goal.unit_type] for
+     * both a set line item or a prospective one.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.UnitTypeEnum.UnitType unit_type = 3;</code>
      */
     protected $unit_type = null;
     /**
-     * The number of units, defined by [Goal.unitType][], that can
-     * be booked without affecting the delivery of any reserved line items.
-     * Exceeding this value won't cause an overbook, but lower priority line items
-     * may not run.
+     * The number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that can be booked
+     * without affecting the delivery of any reserved line items. Exceeding this
+     * value won't cause an overbook, but lower priority line items may not run.
      *
      * Generated from protobuf field <code>optional int64 available_units = 4;</code>
      */
     protected $available_units = null;
     /**
-     * The number of units, defined by [Goal.unitType][], that have already been
-     * served if the reservation is already running.
+     * The number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that have already
+     * been served if the reservation is already running.
      *
      * Generated from protobuf field <code>optional int64 delivered_units = 5;</code>
      */
     protected $delivered_units = null;
     /**
-     * The number of units, defined by [Goal.unitType][], that match the specified
-     * targeting and delivery settings.
+     * The number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that match the
+     * specified targeting and delivery settings.
      *
      * Generated from protobuf field <code>optional int64 matched_units = 6;</code>
      */
     protected $matched_units = null;
     /**
-     * The maximum number of units, defined by [Goal.unitType][], that could be
+     * The maximum number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that could be
      * booked by taking inventory away from lower priority line items and some
      * same priority line items.
      * Booking this number may cause lower priority line items and some same
@@ -94,7 +97,8 @@ class AvailabilityForecast extends \Google\Protobuf\Internal\Message
      */
     protected $possible_units = null;
     /**
-     * The number of reserved units, defined by [Goal.unitType][], requested. This
+     * The number of reserved units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], requested. This
      * can be an absolute or percentage value.
      *
      * Generated from protobuf field <code>optional int64 reserved_units = 8;</code>
@@ -102,7 +106,7 @@ class AvailabilityForecast extends \Google\Protobuf\Internal\Message
     protected $reserved_units = null;
     /**
      * The breakdowns for each time window defined in
-     * [ForecastBreakdownOptions.timeWindows][].
+     * [ForecastBreakdownOptions.timeWindows][google.ads.admanager.v1.ForecastBreakdownOptions.time_windows].
      * If no breakdown was requested through
      * [AvailabilityForecastOptions.breakdown][google.ads.admanager.v1.AvailabilityForecastOptions.breakdown],
      * this field will be empty.
@@ -158,31 +162,35 @@ class AvailabilityForecast extends \Google\Protobuf\Internal\Message
      *           `networks/{network_code}/orders/{order_id}`
      *     @type int $unit_type
      *           The unit with which the goal or cap of the LineItem is defined. Will be the
-     *           same value as [Goal.unitType][] for both a set line item or a
-     *           prospective one.
+     *           same value as [Goal.unitType][google.ads.admanager.v1.Goal.unit_type] for
+     *           both a set line item or a prospective one.
      *     @type int|string $available_units
-     *           The number of units, defined by [Goal.unitType][], that can
-     *           be booked without affecting the delivery of any reserved line items.
-     *           Exceeding this value won't cause an overbook, but lower priority line items
-     *           may not run.
+     *           The number of units, defined by
+     *           [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that can be booked
+     *           without affecting the delivery of any reserved line items. Exceeding this
+     *           value won't cause an overbook, but lower priority line items may not run.
      *     @type int|string $delivered_units
-     *           The number of units, defined by [Goal.unitType][], that have already been
-     *           served if the reservation is already running.
+     *           The number of units, defined by
+     *           [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that have already
+     *           been served if the reservation is already running.
      *     @type int|string $matched_units
-     *           The number of units, defined by [Goal.unitType][], that match the specified
-     *           targeting and delivery settings.
+     *           The number of units, defined by
+     *           [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that match the
+     *           specified targeting and delivery settings.
      *     @type int|string $possible_units
-     *           The maximum number of units, defined by [Goal.unitType][], that could be
+     *           The maximum number of units, defined by
+     *           [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that could be
      *           booked by taking inventory away from lower priority line items and some
      *           same priority line items.
      *           Booking this number may cause lower priority line items and some same
      *           priority line items to underdeliver.
      *     @type int|string $reserved_units
-     *           The number of reserved units, defined by [Goal.unitType][], requested. This
+     *           The number of reserved units, defined by
+     *           [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], requested. This
      *           can be an absolute or percentage value.
      *     @type \Google\Ads\AdManager\V1\ForecastBreakdown[] $breakdowns
      *           The breakdowns for each time window defined in
-     *           [ForecastBreakdownOptions.timeWindows][].
+     *           [ForecastBreakdownOptions.timeWindows][google.ads.admanager.v1.ForecastBreakdownOptions.time_windows].
      *           If no breakdown was requested through
      *           [AvailabilityForecastOptions.breakdown][google.ads.admanager.v1.AvailabilityForecastOptions.breakdown],
      *           this field will be empty.
@@ -296,8 +304,8 @@ class AvailabilityForecast extends \Google\Protobuf\Internal\Message
 
     /**
      * The unit with which the goal or cap of the LineItem is defined. Will be the
-     * same value as [Goal.unitType][] for both a set line item or a
-     * prospective one.
+     * same value as [Goal.unitType][google.ads.admanager.v1.Goal.unit_type] for
+     * both a set line item or a prospective one.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.UnitTypeEnum.UnitType unit_type = 3;</code>
      * @return int
@@ -319,8 +327,8 @@ class AvailabilityForecast extends \Google\Protobuf\Internal\Message
 
     /**
      * The unit with which the goal or cap of the LineItem is defined. Will be the
-     * same value as [Goal.unitType][] for both a set line item or a
-     * prospective one.
+     * same value as [Goal.unitType][google.ads.admanager.v1.Goal.unit_type] for
+     * both a set line item or a prospective one.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.UnitTypeEnum.UnitType unit_type = 3;</code>
      * @param int $var
@@ -335,10 +343,10 @@ class AvailabilityForecast extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of units, defined by [Goal.unitType][], that can
-     * be booked without affecting the delivery of any reserved line items.
-     * Exceeding this value won't cause an overbook, but lower priority line items
-     * may not run.
+     * The number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that can be booked
+     * without affecting the delivery of any reserved line items. Exceeding this
+     * value won't cause an overbook, but lower priority line items may not run.
      *
      * Generated from protobuf field <code>optional int64 available_units = 4;</code>
      * @return int|string
@@ -359,10 +367,10 @@ class AvailabilityForecast extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of units, defined by [Goal.unitType][], that can
-     * be booked without affecting the delivery of any reserved line items.
-     * Exceeding this value won't cause an overbook, but lower priority line items
-     * may not run.
+     * The number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that can be booked
+     * without affecting the delivery of any reserved line items. Exceeding this
+     * value won't cause an overbook, but lower priority line items may not run.
      *
      * Generated from protobuf field <code>optional int64 available_units = 4;</code>
      * @param int|string $var
@@ -377,8 +385,9 @@ class AvailabilityForecast extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of units, defined by [Goal.unitType][], that have already been
-     * served if the reservation is already running.
+     * The number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that have already
+     * been served if the reservation is already running.
      *
      * Generated from protobuf field <code>optional int64 delivered_units = 5;</code>
      * @return int|string
@@ -399,8 +408,9 @@ class AvailabilityForecast extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of units, defined by [Goal.unitType][], that have already been
-     * served if the reservation is already running.
+     * The number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that have already
+     * been served if the reservation is already running.
      *
      * Generated from protobuf field <code>optional int64 delivered_units = 5;</code>
      * @param int|string $var
@@ -415,8 +425,9 @@ class AvailabilityForecast extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of units, defined by [Goal.unitType][], that match the specified
-     * targeting and delivery settings.
+     * The number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that match the
+     * specified targeting and delivery settings.
      *
      * Generated from protobuf field <code>optional int64 matched_units = 6;</code>
      * @return int|string
@@ -437,8 +448,9 @@ class AvailabilityForecast extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of units, defined by [Goal.unitType][], that match the specified
-     * targeting and delivery settings.
+     * The number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that match the
+     * specified targeting and delivery settings.
      *
      * Generated from protobuf field <code>optional int64 matched_units = 6;</code>
      * @param int|string $var
@@ -453,7 +465,8 @@ class AvailabilityForecast extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of units, defined by [Goal.unitType][], that could be
+     * The maximum number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that could be
      * booked by taking inventory away from lower priority line items and some
      * same priority line items.
      * Booking this number may cause lower priority line items and some same
@@ -478,7 +491,8 @@ class AvailabilityForecast extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of units, defined by [Goal.unitType][], that could be
+     * The maximum number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that could be
      * booked by taking inventory away from lower priority line items and some
      * same priority line items.
      * Booking this number may cause lower priority line items and some same
@@ -497,7 +511,8 @@ class AvailabilityForecast extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of reserved units, defined by [Goal.unitType][], requested. This
+     * The number of reserved units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], requested. This
      * can be an absolute or percentage value.
      *
      * Generated from protobuf field <code>optional int64 reserved_units = 8;</code>
@@ -519,7 +534,8 @@ class AvailabilityForecast extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of reserved units, defined by [Goal.unitType][], requested. This
+     * The number of reserved units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], requested. This
      * can be an absolute or percentage value.
      *
      * Generated from protobuf field <code>optional int64 reserved_units = 8;</code>
@@ -536,7 +552,7 @@ class AvailabilityForecast extends \Google\Protobuf\Internal\Message
 
     /**
      * The breakdowns for each time window defined in
-     * [ForecastBreakdownOptions.timeWindows][].
+     * [ForecastBreakdownOptions.timeWindows][google.ads.admanager.v1.ForecastBreakdownOptions.time_windows].
      * If no breakdown was requested through
      * [AvailabilityForecastOptions.breakdown][google.ads.admanager.v1.AvailabilityForecastOptions.breakdown],
      * this field will be empty.
@@ -551,7 +567,7 @@ class AvailabilityForecast extends \Google\Protobuf\Internal\Message
 
     /**
      * The breakdowns for each time window defined in
-     * [ForecastBreakdownOptions.timeWindows][].
+     * [ForecastBreakdownOptions.timeWindows][google.ads.admanager.v1.ForecastBreakdownOptions.time_windows].
      * If no breakdown was requested through
      * [AvailabilityForecastOptions.breakdown][google.ads.admanager.v1.AvailabilityForecastOptions.breakdown],
      * this field will be empty.

@@ -29,9 +29,10 @@ use Google\Cloud\Run\V2\GetInstanceRequest;
 use Google\Cloud\Run\V2\Instance;
 
 /**
- * Gets a Instance
+ * Gets an Instance
  *
- * @param string $formattedName Please see {@see InstancesClient::instanceName()} for help formatting this field.
+ * @param string $formattedName The name of the Instance to retrieve. Please see
+ *                              {@see InstancesClient::instanceName()} for help formatting this field.
  */
 function get_instance_sample(string $formattedName): void
 {

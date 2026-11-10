@@ -37,6 +37,13 @@ class StartWorkloadReplayContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string workload_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $workload_id = '';
+    /**
+     * Output only. The name of the source Cloud SQL instance where the workload
+     * was captured, excluding the project ID (for example, `my-source-instance`).
+     *
+     * Generated from protobuf field <code>string source_instance = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $source_instance = '';
 
     /**
      * Constructor.
@@ -55,6 +62,9 @@ class StartWorkloadReplayContext extends \Google\Protobuf\Internal\Message
      *           instance. Each workload capture generates a unique ID in the format
      *           `workload-<epoch_timestamp>` (for example, `workload-1786046400`). Use this
      *           ID to start executing the recorded SQL queries.
+     *     @type string $source_instance
+     *           Output only. The name of the source Cloud SQL instance where the workload
+     *           was captured, excluding the project ID (for example, `my-source-instance`).
      * }
      */
     public function __construct($data = NULL) {
@@ -124,6 +134,34 @@ class StartWorkloadReplayContext extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->workload_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The name of the source Cloud SQL instance where the workload
+     * was captured, excluding the project ID (for example, `my-source-instance`).
+     *
+     * Generated from protobuf field <code>string source_instance = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getSourceInstance()
+    {
+        return $this->source_instance;
+    }
+
+    /**
+     * Output only. The name of the source Cloud SQL instance where the workload
+     * was captured, excluding the project ID (for example, `my-source-instance`).
+     *
+     * Generated from protobuf field <code>string source_instance = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceInstance($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_instance = $var;
 
         return $this;
     }

@@ -18,7 +18,7 @@ class AvailabilityForecastOptions extends \Google\Protobuf\Internal\Message
     /**
      * Optional. When specified, forecast result for the availability line item
      * will also include breakdowns by its targeting in
-     * [AvailabilityForecast.targetingCriteriaBreakdowns][].
+     * [AvailabilityForecast.targetingCriteriaBreakdowns][google.ads.admanager.v1.AvailabilityForecast.targeting_criteria_breakdowns].
      *
      * Generated from protobuf field <code>optional bool targeting_criteria_breakdown_included = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -26,7 +26,7 @@ class AvailabilityForecastOptions extends \Google\Protobuf\Internal\Message
     /**
      * Optional. When specified, the forecast result for the availability line
      * item will also include contending line items in
-     * [AvailabilityForecast.contendingLineItems][].
+     * [AvailabilityForecast.contendingLineItems][google.ads.admanager.v1.AvailabilityForecast.contending_line_items].
      *
      * Generated from protobuf field <code>optional bool contending_line_items_included = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -47,11 +47,11 @@ class AvailabilityForecastOptions extends \Google\Protobuf\Internal\Message
      *     @type bool $targeting_criteria_breakdown_included
      *           Optional. When specified, forecast result for the availability line item
      *           will also include breakdowns by its targeting in
-     *           [AvailabilityForecast.targetingCriteriaBreakdowns][].
+     *           [AvailabilityForecast.targetingCriteriaBreakdowns][google.ads.admanager.v1.AvailabilityForecast.targeting_criteria_breakdowns].
      *     @type bool $contending_line_items_included
      *           Optional. When specified, the forecast result for the availability line
      *           item will also include contending line items in
-     *           [AvailabilityForecast.contendingLineItems][].
+     *           [AvailabilityForecast.contendingLineItems][google.ads.admanager.v1.AvailabilityForecast.contending_line_items].
      *     @type \Google\Ads\AdManager\V1\ForecastBreakdownOptions $breakdown
      *           Optional. Configurations of forecast breakdowns.
      * }
@@ -64,7 +64,7 @@ class AvailabilityForecastOptions extends \Google\Protobuf\Internal\Message
     /**
      * Optional. When specified, forecast result for the availability line item
      * will also include breakdowns by its targeting in
-     * [AvailabilityForecast.targetingCriteriaBreakdowns][].
+     * [AvailabilityForecast.targetingCriteriaBreakdowns][google.ads.admanager.v1.AvailabilityForecast.targeting_criteria_breakdowns].
      *
      * Generated from protobuf field <code>optional bool targeting_criteria_breakdown_included = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -87,7 +87,7 @@ class AvailabilityForecastOptions extends \Google\Protobuf\Internal\Message
     /**
      * Optional. When specified, forecast result for the availability line item
      * will also include breakdowns by its targeting in
-     * [AvailabilityForecast.targetingCriteriaBreakdowns][].
+     * [AvailabilityForecast.targetingCriteriaBreakdowns][google.ads.admanager.v1.AvailabilityForecast.targeting_criteria_breakdowns].
      *
      * Generated from protobuf field <code>optional bool targeting_criteria_breakdown_included = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -104,7 +104,7 @@ class AvailabilityForecastOptions extends \Google\Protobuf\Internal\Message
     /**
      * Optional. When specified, the forecast result for the availability line
      * item will also include contending line items in
-     * [AvailabilityForecast.contendingLineItems][].
+     * [AvailabilityForecast.contendingLineItems][google.ads.admanager.v1.AvailabilityForecast.contending_line_items].
      *
      * Generated from protobuf field <code>optional bool contending_line_items_included = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -127,7 +127,7 @@ class AvailabilityForecastOptions extends \Google\Protobuf\Internal\Message
     /**
      * Optional. When specified, the forecast result for the availability line
      * item will also include contending line items in
-     * [AvailabilityForecast.contendingLineItems][].
+     * [AvailabilityForecast.contendingLineItems][google.ads.admanager.v1.AvailabilityForecast.contending_line_items].
      *
      * Generated from protobuf field <code>optional bool contending_line_items_included = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

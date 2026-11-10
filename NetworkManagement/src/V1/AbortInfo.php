@@ -23,6 +23,10 @@ class AbortInfo extends \Google\Protobuf\Internal\Message
     protected $cause = 0;
     /**
      * URI of the resource that caused the abort.
+     * Format:
+     * * `projects/{project_id}/global/networks/{network_id}` (VPC network)
+     * * `projects/{project_id}/zones/{zone}/instances/{instance_id}` (VM
+     * instance)
      *
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      */
@@ -51,6 +55,10 @@ class AbortInfo extends \Google\Protobuf\Internal\Message
      *           Causes that the analysis is aborted.
      *     @type string $resource_uri
      *           URI of the resource that caused the abort.
+     *           Format:
+     *           * `projects/{project_id}/global/networks/{network_id}` (VPC network)
+     *           * `projects/{project_id}/zones/{zone}/instances/{instance_id}` (VM
+     *           instance)
      *     @type string $ip_address
      *           IP address that caused the abort.
      *     @type string[] $projects_missing_permission
@@ -91,6 +99,10 @@ class AbortInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the resource that caused the abort.
+     * Format:
+     * * `projects/{project_id}/global/networks/{network_id}` (VPC network)
+     * * `projects/{project_id}/zones/{zone}/instances/{instance_id}` (VM
+     * instance)
      *
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      * @return string
@@ -102,6 +114,10 @@ class AbortInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the resource that caused the abort.
+     * Format:
+     * * `projects/{project_id}/global/networks/{network_id}` (VPC network)
+     * * `projects/{project_id}/zones/{zone}/instances/{instance_id}` (VM
+     * instance)
      *
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      * @param string $var

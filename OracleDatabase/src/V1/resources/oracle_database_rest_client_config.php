@@ -104,6 +104,21 @@ return [
                     'cloud_vm_cluster_id',
                 ],
             ],
+            'CreateDatabaseConnection' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/databaseConnections',
+                'body' => 'database_connection',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'database_connection_id',
+                ],
+            ],
             'CreateDbSystem' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/dbSystems',
@@ -272,6 +287,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteDatabaseConnection' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/databaseConnections/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteDbSystem' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/dbSystems/*}',
@@ -371,6 +397,66 @@ return [
                     ],
                 ],
             ],
+            'DisableCloudVmClusterIdentityConnector' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/cloudVmClusters/*}:disableIdentityConnector',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DisableExadbVmClusterIdentityConnector' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/exadbVmClusters/*}:disableIdentityConnector',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'EnableCloudVmClusterIdentityConnector' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/cloudVmClusters/*}:enableIdentityConnector',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'EnableExadbVmClusterIdentityConnector' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/exadbVmClusters/*}:enableIdentityConnector',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ExecuteSql' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/databaseConnections/*}:executeSql',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'FailoverAutonomousDatabase' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/autonomousDatabases/*}:failover',
@@ -442,6 +528,17 @@ return [
             'GetDatabase' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/databases/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDatabaseConnection' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/databaseConnections/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -637,6 +734,17 @@ return [
                     ],
                 ],
             ],
+            'ListDatabaseConnections' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/databaseConnections',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListDatabases' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/databases',
@@ -668,6 +776,17 @@ return [
             'ListDbServers' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/cloudExadataInfrastructures/*}/dbServers',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDbSystemComputePerformances' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/dbSystemComputePerformances',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -745,6 +864,17 @@ return [
             'ListExascaleDbStorageVaults' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/exascaleDbStorageVaults',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListFlexComponents' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/flexComponents',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -1004,6 +1134,18 @@ return [
                     ],
                 ],
             ],
+            'TestDatabaseConnection' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/databaseConnections/*}:test',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'TestGoldengateConnectionAssignment' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateConnectionAssignments/*}:test',
@@ -1029,6 +1171,58 @@ return [
                     ],
                 ],
             ],
+            'UpdateCloudExadataInfrastructure' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{cloud_exadata_infrastructure.name=projects/*/locations/*/cloudExadataInfrastructures/*}',
+                'body' => 'cloud_exadata_infrastructure',
+                'placeholders' => [
+                    'cloud_exadata_infrastructure.name' => [
+                        'getters' => [
+                            'getCloudExadataInfrastructure',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateCloudVmCluster' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{cloud_vm_cluster.name=projects/*/locations/*/cloudVmClusters/*}',
+                'body' => 'cloud_vm_cluster',
+                'placeholders' => [
+                    'cloud_vm_cluster.name' => [
+                        'getters' => [
+                            'getCloudVmCluster',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateDatabaseConnection' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{database_connection.name=projects/*/locations/*/databaseConnections/*}',
+                'body' => 'database_connection',
+                'placeholders' => [
+                    'database_connection.name' => [
+                        'getters' => [
+                            'getDatabaseConnection',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateDbSystem' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{db_system.name=projects/*/locations/*/dbSystems/*}',
+                'body' => 'db_system',
+                'placeholders' => [
+                    'db_system.name' => [
+                        'getters' => [
+                            'getDbSystem',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateExadbVmCluster' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{exadb_vm_cluster.name=projects/*/locations/*/exadbVmClusters/*}',
@@ -1037,6 +1231,84 @@ return [
                     'exadb_vm_cluster.name' => [
                         'getters' => [
                             'getExadbVmCluster',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateExascaleDbStorageVault' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{exascale_db_storage_vault.name=projects/*/locations/*/exascaleDbStorageVaults/*}',
+                'body' => 'exascale_db_storage_vault',
+                'placeholders' => [
+                    'exascale_db_storage_vault.name' => [
+                        'getters' => [
+                            'getExascaleDbStorageVault',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateGoldengateConnection' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{goldengate_connection.name=projects/*/locations/*/goldengateConnections/*}',
+                'body' => 'goldengate_connection',
+                'placeholders' => [
+                    'goldengate_connection.name' => [
+                        'getters' => [
+                            'getGoldengateConnection',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateGoldengateConnectionAssignment' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{goldengate_connection_assignment.name=projects/*/locations/*/goldengateConnectionAssignments/*}',
+                'body' => 'goldengate_connection_assignment',
+                'placeholders' => [
+                    'goldengate_connection_assignment.name' => [
+                        'getters' => [
+                            'getGoldengateConnectionAssignment',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateGoldengateDeployment' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{goldengate_deployment.name=projects/*/locations/*/goldengateDeployments/*}',
+                'body' => 'goldengate_deployment',
+                'placeholders' => [
+                    'goldengate_deployment.name' => [
+                        'getters' => [
+                            'getGoldengateDeployment',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateOdbNetwork' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{odb_network.name=projects/*/locations/*/odbNetworks/*}',
+                'body' => 'odb_network',
+                'placeholders' => [
+                    'odb_network.name' => [
+                        'getters' => [
+                            'getOdbNetwork',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateOdbSubnet' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{odb_subnet.name=projects/*/locations/*/odbNetworks/*/odbSubnets/*}',
+                'body' => 'odb_subnet',
+                'placeholders' => [
+                    'odb_subnet.name' => [
+                        'getters' => [
+                            'getOdbSubnet',
                             'getName',
                         ],
                     ],

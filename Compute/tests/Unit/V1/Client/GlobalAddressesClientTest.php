@@ -217,11 +217,13 @@ class GlobalAddressesClientTest extends GeneratedTest
         $labelFingerprint = 'labelFingerprint714995737';
         $name = 'name3373707';
         $network = 'network1843485230';
+        $networkAttachment = 'networkAttachment1835256788';
         $networkTier = 'networkTier-19473069';
         $prefixLength = 1157046989;
         $purpose = 'purpose-220463842';
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
+        $serviceClassId = 'serviceClassId-1724720244';
         $status = 'status-892481550';
         $subnetwork = 'subnetwork-1302785042';
         $expectedResponse = new Address();
@@ -237,11 +239,13 @@ class GlobalAddressesClientTest extends GeneratedTest
         $expectedResponse->setLabelFingerprint($labelFingerprint);
         $expectedResponse->setName($name);
         $expectedResponse->setNetwork($network);
+        $expectedResponse->setNetworkAttachment($networkAttachment);
         $expectedResponse->setNetworkTier($networkTier);
         $expectedResponse->setPrefixLength($prefixLength);
         $expectedResponse->setPurpose($purpose);
         $expectedResponse->setRegion($region);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setServiceClassId($serviceClassId);
         $expectedResponse->setStatus($status);
         $expectedResponse->setSubnetwork($subnetwork);
         $transport->addResponse($expectedResponse);

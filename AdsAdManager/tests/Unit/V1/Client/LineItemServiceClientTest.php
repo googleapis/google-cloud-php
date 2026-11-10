@@ -939,6 +939,7 @@ class LineItemServiceClientTest extends GeneratedTest
         $customVastExtension = 'customVastExtension2046703770';
         $sponsorshipExclusivityEnabled = true;
         $repeatedCreativeServingEnabled = false;
+        $allocationDeliveryProfile = 'allocationDeliveryProfile-893844003';
         $expectedResponse = new LineItem();
         $expectedResponse->setName($name);
         $expectedResponse->setOrder($order);
@@ -963,6 +964,7 @@ class LineItemServiceClientTest extends GeneratedTest
         $expectedResponse->setCustomVastExtension($customVastExtension);
         $expectedResponse->setSponsorshipExclusivityEnabled($sponsorshipExclusivityEnabled);
         $expectedResponse->setRepeatedCreativeServingEnabled($repeatedCreativeServingEnabled);
+        $expectedResponse->setAllocationDeliveryProfile($allocationDeliveryProfile);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
@@ -1088,6 +1090,7 @@ class LineItemServiceClientTest extends GeneratedTest
         $customVastExtension = 'customVastExtension2046703770';
         $sponsorshipExclusivityEnabled = true;
         $repeatedCreativeServingEnabled = false;
+        $allocationDeliveryProfile = 'allocationDeliveryProfile-893844003';
         $expectedResponse = new LineItem();
         $expectedResponse->setName($name2);
         $expectedResponse->setOrder($order);
@@ -1112,6 +1115,7 @@ class LineItemServiceClientTest extends GeneratedTest
         $expectedResponse->setCustomVastExtension($customVastExtension);
         $expectedResponse->setSponsorshipExclusivityEnabled($sponsorshipExclusivityEnabled);
         $expectedResponse->setRepeatedCreativeServingEnabled($repeatedCreativeServingEnabled);
+        $expectedResponse->setAllocationDeliveryProfile($allocationDeliveryProfile);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]');
@@ -1270,6 +1274,7 @@ class LineItemServiceClientTest extends GeneratedTest
         $customVastExtension = 'customVastExtension2046703770';
         $sponsorshipExclusivityEnabled = true;
         $repeatedCreativeServingEnabled = false;
+        $allocationDeliveryProfile = 'allocationDeliveryProfile-893844003';
         $expectedResponse = new LineItem();
         $expectedResponse->setName($name);
         $expectedResponse->setOrder($order);
@@ -1294,6 +1299,7 @@ class LineItemServiceClientTest extends GeneratedTest
         $expectedResponse->setCustomVastExtension($customVastExtension);
         $expectedResponse->setSponsorshipExclusivityEnabled($sponsorshipExclusivityEnabled);
         $expectedResponse->setRepeatedCreativeServingEnabled($repeatedCreativeServingEnabled);
+        $expectedResponse->setAllocationDeliveryProfile($allocationDeliveryProfile);
         $transport->addResponse($expectedResponse);
         // Mock request
         $lineItem = new LineItem();

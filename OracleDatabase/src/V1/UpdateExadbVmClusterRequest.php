@@ -10,8 +10,8 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * The request for `ExadbVmCluster.Update`. We only support adding the
- * Virtual Machine to the ExadbVmCluster. Rest of the fields in ExadbVmCluster
- * are immutable.
+ * Virtual Machine to the ExadbVmCluster and updating labels. Rest of the fields
+ * in ExadbVmCluster are immutable.
  *
  * Generated from protobuf message <code>google.cloud.oracledatabase.v1.UpdateExadbVmClusterRequest</code>
  */
@@ -20,13 +20,20 @@ class UpdateExadbVmClusterRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A mask specifying which fields in th VM Cluster should be
      * updated. A field specified in the mask is overwritten. If a mask isn't
-     * provided then all the fields in the VM Cluster are overwritten.
+     * provided then the service treats this as an implied field mask equivalent
+     * to all fields that are populated (have a non-empty value). To clear or
+     * unset a field, the field must be explicitly specified in the `update_mask`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $update_mask = null;
     /**
-     * Required. The resource being updated.
+     * Required. The ExadbVmCluster resource being updated.
+     * Mutable fields that can be updated include `labels` and
+     * `properties.node_count`. For `labels`, the provided map completely
+     * replaces existing labels; any existing keys not included will be deleted.
+     * To clear all labels, specify `labels` in the `update_mask` and omit or
+     * leave the `labels` field empty in the update request.
      *
      * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ExadbVmCluster exadb_vm_cluster = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -45,10 +52,17 @@ class UpdateExadbVmClusterRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
-     * @param \Google\Cloud\OracleDatabase\V1\ExadbVmCluster $exadbVmCluster Required. The resource being updated.
+     * @param \Google\Cloud\OracleDatabase\V1\ExadbVmCluster $exadbVmCluster Required. The ExadbVmCluster resource being updated.
+     *                                                                       Mutable fields that can be updated include `labels` and
+     *                                                                       `properties.node_count`. For `labels`, the provided map completely
+     *                                                                       replaces existing labels; any existing keys not included will be deleted.
+     *                                                                       To clear all labels, specify `labels` in the `update_mask` and omit or
+     *                                                                       leave the `labels` field empty in the update request.
      * @param \Google\Protobuf\FieldMask                     $updateMask     Optional. A mask specifying which fields in th VM Cluster should be
      *                                                                       updated. A field specified in the mask is overwritten. If a mask isn't
-     *                                                                       provided then all the fields in the VM Cluster are overwritten.
+     *                                                                       provided then the service treats this as an implied field mask equivalent
+     *                                                                       to all fields that are populated (have a non-empty value). To clear or
+     *                                                                       unset a field, the field must be explicitly specified in the `update_mask`.
      *
      * @return \Google\Cloud\OracleDatabase\V1\UpdateExadbVmClusterRequest
      *
@@ -70,9 +84,16 @@ class UpdateExadbVmClusterRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. A mask specifying which fields in th VM Cluster should be
      *           updated. A field specified in the mask is overwritten. If a mask isn't
-     *           provided then all the fields in the VM Cluster are overwritten.
+     *           provided then the service treats this as an implied field mask equivalent
+     *           to all fields that are populated (have a non-empty value). To clear or
+     *           unset a field, the field must be explicitly specified in the `update_mask`.
      *     @type \Google\Cloud\OracleDatabase\V1\ExadbVmCluster $exadb_vm_cluster
-     *           Required. The resource being updated.
+     *           Required. The ExadbVmCluster resource being updated.
+     *           Mutable fields that can be updated include `labels` and
+     *           `properties.node_count`. For `labels`, the provided map completely
+     *           replaces existing labels; any existing keys not included will be deleted.
+     *           To clear all labels, specify `labels` in the `update_mask` and omit or
+     *           leave the `labels` field empty in the update request.
      *     @type string $request_id
      *           Optional. An optional ID to identify the request. This value is used to
      *           identify duplicate requests. If you make a request with the same request ID
@@ -91,7 +112,9 @@ class UpdateExadbVmClusterRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A mask specifying which fields in th VM Cluster should be
      * updated. A field specified in the mask is overwritten. If a mask isn't
-     * provided then all the fields in the VM Cluster are overwritten.
+     * provided then the service treats this as an implied field mask equivalent
+     * to all fields that are populated (have a non-empty value). To clear or
+     * unset a field, the field must be explicitly specified in the `update_mask`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -114,7 +137,9 @@ class UpdateExadbVmClusterRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A mask specifying which fields in th VM Cluster should be
      * updated. A field specified in the mask is overwritten. If a mask isn't
-     * provided then all the fields in the VM Cluster are overwritten.
+     * provided then the service treats this as an implied field mask equivalent
+     * to all fields that are populated (have a non-empty value). To clear or
+     * unset a field, the field must be explicitly specified in the `update_mask`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
@@ -129,7 +154,12 @@ class UpdateExadbVmClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource being updated.
+     * Required. The ExadbVmCluster resource being updated.
+     * Mutable fields that can be updated include `labels` and
+     * `properties.node_count`. For `labels`, the provided map completely
+     * replaces existing labels; any existing keys not included will be deleted.
+     * To clear all labels, specify `labels` in the `update_mask` and omit or
+     * leave the `labels` field empty in the update request.
      *
      * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ExadbVmCluster exadb_vm_cluster = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\OracleDatabase\V1\ExadbVmCluster|null
@@ -150,7 +180,12 @@ class UpdateExadbVmClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource being updated.
+     * Required. The ExadbVmCluster resource being updated.
+     * Mutable fields that can be updated include `labels` and
+     * `properties.node_count`. For `labels`, the provided map completely
+     * replaces existing labels; any existing keys not included will be deleted.
+     * To clear all labels, specify `labels` in the `update_mask` and omit or
+     * leave the `labels` field empty in the update request.
      *
      * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ExadbVmCluster exadb_vm_cluster = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\OracleDatabase\V1\ExadbVmCluster $var

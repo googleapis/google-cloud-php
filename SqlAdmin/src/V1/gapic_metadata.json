@@ -96,6 +96,11 @@
                                 "executeSql"
                             ]
                         },
+                        "ExecuteSqlReadOnly": {
+                            "methods": [
+                                "executeSqlReadOnly"
+                            ]
+                        },
                         "Export": {
                             "methods": [
                                 "export"
@@ -176,6 +181,11 @@
                                 "promoteReplica"
                             ]
                         },
+                        "ReconcileNetworking": {
+                            "methods": [
+                                "reconcileNetworking"
+                            ]
+                        },
                         "Reencrypt": {
                             "methods": [
                                 "reencrypt"
@@ -226,6 +236,11 @@
                                 "rotateServerCertificate"
                             ]
                         },
+                        "Start": {
+                            "methods": [
+                                "start"
+                            ]
+                        },
                         "StartExternalSync": {
                             "methods": [
                                 "startExternalSync"
@@ -234,6 +249,11 @@
                         "StartReplica": {
                             "methods": [
                                 "startReplica"
+                            ]
+                        },
+                        "Stop": {
+                            "methods": [
+                                "stop"
                             ]
                         },
                         "StopReplica": {
@@ -479,6 +499,11 @@
                                 "delete"
                             ]
                         },
+                        "DeleteCustomerManagedCertificate": {
+                            "methods": [
+                                "deleteCustomerManagedCertificate"
+                            ]
+                        },
                         "Get": {
                             "methods": [
                                 "get"
@@ -492,6 +517,16 @@
                         "List": {
                             "methods": [
                                 "list"
+                            ]
+                        },
+                        "ListCustomerManagedCertificates": {
+                            "methods": [
+                                "listCustomerManagedCertificates"
+                            ]
+                        },
+                        "UpdateCustomerManagedCertificate": {
+                            "methods": [
+                                "updateCustomerManagedCertificate"
                             ]
                         }
                     }

@@ -428,6 +428,16 @@ class Metric
      */
     const ADSENSE_AVERAGE_ECPM = 26;
     /**
+     * Total impressions counted when creative begins to render for AdSense.
+     * Corresponds to "AdSense begin to render impressions" in the Ad Manager
+     * UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>ADSENSE_BEGIN_TO_RENDER_IMPRESSIONS = 749;</code>
+     */
+    const ADSENSE_BEGIN_TO_RENDER_IMPRESSIONS = 749;
+    /**
      * Number of clicks delivered by AdSense demand channel.
      * Corresponds to "AdSense clicks" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`
@@ -653,6 +663,16 @@ class Metric
      * Generated from protobuf enum <code>AD_EXCHANGE_AVERAGE_ECPM = 18;</code>
      */
     const AD_EXCHANGE_AVERAGE_ECPM = 18;
+    /**
+     * The impressions counted when creative begins to render for Ad Exchange.
+     * Corresponds to "Ad Exchange begin to render impressions" in the Ad
+     * Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>AD_EXCHANGE_BEGIN_TO_RENDER_IMPRESSIONS = 706;</code>
+     */
+    const AD_EXCHANGE_BEGIN_TO_RENDER_IMPRESSIONS = 706;
     /**
      * Number of clicks delivered by the Ad Exchange.
      * Corresponds to "Ad Exchange clicks" in the Ad Manager UI.
@@ -2102,6 +2122,15 @@ class Metric
      */
     const AVERAGE_SESSION_SECONDS = 228;
     /**
+     * Total impressions counted when creative begins to render.
+     * Corresponds to "Total begin to render impressions" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>BEGIN_TO_RENDER_IMPRESSIONS = 751;</code>
+     */
+    const BEGIN_TO_RENDER_IMPRESSIONS = 751;
+    /**
      * The number of bids.
      * Corresponds to "Bids" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`
@@ -2468,6 +2497,17 @@ class Metric
      */
     const EUROPEAN_REGULATIONS_CUSTOM_CONSENT_RATE = 271;
     /**
+     * Number of times a European regulations fallback message was shown to
+     *  users.
+     * Corresponds to "European regulations fallback messages shown" in the Ad
+     * Manager UI.
+     * Compatible with the following report types: `PRIVACY_AND_MESSAGING`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>EUROPEAN_REGULATIONS_FALLBACK_MESSAGES_SHOWN = 766;</code>
+     */
+    const EUROPEAN_REGULATIONS_FALLBACK_MESSAGES_SHOWN = 766;
+    /**
      * Number of times a European regulations message was shown to users.
      * Corresponds to "European regulations messages shown" in the Ad Manager
      * UI.
@@ -2477,6 +2517,17 @@ class Metric
      * Generated from protobuf enum <code>EUROPEAN_REGULATIONS_MESSAGES_SHOWN = 272;</code>
      */
     const EUROPEAN_REGULATIONS_MESSAGES_SHOWN = 272;
+    /**
+     * Number of times a non-blocking European regulations message was shown to
+     *  users.
+     * Corresponds to "European regulations non-blocking messages shown" in the
+     * Ad Manager UI.
+     * Compatible with the following report types: `PRIVACY_AND_MESSAGING`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>EUROPEAN_REGULATIONS_NON_BLOCKING_MESSAGES_SHOWN = 767;</code>
+     */
+    const EUROPEAN_REGULATIONS_NON_BLOCKING_MESSAGES_SHOWN = 767;
     /**
      * Percentage of European regulations messages where the user rejected all
      *  purposes and vendors.
@@ -3823,6 +3874,56 @@ class Metric
      * Generated from protobuf enum <code>SESSIONS = 239;</code>
      */
     const SESSIONS = 239;
+    /**
+     * The number of successfully matched ad requests for sponsored placement.
+     * Corresponds to "Sponsored placement matched ad requests" in the Ad
+     * Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>SPONSORED_PLACEMENT_MATCHED_AD_REQUESTS = 725;</code>
+     */
+    const SPONSORED_PLACEMENT_MATCHED_AD_REQUESTS = 725;
+    /**
+     * The number of successfully matched requests for sponsored placement
+     *  divided by the total number of requests for sponsored placement.
+     * Corresponds to "Sponsored placement slot fill rate" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `PERCENT`
+     *
+     * Generated from protobuf enum <code>SPONSORED_PLACEMENT_SLOT_FILL_RATE = 726;</code>
+     */
+    const SPONSORED_PLACEMENT_SLOT_FILL_RATE = 726;
+    /**
+     * The total number of ad requests for sponsored placement.
+     * Corresponds to "Sponsored placement total ad requests" in the Ad Manager
+     * UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>SPONSORED_PLACEMENT_TOTAL_AD_REQUESTS = 727;</code>
+     */
+    const SPONSORED_PLACEMENT_TOTAL_AD_REQUESTS = 727;
+    /**
+     * The number of unmatched ad requests for sponsored placement.
+     * Corresponds to "Sponsored placement unmatched ad requests" in the Ad
+     * Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>SPONSORED_PLACEMENT_UNMATCHED_AD_REQUESTS = 728;</code>
+     */
+    const SPONSORED_PLACEMENT_UNMATCHED_AD_REQUESTS = 728;
+    /**
+     * The number of successfully matched requests for sponsored product
+     *  divided by the total number of requests for sponsored product.
+     * Corresponds to "Sponsored product match rate" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `PERCENT`
+     *
+     * Generated from protobuf enum <code>SPONSORED_PRODUCT_MATCH_RATE = 729;</code>
+     */
+    const SPONSORED_PRODUCT_MATCH_RATE = 729;
     /**
      * Percent of tag load time to 1st ad request in [0, 500ms) range.
      * Corresponds to "Tag loaded to first ad request time 0 - 500ms (%)" in the
@@ -5242,6 +5343,16 @@ class Metric
      */
     const YIELD_GROUP_AUCTIONS_WON = 80;
     /**
+     * Total yield group impressions counted when creative begins to render.
+     * Corresponds to "Yield group begin to render impressions" in the Ad
+     * Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>YIELD_GROUP_BEGIN_TO_RENDER_IMPRESSIONS = 743;</code>
+     */
+    const YIELD_GROUP_BEGIN_TO_RENDER_IMPRESSIONS = 743;
+    /**
      * Number of bids received from Open Bidding buyers, regardless of whether
      *  the returned bid competes in an auction.
      * Corresponds to "Yield group bids" in the Ad Manager UI.
@@ -5406,6 +5517,7 @@ class Metric
         self::ADSENSE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_DISTRIBUTION => 'ADSENSE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_DISTRIBUTION',
         self::ADSENSE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE => 'ADSENSE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE',
         self::ADSENSE_AVERAGE_ECPM => 'ADSENSE_AVERAGE_ECPM',
+        self::ADSENSE_BEGIN_TO_RENDER_IMPRESSIONS => 'ADSENSE_BEGIN_TO_RENDER_IMPRESSIONS',
         self::ADSENSE_CLICKS => 'ADSENSE_CLICKS',
         self::ADSENSE_CTR => 'ADSENSE_CTR',
         self::ADSENSE_IMPRESSIONS => 'ADSENSE_IMPRESSIONS',
@@ -5428,6 +5540,7 @@ class Metric
         self::AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_DISTRIBUTION => 'AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_DISTRIBUTION',
         self::AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE => 'AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE',
         self::AD_EXCHANGE_AVERAGE_ECPM => 'AD_EXCHANGE_AVERAGE_ECPM',
+        self::AD_EXCHANGE_BEGIN_TO_RENDER_IMPRESSIONS => 'AD_EXCHANGE_BEGIN_TO_RENDER_IMPRESSIONS',
         self::AD_EXCHANGE_CLICKS => 'AD_EXCHANGE_CLICKS',
         self::AD_EXCHANGE_CPC => 'AD_EXCHANGE_CPC',
         self::AD_EXCHANGE_CTR => 'AD_EXCHANGE_CTR',
@@ -5568,6 +5681,7 @@ class Metric
         self::AVERAGE_PURCHASE_REVENUE_PER_PAYING_USER => 'AVERAGE_PURCHASE_REVENUE_PER_PAYING_USER',
         self::AVERAGE_REVENUE_PER_USER => 'AVERAGE_REVENUE_PER_USER',
         self::AVERAGE_SESSION_SECONDS => 'AVERAGE_SESSION_SECONDS',
+        self::BEGIN_TO_RENDER_IMPRESSIONS => 'BEGIN_TO_RENDER_IMPRESSIONS',
         self::BIDS => 'BIDS',
         self::BID_AVERAGE_CPM => 'BID_AVERAGE_CPM',
         self::BOUNCE_RATE => 'BOUNCE_RATE',
@@ -5606,7 +5720,9 @@ class Metric
         self::ENGAGEMENT_RATE => 'ENGAGEMENT_RATE',
         self::EUROPEAN_REGULATIONS_CONSENT_RATE => 'EUROPEAN_REGULATIONS_CONSENT_RATE',
         self::EUROPEAN_REGULATIONS_CUSTOM_CONSENT_RATE => 'EUROPEAN_REGULATIONS_CUSTOM_CONSENT_RATE',
+        self::EUROPEAN_REGULATIONS_FALLBACK_MESSAGES_SHOWN => 'EUROPEAN_REGULATIONS_FALLBACK_MESSAGES_SHOWN',
         self::EUROPEAN_REGULATIONS_MESSAGES_SHOWN => 'EUROPEAN_REGULATIONS_MESSAGES_SHOWN',
+        self::EUROPEAN_REGULATIONS_NON_BLOCKING_MESSAGES_SHOWN => 'EUROPEAN_REGULATIONS_NON_BLOCKING_MESSAGES_SHOWN',
         self::EUROPEAN_REGULATIONS_NO_CONSENT_RATE => 'EUROPEAN_REGULATIONS_NO_CONSENT_RATE',
         self::FILL_RATE => 'FILL_RATE',
         self::GOOGLE_ANALYTICS_CLICKS => 'GOOGLE_ANALYTICS_CLICKS',
@@ -5745,6 +5861,11 @@ class Metric
         self::SERVER_SIDE_UNWRAPPING_SUCCESSFUL_RESPONSES => 'SERVER_SIDE_UNWRAPPING_SUCCESSFUL_RESPONSES',
         self::SERVER_SIDE_UNWRAPPING_TIMEOUTS => 'SERVER_SIDE_UNWRAPPING_TIMEOUTS',
         self::SESSIONS => 'SESSIONS',
+        self::SPONSORED_PLACEMENT_MATCHED_AD_REQUESTS => 'SPONSORED_PLACEMENT_MATCHED_AD_REQUESTS',
+        self::SPONSORED_PLACEMENT_SLOT_FILL_RATE => 'SPONSORED_PLACEMENT_SLOT_FILL_RATE',
+        self::SPONSORED_PLACEMENT_TOTAL_AD_REQUESTS => 'SPONSORED_PLACEMENT_TOTAL_AD_REQUESTS',
+        self::SPONSORED_PLACEMENT_UNMATCHED_AD_REQUESTS => 'SPONSORED_PLACEMENT_UNMATCHED_AD_REQUESTS',
+        self::SPONSORED_PRODUCT_MATCH_RATE => 'SPONSORED_PRODUCT_MATCH_RATE',
         self::TAG_LOAD_TO_FIRST_AD_REQUEST_0_500_PERCENT => 'TAG_LOAD_TO_FIRST_AD_REQUEST_0_500_PERCENT',
         self::TAG_LOAD_TO_FIRST_AD_REQUEST_1000_2000_PERCENT => 'TAG_LOAD_TO_FIRST_AD_REQUEST_1000_2000_PERCENT',
         self::TAG_LOAD_TO_FIRST_AD_REQUEST_2000_4000_PERCENT => 'TAG_LOAD_TO_FIRST_AD_REQUEST_2000_4000_PERCENT',
@@ -5897,6 +6018,7 @@ class Metric
         self::VIDEO_VIEWERSHIP_VIDEO_LENGTH => 'VIDEO_VIEWERSHIP_VIDEO_LENGTH',
         self::VIDEO_VIEWERSHIP_VIEW_THROUGH_RATE => 'VIDEO_VIEWERSHIP_VIEW_THROUGH_RATE',
         self::YIELD_GROUP_AUCTIONS_WON => 'YIELD_GROUP_AUCTIONS_WON',
+        self::YIELD_GROUP_BEGIN_TO_RENDER_IMPRESSIONS => 'YIELD_GROUP_BEGIN_TO_RENDER_IMPRESSIONS',
         self::YIELD_GROUP_BIDS => 'YIELD_GROUP_BIDS',
         self::YIELD_GROUP_BIDS_IN_AUCTION => 'YIELD_GROUP_BIDS_IN_AUCTION',
         self::YIELD_GROUP_CALLOUTS => 'YIELD_GROUP_CALLOUTS',

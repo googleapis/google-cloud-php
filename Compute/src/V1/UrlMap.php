@@ -200,6 +200,12 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
+     * Output only. [Output Only] The status of the URL map.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UrlMapStatus status = 181260274;</code>
+     */
+    protected $status = null;
+    /**
      * The list of expected URL mapping tests. Request to update theUrlMap succeeds only if all test cases pass. You can specify a
      * maximum of 100 tests per UrlMap.
      * Not supported when the URL map is bound to a target gRPC proxy that
@@ -317,6 +323,8 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      *           not settable as a field in the request body.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
+     *     @type \Google\Cloud\Compute\V1\UrlMapStatus $status
+     *           Output only. [Output Only] The status of the URL map.
      *     @type \Google\Cloud\Compute\V1\UrlMapTest[] $tests
      *           The list of expected URL mapping tests. Request to update theUrlMap succeeds only if all test cases pass. You can specify a
      *           maximum of 100 tests per UrlMap.
@@ -989,6 +997,42 @@ class UrlMap extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->self_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] The status of the URL map.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UrlMapStatus status = 181260274;</code>
+     * @return \Google\Cloud\Compute\V1\UrlMapStatus|null
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
+    }
+
+    /**
+     * Output only. [Output Only] The status of the URL map.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UrlMapStatus status = 181260274;</code>
+     * @param \Google\Cloud\Compute\V1\UrlMapStatus $var
+     * @return $this
+     */
+    public function setStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\UrlMapStatus::class);
+        $this->status = $var;
 
         return $this;
     }

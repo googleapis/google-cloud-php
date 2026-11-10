@@ -24,9 +24,22 @@
 
 namespace Google\Ads\AdManager\V1\Client;
 
+use Google\Ads\AdManager\V1\BatchActivateLineItemCreativeAssociationsRequest;
+use Google\Ads\AdManager\V1\BatchActivateLineItemCreativeAssociationsResponse;
+use Google\Ads\AdManager\V1\BatchCreateLineItemCreativeAssociationsRequest;
+use Google\Ads\AdManager\V1\BatchCreateLineItemCreativeAssociationsResponse;
+use Google\Ads\AdManager\V1\BatchDeactivateLineItemCreativeAssociationsRequest;
+use Google\Ads\AdManager\V1\BatchDeactivateLineItemCreativeAssociationsResponse;
+use Google\Ads\AdManager\V1\BatchDeleteLineItemCreativeAssociationsRequest;
+use Google\Ads\AdManager\V1\BatchUpdateLineItemCreativeAssociationsRequest;
+use Google\Ads\AdManager\V1\BatchUpdateLineItemCreativeAssociationsResponse;
+use Google\Ads\AdManager\V1\CreateLineItemCreativeAssociationRequest;
 use Google\Ads\AdManager\V1\GetLineItemCreativeAssociationRequest;
 use Google\Ads\AdManager\V1\LineItemCreativeAssociation;
 use Google\Ads\AdManager\V1\ListLineItemCreativeAssociationsRequest;
+use Google\Ads\AdManager\V1\PreviewLineItemCreativeAssociationRequest;
+use Google\Ads\AdManager\V1\PreviewLineItemCreativeAssociationResponse;
+use Google\Ads\AdManager\V1\UpdateLineItemCreativeAssociationRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -51,8 +64,16 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<BatchActivateLineItemCreativeAssociationsResponse> batchActivateLineItemCreativeAssociationsAsync(BatchActivateLineItemCreativeAssociationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateLineItemCreativeAssociationsResponse> batchCreateLineItemCreativeAssociationsAsync(BatchCreateLineItemCreativeAssociationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchDeactivateLineItemCreativeAssociationsResponse> batchDeactivateLineItemCreativeAssociationsAsync(BatchDeactivateLineItemCreativeAssociationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> batchDeleteLineItemCreativeAssociationsAsync(BatchDeleteLineItemCreativeAssociationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateLineItemCreativeAssociationsResponse> batchUpdateLineItemCreativeAssociationsAsync(BatchUpdateLineItemCreativeAssociationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LineItemCreativeAssociation> createLineItemCreativeAssociationAsync(CreateLineItemCreativeAssociationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<LineItemCreativeAssociation> getLineItemCreativeAssociationAsync(GetLineItemCreativeAssociationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLineItemCreativeAssociationsAsync(ListLineItemCreativeAssociationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PreviewLineItemCreativeAssociationResponse> previewLineItemCreativeAssociationAsync(PreviewLineItemCreativeAssociationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LineItemCreativeAssociation> updateLineItemCreativeAssociationAsync(UpdateLineItemCreativeAssociationRequest $request, array $optionalArgs = [])
  */
 final class LineItemCreativeAssociationServiceClient
 {
@@ -122,6 +143,40 @@ final class LineItemCreativeAssociationServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a creative
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $creative
+     *
+     * @return string The formatted creative resource.
+     */
+    public static function creativeName(string $networkCode, string $creative): string
+    {
+        return self::getPathTemplate('creative')->render([
+            'network_code' => $networkCode,
+            'creative' => $creative,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a creative_set
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $creativeSet
+     *
+     * @return string The formatted creative_set resource.
+     */
+    public static function creativeSetName(string $networkCode, string $creativeSet): string
+    {
+        return self::getPathTemplate('creativeSet')->render([
+            'network_code' => $networkCode,
+            'creative_set' => $creativeSet,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a line_item
      * resource.
      *
@@ -164,6 +219,8 @@ final class LineItemCreativeAssociationServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - creative: networks/{network_code}/creatives/{creative}
+     * - creativeSet: networks/{network_code}/creativeSets/{creative_set}
      * - lineItem: networks/{network_code}/lineItems/{line_item}
      * - lineItemCreativeAssociation: networks/{network_code}/lineItems/{line_item}/creatives/{creative}
      *
@@ -269,6 +326,184 @@ final class LineItemCreativeAssociationServiceClient
     }
 
     /**
+     * Activate a list of `LineItemCreativeAssociation` objects.
+     *
+     * The async variant is
+     * {@see LineItemCreativeAssociationServiceClient::batchActivateLineItemCreativeAssociationsAsync()}
+     * .
+     *
+     * @example samples/V1/LineItemCreativeAssociationServiceClient/batch_activate_line_item_creative_associations.php
+     *
+     * @param BatchActivateLineItemCreativeAssociationsRequest $request     A request to house fields associated with the call.
+     * @param array                                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchActivateLineItemCreativeAssociationsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchActivateLineItemCreativeAssociations(
+        BatchActivateLineItemCreativeAssociationsRequest $request,
+        array $callOptions = []
+    ): BatchActivateLineItemCreativeAssociationsResponse {
+        return $this->startApiCall('BatchActivateLineItemCreativeAssociations', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates `LineItemCreativeAssociation` objects.
+     *
+     * The async variant is
+     * {@see LineItemCreativeAssociationServiceClient::batchCreateLineItemCreativeAssociationsAsync()}
+     * .
+     *
+     * @example samples/V1/LineItemCreativeAssociationServiceClient/batch_create_line_item_creative_associations.php
+     *
+     * @param BatchCreateLineItemCreativeAssociationsRequest $request     A request to house fields associated with the call.
+     * @param array                                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchCreateLineItemCreativeAssociationsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchCreateLineItemCreativeAssociations(
+        BatchCreateLineItemCreativeAssociationsRequest $request,
+        array $callOptions = []
+    ): BatchCreateLineItemCreativeAssociationsResponse {
+        return $this->startApiCall('BatchCreateLineItemCreativeAssociations', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deactivates a list of `LineItemCreativeAssociation` objects.
+     *
+     * The async variant is
+     * {@see LineItemCreativeAssociationServiceClient::batchDeactivateLineItemCreativeAssociationsAsync()}
+     * .
+     *
+     * @example samples/V1/LineItemCreativeAssociationServiceClient/batch_deactivate_line_item_creative_associations.php
+     *
+     * @param BatchDeactivateLineItemCreativeAssociationsRequest $request     A request to house fields associated with the call.
+     * @param array                                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchDeactivateLineItemCreativeAssociationsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchDeactivateLineItemCreativeAssociations(
+        BatchDeactivateLineItemCreativeAssociationsRequest $request,
+        array $callOptions = []
+    ): BatchDeactivateLineItemCreativeAssociationsResponse {
+        return $this->startApiCall('BatchDeactivateLineItemCreativeAssociations', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a list of `LineItemCreativeAssociation` objects.
+     *
+     * The async variant is
+     * {@see LineItemCreativeAssociationServiceClient::batchDeleteLineItemCreativeAssociationsAsync()}
+     * .
+     *
+     * @example samples/V1/LineItemCreativeAssociationServiceClient/batch_delete_line_item_creative_associations.php
+     *
+     * @param BatchDeleteLineItemCreativeAssociationsRequest $request     A request to house fields associated with the call.
+     * @param array                                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchDeleteLineItemCreativeAssociations(
+        BatchDeleteLineItemCreativeAssociationsRequest $request,
+        array $callOptions = []
+    ): void {
+        $this->startApiCall('BatchDeleteLineItemCreativeAssociations', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Batch updates `LineItemCreativeAssociation` objects.
+     *
+     * The async variant is
+     * {@see LineItemCreativeAssociationServiceClient::batchUpdateLineItemCreativeAssociationsAsync()}
+     * .
+     *
+     * @example samples/V1/LineItemCreativeAssociationServiceClient/batch_update_line_item_creative_associations.php
+     *
+     * @param BatchUpdateLineItemCreativeAssociationsRequest $request     A request to house fields associated with the call.
+     * @param array                                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchUpdateLineItemCreativeAssociationsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchUpdateLineItemCreativeAssociations(
+        BatchUpdateLineItemCreativeAssociationsRequest $request,
+        array $callOptions = []
+    ): BatchUpdateLineItemCreativeAssociationsResponse {
+        return $this->startApiCall('BatchUpdateLineItemCreativeAssociations', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a `LineItemCreativeAssociation` object.
+     *
+     * The async variant is
+     * {@see LineItemCreativeAssociationServiceClient::createLineItemCreativeAssociationAsync()}
+     * .
+     *
+     * @example samples/V1/LineItemCreativeAssociationServiceClient/create_line_item_creative_association.php
+     *
+     * @param CreateLineItemCreativeAssociationRequest $request     A request to house fields associated with the call.
+     * @param array                                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return LineItemCreativeAssociation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createLineItemCreativeAssociation(
+        CreateLineItemCreativeAssociationRequest $request,
+        array $callOptions = []
+    ): LineItemCreativeAssociation {
+        return $this->startApiCall('CreateLineItemCreativeAssociation', $request, $callOptions)->wait();
+    }
+
+    /**
      * Retrieves a `LineItemCreativeAssociation` object.
      *
      * The async variant is
@@ -326,5 +561,66 @@ final class LineItemCreativeAssociationServiceClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListLineItemCreativeAssociations', $request, $callOptions);
+    }
+
+    /**
+     * Fetch previews for the
+     * [LineItemCreativeAssociation][google.ads.admanager.v1.LineItemCreativeAssociation].
+     *
+     * The async variant is
+     * {@see LineItemCreativeAssociationServiceClient::previewLineItemCreativeAssociationAsync()}
+     * .
+     *
+     * @example samples/V1/LineItemCreativeAssociationServiceClient/preview_line_item_creative_association.php
+     *
+     * @param PreviewLineItemCreativeAssociationRequest $request     A request to house fields associated with the call.
+     * @param array                                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PreviewLineItemCreativeAssociationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function previewLineItemCreativeAssociation(
+        PreviewLineItemCreativeAssociationRequest $request,
+        array $callOptions = []
+    ): PreviewLineItemCreativeAssociationResponse {
+        return $this->startApiCall('PreviewLineItemCreativeAssociation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a `LineItemCreativeAssociation` object.
+     *
+     * The async variant is
+     * {@see LineItemCreativeAssociationServiceClient::updateLineItemCreativeAssociationAsync()}
+     * .
+     *
+     * @example samples/V1/LineItemCreativeAssociationServiceClient/update_line_item_creative_association.php
+     *
+     * @param UpdateLineItemCreativeAssociationRequest $request     A request to house fields associated with the call.
+     * @param array                                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return LineItemCreativeAssociation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateLineItemCreativeAssociation(
+        UpdateLineItemCreativeAssociationRequest $request,
+        array $callOptions = []
+    ): LineItemCreativeAssociation {
+        return $this->startApiCall('UpdateLineItemCreativeAssociation', $request, $callOptions)->wait();
     }
 }

@@ -23,6 +23,9 @@ class DeliverInfo extends \Google\Protobuf\Internal\Message
     protected $target = 0;
     /**
      * URI of the resource that the packet is delivered to.
+     * For example:
+     * * `"projects/{project}/zones/{zone}/instances/{instance}"`
+     * * `"projects/{project}/regions/{region}/networkEndpointGroups/{network_endpoint_group}"`
      *
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      */
@@ -64,6 +67,9 @@ class DeliverInfo extends \Google\Protobuf\Internal\Message
      *           Target type where the packet is delivered to.
      *     @type string $resource_uri
      *           URI of the resource that the packet is delivered to.
+     *           For example:
+     *           * `"projects/{project}/zones/{zone}/instances/{instance}"`
+     *           * `"projects/{project}/regions/{region}/networkEndpointGroups/{network_endpoint_group}"`
      *     @type string $ip_address
      *           IP address of the target (if applicable).
      *     @type string $storage_bucket
@@ -109,6 +115,9 @@ class DeliverInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the resource that the packet is delivered to.
+     * For example:
+     * * `"projects/{project}/zones/{zone}/instances/{instance}"`
+     * * `"projects/{project}/regions/{region}/networkEndpointGroups/{network_endpoint_group}"`
      *
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      * @return string
@@ -120,6 +129,9 @@ class DeliverInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the resource that the packet is delivered to.
+     * For example:
+     * * `"projects/{project}/zones/{zone}/instances/{instance}"`
+     * * `"projects/{project}/regions/{region}/networkEndpointGroups/{network_endpoint_group}"`
      *
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      * @param string $var

@@ -31,7 +31,7 @@ class UserProperties extends \Google\Protobuf\Internal\Message
     protected $customer_value_bucket = 0;
     /**
      * Optional. A bucket of any additional [user
-     * properties](https://developers.google.com/analytics/devguides/collection/protocol/ga4/user-properties)
+     * properties](https://support.google.com/analytics/answer/9355671)
      * for the user associated with this event.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.UserProperty additional_user_properties = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -50,7 +50,7 @@ class UserProperties extends \Google\Protobuf\Internal\Message
      *           Optional. The advertiser-assessed value of the customer.
      *     @type \Google\Ads\DataManager\V1\UserProperty[] $additional_user_properties
      *           Optional. A bucket of any additional [user
-     *           properties](https://developers.google.com/analytics/devguides/collection/protocol/ga4/user-properties)
+     *           properties](https://support.google.com/analytics/answer/9355671)
      *           for the user associated with this event.
      * }
      */
@@ -113,7 +113,7 @@ class UserProperties extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A bucket of any additional [user
-     * properties](https://developers.google.com/analytics/devguides/collection/protocol/ga4/user-properties)
+     * properties](https://support.google.com/analytics/answer/9355671)
      * for the user associated with this event.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.UserProperty additional_user_properties = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -126,7 +126,7 @@ class UserProperties extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A bucket of any additional [user
-     * properties](https://developers.google.com/analytics/devguides/collection/protocol/ga4/user-properties)
+     * properties](https://support.google.com/analytics/answer/9355671)
      * for the user associated with this event.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.UserProperty additional_user_properties = 3 [(.google.api.field_behavior) = OPTIONAL];</code>

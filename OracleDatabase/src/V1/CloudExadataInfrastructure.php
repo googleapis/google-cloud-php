@@ -25,17 +25,17 @@ class CloudExadataInfrastructure extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Optional. User friendly name for this resource.
+     * Optional. Immutable. User friendly name for this resource.
      *
-     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $display_name = '';
     /**
-     * Optional. The GCP Oracle zone where Oracle Exadata Infrastructure is
-     * hosted. Example: us-east4-b-r2. If not specified, the system will pick a
-     * zone based on availability.
+     * Optional. Immutable. The GCP Oracle zone where Oracle Exadata
+     * Infrastructure is hosted. Example: us-east4-b-r2. If not specified, the
+     * system will pick a zone based on availability.
      *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string gcp_oracle_zone = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $gcp_oracle_zone = '';
     /**
@@ -46,9 +46,9 @@ class CloudExadataInfrastructure extends \Google\Protobuf\Internal\Message
      */
     protected $entitlement_id = '';
     /**
-     * Optional. Various properties of the infra.
+     * Optional. Immutable. Various properties of the infra.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudExadataInfrastructureProperties properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudExadataInfrastructureProperties properties = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $properties = null;
     /**
@@ -75,16 +75,16 @@ class CloudExadataInfrastructure extends \Google\Protobuf\Internal\Message
      *           format:
      *           projects/{project}/locations/{region}/cloudExadataInfrastructures/{cloud_exadata_infrastructure}
      *     @type string $display_name
-     *           Optional. User friendly name for this resource.
+     *           Optional. Immutable. User friendly name for this resource.
      *     @type string $gcp_oracle_zone
-     *           Optional. The GCP Oracle zone where Oracle Exadata Infrastructure is
-     *           hosted. Example: us-east4-b-r2. If not specified, the system will pick a
-     *           zone based on availability.
+     *           Optional. Immutable. The GCP Oracle zone where Oracle Exadata
+     *           Infrastructure is hosted. Example: us-east4-b-r2. If not specified, the
+     *           system will pick a zone based on availability.
      *     @type string $entitlement_id
      *           Output only. Entitlement ID of the private offer against which this
      *           infrastructure resource is provisioned.
      *     @type \Google\Cloud\OracleDatabase\V1\CloudExadataInfrastructureProperties $properties
-     *           Optional. Various properties of the infra.
+     *           Optional. Immutable. Various properties of the infra.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels or tags associated with the resource.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -127,9 +127,9 @@ class CloudExadataInfrastructure extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User friendly name for this resource.
+     * Optional. Immutable. User friendly name for this resource.
      *
-     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getDisplayName()
@@ -138,9 +138,9 @@ class CloudExadataInfrastructure extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User friendly name for this resource.
+     * Optional. Immutable. User friendly name for this resource.
      *
-     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -153,11 +153,11 @@ class CloudExadataInfrastructure extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The GCP Oracle zone where Oracle Exadata Infrastructure is
-     * hosted. Example: us-east4-b-r2. If not specified, the system will pick a
-     * zone based on availability.
+     * Optional. Immutable. The GCP Oracle zone where Oracle Exadata
+     * Infrastructure is hosted. Example: us-east4-b-r2. If not specified, the
+     * system will pick a zone based on availability.
      *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string gcp_oracle_zone = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getGcpOracleZone()
@@ -166,11 +166,11 @@ class CloudExadataInfrastructure extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The GCP Oracle zone where Oracle Exadata Infrastructure is
-     * hosted. Example: us-east4-b-r2. If not specified, the system will pick a
-     * zone based on availability.
+     * Optional. Immutable. The GCP Oracle zone where Oracle Exadata
+     * Infrastructure is hosted. Example: us-east4-b-r2. If not specified, the
+     * system will pick a zone based on availability.
      *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string gcp_oracle_zone = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -211,9 +211,9 @@ class CloudExadataInfrastructure extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Various properties of the infra.
+     * Optional. Immutable. Various properties of the infra.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudExadataInfrastructureProperties properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudExadataInfrastructureProperties properties = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Cloud\OracleDatabase\V1\CloudExadataInfrastructureProperties|null
      */
     public function getProperties()
@@ -232,9 +232,9 @@ class CloudExadataInfrastructure extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Various properties of the infra.
+     * Optional. Immutable. Various properties of the infra.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudExadataInfrastructureProperties properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudExadataInfrastructureProperties properties = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\OracleDatabase\V1\CloudExadataInfrastructureProperties $var
      * @return $this
      */

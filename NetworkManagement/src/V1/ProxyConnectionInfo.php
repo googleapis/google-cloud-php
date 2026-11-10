@@ -73,13 +73,16 @@ class ProxyConnectionInfo extends \Google\Protobuf\Internal\Message
      */
     protected $new_destination_port = 0;
     /**
-     * Uri of proxy subnet.
+     * URI of the proxy subnet.
+     * Format:
+     * `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`
      *
      * Generated from protobuf field <code>string subnet_uri = 10;</code>
      */
     protected $subnet_uri = '';
     /**
-     * URI of the network where connection is proxied.
+     * URI of the VPC network where connection is proxied.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string network_uri = 11;</code>
      */
@@ -113,9 +116,12 @@ class ProxyConnectionInfo extends \Google\Protobuf\Internal\Message
      *           Destination port of a new connection. Only valid when protocol is TCP or
      *           UDP.
      *     @type string $subnet_uri
-     *           Uri of proxy subnet.
+     *           URI of the proxy subnet.
+     *           Format:
+     *           `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`
      *     @type string $network_uri
-     *           URI of the network where connection is proxied.
+     *           URI of the VPC network where connection is proxied.
+     *           Format: `projects/{project_id}/global/networks/{network_id}`
      * }
      */
     public function __construct($data = NULL) {
@@ -364,7 +370,9 @@ class ProxyConnectionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Uri of proxy subnet.
+     * URI of the proxy subnet.
+     * Format:
+     * `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`
      *
      * Generated from protobuf field <code>string subnet_uri = 10;</code>
      * @return string
@@ -375,7 +383,9 @@ class ProxyConnectionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Uri of proxy subnet.
+     * URI of the proxy subnet.
+     * Format:
+     * `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`
      *
      * Generated from protobuf field <code>string subnet_uri = 10;</code>
      * @param string $var
@@ -390,7 +400,8 @@ class ProxyConnectionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the network where connection is proxied.
+     * URI of the VPC network where connection is proxied.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string network_uri = 11;</code>
      * @return string
@@ -401,7 +412,8 @@ class ProxyConnectionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the network where connection is proxied.
+     * URI of the VPC network where connection is proxied.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string network_uri = 11;</code>
      * @param string $var

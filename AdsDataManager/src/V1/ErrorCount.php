@@ -27,6 +27,13 @@ class ErrorCount extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.ads.datamanager.v1.ProcessingErrorReason reason = 2;</code>
      */
     protected $reason = 0;
+    /**
+     * The 0-based indices of the records in the original request that failed
+     * with this error reason.
+     *
+     * Generated from protobuf field <code>repeated int32 record_indices = 3;</code>
+     */
+    private $record_indices;
 
     /**
      * Constructor.
@@ -38,6 +45,9 @@ class ErrorCount extends \Google\Protobuf\Internal\Message
      *           The count of records that failed to upload for a given reason.
      *     @type int $reason
      *           The error reason of the failed records.
+     *     @type int[] $record_indices
+     *           The 0-based indices of the records in the original request that failed
+     *           with this error reason.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +103,34 @@ class ErrorCount extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Ads\DataManager\V1\ProcessingErrorReason::class);
         $this->reason = $var;
+
+        return $this;
+    }
+
+    /**
+     * The 0-based indices of the records in the original request that failed
+     * with this error reason.
+     *
+     * Generated from protobuf field <code>repeated int32 record_indices = 3;</code>
+     * @return RepeatedField<int>
+     */
+    public function getRecordIndices()
+    {
+        return $this->record_indices;
+    }
+
+    /**
+     * The 0-based indices of the records in the original request that failed
+     * with this error reason.
+     *
+     * Generated from protobuf field <code>repeated int32 record_indices = 3;</code>
+     * @param int[] $var
+     * @return $this
+     */
+    public function setRecordIndices($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT32);
+        $this->record_indices = $arr;
 
         return $this;
     }

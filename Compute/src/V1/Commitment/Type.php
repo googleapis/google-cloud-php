@@ -211,6 +211,36 @@ class Type
      */
     const MEMORY_OPTIMIZED_X4_960_16T = 424752534;
     /**
+     * CUD bucket for X5 machine with 1376 vCPUs and 24TB of memory.
+     *
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X5_1376_24T = 287823040;</code>
+     */
+    const MEMORY_OPTIMIZED_X5_1376_24T = 287823040;
+    /**
+     * CUD bucket for X5 machine with 1376 vCPUs and 32TB of memory.
+     *
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X5_1376_32T = 287823939;</code>
+     */
+    const MEMORY_OPTIMIZED_X5_1376_32T = 287823939;
+    /**
+     * CUD bucket for X5 machine with 2064 vCPUs and 48TB of memory.
+     *
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X5_2064_48T = 411390009;</code>
+     */
+    const MEMORY_OPTIMIZED_X5_2064_48T = 411390009;
+    /**
+     * CUD bucket for X5 machine with 688 vCPUs and 12TB of memory.
+     *
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X5_688_12T = 314400670;</code>
+     */
+    const MEMORY_OPTIMIZED_X5_688_12T = 314400670;
+    /**
+     * CUD bucket for X5 machine with 688 vCPUs and 16TB of memory.
+     *
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X5_688_16T = 314400794;</code>
+     */
+    const MEMORY_OPTIMIZED_X5_688_16T = 314400794;
+    /**
      * CUD bucket for C4N (dual Diorite) machines.
      *
      * Generated from protobuf enum <code>NETWORK_OPTIMIZED_C4N = 147027572;</code>
@@ -314,6 +344,11 @@ class Type
         self::MEMORY_OPTIMIZED_X4_480_8T => 'MEMORY_OPTIMIZED_X4_480_8T',
         self::MEMORY_OPTIMIZED_X4_960_12T => 'MEMORY_OPTIMIZED_X4_960_12T',
         self::MEMORY_OPTIMIZED_X4_960_16T => 'MEMORY_OPTIMIZED_X4_960_16T',
+        self::MEMORY_OPTIMIZED_X5_1376_24T => 'MEMORY_OPTIMIZED_X5_1376_24T',
+        self::MEMORY_OPTIMIZED_X5_1376_32T => 'MEMORY_OPTIMIZED_X5_1376_32T',
+        self::MEMORY_OPTIMIZED_X5_2064_48T => 'MEMORY_OPTIMIZED_X5_2064_48T',
+        self::MEMORY_OPTIMIZED_X5_688_12T => 'MEMORY_OPTIMIZED_X5_688_12T',
+        self::MEMORY_OPTIMIZED_X5_688_16T => 'MEMORY_OPTIMIZED_X5_688_16T',
         self::NETWORK_OPTIMIZED_C4N => 'NETWORK_OPTIMIZED_C4N',
         self::NETWORK_OPTIMIZED_U4C => 'NETWORK_OPTIMIZED_U4C',
         self::NETWORK_OPTIMIZED_U4P => 'NETWORK_OPTIMIZED_U4P',

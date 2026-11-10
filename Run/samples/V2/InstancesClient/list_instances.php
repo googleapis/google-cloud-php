@@ -32,9 +32,7 @@ use Google\Cloud\Run\V2\ListInstancesRequest;
 /**
  * Lists Instances. Results are sorted by creation time, descending.
  *
- * @param string $formattedParent The location and project to list resources on.
- *                                Format: projects/{project}/locations/{location}, where {project} can be
- *                                project id or number. Please see
+ * @param string $formattedParent The location and project to list resources on. Please see
  *                                {@see InstancesClient::locationName()} for help formatting this field.
  */
 function list_instances_sample(string $formattedParent): void

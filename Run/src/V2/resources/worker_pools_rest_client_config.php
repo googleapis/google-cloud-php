@@ -34,9 +34,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'worker_pool_id',
-                ],
             ],
             'DeleteWorkerPool' => [
                 'method' => 'delete',

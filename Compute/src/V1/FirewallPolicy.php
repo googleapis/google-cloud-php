@@ -99,6 +99,20 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $parent = null;
     /**
+     * Indicates the source of this Firewall Policy. This field is optional on
+     * creation and defaults to USER_DEFINED.
+     * The USER_DEFINED value indicates a regular firewall policy.
+     * The SYSTEM value indicates a system-level policy managed by an
+     * internal service like GKE. This SYSTEM value is reserved for
+     * internal services and cannot be set by users during policy creation.
+     * Policies with a SYSTEM source cannot be modified or deleted by
+     * users.
+     * Check the PolicySource enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string policy_source = 232383432;</code>
+     */
+    protected $policy_source = null;
+    /**
      * The type of the firewall policy. This field can be one of
      * VPC_POLICY, RDMA_ROCE_POLICY or ULL_POLICY.
      * Note: if not specified then VPC_POLICY will be used.
@@ -209,6 +223,16 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Output only. [Output Only] The parent of the firewall policy.
      *           This field is not applicable to network firewall policies.
+     *     @type string $policy_source
+     *           Indicates the source of this Firewall Policy. This field is optional on
+     *           creation and defaults to USER_DEFINED.
+     *           The USER_DEFINED value indicates a regular firewall policy.
+     *           The SYSTEM value indicates a system-level policy managed by an
+     *           internal service like GKE. This SYSTEM value is reserved for
+     *           internal services and cannot be set by users during policy creation.
+     *           Policies with a SYSTEM source cannot be modified or deleted by
+     *           users.
+     *           Check the PolicySource enum for the list of possible values.
      *     @type string $policy_type
      *           The type of the firewall policy. This field can be one of
      *           VPC_POLICY, RDMA_ROCE_POLICY or ULL_POLICY.
@@ -631,6 +655,58 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates the source of this Firewall Policy. This field is optional on
+     * creation and defaults to USER_DEFINED.
+     * The USER_DEFINED value indicates a regular firewall policy.
+     * The SYSTEM value indicates a system-level policy managed by an
+     * internal service like GKE. This SYSTEM value is reserved for
+     * internal services and cannot be set by users during policy creation.
+     * Policies with a SYSTEM source cannot be modified or deleted by
+     * users.
+     * Check the PolicySource enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string policy_source = 232383432;</code>
+     * @return string
+     */
+    public function getPolicySource()
+    {
+        return isset($this->policy_source) ? $this->policy_source : '';
+    }
+
+    public function hasPolicySource()
+    {
+        return isset($this->policy_source);
+    }
+
+    public function clearPolicySource()
+    {
+        unset($this->policy_source);
+    }
+
+    /**
+     * Indicates the source of this Firewall Policy. This field is optional on
+     * creation and defaults to USER_DEFINED.
+     * The USER_DEFINED value indicates a regular firewall policy.
+     * The SYSTEM value indicates a system-level policy managed by an
+     * internal service like GKE. This SYSTEM value is reserved for
+     * internal services and cannot be set by users during policy creation.
+     * Policies with a SYSTEM source cannot be modified or deleted by
+     * users.
+     * Check the PolicySource enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string policy_source = 232383432;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPolicySource($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->policy_source = $var;
 
         return $this;
     }

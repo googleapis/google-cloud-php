@@ -35,11 +35,18 @@ class AttestationFormat
      * Generated from protobuf enum <code>CAVIUM_V2_COMPRESSED = 4;</code>
      */
     const CAVIUM_V2_COMPRESSED = 4;
+    /**
+     * Cavium HSM attestation V209, introduced in Cavium's version 2.09-0702.
+     *
+     * Generated from protobuf enum <code>CAVIUM_V209 = 5;</code>
+     */
+    const CAVIUM_V209 = 5;
 
     private static $valueToName = [
         self::ATTESTATION_FORMAT_UNSPECIFIED => 'ATTESTATION_FORMAT_UNSPECIFIED',
         self::CAVIUM_V1_COMPRESSED => 'CAVIUM_V1_COMPRESSED',
         self::CAVIUM_V2_COMPRESSED => 'CAVIUM_V2_COMPRESSED',
+        self::CAVIUM_V209 => 'CAVIUM_V209',
     ];
 
     public static function name($value)

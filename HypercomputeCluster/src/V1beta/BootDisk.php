@@ -17,19 +17,31 @@ use Google\Protobuf\RepeatedField;
 class BootDisk extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Immutable. [Persistent disk
+     * Optional. [Persistent disk
      * type](https://cloud.google.com/compute/docs/disks#disk-types), in the
      * format `projects/{project}/zones/{zone}/diskTypes/{disk_type}`.
      *
-     * Generated from protobuf field <code>string type = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string type = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $type = '';
     /**
-     * Required. Immutable. Size of the disk in gigabytes. Must be at least 10GB.
+     * Optional. The size of the disk in gigabytes (GB), which must be at least 40
+     * GB.
      *
-     * Generated from protobuf field <code>int64 size_gb = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>int64 size_gb = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $size_gb = 0;
+    /**
+     * Optional. The [storage
+     * pools](https://docs.cloud.google.com/compute/docs/disks/storage-pools) used
+     * for creating the boot disk, in the format:
+     * `projects/{project}/zones/{zone}/storagePools/{storage_pool}`.
+     * Currently, only one Hyperdisk Balanced storage pool is supported.
+     * The storage pool must reside in the same zone as the compute instance.
+     *
+     * Generated from protobuf field <code>repeated string storage_pools = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $storage_pools;
 
     /**
      * Constructor.
@@ -38,11 +50,19 @@ class BootDisk extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $type
-     *           Required. Immutable. [Persistent disk
+     *           Optional. [Persistent disk
      *           type](https://cloud.google.com/compute/docs/disks#disk-types), in the
      *           format `projects/{project}/zones/{zone}/diskTypes/{disk_type}`.
      *     @type int|string $size_gb
-     *           Required. Immutable. Size of the disk in gigabytes. Must be at least 10GB.
+     *           Optional. The size of the disk in gigabytes (GB), which must be at least 40
+     *           GB.
+     *     @type string[] $storage_pools
+     *           Optional. The [storage
+     *           pools](https://docs.cloud.google.com/compute/docs/disks/storage-pools) used
+     *           for creating the boot disk, in the format:
+     *           `projects/{project}/zones/{zone}/storagePools/{storage_pool}`.
+     *           Currently, only one Hyperdisk Balanced storage pool is supported.
+     *           The storage pool must reside in the same zone as the compute instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -51,11 +71,11 @@ class BootDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. [Persistent disk
+     * Optional. [Persistent disk
      * type](https://cloud.google.com/compute/docs/disks#disk-types), in the
      * format `projects/{project}/zones/{zone}/diskTypes/{disk_type}`.
      *
-     * Generated from protobuf field <code>string type = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string type = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getType()
@@ -64,11 +84,11 @@ class BootDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. [Persistent disk
+     * Optional. [Persistent disk
      * type](https://cloud.google.com/compute/docs/disks#disk-types), in the
      * format `projects/{project}/zones/{zone}/diskTypes/{disk_type}`.
      *
-     * Generated from protobuf field <code>string type = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string type = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -81,9 +101,10 @@ class BootDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Size of the disk in gigabytes. Must be at least 10GB.
+     * Optional. The size of the disk in gigabytes (GB), which must be at least 40
+     * GB.
      *
-     * Generated from protobuf field <code>int64 size_gb = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>int64 size_gb = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
      */
     public function getSizeGb()
@@ -92,9 +113,10 @@ class BootDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Size of the disk in gigabytes. Must be at least 10GB.
+     * Optional. The size of the disk in gigabytes (GB), which must be at least 40
+     * GB.
      *
-     * Generated from protobuf field <code>int64 size_gb = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>int64 size_gb = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
      * @return $this
      */
@@ -102,6 +124,42 @@ class BootDisk extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->size_gb = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The [storage
+     * pools](https://docs.cloud.google.com/compute/docs/disks/storage-pools) used
+     * for creating the boot disk, in the format:
+     * `projects/{project}/zones/{zone}/storagePools/{storage_pool}`.
+     * Currently, only one Hyperdisk Balanced storage pool is supported.
+     * The storage pool must reside in the same zone as the compute instance.
+     *
+     * Generated from protobuf field <code>repeated string storage_pools = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return RepeatedField<string>
+     */
+    public function getStoragePools()
+    {
+        return $this->storage_pools;
+    }
+
+    /**
+     * Optional. The [storage
+     * pools](https://docs.cloud.google.com/compute/docs/disks/storage-pools) used
+     * for creating the boot disk, in the format:
+     * `projects/{project}/zones/{zone}/storagePools/{storage_pool}`.
+     * Currently, only one Hyperdisk Balanced storage pool is supported.
+     * The storage pool must reside in the same zone as the compute instance.
+     *
+     * Generated from protobuf field <code>repeated string storage_pools = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setStoragePools($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->storage_pools = $arr;
 
         return $this;
     }

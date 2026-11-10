@@ -580,6 +580,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $name = 'name3373707';
         $parent = 'parent-995424086';
+        $policySource = 'policySource-1915100216';
         $policyType = 'policyType-2129325529';
         $region = 'region-934795532';
         $ruleTupleCount = 388342037;
@@ -595,6 +596,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
         $expectedResponse->setParent($parent);
+        $expectedResponse->setPolicySource($policySource);
         $expectedResponse->setPolicyType($policyType);
         $expectedResponse->setRegion($region);
         $expectedResponse->setRuleTupleCount($ruleTupleCount);

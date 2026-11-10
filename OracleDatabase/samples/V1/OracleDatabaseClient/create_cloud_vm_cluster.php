@@ -40,8 +40,8 @@ use Google\Rpc\Status;
  *                                                             to (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$) and must be a maximum of 63
  *                                                             characters in length. The value must start with a letter and end with
  *                                                             a letter or a number.
- * @param string $formattedCloudVmClusterExadataInfrastructure The name of the Exadata Infrastructure resource on which VM
- *                                                             cluster resource is created, in the following format:
+ * @param string $formattedCloudVmClusterExadataInfrastructure Immutable. The name of the Exadata Infrastructure resource on
+ *                                                             which VM cluster resource is created, in the following format:
  *                                                             projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}
  *                                                             Please see {@see OracleDatabaseClient::cloudExadataInfrastructureName()} for help formatting this field.
  */

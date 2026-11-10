@@ -30,6 +30,10 @@ class LoadBalancingScheme
      */
     const EXTERNAL_MANAGED = 512006923;
     /**
+     * Generated from protobuf enum <code>EXTERNAL_PASSTHROUGH = 216895232;</code>
+     */
+    const EXTERNAL_PASSTHROUGH = 216895232;
+    /**
      * Generated from protobuf enum <code>INTERNAL = 279295677;</code>
      */
     const INTERNAL = 279295677;
@@ -50,6 +54,7 @@ class LoadBalancingScheme
         self::UNDEFINED_LOAD_BALANCING_SCHEME => 'UNDEFINED_LOAD_BALANCING_SCHEME',
         self::EXTERNAL => 'EXTERNAL',
         self::EXTERNAL_MANAGED => 'EXTERNAL_MANAGED',
+        self::EXTERNAL_PASSTHROUGH => 'EXTERNAL_PASSTHROUGH',
         self::INTERNAL => 'INTERNAL',
         self::INTERNAL_MANAGED => 'INTERNAL_MANAGED',
         self::INTERNAL_SELF_MANAGED => 'INTERNAL_SELF_MANAGED',

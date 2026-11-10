@@ -17,7 +17,9 @@ class ForecastBreakdownTarget extends \Google\Protobuf\Internal\Message
 {
     /**
      * An optional name for this breakdown target, to be populated in the
-     * corresponding [ForecastBreakdownEntry.displayName][] field.
+     * corresponding
+     * [ForecastBreakdownEntry.displayName][google.ads.admanager.v1.ForecastBreakdownEntry.display_name]
+     * field.
      *
      * Generated from protobuf field <code>optional string display_name = 1;</code>
      */
@@ -45,7 +47,9 @@ class ForecastBreakdownTarget extends \Google\Protobuf\Internal\Message
      *
      *     @type string $display_name
      *           An optional name for this breakdown target, to be populated in the
-     *           corresponding [ForecastBreakdownEntry.displayName][] field.
+     *           corresponding
+     *           [ForecastBreakdownEntry.displayName][google.ads.admanager.v1.ForecastBreakdownEntry.display_name]
+     *           field.
      *     @type \Google\Ads\AdManager\V1\Targeting $targeting
      *           If specified, the targeting for this breakdown.
      *           Format: `networks/{network_code}/targetings/{targeting}`
@@ -61,7 +65,9 @@ class ForecastBreakdownTarget extends \Google\Protobuf\Internal\Message
 
     /**
      * An optional name for this breakdown target, to be populated in the
-     * corresponding [ForecastBreakdownEntry.displayName][] field.
+     * corresponding
+     * [ForecastBreakdownEntry.displayName][google.ads.admanager.v1.ForecastBreakdownEntry.display_name]
+     * field.
      *
      * Generated from protobuf field <code>optional string display_name = 1;</code>
      * @return string
@@ -83,7 +89,9 @@ class ForecastBreakdownTarget extends \Google\Protobuf\Internal\Message
 
     /**
      * An optional name for this breakdown target, to be populated in the
-     * corresponding [ForecastBreakdownEntry.displayName][] field.
+     * corresponding
+     * [ForecastBreakdownEntry.displayName][google.ads.admanager.v1.ForecastBreakdownEntry.display_name]
+     * field.
      *
      * Generated from protobuf field <code>optional string display_name = 1;</code>
      * @param string $var

@@ -48,6 +48,15 @@ class NewLustreConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 capacity_gb = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $capacity_gb = 0;
+    /**
+     * Optional. Immutable. Throughput of the instance in MB/s/TiB. Valid values
+     * are 125, 250, 500, 1000. See [Performance tiers and maximum storage
+     * capacities](https://cloud.google.com/managed-lustre/docs/create-instance#performance-tiers)
+     * for more information.
+     *
+     * Generated from protobuf field <code>int64 per_unit_storage_throughput = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $per_unit_storage_throughput = 0;
 
     /**
      * Constructor.
@@ -68,6 +77,11 @@ class NewLustreConfig extends \Google\Protobuf\Internal\Message
      *     @type int|string $capacity_gb
      *           Required. Immutable. Storage capacity of the instance in gibibytes (GiB).
      *           Allowed values are between 18000 and 7632000.
+     *     @type int|string $per_unit_storage_throughput
+     *           Optional. Immutable. Throughput of the instance in MB/s/TiB. Valid values
+     *           are 125, 250, 500, 1000. See [Performance tiers and maximum storage
+     *           capacities](https://cloud.google.com/managed-lustre/docs/create-instance#performance-tiers)
+     *           for more information.
      * }
      */
     public function __construct($data = NULL) {
@@ -185,6 +199,38 @@ class NewLustreConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->capacity_gb = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. Throughput of the instance in MB/s/TiB. Valid values
+     * are 125, 250, 500, 1000. See [Performance tiers and maximum storage
+     * capacities](https://cloud.google.com/managed-lustre/docs/create-instance#performance-tiers)
+     * for more information.
+     *
+     * Generated from protobuf field <code>int64 per_unit_storage_throughput = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return int|string
+     */
+    public function getPerUnitStorageThroughput()
+    {
+        return $this->per_unit_storage_throughput;
+    }
+
+    /**
+     * Optional. Immutable. Throughput of the instance in MB/s/TiB. Valid values
+     * are 125, 250, 500, 1000. See [Performance tiers and maximum storage
+     * capacities](https://cloud.google.com/managed-lustre/docs/create-instance#performance-tiers)
+     * for more information.
+     *
+     * Generated from protobuf field <code>int64 per_unit_storage_throughput = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setPerUnitStorageThroughput($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->per_unit_storage_throughput = $var;
 
         return $this;
     }

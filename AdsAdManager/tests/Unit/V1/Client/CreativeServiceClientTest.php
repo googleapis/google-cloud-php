@@ -24,13 +24,21 @@ namespace Google\Ads\AdManager\Tests\Unit\V1\Client;
 
 use Google\Ads\AdManager\V1\BatchActivateCreativesRequest;
 use Google\Ads\AdManager\V1\BatchActivateCreativesResponse;
+use Google\Ads\AdManager\V1\BatchCreateCreativesRequest;
+use Google\Ads\AdManager\V1\BatchCreateCreativesResponse;
 use Google\Ads\AdManager\V1\BatchDeactivateCreativesRequest;
 use Google\Ads\AdManager\V1\BatchDeactivateCreativesResponse;
+use Google\Ads\AdManager\V1\BatchUpdateCreativesRequest;
+use Google\Ads\AdManager\V1\BatchUpdateCreativesResponse;
 use Google\Ads\AdManager\V1\Client\CreativeServiceClient;
+use Google\Ads\AdManager\V1\CreateCreativeRequest;
 use Google\Ads\AdManager\V1\Creative;
 use Google\Ads\AdManager\V1\GetCreativeRequest;
 use Google\Ads\AdManager\V1\ListCreativesRequest;
 use Google\Ads\AdManager\V1\ListCreativesResponse;
+use Google\Ads\AdManager\V1\Size;
+use Google\Ads\AdManager\V1\SizeTypeEnum\SizeType;
+use Google\Ads\AdManager\V1\UpdateCreativeRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
@@ -136,6 +144,73 @@ class CreativeServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function batchCreateCreativesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchCreateCreativesResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $requests = [];
+        $request = (new BatchCreateCreativesRequest())->setParent($formattedParent)->setRequests($requests);
+        $response = $gapicClient->batchCreateCreatives($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.CreativeService/BatchCreateCreatives', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchCreateCreativesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $requests = [];
+        $request = (new BatchCreateCreativesRequest())->setParent($formattedParent)->setRequests($requests);
+        try {
+            $gapicClient->batchCreateCreatives($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function batchDeactivateCreativesTest()
     {
         $transport = $this->createTransport();
@@ -191,6 +266,176 @@ class CreativeServiceClientTest extends GeneratedTest
         $request = (new BatchDeactivateCreativesRequest())->setParent($formattedParent)->setNames($formattedNames);
         try {
             $gapicClient->batchDeactivateCreatives($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchUpdateCreativesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchUpdateCreativesResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $requests = [];
+        $request = (new BatchUpdateCreativesRequest())->setParent($formattedParent)->setRequests($requests);
+        $response = $gapicClient->batchUpdateCreatives($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.CreativeService/BatchUpdateCreatives', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchUpdateCreativesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $requests = [];
+        $request = (new BatchUpdateCreativesRequest())->setParent($formattedParent)->setRequests($requests);
+        try {
+            $gapicClient->batchUpdateCreatives($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createCreativeTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $advertiser = 'advertiser72080683';
+        $previewUrl = 'previewUrl-1290881928';
+        $selfDeclaredEuropeanUnionPoliticalContent = false;
+        $adBadgingEnabled = true;
+        $expectedResponse = new Creative();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setAdvertiser($advertiser);
+        $expectedResponse->setPreviewUrl($previewUrl);
+        $expectedResponse->setSelfDeclaredEuropeanUnionPoliticalContent($selfDeclaredEuropeanUnionPoliticalContent);
+        $expectedResponse->setAdBadgingEnabled($adBadgingEnabled);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $creative = new Creative();
+        $creativeDisplayName = 'creativeDisplayName2073606974';
+        $creative->setDisplayName($creativeDisplayName);
+        $creativeAdvertiser = $gapicClient->companyName('[NETWORK_CODE]', '[COMPANY]');
+        $creative->setAdvertiser($creativeAdvertiser);
+        $creativeSize = new Size();
+        $sizeWidth = 489043525;
+        $creativeSize->setWidth($sizeWidth);
+        $sizeHeight = 1842452616;
+        $creativeSize->setHeight($sizeHeight);
+        $sizeSizeType = SizeType::SIZE_TYPE_UNSPECIFIED;
+        $creativeSize->setSizeType($sizeSizeType);
+        $creative->setSize($creativeSize);
+        $request = (new CreateCreativeRequest())->setParent($formattedParent)->setCreative($creative);
+        $response = $gapicClient->createCreative($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.CreativeService/CreateCreative', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getCreative();
+        $this->assertProtobufEquals($creative, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createCreativeExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $creative = new Creative();
+        $creativeDisplayName = 'creativeDisplayName2073606974';
+        $creative->setDisplayName($creativeDisplayName);
+        $creativeAdvertiser = $gapicClient->companyName('[NETWORK_CODE]', '[COMPANY]');
+        $creative->setAdvertiser($creativeAdvertiser);
+        $creativeSize = new Size();
+        $sizeWidth = 489043525;
+        $creativeSize->setWidth($sizeWidth);
+        $sizeHeight = 1842452616;
+        $creativeSize->setHeight($sizeHeight);
+        $sizeSizeType = SizeType::SIZE_TYPE_UNSPECIFIED;
+        $creativeSize->setSizeType($sizeSizeType);
+        $creative->setSize($creativeSize);
+        $request = (new CreateCreativeRequest())->setParent($formattedParent)->setCreative($creative);
+        try {
+            $gapicClient->createCreative($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -339,6 +584,105 @@ class CreativeServiceClientTest extends GeneratedTest
         $request = (new ListCreativesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listCreatives($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateCreativeTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $advertiser = 'advertiser72080683';
+        $previewUrl = 'previewUrl-1290881928';
+        $selfDeclaredEuropeanUnionPoliticalContent = false;
+        $adBadgingEnabled = true;
+        $expectedResponse = new Creative();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setAdvertiser($advertiser);
+        $expectedResponse->setPreviewUrl($previewUrl);
+        $expectedResponse->setSelfDeclaredEuropeanUnionPoliticalContent($selfDeclaredEuropeanUnionPoliticalContent);
+        $expectedResponse->setAdBadgingEnabled($adBadgingEnabled);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $creative = new Creative();
+        $creativeDisplayName = 'creativeDisplayName2073606974';
+        $creative->setDisplayName($creativeDisplayName);
+        $creativeAdvertiser = $gapicClient->companyName('[NETWORK_CODE]', '[COMPANY]');
+        $creative->setAdvertiser($creativeAdvertiser);
+        $creativeSize = new Size();
+        $sizeWidth = 489043525;
+        $creativeSize->setWidth($sizeWidth);
+        $sizeHeight = 1842452616;
+        $creativeSize->setHeight($sizeHeight);
+        $sizeSizeType = SizeType::SIZE_TYPE_UNSPECIFIED;
+        $creativeSize->setSizeType($sizeSizeType);
+        $creative->setSize($creativeSize);
+        $request = (new UpdateCreativeRequest())->setCreative($creative);
+        $response = $gapicClient->updateCreative($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.CreativeService/UpdateCreative', $actualFuncCall);
+        $actualValue = $actualRequestObject->getCreative();
+        $this->assertProtobufEquals($creative, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateCreativeExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $creative = new Creative();
+        $creativeDisplayName = 'creativeDisplayName2073606974';
+        $creative->setDisplayName($creativeDisplayName);
+        $creativeAdvertiser = $gapicClient->companyName('[NETWORK_CODE]', '[COMPANY]');
+        $creative->setAdvertiser($creativeAdvertiser);
+        $creativeSize = new Size();
+        $sizeWidth = 489043525;
+        $creativeSize->setWidth($sizeWidth);
+        $sizeHeight = 1842452616;
+        $creativeSize->setHeight($sizeHeight);
+        $sizeSizeType = SizeType::SIZE_TYPE_UNSPECIFIED;
+        $creativeSize->setSizeType($sizeSizeType);
+        $creative->setSize($creativeSize);
+        $request = (new UpdateCreativeRequest())->setCreative($creative);
+        try {
+            $gapicClient->updateCreative($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

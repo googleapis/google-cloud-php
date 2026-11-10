@@ -23,6 +23,78 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.LineItemCreativeAssociationService' => [
+            'BatchActivateLineItemCreativeAssociations' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchActivateLineItemCreativeAssociationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchCreateLineItemCreativeAssociations' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchCreateLineItemCreativeAssociationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeactivateLineItemCreativeAssociations' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchDeactivateLineItemCreativeAssociationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeleteLineItemCreativeAssociations' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateLineItemCreativeAssociations' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchUpdateLineItemCreativeAssociationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateLineItemCreativeAssociation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\LineItemCreativeAssociation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetLineItemCreativeAssociation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\AdManager\V1\LineItemCreativeAssociation',
@@ -55,7 +127,34 @@ return [
                     ],
                 ],
             ],
+            'PreviewLineItemCreativeAssociation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\PreviewLineItemCreativeAssociationResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateLineItemCreativeAssociation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\LineItemCreativeAssociation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'line_item_creative_association.name',
+                        'fieldAccessors' => [
+                            'getLineItemCreativeAssociation',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
+                'creative' => 'networks/{network_code}/creatives/{creative}',
+                'creativeSet' => 'networks/{network_code}/creativeSets/{creative_set}',
                 'lineItem' => 'networks/{network_code}/lineItems/{line_item}',
                 'lineItemCreativeAssociation' => 'networks/{network_code}/lineItems/{line_item}/creatives/{creative}',
             ],

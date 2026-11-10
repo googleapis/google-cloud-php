@@ -31,12 +31,13 @@ class CreateWorkerPoolRequest extends \Google\Protobuf\Internal\Message
      */
     protected $worker_pool = null;
     /**
-     * Required. The unique identifier for the WorkerPool. It must begin with
+     * Optional. The unique identifier for the WorkerPool. It must begin with
      * letter, and cannot end with hyphen; must contain fewer than 50 characters.
      * The name of the worker pool becomes
      * `{parent}/workerPools/{worker_pool_id}`.
+     * If not provided, the server will generate a unique `worker_pool_id`.
      *
-     * Generated from protobuf field <code>string worker_pool_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string worker_pool_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $worker_pool_id = '';
     /**
@@ -54,10 +55,11 @@ class CreateWorkerPoolRequest extends \Google\Protobuf\Internal\Message
      *                                                      and hyphens. Please see
      *                                                      {@see WorkerPoolsClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Run\V2\WorkerPool $workerPool   Required. The WorkerPool instance to create.
-     * @param string                          $workerPoolId Required. The unique identifier for the WorkerPool. It must begin with
+     * @param string                          $workerPoolId Optional. The unique identifier for the WorkerPool. It must begin with
      *                                                      letter, and cannot end with hyphen; must contain fewer than 50 characters.
      *                                                      The name of the worker pool becomes
      *                                                      `{parent}/workerPools/{worker_pool_id}`.
+     *                                                      If not provided, the server will generate a unique `worker_pool_id`.
      *
      * @return \Google\Cloud\Run\V2\CreateWorkerPoolRequest
      *
@@ -85,10 +87,11 @@ class CreateWorkerPoolRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Run\V2\WorkerPool $worker_pool
      *           Required. The WorkerPool instance to create.
      *     @type string $worker_pool_id
-     *           Required. The unique identifier for the WorkerPool. It must begin with
+     *           Optional. The unique identifier for the WorkerPool. It must begin with
      *           letter, and cannot end with hyphen; must contain fewer than 50 characters.
      *           The name of the worker pool becomes
      *           `{parent}/workerPools/{worker_pool_id}`.
+     *           If not provided, the server will generate a unique `worker_pool_id`.
      *     @type bool $validate_only
      *           Optional. Indicates that the request should be validated and default values
      *           populated, without persisting the request or creating any resources.
@@ -168,12 +171,13 @@ class CreateWorkerPoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique identifier for the WorkerPool. It must begin with
+     * Optional. The unique identifier for the WorkerPool. It must begin with
      * letter, and cannot end with hyphen; must contain fewer than 50 characters.
      * The name of the worker pool becomes
      * `{parent}/workerPools/{worker_pool_id}`.
+     * If not provided, the server will generate a unique `worker_pool_id`.
      *
-     * Generated from protobuf field <code>string worker_pool_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string worker_pool_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getWorkerPoolId()
@@ -182,12 +186,13 @@ class CreateWorkerPoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique identifier for the WorkerPool. It must begin with
+     * Optional. The unique identifier for the WorkerPool. It must begin with
      * letter, and cannot end with hyphen; must contain fewer than 50 characters.
      * The name of the worker pool becomes
      * `{parent}/workerPools/{worker_pool_id}`.
+     * If not provided, the server will generate a unique `worker_pool_id`.
      *
-     * Generated from protobuf field <code>string worker_pool_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string worker_pool_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

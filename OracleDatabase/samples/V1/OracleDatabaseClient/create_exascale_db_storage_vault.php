@@ -42,8 +42,8 @@ use Google\Rpc\Status;
  *                                                                                     restricted to (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$) and must be a maximum of
  *                                                                                     63 characters in length. The value must start with a letter and end with a
  *                                                                                     letter or a number.
- * @param string $exascaleDbStorageVaultDisplayName                                    The display name for the ExascaleDbStorageVault. The name does
- *                                                                                     not have to be unique within your project. The name must be 1-255
+ * @param string $exascaleDbStorageVaultDisplayName                                    Immutable. The display name for the ExascaleDbStorageVault. The
+ *                                                                                     name does not have to be unique within your project. The name must be 1-255
  *                                                                                     characters long and can only contain alphanumeric characters.
  * @param int    $exascaleDbStorageVaultPropertiesExascaleDbStorageDetailsTotalSizeGbs The total storage allocation for the ExascaleDbStorageVault, in
  *                                                                                     gigabytes (GB).

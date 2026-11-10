@@ -36,20 +36,25 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AggregatedListSslPoliciesRequest;
 use Google\Cloud\Compute\V1\DeleteSslPolicyRequest;
+use Google\Cloud\Compute\V1\GetIamPolicySslPolicyRequest;
 use Google\Cloud\Compute\V1\GetSslPolicyRequest;
 use Google\Cloud\Compute\V1\InsertSslPolicyRequest;
 use Google\Cloud\Compute\V1\ListAvailableFeaturesSslPoliciesRequest;
 use Google\Cloud\Compute\V1\ListSslPoliciesRequest;
 use Google\Cloud\Compute\V1\PatchSslPolicyRequest;
+use Google\Cloud\Compute\V1\Policy;
+use Google\Cloud\Compute\V1\SetIamPolicySslPolicyRequest;
 use Google\Cloud\Compute\V1\SslPoliciesListAvailableFeaturesResponse;
 use Google\Cloud\Compute\V1\SslPolicy;
+use Google\Cloud\Compute\V1\TestIamPermissionsSslPolicyRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The SslPolicies API.
  *
- * This client uses SslPolicies version 2026-09-01.
+ * This client uses SslPolicies version 2026-11-01.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -57,10 +62,13 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListSslPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAsync(DeleteSslPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SslPolicy> getAsync(GetSslPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicySslPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> insertAsync(InsertSslPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListSslPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SslPoliciesListAvailableFeaturesResponse> listAvailableFeaturesAsync(ListAvailableFeaturesSslPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchAsync(PatchSslPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicySslPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsSslPolicyRequest $request, array $optionalArgs = [])
  */
 final class SslPoliciesClient
 {
@@ -86,7 +94,7 @@ final class SslPoliciesClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The api version of the service */
-    private string $apiVersion = '2026-09-01';
+    private string $apiVersion = '2026-11-01';
 
     /**
      * The default scopes required by the service.
@@ -371,6 +379,33 @@ final class SslPoliciesClient
     }
 
     /**
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
+     *
+     * The async variant is {@see SslPoliciesClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/SslPoliciesClient/get_iam_policy.php
+     *
+     * @param GetIamPolicySslPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getIamPolicy(GetIamPolicySslPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Returns the specified SSL policy resource.
      *
      * The async variant is {@see SslPoliciesClient::insertAsync()} .
@@ -476,5 +511,60 @@ final class SslPoliciesClient
     public function patch(PatchSslPolicyRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Patch', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
+     *
+     * The async variant is {@see SslPoliciesClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/SslPoliciesClient/set_iam_policy.php
+     *
+     * @param SetIamPolicySslPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setIamPolicy(SetIamPolicySslPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     *
+     * The async variant is {@see SslPoliciesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/SslPoliciesClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsSslPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(
+        TestIamPermissionsSslPolicyRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

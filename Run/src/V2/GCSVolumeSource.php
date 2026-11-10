@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Represents a volume backed by a Cloud Storage bucket using Cloud Storage
- * FUSE.
+ * Represents a volume backed by a Cloud Storage bucket (mounted via Cloud
+ * Storage FUSE or as a block device disk).
  *
  * Generated from protobuf message <code>google.cloud.run.v2.GCSVolumeSource</code>
  */

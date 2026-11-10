@@ -35,7 +35,7 @@ class NetworkResource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\HypercomputeCluster\V1beta\NetworkReference $network
-     *           Reference to a network in Google Compute Engine.
+     *           Output only. A reference to a network in Google Compute Engine.
      *     @type \Google\Cloud\HypercomputeCluster\V1beta\NetworkResourceConfig $config
      *           Immutable. Configuration for this network resource, which describes how it
      *           should be created or imported. This field only controls how the network
@@ -50,9 +50,9 @@ class NetworkResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reference to a network in Google Compute Engine.
+     * Output only. A reference to a network in Google Compute Engine.
      *
-     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.NetworkReference network = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.NetworkReference network = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\HypercomputeCluster\V1beta\NetworkReference|null
      */
     public function getNetwork()
@@ -66,9 +66,9 @@ class NetworkResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reference to a network in Google Compute Engine.
+     * Output only. A reference to a network in Google Compute Engine.
      *
-     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.NetworkReference network = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.NetworkReference network = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\HypercomputeCluster\V1beta\NetworkReference $var
      * @return $this
      */

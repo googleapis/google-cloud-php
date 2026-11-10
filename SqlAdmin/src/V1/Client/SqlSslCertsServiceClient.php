@@ -32,6 +32,9 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Sql\V1\DeleteCustomerManagedCertificateRequest;
+use Google\Cloud\Sql\V1\ListCustomerManagedCertificatesRequest;
+use Google\Cloud\Sql\V1\ListCustomerManagedCertificatesResponse;
 use Google\Cloud\Sql\V1\Operation;
 use Google\Cloud\Sql\V1\SqlSslCertsDeleteRequest;
 use Google\Cloud\Sql\V1\SqlSslCertsGetRequest;
@@ -40,6 +43,7 @@ use Google\Cloud\Sql\V1\SqlSslCertsListRequest;
 use Google\Cloud\Sql\V1\SslCert;
 use Google\Cloud\Sql\V1\SslCertsInsertResponse;
 use Google\Cloud\Sql\V1\SslCertsListResponse;
+use Google\Cloud\Sql\V1\UpdateCustomerManagedCertificateRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -50,9 +54,12 @@ use Psr\Log\LoggerInterface;
  * calls that map to API methods.
  *
  * @method PromiseInterface<Operation> deleteAsync(SqlSslCertsDeleteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> deleteCustomerManagedCertificateAsync(DeleteCustomerManagedCertificateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SslCert> getAsync(SqlSslCertsGetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SslCertsInsertResponse> insertAsync(SqlSslCertsInsertRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SslCertsListResponse> listAsync(SqlSslCertsListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListCustomerManagedCertificatesResponse> listCustomerManagedCertificatesAsync(ListCustomerManagedCertificatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> updateCustomerManagedCertificateAsync(UpdateCustomerManagedCertificateRequest $request, array $optionalArgs = [])
  */
 final class SqlSslCertsServiceClient
 {
@@ -219,6 +226,36 @@ final class SqlSslCertsServiceClient
     }
 
     /**
+     * Delete customer managed certificate bundle for an existing Cloud SQL
+     * instance.
+     *
+     * The async variant is
+     * {@see SqlSslCertsServiceClient::deleteCustomerManagedCertificateAsync()} .
+     *
+     * @example samples/V1/SqlSslCertsServiceClient/delete_customer_managed_certificate.php
+     *
+     * @param DeleteCustomerManagedCertificateRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Operation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteCustomerManagedCertificate(
+        DeleteCustomerManagedCertificateRequest $request,
+        array $callOptions = []
+    ): Operation {
+        return $this->startApiCall('DeleteCustomerManagedCertificate', $request, $callOptions)->wait();
+    }
+
+    /**
      * Retrieves a particular SSL certificate.  Does not include the private key
      * (required for usage).  The private key must be saved from the response to
      * initial creation.
@@ -298,5 +335,65 @@ final class SqlSslCertsServiceClient
     public function list(SqlSslCertsListRequest $request, array $callOptions = []): SslCertsListResponse
     {
         return $this->startApiCall('List', $request, $callOptions)->wait();
+    }
+
+    /**
+     * List all customer managed certificate bundles for an existing Cloud SQL
+     * instance.
+     *
+     * The async variant is
+     * {@see SqlSslCertsServiceClient::listCustomerManagedCertificatesAsync()} .
+     *
+     * @example samples/V1/SqlSslCertsServiceClient/list_customer_managed_certificates.php
+     *
+     * @param ListCustomerManagedCertificatesRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ListCustomerManagedCertificatesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listCustomerManagedCertificates(
+        ListCustomerManagedCertificatesRequest $request,
+        array $callOptions = []
+    ): ListCustomerManagedCertificatesResponse {
+        return $this->startApiCall('ListCustomerManagedCertificates', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Upload and update customer managed certificate bundle for an existing Cloud
+     * SQL instance.
+     *
+     * The async variant is
+     * {@see SqlSslCertsServiceClient::updateCustomerManagedCertificateAsync()} .
+     *
+     * @example samples/V1/SqlSslCertsServiceClient/update_customer_managed_certificate.php
+     *
+     * @param UpdateCustomerManagedCertificateRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Operation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateCustomerManagedCertificate(
+        UpdateCustomerManagedCertificateRequest $request,
+        array $callOptions = []
+    ): Operation {
+        return $this->startApiCall('UpdateCustomerManagedCertificate', $request, $callOptions)->wait();
     }
 }

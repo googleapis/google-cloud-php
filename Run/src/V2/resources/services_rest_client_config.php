@@ -34,9 +34,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'service_id',
-                ],
             ],
             'DeleteService' => [
                 'method' => 'delete',

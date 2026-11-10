@@ -26,11 +26,17 @@ namespace Google\Ads\AdManager\V1\Client;
 
 use Google\Ads\AdManager\V1\BatchActivateCreativesRequest;
 use Google\Ads\AdManager\V1\BatchActivateCreativesResponse;
+use Google\Ads\AdManager\V1\BatchCreateCreativesRequest;
+use Google\Ads\AdManager\V1\BatchCreateCreativesResponse;
 use Google\Ads\AdManager\V1\BatchDeactivateCreativesRequest;
 use Google\Ads\AdManager\V1\BatchDeactivateCreativesResponse;
+use Google\Ads\AdManager\V1\BatchUpdateCreativesRequest;
+use Google\Ads\AdManager\V1\BatchUpdateCreativesResponse;
+use Google\Ads\AdManager\V1\CreateCreativeRequest;
 use Google\Ads\AdManager\V1\Creative;
 use Google\Ads\AdManager\V1\GetCreativeRequest;
 use Google\Ads\AdManager\V1\ListCreativesRequest;
+use Google\Ads\AdManager\V1\UpdateCreativeRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -56,9 +62,13 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<BatchActivateCreativesResponse> batchActivateCreativesAsync(BatchActivateCreativesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateCreativesResponse> batchCreateCreativesAsync(BatchCreateCreativesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BatchDeactivateCreativesResponse> batchDeactivateCreativesAsync(BatchDeactivateCreativesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateCreativesResponse> batchUpdateCreativesAsync(BatchUpdateCreativesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Creative> createCreativeAsync(CreateCreativeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Creative> getCreativeAsync(GetCreativeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCreativesAsync(ListCreativesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Creative> updateCreativeAsync(UpdateCreativeRequest $request, array $optionalArgs = [])
  */
 final class CreativeServiceClient
 {
@@ -126,6 +136,40 @@ final class CreativeServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a asset
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $asset
+     *
+     * @return string The formatted asset resource.
+     */
+    public static function assetName(string $networkCode, string $asset): string
+    {
+        return self::getPathTemplate('asset')->render([
+            'network_code' => $networkCode,
+            'asset' => $asset,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a company
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $company
+     *
+     * @return string The formatted company resource.
+     */
+    public static function companyName(string $networkCode, string $company): string
+    {
+        return self::getPathTemplate('company')->render([
+            'network_code' => $networkCode,
+            'company' => $company,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a creative
      * resource.
      *
@@ -139,6 +183,57 @@ final class CreativeServiceClient
         return self::getPathTemplate('creative')->render([
             'network_code' => $networkCode,
             'creative' => $creative,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a creative_set
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $creativeSet
+     *
+     * @return string The formatted creative_set resource.
+     */
+    public static function creativeSetName(string $networkCode, string $creativeSet): string
+    {
+        return self::getPathTemplate('creativeSet')->render([
+            'network_code' => $networkCode,
+            'creative_set' => $creativeSet,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a custom_field
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $customField
+     *
+     * @return string The formatted custom_field resource.
+     */
+    public static function customFieldName(string $networkCode, string $customField): string
+    {
+        return self::getPathTemplate('customField')->render([
+            'network_code' => $networkCode,
+            'custom_field' => $customField,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a label
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $label
+     *
+     * @return string The formatted label resource.
+     */
+    public static function labelName(string $networkCode, string $label): string
+    {
+        return self::getPathTemplate('label')->render([
+            'network_code' => $networkCode,
+            'label' => $label,
         ]);
     }
 
@@ -158,11 +253,34 @@ final class CreativeServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * third_party_company resource.
+     *
+     * @param string $networkCode
+     * @param string $thirdPartyCompany
+     *
+     * @return string The formatted third_party_company resource.
+     */
+    public static function thirdPartyCompanyName(string $networkCode, string $thirdPartyCompany): string
+    {
+        return self::getPathTemplate('thirdPartyCompany')->render([
+            'network_code' => $networkCode,
+            'third_party_company' => $thirdPartyCompany,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - asset: networks/{network_code}/assets/{asset}
+     * - company: networks/{network_code}/companies/{company}
      * - creative: networks/{network_code}/creatives/{creative}
+     * - creativeSet: networks/{network_code}/creativeSets/{creative_set}
+     * - customField: networks/{network_code}/customFields/{custom_field}
+     * - label: networks/{network_code}/labels/{label}
      * - network: networks/{network_code}
+     * - thirdPartyCompany: networks/{network_code}/thirdPartyCompanies/{third_party_company}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -294,6 +412,34 @@ final class CreativeServiceClient
     }
 
     /**
+     * Creates `Creative` objects.
+     *
+     * The async variant is {@see CreativeServiceClient::batchCreateCreativesAsync()} .
+     *
+     * @example samples/V1/CreativeServiceClient/batch_create_creatives.php
+     *
+     * @param BatchCreateCreativesRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchCreateCreativesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchCreateCreatives(
+        BatchCreateCreativesRequest $request,
+        array $callOptions = []
+    ): BatchCreateCreativesResponse {
+        return $this->startApiCall('BatchCreateCreatives', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deactivates a list of `Creative` objects.
      *
      * The async variant is
@@ -320,6 +466,60 @@ final class CreativeServiceClient
         array $callOptions = []
     ): BatchDeactivateCreativesResponse {
         return $this->startApiCall('BatchDeactivateCreatives', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Batch updates `Creative` objects.
+     *
+     * The async variant is {@see CreativeServiceClient::batchUpdateCreativesAsync()} .
+     *
+     * @example samples/V1/CreativeServiceClient/batch_update_creatives.php
+     *
+     * @param BatchUpdateCreativesRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchUpdateCreativesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchUpdateCreatives(
+        BatchUpdateCreativesRequest $request,
+        array $callOptions = []
+    ): BatchUpdateCreativesResponse {
+        return $this->startApiCall('BatchUpdateCreatives', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a `Creative` object.
+     *
+     * The async variant is {@see CreativeServiceClient::createCreativeAsync()} .
+     *
+     * @example samples/V1/CreativeServiceClient/create_creative.php
+     *
+     * @param CreateCreativeRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Creative
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createCreative(CreateCreativeRequest $request, array $callOptions = []): Creative
+    {
+        return $this->startApiCall('CreateCreative', $request, $callOptions)->wait();
     }
 
     /**
@@ -372,5 +572,31 @@ final class CreativeServiceClient
     public function listCreatives(ListCreativesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListCreatives', $request, $callOptions);
+    }
+
+    /**
+     * Updates a `Creative` object.
+     *
+     * The async variant is {@see CreativeServiceClient::updateCreativeAsync()} .
+     *
+     * @example samples/V1/CreativeServiceClient/update_creative.php
+     *
+     * @param UpdateCreativeRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Creative
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateCreative(UpdateCreativeRequest $request, array $callOptions = []): Creative
+    {
+        return $this->startApiCall('UpdateCreative', $request, $callOptions)->wait();
     }
 }
