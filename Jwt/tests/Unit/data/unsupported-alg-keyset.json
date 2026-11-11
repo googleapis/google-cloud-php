@@ -29,9 +29,9 @@
     {
       "kid": "unsupported-ec-curve",
       "kty": "EC",
-      "alg": "ES512",
+      "alg": "EdDSA",
       "use": "sig",
-      "crv": "P-521",
+      "crv": "Ed25519",
       "x": "ANCPjd7cPxRHok4a444BTEa0NjIGBfeXlQK6OtdTUjJojmeWznop8koQh4P9sN4NuU2nm49PglN2Jq7GF3eANSDr",
       "y": "Aag3LtKNyL4NJualANsYqnITNQE2H00ZXzogOq_3QbcPwspG8St_dHTFoKEiOSl-Y9776_kJHBPtdlh1H7SY5AbZ"
     }
