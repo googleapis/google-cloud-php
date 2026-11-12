@@ -2185,6 +2185,14 @@ class StubCustomClientOptions extends \Google\ApiCore\Options\ClientOptions
 {
     protected ?string $developerToken = null;
 
+    public function fromArray(array $arr): static
+    {
+        parent::fromArray($arr);
+        $this->setDeveloperToken($arr['developer-token'] ?? $this->developerToken);
+
+        return $this;
+    }
+
     public function setDeveloperToken(?string $developerToken): static
     {
         $this->developerToken = $developerToken;

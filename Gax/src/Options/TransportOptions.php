@@ -63,6 +63,13 @@ class TransportOptions implements ArrayAccess, OptionsInterface
         $this->fromArray($options);
     }
 
+    public function __clone(): void
+    {
+        $this->grpc = clone $this->grpc;
+        $this->grpcFallback = clone $this->grpcFallback;
+        $this->rest = clone $this->rest;
+    }
+
     /**
      * Sets the array of options as class properties.
      *
