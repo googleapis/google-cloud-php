@@ -65,6 +65,7 @@ use Google\Cloud\CertificateManager\V1\ListDnsAuthorizationsResponse;
 use Google\Cloud\CertificateManager\V1\ListTrustConfigsRequest;
 use Google\Cloud\CertificateManager\V1\ListTrustConfigsResponse;
 use Google\Cloud\CertificateManager\V1\TrustConfig;
+use Google\Cloud\CertificateManager\V1\UpdateCertificateIssuanceConfigRequest;
 use Google\Cloud\CertificateManager\V1\UpdateCertificateMapEntryRequest;
 use Google\Cloud\CertificateManager\V1\UpdateCertificateMapRequest;
 use Google\Cloud\CertificateManager\V1\UpdateCertificateRequest;
@@ -2765,6 +2766,161 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateCertificateTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateCertificateIssuanceConfigTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateCertificateIssuanceConfigTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $rotationWindowPercentage = 873917384;
+        $expectedResponse = new CertificateIssuanceConfig();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setRotationWindowPercentage($rotationWindowPercentage);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateCertificateIssuanceConfigTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $certificateIssuanceConfig = new CertificateIssuanceConfig();
+        $certificateIssuanceConfigCertificateAuthorityConfig = new CertificateAuthorityConfig();
+        $certificateIssuanceConfig->setCertificateAuthorityConfig($certificateIssuanceConfigCertificateAuthorityConfig);
+        $certificateIssuanceConfigLifetime = new Duration();
+        $certificateIssuanceConfig->setLifetime($certificateIssuanceConfigLifetime);
+        $certificateIssuanceConfigRotationWindowPercentage = 1410864292;
+        $certificateIssuanceConfig->setRotationWindowPercentage($certificateIssuanceConfigRotationWindowPercentage);
+        $certificateIssuanceConfigKeyAlgorithm = KeyAlgorithm::KEY_ALGORITHM_UNSPECIFIED;
+        $certificateIssuanceConfig->setKeyAlgorithm($certificateIssuanceConfigKeyAlgorithm);
+        $updateMask = new FieldMask();
+        $request = (new UpdateCertificateIssuanceConfigRequest())
+            ->setCertificateIssuanceConfig($certificateIssuanceConfig)
+            ->setUpdateMask($updateMask);
+        $response = $gapicClient->updateCertificateIssuanceConfig($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.certificatemanager.v1.CertificateManager/UpdateCertificateIssuanceConfig',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getCertificateIssuanceConfig();
+        $this->assertProtobufEquals($certificateIssuanceConfig, $actualValue);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateCertificateIssuanceConfigTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateCertificateIssuanceConfigExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateCertificateIssuanceConfigTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $certificateIssuanceConfig = new CertificateIssuanceConfig();
+        $certificateIssuanceConfigCertificateAuthorityConfig = new CertificateAuthorityConfig();
+        $certificateIssuanceConfig->setCertificateAuthorityConfig($certificateIssuanceConfigCertificateAuthorityConfig);
+        $certificateIssuanceConfigLifetime = new Duration();
+        $certificateIssuanceConfig->setLifetime($certificateIssuanceConfigLifetime);
+        $certificateIssuanceConfigRotationWindowPercentage = 1410864292;
+        $certificateIssuanceConfig->setRotationWindowPercentage($certificateIssuanceConfigRotationWindowPercentage);
+        $certificateIssuanceConfigKeyAlgorithm = KeyAlgorithm::KEY_ALGORITHM_UNSPECIFIED;
+        $certificateIssuanceConfig->setKeyAlgorithm($certificateIssuanceConfigKeyAlgorithm);
+        $updateMask = new FieldMask();
+        $request = (new UpdateCertificateIssuanceConfigRequest())
+            ->setCertificateIssuanceConfig($certificateIssuanceConfig)
+            ->setUpdateMask($updateMask);
+        $response = $gapicClient->updateCertificateIssuanceConfig($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateCertificateIssuanceConfigTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,

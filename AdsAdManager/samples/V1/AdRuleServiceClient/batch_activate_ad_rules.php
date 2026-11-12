@@ -46,7 +46,7 @@ function batch_activate_ad_rules_sample(
     $adRuleServiceClient = new AdRuleServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchActivateAdRulesRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

@@ -57,6 +57,12 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GenerateGroundedContentResponse.Candidate.GroundingMetadata.ImageMetadata images = 9;</code>
      */
     private $images;
+    /**
+     * Videos from the web search.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GenerateGroundedContentResponse.Candidate.GroundingMetadata.VideoMetadata videos = 11;</code>
+     */
+    private $videos;
 
     /**
      * Constructor.
@@ -82,6 +88,8 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      *           the fact.
      *     @type \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\ImageMetadata[] $images
      *           Images from the web search.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\VideoMetadata[] $videos
+     *           Videos from the web search.
      * }
      */
     public function __construct($data = NULL) {
@@ -263,6 +271,32 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\ImageMetadata::class);
         $this->images = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Videos from the web search.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GenerateGroundedContentResponse.Candidate.GroundingMetadata.VideoMetadata videos = 11;</code>
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\VideoMetadata>
+     */
+    public function getVideos()
+    {
+        return $this->videos;
+    }
+
+    /**
+     * Videos from the web search.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GenerateGroundedContentResponse.Candidate.GroundingMetadata.VideoMetadata videos = 11;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\VideoMetadata[] $var
+     * @return $this
+     */
+    public function setVideos($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\VideoMetadata::class);
+        $this->videos = $arr;
 
         return $this;
     }

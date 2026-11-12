@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * PostgreSQL database profile.
+ * Profile for connecting to a PostgreSQL source.
  *
  * Generated from protobuf message <code>google.cloud.datastream.v1.PostgresqlProfile</code>
  */

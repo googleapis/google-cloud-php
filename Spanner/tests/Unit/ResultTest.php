@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use Google\ApiCore\RetrySettings;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Spanner\Operation;
@@ -25,6 +26,7 @@ use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Transaction;
+use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
 use Google\Cloud\Spanner\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -258,6 +260,184 @@ class ResultTest extends TestCase
         $this->assertEquals(2, $timesCalled);
     }
 
+    public function testResumesBrokenStreamRetriesTransientResumeFailure()
+    {
+        $timesCalled = 0;
+        $chunks = [
+            [
+                'metadata' => self::METADATA,
+                'values' => ['a']
+            ],
+            [
+                'values' => ['b'],
+                'resumeToken' => 'abc'
+            ],
+            ['values' => ['c']]
+        ];
+
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
+            function () use ($chunks, &$timesCalled) {
+                $timesCalled++;
+
+                // First call fails at key 2 (after resume token 'abc')
+                if ($timesCalled === 1) {
+                    foreach ($chunks as $key => $chunk) {
+                        if ($key === 2) {
+                            throw new ServiceException('Unavailable', 14);
+                        }
+                        yield $chunk;
+                    }
+                } elseif ($timesCalled === 2) {
+                    // First resume attempt fails immediately
+                    throw new ServiceException('Unavailable', 14);
+                } else {
+                    // Second resume attempt succeeds
+                    yield $chunks[2];
+                }
+            },
+            'r',
+            $this->mapper->reveal()
+        );
+
+        $rows = iterator_to_array($result->rows());
+        $this->assertEquals([[0 => 'a'], [0 => 'b'], [0 => 'c']], $rows);
+        $this->assertEquals(3, $timesCalled);
+    }
+
+    public function testResumesBrokenStreamExhaustsRetries()
+    {
+        $this->expectException(ServiceException::class);
+        $this->expectExceptionCode(14);
+
+        $retrySettings = $this->prophesize(RetrySettings::class);
+        $retrySettings->getMaxRetries()->willReturn(1);
+
+        $timesCalled = 0;
+        $chunks = [
+            [
+                'metadata' => self::METADATA,
+                'values' => ['a']
+            ],
+            [
+                'values' => ['b'],
+                'resumeToken' => 'abc'
+            ],
+            ['values' => ['c']]
+        ];
+
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
+            function () use ($chunks, &$timesCalled) {
+                $timesCalled++;
+
+                if ($timesCalled === 1) {
+                    foreach ($chunks as $key => $chunk) {
+                        if ($key === 2) {
+                            throw new ServiceException('Unavailable', 14);
+                        }
+                        yield $chunk;
+                    }
+                } else {
+                    // All resume attempts fail
+                    throw new ServiceException('Unavailable', 14);
+                }
+            },
+            'r',
+            $this->mapper->reveal(),
+            $retrySettings->reveal()
+        );
+
+        iterator_to_array($result->rows());
+    }
+
+    public function testResumesBrokenStreamWithEmptyRemainingStream()
+    {
+        $timesCalled = 0;
+        $chunks = [
+            [
+                'metadata' => self::METADATA,
+                'values' => ['a']
+            ],
+            [
+                'values' => ['b'],
+                'resumeToken' => 'abc'
+            ]
+        ];
+
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
+            function () use ($chunks, &$timesCalled) {
+                $timesCalled++;
+
+                if ($timesCalled === 1) {
+                    foreach ($chunks as $chunk) {
+                        yield $chunk;
+                    }
+                    throw new ServiceException('Unavailable', 14);
+                }
+                // Resumed stream has no more chunks
+                return;
+                yield; // Mark as generator
+            },
+            'r',
+            $this->mapper->reveal()
+        );
+
+        $rows = iterator_to_array($result->rows());
+        $this->assertEquals([[0 => 'a'], [0 => 'b']], $rows);
+        $this->assertEquals(2, $timesCalled);
+    }
+
+    public function testResumesBrokenStreamWhenChunkAfterResumeTokenFails()
+    {
+        $timesCalled = 0;
+        $chunks = [
+            [
+                'metadata' => self::METADATA,
+                'values' => ['a']
+            ],
+            [
+                'values' => ['b'],
+                'resumeToken' => 'abc'
+            ],
+            [
+                'values' => ['c']
+            ],
+            [
+                'values' => ['d'],
+                'resumeToken' => 'def'
+            ]
+        ];
+
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
+            function ($resumeToken = null) use ($chunks, &$timesCalled) {
+                $timesCalled++;
+
+                if ($timesCalled === 1) {
+                    yield $chunks[0];
+                    yield $chunks[1];
+                    throw new ServiceException('Unavailable', 14);
+                }
+
+                $this->assertEquals('abc', $resumeToken);
+                yield $chunks[2];
+                yield $chunks[3];
+            },
+            'r',
+            $this->mapper->reveal()
+        );
+
+        $rows = iterator_to_array($result->rows());
+        $this->assertEquals([[0 => 'a'], [0 => 'b'], [0 => 'c'], [0 => 'd']], $rows);
+        $this->assertEquals(2, $timesCalled);
+    }
+
     public function testThrowsExceptionWhenCannotRetry()
     {
         $this->expectException(ServiceException::class);
@@ -375,6 +555,33 @@ class ResultTest extends TestCase
         );
 
         $this->assertInstanceOf(Transaction::class, $result->transaction());
+    }
+
+    public function testTransactionWithEmptyPrecommitToken()
+    {
+        $chunks = [
+            json_encode([
+                'metadata' => self::METADATA + ['transaction' => ['id' => 'tx-1']],
+                'precommitToken' => [],
+            ]),
+        ];
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
+            function () use ($chunks) {
+                return $this->resultGeneratorJson($chunks);
+            },
+            'rw',
+            $this->mapper->reveal()
+        );
+
+        $transaction = $result->transaction();
+        $this->assertInstanceOf(Transaction::class, $transaction);
+        $prop = (new \ReflectionClass(Transaction::class))->getProperty('precommitToken');
+        $this->assertEquals(
+            new MultiplexedSessionPrecommitToken(['precommit_token' => '', 'seq_num' => 0]),
+            $prop->getValue($transaction)
+        );
     }
 
     public function testSnapshot()

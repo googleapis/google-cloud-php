@@ -76,7 +76,9 @@ class DetachNetworkEndpointsNetworkEndpointGroupRequest extends \Google\Protobuf
             ->setProject($project)
             ->setZone($zone)
             ->setNetworkEndpointGroup($networkEndpointGroup)
-            ->setNetworkEndpointGroupsDetachEndpointsRequestResource($networkEndpointGroupsDetachEndpointsRequestResource);
+            ->setNetworkEndpointGroupsDetachEndpointsRequestResource(
+                $networkEndpointGroupsDetachEndpointsRequestResource
+            );
     }
 
     /**

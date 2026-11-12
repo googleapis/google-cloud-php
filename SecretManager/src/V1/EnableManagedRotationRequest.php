@@ -25,21 +25,21 @@ class EnableManagedRotationRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
-    protected $credentials;
+    protected $credential;
 
     /**
-     * @param string                                                                                    $parent                        Required. The resource name of the
-     *                                                                                                                                 [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
-     *                                                                                                                                 [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
-     *                                                                                                                                 `projects/&#42;/secrets/*` or `projects/&#42;/locations/&#42;/secrets/*`. Please see
-     *                                                                                                                                 {@see SecretManagerServiceClient::secretName()} for help formatting this field.
-     * @param \Google\Cloud\SecretManager\V1\EnableManagedRotationRequest\CloudSQLSingleUserCredentials $cloudSqlSingleUserCredentials Credentials required for Cloud SQL DB for Single user Managed Rotation.
+     * @param string                                                       $parent                        Required. The resource name of the
+     *                                                                                                    [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
+     *                                                                                                    [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
+     *                                                                                                    `projects/&#42;/secrets/*` or `projects/&#42;/locations/&#42;/secrets/*`. Please see
+     *                                                                                                    {@see SecretManagerServiceClient::secretName()} for help formatting this field.
+     * @param \Google\Cloud\SecretManager\V1\CloudSqlSingleUserCredentials $cloudSqlSingleUserCredentials Credentials required for Cloud SQL DB for Single user Managed Rotation.
      *
      * @return \Google\Cloud\SecretManager\V1\EnableManagedRotationRequest
      *
      * @experimental
      */
-    public static function build(string $parent, \Google\Cloud\SecretManager\V1\EnableManagedRotationRequest\CloudSQLSingleUserCredentials $cloudSqlSingleUserCredentials): self
+    public static function build(string $parent, \Google\Cloud\SecretManager\V1\CloudSqlSingleUserCredentials $cloudSqlSingleUserCredentials): self
     {
         return (new self())
             ->setParent($parent)
@@ -57,7 +57,7 @@ class EnableManagedRotationRequest extends \Google\Protobuf\Internal\Message
      *           [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
      *           [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
      *           `projects/{@*}secrets/*` or `projects/{@*}locations/{@*}secrets/*`.
-     *     @type \Google\Cloud\SecretManager\V1\EnableManagedRotationRequest\CloudSQLSingleUserCredentials $cloud_sql_single_user_credentials
+     *     @type \Google\Cloud\SecretManager\V1\CloudSqlSingleUserCredentials $cloud_sql_single_user_credentials
      *           Credentials required for Cloud SQL DB for Single user Managed Rotation.
      * }
      */
@@ -101,8 +101,8 @@ class EnableManagedRotationRequest extends \Google\Protobuf\Internal\Message
     /**
      * Credentials required for Cloud SQL DB for Single user Managed Rotation.
      *
-     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.EnableManagedRotationRequest.CloudSQLSingleUserCredentials cloud_sql_single_user_credentials = 2;</code>
-     * @return \Google\Cloud\SecretManager\V1\EnableManagedRotationRequest\CloudSQLSingleUserCredentials|null
+     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.CloudSqlSingleUserCredentials cloud_sql_single_user_credentials = 2;</code>
+     * @return \Google\Cloud\SecretManager\V1\CloudSqlSingleUserCredentials|null
      */
     public function getCloudSqlSingleUserCredentials()
     {
@@ -117,13 +117,13 @@ class EnableManagedRotationRequest extends \Google\Protobuf\Internal\Message
     /**
      * Credentials required for Cloud SQL DB for Single user Managed Rotation.
      *
-     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.EnableManagedRotationRequest.CloudSQLSingleUserCredentials cloud_sql_single_user_credentials = 2;</code>
-     * @param \Google\Cloud\SecretManager\V1\EnableManagedRotationRequest\CloudSQLSingleUserCredentials $var
+     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.CloudSqlSingleUserCredentials cloud_sql_single_user_credentials = 2;</code>
+     * @param \Google\Cloud\SecretManager\V1\CloudSqlSingleUserCredentials $var
      * @return $this
      */
     public function setCloudSqlSingleUserCredentials($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\SecretManager\V1\EnableManagedRotationRequest\CloudSQLSingleUserCredentials::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\SecretManager\V1\CloudSqlSingleUserCredentials::class);
         $this->writeOneof(2, $var);
 
         return $this;
@@ -132,9 +132,9 @@ class EnableManagedRotationRequest extends \Google\Protobuf\Internal\Message
     /**
      * @return string
      */
-    public function getCredentials()
+    public function getCredential()
     {
-        return $this->whichOneof("credentials");
+        return $this->whichOneof("credential");
     }
 
 }

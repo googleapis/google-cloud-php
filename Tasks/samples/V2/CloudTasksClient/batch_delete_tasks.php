@@ -52,7 +52,7 @@ function batch_delete_tasks_sample(string $formattedParent, string $formattedNam
     $cloudTasksClient = new CloudTasksClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchDeleteTasksRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

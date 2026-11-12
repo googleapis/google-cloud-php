@@ -51,7 +51,7 @@ function create_content_policy_sample(string $formattedParent): void
     $contentPolicyRulesAction = new PolicyAction();
     $policyRule = (new PolicyRule())
         ->setAction($contentPolicyRulesAction);
-    $contentPolicyRules = [$policyRule,];
+    $contentPolicyRules = [$policyRule];
     $contentPolicy = (new ContentPolicy())
         ->setRules($contentPolicyRules);
     $request = (new CreateContentPolicyRequest())

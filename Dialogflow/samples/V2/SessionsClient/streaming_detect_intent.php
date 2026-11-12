@@ -80,7 +80,7 @@ function streaming_detect_intent_sample(string $formattedSession): void
     try {
         /** @var BidiStream $stream */
         $stream = $sessionsClient->streamingDetectIntent();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var StreamingDetectIntentResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

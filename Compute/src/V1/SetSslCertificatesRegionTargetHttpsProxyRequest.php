@@ -74,7 +74,9 @@ class SetSslCertificatesRegionTargetHttpsProxyRequest extends \Google\Protobuf\I
             ->setProject($project)
             ->setRegion($region)
             ->setTargetHttpsProxy($targetHttpsProxy)
-            ->setRegionTargetHttpsProxiesSetSslCertificatesRequestResource($regionTargetHttpsProxiesSetSslCertificatesRequestResource);
+            ->setRegionTargetHttpsProxiesSetSslCertificatesRequestResource(
+                $regionTargetHttpsProxiesSetSslCertificatesRequestResource
+            );
     }
 
     /**

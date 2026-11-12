@@ -44,7 +44,7 @@ function batch_resume_orders_sample(string $formattedParent, string $formattedNa
     $orderServiceClient = new OrderServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchResumeOrdersRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

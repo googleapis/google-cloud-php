@@ -78,7 +78,7 @@ function transfer_entitlements_to_google_sample(
     // Prepare the request message.
     $entitlement = (new Entitlement())
         ->setOffer($formattedEntitlementsOffer);
-    $entitlements = [$entitlement,];
+    $entitlements = [$entitlement];
     $request = (new TransferEntitlementsToGoogleRequest())
         ->setParent($parent)
         ->setEntitlements($entitlements);

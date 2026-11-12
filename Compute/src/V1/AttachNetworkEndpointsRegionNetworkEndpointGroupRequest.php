@@ -78,7 +78,9 @@ class AttachNetworkEndpointsRegionNetworkEndpointGroupRequest extends \Google\Pr
             ->setProject($project)
             ->setRegion($region)
             ->setNetworkEndpointGroup($networkEndpointGroup)
-            ->setRegionNetworkEndpointGroupsAttachEndpointsRequestResource($regionNetworkEndpointGroupsAttachEndpointsRequestResource);
+            ->setRegionNetworkEndpointGroupsAttachEndpointsRequestResource(
+                $regionNetworkEndpointGroupsAttachEndpointsRequestResource
+            );
     }
 
     /**

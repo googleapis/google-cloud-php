@@ -83,6 +83,18 @@ return [
                     ],
                 ],
             ],
+            'CreateNativeStyle' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\NativeStyle',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetNativeStyle' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\AdManager\V1\NativeStyle',
@@ -111,6 +123,19 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateNativeStyle' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\NativeStyle',
+                'headerParams' => [
+                    [
+                        'keyName' => 'native_style.name',
+                        'fieldAccessors' => [
+                            'getNativeStyle',
+                            'getName',
                         ],
                     ],
                 ],

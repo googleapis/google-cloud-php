@@ -44,8 +44,8 @@ class RankingRecord extends \Google\Protobuf\Internal\Message
     protected $content = '';
     /**
      * The score of this record based on the given query and selected model.
-     * The score will be rounded to 2 decimal places. If the score is close to 0,
-     * it will be rounded to 0.0001 to avoid returning unset.
+     * The score will be rounded to 4 decimal places. If the score is close to 0,
+     * it will be rounded to 0.00001 to avoid returning unset.
      *
      * Generated from protobuf field <code>float score = 4;</code>
      */
@@ -73,8 +73,8 @@ class RankingRecord extends \Google\Protobuf\Internal\Message
      *           set otherwise an INVALID_ARGUMENT error is thrown.
      *     @type float $score
      *           The score of this record based on the given query and selected model.
-     *           The score will be rounded to 2 decimal places. If the score is close to 0,
-     *           it will be rounded to 0.0001 to avoid returning unset.
+     *           The score will be rounded to 4 decimal places. If the score is close to 0,
+     *           it will be rounded to 0.00001 to avoid returning unset.
      * }
      */
     public function __construct($data = NULL) {
@@ -178,8 +178,8 @@ class RankingRecord extends \Google\Protobuf\Internal\Message
 
     /**
      * The score of this record based on the given query and selected model.
-     * The score will be rounded to 2 decimal places. If the score is close to 0,
-     * it will be rounded to 0.0001 to avoid returning unset.
+     * The score will be rounded to 4 decimal places. If the score is close to 0,
+     * it will be rounded to 0.00001 to avoid returning unset.
      *
      * Generated from protobuf field <code>float score = 4;</code>
      * @return float
@@ -191,8 +191,8 @@ class RankingRecord extends \Google\Protobuf\Internal\Message
 
     /**
      * The score of this record based on the given query and selected model.
-     * The score will be rounded to 2 decimal places. If the score is close to 0,
-     * it will be rounded to 0.0001 to avoid returning unset.
+     * The score will be rounded to 4 decimal places. If the score is close to 0,
+     * it will be rounded to 0.00001 to avoid returning unset.
      *
      * Generated from protobuf field <code>float score = 4;</code>
      * @param float $var

@@ -16,7 +16,7 @@ class BigqueryExport
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\x81\x02\x0A)google/cloud/ces/v1/bigquery_export.proto\x12\x13google.cloud.ces.v1\"Z\x0A\x16BigQueryExportSettings\x12\x14\x0A\x07enabled\x18\x01 \x01(\x08B\x03\xE0A\x01\x12\x14\x0A\x07project\x18\x02 \x01(\x09B\x03\xE0A\x01\x12\x14\x0A\x07dataset\x18\x03 \x01(\x09B\x03\xE0A\x01B[\x0A\x17com.google.cloud.ces.v1B\x13BigQueryExportProtoP\x01Z)cloud.google.com/go/ces/apiv1/cespb;cespbb\x06proto3"
+            "\x0A\x84\x02\x0A)google/cloud/ces/v1/bigquery_export.proto\x12\x13google.cloud.ces.v1\"]\x0A\x16BigQueryExportSettings\x12\x15\x0A\x07enabled\x18\x01 \x01(\x08B\x04\xE2A\x01\x01\x12\x15\x0A\x07project\x18\x02 \x01(\x09B\x04\xE2A\x01\x01\x12\x15\x0A\x07dataset\x18\x03 \x01(\x09B\x04\xE2A\x01\x01B[\x0A\x17com.google.cloud.ces.v1B\x13BigQueryExportProtoP\x01Z)cloud.google.com/go/ces/apiv1/cespb;cespbb\x06proto3"
         , true);
 
         static::$is_initialized = true;

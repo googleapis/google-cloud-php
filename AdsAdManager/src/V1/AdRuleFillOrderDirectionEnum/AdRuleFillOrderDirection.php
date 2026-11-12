@@ -8,7 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Defines the fill order direction of ad breaks with
- * AdBreakOptimizationType.POSITION.
+ * [AdBreakOptimizationTypeEnum.AdBreakOptimizationType.POSITION][google.ads.admanager.v1.AdBreakOptimizationTypeEnum.AdBreakOptimizationType.POSITION].
  *
  * Protobuf type <code>google.ads.admanager.v1.AdRuleFillOrderDirectionEnum.AdRuleFillOrderDirection</code>
  */

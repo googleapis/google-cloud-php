@@ -47,7 +47,7 @@ function batch_deactivate_cms_metadata_values_sample(
     $cmsMetadataValueServiceClient = new CmsMetadataValueServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchDeactivateCmsMetadataValuesRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

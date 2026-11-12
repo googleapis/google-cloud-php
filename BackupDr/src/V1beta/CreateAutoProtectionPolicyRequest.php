@@ -25,6 +25,8 @@ class CreateAutoProtectionPolicyRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Required. The ID to use for the policy.
      * This will become the final component of the policy's resource name.
+     * This value must start with a lowercase letter followed by up to 62
+     * lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *
      * Generated from protobuf field <code>string auto_protection_policy_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -35,6 +37,17 @@ class CreateAutoProtectionPolicyRequest extends \Google\Protobuf\Internal\Messag
      * Generated from protobuf field <code>.google.cloud.backupdr.v1beta.AutoProtectionPolicy auto_protection_policy = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $auto_protection_policy = null;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique
+     * request ID so that if you must retry your request, the server will know to
+     * ignore the request if it has already been completed. The server will
+     * guarantee that for at least 60 minutes since the first request.
+     * The request ID must be a valid UUID with the exception that zero UUID is
+     * not supported (00000000-0000-0000-0000-000000000000).
+     *
+     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     */
+    protected $request_id = '';
 
     /**
      * @param string                                             $parent                 Required. The parent resource where this policy will be created.
@@ -43,6 +56,9 @@ class CreateAutoProtectionPolicyRequest extends \Google\Protobuf\Internal\Messag
      * @param \Google\Cloud\BackupDR\V1beta\AutoProtectionPolicy $autoProtectionPolicy   Required. The AutoProtectionPolicy resource to create.
      * @param string                                             $autoProtectionPolicyId Required. The ID to use for the policy.
      *                                                                                   This will become the final component of the policy's resource name.
+     *
+     *                                                                                   This value must start with a lowercase letter followed by up to 62
+     *                                                                                   lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *
      * @return \Google\Cloud\BackupDR\V1beta\CreateAutoProtectionPolicyRequest
      *
@@ -68,8 +84,17 @@ class CreateAutoProtectionPolicyRequest extends \Google\Protobuf\Internal\Messag
      *     @type string $auto_protection_policy_id
      *           Required. The ID to use for the policy.
      *           This will become the final component of the policy's resource name.
+     *           This value must start with a lowercase letter followed by up to 62
+     *           lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *     @type \Google\Cloud\BackupDR\V1beta\AutoProtectionPolicy $auto_protection_policy
      *           Required. The AutoProtectionPolicy resource to create.
+     *     @type string $request_id
+     *           Optional. An optional request ID to identify requests. Specify a unique
+     *           request ID so that if you must retry your request, the server will know to
+     *           ignore the request if it has already been completed. The server will
+     *           guarantee that for at least 60 minutes since the first request.
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
      * }
      */
     public function __construct($data = NULL) {
@@ -108,6 +133,8 @@ class CreateAutoProtectionPolicyRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Required. The ID to use for the policy.
      * This will become the final component of the policy's resource name.
+     * This value must start with a lowercase letter followed by up to 62
+     * lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *
      * Generated from protobuf field <code>string auto_protection_policy_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -120,6 +147,8 @@ class CreateAutoProtectionPolicyRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Required. The ID to use for the policy.
      * This will become the final component of the policy's resource name.
+     * This value must start with a lowercase letter followed by up to 62
+     * lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *
      * Generated from protobuf field <code>string auto_protection_policy_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -165,6 +194,42 @@ class CreateAutoProtectionPolicyRequest extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1beta\AutoProtectionPolicy::class);
         $this->auto_protection_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique
+     * request ID so that if you must retry your request, the server will know to
+     * ignore the request if it has already been completed. The server will
+     * guarantee that for at least 60 minutes since the first request.
+     * The request ID must be a valid UUID with the exception that zero UUID is
+     * not supported (00000000-0000-0000-0000-000000000000).
+     *
+     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     * @return string
+     */
+    public function getRequestId()
+    {
+        return $this->request_id;
+    }
+
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique
+     * request ID so that if you must retry your request, the server will know to
+     * ignore the request if it has already been completed. The server will
+     * guarantee that for at least 60 minutes since the first request.
+     * The request ID must be a valid UUID with the exception that zero UUID is
+     * not supported (00000000-0000-0000-0000-000000000000).
+     *
+     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRequestId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->request_id = $var;
 
         return $this;
     }

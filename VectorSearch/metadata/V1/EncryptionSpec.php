@@ -17,7 +17,7 @@ class EncryptionSpec
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xA8\x04\x0A2google/cloud/vectorsearch/v1/encryption_spec.proto\x12\x1Cgoogle.cloud.vectorsearch.v1\x1A\x19google/api/resource.proto\"T\x0A\x0EEncryptionSpec\x12B\x0A\x0Fcrypto_key_name\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!cloudkms.googleapis.com/CryptoKeyB\xDA\x02\x0A com.google.cloud.vectorsearch.v1B\x13EncryptionSpecProtoP\x01ZDcloud.google.com/go/vectorsearch/apiv1/vectorsearchpb;vectorsearchpb\xAA\x02\x1CGoogle.Cloud.VectorSearch.V1\xCA\x02\x1CGoogle\\Cloud\\VectorSearch\\V1\xEA\x02\x1FGoogle::Cloud::VectorSearch::V1\xEAAx\x0A!cloudkms.googleapis.com/CryptoKey\x12Sprojects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}b\x06proto3"
+            "\x0A\xA9\x04\x0A2google/cloud/vectorsearch/v1/encryption_spec.proto\x12\x1Cgoogle.cloud.vectorsearch.v1\x1A\x19google/api/resource.proto\"U\x0A\x0EEncryptionSpec\x12C\x0A\x0Fcrypto_key_name\x18\x01 \x01(\x09B*\xE2A\x01\x02\xFAA#\x0A!cloudkms.googleapis.com/CryptoKeyB\xDA\x02\x0A com.google.cloud.vectorsearch.v1B\x13EncryptionSpecProtoP\x01ZDcloud.google.com/go/vectorsearch/apiv1/vectorsearchpb;vectorsearchpb\xAA\x02\x1CGoogle.Cloud.VectorSearch.V1\xCA\x02\x1CGoogle\\Cloud\\VectorSearch\\V1\xEA\x02\x1FGoogle::Cloud::VectorSearch::V1\xEAAx\x0A!cloudkms.googleapis.com/CryptoKey\x12Sprojects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}b\x06proto3"
         , true);
 
         static::$is_initialized = true;

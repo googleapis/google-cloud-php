@@ -41,6 +41,9 @@ use Google\Cloud\DiscoveryEngine\V1\DeleteDataStoreRequest;
 use Google\Cloud\DiscoveryEngine\V1\GetDataStoreRequest;
 use Google\Cloud\DiscoveryEngine\V1\ListDataStoresRequest;
 use Google\Cloud\DiscoveryEngine\V1\UpdateDataStoreRequest;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -61,7 +64,9 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> createDataStoreAsync(CreateDataStoreRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteDataStoreAsync(DeleteDataStoreRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DataStore> getDataStoreAsync(GetDataStoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listDataStoresAsync(ListDataStoresRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DataStore> updateDataStoreAsync(UpdateDataStoreRequest $request, array $optionalArgs = [])
  */
 final class DataStoreServiceClient
@@ -93,7 +98,11 @@ final class DataStoreServiceClient
      *
      * @internal
      */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/discoveryengine.readwrite',
+        'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+    ];
 
     private $operationsClient;
 
@@ -200,6 +209,25 @@ final class DataStoreServiceClient
             'project' => $project,
             'location' => $location,
             'collection' => $collection,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * content_policy resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $contentPolicy
+     *
+     * @return string The formatted content_policy resource.
+     */
+    public static function contentPolicyName(string $organization, string $location, string $contentPolicy): string
+    {
+        return self::getPathTemplate('contentPolicy')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'content_policy' => $contentPolicy,
         ]);
     }
 
@@ -313,6 +341,47 @@ final class DataStoreServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a notebook
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $notebook
+     *
+     * @return string The formatted notebook resource.
+     */
+    public static function notebookName(string $project, string $location, string $notebook): string
+    {
+        return self::getPathTemplate('notebook')->render([
+            'project' => $project,
+            'location' => $location,
+            'notebook' => $notebook,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_content_policy resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $contentPolicy
+     *
+     * @return string The formatted organization_location_content_policy resource.
+     */
+    public static function organizationLocationContentPolicyName(
+        string $organization,
+        string $location,
+        string $contentPolicy
+    ): string {
+        return self::getPathTemplate('organizationLocationContentPolicy')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'content_policy' => $contentPolicy,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_location_cmekConfig resource.
      *
@@ -409,6 +478,28 @@ final class DataStoreServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_content_policy resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $contentPolicy
+     *
+     * @return string The formatted project_location_content_policy resource.
+     */
+    public static function projectLocationContentPolicyName(
+        string $project,
+        string $location,
+        string $contentPolicy
+    ): string {
+        return self::getPathTemplate('projectLocationContentPolicy')->render([
+            'project' => $project,
+            'location' => $location,
+            'content_policy' => $contentPolicy,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_data_store resource.
      *
      * @param string $project
@@ -500,15 +591,19 @@ final class DataStoreServiceClient
      * Template: Pattern
      * - cmekConfig: projects/{project}/locations/{location}/cmekConfig
      * - collection: projects/{project}/locations/{location}/collections/{collection}
+     * - contentPolicy: organizations/{organization}/locations/{location}/contentPolicies/{content_policy}
      * - cryptoKeyVersions: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - cryptoKeys: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - dataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - documentProcessingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/documentProcessingConfig
      * - identityMappingStore: projects/{project}/locations/{location}/identityMappingStores/{identity_mapping_store}
+     * - notebook: projects/{project}/locations/{location}/notebooks/{notebook}
+     * - organizationLocationContentPolicy: organizations/{organization}/locations/{location}/contentPolicies/{content_policy}
      * - projectLocationCmekConfig: projects/{project}/locations/{location}/cmekConfig
      * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - projectLocationCollectionDataStoreDocumentProcessingConfig: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/documentProcessingConfig
      * - projectLocationCollectionDataStoreSchema: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/schemas/{schema}
+     * - projectLocationContentPolicy: projects/{project}/locations/{location}/contentPolicies/{content_policy}
      * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - projectLocationDataStoreDocumentProcessingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/documentProcessingConfig
      * - projectLocationDataStoreSchema: projects/{project}/locations/{location}/dataStores/{data_store}/schemas/{schema}
@@ -703,6 +798,35 @@ final class DataStoreServiceClient
     }
 
     /**
+     * Gets the IAM access control policy for a
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore]. A `NOT_FOUND` error
+     * is returned if the resource does not exist. An empty policy is returned if
+     * the resource exists but does not have a policy set on it.
+     *
+     * The async variant is {@see DataStoreServiceClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/DataStoreServiceClient/get_iam_policy.php
+     *
+     * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Lists all the [DataStore][google.cloud.discoveryengine.v1.DataStore]s
      * associated with the project.
      *
@@ -727,6 +851,44 @@ final class DataStoreServiceClient
     public function listDataStores(ListDataStoresRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListDataStores', $request, $callOptions);
+    }
+
+    /**
+     * Sets the IAM access control policy for a
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore]. A `NOT_FOUND` error
+     * is returned if the resource does not exist.
+     *
+     * **Important:** When setting a policy directly on a DataStore resource,
+     * the only recommended roles in the bindings are:
+     * `roles/discoveryengine.admin`
+     * `roles/discoveryengine.agentspaceAdmin`
+     * `roles/discoveryengine.viewer`
+     * `roles/discoveryengine.agentspaceViewer`
+     * `roles/discoveryengine.user`
+     * `roles/discoveryengine.agentspaceUser`
+     * Attempting to grant any other role will result in a warning in logging.
+     *
+     * The async variant is {@see DataStoreServiceClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/DataStoreServiceClient/set_iam_policy.php
+     *
+     * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
     }
 
     /**

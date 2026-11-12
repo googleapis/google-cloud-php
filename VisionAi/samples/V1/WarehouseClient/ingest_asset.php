@@ -53,7 +53,7 @@ function ingest_asset_sample(): void
     try {
         /** @var BidiStream $stream */
         $stream = $warehouseClient->ingestAsset();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var IngestAssetResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

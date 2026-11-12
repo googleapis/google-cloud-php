@@ -29,9 +29,9 @@ class ListAutoProtectionPoliciesResponse extends \Google\Protobuf\Internal\Messa
      */
     protected $next_page_token = '';
     /**
-     * Locations that could not be reached.
+     * Unordered list. Locations that could not be reached.
      *
-     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
      */
     private $unreachable;
 
@@ -47,7 +47,7 @@ class ListAutoProtectionPoliciesResponse extends \Google\Protobuf\Internal\Messa
      *           A token that can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
      *     @type string[] $unreachable
-     *           Locations that could not be reached.
+     *           Unordered list. Locations that could not be reached.
      * }
      */
     public function __construct($data = NULL) {
@@ -110,9 +110,9 @@ class ListAutoProtectionPoliciesResponse extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Locations that could not be reached.
+     * Unordered list. Locations that could not be reached.
      *
-     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
      * @return RepeatedField<string>
      */
     public function getUnreachable()
@@ -121,9 +121,9 @@ class ListAutoProtectionPoliciesResponse extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Locations that could not be reached.
+     * Unordered list. Locations that could not be reached.
      *
-     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
      * @param string[] $var
      * @return $this
      */

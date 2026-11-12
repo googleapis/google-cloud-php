@@ -28,11 +28,16 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\Options\ClientOptions;
+use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\DiscoveryEngine\V1\CreateServingConfigRequest;
+use Google\Cloud\DiscoveryEngine\V1\DeleteServingConfigRequest;
+use Google\Cloud\DiscoveryEngine\V1\GetServingConfigRequest;
+use Google\Cloud\DiscoveryEngine\V1\ListServingConfigsRequest;
 use Google\Cloud\DiscoveryEngine\V1\ServingConfig;
 use Google\Cloud\DiscoveryEngine\V1\UpdateServingConfigRequest;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -50,6 +55,10 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<ServingConfig> createServingConfigAsync(CreateServingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteServingConfigAsync(DeleteServingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServingConfig> getServingConfigAsync(GetServingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listServingConfigsAsync(ListServingConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ServingConfig> updateServingConfigAsync(UpdateServingConfigRequest $request, array $optionalArgs = [])
  */
 final class ServingConfigServiceClient
@@ -81,7 +90,11 @@ final class ServingConfigServiceClient
      *
      * @internal
      */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/discoveryengine.readwrite',
+        'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+    ];
 
     private static function getClientDefaults()
     {
@@ -100,6 +113,71 @@ final class ServingConfigServiceClient
                 ],
             ],
         ];
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a data_store
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     *
+     * @return string The formatted data_store resource.
+     */
+    public static function dataStoreName(string $project, string $location, string $dataStore): string
+    {
+        return self::getPathTemplate('dataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a engine
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     *
+     * @return string The formatted engine resource.
+     */
+    public static function engineName(string $project, string $location, string $collection, string $engine): string
+    {
+        return self::getPathTemplate('engine')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_collection_data_store resource.
+     */
+    public static function projectLocationCollectionDataStoreName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionDataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+        ]);
     }
 
     /**
@@ -160,6 +238,25 @@ final class ServingConfigServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_data_store resource.
+     */
+    public static function projectLocationDataStoreName(string $project, string $location, string $dataStore): string
+    {
+        return self::getPathTemplate('projectLocationDataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_data_store_serving_config resource.
      *
      * @param string $project
@@ -212,8 +309,12 @@ final class ServingConfigServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - dataStore: projects/{project}/locations/{location}/dataStores/{data_store}
+     * - engine: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}
+     * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - projectLocationCollectionDataStoreServingConfig: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config}
      * - projectLocationCollectionEngineServingConfig: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config}
+     * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - projectLocationDataStoreServingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/servingConfigs/{serving_config}
      * - servingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/servingConfigs/{serving_config}
      *
@@ -318,6 +419,124 @@ final class ServingConfigServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Creates a ServingConfig.
+     *
+     * Note: The Google Cloud console works only with the default serving config.
+     * Additional ServingConfigs can be created and managed only via the API.
+     *
+     * A maximum of 100
+     * [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig]s are allowed
+     * in an [Engine][google.cloud.discoveryengine.v1.Engine], otherwise a
+     * RESOURCE_EXHAUSTED error is returned.
+     *
+     * The async variant is
+     * {@see ServingConfigServiceClient::createServingConfigAsync()} .
+     *
+     * @example samples/V1/ServingConfigServiceClient/create_serving_config.php
+     *
+     * @param CreateServingConfigRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ServingConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createServingConfig(CreateServingConfigRequest $request, array $callOptions = []): ServingConfig
+    {
+        return $this->startApiCall('CreateServingConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a ServingConfig.
+     *
+     * Returns a NOT_FOUND error if the ServingConfig does not exist.
+     *
+     * The async variant is
+     * {@see ServingConfigServiceClient::deleteServingConfigAsync()} .
+     *
+     * @example samples/V1/ServingConfigServiceClient/delete_serving_config.php
+     *
+     * @param DeleteServingConfigRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteServingConfig(DeleteServingConfigRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteServingConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets a ServingConfig.
+     *
+     * Returns a NotFound error if the ServingConfig does not exist.
+     *
+     * The async variant is {@see ServingConfigServiceClient::getServingConfigAsync()}
+     * .
+     *
+     * @example samples/V1/ServingConfigServiceClient/get_serving_config.php
+     *
+     * @param GetServingConfigRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ServingConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getServingConfig(GetServingConfigRequest $request, array $callOptions = []): ServingConfig
+    {
+        return $this->startApiCall('GetServingConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists all ServingConfigs linked to this dataStore.
+     *
+     * The async variant is
+     * {@see ServingConfigServiceClient::listServingConfigsAsync()} .
+     *
+     * @example samples/V1/ServingConfigServiceClient/list_serving_configs.php
+     *
+     * @param ListServingConfigsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listServingConfigs(ListServingConfigsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListServingConfigs', $request, $callOptions);
     }
 
     /**

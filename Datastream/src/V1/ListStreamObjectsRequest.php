@@ -22,20 +22,20 @@ class ListStreamObjectsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * Maximum number of objects to return. Default is 50.
+     * Optional. Maximum number of objects to return. Default is 50.
      * The maximum value is 1000; values above 1000 will be coerced to 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * Page token received from a previous `ListStreamObjectsRequest` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. Page token received from a previous `ListStreamObjectsRequest`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
      * `ListStreamObjectsRequest` must match the call that provided the page
      * token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
 
@@ -62,11 +62,11 @@ class ListStreamObjectsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent stream that owns the collection of objects.
      *     @type int $page_size
-     *           Maximum number of objects to return. Default is 50.
+     *           Optional. Maximum number of objects to return. Default is 50.
      *           The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     @type string $page_token
-     *           Page token received from a previous `ListStreamObjectsRequest` call.
-     *           Provide this to retrieve the subsequent page.
+     *           Optional. Page token received from a previous `ListStreamObjectsRequest`
+     *           call. Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to
      *           `ListStreamObjectsRequest` must match the call that provided the page
      *           token.
@@ -104,10 +104,10 @@ class ListStreamObjectsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of objects to return. Default is 50.
+     * Optional. Maximum number of objects to return. Default is 50.
      * The maximum value is 1000; values above 1000 will be coerced to 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -116,10 +116,10 @@ class ListStreamObjectsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of objects to return. Default is 50.
+     * Optional. Maximum number of objects to return. Default is 50.
      * The maximum value is 1000; values above 1000 will be coerced to 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -132,13 +132,13 @@ class ListStreamObjectsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Page token received from a previous `ListStreamObjectsRequest` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. Page token received from a previous `ListStreamObjectsRequest`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
      * `ListStreamObjectsRequest` must match the call that provided the page
      * token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -147,13 +147,13 @@ class ListStreamObjectsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Page token received from a previous `ListStreamObjectsRequest` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. Page token received from a previous `ListStreamObjectsRequest`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
      * `ListStreamObjectsRequest` must match the call that provided the page
      * token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

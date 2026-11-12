@@ -30,7 +30,6 @@ use Google\Cloud\AppHub\V1\Client\AppHubClient;
 use Google\Cloud\AppHub\V1\Scope;
 use Google\Cloud\AppHub\V1\Scope\Type;
 use Google\Cloud\AppHub\V1\UpdateApplicationRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -44,13 +43,11 @@ function update_application_sample(int $applicationScopeType): void
     $appHubClient = new AppHubClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
     $applicationScope = (new Scope())
         ->setType($applicationScopeType);
     $application = (new Application())
         ->setScope($applicationScope);
     $request = (new UpdateApplicationRequest())
-        ->setUpdateMask($updateMask)
         ->setApplication($application);
 
     // Call the API and handle any network failures.

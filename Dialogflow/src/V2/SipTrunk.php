@@ -43,6 +43,18 @@ class SipTrunk extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $display_name = '';
+    /**
+     * Required. Peer hostnames of the SIP trunk.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SipHostname peer_hostnames = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     */
+    private $peer_hostnames;
+    /**
+     * Optional. The root certificate file to use for this SIP trunk.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SipTrunk.GoogleRootCertFile google_root_cert_file = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $google_root_cert_file = 0;
 
     /**
      * Constructor.
@@ -61,6 +73,10 @@ class SipTrunk extends \Google\Protobuf\Internal\Message
      *           Output only. Connections of the SIP trunk.
      *     @type string $display_name
      *           Optional. Human readable alias for this trunk.
+     *     @type \Google\Cloud\Dialogflow\V2\SipHostname[] $peer_hostnames
+     *           Required. Peer hostnames of the SIP trunk.
+     *     @type int $google_root_cert_file
+     *           Optional. The root certificate file to use for this SIP trunk.
      * }
      */
     public function __construct($data = NULL) {
@@ -174,6 +190,58 @@ class SipTrunk extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required. Peer hostnames of the SIP trunk.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SipHostname peer_hostnames = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SipHostname>
+     */
+    public function getPeerHostnames()
+    {
+        return $this->peer_hostnames;
+    }
+
+    /**
+     * Required. Peer hostnames of the SIP trunk.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SipHostname peer_hostnames = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param \Google\Cloud\Dialogflow\V2\SipHostname[] $var
+     * @return $this
+     */
+    public function setPeerHostnames($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\SipHostname::class);
+        $this->peer_hostnames = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The root certificate file to use for this SIP trunk.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SipTrunk.GoogleRootCertFile google_root_cert_file = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getGoogleRootCertFile()
+    {
+        return $this->google_root_cert_file;
+    }
+
+    /**
+     * Optional. The root certificate file to use for this SIP trunk.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SipTrunk.GoogleRootCertFile google_root_cert_file = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setGoogleRootCertFile($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\SipTrunk\GoogleRootCertFile::class);
+        $this->google_root_cert_file = $var;
 
         return $this;
     }

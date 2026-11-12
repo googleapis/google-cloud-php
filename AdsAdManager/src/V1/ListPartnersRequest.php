@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request object for [ListPartners][] method.
+ * Request object for `ListPartners` method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.ListPartnersRequest</code>
  */
@@ -17,25 +17,25 @@ class ListPartnersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent, which owns this collection of
-     * [Partner][google.ads.admanager.v1.Partner]s. Format:
+     * [Partners][google.ads.admanager.v1.Partner]. Format:
      * `networks/{network_code}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
-     * Optional. The maximum number of [Partner][google.ads.admanager.v1.Partner]s
+     * Optional. The maximum number of [Partners][google.ads.admanager.v1.Partner]
      * to return. The service may return fewer than this value. If unspecified, at
-     * most 50 [Partner][google.ads.admanager.v1.Partner]s will be returned. The
+     * most 50 [Partners][google.ads.admanager.v1.Partner] will be returned. The
      * maximum value is 1000; values greater than 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * Optional. A page token, received from a previous [ListPartners][] call.
+     * Optional. A page token, received from a previous `ListPartners` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to [ListPartners][] must
+     * When paginating, all other parameters provided to `ListPartners` must
      * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -76,7 +76,7 @@ class ListPartnersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The parent, which owns this collection of
-     *                       [Partner][google.ads.admanager.v1.Partner]s. Format:
+     *                       [Partners][google.ads.admanager.v1.Partner]. Format:
      *                       `networks/{network_code}`
      *                       Please see {@see PartnerServiceClient::networkName()} for help formatting this field.
      *
@@ -98,17 +98,17 @@ class ListPartnersRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent, which owns this collection of
-     *           [Partner][google.ads.admanager.v1.Partner]s. Format:
+     *           [Partners][google.ads.admanager.v1.Partner]. Format:
      *           `networks/{network_code}`
      *     @type int $page_size
-     *           Optional. The maximum number of [Partner][google.ads.admanager.v1.Partner]s
+     *           Optional. The maximum number of [Partners][google.ads.admanager.v1.Partner]
      *           to return. The service may return fewer than this value. If unspecified, at
-     *           most 50 [Partner][google.ads.admanager.v1.Partner]s will be returned. The
+     *           most 50 [Partners][google.ads.admanager.v1.Partner] will be returned. The
      *           maximum value is 1000; values greater than 1000 will be coerced to 1000.
      *     @type string $page_token
-     *           Optional. A page token, received from a previous [ListPartners][] call.
+     *           Optional. A page token, received from a previous `ListPartners` call.
      *           Provide this to retrieve the subsequent page.
-     *           When paginating, all other parameters provided to [ListPartners][] must
+     *           When paginating, all other parameters provided to `ListPartners` must
      *           match the call that provided the page token.
      *     @type string $filter
      *           Optional. Expression to filter the response.
@@ -139,7 +139,7 @@ class ListPartnersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns this collection of
-     * [Partner][google.ads.admanager.v1.Partner]s. Format:
+     * [Partners][google.ads.admanager.v1.Partner]. Format:
      * `networks/{network_code}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -152,7 +152,7 @@ class ListPartnersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns this collection of
-     * [Partner][google.ads.admanager.v1.Partner]s. Format:
+     * [Partners][google.ads.admanager.v1.Partner]. Format:
      * `networks/{network_code}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -168,9 +168,9 @@ class ListPartnersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of [Partner][google.ads.admanager.v1.Partner]s
+     * Optional. The maximum number of [Partners][google.ads.admanager.v1.Partner]
      * to return. The service may return fewer than this value. If unspecified, at
-     * most 50 [Partner][google.ads.admanager.v1.Partner]s will be returned. The
+     * most 50 [Partners][google.ads.admanager.v1.Partner] will be returned. The
      * maximum value is 1000; values greater than 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -182,9 +182,9 @@ class ListPartnersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of [Partner][google.ads.admanager.v1.Partner]s
+     * Optional. The maximum number of [Partners][google.ads.admanager.v1.Partner]
      * to return. The service may return fewer than this value. If unspecified, at
-     * most 50 [Partner][google.ads.admanager.v1.Partner]s will be returned. The
+     * most 50 [Partners][google.ads.admanager.v1.Partner] will be returned. The
      * maximum value is 1000; values greater than 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -200,9 +200,9 @@ class ListPartnersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A page token, received from a previous [ListPartners][] call.
+     * Optional. A page token, received from a previous `ListPartners` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to [ListPartners][] must
+     * When paginating, all other parameters provided to `ListPartners` must
      * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -214,9 +214,9 @@ class ListPartnersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A page token, received from a previous [ListPartners][] call.
+     * Optional. A page token, received from a previous `ListPartners` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to [ListPartners][] must
+     * When paginating, all other parameters provided to `ListPartners` must
      * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>

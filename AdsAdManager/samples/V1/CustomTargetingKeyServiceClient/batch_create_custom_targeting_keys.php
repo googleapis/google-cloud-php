@@ -64,7 +64,7 @@ function batch_create_custom_targeting_keys_sample(
     $createCustomTargetingKeyRequest = (new CreateCustomTargetingKeyRequest())
         ->setParent($formattedRequestsParent)
         ->setCustomTargetingKey($requestsCustomTargetingKey);
-    $requests = [$createCustomTargetingKeyRequest,];
+    $requests = [$createCustomTargetingKeyRequest];
     $request = (new BatchCreateCustomTargetingKeysRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

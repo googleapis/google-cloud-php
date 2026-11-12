@@ -53,7 +53,7 @@ function batch_create_resource_value_configs_sample(
     $createResourceValueConfigRequest = (new CreateResourceValueConfigRequest())
         ->setParent($formattedRequestsParent)
         ->setResourceValueConfig($requestsResourceValueConfig);
-    $requests = [$createResourceValueConfigRequest,];
+    $requests = [$createResourceValueConfigRequest];
     $request = (new BatchCreateResourceValueConfigsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

@@ -84,6 +84,8 @@ use Google\Apps\Chat\V1\MoveSectionItemResponse;
 use Google\Apps\Chat\V1\PositionSectionRequest;
 use Google\Apps\Chat\V1\PositionSectionResponse;
 use Google\Apps\Chat\V1\Reaction;
+use Google\Apps\Chat\V1\ReplaceMessageCardsRequest;
+use Google\Apps\Chat\V1\ReplaceMessageCardsResponse;
 use Google\Apps\Chat\V1\SearchMessagesRequest;
 use Google\Apps\Chat\V1\SearchSpacesRequest;
 use Google\Apps\Chat\V1\Section;
@@ -159,6 +161,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Availability> markAsDoNotDisturbAsync(MarkAsDoNotDisturbRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<MoveSectionItemResponse> moveSectionItemAsync(MoveSectionItemRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PositionSectionResponse> positionSectionAsync(PositionSectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReplaceMessageCardsResponse> replaceMessageCardsAsync(ReplaceMessageCardsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> searchMessagesAsync(SearchMessagesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> searchSpacesAsync(SearchSpacesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> setUpSpaceAsync(SetUpSpaceRequest $request, array $optionalArgs = [])
@@ -2535,6 +2538,46 @@ final class ChatServiceClient
     public function positionSection(PositionSectionRequest $request, array $callOptions = []): PositionSectionResponse
     {
         return $this->startApiCall('PositionSection', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Replaces the cards included in a message.
+     *
+     * A Chat app can only replace cards on a human-created message if the message
+     * already contains cards, and the cards were created by the app.
+     *
+     * If the app replaces the cards with an empty list, the cards are removed.
+     * After removing the cards, the app cannot add cards back to the message.
+     *
+     * Requires [app
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * with the [authorization
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+     * - `https://www.googleapis.com/auth/chat.bot`
+     *
+     * The async variant is {@see ChatServiceClient::replaceMessageCardsAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/replace_message_cards.php
+     *
+     * @param ReplaceMessageCardsRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ReplaceMessageCardsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function replaceMessageCards(
+        ReplaceMessageCardsRequest $request,
+        array $callOptions = []
+    ): ReplaceMessageCardsResponse {
+        return $this->startApiCall('ReplaceMessageCards', $request, $callOptions)->wait();
     }
 
     /**

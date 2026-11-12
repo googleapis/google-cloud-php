@@ -113,6 +113,51 @@ return [
                     'management_server_id',
                 ],
             ],
+            'CreateRestoreTemplate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}/restoreTemplates',
+                'body' => 'restore_template',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'restore_template_id',
+                ],
+            ],
+            'CreateRestoreVerificationPlan' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}/restoreVerificationPlans',
+                'body' => 'restore_verification_plan',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'restore_verification_plan_id',
+                ],
+            ],
+            'CreateRestoreVerificationPlanAssociation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/restoreVerificationPlans/*}/associations',
+                'body' => 'restore_verification_plan_association',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'restore_verification_plan_association_id',
+                ],
+            ],
             'DeleteAutoProtectionPolicy' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1beta/{name=projects/*/locations/*/autoProtectionPolicies/*}',
@@ -171,6 +216,39 @@ return [
             'DeleteManagementServer' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1beta/{name=projects/*/locations/*/managementServers/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteRestoreTemplate' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/restoreTemplates/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteRestoreVerificationPlan' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/restoreVerificationPlans/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteRestoreVerificationPlanAssociation' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/restoreVerificationPlans/*/associations/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -344,6 +422,50 @@ return [
                     ],
                 ],
             ],
+            'GetRestoreTemplate' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/restoreTemplates/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetRestoreTemplateExecution' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/restoreTemplates/*/executions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetRestoreVerificationPlan' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/restoreVerificationPlans/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetRestoreVerificationPlanAssociation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/restoreVerificationPlans/*/associations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'InitializeService' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta/{name=projects/*/locations/*/serviceConfig}:initialize',
@@ -500,9 +622,65 @@ return [
                     ],
                 ],
             ],
+            'ListRestoreTemplateExecutions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/restoreTemplates/*}/executions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRestoreTemplates' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}/restoreTemplates',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRestoreVerificationPlanAssociations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/restoreVerificationPlans/*}/associations',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRestoreVerificationPlans' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}/restoreVerificationPlans',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'RestoreBackup' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta/{name=projects/*/locations/*/backupVaults/*/dataSources/*/backups/*}:restore',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'RunRestoreTemplate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/restoreTemplates/*}:run',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
@@ -524,6 +702,30 @@ return [
                     ],
                 ],
             ],
+            'TriggerRestoreCleanup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/restoreTemplates/*/executions/*}:triggerRestoreCleanup',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'TriggerRestoreVerification' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/restoreVerificationPlans/*/associations/*}:triggerRestoreVerification',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateAutoProtectionPolicy' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1beta/{auto_protection_policy.name=projects/*/locations/*/autoProtectionPolicies/*}',
@@ -535,9 +737,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'UpdateBackup' => [
@@ -618,6 +817,19 @@ return [
                 ],
                 'queryParams' => [
                     'update_mask',
+                ],
+            ],
+            'UpdateRestoreTemplate' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta/{restore_template.name=projects/*/locations/*/restoreTemplates/*}',
+                'body' => 'restore_template',
+                'placeholders' => [
+                    'restore_template.name' => [
+                        'getters' => [
+                            'getRestoreTemplate',
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
         ],

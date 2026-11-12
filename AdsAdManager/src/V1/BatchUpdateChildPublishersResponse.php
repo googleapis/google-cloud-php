@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Response object for [BatchUpdateChildPublishers][] method.
+ * Response object for `BatchUpdateChildPublishers` method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.BatchUpdateChildPublishersResponse</code>
  */

@@ -58,7 +58,7 @@ function batch_delete_entities_sample(string $formattedParent, string $entityVal
     $entityTypesClient = new EntityTypesClient();
 
     // Prepare the request message.
-    $entityValues = [$entityValuesElement,];
+    $entityValues = [$entityValuesElement];
     $request = (new BatchDeleteEntitiesRequest())
         ->setParent($formattedParent)
         ->setEntityValues($entityValues);

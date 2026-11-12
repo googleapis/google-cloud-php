@@ -16,17 +16,17 @@ use Google\Protobuf\RepeatedField;
 class CertificateMap extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A user-defined name of the Certificate Map. Certificate Map names must be
-     * unique globally and match pattern
+     * Identifier. A user-defined name of the Certificate Map. Certificate Map
+     * names must be unique globally and match pattern
      * `projects/{@*}locations/{@*}certificateMaps/*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * One or more paragraphs of text description of a certificate map.
+     * Optional. One or more paragraphs of text description of a certificate map.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $description = '';
     /**
@@ -42,9 +42,9 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
      */
     protected $update_time = null;
     /**
-     * Set of labels associated with a Certificate Map.
+     * Optional. Set of labels associated with a Certificate Map.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 3;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
@@ -55,6 +55,15 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.CertificateMap.GclbTarget gclb_targets = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $gclb_targets;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 7 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tags;
 
     /**
      * Constructor.
@@ -63,21 +72,26 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           A user-defined name of the Certificate Map. Certificate Map names must be
-     *           unique globally and match pattern
+     *           Identifier. A user-defined name of the Certificate Map. Certificate Map
+     *           names must be unique globally and match pattern
      *           `projects/{@*}locations/{@*}certificateMaps/*`.
      *     @type string $description
-     *           One or more paragraphs of text description of a certificate map.
+     *           Optional. One or more paragraphs of text description of a certificate map.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The creation timestamp of a Certificate Map.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The update timestamp of a Certificate Map.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Set of labels associated with a Certificate Map.
+     *           Optional. Set of labels associated with a Certificate Map.
      *     @type \Google\Cloud\CertificateManager\V1\CertificateMap\GclbTarget[] $gclb_targets
      *           Output only. A list of GCLB targets that use this Certificate Map.
      *           A Target Proxy is only present on this list if it's attached to a
      *           Forwarding Rule.
+     *     @type array|\Google\Protobuf\Internal\MapField $tags
+     *           Optional. Input only. Immutable. Tag keys/values directly bound to this
+     *           resource. For example:
+     *             "123/environment": "production",
+     *             "123/costCenter": "marketing"
      * }
      */
     public function __construct($data = NULL) {
@@ -86,11 +100,11 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A user-defined name of the Certificate Map. Certificate Map names must be
-     * unique globally and match pattern
+     * Identifier. A user-defined name of the Certificate Map. Certificate Map
+     * names must be unique globally and match pattern
      * `projects/{@*}locations/{@*}certificateMaps/*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -99,11 +113,11 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A user-defined name of the Certificate Map. Certificate Map names must be
-     * unique globally and match pattern
+     * Identifier. A user-defined name of the Certificate Map. Certificate Map
+     * names must be unique globally and match pattern
      * `projects/{@*}locations/{@*}certificateMaps/*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -116,9 +130,9 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One or more paragraphs of text description of a certificate map.
+     * Optional. One or more paragraphs of text description of a certificate map.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -127,9 +141,9 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One or more paragraphs of text description of a certificate map.
+     * Optional. One or more paragraphs of text description of a certificate map.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -214,9 +228,9 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set of labels associated with a Certificate Map.
+     * Optional. Set of labels associated with a Certificate Map.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 3;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -225,9 +239,9 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set of labels associated with a Certificate Map.
+     * Optional. Set of labels associated with a Certificate Map.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 3;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -265,6 +279,38 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\CertificateManager\V1\CertificateMap\GclbTarget::class);
         $this->gclb_targets = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 7 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 7 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tags = $arr;
 
         return $this;
     }

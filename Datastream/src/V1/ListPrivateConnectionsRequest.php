@@ -32,25 +32,25 @@ class ListPrivateConnectionsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $page_size = 0;
     /**
-     * Page token received from a previous `ListPrivateConnections` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. Page token received from a previous `ListPrivateConnections`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
      * `ListPrivateConnections` must match the call that provided the page
      * token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
     /**
-     * Filter request.
+     * Optional. Filter request.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = '';
     /**
-     * Order by fields for the result.
+     * Optional. Order by fields for the result.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $order_by = '';
 
@@ -84,15 +84,15 @@ class ListPrivateConnectionsRequest extends \Google\Protobuf\Internal\Message
      *           returned. The maximum value is 1000; values above 1000 will be coerced to
      *           1000.
      *     @type string $page_token
-     *           Page token received from a previous `ListPrivateConnections` call.
-     *           Provide this to retrieve the subsequent page.
+     *           Optional. Page token received from a previous `ListPrivateConnections`
+     *           call. Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to
      *           `ListPrivateConnections` must match the call that provided the page
      *           token.
      *     @type string $filter
-     *           Filter request.
+     *           Optional. Filter request.
      *     @type string $order_by
-     *           Order by fields for the result.
+     *           Optional. Order by fields for the result.
      * }
      */
     public function __construct($data = NULL) {
@@ -161,13 +161,13 @@ class ListPrivateConnectionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Page token received from a previous `ListPrivateConnections` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. Page token received from a previous `ListPrivateConnections`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
      * `ListPrivateConnections` must match the call that provided the page
      * token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -176,13 +176,13 @@ class ListPrivateConnectionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Page token received from a previous `ListPrivateConnections` call.
-     * Provide this to retrieve the subsequent page.
+     * Optional. Page token received from a previous `ListPrivateConnections`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
      * `ListPrivateConnections` must match the call that provided the page
      * token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -195,9 +195,9 @@ class ListPrivateConnectionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filter request.
+     * Optional. Filter request.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFilter()
@@ -206,9 +206,9 @@ class ListPrivateConnectionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filter request.
+     * Optional. Filter request.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -221,9 +221,9 @@ class ListPrivateConnectionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Order by fields for the result.
+     * Optional. Order by fields for the result.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getOrderBy()
@@ -232,9 +232,9 @@ class ListPrivateConnectionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Order by fields for the result.
+     * Optional. Order by fields for the result.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

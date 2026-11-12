@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Response object for [ListChildPublishers][] containing matching
+ * Response object for `ListChildPublishers` containing matching
  * [ChildPublisher][google.ads.admanager.v1.ChildPublisher] objects.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.ListChildPublishersResponse</code>

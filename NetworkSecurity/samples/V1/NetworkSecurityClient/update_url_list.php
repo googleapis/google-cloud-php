@@ -46,7 +46,7 @@ function update_url_list_sample(string $urlListName, string $urlListValuesElemen
     $networkSecurityClient = new NetworkSecurityClient();
 
     // Prepare the request message.
-    $urlListValues = [$urlListValuesElement,];
+    $urlListValues = [$urlListValuesElement];
     $urlList = (new UrlList())
         ->setName($urlListName)
         ->setValues($urlListValues);

@@ -54,6 +54,15 @@ class GcpBackupConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string backup_plan_revision_id = 6;</code>
      */
     protected $backup_plan_revision_id = '';
+    /**
+     * Output only. The resource name of the `AutoProtectionPolicyBinding` that
+     * manages this datasource, if any.
+     * Format:
+     * `projects/{project}/locations/{location}/autoProtectionPolicies/{policy}/bindings/{binding}`.
+     *
+     * Generated from protobuf field <code>string auto_protection_policy_binding = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    protected $auto_protection_policy_binding = '';
 
     /**
      * Constructor.
@@ -74,6 +83,11 @@ class GcpBackupConfig extends \Google\Protobuf\Internal\Message
      *     @type string $backup_plan_revision_id
      *           The user friendly id of the backup plan revision.
      *           E.g. v0, v1 etc.
+     *     @type string $auto_protection_policy_binding
+     *           Output only. The resource name of the `AutoProtectionPolicyBinding` that
+     *           manages this datasource, if any.
+     *           Format:
+     *           `projects/{project}/locations/{location}/autoProtectionPolicies/{policy}/bindings/{binding}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -235,6 +249,38 @@ class GcpBackupConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->backup_plan_revision_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The resource name of the `AutoProtectionPolicyBinding` that
+     * manages this datasource, if any.
+     * Format:
+     * `projects/{project}/locations/{location}/autoProtectionPolicies/{policy}/bindings/{binding}`.
+     *
+     * Generated from protobuf field <code>string auto_protection_policy_binding = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getAutoProtectionPolicyBinding()
+    {
+        return $this->auto_protection_policy_binding;
+    }
+
+    /**
+     * Output only. The resource name of the `AutoProtectionPolicyBinding` that
+     * manages this datasource, if any.
+     * Format:
+     * `projects/{project}/locations/{location}/autoProtectionPolicies/{policy}/bindings/{binding}`.
+     *
+     * Generated from protobuf field <code>string auto_protection_policy_binding = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAutoProtectionPolicyBinding($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->auto_protection_policy_binding = $var;
 
         return $this;
     }

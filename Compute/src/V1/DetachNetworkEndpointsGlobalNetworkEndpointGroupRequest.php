@@ -66,7 +66,9 @@ class DetachNetworkEndpointsGlobalNetworkEndpointGroupRequest extends \Google\Pr
         return (new self())
             ->setProject($project)
             ->setNetworkEndpointGroup($networkEndpointGroup)
-            ->setGlobalNetworkEndpointGroupsDetachEndpointsRequestResource($globalNetworkEndpointGroupsDetachEndpointsRequestResource);
+            ->setGlobalNetworkEndpointGroupsDetachEndpointsRequestResource(
+                $globalNetworkEndpointGroupsDetachEndpointsRequestResource
+            );
     }
 
     /**

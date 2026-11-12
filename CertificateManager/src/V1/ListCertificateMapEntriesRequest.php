@@ -24,35 +24,36 @@ class ListCertificateMapEntriesRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * Maximum number of certificate map entries to return. The service may return
-     * fewer than this value.
-     * If unspecified, at most 50 certificate map entries will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of certificate map entries to return. The service
+     * may return fewer than this value. If unspecified, at most 50 certificate
+     * map entries will be returned. The maximum value is 1000; values above 1000
+     * will be coerced to 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * The value returned by the last `ListCertificateMapEntriesResponse`.
-     * Indicates that this is a continuation of a prior
-     * `ListCertificateMapEntries` call, and that the system should return the
-     * next page of data.
+     * Optional. The value returned by the last
+     * `ListCertificateMapEntriesResponse`. Indicates that this is a continuation
+     * of a prior `ListCertificateMapEntries` call, and that the system should
+     * return the next page of data.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
     /**
-     * Filter expression to restrict the returned Certificate Map Entries.
+     * Optional. Filter expression to restrict the returned Certificate Map
+     * Entries.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = '';
     /**
-     * A list of Certificate Map Entry field names used to specify
+     * Optional. A list of Certificate Map Entry field names used to specify
      * the order of the returned results. The default sorting order is ascending.
      * To specify descending order for a field, add a suffix `" desc"`.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $order_by = '';
 
@@ -83,19 +84,20 @@ class ListCertificateMapEntriesRequest extends \Google\Protobuf\Internal\Message
      *           certificate map entries should be listed, specified in the format
      *           `projects/{@*}locations/{@*}certificateMaps/*`.
      *     @type int $page_size
-     *           Maximum number of certificate map entries to return. The service may return
-     *           fewer than this value.
-     *           If unspecified, at most 50 certificate map entries will be returned.
-     *           The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *           Optional. Maximum number of certificate map entries to return. The service
+     *           may return fewer than this value. If unspecified, at most 50 certificate
+     *           map entries will be returned. The maximum value is 1000; values above 1000
+     *           will be coerced to 1000.
      *     @type string $page_token
-     *           The value returned by the last `ListCertificateMapEntriesResponse`.
-     *           Indicates that this is a continuation of a prior
-     *           `ListCertificateMapEntries` call, and that the system should return the
-     *           next page of data.
+     *           Optional. The value returned by the last
+     *           `ListCertificateMapEntriesResponse`. Indicates that this is a continuation
+     *           of a prior `ListCertificateMapEntries` call, and that the system should
+     *           return the next page of data.
      *     @type string $filter
-     *           Filter expression to restrict the returned Certificate Map Entries.
+     *           Optional. Filter expression to restrict the returned Certificate Map
+     *           Entries.
      *     @type string $order_by
-     *           A list of Certificate Map Entry field names used to specify
+     *           Optional. A list of Certificate Map Entry field names used to specify
      *           the order of the returned results. The default sorting order is ascending.
      *           To specify descending order for a field, add a suffix `" desc"`.
      * }
@@ -136,12 +138,12 @@ class ListCertificateMapEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of certificate map entries to return. The service may return
-     * fewer than this value.
-     * If unspecified, at most 50 certificate map entries will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of certificate map entries to return. The service
+     * may return fewer than this value. If unspecified, at most 50 certificate
+     * map entries will be returned. The maximum value is 1000; values above 1000
+     * will be coerced to 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -150,12 +152,12 @@ class ListCertificateMapEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of certificate map entries to return. The service may return
-     * fewer than this value.
-     * If unspecified, at most 50 certificate map entries will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of certificate map entries to return. The service
+     * may return fewer than this value. If unspecified, at most 50 certificate
+     * map entries will be returned. The maximum value is 1000; values above 1000
+     * will be coerced to 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -168,12 +170,12 @@ class ListCertificateMapEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value returned by the last `ListCertificateMapEntriesResponse`.
-     * Indicates that this is a continuation of a prior
-     * `ListCertificateMapEntries` call, and that the system should return the
-     * next page of data.
+     * Optional. The value returned by the last
+     * `ListCertificateMapEntriesResponse`. Indicates that this is a continuation
+     * of a prior `ListCertificateMapEntries` call, and that the system should
+     * return the next page of data.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -182,12 +184,12 @@ class ListCertificateMapEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value returned by the last `ListCertificateMapEntriesResponse`.
-     * Indicates that this is a continuation of a prior
-     * `ListCertificateMapEntries` call, and that the system should return the
-     * next page of data.
+     * Optional. The value returned by the last
+     * `ListCertificateMapEntriesResponse`. Indicates that this is a continuation
+     * of a prior `ListCertificateMapEntries` call, and that the system should
+     * return the next page of data.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -200,9 +202,10 @@ class ListCertificateMapEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filter expression to restrict the returned Certificate Map Entries.
+     * Optional. Filter expression to restrict the returned Certificate Map
+     * Entries.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFilter()
@@ -211,9 +214,10 @@ class ListCertificateMapEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filter expression to restrict the returned Certificate Map Entries.
+     * Optional. Filter expression to restrict the returned Certificate Map
+     * Entries.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -226,11 +230,11 @@ class ListCertificateMapEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of Certificate Map Entry field names used to specify
+     * Optional. A list of Certificate Map Entry field names used to specify
      * the order of the returned results. The default sorting order is ascending.
      * To specify descending order for a field, add a suffix `" desc"`.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getOrderBy()
@@ -239,11 +243,11 @@ class ListCertificateMapEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of Certificate Map Entry field names used to specify
+     * Optional. A list of Certificate Map Entry field names used to specify
      * the order of the returned results. The default sorting order is ascending.
      * To specify descending order for a field, add a suffix `" desc"`.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

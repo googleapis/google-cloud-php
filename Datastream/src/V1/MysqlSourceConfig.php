@@ -9,20 +9,20 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * MySQL source configuration
+ * Configuration for syncing data from a MySQL source.
  *
  * Generated from protobuf message <code>google.cloud.datastream.v1.MysqlSourceConfig</code>
  */
 class MysqlSourceConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * MySQL objects to retrieve from the source.
+     * The MySQL objects to retrieve from the source.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlRdbms include_objects = 1;</code>
      */
     protected $include_objects = null;
     /**
-     * MySQL objects to exclude from the stream.
+     * The MySQL objects to exclude from the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlRdbms exclude_objects = 2;</code>
      */
@@ -51,9 +51,9 @@ class MysqlSourceConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Datastream\V1\MysqlRdbms $include_objects
-     *           MySQL objects to retrieve from the source.
+     *           The MySQL objects to retrieve from the source.
      *     @type \Google\Cloud\Datastream\V1\MysqlRdbms $exclude_objects
-     *           MySQL objects to exclude from the stream.
+     *           The MySQL objects to exclude from the stream.
      *     @type int $max_concurrent_cdc_tasks
      *           Maximum number of concurrent CDC tasks. The number should be non negative.
      *           If not set (or set to 0), the system's default value will be used.
@@ -73,7 +73,7 @@ class MysqlSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * MySQL objects to retrieve from the source.
+     * The MySQL objects to retrieve from the source.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlRdbms include_objects = 1;</code>
      * @return \Google\Cloud\Datastream\V1\MysqlRdbms|null
@@ -94,7 +94,7 @@ class MysqlSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * MySQL objects to retrieve from the source.
+     * The MySQL objects to retrieve from the source.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlRdbms include_objects = 1;</code>
      * @param \Google\Cloud\Datastream\V1\MysqlRdbms $var
@@ -109,7 +109,7 @@ class MysqlSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * MySQL objects to exclude from the stream.
+     * The MySQL objects to exclude from the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlRdbms exclude_objects = 2;</code>
      * @return \Google\Cloud\Datastream\V1\MysqlRdbms|null
@@ -130,7 +130,7 @@ class MysqlSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * MySQL objects to exclude from the stream.
+     * The MySQL objects to exclude from the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlRdbms exclude_objects = 2;</code>
      * @param \Google\Cloud\Datastream\V1\MysqlRdbms $var

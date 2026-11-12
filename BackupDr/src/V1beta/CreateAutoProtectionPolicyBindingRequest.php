@@ -26,6 +26,8 @@ class CreateAutoProtectionPolicyBindingRequest extends \Google\Protobuf\Internal
     /**
      * Required. The ID to use for the binding.
      * This will become the final component of the binding's resource name.
+     * This value must start with a lowercase letter followed by up to 62
+     * lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *
      * Generated from protobuf field <code>string auto_protection_policy_binding_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -36,6 +38,17 @@ class CreateAutoProtectionPolicyBindingRequest extends \Google\Protobuf\Internal
      * Generated from protobuf field <code>.google.cloud.backupdr.v1beta.AutoProtectionPolicyBinding auto_protection_policy_binding = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $auto_protection_policy_binding = null;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique
+     * request ID so that if you must retry your request, the server will know to
+     * ignore the request if it has already been completed. The server will
+     * guarantee that for at least 60 minutes since the first request.
+     * The request ID must be a valid UUID with the exception that zero UUID is
+     * not supported (00000000-0000-0000-0000-000000000000).
+     *
+     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     */
+    protected $request_id = '';
 
     /**
      * @param string                                                    $parent                        Required. The parent resource where this binding will be created.
@@ -45,6 +58,9 @@ class CreateAutoProtectionPolicyBindingRequest extends \Google\Protobuf\Internal
      * @param \Google\Cloud\BackupDR\V1beta\AutoProtectionPolicyBinding $autoProtectionPolicyBinding   Required. The AutoProtectionPolicyBinding resource to create.
      * @param string                                                    $autoProtectionPolicyBindingId Required. The ID to use for the binding.
      *                                                                                                 This will become the final component of the binding's resource name.
+     *
+     *                                                                                                 This value must start with a lowercase letter followed by up to 62
+     *                                                                                                 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *
      * @return \Google\Cloud\BackupDR\V1beta\CreateAutoProtectionPolicyBindingRequest
      *
@@ -71,8 +87,17 @@ class CreateAutoProtectionPolicyBindingRequest extends \Google\Protobuf\Internal
      *     @type string $auto_protection_policy_binding_id
      *           Required. The ID to use for the binding.
      *           This will become the final component of the binding's resource name.
+     *           This value must start with a lowercase letter followed by up to 62
+     *           lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *     @type \Google\Cloud\BackupDR\V1beta\AutoProtectionPolicyBinding $auto_protection_policy_binding
      *           Required. The AutoProtectionPolicyBinding resource to create.
+     *     @type string $request_id
+     *           Optional. An optional request ID to identify requests. Specify a unique
+     *           request ID so that if you must retry your request, the server will know to
+     *           ignore the request if it has already been completed. The server will
+     *           guarantee that for at least 60 minutes since the first request.
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +138,8 @@ class CreateAutoProtectionPolicyBindingRequest extends \Google\Protobuf\Internal
     /**
      * Required. The ID to use for the binding.
      * This will become the final component of the binding's resource name.
+     * This value must start with a lowercase letter followed by up to 62
+     * lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *
      * Generated from protobuf field <code>string auto_protection_policy_binding_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -125,6 +152,8 @@ class CreateAutoProtectionPolicyBindingRequest extends \Google\Protobuf\Internal
     /**
      * Required. The ID to use for the binding.
      * This will become the final component of the binding's resource name.
+     * This value must start with a lowercase letter followed by up to 62
+     * lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *
      * Generated from protobuf field <code>string auto_protection_policy_binding_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -170,6 +199,42 @@ class CreateAutoProtectionPolicyBindingRequest extends \Google\Protobuf\Internal
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1beta\AutoProtectionPolicyBinding::class);
         $this->auto_protection_policy_binding = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique
+     * request ID so that if you must retry your request, the server will know to
+     * ignore the request if it has already been completed. The server will
+     * guarantee that for at least 60 minutes since the first request.
+     * The request ID must be a valid UUID with the exception that zero UUID is
+     * not supported (00000000-0000-0000-0000-000000000000).
+     *
+     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     * @return string
+     */
+    public function getRequestId()
+    {
+        return $this->request_id;
+    }
+
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique
+     * request ID so that if you must retry your request, the server will know to
+     * ignore the request if it has already been completed. The server will
+     * guarantee that for at least 60 minutes since the first request.
+     * The request ID must be a valid UUID with the exception that zero UUID is
+     * not supported (00000000-0000-0000-0000-000000000000).
+     *
+     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRequestId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->request_id = $var;
 
         return $this;
     }

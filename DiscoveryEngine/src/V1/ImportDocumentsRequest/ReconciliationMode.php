@@ -29,6 +29,9 @@ class ReconciliationMode
     /**
      * Calculates diff and replaces the entire document dataset. Existing
      * documents may be deleted if they are not present in the source location.
+     * When using this mode, there won't be any downtime on the dataset
+     * targeted. Any document that should remain unchanged or that should be
+     * updated will continue serving while the operation is running.
      *
      * Generated from protobuf enum <code>FULL = 2;</code>
      */

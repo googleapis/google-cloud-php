@@ -320,11 +320,13 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $userPseudoId = 'userPseudoId-1850666040';
         $isPinned = false;
+        $pendingAsyncAssistOperationId = 'pendingAsyncAssistOperationId1450092062';
         $expectedResponse = new Session();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setUserPseudoId($userPseudoId);
         $expectedResponse->setIsPinned($isPinned);
+        $expectedResponse->setPendingAsyncAssistOperationId($pendingAsyncAssistOperationId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
@@ -667,11 +669,13 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $userPseudoId = 'userPseudoId-1850666040';
         $isPinned = false;
+        $pendingAsyncAssistOperationId = 'pendingAsyncAssistOperationId1450092062';
         $expectedResponse = new Session();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setUserPseudoId($userPseudoId);
         $expectedResponse->setIsPinned($isPinned);
+        $expectedResponse->setPendingAsyncAssistOperationId($pendingAsyncAssistOperationId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->sessionName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[SESSION]');
@@ -1051,11 +1055,13 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $userPseudoId = 'userPseudoId-1850666040';
         $isPinned = false;
+        $pendingAsyncAssistOperationId = 'pendingAsyncAssistOperationId1450092062';
         $expectedResponse = new Session();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setUserPseudoId($userPseudoId);
         $expectedResponse->setIsPinned($isPinned);
+        $expectedResponse->setPendingAsyncAssistOperationId($pendingAsyncAssistOperationId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $session = new Session();

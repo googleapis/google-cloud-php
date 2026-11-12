@@ -48,7 +48,9 @@ class CreateMembersInterconnectGroupRequest extends \Google\Protobuf\Internal\Me
         return (new self())
             ->setProject($project)
             ->setInterconnectGroup($interconnectGroup)
-            ->setInterconnectGroupsCreateMembersRequestResource($interconnectGroupsCreateMembersRequestResource);
+            ->setInterconnectGroupsCreateMembersRequestResource(
+                $interconnectGroupsCreateMembersRequestResource
+            );
     }
 
     /**

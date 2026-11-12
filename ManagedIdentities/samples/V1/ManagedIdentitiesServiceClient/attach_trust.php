@@ -61,7 +61,7 @@ function attach_trust_sample(
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
 
     // Prepare the request message.
-    $trustTargetDnsIpAddresses = [$trustTargetDnsIpAddressesElement,];
+    $trustTargetDnsIpAddresses = [$trustTargetDnsIpAddressesElement];
     $trust = (new Trust())
         ->setTargetDomainName($trustTargetDomainName)
         ->setTrustType($trustTrustType)

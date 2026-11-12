@@ -44,7 +44,7 @@ function resolve_operator_info_sample(string $formattedParent, string $queriesOp
     // Prepare the request message.
     $operatorQuery = (new OperatorQuery())
         ->setOperator($queriesOperator);
-    $queries = [$operatorQuery,];
+    $queries = [$operatorQuery];
     $request = (new ResolveOperatorInfoRequest())
         ->setParent($formattedParent)
         ->setQueries($queries);

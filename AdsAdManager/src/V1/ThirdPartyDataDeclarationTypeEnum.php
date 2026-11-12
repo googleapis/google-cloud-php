@@ -10,7 +10,7 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Wrapper message for
- * [ThirdPartyDataDeclarationTypeEnum][google.ads.admanager.v1.ThirdPartyDataDeclarationTypeEnum]
+ * [ThirdPartyDataDeclarationType][google.ads.admanager.v1.ThirdPartyDataDeclarationTypeEnum.ThirdPartyDataDeclarationType]
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.ThirdPartyDataDeclarationTypeEnum</code>
  */

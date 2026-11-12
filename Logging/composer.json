@@ -19,7 +19,7 @@
         "google/cloud-storage": "^2.0",
         "google/cloud-bigquery": "^1.0",
         "google/cloud-pubsub": "^2.0",
-        "opis/closure": "^3",
+        "opis/closure": "^4",
         "monolog/monolog": "^3.8",
         "dg/bypass-finals": "^1.9",
         "nikic/php-parser": "^5.0"

@@ -23,6 +23,25 @@
 return [
     'interfaces' => [
         'google.cloud.dataform.v1.Dataform' => [
+            'CreateCompilationResultLongRunning' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Dataform\V1\CompilationResult',
+                    'metadataReturnType' => '\Google\Cloud\Dataform\V1\CreateCompilationResultMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteFolderTree' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',

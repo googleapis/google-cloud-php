@@ -27,9 +27,15 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DiscoveryEngine\V1\Client\ServingConfigServiceClient;
+use Google\Cloud\DiscoveryEngine\V1\CreateServingConfigRequest;
+use Google\Cloud\DiscoveryEngine\V1\DeleteServingConfigRequest;
+use Google\Cloud\DiscoveryEngine\V1\GetServingConfigRequest;
+use Google\Cloud\DiscoveryEngine\V1\ListServingConfigsRequest;
+use Google\Cloud\DiscoveryEngine\V1\ListServingConfigsResponse;
 use Google\Cloud\DiscoveryEngine\V1\ServingConfig;
 use Google\Cloud\DiscoveryEngine\V1\SolutionType;
 use Google\Cloud\DiscoveryEngine\V1\UpdateServingConfigRequest;
+use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -61,6 +67,307 @@ class ServingConfigServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new ServingConfigServiceClient($options);
+    }
+
+    /** @test */
+    public function createServingConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $modelId = 'modelId-619038223';
+        $diversityLevel = 'diversityLevel1294448926';
+        $rankingExpression = 'rankingExpression-1555136959';
+        $expectedResponse = new ServingConfig();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setModelId($modelId);
+        $expectedResponse->setDiversityLevel($diversityLevel);
+        $expectedResponse->setRankingExpression($rankingExpression);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
+        $servingConfig = new ServingConfig();
+        $servingConfigDisplayName = 'servingConfigDisplayName-490549473';
+        $servingConfig->setDisplayName($servingConfigDisplayName);
+        $servingConfigSolutionType = SolutionType::SOLUTION_TYPE_UNSPECIFIED;
+        $servingConfig->setSolutionType($servingConfigSolutionType);
+        $servingConfigId = 'servingConfigId-600821051';
+        $request = (new CreateServingConfigRequest())
+            ->setParent($formattedParent)
+            ->setServingConfig($servingConfig)
+            ->setServingConfigId($servingConfigId);
+        $response = $gapicClient->createServingConfig($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.discoveryengine.v1.ServingConfigService/CreateServingConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getServingConfig();
+        $this->assertProtobufEquals($servingConfig, $actualValue);
+        $actualValue = $actualRequestObject->getServingConfigId();
+        $this->assertProtobufEquals($servingConfigId, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createServingConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
+        $servingConfig = new ServingConfig();
+        $servingConfigDisplayName = 'servingConfigDisplayName-490549473';
+        $servingConfig->setDisplayName($servingConfigDisplayName);
+        $servingConfigSolutionType = SolutionType::SOLUTION_TYPE_UNSPECIFIED;
+        $servingConfig->setSolutionType($servingConfigSolutionType);
+        $servingConfigId = 'servingConfigId-600821051';
+        $request = (new CreateServingConfigRequest())
+            ->setParent($formattedParent)
+            ->setServingConfig($servingConfig)
+            ->setServingConfigId($servingConfigId);
+        try {
+            $gapicClient->createServingConfig($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteServingConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->servingConfigName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[SERVING_CONFIG]');
+        $request = (new DeleteServingConfigRequest())->setName($formattedName);
+        $gapicClient->deleteServingConfig($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.discoveryengine.v1.ServingConfigService/DeleteServingConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteServingConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->servingConfigName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[SERVING_CONFIG]');
+        $request = (new DeleteServingConfigRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteServingConfig($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getServingConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $modelId = 'modelId-619038223';
+        $diversityLevel = 'diversityLevel1294448926';
+        $rankingExpression = 'rankingExpression-1555136959';
+        $expectedResponse = new ServingConfig();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setModelId($modelId);
+        $expectedResponse->setDiversityLevel($diversityLevel);
+        $expectedResponse->setRankingExpression($rankingExpression);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->servingConfigName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[SERVING_CONFIG]');
+        $request = (new GetServingConfigRequest())->setName($formattedName);
+        $response = $gapicClient->getServingConfig($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.discoveryengine.v1.ServingConfigService/GetServingConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getServingConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->servingConfigName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[SERVING_CONFIG]');
+        $request = (new GetServingConfigRequest())->setName($formattedName);
+        try {
+            $gapicClient->getServingConfig($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listServingConfigsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $servingConfigsElement = new ServingConfig();
+        $servingConfigs = [$servingConfigsElement];
+        $expectedResponse = new ListServingConfigsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setServingConfigs($servingConfigs);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
+        $request = (new ListServingConfigsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listServingConfigs($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getServingConfigs()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.discoveryengine.v1.ServingConfigService/ListServingConfigs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listServingConfigsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
+        $request = (new ListServingConfigsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listServingConfigs($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -145,7 +452,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function updateServingConfigAsyncTest()
+    public function createServingConfigAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -166,21 +473,30 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setRankingExpression($rankingExpression);
         $transport->addResponse($expectedResponse);
         // Mock request
+        $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
         $servingConfig = new ServingConfig();
         $servingConfigDisplayName = 'servingConfigDisplayName-490549473';
         $servingConfig->setDisplayName($servingConfigDisplayName);
         $servingConfigSolutionType = SolutionType::SOLUTION_TYPE_UNSPECIFIED;
         $servingConfig->setSolutionType($servingConfigSolutionType);
-        $request = (new UpdateServingConfigRequest())->setServingConfig($servingConfig);
-        $response = $gapicClient->updateServingConfigAsync($request)->wait();
+        $servingConfigId = 'servingConfigId-600821051';
+        $request = (new CreateServingConfigRequest())
+            ->setParent($formattedParent)
+            ->setServingConfig($servingConfig)
+            ->setServingConfigId($servingConfigId);
+        $response = $gapicClient->createServingConfigAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.discoveryengine.v1.ServingConfigService/UpdateServingConfig', $actualFuncCall);
+        $this->assertSame('/google.cloud.discoveryengine.v1.ServingConfigService/CreateServingConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getServingConfig();
         $this->assertProtobufEquals($servingConfig, $actualValue);
+        $actualValue = $actualRequestObject->getServingConfigId();
+        $this->assertProtobufEquals($servingConfigId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

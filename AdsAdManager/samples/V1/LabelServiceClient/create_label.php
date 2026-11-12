@@ -48,7 +48,7 @@ function create_label_sample(
     $labelServiceClient = new LabelServiceClient();
 
     // Prepare the request message.
-    $labelTypes = [$labelTypesElement,];
+    $labelTypes = [$labelTypesElement];
     $label = (new Label())
         ->setDisplayName($labelDisplayName)
         ->setTypes($labelTypes);

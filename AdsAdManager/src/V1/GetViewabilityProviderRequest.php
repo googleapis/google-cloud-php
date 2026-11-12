@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request object for [GetViewabilityProvider][] method.
+ * Request object for `GetViewabilityProvider` method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.GetViewabilityProviderRequest</code>
  */

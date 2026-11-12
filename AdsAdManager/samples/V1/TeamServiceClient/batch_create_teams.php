@@ -58,7 +58,7 @@ function batch_create_teams_sample(
     $createTeamRequest = (new CreateTeamRequest())
         ->setParent($formattedRequestsParent)
         ->setTeam($requestsTeam);
-    $requests = [$createTeamRequest,];
+    $requests = [$createTeamRequest];
     $request = (new BatchCreateTeamsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

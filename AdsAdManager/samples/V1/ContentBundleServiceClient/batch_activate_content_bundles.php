@@ -46,7 +46,7 @@ function batch_activate_content_bundles_sample(
     $contentBundleServiceClient = new ContentBundleServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchActivateContentBundlesRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

@@ -46,7 +46,7 @@ function batch_deactivate_dai_authentication_keys_sample(
     $daiAuthenticationKeyServiceClient = new DaiAuthenticationKeyServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchDeactivateDaiAuthenticationKeysRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

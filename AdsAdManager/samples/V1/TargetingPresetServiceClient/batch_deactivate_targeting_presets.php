@@ -51,7 +51,7 @@ function batch_deactivate_targeting_presets_sample(
     $deactivateTargetingPresetRequest = (new DeactivateTargetingPresetRequest())
         ->setName($formattedRequestsName)
         ->setTargetingPresetId($requestsTargetingPresetId);
-    $requests = [$deactivateTargetingPresetRequest,];
+    $requests = [$deactivateTargetingPresetRequest];
     $request = (new BatchDeactivateTargetingPresetsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

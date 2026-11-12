@@ -56,7 +56,9 @@ class DeletePerInstanceConfigsRegionInstanceGroupManagerRequest extends \Google\
             ->setProject($project)
             ->setRegion($region)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setRegionInstanceGroupManagerDeleteInstanceConfigReqResource($regionInstanceGroupManagerDeleteInstanceConfigReqResource);
+            ->setRegionInstanceGroupManagerDeleteInstanceConfigReqResource(
+                $regionInstanceGroupManagerDeleteInstanceConfigReqResource
+            );
     }
 
     /**

@@ -38,6 +38,16 @@ class DeleteBackupPlanAssociationRequest extends \Google\Protobuf\Internal\Messa
      * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
     protected $request_id = '';
+    /**
+     * Optional. This field is exclusively used by Backup and DR's auto-protection
+     * feature. The resource name of the `AutoProtectionPolicyBinding` that
+     * triggered the deletion of this association.
+     * Format:
+     * `projects/{project}/locations/{location}/autoProtectionPolicies/{policy}/bindings/{binding}`.
+     *
+     * Generated from protobuf field <code>string auto_protection_policy_binding = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $auto_protection_policy_binding = '';
 
     /**
      * @param string $name Required. Name of the backup plan association resource, in the format
@@ -75,6 +85,12 @@ class DeleteBackupPlanAssociationRequest extends \Google\Protobuf\Internal\Messa
      *           clients from accidentally creating duplicate commitments.
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type string $auto_protection_policy_binding
+     *           Optional. This field is exclusively used by Backup and DR's auto-protection
+     *           feature. The resource name of the `AutoProtectionPolicyBinding` that
+     *           triggered the deletion of this association.
+     *           Format:
+     *           `projects/{project}/locations/{location}/autoProtectionPolicies/{policy}/bindings/{binding}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -152,6 +168,40 @@ class DeleteBackupPlanAssociationRequest extends \Google\Protobuf\Internal\Messa
     {
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This field is exclusively used by Backup and DR's auto-protection
+     * feature. The resource name of the `AutoProtectionPolicyBinding` that
+     * triggered the deletion of this association.
+     * Format:
+     * `projects/{project}/locations/{location}/autoProtectionPolicies/{policy}/bindings/{binding}`.
+     *
+     * Generated from protobuf field <code>string auto_protection_policy_binding = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getAutoProtectionPolicyBinding()
+    {
+        return $this->auto_protection_policy_binding;
+    }
+
+    /**
+     * Optional. This field is exclusively used by Backup and DR's auto-protection
+     * feature. The resource name of the `AutoProtectionPolicyBinding` that
+     * triggered the deletion of this association.
+     * Format:
+     * `projects/{project}/locations/{location}/autoProtectionPolicies/{policy}/bindings/{binding}`.
+     *
+     * Generated from protobuf field <code>string auto_protection_policy_binding = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAutoProtectionPolicyBinding($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->auto_protection_policy_binding = $var;
 
         return $this;
     }

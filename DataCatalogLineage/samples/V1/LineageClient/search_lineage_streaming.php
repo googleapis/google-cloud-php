@@ -72,7 +72,7 @@ function search_lineage_streaming_sample(
     $lineageClient = new LineageClient();
 
     // Prepare the request message.
-    $locations = [$locationsElement,];
+    $locations = [$locationsElement];
     $rootCriteria = new RootCriteria();
     $request = (new SearchLineageStreamingRequest())
         ->setParent($formattedParent)

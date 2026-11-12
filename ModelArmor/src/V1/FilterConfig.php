@@ -39,6 +39,19 @@ class FilterConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1.MaliciousUriFilterSettings malicious_uri_filter_settings = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $malicious_uri_filter_settings = null;
+    /**
+     * Optional. Settings for customizing filter rules.
+     * Note: This field is not supported in FloorSetting.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.FilterRuleSettings filter_rule_settings = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $filter_rule_settings = null;
+    /**
+     * Optional. Child sexual abuse material (CSAM) filter settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.CsamFilterSettings csam_filter_settings = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $csam_filter_settings = null;
 
     /**
      * Constructor.
@@ -54,6 +67,11 @@ class FilterConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Prompt injection and Jailbreak filter settings.
      *     @type \Google\Cloud\ModelArmor\V1\MaliciousUriFilterSettings $malicious_uri_filter_settings
      *           Optional. Malicious URI filter settings.
+     *     @type \Google\Cloud\ModelArmor\V1\FilterRuleSettings $filter_rule_settings
+     *           Optional. Settings for customizing filter rules.
+     *           Note: This field is not supported in FloorSetting.
+     *     @type \Google\Cloud\ModelArmor\V1\CsamFilterSettings $csam_filter_settings
+     *           Optional. Child sexual abuse material (CSAM) filter settings.
      * }
      */
     public function __construct($data = NULL) {
@@ -201,6 +219,80 @@ class FilterConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ModelArmor\V1\MaliciousUriFilterSettings::class);
         $this->malicious_uri_filter_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Settings for customizing filter rules.
+     * Note: This field is not supported in FloorSetting.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.FilterRuleSettings filter_rule_settings = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ModelArmor\V1\FilterRuleSettings|null
+     */
+    public function getFilterRuleSettings()
+    {
+        return $this->filter_rule_settings;
+    }
+
+    public function hasFilterRuleSettings()
+    {
+        return isset($this->filter_rule_settings);
+    }
+
+    public function clearFilterRuleSettings()
+    {
+        unset($this->filter_rule_settings);
+    }
+
+    /**
+     * Optional. Settings for customizing filter rules.
+     * Note: This field is not supported in FloorSetting.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.FilterRuleSettings filter_rule_settings = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ModelArmor\V1\FilterRuleSettings $var
+     * @return $this
+     */
+    public function setFilterRuleSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ModelArmor\V1\FilterRuleSettings::class);
+        $this->filter_rule_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Child sexual abuse material (CSAM) filter settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.CsamFilterSettings csam_filter_settings = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ModelArmor\V1\CsamFilterSettings|null
+     */
+    public function getCsamFilterSettings()
+    {
+        return $this->csam_filter_settings;
+    }
+
+    public function hasCsamFilterSettings()
+    {
+        return isset($this->csam_filter_settings);
+    }
+
+    public function clearCsamFilterSettings()
+    {
+        unset($this->csam_filter_settings);
+    }
+
+    /**
+     * Optional. Child sexual abuse material (CSAM) filter settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.CsamFilterSettings csam_filter_settings = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ModelArmor\V1\CsamFilterSettings $var
+     * @return $this
+     */
+    public function setCsamFilterSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ModelArmor\V1\CsamFilterSettings::class);
+        $this->csam_filter_settings = $var;
 
         return $this;
     }

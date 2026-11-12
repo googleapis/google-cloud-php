@@ -55,7 +55,7 @@ function export_intents_sample(string $formattedParent, string $intentsElement):
     $intentsClient = new IntentsClient();
 
     // Prepare the request message.
-    $intents = [$intentsElement,];
+    $intents = [$intentsElement];
     $request = (new ExportIntentsRequest())
         ->setParent($formattedParent)
         ->setIntents($intents);
