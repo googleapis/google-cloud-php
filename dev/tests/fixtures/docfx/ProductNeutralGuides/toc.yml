@@ -15,6 +15,9 @@
       name: 'Client Configuration'
       href: client_configuration.md
     -
+      name: 'Asynchronous Requests'
+      href: async.md
+    -
       name: 'OCC for IAM'
       href: occ_for_iam.md
     -
