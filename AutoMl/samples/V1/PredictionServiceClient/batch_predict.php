@@ -72,7 +72,7 @@ function batch_predict_sample(
     $predictionServiceClient = new PredictionServiceClient();
 
     // Prepare the request message.
-    $inputConfigGcsSourceInputUris = [$inputConfigGcsSourceInputUrisElement,];
+    $inputConfigGcsSourceInputUris = [$inputConfigGcsSourceInputUrisElement];
     $inputConfigGcsSource = (new GcsSource())
         ->setInputUris($inputConfigGcsSourceInputUris);
     $inputConfig = (new BatchPredictInputConfig())

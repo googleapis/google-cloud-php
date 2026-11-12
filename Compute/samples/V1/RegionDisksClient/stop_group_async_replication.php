@@ -46,7 +46,9 @@ function stop_group_async_replication_sample(string $project, string $region): v
     // Prepare the request message.
     $disksStopGroupAsyncReplicationResourceResource = new DisksStopGroupAsyncReplicationResource();
     $request = (new StopGroupAsyncReplicationRegionDiskRequest())
-        ->setDisksStopGroupAsyncReplicationResourceResource($disksStopGroupAsyncReplicationResourceResource)
+        ->setDisksStopGroupAsyncReplicationResourceResource(
+            $disksStopGroupAsyncReplicationResourceResource
+        )
         ->setProject($project)
         ->setRegion($region);
 

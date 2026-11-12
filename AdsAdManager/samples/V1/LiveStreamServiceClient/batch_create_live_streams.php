@@ -62,8 +62,8 @@ function batch_create_live_streams_sample(
     $liveStreamServiceClient = new LiveStreamServiceClient();
 
     // Prepare the request message.
-    $requestsLiveStreamContentUrls = [$requestsLiveStreamContentUrlsElement,];
-    $requestsLiveStreamAdTags = [$requestsLiveStreamAdTagsElement,];
+    $requestsLiveStreamContentUrls = [$requestsLiveStreamContentUrlsElement];
+    $requestsLiveStreamAdTags = [$requestsLiveStreamAdTagsElement];
     $requestsLiveStream = (new LiveStream())
         ->setDisplayName($requestsLiveStreamDisplayName)
         ->setContentUrls($requestsLiveStreamContentUrls)
@@ -71,7 +71,7 @@ function batch_create_live_streams_sample(
     $createLiveStreamRequest = (new CreateLiveStreamRequest())
         ->setParent($formattedRequestsParent)
         ->setLiveStream($requestsLiveStream);
-    $requests = [$createLiveStreamRequest,];
+    $requests = [$createLiveStreamRequest];
     $request = (new BatchCreateLiveStreamsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

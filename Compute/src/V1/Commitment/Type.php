@@ -73,6 +73,12 @@ class Type
      */
     const COMPUTE_OPTIMIZED_H4D = 383251320;
     /**
+     * CUD bucket for COMPUTE_OPTIMIZED_H4D_3TB machines.
+     *
+     * Generated from protobuf enum <code>COMPUTE_OPTIMIZED_H4D_3TB = 443379866;</code>
+     */
+    const COMPUTE_OPTIMIZED_H4D_3TB = 443379866;
+    /**
      * Generated from protobuf enum <code>GENERAL_PURPOSE = 299793543;</code>
      */
     const GENERAL_PURPOSE = 299793543;
@@ -140,6 +146,18 @@ class Type
      * Generated from protobuf enum <code>MEMORY_OPTIMIZED_M4 = 276301373;</code>
      */
     const MEMORY_OPTIMIZED_M4 = 276301373;
+    /**
+     * CUD bucket for M4N machines with less than 6TB of memory.
+     *
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_M4N = 512278961;</code>
+     */
+    const MEMORY_OPTIMIZED_M4N = 512278961;
+    /**
+     * CUD bucket for M4N machines with 6TB of memory.
+     *
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_M4N_6TB = 69895574;</code>
+     */
+    const MEMORY_OPTIMIZED_M4N_6TB = 69895574;
     /**
      * Generated from protobuf enum <code>MEMORY_OPTIMIZED_M4_6TB = 210543650;</code>
      */
@@ -266,6 +284,7 @@ class Type
         self::COMPUTE_OPTIMIZED_C3D => 'COMPUTE_OPTIMIZED_C3D',
         self::COMPUTE_OPTIMIZED_H3 => 'COMPUTE_OPTIMIZED_H3',
         self::COMPUTE_OPTIMIZED_H4D => 'COMPUTE_OPTIMIZED_H4D',
+        self::COMPUTE_OPTIMIZED_H4D_3TB => 'COMPUTE_OPTIMIZED_H4D_3TB',
         self::GENERAL_PURPOSE => 'GENERAL_PURPOSE',
         self::GENERAL_PURPOSE_C4 => 'GENERAL_PURPOSE_C4',
         self::GENERAL_PURPOSE_C4A => 'GENERAL_PURPOSE_C4A',
@@ -283,6 +302,8 @@ class Type
         self::MEMORY_OPTIMIZED => 'MEMORY_OPTIMIZED',
         self::MEMORY_OPTIMIZED_M3 => 'MEMORY_OPTIMIZED_M3',
         self::MEMORY_OPTIMIZED_M4 => 'MEMORY_OPTIMIZED_M4',
+        self::MEMORY_OPTIMIZED_M4N => 'MEMORY_OPTIMIZED_M4N',
+        self::MEMORY_OPTIMIZED_M4N_6TB => 'MEMORY_OPTIMIZED_M4N_6TB',
         self::MEMORY_OPTIMIZED_M4_6TB => 'MEMORY_OPTIMIZED_M4_6TB',
         self::MEMORY_OPTIMIZED_X4_1440_24T => 'MEMORY_OPTIMIZED_X4_1440_24T',
         self::MEMORY_OPTIMIZED_X4_16TB => 'MEMORY_OPTIMIZED_X4_16TB',

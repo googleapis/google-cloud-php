@@ -10,7 +10,7 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for a Large Capacity Volume. A Large Capacity Volume
- * supports sizes ranging from 4.8 TiB to 20 PiB, it is composed of multiple
+ * supports sizes ranging from 4.8 TiB to 20 PiB; it is composed of multiple
  * internal constituents, and must be created in a large capacity pool.
  *
  * Generated from protobuf message <code>google.cloud.netapp.v1.LargeCapacityConfig</code>

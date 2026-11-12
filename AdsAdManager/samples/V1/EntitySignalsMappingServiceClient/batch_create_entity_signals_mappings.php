@@ -53,7 +53,7 @@ function batch_create_entity_signals_mappings_sample(
     $createEntitySignalsMappingRequest = (new CreateEntitySignalsMappingRequest())
         ->setParent($formattedRequestsParent)
         ->setEntitySignalsMapping($requestsEntitySignalsMapping);
-    $requests = [$createEntitySignalsMappingRequest,];
+    $requests = [$createEntitySignalsMappingRequest];
     $request = (new BatchCreateEntitySignalsMappingsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

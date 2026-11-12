@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request object for [BatchUpdatePartners][] method.
+ * Request object for `BatchUpdatePartners` method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.BatchUpdatePartnersRequest</code>
  */
@@ -17,10 +17,9 @@ class BatchUpdatePartnersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent resource where
-     * [Partner][google.ads.admanager.v1.Partner]s will be updated. Format:
-     * `networks/{network_code}` The parent field in the
-     * [UpdatePartnerRequest][google.ads.admanager.v1.UpdatePartnerRequest] must
-     * match this field.
+     * [Partners][google.ads.admanager.v1.Partner] will be updated. Format:
+     * `networks/{network_code}` The parent field in the `UpdatePartnerRequest`
+     * must match this field.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -35,10 +34,9 @@ class BatchUpdatePartnersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                          $parent   Required. The parent resource where
-     *                                                                  [Partner][google.ads.admanager.v1.Partner]s will be updated. Format:
-     *                                                                  `networks/{network_code}` The parent field in the
-     *                                                                  [UpdatePartnerRequest][google.ads.admanager.v1.UpdatePartnerRequest] must
-     *                                                                  match this field. Please see
+     *                                                                  [Partners][google.ads.admanager.v1.Partner] will be updated. Format:
+     *                                                                  `networks/{network_code}` The parent field in the `UpdatePartnerRequest`
+     *                                                                  must match this field. Please see
      *                                                                  {@see PartnerServiceClient::networkName()} for help formatting this field.
      * @param \Google\Ads\AdManager\V1\UpdatePartnerRequest[] $requests Required. The [Partner][google.ads.admanager.v1.Partner] objects to update.
      *                                                                  A maximum of 100 objects can be updated in a batch.
@@ -62,10 +60,9 @@ class BatchUpdatePartnersRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent resource where
-     *           [Partner][google.ads.admanager.v1.Partner]s will be updated. Format:
-     *           `networks/{network_code}` The parent field in the
-     *           [UpdatePartnerRequest][google.ads.admanager.v1.UpdatePartnerRequest] must
-     *           match this field.
+     *           [Partners][google.ads.admanager.v1.Partner] will be updated. Format:
+     *           `networks/{network_code}` The parent field in the `UpdatePartnerRequest`
+     *           must match this field.
      *     @type \Google\Ads\AdManager\V1\UpdatePartnerRequest[] $requests
      *           Required. The [Partner][google.ads.admanager.v1.Partner] objects to update.
      *           A maximum of 100 objects can be updated in a batch.
@@ -78,10 +75,9 @@ class BatchUpdatePartnersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource where
-     * [Partner][google.ads.admanager.v1.Partner]s will be updated. Format:
-     * `networks/{network_code}` The parent field in the
-     * [UpdatePartnerRequest][google.ads.admanager.v1.UpdatePartnerRequest] must
-     * match this field.
+     * [Partners][google.ads.admanager.v1.Partner] will be updated. Format:
+     * `networks/{network_code}` The parent field in the `UpdatePartnerRequest`
+     * must match this field.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -93,10 +89,9 @@ class BatchUpdatePartnersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource where
-     * [Partner][google.ads.admanager.v1.Partner]s will be updated. Format:
-     * `networks/{network_code}` The parent field in the
-     * [UpdatePartnerRequest][google.ads.admanager.v1.UpdatePartnerRequest] must
-     * match this field.
+     * [Partners][google.ads.admanager.v1.Partner] will be updated. Format:
+     * `networks/{network_code}` The parent field in the `UpdatePartnerRequest`
+     * must match this field.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

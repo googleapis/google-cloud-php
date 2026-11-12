@@ -48,7 +48,7 @@ function batch_update_assets_sample(string $formattedParent): void
     $updateAssetRequest = (new UpdateAssetRequest())
         ->setUpdateMask($requestsUpdateMask)
         ->setAsset($requestsAsset);
-    $requests = [$updateAssetRequest,];
+    $requests = [$updateAssetRequest];
     $request = (new BatchUpdateAssetsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

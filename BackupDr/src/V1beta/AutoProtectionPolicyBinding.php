@@ -18,15 +18,16 @@ use Google\Protobuf\RepeatedField;
 class AutoProtectionPolicyBinding extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. The resource name of the AutoProtectionPolicyBinding.
-     * Format:
+     * Output only. Identifier. The resource name of the
+     * AutoProtectionPolicyBinding. Format:
      * `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}/bindings/{binding}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * Optional. A description of the binding.
+     * Optional. A description of the binding. The description must be at most
+     * 2048 characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -64,10 +65,10 @@ class AutoProtectionPolicyBinding extends \Google\Protobuf\Internal\Message
      */
     protected $update_time = null;
     /**
-     * Optional. Output only. The etag for the binding.
+     * Output only. The etag for the binding.
      * If this is provided on update, it must match the server's etag.
      *
-     * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string etag = 8;</code>
      */
     protected $etag = '';
 
@@ -78,11 +79,12 @@ class AutoProtectionPolicyBinding extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. The resource name of the AutoProtectionPolicyBinding.
-     *           Format:
+     *           Output only. Identifier. The resource name of the
+     *           AutoProtectionPolicyBinding. Format:
      *           `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}/bindings/{binding}`
      *     @type string $description
-     *           Optional. A description of the binding.
+     *           Optional. A description of the binding. The description must be at most
+     *           2048 characters.
      *     @type int $state
      *           Output only. The current state of the AutoProtectionPolicyBinding.
      *     @type string $scope
@@ -96,7 +98,7 @@ class AutoProtectionPolicyBinding extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The timestamp when the binding was last updated.
      *     @type string $etag
-     *           Optional. Output only. The etag for the binding.
+     *           Output only. The etag for the binding.
      *           If this is provided on update, it must match the server's etag.
      * }
      */
@@ -106,11 +108,11 @@ class AutoProtectionPolicyBinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The resource name of the AutoProtectionPolicyBinding.
-     * Format:
+     * Output only. Identifier. The resource name of the
+     * AutoProtectionPolicyBinding. Format:
      * `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}/bindings/{binding}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -119,11 +121,11 @@ class AutoProtectionPolicyBinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The resource name of the AutoProtectionPolicyBinding.
-     * Format:
+     * Output only. Identifier. The resource name of the
+     * AutoProtectionPolicyBinding. Format:
      * `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}/bindings/{binding}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -136,7 +138,8 @@ class AutoProtectionPolicyBinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A description of the binding.
+     * Optional. A description of the binding. The description must be at most
+     * 2048 characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -147,7 +150,8 @@ class AutoProtectionPolicyBinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A description of the binding.
+     * Optional. A description of the binding. The description must be at most
+     * 2048 characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -326,10 +330,10 @@ class AutoProtectionPolicyBinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Output only. The etag for the binding.
+     * Output only. The etag for the binding.
      * If this is provided on update, it must match the server's etag.
      *
-     * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string etag = 8;</code>
      * @return string
      */
     public function getEtag()
@@ -338,10 +342,10 @@ class AutoProtectionPolicyBinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Output only. The etag for the binding.
+     * Output only. The etag for the binding.
      * If this is provided on update, it must match the server's etag.
      *
-     * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string etag = 8;</code>
      * @param string $var
      * @return $this
      */

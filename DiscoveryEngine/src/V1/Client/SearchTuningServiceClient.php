@@ -86,7 +86,11 @@ final class SearchTuningServiceClient
      *
      * @internal
      */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/discoveryengine.readwrite',
+        'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+    ];
 
     private $operationsClient;
 

@@ -35,26 +35,39 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\BackupDR\V1\AutoProtectionPolicy;
+use Google\Cloud\BackupDR\V1\AutoProtectionPolicyBinding;
 use Google\Cloud\BackupDR\V1\Backup;
 use Google\Cloud\BackupDR\V1\BackupPlan;
 use Google\Cloud\BackupDR\V1\BackupPlanAssociation;
 use Google\Cloud\BackupDR\V1\BackupPlanRevision;
 use Google\Cloud\BackupDR\V1\BackupVault;
+use Google\Cloud\BackupDR\V1\CreateAutoProtectionPolicyBindingRequest;
+use Google\Cloud\BackupDR\V1\CreateAutoProtectionPolicyRequest;
 use Google\Cloud\BackupDR\V1\CreateBackupPlanAssociationRequest;
 use Google\Cloud\BackupDR\V1\CreateBackupPlanRequest;
 use Google\Cloud\BackupDR\V1\CreateBackupVaultRequest;
 use Google\Cloud\BackupDR\V1\CreateManagementServerRequest;
+use Google\Cloud\BackupDR\V1\CreateRestoreTemplateRequest;
+use Google\Cloud\BackupDR\V1\CreateRestoreVerificationPlanAssociationRequest;
+use Google\Cloud\BackupDR\V1\CreateRestoreVerificationPlanRequest;
 use Google\Cloud\BackupDR\V1\DataSource;
 use Google\Cloud\BackupDR\V1\DataSourceReference;
+use Google\Cloud\BackupDR\V1\DeleteAutoProtectionPolicyRequest;
 use Google\Cloud\BackupDR\V1\DeleteBackupPlanAssociationRequest;
 use Google\Cloud\BackupDR\V1\DeleteBackupPlanRequest;
 use Google\Cloud\BackupDR\V1\DeleteBackupRequest;
 use Google\Cloud\BackupDR\V1\DeleteBackupVaultRequest;
 use Google\Cloud\BackupDR\V1\DeleteManagementServerRequest;
+use Google\Cloud\BackupDR\V1\DeleteRestoreTemplateRequest;
+use Google\Cloud\BackupDR\V1\DeleteRestoreVerificationPlanAssociationRequest;
+use Google\Cloud\BackupDR\V1\DeleteRestoreVerificationPlanRequest;
 use Google\Cloud\BackupDR\V1\FetchBackupPlanAssociationsForResourceTypeRequest;
 use Google\Cloud\BackupDR\V1\FetchBackupsForResourceTypeRequest;
 use Google\Cloud\BackupDR\V1\FetchDataSourceReferencesForResourceTypeRequest;
 use Google\Cloud\BackupDR\V1\FetchUsableBackupVaultsRequest;
+use Google\Cloud\BackupDR\V1\GetAutoProtectionPolicyBindingRequest;
+use Google\Cloud\BackupDR\V1\GetAutoProtectionPolicyRequest;
 use Google\Cloud\BackupDR\V1\GetBackupPlanAssociationRequest;
 use Google\Cloud\BackupDR\V1\GetBackupPlanRequest;
 use Google\Cloud\BackupDR\V1\GetBackupPlanRevisionRequest;
@@ -63,25 +76,49 @@ use Google\Cloud\BackupDR\V1\GetBackupVaultRequest;
 use Google\Cloud\BackupDR\V1\GetDataSourceReferenceRequest;
 use Google\Cloud\BackupDR\V1\GetDataSourceRequest;
 use Google\Cloud\BackupDR\V1\GetManagementServerRequest;
+use Google\Cloud\BackupDR\V1\GetRestoreTemplateExecutionRequest;
+use Google\Cloud\BackupDR\V1\GetRestoreTemplateRequest;
+use Google\Cloud\BackupDR\V1\GetRestoreVerificationPlanAssociationRequest;
+use Google\Cloud\BackupDR\V1\GetRestoreVerificationPlanRequest;
 use Google\Cloud\BackupDR\V1\InitializeServiceRequest;
 use Google\Cloud\BackupDR\V1\InitializeServiceResponse;
+use Google\Cloud\BackupDR\V1\InitiateDeleteAutoProtectionPolicyBindingRequest;
+use Google\Cloud\BackupDR\V1\ListAppliedAutoProtectionPoliciesRequest;
+use Google\Cloud\BackupDR\V1\ListAutoProtectionPoliciesRequest;
+use Google\Cloud\BackupDR\V1\ListAutoProtectionPolicyBindingsRequest;
 use Google\Cloud\BackupDR\V1\ListBackupPlanAssociationsRequest;
 use Google\Cloud\BackupDR\V1\ListBackupPlanRevisionsRequest;
 use Google\Cloud\BackupDR\V1\ListBackupPlansRequest;
 use Google\Cloud\BackupDR\V1\ListBackupVaultsRequest;
 use Google\Cloud\BackupDR\V1\ListBackupsRequest;
+use Google\Cloud\BackupDR\V1\ListBindingMatchingResourcesRequest;
 use Google\Cloud\BackupDR\V1\ListDataSourceReferencesRequest;
 use Google\Cloud\BackupDR\V1\ListDataSourcesRequest;
 use Google\Cloud\BackupDR\V1\ListManagementServersRequest;
+use Google\Cloud\BackupDR\V1\ListRestoreTemplateExecutionsRequest;
+use Google\Cloud\BackupDR\V1\ListRestoreTemplatesRequest;
+use Google\Cloud\BackupDR\V1\ListRestoreVerificationPlanAssociationsRequest;
+use Google\Cloud\BackupDR\V1\ListRestoreVerificationPlansRequest;
 use Google\Cloud\BackupDR\V1\ManagementServer;
 use Google\Cloud\BackupDR\V1\RestoreBackupRequest;
 use Google\Cloud\BackupDR\V1\RestoreBackupResponse;
+use Google\Cloud\BackupDR\V1\RestoreTemplate;
+use Google\Cloud\BackupDR\V1\RestoreTemplateExecution;
+use Google\Cloud\BackupDR\V1\RestoreVerificationPlan;
+use Google\Cloud\BackupDR\V1\RestoreVerificationPlanAssociation;
+use Google\Cloud\BackupDR\V1\RunRestoreTemplateRequest;
+use Google\Cloud\BackupDR\V1\RunRestoreTemplateResponse;
 use Google\Cloud\BackupDR\V1\TriggerBackupRequest;
+use Google\Cloud\BackupDR\V1\TriggerRestoreCleanupRequest;
+use Google\Cloud\BackupDR\V1\TriggerRestoreVerificationRequest;
+use Google\Cloud\BackupDR\V1\TriggerRestoreVerificationResponse;
+use Google\Cloud\BackupDR\V1\UpdateAutoProtectionPolicyRequest;
 use Google\Cloud\BackupDR\V1\UpdateBackupPlanAssociationRequest;
 use Google\Cloud\BackupDR\V1\UpdateBackupPlanRequest;
 use Google\Cloud\BackupDR\V1\UpdateBackupRequest;
 use Google\Cloud\BackupDR\V1\UpdateBackupVaultRequest;
 use Google\Cloud\BackupDR\V1\UpdateDataSourceRequest;
+use Google\Cloud\BackupDR\V1\UpdateRestoreTemplateRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -106,19 +143,30 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<OperationResponse> createAutoProtectionPolicyAsync(CreateAutoProtectionPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAutoProtectionPolicyBindingAsync(CreateAutoProtectionPolicyBindingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createBackupPlanAsync(CreateBackupPlanRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createBackupPlanAssociationAsync(CreateBackupPlanAssociationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createBackupVaultAsync(CreateBackupVaultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createManagementServerAsync(CreateManagementServerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createRestoreTemplateAsync(CreateRestoreTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createRestoreVerificationPlanAsync(CreateRestoreVerificationPlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createRestoreVerificationPlanAssociationAsync(CreateRestoreVerificationPlanAssociationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAutoProtectionPolicyAsync(DeleteAutoProtectionPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteBackupPlanAsync(DeleteBackupPlanRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteBackupPlanAssociationAsync(DeleteBackupPlanAssociationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteBackupVaultAsync(DeleteBackupVaultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteManagementServerAsync(DeleteManagementServerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRestoreTemplateAsync(DeleteRestoreTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRestoreVerificationPlanAsync(DeleteRestoreVerificationPlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRestoreVerificationPlanAssociationAsync(DeleteRestoreVerificationPlanAssociationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> fetchBackupPlanAssociationsForResourceTypeAsync(FetchBackupPlanAssociationsForResourceTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> fetchBackupsForResourceTypeAsync(FetchBackupsForResourceTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> fetchDataSourceReferencesForResourceTypeAsync(FetchDataSourceReferencesForResourceTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> fetchUsableBackupVaultsAsync(FetchUsableBackupVaultsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AutoProtectionPolicy> getAutoProtectionPolicyAsync(GetAutoProtectionPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AutoProtectionPolicyBinding> getAutoProtectionPolicyBindingAsync(GetAutoProtectionPolicyBindingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackupPlan> getBackupPlanAsync(GetBackupPlanRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackupPlanAssociation> getBackupPlanAssociationAsync(GetBackupPlanAssociationRequest $request, array $optionalArgs = [])
@@ -127,22 +175,40 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<DataSource> getDataSourceAsync(GetDataSourceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DataSourceReference> getDataSourceReferenceAsync(GetDataSourceReferenceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ManagementServer> getManagementServerAsync(GetManagementServerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RestoreTemplate> getRestoreTemplateAsync(GetRestoreTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RestoreTemplateExecution> getRestoreTemplateExecutionAsync(GetRestoreTemplateExecutionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RestoreVerificationPlan> getRestoreVerificationPlanAsync(GetRestoreVerificationPlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RestoreVerificationPlanAssociation> getRestoreVerificationPlanAssociationAsync(GetRestoreVerificationPlanAssociationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> initializeServiceAsync(InitializeServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> initiateDeleteAutoProtectionPolicyBindingAsync(InitiateDeleteAutoProtectionPolicyBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAppliedAutoProtectionPoliciesAsync(ListAppliedAutoProtectionPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAutoProtectionPoliciesAsync(ListAutoProtectionPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAutoProtectionPolicyBindingsAsync(ListAutoProtectionPolicyBindingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupPlanAssociationsAsync(ListBackupPlanAssociationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupPlanRevisionsAsync(ListBackupPlanRevisionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupPlansAsync(ListBackupPlansRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupVaultsAsync(ListBackupVaultsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBindingMatchingResourcesAsync(ListBindingMatchingResourcesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listDataSourceReferencesAsync(ListDataSourceReferencesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listDataSourcesAsync(ListDataSourcesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listManagementServersAsync(ListManagementServersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRestoreTemplateExecutionsAsync(ListRestoreTemplateExecutionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRestoreTemplatesAsync(ListRestoreTemplatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRestoreVerificationPlanAssociationsAsync(ListRestoreVerificationPlanAssociationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRestoreVerificationPlansAsync(ListRestoreVerificationPlansRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> restoreBackupAsync(RestoreBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> runRestoreTemplateAsync(RunRestoreTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> triggerBackupAsync(TriggerBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> triggerRestoreCleanupAsync(TriggerRestoreCleanupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> triggerRestoreVerificationAsync(TriggerRestoreVerificationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAutoProtectionPolicyAsync(UpdateAutoProtectionPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateBackupPlanAsync(UpdateBackupPlanRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateBackupPlanAssociationAsync(UpdateBackupPlanAssociationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateBackupVaultAsync(UpdateBackupVaultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateDataSourceAsync(UpdateDataSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateRestoreTemplateAsync(UpdateRestoreTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
@@ -250,6 +316,53 @@ final class BackupDRClient
         }
 
         return new OperationsClient($options);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * auto_protection_policy resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $autoProtectionPolicy
+     *
+     * @return string The formatted auto_protection_policy resource.
+     */
+    public static function autoProtectionPolicyName(
+        string $project,
+        string $location,
+        string $autoProtectionPolicy
+    ): string {
+        return self::getPathTemplate('autoProtectionPolicy')->render([
+            'project' => $project,
+            'location' => $location,
+            'auto_protection_policy' => $autoProtectionPolicy,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * auto_protection_policy_binding resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $autoProtectionPolicy
+     * @param string $binding
+     *
+     * @return string The formatted auto_protection_policy_binding resource.
+     */
+    public static function autoProtectionPolicyBindingName(
+        string $project,
+        string $location,
+        string $autoProtectionPolicy,
+        string $binding
+    ): string {
+        return self::getPathTemplate('autoProtectionPolicyBinding')->render([
+            'project' => $project,
+            'location' => $location,
+            'auto_protection_policy' => $autoProtectionPolicy,
+            'binding' => $binding,
+        ]);
     }
 
     /**
@@ -498,6 +611,25 @@ final class BackupDRClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a job
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $job
+     *
+     * @return string The formatted job resource.
+     */
+    public static function jobName(string $project, string $location, string $job): string
+    {
+        return self::getPathTemplate('job')->render([
+            'project' => $project,
+            'location' => $location,
+            'job' => $job,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -534,6 +666,97 @@ final class BackupDRClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * restore_template resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $restoreTemplate
+     *
+     * @return string The formatted restore_template resource.
+     */
+    public static function restoreTemplateName(string $project, string $location, string $restoreTemplate): string
+    {
+        return self::getPathTemplate('restoreTemplate')->render([
+            'project' => $project,
+            'location' => $location,
+            'restore_template' => $restoreTemplate,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * restore_template_execution resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $restoreTemplate
+     * @param string $execution
+     *
+     * @return string The formatted restore_template_execution resource.
+     */
+    public static function restoreTemplateExecutionName(
+        string $project,
+        string $location,
+        string $restoreTemplate,
+        string $execution
+    ): string {
+        return self::getPathTemplate('restoreTemplateExecution')->render([
+            'project' => $project,
+            'location' => $location,
+            'restore_template' => $restoreTemplate,
+            'execution' => $execution,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * restore_verification_plan resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $restoreVerificationPlan
+     *
+     * @return string The formatted restore_verification_plan resource.
+     */
+    public static function restoreVerificationPlanName(
+        string $project,
+        string $location,
+        string $restoreVerificationPlan
+    ): string {
+        return self::getPathTemplate('restoreVerificationPlan')->render([
+            'project' => $project,
+            'location' => $location,
+            'restoreVerificationPlan' => $restoreVerificationPlan,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * restore_verification_plan_association resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $restoreVerificationPlan
+     * @param string $association
+     *
+     * @return string The formatted restore_verification_plan_association resource.
+     */
+    public static function restoreVerificationPlanAssociationName(
+        string $project,
+        string $location,
+        string $restoreVerificationPlan,
+        string $association
+    ): string {
+        return self::getPathTemplate('restoreVerificationPlanAssociation')->render([
+            'project' => $project,
+            'location' => $location,
+            'restore_verification_plan' => $restoreVerificationPlan,
+            'association' => $association,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a storage_pool
      * resource.
      *
@@ -556,6 +779,8 @@ final class BackupDRClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - autoProtectionPolicy: projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}
+     * - autoProtectionPolicyBinding: projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}/bindings/{binding}
      * - backup: projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}/backups/{backup}
      * - backupPlan: projects/{project}/locations/{location}/backupPlans/{backup_plan}
      * - backupPlanAssociation: projects/{project}/locations/{location}/backupPlanAssociations/{backup_plan_association}
@@ -567,8 +792,13 @@ final class BackupDRClient
      * - dataSource: projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}
      * - dataSourceReference: projects/{project}/locations/{location}/dataSourceReferences/{data_source_reference}
      * - instance: projects/{project}/instances/{instance}
+     * - job: projects/{project}/locations/{location}/jobs/{job}
      * - location: projects/{project}/locations/{location}
      * - managementServer: projects/{project}/locations/{location}/managementServers/{managementserver}
+     * - restoreTemplate: projects/{project}/locations/{location}/restoreTemplates/{restore_template}
+     * - restoreTemplateExecution: projects/{project}/locations/{location}/restoreTemplates/{restore_template}/executions/{execution}
+     * - restoreVerificationPlan: projects/{project}/locations/{location}/restoreVerificationPlans/{restoreVerificationPlan}
+     * - restoreVerificationPlanAssociation: projects/{project}/locations/{location}/restoreVerificationPlans/{restore_verification_plan}/associations/{association}
      * - storagePool: projects/{project}/zones/{zone}/storagePools/{storage_pool}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -673,6 +903,64 @@ final class BackupDRClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Creates a new AutoProtectionPolicy in a given project and location.
+     *
+     * The async variant is {@see BackupDRClient::createAutoProtectionPolicyAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/create_auto_protection_policy.php
+     *
+     * @param CreateAutoProtectionPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<AutoProtectionPolicy>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createAutoProtectionPolicy(
+        CreateAutoProtectionPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateAutoProtectionPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new AutoProtectionPolicyBinding in a given project and
+     * location.
+     *
+     * The async variant is
+     * {@see BackupDRClient::createAutoProtectionPolicyBindingAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/create_auto_protection_policy_binding.php
+     *
+     * @param CreateAutoProtectionPolicyBindingRequest $request     A request to house fields associated with the call.
+     * @param array                                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<AutoProtectionPolicyBinding>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createAutoProtectionPolicyBinding(
+        CreateAutoProtectionPolicyBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateAutoProtectionPolicyBinding', $request, $callOptions)->wait();
     }
 
     /**
@@ -781,6 +1069,121 @@ final class BackupDRClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('CreateManagementServer', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new RestoreTemplate in a given project and location.
+     *
+     * The async variant is {@see BackupDRClient::createRestoreTemplateAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/create_restore_template.php
+     *
+     * @param CreateRestoreTemplateRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<RestoreTemplate>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createRestoreTemplate(
+        CreateRestoreTemplateRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateRestoreTemplate', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new RestoreVerificationPlan in a given project and location.
+     *
+     * The async variant is {@see BackupDRClient::createRestoreVerificationPlanAsync()}
+     * .
+     *
+     * @example samples/V1/BackupDRClient/create_restore_verification_plan.php
+     *
+     * @param CreateRestoreVerificationPlanRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<RestoreVerificationPlan>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createRestoreVerificationPlan(
+        CreateRestoreVerificationPlanRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateRestoreVerificationPlan', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new RestoreVerificationPlanAssociation in a given
+     * RestoreVerificationPlan.
+     *
+     * The async variant is
+     * {@see BackupDRClient::createRestoreVerificationPlanAssociationAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/create_restore_verification_plan_association.php
+     *
+     * @param CreateRestoreVerificationPlanAssociationRequest $request     A request to house fields associated with the call.
+     * @param array                                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<RestoreVerificationPlanAssociation>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createRestoreVerificationPlanAssociation(
+        CreateRestoreVerificationPlanAssociationRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateRestoreVerificationPlanAssociation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single AutoProtectionPolicy.
+     *
+     * The async variant is {@see BackupDRClient::deleteAutoProtectionPolicyAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/delete_auto_protection_policy.php
+     *
+     * @param DeleteAutoProtectionPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteAutoProtectionPolicy(
+        DeleteAutoProtectionPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteAutoProtectionPolicy', $request, $callOptions)->wait();
     }
 
     /**
@@ -918,6 +1321,95 @@ final class BackupDRClient
     }
 
     /**
+     * Deletes a RestoreTemplate.
+     *
+     * The async variant is {@see BackupDRClient::deleteRestoreTemplateAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/delete_restore_template.php
+     *
+     * @param DeleteRestoreTemplateRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteRestoreTemplate(
+        DeleteRestoreTemplateRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteRestoreTemplate', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single RestoreVerificationPlan. If the `force` flag is set to
+     * `true`, any RestoreVerificationPlanAssociations linked to this
+     * RestoreVerificationPlan will also be deleted.
+     *
+     * The async variant is {@see BackupDRClient::deleteRestoreVerificationPlanAsync()}
+     * .
+     *
+     * @example samples/V1/BackupDRClient/delete_restore_verification_plan.php
+     *
+     * @param DeleteRestoreVerificationPlanRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteRestoreVerificationPlan(
+        DeleteRestoreVerificationPlanRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteRestoreVerificationPlan', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single RestoreVerificationPlanAssociation in a given
+     * RestoreVerificationPlan.
+     *
+     * The async variant is
+     * {@see BackupDRClient::deleteRestoreVerificationPlanAssociationAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/delete_restore_verification_plan_association.php
+     *
+     * @param DeleteRestoreVerificationPlanAssociationRequest $request     A request to house fields associated with the call.
+     * @param array                                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteRestoreVerificationPlanAssociation(
+        DeleteRestoreVerificationPlanAssociationRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteRestoreVerificationPlanAssociation', $request, $callOptions)->wait();
+    }
+
+    /**
      * List BackupPlanAssociations for a given resource type.
      *
      * The async variant is
@@ -1031,6 +1523,63 @@ final class BackupDRClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('FetchUsableBackupVaults', $request, $callOptions);
+    }
+
+    /**
+     * Gets details of a single AutoProtectionPolicy.
+     *
+     * The async variant is {@see BackupDRClient::getAutoProtectionPolicyAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/get_auto_protection_policy.php
+     *
+     * @param GetAutoProtectionPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AutoProtectionPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAutoProtectionPolicy(
+        GetAutoProtectionPolicyRequest $request,
+        array $callOptions = []
+    ): AutoProtectionPolicy {
+        return $this->startApiCall('GetAutoProtectionPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns the auto protection policy binding read from the CCFE tables.
+     *
+     * The async variant is
+     * {@see BackupDRClient::getAutoProtectionPolicyBindingAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/get_auto_protection_policy_binding.php
+     *
+     * @param GetAutoProtectionPolicyBindingRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AutoProtectionPolicyBinding
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAutoProtectionPolicyBinding(
+        GetAutoProtectionPolicyBindingRequest $request,
+        array $callOptions = []
+    ): AutoProtectionPolicyBinding {
+        return $this->startApiCall('GetAutoProtectionPolicyBinding', $request, $callOptions)->wait();
     }
 
     /**
@@ -1248,6 +1797,119 @@ final class BackupDRClient
     }
 
     /**
+     * Gets details of a RestoreTemplate.
+     *
+     * The async variant is {@see BackupDRClient::getRestoreTemplateAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/get_restore_template.php
+     *
+     * @param GetRestoreTemplateRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RestoreTemplate
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getRestoreTemplate(GetRestoreTemplateRequest $request, array $callOptions = []): RestoreTemplate
+    {
+        return $this->startApiCall('GetRestoreTemplate', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a RestoreTemplateExecution.
+     *
+     * The async variant is {@see BackupDRClient::getRestoreTemplateExecutionAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/get_restore_template_execution.php
+     *
+     * @param GetRestoreTemplateExecutionRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RestoreTemplateExecution
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getRestoreTemplateExecution(
+        GetRestoreTemplateExecutionRequest $request,
+        array $callOptions = []
+    ): RestoreTemplateExecution {
+        return $this->startApiCall('GetRestoreTemplateExecution', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single RestoreVerificationPlan. Returns the requested
+     * RestoreVerificationPlan.
+     *
+     * The async variant is {@see BackupDRClient::getRestoreVerificationPlanAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/get_restore_verification_plan.php
+     *
+     * @param GetRestoreVerificationPlanRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RestoreVerificationPlan
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getRestoreVerificationPlan(
+        GetRestoreVerificationPlanRequest $request,
+        array $callOptions = []
+    ): RestoreVerificationPlan {
+        return $this->startApiCall('GetRestoreVerificationPlan', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single RestoreVerificationPlanAssociation in a given
+     * RestoreVerificationPlan.
+     *
+     * The async variant is
+     * {@see BackupDRClient::getRestoreVerificationPlanAssociationAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/get_restore_verification_plan_association.php
+     *
+     * @param GetRestoreVerificationPlanAssociationRequest $request     A request to house fields associated with the call.
+     * @param array                                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RestoreVerificationPlanAssociation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getRestoreVerificationPlanAssociation(
+        GetRestoreVerificationPlanAssociationRequest $request,
+        array $callOptions = []
+    ): RestoreVerificationPlanAssociation {
+        return $this->startApiCall('GetRestoreVerificationPlanAssociation', $request, $callOptions)->wait();
+    }
+
+    /**
      * Initializes the service related config for a project.
      *
      * The async variant is {@see BackupDRClient::initializeServiceAsync()} .
@@ -1271,6 +1933,122 @@ final class BackupDRClient
     public function initializeService(InitializeServiceRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('InitializeService', $request, $callOptions)->wait();
+    }
+
+    /**
+     * InitiateDeleteAutoProtectionPolicyBinding initiates delete for
+     * AutoProtectionPolicy Binding
+     *
+     * The async variant is
+     * {@see BackupDRClient::initiateDeleteAutoProtectionPolicyBindingAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/initiate_delete_auto_protection_policy_binding.php
+     *
+     * @param InitiateDeleteAutoProtectionPolicyBindingRequest $request     A request to house fields associated with the call.
+     * @param array                                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<AutoProtectionPolicyBinding>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function initiateDeleteAutoProtectionPolicyBinding(
+        InitiateDeleteAutoProtectionPolicyBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('InitiateDeleteAutoProtectionPolicyBinding', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists AppliedAutoProtectionPolicies in a given project and location.
+     *
+     * The async variant is
+     * {@see BackupDRClient::listAppliedAutoProtectionPoliciesAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/list_applied_auto_protection_policies.php
+     *
+     * @param ListAppliedAutoProtectionPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAppliedAutoProtectionPolicies(
+        ListAppliedAutoProtectionPoliciesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListAppliedAutoProtectionPolicies', $request, $callOptions);
+    }
+
+    /**
+     * Lists AutoProtectionPolicies for a given project and location.
+     *
+     * The async variant is {@see BackupDRClient::listAutoProtectionPoliciesAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/list_auto_protection_policies.php
+     *
+     * @param ListAutoProtectionPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAutoProtectionPolicies(
+        ListAutoProtectionPoliciesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListAutoProtectionPolicies', $request, $callOptions);
+    }
+
+    /**
+     * Returns the auto protection policy bindings read from the CCFE tables.
+     *
+     * The async variant is
+     * {@see BackupDRClient::listAutoProtectionPolicyBindingsAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/list_auto_protection_policy_bindings.php
+     *
+     * @param ListAutoProtectionPolicyBindingsRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAutoProtectionPolicyBindings(
+        ListAutoProtectionPolicyBindingsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListAutoProtectionPolicyBindings', $request, $callOptions);
     }
 
     /**
@@ -1408,6 +2186,35 @@ final class BackupDRClient
     }
 
     /**
+     * Lists Binding Matching Resources for a given AutoProtectionPolicyBinding.
+     *
+     * The async variant is {@see BackupDRClient::listBindingMatchingResourcesAsync()}
+     * .
+     *
+     * @example samples/V1/BackupDRClient/list_binding_matching_resources.php
+     *
+     * @param ListBindingMatchingResourcesRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listBindingMatchingResources(
+        ListBindingMatchingResourcesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListBindingMatchingResources', $request, $callOptions);
+    }
+
+    /**
      * Lists DataSourceReferences for a given project and location.
      *
      * The async variant is {@see BackupDRClient::listDataSourceReferencesAsync()} .
@@ -1490,6 +2297,123 @@ final class BackupDRClient
     }
 
     /**
+     * Lists RestoreTemplateExecutions in a given project, location and restore
+     * template.
+     *
+     * The async variant is {@see BackupDRClient::listRestoreTemplateExecutionsAsync()}
+     * .
+     *
+     * @example samples/V1/BackupDRClient/list_restore_template_executions.php
+     *
+     * @param ListRestoreTemplateExecutionsRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listRestoreTemplateExecutions(
+        ListRestoreTemplateExecutionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListRestoreTemplateExecutions', $request, $callOptions);
+    }
+
+    /**
+     * Lists RestoreTemplates in a given project and location.
+     *
+     * The async variant is {@see BackupDRClient::listRestoreTemplatesAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/list_restore_templates.php
+     *
+     * @param ListRestoreTemplatesRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listRestoreTemplates(
+        ListRestoreTemplatesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListRestoreTemplates', $request, $callOptions);
+    }
+
+    /**
+     * Lists RestoreVerificationPlanAssociations in a given
+     * RestoreVerificationPlan.
+     *
+     * The async variant is
+     * {@see BackupDRClient::listRestoreVerificationPlanAssociationsAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/list_restore_verification_plan_associations.php
+     *
+     * @param ListRestoreVerificationPlanAssociationsRequest $request     A request to house fields associated with the call.
+     * @param array                                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listRestoreVerificationPlanAssociations(
+        ListRestoreVerificationPlanAssociationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListRestoreVerificationPlanAssociations', $request, $callOptions);
+    }
+
+    /**
+     * Lists RestoreVerificationPlans in a given project and location.
+     *
+     * The async variant is {@see BackupDRClient::listRestoreVerificationPlansAsync()}
+     * .
+     *
+     * @example samples/V1/BackupDRClient/list_restore_verification_plans.php
+     *
+     * @param ListRestoreVerificationPlansRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listRestoreVerificationPlans(
+        ListRestoreVerificationPlansRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListRestoreVerificationPlans', $request, $callOptions);
+    }
+
+    /**
      * Restore from a Backup
      *
      * The async variant is {@see BackupDRClient::restoreBackupAsync()} .
@@ -1516,6 +2440,32 @@ final class BackupDRClient
     }
 
     /**
+     * Runs a RestoreTemplate.
+     *
+     * The async variant is {@see BackupDRClient::runRestoreTemplateAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/run_restore_template.php
+     *
+     * @param RunRestoreTemplateRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<RunRestoreTemplateResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function runRestoreTemplate(RunRestoreTemplateRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RunRestoreTemplate', $request, $callOptions)->wait();
+    }
+
+    /**
      * Triggers a new Backup.
      *
      * The async variant is {@see BackupDRClient::triggerBackupAsync()} .
@@ -1539,6 +2489,91 @@ final class BackupDRClient
     public function triggerBackup(TriggerBackupRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('TriggerBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Triggers cleanup of restored resources created during execution.
+     *
+     * The async variant is {@see BackupDRClient::triggerRestoreCleanupAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/trigger_restore_cleanup.php
+     *
+     * @param TriggerRestoreCleanupRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<RestoreTemplateExecution>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function triggerRestoreCleanup(
+        TriggerRestoreCleanupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('TriggerRestoreCleanup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Triggers a new Restore Verification for the association in a given
+     * RestoreVerificationPlan.
+     *
+     * The async variant is {@see BackupDRClient::triggerRestoreVerificationAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/trigger_restore_verification.php
+     *
+     * @param TriggerRestoreVerificationRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<TriggerRestoreVerificationResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function triggerRestoreVerification(
+        TriggerRestoreVerificationRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('TriggerRestoreVerification', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the parameters of a single AutoProtectionPolicy.
+     *
+     * The async variant is {@see BackupDRClient::updateAutoProtectionPolicyAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/update_auto_protection_policy.php
+     *
+     * @param UpdateAutoProtectionPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<AutoProtectionPolicy>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateAutoProtectionPolicy(
+        UpdateAutoProtectionPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateAutoProtectionPolicy', $request, $callOptions)->wait();
     }
 
     /**
@@ -1671,6 +2706,34 @@ final class BackupDRClient
     public function updateDataSource(UpdateDataSourceRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateDataSource', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the settings of a RestoreTemplate.
+     *
+     * The async variant is {@see BackupDRClient::updateRestoreTemplateAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/update_restore_template.php
+     *
+     * @param UpdateRestoreTemplateRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<RestoreTemplate>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateRestoreTemplate(
+        UpdateRestoreTemplateRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateRestoreTemplate', $request, $callOptions)->wait();
     }
 
     /**

@@ -55,7 +55,7 @@ function create_contact_sample(
     $essentialContactsServiceClient = new EssentialContactsServiceClient();
 
     // Prepare the request message.
-    $contactNotificationCategorySubscriptions = [$contactNotificationCategorySubscriptionsElement,];
+    $contactNotificationCategorySubscriptions = [$contactNotificationCategorySubscriptionsElement];
     $contact = (new Contact())
         ->setEmail($contactEmail)
         ->setNotificationCategorySubscriptions($contactNotificationCategorySubscriptions)

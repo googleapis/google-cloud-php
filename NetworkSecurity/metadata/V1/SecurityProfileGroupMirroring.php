@@ -17,7 +17,7 @@ class SecurityProfileGroupMirroring
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\x90\x04\x0AFgoogle/cloud/networksecurity/v1/security_profile_group_mirroring.proto\x12\x1Fgoogle.cloud.networksecurity.v1\x1A\x19google/api/resource.proto\"|\x0A\x16CustomMirroringProfile\x12b\x0A\x18mirroring_endpoint_group\x18\x01 \x01(\x09B@\xE0A\x02\xE0A\x05\xFAA7\x0A5networksecurity.googleapis.com/MirroringEndpointGroupB\x83\x02\x0A#com.google.cloud.networksecurity.v1B\"SecurityProfileGroupMirroringProtoP\x01ZMcloud.google.com/go/networksecurity/apiv1/networksecuritypb;networksecuritypb\xAA\x02\x1FGoogle.Cloud.NetworkSecurity.V1\xCA\x02\x1FGoogle\\Cloud\\NetworkSecurity\\V1\xEA\x02\"Google::Cloud::NetworkSecurity::V1b\x06proto3"
+            "\x0A\x8F\x04\x0AFgoogle/cloud/networksecurity/v1/security_profile_group_mirroring.proto\x12\x1Fgoogle.cloud.networksecurity.v1\x1A\x19google/api/resource.proto\"{\x0A\x16CustomMirroringProfile\x12a\x0A\x18mirroring_endpoint_group\x18\x01 \x01(\x09B?\xE2A\x02\x02\x05\xFAA7\x0A5networksecurity.googleapis.com/MirroringEndpointGroupB\x83\x02\x0A#com.google.cloud.networksecurity.v1B\"SecurityProfileGroupMirroringProtoP\x01ZMcloud.google.com/go/networksecurity/apiv1/networksecuritypb;networksecuritypb\xAA\x02\x1FGoogle.Cloud.NetworkSecurity.V1\xCA\x02\x1FGoogle\\Cloud\\NetworkSecurity\\V1\xEA\x02\"Google::Cloud::NetworkSecurity::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

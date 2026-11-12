@@ -45,7 +45,7 @@ function batch_activate_placements_sample(
     $placementServiceClient = new PlacementServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchActivatePlacementsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

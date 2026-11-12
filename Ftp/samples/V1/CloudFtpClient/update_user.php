@@ -59,12 +59,12 @@ function update_user_sample(
     $userCredential = (new UserCredential())
         ->setCredentialName($userUserCredentialsCredentialName)
         ->setCredentialType($userUserCredentialsCredentialType);
-    $userUserCredentials = [$userCredential,];
+    $userUserCredentials = [$userCredential];
     $storageDirectoryMapping = (new StorageDirectoryMapping())
         ->setBucket($userStorageDirectoryMappingsBucket)
         ->setDirectory($userStorageDirectoryMappingsDirectory)
         ->setPermission($userStorageDirectoryMappingsPermission);
-    $userStorageDirectoryMappings = [$storageDirectoryMapping,];
+    $userStorageDirectoryMappings = [$storageDirectoryMapping];
     $user = (new User())
         ->setCustomerServiceAccount($userCustomerServiceAccount)
         ->setUserCredentials($userUserCredentials)

@@ -23,9 +23,10 @@ class DefaultThirdPartyDataDeclaration extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Optional. Returns the default [ThirdPartyDataDeclaration] for this network.
-     * If this setting has never been updated on your network, then this API
-     * response will be unset.
+     * Optional. Returns the default
+     * [ThirdPartyDataDeclaration][google.ads.admanager.v1.ThirdPartyDataDeclaration]
+     * for this network. If this setting has never been updated on your network,
+     * then this API response will be unset.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.ThirdPartyDataDeclaration third_party_data_declaration = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -41,9 +42,10 @@ class DefaultThirdPartyDataDeclaration extends \Google\Protobuf\Internal\Message
      *           Identifier. The resource name of the `DefaultThirdPartyDataDeclaration`.
      *           Format: `networks/{network_code}/defaultThirdPartyDataDeclaration`
      *     @type \Google\Ads\AdManager\V1\ThirdPartyDataDeclaration $third_party_data_declaration
-     *           Optional. Returns the default [ThirdPartyDataDeclaration] for this network.
-     *           If this setting has never been updated on your network, then this API
-     *           response will be unset.
+     *           Optional. Returns the default
+     *           [ThirdPartyDataDeclaration][google.ads.admanager.v1.ThirdPartyDataDeclaration]
+     *           for this network. If this setting has never been updated on your network,
+     *           then this API response will be unset.
      * }
      */
     public function __construct($data = NULL) {
@@ -80,9 +82,10 @@ class DefaultThirdPartyDataDeclaration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Returns the default [ThirdPartyDataDeclaration] for this network.
-     * If this setting has never been updated on your network, then this API
-     * response will be unset.
+     * Optional. Returns the default
+     * [ThirdPartyDataDeclaration][google.ads.admanager.v1.ThirdPartyDataDeclaration]
+     * for this network. If this setting has never been updated on your network,
+     * then this API response will be unset.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.ThirdPartyDataDeclaration third_party_data_declaration = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Ads\AdManager\V1\ThirdPartyDataDeclaration|null
@@ -103,9 +106,10 @@ class DefaultThirdPartyDataDeclaration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Returns the default [ThirdPartyDataDeclaration] for this network.
-     * If this setting has never been updated on your network, then this API
-     * response will be unset.
+     * Optional. Returns the default
+     * [ThirdPartyDataDeclaration][google.ads.admanager.v1.ThirdPartyDataDeclaration]
+     * for this network. If this setting has never been updated on your network,
+     * then this API response will be unset.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.ThirdPartyDataDeclaration third_party_data_declaration = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Ads\AdManager\V1\ThirdPartyDataDeclaration $var

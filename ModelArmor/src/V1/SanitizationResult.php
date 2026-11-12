@@ -28,7 +28,7 @@ class SanitizationResult extends \Google\Protobuf\Internal\Message
     protected $filter_match_state = 0;
     /**
      * Output only. Results for all filters where the key is the filter name -
-     * either of "csam", "malicious_uris", "rai", "pi_and_jailbreak" ,"sdp".
+     * either of "csam", "malicious_uris", "rai", "pi_and_jailbreak", "sdp".
      *
      * Generated from protobuf field <code>map<string, .google.cloud.modelarmor.v1.FilterResult> filter_results = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -64,7 +64,7 @@ class SanitizationResult extends \Google\Protobuf\Internal\Message
      *           In other words, input did not pass one or more filters.
      *     @type array|\Google\Protobuf\Internal\MapField $filter_results
      *           Output only. Results for all filters where the key is the filter name -
-     *           either of "csam", "malicious_uris", "rai", "pi_and_jailbreak" ,"sdp".
+     *           either of "csam", "malicious_uris", "rai", "pi_and_jailbreak", "sdp".
      *     @type int $invocation_result
      *           Output only. A field indicating the outcome of the invocation, irrespective
      *           of match status. It can have the following three values: SUCCESS: All
@@ -117,7 +117,7 @@ class SanitizationResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Results for all filters where the key is the filter name -
-     * either of "csam", "malicious_uris", "rai", "pi_and_jailbreak" ,"sdp".
+     * either of "csam", "malicious_uris", "rai", "pi_and_jailbreak", "sdp".
      *
      * Generated from protobuf field <code>map<string, .google.cloud.modelarmor.v1.FilterResult> filter_results = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -129,7 +129,7 @@ class SanitizationResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Results for all filters where the key is the filter name -
-     * either of "csam", "malicious_uris", "rai", "pi_and_jailbreak" ,"sdp".
+     * either of "csam", "malicious_uris", "rai", "pi_and_jailbreak", "sdp".
      *
      * Generated from protobuf field <code>map<string, .google.cloud.modelarmor.v1.FilterResult> filter_results = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

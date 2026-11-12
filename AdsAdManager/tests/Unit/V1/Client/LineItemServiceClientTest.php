@@ -22,16 +22,48 @@
 
 namespace Google\Ads\AdManager\Tests\Unit\V1\Client;
 
+use Google\Ads\AdManager\V1\BatchActivateLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchActivateLineItemsResponse;
+use Google\Ads\AdManager\V1\BatchArchiveLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchArchiveLineItemsResponse;
+use Google\Ads\AdManager\V1\BatchCreateLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchCreateLineItemsResponse;
+use Google\Ads\AdManager\V1\BatchDeleteLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchPauseLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchPauseLineItemsResponse;
+use Google\Ads\AdManager\V1\BatchReleaseLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchReleaseLineItemsResponse;
+use Google\Ads\AdManager\V1\BatchReserveAndOverbookLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchReserveAndOverbookLineItemsResponse;
+use Google\Ads\AdManager\V1\BatchReserveLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchReserveLineItemsResponse;
+use Google\Ads\AdManager\V1\BatchResumeAndOverbookLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchResumeAndOverbookLineItemsResponse;
+use Google\Ads\AdManager\V1\BatchResumeLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchResumeLineItemsResponse;
+use Google\Ads\AdManager\V1\BatchUnarchiveLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchUnarchiveLineItemsResponse;
+use Google\Ads\AdManager\V1\BatchUpdateLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchUpdateLineItemsResponse;
 use Google\Ads\AdManager\V1\Client\LineItemServiceClient;
+use Google\Ads\AdManager\V1\CreateLineItemRequest;
+use Google\Ads\AdManager\V1\CreativeRotationTypeEnum\CreativeRotationType;
 use Google\Ads\AdManager\V1\GetLineItemRequest;
 use Google\Ads\AdManager\V1\LineItem;
+use Google\Ads\AdManager\V1\LineItemCostTypeEnum\LineItemCostType;
+use Google\Ads\AdManager\V1\LineItemTypeEnum\LineItemType;
 use Google\Ads\AdManager\V1\ListLineItemsRequest;
 use Google\Ads\AdManager\V1\ListLineItemsResponse;
+use Google\Ads\AdManager\V1\Targeting;
+use Google\Ads\AdManager\V1\UpdateLineItemRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Timestamp;
 use Google\Rpc\Code;
+use Google\Type\Money;
 use stdClass;
 
 /**
@@ -62,6 +94,966 @@ class LineItemServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new LineItemServiceClient($options);
+    }
+
+    /** @test */
+    public function batchActivateLineItemsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchActivateLineItemsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchActivateLineItemsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $response = $gapicClient->batchActivateLineItems($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.LineItemService/BatchActivateLineItems', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchActivateLineItemsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchActivateLineItemsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        try {
+            $gapicClient->batchActivateLineItems($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchArchiveLineItemsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchArchiveLineItemsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchArchiveLineItemsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $response = $gapicClient->batchArchiveLineItems($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.LineItemService/BatchArchiveLineItems', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchArchiveLineItemsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchArchiveLineItemsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        try {
+            $gapicClient->batchArchiveLineItems($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchCreateLineItemsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchCreateLineItemsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $requests = [];
+        $request = (new BatchCreateLineItemsRequest())->setParent($formattedParent)->setRequests($requests);
+        $response = $gapicClient->batchCreateLineItems($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.LineItemService/BatchCreateLineItems', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchCreateLineItemsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $requests = [];
+        $request = (new BatchCreateLineItemsRequest())->setParent($formattedParent)->setRequests($requests);
+        try {
+            $gapicClient->batchCreateLineItems($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchDeleteLineItemsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchDeleteLineItemsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $gapicClient->batchDeleteLineItems($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.LineItemService/BatchDeleteLineItems', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchDeleteLineItemsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchDeleteLineItemsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        try {
+            $gapicClient->batchDeleteLineItems($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchPauseLineItemsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchPauseLineItemsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchPauseLineItemsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $response = $gapicClient->batchPauseLineItems($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.LineItemService/BatchPauseLineItems', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchPauseLineItemsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchPauseLineItemsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        try {
+            $gapicClient->batchPauseLineItems($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchReleaseLineItemsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchReleaseLineItemsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchReleaseLineItemsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $response = $gapicClient->batchReleaseLineItems($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.LineItemService/BatchReleaseLineItems', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchReleaseLineItemsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchReleaseLineItemsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        try {
+            $gapicClient->batchReleaseLineItems($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchReserveAndOverbookLineItemsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchReserveAndOverbookLineItemsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchReserveAndOverbookLineItemsRequest())
+            ->setParent($formattedParent)
+            ->setNames($formattedNames);
+        $response = $gapicClient->batchReserveAndOverbookLineItems($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.LineItemService/BatchReserveAndOverbookLineItems', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchReserveAndOverbookLineItemsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchReserveAndOverbookLineItemsRequest())
+            ->setParent($formattedParent)
+            ->setNames($formattedNames);
+        try {
+            $gapicClient->batchReserveAndOverbookLineItems($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchReserveLineItemsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchReserveLineItemsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchReserveLineItemsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $response = $gapicClient->batchReserveLineItems($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.LineItemService/BatchReserveLineItems', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchReserveLineItemsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchReserveLineItemsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        try {
+            $gapicClient->batchReserveLineItems($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchResumeAndOverbookLineItemsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchResumeAndOverbookLineItemsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchResumeAndOverbookLineItemsRequest())
+            ->setParent($formattedParent)
+            ->setNames($formattedNames);
+        $response = $gapicClient->batchResumeAndOverbookLineItems($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.LineItemService/BatchResumeAndOverbookLineItems', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchResumeAndOverbookLineItemsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchResumeAndOverbookLineItemsRequest())
+            ->setParent($formattedParent)
+            ->setNames($formattedNames);
+        try {
+            $gapicClient->batchResumeAndOverbookLineItems($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchResumeLineItemsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchResumeLineItemsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchResumeLineItemsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $response = $gapicClient->batchResumeLineItems($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.LineItemService/BatchResumeLineItems', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchResumeLineItemsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchResumeLineItemsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        try {
+            $gapicClient->batchResumeLineItems($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchUnarchiveLineItemsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchUnarchiveLineItemsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchUnarchiveLineItemsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $response = $gapicClient->batchUnarchiveLineItems($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.LineItemService/BatchUnarchiveLineItems', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchUnarchiveLineItemsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchUnarchiveLineItemsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        try {
+            $gapicClient->batchUnarchiveLineItems($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchUpdateLineItemsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchUpdateLineItemsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $requests = [];
+        $request = (new BatchUpdateLineItemsRequest())->setParent($formattedParent)->setRequests($requests);
+        $response = $gapicClient->batchUpdateLineItems($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.LineItemService/BatchUpdateLineItems', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchUpdateLineItemsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $requests = [];
+        $request = (new BatchUpdateLineItemsRequest())->setParent($formattedParent)->setRequests($requests);
+        try {
+            $gapicClient->batchUpdateLineItems($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createLineItemTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $order = 'order106006350';
+        $displayName = 'displayName1615086568';
+        $externalLineItemId = 'externalLineItemId-845306768';
+        $orderDisplayName = 'orderDisplayName790164793';
+        $autoExtensionDays = 2065627367;
+        $endTimeUnlimited = false;
+        $priority = 1165461084;
+        $contractedUnitsBought = 424175607;
+        $allowOverbook = false;
+        $skipInventoryCheck = false;
+        $skipCrossSellingRuleWarningChecks = false;
+        $reserveOnCreation = true;
+        $archived = true;
+        $webPropertyCode = 'webPropertyCode2013601900';
+        $sameAdvertiserExceptionEnabled = true;
+        $updateSource = 'updateSource-1348638639';
+        $notes = 'notes105008833';
+        $missingCreatives = false;
+        $youtubeKidsRestricted = false;
+        $customVastExtension = 'customVastExtension2046703770';
+        $sponsorshipExclusivityEnabled = true;
+        $repeatedCreativeServingEnabled = false;
+        $expectedResponse = new LineItem();
+        $expectedResponse->setName($name);
+        $expectedResponse->setOrder($order);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setExternalLineItemId($externalLineItemId);
+        $expectedResponse->setOrderDisplayName($orderDisplayName);
+        $expectedResponse->setAutoExtensionDays($autoExtensionDays);
+        $expectedResponse->setEndTimeUnlimited($endTimeUnlimited);
+        $expectedResponse->setPriority($priority);
+        $expectedResponse->setContractedUnitsBought($contractedUnitsBought);
+        $expectedResponse->setAllowOverbook($allowOverbook);
+        $expectedResponse->setSkipInventoryCheck($skipInventoryCheck);
+        $expectedResponse->setSkipCrossSellingRuleWarningChecks($skipCrossSellingRuleWarningChecks);
+        $expectedResponse->setReserveOnCreation($reserveOnCreation);
+        $expectedResponse->setArchived($archived);
+        $expectedResponse->setWebPropertyCode($webPropertyCode);
+        $expectedResponse->setSameAdvertiserExceptionEnabled($sameAdvertiserExceptionEnabled);
+        $expectedResponse->setUpdateSource($updateSource);
+        $expectedResponse->setNotes($notes);
+        $expectedResponse->setMissingCreatives($missingCreatives);
+        $expectedResponse->setYoutubeKidsRestricted($youtubeKidsRestricted);
+        $expectedResponse->setCustomVastExtension($customVastExtension);
+        $expectedResponse->setSponsorshipExclusivityEnabled($sponsorshipExclusivityEnabled);
+        $expectedResponse->setRepeatedCreativeServingEnabled($repeatedCreativeServingEnabled);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $lineItem = new LineItem();
+        $lineItemOrder = $gapicClient->orderName('[NETWORK_CODE]', '[ORDER]');
+        $lineItem->setOrder($lineItemOrder);
+        $lineItemDisplayName = 'lineItemDisplayName758909638';
+        $lineItem->setDisplayName($lineItemDisplayName);
+        $lineItemStartTime = new Timestamp();
+        $lineItem->setStartTime($lineItemStartTime);
+        $lineItemCreativeRotationType = CreativeRotationType::CREATIVE_ROTATION_TYPE_UNSPECIFIED;
+        $lineItem->setCreativeRotationType($lineItemCreativeRotationType);
+        $lineItemLineItemType = LineItemType::LINE_ITEM_TYPE_UNSPECIFIED;
+        $lineItem->setLineItemType($lineItemLineItemType);
+        $lineItemRate = new Money();
+        $lineItem->setRate($lineItemRate);
+        $lineItemCostType = LineItemCostType::LINE_ITEM_COST_TYPE_UNSPECIFIED;
+        $lineItem->setCostType($lineItemCostType);
+        $lineItemCreativePlaceholders = [];
+        $lineItem->setCreativePlaceholders($lineItemCreativePlaceholders);
+        $lineItemTargeting = new Targeting();
+        $lineItem->setTargeting($lineItemTargeting);
+        $request = (new CreateLineItemRequest())->setParent($formattedParent)->setLineItem($lineItem);
+        $response = $gapicClient->createLineItem($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.LineItemService/CreateLineItem', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getLineItem();
+        $this->assertProtobufEquals($lineItem, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createLineItemExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $lineItem = new LineItem();
+        $lineItemOrder = $gapicClient->orderName('[NETWORK_CODE]', '[ORDER]');
+        $lineItem->setOrder($lineItemOrder);
+        $lineItemDisplayName = 'lineItemDisplayName758909638';
+        $lineItem->setDisplayName($lineItemDisplayName);
+        $lineItemStartTime = new Timestamp();
+        $lineItem->setStartTime($lineItemStartTime);
+        $lineItemCreativeRotationType = CreativeRotationType::CREATIVE_ROTATION_TYPE_UNSPECIFIED;
+        $lineItem->setCreativeRotationType($lineItemCreativeRotationType);
+        $lineItemLineItemType = LineItemType::LINE_ITEM_TYPE_UNSPECIFIED;
+        $lineItem->setLineItemType($lineItemLineItemType);
+        $lineItemRate = new Money();
+        $lineItem->setRate($lineItemRate);
+        $lineItemCostType = LineItemCostType::LINE_ITEM_COST_TYPE_UNSPECIFIED;
+        $lineItem->setCostType($lineItemCostType);
+        $lineItemCreativePlaceholders = [];
+        $lineItem->setCreativePlaceholders($lineItemCreativePlaceholders);
+        $lineItemTargeting = new Targeting();
+        $lineItem->setTargeting($lineItemTargeting);
+        $request = (new CreateLineItemRequest())->setParent($formattedParent)->setLineItem($lineItem);
+        try {
+            $gapicClient->createLineItem($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -247,7 +1239,7 @@ class LineItemServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getLineItemAsyncTest()
+    public function updateLineItemTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -255,7 +1247,7 @@ class LineItemServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $name2 = 'name2-1052831874';
+        $name = 'name3373707';
         $order = 'order106006350';
         $displayName = 'displayName1615086568';
         $externalLineItemId = 'externalLineItemId-845306768';
@@ -279,7 +1271,7 @@ class LineItemServiceClientTest extends GeneratedTest
         $sponsorshipExclusivityEnabled = true;
         $repeatedCreativeServingEnabled = false;
         $expectedResponse = new LineItem();
-        $expectedResponse->setName($name2);
+        $expectedResponse->setName($name);
         $expectedResponse->setOrder($order);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setExternalLineItemId($externalLineItemId);
@@ -304,17 +1296,119 @@ class LineItemServiceClientTest extends GeneratedTest
         $expectedResponse->setRepeatedCreativeServingEnabled($repeatedCreativeServingEnabled);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]');
-        $request = (new GetLineItemRequest())->setName($formattedName);
-        $response = $gapicClient->getLineItemAsync($request)->wait();
+        $lineItem = new LineItem();
+        $lineItemOrder = $gapicClient->orderName('[NETWORK_CODE]', '[ORDER]');
+        $lineItem->setOrder($lineItemOrder);
+        $lineItemDisplayName = 'lineItemDisplayName758909638';
+        $lineItem->setDisplayName($lineItemDisplayName);
+        $lineItemStartTime = new Timestamp();
+        $lineItem->setStartTime($lineItemStartTime);
+        $lineItemCreativeRotationType = CreativeRotationType::CREATIVE_ROTATION_TYPE_UNSPECIFIED;
+        $lineItem->setCreativeRotationType($lineItemCreativeRotationType);
+        $lineItemLineItemType = LineItemType::LINE_ITEM_TYPE_UNSPECIFIED;
+        $lineItem->setLineItemType($lineItemLineItemType);
+        $lineItemRate = new Money();
+        $lineItem->setRate($lineItemRate);
+        $lineItemCostType = LineItemCostType::LINE_ITEM_COST_TYPE_UNSPECIFIED;
+        $lineItem->setCostType($lineItemCostType);
+        $lineItemCreativePlaceholders = [];
+        $lineItem->setCreativePlaceholders($lineItemCreativePlaceholders);
+        $lineItemTargeting = new Targeting();
+        $lineItem->setTargeting($lineItemTargeting);
+        $request = (new UpdateLineItemRequest())->setLineItem($lineItem);
+        $response = $gapicClient->updateLineItem($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.ads.admanager.v1.LineItemService/GetLineItem', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertSame('/google.ads.admanager.v1.LineItemService/UpdateLineItem', $actualFuncCall);
+        $actualValue = $actualRequestObject->getLineItem();
+        $this->assertProtobufEquals($lineItem, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateLineItemExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $lineItem = new LineItem();
+        $lineItemOrder = $gapicClient->orderName('[NETWORK_CODE]', '[ORDER]');
+        $lineItem->setOrder($lineItemOrder);
+        $lineItemDisplayName = 'lineItemDisplayName758909638';
+        $lineItem->setDisplayName($lineItemDisplayName);
+        $lineItemStartTime = new Timestamp();
+        $lineItem->setStartTime($lineItemStartTime);
+        $lineItemCreativeRotationType = CreativeRotationType::CREATIVE_ROTATION_TYPE_UNSPECIFIED;
+        $lineItem->setCreativeRotationType($lineItemCreativeRotationType);
+        $lineItemLineItemType = LineItemType::LINE_ITEM_TYPE_UNSPECIFIED;
+        $lineItem->setLineItemType($lineItemLineItemType);
+        $lineItemRate = new Money();
+        $lineItem->setRate($lineItemRate);
+        $lineItemCostType = LineItemCostType::LINE_ITEM_COST_TYPE_UNSPECIFIED;
+        $lineItem->setCostType($lineItemCostType);
+        $lineItemCreativePlaceholders = [];
+        $lineItem->setCreativePlaceholders($lineItemCreativePlaceholders);
+        $lineItemTargeting = new Targeting();
+        $lineItem->setTargeting($lineItemTargeting);
+        $request = (new UpdateLineItemRequest())->setLineItem($lineItem);
+        try {
+            $gapicClient->updateLineItem($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchActivateLineItemsAsyncTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchActivateLineItemsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]')];
+        $request = (new BatchActivateLineItemsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $response = $gapicClient->batchActivateLineItemsAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.LineItemService/BatchActivateLineItems', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

@@ -498,6 +498,7 @@ return [
             ],
             'templateMap' => [
                 'connectionProfile' => 'projects/{project}/locations/{location}/connectionProfiles/{connection_profile}',
+                'database' => 'projects/{project}/instances/{instance}/databases/{database}',
                 'location' => 'projects/{project}/locations/{location}',
                 'networkAttachment' => 'projects/{project}/regions/{region}/networkAttachments/{network_attachment}',
                 'networks' => 'projects/{project}/global/networks/{network}',

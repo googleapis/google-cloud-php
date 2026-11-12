@@ -30,7 +30,7 @@ use Google\Cloud\NetApp\V1\ExecuteOntapPatchResponse;
 use Google\Protobuf\Struct;
 
 /**
- * `ExecuteOntapPatch` dispatches the ONTAP `PATCH` request to the
+ * `ExecuteOntapPatch` sends the ONTAP `PATCH` request to the
  * `StoragePool` cluster.
  *
  * @param string $ontapPath The resource path of the ONTAP resource.

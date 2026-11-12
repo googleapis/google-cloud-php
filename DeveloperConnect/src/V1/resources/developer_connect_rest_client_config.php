@@ -23,6 +23,30 @@
 return [
     'interfaces' => [
         'google.cloud.developerconnect.v1.DeveloperConnect' => [
+            'AddGitRepositoryLinkPullRequestComment' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/connections/*/gitRepositoryLinks/*}:addPullRequestComment',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'AddGitRepositoryLinkPullRequestReviewComment' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/connections/*/gitRepositoryLinks/*}:addPullRequestReviewComment',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateAccountConnector' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/accountConnectors',
@@ -123,6 +147,17 @@ return [
                     ],
                 ],
             ],
+            'DiffGitRepositoryLinkCommit' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/connections/*/gitRepositoryLinks/*}:diffCommit',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'FetchAccessToken' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{account_connector=projects/*/locations/*/accountConnectors/*}/users:fetchAccessToken',
@@ -153,6 +188,61 @@ return [
                     'git_repository_link' => [
                         'getters' => [
                             'getGitRepositoryLink',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchGitRepositoryLinkCommit' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/connections/*/gitRepositoryLinks/*}:fetchCommit',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchGitRepositoryLinkCommitList' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/connections/*/gitRepositoryLinks/*}:fetchCommitList',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchGitRepositoryLinkFileBlame' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/connections/*/gitRepositoryLinks/*}:fetchFileBlame',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchGitRepositoryLinkPullRequest' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/connections/*/gitRepositoryLinks/*}:fetchPullRequest',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchGitRepositoryLinkPullRequestList' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/connections/*/gitRepositoryLinks/*}:fetchPullRequestList',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -287,6 +377,30 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ModifyGitRepositoryLinkPullRequest' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/connections/*/gitRepositoryLinks/*}:modifyPullRequest',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'OpenGitRepositoryLinkPullRequest' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/connections/*/gitRepositoryLinks/*}:openPullRequest',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

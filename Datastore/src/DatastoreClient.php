@@ -204,7 +204,6 @@ class DatastoreClient
             'scopes' => [self::FULL_CONTROL_SCOPE],
             'projectIdRequired' => true,
             'hasEmulator' => (bool) $emulatorHost,
-            'emulatorHost' => $emulatorHost,
         ];
 
         $gapicOptions = $this->buildClientOptions($config);

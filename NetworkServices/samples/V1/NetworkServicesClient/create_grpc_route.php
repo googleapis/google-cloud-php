@@ -80,11 +80,11 @@ function create_grpc_route_sample(
     $networkServicesClient = new NetworkServicesClient();
 
     // Prepare the request message.
-    $grpcRouteHostnames = [$grpcRouteHostnamesElement,];
+    $grpcRouteHostnames = [$grpcRouteHostnamesElement];
     $grpcRouteRulesAction = new RouteAction();
     $routeRule = (new RouteRule())
         ->setAction($grpcRouteRulesAction);
-    $grpcRouteRules = [$routeRule,];
+    $grpcRouteRules = [$routeRule];
     $grpcRoute = (new GrpcRoute())
         ->setHostnames($grpcRouteHostnames)
         ->setRules($grpcRouteRules);

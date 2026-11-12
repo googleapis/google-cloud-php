@@ -43,7 +43,7 @@ function batch_delete_assets_sample(string $formattedParent, string $formattedNa
     $migrationCenterClient = new MigrationCenterClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchDeleteAssetsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

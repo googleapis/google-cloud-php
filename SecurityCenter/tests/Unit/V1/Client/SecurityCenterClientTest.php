@@ -384,6 +384,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $dataset = 'dataset1443214456';
         $mostRecentEditor = 'mostRecentEditor-657770475';
         $principal = 'principal-1812041682';
+        $deletionNotificationsEnabled = false;
         $expectedResponse = new BigQueryExport();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -391,6 +392,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setDataset($dataset);
         $expectedResponse->setMostRecentEditor($mostRecentEditor);
         $expectedResponse->setPrincipal($principal);
+        $expectedResponse->setDeletionNotificationsEnabled($deletionNotificationsEnabled);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
@@ -747,11 +749,13 @@ class SecurityCenterClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $pubsubTopic = 'pubsubTopic-338126829';
         $serviceAccount = 'serviceAccount-1948028253';
+        $deletionNotificationsEnabled = false;
         $expectedResponse = new NotificationConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setPubsubTopic($pubsubTopic);
         $expectedResponse->setServiceAccount($serviceAccount);
+        $expectedResponse->setDeletionNotificationsEnabled($deletionNotificationsEnabled);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
@@ -1369,6 +1373,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $dataset = 'dataset1443214456';
         $mostRecentEditor = 'mostRecentEditor-657770475';
         $principal = 'principal-1812041682';
+        $deletionNotificationsEnabled = false;
         $expectedResponse = new BigQueryExport();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
@@ -1376,6 +1381,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setDataset($dataset);
         $expectedResponse->setMostRecentEditor($mostRecentEditor);
         $expectedResponse->setPrincipal($principal);
+        $expectedResponse->setDeletionNotificationsEnabled($deletionNotificationsEnabled);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->bigQueryExportName('[ORGANIZATION]', '[EXPORT]');
@@ -1810,11 +1816,13 @@ class SecurityCenterClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $pubsubTopic = 'pubsubTopic-338126829';
         $serviceAccount = 'serviceAccount-1948028253';
+        $deletionNotificationsEnabled = false;
         $expectedResponse = new NotificationConfig();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setPubsubTopic($pubsubTopic);
         $expectedResponse->setServiceAccount($serviceAccount);
+        $expectedResponse->setDeletionNotificationsEnabled($deletionNotificationsEnabled);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->notificationConfigName('[ORGANIZATION]', '[NOTIFICATION_CONFIG]');
@@ -4081,6 +4089,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $dataset = 'dataset1443214456';
         $mostRecentEditor = 'mostRecentEditor-657770475';
         $principal = 'principal-1812041682';
+        $deletionNotificationsEnabled = false;
         $expectedResponse = new BigQueryExport();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -4088,6 +4097,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setDataset($dataset);
         $expectedResponse->setMostRecentEditor($mostRecentEditor);
         $expectedResponse->setPrincipal($principal);
+        $expectedResponse->setDeletionNotificationsEnabled($deletionNotificationsEnabled);
         $transport->addResponse($expectedResponse);
         // Mock request
         $bigQueryExport = new BigQueryExport();
@@ -4471,11 +4481,13 @@ class SecurityCenterClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $pubsubTopic = 'pubsubTopic-338126829';
         $serviceAccount = 'serviceAccount-1948028253';
+        $deletionNotificationsEnabled = false;
         $expectedResponse = new NotificationConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setPubsubTopic($pubsubTopic);
         $expectedResponse->setServiceAccount($serviceAccount);
+        $expectedResponse->setDeletionNotificationsEnabled($deletionNotificationsEnabled);
         $transport->addResponse($expectedResponse);
         // Mock request
         $notificationConfig = new NotificationConfig();

@@ -102,12 +102,12 @@ function create_lb_traffic_extension_sample(
         ->setCelExpression($lbTrafficExtensionExtensionChainsMatchConditionCelExpression);
     $extension = (new Extension())
         ->setService($lbTrafficExtensionExtensionChainsExtensionsService);
-    $lbTrafficExtensionExtensionChainsExtensions = [$extension,];
+    $lbTrafficExtensionExtensionChainsExtensions = [$extension];
     $extensionChain = (new ExtensionChain())
         ->setName($lbTrafficExtensionExtensionChainsName)
         ->setMatchCondition($lbTrafficExtensionExtensionChainsMatchCondition)
         ->setExtensions($lbTrafficExtensionExtensionChainsExtensions);
-    $lbTrafficExtensionExtensionChains = [$extensionChain,];
+    $lbTrafficExtensionExtensionChains = [$extensionChain];
     $lbTrafficExtension = (new LbTrafficExtension())
         ->setName($lbTrafficExtensionName)
         ->setExtensionChains($lbTrafficExtensionExtensionChains)

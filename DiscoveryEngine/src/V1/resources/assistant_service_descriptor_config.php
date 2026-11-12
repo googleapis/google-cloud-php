@@ -23,6 +23,62 @@
 return [
     'interfaces' => [
         'google.cloud.discoveryengine.v1.AssistantService' => [
+            'CreateAssistant' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\DiscoveryEngine\V1\Assistant',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAssistant' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAssistant' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\DiscoveryEngine\V1\Assistant',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAssistants' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAssistants',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\DiscoveryEngine\V1\ListAssistantsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'StreamAssist' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'ServerStreaming',
@@ -38,15 +94,34 @@ return [
                     ],
                 ],
             ],
+            'UpdateAssistant' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\DiscoveryEngine\V1\Assistant',
+                'headerParams' => [
+                    [
+                        'keyName' => 'assistant.name',
+                        'fieldAccessors' => [
+                            'getAssistant',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'assistant' => 'projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}',
+                'contentPolicy' => 'organizations/{organization}/locations/{location}/contentPolicies/{content_policy}',
                 'dataStore' => 'projects/{project}/locations/{location}/dataStores/{data_store}',
+                'engine' => 'projects/{project}/locations/{location}/collections/{collection}/engines/{engine}',
+                'organizationLocationContentPolicy' => 'organizations/{organization}/locations/{location}/contentPolicies/{content_policy}',
                 'projectLocationCollectionDataStore' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}',
                 'projectLocationCollectionDataStoreSession' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/sessions/{session}',
+                'projectLocationCollectionEngineCollaborativeProjectSession' => 'projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/collaborativeProjects/{collaborative_project}/sessions/{session}',
                 'projectLocationCollectionEngineSession' => 'projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}',
+                'projectLocationContentPolicy' => 'projects/{project}/locations/{location}/contentPolicies/{content_policy}',
                 'projectLocationDataStore' => 'projects/{project}/locations/{location}/dataStores/{data_store}',
                 'projectLocationDataStoreSession' => 'projects/{project}/locations/{location}/dataStores/{data_store}/sessions/{session}',
                 'session' => 'projects/{project}/locations/{location}/dataStores/{data_store}/sessions/{session}',
+                'template' => 'projects/{project}/locations/{location}/templates/{template}',
             ],
         ],
     ],

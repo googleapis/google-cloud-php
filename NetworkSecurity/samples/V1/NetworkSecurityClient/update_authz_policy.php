@@ -76,7 +76,7 @@ function update_authz_policy_sample(
 
     // Prepare the request message.
     $updateMask = new FieldMask();
-    $authzPolicyTargetResources = [$authzPolicyTargetResourcesElement,];
+    $authzPolicyTargetResources = [$authzPolicyTargetResourcesElement];
     $authzPolicyTarget = (new Target())
         ->setResources($authzPolicyTargetResources);
     $authzPolicy = (new AuthzPolicy())

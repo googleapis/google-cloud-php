@@ -59,7 +59,7 @@ function batch_update_ad_units_sample(
         ->setDisplayName($requestsAdUnitDisplayName);
     $updateAdUnitRequest = (new UpdateAdUnitRequest())
         ->setAdUnit($requestsAdUnit);
-    $requests = [$updateAdUnitRequest,];
+    $requests = [$updateAdUnitRequest];
     $request = (new BatchUpdateAdUnitsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

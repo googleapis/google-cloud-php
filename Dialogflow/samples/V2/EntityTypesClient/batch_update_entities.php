@@ -81,11 +81,11 @@ function batch_update_entities_sample(
     $entityTypesClient = new EntityTypesClient();
 
     // Prepare the request message.
-    $entitiesSynonyms = [$entitiesSynonymsElement,];
+    $entitiesSynonyms = [$entitiesSynonymsElement];
     $entity = (new Entity())
         ->setValue($entitiesValue)
         ->setSynonyms($entitiesSynonyms);
-    $entities = [$entity,];
+    $entities = [$entity];
     $request = (new BatchUpdateEntitiesRequest())
         ->setParent($formattedParent)
         ->setEntities($entities);

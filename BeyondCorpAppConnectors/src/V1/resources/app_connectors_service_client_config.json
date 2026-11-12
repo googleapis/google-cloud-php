@@ -41,6 +41,11 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "ResolveInstanceConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "UpdateAppConnector": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",

@@ -72,7 +72,9 @@ class SetNamedPortsRegionInstanceGroupRequest extends \Google\Protobuf\Internal\
             ->setProject($project)
             ->setRegion($region)
             ->setInstanceGroup($instanceGroup)
-            ->setRegionInstanceGroupsSetNamedPortsRequestResource($regionInstanceGroupsSetNamedPortsRequestResource);
+            ->setRegionInstanceGroupsSetNamedPortsRequestResource(
+                $regionInstanceGroupsSetNamedPortsRequestResource
+            );
     }
 
     /**

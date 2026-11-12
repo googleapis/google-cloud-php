@@ -28,13 +28,22 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\Options\ClientOptions;
+use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
+use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\DiscoveryEngine\V1\Assistant;
+use Google\Cloud\DiscoveryEngine\V1\CreateAssistantRequest;
+use Google\Cloud\DiscoveryEngine\V1\DeleteAssistantRequest;
+use Google\Cloud\DiscoveryEngine\V1\GetAssistantRequest;
+use Google\Cloud\DiscoveryEngine\V1\ListAssistantsRequest;
 use Google\Cloud\DiscoveryEngine\V1\StreamAssistRequest;
 use Google\Cloud\DiscoveryEngine\V1\StreamAssistResponse;
+use Google\Cloud\DiscoveryEngine\V1\UpdateAssistantRequest;
+use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -47,6 +56,12 @@ use Psr\Log\LoggerInterface;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * @method PromiseInterface<Assistant> createAssistantAsync(CreateAssistantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAssistantAsync(DeleteAssistantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Assistant> getAssistantAsync(GetAssistantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAssistantsAsync(ListAssistantsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Assistant> updateAssistantAsync(UpdateAssistantRequest $request, array $optionalArgs = [])
  */
 final class AssistantServiceClient
 {
@@ -77,7 +92,12 @@ final class AssistantServiceClient
      *
      * @internal
      */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+        'https://www.googleapis.com/auth/discoveryengine.readwrite',
+        'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+    ];
 
     private static function getClientDefaults()
     {
@@ -127,6 +147,25 @@ final class AssistantServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * content_policy resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $contentPolicy
+     *
+     * @return string The formatted content_policy resource.
+     */
+    public static function contentPolicyName(string $organization, string $location, string $contentPolicy): string
+    {
+        return self::getPathTemplate('contentPolicy')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'content_policy' => $contentPolicy,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a data_store
      * resource.
      *
@@ -142,6 +181,49 @@ final class AssistantServiceClient
             'project' => $project,
             'location' => $location,
             'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a engine
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     *
+     * @return string The formatted engine resource.
+     */
+    public static function engineName(string $project, string $location, string $collection, string $engine): string
+    {
+        return self::getPathTemplate('engine')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_content_policy resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $contentPolicy
+     *
+     * @return string The formatted organization_location_content_policy resource.
+     */
+    public static function organizationLocationContentPolicyName(
+        string $organization,
+        string $location,
+        string $contentPolicy
+    ): string {
+        return self::getPathTemplate('organizationLocationContentPolicy')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'content_policy' => $contentPolicy,
         ]);
     }
 
@@ -200,6 +282,37 @@ final class AssistantServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_engine_collaborative_project_session resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     * @param string $collaborativeProject
+     * @param string $session
+     *
+     * @return string The formatted project_location_collection_engine_collaborative_project_session resource.
+     */
+    public static function projectLocationCollectionEngineCollaborativeProjectSessionName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine,
+        string $collaborativeProject,
+        string $session
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionEngineCollaborativeProjectSession')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
+            'collaborative_project' => $collaborativeProject,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_collection_engine_session resource.
      *
      * @param string $project
@@ -223,6 +336,28 @@ final class AssistantServiceClient
             'collection' => $collection,
             'engine' => $engine,
             'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_content_policy resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $contentPolicy
+     *
+     * @return string The formatted project_location_content_policy resource.
+     */
+    public static function projectLocationContentPolicyName(
+        string $project,
+        string $location,
+        string $contentPolicy
+    ): string {
+        return self::getPathTemplate('projectLocationContentPolicy')->render([
+            'project' => $project,
+            'location' => $location,
+            'content_policy' => $contentPolicy,
         ]);
     }
 
@@ -292,17 +427,42 @@ final class AssistantServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a template
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $template
+     *
+     * @return string The formatted template resource.
+     */
+    public static function templateName(string $project, string $location, string $template): string
+    {
+        return self::getPathTemplate('template')->render([
+            'project' => $project,
+            'location' => $location,
+            'template' => $template,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - assistant: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}
+     * - contentPolicy: organizations/{organization}/locations/{location}/contentPolicies/{content_policy}
      * - dataStore: projects/{project}/locations/{location}/dataStores/{data_store}
+     * - engine: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}
+     * - organizationLocationContentPolicy: organizations/{organization}/locations/{location}/contentPolicies/{content_policy}
      * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - projectLocationCollectionDataStoreSession: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/sessions/{session}
+     * - projectLocationCollectionEngineCollaborativeProjectSession: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/collaborativeProjects/{collaborative_project}/sessions/{session}
      * - projectLocationCollectionEngineSession: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}
+     * - projectLocationContentPolicy: projects/{project}/locations/{location}/contentPolicies/{content_policy}
      * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - projectLocationDataStoreSession: projects/{project}/locations/{location}/dataStores/{data_store}/sessions/{session}
      * - session: projects/{project}/locations/{location}/dataStores/{data_store}/sessions/{session}
+     * - template: projects/{project}/locations/{location}/templates/{template}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -396,6 +556,120 @@ final class AssistantServiceClient
         $this->setClientOptions($clientOptions);
     }
 
+    /** Handles execution of the async variants for each documented method. */
+    public function __call($method, $args)
+    {
+        if (substr($method, -5) !== 'Async') {
+            trigger_error('Call to undefined method ' . __CLASS__ . "::$method()", E_USER_ERROR);
+        }
+
+        array_unshift($args, substr($method, 0, -5));
+        return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Creates an [Assistant][google.cloud.discoveryengine.v1.Assistant].
+     *
+     * The async variant is {@see AssistantServiceClient::createAssistantAsync()} .
+     *
+     * @example samples/V1/AssistantServiceClient/create_assistant.php
+     *
+     * @param CreateAssistantRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Assistant
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createAssistant(CreateAssistantRequest $request, array $callOptions = []): Assistant
+    {
+        return $this->startApiCall('CreateAssistant', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes an [Assistant][google.cloud.discoveryengine.v1.Assistant].
+     *
+     * The async variant is {@see AssistantServiceClient::deleteAssistantAsync()} .
+     *
+     * @example samples/V1/AssistantServiceClient/delete_assistant.php
+     *
+     * @param DeleteAssistantRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteAssistant(DeleteAssistantRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteAssistant', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets an [Assistant][google.cloud.discoveryengine.v1.Assistant].
+     *
+     * The async variant is {@see AssistantServiceClient::getAssistantAsync()} .
+     *
+     * @example samples/V1/AssistantServiceClient/get_assistant.php
+     *
+     * @param GetAssistantRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Assistant
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAssistant(GetAssistantRequest $request, array $callOptions = []): Assistant
+    {
+        return $this->startApiCall('GetAssistant', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists all [Assistant][google.cloud.discoveryengine.v1.Assistant]s under an
+     * [Engine][google.cloud.discoveryengine.v1.Engine].
+     *
+     * The async variant is {@see AssistantServiceClient::listAssistantsAsync()} .
+     *
+     * @example samples/V1/AssistantServiceClient/list_assistants.php
+     *
+     * @param ListAssistantsRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAssistants(ListAssistantsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListAssistants', $request, $callOptions);
+    }
+
     /**
      * Assists the user with a query in a streaming fashion.
      *
@@ -416,5 +690,31 @@ final class AssistantServiceClient
     public function streamAssist(StreamAssistRequest $request, array $callOptions = []): ServerStream
     {
         return $this->startApiCall('StreamAssist', $request, $callOptions);
+    }
+
+    /**
+     * Updates an [Assistant][google.cloud.discoveryengine.v1.Assistant]
+     *
+     * The async variant is {@see AssistantServiceClient::updateAssistantAsync()} .
+     *
+     * @example samples/V1/AssistantServiceClient/update_assistant.php
+     *
+     * @param UpdateAssistantRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Assistant
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateAssistant(UpdateAssistantRequest $request, array $callOptions = []): Assistant
+    {
+        return $this->startApiCall('UpdateAssistant', $request, $callOptions)->wait();
     }
 }

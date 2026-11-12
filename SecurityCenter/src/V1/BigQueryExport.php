@@ -94,6 +94,14 @@ class BigQueryExport extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string principal = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $principal = '';
+    /**
+     * Optional. Indicates whether the notifications will be sent for deleted
+     * findings. When enabled, the filter is still respected when sending deletion
+     * notifications.
+     *
+     * Generated from protobuf field <code>bool deletion_notifications_enabled = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $deletion_notifications_enabled = false;
 
     /**
      * Constructor.
@@ -148,6 +156,10 @@ class BigQueryExport extends \Google\Protobuf\Internal\Message
      *     @type string $principal
      *           Output only. The service account that needs permission to create table and
      *           upload data to the BigQuery dataset.
+     *     @type bool $deletion_notifications_enabled
+     *           Optional. Indicates whether the notifications will be sent for deleted
+     *           findings. When enabled, the filter is still respected when sending deletion
+     *           notifications.
      * }
      */
     public function __construct($data = NULL) {
@@ -441,6 +453,36 @@ class BigQueryExport extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->principal = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates whether the notifications will be sent for deleted
+     * findings. When enabled, the filter is still respected when sending deletion
+     * notifications.
+     *
+     * Generated from protobuf field <code>bool deletion_notifications_enabled = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDeletionNotificationsEnabled()
+    {
+        return $this->deletion_notifications_enabled;
+    }
+
+    /**
+     * Optional. Indicates whether the notifications will be sent for deleted
+     * findings. When enabled, the filter is still respected when sending deletion
+     * notifications.
+     *
+     * Generated from protobuf field <code>bool deletion_notifications_enabled = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDeletionNotificationsEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->deletion_notifications_enabled = $var;
 
         return $this;
     }

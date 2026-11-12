@@ -79,7 +79,7 @@ function ingest_ad_events_sample(
         ->setSource($adEventsSource)
         ->setMedium($adEventsMedium)
         ->setViewabilityInfo($adEventsViewabilityInfo);
-    $adEvents = [$adEvent,];
+    $adEvents = [$adEvent];
     $request = (new IngestAdEventsRequest())
         ->setAdEvents($adEvents);
 

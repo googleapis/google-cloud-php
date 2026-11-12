@@ -72,7 +72,9 @@ class SetPrivateIpGoogleAccessSubnetworkRequest extends \Google\Protobuf\Interna
             ->setProject($project)
             ->setRegion($region)
             ->setSubnetwork($subnetwork)
-            ->setSubnetworksSetPrivateIpGoogleAccessRequestResource($subnetworksSetPrivateIpGoogleAccessRequestResource);
+            ->setSubnetworksSetPrivateIpGoogleAccessRequestResource(
+                $subnetworksSetPrivateIpGoogleAccessRequestResource
+            );
     }
 
     /**

@@ -52,7 +52,7 @@ function open_materialized_view_sample(): void
     try {
         /** @var BidiStream $stream */
         $stream = $bigtableClient->openMaterializedView();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var SessionResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

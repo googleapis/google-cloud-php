@@ -41,7 +41,7 @@ function batch_deactivate_sites_sample(string $formattedParent, string $namesEle
     $siteServiceClient = new SiteServiceClient();
 
     // Prepare the request message.
-    $names = [$namesElement,];
+    $names = [$namesElement];
     $request = (new BatchDeactivateSitesRequest())
         ->setParent($formattedParent)
         ->setNames($names);

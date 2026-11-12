@@ -16,17 +16,18 @@ use Google\Protobuf\RepeatedField;
 class CertificateMapEntry extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A user-defined name of the Certificate Map Entry. Certificate Map Entry
-     * names must be unique globally and match pattern
+     * Identifier. A user-defined name of the Certificate Map Entry. Certificate
+     * Map Entry names must be unique globally and match pattern
      * `projects/{@*}locations/{@*}certificateMaps/{@*}certificateMapEntries/*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * One or more paragraphs of text description of a certificate map entry.
+     * Optional. One or more paragraphs of text description of a certificate map
+     * entry.
      *
-     * Generated from protobuf field <code>string description = 9;</code>
+     * Generated from protobuf field <code>string description = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $description = '';
     /**
@@ -42,17 +43,17 @@ class CertificateMapEntry extends \Google\Protobuf\Internal\Message
      */
     protected $update_time = null;
     /**
-     * Set of labels associated with a Certificate Map Entry.
+     * Optional. Set of labels associated with a Certificate Map Entry.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
-     * A set of Certificates defines for the given `hostname`. There can be
-     * defined up to four certificates in each Certificate Map Entry. Each
+     * Optional. A set of Certificates defines for the given `hostname`. There can
+     * be defined up to four certificates in each Certificate Map Entry. Each
      * certificate must match pattern `projects/{@*}locations/{@*}certificates/*`.
      *
-     * Generated from protobuf field <code>repeated string certificates = 7 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>repeated string certificates = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $certificates;
     /**
@@ -70,17 +71,18 @@ class CertificateMapEntry extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           A user-defined name of the Certificate Map Entry. Certificate Map Entry
-     *           names must be unique globally and match pattern
+     *           Identifier. A user-defined name of the Certificate Map Entry. Certificate
+     *           Map Entry names must be unique globally and match pattern
      *           `projects/{@*}locations/{@*}certificateMaps/{@*}certificateMapEntries/*`.
      *     @type string $description
-     *           One or more paragraphs of text description of a certificate map entry.
+     *           Optional. One or more paragraphs of text description of a certificate map
+     *           entry.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The creation timestamp of a Certificate Map Entry.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The update timestamp of a Certificate Map Entry.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Set of labels associated with a Certificate Map Entry.
+     *           Optional. Set of labels associated with a Certificate Map Entry.
      *     @type string $hostname
      *           A Hostname (FQDN, e.g. `example.com`) or a wildcard hostname expression
      *           (`*.example.com`) for a set of hostnames with common suffix. Used as
@@ -88,8 +90,8 @@ class CertificateMapEntry extends \Google\Protobuf\Internal\Message
      *     @type int $matcher
      *           A predefined matcher for particular cases, other than SNI selection.
      *     @type string[] $certificates
-     *           A set of Certificates defines for the given `hostname`. There can be
-     *           defined up to four certificates in each Certificate Map Entry. Each
+     *           Optional. A set of Certificates defines for the given `hostname`. There can
+     *           be defined up to four certificates in each Certificate Map Entry. Each
      *           certificate must match pattern `projects/{@*}locations/{@*}certificates/*`.
      *     @type int $state
      *           Output only. A serving state of this Certificate Map Entry.
@@ -101,11 +103,11 @@ class CertificateMapEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A user-defined name of the Certificate Map Entry. Certificate Map Entry
-     * names must be unique globally and match pattern
+     * Identifier. A user-defined name of the Certificate Map Entry. Certificate
+     * Map Entry names must be unique globally and match pattern
      * `projects/{@*}locations/{@*}certificateMaps/{@*}certificateMapEntries/*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -114,11 +116,11 @@ class CertificateMapEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A user-defined name of the Certificate Map Entry. Certificate Map Entry
-     * names must be unique globally and match pattern
+     * Identifier. A user-defined name of the Certificate Map Entry. Certificate
+     * Map Entry names must be unique globally and match pattern
      * `projects/{@*}locations/{@*}certificateMaps/{@*}certificateMapEntries/*`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -131,9 +133,10 @@ class CertificateMapEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One or more paragraphs of text description of a certificate map entry.
+     * Optional. One or more paragraphs of text description of a certificate map
+     * entry.
      *
-     * Generated from protobuf field <code>string description = 9;</code>
+     * Generated from protobuf field <code>string description = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -142,9 +145,10 @@ class CertificateMapEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One or more paragraphs of text description of a certificate map entry.
+     * Optional. One or more paragraphs of text description of a certificate map
+     * entry.
      *
-     * Generated from protobuf field <code>string description = 9;</code>
+     * Generated from protobuf field <code>string description = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -229,9 +233,9 @@ class CertificateMapEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set of labels associated with a Certificate Map Entry.
+     * Optional. Set of labels associated with a Certificate Map Entry.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -240,9 +244,9 @@ class CertificateMapEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set of labels associated with a Certificate Map Entry.
+     * Optional. Set of labels associated with a Certificate Map Entry.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -321,11 +325,11 @@ class CertificateMapEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A set of Certificates defines for the given `hostname`. There can be
-     * defined up to four certificates in each Certificate Map Entry. Each
+     * Optional. A set of Certificates defines for the given `hostname`. There can
+     * be defined up to four certificates in each Certificate Map Entry. Each
      * certificate must match pattern `projects/{@*}locations/{@*}certificates/*`.
      *
-     * Generated from protobuf field <code>repeated string certificates = 7 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>repeated string certificates = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return RepeatedField<string>
      */
     public function getCertificates()
@@ -334,11 +338,11 @@ class CertificateMapEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A set of Certificates defines for the given `hostname`. There can be
-     * defined up to four certificates in each Certificate Map Entry. Each
+     * Optional. A set of Certificates defines for the given `hostname`. There can
+     * be defined up to four certificates in each Certificate Map Entry. Each
      * certificate must match pattern `projects/{@*}locations/{@*}certificates/*`.
      *
-     * Generated from protobuf field <code>repeated string certificates = 7 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>repeated string certificates = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string[] $var
      * @return $this
      */

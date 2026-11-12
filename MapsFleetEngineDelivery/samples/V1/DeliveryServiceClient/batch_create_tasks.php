@@ -79,7 +79,7 @@ function batch_create_tasks_sample(
         ->setParent($requestsParent)
         ->setTaskId($requestsTaskId)
         ->setTask($requestsTask);
-    $requests = [$createTaskRequest,];
+    $requests = [$createTaskRequest];
     $request = (new BatchCreateTasksRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

@@ -61,7 +61,7 @@ function batch_search_link_processes_sample(string $formattedParent, string $lin
     $lineageClient = new LineageClient();
 
     // Prepare the request message.
-    $links = [$linksElement,];
+    $links = [$linksElement];
     $request = (new BatchSearchLinkProcessesRequest())
         ->setParent($formattedParent)
         ->setLinks($links);

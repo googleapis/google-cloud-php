@@ -99,6 +99,15 @@ class AuditSchedule extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string error_message = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $error_message = '';
+    /**
+     * Optional. Maps dynamic parameter overrides by Cloud Control resource name
+     * at execution time. For example,
+     * `{"organizations/123/locations/global/cloudControls/control-1":
+     * {parameters: [...]}}`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.auditmanager.v1.ParameterOverrides> parameter_overrides = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $parameter_overrides;
 
     /**
      * Constructor.
@@ -140,6 +149,11 @@ class AuditSchedule extends \Google\Protobuf\Internal\Message
      *           Output only. Timestamp when the audit run was last triggered.
      *     @type string $error_message
      *           Output only. Describes the error if the schedule is in an error state.
+     *     @type array|\Google\Protobuf\Internal\MapField $parameter_overrides
+     *           Optional. Maps dynamic parameter overrides by Cloud Control resource name
+     *           at execution time. For example,
+     *           `{"organizations/123/locations/global/cloudControls/control-1":
+     *           {parameters: [...]}}`
      * }
      */
     public function __construct($data = NULL) {
@@ -525,6 +539,38 @@ class AuditSchedule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->error_message = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Maps dynamic parameter overrides by Cloud Control resource name
+     * at execution time. For example,
+     * `{"organizations/123/locations/global/cloudControls/control-1":
+     * {parameters: [...]}}`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.auditmanager.v1.ParameterOverrides> parameter_overrides = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getParameterOverrides()
+    {
+        return $this->parameter_overrides;
+    }
+
+    /**
+     * Optional. Maps dynamic parameter overrides by Cloud Control resource name
+     * at execution time. For example,
+     * `{"organizations/123/locations/global/cloudControls/control-1":
+     * {parameters: [...]}}`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.auditmanager.v1.ParameterOverrides> parameter_overrides = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setParameterOverrides($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AuditManager\V1\ParameterOverrides::class);
+        $this->parameter_overrides = $arr;
 
         return $this;
     }

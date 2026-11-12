@@ -22,9 +22,11 @@ class WorkspaceConfig extends \Google\Protobuf\Internal\Message
      */
     protected $type = 0;
     /**
-     * Obfuscated Dasher customer ID.
+     * Output only. Obfuscated Dasher customer ID. Derived by the server from
+     * the project's GCP organization at data store creation time; any value
+     * supplied in the request payload is ignored.
      *
-     * Generated from protobuf field <code>string dasher_customer_id = 2;</code>
+     * Generated from protobuf field <code>string dasher_customer_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $dasher_customer_id = '';
     /**
@@ -53,7 +55,9 @@ class WorkspaceConfig extends \Google\Protobuf\Internal\Message
      *     @type int $type
      *           The Google Workspace data source.
      *     @type string $dasher_customer_id
-     *           Obfuscated Dasher customer ID.
+     *           Output only. Obfuscated Dasher customer ID. Derived by the server from
+     *           the project's GCP organization at data store creation time; any value
+     *           supplied in the request payload is ignored.
      *     @type string $super_admin_service_account
      *           Optional. The super admin service account for the workspace that will be
      *           used for access token generation. For now we only use it for Native Google
@@ -96,9 +100,11 @@ class WorkspaceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Obfuscated Dasher customer ID.
+     * Output only. Obfuscated Dasher customer ID. Derived by the server from
+     * the project's GCP organization at data store creation time; any value
+     * supplied in the request payload is ignored.
      *
-     * Generated from protobuf field <code>string dasher_customer_id = 2;</code>
+     * Generated from protobuf field <code>string dasher_customer_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getDasherCustomerId()
@@ -107,9 +113,11 @@ class WorkspaceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Obfuscated Dasher customer ID.
+     * Output only. Obfuscated Dasher customer ID. Derived by the server from
+     * the project's GCP organization at data store creation time; any value
+     * supplied in the request payload is ignored.
      *
-     * Generated from protobuf field <code>string dasher_customer_id = 2;</code>
+     * Generated from protobuf field <code>string dasher_customer_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

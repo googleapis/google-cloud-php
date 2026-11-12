@@ -50,7 +50,7 @@ function batch_update_sites_sample(string $formattedParent, string $requestsSite
         ->setUrl($requestsSiteUrl);
     $updateSiteRequest = (new UpdateSiteRequest())
         ->setSite($requestsSite);
-    $requests = [$updateSiteRequest,];
+    $requests = [$updateSiteRequest];
     $request = (new BatchUpdateSitesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

@@ -37,6 +37,8 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\DiscoveryEngine\V1\BatchUpdateUserLicensesRequest;
 use Google\Cloud\DiscoveryEngine\V1\BatchUpdateUserLicensesResponse;
+use Google\Cloud\DiscoveryEngine\V1\ListLicenseConfigsUsageStatsRequest;
+use Google\Cloud\DiscoveryEngine\V1\ListLicenseConfigsUsageStatsResponse;
 use Google\Cloud\DiscoveryEngine\V1\ListUserLicensesRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
@@ -55,6 +57,7 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<OperationResponse> batchUpdateUserLicensesAsync(BatchUpdateUserLicensesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListLicenseConfigsUsageStatsResponse> listLicenseConfigsUsageStatsAsync(ListLicenseConfigsUsageStatsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listUserLicensesAsync(ListUserLicensesRequest $request, array $optionalArgs = [])
  */
 final class UserLicenseServiceClient
@@ -86,7 +89,11 @@ final class UserLicenseServiceClient
      *
      * @internal
      */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/discoveryengine.readwrite',
+        'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+    ];
 
     private $operationsClient;
 
@@ -337,6 +344,37 @@ final class UserLicenseServiceClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('BatchUpdateUserLicenses', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists all the
+     * [LicenseConfigUsageStats][google.cloud.discoveryengine.v1.LicenseConfigUsageStats]s
+     * associated with the project.
+     *
+     * The async variant is
+     * {@see UserLicenseServiceClient::listLicenseConfigsUsageStatsAsync()} .
+     *
+     * @example samples/V1/UserLicenseServiceClient/list_license_configs_usage_stats.php
+     *
+     * @param ListLicenseConfigsUsageStatsRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ListLicenseConfigsUsageStatsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listLicenseConfigsUsageStats(
+        ListLicenseConfigsUsageStatsRequest $request,
+        array $callOptions = []
+    ): ListLicenseConfigsUsageStatsResponse {
+        return $this->startApiCall('ListLicenseConfigsUsageStats', $request, $callOptions)->wait();
     }
 
     /**

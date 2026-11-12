@@ -45,7 +45,7 @@ function batch_activate_labels_sample(
     $labelServiceClient = new LabelServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchActivateLabelsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

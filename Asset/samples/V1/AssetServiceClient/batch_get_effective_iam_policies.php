@@ -54,7 +54,7 @@ function batch_get_effective_iam_policies_sample(string $scope, string $namesEle
     $assetServiceClient = new AssetServiceClient();
 
     // Prepare the request message.
-    $names = [$namesElement,];
+    $names = [$namesElement];
     $request = (new BatchGetEffectiveIamPoliciesRequest())
         ->setScope($scope)
         ->setNames($names);

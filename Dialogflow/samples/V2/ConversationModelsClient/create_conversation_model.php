@@ -59,7 +59,7 @@ function create_conversation_model_sample(
     // Prepare the request message.
     $inputDataset = (new InputDataset())
         ->setDataset($formattedConversationModelDatasetsDataset);
-    $conversationModelDatasets = [$inputDataset,];
+    $conversationModelDatasets = [$inputDataset];
     $conversationModel = (new ConversationModel())
         ->setDisplayName($conversationModelDisplayName)
         ->setDatasets($conversationModelDatasets);

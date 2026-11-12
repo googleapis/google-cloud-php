@@ -27,6 +27,12 @@ class NotificationMessage extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Resource resource = 3;</code>
      */
     protected $resource = null;
+    /**
+     * Indicates whether the finding is deleted.
+     *
+     * Generated from protobuf field <code>bool deleted_finding = 5;</code>
+     */
+    protected $deleted_finding = false;
     protected $event;
 
     /**
@@ -42,6 +48,8 @@ class NotificationMessage extends \Google\Protobuf\Internal\Message
      *           populated.
      *     @type \Google\Cloud\SecurityCenter\V2\Resource $resource
      *           The Cloud resource tied to this notification's Finding.
+     *     @type bool $deleted_finding
+     *           Indicates whether the finding is deleted.
      * }
      */
     public function __construct($data = NULL) {
@@ -140,6 +148,32 @@ class NotificationMessage extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\Resource::class);
         $this->resource = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates whether the finding is deleted.
+     *
+     * Generated from protobuf field <code>bool deleted_finding = 5;</code>
+     * @return bool
+     */
+    public function getDeletedFinding()
+    {
+        return $this->deleted_finding;
+    }
+
+    /**
+     * Indicates whether the finding is deleted.
+     *
+     * Generated from protobuf field <code>bool deleted_finding = 5;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDeletedFinding($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->deleted_finding = $var;
 
         return $this;
     }

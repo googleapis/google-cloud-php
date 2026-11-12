@@ -74,7 +74,9 @@ class SetTargetPoolsInstanceGroupManagerRequest extends \Google\Protobuf\Interna
             ->setProject($project)
             ->setZone($zone)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersSetTargetPoolsRequestResource($instanceGroupManagersSetTargetPoolsRequestResource);
+            ->setInstanceGroupManagersSetTargetPoolsRequestResource(
+                $instanceGroupManagersSetTargetPoolsRequestResource
+            );
     }
 
     /**

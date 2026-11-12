@@ -1,0 +1,38 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.shopping.merchant.reviews.v1",
+    "libraryPackage": "Google\\Shopping\\Merchant\\Reviews\\V1",
+    "services": {
+        "ProductReviewsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ProductReviewsServiceClient",
+                    "rpcs": {
+                        "DeleteProductReview": {
+                            "methods": [
+                                "deleteProductReview"
+                            ]
+                        },
+                        "GetProductReview": {
+                            "methods": [
+                                "getProductReview"
+                            ]
+                        },
+                        "InsertProductReview": {
+                            "methods": [
+                                "insertProductReview"
+                            ]
+                        },
+                        "ListProductReviews": {
+                            "methods": [
+                                "listProductReviews"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

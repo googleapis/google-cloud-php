@@ -44,7 +44,7 @@ function add_address_group_items_sample(string $formattedAddressGroup, string $i
     $addressGroupServiceClient = new AddressGroupServiceClient();
 
     // Prepare the request message.
-    $items = [$itemsElement,];
+    $items = [$itemsElement];
     $request = (new AddAddressGroupItemsRequest())
         ->setAddressGroup($formattedAddressGroup)
         ->setItems($items);

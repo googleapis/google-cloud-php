@@ -41,6 +41,9 @@ use Google\Rpc\Status;
  *                                                                         Please see {@see BackupDRClient::locationName()} for help formatting this field.
  * @param string $autoProtectionPolicyId                                   The ID to use for the policy.
  *                                                                         This will become the final component of the policy's resource name.
+ *
+ *                                                                         This value must start with a lowercase letter followed by up to 62
+ *                                                                         lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
  * @param string $autoProtectionPolicyBackupPlanDetailsResourceType        The type of resource that this policy will automatically protect.
  *                                                                         For MVP, `compute.googleapis.com/Instance` and
  *                                                                         `compute.googleapis.com/Disk` are supported.
@@ -63,7 +66,7 @@ function create_auto_protection_policy_sample(
     $backupPlanDetail = (new BackupPlanDetail())
         ->setResourceType($autoProtectionPolicyBackupPlanDetailsResourceType)
         ->setBackupPlan($formattedAutoProtectionPolicyBackupPlanDetailsBackupPlan);
-    $autoProtectionPolicyBackupPlanDetails = [$backupPlanDetail,];
+    $autoProtectionPolicyBackupPlanDetails = [$backupPlanDetail];
     $autoProtectionPolicyCriteriaMatchingConditions = [new MatchingCondition()];
     $autoProtectionPolicyCriteria = (new Criteria())
         ->setMatchingConditions($autoProtectionPolicyCriteriaMatchingConditions);

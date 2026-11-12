@@ -28,6 +28,16 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Session session = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $session = null;
+    /**
+     * Optional. The ID to use for the session, which will become the final
+     * component of the session's resource name.
+     * This value should be 1-63 characters, and valid characters
+     * are /[a-z0-9][a-z0-9-]{0,61}[a-z0-9]/. If not specified, a unique ID will
+     * be generated.
+     *
+     * Generated from protobuf field <code>string session_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $session_id = '';
 
     /**
      * @param string                                   $parent  Required. Full resource name of parent data store. Format:
@@ -57,6 +67,12 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`
      *     @type \Google\Cloud\DiscoveryEngine\V1\Session $session
      *           Required. The session to create.
+     *     @type string $session_id
+     *           Optional. The ID to use for the session, which will become the final
+     *           component of the session's resource name.
+     *           This value should be 1-63 characters, and valid characters
+     *           are /[a-z0-9][a-z0-9-]{0,61}[a-z0-9]/. If not specified, a unique ID will
+     *           be generated.
      * }
      */
     public function __construct($data = NULL) {
@@ -124,6 +140,40 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Session::class);
         $this->session = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The ID to use for the session, which will become the final
+     * component of the session's resource name.
+     * This value should be 1-63 characters, and valid characters
+     * are /[a-z0-9][a-z0-9-]{0,61}[a-z0-9]/. If not specified, a unique ID will
+     * be generated.
+     *
+     * Generated from protobuf field <code>string session_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getSessionId()
+    {
+        return $this->session_id;
+    }
+
+    /**
+     * Optional. The ID to use for the session, which will become the final
+     * component of the session's resource name.
+     * This value should be 1-63 characters, and valid characters
+     * are /[a-z0-9][a-z0-9-]{0,61}[a-z0-9]/. If not specified, a unique ID will
+     * be generated.
+     *
+     * Generated from protobuf field <code>string session_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSessionId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->session_id = $var;
 
         return $this;
     }
