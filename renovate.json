@@ -1,10 +1,17 @@
 {
     "extends": [
-        "config:best-practices"
+        "config:best-practices",
+        "helpers:pinGitHubActionDigestsToSemver"
     ],
     "rangeStrategy": "replace",
     "rebaseWhen": "behind-base-branch",
     "packageRules": [
+        {
+            "matchManagers": [
+                "github-actions"
+            ],
+            "groupName": "github-actions"
+        },
         {
             "matchPackageNames": [
                 "phpunit/phpunit"

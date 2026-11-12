@@ -17,7 +17,7 @@ class VideoTrackingUrl
         \GPBMetadata\Google\Ads\Admanager\V1\ConversionEventEnum::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xC4\x03\x0A0google/ads/admanager/v1/video_tracking_url.proto\x12\x17google.ads.admanager.v1\x1A\x1Fgoogle/api/field_behavior.proto\"\x81\x01\x0A\x10VideoTrackingUrl\x12[\x0A\x10conversion_event\x18\x01 \x01(\x0E2<.google.ads.admanager.v1.ConversionEventEnum.ConversionEventB\x03\xE0A\x02\x12\x10\x0A\x03url\x18\x02 \x01(\x09B\x03\xE0A\x01B\xC9\x01\x0A\x1Bcom.google.ads.admanager.v1B\x15VideoTrackingUrlProtoP\x01Z@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager\xAA\x02\x17Google.Ads.AdManager.V1\xCA\x02\x17Google\\Ads\\AdManager\\V1\xEA\x02\x1AGoogle::Ads::AdManager::V1b\x06proto3"
+            "\x0A\xC6\x03\x0A0google/ads/admanager/v1/video_tracking_url.proto\x12\x17google.ads.admanager.v1\x1A\x1Fgoogle/api/field_behavior.proto\"\x83\x01\x0A\x10VideoTrackingUrl\x12\\\x0A\x10conversion_event\x18\x01 \x01(\x0E2<.google.ads.admanager.v1.ConversionEventEnum.ConversionEventB\x04\xE2A\x01\x02\x12\x11\x0A\x03url\x18\x02 \x01(\x09B\x04\xE2A\x01\x01B\xC9\x01\x0A\x1Bcom.google.ads.admanager.v1B\x15VideoTrackingUrlProtoP\x01Z@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager\xAA\x02\x17Google.Ads.AdManager.V1\xCA\x02\x17Google\\Ads\\AdManager\\V1\xEA\x02\x1AGoogle::Ads::AdManager::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

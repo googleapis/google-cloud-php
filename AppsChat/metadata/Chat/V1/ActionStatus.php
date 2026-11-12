@@ -14,9 +14,10 @@ class ActionStatus
         if (static::$is_initialized == true) {
           return;
         }
+        \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Rpc\Code::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xBD\x02\x0A\"google/chat/v1/action_status.proto\x12\x0Egoogle.chat.v1\"R\x0A\x0CActionStatus\x12%\x0A\x0Bstatus_code\x18\x01 \x01(\x0E2\x10.google.rpc.Code\x12\x1B\x0A\x13user_facing_message\x18\x02 \x01(\x09B\xAA\x01\x0A\x12com.google.chat.v1B\x11ActionStatusProtoP\x01Z,cloud.google.com/go/chat/apiv1/chatpb;chatpb\xA2\x02\x0BDYNAPIProto\xAA\x02\x13Google.Apps.Chat.V1\xCA\x02\x13Google\\Apps\\Chat\\V1\xEA\x02\x16Google::Apps::Chat::V1b\x06proto3"
+            "\x0A\xD4\x02\x0A\"google/chat/v1/action_status.proto\x12\x0Egoogle.chat.v1\x1A\x15google/rpc/code.proto\"R\x0A\x0CActionStatus\x12%\x0A\x0Bstatus_code\x18\x01 \x01(\x0E2\x10.google.rpc.Code\x12\x1B\x0A\x13user_facing_message\x18\x02 \x01(\x09B\xAA\x01\x0A\x12com.google.chat.v1B\x11ActionStatusProtoP\x01Z,cloud.google.com/go/chat/apiv1/chatpb;chatpb\xA2\x02\x0BDYNAPIProto\xAA\x02\x13Google.Apps.Chat.V1\xCA\x02\x13Google\\Apps\\Chat\\V1\xEA\x02\x16Google::Apps::Chat::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

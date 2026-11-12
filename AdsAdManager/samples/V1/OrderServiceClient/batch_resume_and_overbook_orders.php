@@ -46,7 +46,7 @@ function batch_resume_and_overbook_orders_sample(
     $orderServiceClient = new OrderServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchResumeAndOverbookOrdersRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

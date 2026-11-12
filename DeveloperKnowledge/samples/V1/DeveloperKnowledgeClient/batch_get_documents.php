@@ -49,7 +49,7 @@ function batch_get_documents_sample(string $formattedNamesElement): void
     $developerKnowledgeClient = new DeveloperKnowledgeClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchGetDocumentsRequest())
         ->setNames($formattedNames);
 

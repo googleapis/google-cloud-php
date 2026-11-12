@@ -52,10 +52,10 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      */
     protected $query_model = '';
     /**
-     * A unique identifier for tracking visitors. For example, this could be
-     * implemented with an HTTP cookie, which should be able to uniquely identify
-     * a visitor on a single device. This unique identifier should not change if
-     * the visitor logs in or out of the website.
+     * Optional. A unique identifier for tracking visitors. For example, this
+     * could be implemented with an HTTP cookie, which should be able to uniquely
+     * identify a visitor on a single device. This unique identifier should not
+     * change if the visitor logs in or out of the website.
      * This field should NOT have a fixed value such as `unknown_visitor`.
      * This should be the same identifier as
      * [UserEvent.user_pseudo_id][google.cloud.discoveryengine.v1.UserEvent.user_pseudo_id]
@@ -64,7 +64,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * The field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
-     * Generated from protobuf field <code>string user_pseudo_id = 4;</code>
+     * Generated from protobuf field <code>string user_pseudo_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $user_pseudo_id = '';
     /**
@@ -106,10 +106,10 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *           * `document` is the default model for regular dataStores.
      *           * `search-history` is the default model for site search dataStores.
      *     @type string $user_pseudo_id
-     *           A unique identifier for tracking visitors. For example, this could be
-     *           implemented with an HTTP cookie, which should be able to uniquely identify
-     *           a visitor on a single device. This unique identifier should not change if
-     *           the visitor logs in or out of the website.
+     *           Optional. A unique identifier for tracking visitors. For example, this
+     *           could be implemented with an HTTP cookie, which should be able to uniquely
+     *           identify a visitor on a single device. This unique identifier should not
+     *           change if the visitor logs in or out of the website.
      *           This field should NOT have a fixed value such as `unknown_visitor`.
      *           This should be the same identifier as
      *           [UserEvent.user_pseudo_id][google.cloud.discoveryengine.v1.UserEvent.user_pseudo_id]
@@ -240,10 +240,10 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique identifier for tracking visitors. For example, this could be
-     * implemented with an HTTP cookie, which should be able to uniquely identify
-     * a visitor on a single device. This unique identifier should not change if
-     * the visitor logs in or out of the website.
+     * Optional. A unique identifier for tracking visitors. For example, this
+     * could be implemented with an HTTP cookie, which should be able to uniquely
+     * identify a visitor on a single device. This unique identifier should not
+     * change if the visitor logs in or out of the website.
      * This field should NOT have a fixed value such as `unknown_visitor`.
      * This should be the same identifier as
      * [UserEvent.user_pseudo_id][google.cloud.discoveryengine.v1.UserEvent.user_pseudo_id]
@@ -252,7 +252,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * The field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
-     * Generated from protobuf field <code>string user_pseudo_id = 4;</code>
+     * Generated from protobuf field <code>string user_pseudo_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getUserPseudoId()
@@ -261,10 +261,10 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique identifier for tracking visitors. For example, this could be
-     * implemented with an HTTP cookie, which should be able to uniquely identify
-     * a visitor on a single device. This unique identifier should not change if
-     * the visitor logs in or out of the website.
+     * Optional. A unique identifier for tracking visitors. For example, this
+     * could be implemented with an HTTP cookie, which should be able to uniquely
+     * identify a visitor on a single device. This unique identifier should not
+     * change if the visitor logs in or out of the website.
      * This field should NOT have a fixed value such as `unknown_visitor`.
      * This should be the same identifier as
      * [UserEvent.user_pseudo_id][google.cloud.discoveryengine.v1.UserEvent.user_pseudo_id]
@@ -273,7 +273,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * The field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
-     * Generated from protobuf field <code>string user_pseudo_id = 4;</code>
+     * Generated from protobuf field <code>string user_pseudo_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

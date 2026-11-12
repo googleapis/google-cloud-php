@@ -47,7 +47,7 @@ function batch_deactivate_content_bundles_sample(
     $contentBundleServiceClient = new ContentBundleServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchDeactivateContentBundlesRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

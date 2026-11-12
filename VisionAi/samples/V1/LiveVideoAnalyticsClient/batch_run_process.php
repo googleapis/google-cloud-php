@@ -60,7 +60,7 @@ function batch_run_process_sample(
         ->setParent($formattedRequestsParent)
         ->setProcessId($requestsProcessId)
         ->setProcess($requestsProcess);
-    $requests = [$createProcessRequest,];
+    $requests = [$createProcessRequest];
     $request = (new BatchRunProcessRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

@@ -22,11 +22,24 @@ class Reference extends \Google\Protobuf\Internal\Message
      */
     protected $content = '';
     /**
+     * Chunk of code snippet from the referenced document.
+     *
+     * Generated from protobuf field <code>string code_snippet = 4;</code>
+     */
+    protected $code_snippet = '';
+    /**
      * Document metadata.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AssistantGroundedContent.TextGroundingMetadata.Reference.DocumentMetadata document_metadata = 2;</code>
      */
     protected $document_metadata = null;
+    /**
+     * Output only. Generic structured chunk metadata from upstream data
+     * source connectors.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct chunk_metadata = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $chunk_metadata = null;
 
     /**
      * Constructor.
@@ -36,8 +49,13 @@ class Reference extends \Google\Protobuf\Internal\Message
      *
      *     @type string $content
      *           Referenced text content.
+     *     @type string $code_snippet
+     *           Chunk of code snippet from the referenced document.
      *     @type \Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata\Reference\DocumentMetadata $document_metadata
      *           Document metadata.
+     *     @type \Google\Protobuf\Struct $chunk_metadata
+     *           Output only. Generic structured chunk metadata from upstream data
+     *           source connectors.
      * }
      */
     public function __construct($data = NULL) {
@@ -67,6 +85,32 @@ class Reference extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->content = $var;
+
+        return $this;
+    }
+
+    /**
+     * Chunk of code snippet from the referenced document.
+     *
+     * Generated from protobuf field <code>string code_snippet = 4;</code>
+     * @return string
+     */
+    public function getCodeSnippet()
+    {
+        return $this->code_snippet;
+    }
+
+    /**
+     * Chunk of code snippet from the referenced document.
+     *
+     * Generated from protobuf field <code>string code_snippet = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCodeSnippet($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->code_snippet = $var;
 
         return $this;
     }
@@ -103,6 +147,44 @@ class Reference extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata\Reference\DocumentMetadata::class);
         $this->document_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Generic structured chunk metadata from upstream data
+     * source connectors.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct chunk_metadata = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getChunkMetadata()
+    {
+        return $this->chunk_metadata;
+    }
+
+    public function hasChunkMetadata()
+    {
+        return isset($this->chunk_metadata);
+    }
+
+    public function clearChunkMetadata()
+    {
+        unset($this->chunk_metadata);
+    }
+
+    /**
+     * Output only. Generic structured chunk metadata from upstream data
+     * source connectors.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct chunk_metadata = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setChunkMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->chunk_metadata = $var;
 
         return $this;
     }

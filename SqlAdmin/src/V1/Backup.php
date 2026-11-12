@@ -84,14 +84,14 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Output only. This output contains the encryption configuration for a backup
      * and the resource name of the KMS key for disk encryption.
      *
-     * Generated from protobuf field <code>string kms_key = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string kms_key = 11 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     protected $kms_key = '';
     /**
      * Output only. This output contains the encryption status for a backup and
      * the version of the KMS key that's used to encrypt the Cloud SQL instance.
      *
-     * Generated from protobuf field <code>string kms_key_version = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string kms_key_version = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     protected $kms_key_version = '';
     /**
@@ -528,7 +528,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Output only. This output contains the encryption configuration for a backup
      * and the resource name of the KMS key for disk encryption.
      *
-     * Generated from protobuf field <code>string kms_key = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string kms_key = 11 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getKmsKey()
@@ -540,7 +540,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Output only. This output contains the encryption configuration for a backup
      * and the resource name of the KMS key for disk encryption.
      *
-     * Generated from protobuf field <code>string kms_key = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string kms_key = 11 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -556,7 +556,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Output only. This output contains the encryption status for a backup and
      * the version of the KMS key that's used to encrypt the Cloud SQL instance.
      *
-     * Generated from protobuf field <code>string kms_key_version = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string kms_key_version = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getKmsKeyVersion()
@@ -568,7 +568,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Output only. This output contains the encryption status for a backup and
      * the version of the KMS key that's used to encrypt the Cloud SQL instance.
      *
-     * Generated from protobuf field <code>string kms_key_version = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string kms_key_version = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

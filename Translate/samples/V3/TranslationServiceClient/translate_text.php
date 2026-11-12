@@ -62,7 +62,7 @@ function translate_text_sample(
     $translationServiceClient = new TranslationServiceClient();
 
     // Prepare the request message.
-    $contents = [$contentsElement,];
+    $contents = [$contentsElement];
     $request = (new TranslateTextRequest())
         ->setContents($contents)
         ->setTargetLanguageCode($targetLanguageCode)

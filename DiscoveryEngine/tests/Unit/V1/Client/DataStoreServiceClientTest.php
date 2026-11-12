@@ -34,6 +34,9 @@ use Google\Cloud\DiscoveryEngine\V1\GetDataStoreRequest;
 use Google\Cloud\DiscoveryEngine\V1\ListDataStoresRequest;
 use Google\Cloud\DiscoveryEngine\V1\ListDataStoresResponse;
 use Google\Cloud\DiscoveryEngine\V1\UpdateDataStoreRequest;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -99,6 +102,7 @@ class DataStoreServiceClientTest extends GeneratedTest
         $kmsKeyName = 'kmsKeyName2094986649';
         $aclEnabled = true;
         $identityMappingStore = 'identityMappingStore1659912303';
+        $isInfobotFaqDataStore = true;
         $expectedResponse = new DataStore();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -106,6 +110,7 @@ class DataStoreServiceClientTest extends GeneratedTest
         $expectedResponse->setKmsKeyName($kmsKeyName);
         $expectedResponse->setAclEnabled($aclEnabled);
         $expectedResponse->setIdentityMappingStore($identityMappingStore);
+        $expectedResponse->setIsInfobotFaqDataStore($isInfobotFaqDataStore);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -361,6 +366,7 @@ class DataStoreServiceClientTest extends GeneratedTest
         $kmsKeyName = 'kmsKeyName2094986649';
         $aclEnabled = true;
         $identityMappingStore = 'identityMappingStore1659912303';
+        $isInfobotFaqDataStore = true;
         $expectedResponse = new DataStore();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -368,6 +374,7 @@ class DataStoreServiceClientTest extends GeneratedTest
         $expectedResponse->setKmsKeyName($kmsKeyName);
         $expectedResponse->setAclEnabled($aclEnabled);
         $expectedResponse->setIdentityMappingStore($identityMappingStore);
+        $expectedResponse->setIsInfobotFaqDataStore($isInfobotFaqDataStore);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
@@ -410,6 +417,73 @@ class DataStoreServiceClientTest extends GeneratedTest
         $request = (new GetDataStoreRequest())->setName($formattedName);
         try {
             $gapicClient->getDataStore($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $version = 351608024;
+        $etag = '21';
+        $expectedResponse = new Policy();
+        $expectedResponse->setVersion($version);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())->setResource($resource);
+        $response = $gapicClient->getIamPolicy($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.discoveryengine.v1.DataStoreService/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())->setResource($resource);
+        try {
+            $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -493,6 +567,77 @@ class DataStoreServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function setIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $version = 351608024;
+        $etag = '21';
+        $expectedResponse = new Policy();
+        $expectedResponse->setVersion($version);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
+        $response = $gapicClient->setIamPolicy($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.discoveryengine.v1.DataStoreService/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function setIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
+        try {
+            $gapicClient->setIamPolicy($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function updateDataStoreTest()
     {
         $transport = $this->createTransport();
@@ -507,6 +652,7 @@ class DataStoreServiceClientTest extends GeneratedTest
         $kmsKeyName = 'kmsKeyName2094986649';
         $aclEnabled = true;
         $identityMappingStore = 'identityMappingStore1659912303';
+        $isInfobotFaqDataStore = true;
         $expectedResponse = new DataStore();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -514,6 +660,7 @@ class DataStoreServiceClientTest extends GeneratedTest
         $expectedResponse->setKmsKeyName($kmsKeyName);
         $expectedResponse->setAclEnabled($aclEnabled);
         $expectedResponse->setIdentityMappingStore($identityMappingStore);
+        $expectedResponse->setIsInfobotFaqDataStore($isInfobotFaqDataStore);
         $transport->addResponse($expectedResponse);
         // Mock request
         $dataStore = new DataStore();
@@ -598,6 +745,7 @@ class DataStoreServiceClientTest extends GeneratedTest
         $kmsKeyName = 'kmsKeyName2094986649';
         $aclEnabled = true;
         $identityMappingStore = 'identityMappingStore1659912303';
+        $isInfobotFaqDataStore = true;
         $expectedResponse = new DataStore();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -605,6 +753,7 @@ class DataStoreServiceClientTest extends GeneratedTest
         $expectedResponse->setKmsKeyName($kmsKeyName);
         $expectedResponse->setAclEnabled($aclEnabled);
         $expectedResponse->setIdentityMappingStore($identityMappingStore);
+        $expectedResponse->setIsInfobotFaqDataStore($isInfobotFaqDataStore);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

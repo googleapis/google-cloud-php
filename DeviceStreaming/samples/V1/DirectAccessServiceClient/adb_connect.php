@@ -53,7 +53,7 @@ function adb_connect_sample(): void
     try {
         /** @var BidiStream $stream */
         $stream = $directAccessServiceClient->adbConnect();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var DeviceMessage $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

@@ -18,7 +18,7 @@ class Snapshot
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\x8D\x04\x0A(google/firestore/admin/v1/snapshot.proto\x12\x19google.firestore.admin.v1\x1A\x19google/api/resource.proto\x1A\x1Fgoogle/protobuf/timestamp.proto\"\x9E\x01\x0A\x0CPitrSnapshot\x12;\x0A\x08database\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!firestore.googleapis.com/Database\x12\x19\x0A\x0Cdatabase_uid\x18\x02 \x01(\x0CB\x03\xE0A\x03\x126\x0A\x0Dsnapshot_time\x18\x03 \x01(\x0B2\x1A.google.protobuf.TimestampB\x03\xE0A\x02B\xE0\x01\x0A\x1Dcom.google.firestore.admin.v1B\x11PitrSnapshotProtoP\x01Z9cloud.google.com/go/firestore/apiv1/admin/adminpb;adminpb\xA2\x02\x04GCFS\xAA\x02\x1FGoogle.Cloud.Firestore.Admin.V1\xCA\x02\x1FGoogle\\Cloud\\Firestore\\Admin\\V1\xEA\x02#Google::Cloud::Firestore::Admin::V1b\x06proto3"
+            "\x0A\x90\x04\x0A(google/firestore/admin/v1/snapshot.proto\x12\x19google.firestore.admin.v1\x1A\x19google/api/resource.proto\x1A\x1Fgoogle/protobuf/timestamp.proto\"\xA1\x01\x0A\x0CPitrSnapshot\x12<\x0A\x08database\x18\x01 \x01(\x09B*\xE2A\x01\x02\xFAA#\x0A!firestore.googleapis.com/Database\x12\x1A\x0A\x0Cdatabase_uid\x18\x02 \x01(\x0CB\x04\xE2A\x01\x03\x127\x0A\x0Dsnapshot_time\x18\x03 \x01(\x0B2\x1A.google.protobuf.TimestampB\x04\xE2A\x01\x02B\xE0\x01\x0A\x1Dcom.google.firestore.admin.v1B\x11PitrSnapshotProtoP\x01Z9cloud.google.com/go/firestore/apiv1/admin/adminpb;adminpb\xA2\x02\x04GCFS\xAA\x02\x1FGoogle.Cloud.Firestore.Admin.V1\xCA\x02\x1FGoogle\\Cloud\\Firestore\\Admin\\V1\xEA\x02#Google::Cloud::Firestore::Admin::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

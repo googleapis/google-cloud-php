@@ -50,7 +50,7 @@ function delete_application_instances_sample(
     $appPlatformClient = new AppPlatformClient();
 
     // Prepare the request message.
-    $formattedInstanceIds = [$formattedInstanceIdsElement,];
+    $formattedInstanceIds = [$formattedInstanceIdsElement];
     $request = (new DeleteApplicationInstancesRequest())
         ->setName($formattedName)
         ->setInstanceIds($formattedInstanceIds);

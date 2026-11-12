@@ -118,6 +118,15 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      */
     protected $dms_private_connection = '';
     /**
+     * A [Datastream Private
+     * Connection](https://docs.cloud.google.com/datastream/docs/reference/rest/v1/projects.locations.privateConnections)
+     * name format:
+     * projects/{project}/locations/{location}/privateConnections/{privateConnection}.
+     *
+     * Generated from protobuf field <code>string datastream_private_connection = 23;</code>
+     */
+    protected $datastream_private_connection = '';
+    /**
      * A [Cloud Function](https://cloud.google.com/functions). Applicable only to
      * source endpoint.
      *
@@ -224,6 +233,11 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *     @type string $dms_private_connection
      *           A [DMS Private
      *           Connection](https://docs.cloud.google.com/database-migration/docs/reference/rest/v1/projects.locations.privateConnections)
+     *           name format:
+     *           projects/{project}/locations/{location}/privateConnections/{privateConnection}.
+     *     @type string $datastream_private_connection
+     *           A [Datastream Private
+     *           Connection](https://docs.cloud.google.com/datastream/docs/reference/rest/v1/projects.locations.privateConnections)
      *           name format:
      *           projects/{project}/locations/{location}/privateConnections/{privateConnection}.
      *     @type \Google\Cloud\NetworkManagement\V1\Endpoint\CloudFunctionEndpoint $cloud_function
@@ -687,6 +701,38 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->dms_private_connection = $var;
+
+        return $this;
+    }
+
+    /**
+     * A [Datastream Private
+     * Connection](https://docs.cloud.google.com/datastream/docs/reference/rest/v1/projects.locations.privateConnections)
+     * name format:
+     * projects/{project}/locations/{location}/privateConnections/{privateConnection}.
+     *
+     * Generated from protobuf field <code>string datastream_private_connection = 23;</code>
+     * @return string
+     */
+    public function getDatastreamPrivateConnection()
+    {
+        return $this->datastream_private_connection;
+    }
+
+    /**
+     * A [Datastream Private
+     * Connection](https://docs.cloud.google.com/datastream/docs/reference/rest/v1/projects.locations.privateConnections)
+     * name format:
+     * projects/{project}/locations/{location}/privateConnections/{privateConnection}.
+     *
+     * Generated from protobuf field <code>string datastream_private_connection = 23;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDatastreamPrivateConnection($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->datastream_private_connection = $var;
 
         return $this;
     }

@@ -74,6 +74,8 @@ class WorkflowInvocationAction extends \Google\Protobuf\Internal\Message
      *           Output only. The workflow action's notebook action details.
      *     @type \Google\Cloud\Dataform\V1\WorkflowInvocationAction\DataPreparationAction $data_preparation_action
      *           Output only. The workflow action's data preparation action details.
+     *     @type \Google\Cloud\Dataform\V1\WorkflowInvocationAction\BigQueryUnitTestAction $bigquery_unit_test_action
+     *           Output only. The workflow action's unit test details.
      *     @type \Google\Cloud\Dataform\V1\Target $target
      *           Output only. This action's identifier. Unique within the workflow
      *           invocation.
@@ -191,6 +193,37 @@ class WorkflowInvocationAction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1\WorkflowInvocationAction\DataPreparationAction::class);
         $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The workflow action's unit test details.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1.WorkflowInvocationAction.BigQueryUnitTestAction bigquery_unit_test_action = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataform\V1\WorkflowInvocationAction\BigQueryUnitTestAction|null
+     */
+    public function getBigqueryUnitTestAction()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasBigqueryUnitTestAction()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * Output only. The workflow action's unit test details.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1.WorkflowInvocationAction.BigQueryUnitTestAction bigquery_unit_test_action = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataform\V1\WorkflowInvocationAction\BigQueryUnitTestAction $var
+     * @return $this
+     */
+    public function setBigqueryUnitTestAction($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1\WorkflowInvocationAction\BigQueryUnitTestAction::class);
+        $this->writeOneof(12, $var);
 
         return $this;
     }

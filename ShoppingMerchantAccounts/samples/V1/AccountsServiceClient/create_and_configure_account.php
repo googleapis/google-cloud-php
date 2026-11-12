@@ -62,7 +62,7 @@ function create_and_configure_account_sample(
         ->setLanguageCode($accountLanguageCode);
     $addAccountService = (new AddAccountService())
         ->setProvider($serviceProvider);
-    $service = [$addAccountService,];
+    $service = [$addAccountService];
     $request = (new CreateAndConfigureAccountRequest())
         ->setAccount($account)
         ->setService($service);

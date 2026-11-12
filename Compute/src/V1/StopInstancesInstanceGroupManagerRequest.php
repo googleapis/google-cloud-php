@@ -81,7 +81,9 @@ class StopInstancesInstanceGroupManagerRequest extends \Google\Protobuf\Internal
             ->setProject($project)
             ->setZone($zone)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersStopInstancesRequestResource($instanceGroupManagersStopInstancesRequestResource);
+            ->setInstanceGroupManagersStopInstancesRequestResource(
+                $instanceGroupManagersStopInstancesRequestResource
+            );
     }
 
     /**

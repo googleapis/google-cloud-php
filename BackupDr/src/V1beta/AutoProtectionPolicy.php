@@ -19,15 +19,16 @@ use Google\Protobuf\RepeatedField;
 class AutoProtectionPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. The resource name of the AutoprotectionPolicy.
+     * Output only. Identifier. The resource name of the AutoprotectionPolicy.
      * Format:
      * `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * Optional. A description of the policy.
+     * Optional. A description of the policy. The description must be at most 2048
+     * characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -92,11 +93,12 @@ class AutoProtectionPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. The resource name of the AutoprotectionPolicy.
+     *           Output only. Identifier. The resource name of the AutoprotectionPolicy.
      *           Format:
      *           `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}`
      *     @type string $description
-     *           Optional. A description of the policy.
+     *           Optional. A description of the policy. The description must be at most 2048
+     *           characters.
      *     @type \Google\Cloud\BackupDR\V1beta\BackupPlanDetail[] $backup_plan_details
      *           Required. The backup plan details for matching resources.
      *     @type \Google\Cloud\BackupDR\V1beta\Criteria $criteria
@@ -125,11 +127,11 @@ class AutoProtectionPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The resource name of the AutoprotectionPolicy.
+     * Output only. Identifier. The resource name of the AutoprotectionPolicy.
      * Format:
      * `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -138,11 +140,11 @@ class AutoProtectionPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The resource name of the AutoprotectionPolicy.
+     * Output only. Identifier. The resource name of the AutoprotectionPolicy.
      * Format:
      * `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -155,7 +157,8 @@ class AutoProtectionPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A description of the policy.
+     * Optional. A description of the policy. The description must be at most 2048
+     * characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -166,7 +169,8 @@ class AutoProtectionPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A description of the policy.
+     * Optional. A description of the policy. The description must be at most 2048
+     * characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

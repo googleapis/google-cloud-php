@@ -46,7 +46,7 @@ function update_resource_value_config_sample(
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $resourceValueConfigTagValues = [$resourceValueConfigTagValuesElement,];
+    $resourceValueConfigTagValues = [$resourceValueConfigTagValuesElement];
     $resourceValueConfig = (new ResourceValueConfig())
         ->setResourceValue($resourceValueConfigResourceValue)
         ->setTagValues($resourceValueConfigTagValues);

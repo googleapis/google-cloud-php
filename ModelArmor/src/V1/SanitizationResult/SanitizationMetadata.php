@@ -40,6 +40,13 @@ class SanitizationMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1.DataItem stream_chunk_processed = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $stream_chunk_processed = null;
+    /**
+     * Output only. Provides details about the Filter Version configuration used
+     * to sanitize this request.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.FilterVersionConfig filter_version_config = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $filter_version_config = null;
 
     /**
      * Constructor.
@@ -56,6 +63,9 @@ class SanitizationMetadata extends \Google\Protobuf\Internal\Message
      *           ignore partial invocation failures.
      *     @type \Google\Cloud\ModelArmor\V1\DataItem $stream_chunk_processed
      *           Output only. The stream chunk processed by the Sanitization service.
+     *     @type \Google\Cloud\ModelArmor\V1\FilterVersionConfig $filter_version_config
+     *           Output only. Provides details about the Filter Version configuration used
+     *           to sanitize this request.
      * }
      */
     public function __construct($data = NULL) {
@@ -175,6 +185,44 @@ class SanitizationMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ModelArmor\V1\DataItem::class);
         $this->stream_chunk_processed = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Provides details about the Filter Version configuration used
+     * to sanitize this request.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.FilterVersionConfig filter_version_config = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\ModelArmor\V1\FilterVersionConfig|null
+     */
+    public function getFilterVersionConfig()
+    {
+        return $this->filter_version_config;
+    }
+
+    public function hasFilterVersionConfig()
+    {
+        return isset($this->filter_version_config);
+    }
+
+    public function clearFilterVersionConfig()
+    {
+        unset($this->filter_version_config);
+    }
+
+    /**
+     * Output only. Provides details about the Filter Version configuration used
+     * to sanitize this request.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.FilterVersionConfig filter_version_config = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\ModelArmor\V1\FilterVersionConfig $var
+     * @return $this
+     */
+    public function setFilterVersionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ModelArmor\V1\FilterVersionConfig::class);
+        $this->filter_version_config = $var;
 
         return $this;
     }

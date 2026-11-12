@@ -60,15 +60,6 @@ class Dimension
      */
     const ADVERTISER_CREDIT_STATUS_NAME = 476;
     /**
-     * The domain name of the advertiser.
-     * Corresponds to "Landing page domain" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`
-     * Data format: `STRING`
-     *
-     * Generated from protobuf enum <code>ADVERTISER_DOMAIN_NAME = 242 [deprecated = true];</code>
-     */
-    const ADVERTISER_DOMAIN_NAME = 242;
-    /**
      * The ID used in an external system for advertiser identification
      * Corresponds to "Advertiser external ID" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`, `REACH`
@@ -1296,6 +1287,18 @@ class Dimension
      */
     const BIDDER_ENCRYPTED_ID = 493;
     /**
+     * Represents a single Bidder integration, like Open Bidding, SDK
+     *  Bidding, or Authorized Buying.
+     * Corresponds to "Bidder ID" in the Ad Manager UI (when showing API
+     * fields).
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REVENUE_VERIFICATION`, `ADS_TRAFFIC_NAVIGATOR`
+     * Data format: `IDENTIFIER`
+     *
+     * Generated from protobuf enum <code>BIDDER_ID = 445;</code>
+     */
+    const BIDDER_ID = 445;
+    /**
      * The name of the bidder.
      * Corresponds to "Bidder" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`,
@@ -1826,6 +1829,8 @@ class Dimension
      * UI (when showing API fields).
      * Compatible with the following report types: `HISTORICAL`
      * Data format: `ENUM`
+     * Values:
+     * [CreativeSslOverride][google.ads.admanager.v1.CreativeSslOverrideEnum.CreativeSslOverride]
      *
      * Generated from protobuf enum <code>CREATIVE_SSL_COMPLIANCE_OVERRIDE = 784;</code>
      */
@@ -1845,6 +1850,8 @@ class Dimension
      * (when showing API fields).
      * Compatible with the following report types: `HISTORICAL`
      * Data format: `ENUM`
+     * Values:
+     * [CreativeSslScanResult][google.ads.admanager.v1.CreativeSslScanResultEnum.CreativeSslScanResult]
      *
      * Generated from protobuf enum <code>CREATIVE_SSL_SCAN_RESULT = 785;</code>
      */
@@ -2192,13 +2199,14 @@ class Dimension
      */
     const DEMAND_SUBCHANNEL_NAME = 23;
     /**
-     * The device on which an ad was served.
+     * Deprecated: Use `DEVICE_MANUFACTURER_ID` and `DEVICE_MODEL_ID` instead.
+     *   The device on which an ad was served.
      * Corresponds to "Device value" in the Ad Manager UI (when showing API
      * fields).
      * Compatible with the following report types: `HISTORICAL`
      * Data format: `ENUM`
      *
-     * Generated from protobuf enum <code>DEVICE = 226;</code>
+     * Generated from protobuf enum <code>DEVICE = 226 [deprecated = true];</code>
      */
     const DEVICE = 226;
     /**
@@ -2264,7 +2272,9 @@ class Dimension
      */
     const DEVICE_MODEL_NAME = 528;
     /**
-     * The localized name of the device on which an ad was served.
+     * Deprecated: Use `DEVICE_MANUFACTURER_NAME` and `DEVICE_MODEL_NAME`
+     *  instead.
+     *   The localized name of the device on which an ad was served.
      * Corresponds to "Device" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`
      * Data format: `STRING`
@@ -2764,7 +2774,9 @@ class Dimension
     const KEY_VALUES_SET = 713;
     /**
      * The landing page domain name of the advertiser.
-     * This will eventually replace ADVERTISER_DOMAIN_NAME.
+     * Corresponds to "Landing page domain" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`, `REACH`
+     * Data format: `STRING`
      *
      * Generated from protobuf enum <code>LANDING_PAGE_DOMAIN = 242;</code>
      */
@@ -3746,6 +3758,28 @@ class Dimension
      * Generated from protobuf enum <code>NIELSEN_SITE_URL = 700;</code>
      */
     const NIELSEN_SITE_URL = 700;
+    /**
+     * Deal priority tier for non-guaranteed deals.
+     * Corresponds to "Non-guaranteed deal priority tier" in the Ad Manager UI
+     * (when showing API fields).
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `ENUM`
+     * Values:
+     * [DealPriorityTier][google.ads.admanager.v1.DealPriorityTierEnum.DealPriorityTier]
+     *
+     * Generated from protobuf enum <code>NON_GUARANTEED_DEAL_PRIORITY_TIER = 859;</code>
+     */
+    const NON_GUARANTEED_DEAL_PRIORITY_TIER = 859;
+    /**
+     * The localized name of the deal priority tier for non-guaranteed deals.
+     * Corresponds to "Non-guaranteed deal priority tier (Name)" in the Ad
+     * Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>NON_GUARANTEED_DEAL_PRIORITY_TIER_NAME = 860;</code>
+     */
+    const NON_GUARANTEED_DEAL_PRIORITY_TIER_NAME = 860;
     /**
      * No fill reason category name in the Ads traffic navigator report.
      * Corresponds to "No fill reason category" in the Ad Manager UI.
@@ -4764,22 +4798,24 @@ class Dimension
      */
     const THIRD_PARTY_ID_STATUS_NAME = 403;
     /**
-     * Reports the status of Topics in the ad request.
+     * Deprecated: No longer supported.
+     *   Reports the status of Topics in the ad request.
      * Corresponds to "Topics status value" in the Ad Manager UI (when showing
      * API fields).
      * Compatible with the following report types: `HISTORICAL`
      * Data format: `ENUM`
      *
-     * Generated from protobuf enum <code>TOPICS_STATUS = 504;</code>
+     * Generated from protobuf enum <code>TOPICS_STATUS = 504 [deprecated = true];</code>
      */
     const TOPICS_STATUS = 504;
     /**
-     * The localized name of the status of Topics in the ad request.
+     * Deprecated: No longer supported.
+     *   The localized name of the status of Topics in the ad request.
      * Corresponds to "Topics status" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`
      * Data format: `STRING`
      *
-     * Generated from protobuf enum <code>TOPICS_STATUS_NAME = 505;</code>
+     * Generated from protobuf enum <code>TOPICS_STATUS_NAME = 505 [deprecated = true];</code>
      */
     const TOPICS_STATUS_NAME = 505;
     /**
@@ -5322,6 +5358,13 @@ class Dimension
      * Generated from protobuf enum <code>YOUTUBE_AD_TYPE_NAME = 400;</code>
      */
     const YOUTUBE_AD_TYPE_NAME = 400;
+    /**
+     * Deprecated: Use `LANDING_PAGE_DOMAIN` instead.
+     * The domain name of the advertiser.
+     *
+     * Generated from protobuf enum <code>ADVERTISER_DOMAIN_NAME = 242 [deprecated = true];</code>
+     */
+    const ADVERTISER_DOMAIN_NAME = 242;
     /**
      * Custom field option ID for Line Item with custom field ID equal to the ID
      * in index 0 of `ReportDefinition.line_item_custom_field_ids`.
@@ -7299,7 +7342,6 @@ class Dimension
         self::ACTIVE_VIEW_MEASUREMENT_SOURCE_NAME => 'ACTIVE_VIEW_MEASUREMENT_SOURCE_NAME',
         self::ADVERTISER_CREDIT_STATUS => 'ADVERTISER_CREDIT_STATUS',
         self::ADVERTISER_CREDIT_STATUS_NAME => 'ADVERTISER_CREDIT_STATUS_NAME',
-        self::ADVERTISER_DOMAIN_NAME => 'ADVERTISER_DOMAIN_NAME',
         self::ADVERTISER_EXTERNAL_ID => 'ADVERTISER_EXTERNAL_ID',
         self::ADVERTISER_ID => 'ADVERTISER_ID',
         self::ADVERTISER_LABELS => 'ADVERTISER_LABELS',
@@ -7420,6 +7462,7 @@ class Dimension
         self::AUTO_REFRESHED_TRAFFIC => 'AUTO_REFRESHED_TRAFFIC',
         self::AUTO_REFRESHED_TRAFFIC_NAME => 'AUTO_REFRESHED_TRAFFIC_NAME',
         self::BIDDER_ENCRYPTED_ID => 'BIDDER_ENCRYPTED_ID',
+        self::BIDDER_ID => 'BIDDER_ID',
         self::BIDDER_NAME => 'BIDDER_NAME',
         self::BID_RANGE => 'BID_RANGE',
         self::BID_REJECTION_REASON => 'BID_REJECTION_REASON',
@@ -7667,6 +7710,8 @@ class Dimension
         self::NIELSEN_RESTATEMENT_DATE => 'NIELSEN_RESTATEMENT_DATE',
         self::NIELSEN_SEGMENT => 'NIELSEN_SEGMENT',
         self::NIELSEN_SITE_URL => 'NIELSEN_SITE_URL',
+        self::NON_GUARANTEED_DEAL_PRIORITY_TIER => 'NON_GUARANTEED_DEAL_PRIORITY_TIER',
+        self::NON_GUARANTEED_DEAL_PRIORITY_TIER_NAME => 'NON_GUARANTEED_DEAL_PRIORITY_TIER_NAME',
         self::NO_FILL_REASON_CATEGORY_NAME => 'NO_FILL_REASON_CATEGORY_NAME',
         self::NUM_ADS_IN_POD => 'NUM_ADS_IN_POD',
         self::OPERATING_SYSTEM_CATEGORY => 'OPERATING_SYSTEM_CATEGORY',
@@ -7829,6 +7874,7 @@ class Dimension
         self::YOUTUBE_AD_DURATION_BUCKET_NAME => 'YOUTUBE_AD_DURATION_BUCKET_NAME',
         self::YOUTUBE_AD_TYPE => 'YOUTUBE_AD_TYPE',
         self::YOUTUBE_AD_TYPE_NAME => 'YOUTUBE_AD_TYPE_NAME',
+        self::ADVERTISER_DOMAIN_NAME => 'ADVERTISER_DOMAIN_NAME',
         self::LINE_ITEM_CUSTOM_FIELD_0_OPTION_ID => 'LINE_ITEM_CUSTOM_FIELD_0_OPTION_ID',
         self::LINE_ITEM_CUSTOM_FIELD_1_OPTION_ID => 'LINE_ITEM_CUSTOM_FIELD_1_OPTION_ID',
         self::LINE_ITEM_CUSTOM_FIELD_2_OPTION_ID => 'LINE_ITEM_CUSTOM_FIELD_2_OPTION_ID',

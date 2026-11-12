@@ -17,22 +17,22 @@ use Google\Protobuf\RepeatedField;
 class BindingMatchingResource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. The resource name of the `BindingMatchingResource`.
-     * Format:
+     * Output only. Identifier. The resource name of the
+     * `BindingMatchingResource`. Format:
      * `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}/bindings/{binding}/matchingResources/{matching_resource}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $name = '';
     /**
-     * Required. Immutable. Resource name of the workload that matches the
-     * criteria of the binding.
+     * Output only. Resource name of the workload that matches the criteria of the
+     * binding.
      * The format can be either a relative resource name (e.g.,
      * `projects/my-project/zones/us-central1-a/instances/my-instance`) or a
      * schemeless full resource name (e.g.,
      * `//compute.googleapis.com/projects/my-project/zones/us-central1-a/instances/my-instance`).
      *
-     * Generated from protobuf field <code>string resource = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string resource = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $resource = '';
     /**
@@ -57,12 +57,12 @@ class BindingMatchingResource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. The resource name of the `BindingMatchingResource`.
-     *           Format:
+     *           Output only. Identifier. The resource name of the
+     *           `BindingMatchingResource`. Format:
      *           `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}/bindings/{binding}/matchingResources/{matching_resource}`
      *     @type string $resource
-     *           Required. Immutable. Resource name of the workload that matches the
-     *           criteria of the binding.
+     *           Output only. Resource name of the workload that matches the criteria of the
+     *           binding.
      *           The format can be either a relative resource name (e.g.,
      *           `projects/my-project/zones/us-central1-a/instances/my-instance`) or a
      *           schemeless full resource name (e.g.,
@@ -81,11 +81,11 @@ class BindingMatchingResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The resource name of the `BindingMatchingResource`.
-     * Format:
+     * Output only. Identifier. The resource name of the
+     * `BindingMatchingResource`. Format:
      * `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}/bindings/{binding}/matchingResources/{matching_resource}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -94,11 +94,11 @@ class BindingMatchingResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The resource name of the `BindingMatchingResource`.
-     * Format:
+     * Output only. Identifier. The resource name of the
+     * `BindingMatchingResource`. Format:
      * `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}/bindings/{binding}/matchingResources/{matching_resource}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -111,14 +111,14 @@ class BindingMatchingResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Resource name of the workload that matches the
-     * criteria of the binding.
+     * Output only. Resource name of the workload that matches the criteria of the
+     * binding.
      * The format can be either a relative resource name (e.g.,
      * `projects/my-project/zones/us-central1-a/instances/my-instance`) or a
      * schemeless full resource name (e.g.,
      * `//compute.googleapis.com/projects/my-project/zones/us-central1-a/instances/my-instance`).
      *
-     * Generated from protobuf field <code>string resource = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string resource = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getResource()
@@ -127,14 +127,14 @@ class BindingMatchingResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Resource name of the workload that matches the
-     * criteria of the binding.
+     * Output only. Resource name of the workload that matches the criteria of the
+     * binding.
      * The format can be either a relative resource name (e.g.,
      * `projects/my-project/zones/us-central1-a/instances/my-instance`) or a
      * schemeless full resource name (e.g.,
      * `//compute.googleapis.com/projects/my-project/zones/us-central1-a/instances/my-instance`).
      *
-     * Generated from protobuf field <code>string resource = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string resource = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

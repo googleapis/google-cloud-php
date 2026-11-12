@@ -16,7 +16,7 @@ class Gcs
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\x9B\x02\x0A\$google/cloud/dialogflow/v2/gcs.proto\x12\x1Agoogle.cloud.dialogflow.v2\"\x1F\x0A\x0AGcsSources\x12\x11\x0A\x04uris\x18\x02 \x03(\x09B\x03\xE0A\x02\"\x1D\x0A\x0EGcsDestination\x12\x0B\x0A\x03uri\x18\x01 \x01(\x09B\x8E\x01\x0A\x1Ecom.google.cloud.dialogflow.v2B\x08GcsProtoP\x01Z>cloud.google.com/go/dialogflow/apiv2/dialogflowpb;dialogflowpb\xA2\x02\x02DF\xAA\x02\x1AGoogle.Cloud.Dialogflow.V2b\x06proto3"
+            "\x0A\x9C\x02\x0A\$google/cloud/dialogflow/v2/gcs.proto\x12\x1Agoogle.cloud.dialogflow.v2\" \x0A\x0AGcsSources\x12\x12\x0A\x04uris\x18\x02 \x03(\x09B\x04\xE2A\x01\x02\"\x1D\x0A\x0EGcsDestination\x12\x0B\x0A\x03uri\x18\x01 \x01(\x09B\x8E\x01\x0A\x1Ecom.google.cloud.dialogflow.v2B\x08GcsProtoP\x01Z>cloud.google.com/go/dialogflow/apiv2/dialogflowpb;dialogflowpb\xA2\x02\x02DF\xAA\x02\x1AGoogle.Cloud.Dialogflow.V2b\x06proto3"
         , true);
 
         static::$is_initialized = true;

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Response message for [BatchRenegotiateChildPublisherAgreements][] method.
+ * Response message for `BatchRenegotiateChildPublisherAgreements` method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.BatchRenegotiateChildPublisherAgreementsResponse</code>
  */

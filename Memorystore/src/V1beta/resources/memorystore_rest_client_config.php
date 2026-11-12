@@ -83,6 +83,21 @@ return [
                     ],
                 ],
             ],
+            'CreateAclPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}/aclPolicies',
+                'body' => 'acl_policy',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'acl_policy_id',
+                ],
+            ],
             'CreateInstance' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}/instances',
@@ -96,6 +111,17 @@ return [
                 ],
                 'queryParams' => [
                     'instance_id',
+                ],
+            ],
+            'DeleteAclPolicy' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/aclPolicies/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'DeleteAuthToken' => [
@@ -158,6 +184,28 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta/{name=projects/*/locations/*/instances/*}:finishMigration',
                 'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAclPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/aclPolicies/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAclPolicyRevision' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/aclPolicies/*/revisions/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -243,6 +291,28 @@ return [
                     ],
                 ],
             ],
+            'ListAclPolicies' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}/aclPolicies',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAclPolicyRevisions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/aclPolicies/*}/revisions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListAuthTokens' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/instances/*/tokenAuthUsers/*}/authTokens',
@@ -317,6 +387,19 @@ return [
                 'placeholders' => [
                     'name' => [
                         'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateAclPolicy' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta/{acl_policy.name=projects/*/locations/*/aclPolicies/*}',
+                'body' => 'acl_policy',
+                'placeholders' => [
+                    'acl_policy.name' => [
+                        'getters' => [
+                            'getAclPolicy',
                             'getName',
                         ],
                     ],

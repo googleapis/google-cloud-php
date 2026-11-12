@@ -17,10 +17,12 @@
 
 namespace Google\Cloud\Dev;
 
+use DateTime;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use RuntimeException;
 use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 use Symfony\Component\Finder\Finder;
-use RuntimeException;
-use DateTime;
 
 /**
  * @internal
@@ -29,6 +31,7 @@ class Component
 {
     const VERSION_REGEX = '/^V([0-9])?(p[0-9])?(beta|alpha)?[0-9]?$/';
     private const PROTOBUF = 'google/protobuf';
+    private const DOCS_URL = 'https://docs.cloud.google.com/php/docs/reference/%s/latest';
     /**
      * Components whose repositories existed before they were migrated into this
      * monorepo, and which therefore have issues and pull requests of their own.
@@ -433,5 +436,62 @@ class Component
         }
 
         return '';
+    }
+
+    public function getDocumentationUrl(): string
+    {
+        return sprintf(self::DOCS_URL, $this->getId());
+    }
+
+    /**
+     * Check whether the given component version has been published to Cloud RAD reference docs.
+     *
+     * Note: This must use a GET request to `/latest` rather than a HEAD request because:
+     * 1. Versioned URLs (`/php/docs/reference/{id}/{version}`) always return a 301 redirect to
+     *    `/latest` even for nonexistent versions (e.g. `9.9.9`).
+     * 2. A HEAD request to `/latest` returns 200 OK as long as *any* older version of the package
+     *    exists, so we must inspect the HTML `<option>` version selector in the response body to
+     *    confirm that `$version` (or a newer version) is actually live.
+     */
+    public function docsVersionExists(?string $version = null, ?Client $httpClient = null): bool
+    {
+        $version = ltrim($version ?: $this->getPackageVersion(), 'v');
+        $httpClient = $httpClient ?: new Client();
+        try {
+            $response = $httpClient->get($this->getDocumentationUrl(), [
+                'allow_redirects' => false,
+                'http_errors' => false,
+            ]);
+        } catch (GuzzleException $e) {
+            return false;
+        }
+
+        if ($response->getStatusCode() !== 200) {
+            return false;
+        }
+
+        $body = (string) $response->getBody();
+        $quotedId = preg_quote($this->getId(), '/');
+        $quotedVersion = preg_quote($version, '/');
+
+        $optionPattern = sprintf(
+            '/<option data-href="\/php\/docs\/reference\/%s\/(?:latest|%s)"[^>]*>\s*%s(?: \(latest\))?\s*<\/option>/',
+            $quotedId,
+            $quotedVersion,
+            $quotedVersion
+        );
+        if (preg_match($optionPattern, $body)) {
+            return true;
+        }
+
+        $latestPattern = sprintf(
+            '/<option data-href="\/php\/docs\/reference\/%s\/latest"[^>]*>\s*([0-9]+\.[0-9]+\.[0-9]+[^\s<]*)\s*\(latest\)\s*<\/option>/',
+            $quotedId
+        );
+        if (preg_match($latestPattern, $body, $matches)) {
+            return version_compare($matches[1], $version, '>=');
+        }
+
+        return !str_contains($body, '<option data-href="/php/docs/reference/');
     }
 }

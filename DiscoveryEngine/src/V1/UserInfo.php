@@ -24,6 +24,9 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      * model quality.
      * The field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Represents an opaque ID to the Search API. The Search API doesn't
+     * interpret the value in any way. This field is used to associate events
+     * with a user across sessions if the events are being uploaded.
      *
      * Generated from protobuf field <code>string user_id = 1;</code>
      */
@@ -48,6 +51,14 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string time_zone = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $time_zone = '';
+    /**
+     * Optional. Input only. Precise location of the user.
+     * It is used in Custom Ranking to calculate the distance between the user and
+     * the relevant documents.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.UserInfo.PreciseLocation precise_location = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $precise_location = null;
 
     /**
      * Constructor.
@@ -64,6 +75,9 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      *           model quality.
      *           The field must be a UTF-8 encoded string with a length limit of 128
      *           characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *           Represents an opaque ID to the Search API. The Search API doesn't
+     *           interpret the value in any way. This field is used to associate events
+     *           with a user across sessions if the events are being uploaded.
      *     @type string $user_agent
      *           User agent as included in the HTTP header.
      *           The field must be a UTF-8 encoded string with a length limit of 1,000
@@ -76,6 +90,10 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      *           is set.
      *     @type string $time_zone
      *           Optional. IANA time zone, e.g. Europe/Budapest.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\UserInfo\PreciseLocation $precise_location
+     *           Optional. Input only. Precise location of the user.
+     *           It is used in Custom Ranking to calculate the distance between the user and
+     *           the relevant documents.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,6 +110,9 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      * model quality.
      * The field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Represents an opaque ID to the Search API. The Search API doesn't
+     * interpret the value in any way. This field is used to associate events
+     * with a user across sessions if the events are being uploaded.
      *
      * Generated from protobuf field <code>string user_id = 1;</code>
      * @return string
@@ -110,6 +131,9 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      * model quality.
      * The field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Represents an opaque ID to the Search API. The Search API doesn't
+     * interpret the value in any way. This field is used to associate events
+     * with a user across sessions if the events are being uploaded.
      *
      * Generated from protobuf field <code>string user_id = 1;</code>
      * @param string $var
@@ -187,6 +211,46 @@ class UserInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->time_zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Precise location of the user.
+     * It is used in Custom Ranking to calculate the distance between the user and
+     * the relevant documents.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.UserInfo.PreciseLocation precise_location = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\UserInfo\PreciseLocation|null
+     */
+    public function getPreciseLocation()
+    {
+        return $this->precise_location;
+    }
+
+    public function hasPreciseLocation()
+    {
+        return isset($this->precise_location);
+    }
+
+    public function clearPreciseLocation()
+    {
+        unset($this->precise_location);
+    }
+
+    /**
+     * Optional. Input only. Precise location of the user.
+     * It is used in Custom Ranking to calculate the distance between the user and
+     * the relevant documents.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.UserInfo.PreciseLocation precise_location = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\UserInfo\PreciseLocation $var
+     * @return $this
+     */
+    public function setPreciseLocation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\UserInfo\PreciseLocation::class);
+        $this->precise_location = $var;
 
         return $this;
     }

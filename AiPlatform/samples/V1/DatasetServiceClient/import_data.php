@@ -51,7 +51,7 @@ function import_data_sample(string $formattedName, string $importConfigsImportSc
     // Prepare the request message.
     $importDataConfig = (new ImportDataConfig())
         ->setImportSchemaUri($importConfigsImportSchemaUri);
-    $importConfigs = [$importDataConfig,];
+    $importConfigs = [$importDataConfig];
     $request = (new ImportDataRequest())
         ->setName($formattedName)
         ->setImportConfigs($importConfigs);

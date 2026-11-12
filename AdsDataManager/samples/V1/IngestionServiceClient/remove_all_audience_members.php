@@ -52,7 +52,7 @@ function remove_all_audience_members_sample(
         ->setAccountType($destinationsOperatingAccountAccountType);
     $destination = (new Destination())
         ->setOperatingAccount($destinationsOperatingAccount);
-    $destinations = [$destination,];
+    $destinations = [$destination];
     $request = (new RemoveAllAudienceMembersRequest())
         ->setDestinations($destinations);
 

@@ -70,10 +70,12 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     protected $acl_info = null;
     /**
-     * Output only. The last time the document was indexed. If this field is set,
-     * the document could be returned in search results.
-     * This field is OUTPUT_ONLY. If this field is not populated, it means the
-     * document has never been indexed.
+     * Output only. The time when the document was last indexed.
+     * If this field is populated, it means the document has been indexed.
+     * While documents typically become searchable within seconds of indexing,
+     * it can sometimes take up to a few hours.
+     * If this field is not populated, it means the document has never been
+     * indexed.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -131,10 +133,12 @@ class Document extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DiscoveryEngine\V1\Document\AclInfo $acl_info
      *           Access control information for the document.
      *     @type \Google\Protobuf\Timestamp $index_time
-     *           Output only. The last time the document was indexed. If this field is set,
-     *           the document could be returned in search results.
-     *           This field is OUTPUT_ONLY. If this field is not populated, it means the
-     *           document has never been indexed.
+     *           Output only. The time when the document was last indexed.
+     *           If this field is populated, it means the document has been indexed.
+     *           While documents typically become searchable within seconds of indexing,
+     *           it can sometimes take up to a few hours.
+     *           If this field is not populated, it means the document has never been
+     *           indexed.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Document\IndexStatus $index_status
      *           Output only. The index status of the document.
      *           * If document is indexed successfully, the index_time field is populated.
@@ -454,10 +458,12 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The last time the document was indexed. If this field is set,
-     * the document could be returned in search results.
-     * This field is OUTPUT_ONLY. If this field is not populated, it means the
-     * document has never been indexed.
+     * Output only. The time when the document was last indexed.
+     * If this field is populated, it means the document has been indexed.
+     * While documents typically become searchable within seconds of indexing,
+     * it can sometimes take up to a few hours.
+     * If this field is not populated, it means the document has never been
+     * indexed.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -478,10 +484,12 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The last time the document was indexed. If this field is set,
-     * the document could be returned in search results.
-     * This field is OUTPUT_ONLY. If this field is not populated, it means the
-     * document has never been indexed.
+     * Output only. The time when the document was last indexed.
+     * If this field is populated, it means the document has been indexed.
+     * While documents typically become searchable within seconds of indexing,
+     * it can sometimes take up to a few hours.
+     * If this field is not populated, it means the document has never been
+     * indexed.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var

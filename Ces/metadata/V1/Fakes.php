@@ -16,7 +16,7 @@ class Fakes
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xB6\x02\x0A\x1Fgoogle/cloud/ces/v1/fakes.proto\x12\x13google.cloud.ces.v1\"%\x0A\x09CodeBlock\x12\x18\x0A\x0Bpython_code\x18\x01 \x01(\x09B\x03\xE0A\x02\"{\x0A\x0EToolFakeConfig\x129\x0A\x0Acode_block\x18\x01 \x01(\x0B2\x1E.google.cloud.ces.v1.CodeBlockB\x03\xE0A\x01H\x00\x12\x1D\x0A\x10enable_fake_mode\x18\x02 \x01(\x08B\x03\xE0A\x01B\x0F\x0A\x0Dtool_responseBR\x0A\x17com.google.cloud.ces.v1B\x0AFakesProtoP\x01Z)cloud.google.com/go/ces/apiv1/cespb;cespbb\x06proto3"
+            "\x0A\xB9\x02\x0A\x1Fgoogle/cloud/ces/v1/fakes.proto\x12\x13google.cloud.ces.v1\"&\x0A\x09CodeBlock\x12\x19\x0A\x0Bpython_code\x18\x01 \x01(\x09B\x04\xE2A\x01\x02\"}\x0A\x0EToolFakeConfig\x12:\x0A\x0Acode_block\x18\x01 \x01(\x0B2\x1E.google.cloud.ces.v1.CodeBlockB\x04\xE2A\x01\x01H\x00\x12\x1E\x0A\x10enable_fake_mode\x18\x02 \x01(\x08B\x04\xE2A\x01\x01B\x0F\x0A\x0Dtool_responseBR\x0A\x17com.google.cloud.ces.v1B\x0AFakesProtoP\x01Z)cloud.google.com/go/ces/apiv1/cespb;cespbb\x06proto3"
         , true);
 
         static::$is_initialized = true;

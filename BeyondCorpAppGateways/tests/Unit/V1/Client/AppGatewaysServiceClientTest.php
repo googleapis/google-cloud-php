@@ -107,11 +107,15 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $uid = 'uid115792';
         $uri = 'uri116076';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new AppGateway();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setUid($uid);
         $expectedResponse->setUri($uri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -369,11 +373,15 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $uid = 'uid115792';
         $uri = 'uri116076';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new AppGateway();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setUid($uid);
         $expectedResponse->setUri($uri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->appGatewayName('[PROJECT]', '[LOCATION]', '[APP_GATEWAY]');
@@ -859,11 +867,15 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $uid = 'uid115792';
         $uri = 'uri116076';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new AppGateway();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setUid($uid);
         $expectedResponse->setUri($uri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

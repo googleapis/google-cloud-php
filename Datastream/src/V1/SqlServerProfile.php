@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * SQLServer database profile.
+ * Profile for connecting to a SQLServer source.
  *
  * Generated from protobuf message <code>google.cloud.datastream.v1.SqlServerProfile</code>
  */
@@ -47,6 +47,12 @@ class SqlServerProfile extends \Google\Protobuf\Internal\Message
      */
     protected $database = '';
     /**
+     * Optional. SSL configuration for the SQLServer connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerSslConfig ssl_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ssl_config = null;
+    /**
      * Optional. A reference to a Secret Manager resource name storing the
      * SQLServer connection password. Mutually exclusive with the `password`
      * field.
@@ -72,6 +78,8 @@ class SqlServerProfile extends \Google\Protobuf\Internal\Message
      *           the `secret_manager_stored_password` field.
      *     @type string $database
      *           Required. Database for the SQLServer connection.
+     *     @type \Google\Cloud\Datastream\V1\SqlServerSslConfig $ssl_config
+     *           Optional. SSL configuration for the SQLServer connection.
      *     @type string $secret_manager_stored_password
      *           Optional. A reference to a Secret Manager resource name storing the
      *           SQLServer connection password. Mutually exclusive with the `password`
@@ -211,6 +219,42 @@ class SqlServerProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->database = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. SSL configuration for the SQLServer connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerSslConfig ssl_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Datastream\V1\SqlServerSslConfig|null
+     */
+    public function getSslConfig()
+    {
+        return $this->ssl_config;
+    }
+
+    public function hasSslConfig()
+    {
+        return isset($this->ssl_config);
+    }
+
+    public function clearSslConfig()
+    {
+        unset($this->ssl_config);
+    }
+
+    /**
+     * Optional. SSL configuration for the SQLServer connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerSslConfig ssl_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Datastream\V1\SqlServerSslConfig $var
+     * @return $this
+     */
+    public function setSslConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SqlServerSslConfig::class);
+        $this->ssl_config = $var;
 
         return $this;
     }

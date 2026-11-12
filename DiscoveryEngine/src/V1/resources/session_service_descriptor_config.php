@@ -103,6 +103,7 @@ return [
                 'projectLocationCollectionDataStoreBranchDocumentChunk' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}/chunks/{chunk}',
                 'projectLocationCollectionDataStoreSession' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/sessions/{session}',
                 'projectLocationCollectionDataStoreSessionAnswer' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/sessions/{session}/answers/{answer}',
+                'projectLocationCollectionEngineCollaborativeProjectSession' => 'projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/collaborativeProjects/{collaborative_project}/sessions/{session}',
                 'projectLocationCollectionEngineSession' => 'projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}',
                 'projectLocationCollectionEngineSessionAnswer' => 'projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/answers/{answer}',
                 'projectLocationDataStore' => 'projects/{project}/locations/{location}/dataStores/{data_store}',

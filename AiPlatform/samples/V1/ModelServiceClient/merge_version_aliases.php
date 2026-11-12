@@ -55,7 +55,7 @@ function merge_version_aliases_sample(string $formattedName, string $versionAlia
     $modelServiceClient = new ModelServiceClient();
 
     // Prepare the request message.
-    $versionAliases = [$versionAliasesElement,];
+    $versionAliases = [$versionAliasesElement];
     $request = (new MergeVersionAliasesRequest())
         ->setName($formattedName)
         ->setVersionAliases($versionAliases);

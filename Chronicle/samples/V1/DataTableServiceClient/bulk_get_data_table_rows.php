@@ -51,7 +51,7 @@ function bulk_get_data_table_rows_sample(
     // Prepare the request message.
     $getDataTableRowRequest = (new GetDataTableRowRequest())
         ->setName($formattedRequestsName);
-    $requests = [$getDataTableRowRequest,];
+    $requests = [$getDataTableRowRequest];
     $request = (new BulkGetDataTableRowsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

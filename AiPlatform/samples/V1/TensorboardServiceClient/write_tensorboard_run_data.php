@@ -58,7 +58,7 @@ function write_tensorboard_run_data_sample(
         ->setTensorboardTimeSeriesId($timeSeriesDataTensorboardTimeSeriesId)
         ->setValueType($timeSeriesDataValueType)
         ->setValues($timeSeriesDataValues);
-    $timeSeriesData = [$timeSeriesData,];
+    $timeSeriesData = [$timeSeriesData];
     $request = (new WriteTensorboardRunDataRequest())
         ->setTensorboardRun($formattedTensorboardRun)
         ->setTimeSeriesData($timeSeriesData);

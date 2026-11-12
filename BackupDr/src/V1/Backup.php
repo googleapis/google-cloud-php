@@ -133,6 +133,12 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string kms_key_versions = 33 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     private $kms_key_versions;
+    /**
+     * Output only. The restore verification status of the backup.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.VerificationSummary verification_summary = 37 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $verification_summary = null;
     protected $backup_properties;
     protected $plan_info;
     protected $source_resource;
@@ -204,6 +210,8 @@ class Backup extends \Google\Protobuf\Internal\Message
      *     @type string[] $kms_key_versions
      *           Optional. Output only. The list of KMS key versions used to encrypt the
      *           backup.
+     *     @type \Google\Cloud\BackupDR\V1\VerificationSummary $verification_summary
+     *           Output only. The restore verification status of the backup.
      * }
      */
     public function __construct($data = NULL) {
@@ -1014,6 +1022,42 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->kms_key_versions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The restore verification status of the backup.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.VerificationSummary verification_summary = 37 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\BackupDR\V1\VerificationSummary|null
+     */
+    public function getVerificationSummary()
+    {
+        return $this->verification_summary;
+    }
+
+    public function hasVerificationSummary()
+    {
+        return isset($this->verification_summary);
+    }
+
+    public function clearVerificationSummary()
+    {
+        unset($this->verification_summary);
+    }
+
+    /**
+     * Output only. The restore verification status of the backup.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.VerificationSummary verification_summary = 37 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\BackupDR\V1\VerificationSummary $var
+     * @return $this
+     */
+    public function setVerificationSummary($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\VerificationSummary::class);
+        $this->verification_summary = $var;
 
         return $this;
     }

@@ -46,6 +46,11 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "BatchUpdateAudienceSegments": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "CreateAudienceSegment": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
@@ -57,6 +62,11 @@
                     "retry_params_name": "no_retry_params"
                 },
                 "ListAudienceSegments": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "UpdateAudienceSegment": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"

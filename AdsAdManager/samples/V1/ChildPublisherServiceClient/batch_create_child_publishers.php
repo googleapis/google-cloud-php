@@ -35,10 +35,9 @@ use Google\ApiCore\ApiException;
  * Creates [ChildPublisher][google.ads.admanager.v1.ChildPublisher] objects.
  *
  * @param string $formattedParent                      The parent resource where
- *                                                     [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s will be created.
- *                                                     Format: `networks/{network_code}`
- *                                                     The parent field in the CreateChildPublisherRequest must match this
- *                                                     field. Please see
+ *                                                     [ChildPublishers][google.ads.admanager.v1.ChildPublisher] will be created.
+ *                                                     Format: `networks/{network_code}` The parent field in the
+ *                                                     CreateChildPublisherRequest must match this field. Please see
  *                                                     {@see ChildPublisherServiceClient::networkName()} for help formatting this field.
  * @param string $formattedRequestsParent              The parent resource where this
  *                                                     [ChildPublisher][google.ads.admanager.v1.ChildPublisher] will be created.
@@ -71,7 +70,7 @@ function batch_create_child_publishers_sample(
     $createChildPublisherRequest = (new CreateChildPublisherRequest())
         ->setParent($formattedRequestsParent)
         ->setChildPublisher($requestsChildPublisher);
-    $requests = [$createChildPublisherRequest,];
+    $requests = [$createChildPublisherRequest];
     $request = (new BatchCreateChildPublishersRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

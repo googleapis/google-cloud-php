@@ -30,7 +30,7 @@ use Google\Cloud\DiscoveryEngine\V1\DeleteEngineRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes a [Engine][google.cloud.discoveryengine.v1.Engine].
+ * Deletes an [Engine][google.cloud.discoveryengine.v1.Engine].
  *
  * @param string $formattedName Full resource name of
  *                              [Engine][google.cloud.discoveryengine.v1.Engine], such as

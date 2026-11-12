@@ -41,6 +41,9 @@ use Google\Cloud\DiscoveryEngine\V1\Engine;
 use Google\Cloud\DiscoveryEngine\V1\GetEngineRequest;
 use Google\Cloud\DiscoveryEngine\V1\ListEnginesRequest;
 use Google\Cloud\DiscoveryEngine\V1\UpdateEngineRequest;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -61,7 +64,9 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> createEngineAsync(CreateEngineRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteEngineAsync(DeleteEngineRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Engine> getEngineAsync(GetEngineRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listEnginesAsync(ListEnginesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Engine> updateEngineAsync(UpdateEngineRequest $request, array $optionalArgs = [])
  */
 final class EngineServiceClient
@@ -93,7 +98,11 @@ final class EngineServiceClient
      *
      * @internal
      */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/discoveryengine.readwrite',
+        'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+    ];
 
     private $operationsClient;
 
@@ -168,6 +177,42 @@ final class EngineServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * agent_gateway resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $agentGateway
+     *
+     * @return string The formatted agent_gateway resource.
+     */
+    public static function agentGatewayName(string $project, string $location, string $agentGateway): string
+    {
+        return self::getPathTemplate('agentGateway')->render([
+            'project' => $project,
+            'location' => $location,
+            'agent_gateway' => $agentGateway,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a cmek_config
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted cmek_config resource.
+     */
+    public static function cmekConfigName(string $project, string $location): string
+    {
+        return self::getPathTemplate('cmekConfig')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a collection
      * resource.
      *
@@ -183,6 +228,55 @@ final class EngineServiceClient
             'project' => $project,
             'location' => $location,
             'collection' => $collection,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * crypto_key_versions resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     * @param string $cryptoKeyVersion
+     *
+     * @return string The formatted crypto_key_versions resource.
+     */
+    public static function cryptoKeyVersionsName(
+        string $project,
+        string $location,
+        string $keyRing,
+        string $cryptoKey,
+        string $cryptoKeyVersion
+    ): string {
+        return self::getPathTemplate('cryptoKeyVersions')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+            'crypto_key_version' => $cryptoKeyVersion,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a crypto_keys
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_keys resource.
+     */
+    public static function cryptoKeysName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
+        return self::getPathTemplate('cryptoKeys')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
         ]);
     }
 
@@ -208,11 +302,33 @@ final class EngineServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_cmekConfig resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted project_location_cmekConfig resource.
+     */
+    public static function projectLocationCmekConfigName(string $project, string $location): string
+    {
+        return self::getPathTemplate('projectLocationCmekConfig')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - agentGateway: projects/{project}/locations/{location}/agentGateways/{agent_gateway}
+     * - cmekConfig: projects/{project}/locations/{location}/cmekConfig
      * - collection: projects/{project}/locations/{location}/collections/{collection}
+     * - cryptoKeyVersions: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
+     * - cryptoKeys: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - engine: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}
+     * - projectLocationCmekConfig: projects/{project}/locations/{location}/cmekConfig
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -319,7 +435,7 @@ final class EngineServiceClient
     }
 
     /**
-     * Creates a [Engine][google.cloud.discoveryengine.v1.Engine].
+     * Creates an [Engine][google.cloud.discoveryengine.v1.Engine].
      *
      * The async variant is {@see EngineServiceClient::createEngineAsync()} .
      *
@@ -345,7 +461,7 @@ final class EngineServiceClient
     }
 
     /**
-     * Deletes a [Engine][google.cloud.discoveryengine.v1.Engine].
+     * Deletes an [Engine][google.cloud.discoveryengine.v1.Engine].
      *
      * The async variant is {@see EngineServiceClient::deleteEngineAsync()} .
      *
@@ -371,7 +487,7 @@ final class EngineServiceClient
     }
 
     /**
-     * Gets a [Engine][google.cloud.discoveryengine.v1.Engine].
+     * Gets an [Engine][google.cloud.discoveryengine.v1.Engine].
      *
      * The async variant is {@see EngineServiceClient::getEngineAsync()} .
      *
@@ -394,6 +510,35 @@ final class EngineServiceClient
     public function getEngine(GetEngineRequest $request, array $callOptions = []): Engine
     {
         return $this->startApiCall('GetEngine', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the IAM access control policy for an
+     * [Engine][google.cloud.discoveryengine.v1.Engine]. A `NOT_FOUND` error is
+     * returned if the resource does not exist. An empty policy is returned if the
+     * resource exists but does not have a policy set on it.
+     *
+     * The async variant is {@see EngineServiceClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/EngineServiceClient/get_iam_policy.php
+     *
+     * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
     }
 
     /**
@@ -421,6 +566,44 @@ final class EngineServiceClient
     public function listEngines(ListEnginesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListEngines', $request, $callOptions);
+    }
+
+    /**
+     * Sets the IAM access control policy for an
+     * [Engine][google.cloud.discoveryengine.v1.Engine]. A `NOT_FOUND` error is
+     * returned if the resource does not exist.
+     *
+     * **Important:** When setting a policy directly on an Engine resource,
+     * the only recommended roles in the bindings are:
+     * `roles/discoveryengine.admin`,
+     * `roles/discoveryengine.agentspaceAdmin`,
+     * `roles/discoveryengine.user`,
+     * `roles/discoveryengine.agentspaceUser`,
+     * `roles/discoveryengine.viewer`,
+     * `roles/discoveryengine.agentspaceViewer`.
+     * Attempting to grant any other role will result in a warning in logging.
+     *
+     * The async variant is {@see EngineServiceClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/EngineServiceClient/set_iam_policy.php
+     *
+     * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
     }
 
     /**

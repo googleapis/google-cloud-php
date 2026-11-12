@@ -16,10 +16,14 @@ use Google\Protobuf\RepeatedField;
 class StandardConnectionFormat extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Specifies whether the client connects directly to the host[:port]
-     * in the connection URI.
+     * Optional. Deprecated: Use the `additional_options` map to specify the
+     * `directConnection` parameter instead.
+     * For example: `additional_options = {"directConnection": "true"}`.
+     * Specifies whether the client connects directly to the host[:port] in the
+     * connection URI.
      *
-     * Generated from protobuf field <code>bool direct_connection = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool direct_connection = 1 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $direct_connection = false;
 
@@ -30,8 +34,11 @@ class StandardConnectionFormat extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $direct_connection
-     *           Optional. Specifies whether the client connects directly to the host[:port]
-     *           in the connection URI.
+     *           Optional. Deprecated: Use the `additional_options` map to specify the
+     *           `directConnection` parameter instead.
+     *           For example: `additional_options = {"directConnection": "true"}`.
+     *           Specifies whether the client connects directly to the host[:port] in the
+     *           connection URI.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,27 +47,39 @@ class StandardConnectionFormat extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specifies whether the client connects directly to the host[:port]
-     * in the connection URI.
+     * Optional. Deprecated: Use the `additional_options` map to specify the
+     * `directConnection` parameter instead.
+     * For example: `additional_options = {"directConnection": "true"}`.
+     * Specifies whether the client connects directly to the host[:port] in the
+     * connection URI.
      *
-     * Generated from protobuf field <code>bool direct_connection = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool direct_connection = 1 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
+     * @deprecated
      */
     public function getDirectConnection()
     {
+        if ($this->direct_connection !== false) {
+            @trigger_error('direct_connection is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->direct_connection;
     }
 
     /**
-     * Optional. Specifies whether the client connects directly to the host[:port]
-     * in the connection URI.
+     * Optional. Deprecated: Use the `additional_options` map to specify the
+     * `directConnection` parameter instead.
+     * For example: `additional_options = {"directConnection": "true"}`.
+     * Specifies whether the client connects directly to the host[:port] in the
+     * connection URI.
      *
-     * Generated from protobuf field <code>bool direct_connection = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool direct_connection = 1 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setDirectConnection($var)
     {
+        @trigger_error('direct_connection is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->direct_connection = $var;
 

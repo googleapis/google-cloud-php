@@ -17,7 +17,7 @@ class Timestamps
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xE7\x03\x0A,google/cloud/datacatalog/v1/timestamps.proto\x12\x1Bgoogle.cloud.datacatalog.v1\x1A\x1Fgoogle/protobuf/timestamp.proto\"\xAA\x01\x0A\x10SystemTimestamps\x12/\x0A\x0Bcreate_time\x18\x01 \x01(\x0B2\x1A.google.protobuf.Timestamp\x12/\x0A\x0Bupdate_time\x18\x02 \x01(\x0B2\x1A.google.protobuf.Timestamp\x124\x0A\x0Bexpire_time\x18\x03 \x01(\x0B2\x1A.google.protobuf.TimestampB\x03\xE0A\x03B\xC3\x01\x0A\x1Fcom.google.cloud.datacatalog.v1P\x01ZAcloud.google.com/go/datacatalog/apiv1/datacatalogpb;datacatalogpb\xAA\x02\x1BGoogle.Cloud.DataCatalog.V1\xCA\x02\x1BGoogle\\Cloud\\DataCatalog\\V1\xEA\x02\x1EGoogle::Cloud::DataCatalog::V1b\x06proto3"
+            "\x0A\xE8\x03\x0A,google/cloud/datacatalog/v1/timestamps.proto\x12\x1Bgoogle.cloud.datacatalog.v1\x1A\x1Fgoogle/protobuf/timestamp.proto\"\xAB\x01\x0A\x10SystemTimestamps\x12/\x0A\x0Bcreate_time\x18\x01 \x01(\x0B2\x1A.google.protobuf.Timestamp\x12/\x0A\x0Bupdate_time\x18\x02 \x01(\x0B2\x1A.google.protobuf.Timestamp\x125\x0A\x0Bexpire_time\x18\x03 \x01(\x0B2\x1A.google.protobuf.TimestampB\x04\xE2A\x01\x03B\xC3\x01\x0A\x1Fcom.google.cloud.datacatalog.v1P\x01ZAcloud.google.com/go/datacatalog/apiv1/datacatalogpb;datacatalogpb\xAA\x02\x1BGoogle.Cloud.DataCatalog.V1\xCA\x02\x1BGoogle\\Cloud\\DataCatalog\\V1\xEA\x02\x1EGoogle::Cloud::DataCatalog::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

@@ -77,11 +77,11 @@ function update_event_edit_rule_sample(
         ->setField($eventEditRuleEventConditionsField)
         ->setComparisonType($eventEditRuleEventConditionsComparisonType)
         ->setValue($eventEditRuleEventConditionsValue);
-    $eventEditRuleEventConditions = [$matchingCondition,];
+    $eventEditRuleEventConditions = [$matchingCondition];
     $parameterMutation = (new ParameterMutation())
         ->setParameter($eventEditRuleParameterMutationsParameter)
         ->setParameterValue($eventEditRuleParameterMutationsParameterValue);
-    $eventEditRuleParameterMutations = [$parameterMutation,];
+    $eventEditRuleParameterMutations = [$parameterMutation];
     $eventEditRule = (new EventEditRule())
         ->setDisplayName($eventEditRuleDisplayName)
         ->setEventConditions($eventEditRuleEventConditions)

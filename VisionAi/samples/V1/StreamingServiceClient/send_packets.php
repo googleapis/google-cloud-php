@@ -50,7 +50,7 @@ function send_packets_sample(): void
     try {
         /** @var BidiStream $stream */
         $stream = $streamingServiceClient->sendPackets();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var SendPacketsResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

@@ -29,7 +29,9 @@ use Google\Ads\AdManager\V1\GetDefaultThirdPartyDataDeclarationRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * Returns the [DefaultThirdPartyDataDeclaration] for this network.
+ * Returns the
+ * [DefaultThirdPartyDataDeclaration][google.ads.admanager.v1.DefaultThirdPartyDataDeclaration]
+ * for this network.
  *
  * @param string $formattedName Resource name of DefaultThirdPartyDataDeclaration.
  *                              Format: networks/{network_code}/defaultThirdPartyDataDeclaration

@@ -24,12 +24,24 @@
 
 namespace Google\Ads\AdManager\V1\Client;
 
+use Google\Ads\AdManager\V1\BatchActivateUsersRequest;
+use Google\Ads\AdManager\V1\BatchActivateUsersResponse;
+use Google\Ads\AdManager\V1\BatchCreateUsersRequest;
+use Google\Ads\AdManager\V1\BatchCreateUsersResponse;
+use Google\Ads\AdManager\V1\BatchDeactivateUsersRequest;
+use Google\Ads\AdManager\V1\BatchDeactivateUsersResponse;
+use Google\Ads\AdManager\V1\BatchUpdateUsersRequest;
+use Google\Ads\AdManager\V1\BatchUpdateUsersResponse;
+use Google\Ads\AdManager\V1\CreateUserRequest;
 use Google\Ads\AdManager\V1\GetUserRequest;
+use Google\Ads\AdManager\V1\ListUsersRequest;
+use Google\Ads\AdManager\V1\UpdateUserRequest;
 use Google\Ads\AdManager\V1\User;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\Options\ClientOptions;
+use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -49,7 +61,14 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<BatchActivateUsersResponse> batchActivateUsersAsync(BatchActivateUsersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateUsersResponse> batchCreateUsersAsync(BatchCreateUsersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchDeactivateUsersResponse> batchDeactivateUsersAsync(BatchDeactivateUsersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateUsersResponse> batchUpdateUsersAsync(BatchUpdateUsersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<User> createUserAsync(CreateUserRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<User> getUserAsync(GetUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUsersAsync(ListUsersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<User> updateUserAsync(UpdateUserRequest $request, array $optionalArgs = [])
  */
 final class UserServiceClient
 {
@@ -117,6 +136,38 @@ final class UserServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a network
+     * resource.
+     *
+     * @param string $networkCode
+     *
+     * @return string The formatted network resource.
+     */
+    public static function networkName(string $networkCode): string
+    {
+        return self::getPathTemplate('network')->render([
+            'network_code' => $networkCode,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a role
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $role
+     *
+     * @return string The formatted role resource.
+     */
+    public static function roleName(string $networkCode, string $role): string
+    {
+        return self::getPathTemplate('role')->render([
+            'network_code' => $networkCode,
+            'role' => $role,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a user
      * resource.
      *
@@ -137,6 +188,8 @@ final class UserServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - network: networks/{network_code}
+     * - role: networks/{network_code}/roles/{role}
      * - user: networks/{network_code}/users/{user}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -240,6 +293,144 @@ final class UserServiceClient
     }
 
     /**
+     * Activates a list of `User` objects.
+     *
+     * The async variant is {@see UserServiceClient::batchActivateUsersAsync()} .
+     *
+     * @example samples/V1/UserServiceClient/batch_activate_users.php
+     *
+     * @param BatchActivateUsersRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchActivateUsersResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchActivateUsers(
+        BatchActivateUsersRequest $request,
+        array $callOptions = []
+    ): BatchActivateUsersResponse {
+        return $this->startApiCall('BatchActivateUsers', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates `User` objects.
+     *
+     * The async variant is {@see UserServiceClient::batchCreateUsersAsync()} .
+     *
+     * @example samples/V1/UserServiceClient/batch_create_users.php
+     *
+     * @param BatchCreateUsersRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchCreateUsersResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchCreateUsers(
+        BatchCreateUsersRequest $request,
+        array $callOptions = []
+    ): BatchCreateUsersResponse {
+        return $this->startApiCall('BatchCreateUsers', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deactivates a list of `User` objects.
+     *
+     * The async variant is {@see UserServiceClient::batchDeactivateUsersAsync()} .
+     *
+     * @example samples/V1/UserServiceClient/batch_deactivate_users.php
+     *
+     * @param BatchDeactivateUsersRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchDeactivateUsersResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchDeactivateUsers(
+        BatchDeactivateUsersRequest $request,
+        array $callOptions = []
+    ): BatchDeactivateUsersResponse {
+        return $this->startApiCall('BatchDeactivateUsers', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Batch updates `User` objects.
+     *
+     * The async variant is {@see UserServiceClient::batchUpdateUsersAsync()} .
+     *
+     * @example samples/V1/UserServiceClient/batch_update_users.php
+     *
+     * @param BatchUpdateUsersRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchUpdateUsersResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchUpdateUsers(
+        BatchUpdateUsersRequest $request,
+        array $callOptions = []
+    ): BatchUpdateUsersResponse {
+        return $this->startApiCall('BatchUpdateUsers', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a `User` object.
+     *
+     * The async variant is {@see UserServiceClient::createUserAsync()} .
+     *
+     * @example samples/V1/UserServiceClient/create_user.php
+     *
+     * @param CreateUserRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return User
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createUser(CreateUserRequest $request, array $callOptions = []): User
+    {
+        return $this->startApiCall('CreateUser', $request, $callOptions)->wait();
+    }
+
+    /**
      * Retrieves a `User` object.
      *
      * To get the current user, the resource name
@@ -266,5 +457,57 @@ final class UserServiceClient
     public function getUser(GetUserRequest $request, array $callOptions = []): User
     {
         return $this->startApiCall('GetUser', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists `User` objects.
+     *
+     * The async variant is {@see UserServiceClient::listUsersAsync()} .
+     *
+     * @example samples/V1/UserServiceClient/list_users.php
+     *
+     * @param ListUsersRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listUsers(ListUsersRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListUsers', $request, $callOptions);
+    }
+
+    /**
+     * Updates a `User` object.
+     *
+     * The async variant is {@see UserServiceClient::updateUserAsync()} .
+     *
+     * @example samples/V1/UserServiceClient/update_user.php
+     *
+     * @param UpdateUserRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return User
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateUser(UpdateUserRequest $request, array $callOptions = []): User
+    {
+        return $this->startApiCall('UpdateUser', $request, $callOptions)->wait();
     }
 }

@@ -20,8 +20,8 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      * Required. Target project or location to make a call.
      * Format:
      * * `projects/{project-id}`
-     * * `projects/{project-id}/locations/{location-id}`
-     * If no location is specified, a region will be chosen automatically.
+     * * `projects/{project-id}/locations/-`
+     * Regional `{location-id}` values are not supported.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -258,8 +258,8 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *           Required. Target project or location to make a call.
      *           Format:
      *           * `projects/{project-id}`
-     *           * `projects/{project-id}/locations/{location-id}`
-     *           If no location is specified, a region will be chosen automatically.
+     *           * `projects/{project-id}/locations/-`
+     *           Regional `{location-id}` values are not supported.
      *     @type \Google\Protobuf\Duration $timeout
      *           If this timeout is set, the server returns a response before the timeout
      *           period has elapsed or the server deadline for synchronous requests is
@@ -428,8 +428,8 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      * Required. Target project or location to make a call.
      * Format:
      * * `projects/{project-id}`
-     * * `projects/{project-id}/locations/{location-id}`
-     * If no location is specified, a region will be chosen automatically.
+     * * `projects/{project-id}/locations/-`
+     * Regional `{location-id}` values are not supported.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -443,8 +443,8 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      * Required. Target project or location to make a call.
      * Format:
      * * `projects/{project-id}`
-     * * `projects/{project-id}/locations/{location-id}`
-     * If no location is specified, a region will be chosen automatically.
+     * * `projects/{project-id}/locations/-`
+     * Regional `{location-id}` values are not supported.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

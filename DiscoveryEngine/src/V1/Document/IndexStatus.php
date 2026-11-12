@@ -18,6 +18,8 @@ class IndexStatus extends \Google\Protobuf\Internal\Message
     /**
      * The time when the document was indexed.
      * If this field is populated, it means the document has been indexed.
+     * While documents typically become searchable within seconds of indexing,
+     * it can sometimes take up to a few hours.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 1;</code>
      */
@@ -46,6 +48,8 @@ class IndexStatus extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $index_time
      *           The time when the document was indexed.
      *           If this field is populated, it means the document has been indexed.
+     *           While documents typically become searchable within seconds of indexing,
+     *           it can sometimes take up to a few hours.
      *     @type \Google\Rpc\Status[] $error_samples
      *           A sample of errors encountered while indexing the document.
      *           If this field is populated, the document is not indexed due to errors.
@@ -62,6 +66,8 @@ class IndexStatus extends \Google\Protobuf\Internal\Message
     /**
      * The time when the document was indexed.
      * If this field is populated, it means the document has been indexed.
+     * While documents typically become searchable within seconds of indexing,
+     * it can sometimes take up to a few hours.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 1;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -84,6 +90,8 @@ class IndexStatus extends \Google\Protobuf\Internal\Message
     /**
      * The time when the document was indexed.
      * If this field is populated, it means the document has been indexed.
+     * While documents typically become searchable within seconds of indexing,
+     * it can sometimes take up to a few hours.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 1;</code>
      * @param \Google\Protobuf\Timestamp $var

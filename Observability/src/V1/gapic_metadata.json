@@ -1,0 +1,138 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.observability.v1",
+    "libraryPackage": "Google\\Cloud\\Observability\\V1",
+    "services": {
+        "Observability": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ObservabilityClient",
+                    "rpcs": {
+                        "CreateBucket": {
+                            "methods": [
+                                "createBucket"
+                            ]
+                        },
+                        "CreateLink": {
+                            "methods": [
+                                "createLink"
+                            ]
+                        },
+                        "CreateTraceScope": {
+                            "methods": [
+                                "createTraceScope"
+                            ]
+                        },
+                        "DeleteLink": {
+                            "methods": [
+                                "deleteLink"
+                            ]
+                        },
+                        "DeleteTraceScope": {
+                            "methods": [
+                                "deleteTraceScope"
+                            ]
+                        },
+                        "GetBucket": {
+                            "methods": [
+                                "getBucket"
+                            ]
+                        },
+                        "GetDataset": {
+                            "methods": [
+                                "getDataset"
+                            ]
+                        },
+                        "GetLink": {
+                            "methods": [
+                                "getLink"
+                            ]
+                        },
+                        "GetScope": {
+                            "methods": [
+                                "getScope"
+                            ]
+                        },
+                        "GetSettings": {
+                            "methods": [
+                                "getSettings"
+                            ]
+                        },
+                        "GetTraceScope": {
+                            "methods": [
+                                "getTraceScope"
+                            ]
+                        },
+                        "GetView": {
+                            "methods": [
+                                "getView"
+                            ]
+                        },
+                        "ListBuckets": {
+                            "methods": [
+                                "listBuckets"
+                            ]
+                        },
+                        "ListDatasets": {
+                            "methods": [
+                                "listDatasets"
+                            ]
+                        },
+                        "ListLinks": {
+                            "methods": [
+                                "listLinks"
+                            ]
+                        },
+                        "ListTraceScopes": {
+                            "methods": [
+                                "listTraceScopes"
+                            ]
+                        },
+                        "ListViews": {
+                            "methods": [
+                                "listViews"
+                            ]
+                        },
+                        "UpdateBucket": {
+                            "methods": [
+                                "updateBucket"
+                            ]
+                        },
+                        "UpdateLink": {
+                            "methods": [
+                                "updateLink"
+                            ]
+                        },
+                        "UpdateScope": {
+                            "methods": [
+                                "updateScope"
+                            ]
+                        },
+                        "UpdateSettings": {
+                            "methods": [
+                                "updateSettings"
+                            ]
+                        },
+                        "UpdateTraceScope": {
+                            "methods": [
+                                "updateTraceScope"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

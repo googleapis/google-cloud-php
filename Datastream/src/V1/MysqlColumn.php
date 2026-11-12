@@ -16,7 +16,7 @@ use Google\Protobuf\RepeatedField;
 class MysqlColumn extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Column name.
+     * The column name.
      *
      * Generated from protobuf field <code>string column = 1;</code>
      */
@@ -78,7 +78,7 @@ class MysqlColumn extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $column
-     *           Column name.
+     *           The column name.
      *     @type string $data_type
      *           The MySQL data type. Full data types list can be found here:
      *           https://dev.mysql.com/doc/refman/8.0/en/data-types.html
@@ -104,7 +104,7 @@ class MysqlColumn extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Column name.
+     * The column name.
      *
      * Generated from protobuf field <code>string column = 1;</code>
      * @return string
@@ -115,7 +115,7 @@ class MysqlColumn extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Column name.
+     * The column name.
      *
      * Generated from protobuf field <code>string column = 1;</code>
      * @param string $var

@@ -56,7 +56,7 @@ function export_feature_values_sample(
 
     // Prepare the request message.
     $destination = new FeatureValueDestination();
-    $featureSelectorIdMatcherIds = [$featureSelectorIdMatcherIdsElement,];
+    $featureSelectorIdMatcherIds = [$featureSelectorIdMatcherIdsElement];
     $featureSelectorIdMatcher = (new IdMatcher())
         ->setIds($featureSelectorIdMatcherIds);
     $featureSelector = (new FeatureSelector())

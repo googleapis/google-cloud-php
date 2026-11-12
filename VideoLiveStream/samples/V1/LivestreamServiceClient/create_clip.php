@@ -58,7 +58,7 @@ function create_clip_sample(
     // Prepare the request message.
     $clipManifest = (new ClipManifest())
         ->setManifestKey($clipClipManifestsManifestKey);
-    $clipClipManifests = [$clipManifest,];
+    $clipClipManifests = [$clipManifest];
     $clip = (new Clip())
         ->setClipManifests($clipClipManifests);
     $request = (new CreateClipRequest())

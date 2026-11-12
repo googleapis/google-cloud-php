@@ -47,7 +47,7 @@ function batch_update_regions_sample(string $formattedParent): void
     $requestsRegion = new Region();
     $updateRegionRequest = (new UpdateRegionRequest())
         ->setRegion($requestsRegion);
-    $requests = [$updateRegionRequest,];
+    $requests = [$updateRegionRequest];
     $request = (new BatchUpdateRegionsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

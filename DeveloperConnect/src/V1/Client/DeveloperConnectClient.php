@@ -36,6 +36,8 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\DeveloperConnect\V1\AccountConnector;
+use Google\Cloud\DeveloperConnect\V1\AddGitRepositoryLinkPullRequestCommentRequest;
+use Google\Cloud\DeveloperConnect\V1\AddGitRepositoryLinkPullRequestReviewCommentRequest;
 use Google\Cloud\DeveloperConnect\V1\Connection;
 use Google\Cloud\DeveloperConnect\V1\CreateAccountConnectorRequest;
 use Google\Cloud\DeveloperConnect\V1\CreateConnectionRequest;
@@ -45,11 +47,20 @@ use Google\Cloud\DeveloperConnect\V1\DeleteConnectionRequest;
 use Google\Cloud\DeveloperConnect\V1\DeleteGitRepositoryLinkRequest;
 use Google\Cloud\DeveloperConnect\V1\DeleteSelfRequest;
 use Google\Cloud\DeveloperConnect\V1\DeleteUserRequest;
+use Google\Cloud\DeveloperConnect\V1\DiffGitRepositoryLinkCommitRequest;
+use Google\Cloud\DeveloperConnect\V1\DiffGitRepositoryLinkCommitResponse;
 use Google\Cloud\DeveloperConnect\V1\FetchAccessTokenRequest;
 use Google\Cloud\DeveloperConnect\V1\FetchAccessTokenResponse;
 use Google\Cloud\DeveloperConnect\V1\FetchGitHubInstallationsRequest;
 use Google\Cloud\DeveloperConnect\V1\FetchGitHubInstallationsResponse;
 use Google\Cloud\DeveloperConnect\V1\FetchGitRefsRequest;
+use Google\Cloud\DeveloperConnect\V1\FetchGitRepositoryLinkCommitListRequest;
+use Google\Cloud\DeveloperConnect\V1\FetchGitRepositoryLinkCommitRequest;
+use Google\Cloud\DeveloperConnect\V1\FetchGitRepositoryLinkCommitResponse;
+use Google\Cloud\DeveloperConnect\V1\FetchGitRepositoryLinkFileBlameRequest;
+use Google\Cloud\DeveloperConnect\V1\FetchGitRepositoryLinkFileBlameResponse;
+use Google\Cloud\DeveloperConnect\V1\FetchGitRepositoryLinkPullRequestListRequest;
+use Google\Cloud\DeveloperConnect\V1\FetchGitRepositoryLinkPullRequestRequest;
 use Google\Cloud\DeveloperConnect\V1\FetchLinkableGitRepositoriesRequest;
 use Google\Cloud\DeveloperConnect\V1\FetchReadTokenRequest;
 use Google\Cloud\DeveloperConnect\V1\FetchReadTokenResponse;
@@ -66,6 +77,11 @@ use Google\Cloud\DeveloperConnect\V1\ListAccountConnectorsRequest;
 use Google\Cloud\DeveloperConnect\V1\ListConnectionsRequest;
 use Google\Cloud\DeveloperConnect\V1\ListGitRepositoryLinksRequest;
 use Google\Cloud\DeveloperConnect\V1\ListUsersRequest;
+use Google\Cloud\DeveloperConnect\V1\ModifyGitRepositoryLinkPullRequestRequest;
+use Google\Cloud\DeveloperConnect\V1\OpenGitRepositoryLinkPullRequestRequest;
+use Google\Cloud\DeveloperConnect\V1\PullRequest;
+use Google\Cloud\DeveloperConnect\V1\PullRequestComment;
+use Google\Cloud\DeveloperConnect\V1\PullRequestReviewComment;
 use Google\Cloud\DeveloperConnect\V1\StartOAuthRequest;
 use Google\Cloud\DeveloperConnect\V1\StartOAuthResponse;
 use Google\Cloud\DeveloperConnect\V1\UpdateAccountConnectorRequest;
@@ -90,6 +106,8 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<PullRequestComment> addGitRepositoryLinkPullRequestCommentAsync(AddGitRepositoryLinkPullRequestCommentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PullRequestReviewComment> addGitRepositoryLinkPullRequestReviewCommentAsync(AddGitRepositoryLinkPullRequestReviewCommentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createAccountConnectorAsync(CreateAccountConnectorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createConnectionAsync(CreateConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createGitRepositoryLinkAsync(CreateGitRepositoryLinkRequest $request, array $optionalArgs = [])
@@ -98,9 +116,15 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deleteGitRepositoryLinkAsync(DeleteGitRepositoryLinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteSelfAsync(DeleteSelfRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteUserAsync(DeleteUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DiffGitRepositoryLinkCommitResponse> diffGitRepositoryLinkCommitAsync(DiffGitRepositoryLinkCommitRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FetchAccessTokenResponse> fetchAccessTokenAsync(FetchAccessTokenRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FetchGitHubInstallationsResponse> fetchGitHubInstallationsAsync(FetchGitHubInstallationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> fetchGitRefsAsync(FetchGitRefsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FetchGitRepositoryLinkCommitResponse> fetchGitRepositoryLinkCommitAsync(FetchGitRepositoryLinkCommitRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> fetchGitRepositoryLinkCommitListAsync(FetchGitRepositoryLinkCommitListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FetchGitRepositoryLinkFileBlameResponse> fetchGitRepositoryLinkFileBlameAsync(FetchGitRepositoryLinkFileBlameRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PullRequest> fetchGitRepositoryLinkPullRequestAsync(FetchGitRepositoryLinkPullRequestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> fetchGitRepositoryLinkPullRequestListAsync(FetchGitRepositoryLinkPullRequestListRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> fetchLinkableGitRepositoriesAsync(FetchLinkableGitRepositoriesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FetchReadTokenResponse> fetchReadTokenAsync(FetchReadTokenRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FetchReadWriteTokenResponse> fetchReadWriteTokenAsync(FetchReadWriteTokenRequest $request, array $optionalArgs = [])
@@ -113,6 +137,8 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listConnectionsAsync(ListConnectionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listGitRepositoryLinksAsync(ListGitRepositoryLinksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listUsersAsync(ListUsersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PullRequest> modifyGitRepositoryLinkPullRequestAsync(ModifyGitRepositoryLinkPullRequestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PullRequest> openGitRepositoryLinkPullRequestAsync(OpenGitRepositoryLinkPullRequestRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<StartOAuthResponse> startOAuthAsync(StartOAuthRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAccountConnectorAsync(UpdateAccountConnectorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateConnectionAsync(UpdateConnectionRequest $request, array $optionalArgs = [])
@@ -571,6 +597,65 @@ final class DeveloperConnectClient
     }
 
     /**
+     * Add a comment to a Pull Request.
+     *
+     * The async variant is
+     * {@see DeveloperConnectClient::addGitRepositoryLinkPullRequestCommentAsync()} .
+     *
+     * @example samples/V1/DeveloperConnectClient/add_git_repository_link_pull_request_comment.php
+     *
+     * @param AddGitRepositoryLinkPullRequestCommentRequest $request     A request to house fields associated with the call.
+     * @param array                                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PullRequestComment
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function addGitRepositoryLinkPullRequestComment(
+        AddGitRepositoryLinkPullRequestCommentRequest $request,
+        array $callOptions = []
+    ): PullRequestComment {
+        return $this->startApiCall('AddGitRepositoryLinkPullRequestComment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Add a review comment (inline on diff) to a Pull Request.
+     *
+     * The async variant is
+     * {@see DeveloperConnectClient::addGitRepositoryLinkPullRequestReviewCommentAsync()}
+     * .
+     *
+     * @example samples/V1/DeveloperConnectClient/add_git_repository_link_pull_request_review_comment.php
+     *
+     * @param AddGitRepositoryLinkPullRequestReviewCommentRequest $request     A request to house fields associated with the call.
+     * @param array                                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PullRequestReviewComment
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function addGitRepositoryLinkPullRequestReviewComment(
+        AddGitRepositoryLinkPullRequestReviewCommentRequest $request,
+        array $callOptions = []
+    ): PullRequestReviewComment {
+        return $this->startApiCall('AddGitRepositoryLinkPullRequestReviewComment', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new AccountConnector in a given project and location.
      *
      * The async variant is
@@ -796,6 +881,35 @@ final class DeveloperConnectClient
     }
 
     /**
+     * Diff commits for a GitRepositoryLink.
+     *
+     * The async variant is
+     * {@see DeveloperConnectClient::diffGitRepositoryLinkCommitAsync()} .
+     *
+     * @example samples/V1/DeveloperConnectClient/diff_git_repository_link_commit.php
+     *
+     * @param DiffGitRepositoryLinkCommitRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DiffGitRepositoryLinkCommitResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function diffGitRepositoryLinkCommit(
+        DiffGitRepositoryLinkCommitRequest $request,
+        array $callOptions = []
+    ): DiffGitRepositoryLinkCommitResponse {
+        return $this->startApiCall('DiffGitRepositoryLinkCommit', $request, $callOptions)->wait();
+    }
+
+    /**
      * Fetches OAuth access token based on end user credentials.
      *
      * The async variant is {@see DeveloperConnectClient::fetchAccessTokenAsync()} .
@@ -879,6 +993,151 @@ final class DeveloperConnectClient
     public function fetchGitRefs(FetchGitRefsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('FetchGitRefs', $request, $callOptions);
+    }
+
+    /**
+     * Fetch Commit details from a Git repository link.
+     *
+     * The async variant is
+     * {@see DeveloperConnectClient::fetchGitRepositoryLinkCommitAsync()} .
+     *
+     * @example samples/V1/DeveloperConnectClient/fetch_git_repository_link_commit.php
+     *
+     * @param FetchGitRepositoryLinkCommitRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FetchGitRepositoryLinkCommitResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchGitRepositoryLinkCommit(
+        FetchGitRepositoryLinkCommitRequest $request,
+        array $callOptions = []
+    ): FetchGitRepositoryLinkCommitResponse {
+        return $this->startApiCall('FetchGitRepositoryLinkCommit', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetch a list of Commits from a Git repository link.
+     *
+     * The async variant is
+     * {@see DeveloperConnectClient::fetchGitRepositoryLinkCommitListAsync()} .
+     *
+     * @example samples/V1/DeveloperConnectClient/fetch_git_repository_link_commit_list.php
+     *
+     * @param FetchGitRepositoryLinkCommitListRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchGitRepositoryLinkCommitList(
+        FetchGitRepositoryLinkCommitListRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('FetchGitRepositoryLinkCommitList', $request, $callOptions);
+    }
+
+    /**
+     * Fetches blame information for a file or line range in a file.
+     *
+     * The async variant is
+     * {@see DeveloperConnectClient::fetchGitRepositoryLinkFileBlameAsync()} .
+     *
+     * @example samples/V1/DeveloperConnectClient/fetch_git_repository_link_file_blame.php
+     *
+     * @param FetchGitRepositoryLinkFileBlameRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FetchGitRepositoryLinkFileBlameResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchGitRepositoryLinkFileBlame(
+        FetchGitRepositoryLinkFileBlameRequest $request,
+        array $callOptions = []
+    ): FetchGitRepositoryLinkFileBlameResponse {
+        return $this->startApiCall('FetchGitRepositoryLinkFileBlame', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetch Pull Request details from a Git repository link.
+     *
+     * The async variant is
+     * {@see DeveloperConnectClient::fetchGitRepositoryLinkPullRequestAsync()} .
+     *
+     * @example samples/V1/DeveloperConnectClient/fetch_git_repository_link_pull_request.php
+     *
+     * @param FetchGitRepositoryLinkPullRequestRequest $request     A request to house fields associated with the call.
+     * @param array                                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PullRequest
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchGitRepositoryLinkPullRequest(
+        FetchGitRepositoryLinkPullRequestRequest $request,
+        array $callOptions = []
+    ): PullRequest {
+        return $this->startApiCall('FetchGitRepositoryLinkPullRequest', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetches a list of Pull Requests from the remote repository.
+     *
+     * The async variant is
+     * {@see DeveloperConnectClient::fetchGitRepositoryLinkPullRequestListAsync()} .
+     *
+     * @example samples/V1/DeveloperConnectClient/fetch_git_repository_link_pull_request_list.php
+     *
+     * @param FetchGitRepositoryLinkPullRequestListRequest $request     A request to house fields associated with the call.
+     * @param array                                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchGitRepositoryLinkPullRequestList(
+        FetchGitRepositoryLinkPullRequestListRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('FetchGitRepositoryLinkPullRequestList', $request, $callOptions);
     }
 
     /**
@@ -1206,6 +1465,66 @@ final class DeveloperConnectClient
     public function listUsers(ListUsersRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListUsers', $request, $callOptions);
+    }
+
+    /**
+     * Modifies a Pull Request in the remote SCM repository associated with a
+     * GitRepositoryLink.
+     *
+     * The async variant is
+     * {@see DeveloperConnectClient::modifyGitRepositoryLinkPullRequestAsync()} .
+     *
+     * @example samples/V1/DeveloperConnectClient/modify_git_repository_link_pull_request.php
+     *
+     * @param ModifyGitRepositoryLinkPullRequestRequest $request     A request to house fields associated with the call.
+     * @param array                                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PullRequest
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function modifyGitRepositoryLinkPullRequest(
+        ModifyGitRepositoryLinkPullRequestRequest $request,
+        array $callOptions = []
+    ): PullRequest {
+        return $this->startApiCall('ModifyGitRepositoryLinkPullRequest', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Opens a Pull Request in the remote SCM repository associated with a
+     * GitRepositoryLink.
+     *
+     * The async variant is
+     * {@see DeveloperConnectClient::openGitRepositoryLinkPullRequestAsync()} .
+     *
+     * @example samples/V1/DeveloperConnectClient/open_git_repository_link_pull_request.php
+     *
+     * @param OpenGitRepositoryLinkPullRequestRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PullRequest
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function openGitRepositoryLinkPullRequest(
+        OpenGitRepositoryLinkPullRequestRequest $request,
+        array $callOptions = []
+    ): PullRequest {
+        return $this->startApiCall('OpenGitRepositoryLinkPullRequest', $request, $callOptions)->wait();
     }
 
     /**

@@ -81,7 +81,9 @@ class DeleteInstancesInstanceGroupManagerRequest extends \Google\Protobuf\Intern
             ->setProject($project)
             ->setZone($zone)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersDeleteInstancesRequestResource($instanceGroupManagersDeleteInstancesRequestResource);
+            ->setInstanceGroupManagersDeleteInstancesRequestResource(
+                $instanceGroupManagersDeleteInstancesRequestResource
+            );
     }
 
     /**

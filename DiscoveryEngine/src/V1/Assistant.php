@@ -24,6 +24,80 @@ class Assistant extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $name = '';
+    /**
+     * Required. The assistant display name.
+     * It must be a UTF-8 encoded string with a length limit of 128 characters.
+     *
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     */
+    protected $display_name = '';
+    /**
+     * Optional. Description for additional information. Expected to be shown on
+     * the configuration UI, not to the users of the assistant.
+     *
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $description = '';
+    /**
+     * Optional. Configuration for the generation of the assistant response.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Assistant.GenerationConfig generation_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $generation_config = null;
+    /**
+     * Optional. The type of web grounding to use.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Assistant.WebGroundingType web_grounding_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $web_grounding_type = 0;
+    /**
+     * Optional. This field controls the default web grounding toggle for end
+     * users if `web_grounding_type` is set to `WEB_GROUNDING_TYPE_GOOGLE_SEARCH`
+     * or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`. By default, this field is
+     * set to false. If `web_grounding_type` is `WEB_GROUNDING_TYPE_GOOGLE_SEARCH`
+     * or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`, end users will have web
+     * grounding enabled by default on UI. If true, grounding toggle will be
+     * disabled by default on UI. End users can still enable web grounding in
+     * the UI if web grounding is enabled.
+     *
+     * Generated from protobuf field <code>bool default_web_grounding_toggle_off = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $default_web_grounding_toggle_off = false;
+    /**
+     * Optional. Note: not implemented yet. Use
+     * [enabled_actions][google.cloud.discoveryengine.v1.Assistant.enabled_actions]
+     * instead. The enabled tools on this assistant. The keys are connector name,
+     * for example
+     * "projects/{projectId}/locations/{locationId}/collections/{collectionId}/dataconnector
+     * The values consist of admin enabled tools towards the connector
+     * instance. Admin can selectively enable multiple tools on any of the
+     * connector instances that they created in the project. For example
+     * {"jira1ConnectorName": [(toolId1, "createTicket"), (toolId2,
+     * "transferTicket")],
+     *  "gmail1ConnectorName": [(toolId3, "sendEmail"),..] }
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.Assistant.ToolList> enabled_tools = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enabled_tools;
+    /**
+     * Optional. Customer policy for the assistant.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Assistant.CustomerPolicy customer_policy = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $customer_policy = null;
+    /**
+     * Output only. Represents the time when this Assistant was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $create_time = null;
+    /**
+     * Output only. Represents the time when this Assistant was most recently
+     * updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $update_time = null;
 
     /**
      * Constructor.
@@ -36,6 +110,44 @@ class Assistant extends \Google\Protobuf\Internal\Message
      *           Format:
      *           `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}`
      *           It must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *     @type string $display_name
+     *           Required. The assistant display name.
+     *           It must be a UTF-8 encoded string with a length limit of 128 characters.
+     *     @type string $description
+     *           Optional. Description for additional information. Expected to be shown on
+     *           the configuration UI, not to the users of the assistant.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Assistant\GenerationConfig $generation_config
+     *           Optional. Configuration for the generation of the assistant response.
+     *     @type int $web_grounding_type
+     *           Optional. The type of web grounding to use.
+     *     @type bool $default_web_grounding_toggle_off
+     *           Optional. This field controls the default web grounding toggle for end
+     *           users if `web_grounding_type` is set to `WEB_GROUNDING_TYPE_GOOGLE_SEARCH`
+     *           or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`. By default, this field is
+     *           set to false. If `web_grounding_type` is `WEB_GROUNDING_TYPE_GOOGLE_SEARCH`
+     *           or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`, end users will have web
+     *           grounding enabled by default on UI. If true, grounding toggle will be
+     *           disabled by default on UI. End users can still enable web grounding in
+     *           the UI if web grounding is enabled.
+     *     @type array|\Google\Protobuf\Internal\MapField $enabled_tools
+     *           Optional. Note: not implemented yet. Use
+     *           [enabled_actions][google.cloud.discoveryengine.v1.Assistant.enabled_actions]
+     *           instead. The enabled tools on this assistant. The keys are connector name,
+     *           for example
+     *           "projects/{projectId}/locations/{locationId}/collections/{collectionId}/dataconnector
+     *           The values consist of admin enabled tools towards the connector
+     *           instance. Admin can selectively enable multiple tools on any of the
+     *           connector instances that they created in the project. For example
+     *           {"jira1ConnectorName": [(toolId1, "createTicket"), (toolId2,
+     *           "transferTicket")],
+     *            "gmail1ConnectorName": [(toolId3, "sendEmail"),..] }
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Assistant\CustomerPolicy $customer_policy
+     *           Optional. Customer policy for the assistant.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. Represents the time when this Assistant was created.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. Represents the time when this Assistant was most recently
+     *           updated.
      * }
      */
     public function __construct($data = NULL) {
@@ -71,6 +183,320 @@ class Assistant extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required. The assistant display name.
+     * It must be a UTF-8 encoded string with a length limit of 128 characters.
+     *
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->display_name;
+    }
+
+    /**
+     * Required. The assistant display name.
+     * It must be a UTF-8 encoded string with a length limit of 128 characters.
+     *
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Description for additional information. Expected to be shown on
+     * the configuration UI, not to the users of the assistant.
+     *
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Optional. Description for additional information. Expected to be shown on
+     * the configuration UI, not to the users of the assistant.
+     *
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDescription($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for the generation of the assistant response.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Assistant.GenerationConfig generation_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\Assistant\GenerationConfig|null
+     */
+    public function getGenerationConfig()
+    {
+        return $this->generation_config;
+    }
+
+    public function hasGenerationConfig()
+    {
+        return isset($this->generation_config);
+    }
+
+    public function clearGenerationConfig()
+    {
+        unset($this->generation_config);
+    }
+
+    /**
+     * Optional. Configuration for the generation of the assistant response.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Assistant.GenerationConfig generation_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\Assistant\GenerationConfig $var
+     * @return $this
+     */
+    public function setGenerationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Assistant\GenerationConfig::class);
+        $this->generation_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The type of web grounding to use.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Assistant.WebGroundingType web_grounding_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getWebGroundingType()
+    {
+        return $this->web_grounding_type;
+    }
+
+    /**
+     * Optional. The type of web grounding to use.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Assistant.WebGroundingType web_grounding_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setWebGroundingType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DiscoveryEngine\V1\Assistant\WebGroundingType::class);
+        $this->web_grounding_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This field controls the default web grounding toggle for end
+     * users if `web_grounding_type` is set to `WEB_GROUNDING_TYPE_GOOGLE_SEARCH`
+     * or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`. By default, this field is
+     * set to false. If `web_grounding_type` is `WEB_GROUNDING_TYPE_GOOGLE_SEARCH`
+     * or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`, end users will have web
+     * grounding enabled by default on UI. If true, grounding toggle will be
+     * disabled by default on UI. End users can still enable web grounding in
+     * the UI if web grounding is enabled.
+     *
+     * Generated from protobuf field <code>bool default_web_grounding_toggle_off = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDefaultWebGroundingToggleOff()
+    {
+        return $this->default_web_grounding_toggle_off;
+    }
+
+    /**
+     * Optional. This field controls the default web grounding toggle for end
+     * users if `web_grounding_type` is set to `WEB_GROUNDING_TYPE_GOOGLE_SEARCH`
+     * or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`. By default, this field is
+     * set to false. If `web_grounding_type` is `WEB_GROUNDING_TYPE_GOOGLE_SEARCH`
+     * or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`, end users will have web
+     * grounding enabled by default on UI. If true, grounding toggle will be
+     * disabled by default on UI. End users can still enable web grounding in
+     * the UI if web grounding is enabled.
+     *
+     * Generated from protobuf field <code>bool default_web_grounding_toggle_off = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDefaultWebGroundingToggleOff($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->default_web_grounding_toggle_off = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Note: not implemented yet. Use
+     * [enabled_actions][google.cloud.discoveryengine.v1.Assistant.enabled_actions]
+     * instead. The enabled tools on this assistant. The keys are connector name,
+     * for example
+     * "projects/{projectId}/locations/{locationId}/collections/{collectionId}/dataconnector
+     * The values consist of admin enabled tools towards the connector
+     * instance. Admin can selectively enable multiple tools on any of the
+     * connector instances that they created in the project. For example
+     * {"jira1ConnectorName": [(toolId1, "createTicket"), (toolId2,
+     * "transferTicket")],
+     *  "gmail1ConnectorName": [(toolId3, "sendEmail"),..] }
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.Assistant.ToolList> enabled_tools = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getEnabledTools()
+    {
+        return $this->enabled_tools;
+    }
+
+    /**
+     * Optional. Note: not implemented yet. Use
+     * [enabled_actions][google.cloud.discoveryengine.v1.Assistant.enabled_actions]
+     * instead. The enabled tools on this assistant. The keys are connector name,
+     * for example
+     * "projects/{projectId}/locations/{locationId}/collections/{collectionId}/dataconnector
+     * The values consist of admin enabled tools towards the connector
+     * instance. Admin can selectively enable multiple tools on any of the
+     * connector instances that they created in the project. For example
+     * {"jira1ConnectorName": [(toolId1, "createTicket"), (toolId2,
+     * "transferTicket")],
+     *  "gmail1ConnectorName": [(toolId3, "sendEmail"),..] }
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.Assistant.ToolList> enabled_tools = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setEnabledTools($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\Assistant\ToolList::class);
+        $this->enabled_tools = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Customer policy for the assistant.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Assistant.CustomerPolicy customer_policy = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\Assistant\CustomerPolicy|null
+     */
+    public function getCustomerPolicy()
+    {
+        return $this->customer_policy;
+    }
+
+    public function hasCustomerPolicy()
+    {
+        return isset($this->customer_policy);
+    }
+
+    public function clearCustomerPolicy()
+    {
+        unset($this->customer_policy);
+    }
+
+    /**
+     * Optional. Customer policy for the assistant.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Assistant.CustomerPolicy customer_policy = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\Assistant\CustomerPolicy $var
+     * @return $this
+     */
+    public function setCustomerPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Assistant\CustomerPolicy::class);
+        $this->customer_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Represents the time when this Assistant was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
+    }
+
+    /**
+     * Output only. Represents the time when this Assistant was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Represents the time when this Assistant was most recently
+     * updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
+    }
+
+    /**
+     * Output only. Represents the time when this Assistant was most recently
+     * updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
 
         return $this;
     }

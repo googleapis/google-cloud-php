@@ -28,12 +28,15 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AppTopology\V1\Client\AppTopologyClient;
 use Google\Cloud\AppTopology\V1\Domain;
+use Google\Cloud\AppTopology\V1\ExploreSchemaRequest;
+use Google\Cloud\AppTopology\V1\ExploreSchemaResponse;
 use Google\Cloud\AppTopology\V1\GenerateDiscoveredResourcesTopologyRequest;
 use Google\Cloud\AppTopology\V1\GenerateDiscoveredResourcesTopologyResponse;
 use Google\Cloud\AppTopology\V1\GetDomainRequest;
 use Google\Cloud\AppTopology\V1\GetSchemaRequest;
 use Google\Cloud\AppTopology\V1\ListDomainsRequest;
 use Google\Cloud\AppTopology\V1\ListDomainsResponse;
+use Google\Cloud\AppTopology\V1\NodeType;
 use Google\Cloud\AppTopology\V1\Schema;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
@@ -70,6 +73,77 @@ class AppTopologyClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new AppTopologyClient($options);
+    }
+
+    /** @test */
+    public function exploreSchemaTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $nodeTypesElement = new NodeType();
+        $nodeTypes = [$nodeTypesElement];
+        $expectedResponse = new ExploreSchemaResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setNodeTypes($nodeTypes);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->schemaName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
+        $request = (new ExploreSchemaRequest())->setName($formattedName);
+        $response = $gapicClient->exploreSchema($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getNodeTypes()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.apptopology.v1.AppTopology/ExploreSchema', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function exploreSchemaExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->schemaName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
+        $request = (new ExploreSchemaRequest())->setName($formattedName);
+        try {
+            $gapicClient->exploreSchema($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -476,7 +550,7 @@ class AppTopologyClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function generateDiscoveredResourcesTopologyAsyncTest()
+    public function exploreSchemaAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -484,28 +558,28 @@ class AppTopologyClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new GenerateDiscoveredResourcesTopologyResponse();
+        $nextPageToken = '';
+        $nodeTypesElement = new NodeType();
+        $nodeTypes = [$nodeTypesElement];
+        $expectedResponse = new ExploreSchemaResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setNodeTypes($nodeTypes);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->discoveredResourcesTopologyName('[PROJECT]', '[LOCATION]');
-        $formattedTopologyDomains = [$gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]')];
-        $request = (new GenerateDiscoveredResourcesTopologyRequest())
-            ->setName($formattedName)
-            ->setTopologyDomains($formattedTopologyDomains);
-        $response = $gapicClient->generateDiscoveredResourcesTopologyAsync($request)->wait();
-        $this->assertEquals($expectedResponse, $response);
+        $formattedName = $gapicClient->schemaName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
+        $request = (new ExploreSchemaRequest())->setName($formattedName);
+        $response = $gapicClient->exploreSchemaAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getNodeTypes()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.cloud.apptopology.v1.AppTopology/GenerateDiscoveredResourcesTopology',
-            $actualFuncCall
-        );
+        $this->assertSame('/google.cloud.apptopology.v1.AppTopology/ExploreSchema', $actualFuncCall);
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getTopologyDomains();
-        $this->assertProtobufEquals($formattedTopologyDomains, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }
