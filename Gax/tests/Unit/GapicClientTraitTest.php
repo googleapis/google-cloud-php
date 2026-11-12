@@ -2274,7 +2274,9 @@ class GapicV2SurfaceClient implements ServiceInterface, LongRunningOperationProv
 
     public function resumeOperation(string $operationName, ?string $methodName = null): OperationResponse
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options = $methodName && isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
