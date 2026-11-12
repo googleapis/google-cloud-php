@@ -55,7 +55,6 @@ use Google\Cloud\DiscoveryEngine\V1\UserEvent;
  *                                       * `view-item-list`: View of a panel or ordered list of Documents.
  *                                       * `view-home-page`: View of the home page.
  *                                       * `view-category-page`: View of a category page, e.g. Home > Men > Jeans
- *                                       * `add-feedback`: Add a user feedback.
  *
  *                                       Retail-related values:
  *

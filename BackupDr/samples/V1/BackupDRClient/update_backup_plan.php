@@ -68,7 +68,7 @@ function update_backup_plan_sample(
     $backupRule = (new BackupRule())
         ->setRuleId($backupPlanBackupRulesRuleId)
         ->setBackupRetentionDays($backupPlanBackupRulesBackupRetentionDays);
-    $backupPlanBackupRules = [$backupRule,];
+    $backupPlanBackupRules = [$backupRule];
     $backupPlan = (new BackupPlan())
         ->setBackupRules($backupPlanBackupRules)
         ->setResourceType($backupPlanResourceType)

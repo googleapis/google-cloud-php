@@ -51,7 +51,7 @@ function update_persistent_resource_sample(): void
     $persistentResourceResourcePoolsMachineSpec = new MachineSpec();
     $resourcePool = (new ResourcePool())
         ->setMachineSpec($persistentResourceResourcePoolsMachineSpec);
-    $persistentResourceResourcePools = [$resourcePool,];
+    $persistentResourceResourcePools = [$resourcePool];
     $persistentResource = (new PersistentResource())
         ->setResourcePools($persistentResourceResourcePools);
     $updateMask = new FieldMask();

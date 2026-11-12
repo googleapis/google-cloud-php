@@ -60,7 +60,7 @@ function read_feature_values_sample(
     $featurestoreOnlineServingServiceClient = new FeaturestoreOnlineServingServiceClient();
 
     // Prepare the request message.
-    $featureSelectorIdMatcherIds = [$featureSelectorIdMatcherIdsElement,];
+    $featureSelectorIdMatcherIds = [$featureSelectorIdMatcherIdsElement];
     $featureSelectorIdMatcher = (new IdMatcher())
         ->setIds($featureSelectorIdMatcherIds);
     $featureSelector = (new FeatureSelector())

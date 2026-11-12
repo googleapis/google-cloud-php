@@ -122,6 +122,11 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * stores. For engines with a single data store, the specs directly under
      * [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] should be
      * used.
+     * On an engine with multiple data stores, this field is optional. If it's
+     * empty, all of the engine's data stores are searched (blended search).
+     * Unless it specifies exactly one data store, some request fields, such as
+     * `order_by` and `query_expansion_spec`, aren't supported and return an
+     * `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec data_store_specs = 32;</code>
      */
@@ -587,6 +592,11 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           stores. For engines with a single data store, the specs directly under
      *           [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] should be
      *           used.
+     *           On an engine with multiple data stores, this field is optional. If it's
+     *           empty, all of the engine's data stores are searched (blended search).
+     *           Unless it specifies exactly one data store, some request fields, such as
+     *           `order_by` and `query_expansion_spec`, aren't supported and return an
+     *           `INVALID_ARGUMENT` error.
      *     @type int $num_results_per_data_store
      *           Optional. The maximum number of results to retrieve from each data store.
      *           If not specified, it will use the
@@ -1201,6 +1211,11 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * stores. For engines with a single data store, the specs directly under
      * [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] should be
      * used.
+     * On an engine with multiple data stores, this field is optional. If it's
+     * empty, all of the engine's data stores are searched (blended search).
+     * Unless it specifies exactly one data store, some request fields, such as
+     * `order_by` and `query_expansion_spec`, aren't supported and return an
+     * `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec data_store_specs = 32;</code>
      * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>
@@ -1218,6 +1233,11 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * stores. For engines with a single data store, the specs directly under
      * [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] should be
      * used.
+     * On an engine with multiple data stores, this field is optional. If it's
+     * empty, all of the engine's data stores are searched (blended search).
+     * Unless it specifies exactly one data store, some request fields, such as
+     * `order_by` and `query_expansion_spec`, aren't supported and return an
+     * `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec data_store_specs = 32;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec[] $var

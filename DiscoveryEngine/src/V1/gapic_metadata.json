@@ -5,6 +5,49 @@
     "protoPackage": "google.cloud.discoveryengine.v1",
     "libraryPackage": "Google\\Cloud\\DiscoveryEngine\\V1",
     "services": {
+        "AclConfigService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AclConfigServiceClient",
+                    "rpcs": {
+                        "GetAclConfig": {
+                            "methods": [
+                                "getAclConfig"
+                            ]
+                        },
+                        "UpdateAclConfig": {
+                            "methods": [
+                                "updateAclConfig"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "GroundedGenerationService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GroundedGenerationServiceClient",
+                    "rpcs": {
+                        "CheckGrounding": {
+                            "methods": [
+                                "checkGrounding"
+                            ]
+                        },
+                        "GenerateGroundedContent": {
+                            "methods": [
+                                "generateGroundedContent"
+                            ]
+                        },
+                        "StreamGenerateGroundedContent": {
+                            "methods": [
+                                "streamGenerateGroundedContent"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "SearchService": {
             "clients": {
                 "grpc": {
@@ -29,9 +72,34 @@
                 "grpc": {
                     "libraryClient": "AssistantServiceClient",
                     "rpcs": {
+                        "CreateAssistant": {
+                            "methods": [
+                                "createAssistant"
+                            ]
+                        },
+                        "DeleteAssistant": {
+                            "methods": [
+                                "deleteAssistant"
+                            ]
+                        },
+                        "GetAssistant": {
+                            "methods": [
+                                "getAssistant"
+                            ]
+                        },
+                        "ListAssistants": {
+                            "methods": [
+                                "listAssistants"
+                            ]
+                        },
                         "StreamAssist": {
                             "methods": [
                                 "streamAssist"
+                            ]
+                        },
+                        "UpdateAssistant": {
+                            "methods": [
+                                "updateAssistant"
                             ]
                         }
                     }
@@ -67,11 +135,40 @@
                 }
             }
         },
+        "CollectionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CollectionServiceClient",
+                    "rpcs": {
+                        "DeleteCollection": {
+                            "methods": [
+                                "deleteCollection"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "CompletionService": {
             "clients": {
                 "grpc": {
                     "libraryClient": "CompletionServiceClient",
                     "rpcs": {
+                        "AdvancedCompleteQuery": {
+                            "methods": [
+                                "advancedCompleteQuery"
+                            ]
+                        },
                         "CompleteQuery": {
                             "methods": [
                                 "completeQuery"
@@ -214,6 +311,30 @@
                 }
             }
         },
+        "DataConnectorService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataConnectorServiceClient",
+                    "rpcs": {
+                        "GetDataConnector": {
+                            "methods": [
+                                "getDataConnector"
+                            ]
+                        },
+                        "SetUpDataConnector": {
+                            "methods": [
+                                "setUpDataConnector"
+                            ]
+                        },
+                        "UpdateDataConnector": {
+                            "methods": [
+                                "updateDataConnector"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "DataStoreService": {
             "clients": {
                 "grpc": {
@@ -234,9 +355,19 @@
                                 "getDataStore"
                             ]
                         },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
                         "ListDataStores": {
                             "methods": [
                                 "listDataStores"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
                             ]
                         },
                         "UpdateDataStore": {
@@ -317,38 +448,24 @@
                                 "getEngine"
                             ]
                         },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
                         "ListEngines": {
                             "methods": [
                                 "listEngines"
                             ]
                         },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
                         "UpdateEngine": {
                             "methods": [
                                 "updateEngine"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "GroundedGenerationService": {
-            "clients": {
-                "grpc": {
-                    "libraryClient": "GroundedGenerationServiceClient",
-                    "rpcs": {
-                        "CheckGrounding": {
-                            "methods": [
-                                "checkGrounding"
-                            ]
-                        },
-                        "GenerateGroundedContent": {
-                            "methods": [
-                                "generateGroundedContent"
-                            ]
-                        },
-                        "StreamGenerateGroundedContent": {
-                            "methods": [
-                                "streamGenerateGroundedContent"
                             ]
                         }
                     }
@@ -393,6 +510,45 @@
                         "PurgeIdentityMappings": {
                             "methods": [
                                 "purgeIdentityMappings"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "LicenseConfigService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "LicenseConfigServiceClient",
+                    "rpcs": {
+                        "CreateLicenseConfig": {
+                            "methods": [
+                                "createLicenseConfig"
+                            ]
+                        },
+                        "DistributeLicenseConfig": {
+                            "methods": [
+                                "distributeLicenseConfig"
+                            ]
+                        },
+                        "GetLicenseConfig": {
+                            "methods": [
+                                "getLicenseConfig"
+                            ]
+                        },
+                        "ListLicenseConfigs": {
+                            "methods": [
+                                "listLicenseConfigs"
+                            ]
+                        },
+                        "RetractLicenseConfig": {
+                            "methods": [
+                                "retractLicenseConfig"
+                            ]
+                        },
+                        "UpdateLicenseConfig": {
+                            "methods": [
+                                "updateLicenseConfig"
                             ]
                         }
                     }
@@ -499,6 +655,26 @@
                 "grpc": {
                     "libraryClient": "ServingConfigServiceClient",
                     "rpcs": {
+                        "CreateServingConfig": {
+                            "methods": [
+                                "createServingConfig"
+                            ]
+                        },
+                        "DeleteServingConfig": {
+                            "methods": [
+                                "deleteServingConfig"
+                            ]
+                        },
+                        "GetServingConfig": {
+                            "methods": [
+                                "getServingConfig"
+                            ]
+                        },
+                        "ListServingConfigs": {
+                            "methods": [
+                                "listServingConfigs"
+                            ]
+                        },
                         "UpdateServingConfig": {
                             "methods": [
                                 "updateServingConfig"
@@ -665,9 +841,52 @@
                                 "batchUpdateUserLicenses"
                             ]
                         },
+                        "ListLicenseConfigsUsageStats": {
+                            "methods": [
+                                "listLicenseConfigsUsageStats"
+                            ]
+                        },
                         "ListUserLicenses": {
                             "methods": [
                                 "listUserLicenses"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "UserStoreService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "UserStoreServiceClient",
+                    "rpcs": {
+                        "GetUserStore": {
+                            "methods": [
+                                "getUserStore"
+                            ]
+                        },
+                        "UpdateUserStore": {
+                            "methods": [
+                                "updateUserStore"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "WidgetConfigService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "WidgetConfigServiceClient",
+                    "rpcs": {
+                        "GetWidgetConfig": {
+                            "methods": [
+                                "getWidgetConfig"
+                            ]
+                        },
+                        "UpdateWidgetConfig": {
+                            "methods": [
+                                "updateWidgetConfig"
                             ]
                         }
                     }

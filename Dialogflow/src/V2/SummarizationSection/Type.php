@@ -50,9 +50,10 @@ class Type
      */
     const REASON_FOR_CANCELLATION = 4;
     /**
-     * "Unsatisfied" or "Satisfied" depending on the customer's feelings at
-     * the end of the conversation.
-     * Section name: "customer_satisfaction".
+     * Customer satisfaction derived from the text transcript only (not audio).
+     * Categorized based on customer statements by the end of the conversation.
+     * `D` for dissatisfied and `N` for neutral or satisfied (default).
+     * Section name: `customer_satisfaction`.
      *
      * Generated from protobuf enum <code>CUSTOMER_SATISFACTION = 5;</code>
      */

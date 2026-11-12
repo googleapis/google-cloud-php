@@ -68,7 +68,7 @@ function import_feature_values_sample(string $formattedEntityType, string $featu
     // Prepare the request message.
     $featureSpec = (new FeatureSpec())
         ->setId($featureSpecsId);
-    $featureSpecs = [$featureSpec,];
+    $featureSpecs = [$featureSpec];
     $request = (new ImportFeatureValuesRequest())
         ->setEntityType($formattedEntityType)
         ->setFeatureSpecs($featureSpecs);

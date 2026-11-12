@@ -16,15 +16,8 @@ use Google\Protobuf\RepeatedField;
 class InstanceFlexibilityPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Specification of alternative, flexible instance subsets.
-     * One of them will be selected to create the instances
-     * based on various criteria, like:
-     * - ranks,
-     * - location policy,
-     * - current capacity,
-     * - available reservations (you can specify affinity in
-     * InstanceProperties),
-     * - SWAN/GOOSE limitations.
+     * Specifies named instance selections that define properties for instances
+     * created in bulk.
      * Key is an arbitrary, unique RFC1035 string that identifies the instance
      * selection.
      *
@@ -39,15 +32,8 @@ class InstanceFlexibilityPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array|\Google\Protobuf\Internal\MapField $instance_selections
-     *           Specification of alternative, flexible instance subsets.
-     *           One of them will be selected to create the instances
-     *           based on various criteria, like:
-     *           - ranks,
-     *           - location policy,
-     *           - current capacity,
-     *           - available reservations (you can specify affinity in
-     *           InstanceProperties),
-     *           - SWAN/GOOSE limitations.
+     *           Specifies named instance selections that define properties for instances
+     *           created in bulk.
      *           Key is an arbitrary, unique RFC1035 string that identifies the instance
      *           selection.
      * }
@@ -58,15 +44,8 @@ class InstanceFlexibilityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specification of alternative, flexible instance subsets.
-     * One of them will be selected to create the instances
-     * based on various criteria, like:
-     * - ranks,
-     * - location policy,
-     * - current capacity,
-     * - available reservations (you can specify affinity in
-     * InstanceProperties),
-     * - SWAN/GOOSE limitations.
+     * Specifies named instance selections that define properties for instances
+     * created in bulk.
      * Key is an arbitrary, unique RFC1035 string that identifies the instance
      * selection.
      *
@@ -79,15 +58,8 @@ class InstanceFlexibilityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specification of alternative, flexible instance subsets.
-     * One of them will be selected to create the instances
-     * based on various criteria, like:
-     * - ranks,
-     * - location policy,
-     * - current capacity,
-     * - available reservations (you can specify affinity in
-     * InstanceProperties),
-     * - SWAN/GOOSE limitations.
+     * Specifies named instance selections that define properties for instances
+     * created in bulk.
      * Key is an arbitrary, unique RFC1035 string that identifies the instance
      * selection.
      *

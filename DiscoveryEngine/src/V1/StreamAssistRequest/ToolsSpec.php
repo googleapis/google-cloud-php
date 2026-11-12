@@ -25,8 +25,10 @@ class ToolsSpec extends \Google\Protobuf\Internal\Message
      * Optional. Specification of the web grounding tool.
      * If field is present, enables grounding with web search. Works only if
      * [Assistant.web_grounding_type][google.cloud.discoveryengine.v1.Assistant.web_grounding_type]
-     * is [WEB_GROUNDING_TYPE_GOOGLE_SEARCH][] or
-     * [WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH][].
+     * is
+     * [WEB_GROUNDING_TYPE_GOOGLE_SEARCH][google.cloud.discoveryengine.v1.Assistant.WebGroundingType.WEB_GROUNDING_TYPE_GOOGLE_SEARCH]
+     * or
+     * [WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH][google.cloud.discoveryengine.v1.Assistant.WebGroundingType.WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH].
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.StreamAssistRequest.ToolsSpec.WebGroundingSpec web_grounding_spec = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -56,8 +58,10 @@ class ToolsSpec extends \Google\Protobuf\Internal\Message
      *           Optional. Specification of the web grounding tool.
      *           If field is present, enables grounding with web search. Works only if
      *           [Assistant.web_grounding_type][google.cloud.discoveryengine.v1.Assistant.web_grounding_type]
-     *           is [WEB_GROUNDING_TYPE_GOOGLE_SEARCH][] or
-     *           [WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH][].
+     *           is
+     *           [WEB_GROUNDING_TYPE_GOOGLE_SEARCH][google.cloud.discoveryengine.v1.Assistant.WebGroundingType.WEB_GROUNDING_TYPE_GOOGLE_SEARCH]
+     *           or
+     *           [WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH][google.cloud.discoveryengine.v1.Assistant.WebGroundingType.WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH].
      *     @type \Google\Cloud\DiscoveryEngine\V1\StreamAssistRequest\ToolsSpec\ImageGenerationSpec $image_generation_spec
      *           Optional. Specification of the image generation tool.
      *     @type \Google\Cloud\DiscoveryEngine\V1\StreamAssistRequest\ToolsSpec\VideoGenerationSpec $video_generation_spec
@@ -109,8 +113,10 @@ class ToolsSpec extends \Google\Protobuf\Internal\Message
      * Optional. Specification of the web grounding tool.
      * If field is present, enables grounding with web search. Works only if
      * [Assistant.web_grounding_type][google.cloud.discoveryengine.v1.Assistant.web_grounding_type]
-     * is [WEB_GROUNDING_TYPE_GOOGLE_SEARCH][] or
-     * [WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH][].
+     * is
+     * [WEB_GROUNDING_TYPE_GOOGLE_SEARCH][google.cloud.discoveryengine.v1.Assistant.WebGroundingType.WEB_GROUNDING_TYPE_GOOGLE_SEARCH]
+     * or
+     * [WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH][google.cloud.discoveryengine.v1.Assistant.WebGroundingType.WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH].
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.StreamAssistRequest.ToolsSpec.WebGroundingSpec web_grounding_spec = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\DiscoveryEngine\V1\StreamAssistRequest\ToolsSpec\WebGroundingSpec|null
@@ -134,8 +140,10 @@ class ToolsSpec extends \Google\Protobuf\Internal\Message
      * Optional. Specification of the web grounding tool.
      * If field is present, enables grounding with web search. Works only if
      * [Assistant.web_grounding_type][google.cloud.discoveryengine.v1.Assistant.web_grounding_type]
-     * is [WEB_GROUNDING_TYPE_GOOGLE_SEARCH][] or
-     * [WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH][].
+     * is
+     * [WEB_GROUNDING_TYPE_GOOGLE_SEARCH][google.cloud.discoveryengine.v1.Assistant.WebGroundingType.WEB_GROUNDING_TYPE_GOOGLE_SEARCH]
+     * or
+     * [WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH][google.cloud.discoveryengine.v1.Assistant.WebGroundingType.WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH].
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.StreamAssistRequest.ToolsSpec.WebGroundingSpec web_grounding_spec = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\DiscoveryEngine\V1\StreamAssistRequest\ToolsSpec\WebGroundingSpec $var

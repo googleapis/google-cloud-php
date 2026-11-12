@@ -1,10 +1,6 @@
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'Spanner/**'
-      - '.github/workflows/emulator-system-tests-spanner.yaml'
+  release:
+    types: [published]
   pull_request:
     paths:
       - 'Spanner/**'
@@ -14,23 +10,23 @@ permissions:
   contents: read
 jobs:
   test:
-    name: Spanner
+    name: "Emulator System Tests: Spanner"
     runs-on: 'ubuntu-26.04'
     services:
       emulator:
-        image: gcr.io/cloud-spanner-emulator/emulator:1.5.58@sha256:e5bb3535cb3c1e821802531efd9a1d29bbf9804db57a4ae36731764926e3bcb8
+        image: gcr.io/cloud-spanner-emulator/emulator:1.5.59@sha256:f9212d99a52ee9bf39b6e4b397eab09b90d87327dca7a985110801456b40dc9d
         ports:
           - 9010:9010
           - 9020:9020
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Create Spanner instance
-        uses: google-github-actions/setup-gcloud@aa5489c8933f4cc7a4f7d45035b3b1440c9c10db # v3
+        uses: google-github-actions/setup-gcloud@aa5489c8933f4cc7a4f7d45035b3b1440c9c10db # v3.0.1
         with:
           version: '516.0.0'
       - run: gcloud info
@@ -41,7 +37,7 @@ jobs:
       - run: gcloud spanner instances create google-cloud-php-system-tests --config=emulator-config --description="Test Instance" --nodes=1
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: '8.4'
           ini-values: grpc.enable_fork_support=1

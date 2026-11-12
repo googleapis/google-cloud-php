@@ -24,13 +24,24 @@ class DeleteAutoProtectionPolicyRequest extends \Google\Protobuf\Internal\Messag
      */
     protected $name = '';
     /**
-     * The current etag of the AutoProtectionPolicy.
+     * Optional. The current etag of the AutoProtectionPolicy.
      * If an etag is provided and does not match the current etag of the
      * connection, the request will be rejected with an ABORTED error.
      *
-     * Generated from protobuf field <code>string etag = 2;</code>
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $etag = '';
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique
+     * request ID so that if you must retry your request, the server will know to
+     * ignore the request if it has already been completed. The server will
+     * guarantee that for at least 60 minutes since the first request.
+     * The request ID must be a valid UUID with the exception that zero UUID is
+     * not supported (00000000-0000-0000-0000-000000000000).
+     *
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     */
+    protected $request_id = '';
 
     /**
      * @param string $name Required. The name of the policy to delete.
@@ -59,9 +70,16 @@ class DeleteAutoProtectionPolicyRequest extends \Google\Protobuf\Internal\Messag
      *           Format:
      *           projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}
      *     @type string $etag
-     *           The current etag of the AutoProtectionPolicy.
+     *           Optional. The current etag of the AutoProtectionPolicy.
      *           If an etag is provided and does not match the current etag of the
      *           connection, the request will be rejected with an ABORTED error.
+     *     @type string $request_id
+     *           Optional. An optional request ID to identify requests. Specify a unique
+     *           request ID so that if you must retry your request, the server will know to
+     *           ignore the request if it has already been completed. The server will
+     *           guarantee that for at least 60 minutes since the first request.
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
      * }
      */
     public function __construct($data = NULL) {
@@ -100,11 +118,11 @@ class DeleteAutoProtectionPolicyRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * The current etag of the AutoProtectionPolicy.
+     * Optional. The current etag of the AutoProtectionPolicy.
      * If an etag is provided and does not match the current etag of the
      * connection, the request will be rejected with an ABORTED error.
      *
-     * Generated from protobuf field <code>string etag = 2;</code>
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getEtag()
@@ -113,11 +131,11 @@ class DeleteAutoProtectionPolicyRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * The current etag of the AutoProtectionPolicy.
+     * Optional. The current etag of the AutoProtectionPolicy.
      * If an etag is provided and does not match the current etag of the
      * connection, the request will be rejected with an ABORTED error.
      *
-     * Generated from protobuf field <code>string etag = 2;</code>
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -125,6 +143,42 @@ class DeleteAutoProtectionPolicyRequest extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique
+     * request ID so that if you must retry your request, the server will know to
+     * ignore the request if it has already been completed. The server will
+     * guarantee that for at least 60 minutes since the first request.
+     * The request ID must be a valid UUID with the exception that zero UUID is
+     * not supported (00000000-0000-0000-0000-000000000000).
+     *
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     * @return string
+     */
+    public function getRequestId()
+    {
+        return $this->request_id;
+    }
+
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique
+     * request ID so that if you must retry your request, the server will know to
+     * ignore the request if it has already been completed. The server will
+     * guarantee that for at least 60 minutes since the first request.
+     * The request ID must be a valid UUID with the exception that zero UUID is
+     * not supported (00000000-0000-0000-0000-000000000000).
+     *
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRequestId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->request_id = $var;
 
         return $this;
     }

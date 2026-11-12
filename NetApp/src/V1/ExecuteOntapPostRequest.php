@@ -32,7 +32,7 @@ class ExecuteOntapPostRequest extends \Google\Protobuf\Internal\Message
      */
     protected $body = null;
     /**
-     * Required. The resource path of the ONTAP resource.
+     * Required. The path of the ONTAP resource.
      * Format:
      * `projects/{project_number}/locations/{location_id}/storagePools/{storage_pool_id}/ontap/{ontap_resource_path}`.
      * For example:
@@ -61,7 +61,7 @@ class ExecuteOntapPostRequest extends \Google\Protobuf\Internal\Message
      *           }
      *           ```
      *     @type string $ontap_path
-     *           Required. The resource path of the ONTAP resource.
+     *           Required. The path of the ONTAP resource.
      *           Format:
      *           `projects/{project_number}/locations/{location_id}/storagePools/{storage_pool_id}/ontap/{ontap_resource_path}`.
      *           For example:
@@ -130,7 +130,7 @@ class ExecuteOntapPostRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource path of the ONTAP resource.
+     * Required. The path of the ONTAP resource.
      * Format:
      * `projects/{project_number}/locations/{location_id}/storagePools/{storage_pool_id}/ontap/{ontap_resource_path}`.
      * For example:
@@ -145,7 +145,7 @@ class ExecuteOntapPostRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource path of the ONTAP resource.
+     * Required. The path of the ONTAP resource.
      * Format:
      * `projects/{project_number}/locations/{location_id}/storagePools/{storage_pool_id}/ontap/{ontap_resource_path}`.
      * For example:

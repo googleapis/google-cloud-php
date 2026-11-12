@@ -42,7 +42,7 @@ function update_variant_sample(string $variantResourcesElement): void
     $configDeliveryClient = new ConfigDeliveryClient();
 
     // Prepare the request message.
-    $variantResources = [$variantResourcesElement,];
+    $variantResources = [$variantResourcesElement];
     $variant = (new Variant())
         ->setResources($variantResources);
     $request = (new UpdateVariantRequest())

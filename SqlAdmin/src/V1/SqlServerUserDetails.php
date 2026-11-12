@@ -16,13 +16,13 @@ use Google\Protobuf\RepeatedField;
 class SqlServerUserDetails extends \Google\Protobuf\Internal\Message
 {
     /**
-     * If the user has been disabled
+     * Indicates if the user has been disabled.
      *
      * Generated from protobuf field <code>bool disabled = 1;</code>
      */
     protected $disabled = false;
     /**
-     * The server roles for this user
+     * Indicates the server roles for this user.
      *
      * Generated from protobuf field <code>repeated string server_roles = 2;</code>
      */
@@ -35,9 +35,9 @@ class SqlServerUserDetails extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $disabled
-     *           If the user has been disabled
+     *           Indicates if the user has been disabled.
      *     @type string[] $server_roles
-     *           The server roles for this user
+     *           Indicates the server roles for this user.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +46,7 @@ class SqlServerUserDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the user has been disabled
+     * Indicates if the user has been disabled.
      *
      * Generated from protobuf field <code>bool disabled = 1;</code>
      * @return bool
@@ -57,7 +57,7 @@ class SqlServerUserDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the user has been disabled
+     * Indicates if the user has been disabled.
      *
      * Generated from protobuf field <code>bool disabled = 1;</code>
      * @param bool $var
@@ -72,7 +72,7 @@ class SqlServerUserDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The server roles for this user
+     * Indicates the server roles for this user.
      *
      * Generated from protobuf field <code>repeated string server_roles = 2;</code>
      * @return RepeatedField<string>
@@ -83,7 +83,7 @@ class SqlServerUserDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The server roles for this user
+     * Indicates the server roles for this user.
      *
      * Generated from protobuf field <code>repeated string server_roles = 2;</code>
      * @param string[] $var

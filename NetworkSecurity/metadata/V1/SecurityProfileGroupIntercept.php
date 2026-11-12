@@ -17,7 +17,7 @@ class SecurityProfileGroupIntercept
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\x8D\x04\x0AFgoogle/cloud/networksecurity/v1/security_profile_group_intercept.proto\x12\x1Fgoogle.cloud.networksecurity.v1\x1A\x19google/api/resource.proto\"y\x0A\x16CustomInterceptProfile\x12_\x0A\x18intercept_endpoint_group\x18\x01 \x01(\x09B=\xE0A\x02\xFAA7\x0A5networksecurity.googleapis.com/InterceptEndpointGroupB\x83\x02\x0A#com.google.cloud.networksecurity.v1B\"SecurityProfileGroupInterceptProtoP\x01ZMcloud.google.com/go/networksecurity/apiv1/networksecuritypb;networksecuritypb\xAA\x02\x1FGoogle.Cloud.NetworkSecurity.V1\xCA\x02\x1FGoogle\\Cloud\\NetworkSecurity\\V1\xEA\x02\"Google::Cloud::NetworkSecurity::V1b\x06proto3"
+            "\x0A\x8E\x04\x0AFgoogle/cloud/networksecurity/v1/security_profile_group_intercept.proto\x12\x1Fgoogle.cloud.networksecurity.v1\x1A\x19google/api/resource.proto\"z\x0A\x16CustomInterceptProfile\x12`\x0A\x18intercept_endpoint_group\x18\x01 \x01(\x09B>\xE2A\x01\x02\xFAA7\x0A5networksecurity.googleapis.com/InterceptEndpointGroupB\x83\x02\x0A#com.google.cloud.networksecurity.v1B\"SecurityProfileGroupInterceptProtoP\x01ZMcloud.google.com/go/networksecurity/apiv1/networksecuritypb;networksecuritypb\xAA\x02\x1FGoogle.Cloud.NetworkSecurity.V1\xCA\x02\x1FGoogle\\Cloud\\NetworkSecurity\\V1\xEA\x02\"Google::Cloud::NetworkSecurity::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

@@ -21,7 +21,8 @@ class CustomPacingGoalUnit
     const CUSTOM_PACING_GOAL_UNIT_UNSPECIFIED = 0;
     /**
      * The custom pacing goal amounts represent absolute numbers corresponding
-     * to the line item's [Goal.unitType][].
+     * to the line item's
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type].
      *
      * Generated from protobuf enum <code>ABSOLUTE = 1;</code>
      */

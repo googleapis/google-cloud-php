@@ -46,7 +46,7 @@ function export_entity_types_sample(string $formattedParent, string $entityTypes
     $entityTypesClient = new EntityTypesClient();
 
     // Prepare the request message.
-    $entityTypes = [$entityTypesElement,];
+    $entityTypes = [$entityTypesElement];
     $request = (new ExportEntityTypesRequest())
         ->setParent($formattedParent)
         ->setEntityTypes($entityTypes);

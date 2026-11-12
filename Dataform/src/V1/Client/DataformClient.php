@@ -168,6 +168,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<CommitWorkspaceChangesResponse> commitWorkspaceChangesAsync(CommitWorkspaceChangesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ComputeRepositoryAccessTokenStatusResponse> computeRepositoryAccessTokenStatusAsync(ComputeRepositoryAccessTokenStatusRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CompilationResult> createCompilationResultAsync(CreateCompilationResultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createCompilationResultLongRunningAsync(CreateCompilationResultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Folder> createFolderAsync(CreateFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ReleaseConfig> createReleaseConfigAsync(CreateReleaseConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Repository> createRepositoryAsync(CreateRepositoryRequest $request, array $optionalArgs = [])
@@ -944,6 +945,36 @@ final class DataformClient
         array $callOptions = []
     ): CompilationResult {
         return $this->startApiCall('CreateCompilationResult', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new CompilationResult in a given project and location
+     * asynchronously.
+     *
+     * The async variant is
+     * {@see DataformClient::createCompilationResultLongRunningAsync()} .
+     *
+     * @example samples/V1/DataformClient/create_compilation_result_long_running.php
+     *
+     * @param CreateCompilationResultRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<CompilationResult>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createCompilationResultLongRunning(
+        CreateCompilationResultRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateCompilationResultLongRunning', $request, $callOptions)->wait();
     }
 
     /**

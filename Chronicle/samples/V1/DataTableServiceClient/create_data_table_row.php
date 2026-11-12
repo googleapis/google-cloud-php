@@ -46,7 +46,7 @@ function create_data_table_row_sample(
     $dataTableServiceClient = new DataTableServiceClient();
 
     // Prepare the request message.
-    $dataTableRowValues = [$dataTableRowValuesElement,];
+    $dataTableRowValues = [$dataTableRowValuesElement];
     $dataTableRow = (new DataTableRow())
         ->setValues($dataTableRowValues);
     $request = (new CreateDataTableRowRequest())

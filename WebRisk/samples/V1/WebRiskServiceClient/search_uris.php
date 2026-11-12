@@ -46,7 +46,7 @@ function search_uris_sample(string $uri, int $threatTypesElement): void
     $webRiskServiceClient = new WebRiskServiceClient();
 
     // Prepare the request message.
-    $threatTypes = [$threatTypesElement,];
+    $threatTypes = [$threatTypesElement];
     $request = (new SearchUrisRequest())
         ->setUri($uri)
         ->setThreatTypes($threatTypes);

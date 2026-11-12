@@ -18,22 +18,22 @@ use Google\Protobuf\RepeatedField;
 class ManagedCertificate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Immutable. The domains for which a managed SSL certificate will be
-     * generated. Wildcard domains are only supported with DNS challenge
+     * Optional. Immutable. The domains for which a managed SSL certificate will
+     * be generated. Wildcard domains are only supported with DNS challenge
      * resolution.
      *
-     * Generated from protobuf field <code>repeated string domains = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>repeated string domains = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $domains;
     /**
-     * Immutable. Authorizations that will be used for performing domain
-     * authorization.
+     * Optional. Immutable. Authorizations that will be used for performing
+     * domain authorization.
      *
-     * Generated from protobuf field <code>repeated string dns_authorizations = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>repeated string dns_authorizations = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $dns_authorizations;
     /**
-     * Immutable. The resource name for a
+     * Optional. Immutable. The resource name for a
      * [CertificateIssuanceConfig][google.cloud.certificatemanager.v1.CertificateIssuanceConfig]
      * used to configure private PKI certificates in the format
      * `projects/{@*}locations/{@*}certificateIssuanceConfigs/*`.
@@ -41,7 +41,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      * signed as documented at
      * https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs#caa.
      *
-     * Generated from protobuf field <code>string issuance_config = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string issuance_config = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $issuance_config = '';
     /**
@@ -72,14 +72,14 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[] $domains
-     *           Immutable. The domains for which a managed SSL certificate will be
-     *           generated. Wildcard domains are only supported with DNS challenge
+     *           Optional. Immutable. The domains for which a managed SSL certificate will
+     *           be generated. Wildcard domains are only supported with DNS challenge
      *           resolution.
      *     @type string[] $dns_authorizations
-     *           Immutable. Authorizations that will be used for performing domain
-     *           authorization.
+     *           Optional. Immutable. Authorizations that will be used for performing
+     *           domain authorization.
      *     @type string $issuance_config
-     *           Immutable. The resource name for a
+     *           Optional. Immutable. The resource name for a
      *           [CertificateIssuanceConfig][google.cloud.certificatemanager.v1.CertificateIssuanceConfig]
      *           used to configure private PKI certificates in the format
      *           `projects/{@*}locations/{@*}certificateIssuanceConfigs/*`.
@@ -102,11 +102,11 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The domains for which a managed SSL certificate will be
-     * generated. Wildcard domains are only supported with DNS challenge
+     * Optional. Immutable. The domains for which a managed SSL certificate will
+     * be generated. Wildcard domains are only supported with DNS challenge
      * resolution.
      *
-     * Generated from protobuf field <code>repeated string domains = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>repeated string domains = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<string>
      */
     public function getDomains()
@@ -115,11 +115,11 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The domains for which a managed SSL certificate will be
-     * generated. Wildcard domains are only supported with DNS challenge
+     * Optional. Immutable. The domains for which a managed SSL certificate will
+     * be generated. Wildcard domains are only supported with DNS challenge
      * resolution.
      *
-     * Generated from protobuf field <code>repeated string domains = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>repeated string domains = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[] $var
      * @return $this
      */
@@ -132,10 +132,10 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Authorizations that will be used for performing domain
-     * authorization.
+     * Optional. Immutable. Authorizations that will be used for performing
+     * domain authorization.
      *
-     * Generated from protobuf field <code>repeated string dns_authorizations = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>repeated string dns_authorizations = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return RepeatedField<string>
      */
     public function getDnsAuthorizations()
@@ -144,10 +144,10 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Authorizations that will be used for performing domain
-     * authorization.
+     * Optional. Immutable. Authorizations that will be used for performing
+     * domain authorization.
      *
-     * Generated from protobuf field <code>repeated string dns_authorizations = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>repeated string dns_authorizations = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string[] $var
      * @return $this
      */
@@ -160,7 +160,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The resource name for a
+     * Optional. Immutable. The resource name for a
      * [CertificateIssuanceConfig][google.cloud.certificatemanager.v1.CertificateIssuanceConfig]
      * used to configure private PKI certificates in the format
      * `projects/{@*}locations/{@*}certificateIssuanceConfigs/*`.
@@ -168,7 +168,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      * signed as documented at
      * https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs#caa.
      *
-     * Generated from protobuf field <code>string issuance_config = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string issuance_config = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getIssuanceConfig()
@@ -177,7 +177,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The resource name for a
+     * Optional. Immutable. The resource name for a
      * [CertificateIssuanceConfig][google.cloud.certificatemanager.v1.CertificateIssuanceConfig]
      * used to configure private PKI certificates in the format
      * `projects/{@*}locations/{@*}certificateIssuanceConfigs/*`.
@@ -185,7 +185,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      * signed as documented at
      * https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs#caa.
      *
-     * Generated from protobuf field <code>string issuance_config = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string issuance_config = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -16,7 +16,7 @@ use Google\Protobuf\RepeatedField;
 class SqlServerTable extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Table name.
+     * The table name.
      *
      * Generated from protobuf field <code>string table = 1;</code>
      */
@@ -37,7 +37,7 @@ class SqlServerTable extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $table
-     *           Table name.
+     *           The table name.
      *     @type \Google\Cloud\Datastream\V1\SqlServerColumn[] $columns
      *           SQLServer columns in the schema.
      *           When unspecified as part of include/exclude objects,
@@ -50,7 +50,7 @@ class SqlServerTable extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Table name.
+     * The table name.
      *
      * Generated from protobuf field <code>string table = 1;</code>
      * @return string
@@ -61,7 +61,7 @@ class SqlServerTable extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Table name.
+     * The table name.
      *
      * Generated from protobuf field <code>string table = 1;</code>
      * @param string $var

@@ -51,6 +51,14 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
      */
     protected $ssh_authentication_config = null;
     /**
+     * Optional. Resource name for the Account Connector used for personal
+     * authentication. Must be in the format
+     * `projects/{@*}locations/{@*}accountConnectors/*`
+     *
+     * Generated from protobuf field <code>optional string account_connector = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $account_connector = null;
+    /**
      * Optional. Resource name for the `GitRepositoryLink` used for machine
      * credentials. Must be in the format
      * `projects/{@*}locations/{@*}connections/{@*}gitRepositoryLinks/*`
@@ -89,6 +97,10 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
      *           `projects/{@*}secrets/{@*}versions/*`.
      *     @type \Google\Cloud\Dataform\V1beta1\Repository\GitRemoteSettings\SshAuthenticationConfig $ssh_authentication_config
      *           Optional. Authentication fields for remote uris using SSH protocol.
+     *     @type string $account_connector
+     *           Optional. Resource name for the Account Connector used for personal
+     *           authentication. Must be in the format
+     *           `projects/{@*}locations/{@*}accountConnectors/*`
      *     @type string $git_repository_link
      *           Optional. Resource name for the `GitRepositoryLink` used for machine
      *           credentials. Must be in the format
@@ -250,6 +262,46 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\Repository\GitRemoteSettings\SshAuthenticationConfig::class);
         $this->ssh_authentication_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Resource name for the Account Connector used for personal
+     * authentication. Must be in the format
+     * `projects/{@*}locations/{@*}accountConnectors/*`
+     *
+     * Generated from protobuf field <code>optional string account_connector = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getAccountConnector()
+    {
+        return isset($this->account_connector) ? $this->account_connector : '';
+    }
+
+    public function hasAccountConnector()
+    {
+        return isset($this->account_connector);
+    }
+
+    public function clearAccountConnector()
+    {
+        unset($this->account_connector);
+    }
+
+    /**
+     * Optional. Resource name for the Account Connector used for personal
+     * authentication. Must be in the format
+     * `projects/{@*}locations/{@*}accountConnectors/*`
+     *
+     * Generated from protobuf field <code>optional string account_connector = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAccountConnector($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->account_connector = $var;
 
         return $this;
     }

@@ -46,7 +46,7 @@ function batch_deactivate_creative_wrappers_sample(
     $creativeWrapperServiceClient = new CreativeWrapperServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchDeactivateCreativeWrappersRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

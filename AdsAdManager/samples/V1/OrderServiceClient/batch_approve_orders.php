@@ -44,7 +44,7 @@ function batch_approve_orders_sample(string $formattedParent, string $formattedN
     $orderServiceClient = new OrderServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchApproveOrdersRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

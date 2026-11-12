@@ -47,7 +47,7 @@ function generate_access_token_sample(string $formattedName, string $scopeElemen
     $iAMCredentialsClient = new IAMCredentialsClient();
 
     // Prepare the request message.
-    $scope = [$scopeElement,];
+    $scope = [$scopeElement];
     $request = (new GenerateAccessTokenRequest())
         ->setName($formattedName)
         ->setScope($scope);

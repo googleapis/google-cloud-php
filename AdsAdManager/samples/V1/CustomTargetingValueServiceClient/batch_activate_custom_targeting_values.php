@@ -51,7 +51,7 @@ function batch_activate_custom_targeting_values_sample(
     // Prepare the request message.
     $activateCustomTargetingValueRequest = (new ActivateCustomTargetingValueRequest())
         ->setName($formattedRequestsName);
-    $requests = [$activateCustomTargetingValueRequest,];
+    $requests = [$activateCustomTargetingValueRequest];
     $request = (new BatchActivateCustomTargetingValuesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

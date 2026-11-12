@@ -15,14 +15,20 @@ use Google\Protobuf\RepeatedField;
 class VpnTunnelPhase2Algorithms extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Encryption algorithms for IKE phase 2.
+     *
      * Generated from protobuf field <code>repeated string encryption = 97980291;</code>
      */
     private $encryption;
     /**
+     * Integrity algorithms for IKE phase 2.
+     *
      * Generated from protobuf field <code>repeated string integrity = 492830541;</code>
      */
     private $integrity;
     /**
+     * Perfect Forward Secrecy (PFS) groups for IKE phase 2.
+     *
      * Generated from protobuf field <code>repeated string pfs = 110909;</code>
      */
     private $pfs;
@@ -34,8 +40,11 @@ class VpnTunnelPhase2Algorithms extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[] $encryption
+     *           Encryption algorithms for IKE phase 2.
      *     @type string[] $integrity
+     *           Integrity algorithms for IKE phase 2.
      *     @type string[] $pfs
+     *           Perfect Forward Secrecy (PFS) groups for IKE phase 2.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,6 +53,8 @@ class VpnTunnelPhase2Algorithms extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Encryption algorithms for IKE phase 2.
+     *
      * Generated from protobuf field <code>repeated string encryption = 97980291;</code>
      * @return RepeatedField<string>
      */
@@ -53,6 +64,8 @@ class VpnTunnelPhase2Algorithms extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Encryption algorithms for IKE phase 2.
+     *
      * Generated from protobuf field <code>repeated string encryption = 97980291;</code>
      * @param string[] $var
      * @return $this
@@ -66,6 +79,8 @@ class VpnTunnelPhase2Algorithms extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Integrity algorithms for IKE phase 2.
+     *
      * Generated from protobuf field <code>repeated string integrity = 492830541;</code>
      * @return RepeatedField<string>
      */
@@ -75,6 +90,8 @@ class VpnTunnelPhase2Algorithms extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Integrity algorithms for IKE phase 2.
+     *
      * Generated from protobuf field <code>repeated string integrity = 492830541;</code>
      * @param string[] $var
      * @return $this
@@ -88,6 +105,8 @@ class VpnTunnelPhase2Algorithms extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Perfect Forward Secrecy (PFS) groups for IKE phase 2.
+     *
      * Generated from protobuf field <code>repeated string pfs = 110909;</code>
      * @return RepeatedField<string>
      */
@@ -97,6 +116,8 @@ class VpnTunnelPhase2Algorithms extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Perfect Forward Secrecy (PFS) groups for IKE phase 2.
+     *
      * Generated from protobuf field <code>repeated string pfs = 110909;</code>
      * @param string[] $var
      * @return $this

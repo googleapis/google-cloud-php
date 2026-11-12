@@ -16,7 +16,7 @@ class Actor
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xE2\x02\x0A#google/cloud/support/v2/actor.proto\x12\x17google.cloud.support.v2\"d\x0A\x05Actor\x12\x14\x0A\x0Cdisplay_name\x18\x01 \x01(\x09\x12\x11\x0A\x05email\x18\x02 \x01(\x09B\x02\x18\x01\x12\x1B\x0A\x0Egoogle_support\x18\x04 \x01(\x08B\x03\xE0A\x03\x12\x15\x0A\x08username\x18\x05 \x01(\x09B\x03\xE0A\x03B\xB3\x01\x0A\x1Bcom.google.cloud.support.v2B\x0AActorProtoP\x01Z5cloud.google.com/go/support/apiv2/supportpb;supportpb\xAA\x02\x17Google.Cloud.Support.V2\xCA\x02\x17Google\\Cloud\\Support\\V2\xEA\x02\x1AGoogle::Cloud::Support::V2b\x06proto3"
+            "\x0A\xE4\x02\x0A#google/cloud/support/v2/actor.proto\x12\x17google.cloud.support.v2\"f\x0A\x05Actor\x12\x14\x0A\x0Cdisplay_name\x18\x01 \x01(\x09\x12\x11\x0A\x05email\x18\x02 \x01(\x09B\x02\x18\x01\x12\x1C\x0A\x0Egoogle_support\x18\x04 \x01(\x08B\x04\xE2A\x01\x03\x12\x16\x0A\x08username\x18\x05 \x01(\x09B\x04\xE2A\x01\x03B\xB3\x01\x0A\x1Bcom.google.cloud.support.v2B\x0AActorProtoP\x01Z5cloud.google.com/go/support/apiv2/supportpb;supportpb\xAA\x02\x17Google.Cloud.Support.V2\xCA\x02\x17Google\\Cloud\\Support\\V2\xEA\x02\x1AGoogle::Cloud::Support::V2b\x06proto3"
         , true);
 
         static::$is_initialized = true;

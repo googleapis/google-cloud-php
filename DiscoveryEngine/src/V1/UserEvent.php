@@ -24,7 +24,6 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `view-item-list`: View of a panel or ordered list of Documents.
      * * `view-home-page`: View of the home page.
      * * `view-category-page`: View of a category page, e.g. Home > Men > Jeans
-     * * `add-feedback`: Add a user feedback.
      * Retail-related values:
      * * `add-to-cart`: Add an item(s) to cart, e.g. in Retail online shopping
      * * `purchase`: Purchase an item(s)
@@ -167,8 +166,9 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      */
     protected $attribution_token = '';
     /**
-     * The filter syntax consists of an expression language for constructing a
-     * predicate from one or more fields of the documents being filtered.
+     * Optional. The filter syntax consists of an expression language for
+     * constructing a predicate from one or more fields of the documents being
+     * filtered.
      * One example is for `search` events, the associated
      * [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] may contain
      * a filter expression in
@@ -182,7 +182,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * The value must be a UTF-8 encoded string with a length limit of 1,000
      * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
-     * Generated from protobuf field <code>string filter = 9;</code>
+     * Generated from protobuf field <code>string filter = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = '';
     /**
@@ -250,7 +250,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      */
     private $promotion_ids;
     /**
-     * Extra user event features to include in the recommendation model.
+     * Optional. Extra user event features to include in the recommendation model.
      * These attributes must NOT contain data that needs to be parsed or processed
      * further, e.g. JSON or other encodings.
      * If you provide custom attributes for ingested user events, also include
@@ -273,7 +273,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * at the site by coming to the site directly, coming through Google
      * search, or in other ways.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.CustomAttribute> attributes = 17;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.CustomAttribute> attributes = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $attributes;
     /**
@@ -289,6 +289,22 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.PanelInfo panels = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $panels;
+    /**
+     * Optional. This field is optional except for the `add-feedback` event types.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Feedback feedback = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $feedback = null;
+    /**
+     * Optional. Represents the entity for customers that may run multiple
+     * different entities, domains, sites or regions, for example, `Google US`,
+     * `Google Ads`, `Waymo`, `google.com`, `youtube.com`, etc. We recommend that
+     * you set `entity` to get better per-entity search, completion, and
+     * prediction results.
+     *
+     * Generated from protobuf field <code>string entity = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $entity = '';
 
     /**
      * Constructor.
@@ -304,7 +320,6 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           * `view-item-list`: View of a panel or ordered list of Documents.
      *           * `view-home-page`: View of the home page.
      *           * `view-category-page`: View of a category page, e.g. Home > Men > Jeans
-     *           * `add-feedback`: Add a user feedback.
      *           Retail-related values:
      *           * `add-to-cart`: Add an item(s) to cart, e.g. in Retail online shopping
      *           * `purchase`: Purchase an item(s)
@@ -403,8 +418,9 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           [RecommendResponse.attribution_token][google.cloud.discoveryengine.v1.RecommendResponse.attribution_token]
      *           to this field.
      *     @type string $filter
-     *           The filter syntax consists of an expression language for constructing a
-     *           predicate from one or more fields of the documents being filtered.
+     *           Optional. The filter syntax consists of an expression language for
+     *           constructing a predicate from one or more fields of the documents being
+     *           filtered.
      *           One example is for `search` events, the associated
      *           [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] may contain
      *           a filter expression in
@@ -454,7 +470,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           The promotion IDs if this is an event associated with promotions.
      *           Currently, this field is restricted to at most one ID.
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
-     *           Extra user event features to include in the recommendation model.
+     *           Optional. Extra user event features to include in the recommendation model.
      *           These attributes must NOT contain data that needs to be parsed or processed
      *           further, e.g. JSON or other encodings.
      *           If you provide custom attributes for ingested user events, also include
@@ -481,6 +497,14 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DiscoveryEngine\V1\PanelInfo[] $panels
      *           Optional. List of panels associated with this event.
      *           Used for page-level impression data.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Feedback $feedback
+     *           Optional. This field is optional except for the `add-feedback` event types.
+     *     @type string $entity
+     *           Optional. Represents the entity for customers that may run multiple
+     *           different entities, domains, sites or regions, for example, `Google US`,
+     *           `Google Ads`, `Waymo`, `google.com`, `youtube.com`, etc. We recommend that
+     *           you set `entity` to get better per-entity search, completion, and
+     *           prediction results.
      * }
      */
     public function __construct($data = NULL) {
@@ -496,7 +520,6 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `view-item-list`: View of a panel or ordered list of Documents.
      * * `view-home-page`: View of the home page.
      * * `view-category-page`: View of a category page, e.g. Home > Men > Jeans
-     * * `add-feedback`: Add a user feedback.
      * Retail-related values:
      * * `add-to-cart`: Add an item(s) to cart, e.g. in Retail online shopping
      * * `purchase`: Purchase an item(s)
@@ -522,7 +545,6 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `view-item-list`: View of a panel or ordered list of Documents.
      * * `view-home-page`: View of the home page.
      * * `view-category-page`: View of a category page, e.g. Home > Men > Jeans
-     * * `add-feedback`: Add a user feedback.
      * Retail-related values:
      * * `add-to-cart`: Add an item(s) to cart, e.g. in Retail online shopping
      * * `purchase`: Purchase an item(s)
@@ -973,8 +995,9 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The filter syntax consists of an expression language for constructing a
-     * predicate from one or more fields of the documents being filtered.
+     * Optional. The filter syntax consists of an expression language for
+     * constructing a predicate from one or more fields of the documents being
+     * filtered.
      * One example is for `search` events, the associated
      * [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] may contain
      * a filter expression in
@@ -988,7 +1011,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * The value must be a UTF-8 encoded string with a length limit of 1,000
      * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
-     * Generated from protobuf field <code>string filter = 9;</code>
+     * Generated from protobuf field <code>string filter = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFilter()
@@ -997,8 +1020,9 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The filter syntax consists of an expression language for constructing a
-     * predicate from one or more fields of the documents being filtered.
+     * Optional. The filter syntax consists of an expression language for
+     * constructing a predicate from one or more fields of the documents being
+     * filtered.
      * One example is for `search` events, the associated
      * [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] may contain
      * a filter expression in
@@ -1012,7 +1036,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * The value must be a UTF-8 encoded string with a length limit of 1,000
      * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
-     * Generated from protobuf field <code>string filter = 9;</code>
+     * Generated from protobuf field <code>string filter = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -1291,7 +1315,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Extra user event features to include in the recommendation model.
+     * Optional. Extra user event features to include in the recommendation model.
      * These attributes must NOT contain data that needs to be parsed or processed
      * further, e.g. JSON or other encodings.
      * If you provide custom attributes for ingested user events, also include
@@ -1314,7 +1338,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * at the site by coming to the site directly, coming through Google
      * search, or in other ways.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.CustomAttribute> attributes = 17;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.CustomAttribute> attributes = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getAttributes()
@@ -1323,7 +1347,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Extra user event features to include in the recommendation model.
+     * Optional. Extra user event features to include in the recommendation model.
      * These attributes must NOT contain data that needs to be parsed or processed
      * further, e.g. JSON or other encodings.
      * If you provide custom attributes for ingested user events, also include
@@ -1346,7 +1370,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * at the site by coming to the site directly, coming through Google
      * search, or in other ways.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.CustomAttribute> attributes = 17;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.CustomAttribute> attributes = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -1418,6 +1442,76 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\PanelInfo::class);
         $this->panels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This field is optional except for the `add-feedback` event types.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Feedback feedback = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\Feedback|null
+     */
+    public function getFeedback()
+    {
+        return $this->feedback;
+    }
+
+    public function hasFeedback()
+    {
+        return isset($this->feedback);
+    }
+
+    public function clearFeedback()
+    {
+        unset($this->feedback);
+    }
+
+    /**
+     * Optional. This field is optional except for the `add-feedback` event types.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Feedback feedback = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\Feedback $var
+     * @return $this
+     */
+    public function setFeedback($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Feedback::class);
+        $this->feedback = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Represents the entity for customers that may run multiple
+     * different entities, domains, sites or regions, for example, `Google US`,
+     * `Google Ads`, `Waymo`, `google.com`, `youtube.com`, etc. We recommend that
+     * you set `entity` to get better per-entity search, completion, and
+     * prediction results.
+     *
+     * Generated from protobuf field <code>string entity = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getEntity()
+    {
+        return $this->entity;
+    }
+
+    /**
+     * Optional. Represents the entity for customers that may run multiple
+     * different entities, domains, sites or regions, for example, `Google US`,
+     * `Google Ads`, `Waymo`, `google.com`, `youtube.com`, etc. We recommend that
+     * you set `entity` to get better per-entity search, completion, and
+     * prediction results.
+     *
+     * Generated from protobuf field <code>string entity = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEntity($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->entity = $var;
 
         return $this;
     }

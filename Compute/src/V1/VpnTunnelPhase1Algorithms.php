@@ -15,18 +15,26 @@ use Google\Protobuf\RepeatedField;
 class VpnTunnelPhase1Algorithms extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Diffie-Hellman groups for IKE phase 1.
+     *
      * Generated from protobuf field <code>repeated string dh = 3204;</code>
      */
     private $dh;
     /**
+     * Encryption algorithms for IKE phase 1.
+     *
      * Generated from protobuf field <code>repeated string encryption = 97980291;</code>
      */
     private $encryption;
     /**
+     * Integrity algorithms for IKE phase 1.
+     *
      * Generated from protobuf field <code>repeated string integrity = 492830541;</code>
      */
     private $integrity;
     /**
+     * Pseudo-random functions (PRF) for IKE phase 1.
+     *
      * Generated from protobuf field <code>repeated string prf = 111268;</code>
      */
     private $prf;
@@ -38,9 +46,13 @@ class VpnTunnelPhase1Algorithms extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[] $dh
+     *           Diffie-Hellman groups for IKE phase 1.
      *     @type string[] $encryption
+     *           Encryption algorithms for IKE phase 1.
      *     @type string[] $integrity
+     *           Integrity algorithms for IKE phase 1.
      *     @type string[] $prf
+     *           Pseudo-random functions (PRF) for IKE phase 1.
      * }
      */
     public function __construct($data = NULL) {
@@ -49,6 +61,8 @@ class VpnTunnelPhase1Algorithms extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Diffie-Hellman groups for IKE phase 1.
+     *
      * Generated from protobuf field <code>repeated string dh = 3204;</code>
      * @return RepeatedField<string>
      */
@@ -58,6 +72,8 @@ class VpnTunnelPhase1Algorithms extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Diffie-Hellman groups for IKE phase 1.
+     *
      * Generated from protobuf field <code>repeated string dh = 3204;</code>
      * @param string[] $var
      * @return $this
@@ -71,6 +87,8 @@ class VpnTunnelPhase1Algorithms extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Encryption algorithms for IKE phase 1.
+     *
      * Generated from protobuf field <code>repeated string encryption = 97980291;</code>
      * @return RepeatedField<string>
      */
@@ -80,6 +98,8 @@ class VpnTunnelPhase1Algorithms extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Encryption algorithms for IKE phase 1.
+     *
      * Generated from protobuf field <code>repeated string encryption = 97980291;</code>
      * @param string[] $var
      * @return $this
@@ -93,6 +113,8 @@ class VpnTunnelPhase1Algorithms extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Integrity algorithms for IKE phase 1.
+     *
      * Generated from protobuf field <code>repeated string integrity = 492830541;</code>
      * @return RepeatedField<string>
      */
@@ -102,6 +124,8 @@ class VpnTunnelPhase1Algorithms extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Integrity algorithms for IKE phase 1.
+     *
      * Generated from protobuf field <code>repeated string integrity = 492830541;</code>
      * @param string[] $var
      * @return $this
@@ -115,6 +139,8 @@ class VpnTunnelPhase1Algorithms extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Pseudo-random functions (PRF) for IKE phase 1.
+     *
      * Generated from protobuf field <code>repeated string prf = 111268;</code>
      * @return RepeatedField<string>
      */
@@ -124,6 +150,8 @@ class VpnTunnelPhase1Algorithms extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Pseudo-random functions (PRF) for IKE phase 1.
+     *
      * Generated from protobuf field <code>repeated string prf = 111268;</code>
      * @param string[] $var
      * @return $this

@@ -48,7 +48,7 @@ function create_conversation_sample(
     $dataChatServiceClient = new DataChatServiceClient();
 
     // Prepare the request message.
-    $conversationAgents = [$conversationAgentsElement,];
+    $conversationAgents = [$conversationAgentsElement];
     $conversation = (new Conversation())
         ->setAgents($conversationAgents);
     $request = (new CreateConversationRequest())

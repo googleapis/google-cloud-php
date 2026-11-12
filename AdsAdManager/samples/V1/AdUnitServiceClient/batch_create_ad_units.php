@@ -64,7 +64,7 @@ function batch_create_ad_units_sample(
     $createAdUnitRequest = (new CreateAdUnitRequest())
         ->setParent($formattedRequestsParent)
         ->setAdUnit($requestsAdUnit);
-    $requests = [$createAdUnitRequest,];
+    $requests = [$createAdUnitRequest];
     $request = (new BatchCreateAdUnitsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

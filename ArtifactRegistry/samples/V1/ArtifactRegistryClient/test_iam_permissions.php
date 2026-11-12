@@ -44,7 +44,7 @@ function test_iam_permissions_sample(string $resource, string $permissionsElemen
     $artifactRegistryClient = new ArtifactRegistryClient();
 
     // Prepare the request message.
-    $permissions = [$permissionsElement,];
+    $permissions = [$permissionsElement];
     $request = (new TestIamPermissionsRequest())
         ->setResource($resource)
         ->setPermissions($permissions);

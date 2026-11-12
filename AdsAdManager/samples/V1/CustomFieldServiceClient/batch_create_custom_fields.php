@@ -69,7 +69,7 @@ function batch_create_custom_fields_sample(
     $createCustomFieldRequest = (new CreateCustomFieldRequest())
         ->setParent($formattedRequestsParent)
         ->setCustomField($requestsCustomField);
-    $requests = [$createCustomFieldRequest,];
+    $requests = [$createCustomFieldRequest];
     $request = (new BatchCreateCustomFieldsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

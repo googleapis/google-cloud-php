@@ -70,7 +70,7 @@ function update_connect_cluster_sample(
     $updateMask = new FieldMask();
     $connectNetworkConfig = (new ConnectNetworkConfig())
         ->setPrimarySubnet($connectClusterGcpConfigAccessConfigNetworkConfigsPrimarySubnet);
-    $connectClusterGcpConfigAccessConfigNetworkConfigs = [$connectNetworkConfig,];
+    $connectClusterGcpConfigAccessConfigNetworkConfigs = [$connectNetworkConfig];
     $connectClusterGcpConfigAccessConfig = (new ConnectAccessConfig())
         ->setNetworkConfigs($connectClusterGcpConfigAccessConfigNetworkConfigs);
     $connectClusterGcpConfig = (new ConnectGcpConfig())

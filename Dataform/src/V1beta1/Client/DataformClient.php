@@ -81,6 +81,7 @@ use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesRequest;
 use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesResponse;
 use Google\Cloud\Dataform\V1beta1\FetchRepositoryHistoryRequest;
 use Google\Cloud\Dataform\V1beta1\FetchWorkspaceBranchesRequest;
+use Google\Cloud\Dataform\V1beta1\FetchWorkspaceHistoryRequest;
 use Google\Cloud\Dataform\V1beta1\Folder;
 use Google\Cloud\Dataform\V1beta1\GetCompilationResultRequest;
 use Google\Cloud\Dataform\V1beta1\GetConfigRequest;
@@ -183,6 +184,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<CommitWorkspaceChangesResponse> commitWorkspaceChangesAsync(CommitWorkspaceChangesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ComputeRepositoryAccessTokenStatusResponse> computeRepositoryAccessTokenStatusAsync(ComputeRepositoryAccessTokenStatusRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CompilationResult> createCompilationResultAsync(CreateCompilationResultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createCompilationResultLongRunningAsync(CreateCompilationResultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Folder> createFolderAsync(CreateFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ReleaseConfig> createReleaseConfigAsync(CreateReleaseConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Repository> createRepositoryAsync(CreateRepositoryRequest $request, array $optionalArgs = [])
@@ -208,6 +210,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<FetchRemoteBranchesResponse> fetchRemoteBranchesAsync(FetchRemoteBranchesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> fetchRepositoryHistoryAsync(FetchRepositoryHistoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> fetchWorkspaceBranchesAsync(FetchWorkspaceBranchesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> fetchWorkspaceHistoryAsync(FetchWorkspaceHistoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CompilationResult> getCompilationResultAsync(GetCompilationResultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Config> getConfigAsync(GetConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Folder> getFolderAsync(GetFolderRequest $request, array $optionalArgs = [])
@@ -371,6 +374,27 @@ final class DataformClient
         }
 
         return new OperationsClient($options);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * account_connector resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $accountConnector
+     *
+     * @return string The formatted account_connector resource.
+     *
+     * @experimental
+     */
+    public static function accountConnectorName(string $project, string $location, string $accountConnector): string
+    {
+        return self::getPathTemplate('accountConnector')->render([
+            'project' => $project,
+            'location' => $location,
+            'account_connector' => $accountConnector,
+        ]);
     }
 
     /**
@@ -738,6 +762,7 @@ final class DataformClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - accountConnector: projects/{project}/locations/{location}/accountConnectors/{account_connector}
      * - compilationResult: projects/{project}/locations/{location}/repositories/{repository}/compilationResults/{compilation_result}
      * - config: projects/{project}/locations/{location}/config
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
@@ -1038,6 +1063,38 @@ final class DataformClient
         array $callOptions = []
     ): CompilationResult {
         return $this->startApiCall('CreateCompilationResult', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new CompilationResult in a given project and location
+     * asynchronously.
+     *
+     * The async variant is
+     * {@see DataformClient::createCompilationResultLongRunningAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/create_compilation_result_long_running.php
+     *
+     * @param CreateCompilationResultRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<CompilationResult>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createCompilationResultLongRunning(
+        CreateCompilationResultRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateCompilationResultLongRunning', $request, $callOptions)->wait();
     }
 
     /**
@@ -1745,6 +1802,36 @@ final class DataformClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('FetchWorkspaceBranches', $request, $callOptions);
+    }
+
+    /**
+     * Fetches a Workspace's history of commits.
+     *
+     * The async variant is {@see DataformClient::fetchWorkspaceHistoryAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/fetch_workspace_history.php
+     *
+     * @param FetchWorkspaceHistoryRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function fetchWorkspaceHistory(
+        FetchWorkspaceHistoryRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('FetchWorkspaceHistory', $request, $callOptions);
     }
 
     /**

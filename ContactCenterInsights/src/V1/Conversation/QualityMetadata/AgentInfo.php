@@ -28,11 +28,19 @@ class AgentInfo extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * A user-specified string representing the agent's team.
+     * A user-specified string representing the agent's team. Deprecated in
+     * favor of the `teams` field.
      *
-     * Generated from protobuf field <code>string team = 3;</code>
+     * Generated from protobuf field <code>string team = 3 [deprecated = true];</code>
+     * @deprecated
      */
     protected $team = '';
+    /**
+     * User-specified strings representing the agent's teams.
+     *
+     * Generated from protobuf field <code>repeated string teams = 6;</code>
+     */
+    private $teams;
     /**
      * A user-provided string indicating the outcome of the agent's segment of
      * the call.
@@ -46,6 +54,49 @@ class AgentInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.ConversationParticipant.Role agent_type = 5;</code>
      */
     protected $agent_type = 0;
+    /**
+     * The agent's location.
+     *
+     * Generated from protobuf field <code>string location = 7;</code>
+     */
+    protected $location = '';
+    /**
+     * The agent's deployment ID. Only applicable to automated agents.
+     *
+     * Generated from protobuf field <code>string deployment_id = 8;</code>
+     */
+    protected $deployment_id = '';
+    /**
+     * The agent's deployment display name. Only applicable to automated
+     * agents.
+     *
+     * Generated from protobuf field <code>string deployment_display_name = 9;</code>
+     */
+    protected $deployment_display_name = '';
+    /**
+     * The agent's version ID. Only applicable to automated agents.
+     *
+     * Generated from protobuf field <code>string version_id = 10;</code>
+     */
+    protected $version_id = '';
+    /**
+     * The agent's version display name. Only applicable to automated agents.
+     *
+     * Generated from protobuf field <code>string version_display_name = 11;</code>
+     */
+    protected $version_display_name = '';
+    /**
+     * The entry subagent's display name.
+     *
+     * Generated from protobuf field <code>string entry_subagent_display_name = 12;</code>
+     */
+    protected $entry_subagent_display_name = '';
+    /**
+     * The entry subagent's ID.
+     *
+     * Generated from protobuf field <code>string entry_subagent_id = 13;</code>
+     */
+    protected $entry_subagent_id = '';
 
     /**
      * Constructor.
@@ -58,12 +109,30 @@ class AgentInfo extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           The agent's name.
      *     @type string $team
-     *           A user-specified string representing the agent's team.
+     *           A user-specified string representing the agent's team. Deprecated in
+     *           favor of the `teams` field.
+     *     @type string[] $teams
+     *           User-specified strings representing the agent's teams.
      *     @type string $disposition_code
      *           A user-provided string indicating the outcome of the agent's segment of
      *           the call.
      *     @type int $agent_type
      *           The agent type, e.g. HUMAN_AGENT.
+     *     @type string $location
+     *           The agent's location.
+     *     @type string $deployment_id
+     *           The agent's deployment ID. Only applicable to automated agents.
+     *     @type string $deployment_display_name
+     *           The agent's deployment display name. Only applicable to automated
+     *           agents.
+     *     @type string $version_id
+     *           The agent's version ID. Only applicable to automated agents.
+     *     @type string $version_display_name
+     *           The agent's version display name. Only applicable to automated agents.
+     *     @type string $entry_subagent_display_name
+     *           The entry subagent's display name.
+     *     @type string $entry_subagent_id
+     *           The entry subagent's ID.
      * }
      */
     public function __construct($data = NULL) {
@@ -124,27 +193,61 @@ class AgentInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A user-specified string representing the agent's team.
+     * A user-specified string representing the agent's team. Deprecated in
+     * favor of the `teams` field.
      *
-     * Generated from protobuf field <code>string team = 3;</code>
+     * Generated from protobuf field <code>string team = 3 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getTeam()
     {
+        if ($this->team !== '') {
+            @trigger_error('team is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->team;
     }
 
     /**
-     * A user-specified string representing the agent's team.
+     * A user-specified string representing the agent's team. Deprecated in
+     * favor of the `teams` field.
      *
-     * Generated from protobuf field <code>string team = 3;</code>
+     * Generated from protobuf field <code>string team = 3 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setTeam($var)
     {
+        @trigger_error('team is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->team = $var;
+
+        return $this;
+    }
+
+    /**
+     * User-specified strings representing the agent's teams.
+     *
+     * Generated from protobuf field <code>repeated string teams = 6;</code>
+     * @return RepeatedField<string>
+     */
+    public function getTeams()
+    {
+        return $this->teams;
+    }
+
+    /**
+     * User-specified strings representing the agent's teams.
+     *
+     * Generated from protobuf field <code>repeated string teams = 6;</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setTeams($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->teams = $arr;
 
         return $this;
     }
@@ -199,6 +302,190 @@ class AgentInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\ContactCenterInsights\V1\ConversationParticipant\Role::class);
         $this->agent_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The agent's location.
+     *
+     * Generated from protobuf field <code>string location = 7;</code>
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * The agent's location.
+     *
+     * Generated from protobuf field <code>string location = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location = $var;
+
+        return $this;
+    }
+
+    /**
+     * The agent's deployment ID. Only applicable to automated agents.
+     *
+     * Generated from protobuf field <code>string deployment_id = 8;</code>
+     * @return string
+     */
+    public function getDeploymentId()
+    {
+        return $this->deployment_id;
+    }
+
+    /**
+     * The agent's deployment ID. Only applicable to automated agents.
+     *
+     * Generated from protobuf field <code>string deployment_id = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDeploymentId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->deployment_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The agent's deployment display name. Only applicable to automated
+     * agents.
+     *
+     * Generated from protobuf field <code>string deployment_display_name = 9;</code>
+     * @return string
+     */
+    public function getDeploymentDisplayName()
+    {
+        return $this->deployment_display_name;
+    }
+
+    /**
+     * The agent's deployment display name. Only applicable to automated
+     * agents.
+     *
+     * Generated from protobuf field <code>string deployment_display_name = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDeploymentDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->deployment_display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The agent's version ID. Only applicable to automated agents.
+     *
+     * Generated from protobuf field <code>string version_id = 10;</code>
+     * @return string
+     */
+    public function getVersionId()
+    {
+        return $this->version_id;
+    }
+
+    /**
+     * The agent's version ID. Only applicable to automated agents.
+     *
+     * Generated from protobuf field <code>string version_id = 10;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVersionId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->version_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The agent's version display name. Only applicable to automated agents.
+     *
+     * Generated from protobuf field <code>string version_display_name = 11;</code>
+     * @return string
+     */
+    public function getVersionDisplayName()
+    {
+        return $this->version_display_name;
+    }
+
+    /**
+     * The agent's version display name. Only applicable to automated agents.
+     *
+     * Generated from protobuf field <code>string version_display_name = 11;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVersionDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->version_display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The entry subagent's display name.
+     *
+     * Generated from protobuf field <code>string entry_subagent_display_name = 12;</code>
+     * @return string
+     */
+    public function getEntrySubagentDisplayName()
+    {
+        return $this->entry_subagent_display_name;
+    }
+
+    /**
+     * The entry subagent's display name.
+     *
+     * Generated from protobuf field <code>string entry_subagent_display_name = 12;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEntrySubagentDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->entry_subagent_display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The entry subagent's ID.
+     *
+     * Generated from protobuf field <code>string entry_subagent_id = 13;</code>
+     * @return string
+     */
+    public function getEntrySubagentId()
+    {
+        return $this->entry_subagent_id;
+    }
+
+    /**
+     * The entry subagent's ID.
+     *
+     * Generated from protobuf field <code>string entry_subagent_id = 13;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEntrySubagentId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->entry_subagent_id = $var;
 
         return $this;
     }

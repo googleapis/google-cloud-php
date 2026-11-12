@@ -150,6 +150,17 @@ return [
                     ],
                 ],
             ],
+            'GetBoundary' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/boundary}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetDiscoveredService' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/discoveredServices/*}',
@@ -164,6 +175,17 @@ return [
             'GetDiscoveredWorkload' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/discoveredWorkloads/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetExtendedMetadataSchema' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/extendedMetadataSchemas/**}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -230,6 +252,17 @@ return [
             'ListDiscoveredWorkloads' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/discoveredWorkloads',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListExtendedMetadataSchemas' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/extendedMetadataSchemas',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -316,8 +349,18 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
+            ],
+            'UpdateBoundary' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{boundary.name=projects/*/locations/*/boundary}',
+                'body' => 'boundary',
+                'placeholders' => [
+                    'boundary.name' => [
+                        'getters' => [
+                            'getBoundary',
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'UpdateService' => [
@@ -332,9 +375,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateWorkload' => [
                 'method' => 'patch',
@@ -347,9 +387,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

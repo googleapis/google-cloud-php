@@ -18,7 +18,7 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. Identifier. The resource name of BackupPlanAssociation in
-     * below format Format :
+     * below format Format:
      * projects/{project}/locations/{location}/backupPlanAssociations/{backupPlanAssociationId}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -97,6 +97,14 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string backup_plan_revision_name = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $backup_plan_revision_name = '';
+    /**
+     * Output only. The resource name of the `AutoProtectionPolicyBinding` that
+     * manages this association, if any. Format:
+     * `projects/{project}/locations/{location}/autoProtectionPolicies/{policy}/bindings/{binding}`.
+     *
+     * Generated from protobuf field <code>string auto_protection_policy_binding = 16 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    protected $auto_protection_policy_binding = '';
     protected $resource_properties;
 
     /**
@@ -107,7 +115,7 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. Identifier. The resource name of BackupPlanAssociation in
-     *           below format Format :
+     *           below format Format:
      *           projects/{project}/locations/{location}/backupPlanAssociations/{backupPlanAssociationId}
      *     @type string $resource_type
      *           Required. Immutable. Resource type of workload on which backupplan is
@@ -146,6 +154,10 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
      *           Output only. The resource id of the `BackupPlanRevision`.
      *           Format:
      *           `projects/{project}/locations/{location}/backupPlans/{backup_plan}/revisions/{revision_id}`
+     *     @type string $auto_protection_policy_binding
+     *           Output only. The resource name of the `AutoProtectionPolicyBinding` that
+     *           manages this association, if any. Format:
+     *           `projects/{project}/locations/{location}/autoProtectionPolicies/{policy}/bindings/{binding}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -155,7 +167,7 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Identifier. The resource name of BackupPlanAssociation in
-     * below format Format :
+     * below format Format:
      * projects/{project}/locations/{location}/backupPlanAssociations/{backupPlanAssociationId}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -168,7 +180,7 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Identifier. The resource name of BackupPlanAssociation in
-     * below format Format :
+     * below format Format:
      * projects/{project}/locations/{location}/backupPlanAssociations/{backupPlanAssociationId}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -547,6 +559,36 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->backup_plan_revision_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The resource name of the `AutoProtectionPolicyBinding` that
+     * manages this association, if any. Format:
+     * `projects/{project}/locations/{location}/autoProtectionPolicies/{policy}/bindings/{binding}`.
+     *
+     * Generated from protobuf field <code>string auto_protection_policy_binding = 16 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getAutoProtectionPolicyBinding()
+    {
+        return $this->auto_protection_policy_binding;
+    }
+
+    /**
+     * Output only. The resource name of the `AutoProtectionPolicyBinding` that
+     * manages this association, if any. Format:
+     * `projects/{project}/locations/{location}/autoProtectionPolicies/{policy}/bindings/{binding}`.
+     *
+     * Generated from protobuf field <code>string auto_protection_policy_binding = 16 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAutoProtectionPolicyBinding($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->auto_protection_policy_binding = $var;
 
         return $this;
     }

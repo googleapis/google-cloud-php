@@ -230,8 +230,8 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     protected $type = null;
     /**
      * Optional. Mode of the storage pool. This field is used to control whether
-     * the user can perform the ONTAP operations on the storage pool using the
-     * GCNV ONTAP Mode APIs. If not specified during creation, it defaults to
+     * the user can perform ONTAP operations on the storage pool using the GCNV
+     * ONTAP Mode APIs. If not specified during creation, it defaults to
      * `DEFAULT`.
      *
      * Generated from protobuf field <code>optional .google.cloud.netapp.v1.Mode mode = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -335,8 +335,8 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      *           `BLOCK`) volumes. If not specified during creation, it defaults to `FILE`.
      *     @type int $mode
      *           Optional. Mode of the storage pool. This field is used to control whether
-     *           the user can perform the ONTAP operations on the storage pool using the
-     *           GCNV ONTAP Mode APIs. If not specified during creation, it defaults to
+     *           the user can perform ONTAP operations on the storage pool using the GCNV
+     *           ONTAP Mode APIs. If not specified during creation, it defaults to
      *           `DEFAULT`.
      *     @type int $scale_type
      *           Optional. The scale type of the storage pool. Defaults to
@@ -1268,8 +1268,8 @@ class StoragePool extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Mode of the storage pool. This field is used to control whether
-     * the user can perform the ONTAP operations on the storage pool using the
-     * GCNV ONTAP Mode APIs. If not specified during creation, it defaults to
+     * the user can perform ONTAP operations on the storage pool using the GCNV
+     * ONTAP Mode APIs. If not specified during creation, it defaults to
      * `DEFAULT`.
      *
      * Generated from protobuf field <code>optional .google.cloud.netapp.v1.Mode mode = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -1292,8 +1292,8 @@ class StoragePool extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Mode of the storage pool. This field is used to control whether
-     * the user can perform the ONTAP operations on the storage pool using the
-     * GCNV ONTAP Mode APIs. If not specified during creation, it defaults to
+     * the user can perform ONTAP operations on the storage pool using the GCNV
+     * ONTAP Mode APIs. If not specified during creation, it defaults to
      * `DEFAULT`.
      *
      * Generated from protobuf field <code>optional .google.cloud.netapp.v1.Mode mode = 36 [(.google.api.field_behavior) = OPTIONAL];</code>

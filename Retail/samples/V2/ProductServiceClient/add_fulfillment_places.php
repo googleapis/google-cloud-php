@@ -115,7 +115,7 @@ function add_fulfillment_places_sample(
     $productServiceClient = new ProductServiceClient();
 
     // Prepare the request message.
-    $placeIds = [$placeIdsElement,];
+    $placeIds = [$placeIdsElement];
     $request = (new AddFulfillmentPlacesRequest())
         ->setProduct($formattedProduct)
         ->setType($type)

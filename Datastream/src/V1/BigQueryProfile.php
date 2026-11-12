@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * BigQuery warehouse profile.
+ * Profile for connecting to a BigQuery destination.
  *
  * Generated from protobuf message <code>google.cloud.datastream.v1.BigQueryProfile</code>
  */

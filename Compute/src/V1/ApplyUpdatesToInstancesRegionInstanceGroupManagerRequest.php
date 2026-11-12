@@ -56,7 +56,9 @@ class ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest extends \Google\P
             ->setProject($project)
             ->setRegion($region)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setRegionInstanceGroupManagersApplyUpdatesRequestResource($regionInstanceGroupManagersApplyUpdatesRequestResource);
+            ->setRegionInstanceGroupManagersApplyUpdatesRequestResource(
+                $regionInstanceGroupManagersApplyUpdatesRequestResource
+            );
     }
 
     /**

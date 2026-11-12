@@ -51,7 +51,7 @@ function bidi_streaming_analyze_content_sample(): void
     try {
         /** @var BidiStream $stream */
         $stream = $participantsClient->bidiStreamingAnalyzeContent();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var BidiStreamingAnalyzeContentResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {
