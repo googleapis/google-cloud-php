@@ -47,11 +47,11 @@ function update_dns_forwarding_sample(
     $vmwareEngineClient = new VmwareEngineClient();
 
     // Prepare the request message.
-    $dnsForwardingForwardingRulesNameServers = [$dnsForwardingForwardingRulesNameServersElement,];
+    $dnsForwardingForwardingRulesNameServers = [$dnsForwardingForwardingRulesNameServersElement];
     $forwardingRule = (new ForwardingRule())
         ->setDomain($dnsForwardingForwardingRulesDomain)
         ->setNameServers($dnsForwardingForwardingRulesNameServers);
-    $dnsForwardingForwardingRules = [$forwardingRule,];
+    $dnsForwardingForwardingRules = [$forwardingRule];
     $dnsForwarding = (new DnsForwarding())
         ->setForwardingRules($dnsForwardingForwardingRules);
     $updateMask = new FieldMask();

@@ -23,8 +23,8 @@ class BatchOptimizeToursRequest extends \Google\Protobuf\Internal\Message
      * Required. Target project and location to make a call.
      * Format:
      * * `projects/{project-id}`
-     * * `projects/{project-id}/locations/{location-id}`
-     * If no location is specified, a region will be chosen automatically.
+     * * `projects/{project-id}/locations/-`
+     * Regional `{location-id}` values are not supported.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -47,8 +47,8 @@ class BatchOptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *           Required. Target project and location to make a call.
      *           Format:
      *           * `projects/{project-id}`
-     *           * `projects/{project-id}/locations/{location-id}`
-     *           If no location is specified, a region will be chosen automatically.
+     *           * `projects/{project-id}/locations/-`
+     *           Regional `{location-id}` values are not supported.
      *     @type \Google\Maps\RouteOptimization\V1\BatchOptimizeToursRequest\AsyncModelConfig[] $model_configs
      *           Required. Input/Output information each purchase model, such as file paths
      *           and data formats.
@@ -63,8 +63,8 @@ class BatchOptimizeToursRequest extends \Google\Protobuf\Internal\Message
      * Required. Target project and location to make a call.
      * Format:
      * * `projects/{project-id}`
-     * * `projects/{project-id}/locations/{location-id}`
-     * If no location is specified, a region will be chosen automatically.
+     * * `projects/{project-id}/locations/-`
+     * Regional `{location-id}` values are not supported.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -78,8 +78,8 @@ class BatchOptimizeToursRequest extends \Google\Protobuf\Internal\Message
      * Required. Target project and location to make a call.
      * Format:
      * * `projects/{project-id}`
-     * * `projects/{project-id}/locations/{location-id}`
-     * If no location is specified, a region will be chosen automatically.
+     * * `projects/{project-id}/locations/-`
+     * Regional `{location-id}` values are not supported.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

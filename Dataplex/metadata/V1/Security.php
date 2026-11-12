@@ -16,7 +16,7 @@ class Security
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xB5\x02\x0A'google/cloud/dataplex/v1/security.proto\x12\x18google.cloud.dataplex.v1\"U\x0A\x12ResourceAccessSpec\x12\x14\x0A\x07readers\x18\x01 \x03(\x09B\x03\xE0A\x01\x12\x14\x0A\x07writers\x18\x02 \x03(\x09B\x03\xE0A\x01\x12\x13\x0A\x06owners\x18\x03 \x03(\x09B\x03\xE0A\x01\"&\x0A\x0EDataAccessSpec\x12\x14\x0A\x07readers\x18\x01 \x03(\x09B\x03\xE0A\x01Bi\x0A\x1Ccom.google.cloud.dataplex.v1B\x0DSecurityProtoP\x01Z8cloud.google.com/go/dataplex/apiv1/dataplexpb;dataplexpbb\x06proto3"
+            "\x0A\xB9\x02\x0A'google/cloud/dataplex/v1/security.proto\x12\x18google.cloud.dataplex.v1\"X\x0A\x12ResourceAccessSpec\x12\x15\x0A\x07readers\x18\x01 \x03(\x09B\x04\xE2A\x01\x01\x12\x15\x0A\x07writers\x18\x02 \x03(\x09B\x04\xE2A\x01\x01\x12\x14\x0A\x06owners\x18\x03 \x03(\x09B\x04\xE2A\x01\x01\"'\x0A\x0EDataAccessSpec\x12\x15\x0A\x07readers\x18\x01 \x03(\x09B\x04\xE2A\x01\x01Bi\x0A\x1Ccom.google.cloud.dataplex.v1B\x0DSecurityProtoP\x01Z8cloud.google.com/go/dataplex/apiv1/dataplexpb;dataplexpbb\x06proto3"
         , true);
 
         static::$is_initialized = true;

@@ -29,6 +29,14 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     protected $zone_uri = '';
     /**
+     * Optional. Controls how instances within this Cluster are allowed to exist
+     * in multiple Zones within the Region. Only one of `zone_uri` or
+     * `multi_zone_config` must be set.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.MultiZoneConfig multi_zone_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $multi_zone_config = null;
+    /**
      * Optional. The Compute Engine network to be used for machine
      * communications. Cannot be specified with subnetwork_uri. If neither
      * `network_uri` nor `subnetwork_uri` is specified, the "default" network of
@@ -174,6 +182,10 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]`
      *           * `projects/[project_id]/zones/[zone]`
      *           * `[zone]`
+     *     @type \Google\Cloud\Dataproc\V1\MultiZoneConfig $multi_zone_config
+     *           Optional. Controls how instances within this Cluster are allowed to exist
+     *           in multiple Zones within the Region. Only one of `zone_uri` or
+     *           `multi_zone_config` must be set.
      *     @type string $network_uri
      *           Optional. The Compute Engine network to be used for machine
      *           communications. Cannot be specified with subnetwork_uri. If neither
@@ -294,6 +306,46 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->zone_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Controls how instances within this Cluster are allowed to exist
+     * in multiple Zones within the Region. Only one of `zone_uri` or
+     * `multi_zone_config` must be set.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.MultiZoneConfig multi_zone_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\MultiZoneConfig|null
+     */
+    public function getMultiZoneConfig()
+    {
+        return $this->multi_zone_config;
+    }
+
+    public function hasMultiZoneConfig()
+    {
+        return isset($this->multi_zone_config);
+    }
+
+    public function clearMultiZoneConfig()
+    {
+        unset($this->multi_zone_config);
+    }
+
+    /**
+     * Optional. Controls how instances within this Cluster are allowed to exist
+     * in multiple Zones within the Region. Only one of `zone_uri` or
+     * `multi_zone_config` must be set.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.MultiZoneConfig multi_zone_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\MultiZoneConfig $var
+     * @return $this
+     */
+    public function setMultiZoneConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\MultiZoneConfig::class);
+        $this->multi_zone_config = $var;
 
         return $this;
     }

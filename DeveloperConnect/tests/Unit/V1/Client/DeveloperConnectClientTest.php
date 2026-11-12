@@ -27,6 +27,8 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DeveloperConnect\V1\AccountConnector;
+use Google\Cloud\DeveloperConnect\V1\AddGitRepositoryLinkPullRequestCommentRequest;
+use Google\Cloud\DeveloperConnect\V1\AddGitRepositoryLinkPullRequestReviewCommentRequest;
 use Google\Cloud\DeveloperConnect\V1\Client\DeveloperConnectClient;
 use Google\Cloud\DeveloperConnect\V1\Connection;
 use Google\Cloud\DeveloperConnect\V1\CreateAccountConnectorRequest;
@@ -37,6 +39,8 @@ use Google\Cloud\DeveloperConnect\V1\DeleteConnectionRequest;
 use Google\Cloud\DeveloperConnect\V1\DeleteGitRepositoryLinkRequest;
 use Google\Cloud\DeveloperConnect\V1\DeleteSelfRequest;
 use Google\Cloud\DeveloperConnect\V1\DeleteUserRequest;
+use Google\Cloud\DeveloperConnect\V1\DiffGitRepositoryLinkCommitRequest;
+use Google\Cloud\DeveloperConnect\V1\DiffGitRepositoryLinkCommitResponse;
 use Google\Cloud\DeveloperConnect\V1\FetchAccessTokenRequest;
 use Google\Cloud\DeveloperConnect\V1\FetchAccessTokenResponse;
 use Google\Cloud\DeveloperConnect\V1\FetchGitHubInstallationsRequest;
@@ -44,6 +48,15 @@ use Google\Cloud\DeveloperConnect\V1\FetchGitHubInstallationsResponse;
 use Google\Cloud\DeveloperConnect\V1\FetchGitRefsRequest;
 use Google\Cloud\DeveloperConnect\V1\FetchGitRefsRequest\RefType;
 use Google\Cloud\DeveloperConnect\V1\FetchGitRefsResponse;
+use Google\Cloud\DeveloperConnect\V1\FetchGitRepositoryLinkCommitListRequest;
+use Google\Cloud\DeveloperConnect\V1\FetchGitRepositoryLinkCommitListResponse;
+use Google\Cloud\DeveloperConnect\V1\FetchGitRepositoryLinkCommitRequest;
+use Google\Cloud\DeveloperConnect\V1\FetchGitRepositoryLinkCommitResponse;
+use Google\Cloud\DeveloperConnect\V1\FetchGitRepositoryLinkFileBlameRequest;
+use Google\Cloud\DeveloperConnect\V1\FetchGitRepositoryLinkFileBlameResponse;
+use Google\Cloud\DeveloperConnect\V1\FetchGitRepositoryLinkPullRequestListRequest;
+use Google\Cloud\DeveloperConnect\V1\FetchGitRepositoryLinkPullRequestListResponse;
+use Google\Cloud\DeveloperConnect\V1\FetchGitRepositoryLinkPullRequestRequest;
 use Google\Cloud\DeveloperConnect\V1\FetchLinkableGitRepositoriesRequest;
 use Google\Cloud\DeveloperConnect\V1\FetchLinkableGitRepositoriesResponse;
 use Google\Cloud\DeveloperConnect\V1\FetchReadTokenRequest;
@@ -66,6 +79,12 @@ use Google\Cloud\DeveloperConnect\V1\ListGitRepositoryLinksRequest;
 use Google\Cloud\DeveloperConnect\V1\ListGitRepositoryLinksResponse;
 use Google\Cloud\DeveloperConnect\V1\ListUsersRequest;
 use Google\Cloud\DeveloperConnect\V1\ListUsersResponse;
+use Google\Cloud\DeveloperConnect\V1\ModifyGitRepositoryLinkPullRequestRequest;
+use Google\Cloud\DeveloperConnect\V1\OpenGitRepositoryLinkPullRequestRequest;
+use Google\Cloud\DeveloperConnect\V1\PullRequest;
+use Google\Cloud\DeveloperConnect\V1\PullRequestComment;
+use Google\Cloud\DeveloperConnect\V1\PullRequestReviewComment;
+use Google\Cloud\DeveloperConnect\V1\SCMCommit;
 use Google\Cloud\DeveloperConnect\V1\StartOAuthRequest;
 use Google\Cloud\DeveloperConnect\V1\StartOAuthResponse;
 use Google\Cloud\DeveloperConnect\V1\UpdateAccountConnectorRequest;
@@ -112,6 +131,222 @@ class DeveloperConnectClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new DeveloperConnectClient($options);
+    }
+
+    /** @test */
+    public function addGitRepositoryLinkPullRequestCommentTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $id = 'id3355';
+        $body = 'body3029410';
+        $author = 'author-1406328437';
+        $expectedResponse = new PullRequestComment();
+        $expectedResponse->setId($id);
+        $expectedResponse->setBody($body);
+        $expectedResponse->setAuthor($author);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
+        );
+        $pullRequestId = 'pullRequestId-1415005435';
+        $comment = new PullRequestComment();
+        $commentBody = 'commentBody2103006369';
+        $comment->setBody($commentBody);
+        $request = (new AddGitRepositoryLinkPullRequestCommentRequest())
+            ->setName($formattedName)
+            ->setPullRequestId($pullRequestId)
+            ->setComment($comment);
+        $response = $gapicClient->addGitRepositoryLinkPullRequestComment($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.developerconnect.v1.DeveloperConnect/AddGitRepositoryLinkPullRequestComment',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getPullRequestId();
+        $this->assertProtobufEquals($pullRequestId, $actualValue);
+        $actualValue = $actualRequestObject->getComment();
+        $this->assertProtobufEquals($comment, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function addGitRepositoryLinkPullRequestCommentExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
+        );
+        $pullRequestId = 'pullRequestId-1415005435';
+        $comment = new PullRequestComment();
+        $commentBody = 'commentBody2103006369';
+        $comment->setBody($commentBody);
+        $request = (new AddGitRepositoryLinkPullRequestCommentRequest())
+            ->setName($formattedName)
+            ->setPullRequestId($pullRequestId)
+            ->setComment($comment);
+        try {
+            $gapicClient->addGitRepositoryLinkPullRequestComment($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function addGitRepositoryLinkPullRequestReviewCommentTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $id = 'id3355';
+        $body = 'body3029410';
+        $path = 'path3433509';
+        $firstLine = 161037277;
+        $lastLine = 2013070333;
+        $author = 'author-1406328437';
+        $commitId2 = 'commitId21511585814';
+        $expectedResponse = new PullRequestReviewComment();
+        $expectedResponse->setId($id);
+        $expectedResponse->setBody($body);
+        $expectedResponse->setPath($path);
+        $expectedResponse->setFirstLine($firstLine);
+        $expectedResponse->setLastLine($lastLine);
+        $expectedResponse->setAuthor($author);
+        $expectedResponse->setCommitId($commitId2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
+        );
+        $pullRequestId = 'pullRequestId-1415005435';
+        $comment = new PullRequestReviewComment();
+        $commentBody = 'commentBody2103006369';
+        $comment->setBody($commentBody);
+        $commentPath = 'commentPath2103410468';
+        $comment->setPath($commentPath);
+        $commentLastLine = 353828649;
+        $comment->setLastLine($commentLastLine);
+        $request = (new AddGitRepositoryLinkPullRequestReviewCommentRequest())
+            ->setName($formattedName)
+            ->setPullRequestId($pullRequestId)
+            ->setComment($comment);
+        $response = $gapicClient->addGitRepositoryLinkPullRequestReviewComment($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.developerconnect.v1.DeveloperConnect/AddGitRepositoryLinkPullRequestReviewComment',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getPullRequestId();
+        $this->assertProtobufEquals($pullRequestId, $actualValue);
+        $actualValue = $actualRequestObject->getComment();
+        $this->assertProtobufEquals($comment, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function addGitRepositoryLinkPullRequestReviewCommentExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
+        );
+        $pullRequestId = 'pullRequestId-1415005435';
+        $comment = new PullRequestReviewComment();
+        $commentBody = 'commentBody2103006369';
+        $comment->setBody($commentBody);
+        $commentPath = 'commentPath2103410468';
+        $comment->setPath($commentPath);
+        $commentLastLine = 353828649;
+        $comment->setLastLine($commentLastLine);
+        $request = (new AddGitRepositoryLinkPullRequestReviewCommentRequest())
+            ->setName($formattedName)
+            ->setPullRequestId($pullRequestId)
+            ->setComment($comment);
+        try {
+            $gapicClient->addGitRepositoryLinkPullRequestReviewComment($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -1189,6 +1424,96 @@ class DeveloperConnectClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function diffGitRepositoryLinkCommitTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new DiffGitRepositoryLinkCommitResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
+        );
+        $baseSha = 'baseSha-1721163202';
+        $headSha = 'headSha-1115436595';
+        $request = (new DiffGitRepositoryLinkCommitRequest())
+            ->setName($formattedName)
+            ->setBaseSha($baseSha)
+            ->setHeadSha($headSha);
+        $response = $gapicClient->diffGitRepositoryLinkCommit($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.developerconnect.v1.DeveloperConnect/DiffGitRepositoryLinkCommit',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getBaseSha();
+        $this->assertProtobufEquals($baseSha, $actualValue);
+        $actualValue = $actualRequestObject->getHeadSha();
+        $this->assertProtobufEquals($headSha, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function diffGitRepositoryLinkCommitExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
+        );
+        $baseSha = 'baseSha-1721163202';
+        $headSha = 'headSha-1115436595';
+        $request = (new DiffGitRepositoryLinkCommitRequest())
+            ->setName($formattedName)
+            ->setBaseSha($baseSha)
+            ->setHeadSha($headSha);
+        try {
+            $gapicClient->diffGitRepositoryLinkCommit($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function fetchAccessTokenTest()
     {
         $transport = $this->createTransport();
@@ -1401,6 +1726,442 @@ class DeveloperConnectClientTest extends GeneratedTest
         $request = (new FetchGitRefsRequest())->setGitRepositoryLink($formattedGitRepositoryLink)->setRefType($refType);
         try {
             $gapicClient->fetchGitRefs($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchGitRepositoryLinkCommitTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new FetchGitRepositoryLinkCommitResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
+        );
+        $commitSha = 'commitSha1018601892';
+        $request = (new FetchGitRepositoryLinkCommitRequest())->setName($formattedName)->setCommitSha($commitSha);
+        $response = $gapicClient->fetchGitRepositoryLinkCommit($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.developerconnect.v1.DeveloperConnect/FetchGitRepositoryLinkCommit',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getCommitSha();
+        $this->assertProtobufEquals($commitSha, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchGitRepositoryLinkCommitExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
+        );
+        $commitSha = 'commitSha1018601892';
+        $request = (new FetchGitRepositoryLinkCommitRequest())->setName($formattedName)->setCommitSha($commitSha);
+        try {
+            $gapicClient->fetchGitRepositoryLinkCommit($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchGitRepositoryLinkCommitListTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $commitsElement = new SCMCommit();
+        $commits = [$commitsElement];
+        $expectedResponse = new FetchGitRepositoryLinkCommitListResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setCommits($commits);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
+        );
+        $request = (new FetchGitRepositoryLinkCommitListRequest())->setName($formattedName);
+        $response = $gapicClient->fetchGitRepositoryLinkCommitList($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getCommits()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.developerconnect.v1.DeveloperConnect/FetchGitRepositoryLinkCommitList',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchGitRepositoryLinkCommitListExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
+        );
+        $request = (new FetchGitRepositoryLinkCommitListRequest())->setName($formattedName);
+        try {
+            $gapicClient->fetchGitRepositoryLinkCommitList($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchGitRepositoryLinkFileBlameTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new FetchGitRepositoryLinkFileBlameResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
+        );
+        $ref = 'ref112787';
+        $path = 'path3433509';
+        $request = (new FetchGitRepositoryLinkFileBlameRequest())
+            ->setName($formattedName)
+            ->setRef($ref)
+            ->setPath($path);
+        $response = $gapicClient->fetchGitRepositoryLinkFileBlame($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.developerconnect.v1.DeveloperConnect/FetchGitRepositoryLinkFileBlame',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getRef();
+        $this->assertProtobufEquals($ref, $actualValue);
+        $actualValue = $actualRequestObject->getPath();
+        $this->assertProtobufEquals($path, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchGitRepositoryLinkFileBlameExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
+        );
+        $ref = 'ref112787';
+        $path = 'path3433509';
+        $request = (new FetchGitRepositoryLinkFileBlameRequest())
+            ->setName($formattedName)
+            ->setRef($ref)
+            ->setPath($path);
+        try {
+            $gapicClient->fetchGitRepositoryLinkFileBlame($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchGitRepositoryLinkPullRequestTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $id = 'id3355';
+        $title = 'title110371416';
+        $body = 'body3029410';
+        $headRef = 'headRef-1115437644';
+        $baseRef = 'baseRef-1721164251';
+        $author = 'author-1406328437';
+        $htmlUrl = 'htmlUrl-336843045';
+        $expectedResponse = new PullRequest();
+        $expectedResponse->setId($id);
+        $expectedResponse->setTitle($title);
+        $expectedResponse->setBody($body);
+        $expectedResponse->setHeadRef($headRef);
+        $expectedResponse->setBaseRef($baseRef);
+        $expectedResponse->setAuthor($author);
+        $expectedResponse->setHtmlUrl($htmlUrl);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
+        );
+        $pullRequestId = 'pullRequestId-1415005435';
+        $request = (new FetchGitRepositoryLinkPullRequestRequest())
+            ->setName($formattedName)
+            ->setPullRequestId($pullRequestId);
+        $response = $gapicClient->fetchGitRepositoryLinkPullRequest($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.developerconnect.v1.DeveloperConnect/FetchGitRepositoryLinkPullRequest',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getPullRequestId();
+        $this->assertProtobufEquals($pullRequestId, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchGitRepositoryLinkPullRequestExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
+        );
+        $pullRequestId = 'pullRequestId-1415005435';
+        $request = (new FetchGitRepositoryLinkPullRequestRequest())
+            ->setName($formattedName)
+            ->setPullRequestId($pullRequestId);
+        try {
+            $gapicClient->fetchGitRepositoryLinkPullRequest($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchGitRepositoryLinkPullRequestListTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $pullRequestsElement = new PullRequest();
+        $pullRequests = [$pullRequestsElement];
+        $expectedResponse = new FetchGitRepositoryLinkPullRequestListResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setPullRequests($pullRequests);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
+        );
+        $request = (new FetchGitRepositoryLinkPullRequestListRequest())->setName($formattedName);
+        $response = $gapicClient->fetchGitRepositoryLinkPullRequestList($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getPullRequests()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.developerconnect.v1.DeveloperConnect/FetchGitRepositoryLinkPullRequestList',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchGitRepositoryLinkPullRequestListExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
+        );
+        $request = (new FetchGitRepositoryLinkPullRequestListRequest())->setName($formattedName);
+        try {
+            $gapicClient->fetchGitRepositoryLinkPullRequestList($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2292,6 +3053,218 @@ class DeveloperConnectClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function modifyGitRepositoryLinkPullRequestTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $id = 'id3355';
+        $title2 = 'title2-1307248629';
+        $body2 = 'body2-1383701291';
+        $headRef = 'headRef-1115437644';
+        $baseRef2 = 'baseRef2-476433256';
+        $author = 'author-1406328437';
+        $htmlUrl = 'htmlUrl-336843045';
+        $expectedResponse = new PullRequest();
+        $expectedResponse->setId($id);
+        $expectedResponse->setTitle($title2);
+        $expectedResponse->setBody($body2);
+        $expectedResponse->setHeadRef($headRef);
+        $expectedResponse->setBaseRef($baseRef2);
+        $expectedResponse->setAuthor($author);
+        $expectedResponse->setHtmlUrl($htmlUrl);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
+        );
+        $pullRequestId = 'pullRequestId-1415005435';
+        $request = (new ModifyGitRepositoryLinkPullRequestRequest())
+            ->setName($formattedName)
+            ->setPullRequestId($pullRequestId);
+        $response = $gapicClient->modifyGitRepositoryLinkPullRequest($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.developerconnect.v1.DeveloperConnect/ModifyGitRepositoryLinkPullRequest',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getPullRequestId();
+        $this->assertProtobufEquals($pullRequestId, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function modifyGitRepositoryLinkPullRequestExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
+        );
+        $pullRequestId = 'pullRequestId-1415005435';
+        $request = (new ModifyGitRepositoryLinkPullRequestRequest())
+            ->setName($formattedName)
+            ->setPullRequestId($pullRequestId);
+        try {
+            $gapicClient->modifyGitRepositoryLinkPullRequest($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function openGitRepositoryLinkPullRequestTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $id = 'id3355';
+        $title = 'title110371416';
+        $body = 'body3029410';
+        $headRef = 'headRef-1115437644';
+        $baseRef = 'baseRef-1721164251';
+        $author = 'author-1406328437';
+        $htmlUrl = 'htmlUrl-336843045';
+        $expectedResponse = new PullRequest();
+        $expectedResponse->setId($id);
+        $expectedResponse->setTitle($title);
+        $expectedResponse->setBody($body);
+        $expectedResponse->setHeadRef($headRef);
+        $expectedResponse->setBaseRef($baseRef);
+        $expectedResponse->setAuthor($author);
+        $expectedResponse->setHtmlUrl($htmlUrl);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
+        );
+        $pullRequest = new PullRequest();
+        $pullRequestId = 'pullRequestId1573471045';
+        $pullRequest->setId($pullRequestId);
+        $pullRequestTitle = 'pullRequestTitle13255662';
+        $pullRequest->setTitle($pullRequestTitle);
+        $pullRequestHeadRef = 'pullRequestHeadRef1956330153';
+        $pullRequest->setHeadRef($pullRequestHeadRef);
+        $pullRequestBaseRef = 'pullRequestBaseRef828411928';
+        $pullRequest->setBaseRef($pullRequestBaseRef);
+        $request = (new OpenGitRepositoryLinkPullRequestRequest())
+            ->setName($formattedName)
+            ->setPullRequest($pullRequest);
+        $response = $gapicClient->openGitRepositoryLinkPullRequest($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.developerconnect.v1.DeveloperConnect/OpenGitRepositoryLinkPullRequest',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getPullRequest();
+        $this->assertProtobufEquals($pullRequest, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function openGitRepositoryLinkPullRequestExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
+        );
+        $pullRequest = new PullRequest();
+        $pullRequestId = 'pullRequestId1573471045';
+        $pullRequest->setId($pullRequestId);
+        $pullRequestTitle = 'pullRequestTitle13255662';
+        $pullRequest->setTitle($pullRequestTitle);
+        $pullRequestHeadRef = 'pullRequestHeadRef1956330153';
+        $pullRequest->setHeadRef($pullRequestHeadRef);
+        $pullRequestBaseRef = 'pullRequestBaseRef828411928';
+        $pullRequest->setBaseRef($pullRequestBaseRef);
+        $request = (new OpenGitRepositoryLinkPullRequestRequest())
+            ->setName($formattedName)
+            ->setPullRequest($pullRequest);
+        try {
+            $gapicClient->openGitRepositoryLinkPullRequest($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function startOAuthTest()
     {
         $transport = $this->createTransport();
@@ -2768,83 +3741,53 @@ class DeveloperConnectClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createAccountConnectorAsyncTest()
+    public function addGitRepositoryLinkPullRequestCommentAsyncTest()
     {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
             'transport' => $transport,
-            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createAccountConnectorTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $name = 'name3373707';
-        $etag = 'etag3123477';
-        $oauthStartUri = 'oauthStartUri-1361989529';
-        $expectedResponse = new AccountConnector();
-        $expectedResponse->setName($name);
-        $expectedResponse->setEtag($etag);
-        $expectedResponse->setOauthStartUri($oauthStartUri);
-        $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serializeToString());
-        $completeOperation = new Operation();
-        $completeOperation->setName('operations/createAccountConnectorTest');
-        $completeOperation->setDone(true);
-        $completeOperation->setResponse($anyResponse);
-        $operationsTransport->addResponse($completeOperation);
+        $id = 'id3355';
+        $body = 'body3029410';
+        $author = 'author-1406328437';
+        $expectedResponse = new PullRequestComment();
+        $expectedResponse->setId($id);
+        $expectedResponse->setBody($body);
+        $expectedResponse->setAuthor($author);
+        $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $accountConnectorId = 'accountConnectorId1296994079';
-        $accountConnector = new AccountConnector();
-        $request = (new CreateAccountConnectorRequest())
-            ->setParent($formattedParent)
-            ->setAccountConnectorId($accountConnectorId)
-            ->setAccountConnector($accountConnector);
-        $response = $gapicClient->createAccountConnectorAsync($request)->wait();
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.cloud.developerconnect.v1.DeveloperConnect/CreateAccountConnector',
-            $actualApiFuncCall
+        $formattedName = $gapicClient->gitRepositoryLinkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION]',
+            '[GIT_REPOSITORY_LINK]'
         );
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getAccountConnectorId();
-        $this->assertProtobufEquals($accountConnectorId, $actualValue);
-        $actualValue = $actualApiRequestObject->getAccountConnector();
-        $this->assertProtobufEquals($accountConnector, $actualValue);
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createAccountConnectorTest');
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $pullRequestId = 'pullRequestId-1415005435';
+        $comment = new PullRequestComment();
+        $commentBody = 'commentBody2103006369';
+        $comment->setBody($commentBody);
+        $request = (new AddGitRepositoryLinkPullRequestCommentRequest())
+            ->setName($formattedName)
+            ->setPullRequestId($pullRequestId)
+            ->setComment($comment);
+        $response = $gapicClient->addGitRepositoryLinkPullRequestCommentAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.developerconnect.v1.DeveloperConnect/AddGitRepositoryLinkPullRequestComment',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getPullRequestId();
+        $this->assertProtobufEquals($pullRequestId, $actualValue);
+        $actualValue = $actualRequestObject->getComment();
+        $this->assertProtobufEquals($comment, $actualValue);
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
     }
 }

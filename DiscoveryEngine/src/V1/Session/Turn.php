@@ -62,6 +62,12 @@ class Turn extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> query_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $query_config;
+    /**
+     * Optional. Indicates whether this turn is a live turn.
+     *
+     * Generated from protobuf field <code>bool live = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $live = false;
 
     /**
      * Constructor.
@@ -95,6 +101,8 @@ class Turn extends \Google\Protobuf\Internal\Message
      *           LLM model and version used, model parameters (temperature, grounding
      *           parameters, etc.). The prefix "google." is reserved for Google-developed
      *           functionality.
+     *     @type bool $live
+     *           Optional. Indicates whether this turn is a live turn.
      * }
      */
     public function __construct($data = NULL) {
@@ -290,6 +298,32 @@ class Turn extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->query_config = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates whether this turn is a live turn.
+     *
+     * Generated from protobuf field <code>bool live = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getLive()
+    {
+        return $this->live;
+    }
+
+    /**
+     * Optional. Indicates whether this turn is a live turn.
+     *
+     * Generated from protobuf field <code>bool live = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setLive($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->live = $var;
 
         return $this;
     }

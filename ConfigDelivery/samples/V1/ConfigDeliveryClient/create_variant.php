@@ -49,7 +49,7 @@ function create_variant_sample(
     $configDeliveryClient = new ConfigDeliveryClient();
 
     // Prepare the request message.
-    $variantResources = [$variantResourcesElement,];
+    $variantResources = [$variantResourcesElement];
     $variant = (new Variant())
         ->setResources($variantResources);
     $request = (new CreateVariantRequest())

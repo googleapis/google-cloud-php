@@ -22,19 +22,30 @@ class UpdateAutoProtectionPolicyRequest extends \Google\Protobuf\Internal\Messag
      */
     protected $auto_protection_policy = null;
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
+     * Optional. Field mask is used to specify the fields to be overwritten in the
      * AutoProtectionPolicy resource by the update.
      * The fields specified in the update_mask are relative to the resource, not
      * the full request. A field will be overwritten if it is in the mask. If the
      * user does not provide a mask then all fields will be overwritten.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $update_mask = null;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique
+     * request ID so that if you must retry your request, the server will know to
+     * ignore the request if it has already been completed. The server will
+     * guarantee that for at least 60 minutes since the first request.
+     * The request ID must be a valid UUID with the exception that zero UUID is
+     * not supported (00000000-0000-0000-0000-000000000000).
+     *
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     */
+    protected $request_id = '';
 
     /**
      * @param \Google\Cloud\BackupDR\V1beta\AutoProtectionPolicy $autoProtectionPolicy Required. The policy to update.
-     * @param \Google\Protobuf\FieldMask                         $updateMask           Required. Field mask is used to specify the fields to be overwritten in the
+     * @param \Google\Protobuf\FieldMask                         $updateMask           Optional. Field mask is used to specify the fields to be overwritten in the
      *                                                                                 AutoProtectionPolicy resource by the update.
      *                                                                                 The fields specified in the update_mask are relative to the resource, not
      *                                                                                 the full request. A field will be overwritten if it is in the mask. If the
@@ -60,11 +71,18 @@ class UpdateAutoProtectionPolicyRequest extends \Google\Protobuf\Internal\Messag
      *     @type \Google\Cloud\BackupDR\V1beta\AutoProtectionPolicy $auto_protection_policy
      *           Required. The policy to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. Field mask is used to specify the fields to be overwritten in the
+     *           Optional. Field mask is used to specify the fields to be overwritten in the
      *           AutoProtectionPolicy resource by the update.
      *           The fields specified in the update_mask are relative to the resource, not
      *           the full request. A field will be overwritten if it is in the mask. If the
      *           user does not provide a mask then all fields will be overwritten.
+     *     @type string $request_id
+     *           Optional. An optional request ID to identify requests. Specify a unique
+     *           request ID so that if you must retry your request, the server will know to
+     *           ignore the request if it has already been completed. The server will
+     *           guarantee that for at least 60 minutes since the first request.
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
      * }
      */
     public function __construct($data = NULL) {
@@ -109,13 +127,13 @@ class UpdateAutoProtectionPolicyRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
+     * Optional. Field mask is used to specify the fields to be overwritten in the
      * AutoProtectionPolicy resource by the update.
      * The fields specified in the update_mask are relative to the resource, not
      * the full request. A field will be overwritten if it is in the mask. If the
      * user does not provide a mask then all fields will be overwritten.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
@@ -134,13 +152,13 @@ class UpdateAutoProtectionPolicyRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
+     * Optional. Field mask is used to specify the fields to be overwritten in the
      * AutoProtectionPolicy resource by the update.
      * The fields specified in the update_mask are relative to the resource, not
      * the full request. A field will be overwritten if it is in the mask. If the
      * user does not provide a mask then all fields will be overwritten.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */
@@ -148,6 +166,42 @@ class UpdateAutoProtectionPolicyRequest extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
         $this->update_mask = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique
+     * request ID so that if you must retry your request, the server will know to
+     * ignore the request if it has already been completed. The server will
+     * guarantee that for at least 60 minutes since the first request.
+     * The request ID must be a valid UUID with the exception that zero UUID is
+     * not supported (00000000-0000-0000-0000-000000000000).
+     *
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     * @return string
+     */
+    public function getRequestId()
+    {
+        return $this->request_id;
+    }
+
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique
+     * request ID so that if you must retry your request, the server will know to
+     * ignore the request if it has already been completed. The server will
+     * guarantee that for at least 60 minutes since the first request.
+     * The request ID must be a valid UUID with the exception that zero UUID is
+     * not supported (00000000-0000-0000-0000-000000000000).
+     *
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRequestId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->request_id = $var;
 
         return $this;
     }

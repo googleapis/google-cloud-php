@@ -31,6 +31,10 @@ class SpecificStartPosition extends \Google\Protobuf\Internal\Message
      *           SqlServer LSN to start replicating from.
      *     @type \Google\Cloud\Datastream\V1\MysqlGtidPosition $mysql_gtid_position
      *           MySQL GTID set to start replicating from.
+     *     @type \Google\Cloud\Datastream\V1\MongodbChangeStreamPosition $mongodb_change_stream_position
+     *           MongoDB change stream position to start replicating from.
+     *     @type \Google\Cloud\Datastream\V1\SpannerChangeStreamPosition $spanner_change_stream_position
+     *           Optional. Spanner change stream position to start replicating from.
      * }
      */
     public function __construct($data = NULL) {
@@ -158,6 +162,68 @@ class SpecificStartPosition extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MysqlGtidPosition::class);
         $this->writeOneof(104, $var);
+
+        return $this;
+    }
+
+    /**
+     * MongoDB change stream position to start replicating from.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbChangeStreamPosition mongodb_change_stream_position = 105;</code>
+     * @return \Google\Cloud\Datastream\V1\MongodbChangeStreamPosition|null
+     */
+    public function getMongodbChangeStreamPosition()
+    {
+        return $this->readOneof(105);
+    }
+
+    public function hasMongodbChangeStreamPosition()
+    {
+        return $this->hasOneof(105);
+    }
+
+    /**
+     * MongoDB change stream position to start replicating from.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbChangeStreamPosition mongodb_change_stream_position = 105;</code>
+     * @param \Google\Cloud\Datastream\V1\MongodbChangeStreamPosition $var
+     * @return $this
+     */
+    public function setMongodbChangeStreamPosition($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MongodbChangeStreamPosition::class);
+        $this->writeOneof(105, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Spanner change stream position to start replicating from.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SpannerChangeStreamPosition spanner_change_stream_position = 106 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Datastream\V1\SpannerChangeStreamPosition|null
+     */
+    public function getSpannerChangeStreamPosition()
+    {
+        return $this->readOneof(106);
+    }
+
+    public function hasSpannerChangeStreamPosition()
+    {
+        return $this->hasOneof(106);
+    }
+
+    /**
+     * Optional. Spanner change stream position to start replicating from.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SpannerChangeStreamPosition spanner_change_stream_position = 106 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Datastream\V1\SpannerChangeStreamPosition $var
+     * @return $this
+     */
+    public function setSpannerChangeStreamPosition($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SpannerChangeStreamPosition::class);
+        $this->writeOneof(106, $var);
 
         return $this;
     }

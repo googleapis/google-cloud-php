@@ -35,6 +35,11 @@
                                 "reportStatus"
                             ]
                         },
+                        "ResolveInstanceConfig": {
+                            "methods": [
+                                "resolveInstanceConfig"
+                            ]
+                        },
                         "UpdateAppConnector": {
                             "methods": [
                                 "updateAppConnector"

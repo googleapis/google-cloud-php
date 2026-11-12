@@ -27,9 +27,17 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\DiscoveryEngine\V1\Assistant;
 use Google\Cloud\DiscoveryEngine\V1\Client\AssistantServiceClient;
+use Google\Cloud\DiscoveryEngine\V1\CreateAssistantRequest;
+use Google\Cloud\DiscoveryEngine\V1\DeleteAssistantRequest;
+use Google\Cloud\DiscoveryEngine\V1\GetAssistantRequest;
+use Google\Cloud\DiscoveryEngine\V1\ListAssistantsRequest;
+use Google\Cloud\DiscoveryEngine\V1\ListAssistantsResponse;
 use Google\Cloud\DiscoveryEngine\V1\StreamAssistRequest;
 use Google\Cloud\DiscoveryEngine\V1\StreamAssistResponse;
+use Google\Cloud\DiscoveryEngine\V1\UpdateAssistantRequest;
+use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -61,6 +69,323 @@ class AssistantServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new AssistantServiceClient($options);
+    }
+
+    /** @test */
+    public function createAssistantTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $defaultWebGroundingToggleOff = false;
+        $expectedResponse = new Assistant();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setDefaultWebGroundingToggleOff($defaultWebGroundingToggleOff);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->engineName('[PROJECT]', '[LOCATION]', '[COLLECTION]', '[ENGINE]');
+        $assistant = new Assistant();
+        $assistantDisplayName = 'assistantDisplayName-294767441';
+        $assistant->setDisplayName($assistantDisplayName);
+        $assistantId = 'assistantId-1470125540';
+        $request = (new CreateAssistantRequest())
+            ->setParent($formattedParent)
+            ->setAssistant($assistant)
+            ->setAssistantId($assistantId);
+        $response = $gapicClient->createAssistant($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.discoveryengine.v1.AssistantService/CreateAssistant', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getAssistant();
+        $this->assertProtobufEquals($assistant, $actualValue);
+        $actualValue = $actualRequestObject->getAssistantId();
+        $this->assertProtobufEquals($assistantId, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createAssistantExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->engineName('[PROJECT]', '[LOCATION]', '[COLLECTION]', '[ENGINE]');
+        $assistant = new Assistant();
+        $assistantDisplayName = 'assistantDisplayName-294767441';
+        $assistant->setDisplayName($assistantDisplayName);
+        $assistantId = 'assistantId-1470125540';
+        $request = (new CreateAssistantRequest())
+            ->setParent($formattedParent)
+            ->setAssistant($assistant)
+            ->setAssistantId($assistantId);
+        try {
+            $gapicClient->createAssistant($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAssistantTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->assistantName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[COLLECTION]',
+            '[ENGINE]',
+            '[ASSISTANT]'
+        );
+        $request = (new DeleteAssistantRequest())->setName($formattedName);
+        $gapicClient->deleteAssistant($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.discoveryengine.v1.AssistantService/DeleteAssistant', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAssistantExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->assistantName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[COLLECTION]',
+            '[ENGINE]',
+            '[ASSISTANT]'
+        );
+        $request = (new DeleteAssistantRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteAssistant($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAssistantTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $defaultWebGroundingToggleOff = false;
+        $expectedResponse = new Assistant();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setDefaultWebGroundingToggleOff($defaultWebGroundingToggleOff);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->assistantName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[COLLECTION]',
+            '[ENGINE]',
+            '[ASSISTANT]'
+        );
+        $request = (new GetAssistantRequest())->setName($formattedName);
+        $response = $gapicClient->getAssistant($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.discoveryengine.v1.AssistantService/GetAssistant', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAssistantExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->assistantName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[COLLECTION]',
+            '[ENGINE]',
+            '[ASSISTANT]'
+        );
+        $request = (new GetAssistantRequest())->setName($formattedName);
+        try {
+            $gapicClient->getAssistant($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAssistantsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $assistantsElement = new Assistant();
+        $assistants = [$assistantsElement];
+        $expectedResponse = new ListAssistantsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAssistants($assistants);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->engineName('[PROJECT]', '[LOCATION]', '[COLLECTION]', '[ENGINE]');
+        $request = (new ListAssistantsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listAssistants($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAssistants()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.discoveryengine.v1.AssistantService/ListAssistants', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAssistantsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->engineName('[PROJECT]', '[LOCATION]', '[COLLECTION]', '[ENGINE]');
+        $request = (new ListAssistantsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listAssistants($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -153,6 +478,126 @@ class AssistantServiceClientTest extends GeneratedTest
         }
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateAssistantTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $defaultWebGroundingToggleOff = false;
+        $expectedResponse = new Assistant();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setDefaultWebGroundingToggleOff($defaultWebGroundingToggleOff);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $assistant = new Assistant();
+        $assistantDisplayName = 'assistantDisplayName-294767441';
+        $assistant->setDisplayName($assistantDisplayName);
+        $request = (new UpdateAssistantRequest())->setAssistant($assistant);
+        $response = $gapicClient->updateAssistant($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.discoveryengine.v1.AssistantService/UpdateAssistant', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAssistant();
+        $this->assertProtobufEquals($assistant, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateAssistantExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $assistant = new Assistant();
+        $assistantDisplayName = 'assistantDisplayName-294767441';
+        $assistant->setDisplayName($assistantDisplayName);
+        $request = (new UpdateAssistantRequest())->setAssistant($assistant);
+        try {
+            $gapicClient->updateAssistant($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createAssistantAsyncTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $defaultWebGroundingToggleOff = false;
+        $expectedResponse = new Assistant();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setDefaultWebGroundingToggleOff($defaultWebGroundingToggleOff);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->engineName('[PROJECT]', '[LOCATION]', '[COLLECTION]', '[ENGINE]');
+        $assistant = new Assistant();
+        $assistantDisplayName = 'assistantDisplayName-294767441';
+        $assistant->setDisplayName($assistantDisplayName);
+        $assistantId = 'assistantId-1470125540';
+        $request = (new CreateAssistantRequest())
+            ->setParent($formattedParent)
+            ->setAssistant($assistant)
+            ->setAssistantId($assistantId);
+        $response = $gapicClient->createAssistantAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.discoveryengine.v1.AssistantService/CreateAssistant', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getAssistant();
+        $this->assertProtobufEquals($assistant, $actualValue);
+        $actualValue = $actualRequestObject->getAssistantId();
+        $this->assertProtobufEquals($assistantId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

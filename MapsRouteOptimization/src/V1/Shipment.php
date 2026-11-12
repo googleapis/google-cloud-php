@@ -52,15 +52,15 @@ class Shipment extends \Google\Protobuf\Internal\Message
      */
     private $load_demands;
     /**
-     * If the shipment is not completed, this penalty is added to the overall
-     * cost of the routes. A shipment is considered completed if one of its pickup
-     * and delivery alternatives is visited. The cost may be expressed in the
-     * same unit used for all other cost-related fields in the model and must be
-     * positive.
-     * *IMPORTANT*: If this penalty is not specified, it is considered infinite,
-     * i.e. the shipment must be completed.
+     * Optional. If the shipment is not completed, this penalty is added to the
+     * overall cost of the routes. A shipment is considered completed if one of
+     * its pickup and delivery alternatives is visited. The cost may be expressed
+     * in the same unit used for all other cost-related fields in the model and
+     * must be non-negative.
+     * *IMPORTANT*: If this penalty is not specified, it is considered higher
+     * priority than shipments with a specified `penalty cost`.
      *
-     * Generated from protobuf field <code>optional double penalty_cost = 4;</code>
+     * Generated from protobuf field <code>optional double penalty_cost = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $penalty_cost = null;
     /**
@@ -199,13 +199,13 @@ class Shipment extends \Google\Protobuf\Internal\Message
      *           If a given key does not appear in the map, the corresponding load is
      *           considered as null.
      *     @type float $penalty_cost
-     *           If the shipment is not completed, this penalty is added to the overall
-     *           cost of the routes. A shipment is considered completed if one of its pickup
-     *           and delivery alternatives is visited. The cost may be expressed in the
-     *           same unit used for all other cost-related fields in the model and must be
-     *           positive.
-     *           *IMPORTANT*: If this penalty is not specified, it is considered infinite,
-     *           i.e. the shipment must be completed.
+     *           Optional. If the shipment is not completed, this penalty is added to the
+     *           overall cost of the routes. A shipment is considered completed if one of
+     *           its pickup and delivery alternatives is visited. The cost may be expressed
+     *           in the same unit used for all other cost-related fields in the model and
+     *           must be non-negative.
+     *           *IMPORTANT*: If this penalty is not specified, it is considered higher
+     *           priority than shipments with a specified `penalty cost`.
      *     @type int[] $allowed_vehicle_indices
      *           The set of vehicles that may perform this shipment. If empty, all vehicles
      *           may perform it. Vehicles are given by their index in the `ShipmentModel`'s
@@ -410,15 +410,15 @@ class Shipment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the shipment is not completed, this penalty is added to the overall
-     * cost of the routes. A shipment is considered completed if one of its pickup
-     * and delivery alternatives is visited. The cost may be expressed in the
-     * same unit used for all other cost-related fields in the model and must be
-     * positive.
-     * *IMPORTANT*: If this penalty is not specified, it is considered infinite,
-     * i.e. the shipment must be completed.
+     * Optional. If the shipment is not completed, this penalty is added to the
+     * overall cost of the routes. A shipment is considered completed if one of
+     * its pickup and delivery alternatives is visited. The cost may be expressed
+     * in the same unit used for all other cost-related fields in the model and
+     * must be non-negative.
+     * *IMPORTANT*: If this penalty is not specified, it is considered higher
+     * priority than shipments with a specified `penalty cost`.
      *
-     * Generated from protobuf field <code>optional double penalty_cost = 4;</code>
+     * Generated from protobuf field <code>optional double penalty_cost = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
      */
     public function getPenaltyCost()
@@ -437,15 +437,15 @@ class Shipment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the shipment is not completed, this penalty is added to the overall
-     * cost of the routes. A shipment is considered completed if one of its pickup
-     * and delivery alternatives is visited. The cost may be expressed in the
-     * same unit used for all other cost-related fields in the model and must be
-     * positive.
-     * *IMPORTANT*: If this penalty is not specified, it is considered infinite,
-     * i.e. the shipment must be completed.
+     * Optional. If the shipment is not completed, this penalty is added to the
+     * overall cost of the routes. A shipment is considered completed if one of
+     * its pickup and delivery alternatives is visited. The cost may be expressed
+     * in the same unit used for all other cost-related fields in the model and
+     * must be non-negative.
+     * *IMPORTANT*: If this penalty is not specified, it is considered higher
+     * priority than shipments with a specified `penalty cost`.
      *
-     * Generated from protobuf field <code>optional double penalty_cost = 4;</code>
+     * Generated from protobuf field <code>optional double penalty_cost = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
      * @return $this
      */

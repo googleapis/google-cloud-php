@@ -50,7 +50,7 @@ function update_tcp_route_sample(): void
     $tcpRouteRulesAction = new RouteAction();
     $routeRule = (new RouteRule())
         ->setAction($tcpRouteRulesAction);
-    $tcpRouteRules = [$routeRule,];
+    $tcpRouteRules = [$routeRule];
     $tcpRoute = (new TcpRoute())
         ->setRules($tcpRouteRules);
     $request = (new UpdateTcpRouteRequest())

@@ -59,7 +59,7 @@ function update_entry_link_sample(
     $entryReference = (new EntryReference())
         ->setName($entryLinkEntryReferencesName)
         ->setType($entryLinkEntryReferencesType);
-    $entryLinkEntryReferences = [$entryReference,];
+    $entryLinkEntryReferences = [$entryReference];
     $entryLink = (new EntryLink())
         ->setEntryLinkType($entryLinkEntryLinkType)
         ->setEntryReferences($entryLinkEntryReferences);

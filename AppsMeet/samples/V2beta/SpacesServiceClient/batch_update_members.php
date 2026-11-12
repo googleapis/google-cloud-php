@@ -46,7 +46,7 @@ function batch_update_members_sample(string $formattedParent): void
     $requestsMember = new Member();
     $updateMemberRequest = (new UpdateMemberRequest())
         ->setMember($requestsMember);
-    $requests = [$updateMemberRequest,];
+    $requests = [$updateMemberRequest];
     $request = (new BatchUpdateMembersRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

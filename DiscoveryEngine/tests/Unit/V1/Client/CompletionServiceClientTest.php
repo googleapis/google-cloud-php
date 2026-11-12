@@ -26,6 +26,8 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\DiscoveryEngine\V1\AdvancedCompleteQueryRequest;
+use Google\Cloud\DiscoveryEngine\V1\AdvancedCompleteQueryResponse;
 use Google\Cloud\DiscoveryEngine\V1\Client\CompletionServiceClient;
 use Google\Cloud\DiscoveryEngine\V1\CompleteQueryRequest;
 use Google\Cloud\DiscoveryEngine\V1\CompleteQueryResponse;
@@ -72,6 +74,79 @@ class CompletionServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new CompletionServiceClient($options);
+    }
+
+    /** @test */
+    public function advancedCompleteQueryTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $tailMatchTriggered = true;
+        $expectedResponse = new AdvancedCompleteQueryResponse();
+        $expectedResponse->setTailMatchTriggered($tailMatchTriggered);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedCompletionConfig = $gapicClient->completionConfigName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
+        $query = 'query107944136';
+        $request = (new AdvancedCompleteQueryRequest())
+            ->setCompletionConfig($formattedCompletionConfig)
+            ->setQuery($query);
+        $response = $gapicClient->advancedCompleteQuery($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.discoveryengine.v1.CompletionService/AdvancedCompleteQuery', $actualFuncCall);
+        $actualValue = $actualRequestObject->getCompletionConfig();
+        $this->assertProtobufEquals($formattedCompletionConfig, $actualValue);
+        $actualValue = $actualRequestObject->getQuery();
+        $this->assertProtobufEquals($query, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function advancedCompleteQueryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedCompletionConfig = $gapicClient->completionConfigName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
+        $query = 'query107944136';
+        $request = (new AdvancedCompleteQueryRequest())
+            ->setCompletionConfig($formattedCompletionConfig)
+            ->setQuery($query);
+        try {
+            $gapicClient->advancedCompleteQuery($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -652,7 +727,7 @@ class CompletionServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function completeQueryAsyncTest()
+    public function advancedCompleteQueryAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -661,22 +736,24 @@ class CompletionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $tailMatchTriggered = true;
-        $expectedResponse = new CompleteQueryResponse();
+        $expectedResponse = new AdvancedCompleteQueryResponse();
         $expectedResponse->setTailMatchTriggered($tailMatchTriggered);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedDataStore = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
+        $formattedCompletionConfig = $gapicClient->completionConfigName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
         $query = 'query107944136';
-        $request = (new CompleteQueryRequest())->setDataStore($formattedDataStore)->setQuery($query);
-        $response = $gapicClient->completeQueryAsync($request)->wait();
+        $request = (new AdvancedCompleteQueryRequest())
+            ->setCompletionConfig($formattedCompletionConfig)
+            ->setQuery($query);
+        $response = $gapicClient->advancedCompleteQueryAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.discoveryengine.v1.CompletionService/CompleteQuery', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDataStore();
-        $this->assertProtobufEquals($formattedDataStore, $actualValue);
+        $this->assertSame('/google.cloud.discoveryengine.v1.CompletionService/AdvancedCompleteQuery', $actualFuncCall);
+        $actualValue = $actualRequestObject->getCompletionConfig();
+        $this->assertProtobufEquals($formattedCompletionConfig, $actualValue);
         $actualValue = $actualRequestObject->getQuery();
         $this->assertProtobufEquals($query, $actualValue);
         $this->assertTrue($transport->isExhausted());

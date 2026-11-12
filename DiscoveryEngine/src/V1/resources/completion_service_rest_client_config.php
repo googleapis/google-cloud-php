@@ -23,6 +23,30 @@
 return [
     'interfaces' => [
         'google.cloud.discoveryengine.v1.CompletionService' => [
+            'AdvancedCompleteQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{completion_config=projects/*/locations/*/dataStores/*/completionConfig}:completeQuery',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{completion_config=projects/*/locations/*/collections/*/dataStores/*/completionConfig}:completeQuery',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{completion_config=projects/*/locations/*/collections/*/engines/*/completionConfig}:completeQuery',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'completion_config' => [
+                        'getters' => [
+                            'getCompletionConfig',
+                        ],
+                    ],
+                ],
+            ],
             'CompleteQuery' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{data_store=projects/*/locations/*/dataStores/*}:completeQuery',
@@ -178,6 +202,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/dataStores/*/siteSearchEngine/targetSites/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/engines/*/assistants/*/agents/*/operations/*}',
                     ],
                     [
                         'method' => 'get',

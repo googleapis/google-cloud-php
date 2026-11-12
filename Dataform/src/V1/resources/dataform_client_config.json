@@ -53,6 +53,11 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "CreateCompilationResultLongRunning": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "CreateFolder": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",

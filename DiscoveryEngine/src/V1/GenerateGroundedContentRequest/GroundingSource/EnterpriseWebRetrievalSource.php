@@ -15,6 +15,19 @@ use Google\Protobuf\RepeatedField;
  */
 class EnterpriseWebRetrievalSource extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Optional. List of domains to be excluded from the search results.
+     *
+     * Generated from protobuf field <code>repeated string exclude_domains = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $exclude_domains;
+    /**
+     * Optional. Sites with confidence level chosen & above this value will be
+     * blocked from the search results.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Citation.PhishBlockThreshold blocking_confidence = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $blocking_confidence = 0;
 
     /**
      * Constructor.
@@ -22,11 +35,70 @@ class EnterpriseWebRetrievalSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string[] $exclude_domains
+     *           Optional. List of domains to be excluded from the search results.
+     *     @type int $blocking_confidence
+     *           Optional. Sites with confidence level chosen & above this value will be
+     *           blocked from the search results.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Discoveryengine\V1\GroundedGenerationService::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. List of domains to be excluded from the search results.
+     *
+     * Generated from protobuf field <code>repeated string exclude_domains = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getExcludeDomains()
+    {
+        return $this->exclude_domains;
+    }
+
+    /**
+     * Optional. List of domains to be excluded from the search results.
+     *
+     * Generated from protobuf field <code>repeated string exclude_domains = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setExcludeDomains($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->exclude_domains = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Sites with confidence level chosen & above this value will be
+     * blocked from the search results.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Citation.PhishBlockThreshold blocking_confidence = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getBlockingConfidence()
+    {
+        return $this->blocking_confidence;
+    }
+
+    /**
+     * Optional. Sites with confidence level chosen & above this value will be
+     * blocked from the search results.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Citation.PhishBlockThreshold blocking_confidence = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setBlockingConfidence($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DiscoveryEngine\V1\Citation\PhishBlockThreshold::class);
+        $this->blocking_confidence = $var;
+
+        return $this;
     }
 
 }

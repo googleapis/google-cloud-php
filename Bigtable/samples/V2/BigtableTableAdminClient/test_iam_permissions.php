@@ -45,7 +45,7 @@ function test_iam_permissions_sample(string $resource, string $permissionsElemen
     $bigtableTableAdminClient = new BigtableTableAdminClient();
 
     // Prepare the request message.
-    $permissions = [$permissionsElement,];
+    $permissions = [$permissionsElement];
     $request = (new TestIamPermissionsRequest())
         ->setResource($resource)
         ->setPermissions($permissions);

@@ -16,7 +16,7 @@ class Escalation
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xD7\x03\x0A(google/cloud/support/v2/escalation.proto\x12\x17google.cloud.support.v2\"\xCE\x01\x0A\x0AEscalation\x12?\x0A\x06reason\x18\x04 \x01(\x0E2*.google.cloud.support.v2.Escalation.ReasonB\x03\xE0A\x02\x12\x1A\x0A\x0Djustification\x18\x05 \x01(\x09B\x03\xE0A\x02\"c\x0A\x06Reason\x12\x16\x0A\x12REASON_UNSPECIFIED\x10\x00\x12\x13\x0A\x0FRESOLUTION_TIME\x10\x01\x12\x17\x0A\x13TECHNICAL_EXPERTISE\x10\x02\x12\x13\x0A\x0FBUSINESS_IMPACT\x10\x03B\xB8\x01\x0A\x1Bcom.google.cloud.support.v2B\x0FEscalationProtoP\x01Z5cloud.google.com/go/support/apiv2/supportpb;supportpb\xAA\x02\x17Google.Cloud.Support.V2\xCA\x02\x17Google\\Cloud\\Support\\V2\xEA\x02\x1AGoogle::Cloud::Support::V2b\x06proto3"
+            "\x0A\xD9\x03\x0A(google/cloud/support/v2/escalation.proto\x12\x17google.cloud.support.v2\"\xD0\x01\x0A\x0AEscalation\x12@\x0A\x06reason\x18\x04 \x01(\x0E2*.google.cloud.support.v2.Escalation.ReasonB\x04\xE2A\x01\x02\x12\x1B\x0A\x0Djustification\x18\x05 \x01(\x09B\x04\xE2A\x01\x02\"c\x0A\x06Reason\x12\x16\x0A\x12REASON_UNSPECIFIED\x10\x00\x12\x13\x0A\x0FRESOLUTION_TIME\x10\x01\x12\x17\x0A\x13TECHNICAL_EXPERTISE\x10\x02\x12\x13\x0A\x0FBUSINESS_IMPACT\x10\x03B\xB8\x01\x0A\x1Bcom.google.cloud.support.v2B\x0FEscalationProtoP\x01Z5cloud.google.com/go/support/apiv2/supportpb;supportpb\xAA\x02\x17Google.Cloud.Support.V2\xCA\x02\x17Google\\Cloud\\Support\\V2\xEA\x02\x1AGoogle::Cloud::Support::V2b\x06proto3"
         , true);
 
         static::$is_initialized = true;

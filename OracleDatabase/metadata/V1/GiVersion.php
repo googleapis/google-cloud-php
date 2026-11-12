@@ -17,7 +17,7 @@ class GiVersion
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\x9E\x04\x0A/google/cloud/oracledatabase/v1/gi_version.proto\x12\x1Egoogle.cloud.oracledatabase.v1\x1A\x19google/api/resource.proto\"\xBC\x01\x0A\x09GiVersion\x12\x11\x0A\x04name\x18\x01 \x01(\x09B\x03\xE0A\x08\x12\x14\x0A\x07version\x18\x02 \x01(\x09B\x03\xE0A\x01:\x85\x01\xEAA\x81\x01\x0A'oracledatabase.googleapis.com/GiVersion\x12?projects/{project}/locations/{location}/giVersions/{gi_version}*\x0AgiVersions2\x09giVersionB\xE8\x01\x0A\"com.google.cloud.oracledatabase.v1B\x0EGiVersionProtoP\x01ZJcloud.google.com/go/oracledatabase/apiv1/oracledatabasepb;oracledatabasepb\xAA\x02\x1EGoogle.Cloud.OracleDatabase.V1\xCA\x02\x1EGoogle\\Cloud\\OracleDatabase\\V1\xEA\x02!Google::Cloud::OracleDatabase::V1b\x06proto3"
+            "\x0A\xA0\x04\x0A/google/cloud/oracledatabase/v1/gi_version.proto\x12\x1Egoogle.cloud.oracledatabase.v1\x1A\x19google/api/resource.proto\"\xBE\x01\x0A\x09GiVersion\x12\x12\x0A\x04name\x18\x01 \x01(\x09B\x04\xE2A\x01\x08\x12\x15\x0A\x07version\x18\x02 \x01(\x09B\x04\xE2A\x01\x01:\x85\x01\xEAA\x81\x01\x0A'oracledatabase.googleapis.com/GiVersion\x12?projects/{project}/locations/{location}/giVersions/{gi_version}*\x0AgiVersions2\x09giVersionB\xE8\x01\x0A\"com.google.cloud.oracledatabase.v1B\x0EGiVersionProtoP\x01ZJcloud.google.com/go/oracledatabase/apiv1/oracledatabasepb;oracledatabasepb\xAA\x02\x1EGoogle.Cloud.OracleDatabase.V1\xCA\x02\x1EGoogle\\Cloud\\OracleDatabase\\V1\xEA\x02!Google::Cloud::OracleDatabase::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

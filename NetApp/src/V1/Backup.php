@@ -52,10 +52,9 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     protected $backup_type = 0;
     /**
-     * Volume full name of this backup belongs to.
-     * Either source_volume or ontap_source should be provided.
-     * Format:
-     * `projects/{projects_id}/locations/{location}/volumes/{volume_id}`
+     * The resource name of the volume that this backup belongs to. You must
+     * provide either `source_volume` or `ontap_source`. Format:
+     * `projects/{project_id}/locations/{location}/volumes/{volume_id}`
      *
      * Generated from protobuf field <code>string source_volume = 6 [(.google.api.resource_reference) = {</code>
      */
@@ -120,6 +119,13 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp enforced_retention_end_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $enforced_retention_end_time = null;
+    /**
+     * Optional. Represents source details for ONTAP backups.
+     * Either source_volume or ontap_source should be provided.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.OntapSource ontap_source = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ontap_source = null;
 
     /**
      * Constructor.
@@ -144,10 +150,9 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. Type of backup, manually created or created by a backup
      *           policy.
      *     @type string $source_volume
-     *           Volume full name of this backup belongs to.
-     *           Either source_volume or ontap_source should be provided.
-     *           Format:
-     *           `projects/{projects_id}/locations/{location}/volumes/{volume_id}`
+     *           The resource name of the volume that this backup belongs to. You must
+     *           provide either `source_volume` or `ontap_source`. Format:
+     *           `projects/{project_id}/locations/{location}/volumes/{volume_id}`
      *     @type string $source_snapshot
      *           If specified, backup will be created from the given snapshot.
      *           If not specified, there will be a new snapshot taken to initiate the backup
@@ -172,6 +177,9 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Format: `projects/{project_id}/locations/{location}`
      *     @type \Google\Protobuf\Timestamp $enforced_retention_end_time
      *           Output only. The time until which the backup is not deletable.
+     *     @type \Google\Cloud\NetApp\V1\OntapSource $ontap_source
+     *           Optional. Represents source details for ONTAP backups.
+     *           Either source_volume or ontap_source should be provided.
      * }
      */
     public function __construct($data = NULL) {
@@ -322,10 +330,9 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Volume full name of this backup belongs to.
-     * Either source_volume or ontap_source should be provided.
-     * Format:
-     * `projects/{projects_id}/locations/{location}/volumes/{volume_id}`
+     * The resource name of the volume that this backup belongs to. You must
+     * provide either `source_volume` or `ontap_source`. Format:
+     * `projects/{project_id}/locations/{location}/volumes/{volume_id}`
      *
      * Generated from protobuf field <code>string source_volume = 6 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -336,10 +343,9 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Volume full name of this backup belongs to.
-     * Either source_volume or ontap_source should be provided.
-     * Format:
-     * `projects/{projects_id}/locations/{location}/volumes/{volume_id}`
+     * The resource name of the volume that this backup belongs to. You must
+     * provide either `source_volume` or `ontap_source`. Format:
+     * `projects/{project_id}/locations/{location}/volumes/{volume_id}`
      *
      * Generated from protobuf field <code>string source_volume = 6 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -625,6 +631,44 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->enforced_retention_end_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Represents source details for ONTAP backups.
+     * Either source_volume or ontap_source should be provided.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.OntapSource ontap_source = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\NetApp\V1\OntapSource|null
+     */
+    public function getOntapSource()
+    {
+        return $this->ontap_source;
+    }
+
+    public function hasOntapSource()
+    {
+        return isset($this->ontap_source);
+    }
+
+    public function clearOntapSource()
+    {
+        unset($this->ontap_source);
+    }
+
+    /**
+     * Optional. Represents source details for ONTAP backups.
+     * Either source_volume or ontap_source should be provided.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.OntapSource ontap_source = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\NetApp\V1\OntapSource $var
+     * @return $this
+     */
+    public function setOntapSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetApp\V1\OntapSource::class);
+        $this->ontap_source = $var;
 
         return $this;
     }

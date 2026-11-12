@@ -22,6 +22,12 @@ class TextGroundingMetadata extends \Google\Protobuf\Internal\Message
      */
     private $segments;
     /**
+     * Grounding information for parts of the visual content.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AssistantGroundedContent.TextGroundingMetadata.VisualSegment visual_segments = 6;</code>
+     */
+    private $visual_segments;
+    /**
      * References for the grounded text.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AssistantGroundedContent.TextGroundingMetadata.Reference references = 2;</code>
@@ -36,6 +42,8 @@ class TextGroundingMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata\Segment[] $segments
      *           Grounding information for parts of the text.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata\VisualSegment[] $visual_segments
+     *           Grounding information for parts of the visual content.
      *     @type \Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata\Reference[] $references
      *           References for the grounded text.
      * }
@@ -67,6 +75,32 @@ class TextGroundingMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata\Segment::class);
         $this->segments = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Grounding information for parts of the visual content.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AssistantGroundedContent.TextGroundingMetadata.VisualSegment visual_segments = 6;</code>
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata\VisualSegment>
+     */
+    public function getVisualSegments()
+    {
+        return $this->visual_segments;
+    }
+
+    /**
+     * Grounding information for parts of the visual content.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AssistantGroundedContent.TextGroundingMetadata.VisualSegment visual_segments = 6;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata\VisualSegment[] $var
+     * @return $this
+     */
+    public function setVisualSegments($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata\VisualSegment::class);
+        $this->visual_segments = $arr;
 
         return $this;
     }

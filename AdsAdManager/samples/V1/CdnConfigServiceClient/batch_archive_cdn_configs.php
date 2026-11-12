@@ -45,7 +45,7 @@ function batch_archive_cdn_configs_sample(
     $cdnConfigServiceClient = new CdnConfigServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchArchiveCdnConfigsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

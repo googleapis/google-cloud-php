@@ -37,11 +37,22 @@ class TravelMode
      * Generated from protobuf enum <code>WALKING = 2;</code>
      */
     const WALKING = 2;
+    /**
+     * Two-wheeled, motorized vehicle. For example, motorcycle. Note that this
+     * differs from the BICYCLING travel mode which covers human-powered mode.
+     * This travel mode is supported only in the countries listed at
+     * [Countries and regions supported for two-wheeled
+     * vehicles](https://developers.google.com/maps/documentation/routes/coverage-two-wheeled).
+     *
+     * Generated from protobuf enum <code>TWO_WHEELER = 5;</code>
+     */
+    const TWO_WHEELER = 5;
 
     private static $valueToName = [
         self::TRAVEL_MODE_UNSPECIFIED => 'TRAVEL_MODE_UNSPECIFIED',
         self::DRIVING => 'DRIVING',
         self::WALKING => 'WALKING',
+        self::TWO_WHEELER => 'TWO_WHEELER',
     ];
 
     public static function name($value)

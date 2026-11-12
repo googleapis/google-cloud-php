@@ -80,7 +80,7 @@ function create_connect_cluster_sample(
     // Prepare the request message.
     $connectNetworkConfig = (new ConnectNetworkConfig())
         ->setPrimarySubnet($connectClusterGcpConfigAccessConfigNetworkConfigsPrimarySubnet);
-    $connectClusterGcpConfigAccessConfigNetworkConfigs = [$connectNetworkConfig,];
+    $connectClusterGcpConfigAccessConfigNetworkConfigs = [$connectNetworkConfig];
     $connectClusterGcpConfigAccessConfig = (new ConnectAccessConfig())
         ->setNetworkConfigs($connectClusterGcpConfigAccessConfigNetworkConfigs);
     $connectClusterGcpConfig = (new ConnectGcpConfig())

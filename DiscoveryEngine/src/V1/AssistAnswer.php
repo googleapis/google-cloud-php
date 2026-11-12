@@ -17,13 +17,13 @@ use Google\Protobuf\RepeatedField;
 class AssistAnswer extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Immutable. Resource name of the `AssistAnswer`.
+     * Immutable. Identifier. Resource name of the `AssistAnswer`.
      * Format:
      * `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/assistAnswers/{assist_answer}`
      * This field must be a UTF-8 encoded string with a length limit of 1024
      * characters.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -32,6 +32,17 @@ class AssistAnswer extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AssistAnswer.State state = 2;</code>
      */
     protected $state = 0;
+    /**
+     * Output only. Maps an internal connector agent name (the machine identifier
+     * embedded in tool names, e.g. `custom_mcp_<fingerprint>_agent`) to the
+     * connector's human-readable display name. Populated at serving time for
+     * custom MCP / agent gateway connectors so user-facing surfaces (e.g. the
+     * tool-call chip) can show the connector name instead of its internal
+     * identifier. Empty when there are no such connectors.
+     *
+     * Generated from protobuf field <code>map<string, string> connector_display_names = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $connector_display_names;
     /**
      * Replies of the assistant.
      *
@@ -44,6 +55,14 @@ class AssistAnswer extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AssistAnswer.AssistSkippedReason assist_skipped_reasons = 5;</code>
      */
     private $assist_skipped_reasons;
+    /**
+     * Optional. The field contains information about the various policy checks'
+     * results like the banned phrases or the Model Armor checks. This field is
+     * populated only if the assist call was skipped due to a policy violation.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AssistAnswer.CustomerPolicyEnforcementResult customer_policy_enforcement_result = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $customer_policy_enforcement_result = null;
 
     /**
      * Constructor.
@@ -52,17 +71,28 @@ class AssistAnswer extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Immutable. Resource name of the `AssistAnswer`.
+     *           Immutable. Identifier. Resource name of the `AssistAnswer`.
      *           Format:
      *           `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/assistAnswers/{assist_answer}`
      *           This field must be a UTF-8 encoded string with a length limit of 1024
      *           characters.
      *     @type int $state
      *           State of the answer generation.
+     *     @type array|\Google\Protobuf\Internal\MapField $connector_display_names
+     *           Output only. Maps an internal connector agent name (the machine identifier
+     *           embedded in tool names, e.g. `custom_mcp_<fingerprint>_agent`) to the
+     *           connector's human-readable display name. Populated at serving time for
+     *           custom MCP / agent gateway connectors so user-facing surfaces (e.g. the
+     *           tool-call chip) can show the connector name instead of its internal
+     *           identifier. Empty when there are no such connectors.
      *     @type \Google\Cloud\DiscoveryEngine\V1\AssistAnswer\Reply[] $replies
      *           Replies of the assistant.
      *     @type int[] $assist_skipped_reasons
      *           Reasons for not answering the assist call.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AssistAnswer\CustomerPolicyEnforcementResult $customer_policy_enforcement_result
+     *           Optional. The field contains information about the various policy checks'
+     *           results like the banned phrases or the Model Armor checks. This field is
+     *           populated only if the assist call was skipped due to a policy violation.
      * }
      */
     public function __construct($data = NULL) {
@@ -71,13 +101,13 @@ class AssistAnswer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Resource name of the `AssistAnswer`.
+     * Immutable. Identifier. Resource name of the `AssistAnswer`.
      * Format:
      * `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/assistAnswers/{assist_answer}`
      * This field must be a UTF-8 encoded string with a length limit of 1024
      * characters.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -86,13 +116,13 @@ class AssistAnswer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Resource name of the `AssistAnswer`.
+     * Immutable. Identifier. Resource name of the `AssistAnswer`.
      * Format:
      * `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/assistAnswers/{assist_answer}`
      * This field must be a UTF-8 encoded string with a length limit of 1024
      * characters.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -126,6 +156,42 @@ class AssistAnswer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\DiscoveryEngine\V1\AssistAnswer\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Maps an internal connector agent name (the machine identifier
+     * embedded in tool names, e.g. `custom_mcp_<fingerprint>_agent`) to the
+     * connector's human-readable display name. Populated at serving time for
+     * custom MCP / agent gateway connectors so user-facing surfaces (e.g. the
+     * tool-call chip) can show the connector name instead of its internal
+     * identifier. Empty when there are no such connectors.
+     *
+     * Generated from protobuf field <code>map<string, string> connector_display_names = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getConnectorDisplayNames()
+    {
+        return $this->connector_display_names;
+    }
+
+    /**
+     * Output only. Maps an internal connector agent name (the machine identifier
+     * embedded in tool names, e.g. `custom_mcp_<fingerprint>_agent`) to the
+     * connector's human-readable display name. Populated at serving time for
+     * custom MCP / agent gateway connectors so user-facing surfaces (e.g. the
+     * tool-call chip) can show the connector name instead of its internal
+     * identifier. Empty when there are no such connectors.
+     *
+     * Generated from protobuf field <code>map<string, string> connector_display_names = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setConnectorDisplayNames($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->connector_display_names = $arr;
 
         return $this;
     }
@@ -178,6 +244,46 @@ class AssistAnswer extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\DiscoveryEngine\V1\AssistAnswer\AssistSkippedReason::class);
         $this->assist_skipped_reasons = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The field contains information about the various policy checks'
+     * results like the banned phrases or the Model Armor checks. This field is
+     * populated only if the assist call was skipped due to a policy violation.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AssistAnswer.CustomerPolicyEnforcementResult customer_policy_enforcement_result = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\AssistAnswer\CustomerPolicyEnforcementResult|null
+     */
+    public function getCustomerPolicyEnforcementResult()
+    {
+        return $this->customer_policy_enforcement_result;
+    }
+
+    public function hasCustomerPolicyEnforcementResult()
+    {
+        return isset($this->customer_policy_enforcement_result);
+    }
+
+    public function clearCustomerPolicyEnforcementResult()
+    {
+        unset($this->customer_policy_enforcement_result);
+    }
+
+    /**
+     * Optional. The field contains information about the various policy checks'
+     * results like the banned phrases or the Model Armor checks. This field is
+     * populated only if the assist call was skipped due to a policy violation.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AssistAnswer.CustomerPolicyEnforcementResult customer_policy_enforcement_result = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\AssistAnswer\CustomerPolicyEnforcementResult $var
+     * @return $this
+     */
+    public function setCustomerPolicyEnforcementResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\AssistAnswer\CustomerPolicyEnforcementResult::class);
+        $this->customer_policy_enforcement_result = $var;
 
         return $this;
     }

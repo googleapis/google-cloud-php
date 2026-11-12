@@ -16,7 +16,7 @@ use Google\Protobuf\RepeatedField;
 class MysqlDatabase extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Database name.
+     * The database name.
      *
      * Generated from protobuf field <code>string database = 1;</code>
      */
@@ -35,7 +35,7 @@ class MysqlDatabase extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $database
-     *           Database name.
+     *           The database name.
      *     @type \Google\Cloud\Datastream\V1\MysqlTable[] $mysql_tables
      *           Tables in the database.
      * }
@@ -46,7 +46,7 @@ class MysqlDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Database name.
+     * The database name.
      *
      * Generated from protobuf field <code>string database = 1;</code>
      * @return string
@@ -57,7 +57,7 @@ class MysqlDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Database name.
+     * The database name.
      *
      * Generated from protobuf field <code>string database = 1;</code>
      * @param string $var

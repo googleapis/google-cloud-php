@@ -448,6 +448,18 @@ return [
                     ],
                 ],
             ],
+            'ReplaceMessageCards' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=spaces/*/messages/*}:replaceCards',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'SearchMessages' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=spaces/*}/messages:search',

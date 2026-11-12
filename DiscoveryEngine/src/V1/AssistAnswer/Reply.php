@@ -15,6 +15,12 @@ use Google\Protobuf\RepeatedField;
  */
 class Reply extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * The time when the reply was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 14;</code>
+     */
+    protected $create_time = null;
     protected $reply;
 
     /**
@@ -25,6 +31,8 @@ class Reply extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent $grounded_content
      *           Possibly grounded response text or media from the assistant.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           The time when the reply was created.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +67,42 @@ class Reply extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent::class);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * The time when the reply was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 14;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
+    }
+
+    /**
+     * The time when the reply was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 14;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
 
         return $this;
     }

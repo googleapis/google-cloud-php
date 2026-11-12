@@ -17,7 +17,7 @@ class CmekConfig
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\x89\x04\x0A'google/cloud/tasks/v2/cmek_config.proto\x12\x15google.cloud.tasks.v2\x1A\x19google/api/resource.proto\"\xB7\x01\x0A\x0ACmekConfig\x12\x11\x0A\x04name\x18\x01 \x01(\x09B\x03\xE0A\x03\x127\x0A\x07kms_key\x18\x02 \x01(\x09B&\xFAA#\x0A!cloudkms.googleapis.com/CryptoKey:]\xEAAZ\x0A\$cloudtasks.googleapis.com/CmekConfig\x122projects/{project}/locations/{location}/cmekConfigB\xE9\x01\x0A\x19com.google.cloud.tasks.v2B\x0FCmekConfigProtoP\x01Z>cloud.google.com/go/cloudtasks/apiv2/cloudtaskspb;cloudtaskspb\xEAAx\x0A!cloudkms.googleapis.com/CryptoKey\x12Sprojects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}b\x06proto3"
+            "\x0A\x8A\x04\x0A'google/cloud/tasks/v2/cmek_config.proto\x12\x15google.cloud.tasks.v2\x1A\x19google/api/resource.proto\"\xB8\x01\x0A\x0ACmekConfig\x12\x12\x0A\x04name\x18\x01 \x01(\x09B\x04\xE2A\x01\x03\x127\x0A\x07kms_key\x18\x02 \x01(\x09B&\xFAA#\x0A!cloudkms.googleapis.com/CryptoKey:]\xEAAZ\x0A\$cloudtasks.googleapis.com/CmekConfig\x122projects/{project}/locations/{location}/cmekConfigB\xE9\x01\x0A\x19com.google.cloud.tasks.v2B\x0FCmekConfigProtoP\x01Z>cloud.google.com/go/cloudtasks/apiv2/cloudtaskspb;cloudtaskspb\xEAAx\x0A!cloudkms.googleapis.com/CryptoKey\x12Sprojects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}b\x06proto3"
         , true);
 
         static::$is_initialized = true;

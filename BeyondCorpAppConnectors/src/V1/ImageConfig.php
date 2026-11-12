@@ -17,14 +17,16 @@ class ImageConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * The initial image the remote agent will attempt to run for the control
-     * plane.
+     * plane. Format would be a gcr image path, e.g.:
+     * gcr.io/PROJECT-ID/my-image:tag1
      *
      * Generated from protobuf field <code>string target_image = 1;</code>
      */
     protected $target_image = '';
     /**
      * The stable image that the remote agent will fallback to if the target image
-     * fails.
+     * fails. Format would be a gcr image path, e.g.:
+     * gcr.io/PROJECT-ID/my-image:tag1
      *
      * Generated from protobuf field <code>string stable_image = 2;</code>
      */
@@ -38,10 +40,12 @@ class ImageConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $target_image
      *           The initial image the remote agent will attempt to run for the control
-     *           plane.
+     *           plane. Format would be a gcr image path, e.g.:
+     *           gcr.io/PROJECT-ID/my-image:tag1
      *     @type string $stable_image
      *           The stable image that the remote agent will fallback to if the target image
-     *           fails.
+     *           fails. Format would be a gcr image path, e.g.:
+     *           gcr.io/PROJECT-ID/my-image:tag1
      * }
      */
     public function __construct($data = NULL) {
@@ -51,7 +55,8 @@ class ImageConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The initial image the remote agent will attempt to run for the control
-     * plane.
+     * plane. Format would be a gcr image path, e.g.:
+     * gcr.io/PROJECT-ID/my-image:tag1
      *
      * Generated from protobuf field <code>string target_image = 1;</code>
      * @return string
@@ -63,7 +68,8 @@ class ImageConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The initial image the remote agent will attempt to run for the control
-     * plane.
+     * plane. Format would be a gcr image path, e.g.:
+     * gcr.io/PROJECT-ID/my-image:tag1
      *
      * Generated from protobuf field <code>string target_image = 1;</code>
      * @param string $var
@@ -79,7 +85,8 @@ class ImageConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The stable image that the remote agent will fallback to if the target image
-     * fails.
+     * fails. Format would be a gcr image path, e.g.:
+     * gcr.io/PROJECT-ID/my-image:tag1
      *
      * Generated from protobuf field <code>string stable_image = 2;</code>
      * @return string
@@ -91,7 +98,8 @@ class ImageConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The stable image that the remote agent will fallback to if the target image
-     * fails.
+     * fails. Format would be a gcr image path, e.g.:
+     * gcr.io/PROJECT-ID/my-image:tag1
      *
      * Generated from protobuf field <code>string stable_image = 2;</code>
      * @param string $var

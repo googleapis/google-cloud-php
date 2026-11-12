@@ -68,7 +68,7 @@ function execute_batch_dml_sample(
     $transaction = new TransactionSelector();
     $statement = (new Statement())
         ->setSql($statementsSql);
-    $statements = [$statement,];
+    $statements = [$statement];
     $request = (new ExecuteBatchDmlRequest())
         ->setSession($formattedSession)
         ->setTransaction($transaction)

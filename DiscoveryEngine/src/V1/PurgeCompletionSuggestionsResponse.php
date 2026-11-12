@@ -11,7 +11,8 @@ use Google\Protobuf\RepeatedField;
 /**
  * Response message for
  * [CompletionService.PurgeCompletionSuggestions][google.cloud.discoveryengine.v1.CompletionService.PurgeCompletionSuggestions]
- * method.
+ * method. If the long running operation is successfully done, then this
+ * message is returned by the google.longrunning.Operations.response field.
  *
  * Generated from protobuf message <code>google.cloud.discoveryengine.v1.PurgeCompletionSuggestionsResponse</code>
  */

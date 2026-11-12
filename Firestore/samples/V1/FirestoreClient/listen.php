@@ -49,7 +49,7 @@ function listen_sample(string $database): void
     try {
         /** @var BidiStream $stream */
         $stream = $firestoreClient->listen();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var ListenResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

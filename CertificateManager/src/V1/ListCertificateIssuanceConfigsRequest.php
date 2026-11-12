@@ -23,32 +23,32 @@ class ListCertificateIssuanceConfigsRequest extends \Google\Protobuf\Internal\Me
      */
     protected $parent = '';
     /**
-     * Maximum number of certificate configs to return per call.
+     * Optional. Maximum number of certificate configs to return per call.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * The value returned by the last `ListCertificateIssuanceConfigsResponse`.
-     * Indicates that this is a continuation of a prior
-     * `ListCertificateIssuanceConfigs` call, and that the system should return
-     * the next page of data.
+     * Optional. The value returned by the last
+     * `ListCertificateIssuanceConfigsResponse`. Indicates that this is a
+     * continuation of a prior `ListCertificateIssuanceConfigs` call, and that the
+     * system should return the next page of data.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
     /**
-     * Filter expression to restrict the Certificates Configs returned.
+     * Optional. Filter expression to restrict the Certificates Configs returned.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = '';
     /**
-     * A list of Certificate Config field names used to specify the order of the
-     * returned results. The default sorting order is ascending. To specify
-     * descending order for a field, add a suffix `" desc"`.
+     * Optional. A list of Certificate Config field names used to specify the
+     * order of the returned results. The default sorting order is ascending. To
+     * specify descending order for a field, add a suffix `" desc"`.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $order_by = '';
 
@@ -77,18 +77,18 @@ class ListCertificateIssuanceConfigsRequest extends \Google\Protobuf\Internal\Me
      *           Required. The project and location from which the certificate should be
      *           listed, specified in the format `projects/{@*}locations/*`.
      *     @type int $page_size
-     *           Maximum number of certificate configs to return per call.
+     *           Optional. Maximum number of certificate configs to return per call.
      *     @type string $page_token
-     *           The value returned by the last `ListCertificateIssuanceConfigsResponse`.
-     *           Indicates that this is a continuation of a prior
-     *           `ListCertificateIssuanceConfigs` call, and that the system should return
-     *           the next page of data.
+     *           Optional. The value returned by the last
+     *           `ListCertificateIssuanceConfigsResponse`. Indicates that this is a
+     *           continuation of a prior `ListCertificateIssuanceConfigs` call, and that the
+     *           system should return the next page of data.
      *     @type string $filter
-     *           Filter expression to restrict the Certificates Configs returned.
+     *           Optional. Filter expression to restrict the Certificates Configs returned.
      *     @type string $order_by
-     *           A list of Certificate Config field names used to specify the order of the
-     *           returned results. The default sorting order is ascending. To specify
-     *           descending order for a field, add a suffix `" desc"`.
+     *           Optional. A list of Certificate Config field names used to specify the
+     *           order of the returned results. The default sorting order is ascending. To
+     *           specify descending order for a field, add a suffix `" desc"`.
      * }
      */
     public function __construct($data = NULL) {
@@ -125,9 +125,9 @@ class ListCertificateIssuanceConfigsRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * Maximum number of certificate configs to return per call.
+     * Optional. Maximum number of certificate configs to return per call.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -136,9 +136,9 @@ class ListCertificateIssuanceConfigsRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * Maximum number of certificate configs to return per call.
+     * Optional. Maximum number of certificate configs to return per call.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -151,12 +151,12 @@ class ListCertificateIssuanceConfigsRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The value returned by the last `ListCertificateIssuanceConfigsResponse`.
-     * Indicates that this is a continuation of a prior
-     * `ListCertificateIssuanceConfigs` call, and that the system should return
-     * the next page of data.
+     * Optional. The value returned by the last
+     * `ListCertificateIssuanceConfigsResponse`. Indicates that this is a
+     * continuation of a prior `ListCertificateIssuanceConfigs` call, and that the
+     * system should return the next page of data.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -165,12 +165,12 @@ class ListCertificateIssuanceConfigsRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The value returned by the last `ListCertificateIssuanceConfigsResponse`.
-     * Indicates that this is a continuation of a prior
-     * `ListCertificateIssuanceConfigs` call, and that the system should return
-     * the next page of data.
+     * Optional. The value returned by the last
+     * `ListCertificateIssuanceConfigsResponse`. Indicates that this is a
+     * continuation of a prior `ListCertificateIssuanceConfigs` call, and that the
+     * system should return the next page of data.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -183,9 +183,9 @@ class ListCertificateIssuanceConfigsRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * Filter expression to restrict the Certificates Configs returned.
+     * Optional. Filter expression to restrict the Certificates Configs returned.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFilter()
@@ -194,9 +194,9 @@ class ListCertificateIssuanceConfigsRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * Filter expression to restrict the Certificates Configs returned.
+     * Optional. Filter expression to restrict the Certificates Configs returned.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -209,11 +209,11 @@ class ListCertificateIssuanceConfigsRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * A list of Certificate Config field names used to specify the order of the
-     * returned results. The default sorting order is ascending. To specify
-     * descending order for a field, add a suffix `" desc"`.
+     * Optional. A list of Certificate Config field names used to specify the
+     * order of the returned results. The default sorting order is ascending. To
+     * specify descending order for a field, add a suffix `" desc"`.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getOrderBy()
@@ -222,11 +222,11 @@ class ListCertificateIssuanceConfigsRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * A list of Certificate Config field names used to specify the order of the
-     * returned results. The default sorting order is ascending. To specify
-     * descending order for a field, add a suffix `" desc"`.
+     * Optional. A list of Certificate Config field names used to specify the
+     * order of the returned results. The default sorting order is ascending. To
+     * specify descending order for a field, add a suffix `" desc"`.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

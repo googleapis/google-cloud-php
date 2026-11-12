@@ -415,6 +415,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $sessionId = 'sessionId1661853540';
         $attributionToken = 'attributionToken-729411015';
         $filter = 'filter-1274492040';
+        $entity = 'entity-1298275357';
         $expectedResponse = new UserEvent();
         $expectedResponse->setEventType($eventType);
         $expectedResponse->setConversionType($conversionType);
@@ -425,6 +426,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $expectedResponse->setSessionId($sessionId);
         $expectedResponse->setAttributionToken($attributionToken);
         $expectedResponse->setFilter($filter);
+        $expectedResponse->setEntity($entity);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');

@@ -57,6 +57,13 @@ class State
      * Generated from protobuf enum <code>FAILED = 6;</code>
      */
     const FAILED = 6;
+    /**
+     * Execution of the action was queued waiting for an available concurrency
+     * slot.
+     *
+     * Generated from protobuf enum <code>QUEUED = 7;</code>
+     */
+    const QUEUED = 7;
 
     private static $valueToName = [
         self::PENDING => 'PENDING',
@@ -66,6 +73,7 @@ class State
         self::SUCCEEDED => 'SUCCEEDED',
         self::CANCELLED => 'CANCELLED',
         self::FAILED => 'FAILED',
+        self::QUEUED => 'QUEUED',
     ];
 
     public static function name($value)

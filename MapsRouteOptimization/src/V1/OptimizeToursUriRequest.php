@@ -19,8 +19,8 @@ class OptimizeToursUriRequest extends \Google\Protobuf\Internal\Message
      * Required. Target project or location to make a call.
      * Format:
      * * `projects/{project-id}`
-     * * `projects/{project-id}/locations/{location-id}`
-     * If no location is specified, a region will be chosen automatically.
+     * * `projects/{project-id}/locations/-`
+     * Regional `{location-id}` values are not supported.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -50,8 +50,8 @@ class OptimizeToursUriRequest extends \Google\Protobuf\Internal\Message
      *           Required. Target project or location to make a call.
      *           Format:
      *           * `projects/{project-id}`
-     *           * `projects/{project-id}/locations/{location-id}`
-     *           If no location is specified, a region will be chosen automatically.
+     *           * `projects/{project-id}/locations/-`
+     *           Regional `{location-id}` values are not supported.
      *     @type \Google\Maps\RouteOptimization\V1\Uri $input
      *           Required. The URI of the Cloud Storage object containing the
      *           `OptimizeToursRequest`.
@@ -69,8 +69,8 @@ class OptimizeToursUriRequest extends \Google\Protobuf\Internal\Message
      * Required. Target project or location to make a call.
      * Format:
      * * `projects/{project-id}`
-     * * `projects/{project-id}/locations/{location-id}`
-     * If no location is specified, a region will be chosen automatically.
+     * * `projects/{project-id}/locations/-`
+     * Regional `{location-id}` values are not supported.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -84,8 +84,8 @@ class OptimizeToursUriRequest extends \Google\Protobuf\Internal\Message
      * Required. Target project or location to make a call.
      * Format:
      * * `projects/{project-id}`
-     * * `projects/{project-id}/locations/{location-id}`
-     * If no location is specified, a region will be chosen automatically.
+     * * `projects/{project-id}/locations/-`
+     * Regional `{location-id}` values are not supported.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

@@ -50,7 +50,7 @@ function batch_update_generative_question_configs_sample(
         ->setFacet($requestsGenerativeQuestionConfigFacet);
     $updateGenerativeQuestionConfigRequest = (new UpdateGenerativeQuestionConfigRequest())
         ->setGenerativeQuestionConfig($requestsGenerativeQuestionConfig);
-    $requests = [$updateGenerativeQuestionConfigRequest,];
+    $requests = [$updateGenerativeQuestionConfigRequest];
     $request = (new BatchUpdateGenerativeQuestionConfigsRequest())
         ->setRequests($requests);
 

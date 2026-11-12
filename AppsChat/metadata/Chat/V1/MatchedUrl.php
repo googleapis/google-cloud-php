@@ -16,7 +16,7 @@ class MatchedUrl
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\x85\x02\x0A google/chat/v1/matched_url.proto\x12\x0Egoogle.chat.v1\"\x1E\x0A\x0AMatchedUrl\x12\x10\x0A\x03url\x18\x02 \x01(\x09B\x03\xE0A\x03B\xA8\x01\x0A\x12com.google.chat.v1B\x0FMatchedUrlProtoP\x01Z,cloud.google.com/go/chat/apiv1/chatpb;chatpb\xA2\x02\x0BDYNAPIProto\xAA\x02\x13Google.Apps.Chat.V1\xCA\x02\x13Google\\Apps\\Chat\\V1\xEA\x02\x16Google::Apps::Chat::V1b\x06proto3"
+            "\x0A\x86\x02\x0A google/chat/v1/matched_url.proto\x12\x0Egoogle.chat.v1\"\x1F\x0A\x0AMatchedUrl\x12\x11\x0A\x03url\x18\x02 \x01(\x09B\x04\xE2A\x01\x03B\xA8\x01\x0A\x12com.google.chat.v1B\x0FMatchedUrlProtoP\x01Z,cloud.google.com/go/chat/apiv1/chatpb;chatpb\xA2\x02\x0BDYNAPIProto\xAA\x02\x13Google.Apps.Chat.V1\xCA\x02\x13Google\\Apps\\Chat\\V1\xEA\x02\x16Google::Apps::Chat::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

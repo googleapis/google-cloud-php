@@ -33,7 +33,8 @@ class Slate extends \Google\Protobuf\Internal\Message
     protected $display_name = null;
     /**
      * Output only. The status of this Slate. Slates are created in the
-     * [SlateStatus.ACTIVE][] state.
+     * [SlateStatusEnum.SlateStatus.ACTIVE][google.ads.admanager.v1.SlateStatusEnum.SlateStatus.ACTIVE]
+     * state.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.SlateStatusEnum.SlateStatus status = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -72,7 +73,8 @@ class Slate extends \Google\Protobuf\Internal\Message
      *           characters.
      *     @type int $status
      *           Output only. The status of this Slate. Slates are created in the
-     *           [SlateStatus.ACTIVE][] state.
+     *           [SlateStatusEnum.SlateStatus.ACTIVE][google.ads.admanager.v1.SlateStatusEnum.SlateStatus.ACTIVE]
+     *           state.
      *     @type int $transcode_status
      *           Output only. Server side transcoding status of the current slate.
      *     @type string $video_source_url
@@ -155,7 +157,8 @@ class Slate extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The status of this Slate. Slates are created in the
-     * [SlateStatus.ACTIVE][] state.
+     * [SlateStatusEnum.SlateStatus.ACTIVE][google.ads.admanager.v1.SlateStatusEnum.SlateStatus.ACTIVE]
+     * state.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.SlateStatusEnum.SlateStatus status = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -177,7 +180,8 @@ class Slate extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The status of this Slate. Slates are created in the
-     * [SlateStatus.ACTIVE][] state.
+     * [SlateStatusEnum.SlateStatus.ACTIVE][google.ads.admanager.v1.SlateStatusEnum.SlateStatus.ACTIVE]
+     * state.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.SlateStatusEnum.SlateStatus status = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var

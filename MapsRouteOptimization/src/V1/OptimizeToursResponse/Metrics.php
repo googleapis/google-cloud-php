@@ -25,7 +25,10 @@ class Metrics extends \Google\Protobuf\Internal\Message
      */
     protected $aggregated_route_metrics = null;
     /**
-     * Number of mandatory shipments skipped.
+     * Number of high priority shipments skipped.
+     * High priority shipments are those with an unset
+     * [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost]
+     * field.
      *
      * Generated from protobuf field <code>int32 skipped_mandatory_shipment_count = 2;</code>
      */
@@ -87,7 +90,10 @@ class Metrics extends \Google\Protobuf\Internal\Message
      *           [ShipmentRoute.metrics][google.maps.routeoptimization.v1.ShipmentRoute.metrics]
      *           fields of the same name.
      *     @type int $skipped_mandatory_shipment_count
-     *           Number of mandatory shipments skipped.
+     *           Number of high priority shipments skipped.
+     *           High priority shipments are those with an unset
+     *           [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost]
+     *           field.
      *     @type int $used_vehicle_count
      *           Number of vehicles used. Note: if a vehicle route is empty and
      *           [Vehicle.used_if_route_is_empty][google.maps.routeoptimization.v1.Vehicle.used_if_route_is_empty]
@@ -162,7 +168,10 @@ class Metrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of mandatory shipments skipped.
+     * Number of high priority shipments skipped.
+     * High priority shipments are those with an unset
+     * [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost]
+     * field.
      *
      * Generated from protobuf field <code>int32 skipped_mandatory_shipment_count = 2;</code>
      * @return int
@@ -173,7 +182,10 @@ class Metrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of mandatory shipments skipped.
+     * Number of high priority shipments skipped.
+     * High priority shipments are those with an unset
+     * [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost]
+     * field.
      *
      * Generated from protobuf field <code>int32 skipped_mandatory_shipment_count = 2;</code>
      * @param int $var

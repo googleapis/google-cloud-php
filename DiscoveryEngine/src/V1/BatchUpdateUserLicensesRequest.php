@@ -18,7 +18,8 @@ use Google\Protobuf\RepeatedField;
 class BatchUpdateUserLicensesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent [UserStore][] resource name, format:
+     * Required. The parent [UserStore][google.cloud.discoveryengine.v1.UserStore]
+     * resource name, format:
      * `projects/{project}/locations/{location}/userStores/{user_store_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -41,9 +42,10 @@ class BatchUpdateUserLicensesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DiscoveryEngine\V1\BatchUpdateUserLicensesRequest\InlineSource $inline_source
-     *           The inline source for the input content for document embeddings.
+     *           The inline source for the input content for license assignment.
      *     @type string $parent
-     *           Required. The parent [UserStore][] resource name, format:
+     *           Required. The parent [UserStore][google.cloud.discoveryengine.v1.UserStore]
+     *           resource name, format:
      *           `projects/{project}/locations/{location}/userStores/{user_store_id}`.
      *     @type bool $delete_unassigned_user_licenses
      *           Optional. If true, if user licenses removed associated license config, the
@@ -57,7 +59,7 @@ class BatchUpdateUserLicensesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The inline source for the input content for document embeddings.
+     * The inline source for the input content for license assignment.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.BatchUpdateUserLicensesRequest.InlineSource inline_source = 2;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1\BatchUpdateUserLicensesRequest\InlineSource|null
@@ -73,7 +75,7 @@ class BatchUpdateUserLicensesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The inline source for the input content for document embeddings.
+     * The inline source for the input content for license assignment.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.BatchUpdateUserLicensesRequest.InlineSource inline_source = 2;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1\BatchUpdateUserLicensesRequest\InlineSource $var
@@ -88,7 +90,8 @@ class BatchUpdateUserLicensesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent [UserStore][] resource name, format:
+     * Required. The parent [UserStore][google.cloud.discoveryengine.v1.UserStore]
+     * resource name, format:
      * `projects/{project}/locations/{location}/userStores/{user_store_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -100,7 +103,8 @@ class BatchUpdateUserLicensesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent [UserStore][] resource name, format:
+     * Required. The parent [UserStore][google.cloud.discoveryengine.v1.UserStore]
+     * resource name, format:
      * `projects/{project}/locations/{location}/userStores/{user_store_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

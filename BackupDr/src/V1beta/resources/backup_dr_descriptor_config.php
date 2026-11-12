@@ -137,6 +137,63 @@ return [
                     ],
                 ],
             ],
+            'CreateRestoreTemplate' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\BackupDR\V1beta\RestoreTemplate',
+                    'metadataReturnType' => '\Google\Cloud\BackupDR\V1beta\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateRestoreVerificationPlan' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\BackupDR\V1beta\RestoreVerificationPlan',
+                    'metadataReturnType' => '\Google\Cloud\BackupDR\V1beta\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateRestoreVerificationPlanAssociation' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\BackupDR\V1beta\RestoreVerificationPlanAssociation',
+                    'metadataReturnType' => '\Google\Cloud\BackupDR\V1beta\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteAutoProtectionPolicy' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
@@ -251,6 +308,63 @@ return [
                     ],
                 ],
             ],
+            'DeleteRestoreTemplate' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\BackupDR\V1beta\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteRestoreVerificationPlan' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\BackupDR\V1beta\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteRestoreVerificationPlanAssociation' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\BackupDR\V1beta\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'InitializeService' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\BackupDR\V1beta\InitializeServiceResponse',
@@ -308,9 +422,66 @@ return [
                     ],
                 ],
             ],
+            'RunRestoreTemplate' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\BackupDR\V1beta\RunRestoreTemplateResponse',
+                    'metadataReturnType' => '\Google\Cloud\BackupDR\V1beta\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'TriggerBackup' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\BackupDR\V1beta\BackupPlanAssociation',
+                    'metadataReturnType' => '\Google\Cloud\BackupDR\V1beta\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'TriggerRestoreCleanup' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\BackupDR\V1beta\RestoreTemplateExecution',
+                    'metadataReturnType' => '\Google\Cloud\BackupDR\V1beta\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'TriggerRestoreVerification' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\BackupDR\V1beta\TriggerRestoreVerificationResponse',
                     'metadataReturnType' => '\Google\Cloud\BackupDR\V1beta\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -442,6 +613,26 @@ return [
                         'keyName' => 'data_source.name',
                         'fieldAccessors' => [
                             'getDataSource',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateRestoreTemplate' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\BackupDR\V1beta\RestoreTemplate',
+                    'metadataReturnType' => '\Google\Cloud\BackupDR\V1beta\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'restore_template.name',
+                        'fieldAccessors' => [
+                            'getRestoreTemplate',
                             'getName',
                         ],
                     ],
@@ -650,6 +841,54 @@ return [
             'GetManagementServer' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\BackupDR\V1beta\ManagementServer',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetRestoreTemplate' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\BackupDR\V1beta\RestoreTemplate',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetRestoreTemplateExecution' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\BackupDR\V1beta\RestoreTemplateExecution',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetRestoreVerificationPlan' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\BackupDR\V1beta\RestoreVerificationPlan',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetRestoreVerificationPlanAssociation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\BackupDR\V1beta\RestoreVerificationPlanAssociation',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -899,6 +1138,86 @@ return [
                     ],
                 ],
             ],
+            'ListRestoreTemplateExecutions' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getRestoreTemplateExecutions',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\BackupDR\V1beta\ListRestoreTemplateExecutionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRestoreTemplates' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getRestoreTemplates',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\BackupDR\V1beta\ListRestoreTemplatesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRestoreVerificationPlanAssociations' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getRestoreVerificationPlanAssociations',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\BackupDR\V1beta\ListRestoreVerificationPlanAssociationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRestoreVerificationPlans' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getRestoreVerificationPlans',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\BackupDR\V1beta\ListRestoreVerificationPlansResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Location\Location',
@@ -987,8 +1306,13 @@ return [
                 'dataSource' => 'projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}',
                 'dataSourceReference' => 'projects/{project}/locations/{location}/dataSourceReferences/{data_source_reference}',
                 'instance' => 'projects/{project}/instances/{instance}',
+                'job' => 'projects/{project}/locations/{location}/jobs/{job}',
                 'location' => 'projects/{project}/locations/{location}',
                 'managementServer' => 'projects/{project}/locations/{location}/managementServers/{managementserver}',
+                'restoreTemplate' => 'projects/{project}/locations/{location}/restoreTemplates/{restore_template}',
+                'restoreTemplateExecution' => 'projects/{project}/locations/{location}/restoreTemplates/{restore_template}/executions/{execution}',
+                'restoreVerificationPlan' => 'projects/{project}/locations/{location}/restoreVerificationPlans/{restoreVerificationPlan}',
+                'restoreVerificationPlanAssociation' => 'projects/{project}/locations/{location}/restoreVerificationPlans/{restore_verification_plan}/associations/{association}',
                 'storagePool' => 'projects/{project}/zones/{zone}/storagePools/{storage_pool}',
             ],
         ],

@@ -33,6 +33,12 @@ class PreCheckMajorVersionUpgradeContext extends \Google\Protobuf\Internal\Messa
      * Generated from protobuf field <code>string kind = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $kind = '';
+    /**
+     * Optional. The maximum allowed runtime for the precheck operation.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration max_runtime = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $max_runtime = null;
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class PreCheckMajorVersionUpgradeContext extends \Google\Protobuf\Internal\Messa
      *           Output only. The responses from the precheck operation.
      *     @type string $kind
      *           Optional. This is always `sql#preCheckMajorVersionUpgradeContext`.
+     *     @type \Google\Protobuf\Duration $max_runtime
+     *           Optional. The maximum allowed runtime for the precheck operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +135,42 @@ class PreCheckMajorVersionUpgradeContext extends \Google\Protobuf\Internal\Messa
     {
         GPBUtil::checkString($var, True);
         $this->kind = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The maximum allowed runtime for the precheck operation.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration max_runtime = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getMaxRuntime()
+    {
+        return $this->max_runtime;
+    }
+
+    public function hasMaxRuntime()
+    {
+        return isset($this->max_runtime);
+    }
+
+    public function clearMaxRuntime()
+    {
+        unset($this->max_runtime);
+    }
+
+    /**
+     * Optional. The maximum allowed runtime for the precheck operation.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration max_runtime = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setMaxRuntime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->max_runtime = $var;
 
         return $this;
     }

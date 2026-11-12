@@ -23,10 +23,10 @@ class ImportUserEventsMetadata extends \Google\Protobuf\Internal\Message
      */
     protected $create_time = null;
     /**
-     * Operation last update time. If the operation is done, this is also the
-     * finish time.
+     * Output only. Operation last update time. If the operation is done, this is
+     * also the finish time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $update_time = null;
     /**
@@ -51,8 +51,8 @@ class ImportUserEventsMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Operation create time.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Operation last update time. If the operation is done, this is also the
-     *           finish time.
+     *           Output only. Operation last update time. If the operation is done, this is
+     *           also the finish time.
      *     @type int|string $success_count
      *           Count of entries that were processed successfully.
      *     @type int|string $failure_count
@@ -101,10 +101,10 @@ class ImportUserEventsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Operation last update time. If the operation is done, this is also the
-     * finish time.
+     * Output only. Operation last update time. If the operation is done, this is
+     * also the finish time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
@@ -123,10 +123,10 @@ class ImportUserEventsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Operation last update time. If the operation is done, this is also the
-     * finish time.
+     * Output only. Operation last update time. If the operation is done, this is
+     * also the finish time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */

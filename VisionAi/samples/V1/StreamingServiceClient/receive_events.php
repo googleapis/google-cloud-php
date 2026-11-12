@@ -50,7 +50,7 @@ function receive_events_sample(): void
     try {
         /** @var BidiStream $stream */
         $stream = $streamingServiceClient->receiveEvents();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var ReceiveEventsResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

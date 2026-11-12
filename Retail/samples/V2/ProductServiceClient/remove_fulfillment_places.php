@@ -110,7 +110,7 @@ function remove_fulfillment_places_sample(
     $productServiceClient = new ProductServiceClient();
 
     // Prepare the request message.
-    $placeIds = [$placeIdsElement,];
+    $placeIds = [$placeIdsElement];
     $request = (new RemoveFulfillmentPlacesRequest())
         ->setProduct($formattedProduct)
         ->setType($type)

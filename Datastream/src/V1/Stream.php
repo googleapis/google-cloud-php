@@ -97,6 +97,12 @@ class Stream extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool satisfies_pzi = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $satisfies_pzi = null;
+    /**
+     * Optional. Rule sets to apply to the stream.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.Stream.RuleSet rule_sets = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $rule_sets;
     protected $backfill_strategy;
 
     /**
@@ -140,6 +146,8 @@ class Stream extends \Google\Protobuf\Internal\Message
      *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use.
+     *     @type \Google\Cloud\Datastream\V1\Stream\RuleSet[] $rule_sets
+     *           Optional. Rule sets to apply to the stream.
      * }
      */
     public function __construct($data = NULL) {
@@ -633,6 +641,32 @@ class Stream extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Rule sets to apply to the stream.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.Stream.RuleSet rule_sets = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\Stream\RuleSet>
+     */
+    public function getRuleSets()
+    {
+        return $this->rule_sets;
+    }
+
+    /**
+     * Optional. Rule sets to apply to the stream.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.Stream.RuleSet rule_sets = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Datastream\V1\Stream\RuleSet[] $var
+     * @return $this
+     */
+    public function setRuleSets($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Datastream\V1\Stream\RuleSet::class);
+        $this->rule_sets = $arr;
 
         return $this;
     }

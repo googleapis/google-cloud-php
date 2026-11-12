@@ -73,17 +73,17 @@ function ingest_users_sample(
         ->setAccountType($destinationsOperatingAccountAccountType);
     $destination = (new Destination())
         ->setOperatingAccount($destinationsOperatingAccount);
-    $destinations = [$destination,];
+    $destinations = [$destination];
     $usersUserDataUserIdentifiers = [new UserIdentifier()];
     $usersUserData = (new UserData())
         ->setUserIdentifiers($usersUserDataUserIdentifiers);
-    $usersMobileDataMobileIds = [$usersMobileDataMobileIdsElement,];
+    $usersMobileDataMobileIds = [$usersMobileDataMobileIdsElement];
     $usersMobileData = (new MobileData())
         ->setMobileIds($usersMobileDataMobileIds);
     $user = (new User())
         ->setUserData($usersUserData)
         ->setMobileData($usersMobileData);
-    $users = [$user,];
+    $users = [$user];
     $request = (new IngestUsersRequest())
         ->setDestinations($destinations)
         ->setUsers($users)

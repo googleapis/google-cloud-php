@@ -35,6 +35,8 @@ class SourceObjectIdentifier extends \Google\Protobuf\Internal\Message
      *           Salesforce data source object identifier.
      *     @type \Google\Cloud\Datastream\V1\SourceObjectIdentifier\MongodbObjectIdentifier $mongodb_identifier
      *           MongoDB data source object identifier.
+     *     @type \Google\Cloud\Datastream\V1\SourceObjectIdentifier\SpannerObjectIdentifier $spanner_identifier
+     *           Spanner data source object identifier.
      * }
      */
     public function __construct($data = NULL) {
@@ -224,6 +226,37 @@ class SourceObjectIdentifier extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SourceObjectIdentifier\MongodbObjectIdentifier::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Spanner data source object identifier.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SourceObjectIdentifier.SpannerObjectIdentifier spanner_identifier = 7;</code>
+     * @return \Google\Cloud\Datastream\V1\SourceObjectIdentifier\SpannerObjectIdentifier|null
+     */
+    public function getSpannerIdentifier()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasSpannerIdentifier()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Spanner data source object identifier.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SourceObjectIdentifier.SpannerObjectIdentifier spanner_identifier = 7;</code>
+     * @param \Google\Cloud\Datastream\V1\SourceObjectIdentifier\SpannerObjectIdentifier $var
+     * @return $this
+     */
+    public function setSpannerIdentifier($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SourceObjectIdentifier\SpannerObjectIdentifier::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

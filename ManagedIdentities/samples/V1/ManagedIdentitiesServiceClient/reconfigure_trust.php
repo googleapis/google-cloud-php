@@ -50,7 +50,7 @@ function reconfigure_trust_sample(
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
 
     // Prepare the request message.
-    $targetDnsIpAddresses = [$targetDnsIpAddressesElement,];
+    $targetDnsIpAddresses = [$targetDnsIpAddressesElement];
     $request = (new ReconfigureTrustRequest())
         ->setName($formattedName)
         ->setTargetDomainName($targetDomainName)

@@ -46,7 +46,7 @@ function batch_refresh_master_playlists_sample(
     $liveStreamServiceClient = new LiveStreamServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchRefreshMasterPlaylistsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

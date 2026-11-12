@@ -46,7 +46,9 @@ function create_members_sample(string $interconnectGroup, string $project): void
     $interconnectGroupsCreateMembersRequestResource = new InterconnectGroupsCreateMembersRequest();
     $request = (new CreateMembersInterconnectGroupRequest())
         ->setInterconnectGroup($interconnectGroup)
-        ->setInterconnectGroupsCreateMembersRequestResource($interconnectGroupsCreateMembersRequestResource)
+        ->setInterconnectGroupsCreateMembersRequestResource(
+            $interconnectGroupsCreateMembersRequestResource
+        )
         ->setProject($project);
 
     // Call the API and handle any network failures.

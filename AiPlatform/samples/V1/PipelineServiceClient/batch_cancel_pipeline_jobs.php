@@ -56,7 +56,7 @@ function batch_cancel_pipeline_jobs_sample(
     $pipelineServiceClient = new PipelineServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchCancelPipelineJobsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

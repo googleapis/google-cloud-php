@@ -73,6 +73,18 @@ return [
                     ],
                 ],
             ],
+            'GetIamPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Iam\V1\Policy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'ListEngines' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -93,6 +105,18 @@ return [
                     ],
                 ],
             ],
+            'SetIamPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Iam\V1\Policy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateEngine' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\DiscoveryEngine\V1\Engine',
@@ -107,8 +131,13 @@ return [
                 ],
             ],
             'templateMap' => [
+                'agentGateway' => 'projects/{project}/locations/{location}/agentGateways/{agent_gateway}',
+                'cmekConfig' => 'projects/{project}/locations/{location}/cmekConfig',
                 'collection' => 'projects/{project}/locations/{location}/collections/{collection}',
+                'cryptoKeyVersions' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
+                'cryptoKeys' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'engine' => 'projects/{project}/locations/{location}/collections/{collection}/engines/{engine}',
+                'projectLocationCmekConfig' => 'projects/{project}/locations/{location}/cmekConfig',
             ],
         ],
     ],

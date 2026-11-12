@@ -47,7 +47,7 @@ function list_vehicles_sample(string $parent, int $vehicleTypeCategoriesElement)
     $vehicleServiceClient = new VehicleServiceClient();
 
     // Prepare the request message.
-    $vehicleTypeCategories = [$vehicleTypeCategoriesElement,];
+    $vehicleTypeCategories = [$vehicleTypeCategoriesElement];
     $request = (new ListVehiclesRequest())
         ->setParent($parent)
         ->setVehicleTypeCategories($vehicleTypeCategories);
