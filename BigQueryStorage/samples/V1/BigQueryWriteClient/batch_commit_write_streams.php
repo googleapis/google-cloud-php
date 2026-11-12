@@ -49,7 +49,7 @@ function batch_commit_write_streams_sample(
     $bigQueryWriteClient = new BigQueryWriteClient();
 
     // Prepare the request message.
-    $writeStreams = [$writeStreamsElement,];
+    $writeStreams = [$writeStreamsElement];
     $request = (new BatchCommitWriteStreamsRequest())
         ->setParent($formattedParent)
         ->setWriteStreams($writeStreams);

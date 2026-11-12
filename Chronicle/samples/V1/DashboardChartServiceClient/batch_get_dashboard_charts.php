@@ -48,7 +48,7 @@ function batch_get_dashboard_charts_sample(
     $dashboardChartServiceClient = new DashboardChartServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchGetDashboardChartsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

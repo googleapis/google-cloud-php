@@ -38,6 +38,8 @@ class GitHub
     const GITHUB_WEBHOOK_CREATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/hooks';
     const GITHUB_WEBHOOKS_LIST_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/hooks';
     const GITHUB_WEBHOOK_UPDATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/hooks/%s';
+    const GITHUB_CHECK_RUNS_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/commits/%s/check-runs';
+    private const FAILED_CHECK_CONCLUSIONS = ['failure', 'timed_out', 'cancelled', 'action_required'];
     private const GITHUB_TEAMS_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/teams';
     private const GITHUB_TEAMS_ADD_ENDPOINT = 'https://api.github.com/orgs/%s/teams/%s/repos/%s';
 
@@ -103,7 +105,8 @@ class GitHub
 
             return ($res->getStatusCode() === 200);
         } catch (\Exception $e) {
-            if ($e->getCode() === 404) {
+            $response = method_exists($e, 'getResponse') ? $e->getResponse() : null;
+            if ($e->getCode() === 404 || $response?->getStatusCode() === 404) {
                 return false;
             }
             $this->logException($e);
@@ -184,7 +187,7 @@ class GitHub
                 'auth' => ['', $this->token]
             ]);
 
-            return $res->getStatusCode() === 201;
+            return in_array($res->getStatusCode(), [200, 201], true);
         } catch (\Exception $e) {
             $this->logException($e);
             return false;
@@ -201,6 +204,24 @@ class GitHub
      */
     public function getChangelog($target, $tagName): string|null|false
     {
+        $release = $this->getRelease($target, $tagName);
+        if (!is_array($release)) {
+            return $release;
+        }
+
+        return $release['body'] ?? null;
+    }
+
+    /**
+     * Get release details for a tag. False if the release doesn't exist.
+     *
+     * @param string $target The GitHub organization and repository ID separated
+     *        by a forward slash, i.e. `organization/repository'.
+     * @param string $tagName The name of the tag to fetch from.
+     * @return array|null|false
+     */
+    public function getRelease($target, $tagName): array|null|false
+    {
         try {
             $res = $this->client->get(sprintf(
                 self::GITHUB_RELEASE_ENDPOINT,
@@ -210,7 +231,7 @@ class GitHub
                 'auth' => ['', $this->token]
             ]);
 
-            return json_decode((string) $res->getBody(), true)['body'];
+            return json_decode((string) $res->getBody(), true);
         } catch (RequestException $e) {
             $this->logException($e);
             // Guzzle 7 carries the response on RequestException, Guzzle 8 only
@@ -338,6 +359,59 @@ class GitHub
         }
 
         return $releases;
+    }
+
+    /**
+     * Get check runs for a commit ref or tag from the GitHub API, sorted by name.
+     *
+     * @param string $target The GitHub organization and repository ID separated
+     *        by a forward slash, i.e. `organization/repository'.
+     * @param string $ref The commit SHA, branch, or tag name.
+     * @return array|null
+     */
+    public function getCheckRuns(string $target, string $ref): ?array
+    {
+        try {
+            $res = $this->client->get(sprintf(
+                self::GITHUB_CHECK_RUNS_ENDPOINT,
+                $this->cleanTarget($target),
+                $ref
+            ), [
+                'auth' => ['', $this->token],
+                'query' => [
+                    'filter' => 'latest',
+                    'per_page' => 100,
+                ],
+            ]);
+
+            $body = json_decode((string) $res->getBody(), true);
+            $checkRuns = $body['check_runs'] ?? null;
+            if (is_array($checkRuns)) {
+                $deduped = [];
+                foreach ($checkRuns as $run) {
+                    $name = $run['name'] ?? '';
+                    if (!isset($deduped[$name])) {
+                        $deduped[$name] = $run;
+                    }
+                }
+                $checkRuns = array_values($deduped);
+                usort($checkRuns, fn (array $a, array $b) => strcmp($a['name'] ?? '', $b['name'] ?? ''));
+            }
+            return $checkRuns;
+        } catch (\Exception $e) {
+            $this->logException($e);
+            return null;
+        }
+    }
+
+    /**
+     * Determine whether a GitHub Actions check run concluded with a failure status.
+     *
+     * @param array<string, mixed> $run
+     */
+    public static function isCheckRunFailed(array $run): bool
+    {
+        return in_array($run['conclusion'] ?? '', self::FAILED_CHECK_CONCLUSIONS, true);
     }
 
     public function updateRepoDetails(string $repoName, array $settings): bool

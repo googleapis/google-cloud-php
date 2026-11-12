@@ -29,6 +29,13 @@ class DocumentMetadata extends \Google\Protobuf\Internal\Message
      */
     protected $title = '';
     /**
+     * The mime type of the document.
+     * https://www.iana.org/assignments/media-types/media-types.xhtml.
+     *
+     * Generated from protobuf field <code>string mime_type = 4;</code>
+     */
+    protected $mime_type = '';
+    /**
      * Data representation.
      * The structured JSON data for the document. It should conform to the
      * registered [Schema][google.cloud.discoveryengine.v1.Schema] or an
@@ -48,6 +55,9 @@ class DocumentMetadata extends \Google\Protobuf\Internal\Message
      *           Uri of the document.
      *     @type string $title
      *           Title of the document.
+     *     @type string $mime_type
+     *           The mime type of the document.
+     *           https://www.iana.org/assignments/media-types/media-types.xhtml.
      *     @type \Google\Protobuf\Struct $struct_data
      *           Data representation.
      *           The structured JSON data for the document. It should conform to the
@@ -108,6 +118,34 @@ class DocumentMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->title = $var;
+
+        return $this;
+    }
+
+    /**
+     * The mime type of the document.
+     * https://www.iana.org/assignments/media-types/media-types.xhtml.
+     *
+     * Generated from protobuf field <code>string mime_type = 4;</code>
+     * @return string
+     */
+    public function getMimeType()
+    {
+        return $this->mime_type;
+    }
+
+    /**
+     * The mime type of the document.
+     * https://www.iana.org/assignments/media-types/media-types.xhtml.
+     *
+     * Generated from protobuf field <code>string mime_type = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMimeType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->mime_type = $var;
 
         return $this;
     }

@@ -50,7 +50,7 @@ function streaming_reactive_companion_suggestions_sample(string $formattedPartic
     try {
         /** @var BidiStream $stream */
         $stream = $participantsClient->streamingReactiveCompanionSuggestions();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var StreamingReactiveCompanionSuggestionsResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

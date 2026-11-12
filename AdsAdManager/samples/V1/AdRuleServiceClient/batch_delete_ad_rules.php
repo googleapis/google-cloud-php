@@ -45,7 +45,7 @@ function batch_delete_ad_rules_sample(
     $adRuleServiceClient = new AdRuleServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchDeleteAdRulesRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

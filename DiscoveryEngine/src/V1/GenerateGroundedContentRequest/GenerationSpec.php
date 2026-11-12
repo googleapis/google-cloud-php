@@ -70,6 +70,12 @@ class GenerationSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional int32 max_output_tokens = 10;</code>
      */
     protected $max_output_tokens = null;
+    /**
+     * Optional. Setting for provisioned throughput.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GenerationSpec.ProvisionedThroughputSetting provisioned_throughput_setting = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $provisioned_throughput_setting = 0;
 
     /**
      * Constructor.
@@ -96,6 +102,8 @@ class GenerationSpec extends \Google\Protobuf\Internal\Message
      *           If specified, custom value for presence penalty will be used.
      *     @type int $max_output_tokens
      *           If specified, custom value for max output tokens will be used.
+     *     @type int $provisioned_throughput_setting
+     *           Optional. Setting for provisioned throughput.
      * }
      */
     public function __construct($data = NULL) {
@@ -405,6 +413,32 @@ class GenerationSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_output_tokens = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Setting for provisioned throughput.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GenerationSpec.ProvisionedThroughputSetting provisioned_throughput_setting = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getProvisionedThroughputSetting()
+    {
+        return $this->provisioned_throughput_setting;
+    }
+
+    /**
+     * Optional. Setting for provisioned throughput.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GenerationSpec.ProvisionedThroughputSetting provisioned_throughput_setting = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setProvisionedThroughputSetting($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentRequest\GenerationSpec\ProvisionedThroughputSetting::class);
+        $this->provisioned_throughput_setting = $var;
 
         return $this;
     }

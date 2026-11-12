@@ -51,7 +51,7 @@ function batch_update_dai_authentication_keys_sample(
         ->setDisplayName($requestsDaiAuthenticationKeyDisplayName);
     $updateDaiAuthenticationKeyRequest = (new UpdateDaiAuthenticationKeyRequest())
         ->setDaiAuthenticationKey($requestsDaiAuthenticationKey);
-    $requests = [$updateDaiAuthenticationKeyRequest,];
+    $requests = [$updateDaiAuthenticationKeyRequest];
     $request = (new BatchUpdateDaiAuthenticationKeysRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

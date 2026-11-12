@@ -84,11 +84,13 @@ use Google\Cloud\NetApp\V1\GetKmsConfigRequest;
 use Google\Cloud\NetApp\V1\GetQuotaRuleRequest;
 use Google\Cloud\NetApp\V1\GetReplicationRequest;
 use Google\Cloud\NetApp\V1\GetSnapshotRequest;
+use Google\Cloud\NetApp\V1\GetSplitStatusRequest;
 use Google\Cloud\NetApp\V1\GetStoragePoolRequest;
 use Google\Cloud\NetApp\V1\GetVolumeRequest;
 use Google\Cloud\NetApp\V1\HostGroup;
 use Google\Cloud\NetApp\V1\KmsConfig;
 use Google\Cloud\NetApp\V1\ListActiveDirectoriesRequest;
+use Google\Cloud\NetApp\V1\ListBackupConfigsRequest;
 use Google\Cloud\NetApp\V1\ListBackupPoliciesRequest;
 use Google\Cloud\NetApp\V1\ListBackupVaultsRequest;
 use Google\Cloud\NetApp\V1\ListBackupsRequest;
@@ -103,15 +105,21 @@ use Google\Cloud\NetApp\V1\QuotaRule;
 use Google\Cloud\NetApp\V1\Replication;
 use Google\Cloud\NetApp\V1\RestoreBackupFilesRequest;
 use Google\Cloud\NetApp\V1\RestoreBackupFilesResponse;
+use Google\Cloud\NetApp\V1\RestoreVolumeRequest;
+use Google\Cloud\NetApp\V1\RestoreVolumeResponse;
 use Google\Cloud\NetApp\V1\ResumeReplicationRequest;
 use Google\Cloud\NetApp\V1\ReverseReplicationDirectionRequest;
 use Google\Cloud\NetApp\V1\RevertVolumeRequest;
 use Google\Cloud\NetApp\V1\Snapshot;
+use Google\Cloud\NetApp\V1\SplitStatus;
+use Google\Cloud\NetApp\V1\StartSplitRequest;
 use Google\Cloud\NetApp\V1\StopReplicationRequest;
 use Google\Cloud\NetApp\V1\StoragePool;
 use Google\Cloud\NetApp\V1\SwitchActiveReplicaZoneRequest;
 use Google\Cloud\NetApp\V1\SyncReplicationRequest;
 use Google\Cloud\NetApp\V1\UpdateActiveDirectoryRequest;
+use Google\Cloud\NetApp\V1\UpdateBackupConfigRequest;
+use Google\Cloud\NetApp\V1\UpdateBackupConfigResponse;
 use Google\Cloud\NetApp\V1\UpdateBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\UpdateBackupRequest;
 use Google\Cloud\NetApp\V1\UpdateBackupVaultRequest;
@@ -180,9 +188,11 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<QuotaRule> getQuotaRuleAsync(GetQuotaRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Replication> getReplicationAsync(GetReplicationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Snapshot> getSnapshotAsync(GetSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SplitStatus> getSplitStatusAsync(GetSplitStatusRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<StoragePool> getStoragePoolAsync(GetStoragePoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Volume> getVolumeAsync(GetVolumeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listActiveDirectoriesAsync(ListActiveDirectoriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupConfigsAsync(ListBackupConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupPoliciesAsync(ListBackupPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupVaultsAsync(ListBackupVaultsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
@@ -194,14 +204,17 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listStoragePoolsAsync(ListStoragePoolsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listVolumesAsync(ListVolumesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> restoreBackupFilesAsync(RestoreBackupFilesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> restoreVolumeAsync(RestoreVolumeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> resumeReplicationAsync(ResumeReplicationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> reverseReplicationDirectionAsync(ReverseReplicationDirectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> revertVolumeAsync(RevertVolumeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startSplitAsync(StartSplitRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> stopReplicationAsync(StopReplicationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> switchActiveReplicaZoneAsync(SwitchActiveReplicaZoneRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> syncReplicationAsync(SyncReplicationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateActiveDirectoryAsync(UpdateActiveDirectoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateBackupConfigAsync(UpdateBackupConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateBackupPolicyAsync(UpdateBackupPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateBackupVaultAsync(UpdateBackupVaultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateHostGroupAsync(UpdateHostGroupRequest $request, array $optionalArgs = [])
@@ -398,6 +411,27 @@ final class NetAppClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
+        return self::getPathTemplate('cryptoKey')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a host_group
      * resource.
      *
@@ -582,6 +616,7 @@ final class NetAppClient
      * - backup: projects/{project}/locations/{location}/backupVaults/{backup_vault}/backups/{backup}
      * - backupPolicy: projects/{project}/locations/{location}/backupPolicies/{backup_policy}
      * - backupVault: projects/{project}/locations/{location}/backupVaults/{backup_vault}
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - hostGroup: projects/{project}/locations/{location}/hostGroups/{host_group}
      * - kmsConfig: projects/{project}/locations/{location}/kmsConfigs/{kms_config}
      * - location: projects/{project}/locations/{location}
@@ -1359,7 +1394,7 @@ final class NetAppClient
     }
 
     /**
-     * `ExecuteOntapDelete` dispatches the ONTAP `DELETE` request to the
+     * `ExecuteOntapDelete` sends the ONTAP `DELETE` request to the
      * `StoragePool` cluster.
      *
      * The async variant is {@see NetAppClient::executeOntapDeleteAsync()} .
@@ -1388,7 +1423,7 @@ final class NetAppClient
     }
 
     /**
-     * `ExecuteOntapGet` dispatches the ONTAP `GET` request to the
+     * `ExecuteOntapGet` sends the ONTAP `GET` request to the
      * `StoragePool` cluster.
      *
      * The async variant is {@see NetAppClient::executeOntapGetAsync()} .
@@ -1415,7 +1450,7 @@ final class NetAppClient
     }
 
     /**
-     * `ExecuteOntapPatch` dispatches the ONTAP `PATCH` request to the
+     * `ExecuteOntapPatch` sends the ONTAP `PATCH` request to the
      * `StoragePool` cluster.
      *
      * The async variant is {@see NetAppClient::executeOntapPatchAsync()} .
@@ -1444,7 +1479,7 @@ final class NetAppClient
     }
 
     /**
-     * `ExecuteOntapPost` dispatches the ONTAP `POST` request to the
+     * `ExecuteOntapPost` sends the ONTAP `POST` request to the
      * `StoragePool` cluster.
      *
      * The async variant is {@see NetAppClient::executeOntapPostAsync()} .
@@ -1707,6 +1742,34 @@ final class NetAppClient
     }
 
     /**
+     * Retrieves the current state, progress, and details of a split operation for
+     * a volume. This method is relevant when the volume is a clone. For volumes
+     * that are not clones, this method will return an error.
+     *
+     * The async variant is {@see NetAppClient::getSplitStatusAsync()} .
+     *
+     * @example samples/V1/NetAppClient/get_split_status.php
+     *
+     * @param GetSplitStatusRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SplitStatus
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getSplitStatus(GetSplitStatusRequest $request, array $callOptions = []): SplitStatus
+    {
+        return $this->startApiCall('GetSplitStatus', $request, $callOptions)->wait();
+    }
+
+    /**
      * Returns the description of the specified storage pool by poolId.
      *
      * The async variant is {@see NetAppClient::getStoragePoolAsync()} .
@@ -1784,6 +1847,32 @@ final class NetAppClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListActiveDirectories', $request, $callOptions);
+    }
+
+    /**
+     * Lists backup configurations for all volumes in an ONTAP-mode Storage Pool.
+     *
+     * The async variant is {@see NetAppClient::listBackupConfigsAsync()} .
+     *
+     * @example samples/V1/NetAppClient/list_backup_configs.php
+     *
+     * @param ListBackupConfigsRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listBackupConfigs(ListBackupConfigsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListBackupConfigs', $request, $callOptions);
     }
 
     /**
@@ -2074,6 +2163,32 @@ final class NetAppClient
     }
 
     /**
+     * Restores a backup to an ONTAP-mode volume.
+     *
+     * The async variant is {@see NetAppClient::restoreVolumeAsync()} .
+     *
+     * @example samples/V1/NetAppClient/restore_volume.php
+     *
+     * @param RestoreVolumeRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<RestoreVolumeResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function restoreVolume(RestoreVolumeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RestoreVolume', $request, $callOptions)->wait();
+    }
+
+    /**
      * Resume Cross Region Replication.
      *
      * The async variant is {@see NetAppClient::resumeReplicationAsync()} .
@@ -2154,6 +2269,35 @@ final class NetAppClient
     public function revertVolume(RevertVolumeRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('RevertVolume', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Splits a clone volume from its source volume.
+     * This operation will only work for volumes which have clone_details
+     * set(clones).
+     * For volumes that are not clones, this operation will return an error.
+     *
+     * The async variant is {@see NetAppClient::startSplitAsync()} .
+     *
+     * @example samples/V1/NetAppClient/start_split.php
+     *
+     * @param StartSplitRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Volume>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function startSplit(StartSplitRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('StartSplit', $request, $callOptions)->wait();
     }
 
     /**
@@ -2290,6 +2434,32 @@ final class NetAppClient
     public function updateBackup(UpdateBackupRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the backup configuration for an ONTAP-mode volume.
+     *
+     * The async variant is {@see NetAppClient::updateBackupConfigAsync()} .
+     *
+     * @example samples/V1/NetAppClient/update_backup_config.php
+     *
+     * @param UpdateBackupConfigRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<UpdateBackupConfigResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateBackupConfig(UpdateBackupConfigRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateBackupConfig', $request, $callOptions)->wait();
     }
 
     /**

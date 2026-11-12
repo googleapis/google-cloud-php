@@ -57,6 +57,14 @@ class StreamObject extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SourceObjectIdentifier source_object = 8;</code>
      */
     protected $source_object = null;
+    /**
+     * Output only. The customization rules for the object. These rules are
+     * derived from the parent Stream's `rule_sets` and represent the intended
+     * configuration for the object.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.Stream.RuleSet.CustomizationRule customization_rules = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $customization_rules;
 
     /**
      * Constructor.
@@ -78,6 +86,10 @@ class StreamObject extends \Google\Protobuf\Internal\Message
      *           The latest backfill job that was initiated for the stream object.
      *     @type \Google\Cloud\Datastream\V1\SourceObjectIdentifier $source_object
      *           The object identifier in the data source.
+     *     @type \Google\Cloud\Datastream\V1\Stream\RuleSet\CustomizationRule[] $customization_rules
+     *           Output only. The customization rules for the object. These rules are
+     *           derived from the parent Stream's `rule_sets` and represent the intended
+     *           configuration for the object.
      * }
      */
     public function __construct($data = NULL) {
@@ -303,6 +315,36 @@ class StreamObject extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SourceObjectIdentifier::class);
         $this->source_object = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The customization rules for the object. These rules are
+     * derived from the parent Stream's `rule_sets` and represent the intended
+     * configuration for the object.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.Stream.RuleSet.CustomizationRule customization_rules = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\Stream\RuleSet\CustomizationRule>
+     */
+    public function getCustomizationRules()
+    {
+        return $this->customization_rules;
+    }
+
+    /**
+     * Output only. The customization rules for the object. These rules are
+     * derived from the parent Stream's `rule_sets` and represent the intended
+     * configuration for the object.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.Stream.RuleSet.CustomizationRule customization_rules = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Datastream\V1\Stream\RuleSet\CustomizationRule[] $var
+     * @return $this
+     */
+    public function setCustomizationRules($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Datastream\V1\Stream\RuleSet\CustomizationRule::class);
+        $this->customization_rules = $arr;
 
         return $this;
     }

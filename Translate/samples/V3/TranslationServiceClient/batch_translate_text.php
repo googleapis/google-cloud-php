@@ -67,7 +67,7 @@ function batch_translate_text_sample(
     $translationServiceClient = new TranslationServiceClient();
 
     // Prepare the request message.
-    $targetLanguageCodes = [$targetLanguageCodesElement,];
+    $targetLanguageCodes = [$targetLanguageCodesElement];
     $inputConfigs = [new InputConfig()];
     $outputConfig = new OutputConfig();
     $request = (new BatchTranslateTextRequest())

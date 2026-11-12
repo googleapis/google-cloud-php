@@ -16,7 +16,7 @@ class EncryptionSpec
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xD7\x02\x0A0google/cloud/aiplatform/v1/encryption_spec.proto\x12\x1Agoogle.cloud.aiplatform.v1\"+\x0A\x0EEncryptionSpec\x12\x19\x0A\x0Ckms_key_name\x18\x01 \x01(\x09B\x03\xE0A\x02B\xD1\x01\x0A\x1Ecom.google.cloud.aiplatform.v1B\x13EncryptionSpecProtoP\x01Z>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb\xAA\x02\x1AGoogle.Cloud.AIPlatform.V1\xCA\x02\x1AGoogle\\Cloud\\AIPlatform\\V1\xEA\x02\x1DGoogle::Cloud::AIPlatform::V1b\x06proto3"
+            "\x0A\xD8\x02\x0A0google/cloud/aiplatform/v1/encryption_spec.proto\x12\x1Agoogle.cloud.aiplatform.v1\",\x0A\x0EEncryptionSpec\x12\x1A\x0A\x0Ckms_key_name\x18\x01 \x01(\x09B\x04\xE2A\x01\x02B\xD1\x01\x0A\x1Ecom.google.cloud.aiplatform.v1B\x13EncryptionSpecProtoP\x01Z>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb\xAA\x02\x1AGoogle.Cloud.AIPlatform.V1\xCA\x02\x1AGoogle\\Cloud\\AIPlatform\\V1\xEA\x02\x1DGoogle::Cloud::AIPlatform::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

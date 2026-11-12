@@ -31,7 +31,6 @@ use Google\Cloud\BackupDR\V1beta\Client\BackupDRClient;
 use Google\Cloud\BackupDR\V1beta\Criteria;
 use Google\Cloud\BackupDR\V1beta\MatchingCondition;
 use Google\Cloud\BackupDR\V1beta\UpdateAutoProtectionPolicyRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -57,17 +56,15 @@ function update_auto_protection_policy_sample(
     $backupPlanDetail = (new BackupPlanDetail())
         ->setResourceType($autoProtectionPolicyBackupPlanDetailsResourceType)
         ->setBackupPlan($formattedAutoProtectionPolicyBackupPlanDetailsBackupPlan);
-    $autoProtectionPolicyBackupPlanDetails = [$backupPlanDetail,];
+    $autoProtectionPolicyBackupPlanDetails = [$backupPlanDetail];
     $autoProtectionPolicyCriteriaMatchingConditions = [new MatchingCondition()];
     $autoProtectionPolicyCriteria = (new Criteria())
         ->setMatchingConditions($autoProtectionPolicyCriteriaMatchingConditions);
     $autoProtectionPolicy = (new AutoProtectionPolicy())
         ->setBackupPlanDetails($autoProtectionPolicyBackupPlanDetails)
         ->setCriteria($autoProtectionPolicyCriteria);
-    $updateMask = new FieldMask();
     $request = (new UpdateAutoProtectionPolicyRequest())
-        ->setAutoProtectionPolicy($autoProtectionPolicy)
-        ->setUpdateMask($updateMask);
+        ->setAutoProtectionPolicy($autoProtectionPolicy);
 
     // Call the API and handle any network failures.
     try {

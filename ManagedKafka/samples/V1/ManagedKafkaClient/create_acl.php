@@ -90,7 +90,7 @@ function create_acl_sample(
         ->setPermissionType($aclAclEntriesPermissionType)
         ->setOperation($aclAclEntriesOperation)
         ->setHost($aclAclEntriesHost);
-    $aclAclEntries = [$aclEntry,];
+    $aclAclEntries = [$aclEntry];
     $acl = (new Acl())
         ->setAclEntries($aclAclEntries);
     $request = (new CreateAclRequest())

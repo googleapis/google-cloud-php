@@ -16,7 +16,7 @@ class TermsOfService
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xFD\x03\x0A0google/ads/datamanager/v1/terms_of_service.proto\x12\x19google.ads.datamanager.v1\"v\x0A\x0ETermsOfService\x12d\x0A&customer_match_terms_of_service_status\x18\x01 \x01(\x0E2/.google.ads.datamanager.v1.TermsOfServiceStatusB\x03\xE0A\x01*[\x0A\x14TermsOfServiceStatus\x12'\x0A#TERMS_OF_SERVICE_STATUS_UNSPECIFIED\x10\x00\x12\x0C\x0A\x08ACCEPTED\x10\x01\x12\x0C\x0A\x08REJECTED\x10\x02B\xD0\x01\x0A\x1Dcom.google.ads.datamanager.v1B\x13TermsOfServiceProtoP\x01ZAcloud.google.com/go/datamanager/apiv1/datamanagerpb;datamanagerpb\xAA\x02\x19Google.Ads.DataManager.V1\xCA\x02\x19Google\\Ads\\DataManager\\V1\xEA\x02\x1CGoogle::Ads::DataManager::V1b\x06proto3"
+            "\x0A\xFE\x03\x0A0google/ads/datamanager/v1/terms_of_service.proto\x12\x19google.ads.datamanager.v1\"w\x0A\x0ETermsOfService\x12e\x0A&customer_match_terms_of_service_status\x18\x01 \x01(\x0E2/.google.ads.datamanager.v1.TermsOfServiceStatusB\x04\xE2A\x01\x01*[\x0A\x14TermsOfServiceStatus\x12'\x0A#TERMS_OF_SERVICE_STATUS_UNSPECIFIED\x10\x00\x12\x0C\x0A\x08ACCEPTED\x10\x01\x12\x0C\x0A\x08REJECTED\x10\x02B\xD0\x01\x0A\x1Dcom.google.ads.datamanager.v1B\x13TermsOfServiceProtoP\x01ZAcloud.google.com/go/datamanager/apiv1/datamanagerpb;datamanagerpb\xAA\x02\x19Google.Ads.DataManager.V1\xCA\x02\x19Google\\Ads\\DataManager\\V1\xEA\x02\x1CGoogle::Ads::DataManager::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

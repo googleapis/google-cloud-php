@@ -51,7 +51,7 @@ function verify_reference_list_sample(
     // Prepare the request message.
     $referenceListEntry = (new ReferenceListEntry())
         ->setValue($entriesValue);
-    $entries = [$referenceListEntry,];
+    $entries = [$referenceListEntry];
     $request = (new VerifyReferenceListRequest())
         ->setInstance($formattedInstance)
         ->setSyntaxType($syntaxType)

@@ -53,13 +53,13 @@ function bulk_create_data_table_rows_sample(
     $dataTableServiceClient = new DataTableServiceClient();
 
     // Prepare the request message.
-    $requestsDataTableRowValues = [$requestsDataTableRowValuesElement,];
+    $requestsDataTableRowValues = [$requestsDataTableRowValuesElement];
     $requestsDataTableRow = (new DataTableRow())
         ->setValues($requestsDataTableRowValues);
     $createDataTableRowRequest = (new CreateDataTableRowRequest())
         ->setParent($formattedRequestsParent)
         ->setDataTableRow($requestsDataTableRow);
-    $requests = [$createDataTableRowRequest,];
+    $requests = [$createDataTableRowRequest];
     $request = (new BulkCreateDataTableRowsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

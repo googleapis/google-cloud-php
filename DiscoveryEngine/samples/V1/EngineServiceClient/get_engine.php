@@ -29,7 +29,7 @@ use Google\Cloud\DiscoveryEngine\V1\Engine;
 use Google\Cloud\DiscoveryEngine\V1\GetEngineRequest;
 
 /**
- * Gets a [Engine][google.cloud.discoveryengine.v1.Engine].
+ * Gets an [Engine][google.cloud.discoveryengine.v1.Engine].
  *
  * @param string $formattedName Full resource name of
  *                              [Engine][google.cloud.discoveryengine.v1.Engine], such as

@@ -184,7 +184,6 @@ class FirestoreClient
             'scopes' => [self::FULL_CONTROL_SCOPE],
             'database' => self::DEFAULT_DATABASE,
             'hasEmulator' => (bool) $emulatorHost,
-            'emulatorHost' => $emulatorHost,
         ];
 
         $gapicOptions = $this->buildClientOptions($config);

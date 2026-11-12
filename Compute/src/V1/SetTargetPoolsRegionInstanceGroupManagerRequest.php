@@ -72,7 +72,9 @@ class SetTargetPoolsRegionInstanceGroupManagerRequest extends \Google\Protobuf\I
             ->setProject($project)
             ->setRegion($region)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setRegionInstanceGroupManagersSetTargetPoolsRequestResource($regionInstanceGroupManagersSetTargetPoolsRequestResource);
+            ->setRegionInstanceGroupManagersSetTargetPoolsRequestResource(
+                $regionInstanceGroupManagersSetTargetPoolsRequestResource
+            );
     }
 
     /**

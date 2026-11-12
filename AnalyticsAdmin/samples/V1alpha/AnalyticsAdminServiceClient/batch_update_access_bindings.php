@@ -51,7 +51,7 @@ function batch_update_access_bindings_sample(string $formattedParent): void
     $requestsAccessBinding = new AccessBinding();
     $updateAccessBindingRequest = (new UpdateAccessBindingRequest())
         ->setAccessBinding($requestsAccessBinding);
-    $requests = [$updateAccessBindingRequest,];
+    $requests = [$updateAccessBindingRequest];
     $request = (new BatchUpdateAccessBindingsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

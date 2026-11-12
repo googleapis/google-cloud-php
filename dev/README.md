@@ -20,7 +20,7 @@ Available commands:
   component:update:readme-sample  Add a sample to a component
  release
   release:info                    list information for a google-cloud-php release
-  release:verify                  Verifies the package version from packagist.
+  release:verify                  Verifies that component releases exist on split repositories, Packagist, and Cloud RAD reference documentation.
  repo
   repo:compliance                 ensure all github repositories meet compliance
   repo:split                      [split] Split subtree and push to various remotes.

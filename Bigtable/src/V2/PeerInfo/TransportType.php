@@ -21,7 +21,7 @@ class TransportType
     const TRANSPORT_TYPE_UNKNOWN = 0;
     /**
      * The client connected to this peer via an external network
-     * (e.g. outside Google Coud).
+     * (e.g. outside Google Cloud).
      *
      * Generated from protobuf enum <code>TRANSPORT_TYPE_EXTERNAL = 1;</code>
      */

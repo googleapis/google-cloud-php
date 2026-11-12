@@ -48,7 +48,7 @@ function batch_delete_conversations_sample(
     $agentServiceClient = new AgentServiceClient();
 
     // Prepare the request message.
-    $formattedConversations = [$formattedConversationsElement,];
+    $formattedConversations = [$formattedConversationsElement];
     $request = (new BatchDeleteConversationsRequest())
         ->setParent($formattedParent)
         ->setConversations($formattedConversations);

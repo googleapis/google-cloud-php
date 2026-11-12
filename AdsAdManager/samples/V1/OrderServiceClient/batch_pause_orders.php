@@ -44,7 +44,7 @@ function batch_pause_orders_sample(string $formattedParent, string $formattedNam
     $orderServiceClient = new OrderServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchPauseOrdersRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

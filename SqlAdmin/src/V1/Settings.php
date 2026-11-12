@@ -196,7 +196,8 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     protected $insights_config = null;
     /**
-     * The local user password validation policy of the instance.
+     * The local user password validation policy of the instance for PostgreSQL
+     * and MySQL.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.PasswordValidationPolicy password_validation_policy = 27;</code>
      */
@@ -441,7 +442,8 @@ class Settings extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Sql\V1\InsightsConfig $insights_config
      *           Insights configuration, for now relevant only for Postgres.
      *     @type \Google\Cloud\Sql\V1\PasswordValidationPolicy $password_validation_policy
-     *           The local user password validation policy of the instance.
+     *           The local user password validation policy of the instance for PostgreSQL
+     *           and MySQL.
      *     @type \Google\Cloud\Sql\V1\SqlServerAuditConfig $sql_server_audit_config
      *           SQL Server specific audit configuration.
      *     @type int $edition
@@ -1534,7 +1536,8 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The local user password validation policy of the instance.
+     * The local user password validation policy of the instance for PostgreSQL
+     * and MySQL.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.PasswordValidationPolicy password_validation_policy = 27;</code>
      * @return \Google\Cloud\Sql\V1\PasswordValidationPolicy|null
@@ -1555,7 +1558,8 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The local user password validation policy of the instance.
+     * The local user password validation policy of the instance for PostgreSQL
+     * and MySQL.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.PasswordValidationPolicy password_validation_policy = 27;</code>
      * @param \Google\Cloud\Sql\V1\PasswordValidationPolicy $var

@@ -40,6 +40,9 @@ use Google\Rpc\Status;
  *                                                 Please see {@see BackupDRClient::autoProtectionPolicyName()} for help formatting this field.
  * @param string $autoProtectionPolicyBindingId    The ID to use for the binding.
  *                                                 This will become the final component of the binding's resource name.
+ *
+ *                                                 This value must start with a lowercase letter followed by up to 62
+ *                                                 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
  * @param string $autoProtectionPolicyBindingScope Immutable. Resource Id of target container on which policy will
  *                                                 be applied. Format: projects/{project_id}
  */

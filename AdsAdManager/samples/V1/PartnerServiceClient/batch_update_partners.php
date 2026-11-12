@@ -34,10 +34,9 @@ use Google\ApiCore\ApiException;
  * Batch updates [Partner][google.ads.admanager.v1.Partner] objects.
  *
  * @param string $formattedParent            The parent resource where
- *                                           [Partner][google.ads.admanager.v1.Partner]s will be updated. Format:
- *                                           `networks/{network_code}` The parent field in the
- *                                           [UpdatePartnerRequest][google.ads.admanager.v1.UpdatePartnerRequest] must
- *                                           match this field. Please see
+ *                                           [Partners][google.ads.admanager.v1.Partner] will be updated. Format:
+ *                                           `networks/{network_code}` The parent field in the `UpdatePartnerRequest`
+ *                                           must match this field. Please see
  *                                           {@see PartnerServiceClient::networkName()} for help formatting this field.
  * @param string $requestsPartnerDisplayName The display name of the
  *                                           [Partner][google.ads.admanager.v1.Partner].
@@ -54,7 +53,7 @@ function batch_update_partners_sample(
         ->setDisplayName($requestsPartnerDisplayName);
     $updatePartnerRequest = (new UpdatePartnerRequest())
         ->setPartner($requestsPartner);
-    $requests = [$updatePartnerRequest,];
+    $requests = [$updatePartnerRequest];
     $request = (new BatchUpdatePartnersRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

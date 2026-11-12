@@ -85,7 +85,7 @@ function import_user_events_sample(
     $userEvent = (new UserEvent())
         ->setEventType($inputConfigUserEventInlineSourceUserEventsEventType)
         ->setVisitorId($inputConfigUserEventInlineSourceUserEventsVisitorId);
-    $inputConfigUserEventInlineSourceUserEvents = [$userEvent,];
+    $inputConfigUserEventInlineSourceUserEvents = [$userEvent];
     $inputConfigUserEventInlineSource = (new UserEventInlineSource())
         ->setUserEvents($inputConfigUserEventInlineSourceUserEvents);
     $inputConfig = (new UserEventInputConfig())

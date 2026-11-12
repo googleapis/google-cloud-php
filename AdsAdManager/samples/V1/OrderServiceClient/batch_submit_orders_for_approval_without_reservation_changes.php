@@ -47,7 +47,7 @@ function batch_submit_orders_for_approval_without_reservation_changes_sample(
     $orderServiceClient = new OrderServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchSubmitOrdersForApprovalWithoutReservationChangesRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

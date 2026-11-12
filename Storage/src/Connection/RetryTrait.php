@@ -69,7 +69,11 @@ trait RetryTrait
         'objects.get',
         'objects.list',
         'serviceaccount.get',
-        'signBlob.execute'
+        'signBlob.execute',
+        'objects.delete',
+        'objects.insert',
+        'objects.patch',
+        'objects.update'
     ];
 
     /**
@@ -85,11 +89,7 @@ trait RetryTrait
         'hmacKey.update' => ['etag'],
         'objects.compose' => ['ifGenerationMatch'],
         'objects.copy' => ['ifGenerationMatch'],
-        'objects.delete' => ['ifGenerationMatch'],
-        'objects.insert' => ['ifGenerationMatch', 'ifGenerationNotMatch'],
-        'objects.patch' => ['ifMetagenerationMatch', 'etag'],
-        'objects.rewrite' => ['ifGenerationMatch'],
-        'objects.update' => ['ifMetagenerationMatch']
+        'objects.rewrite' => ['ifGenerationMatch']
     ];
 
     /**

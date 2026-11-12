@@ -7,8 +7,8 @@ namespace Google\Cloud\ModelArmor\V1;
 use UnexpectedValueException;
 
 /**
- * This enum is used in the TemplateMetadata message to indicate the modality
- * supported for sanitize API calls.
+ * This enum is used in the TemplateMetadata and FloorSettingMetadata messages
+ * to indicate the modality supported for sanitize API calls.
  *
  * Protobuf type <code>google.cloud.modelarmor.v1.Modality</code>
  */

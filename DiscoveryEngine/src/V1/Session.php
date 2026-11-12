@@ -74,6 +74,15 @@ class Session extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool is_pinned = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $is_pinned = false;
+    /**
+     * Output only. Full resource name of an in-progress AsyncAssist operation for
+     * this session, e.g.
+     * `projects/{@*}locations/{@*}collections/{@*}engines/{@*}sessions/{@*}operations/*`.
+     * Set when the operation starts and cleared when it finishes.
+     *
+     * Generated from protobuf field <code>string pending_async_assist_operation_id = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $pending_async_assist_operation_id = '';
 
     /**
      * Constructor.
@@ -104,6 +113,11 @@ class Session extends \Google\Protobuf\Internal\Message
      *     @type bool $is_pinned
      *           Optional. Whether the session is pinned, pinned session will be displayed
      *           on the top of the session list.
+     *     @type string $pending_async_assist_operation_id
+     *           Output only. Full resource name of an in-progress AsyncAssist operation for
+     *           this session, e.g.
+     *           `projects/{@*}locations/{@*}collections/{@*}engines/{@*}sessions/{@*}operations/*`.
+     *           Set when the operation starts and cleared when it finishes.
      * }
      */
     public function __construct($data = NULL) {
@@ -371,6 +385,38 @@ class Session extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->is_pinned = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Full resource name of an in-progress AsyncAssist operation for
+     * this session, e.g.
+     * `projects/{@*}locations/{@*}collections/{@*}engines/{@*}sessions/{@*}operations/*`.
+     * Set when the operation starts and cleared when it finishes.
+     *
+     * Generated from protobuf field <code>string pending_async_assist_operation_id = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getPendingAsyncAssistOperationId()
+    {
+        return $this->pending_async_assist_operation_id;
+    }
+
+    /**
+     * Output only. Full resource name of an in-progress AsyncAssist operation for
+     * this session, e.g.
+     * `projects/{@*}locations/{@*}collections/{@*}engines/{@*}sessions/{@*}operations/*`.
+     * Set when the operation starts and cleared when it finishes.
+     *
+     * Generated from protobuf field <code>string pending_async_assist_operation_id = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPendingAsyncAssistOperationId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->pending_async_assist_operation_id = $var;
 
         return $this;
     }

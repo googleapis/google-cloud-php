@@ -9,32 +9,34 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request object for [ListCompanies][] method.
+ * Request object for `ListCompanies` method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.ListCompaniesRequest</code>
  */
 class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent, which owns this collection of [Companies][].
-     * Format: `networks/{network_code}`
+     * Required. The parent, which owns this collection of
+     * [Companies][google.ads.admanager.v1.Company]. Format:
+     * `networks/{network_code}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
-     * Optional. The maximum number of [Companies][] to return. The service may
-     * return fewer than this value. If unspecified, at most 50 [Companies][] will
-     * be returned. The maximum value is 1000; values greater than 1000 will be
-     * coerced to 1000.
+     * Optional. The maximum number of
+     * [Companies][google.ads.admanager.v1.Company] to return. The service may
+     * return fewer than this value. If unspecified, at most 50
+     * [Companies][google.ads.admanager.v1.Company] will be returned. The maximum
+     * value is 1000; values greater than 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * Optional. A page token, received from a previous [ListCompanies][] call.
+     * Optional. A page token, received from a previous `ListCompanies` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to [ListCompanies][] must
+     * When paginating, all other parameters provided to `ListCompanies` must
      * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -78,8 +80,9 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
     protected $skip = 0;
 
     /**
-     * @param string $parent Required. The parent, which owns this collection of [Companies][].
-     *                       Format: `networks/{network_code}`
+     * @param string $parent Required. The parent, which owns this collection of
+     *                       [Companies][google.ads.admanager.v1.Company]. Format:
+     *                       `networks/{network_code}`
      *                       Please see {@see CompanyServiceClient::networkName()} for help formatting this field.
      *
      * @return \Google\Ads\AdManager\V1\ListCompaniesRequest
@@ -99,17 +102,19 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent, which owns this collection of [Companies][].
-     *           Format: `networks/{network_code}`
+     *           Required. The parent, which owns this collection of
+     *           [Companies][google.ads.admanager.v1.Company]. Format:
+     *           `networks/{network_code}`
      *     @type int $page_size
-     *           Optional. The maximum number of [Companies][] to return. The service may
-     *           return fewer than this value. If unspecified, at most 50 [Companies][] will
-     *           be returned. The maximum value is 1000; values greater than 1000 will be
-     *           coerced to 1000.
+     *           Optional. The maximum number of
+     *           [Companies][google.ads.admanager.v1.Company] to return. The service may
+     *           return fewer than this value. If unspecified, at most 50
+     *           [Companies][google.ads.admanager.v1.Company] will be returned. The maximum
+     *           value is 1000; values greater than 1000 will be coerced to 1000.
      *     @type string $page_token
-     *           Optional. A page token, received from a previous [ListCompanies][] call.
+     *           Optional. A page token, received from a previous `ListCompanies` call.
      *           Provide this to retrieve the subsequent page.
-     *           When paginating, all other parameters provided to [ListCompanies][] must
+     *           When paginating, all other parameters provided to `ListCompanies` must
      *           match the call that provided the page token.
      *     @type string $filter
      *           Optional. Expression to filter the response.
@@ -143,8 +148,9 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent, which owns this collection of [Companies][].
-     * Format: `networks/{network_code}`
+     * Required. The parent, which owns this collection of
+     * [Companies][google.ads.admanager.v1.Company]. Format:
+     * `networks/{network_code}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -155,8 +161,9 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent, which owns this collection of [Companies][].
-     * Format: `networks/{network_code}`
+     * Required. The parent, which owns this collection of
+     * [Companies][google.ads.admanager.v1.Company]. Format:
+     * `networks/{network_code}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -171,10 +178,11 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of [Companies][] to return. The service may
-     * return fewer than this value. If unspecified, at most 50 [Companies][] will
-     * be returned. The maximum value is 1000; values greater than 1000 will be
-     * coerced to 1000.
+     * Optional. The maximum number of
+     * [Companies][google.ads.admanager.v1.Company] to return. The service may
+     * return fewer than this value. If unspecified, at most 50
+     * [Companies][google.ads.admanager.v1.Company] will be returned. The maximum
+     * value is 1000; values greater than 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -185,10 +193,11 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of [Companies][] to return. The service may
-     * return fewer than this value. If unspecified, at most 50 [Companies][] will
-     * be returned. The maximum value is 1000; values greater than 1000 will be
-     * coerced to 1000.
+     * Optional. The maximum number of
+     * [Companies][google.ads.admanager.v1.Company] to return. The service may
+     * return fewer than this value. If unspecified, at most 50
+     * [Companies][google.ads.admanager.v1.Company] will be returned. The maximum
+     * value is 1000; values greater than 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -203,9 +212,9 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A page token, received from a previous [ListCompanies][] call.
+     * Optional. A page token, received from a previous `ListCompanies` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to [ListCompanies][] must
+     * When paginating, all other parameters provided to `ListCompanies` must
      * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -217,9 +226,9 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A page token, received from a previous [ListCompanies][] call.
+     * Optional. A page token, received from a previous `ListCompanies` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to [ListCompanies][] must
+     * When paginating, all other parameters provided to `ListCompanies` must
      * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>

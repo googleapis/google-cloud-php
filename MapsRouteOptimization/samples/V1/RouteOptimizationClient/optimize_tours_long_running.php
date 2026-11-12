@@ -48,18 +48,15 @@ use Google\Rpc\Status;
  * [OptimizeToursResponse][google.maps.routeoptimization.v1.OptimizeToursResponse],
  * if successful.
  *
- * Experimental: See
- * https://developers.google.com/maps/tt/route-optimization/experimental/otlr/make-request
- * for more details.
- *
  *
  * @param string $parent Target project or location to make a call.
  *
  *                       Format:
- *                       * `projects/{project-id}`
- *                       * `projects/{project-id}/locations/{location-id}`
  *
- *                       If no location is specified, a region will be chosen automatically.
+ *                       * `projects/{project-id}`
+ *                       * `projects/{project-id}/locations/-`
+ *
+ *                       Regional `{location-id}` values are not supported.
  */
 function optimize_tours_long_running_sample(string $parent): void
 {

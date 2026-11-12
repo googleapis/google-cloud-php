@@ -74,7 +74,9 @@ class ResumeInstancesInstanceGroupManagerRequest extends \Google\Protobuf\Intern
             ->setProject($project)
             ->setZone($zone)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersResumeInstancesRequestResource($instanceGroupManagersResumeInstancesRequestResource);
+            ->setInstanceGroupManagersResumeInstancesRequestResource(
+                $instanceGroupManagersResumeInstancesRequestResource
+            );
     }
 
     /**

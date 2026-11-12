@@ -45,7 +45,7 @@ function batch_activate_custom_fields_sample(
     $customFieldServiceClient = new CustomFieldServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchActivateCustomFieldsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

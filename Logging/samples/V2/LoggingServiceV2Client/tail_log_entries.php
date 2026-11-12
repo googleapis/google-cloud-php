@@ -53,7 +53,7 @@ function tail_log_entries_sample(string $resourceNamesElement): void
     $loggingServiceV2Client = new LoggingServiceV2Client();
 
     // Prepare the request message.
-    $resourceNames = [$resourceNamesElement,];
+    $resourceNames = [$resourceNamesElement];
     $request = (new TailLogEntriesRequest())
         ->setResourceNames($resourceNames);
 
@@ -61,7 +61,7 @@ function tail_log_entries_sample(string $resourceNamesElement): void
     try {
         /** @var BidiStream $stream */
         $stream = $loggingServiceV2Client->tailLogEntries();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var TailLogEntriesResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

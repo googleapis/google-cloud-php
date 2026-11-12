@@ -44,7 +44,7 @@ function batch_retract_orders_sample(string $formattedParent, string $formattedN
     $orderServiceClient = new OrderServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchRetractOrdersRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

@@ -60,10 +60,10 @@ function create_study_sample(
     $metricSpec = (new MetricSpec())
         ->setMetricId($studyStudySpecMetricsMetricId)
         ->setGoal($studyStudySpecMetricsGoal);
-    $studyStudySpecMetrics = [$metricSpec,];
+    $studyStudySpecMetrics = [$metricSpec];
     $parameterSpec = (new ParameterSpec())
         ->setParameterId($studyStudySpecParametersParameterId);
-    $studyStudySpecParameters = [$parameterSpec,];
+    $studyStudySpecParameters = [$parameterSpec];
     $studyStudySpec = (new StudySpec())
         ->setMetrics($studyStudySpecMetrics)
         ->setParameters($studyStudySpecParameters);

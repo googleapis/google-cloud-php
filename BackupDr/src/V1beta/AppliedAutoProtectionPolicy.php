@@ -30,7 +30,7 @@ class AppliedAutoProtectionPolicy extends \Google\Protobuf\Internal\Message
      * applies the source policy to a scope including this workload project. e.g.,
      * projects/{admin-project}/locations/{location}/autoProtectionPolicies/{policy_id}/autoProtectionPolicyBindings/{binding_id}.
      *
-     * Generated from protobuf field <code>string source_binding = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string source_binding = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     protected $source_binding = '';
     /**
@@ -146,7 +146,7 @@ class AppliedAutoProtectionPolicy extends \Google\Protobuf\Internal\Message
      * applies the source policy to a scope including this workload project. e.g.,
      * projects/{admin-project}/locations/{location}/autoProtectionPolicies/{policy_id}/autoProtectionPolicyBindings/{binding_id}.
      *
-     * Generated from protobuf field <code>string source_binding = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string source_binding = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSourceBinding()
@@ -159,7 +159,7 @@ class AppliedAutoProtectionPolicy extends \Google\Protobuf\Internal\Message
      * applies the source policy to a scope including this workload project. e.g.,
      * projects/{admin-project}/locations/{location}/autoProtectionPolicies/{policy_id}/autoProtectionPolicyBindings/{binding_id}.
      *
-     * Generated from protobuf field <code>string source_binding = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string source_binding = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

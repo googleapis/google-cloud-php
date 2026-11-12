@@ -16,7 +16,7 @@ use Google\Protobuf\RepeatedField;
 class SearchInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The user's search query.
+     * Optional. The user's search query.
      * See
      * [SearchRequest.query][google.cloud.discoveryengine.v1.SearchRequest.query]
      * for definition.
@@ -28,7 +28,7 @@ class SearchInfo extends \Google\Protobuf\Internal\Message
      * is required for `search` events. Other event types should not set this
      * field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
-     * Generated from protobuf field <code>string search_query = 1;</code>
+     * Generated from protobuf field <code>string search_query = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $search_query = '';
     /**
@@ -65,7 +65,7 @@ class SearchInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $search_query
-     *           The user's search query.
+     *           Optional. The user's search query.
      *           See
      *           [SearchRequest.query][google.cloud.discoveryengine.v1.SearchRequest.query]
      *           for definition.
@@ -102,7 +102,7 @@ class SearchInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The user's search query.
+     * Optional. The user's search query.
      * See
      * [SearchRequest.query][google.cloud.discoveryengine.v1.SearchRequest.query]
      * for definition.
@@ -114,7 +114,7 @@ class SearchInfo extends \Google\Protobuf\Internal\Message
      * is required for `search` events. Other event types should not set this
      * field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
-     * Generated from protobuf field <code>string search_query = 1;</code>
+     * Generated from protobuf field <code>string search_query = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSearchQuery()
@@ -123,7 +123,7 @@ class SearchInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The user's search query.
+     * Optional. The user's search query.
      * See
      * [SearchRequest.query][google.cloud.discoveryengine.v1.SearchRequest.query]
      * for definition.
@@ -135,7 +135,7 @@ class SearchInfo extends \Google\Protobuf\Internal\Message
      * is required for `search` events. Other event types should not set this
      * field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
-     * Generated from protobuf field <code>string search_query = 1;</code>
+     * Generated from protobuf field <code>string search_query = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

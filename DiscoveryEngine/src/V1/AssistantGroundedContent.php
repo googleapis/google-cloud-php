@@ -23,6 +23,13 @@ class AssistantGroundedContent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AssistantContent content = 1;</code>
      */
     protected $content = null;
+    /**
+     * Source attribution of the generated content. See also
+     * https://cloud.google.com/vertex-ai/generative-ai/docs/learn/overview#citation_check
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.CitationMetadata citation_metadata = 5;</code>
+     */
+    protected $citation_metadata = null;
     protected $metadata;
 
     /**
@@ -35,6 +42,9 @@ class AssistantGroundedContent extends \Google\Protobuf\Internal\Message
      *           Metadata for grounding based on text sources.
      *     @type \Google\Cloud\DiscoveryEngine\V1\AssistantContent $content
      *           The content.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\CitationMetadata $citation_metadata
+     *           Source attribution of the generated content. See also
+     *           https://cloud.google.com/vertex-ai/generative-ai/docs/learn/overview#citation_check
      * }
      */
     public function __construct($data = NULL) {
@@ -105,6 +115,44 @@ class AssistantGroundedContent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\AssistantContent::class);
         $this->content = $var;
+
+        return $this;
+    }
+
+    /**
+     * Source attribution of the generated content. See also
+     * https://cloud.google.com/vertex-ai/generative-ai/docs/learn/overview#citation_check
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.CitationMetadata citation_metadata = 5;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\CitationMetadata|null
+     */
+    public function getCitationMetadata()
+    {
+        return $this->citation_metadata;
+    }
+
+    public function hasCitationMetadata()
+    {
+        return isset($this->citation_metadata);
+    }
+
+    public function clearCitationMetadata()
+    {
+        unset($this->citation_metadata);
+    }
+
+    /**
+     * Source attribution of the generated content. See also
+     * https://cloud.google.com/vertex-ai/generative-ai/docs/learn/overview#citation_check
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.CitationMetadata citation_metadata = 5;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\CitationMetadata $var
+     * @return $this
+     */
+    public function setCitationMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\CitationMetadata::class);
+        $this->citation_metadata = $var;
 
         return $this;
     }

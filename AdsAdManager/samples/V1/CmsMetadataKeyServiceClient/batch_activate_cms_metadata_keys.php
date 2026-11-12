@@ -46,7 +46,7 @@ function batch_activate_cms_metadata_keys_sample(
     $cmsMetadataKeyServiceClient = new CmsMetadataKeyServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchActivateCmsMetadataKeysRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

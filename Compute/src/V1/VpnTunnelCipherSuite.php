@@ -15,10 +15,14 @@ use Google\Protobuf\RepeatedField;
 class VpnTunnelCipherSuite extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Cipher algorithms for IKE phase 1.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnTunnelPhase1Algorithms phase1 = 84289046;</code>
      */
     protected $phase1 = null;
     /**
+     * Cipher algorithms for IKE phase 2.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnTunnelPhase2Algorithms phase2 = 84289047;</code>
      */
     protected $phase2 = null;
@@ -30,7 +34,9 @@ class VpnTunnelCipherSuite extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\VpnTunnelPhase1Algorithms $phase1
+     *           Cipher algorithms for IKE phase 1.
      *     @type \Google\Cloud\Compute\V1\VpnTunnelPhase2Algorithms $phase2
+     *           Cipher algorithms for IKE phase 2.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,6 +45,8 @@ class VpnTunnelCipherSuite extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Cipher algorithms for IKE phase 1.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnTunnelPhase1Algorithms phase1 = 84289046;</code>
      * @return \Google\Cloud\Compute\V1\VpnTunnelPhase1Algorithms|null
      */
@@ -58,6 +66,8 @@ class VpnTunnelCipherSuite extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Cipher algorithms for IKE phase 1.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnTunnelPhase1Algorithms phase1 = 84289046;</code>
      * @param \Google\Cloud\Compute\V1\VpnTunnelPhase1Algorithms $var
      * @return $this
@@ -71,6 +81,8 @@ class VpnTunnelCipherSuite extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Cipher algorithms for IKE phase 2.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnTunnelPhase2Algorithms phase2 = 84289047;</code>
      * @return \Google\Cloud\Compute\V1\VpnTunnelPhase2Algorithms|null
      */
@@ -90,6 +102,8 @@ class VpnTunnelCipherSuite extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Cipher algorithms for IKE phase 2.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnTunnelPhase2Algorithms phase2 = 84289047;</code>
      * @param \Google\Cloud\Compute\V1\VpnTunnelPhase2Algorithms $var
      * @return $this

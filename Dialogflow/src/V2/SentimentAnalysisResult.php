@@ -33,6 +33,14 @@ class SentimentAnalysisResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Sentiment query_text_sentiment = 1;</code>
      */
     protected $query_text_sentiment = null;
+    /**
+     * Output only. The status of the sentiment analysis operation.
+     * If the operation failed, this field will contain the error details.
+     * For example, it might indicate a quota issue (RESOURCE_EXHAUSTED).
+     *
+     * Generated from protobuf field <code>.google.rpc.Status status = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $status = null;
 
     /**
      * Constructor.
@@ -42,6 +50,10 @@ class SentimentAnalysisResult extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dialogflow\V2\Sentiment $query_text_sentiment
      *           The sentiment analysis result for `query_text`.
+     *     @type \Google\Rpc\Status $status
+     *           Output only. The status of the sentiment analysis operation.
+     *           If the operation failed, this field will contain the error details.
+     *           For example, it might indicate a quota issue (RESOURCE_EXHAUSTED).
      * }
      */
     public function __construct($data = NULL) {
@@ -81,6 +93,46 @@ class SentimentAnalysisResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Sentiment::class);
         $this->query_text_sentiment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The status of the sentiment analysis operation.
+     * If the operation failed, this field will contain the error details.
+     * For example, it might indicate a quota issue (RESOURCE_EXHAUSTED).
+     *
+     * Generated from protobuf field <code>.google.rpc.Status status = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Rpc\Status|null
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
+    }
+
+    /**
+     * Output only. The status of the sentiment analysis operation.
+     * If the operation failed, this field will contain the error details.
+     * For example, it might indicate a quota issue (RESOURCE_EXHAUSTED).
+     *
+     * Generated from protobuf field <code>.google.rpc.Status status = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Rpc\Status $var
+     * @return $this
+     */
+    public function setStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
+        $this->status = $var;
 
         return $this;
     }

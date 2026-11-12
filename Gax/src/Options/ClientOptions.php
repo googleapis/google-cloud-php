@@ -172,6 +172,13 @@ class ClientOptions implements ArrayAccess, OptionsInterface
         $this->fromArray($options);
     }
 
+    public function __clone(): void
+    {
+        if (isset($this->transportConfig)) {
+            $this->transportConfig = clone $this->transportConfig;
+        }
+    }
+
     /**
      * Sets the array of options as class properties.
      *
@@ -181,25 +188,23 @@ class ClientOptions implements ArrayAccess, OptionsInterface
      */
     public function fromArray(array $arr): static
     {
-        if (!isset($this->transportConfig) || isset($arr['transportConfig'])) {
-            $this->setTransportConfig($arr['transportConfig'] ?? []);
-        }
-
-        // serviceAddress is deprecated and acts as an alias for apiEndpoint
-        if (isset($arr['serviceAddress'])) {
-            $arr['apiEndpoint'] = $arr['serviceAddress'];
-            unset($arr['serviceAddress']);
-        }
-
-        foreach ($arr as $key => $value) {
-            if ($key === 'transportConfig') {
-                continue;
-            }
-            $setter = 'set' . str_replace(['-', '_'], '', ucwords((string) $key, '-_'));
-            if (method_exists($this, $setter)) {
-                $this->$setter($value);
-            }
-        }
+        $this->setApiEndpoint($arr['serviceAddress'] ?? $arr['apiEndpoint'] ?? $this->apiEndpoint);
+        $this->setDisableRetries($arr['disableRetries'] ?? $this->disableRetries);
+        $this->setClientConfig($arr['clientConfig'] ?? $this->clientConfig);
+        $this->setCredentials($arr['credentials'] ?? $this->credentials);
+        $this->setCredentialsConfig($arr['credentialsConfig'] ?? $this->credentialsConfig);
+        $this->setTransport($arr['transport'] ?? $this->transport);
+        $this->setTransportConfig($arr['transportConfig'] ?? $this->transportConfig ?? []);
+        $this->setVersionFile($arr['versionFile'] ?? $this->versionFile);
+        $this->setDescriptorsConfigPath($arr['descriptorsConfigPath'] ?? $this->descriptorsConfigPath);
+        $this->setServiceName($arr['serviceName'] ?? $this->serviceName);
+        $this->setLibName($arr['libName'] ?? $this->libName);
+        $this->setLibVersion($arr['libVersion'] ?? $this->libVersion);
+        $this->setGapicVersion($arr['gapicVersion'] ?? $this->gapicVersion);
+        $this->setClientCertSource($arr['clientCertSource'] ?? $this->clientCertSource);
+        $this->setUniverseDomain($arr['universeDomain'] ?? $this->universeDomain);
+        $this->setApiKey($arr['apiKey'] ?? $this->apiKey);
+        $this->setLogger($arr['logger'] ?? $this->logger);
 
         return $this;
     }

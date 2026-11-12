@@ -16,7 +16,7 @@ class CompletionStats
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xC7\x03\x0A1google/cloud/aiplatform/v1/completion_stats.proto\x12\x1Agoogle.cloud.aiplatform.v1\"\x98\x01\x0A\x0FCompletionStats\x12\x1D\x0A\x10successful_count\x18\x01 \x01(\x03B\x03\xE0A\x03\x12\x19\x0A\x0Cfailed_count\x18\x02 \x01(\x03B\x03\xE0A\x03\x12\x1D\x0A\x10incomplete_count\x18\x03 \x01(\x03B\x03\xE0A\x03\x12,\x0A\x1Fsuccessful_forecast_point_count\x18\x05 \x01(\x03B\x03\xE0A\x03B\xD2\x01\x0A\x1Ecom.google.cloud.aiplatform.v1B\x14CompletionStatsProtoP\x01Z>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb\xAA\x02\x1AGoogle.Cloud.AIPlatform.V1\xCA\x02\x1AGoogle\\Cloud\\AIPlatform\\V1\xEA\x02\x1DGoogle::Cloud::AIPlatform::V1b\x06proto3"
+            "\x0A\xCB\x03\x0A1google/cloud/aiplatform/v1/completion_stats.proto\x12\x1Agoogle.cloud.aiplatform.v1\"\x9C\x01\x0A\x0FCompletionStats\x12\x1E\x0A\x10successful_count\x18\x01 \x01(\x03B\x04\xE2A\x01\x03\x12\x1A\x0A\x0Cfailed_count\x18\x02 \x01(\x03B\x04\xE2A\x01\x03\x12\x1E\x0A\x10incomplete_count\x18\x03 \x01(\x03B\x04\xE2A\x01\x03\x12-\x0A\x1Fsuccessful_forecast_point_count\x18\x05 \x01(\x03B\x04\xE2A\x01\x03B\xD2\x01\x0A\x1Ecom.google.cloud.aiplatform.v1B\x14CompletionStatsProtoP\x01Z>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb\xAA\x02\x1AGoogle.Cloud.AIPlatform.V1\xCA\x02\x1AGoogle\\Cloud\\AIPlatform\\V1\xEA\x02\x1DGoogle::Cloud::AIPlatform::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

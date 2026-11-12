@@ -53,7 +53,7 @@ function resolve_pull_request_comments_sample(
     $secureSourceManagerClient = new SecureSourceManagerClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new ResolvePullRequestCommentsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

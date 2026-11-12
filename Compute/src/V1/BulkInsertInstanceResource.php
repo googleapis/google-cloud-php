@@ -24,7 +24,12 @@ class BulkInsertInstanceResource extends \Google\Protobuf\Internal\Message
      */
     protected $count = null;
     /**
-     * A flexible specification of machine type of instances to create.
+     * A specification of alternative machine types to use when creating
+     * instances. A single bulkInsert request can create instances with multiple
+     * different machine types based on capacity and quota availability. This
+     * field is supported only for regional bulkInsert requests. For more
+     * information, see About
+     * instance flexibility for VMs created in bulk.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceFlexibilityPolicy instance_flexibility_policy = 26937090;</code>
      */
@@ -100,7 +105,12 @@ class BulkInsertInstanceResource extends \Google\Protobuf\Internal\Message
      *     @type int|string $count
      *           The maximum number of instances to create.
      *     @type \Google\Cloud\Compute\V1\InstanceFlexibilityPolicy $instance_flexibility_policy
-     *           A flexible specification of machine type of instances to create.
+     *           A specification of alternative machine types to use when creating
+     *           instances. A single bulkInsert request can create instances with multiple
+     *           different machine types based on capacity and quota availability. This
+     *           field is supported only for regional bulkInsert requests. For more
+     *           information, see About
+     *           instance flexibility for VMs created in bulk.
      *     @type \Google\Cloud\Compute\V1\InstanceProperties $instance_properties
      *           The instance properties defining the VM instances to be created. Required
      *           if sourceInstanceTemplate is not provided.
@@ -182,7 +192,12 @@ class BulkInsertInstanceResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A flexible specification of machine type of instances to create.
+     * A specification of alternative machine types to use when creating
+     * instances. A single bulkInsert request can create instances with multiple
+     * different machine types based on capacity and quota availability. This
+     * field is supported only for regional bulkInsert requests. For more
+     * information, see About
+     * instance flexibility for VMs created in bulk.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceFlexibilityPolicy instance_flexibility_policy = 26937090;</code>
      * @return \Google\Cloud\Compute\V1\InstanceFlexibilityPolicy|null
@@ -203,7 +218,12 @@ class BulkInsertInstanceResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A flexible specification of machine type of instances to create.
+     * A specification of alternative machine types to use when creating
+     * instances. A single bulkInsert request can create instances with multiple
+     * different machine types based on capacity and quota availability. This
+     * field is supported only for regional bulkInsert requests. For more
+     * information, see About
+     * instance flexibility for VMs created in bulk.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceFlexibilityPolicy instance_flexibility_policy = 26937090;</code>
      * @param \Google\Cloud\Compute\V1\InstanceFlexibilityPolicy $var
