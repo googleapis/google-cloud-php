@@ -40,6 +40,8 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\Cloud\Memorystore\V1beta\AclPolicy;
+use Google\Cloud\Memorystore\V1beta\AclPolicyRevision;
 use Google\Cloud\Memorystore\V1beta\AddAuthTokenRequest;
 use Google\Cloud\Memorystore\V1beta\AddTokenAuthUserRequest;
 use Google\Cloud\Memorystore\V1beta\AuthToken;
@@ -47,13 +49,17 @@ use Google\Cloud\Memorystore\V1beta\Backup;
 use Google\Cloud\Memorystore\V1beta\BackupCollection;
 use Google\Cloud\Memorystore\V1beta\BackupInstanceRequest;
 use Google\Cloud\Memorystore\V1beta\CertificateAuthority;
+use Google\Cloud\Memorystore\V1beta\CreateAclPolicyRequest;
 use Google\Cloud\Memorystore\V1beta\CreateInstanceRequest;
+use Google\Cloud\Memorystore\V1beta\DeleteAclPolicyRequest;
 use Google\Cloud\Memorystore\V1beta\DeleteAuthTokenRequest;
 use Google\Cloud\Memorystore\V1beta\DeleteBackupRequest;
 use Google\Cloud\Memorystore\V1beta\DeleteInstanceRequest;
 use Google\Cloud\Memorystore\V1beta\DeleteTokenAuthUserRequest;
 use Google\Cloud\Memorystore\V1beta\ExportBackupRequest;
 use Google\Cloud\Memorystore\V1beta\FinishMigrationRequest;
+use Google\Cloud\Memorystore\V1beta\GetAclPolicyRequest;
+use Google\Cloud\Memorystore\V1beta\GetAclPolicyRevisionRequest;
 use Google\Cloud\Memorystore\V1beta\GetAuthTokenRequest;
 use Google\Cloud\Memorystore\V1beta\GetBackupCollectionRequest;
 use Google\Cloud\Memorystore\V1beta\GetBackupRequest;
@@ -62,6 +68,8 @@ use Google\Cloud\Memorystore\V1beta\GetInstanceRequest;
 use Google\Cloud\Memorystore\V1beta\GetSharedRegionalCertificateAuthorityRequest;
 use Google\Cloud\Memorystore\V1beta\GetTokenAuthUserRequest;
 use Google\Cloud\Memorystore\V1beta\Instance;
+use Google\Cloud\Memorystore\V1beta\ListAclPoliciesRequest;
+use Google\Cloud\Memorystore\V1beta\ListAclPolicyRevisionsRequest;
 use Google\Cloud\Memorystore\V1beta\ListAuthTokensRequest;
 use Google\Cloud\Memorystore\V1beta\ListBackupCollectionsRequest;
 use Google\Cloud\Memorystore\V1beta\ListBackupsRequest;
@@ -71,6 +79,7 @@ use Google\Cloud\Memorystore\V1beta\RescheduleMaintenanceRequest;
 use Google\Cloud\Memorystore\V1beta\SharedRegionalCertificateAuthority;
 use Google\Cloud\Memorystore\V1beta\StartMigrationRequest;
 use Google\Cloud\Memorystore\V1beta\TokenAuthUser;
+use Google\Cloud\Memorystore\V1beta\UpdateAclPolicyRequest;
 use Google\Cloud\Memorystore\V1beta\UpdateInstanceRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
@@ -93,13 +102,17 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> addAuthTokenAsync(AddAuthTokenRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> addTokenAuthUserAsync(AddTokenAuthUserRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> backupInstanceAsync(BackupInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AclPolicy> createAclPolicyAsync(CreateAclPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAclPolicyAsync(DeleteAclPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAuthTokenAsync(DeleteAuthTokenRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteTokenAuthUserAsync(DeleteTokenAuthUserRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> exportBackupAsync(ExportBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> finishMigrationAsync(FinishMigrationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AclPolicy> getAclPolicyAsync(GetAclPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AclPolicyRevision> getAclPolicyRevisionAsync(GetAclPolicyRevisionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AuthToken> getAuthTokenAsync(GetAuthTokenRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackupCollection> getBackupCollectionAsync(GetBackupCollectionRequest $request, array $optionalArgs = [])
@@ -107,6 +120,8 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Instance> getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SharedRegionalCertificateAuthority> getSharedRegionalCertificateAuthorityAsync(GetSharedRegionalCertificateAuthorityRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TokenAuthUser> getTokenAuthUserAsync(GetTokenAuthUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAclPoliciesAsync(ListAclPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAclPolicyRevisionsAsync(ListAclPolicyRevisionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAuthTokensAsync(ListAuthTokensRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupCollectionsAsync(ListBackupCollectionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
@@ -114,6 +129,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listTokenAuthUsersAsync(ListTokenAuthUsersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> rescheduleMaintenanceAsync(RescheduleMaintenanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> startMigrationAsync(StartMigrationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAclPolicyAsync(UpdateAclPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -227,6 +243,54 @@ final class MemorystoreClient
         }
 
         return new OperationsClient($options);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a acl_policy
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $aclPolicy
+     *
+     * @return string The formatted acl_policy resource.
+     *
+     * @experimental
+     */
+    public static function aclPolicyName(string $project, string $location, string $aclPolicy): string
+    {
+        return self::getPathTemplate('aclPolicy')->render([
+            'project' => $project,
+            'location' => $location,
+            'acl_policy' => $aclPolicy,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * acl_policy_revision resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $aclPolicy
+     * @param string $revision
+     *
+     * @return string The formatted acl_policy_revision resource.
+     *
+     * @experimental
+     */
+    public static function aclPolicyRevisionName(
+        string $project,
+        string $location,
+        string $aclPolicy,
+        string $revision
+    ): string {
+        return self::getPathTemplate('aclPolicyRevision')->render([
+            'project' => $project,
+            'location' => $location,
+            'acl_policy' => $aclPolicy,
+            'revision' => $revision,
+        ]);
     }
 
     /**
@@ -553,6 +617,8 @@ final class MemorystoreClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - aclPolicy: projects/{project}/locations/{location}/aclPolicies/{acl_policy}
+     * - aclPolicyRevision: projects/{project}/locations/{location}/aclPolicies/{acl_policy}/revisions/{revision}
      * - authToken: projects/{project}/locations/{location}/instances/{instance}/tokenAuthUsers/{token_auth_user}/authTokens/{auth_token}
      * - backup: projects/{project}/locations/{location}/backupCollections/{backup_collection}/backups/{backup}
      * - backupCollection: projects/{project}/locations/{location}/backupCollections/{backup_collection}
@@ -772,6 +838,36 @@ final class MemorystoreClient
     }
 
     /**
+     * Creates an ACL policy.
+     * The creation is executed synchronously and the policy is available for use
+     * immediately after the RPC returns.
+     *
+     * The async variant is {@see MemorystoreClient::createAclPolicyAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/create_acl_policy.php
+     *
+     * @param CreateAclPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AclPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createAclPolicy(CreateAclPolicyRequest $request, array $callOptions = []): AclPolicy
+    {
+        return $this->startApiCall('CreateAclPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new Instance in a given project and location.
      *
      * The async variant is {@see MemorystoreClient::createInstanceAsync()} .
@@ -797,6 +893,36 @@ final class MemorystoreClient
     public function createInstance(CreateInstanceRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('CreateInstance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a specific ACL policy. This action will delete the ACL policy and
+     * all the rules associated with it. An ACL policy cannot be deleted if it is
+     * attached to an instance.
+     *
+     * The async variant is {@see MemorystoreClient::deleteAclPolicyAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/delete_acl_policy.php
+     *
+     * @param DeleteAclPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteAclPolicy(DeleteAclPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteAclPolicy', $request, $callOptions)->wait();
     }
 
     /**
@@ -970,6 +1096,64 @@ final class MemorystoreClient
     public function finishMigration(FinishMigrationRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('FinishMigration', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the details of a specific Memorystore ACL policy.
+     *
+     * The async variant is {@see MemorystoreClient::getAclPolicyAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/get_acl_policy.php
+     *
+     * @param GetAclPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AclPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getAclPolicy(GetAclPolicyRequest $request, array $callOptions = []): AclPolicy
+    {
+        return $this->startApiCall('GetAclPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a specific ACL policy revision.
+     *
+     * The async variant is {@see MemorystoreClient::getAclPolicyRevisionAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/get_acl_policy_revision.php
+     *
+     * @param GetAclPolicyRevisionRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AclPolicyRevision
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getAclPolicyRevision(
+        GetAclPolicyRevisionRequest $request,
+        array $callOptions = []
+    ): AclPolicyRevision {
+        return $this->startApiCall('GetAclPolicyRevision', $request, $callOptions)->wait();
     }
 
     /**
@@ -1172,6 +1356,72 @@ final class MemorystoreClient
     public function getTokenAuthUser(GetTokenAuthUserRequest $request, array $callOptions = []): TokenAuthUser
     {
         return $this->startApiCall('GetTokenAuthUser', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists all ACL policies owned by a project in either the specified
+     * location (region) or all locations.
+     *
+     * The location should have the following format:
+     *
+     * * `projects/{project_id}/locations/{location_id}`
+     *
+     * If `location_id` is specified as `-` (wildcard), then all regions
+     * available to the project are queried, and the results are aggregated.
+     *
+     * The async variant is {@see MemorystoreClient::listAclPoliciesAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/list_acl_policies.php
+     *
+     * @param ListAclPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listAclPolicies(ListAclPoliciesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListAclPolicies', $request, $callOptions);
+    }
+
+    /**
+     * Lists all ACL policy revisions in a given ACL policy.
+     *
+     * The async variant is {@see MemorystoreClient::listAclPolicyRevisionsAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/list_acl_policy_revisions.php
+     *
+     * @param ListAclPolicyRevisionsRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listAclPolicyRevisions(
+        ListAclPolicyRevisionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListAclPolicyRevisions', $request, $callOptions);
     }
 
     /**
@@ -1383,6 +1633,43 @@ final class MemorystoreClient
     public function startMigration(StartMigrationRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('StartMigration', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the ACL policy.
+     *
+     * The operation will apply the updated ACL policy to all the linked
+     * instances. The operation will return success if it successfully applied the
+     * policy to all the instances. If the operation completed with a failure, the
+     * service will continue to apply the policy via reconciliation for the failed
+     * instances even after operation completion to ensure eventual consistency.
+     *
+     * Completed longrunning.Operation will contain the new ACL policy object
+     * in the response field.
+     *
+     * The async variant is {@see MemorystoreClient::updateAclPolicyAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/update_acl_policy.php
+     *
+     * @param UpdateAclPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<AclPolicy>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateAclPolicy(UpdateAclPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateAclPolicy', $request, $callOptions)->wait();
     }
 
     /**

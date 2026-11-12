@@ -60,7 +60,7 @@ function batch_create_access_bindings_sample(
     $createAccessBindingRequest = (new CreateAccessBindingRequest())
         ->setParent($formattedRequestsParent)
         ->setAccessBinding($requestsAccessBinding);
-    $requests = [$createAccessBindingRequest,];
+    $requests = [$createAccessBindingRequest];
     $request = (new BatchCreateAccessBindingsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

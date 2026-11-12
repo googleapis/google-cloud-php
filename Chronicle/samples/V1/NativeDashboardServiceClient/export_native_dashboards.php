@@ -42,7 +42,7 @@ function export_native_dashboards_sample(string $formattedParent, string $namesE
     $nativeDashboardServiceClient = new NativeDashboardServiceClient();
 
     // Prepare the request message.
-    $names = [$namesElement,];
+    $names = [$namesElement];
     $request = (new ExportNativeDashboardsRequest())
         ->setParent($formattedParent)
         ->setNames($names);

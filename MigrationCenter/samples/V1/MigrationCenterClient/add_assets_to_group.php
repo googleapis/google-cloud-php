@@ -47,7 +47,7 @@ function add_assets_to_group_sample(
     $migrationCenterClient = new MigrationCenterClient();
 
     // Prepare the request message.
-    $formattedAssetsAssetIds = [$formattedAssetsAssetIdsElement,];
+    $formattedAssetsAssetIds = [$formattedAssetsAssetIdsElement];
     $assets = (new AssetList())
         ->setAssetIds($formattedAssetsAssetIds);
     $request = (new AddAssetsToGroupRequest())

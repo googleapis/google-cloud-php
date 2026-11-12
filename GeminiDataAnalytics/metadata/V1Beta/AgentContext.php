@@ -16,7 +16,7 @@ class AgentContext
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xC9\x03\x0A;google/cloud/geminidataanalytics/v1beta/agent_context.proto\x12'google.cloud.geminidataanalytics.v1beta\"4\x0A\x15AgentContextReference\x12\x1B\x0A\x0Econtext_set_id\x18\x01 \x01(\x09B\x03\xE0A\x02B\xA2\x02\x0A+com.google.cloud.geminidataanalytics.v1betaB\x11AgentContextProtoP\x01Z]cloud.google.com/go/geminidataanalytics/apiv1beta/geminidataanalyticspb;geminidataanalyticspb\xAA\x02'Google.Cloud.GeminiDataAnalytics.V1Beta\xCA\x02'Google\\Cloud\\GeminiDataAnalytics\\V1beta\xEA\x02*Google::Cloud::GeminiDataAnalytics::V1betab\x06proto3"
+            "\x0A\xCA\x03\x0A;google/cloud/geminidataanalytics/v1beta/agent_context.proto\x12'google.cloud.geminidataanalytics.v1beta\"5\x0A\x15AgentContextReference\x12\x1C\x0A\x0Econtext_set_id\x18\x01 \x01(\x09B\x04\xE2A\x01\x02B\xA2\x02\x0A+com.google.cloud.geminidataanalytics.v1betaB\x11AgentContextProtoP\x01Z]cloud.google.com/go/geminidataanalytics/apiv1beta/geminidataanalyticspb;geminidataanalyticspb\xAA\x02'Google.Cloud.GeminiDataAnalytics.V1Beta\xCA\x02'Google\\Cloud\\GeminiDataAnalytics\\V1beta\xEA\x02*Google::Cloud::GeminiDataAnalytics::V1betab\x06proto3"
         , true);
 
         static::$is_initialized = true;

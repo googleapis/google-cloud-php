@@ -94,6 +94,18 @@ return [
                     ],
                 ],
             ],
+            'CreateCompilationResultLongRunning' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/repositories/*}/compilationResults:createLongRunning',
+                'body' => 'compilation_result',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateFolder' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/folders',
@@ -384,6 +396,17 @@ return [
             'FetchWorkspaceBranches' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*/workspaces/*}:fetchBranches',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchWorkspaceHistory' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*/workspaces/*}:fetchHistory',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

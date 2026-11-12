@@ -50,7 +50,7 @@ function export_taxonomies_sample(
     $policyTagManagerSerializationClient = new PolicyTagManagerSerializationClient();
 
     // Prepare the request message.
-    $formattedTaxonomies = [$formattedTaxonomiesElement,];
+    $formattedTaxonomies = [$formattedTaxonomiesElement];
     $request = (new ExportTaxonomiesRequest())
         ->setParent($formattedParent)
         ->setTaxonomies($formattedTaxonomies);

@@ -95,7 +95,7 @@ function instantiate_inline_workflow_template_sample(
     $templatePlacement = new WorkflowTemplatePlacement();
     $orderedJob = (new OrderedJob())
         ->setStepId($templateJobsStepId);
-    $templateJobs = [$orderedJob,];
+    $templateJobs = [$orderedJob];
     $template = (new WorkflowTemplate())
         ->setId($templateId)
         ->setPlacement($templatePlacement)

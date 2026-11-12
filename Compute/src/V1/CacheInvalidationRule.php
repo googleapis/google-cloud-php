@@ -29,7 +29,9 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
     private $cache_tags;
     /**
      * If set, this invalidation rule will only apply to requests with a Host
-     * header matching host.
+     * header matching host. This field also accepts wildcards (*) to replace the
+     * leftmost (or first) label of a hostname. For example, *.example.com will
+     * match www.example.com, but not sub1.dev.example.com.
      *
      * Generated from protobuf field <code>optional string host = 3208616;</code>
      */
@@ -56,7 +58,9 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
      *           Up to 10 tags can be specified in a single invalidation request.
      *     @type string $host
      *           If set, this invalidation rule will only apply to requests with a Host
-     *           header matching host.
+     *           header matching host. This field also accepts wildcards (*) to replace the
+     *           leftmost (or first) label of a hostname. For example, *.example.com will
+     *           match www.example.com, but not sub1.dev.example.com.
      *     @type string $path
      * }
      */
@@ -107,7 +111,9 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
 
     /**
      * If set, this invalidation rule will only apply to requests with a Host
-     * header matching host.
+     * header matching host. This field also accepts wildcards (*) to replace the
+     * leftmost (or first) label of a hostname. For example, *.example.com will
+     * match www.example.com, but not sub1.dev.example.com.
      *
      * Generated from protobuf field <code>optional string host = 3208616;</code>
      * @return string
@@ -129,7 +135,9 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
 
     /**
      * If set, this invalidation rule will only apply to requests with a Host
-     * header matching host.
+     * header matching host. This field also accepts wildcards (*) to replace the
+     * leftmost (or first) label of a hostname. For example, *.example.com will
+     * match www.example.com, but not sub1.dev.example.com.
      *
      * Generated from protobuf field <code>optional string host = 3208616;</code>
      * @param string $var

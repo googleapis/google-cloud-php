@@ -36,6 +36,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AppHub\V1\Application;
+use Google\Cloud\AppHub\V1\Boundary;
 use Google\Cloud\AppHub\V1\CreateApplicationRequest;
 use Google\Cloud\AppHub\V1\CreateServiceProjectAttachmentRequest;
 use Google\Cloud\AppHub\V1\CreateServiceRequest;
@@ -48,15 +49,19 @@ use Google\Cloud\AppHub\V1\DetachServiceProjectAttachmentRequest;
 use Google\Cloud\AppHub\V1\DetachServiceProjectAttachmentResponse;
 use Google\Cloud\AppHub\V1\DiscoveredService;
 use Google\Cloud\AppHub\V1\DiscoveredWorkload;
+use Google\Cloud\AppHub\V1\ExtendedMetadataSchema;
 use Google\Cloud\AppHub\V1\GetApplicationRequest;
+use Google\Cloud\AppHub\V1\GetBoundaryRequest;
 use Google\Cloud\AppHub\V1\GetDiscoveredServiceRequest;
 use Google\Cloud\AppHub\V1\GetDiscoveredWorkloadRequest;
+use Google\Cloud\AppHub\V1\GetExtendedMetadataSchemaRequest;
 use Google\Cloud\AppHub\V1\GetServiceProjectAttachmentRequest;
 use Google\Cloud\AppHub\V1\GetServiceRequest;
 use Google\Cloud\AppHub\V1\GetWorkloadRequest;
 use Google\Cloud\AppHub\V1\ListApplicationsRequest;
 use Google\Cloud\AppHub\V1\ListDiscoveredServicesRequest;
 use Google\Cloud\AppHub\V1\ListDiscoveredWorkloadsRequest;
+use Google\Cloud\AppHub\V1\ListExtendedMetadataSchemasRequest;
 use Google\Cloud\AppHub\V1\ListServiceProjectAttachmentsRequest;
 use Google\Cloud\AppHub\V1\ListServicesRequest;
 use Google\Cloud\AppHub\V1\ListWorkloadsRequest;
@@ -69,6 +74,7 @@ use Google\Cloud\AppHub\V1\LookupServiceProjectAttachmentResponse;
 use Google\Cloud\AppHub\V1\Service;
 use Google\Cloud\AppHub\V1\ServiceProjectAttachment;
 use Google\Cloud\AppHub\V1\UpdateApplicationRequest;
+use Google\Cloud\AppHub\V1\UpdateBoundaryRequest;
 use Google\Cloud\AppHub\V1\UpdateServiceRequest;
 use Google\Cloud\AppHub\V1\UpdateWorkloadRequest;
 use Google\Cloud\AppHub\V1\Workload;
@@ -106,14 +112,17 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deleteWorkloadAsync(DeleteWorkloadRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DetachServiceProjectAttachmentResponse> detachServiceProjectAttachmentAsync(DetachServiceProjectAttachmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Application> getApplicationAsync(GetApplicationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Boundary> getBoundaryAsync(GetBoundaryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DiscoveredService> getDiscoveredServiceAsync(GetDiscoveredServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DiscoveredWorkload> getDiscoveredWorkloadAsync(GetDiscoveredWorkloadRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExtendedMetadataSchema> getExtendedMetadataSchemaAsync(GetExtendedMetadataSchemaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Service> getServiceAsync(GetServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ServiceProjectAttachment> getServiceProjectAttachmentAsync(GetServiceProjectAttachmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Workload> getWorkloadAsync(GetWorkloadRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listApplicationsAsync(ListApplicationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listDiscoveredServicesAsync(ListDiscoveredServicesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listDiscoveredWorkloadsAsync(ListDiscoveredWorkloadsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listExtendedMetadataSchemasAsync(ListExtendedMetadataSchemasRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listServiceProjectAttachmentsAsync(ListServiceProjectAttachmentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listServicesAsync(ListServicesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listWorkloadsAsync(ListWorkloadsRequest $request, array $optionalArgs = [])
@@ -121,6 +130,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<LookupDiscoveredWorkloadResponse> lookupDiscoveredWorkloadAsync(LookupDiscoveredWorkloadRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<LookupServiceProjectAttachmentResponse> lookupServiceProjectAttachmentAsync(LookupServiceProjectAttachmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateApplicationAsync(UpdateApplicationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateBoundaryAsync(UpdateBoundaryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateServiceAsync(UpdateServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateWorkloadAsync(UpdateWorkloadRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -252,6 +262,23 @@ final class AppHubClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a boundary
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted boundary resource.
+     */
+    public static function boundaryName(string $project, string $location): string
+    {
+        return self::getPathTemplate('boundary')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * discovered_service resource.
      *
@@ -286,6 +313,28 @@ final class AppHubClient
             'project' => $project,
             'location' => $location,
             'discovered_workload' => $discoveredWorkload,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * extended_metadata_schema resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $extendedMetadataSchema
+     *
+     * @return string The formatted extended_metadata_schema resource.
+     */
+    public static function extendedMetadataSchemaName(
+        string $project,
+        string $location,
+        string $extendedMetadataSchema
+    ): string {
+        return self::getPathTemplate('extendedMetadataSchema')->render([
+            'project' => $project,
+            'location' => $location,
+            'extended_metadata_schema' => $extendedMetadataSchema,
         ]);
     }
 
@@ -394,8 +443,10 @@ final class AppHubClient
      * The following name formats are supported:
      * Template: Pattern
      * - application: projects/{project}/locations/{location}/applications/{application}
+     * - boundary: projects/{project}/locations/{location}/boundary
      * - discoveredService: projects/{project}/locations/{location}/discoveredServices/{discovered_service}
      * - discoveredWorkload: projects/{project}/locations/{location}/discoveredWorkloads/{discovered_workload}
+     * - extendedMetadataSchema: projects/{project}/locations/{location}/extendedMetadataSchemas/{extended_metadata_schema}
      * - location: projects/{project}/locations/{location}
      * - project: projects/{project}
      * - service: projects/{project}/locations/{location}/applications/{application}/services/{service}
@@ -778,6 +829,32 @@ final class AppHubClient
     }
 
     /**
+     * Gets a Boundary.
+     *
+     * The async variant is {@see AppHubClient::getBoundaryAsync()} .
+     *
+     * @example samples/V1/AppHubClient/get_boundary.php
+     *
+     * @param GetBoundaryRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Boundary
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getBoundary(GetBoundaryRequest $request, array $callOptions = []): Boundary
+    {
+        return $this->startApiCall('GetBoundary', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets a Discovered Service in a host project and location.
      *
      * The async variant is {@see AppHubClient::getDiscoveredServiceAsync()} .
@@ -831,6 +908,34 @@ final class AppHubClient
         array $callOptions = []
     ): DiscoveredWorkload {
         return $this->startApiCall('GetDiscoveredWorkload', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets an Extended Metadata Schema.
+     *
+     * The async variant is {@see AppHubClient::getExtendedMetadataSchemaAsync()} .
+     *
+     * @example samples/V1/AppHubClient/get_extended_metadata_schema.php
+     *
+     * @param GetExtendedMetadataSchemaRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ExtendedMetadataSchema
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getExtendedMetadataSchema(
+        GetExtendedMetadataSchemaRequest $request,
+        array $callOptions = []
+    ): ExtendedMetadataSchema {
+        return $this->startApiCall('GetExtendedMetadataSchema', $request, $callOptions)->wait();
     }
 
     /**
@@ -995,6 +1100,34 @@ final class AppHubClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListDiscoveredWorkloads', $request, $callOptions);
+    }
+
+    /**
+     * Lists Extended Metadata Schemas available in a host project and location.
+     *
+     * The async variant is {@see AppHubClient::listExtendedMetadataSchemasAsync()} .
+     *
+     * @example samples/V1/AppHubClient/list_extended_metadata_schemas.php
+     *
+     * @param ListExtendedMetadataSchemasRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listExtendedMetadataSchemas(
+        ListExtendedMetadataSchemasRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListExtendedMetadataSchemas', $request, $callOptions);
     }
 
     /**
@@ -1192,6 +1325,32 @@ final class AppHubClient
     }
 
     /**
+     * Updates a Boundary.
+     *
+     * The async variant is {@see AppHubClient::updateBoundaryAsync()} .
+     *
+     * @example samples/V1/AppHubClient/update_boundary.php
+     *
+     * @param UpdateBoundaryRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Boundary>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateBoundary(UpdateBoundaryRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateBoundary', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates a Service in an Application.
      *
      * The async variant is {@see AppHubClient::updateServiceAsync()} .
@@ -1271,6 +1430,21 @@ final class AppHubClient
 
     /**
      * Lists information about the supported locations for this service.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see AppHubClient::listLocationsAsync()} .
      *

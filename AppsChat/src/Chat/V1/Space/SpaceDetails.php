@@ -18,7 +18,7 @@ class SpaceDetails extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A description of the space. For example, describe the space's
      * discussion topic, functional purpose, or participants.
-     * Supports up to 150 characters.
+     * Supports up to 4,096 characters.
      *
      * Generated from protobuf field <code>string description = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -40,7 +40,7 @@ class SpaceDetails extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Optional. A description of the space. For example, describe the space's
      *           discussion topic, functional purpose, or participants.
-     *           Supports up to 150 characters.
+     *           Supports up to 4,096 characters.
      *     @type string $guidelines
      *           Optional. The space's rules, expectations, and etiquette.
      *           Supports up to 5,000 characters.
@@ -54,7 +54,7 @@ class SpaceDetails extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A description of the space. For example, describe the space's
      * discussion topic, functional purpose, or participants.
-     * Supports up to 150 characters.
+     * Supports up to 4,096 characters.
      *
      * Generated from protobuf field <code>string description = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -67,7 +67,7 @@ class SpaceDetails extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A description of the space. For example, describe the space's
      * discussion topic, functional purpose, or participants.
-     * Supports up to 150 characters.
+     * Supports up to 4,096 characters.
      *
      * Generated from protobuf field <code>string description = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

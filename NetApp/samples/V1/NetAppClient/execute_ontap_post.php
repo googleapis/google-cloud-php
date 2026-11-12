@@ -30,10 +30,10 @@ use Google\Cloud\NetApp\V1\ExecuteOntapPostResponse;
 use Google\Protobuf\Struct;
 
 /**
- * `ExecuteOntapPost` dispatches the ONTAP `POST` request to the
+ * `ExecuteOntapPost` sends the ONTAP `POST` request to the
  * `StoragePool` cluster.
  *
- * @param string $ontapPath The resource path of the ONTAP resource.
+ * @param string $ontapPath The path of the ONTAP resource.
  *                          Format:
  *                          `projects/{project_number}/locations/{location_id}/storagePools/{storage_pool_id}/ontap/{ontap_resource_path}`.
  *                          For example:

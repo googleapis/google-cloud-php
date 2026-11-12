@@ -34,6 +34,8 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\DiscoveryEngine\V1\AdvancedCompleteQueryRequest;
+use Google\Cloud\DiscoveryEngine\V1\AdvancedCompleteQueryResponse;
 use Google\Cloud\DiscoveryEngine\V1\CompleteQueryRequest;
 use Google\Cloud\DiscoveryEngine\V1\CompleteQueryResponse;
 use Google\Cloud\DiscoveryEngine\V1\ImportCompletionSuggestionsRequest;
@@ -60,6 +62,7 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<AdvancedCompleteQueryResponse> advancedCompleteQueryAsync(AdvancedCompleteQueryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CompleteQueryResponse> completeQueryAsync(CompleteQueryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> importCompletionSuggestionsAsync(ImportCompletionSuggestionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> importSuggestionDenyListEntriesAsync(ImportSuggestionDenyListEntriesRequest $request, array $optionalArgs = [])
@@ -95,7 +98,13 @@ final class CompletionServiceClient
      *
      * @internal
      */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/cloud_search.query',
+        'https://www.googleapis.com/auth/discoveryengine.assist.readwrite',
+        'https://www.googleapis.com/auth/discoveryengine.readwrite',
+        'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+    ];
 
     private $operationsClient;
 
@@ -170,6 +179,25 @@ final class CompletionServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * completion_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     *
+     * @return string The formatted completion_config resource.
+     */
+    public static function completionConfigName(string $project, string $location, string $dataStore): string
+    {
+        return self::getPathTemplate('completionConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a data_store
      * resource.
      *
@@ -215,6 +243,56 @@ final class CompletionServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store_completionConfig resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_collection_data_store_completionConfig resource.
+     */
+    public static function projectLocationCollectionDataStoreCompletionConfigName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionDataStoreCompletionConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_engine_completionConfig resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     *
+     * @return string The formatted project_location_collection_engine_completionConfig resource.
+     */
+    public static function projectLocationCollectionEngineCompletionConfigName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionEngineCompletionConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_data_store resource.
      *
      * @param string $project
@@ -233,12 +311,38 @@ final class CompletionServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store_completionConfig resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_data_store_completionConfig resource.
+     */
+    public static function projectLocationDataStoreCompletionConfigName(
+        string $project,
+        string $location,
+        string $dataStore
+    ): string {
+        return self::getPathTemplate('projectLocationDataStoreCompletionConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - completionConfig: projects/{project}/locations/{location}/dataStores/{data_store}/completionConfig
      * - dataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
+     * - projectLocationCollectionDataStoreCompletionConfig: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/completionConfig
+     * - projectLocationCollectionEngineCompletionConfig: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/completionConfig
      * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
+     * - projectLocationDataStoreCompletionConfig: projects/{project}/locations/{location}/dataStores/{data_store}/completionConfig
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -342,6 +446,35 @@ final class CompletionServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Completes the user input with advanced keyword suggestions.
+     *
+     * The async variant is
+     * {@see CompletionServiceClient::advancedCompleteQueryAsync()} .
+     *
+     * @example samples/V1/CompletionServiceClient/advanced_complete_query.php
+     *
+     * @param AdvancedCompleteQueryRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AdvancedCompleteQueryResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function advancedCompleteQuery(
+        AdvancedCompleteQueryRequest $request,
+        array $callOptions = []
+    ): AdvancedCompleteQueryResponse {
+        return $this->startApiCall('AdvancedCompleteQuery', $request, $callOptions)->wait();
     }
 
     /**

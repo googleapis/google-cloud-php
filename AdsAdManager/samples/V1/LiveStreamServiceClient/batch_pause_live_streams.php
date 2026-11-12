@@ -45,7 +45,7 @@ function batch_pause_live_streams_sample(
     $liveStreamServiceClient = new LiveStreamServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchPauseLiveStreamsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

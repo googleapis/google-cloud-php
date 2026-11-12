@@ -42,7 +42,7 @@ function update_label_sample(string $labelDisplayName, int $labelTypesElement): 
     $labelServiceClient = new LabelServiceClient();
 
     // Prepare the request message.
-    $labelTypes = [$labelTypesElement,];
+    $labelTypes = [$labelTypesElement];
     $label = (new Label())
         ->setDisplayName($labelDisplayName)
         ->setTypes($labelTypes);

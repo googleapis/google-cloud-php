@@ -61,6 +61,30 @@ return [
                     ],
                 ],
             ],
+            'BatchApplyAdReviewCenterCustomLabels' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchApplyAdReviewCenterCustomLabelsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchAdReviewCenterCustomLabels' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\FetchAdReviewCenterCustomLabelsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'SearchAdReviewCenterAds' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

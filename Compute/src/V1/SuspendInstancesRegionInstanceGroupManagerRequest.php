@@ -72,7 +72,9 @@ class SuspendInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf
             ->setProject($project)
             ->setRegion($region)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setRegionInstanceGroupManagersSuspendInstancesRequestResource($regionInstanceGroupManagersSuspendInstancesRequestResource);
+            ->setRegionInstanceGroupManagersSuspendInstancesRequestResource(
+                $regionInstanceGroupManagersSuspendInstancesRequestResource
+            );
     }
 
     /**

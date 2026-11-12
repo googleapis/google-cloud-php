@@ -45,7 +45,7 @@ function test_iam_permissions_repo_sample(string $resource, string $permissionsE
     $secureSourceManagerClient = new SecureSourceManagerClient();
 
     // Prepare the request message.
-    $permissions = [$permissionsElement,];
+    $permissions = [$permissionsElement];
     $request = (new TestIamPermissionsRequest())
         ->setResource($resource)
         ->setPermissions($permissions);

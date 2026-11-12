@@ -74,7 +74,9 @@ class PatchPerInstanceConfigsRegionInstanceGroupManagerRequest extends \Google\P
             ->setProject($project)
             ->setRegion($region)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setRegionInstanceGroupManagerPatchInstanceConfigReqResource($regionInstanceGroupManagerPatchInstanceConfigReqResource);
+            ->setRegionInstanceGroupManagerPatchInstanceConfigReqResource(
+                $regionInstanceGroupManagerPatchInstanceConfigReqResource
+            );
     }
 
     /**

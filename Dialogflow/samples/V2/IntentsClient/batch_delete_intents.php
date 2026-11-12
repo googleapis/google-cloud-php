@@ -59,7 +59,7 @@ function batch_delete_intents_sample(string $formattedParent, string $intentsDis
     // Prepare the request message.
     $intent = (new Intent())
         ->setDisplayName($intentsDisplayName);
-    $intents = [$intent,];
+    $intents = [$intent];
     $request = (new BatchDeleteIntentsRequest())
         ->setParent($formattedParent)
         ->setIntents($intents);

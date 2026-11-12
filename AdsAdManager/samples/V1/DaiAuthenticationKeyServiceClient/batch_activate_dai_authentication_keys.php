@@ -46,7 +46,7 @@ function batch_activate_dai_authentication_keys_sample(
     $daiAuthenticationKeyServiceClient = new DaiAuthenticationKeyServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchActivateDaiAuthenticationKeysRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

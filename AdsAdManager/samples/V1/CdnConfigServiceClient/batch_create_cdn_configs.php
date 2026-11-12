@@ -62,7 +62,7 @@ function batch_create_cdn_configs_sample(
     $createCdnConfigRequest = (new CreateCdnConfigRequest())
         ->setParent($formattedRequestsParent)
         ->setCdnConfig($requestsCdnConfig);
-    $requests = [$createCdnConfigRequest,];
+    $requests = [$createCdnConfigRequest];
     $request = (new BatchCreateCdnConfigsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

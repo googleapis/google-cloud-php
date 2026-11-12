@@ -9,8 +9,6 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Execute SQL statements request.
- *
  * Generated from protobuf message <code>google.cloud.sql.v1.SqlInstancesExecuteSqlRequest</code>
  */
 class SqlInstancesExecuteSqlRequest extends \Google\Protobuf\Internal\Message

@@ -25,7 +25,7 @@ return [
         'google.shopping.merchant.quota.v1.AccountLimitsService' => [
             'GetAccountLimit' => [
                 'method' => 'get',
-                'uriTemplate' => '/accounts/v1/{name=accounts/*/limits/*}',
+                'uriTemplate' => '/quota/v1/{name=accounts/*/limits/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -36,7 +36,7 @@ return [
             ],
             'ListAccountLimits' => [
                 'method' => 'get',
-                'uriTemplate' => '/accounts/v1/{parent=accounts/*}/limits',
+                'uriTemplate' => '/quota/v1/{parent=accounts/*}/limits',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

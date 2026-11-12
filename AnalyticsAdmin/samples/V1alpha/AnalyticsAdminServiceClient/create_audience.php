@@ -54,7 +54,7 @@ function create_audience_sample(
     // Prepare the request message.
     $audienceFilterClause = (new AudienceFilterClause())
         ->setClauseType($audienceFilterClausesClauseType);
-    $audienceFilterClauses = [$audienceFilterClause,];
+    $audienceFilterClauses = [$audienceFilterClause];
     $audience = (new Audience())
         ->setDisplayName($audienceDisplayName)
         ->setDescription($audienceDescription)

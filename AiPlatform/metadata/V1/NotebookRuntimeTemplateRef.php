@@ -17,7 +17,7 @@ class NotebookRuntimeTemplateRef
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xDB\x03\x0A>google/cloud/aiplatform/v1/notebook_runtime_template_ref.proto\x12\x1Agoogle.cloud.aiplatform.v1\x1A\x19google/api/resource.proto\"z\x0A\x1ANotebookRuntimeTemplateRef\x12\\\x0A\x19notebook_runtime_template\x18\x01 \x01(\x09B9\xE0A\x05\xFAA3\x0A1aiplatform.googleapis.com/NotebookRuntimeTemplateB\xDD\x01\x0A\x1Ecom.google.cloud.aiplatform.v1B\x1FNotebookRuntimeTemplateRefProtoP\x01Z>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb\xAA\x02\x1AGoogle.Cloud.AIPlatform.V1\xCA\x02\x1AGoogle\\Cloud\\AIPlatform\\V1\xEA\x02\x1DGoogle::Cloud::AIPlatform::V1b\x06proto3"
+            "\x0A\xDC\x03\x0A>google/cloud/aiplatform/v1/notebook_runtime_template_ref.proto\x12\x1Agoogle.cloud.aiplatform.v1\x1A\x19google/api/resource.proto\"{\x0A\x1ANotebookRuntimeTemplateRef\x12]\x0A\x19notebook_runtime_template\x18\x01 \x01(\x09B:\xE2A\x01\x05\xFAA3\x0A1aiplatform.googleapis.com/NotebookRuntimeTemplateB\xDD\x01\x0A\x1Ecom.google.cloud.aiplatform.v1B\x1FNotebookRuntimeTemplateRefProtoP\x01Z>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb\xAA\x02\x1AGoogle.Cloud.AIPlatform.V1\xCA\x02\x1AGoogle\\Cloud\\AIPlatform\\V1\xEA\x02\x1DGoogle::Cloud::AIPlatform::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

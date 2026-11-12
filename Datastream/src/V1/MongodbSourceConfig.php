@@ -9,20 +9,20 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * MongoDB source configuration.
+ * Configuration for syncing data from a MongoDB source.
  *
  * Generated from protobuf message <code>google.cloud.datastream.v1.MongodbSourceConfig</code>
  */
 class MongodbSourceConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * MongoDB collections to include in the stream.
+     * The MongoDB collections to include in the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbCluster include_objects = 1;</code>
      */
     protected $include_objects = null;
     /**
-     * MongoDB collections to exclude from the stream.
+     * The MongoDB collections to exclude from the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbCluster exclude_objects = 2;</code>
      */
@@ -35,6 +35,12 @@ class MongodbSourceConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 max_concurrent_backfill_tasks = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $max_concurrent_backfill_tasks = 0;
+    /**
+     * Optional. MongoDB JSON mode to use for the stream.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbJsonMode json_mode = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $json_mode = 0;
 
     /**
      * Constructor.
@@ -43,13 +49,15 @@ class MongodbSourceConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Datastream\V1\MongodbCluster $include_objects
-     *           MongoDB collections to include in the stream.
+     *           The MongoDB collections to include in the stream.
      *     @type \Google\Cloud\Datastream\V1\MongodbCluster $exclude_objects
-     *           MongoDB collections to exclude from the stream.
+     *           The MongoDB collections to exclude from the stream.
      *     @type int $max_concurrent_backfill_tasks
      *           Optional. Maximum number of concurrent backfill tasks. The number should be
      *           non-negative and less than or equal to 50. If not set (or set to 0), the
      *           system's default value is used
+     *     @type int $json_mode
+     *           Optional. MongoDB JSON mode to use for the stream.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,7 +66,7 @@ class MongodbSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * MongoDB collections to include in the stream.
+     * The MongoDB collections to include in the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbCluster include_objects = 1;</code>
      * @return \Google\Cloud\Datastream\V1\MongodbCluster|null
@@ -79,7 +87,7 @@ class MongodbSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * MongoDB collections to include in the stream.
+     * The MongoDB collections to include in the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbCluster include_objects = 1;</code>
      * @param \Google\Cloud\Datastream\V1\MongodbCluster $var
@@ -94,7 +102,7 @@ class MongodbSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * MongoDB collections to exclude from the stream.
+     * The MongoDB collections to exclude from the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbCluster exclude_objects = 2;</code>
      * @return \Google\Cloud\Datastream\V1\MongodbCluster|null
@@ -115,7 +123,7 @@ class MongodbSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * MongoDB collections to exclude from the stream.
+     * The MongoDB collections to exclude from the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbCluster exclude_objects = 2;</code>
      * @param \Google\Cloud\Datastream\V1\MongodbCluster $var
@@ -155,6 +163,32 @@ class MongodbSourceConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_concurrent_backfill_tasks = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. MongoDB JSON mode to use for the stream.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbJsonMode json_mode = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getJsonMode()
+    {
+        return $this->json_mode;
+    }
+
+    /**
+     * Optional. MongoDB JSON mode to use for the stream.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbJsonMode json_mode = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setJsonMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Datastream\V1\MongodbJsonMode::class);
+        $this->json_mode = $var;
 
         return $this;
     }

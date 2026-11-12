@@ -45,7 +45,7 @@ function batch_activate_ad_units_sample(
     $adUnitServiceClient = new AdUnitServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchActivateAdUnitsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

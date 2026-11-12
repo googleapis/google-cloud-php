@@ -43,7 +43,7 @@ function update_user_sample(int $userAccessRightsElement): void
     $userServiceClient = new UserServiceClient();
 
     // Prepare the request message.
-    $userAccessRights = [$userAccessRightsElement,];
+    $userAccessRights = [$userAccessRightsElement];
     $user = (new User())
         ->setAccessRights($userAccessRights);
     $request = (new UpdateUserRequest())

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request object for [BatchUpdateViewabilityProviders][] method.
+ * Request object for `BatchUpdateViewabilityProviders` method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.BatchUpdateViewabilityProvidersRequest</code>
  */
@@ -17,7 +17,7 @@ class BatchUpdateViewabilityProvidersRequest extends \Google\Protobuf\Internal\M
 {
     /**
      * Required. The parent resource where
-     * [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider]s will be
+     * [ViewabilityProviders][google.ads.admanager.v1.ViewabilityProvider] will be
      * updated. Format: `networks/{network_code}` The parent field in the
      * UpdateViewabilityProviderRequest must match this field.
      *
@@ -35,7 +35,7 @@ class BatchUpdateViewabilityProvidersRequest extends \Google\Protobuf\Internal\M
 
     /**
      * @param string                                                      $parent   Required. The parent resource where
-     *                                                                              [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider]s will be
+     *                                                                              [ViewabilityProviders][google.ads.admanager.v1.ViewabilityProvider] will be
      *                                                                              updated. Format: `networks/{network_code}` The parent field in the
      *                                                                              UpdateViewabilityProviderRequest must match this field. Please see
      *                                                                              {@see ViewabilityProviderServiceClient::networkName()} for help formatting this field.
@@ -62,7 +62,7 @@ class BatchUpdateViewabilityProvidersRequest extends \Google\Protobuf\Internal\M
      *
      *     @type string $parent
      *           Required. The parent resource where
-     *           [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider]s will be
+     *           [ViewabilityProviders][google.ads.admanager.v1.ViewabilityProvider] will be
      *           updated. Format: `networks/{network_code}` The parent field in the
      *           UpdateViewabilityProviderRequest must match this field.
      *     @type \Google\Ads\AdManager\V1\UpdateViewabilityProviderRequest[] $requests
@@ -78,7 +78,7 @@ class BatchUpdateViewabilityProvidersRequest extends \Google\Protobuf\Internal\M
 
     /**
      * Required. The parent resource where
-     * [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider]s will be
+     * [ViewabilityProviders][google.ads.admanager.v1.ViewabilityProvider] will be
      * updated. Format: `networks/{network_code}` The parent field in the
      * UpdateViewabilityProviderRequest must match this field.
      *
@@ -92,7 +92,7 @@ class BatchUpdateViewabilityProvidersRequest extends \Google\Protobuf\Internal\M
 
     /**
      * Required. The parent resource where
-     * [ViewabilityProvider][google.ads.admanager.v1.ViewabilityProvider]s will be
+     * [ViewabilityProviders][google.ads.admanager.v1.ViewabilityProvider] will be
      * updated. Format: `networks/{network_code}` The parent field in the
      * UpdateViewabilityProviderRequest must match this field.
      *

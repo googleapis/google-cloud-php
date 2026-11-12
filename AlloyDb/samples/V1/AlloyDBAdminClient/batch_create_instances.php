@@ -70,7 +70,7 @@ function batch_create_instances_sample(
         ->setParent($formattedRequestsCreateInstanceRequestsParent)
         ->setInstanceId($requestsCreateInstanceRequestsInstanceId)
         ->setInstance($requestsCreateInstanceRequestsInstance);
-    $requestsCreateInstanceRequests = [$createInstanceRequest,];
+    $requestsCreateInstanceRequests = [$createInstanceRequest];
     $requests = (new CreateInstanceRequests())
         ->setCreateInstanceRequests($requestsCreateInstanceRequests);
     $request = (new BatchCreateInstancesRequest())

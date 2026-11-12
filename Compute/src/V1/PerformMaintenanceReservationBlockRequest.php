@@ -84,7 +84,9 @@ class PerformMaintenanceReservationBlockRequest extends \Google\Protobuf\Interna
             ->setZone($zone)
             ->setReservation($reservation)
             ->setReservationBlock($reservationBlock)
-            ->setReservationsBlocksPerformMaintenanceRequestResource($reservationsBlocksPerformMaintenanceRequestResource);
+            ->setReservationsBlocksPerformMaintenanceRequestResource(
+                $reservationsBlocksPerformMaintenanceRequestResource
+            );
     }
 
     /**

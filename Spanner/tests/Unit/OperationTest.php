@@ -719,12 +719,24 @@ class OperationTest extends TestCase
 
     public function testCommitWithPrecommitTokenOnRetry()
     {
+        $precommitToken = new MultiplexedSessionPrecommitToken([
+            'precommit_token' => '123',
+        ]);
         $failureResponse = (new CommitResponse())
-            ->setPrecommitToken(new MultiplexedSessionPrecommitToken([
-                'precommit_token' => '123',
-            ]));
+            ->setPrecommitToken($precommitToken);
+        $callCount = 0;
         $this->spannerClient->commit(
-            Argument::type(CommitRequest::class),
+            Argument::that(function (CommitRequest $request) use (&$callCount, $precommitToken) {
+                $callCount++;
+                if ($callCount === 1) {
+                    $this->assertCount(1, $request->getMutations());
+                    $this->assertNull($request->getPrecommitToken());
+                } else {
+                    $this->assertCount(0, $request->getMutations());
+                    $this->assertEquals($precommitToken, $request->getPrecommitToken());
+                }
+                return true;
+            }),
             Argument::type('array')
         )
             ->shouldBeCalledTimes(2)

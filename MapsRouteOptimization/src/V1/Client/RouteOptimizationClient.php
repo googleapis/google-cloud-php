@@ -367,10 +367,6 @@ final class RouteOptimizationClient
      * [OptimizeToursResponse][google.maps.routeoptimization.v1.OptimizeToursResponse],
      * if successful.
      *
-     * Experimental: See
-     * https://developers.google.com/maps/tt/route-optimization/experimental/otlr/make-request
-     * for more details.
-     *
      *
      * The async variant is
      * {@see RouteOptimizationClient::optimizeToursLongRunningAsync()} .
@@ -416,14 +412,10 @@ final class RouteOptimizationClient
      * `<parent>/operations/<operation_id>` and can be used to track
      * progress of the computation. The
      * [metadata][google.longrunning.Operation.metadata] field type is
-     * [OptimizeToursLongRunningMetadata][google.maps.routeoptimization.v1.OptimizeToursUriMetadata].
+     * [OptimizeToursUriMetadata][google.maps.routeoptimization.v1.OptimizeToursUriMetadata].
      * The [response][google.longrunning.Operation.response] field type is
      * [OptimizeToursUriResponse][google.maps.routeoptimization.v1.OptimizeToursUriResponse],
      * if successful.
-     *
-     * Experimental: See
-     * https://developers.google.com/maps/tt/route-optimization/experimental/otlr/make-request
-     * for more details.
      *
      * The async variant is {@see RouteOptimizationClient::optimizeToursUriAsync()} .
      *

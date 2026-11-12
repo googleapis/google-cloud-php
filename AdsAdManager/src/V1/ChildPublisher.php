@@ -117,7 +117,8 @@ class ChildPublisher extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The pending onboarding tasks that must be completed by the
      * child publisher before Google's policy compliance (i.e.
-     * [DelegationApprovalStatus.PENDING_GOOGLE_APPROVAL][]) can be verified.
+     * [DelegationApprovalStatusEnum.DelegationApprovalStatus.PENDING_GOOGLE_APPROVAL][google.ads.admanager.v1.DelegationApprovalStatusEnum.DelegationApprovalStatus.PENDING_GOOGLE_APPROVAL])
+     * can be verified.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ChildPublisherOnboardingTaskEnum.ChildPublisherOnboardingTask pending_onboarding_tasks = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -200,7 +201,8 @@ class ChildPublisher extends \Google\Protobuf\Internal\Message
      *     @type int[] $pending_onboarding_tasks
      *           Output only. The pending onboarding tasks that must be completed by the
      *           child publisher before Google's policy compliance (i.e.
-     *           [DelegationApprovalStatus.PENDING_GOOGLE_APPROVAL][]) can be verified.
+     *           [DelegationApprovalStatusEnum.DelegationApprovalStatus.PENDING_GOOGLE_APPROVAL][google.ads.admanager.v1.DelegationApprovalStatusEnum.DelegationApprovalStatus.PENDING_GOOGLE_APPROVAL])
+     *           can be verified.
      *     @type int $account_status
      *           Output only. The account status of the
      *           [ChildPublisher][google.ads.admanager.v1.ChildPublisher].
@@ -696,7 +698,8 @@ class ChildPublisher extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The pending onboarding tasks that must be completed by the
      * child publisher before Google's policy compliance (i.e.
-     * [DelegationApprovalStatus.PENDING_GOOGLE_APPROVAL][]) can be verified.
+     * [DelegationApprovalStatusEnum.DelegationApprovalStatus.PENDING_GOOGLE_APPROVAL][google.ads.admanager.v1.DelegationApprovalStatusEnum.DelegationApprovalStatus.PENDING_GOOGLE_APPROVAL])
+     * can be verified.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ChildPublisherOnboardingTaskEnum.ChildPublisherOnboardingTask pending_onboarding_tasks = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return RepeatedField<int>
@@ -709,7 +712,8 @@ class ChildPublisher extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The pending onboarding tasks that must be completed by the
      * child publisher before Google's policy compliance (i.e.
-     * [DelegationApprovalStatus.PENDING_GOOGLE_APPROVAL][]) can be verified.
+     * [DelegationApprovalStatusEnum.DelegationApprovalStatus.PENDING_GOOGLE_APPROVAL][google.ads.admanager.v1.DelegationApprovalStatusEnum.DelegationApprovalStatus.PENDING_GOOGLE_APPROVAL])
+     * can be verified.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ChildPublisherOnboardingTaskEnum.ChildPublisherOnboardingTask pending_onboarding_tasks = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int[] $var

@@ -66,7 +66,7 @@ function batch_create_repositories_sample(
         ->setParent($formattedRequestsParent)
         ->setRepository($requestsRepository)
         ->setRepositoryId($requestsRepositoryId);
-    $requests = [$createRepositoryRequest,];
+    $requests = [$createRepositoryRequest];
     $request = (new BatchCreateRepositoriesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

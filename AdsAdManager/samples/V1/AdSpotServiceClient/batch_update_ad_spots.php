@@ -51,7 +51,7 @@ function batch_update_ad_spots_sample(string $formattedParent): void
         ->setMaxAdDuration($requestsAdSpotMaxAdDuration);
     $updateAdSpotRequest = (new UpdateAdSpotRequest())
         ->setAdSpot($requestsAdSpot);
-    $requests = [$updateAdSpotRequest,];
+    $requests = [$updateAdSpotRequest];
     $request = (new BatchUpdateAdSpotsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

@@ -64,7 +64,9 @@ class CancelRequestRemovePeeringNetworkRequest extends \Google\Protobuf\Internal
         return (new self())
             ->setProject($project)
             ->setNetwork($network)
-            ->setNetworksCancelRequestRemovePeeringRequestResource($networksCancelRequestRemovePeeringRequestResource);
+            ->setNetworksCancelRequestRemovePeeringRequestResource(
+                $networksCancelRequestRemovePeeringRequestResource
+            );
     }
 
     /**

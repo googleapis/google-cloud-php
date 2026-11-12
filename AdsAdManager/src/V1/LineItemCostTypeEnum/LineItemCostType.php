@@ -24,7 +24,8 @@ class LineItemCostType
      * part of Spotlight deprecation, learn more at:
      * https://support.google.com/admanager/answer/7519021#spotlight
      * Cost per action. The line item
-     * [type][google.ads.admanager.v1.LineItem.line_item_type] must be one of:
+     * [lineItemType][google.ads.admanager.v1.LineItem.line_item_type] must be
+     * one of:
      * * [LineItemTypeEnum.LineItemType.SPONSORSHIP][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP]
      * * [LineItemTypeEnum.LineItemType.STANDARD][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD]
      * * [LineItemTypeEnum.LineItemType.BULK][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BULK]
@@ -35,7 +36,8 @@ class LineItemCostType
     const CPA = 1;
     /**
      * Cost per click. The line item
-     * [type][google.ads.admanager.v1.LineItem.line_item_type] must be one of:
+     * [lineItemType][google.ads.admanager.v1.LineItem.line_item_type] must be
+     * one of:
      * * [LineItemTypeEnum.LineItemType.SPONSORSHIP][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP]
      * * [LineItemTypeEnum.LineItemType.STANDARD][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD]
      * * [LineItemTypeEnum.LineItemType.BULK][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BULK]
@@ -48,7 +50,8 @@ class LineItemCostType
     const CPC = 2;
     /**
      * Cost per day. The line item
-     * [type][google.ads.admanager.v1.LineItem.line_item_type] must be one of:
+     * [lineItemType][google.ads.admanager.v1.LineItem.line_item_type] must be
+     * one of:
      * * [LineItemTypeEnum.LineItemType.SPONSORSHIP][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP]
      * * [LineItemTypeEnum.LineItemType.NETWORK][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.NETWORK]
      *
@@ -57,7 +60,8 @@ class LineItemCostType
     const CPD = 3;
     /**
      * Cost per mille (thousand) impressions. The line item
-     * [type][google.ads.admanager.v1.LineItem.line_item_type] must be one of:
+     * [lineItemType][google.ads.admanager.v1.LineItem.line_item_type] must be
+     * one of:
      * * [LineItemTypeEnum.LineItemType.SPONSORSHIP][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP]
      * * [LineItemTypeEnum.LineItemType.STANDARD][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD]
      * * [LineItemTypeEnum.LineItemType.BULK][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.BULK]
@@ -70,7 +74,8 @@ class LineItemCostType
     const CPM = 4;
     /**
      * Cost per mille (thousand) Active View viewable impressions. The line item
-     * [type][google.ads.admanager.v1.LineItem.line_item_type] must be one of:
+     * [lineItemType][google.ads.admanager.v1.LineItem.line_item_type] must be
+     * one of:
      * * [LineItemTypeEnum.LineItemType.STANDARD][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD]
      *
      * Generated from protobuf enum <code>VCPM = 5;</code>
@@ -78,7 +83,8 @@ class LineItemCostType
     const VCPM = 5;
     /**
      * Cost per millie (thousand) in-target impressions. The line item
-     * [type][google.ads.admanager.v1.LineItem.line_item_type] must be one of:
+     * [lineItemType][google.ads.admanager.v1.LineItem.line_item_type] must be
+     * one of:
      * * [LineItemTypeEnum.LineItemType.STANDARD][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD]
      *
      * Generated from protobuf enum <code>CPM_IN_TARGET = 6;</code>
@@ -86,8 +92,8 @@ class LineItemCostType
     const CPM_IN_TARGET = 6;
     /**
      * Cost for the entire flight of the deal. The line item
-     * [type][google.ads.admanager.v1.LineItem.line_item_type] must be must be
-     * one of:
+     * [lineItemType][google.ads.admanager.v1.LineItem.line_item_type] must be
+     * must be one of:
      * * [LineItemTypeEnum.LineItemType.SPONSORSHIP][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.SPONSORSHIP]
      *
      * Generated from protobuf enum <code>CPF = 7;</code>
@@ -95,7 +101,8 @@ class LineItemCostType
     const CPF = 7;
     /**
      * Cost per completed view. The line item
-     * [type][google.ads.admanager.v1.LineItem.line_item_type] must be one of:
+     * [lineItemType][google.ads.admanager.v1.LineItem.line_item_type] must be
+     * one of:
      * * [LineItemTypeEnum.LineItemType.STANDARD][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD].
      *
      * Generated from protobuf enum <code>CPCV = 8;</code>

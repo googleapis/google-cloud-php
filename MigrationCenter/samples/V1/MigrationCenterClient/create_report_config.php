@@ -59,7 +59,7 @@ function create_report_config_sample(
     $groupPreferenceSetAssignment = (new GroupPreferenceSetAssignment())
         ->setGroup($formattedReportConfigGroupPreferencesetAssignmentsGroup)
         ->setPreferenceSet($formattedReportConfigGroupPreferencesetAssignmentsPreferenceSet);
-    $reportConfigGroupPreferencesetAssignments = [$groupPreferenceSetAssignment,];
+    $reportConfigGroupPreferencesetAssignments = [$groupPreferenceSetAssignment];
     $reportConfig = (new ReportConfig())
         ->setGroupPreferencesetAssignments($reportConfigGroupPreferencesetAssignments);
     $request = (new CreateReportConfigRequest())

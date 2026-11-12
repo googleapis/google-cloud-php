@@ -11,7 +11,7 @@ use Google\Protobuf\RepeatedField;
 /**
  * Aggregated metrics for
  * [ShipmentRoute][google.maps.routeoptimization.v1.ShipmentRoute] (resp. for
- * [OptimizeToursResponse][google.maps.routeoptimization.v1.OptimizeToursResponse]
+ * [OptimizeToursResponse][google.maps.routeoptimization.v1.OptimizeToursResponse])
  * over all
  * [Transition][google.maps.routeoptimization.v1.ShipmentRoute.Transition]
  * and/or [Visit][google.maps.routeoptimization.v1.ShipmentRoute.Visit] (resp.
@@ -30,7 +30,10 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
      */
     protected $performed_shipment_count = 0;
     /**
-     * Number of mandatory shipments performed.
+     * Number of high priority shipments performed. High priority shipments are
+     * those with an unset
+     * [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost]
+     * field.
      * Experimental: This field's behavior or existence may change in future.
      *
      * Generated from protobuf field <code>optional int32 performed_mandatory_shipment_count = 12;</code>
@@ -115,7 +118,10 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
      *           Number of shipments performed. Note that a pickup and delivery pair only
      *           counts once.
      *     @type int $performed_mandatory_shipment_count
-     *           Number of mandatory shipments performed.
+     *           Number of high priority shipments performed. High priority shipments are
+     *           those with an unset
+     *           [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost]
+     *           field.
      *           Experimental: This field's behavior or existence may change in future.
      *     @type float $performed_shipment_penalty_cost_sum
      *           The sum of the
@@ -185,7 +191,10 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of mandatory shipments performed.
+     * Number of high priority shipments performed. High priority shipments are
+     * those with an unset
+     * [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost]
+     * field.
      * Experimental: This field's behavior or existence may change in future.
      *
      * Generated from protobuf field <code>optional int32 performed_mandatory_shipment_count = 12;</code>
@@ -207,7 +216,10 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of mandatory shipments performed.
+     * Number of high priority shipments performed. High priority shipments are
+     * those with an unset
+     * [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost]
+     * field.
      * Experimental: This field's behavior or existence may change in future.
      *
      * Generated from protobuf field <code>optional int32 performed_mandatory_shipment_count = 12;</code>

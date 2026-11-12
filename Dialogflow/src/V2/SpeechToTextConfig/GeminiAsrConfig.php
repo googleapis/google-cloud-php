@@ -18,14 +18,6 @@ use Google\Protobuf\RepeatedField;
 class GeminiAsrConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The Gemini ASR model ID used for transcription.
-     * This value overrides the default model ID configured on the server.
-     * Example: "gemini-3-flash-lite-asr-preview"
-     *
-     * Generated from protobuf field <code>string model_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    protected $model_id = '';
-    /**
      * Optional. The required duration of detected silence (or non-speech)
      * before end-of-speech is committed.
      *
@@ -58,10 +50,6 @@ class GeminiAsrConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $model_id
-     *           Optional. The Gemini ASR model ID used for transcription.
-     *           This value overrides the default model ID configured on the server.
-     *           Example: "gemini-3-flash-lite-asr-preview"
      *     @type int $silence_duration_ms
      *           Optional. The required duration of detected silence (or non-speech)
      *           before end-of-speech is committed.
@@ -77,36 +65,6 @@ class GeminiAsrConfig extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\AudioConfig::initOnce();
         parent::__construct($data);
-    }
-
-    /**
-     * Optional. The Gemini ASR model ID used for transcription.
-     * This value overrides the default model ID configured on the server.
-     * Example: "gemini-3-flash-lite-asr-preview"
-     *
-     * Generated from protobuf field <code>string model_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return string
-     */
-    public function getModelId()
-    {
-        return $this->model_id;
-    }
-
-    /**
-     * Optional. The Gemini ASR model ID used for transcription.
-     * This value overrides the default model ID configured on the server.
-     * Example: "gemini-3-flash-lite-asr-preview"
-     *
-     * Generated from protobuf field <code>string model_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setModelId($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->model_id = $var;
-
-        return $this;
     }
 
     /**

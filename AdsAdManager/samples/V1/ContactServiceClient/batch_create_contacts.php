@@ -63,7 +63,7 @@ function batch_create_contacts_sample(
     $createContactRequest = (new CreateContactRequest())
         ->setParent($formattedRequestsParent)
         ->setContact($requestsContact);
-    $requests = [$createContactRequest,];
+    $requests = [$createContactRequest];
     $request = (new BatchCreateContactsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

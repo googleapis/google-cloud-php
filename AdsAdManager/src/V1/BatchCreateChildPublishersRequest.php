@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request object for [BatchCreateChildPublishers][] method.
+ * Request object for `BatchCreateChildPublishers` method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.BatchCreateChildPublishersRequest</code>
  */
@@ -17,10 +17,9 @@ class BatchCreateChildPublishersRequest extends \Google\Protobuf\Internal\Messag
 {
     /**
      * Required. The parent resource where
-     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s will be created.
-     * Format: `networks/{network_code}`
-     * The parent field in the CreateChildPublisherRequest must match this
-     * field.
+     * [ChildPublishers][google.ads.admanager.v1.ChildPublisher] will be created.
+     * Format: `networks/{network_code}` The parent field in the
+     * CreateChildPublisherRequest must match this field.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -35,10 +34,9 @@ class BatchCreateChildPublishersRequest extends \Google\Protobuf\Internal\Messag
 
     /**
      * @param string                                                 $parent   Required. The parent resource where
-     *                                                                         [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s will be created.
-     *                                                                         Format: `networks/{network_code}`
-     *                                                                         The parent field in the CreateChildPublisherRequest must match this
-     *                                                                         field. Please see
+     *                                                                         [ChildPublishers][google.ads.admanager.v1.ChildPublisher] will be created.
+     *                                                                         Format: `networks/{network_code}` The parent field in the
+     *                                                                         CreateChildPublisherRequest must match this field. Please see
      *                                                                         {@see ChildPublisherServiceClient::networkName()} for help formatting this field.
      * @param \Google\Ads\AdManager\V1\CreateChildPublisherRequest[] $requests Required. The [ChildPublisher][google.ads.admanager.v1.ChildPublisher]
      *                                                                         objects to create. A maximum of 100 objects can be created in a batch.
@@ -62,10 +60,9 @@ class BatchCreateChildPublishersRequest extends \Google\Protobuf\Internal\Messag
      *
      *     @type string $parent
      *           Required. The parent resource where
-     *           [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s will be created.
-     *           Format: `networks/{network_code}`
-     *           The parent field in the CreateChildPublisherRequest must match this
-     *           field.
+     *           [ChildPublishers][google.ads.admanager.v1.ChildPublisher] will be created.
+     *           Format: `networks/{network_code}` The parent field in the
+     *           CreateChildPublisherRequest must match this field.
      *     @type \Google\Ads\AdManager\V1\CreateChildPublisherRequest[] $requests
      *           Required. The [ChildPublisher][google.ads.admanager.v1.ChildPublisher]
      *           objects to create. A maximum of 100 objects can be created in a batch.
@@ -78,10 +75,9 @@ class BatchCreateChildPublishersRequest extends \Google\Protobuf\Internal\Messag
 
     /**
      * Required. The parent resource where
-     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s will be created.
-     * Format: `networks/{network_code}`
-     * The parent field in the CreateChildPublisherRequest must match this
-     * field.
+     * [ChildPublishers][google.ads.admanager.v1.ChildPublisher] will be created.
+     * Format: `networks/{network_code}` The parent field in the
+     * CreateChildPublisherRequest must match this field.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -93,10 +89,9 @@ class BatchCreateChildPublishersRequest extends \Google\Protobuf\Internal\Messag
 
     /**
      * Required. The parent resource where
-     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s will be created.
-     * Format: `networks/{network_code}`
-     * The parent field in the CreateChildPublisherRequest must match this
-     * field.
+     * [ChildPublishers][google.ads.admanager.v1.ChildPublisher] will be created.
+     * Format: `networks/{network_code}` The parent field in the
+     * CreateChildPublisherRequest must match this field.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

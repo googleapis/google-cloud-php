@@ -35,6 +35,17 @@ return [
                     ],
                 ],
             ],
+            'ListLicenseConfigsUsageStats' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/userStores/*}/licenseConfigsUsageStats',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListUserLicenses' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/userStores/*}/userLicenses',
@@ -108,6 +119,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/dataStores/*/siteSearchEngine/targetSites/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/engines/*/assistants/*/agents/*/operations/*}',
                     ],
                     [
                         'method' => 'get',

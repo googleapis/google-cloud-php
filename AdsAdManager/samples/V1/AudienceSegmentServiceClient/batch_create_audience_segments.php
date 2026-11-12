@@ -58,7 +58,7 @@ function batch_create_audience_segments_sample(
     $createAudienceSegmentRequest = (new CreateAudienceSegmentRequest())
         ->setParent($formattedRequestsParent)
         ->setAudienceSegment($requestsAudienceSegment);
-    $requests = [$createAudienceSegmentRequest,];
+    $requests = [$createAudienceSegmentRequest];
     $request = (new BatchCreateAudienceSegmentsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

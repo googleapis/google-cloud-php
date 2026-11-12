@@ -27,6 +27,17 @@ class SearchEngineConfig extends \Google\Protobuf\Internal\Message
      */
     protected $search_tier = 0;
     /**
+     * Optional. The required subscription tier of this engine.
+     * If the required subscription tier is search, user with higher license
+     * tier like assist can still access the standalone app associated with this
+     * engine.
+     * Web grounding feature is only available on the app if it is set as
+     * [SubscriptionTier.SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT][google.cloud.discoveryengine.v1.SubscriptionTier.SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT].
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SubscriptionTier required_subscription_tier = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $required_subscription_tier = 0;
+    /**
      * The add-on that this search engine enables.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchAddOn search_add_ons = 2;</code>
@@ -46,6 +57,13 @@ class SearchEngineConfig extends \Google\Protobuf\Internal\Message
      *           Defaults to
      *           [SearchTier.SEARCH_TIER_STANDARD][google.cloud.discoveryengine.v1.SearchTier.SEARCH_TIER_STANDARD]
      *           if not specified.
+     *     @type int $required_subscription_tier
+     *           Optional. The required subscription tier of this engine.
+     *           If the required subscription tier is search, user with higher license
+     *           tier like assist can still access the standalone app associated with this
+     *           engine.
+     *           Web grounding feature is only available on the app if it is set as
+     *           [SubscriptionTier.SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT][google.cloud.discoveryengine.v1.SubscriptionTier.SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT].
      *     @type int[] $search_add_ons
      *           The add-on that this search engine enables.
      * }
@@ -87,6 +105,42 @@ class SearchEngineConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\DiscoveryEngine\V1\SearchTier::class);
         $this->search_tier = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The required subscription tier of this engine.
+     * If the required subscription tier is search, user with higher license
+     * tier like assist can still access the standalone app associated with this
+     * engine.
+     * Web grounding feature is only available on the app if it is set as
+     * [SubscriptionTier.SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT][google.cloud.discoveryengine.v1.SubscriptionTier.SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT].
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SubscriptionTier required_subscription_tier = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getRequiredSubscriptionTier()
+    {
+        return $this->required_subscription_tier;
+    }
+
+    /**
+     * Optional. The required subscription tier of this engine.
+     * If the required subscription tier is search, user with higher license
+     * tier like assist can still access the standalone app associated with this
+     * engine.
+     * Web grounding feature is only available on the app if it is set as
+     * [SubscriptionTier.SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT][google.cloud.discoveryengine.v1.SubscriptionTier.SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT].
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SubscriptionTier required_subscription_tier = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRequiredSubscriptionTier($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DiscoveryEngine\V1\SubscriptionTier::class);
+        $this->required_subscription_tier = $var;
 
         return $this;
     }

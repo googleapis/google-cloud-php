@@ -60,7 +60,7 @@ function batch_create_pull_request_comments_sample(
     $createPullRequestCommentRequest = (new CreatePullRequestCommentRequest())
         ->setParent($formattedRequestsParent)
         ->setPullRequestComment($requestsPullRequestComment);
-    $requests = [$createPullRequestCommentRequest,];
+    $requests = [$createPullRequestCommentRequest];
     $request = (new BatchCreatePullRequestCommentsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

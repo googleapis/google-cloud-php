@@ -27,6 +27,12 @@ class WebsiteInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string title = 2;</code>
      */
     protected $title = '';
+    /**
+     * The display name of the website.
+     *
+     * Generated from protobuf field <code>string site_display_name = 3;</code>
+     */
+    protected $site_display_name = '';
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class WebsiteInfo extends \Google\Protobuf\Internal\Message
      *           The url of the website.
      *     @type string $title
      *           The title of the website.
+     *     @type string $site_display_name
+     *           The display name of the website.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +101,32 @@ class WebsiteInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->title = $var;
+
+        return $this;
+    }
+
+    /**
+     * The display name of the website.
+     *
+     * Generated from protobuf field <code>string site_display_name = 3;</code>
+     * @return string
+     */
+    public function getSiteDisplayName()
+    {
+        return $this->site_display_name;
+    }
+
+    /**
+     * The display name of the website.
+     *
+     * Generated from protobuf field <code>string site_display_name = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSiteDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->site_display_name = $var;
 
         return $this;
     }

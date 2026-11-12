@@ -61,6 +61,56 @@ class AdReviewCenterAd extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string preview_url = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $preview_url = null;
+    /**
+     * Output only. The preview URLs that can be embedded or accessed directly
+     * which will present the rendered contents of the ad, each with a different
+     * asset. These URLs expire 72 hours after being retrieved.
+     *
+     * Generated from protobuf field <code>repeated string asset_preview_urls = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $asset_preview_urls;
+    /**
+     * Output only. The advertiser name of the Ad Review Center ad. Specifies the
+     * detected advertiser for Google Display Network (GDN) ads, and individual
+     * network name for real-time bidding (RTB) ads.
+     *
+     * Generated from protobuf field <code>string advertiser_display_name = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $advertiser_display_name = '';
+    /**
+     * Output only. The language codes of the Ad Review Center ad. Languages
+     * detected are represented by their BCP 47 code. For example, 'en', 'fr',
+     * 'es-419', or 'zh-cn'.
+     *
+     * Generated from protobuf field <code>repeated string language_codes = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $language_codes;
+    /**
+     * Output only. The region codes of the Ad Review Center ad.
+     *
+     * Generated from protobuf field <code>repeated string region_codes = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $region_codes;
+    /**
+     * Output only. The ad types of the Ad Review Center ad.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ArcCreativeFormatEnum.ArcCreativeFormat ad_types = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $ad_types;
+    /**
+     * Output only. The destination URLs of the Ad Review Center ad.
+     *
+     * Generated from protobuf field <code>repeated string destination_urls = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $destination_urls;
+    /**
+     * Output only. The
+     * [labelIds][google.ads.admanager.v1.FetchAdReviewCenterCustomLabelsResponse.CustomLabel.label_id]
+     * associated with this Ad Review Center ad.
+     *
+     * Generated from protobuf field <code>repeated string label_ids = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $label_ids;
 
     /**
      * Constructor.
@@ -89,6 +139,28 @@ class AdReviewCenterAd extends \Google\Protobuf\Internal\Message
      *           Output only. The preview URL that can be embedded or accessed directly
      *           which will present the rendered contents of the ad. This URL expires 72
      *           hours after being retrieved.
+     *     @type string[] $asset_preview_urls
+     *           Output only. The preview URLs that can be embedded or accessed directly
+     *           which will present the rendered contents of the ad, each with a different
+     *           asset. These URLs expire 72 hours after being retrieved.
+     *     @type string $advertiser_display_name
+     *           Output only. The advertiser name of the Ad Review Center ad. Specifies the
+     *           detected advertiser for Google Display Network (GDN) ads, and individual
+     *           network name for real-time bidding (RTB) ads.
+     *     @type string[] $language_codes
+     *           Output only. The language codes of the Ad Review Center ad. Languages
+     *           detected are represented by their BCP 47 code. For example, 'en', 'fr',
+     *           'es-419', or 'zh-cn'.
+     *     @type string[] $region_codes
+     *           Output only. The region codes of the Ad Review Center ad.
+     *     @type int[] $ad_types
+     *           Output only. The ad types of the Ad Review Center ad.
+     *     @type string[] $destination_urls
+     *           Output only. The destination URLs of the Ad Review Center ad.
+     *     @type string[] $label_ids
+     *           Output only. The
+     *           [labelIds][google.ads.admanager.v1.FetchAdReviewCenterCustomLabelsResponse.CustomLabel.label_id]
+     *           associated with this Ad Review Center ad.
      * }
      */
     public function __construct($data = NULL) {
@@ -276,6 +348,204 @@ class AdReviewCenterAd extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->preview_url = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The preview URLs that can be embedded or accessed directly
+     * which will present the rendered contents of the ad, each with a different
+     * asset. These URLs expire 72 hours after being retrieved.
+     *
+     * Generated from protobuf field <code>repeated string asset_preview_urls = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<string>
+     */
+    public function getAssetPreviewUrls()
+    {
+        return $this->asset_preview_urls;
+    }
+
+    /**
+     * Output only. The preview URLs that can be embedded or accessed directly
+     * which will present the rendered contents of the ad, each with a different
+     * asset. These URLs expire 72 hours after being retrieved.
+     *
+     * Generated from protobuf field <code>repeated string asset_preview_urls = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setAssetPreviewUrls($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->asset_preview_urls = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The advertiser name of the Ad Review Center ad. Specifies the
+     * detected advertiser for Google Display Network (GDN) ads, and individual
+     * network name for real-time bidding (RTB) ads.
+     *
+     * Generated from protobuf field <code>string advertiser_display_name = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getAdvertiserDisplayName()
+    {
+        return $this->advertiser_display_name;
+    }
+
+    /**
+     * Output only. The advertiser name of the Ad Review Center ad. Specifies the
+     * detected advertiser for Google Display Network (GDN) ads, and individual
+     * network name for real-time bidding (RTB) ads.
+     *
+     * Generated from protobuf field <code>string advertiser_display_name = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAdvertiserDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->advertiser_display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The language codes of the Ad Review Center ad. Languages
+     * detected are represented by their BCP 47 code. For example, 'en', 'fr',
+     * 'es-419', or 'zh-cn'.
+     *
+     * Generated from protobuf field <code>repeated string language_codes = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<string>
+     */
+    public function getLanguageCodes()
+    {
+        return $this->language_codes;
+    }
+
+    /**
+     * Output only. The language codes of the Ad Review Center ad. Languages
+     * detected are represented by their BCP 47 code. For example, 'en', 'fr',
+     * 'es-419', or 'zh-cn'.
+     *
+     * Generated from protobuf field <code>repeated string language_codes = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setLanguageCodes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->language_codes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The region codes of the Ad Review Center ad.
+     *
+     * Generated from protobuf field <code>repeated string region_codes = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<string>
+     */
+    public function getRegionCodes()
+    {
+        return $this->region_codes;
+    }
+
+    /**
+     * Output only. The region codes of the Ad Review Center ad.
+     *
+     * Generated from protobuf field <code>repeated string region_codes = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setRegionCodes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->region_codes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The ad types of the Ad Review Center ad.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ArcCreativeFormatEnum.ArcCreativeFormat ad_types = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<int>
+     */
+    public function getAdTypes()
+    {
+        return $this->ad_types;
+    }
+
+    /**
+     * Output only. The ad types of the Ad Review Center ad.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ArcCreativeFormatEnum.ArcCreativeFormat ad_types = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int[] $var
+     * @return $this
+     */
+    public function setAdTypes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Ads\AdManager\V1\ArcCreativeFormatEnum\ArcCreativeFormat::class);
+        $this->ad_types = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The destination URLs of the Ad Review Center ad.
+     *
+     * Generated from protobuf field <code>repeated string destination_urls = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<string>
+     */
+    public function getDestinationUrls()
+    {
+        return $this->destination_urls;
+    }
+
+    /**
+     * Output only. The destination URLs of the Ad Review Center ad.
+     *
+     * Generated from protobuf field <code>repeated string destination_urls = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setDestinationUrls($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->destination_urls = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The
+     * [labelIds][google.ads.admanager.v1.FetchAdReviewCenterCustomLabelsResponse.CustomLabel.label_id]
+     * associated with this Ad Review Center ad.
+     *
+     * Generated from protobuf field <code>repeated string label_ids = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<string>
+     */
+    public function getLabelIds()
+    {
+        return $this->label_ids;
+    }
+
+    /**
+     * Output only. The
+     * [labelIds][google.ads.admanager.v1.FetchAdReviewCenterCustomLabelsResponse.CustomLabel.label_id]
+     * associated with this Ad Review Center ad.
+     *
+     * Generated from protobuf field <code>repeated string label_ids = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setLabelIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->label_ids = $arr;
 
         return $this;
     }

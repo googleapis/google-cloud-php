@@ -74,7 +74,9 @@ class SetInstanceTemplateInstanceGroupManagerRequest extends \Google\Protobuf\In
             ->setProject($project)
             ->setZone($zone)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersSetInstanceTemplateRequestResource($instanceGroupManagersSetInstanceTemplateRequestResource);
+            ->setInstanceGroupManagersSetInstanceTemplateRequestResource(
+                $instanceGroupManagersSetInstanceTemplateRequestResource
+            );
     }
 
     /**

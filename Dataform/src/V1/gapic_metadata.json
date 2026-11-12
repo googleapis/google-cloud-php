@@ -35,6 +35,11 @@
                                 "createCompilationResult"
                             ]
                         },
+                        "CreateCompilationResultLongRunning": {
+                            "methods": [
+                                "createCompilationResultLongRunning"
+                            ]
+                        },
                         "CreateFolder": {
                             "methods": [
                                 "createFolder"

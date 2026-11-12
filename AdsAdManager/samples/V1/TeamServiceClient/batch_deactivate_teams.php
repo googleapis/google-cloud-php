@@ -45,7 +45,7 @@ function batch_deactivate_teams_sample(
     $teamServiceClient = new TeamServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchDeactivateTeamsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

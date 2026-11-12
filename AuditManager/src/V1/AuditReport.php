@@ -93,6 +93,13 @@ class AuditReport extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string scope_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $scope_id = '';
+    /**
+     * Output only. Parameter values provided by the user and values for
+     * tunable parameters, stored in the DB, keyed by control name.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.auditmanager.v1.CloudControlParameterStates> cloud_control_parameter_states = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $cloud_control_parameter_states;
 
     /**
      * Constructor.
@@ -133,6 +140,9 @@ class AuditReport extends \Google\Protobuf\Internal\Message
      *     @type string $scope_id
      *           Output only. Project number, folder ID, or organization ID that the audit
      *           report was generated for.
+     *     @type array|\Google\Protobuf\Internal\MapField $cloud_control_parameter_states
+     *           Output only. Parameter values provided by the user and values for
+     *           tunable parameters, stored in the DB, keyed by control name.
      * }
      */
     public function __construct($data = NULL) {
@@ -480,6 +490,34 @@ class AuditReport extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->scope_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Parameter values provided by the user and values for
+     * tunable parameters, stored in the DB, keyed by control name.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.auditmanager.v1.CloudControlParameterStates> cloud_control_parameter_states = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getCloudControlParameterStates()
+    {
+        return $this->cloud_control_parameter_states;
+    }
+
+    /**
+     * Output only. Parameter values provided by the user and values for
+     * tunable parameters, stored in the DB, keyed by control name.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.auditmanager.v1.CloudControlParameterStates> cloud_control_parameter_states = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setCloudControlParameterStates($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AuditManager\V1\CloudControlParameterStates::class);
+        $this->cloud_control_parameter_states = $arr;
 
         return $this;
     }

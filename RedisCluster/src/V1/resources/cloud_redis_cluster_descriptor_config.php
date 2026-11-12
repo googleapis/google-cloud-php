@@ -23,6 +23,44 @@
 return [
     'interfaces' => [
         'google.cloud.redis.cluster.v1.CloudRedisCluster' => [
+            'AddAuthToken' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Redis\Cluster\V1\TokenAuthUser',
+                    'metadataReturnType' => '\Google\Cloud\Redis\Cluster\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'token_auth_user',
+                        'fieldAccessors' => [
+                            'getTokenAuthUser',
+                        ],
+                    ],
+                ],
+            ],
+            'AddTokenAuthUser' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Redis\Cluster\V1\Cluster',
+                    'metadataReturnType' => '\Google\Cloud\Redis\Cluster\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'cluster',
+                        'fieldAccessors' => [
+                            'getCluster',
+                        ],
+                    ],
+                ],
+            ],
             'BackupCluster' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Redis\Cluster\V1\Cluster',
@@ -61,6 +99,44 @@ return [
                     ],
                 ],
             ],
+            'DeleteAclPolicy' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Redis\Cluster\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAuthToken' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Redis\Cluster\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteBackup' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
@@ -84,6 +160,25 @@ return [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Protobuf\Any',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteTokenAuthUser' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Redis\Cluster\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
@@ -137,6 +232,26 @@ return [
                     ],
                 ],
             ],
+            'UpdateAclPolicy' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Redis\Cluster\V1\AclPolicy',
+                    'metadataReturnType' => '\Google\Cloud\Redis\Cluster\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'acl_policy.name',
+                        'fieldAccessors' => [
+                            'getAclPolicy',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateCluster' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Redis\Cluster\V1\Cluster',
@@ -152,6 +267,54 @@ return [
                         'keyName' => 'cluster.name',
                         'fieldAccessors' => [
                             'getCluster',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateAclPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Redis\Cluster\V1\AclPolicy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAclPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Redis\Cluster\V1\AclPolicy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAclPolicyRevision' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Redis\Cluster\V1\AclPolicyRevision',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAuthToken' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Redis\Cluster\V1\AuthToken',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
                             'getName',
                         ],
                     ],
@@ -217,6 +380,78 @@ return [
                     ],
                 ],
             ],
+            'GetTokenAuthUser' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Redis\Cluster\V1\TokenAuthUser',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAclPolicies' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAclPolicies',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Redis\Cluster\V1\ListAclPoliciesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAclPolicyRevisions' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAclPolicyRevisions',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Redis\Cluster\V1\ListAclPolicyRevisionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAuthTokens' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAuthTokens',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Redis\Cluster\V1\ListAuthTokensResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListBackupCollections' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -277,6 +512,26 @@ return [
                     ],
                 ],
             ],
+            'ListTokenAuthUsers' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getTokenAuthUsers',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Redis\Cluster\V1\ListTokenAuthUsersResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Location\Location',
@@ -312,6 +567,9 @@ return [
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'templateMap' => [
+                'aclPolicy' => 'projects/{project}/locations/{location}/aclPolicies/{acl_policy}',
+                'aclPolicyRevision' => 'projects/{project}/locations/{location}/aclPolicies/{acl_policy}/revisions/{revision}',
+                'authToken' => 'projects/{project}/locations/{location}/clusters/{cluster}/tokenAuthUsers/{token_auth_user}/authTokens/{auth_token}',
                 'backup' => 'projects/{project}/locations/{location}/backupCollections/{backup_collection}/backups/{backup}',
                 'backupCollection' => 'projects/{project}/locations/{location}/backupCollections/{backup_collection}',
                 'caPool' => 'projects/{project}/locations/{location}/caPools/{ca_pool}',
@@ -324,6 +582,7 @@ return [
                 'network' => 'projects/{project}/global/networks/{network}',
                 'serviceAttachment' => 'projects/{project}/regions/{region}/serviceAttachments/{service_attachment}',
                 'sharedRegionalCertificateAuthority' => 'projects/{project}/locations/{location}/sharedRegionalCertificateAuthority',
+                'tokenAuthUser' => 'projects/{project}/locations/{location}/clusters/{cluster}/tokenAuthUsers/{token_auth_user}',
             ],
         ],
     ],

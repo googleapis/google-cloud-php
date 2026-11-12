@@ -10,6 +10,16 @@
                 "grpc": {
                     "libraryClient": "BackupDRClient",
                     "rpcs": {
+                        "CreateAutoProtectionPolicy": {
+                            "methods": [
+                                "createAutoProtectionPolicy"
+                            ]
+                        },
+                        "CreateAutoProtectionPolicyBinding": {
+                            "methods": [
+                                "createAutoProtectionPolicyBinding"
+                            ]
+                        },
                         "CreateBackupPlan": {
                             "methods": [
                                 "createBackupPlan"
@@ -28,6 +38,26 @@
                         "CreateManagementServer": {
                             "methods": [
                                 "createManagementServer"
+                            ]
+                        },
+                        "CreateRestoreTemplate": {
+                            "methods": [
+                                "createRestoreTemplate"
+                            ]
+                        },
+                        "CreateRestoreVerificationPlan": {
+                            "methods": [
+                                "createRestoreVerificationPlan"
+                            ]
+                        },
+                        "CreateRestoreVerificationPlanAssociation": {
+                            "methods": [
+                                "createRestoreVerificationPlanAssociation"
+                            ]
+                        },
+                        "DeleteAutoProtectionPolicy": {
+                            "methods": [
+                                "deleteAutoProtectionPolicy"
                             ]
                         },
                         "DeleteBackup": {
@@ -55,6 +85,21 @@
                                 "deleteManagementServer"
                             ]
                         },
+                        "DeleteRestoreTemplate": {
+                            "methods": [
+                                "deleteRestoreTemplate"
+                            ]
+                        },
+                        "DeleteRestoreVerificationPlan": {
+                            "methods": [
+                                "deleteRestoreVerificationPlan"
+                            ]
+                        },
+                        "DeleteRestoreVerificationPlanAssociation": {
+                            "methods": [
+                                "deleteRestoreVerificationPlanAssociation"
+                            ]
+                        },
                         "FetchBackupPlanAssociationsForResourceType": {
                             "methods": [
                                 "fetchBackupPlanAssociationsForResourceType"
@@ -73,6 +118,16 @@
                         "FetchUsableBackupVaults": {
                             "methods": [
                                 "fetchUsableBackupVaults"
+                            ]
+                        },
+                        "GetAutoProtectionPolicy": {
+                            "methods": [
+                                "getAutoProtectionPolicy"
+                            ]
+                        },
+                        "GetAutoProtectionPolicyBinding": {
+                            "methods": [
+                                "getAutoProtectionPolicyBinding"
                             ]
                         },
                         "GetBackup": {
@@ -115,9 +170,49 @@
                                 "getManagementServer"
                             ]
                         },
+                        "GetRestoreTemplate": {
+                            "methods": [
+                                "getRestoreTemplate"
+                            ]
+                        },
+                        "GetRestoreTemplateExecution": {
+                            "methods": [
+                                "getRestoreTemplateExecution"
+                            ]
+                        },
+                        "GetRestoreVerificationPlan": {
+                            "methods": [
+                                "getRestoreVerificationPlan"
+                            ]
+                        },
+                        "GetRestoreVerificationPlanAssociation": {
+                            "methods": [
+                                "getRestoreVerificationPlanAssociation"
+                            ]
+                        },
                         "InitializeService": {
                             "methods": [
                                 "initializeService"
+                            ]
+                        },
+                        "InitiateDeleteAutoProtectionPolicyBinding": {
+                            "methods": [
+                                "initiateDeleteAutoProtectionPolicyBinding"
+                            ]
+                        },
+                        "ListAppliedAutoProtectionPolicies": {
+                            "methods": [
+                                "listAppliedAutoProtectionPolicies"
+                            ]
+                        },
+                        "ListAutoProtectionPolicies": {
+                            "methods": [
+                                "listAutoProtectionPolicies"
+                            ]
+                        },
+                        "ListAutoProtectionPolicyBindings": {
+                            "methods": [
+                                "listAutoProtectionPolicyBindings"
                             ]
                         },
                         "ListBackupPlanAssociations": {
@@ -145,6 +240,11 @@
                                 "listBackups"
                             ]
                         },
+                        "ListBindingMatchingResources": {
+                            "methods": [
+                                "listBindingMatchingResources"
+                            ]
+                        },
                         "ListDataSourceReferences": {
                             "methods": [
                                 "listDataSourceReferences"
@@ -160,14 +260,54 @@
                                 "listManagementServers"
                             ]
                         },
+                        "ListRestoreTemplateExecutions": {
+                            "methods": [
+                                "listRestoreTemplateExecutions"
+                            ]
+                        },
+                        "ListRestoreTemplates": {
+                            "methods": [
+                                "listRestoreTemplates"
+                            ]
+                        },
+                        "ListRestoreVerificationPlanAssociations": {
+                            "methods": [
+                                "listRestoreVerificationPlanAssociations"
+                            ]
+                        },
+                        "ListRestoreVerificationPlans": {
+                            "methods": [
+                                "listRestoreVerificationPlans"
+                            ]
+                        },
                         "RestoreBackup": {
                             "methods": [
                                 "restoreBackup"
                             ]
                         },
+                        "RunRestoreTemplate": {
+                            "methods": [
+                                "runRestoreTemplate"
+                            ]
+                        },
                         "TriggerBackup": {
                             "methods": [
                                 "triggerBackup"
+                            ]
+                        },
+                        "TriggerRestoreCleanup": {
+                            "methods": [
+                                "triggerRestoreCleanup"
+                            ]
+                        },
+                        "TriggerRestoreVerification": {
+                            "methods": [
+                                "triggerRestoreVerification"
+                            ]
+                        },
+                        "UpdateAutoProtectionPolicy": {
+                            "methods": [
+                                "updateAutoProtectionPolicy"
                             ]
                         },
                         "UpdateBackup": {
@@ -193,6 +333,11 @@
                         "UpdateDataSource": {
                             "methods": [
                                 "updateDataSource"
+                            ]
+                        },
+                        "UpdateRestoreTemplate": {
+                            "methods": [
+                                "updateRestoreTemplate"
                             ]
                         },
                         "GetLocation": {

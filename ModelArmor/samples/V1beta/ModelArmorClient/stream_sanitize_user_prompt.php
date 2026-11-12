@@ -52,7 +52,7 @@ function stream_sanitize_user_prompt_sample(string $formattedName): void
     try {
         /** @var BidiStream $stream */
         $stream = $modelArmorClient->streamSanitizeUserPrompt();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var SanitizeUserPromptResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

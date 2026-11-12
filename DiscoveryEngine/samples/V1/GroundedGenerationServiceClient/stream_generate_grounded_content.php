@@ -50,7 +50,7 @@ function stream_generate_grounded_content_sample(string $formattedLocation): voi
     try {
         /** @var BidiStream $stream */
         $stream = $groundedGenerationServiceClient->streamGenerateGroundedContent();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var GenerateGroundedContentResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

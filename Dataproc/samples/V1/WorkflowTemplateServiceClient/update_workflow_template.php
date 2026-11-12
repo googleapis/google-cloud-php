@@ -56,7 +56,7 @@ function update_workflow_template_sample(string $templateId, string $templateJob
     $templatePlacement = new WorkflowTemplatePlacement();
     $orderedJob = (new OrderedJob())
         ->setStepId($templateJobsStepId);
-    $templateJobs = [$orderedJob,];
+    $templateJobs = [$orderedJob];
     $template = (new WorkflowTemplate())
         ->setId($templateId)
         ->setPlacement($templatePlacement)

@@ -148,11 +148,29 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $query_insights_config = null;
     /**
+     * Output only. Instance level Query Insights information, which is read-only
+     * and available in the output only. Contains the effective query insights
+     * settings for this instance, by merging customer's provided
+     * `QueryInsightsInstanceConfig` with the Query Insights defaults.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.QueryInsightsInstanceInfo query_insights_info = 47 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $query_insights_info = null;
+    /**
      * Configuration for observability.
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ObservabilityInstanceConfig observability_config = 26;</code>
      */
     protected $observability_config = null;
+    /**
+     * Output only. Instance level observability information, contains the
+     * effective values of observability settings for this instance, by merging
+     * customer's provided `ObservabilityInstanceConfig` with the
+     * Observability defaults.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ObservabilityInstanceInfo observability_instance_info = 44 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $observability_instance_info = null;
     /**
      * Read pool instance configuration.
      * This is required if the value of instanceType is READ_POOL.
@@ -322,8 +340,18 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           the standby for a PRIMARY instance.
      *     @type \Google\Cloud\AlloyDb\V1\Instance\QueryInsightsInstanceConfig $query_insights_config
      *           Configuration for query insights.
+     *     @type \Google\Cloud\AlloyDb\V1\Instance\QueryInsightsInstanceInfo $query_insights_info
+     *           Output only. Instance level Query Insights information, which is read-only
+     *           and available in the output only. Contains the effective query insights
+     *           settings for this instance, by merging customer's provided
+     *           `QueryInsightsInstanceConfig` with the Query Insights defaults.
      *     @type \Google\Cloud\AlloyDb\V1\Instance\ObservabilityInstanceConfig $observability_config
      *           Configuration for observability.
+     *     @type \Google\Cloud\AlloyDb\V1\Instance\ObservabilityInstanceInfo $observability_instance_info
+     *           Output only. Instance level observability information, contains the
+     *           effective values of observability settings for this instance, by merging
+     *           customer's provided `ObservabilityInstanceConfig` with the
+     *           Observability defaults.
      *     @type \Google\Cloud\AlloyDb\V1\Instance\ReadPoolConfig $read_pool_config
      *           Read pool instance configuration.
      *           This is required if the value of instanceType is READ_POOL.
@@ -921,6 +949,48 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Instance level Query Insights information, which is read-only
+     * and available in the output only. Contains the effective query insights
+     * settings for this instance, by merging customer's provided
+     * `QueryInsightsInstanceConfig` with the Query Insights defaults.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.QueryInsightsInstanceInfo query_insights_info = 47 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AlloyDb\V1\Instance\QueryInsightsInstanceInfo|null
+     */
+    public function getQueryInsightsInfo()
+    {
+        return $this->query_insights_info;
+    }
+
+    public function hasQueryInsightsInfo()
+    {
+        return isset($this->query_insights_info);
+    }
+
+    public function clearQueryInsightsInfo()
+    {
+        unset($this->query_insights_info);
+    }
+
+    /**
+     * Output only. Instance level Query Insights information, which is read-only
+     * and available in the output only. Contains the effective query insights
+     * settings for this instance, by merging customer's provided
+     * `QueryInsightsInstanceConfig` with the Query Insights defaults.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.QueryInsightsInstanceInfo query_insights_info = 47 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AlloyDb\V1\Instance\QueryInsightsInstanceInfo $var
+     * @return $this
+     */
+    public function setQueryInsightsInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\Instance\QueryInsightsInstanceInfo::class);
+        $this->query_insights_info = $var;
+
+        return $this;
+    }
+
+    /**
      * Configuration for observability.
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ObservabilityInstanceConfig observability_config = 26;</code>
@@ -952,6 +1022,48 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\Instance\ObservabilityInstanceConfig::class);
         $this->observability_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Instance level observability information, contains the
+     * effective values of observability settings for this instance, by merging
+     * customer's provided `ObservabilityInstanceConfig` with the
+     * Observability defaults.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ObservabilityInstanceInfo observability_instance_info = 44 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AlloyDb\V1\Instance\ObservabilityInstanceInfo|null
+     */
+    public function getObservabilityInstanceInfo()
+    {
+        return $this->observability_instance_info;
+    }
+
+    public function hasObservabilityInstanceInfo()
+    {
+        return isset($this->observability_instance_info);
+    }
+
+    public function clearObservabilityInstanceInfo()
+    {
+        unset($this->observability_instance_info);
+    }
+
+    /**
+     * Output only. Instance level observability information, contains the
+     * effective values of observability settings for this instance, by merging
+     * customer's provided `ObservabilityInstanceConfig` with the
+     * Observability defaults.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ObservabilityInstanceInfo observability_instance_info = 44 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AlloyDb\V1\Instance\ObservabilityInstanceInfo $var
+     * @return $this
+     */
+    public function setObservabilityInstanceInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\Instance\ObservabilityInstanceInfo::class);
+        $this->observability_instance_info = $var;
 
         return $this;
     }

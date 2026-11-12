@@ -72,7 +72,9 @@ class SetInstanceTemplateRegionInstanceGroupManagerRequest extends \Google\Proto
             ->setProject($project)
             ->setRegion($region)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setRegionInstanceGroupManagersSetTemplateRequestResource($regionInstanceGroupManagersSetTemplateRequestResource);
+            ->setRegionInstanceGroupManagersSetTemplateRequestResource(
+                $regionInstanceGroupManagersSetTemplateRequestResource
+            );
     }
 
     /**

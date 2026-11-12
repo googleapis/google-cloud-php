@@ -74,7 +74,9 @@ class AbandonInstancesInstanceGroupManagerRequest extends \Google\Protobuf\Inter
             ->setProject($project)
             ->setZone($zone)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersAbandonInstancesRequestResource($instanceGroupManagersAbandonInstancesRequestResource);
+            ->setInstanceGroupManagersAbandonInstancesRequestResource(
+                $instanceGroupManagersAbandonInstancesRequestResource
+            );
     }
 
     /**
