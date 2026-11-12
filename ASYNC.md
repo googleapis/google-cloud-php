@@ -138,80 +138,14 @@ $eachPromise->promise()->wait();
 printf("Published %d messages\n", $publishedCount);
 ```
 
-### Paginating Concurrently
-
-For a single list query, async pagination is no faster than synchronous `foreach` iteration because
-each page requires the `nextPageToken` returned by the previous page. Async pagination is useful
-when listing across **multiple parents** (such as projects or regions) concurrently, or when
-overlapping page fetches with per-item async RPCs.
-
-Inside a `.then()` callback, iterate `$response->getPage()` (the current page only) rather than
-`$response` directly—iterating `$response` calls `Page::getNextPage()`, which blocks synchronously
-via `wait()`—and chain the next `*Async()` call using `$page->getNextPageToken()`:
-
-```php
-use Google\ApiCore\PagedListResponse;
-use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
-use Google\Cloud\SecretManager\V1\ListSecretsRequest;
-use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Promise\Utils;
-
-function listAllSecretsAsync(
-    SecretManagerServiceClient $client,
-    string $parent,
-    string $pageToken = '',
-    array $secrets = []
-): PromiseInterface {
-    $request = (new ListSecretsRequest())
-        ->setParent($parent)
-        ->setPageToken($pageToken);
-
-    return $client->listSecretsAsync($request)->then(
-        function (PagedListResponse $response) use ($client, $parent, $secrets) {
-            // Iterate getPage() (current page only), NOT $response directly
-            $page = $response->getPage();
-            foreach ($page as $secret) {
-                $secrets[] = $secret;
-            }
-
-            if ($page->hasNextPage()) {
-                return listAllSecretsAsync(
-                    $client,
-                    $parent,
-                    $page->getNextPageToken(),
-                    $secrets
-                );
-            }
-
-            return $secrets;
-        }
-    );
-}
-
-$client = new SecretManagerServiceClient();
-$parents = ['projects/proj-a', 'projects/proj-b'];
-
-$promises = [];
-foreach ($parents as $parent) {
-    $promises[$parent] = listAllSecretsAsync($client, $parent);
-}
-
-$secretsByProject = Utils::unwrap($promises);
-foreach ($secretsByProject as $parent => $secrets) {
-    printf("%s: %d secrets\n", $parent, count($secrets));
-}
-```
-
 ## 2. Supported Call Types
 
-* **Unary (`PromiseInterface<Message>`):** Resolves to the protobuf response message.
-* **Paginated (`PromiseInterface<PagedListResponse>`):** Resolves the first page asynchronously.
-  See [Paginating Concurrently](#paginating-concurrently) for fetching subsequent pages without
-  blocking.
-* **Long-Running Operation (`PromiseInterface<OperationResponse>`):** Resolves once the server
-  *starts* the operation. See [Core Concepts][core-concepts] for polling LROs.
-* **Streaming & Resumable Uploads:** Not supported via `*Async()` (throws `ValidationException`).
-  Use streaming methods (`ServerStream`, `ClientStream`, `BidiStream`) directly.
+| Call Type | `*Async()` Return Type | Behavior |
+| :--- | :--- | :--- |
+| **Unary** | `PromiseInterface<Message>` | Resolves to the protobuf response message. |
+| **Paginated** | `PromiseInterface<PagedListResponse>` | Resolves the first page asynchronously. Iterating via `foreach` fetches subsequent pages synchronously; to paginate asynchronously, pass `$response->getPage()->getNextPageToken()` via `setPageToken()` to another `*Async()` call. |
+| **Long-Running Operation** | `PromiseInterface<OperationResponse>` | Resolves once the server *starts* the operation. See [Core Concepts][core-concepts] for polling LROs. |
+| **Streaming & Resumable Uploads** | *Not supported* | Throws `ValidationException`. Use streaming methods (`ServerStream`, `ClientStream`, `BidiStream`) directly. |
 
 [core-concepts]: https://docs.cloud.google.com/php/docs/reference/help/core_concepts
 

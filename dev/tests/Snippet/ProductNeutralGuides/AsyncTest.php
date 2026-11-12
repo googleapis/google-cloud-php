@@ -31,9 +31,6 @@ use Google\Cloud\PubSub\V1\Client\PublisherClient;
 use Google\Cloud\PubSub\V1\PublishResponse;
 use Google\Cloud\SecretManager\V1\AccessSecretVersionResponse;
 use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
-use Google\Cloud\SecretManager\V1\ListSecretsRequest;
-use Google\Cloud\SecretManager\V1\ListSecretsResponse;
-use Google\Cloud\SecretManager\V1\Secret;
 use Google\Cloud\SecretManager\V1\SecretPayload;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\StorageClient;
@@ -189,75 +186,6 @@ EOF,
         $result = $snippet->invoke();
         $this->assertLessThanOrEqual(2, $maxObservedInFlight);
         $this->assertEquals("Published 5 messages\n", $result->output());
-    }
-
-    public function testPaginatingConcurrently()
-    {
-        $snippet = $this->snippetFromMarkdown(
-            self::ASYNC_FILE,
-            'Paginating Concurrently'
-        );
-
-        $transport = $this->prophesize(TransportInterface::class);
-        $transport->startUnaryCall(Argument::type(Call::class), Argument::type('array'))
-            ->shouldBeCalledTimes(3)
-            ->will(function (array $args) {
-                /** @var Call $call */
-                $call = $args[0];
-                /** @var ListSecretsRequest $request */
-                $request = $call->getMessage();
-                $parent = $request->getParent();
-                $token = $request->getPageToken();
-
-                if ($parent === 'projects/proj-a' && $token === '') {
-                    return Create::promiseFor(
-                        (new ListSecretsResponse())
-                            ->setSecrets([
-                                (new Secret())->setName('projects/proj-a/secrets/s1'),
-                                (new Secret())->setName('projects/proj-a/secrets/s2'),
-                            ])
-                            ->setNextPageToken('page-2')
-                    );
-                }
-
-                if ($parent === 'projects/proj-a' && $token === 'page-2') {
-                    return Create::promiseFor(
-                        (new ListSecretsResponse())
-                            ->setSecrets([
-                                (new Secret())->setName('projects/proj-a/secrets/s3'),
-                            ])
-                    );
-                }
-
-                return Create::promiseFor(
-                    (new ListSecretsResponse())
-                        ->setSecrets([
-                            (new Secret())->setName('projects/proj-b/secrets/s1'),
-                        ])
-                );
-            });
-
-        $client = new SecretManagerServiceClient([
-            'credentials' => new InsecureCredentialsWrapper(),
-            'transport' => $transport->reveal(),
-        ]);
-
-        $snippet->replace(
-            '$client = new SecretManagerServiceClient();',
-            'global $testClient; $client = $testClient;'
-        );
-        global $testClient;
-        $testClient = $client;
-
-        $result = $snippet->invoke();
-        $this->assertEquals(
-            <<<'EOF'
-projects/proj-a: 3 secrets
-projects/proj-b: 1 secrets
-
-EOF,
-            $result->output()
-        );
     }
 
     public function testHandwrittenClientHelpers()
