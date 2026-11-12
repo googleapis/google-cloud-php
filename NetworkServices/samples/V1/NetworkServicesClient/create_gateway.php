@@ -52,7 +52,7 @@ function create_gateway_sample(
     $networkServicesClient = new NetworkServicesClient();
 
     // Prepare the request message.
-    $gatewayPorts = [$gatewayPortsElement,];
+    $gatewayPorts = [$gatewayPortsElement];
     $gateway = (new Gateway())
         ->setPorts($gatewayPorts);
     $request = (new CreateGatewayRequest())

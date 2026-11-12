@@ -52,7 +52,7 @@ function batch_delete_pipeline_jobs_sample(
     $pipelineServiceClient = new PipelineServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchDeletePipelineJobsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

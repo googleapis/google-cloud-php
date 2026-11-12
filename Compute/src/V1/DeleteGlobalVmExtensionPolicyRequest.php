@@ -64,7 +64,9 @@ class DeleteGlobalVmExtensionPolicyRequest extends \Google\Protobuf\Internal\Mes
         return (new self())
             ->setProject($project)
             ->setGlobalVmExtensionPolicy($globalVmExtensionPolicy)
-            ->setGlobalVmExtensionPolicyRolloutOperationRolloutInputResource($globalVmExtensionPolicyRolloutOperationRolloutInputResource);
+            ->setGlobalVmExtensionPolicyRolloutOperationRolloutInputResource(
+                $globalVmExtensionPolicyRolloutOperationRolloutInputResource
+            );
     }
 
     /**

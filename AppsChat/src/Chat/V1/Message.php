@@ -290,6 +290,23 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     private $accessory_widgets;
     /**
+     * Optional. Additional message components, including inline `citations`
+     * (where each citation is associated with a specific portion of the message
+     * text) and `cited_sources` (which are general references used to generate
+     * the response and are not directly linked to specific segments of the text).
+     * On input, provide `elements` when creating or updating a message. On
+     * output, both `citations` and `cited_sources` are populated when reading a
+     * message that contains them. Callers can read structured citation metadata
+     * from `elements`, while `formatted_text` also includes inline citation tags
+     * or source links depending on `markup_syntax`.
+     * These differ from `annotations`, which are output-only and offer
+     * supplementary information tied to message fragments or the entire message
+     * text.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.Elements elements = 45 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $elements = null;
+    /**
      * Optional. Specifies how the server interprets the message `text` field
      * content.
      *
@@ -468,6 +485,19 @@ class Message extends \Google\Protobuf\Internal\Message
      *           Creating a message with accessory widgets requires [app
      *           authentication]
      *           (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
+     *     @type \Google\Apps\Chat\V1\Elements $elements
+     *           Optional. Additional message components, including inline `citations`
+     *           (where each citation is associated with a specific portion of the message
+     *           text) and `cited_sources` (which are general references used to generate
+     *           the response and are not directly linked to specific segments of the text).
+     *           On input, provide `elements` when creating or updating a message. On
+     *           output, both `citations` and `cited_sources` are populated when reading a
+     *           message that contains them. Callers can read structured citation metadata
+     *           from `elements`, while `formatted_text` also includes inline citation tags
+     *           or source links depending on `markup_syntax`.
+     *           These differ from `annotations`, which are output-only and offer
+     *           supplementary information tied to message fragments or the entire message
+     *           text.
      *     @type int $markup_syntax
      *           Optional. Specifies how the server interprets the message `text` field
      *           content.
@@ -1526,6 +1556,64 @@ class Message extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Apps\Chat\V1\AccessoryWidget::class);
         $this->accessory_widgets = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Additional message components, including inline `citations`
+     * (where each citation is associated with a specific portion of the message
+     * text) and `cited_sources` (which are general references used to generate
+     * the response and are not directly linked to specific segments of the text).
+     * On input, provide `elements` when creating or updating a message. On
+     * output, both `citations` and `cited_sources` are populated when reading a
+     * message that contains them. Callers can read structured citation metadata
+     * from `elements`, while `formatted_text` also includes inline citation tags
+     * or source links depending on `markup_syntax`.
+     * These differ from `annotations`, which are output-only and offer
+     * supplementary information tied to message fragments or the entire message
+     * text.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.Elements elements = 45 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Apps\Chat\V1\Elements|null
+     */
+    public function getElements()
+    {
+        return $this->elements;
+    }
+
+    public function hasElements()
+    {
+        return isset($this->elements);
+    }
+
+    public function clearElements()
+    {
+        unset($this->elements);
+    }
+
+    /**
+     * Optional. Additional message components, including inline `citations`
+     * (where each citation is associated with a specific portion of the message
+     * text) and `cited_sources` (which are general references used to generate
+     * the response and are not directly linked to specific segments of the text).
+     * On input, provide `elements` when creating or updating a message. On
+     * output, both `citations` and `cited_sources` are populated when reading a
+     * message that contains them. Callers can read structured citation metadata
+     * from `elements`, while `formatted_text` also includes inline citation tags
+     * or source links depending on `markup_syntax`.
+     * These differ from `annotations`, which are output-only and offer
+     * supplementary information tied to message fragments or the entire message
+     * text.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.Elements elements = 45 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Apps\Chat\V1\Elements $var
+     * @return $this
+     */
+    public function setElements($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\Elements::class);
+        $this->elements = $var;
 
         return $this;
     }

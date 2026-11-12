@@ -49,7 +49,7 @@ function batch_activate_dai_encoding_profiles_sample(
     // Prepare the request message.
     $activateDaiEncodingProfileRequest = (new ActivateDaiEncodingProfileRequest())
         ->setName($formattedRequestsName);
-    $requests = [$activateDaiEncodingProfileRequest,];
+    $requests = [$activateDaiEncodingProfileRequest];
     $request = (new BatchActivateDaiEncodingProfilesRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

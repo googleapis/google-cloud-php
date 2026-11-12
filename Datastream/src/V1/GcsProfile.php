@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Cloud Storage bucket profile.
+ * Profile for connecting to a Cloud Storage destination.
  *
  * Generated from protobuf message <code>google.cloud.datastream.v1.GcsProfile</code>
  */
@@ -22,9 +22,9 @@ class GcsProfile extends \Google\Protobuf\Internal\Message
      */
     protected $bucket = '';
     /**
-     * The root path inside the Cloud Storage bucket.
+     * Optional. The root path inside the Cloud Storage bucket.
      *
-     * Generated from protobuf field <code>string root_path = 2;</code>
+     * Generated from protobuf field <code>string root_path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $root_path = '';
 
@@ -37,7 +37,7 @@ class GcsProfile extends \Google\Protobuf\Internal\Message
      *     @type string $bucket
      *           Required. The Cloud Storage bucket name.
      *     @type string $root_path
-     *           The root path inside the Cloud Storage bucket.
+     *           Optional. The root path inside the Cloud Storage bucket.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,9 +72,9 @@ class GcsProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The root path inside the Cloud Storage bucket.
+     * Optional. The root path inside the Cloud Storage bucket.
      *
-     * Generated from protobuf field <code>string root_path = 2;</code>
+     * Generated from protobuf field <code>string root_path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getRootPath()
@@ -83,9 +83,9 @@ class GcsProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The root path inside the Cloud Storage bucket.
+     * Optional. The root path inside the Cloud Storage bucket.
      *
-     * Generated from protobuf field <code>string root_path = 2;</code>
+     * Generated from protobuf field <code>string root_path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

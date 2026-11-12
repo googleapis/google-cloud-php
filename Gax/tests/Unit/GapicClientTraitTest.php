@@ -2185,6 +2185,14 @@ class StubCustomClientOptions extends \Google\ApiCore\Options\ClientOptions
 {
     protected ?string $developerToken = null;
 
+    public function fromArray(array $arr): static
+    {
+        parent::fromArray($arr);
+        $this->setDeveloperToken($arr['developer-token'] ?? $this->developerToken);
+
+        return $this;
+    }
+
     public function setDeveloperToken(?string $developerToken): static
     {
         $this->developerToken = $developerToken;
@@ -2336,7 +2344,9 @@ class GapicV2SurfaceClient implements ServiceInterface, LongRunningOperationProv
 
     public function resumeOperation(string $operationName, ?string $methodName = null): OperationResponse
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options = $methodName && isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;

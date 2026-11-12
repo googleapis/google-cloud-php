@@ -109,7 +109,7 @@ function append_rows_sample(string $formattedWriteStream): void
     try {
         /** @var BidiStream $stream */
         $stream = $bigQueryWriteClient->appendRows();
-        $stream->writeAll([$request,]);
+        $stream->writeAll([$request]);
 
         /** @var AppendRowsResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

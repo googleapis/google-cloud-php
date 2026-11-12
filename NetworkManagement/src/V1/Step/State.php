@@ -143,6 +143,12 @@ class State
      */
     const START_FROM_DMS_PRIVATE_CONNECTION = 48;
     /**
+     * Initial state: packet originating from a Datastream Private Connection.
+     *
+     * Generated from protobuf enum <code>START_FROM_DATASTREAM_PRIVATE_CONNECTION = 49;</code>
+     */
+    const START_FROM_DATASTREAM_PRIVATE_CONNECTION = 49;
+    /**
      * Config checking state: verify ingress firewall rule.
      *
      * Generated from protobuf enum <code>APPLY_INGRESS_FIREWALL_RULE = 4;</code>
@@ -354,6 +360,7 @@ class State
         self::START_FROM_PSC_PUBLISHED_SERVICE => 'START_FROM_PSC_PUBLISHED_SERVICE',
         self::START_FROM_SERVERLESS_NEG => 'START_FROM_SERVERLESS_NEG',
         self::START_FROM_DMS_PRIVATE_CONNECTION => 'START_FROM_DMS_PRIVATE_CONNECTION',
+        self::START_FROM_DATASTREAM_PRIVATE_CONNECTION => 'START_FROM_DATASTREAM_PRIVATE_CONNECTION',
         self::APPLY_INGRESS_FIREWALL_RULE => 'APPLY_INGRESS_FIREWALL_RULE',
         self::APPLY_EGRESS_FIREWALL_RULE => 'APPLY_EGRESS_FIREWALL_RULE',
         self::APPLY_ROUTE => 'APPLY_ROUTE',

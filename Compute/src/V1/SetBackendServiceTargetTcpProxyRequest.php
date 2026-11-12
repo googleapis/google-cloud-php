@@ -66,7 +66,9 @@ class SetBackendServiceTargetTcpProxyRequest extends \Google\Protobuf\Internal\M
         return (new self())
             ->setProject($project)
             ->setTargetTcpProxy($targetTcpProxy)
-            ->setTargetTcpProxiesSetBackendServiceRequestResource($targetTcpProxiesSetBackendServiceRequestResource);
+            ->setTargetTcpProxiesSetBackendServiceRequestResource(
+                $targetTcpProxiesSetBackendServiceRequestResource
+            );
     }
 
     /**

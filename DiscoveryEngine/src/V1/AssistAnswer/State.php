@@ -43,6 +43,13 @@ class State
      * Generated from protobuf enum <code>SKIPPED = 4;</code>
      */
     const SKIPPED = 4;
+    /**
+     * Assist operation has been cancelled (e.g. client closed the stream).
+     * May contain a partial response.
+     *
+     * Generated from protobuf enum <code>CANCELLED = 5;</code>
+     */
+    const CANCELLED = 5;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -50,6 +57,7 @@ class State
         self::FAILED => 'FAILED',
         self::SUCCEEDED => 'SUCCEEDED',
         self::SKIPPED => 'SKIPPED',
+        self::CANCELLED => 'CANCELLED',
     ];
 
     public static function name($value)

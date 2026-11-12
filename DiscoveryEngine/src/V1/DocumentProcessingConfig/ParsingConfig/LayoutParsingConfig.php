@@ -30,6 +30,12 @@ class LayoutParsingConfig extends \Google\Protobuf\Internal\Message
      */
     protected $enable_image_annotation = false;
     /**
+     * Optional. If true, the pdf layout will be refined using an LLM.
+     *
+     * Generated from protobuf field <code>bool enable_llm_layout_parsing = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_llm_layout_parsing = false;
+    /**
      * Optional. Contains the required structure types to extract from the
      * document. Supported values:
      * * `shareholder-structure`
@@ -55,6 +61,13 @@ class LayoutParsingConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string exclude_html_ids = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $exclude_html_ids;
+    /**
+     * Optional. If true, the processed document will be made available for
+     * the GetProcessedDocument API.
+     *
+     * Generated from protobuf field <code>bool enable_get_processed_document = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_get_processed_document = false;
 
     /**
      * Constructor.
@@ -68,6 +81,8 @@ class LayoutParsingConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $enable_image_annotation
      *           Optional. If true, the LLM based annotation is added to the image
      *           during parsing.
+     *     @type bool $enable_llm_layout_parsing
+     *           Optional. If true, the pdf layout will be refined using an LLM.
      *     @type string[] $structured_content_types
      *           Optional. Contains the required structure types to extract from the
      *           document. Supported values:
@@ -78,6 +93,9 @@ class LayoutParsingConfig extends \Google\Protobuf\Internal\Message
      *           Optional. List of HTML classes to exclude from the parsed content.
      *     @type string[] $exclude_html_ids
      *           Optional. List of HTML ids to exclude from the parsed content.
+     *     @type bool $enable_get_processed_document
+     *           Optional. If true, the processed document will be made available for
+     *           the GetProcessedDocument API.
      * }
      */
     public function __construct($data = NULL) {
@@ -137,6 +155,32 @@ class LayoutParsingConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_image_annotation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, the pdf layout will be refined using an LLM.
+     *
+     * Generated from protobuf field <code>bool enable_llm_layout_parsing = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableLlmLayoutParsing()
+    {
+        return $this->enable_llm_layout_parsing;
+    }
+
+    /**
+     * Optional. If true, the pdf layout will be refined using an LLM.
+     *
+     * Generated from protobuf field <code>bool enable_llm_layout_parsing = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableLlmLayoutParsing($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_llm_layout_parsing = $var;
 
         return $this;
     }
@@ -245,6 +289,34 @@ class LayoutParsingConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->exclude_html_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, the processed document will be made available for
+     * the GetProcessedDocument API.
+     *
+     * Generated from protobuf field <code>bool enable_get_processed_document = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableGetProcessedDocument()
+    {
+        return $this->enable_get_processed_document;
+    }
+
+    /**
+     * Optional. If true, the processed document will be made available for
+     * the GetProcessedDocument API.
+     *
+     * Generated from protobuf field <code>bool enable_get_processed_document = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableGetProcessedDocument($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_get_processed_document = $var;
 
         return $this;
     }

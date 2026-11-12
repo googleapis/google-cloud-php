@@ -65,7 +65,7 @@ function update_http_route_sample(string $httpRouteHostnamesElement): void
     $networkServicesClient = new NetworkServicesClient();
 
     // Prepare the request message.
-    $httpRouteHostnames = [$httpRouteHostnamesElement,];
+    $httpRouteHostnames = [$httpRouteHostnamesElement];
     $httpRouteRules = [new RouteRule()];
     $httpRoute = (new HttpRoute())
         ->setHostnames($httpRouteHostnames)

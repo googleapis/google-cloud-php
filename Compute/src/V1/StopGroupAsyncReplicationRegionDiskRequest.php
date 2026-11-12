@@ -66,7 +66,9 @@ class StopGroupAsyncReplicationRegionDiskRequest extends \Google\Protobuf\Intern
         return (new self())
             ->setProject($project)
             ->setRegion($region)
-            ->setDisksStopGroupAsyncReplicationResourceResource($disksStopGroupAsyncReplicationResourceResource);
+            ->setDisksStopGroupAsyncReplicationResourceResource(
+                $disksStopGroupAsyncReplicationResourceResource
+            );
     }
 
     /**

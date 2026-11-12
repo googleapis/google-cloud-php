@@ -24,6 +24,45 @@ class AutomatedAgentReply extends \Google\Protobuf\Internal\Message
      */
     protected $detect_intent_response = null;
     /**
+     * Response messages from the automated agent.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.ResponseMessage response_messages = 3;</code>
+     */
+    private $response_messages;
+    /**
+     * Name of the intent if an intent is matched for the query.
+     * For a V2 query, the value format is `projects/<Project ID>/locations/
+     * <Location ID>/agent/intents/<Intent ID>`.
+     * For a V3 query, the value format is `projects/<Project ID>/locations/
+     * <Location ID>/agents/<Agent ID>/intents/<Intent ID>`.
+     *
+     * Generated from protobuf field <code>string intent = 4 [(.google.api.resource_reference) = {</code>
+     */
+    protected $intent = '';
+    /**
+     * Event name if an event is triggered for the query.
+     *
+     * Generated from protobuf field <code>string event = 5;</code>
+     */
+    protected $event = '';
+    /**
+     * The confidence of the match. Values range from 0.0 (completely uncertain)
+     * to 1.0 (completely certain).
+     * This value is for informational purpose only and is only used to help match
+     * the best intent within the classification threshold. This value may change
+     * for the same end-user expression at any time due to a model retraining or
+     * change in implementation.
+     *
+     * Generated from protobuf field <code>float match_confidence = 9;</code>
+     */
+    protected $match_confidence = 0.0;
+    /**
+     * The collection of current parameters at the time of this response.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 10;</code>
+     */
+    protected $parameters = null;
+    /**
      * AutomatedAgentReply type.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AutomatedAgentReply.AutomatedAgentReplyType automated_agent_reply_type = 7;</code>
@@ -45,6 +84,12 @@ class AutomatedAgentReply extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string cx_current_page = 11;</code>
      */
     protected $cx_current_page = '';
+    /**
+     * The auth code for accessing Call Companion UI.
+     *
+     * Generated from protobuf field <code>bytes call_companion_auth_code = 12;</code>
+     */
+    protected $call_companion_auth_code = '';
 
     /**
      * Constructor.
@@ -56,6 +101,25 @@ class AutomatedAgentReply extends \Google\Protobuf\Internal\Message
      *           Response of the Dialogflow
      *           [Sessions.DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent]
      *           call.
+     *     @type \Google\Cloud\Dialogflow\V2\ResponseMessage[] $response_messages
+     *           Response messages from the automated agent.
+     *     @type string $intent
+     *           Name of the intent if an intent is matched for the query.
+     *           For a V2 query, the value format is `projects/<Project ID>/locations/
+     *           <Location ID>/agent/intents/<Intent ID>`.
+     *           For a V3 query, the value format is `projects/<Project ID>/locations/
+     *           <Location ID>/agents/<Agent ID>/intents/<Intent ID>`.
+     *     @type string $event
+     *           Event name if an event is triggered for the query.
+     *     @type float $match_confidence
+     *           The confidence of the match. Values range from 0.0 (completely uncertain)
+     *           to 1.0 (completely certain).
+     *           This value is for informational purpose only and is only used to help match
+     *           the best intent within the classification threshold. This value may change
+     *           for the same end-user expression at any time due to a model retraining or
+     *           change in implementation.
+     *     @type \Google\Protobuf\Struct $parameters
+     *           The collection of current parameters at the time of this response.
      *     @type int $automated_agent_reply_type
      *           AutomatedAgentReply type.
      *     @type bool $allow_cancellation
@@ -66,6 +130,8 @@ class AutomatedAgentReply extends \Google\Protobuf\Internal\Message
      *           The unique identifier of the current Dialogflow CX conversation page.
      *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
      *           ID>/flows/<Flow ID>/pages/<Page ID>`.
+     *     @type string $call_companion_auth_code
+     *           The auth code for accessing Call Companion UI.
      * }
      */
     public function __construct($data = NULL) {
@@ -109,6 +175,164 @@ class AutomatedAgentReply extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\DetectIntentResponse::class);
         $this->detect_intent_response = $var;
+
+        return $this;
+    }
+
+    /**
+     * Response messages from the automated agent.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.ResponseMessage response_messages = 3;</code>
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\ResponseMessage>
+     */
+    public function getResponseMessages()
+    {
+        return $this->response_messages;
+    }
+
+    /**
+     * Response messages from the automated agent.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.ResponseMessage response_messages = 3;</code>
+     * @param \Google\Cloud\Dialogflow\V2\ResponseMessage[] $var
+     * @return $this
+     */
+    public function setResponseMessages($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\ResponseMessage::class);
+        $this->response_messages = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Name of the intent if an intent is matched for the query.
+     * For a V2 query, the value format is `projects/<Project ID>/locations/
+     * <Location ID>/agent/intents/<Intent ID>`.
+     * For a V3 query, the value format is `projects/<Project ID>/locations/
+     * <Location ID>/agents/<Agent ID>/intents/<Intent ID>`.
+     *
+     * Generated from protobuf field <code>string intent = 4 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getIntent()
+    {
+        return $this->intent;
+    }
+
+    /**
+     * Name of the intent if an intent is matched for the query.
+     * For a V2 query, the value format is `projects/<Project ID>/locations/
+     * <Location ID>/agent/intents/<Intent ID>`.
+     * For a V3 query, the value format is `projects/<Project ID>/locations/
+     * <Location ID>/agents/<Agent ID>/intents/<Intent ID>`.
+     *
+     * Generated from protobuf field <code>string intent = 4 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIntent($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->intent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Event name if an event is triggered for the query.
+     *
+     * Generated from protobuf field <code>string event = 5;</code>
+     * @return string
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * Event name if an event is triggered for the query.
+     *
+     * Generated from protobuf field <code>string event = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEvent($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->event = $var;
+
+        return $this;
+    }
+
+    /**
+     * The confidence of the match. Values range from 0.0 (completely uncertain)
+     * to 1.0 (completely certain).
+     * This value is for informational purpose only and is only used to help match
+     * the best intent within the classification threshold. This value may change
+     * for the same end-user expression at any time due to a model retraining or
+     * change in implementation.
+     *
+     * Generated from protobuf field <code>float match_confidence = 9;</code>
+     * @return float
+     */
+    public function getMatchConfidence()
+    {
+        return $this->match_confidence;
+    }
+
+    /**
+     * The confidence of the match. Values range from 0.0 (completely uncertain)
+     * to 1.0 (completely certain).
+     * This value is for informational purpose only and is only used to help match
+     * the best intent within the classification threshold. This value may change
+     * for the same end-user expression at any time due to a model retraining or
+     * change in implementation.
+     *
+     * Generated from protobuf field <code>float match_confidence = 9;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setMatchConfidence($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->match_confidence = $var;
+
+        return $this;
+    }
+
+    /**
+     * The collection of current parameters at the time of this response.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 10;</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
+    }
+
+    public function hasParameters()
+    {
+        return isset($this->parameters);
+    }
+
+    public function clearParameters()
+    {
+        unset($this->parameters);
+    }
+
+    /**
+     * The collection of current parameters at the time of this response.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 10;</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setParameters($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->parameters = $var;
 
         return $this;
     }
@@ -195,6 +419,32 @@ class AutomatedAgentReply extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cx_current_page = $var;
+
+        return $this;
+    }
+
+    /**
+     * The auth code for accessing Call Companion UI.
+     *
+     * Generated from protobuf field <code>bytes call_companion_auth_code = 12;</code>
+     * @return string
+     */
+    public function getCallCompanionAuthCode()
+    {
+        return $this->call_companion_auth_code;
+    }
+
+    /**
+     * The auth code for accessing Call Companion UI.
+     *
+     * Generated from protobuf field <code>bytes call_companion_auth_code = 12;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCallCompanionAuthCode($var)
+    {
+        GPBUtil::checkString($var, False);
+        $this->call_companion_auth_code = $var;
 
         return $this;
     }

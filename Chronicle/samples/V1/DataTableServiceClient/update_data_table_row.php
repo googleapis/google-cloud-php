@@ -40,7 +40,7 @@ function update_data_table_row_sample(string $dataTableRowValuesElement): void
     $dataTableServiceClient = new DataTableServiceClient();
 
     // Prepare the request message.
-    $dataTableRowValues = [$dataTableRowValuesElement,];
+    $dataTableRowValues = [$dataTableRowValuesElement];
     $dataTableRow = (new DataTableRow())
         ->setValues($dataTableRowValues);
     $request = (new UpdateDataTableRowRequest())

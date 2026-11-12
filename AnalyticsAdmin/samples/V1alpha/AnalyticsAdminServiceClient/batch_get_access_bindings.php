@@ -52,7 +52,7 @@ function batch_get_access_bindings_sample(
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchGetAccessBindingsRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

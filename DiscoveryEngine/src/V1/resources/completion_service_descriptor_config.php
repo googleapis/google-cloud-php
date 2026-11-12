@@ -99,6 +99,18 @@ return [
                     ],
                 ],
             ],
+            'AdvancedCompleteQuery' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\DiscoveryEngine\V1\AdvancedCompleteQueryResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'completion_config',
+                        'fieldAccessors' => [
+                            'getCompletionConfig',
+                        ],
+                    ],
+                ],
+            ],
             'CompleteQuery' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\DiscoveryEngine\V1\CompleteQueryResponse',
@@ -112,9 +124,13 @@ return [
                 ],
             ],
             'templateMap' => [
+                'completionConfig' => 'projects/{project}/locations/{location}/dataStores/{data_store}/completionConfig',
                 'dataStore' => 'projects/{project}/locations/{location}/dataStores/{data_store}',
                 'projectLocationCollectionDataStore' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}',
+                'projectLocationCollectionDataStoreCompletionConfig' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/completionConfig',
+                'projectLocationCollectionEngineCompletionConfig' => 'projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/completionConfig',
                 'projectLocationDataStore' => 'projects/{project}/locations/{location}/dataStores/{data_store}',
+                'projectLocationDataStoreCompletionConfig' => 'projects/{project}/locations/{location}/dataStores/{data_store}/completionConfig',
             ],
         ],
     ],

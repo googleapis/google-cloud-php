@@ -89,12 +89,143 @@ class Engine extends \Google\Protobuf\Internal\Message
      */
     protected $common_config = null;
     /**
+     * Optional. Configurations for the Knowledge Graph. Only applicable if
+     * [solution_type][google.cloud.discoveryengine.v1.Engine.solution_type] is
+     * [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Engine.KnowledgeGraphConfig knowledge_graph_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $knowledge_graph_config = null;
+    /**
+     * Optional. Immutable. This the application type which this engine resource
+     * represents. NOTE: this is a new concept independ of existing industry
+     * vertical or solution type.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Engine.AppType app_type = 24 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $app_type = 0;
+    /**
      * Optional. Whether to disable analytics for searches performed on this
      * engine.
      *
      * Generated from protobuf field <code>bool disable_analytics = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $disable_analytics = false;
+    /**
+     * Optional. Non-empty default. Session config for the engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SessionConfig session_config = 29 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     */
+    protected $session_config = null;
+    /**
+     * Optional. Feature config for the engine to opt in or opt out of features.
+     * Supported keys:
+     * * `*`: all features, if it's present, all other feature state settings are
+     *        ignored.
+     * * `agent-gallery`
+     * * `no-code-agent-builder`
+     * * `prompt-gallery`
+     * * `model-selector`
+     * * `notebook-lm`
+     * * `people-search`
+     * * `people-search-org-chart`
+     * * `bi-directional-audio`
+     * * `speech-to-text`
+     * * `feedback`
+     * * `session-sharing`
+     * * `personalization-memory`
+     * * `personalization-suggested-highlights`
+     * * `mobile-app-access`
+     * * `disable-agent-sharing`
+     * * `disable-image-generation`
+     * * `disable-video-generation`
+     * * `disable-onedrive-upload`
+     * * `disable-talk-to-content`
+     * * `disable-google-drive-upload`
+     * * `disable-welcome-emails`
+     * * `disable-canvas`
+     * * `canvas-workspace`
+     * * `canvas-app-builder`
+     * * `skills`
+     * * `skill-sharing`
+     * * `skill-sharing-without-admin-approval`
+     * * `disable-projects`
+     * * `sobi`
+     * * `enable-end-user-sharing-with-groups`
+     * * `single-agent-orchestration`
+     * * `multi-agent-orchestration`
+     * * `cross-product-intelligence`
+     * * `workflow-agents`
+     * * `in-app-notifications`
+     * * `code-extraction`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.Engine.FeatureState> features = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $features;
+    /**
+     * Output only. CMEK-related information for the Engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.CmekConfig cmek_config = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $cmek_config = null;
+    /**
+     * Optional. Configuration for configurable billing approach.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Engine.ConfigurableBillingApproach configurable_billing_approach = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $configurable_billing_approach = 0;
+    /**
+     * Optional. Maps a model name to its specific configuration for this engine.
+     * This allows admin users to turn on/off individual models. This only stores
+     * models whose states are overridden by the admin.
+     * When the state is unspecified, or model_configs is empty for this
+     * model, the system will decide if this model should be available or not
+     * based on the default configuration. For example, a preview model
+     * should be disabled by default if the admin has not chosen to enable it.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.Engine.ModelState> model_configs = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $model_configs;
+    /**
+     * Optional. Observability config for the engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.ObservabilityConfig observability_config = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $observability_config = null;
+    /**
+     * Optional. Maps a connector ID (e.g., "hybrid-github", "shopify") to
+     * tenant-specific information required for that connector. The structure of
+     * the tenant information string is connector-dependent.
+     *
+     * Generated from protobuf field <code>map<string, string> connector_tenant_info = 42 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $connector_tenant_info;
+    /**
+     * Optional. The agent gateway setting for the engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AgentGatewaySetting agent_gateway_setting = 43 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $agent_gateway_setting = null;
+    /**
+     * Optional. The visibility of marketplace agents in the agent gallery.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Engine.MarketplaceAgentVisibility marketplace_agent_visibility = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $marketplace_agent_visibility = 0;
+    /**
+     * Optional. The emails of the procurement contacts.
+     *
+     * Generated from protobuf field <code>repeated string procurement_contact_emails = 45 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $procurement_contact_emails;
+    /**
+     * Output only. The Agent registry containing the agents, MCP servers and
+     * tools associated with this engine. Derived server-side from the linked
+     * Agent Gateway's registry.
+     *
+     * Generated from protobuf field <code>string associated_agent_registry = 50 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $associated_agent_registry = '';
     protected $engine_config;
     protected $engine_metadata;
 
@@ -165,9 +296,88 @@ class Engine extends \Google\Protobuf\Internal\Message
      *           has to match vertical of the DataStore linked to the engine.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Engine\CommonConfig $common_config
      *           Common config spec that specifies the metadata of the engine.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Engine\KnowledgeGraphConfig $knowledge_graph_config
+     *           Optional. Configurations for the Knowledge Graph. Only applicable if
+     *           [solution_type][google.cloud.discoveryengine.v1.Engine.solution_type] is
+     *           [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
+     *     @type int $app_type
+     *           Optional. Immutable. This the application type which this engine resource
+     *           represents. NOTE: this is a new concept independ of existing industry
+     *           vertical or solution type.
      *     @type bool $disable_analytics
      *           Optional. Whether to disable analytics for searches performed on this
      *           engine.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SessionConfig $session_config
+     *           Optional. Non-empty default. Session config for the engine.
+     *     @type array|\Google\Protobuf\Internal\MapField $features
+     *           Optional. Feature config for the engine to opt in or opt out of features.
+     *           Supported keys:
+     *           * `*`: all features, if it's present, all other feature state settings are
+     *                  ignored.
+     *           * `agent-gallery`
+     *           * `no-code-agent-builder`
+     *           * `prompt-gallery`
+     *           * `model-selector`
+     *           * `notebook-lm`
+     *           * `people-search`
+     *           * `people-search-org-chart`
+     *           * `bi-directional-audio`
+     *           * `speech-to-text`
+     *           * `feedback`
+     *           * `session-sharing`
+     *           * `personalization-memory`
+     *           * `personalization-suggested-highlights`
+     *           * `mobile-app-access`
+     *           * `disable-agent-sharing`
+     *           * `disable-image-generation`
+     *           * `disable-video-generation`
+     *           * `disable-onedrive-upload`
+     *           * `disable-talk-to-content`
+     *           * `disable-google-drive-upload`
+     *           * `disable-welcome-emails`
+     *           * `disable-canvas`
+     *           * `canvas-workspace`
+     *           * `canvas-app-builder`
+     *           * `skills`
+     *           * `skill-sharing`
+     *           * `skill-sharing-without-admin-approval`
+     *           * `disable-projects`
+     *           * `sobi`
+     *           * `enable-end-user-sharing-with-groups`
+     *           * `single-agent-orchestration`
+     *           * `multi-agent-orchestration`
+     *           * `cross-product-intelligence`
+     *           * `workflow-agents`
+     *           * `in-app-notifications`
+     *           * `code-extraction`
+     *     @type \Google\Cloud\DiscoveryEngine\V1\CmekConfig $cmek_config
+     *           Output only. CMEK-related information for the Engine.
+     *     @type int $configurable_billing_approach
+     *           Optional. Configuration for configurable billing approach.
+     *     @type array|\Google\Protobuf\Internal\MapField $model_configs
+     *           Optional. Maps a model name to its specific configuration for this engine.
+     *           This allows admin users to turn on/off individual models. This only stores
+     *           models whose states are overridden by the admin.
+     *           When the state is unspecified, or model_configs is empty for this
+     *           model, the system will decide if this model should be available or not
+     *           based on the default configuration. For example, a preview model
+     *           should be disabled by default if the admin has not chosen to enable it.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\ObservabilityConfig $observability_config
+     *           Optional. Observability config for the engine.
+     *     @type array|\Google\Protobuf\Internal\MapField $connector_tenant_info
+     *           Optional. Maps a connector ID (e.g., "hybrid-github", "shopify") to
+     *           tenant-specific information required for that connector. The structure of
+     *           the tenant information string is connector-dependent.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AgentGatewaySetting $agent_gateway_setting
+     *           Optional. The agent gateway setting for the engine.
+     *     @type int $marketplace_agent_visibility
+     *           Optional. The visibility of marketplace agents in the agent gallery.
+     *     @type string[] $procurement_contact_emails
+     *           Optional. The emails of the procurement contacts.
+     *     @type string $associated_agent_registry
+     *           Output only. The Agent registry containing the agents, MCP servers and
+     *           tools associated with this engine. Derived server-side from the linked
+     *           Agent Gateway's registry.
      * }
      */
     public function __construct($data = NULL) {
@@ -612,6 +822,76 @@ class Engine extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Configurations for the Knowledge Graph. Only applicable if
+     * [solution_type][google.cloud.discoveryengine.v1.Engine.solution_type] is
+     * [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Engine.KnowledgeGraphConfig knowledge_graph_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\Engine\KnowledgeGraphConfig|null
+     */
+    public function getKnowledgeGraphConfig()
+    {
+        return $this->knowledge_graph_config;
+    }
+
+    public function hasKnowledgeGraphConfig()
+    {
+        return isset($this->knowledge_graph_config);
+    }
+
+    public function clearKnowledgeGraphConfig()
+    {
+        unset($this->knowledge_graph_config);
+    }
+
+    /**
+     * Optional. Configurations for the Knowledge Graph. Only applicable if
+     * [solution_type][google.cloud.discoveryengine.v1.Engine.solution_type] is
+     * [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Engine.KnowledgeGraphConfig knowledge_graph_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\Engine\KnowledgeGraphConfig $var
+     * @return $this
+     */
+    public function setKnowledgeGraphConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Engine\KnowledgeGraphConfig::class);
+        $this->knowledge_graph_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. This the application type which this engine resource
+     * represents. NOTE: this is a new concept independ of existing industry
+     * vertical or solution type.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Engine.AppType app_type = 24 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return int
+     */
+    public function getAppType()
+    {
+        return $this->app_type;
+    }
+
+    /**
+     * Optional. Immutable. This the application type which this engine resource
+     * represents. NOTE: this is a new concept independ of existing industry
+     * vertical or solution type.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Engine.AppType app_type = 24 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAppType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DiscoveryEngine\V1\Engine\AppType::class);
+        $this->app_type = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Whether to disable analytics for searches performed on this
      * engine.
      *
@@ -635,6 +915,430 @@ class Engine extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->disable_analytics = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Non-empty default. Session config for the engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SessionConfig session_config = 29 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SessionConfig|null
+     */
+    public function getSessionConfig()
+    {
+        return $this->session_config;
+    }
+
+    public function hasSessionConfig()
+    {
+        return isset($this->session_config);
+    }
+
+    public function clearSessionConfig()
+    {
+        unset($this->session_config);
+    }
+
+    /**
+     * Optional. Non-empty default. Session config for the engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SessionConfig session_config = 29 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SessionConfig $var
+     * @return $this
+     */
+    public function setSessionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SessionConfig::class);
+        $this->session_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Feature config for the engine to opt in or opt out of features.
+     * Supported keys:
+     * * `*`: all features, if it's present, all other feature state settings are
+     *        ignored.
+     * * `agent-gallery`
+     * * `no-code-agent-builder`
+     * * `prompt-gallery`
+     * * `model-selector`
+     * * `notebook-lm`
+     * * `people-search`
+     * * `people-search-org-chart`
+     * * `bi-directional-audio`
+     * * `speech-to-text`
+     * * `feedback`
+     * * `session-sharing`
+     * * `personalization-memory`
+     * * `personalization-suggested-highlights`
+     * * `mobile-app-access`
+     * * `disable-agent-sharing`
+     * * `disable-image-generation`
+     * * `disable-video-generation`
+     * * `disable-onedrive-upload`
+     * * `disable-talk-to-content`
+     * * `disable-google-drive-upload`
+     * * `disable-welcome-emails`
+     * * `disable-canvas`
+     * * `canvas-workspace`
+     * * `canvas-app-builder`
+     * * `skills`
+     * * `skill-sharing`
+     * * `skill-sharing-without-admin-approval`
+     * * `disable-projects`
+     * * `sobi`
+     * * `enable-end-user-sharing-with-groups`
+     * * `single-agent-orchestration`
+     * * `multi-agent-orchestration`
+     * * `cross-product-intelligence`
+     * * `workflow-agents`
+     * * `in-app-notifications`
+     * * `code-extraction`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.Engine.FeatureState> features = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getFeatures()
+    {
+        return $this->features;
+    }
+
+    /**
+     * Optional. Feature config for the engine to opt in or opt out of features.
+     * Supported keys:
+     * * `*`: all features, if it's present, all other feature state settings are
+     *        ignored.
+     * * `agent-gallery`
+     * * `no-code-agent-builder`
+     * * `prompt-gallery`
+     * * `model-selector`
+     * * `notebook-lm`
+     * * `people-search`
+     * * `people-search-org-chart`
+     * * `bi-directional-audio`
+     * * `speech-to-text`
+     * * `feedback`
+     * * `session-sharing`
+     * * `personalization-memory`
+     * * `personalization-suggested-highlights`
+     * * `mobile-app-access`
+     * * `disable-agent-sharing`
+     * * `disable-image-generation`
+     * * `disable-video-generation`
+     * * `disable-onedrive-upload`
+     * * `disable-talk-to-content`
+     * * `disable-google-drive-upload`
+     * * `disable-welcome-emails`
+     * * `disable-canvas`
+     * * `canvas-workspace`
+     * * `canvas-app-builder`
+     * * `skills`
+     * * `skill-sharing`
+     * * `skill-sharing-without-admin-approval`
+     * * `disable-projects`
+     * * `sobi`
+     * * `enable-end-user-sharing-with-groups`
+     * * `single-agent-orchestration`
+     * * `multi-agent-orchestration`
+     * * `cross-product-intelligence`
+     * * `workflow-agents`
+     * * `in-app-notifications`
+     * * `code-extraction`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.Engine.FeatureState> features = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setFeatures($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\DiscoveryEngine\V1\Engine\FeatureState::class);
+        $this->features = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. CMEK-related information for the Engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.CmekConfig cmek_config = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\CmekConfig|null
+     */
+    public function getCmekConfig()
+    {
+        return $this->cmek_config;
+    }
+
+    public function hasCmekConfig()
+    {
+        return isset($this->cmek_config);
+    }
+
+    public function clearCmekConfig()
+    {
+        unset($this->cmek_config);
+    }
+
+    /**
+     * Output only. CMEK-related information for the Engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.CmekConfig cmek_config = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\CmekConfig $var
+     * @return $this
+     */
+    public function setCmekConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\CmekConfig::class);
+        $this->cmek_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for configurable billing approach.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Engine.ConfigurableBillingApproach configurable_billing_approach = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getConfigurableBillingApproach()
+    {
+        return $this->configurable_billing_approach;
+    }
+
+    /**
+     * Optional. Configuration for configurable billing approach.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Engine.ConfigurableBillingApproach configurable_billing_approach = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setConfigurableBillingApproach($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DiscoveryEngine\V1\Engine\ConfigurableBillingApproach::class);
+        $this->configurable_billing_approach = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Maps a model name to its specific configuration for this engine.
+     * This allows admin users to turn on/off individual models. This only stores
+     * models whose states are overridden by the admin.
+     * When the state is unspecified, or model_configs is empty for this
+     * model, the system will decide if this model should be available or not
+     * based on the default configuration. For example, a preview model
+     * should be disabled by default if the admin has not chosen to enable it.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.Engine.ModelState> model_configs = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getModelConfigs()
+    {
+        return $this->model_configs;
+    }
+
+    /**
+     * Optional. Maps a model name to its specific configuration for this engine.
+     * This allows admin users to turn on/off individual models. This only stores
+     * models whose states are overridden by the admin.
+     * When the state is unspecified, or model_configs is empty for this
+     * model, the system will decide if this model should be available or not
+     * based on the default configuration. For example, a preview model
+     * should be disabled by default if the admin has not chosen to enable it.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.Engine.ModelState> model_configs = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setModelConfigs($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\DiscoveryEngine\V1\Engine\ModelState::class);
+        $this->model_configs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Observability config for the engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.ObservabilityConfig observability_config = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\ObservabilityConfig|null
+     */
+    public function getObservabilityConfig()
+    {
+        return $this->observability_config;
+    }
+
+    public function hasObservabilityConfig()
+    {
+        return isset($this->observability_config);
+    }
+
+    public function clearObservabilityConfig()
+    {
+        unset($this->observability_config);
+    }
+
+    /**
+     * Optional. Observability config for the engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.ObservabilityConfig observability_config = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\ObservabilityConfig $var
+     * @return $this
+     */
+    public function setObservabilityConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\ObservabilityConfig::class);
+        $this->observability_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Maps a connector ID (e.g., "hybrid-github", "shopify") to
+     * tenant-specific information required for that connector. The structure of
+     * the tenant information string is connector-dependent.
+     *
+     * Generated from protobuf field <code>map<string, string> connector_tenant_info = 42 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getConnectorTenantInfo()
+    {
+        return $this->connector_tenant_info;
+    }
+
+    /**
+     * Optional. Maps a connector ID (e.g., "hybrid-github", "shopify") to
+     * tenant-specific information required for that connector. The structure of
+     * the tenant information string is connector-dependent.
+     *
+     * Generated from protobuf field <code>map<string, string> connector_tenant_info = 42 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setConnectorTenantInfo($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->connector_tenant_info = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The agent gateway setting for the engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AgentGatewaySetting agent_gateway_setting = 43 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\AgentGatewaySetting|null
+     */
+    public function getAgentGatewaySetting()
+    {
+        return $this->agent_gateway_setting;
+    }
+
+    public function hasAgentGatewaySetting()
+    {
+        return isset($this->agent_gateway_setting);
+    }
+
+    public function clearAgentGatewaySetting()
+    {
+        unset($this->agent_gateway_setting);
+    }
+
+    /**
+     * Optional. The agent gateway setting for the engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AgentGatewaySetting agent_gateway_setting = 43 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\AgentGatewaySetting $var
+     * @return $this
+     */
+    public function setAgentGatewaySetting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\AgentGatewaySetting::class);
+        $this->agent_gateway_setting = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The visibility of marketplace agents in the agent gallery.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Engine.MarketplaceAgentVisibility marketplace_agent_visibility = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMarketplaceAgentVisibility()
+    {
+        return $this->marketplace_agent_visibility;
+    }
+
+    /**
+     * Optional. The visibility of marketplace agents in the agent gallery.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Engine.MarketplaceAgentVisibility marketplace_agent_visibility = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMarketplaceAgentVisibility($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DiscoveryEngine\V1\Engine\MarketplaceAgentVisibility::class);
+        $this->marketplace_agent_visibility = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The emails of the procurement contacts.
+     *
+     * Generated from protobuf field <code>repeated string procurement_contact_emails = 45 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getProcurementContactEmails()
+    {
+        return $this->procurement_contact_emails;
+    }
+
+    /**
+     * Optional. The emails of the procurement contacts.
+     *
+     * Generated from protobuf field <code>repeated string procurement_contact_emails = 45 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setProcurementContactEmails($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->procurement_contact_emails = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The Agent registry containing the agents, MCP servers and
+     * tools associated with this engine. Derived server-side from the linked
+     * Agent Gateway's registry.
+     *
+     * Generated from protobuf field <code>string associated_agent_registry = 50 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getAssociatedAgentRegistry()
+    {
+        return $this->associated_agent_registry;
+    }
+
+    /**
+     * Output only. The Agent registry containing the agents, MCP servers and
+     * tools associated with this engine. Derived server-side from the linked
+     * Agent Gateway's registry.
+     *
+     * Generated from protobuf field <code>string associated_agent_registry = 50 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAssociatedAgentRegistry($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->associated_agent_registry = $var;
 
         return $this;
     }

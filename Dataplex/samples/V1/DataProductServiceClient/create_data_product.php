@@ -48,7 +48,7 @@ function create_data_product_sample(
     $dataProductServiceClient = new DataProductServiceClient();
 
     // Prepare the request message.
-    $dataProductOwnerEmails = [$dataProductOwnerEmailsElement,];
+    $dataProductOwnerEmails = [$dataProductOwnerEmailsElement];
     $dataProduct = (new DataProduct())
         ->setDisplayName($dataProductDisplayName)
         ->setOwnerEmails($dataProductOwnerEmails);

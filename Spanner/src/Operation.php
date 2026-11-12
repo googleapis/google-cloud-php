@@ -178,6 +178,9 @@ class Operation
             ]);
             if ($precommitToken = $response->getPrecommitToken()) {
                 $commitRequest->setPrecommitToken($precommitToken);
+                // Mutations from the initial CommitRequest have already been buffered
+                // by the server; clear them so the retry does not apply them a second time.
+                $commitRequest->setMutations([]);
             }
         } while ($precommitToken && $retryAttempt++ < $maxRetries);
 
@@ -409,6 +412,8 @@ class Operation
 
         // Iterate through the result to ensure we have query statistics available.
         iterator_to_array($res->rows());
+
+        $transaction->updateFromResult($res->transaction());
 
         $stats = $res->stats();
         if (!$stats) {

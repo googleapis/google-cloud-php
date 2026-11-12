@@ -46,7 +46,7 @@ function batch_deactivate_custom_targeting_keys_sample(
     $customTargetingKeyServiceClient = new CustomTargetingKeyServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
+    $formattedNames = [$formattedNamesElement];
     $request = (new BatchDeactivateCustomTargetingKeysRequest())
         ->setParent($formattedParent)
         ->setNames($formattedNames);

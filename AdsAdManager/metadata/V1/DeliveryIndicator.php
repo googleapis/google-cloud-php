@@ -16,7 +16,7 @@ class DeliveryIndicator
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xD4\x03\x0A0google/ads/admanager/v1/delivery_indicator.proto\x12\x17google.ads.admanager.v1\"\xB1\x01\x0A\x11DeliveryIndicator\x12.\x0A\x1Cexpected_delivery_percentage\x18\x01 \x01(\x01B\x03\xE0A\x03H\x00\x88\x01\x01\x12,\x0A\x1Aactual_delivery_percentage\x18\x02 \x01(\x01B\x03\xE0A\x03H\x01\x88\x01\x01B\x1F\x0A\x1D_expected_delivery_percentageB\x1D\x0A\x1B_actual_delivery_percentageB\xCA\x01\x0A\x1Bcom.google.ads.admanager.v1B\x16DeliveryIndicatorProtoP\x01Z@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager\xAA\x02\x17Google.Ads.AdManager.V1\xCA\x02\x17Google\\Ads\\AdManager\\V1\xEA\x02\x1AGoogle::Ads::AdManager::V1b\x06proto3"
+            "\x0A\xD6\x03\x0A0google/ads/admanager/v1/delivery_indicator.proto\x12\x17google.ads.admanager.v1\"\xB3\x01\x0A\x11DeliveryIndicator\x12/\x0A\x1Cexpected_delivery_percentage\x18\x01 \x01(\x01B\x04\xE2A\x01\x03H\x00\x88\x01\x01\x12-\x0A\x1Aactual_delivery_percentage\x18\x02 \x01(\x01B\x04\xE2A\x01\x03H\x01\x88\x01\x01B\x1F\x0A\x1D_expected_delivery_percentageB\x1D\x0A\x1B_actual_delivery_percentageB\xCA\x01\x0A\x1Bcom.google.ads.admanager.v1B\x16DeliveryIndicatorProtoP\x01Z@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager\xAA\x02\x17Google.Ads.AdManager.V1\xCA\x02\x17Google\\Ads\\AdManager\\V1\xEA\x02\x1AGoogle::Ads::AdManager::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

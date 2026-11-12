@@ -79,7 +79,9 @@ class StopInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\In
             ->setProject($project)
             ->setRegion($region)
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setRegionInstanceGroupManagersStopInstancesRequestResource($regionInstanceGroupManagersStopInstancesRequestResource);
+            ->setRegionInstanceGroupManagersStopInstancesRequestResource(
+                $regionInstanceGroupManagersStopInstancesRequestResource
+            );
     }
 
     /**

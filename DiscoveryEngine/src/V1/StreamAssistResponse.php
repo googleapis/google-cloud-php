@@ -28,16 +28,20 @@ class StreamAssistResponse extends \Google\Protobuf\Internal\Message
      * see if more parts are to be expected. While the state is `IN_PROGRESS`, the
      * [AssistAnswer.replies][google.cloud.discoveryengine.v1.AssistAnswer.replies]
      * field in each response will contain replies (reply fragments) to be
-     * appended to the ones received in previous responses. [AssistAnswer.name][]
+     * appended to the ones received in previous responses.
+     * [AssistAnswer.name][google.cloud.discoveryengine.v1.AssistAnswer.name]
      * won't be filled.
      * If the state is `SUCCEEDED`, `FAILED` or `SKIPPED`, the response
-     * is the last response and [AssistAnswer.name][] will have a value.
+     * is the last response and
+     * [AssistAnswer.name][google.cloud.discoveryengine.v1.AssistAnswer.name] will
+     * have a value.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AssistAnswer answer = 1;</code>
      */
     protected $answer = null;
     /**
-     * Session information.
+     * Session information. Only included in the final StreamAssistResponse of the
+     * response stream.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.StreamAssistResponse.SessionInfo session_info = 2;</code>
      */
@@ -49,6 +53,26 @@ class StreamAssistResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string assist_token = 4;</code>
      */
     protected $assist_token = '';
+    /**
+     * The tool names of the tools that were invoked.
+     *
+     * Generated from protobuf field <code>repeated string invocation_tools = 8;</code>
+     */
+    private $invocation_tools;
+    /**
+     * The skills executed during the turn.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.StreamAssistResponse.InvokedSkill invoked_skills = 10;</code>
+     */
+    private $invoked_skills;
+    /**
+     * Per-connector authentication errors encountered during the request.
+     * Present when one or more connectors failed authentication but the
+     * request proceeded with the remaining connectors.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.StreamAssistResponse.ConnectorAuthError connector_auth_errors = 11;</code>
+     */
+    private $connector_auth_errors;
 
     /**
      * Constructor.
@@ -67,15 +91,27 @@ class StreamAssistResponse extends \Google\Protobuf\Internal\Message
      *           see if more parts are to be expected. While the state is `IN_PROGRESS`, the
      *           [AssistAnswer.replies][google.cloud.discoveryengine.v1.AssistAnswer.replies]
      *           field in each response will contain replies (reply fragments) to be
-     *           appended to the ones received in previous responses. [AssistAnswer.name][]
+     *           appended to the ones received in previous responses.
+     *           [AssistAnswer.name][google.cloud.discoveryengine.v1.AssistAnswer.name]
      *           won't be filled.
      *           If the state is `SUCCEEDED`, `FAILED` or `SKIPPED`, the response
-     *           is the last response and [AssistAnswer.name][] will have a value.
+     *           is the last response and
+     *           [AssistAnswer.name][google.cloud.discoveryengine.v1.AssistAnswer.name] will
+     *           have a value.
      *     @type \Google\Cloud\DiscoveryEngine\V1\StreamAssistResponse\SessionInfo $session_info
-     *           Session information.
+     *           Session information. Only included in the final StreamAssistResponse of the
+     *           response stream.
      *     @type string $assist_token
      *           A global unique ID that identifies the current pair of request and stream
      *           of responses. Used for feedback and support.
+     *     @type string[] $invocation_tools
+     *           The tool names of the tools that were invoked.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\StreamAssistResponse\InvokedSkill[] $invoked_skills
+     *           The skills executed during the turn.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\StreamAssistResponse\ConnectorAuthError[] $connector_auth_errors
+     *           Per-connector authentication errors encountered during the request.
+     *           Present when one or more connectors failed authentication but the
+     *           request proceeded with the remaining connectors.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,10 +130,13 @@ class StreamAssistResponse extends \Google\Protobuf\Internal\Message
      * see if more parts are to be expected. While the state is `IN_PROGRESS`, the
      * [AssistAnswer.replies][google.cloud.discoveryengine.v1.AssistAnswer.replies]
      * field in each response will contain replies (reply fragments) to be
-     * appended to the ones received in previous responses. [AssistAnswer.name][]
+     * appended to the ones received in previous responses.
+     * [AssistAnswer.name][google.cloud.discoveryengine.v1.AssistAnswer.name]
      * won't be filled.
      * If the state is `SUCCEEDED`, `FAILED` or `SKIPPED`, the response
-     * is the last response and [AssistAnswer.name][] will have a value.
+     * is the last response and
+     * [AssistAnswer.name][google.cloud.discoveryengine.v1.AssistAnswer.name] will
+     * have a value.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AssistAnswer answer = 1;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1\AssistAnswer|null
@@ -128,10 +167,13 @@ class StreamAssistResponse extends \Google\Protobuf\Internal\Message
      * see if more parts are to be expected. While the state is `IN_PROGRESS`, the
      * [AssistAnswer.replies][google.cloud.discoveryengine.v1.AssistAnswer.replies]
      * field in each response will contain replies (reply fragments) to be
-     * appended to the ones received in previous responses. [AssistAnswer.name][]
+     * appended to the ones received in previous responses.
+     * [AssistAnswer.name][google.cloud.discoveryengine.v1.AssistAnswer.name]
      * won't be filled.
      * If the state is `SUCCEEDED`, `FAILED` or `SKIPPED`, the response
-     * is the last response and [AssistAnswer.name][] will have a value.
+     * is the last response and
+     * [AssistAnswer.name][google.cloud.discoveryengine.v1.AssistAnswer.name] will
+     * have a value.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AssistAnswer answer = 1;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1\AssistAnswer $var
@@ -146,7 +188,8 @@ class StreamAssistResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Session information.
+     * Session information. Only included in the final StreamAssistResponse of the
+     * response stream.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.StreamAssistResponse.SessionInfo session_info = 2;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1\StreamAssistResponse\SessionInfo|null
@@ -167,7 +210,8 @@ class StreamAssistResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Session information.
+     * Session information. Only included in the final StreamAssistResponse of the
+     * response stream.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.StreamAssistResponse.SessionInfo session_info = 2;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1\StreamAssistResponse\SessionInfo $var
@@ -205,6 +249,88 @@ class StreamAssistResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->assist_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * The tool names of the tools that were invoked.
+     *
+     * Generated from protobuf field <code>repeated string invocation_tools = 8;</code>
+     * @return RepeatedField<string>
+     */
+    public function getInvocationTools()
+    {
+        return $this->invocation_tools;
+    }
+
+    /**
+     * The tool names of the tools that were invoked.
+     *
+     * Generated from protobuf field <code>repeated string invocation_tools = 8;</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setInvocationTools($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->invocation_tools = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The skills executed during the turn.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.StreamAssistResponse.InvokedSkill invoked_skills = 10;</code>
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\StreamAssistResponse\InvokedSkill>
+     */
+    public function getInvokedSkills()
+    {
+        return $this->invoked_skills;
+    }
+
+    /**
+     * The skills executed during the turn.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.StreamAssistResponse.InvokedSkill invoked_skills = 10;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\StreamAssistResponse\InvokedSkill[] $var
+     * @return $this
+     */
+    public function setInvokedSkills($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\StreamAssistResponse\InvokedSkill::class);
+        $this->invoked_skills = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Per-connector authentication errors encountered during the request.
+     * Present when one or more connectors failed authentication but the
+     * request proceeded with the remaining connectors.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.StreamAssistResponse.ConnectorAuthError connector_auth_errors = 11;</code>
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\StreamAssistResponse\ConnectorAuthError>
+     */
+    public function getConnectorAuthErrors()
+    {
+        return $this->connector_auth_errors;
+    }
+
+    /**
+     * Per-connector authentication errors encountered during the request.
+     * Present when one or more connectors failed authentication but the
+     * request proceeded with the remaining connectors.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.StreamAssistResponse.ConnectorAuthError connector_auth_errors = 11;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\StreamAssistResponse\ConnectorAuthError[] $var
+     * @return $this
+     */
+    public function setConnectorAuthErrors($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\StreamAssistResponse\ConnectorAuthError::class);
+        $this->connector_auth_errors = $arr;
 
         return $this;
     }

@@ -38,6 +38,28 @@ class UrlStatTest extends StreamWrapperTestCase
         mkdir(self::$dirUrl);
     }
 
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+        stream_context_set_default([
+            'gs' => ['stat_permission_check' => true]
+        ]);
+        clearstatcache();
+    }
+
+    public function testUrlStatBypassesPermissionCheck()
+    {
+        stream_context_set_default([
+            'gs' => ['stat_permission_check' => false]
+        ]);
+
+        $stat = stat(self::$fileUrl);
+        $this->assertEquals(33206, $stat['mode']);
+
+        $statDir = stat(self::$dirUrl);
+        $this->assertEquals(16895, $statDir['mode']);
+    }
+
     public function testUrlStatFile()
     {
         $stat = stat(self::$fileUrl);

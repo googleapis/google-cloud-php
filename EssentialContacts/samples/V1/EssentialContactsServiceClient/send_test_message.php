@@ -55,7 +55,7 @@ function send_test_message_sample(
     $essentialContactsServiceClient = new EssentialContactsServiceClient();
 
     // Prepare the request message.
-    $formattedContacts = [$formattedContactsElement,];
+    $formattedContacts = [$formattedContactsElement];
     $request = (new SendTestMessageRequest())
         ->setContacts($formattedContacts)
         ->setResource($formattedResource)

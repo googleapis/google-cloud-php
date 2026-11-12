@@ -24,9 +24,34 @@
 
 namespace Google\Ads\AdManager\V1\Client;
 
+use Google\Ads\AdManager\V1\BatchActivateLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchActivateLineItemsResponse;
+use Google\Ads\AdManager\V1\BatchArchiveLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchArchiveLineItemsResponse;
+use Google\Ads\AdManager\V1\BatchCreateLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchCreateLineItemsResponse;
+use Google\Ads\AdManager\V1\BatchDeleteLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchPauseLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchPauseLineItemsResponse;
+use Google\Ads\AdManager\V1\BatchReleaseLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchReleaseLineItemsResponse;
+use Google\Ads\AdManager\V1\BatchReserveAndOverbookLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchReserveAndOverbookLineItemsResponse;
+use Google\Ads\AdManager\V1\BatchReserveLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchReserveLineItemsResponse;
+use Google\Ads\AdManager\V1\BatchResumeAndOverbookLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchResumeAndOverbookLineItemsResponse;
+use Google\Ads\AdManager\V1\BatchResumeLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchResumeLineItemsResponse;
+use Google\Ads\AdManager\V1\BatchUnarchiveLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchUnarchiveLineItemsResponse;
+use Google\Ads\AdManager\V1\BatchUpdateLineItemsRequest;
+use Google\Ads\AdManager\V1\BatchUpdateLineItemsResponse;
+use Google\Ads\AdManager\V1\CreateLineItemRequest;
 use Google\Ads\AdManager\V1\GetLineItemRequest;
 use Google\Ads\AdManager\V1\LineItem;
 use Google\Ads\AdManager\V1\ListLineItemsRequest;
+use Google\Ads\AdManager\V1\UpdateLineItemRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -51,8 +76,22 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<BatchActivateLineItemsResponse> batchActivateLineItemsAsync(BatchActivateLineItemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchArchiveLineItemsResponse> batchArchiveLineItemsAsync(BatchArchiveLineItemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateLineItemsResponse> batchCreateLineItemsAsync(BatchCreateLineItemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> batchDeleteLineItemsAsync(BatchDeleteLineItemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchPauseLineItemsResponse> batchPauseLineItemsAsync(BatchPauseLineItemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchReleaseLineItemsResponse> batchReleaseLineItemsAsync(BatchReleaseLineItemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchReserveAndOverbookLineItemsResponse> batchReserveAndOverbookLineItemsAsync(BatchReserveAndOverbookLineItemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchReserveLineItemsResponse> batchReserveLineItemsAsync(BatchReserveLineItemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchResumeAndOverbookLineItemsResponse> batchResumeAndOverbookLineItemsAsync(BatchResumeAndOverbookLineItemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchResumeLineItemsResponse> batchResumeLineItemsAsync(BatchResumeLineItemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUnarchiveLineItemsResponse> batchUnarchiveLineItemsAsync(BatchUnarchiveLineItemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateLineItemsResponse> batchUpdateLineItemsAsync(BatchUpdateLineItemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LineItem> createLineItemAsync(CreateLineItemRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<LineItem> getLineItemAsync(GetLineItemRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLineItemsAsync(ListLineItemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LineItem> updateLineItemAsync(UpdateLineItemRequest $request, array $optionalArgs = [])
  */
 final class LineItemServiceClient
 {
@@ -120,6 +159,312 @@ final class LineItemServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a ad_unit
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $adUnit
+     *
+     * @return string The formatted ad_unit resource.
+     */
+    public static function adUnitName(string $networkCode, string $adUnit): string
+    {
+        return self::getPathTemplate('adUnit')->render([
+            'network_code' => $networkCode,
+            'ad_unit' => $adUnit,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a application
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $application
+     *
+     * @return string The formatted application resource.
+     */
+    public static function applicationName(string $networkCode, string $application): string
+    {
+        return self::getPathTemplate('application')->render([
+            'network_code' => $networkCode,
+            'application' => $application,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * audience_segment resource.
+     *
+     * @param string $networkCode
+     * @param string $audienceSegment
+     *
+     * @return string The formatted audience_segment resource.
+     */
+    public static function audienceSegmentName(string $networkCode, string $audienceSegment): string
+    {
+        return self::getPathTemplate('audienceSegment')->render([
+            'network_code' => $networkCode,
+            'audience_segment' => $audienceSegment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * bandwidth_group resource.
+     *
+     * @param string $networkCode
+     * @param string $bandwidthGroup
+     *
+     * @return string The formatted bandwidth_group resource.
+     */
+    public static function bandwidthGroupName(string $networkCode, string $bandwidthGroup): string
+    {
+        return self::getPathTemplate('bandwidthGroup')->render([
+            'network_code' => $networkCode,
+            'bandwidth_group' => $bandwidthGroup,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a browser
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $browser
+     *
+     * @return string The formatted browser resource.
+     */
+    public static function browserName(string $networkCode, string $browser): string
+    {
+        return self::getPathTemplate('browser')->render([
+            'network_code' => $networkCode,
+            'browser' => $browser,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * browser_language resource.
+     *
+     * @param string $networkCode
+     * @param string $browserLanguage
+     *
+     * @return string The formatted browser_language resource.
+     */
+    public static function browserLanguageName(string $networkCode, string $browserLanguage): string
+    {
+        return self::getPathTemplate('browserLanguage')->render([
+            'network_code' => $networkCode,
+            'browser_language' => $browserLanguage,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * cms_metadata_value resource.
+     *
+     * @param string $networkCode
+     * @param string $cmsMetadataValue
+     *
+     * @return string The formatted cms_metadata_value resource.
+     */
+    public static function cmsMetadataValueName(string $networkCode, string $cmsMetadataValue): string
+    {
+        return self::getPathTemplate('cmsMetadataValue')->render([
+            'network_code' => $networkCode,
+            'cms_metadata_value' => $cmsMetadataValue,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a company
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $company
+     *
+     * @return string The formatted company resource.
+     */
+    public static function companyName(string $networkCode, string $company): string
+    {
+        return self::getPathTemplate('company')->render([
+            'network_code' => $networkCode,
+            'company' => $company,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a content
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $content
+     *
+     * @return string The formatted content resource.
+     */
+    public static function contentName(string $networkCode, string $content): string
+    {
+        return self::getPathTemplate('content')->render([
+            'network_code' => $networkCode,
+            'content' => $content,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * content_bundle resource.
+     *
+     * @param string $networkCode
+     * @param string $contentBundle
+     *
+     * @return string The formatted content_bundle resource.
+     */
+    public static function contentBundleName(string $networkCode, string $contentBundle): string
+    {
+        return self::getPathTemplate('contentBundle')->render([
+            'network_code' => $networkCode,
+            'content_bundle' => $contentBundle,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a custom_field
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $customField
+     *
+     * @return string The formatted custom_field resource.
+     */
+    public static function customFieldName(string $networkCode, string $customField): string
+    {
+        return self::getPathTemplate('customField')->render([
+            'network_code' => $networkCode,
+            'custom_field' => $customField,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * custom_targeting_key resource.
+     *
+     * @param string $networkCode
+     * @param string $customTargetingKey
+     *
+     * @return string The formatted custom_targeting_key resource.
+     */
+    public static function customTargetingKeyName(string $networkCode, string $customTargetingKey): string
+    {
+        return self::getPathTemplate('customTargetingKey')->render([
+            'network_code' => $networkCode,
+            'custom_targeting_key' => $customTargetingKey,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * custom_targeting_value resource.
+     *
+     * @param string $networkCode
+     * @param string $customTargetingValue
+     *
+     * @return string The formatted custom_targeting_value resource.
+     */
+    public static function customTargetingValueName(string $networkCode, string $customTargetingValue): string
+    {
+        return self::getPathTemplate('customTargetingValue')->render([
+            'network_code' => $networkCode,
+            'custom_targeting_value' => $customTargetingValue,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * device_capability resource.
+     *
+     * @param string $networkCode
+     * @param string $deviceCapability
+     *
+     * @return string The formatted device_capability resource.
+     */
+    public static function deviceCapabilityName(string $networkCode, string $deviceCapability): string
+    {
+        return self::getPathTemplate('deviceCapability')->render([
+            'network_code' => $networkCode,
+            'device_capability' => $deviceCapability,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * device_category resource.
+     *
+     * @param string $networkCode
+     * @param string $deviceCategory
+     *
+     * @return string The formatted device_category resource.
+     */
+    public static function deviceCategoryName(string $networkCode, string $deviceCategory): string
+    {
+        return self::getPathTemplate('deviceCategory')->render([
+            'network_code' => $networkCode,
+            'device_category' => $deviceCategory,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * device_manufacturer resource.
+     *
+     * @param string $networkCode
+     * @param string $deviceManufacturer
+     *
+     * @return string The formatted device_manufacturer resource.
+     */
+    public static function deviceManufacturerName(string $networkCode, string $deviceManufacturer): string
+    {
+        return self::getPathTemplate('deviceManufacturer')->render([
+            'network_code' => $networkCode,
+            'device_manufacturer' => $deviceManufacturer,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a geo_target
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $geoTarget
+     *
+     * @return string The formatted geo_target resource.
+     */
+    public static function geoTargetName(string $networkCode, string $geoTarget): string
+    {
+        return self::getPathTemplate('geoTarget')->render([
+            'network_code' => $networkCode,
+            'geo_target' => $geoTarget,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a label
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $label
+     *
+     * @return string The formatted label resource.
+     */
+    public static function labelName(string $networkCode, string $label): string
+    {
+        return self::getPathTemplate('label')->render([
+            'network_code' => $networkCode,
+            'label' => $label,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a line_item
      * resource.
      *
@@ -133,6 +478,57 @@ final class LineItemServiceClient
         return self::getPathTemplate('lineItem')->render([
             'network_code' => $networkCode,
             'line_item' => $lineItem,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * mobile_carrier resource.
+     *
+     * @param string $networkCode
+     * @param string $mobileCarrier
+     *
+     * @return string The formatted mobile_carrier resource.
+     */
+    public static function mobileCarrierName(string $networkCode, string $mobileCarrier): string
+    {
+        return self::getPathTemplate('mobileCarrier')->render([
+            'network_code' => $networkCode,
+            'mobile_carrier' => $mobileCarrier,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * mobile_device resource.
+     *
+     * @param string $networkCode
+     * @param string $mobileDevice
+     *
+     * @return string The formatted mobile_device resource.
+     */
+    public static function mobileDeviceName(string $networkCode, string $mobileDevice): string
+    {
+        return self::getPathTemplate('mobileDevice')->render([
+            'network_code' => $networkCode,
+            'mobile_device' => $mobileDevice,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * mobile_device_submodel resource.
+     *
+     * @param string $networkCode
+     * @param string $mobileDeviceSubmodel
+     *
+     * @return string The formatted mobile_device_submodel resource.
+     */
+    public static function mobileDeviceSubmodelName(string $networkCode, string $mobileDeviceSubmodel): string
+    {
+        return self::getPathTemplate('mobileDeviceSubmodel')->render([
+            'network_code' => $networkCode,
+            'mobile_device_submodel' => $mobileDeviceSubmodel,
         ]);
     }
 
@@ -152,11 +548,104 @@ final class LineItemServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * operating_system resource.
+     *
+     * @param string $networkCode
+     * @param string $operatingSystem
+     *
+     * @return string The formatted operating_system resource.
+     */
+    public static function operatingSystemName(string $networkCode, string $operatingSystem): string
+    {
+        return self::getPathTemplate('operatingSystem')->render([
+            'network_code' => $networkCode,
+            'operating_system' => $operatingSystem,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * operating_system_version resource.
+     *
+     * @param string $networkCode
+     * @param string $operatingSystemVersion
+     *
+     * @return string The formatted operating_system_version resource.
+     */
+    public static function operatingSystemVersionName(string $networkCode, string $operatingSystemVersion): string
+    {
+        return self::getPathTemplate('operatingSystemVersion')->render([
+            'network_code' => $networkCode,
+            'operating_system_version' => $operatingSystemVersion,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a order
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $order
+     *
+     * @return string The formatted order resource.
+     */
+    public static function orderName(string $networkCode, string $order): string
+    {
+        return self::getPathTemplate('order')->render([
+            'network_code' => $networkCode,
+            'order' => $order,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a placement
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $placement
+     *
+     * @return string The formatted placement resource.
+     */
+    public static function placementName(string $networkCode, string $placement): string
+    {
+        return self::getPathTemplate('placement')->render([
+            'network_code' => $networkCode,
+            'placement' => $placement,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - adUnit: networks/{network_code}/adUnits/{ad_unit}
+     * - application: networks/{network_code}/applications/{application}
+     * - audienceSegment: networks/{network_code}/audienceSegments/{audience_segment}
+     * - bandwidthGroup: networks/{network_code}/bandwidthGroups/{bandwidth_group}
+     * - browser: networks/{network_code}/browsers/{browser}
+     * - browserLanguage: networks/{network_code}/browserLanguages/{browser_language}
+     * - cmsMetadataValue: networks/{network_code}/cmsMetadataValues/{cms_metadata_value}
+     * - company: networks/{network_code}/companies/{company}
+     * - content: networks/{network_code}/content/{content}
+     * - contentBundle: networks/{network_code}/contentBundles/{content_bundle}
+     * - customField: networks/{network_code}/customFields/{custom_field}
+     * - customTargetingKey: networks/{network_code}/customTargetingKeys/{custom_targeting_key}
+     * - customTargetingValue: networks/{network_code}/customTargetingValues/{custom_targeting_value}
+     * - deviceCapability: networks/{network_code}/deviceCapabilities/{device_capability}
+     * - deviceCategory: networks/{network_code}/deviceCategories/{device_category}
+     * - deviceManufacturer: networks/{network_code}/deviceManufacturers/{device_manufacturer}
+     * - geoTarget: networks/{network_code}/geoTargets/{geo_target}
+     * - label: networks/{network_code}/labels/{label}
      * - lineItem: networks/{network_code}/lineItems/{line_item}
+     * - mobileCarrier: networks/{network_code}/mobileCarriers/{mobile_carrier}
+     * - mobileDevice: networks/{network_code}/mobileDevices/{mobile_device}
+     * - mobileDeviceSubmodel: networks/{network_code}/mobileDeviceSubmodels/{mobile_device_submodel}
      * - network: networks/{network_code}
+     * - operatingSystem: networks/{network_code}/operatingSystems/{operating_system}
+     * - operatingSystemVersion: networks/{network_code}/operatingSystemVersions/{operating_system_version}
+     * - order: networks/{network_code}/orders/{order}
+     * - placement: networks/{network_code}/placements/{placement}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -259,6 +748,371 @@ final class LineItemServiceClient
     }
 
     /**
+     * Batch activates `LineItem` objects.
+     *
+     * The async variant is {@see LineItemServiceClient::batchActivateLineItemsAsync()}
+     * .
+     *
+     * @example samples/V1/LineItemServiceClient/batch_activate_line_items.php
+     *
+     * @param BatchActivateLineItemsRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchActivateLineItemsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchActivateLineItems(
+        BatchActivateLineItemsRequest $request,
+        array $callOptions = []
+    ): BatchActivateLineItemsResponse {
+        return $this->startApiCall('BatchActivateLineItems', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Batch archives `LineItem` objects.
+     *
+     * The async variant is {@see LineItemServiceClient::batchArchiveLineItemsAsync()}
+     * .
+     *
+     * @example samples/V1/LineItemServiceClient/batch_archive_line_items.php
+     *
+     * @param BatchArchiveLineItemsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchArchiveLineItemsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchArchiveLineItems(
+        BatchArchiveLineItemsRequest $request,
+        array $callOptions = []
+    ): BatchArchiveLineItemsResponse {
+        return $this->startApiCall('BatchArchiveLineItems', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates `LineItem` objects.
+     *
+     * The async variant is {@see LineItemServiceClient::batchCreateLineItemsAsync()} .
+     *
+     * @example samples/V1/LineItemServiceClient/batch_create_line_items.php
+     *
+     * @param BatchCreateLineItemsRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchCreateLineItemsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchCreateLineItems(
+        BatchCreateLineItemsRequest $request,
+        array $callOptions = []
+    ): BatchCreateLineItemsResponse {
+        return $this->startApiCall('BatchCreateLineItems', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Batch deletes `LineItem` objects.
+     *
+     * The async variant is {@see LineItemServiceClient::batchDeleteLineItemsAsync()} .
+     *
+     * @example samples/V1/LineItemServiceClient/batch_delete_line_items.php
+     *
+     * @param BatchDeleteLineItemsRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchDeleteLineItems(BatchDeleteLineItemsRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('BatchDeleteLineItems', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Batch pauses `LineItem` objects.
+     *
+     * The async variant is {@see LineItemServiceClient::batchPauseLineItemsAsync()} .
+     *
+     * @example samples/V1/LineItemServiceClient/batch_pause_line_items.php
+     *
+     * @param BatchPauseLineItemsRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchPauseLineItemsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchPauseLineItems(
+        BatchPauseLineItemsRequest $request,
+        array $callOptions = []
+    ): BatchPauseLineItemsResponse {
+        return $this->startApiCall('BatchPauseLineItems', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Batch releases `LineItem` objects.
+     *
+     * The async variant is {@see LineItemServiceClient::batchReleaseLineItemsAsync()}
+     * .
+     *
+     * @example samples/V1/LineItemServiceClient/batch_release_line_items.php
+     *
+     * @param BatchReleaseLineItemsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchReleaseLineItemsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchReleaseLineItems(
+        BatchReleaseLineItemsRequest $request,
+        array $callOptions = []
+    ): BatchReleaseLineItemsResponse {
+        return $this->startApiCall('BatchReleaseLineItems', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Batch reserves and overbooks `LineItem` objects.
+     *
+     * The async variant is
+     * {@see LineItemServiceClient::batchReserveAndOverbookLineItemsAsync()} .
+     *
+     * @example samples/V1/LineItemServiceClient/batch_reserve_and_overbook_line_items.php
+     *
+     * @param BatchReserveAndOverbookLineItemsRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchReserveAndOverbookLineItemsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchReserveAndOverbookLineItems(
+        BatchReserveAndOverbookLineItemsRequest $request,
+        array $callOptions = []
+    ): BatchReserveAndOverbookLineItemsResponse {
+        return $this->startApiCall('BatchReserveAndOverbookLineItems', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Batch reserves `LineItem` objects.
+     *
+     * The async variant is {@see LineItemServiceClient::batchReserveLineItemsAsync()}
+     * .
+     *
+     * @example samples/V1/LineItemServiceClient/batch_reserve_line_items.php
+     *
+     * @param BatchReserveLineItemsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchReserveLineItemsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchReserveLineItems(
+        BatchReserveLineItemsRequest $request,
+        array $callOptions = []
+    ): BatchReserveLineItemsResponse {
+        return $this->startApiCall('BatchReserveLineItems', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Batch resumes and overbooks `LineItem` objects.
+     *
+     * The async variant is
+     * {@see LineItemServiceClient::batchResumeAndOverbookLineItemsAsync()} .
+     *
+     * @example samples/V1/LineItemServiceClient/batch_resume_and_overbook_line_items.php
+     *
+     * @param BatchResumeAndOverbookLineItemsRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchResumeAndOverbookLineItemsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchResumeAndOverbookLineItems(
+        BatchResumeAndOverbookLineItemsRequest $request,
+        array $callOptions = []
+    ): BatchResumeAndOverbookLineItemsResponse {
+        return $this->startApiCall('BatchResumeAndOverbookLineItems', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Batch resumes `LineItem` objects.
+     *
+     * The async variant is {@see LineItemServiceClient::batchResumeLineItemsAsync()} .
+     *
+     * @example samples/V1/LineItemServiceClient/batch_resume_line_items.php
+     *
+     * @param BatchResumeLineItemsRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchResumeLineItemsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchResumeLineItems(
+        BatchResumeLineItemsRequest $request,
+        array $callOptions = []
+    ): BatchResumeLineItemsResponse {
+        return $this->startApiCall('BatchResumeLineItems', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Batch unarchives `LineItem` objects.
+     *
+     * The async variant is
+     * {@see LineItemServiceClient::batchUnarchiveLineItemsAsync()} .
+     *
+     * @example samples/V1/LineItemServiceClient/batch_unarchive_line_items.php
+     *
+     * @param BatchUnarchiveLineItemsRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchUnarchiveLineItemsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchUnarchiveLineItems(
+        BatchUnarchiveLineItemsRequest $request,
+        array $callOptions = []
+    ): BatchUnarchiveLineItemsResponse {
+        return $this->startApiCall('BatchUnarchiveLineItems', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Batch updates `LineItem` objects.
+     *
+     * The async variant is {@see LineItemServiceClient::batchUpdateLineItemsAsync()} .
+     *
+     * @example samples/V1/LineItemServiceClient/batch_update_line_items.php
+     *
+     * @param BatchUpdateLineItemsRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchUpdateLineItemsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchUpdateLineItems(
+        BatchUpdateLineItemsRequest $request,
+        array $callOptions = []
+    ): BatchUpdateLineItemsResponse {
+        return $this->startApiCall('BatchUpdateLineItems', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a `LineItem` object.
+     *
+     * The async variant is {@see LineItemServiceClient::createLineItemAsync()} .
+     *
+     * @example samples/V1/LineItemServiceClient/create_line_item.php
+     *
+     * @param CreateLineItemRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return LineItem
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createLineItem(CreateLineItemRequest $request, array $callOptions = []): LineItem
+    {
+        return $this->startApiCall('CreateLineItem', $request, $callOptions)->wait();
+    }
+
+    /**
      * Retrieves a `LineItem` object.
      *
      * The async variant is {@see LineItemServiceClient::getLineItemAsync()} .
@@ -308,5 +1162,31 @@ final class LineItemServiceClient
     public function listLineItems(ListLineItemsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListLineItems', $request, $callOptions);
+    }
+
+    /**
+     * Updates a `LineItem` object.
+     *
+     * The async variant is {@see LineItemServiceClient::updateLineItemAsync()} .
+     *
+     * @example samples/V1/LineItemServiceClient/update_line_item.php
+     *
+     * @param UpdateLineItemRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return LineItem
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateLineItem(UpdateLineItemRequest $request, array $callOptions = []): LineItem
+    {
+        return $this->startApiCall('UpdateLineItem', $request, $callOptions)->wait();
     }
 }

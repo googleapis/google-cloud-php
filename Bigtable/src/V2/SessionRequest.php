@@ -26,6 +26,8 @@ class SessionRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Bigtable\V2\OpenSessionRequest $open_session
      *     @type \Google\Cloud\Bigtable\V2\CloseSessionRequest $close_session
      *     @type \Google\Cloud\Bigtable\V2\VirtualRpcRequest $virtual_rpc
+     *     @type \Google\Cloud\Bigtable\V2\ContinueVirtualRpcRequest $continue_virtual_rpc
+     *     @type \Google\Cloud\Bigtable\V2\CancelVirtualRpcRequest $cancel_virtual_rpc
      * }
      */
     public function __construct($data = NULL) {
@@ -110,6 +112,60 @@ class SessionRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\VirtualRpcRequest::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.bigtable.v2.ContinueVirtualRpcRequest continue_virtual_rpc = 4;</code>
+     * @return \Google\Cloud\Bigtable\V2\ContinueVirtualRpcRequest|null
+     */
+    public function getContinueVirtualRpc()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasContinueVirtualRpc()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.bigtable.v2.ContinueVirtualRpcRequest continue_virtual_rpc = 4;</code>
+     * @param \Google\Cloud\Bigtable\V2\ContinueVirtualRpcRequest $var
+     * @return $this
+     */
+    public function setContinueVirtualRpc($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\ContinueVirtualRpcRequest::class);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.bigtable.v2.CancelVirtualRpcRequest cancel_virtual_rpc = 5;</code>
+     * @return \Google\Cloud\Bigtable\V2\CancelVirtualRpcRequest|null
+     */
+    public function getCancelVirtualRpc()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasCancelVirtualRpc()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.bigtable.v2.CancelVirtualRpcRequest cancel_virtual_rpc = 5;</code>
+     * @param \Google\Cloud\Bigtable\V2\CancelVirtualRpcRequest $var
+     * @return $this
+     */
+    public function setCancelVirtualRpc($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\CancelVirtualRpcRequest::class);
+        $this->writeOneof(5, $var);
 
         return $this;
     }

@@ -51,7 +51,7 @@ function update_host_group_sample(
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $hostGroupHosts = [$hostGroupHostsElement,];
+    $hostGroupHosts = [$hostGroupHostsElement];
     $hostGroup = (new HostGroup())
         ->setType($hostGroupType)
         ->setHosts($hostGroupHosts)

@@ -32,6 +32,7 @@
 
 namespace Google\ApiCore\Tests\Unit\Options;
 
+use BadMethodCallException;
 use Google\ApiCore\Options\ClientOptions;
 use PHPUnit\Framework\TestCase;
 
@@ -79,6 +80,15 @@ class ClientOptionsTest extends TestCase
             protected ?string $developerToken = null;
             protected ?string $loginCustomerId = null;
 
+            public function fromArray(array $arr): static
+            {
+                parent::fromArray($arr);
+                $this->setDeveloperToken($arr['developer-token'] ?? $this->developerToken);
+                $this->setLoginCustomerId($arr['login-customer-id'] ?? $this->loginCustomerId);
+
+                return $this;
+            }
+
             public function setDeveloperToken(?string $developerToken): static
             {
                 $this->developerToken = $developerToken;
@@ -112,11 +122,26 @@ class ClientOptionsTest extends TestCase
         $this->assertEquals('cust-456', $arr['loginCustomerId']);
     }
 
-    public function testArrayAccessSet()
+    public function testArrayAccessSetThrowsException()
     {
-        $options = new ClientOptions();
-        $options['apiEndpoint'] ??= 'localhost:8086';
+        $this->expectException(BadMethodCallException::class);
 
-        $this->assertEquals('localhost:8086', $options['apiEndpoint']);
+        $options = new ClientOptions();
+        $options['apiEndpoint'] = 'localhost:8086';
+    }
+
+    public function testCloneDeepCopiesTransportConfig()
+    {
+        $options = new ClientOptions([
+            'transportConfig' => [
+                'grpc' => ['stubOpts' => ['foo' => 'bar']],
+            ],
+        ]);
+
+        $cloned = clone $options;
+        $cloned['transportConfig']['grpc']->setStubOpts(['foo' => 'baz']);
+
+        $this->assertEquals(['foo' => 'bar'], $options['transportConfig']['grpc']['stubOpts']);
+        $this->assertEquals(['foo' => 'baz'], $cloned['transportConfig']['grpc']['stubOpts']);
     }
 }

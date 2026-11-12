@@ -57,7 +57,7 @@ class InvocationConfig extends \Google\Protobuf\Internal\Message
     protected $service_account = '';
     /**
      * Optional. Configuration for end user authentication.
-     * Note that this should not be set when `service_account` is used.
+     * Do not set if `service_account` is used.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.InvocationConfig.EndUserAuthenticationConfig end_user_auth_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -70,6 +70,18 @@ class InvocationConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.dataform.v1beta1.InvocationConfig.QueryPriority query_priority = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $query_priority = null;
+    /**
+     * Optional. Maximum number of actions that can be executed concurrently.
+     *
+     * Generated from protobuf field <code>optional int32 concurrent_actions_limit = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $concurrent_actions_limit = null;
+    /**
+     * Optional. Specifies the execution mode for the workflow invocation.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.InvocationConfig.ExecutionMode execution_mode = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $execution_mode = 0;
 
     /**
      * Constructor.
@@ -93,11 +105,15 @@ class InvocationConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The service account to run workflow invocations under.
      *     @type \Google\Cloud\Dataform\V1beta1\InvocationConfig\EndUserAuthenticationConfig $end_user_auth_config
      *           Optional. Configuration for end user authentication.
-     *           Note that this should not be set when `service_account` is used.
+     *           Do not set if `service_account` is used.
      *     @type int $query_priority
      *           Optional. Specifies the priority for query execution in BigQuery.
      *           More information can be found at
      *           https://cloud.google.com/bigquery/docs/running-queries#queries.
+     *     @type int $concurrent_actions_limit
+     *           Optional. Maximum number of actions that can be executed concurrently.
+     *     @type int $execution_mode
+     *           Optional. Specifies the execution mode for the workflow invocation.
      * }
      */
     public function __construct($data = NULL) {
@@ -267,7 +283,7 @@ class InvocationConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Configuration for end user authentication.
-     * Note that this should not be set when `service_account` is used.
+     * Do not set if `service_account` is used.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.InvocationConfig.EndUserAuthenticationConfig end_user_auth_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataform\V1beta1\InvocationConfig\EndUserAuthenticationConfig|null
@@ -289,7 +305,7 @@ class InvocationConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Configuration for end user authentication.
-     * Note that this should not be set when `service_account` is used.
+     * Do not set if `service_account` is used.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.InvocationConfig.EndUserAuthenticationConfig end_user_auth_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataform\V1beta1\InvocationConfig\EndUserAuthenticationConfig $var
@@ -339,6 +355,68 @@ class InvocationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Dataform\V1beta1\InvocationConfig\QueryPriority::class);
         $this->query_priority = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Maximum number of actions that can be executed concurrently.
+     *
+     * Generated from protobuf field <code>optional int32 concurrent_actions_limit = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getConcurrentActionsLimit()
+    {
+        return isset($this->concurrent_actions_limit) ? $this->concurrent_actions_limit : 0;
+    }
+
+    public function hasConcurrentActionsLimit()
+    {
+        return isset($this->concurrent_actions_limit);
+    }
+
+    public function clearConcurrentActionsLimit()
+    {
+        unset($this->concurrent_actions_limit);
+    }
+
+    /**
+     * Optional. Maximum number of actions that can be executed concurrently.
+     *
+     * Generated from protobuf field <code>optional int32 concurrent_actions_limit = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setConcurrentActionsLimit($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->concurrent_actions_limit = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the execution mode for the workflow invocation.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.InvocationConfig.ExecutionMode execution_mode = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getExecutionMode()
+    {
+        return $this->execution_mode;
+    }
+
+    /**
+     * Optional. Specifies the execution mode for the workflow invocation.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.InvocationConfig.ExecutionMode execution_mode = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setExecutionMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataform\V1beta1\InvocationConfig\ExecutionMode::class);
+        $this->execution_mode = $var;
 
         return $this;
     }

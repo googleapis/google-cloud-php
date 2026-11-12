@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * MySQL database profile.
+ * Profile for connecting to a MySQL source.
  *
  * Generated from protobuf message <code>google.cloud.datastream.v1.MysqlProfile</code>
  */

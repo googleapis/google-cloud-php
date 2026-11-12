@@ -60,7 +60,7 @@ function approve_single_tenant_hsm_instance_proposal_sample(
     $challengeReply = (new ChallengeReply())
         ->setSignedChallenge($quorumReplyChallengeRepliesSignedChallenge)
         ->setPublicKeyPem($quorumReplyChallengeRepliesPublicKeyPem);
-    $quorumReplyChallengeReplies = [$challengeReply,];
+    $quorumReplyChallengeReplies = [$challengeReply];
     $quorumReply = (new QuorumReply())
         ->setChallengeReplies($quorumReplyChallengeReplies);
     $request = (new ApproveSingleTenantHsmInstanceProposalRequest())

@@ -56,14 +56,14 @@ function batch_create_labels_sample(
     $labelServiceClient = new LabelServiceClient();
 
     // Prepare the request message.
-    $requestsLabelTypes = [$requestsLabelTypesElement,];
+    $requestsLabelTypes = [$requestsLabelTypesElement];
     $requestsLabel = (new Label())
         ->setDisplayName($requestsLabelDisplayName)
         ->setTypes($requestsLabelTypes);
     $createLabelRequest = (new CreateLabelRequest())
         ->setParent($formattedRequestsParent)
         ->setLabel($requestsLabel);
-    $requests = [$createLabelRequest,];
+    $requests = [$createLabelRequest];
     $request = (new BatchCreateLabelsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

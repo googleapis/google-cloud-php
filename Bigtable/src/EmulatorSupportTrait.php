@@ -23,6 +23,8 @@ use Google\Cloud\Core\EmulatorTrait;
 /**
  * Common method to configure emulator support based on configuration options
  * and `BIGTABLE_EMULATOR_HOST` environment variable.
+ *
+ * @deprecated This trait is no longer used and will be removed in a future major release.
  */
 trait EmulatorSupportTrait
 {
@@ -34,6 +36,7 @@ trait EmulatorSupportTrait
      *
      * Supersedes {@see Google\ApiCore\GapicClientTrait::modifyClientOptions()} method.
      *
+     * @deprecated This method is no longer used and will be removed in a future major release.
      * @param array $options
      */
     protected function modifyClientOptions(array &$options)

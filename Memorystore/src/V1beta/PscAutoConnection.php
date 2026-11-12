@@ -74,6 +74,13 @@ class PscAutoConnection extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.memorystore.v1beta.ConnectionType connection_type = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $connection_type = 0;
+    /**
+     * Optional. Immutable. The IP version used for the PSC auto-created
+     * endpoint. If not specified, defaults to IPV4.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1beta.IpVersion ip_version = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $ip_version = 0;
     protected $ports;
 
     /**
@@ -111,6 +118,9 @@ class PscAutoConnection extends \Google\Protobuf\Internal\Message
      *           status.
      *     @type int $connection_type
      *           Output only. Type of the PSC connection.
+     *     @type int $ip_version
+     *           Optional. Immutable. The IP version used for the PSC auto-created
+     *           endpoint. If not specified, defaults to IPV4.
      * }
      */
     public function __construct($data = NULL) {
@@ -375,6 +385,34 @@ class PscAutoConnection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Memorystore\V1beta\ConnectionType::class);
         $this->connection_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. The IP version used for the PSC auto-created
+     * endpoint. If not specified, defaults to IPV4.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1beta.IpVersion ip_version = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return int
+     */
+    public function getIpVersion()
+    {
+        return $this->ip_version;
+    }
+
+    /**
+     * Optional. Immutable. The IP version used for the PSC auto-created
+     * endpoint. If not specified, defaults to IPV4.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1beta.IpVersion ip_version = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setIpVersion($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Memorystore\V1beta\IpVersion::class);
+        $this->ip_version = $var;
 
         return $this;
     }

@@ -51,22 +51,19 @@ use Google\Rpc\Status;
  * `<parent>/operations/<operation_id>` and can be used to track
  * progress of the computation. The
  * [metadata][google.longrunning.Operation.metadata] field type is
- * [OptimizeToursLongRunningMetadata][google.maps.routeoptimization.v1.OptimizeToursUriMetadata].
+ * [OptimizeToursUriMetadata][google.maps.routeoptimization.v1.OptimizeToursUriMetadata].
  * The [response][google.longrunning.Operation.response] field type is
  * [OptimizeToursUriResponse][google.maps.routeoptimization.v1.OptimizeToursUriResponse],
  * if successful.
  *
- * Experimental: See
- * https://developers.google.com/maps/tt/route-optimization/experimental/otlr/make-request
- * for more details.
- *
  * @param string $parent Target project or location to make a call.
  *
  *                       Format:
- *                       * `projects/{project-id}`
- *                       * `projects/{project-id}/locations/{location-id}`
  *
- *                       If no location is specified, a region will be chosen automatically.
+ *                       * `projects/{project-id}`
+ *                       * `projects/{project-id}/locations/-`
+ *
+ *                       Regional `{location-id}` values are not supported.
  */
 function optimize_tours_uri_sample(string $parent): void
 {

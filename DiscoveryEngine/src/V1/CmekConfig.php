@@ -31,10 +31,11 @@ class CmekConfig extends \Google\Protobuf\Internal\Message
      */
     protected $kms_key = '';
     /**
-     * KMS key version resource name which will be used to encrypt resources
+     * Output only. KMS key version resource name which will be used to encrypt
+     * resources
      * `<kms_key>/cryptoKeyVersions/{keyVersion}`.
      *
-     * Generated from protobuf field <code>string kms_key_version = 6 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string kms_key_version = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     protected $kms_key_version = '';
     /**
@@ -82,7 +83,8 @@ class CmekConfig extends \Google\Protobuf\Internal\Message
      *           KMS key resource name which will be used to encrypt resources
      *           `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.
      *     @type string $kms_key_version
-     *           KMS key version resource name which will be used to encrypt resources
+     *           Output only. KMS key version resource name which will be used to encrypt
+     *           resources
      *           `<kms_key>/cryptoKeyVersions/{keyVersion}`.
      *     @type int $state
      *           Output only. The states of the CmekConfig.
@@ -160,10 +162,11 @@ class CmekConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KMS key version resource name which will be used to encrypt resources
+     * Output only. KMS key version resource name which will be used to encrypt
+     * resources
      * `<kms_key>/cryptoKeyVersions/{keyVersion}`.
      *
-     * Generated from protobuf field <code>string kms_key_version = 6 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string kms_key_version = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getKmsKeyVersion()
@@ -172,10 +175,11 @@ class CmekConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * KMS key version resource name which will be used to encrypt resources
+     * Output only. KMS key version resource name which will be used to encrypt
+     * resources
      * `<kms_key>/cryptoKeyVersions/{keyVersion}`.
      *
-     * Generated from protobuf field <code>string kms_key_version = 6 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string kms_key_version = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

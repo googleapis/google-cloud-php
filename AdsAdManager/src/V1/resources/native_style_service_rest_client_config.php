@@ -83,6 +83,18 @@ return [
                     ],
                 ],
             ],
+            'CreateNativeStyle' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/nativeStyles',
+                'body' => 'native_style',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetNativeStyle' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/nativeStyles/*}',
@@ -101,6 +113,19 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateNativeStyle' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{native_style.name=networks/*/nativeStyles/*}',
+                'body' => 'native_style',
+                'placeholders' => [
+                    'native_style.name' => [
+                        'getters' => [
+                            'getNativeStyle',
+                            'getName',
                         ],
                     ],
                 ],

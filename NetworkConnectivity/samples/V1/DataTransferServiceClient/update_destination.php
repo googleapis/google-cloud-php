@@ -51,7 +51,7 @@ function update_destination_sample(
     $destinationEndpoint = (new DestinationEndpoint())
         ->setAsn($destinationEndpointsAsn)
         ->setCsp($destinationEndpointsCsp);
-    $destinationEndpoints = [$destinationEndpoint,];
+    $destinationEndpoints = [$destinationEndpoint];
     $destination = (new Destination())
         ->setIpPrefix($destinationIpPrefix)
         ->setEndpoints($destinationEndpoints);

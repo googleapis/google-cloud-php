@@ -16,7 +16,7 @@ use Google\Protobuf\RepeatedField;
 class MongodbField extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Field name.
+     * The field name.
      *
      * Generated from protobuf field <code>string field = 1;</code>
      */
@@ -29,7 +29,7 @@ class MongodbField extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $field
-     *           Field name.
+     *           The field name.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class MongodbField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Field name.
+     * The field name.
      *
      * Generated from protobuf field <code>string field = 1;</code>
      * @return string
@@ -49,7 +49,7 @@ class MongodbField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Field name.
+     * The field name.
      *
      * Generated from protobuf field <code>string field = 1;</code>
      * @param string $var

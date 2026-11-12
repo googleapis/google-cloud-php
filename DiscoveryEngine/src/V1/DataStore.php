@@ -170,6 +170,12 @@ class DataStore extends \Google\Protobuf\Internal\Message
      */
     protected $healthcare_fhir_config = null;
     /**
+     * Optional. Stores serving config at DataStore level.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DataStore.ServingConfigDataStore serving_config_data_store = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $serving_config_data_store = null;
+    /**
      * Immutable. The fully qualified resource name of the associated
      * [IdentityMappingStore][google.cloud.discoveryengine.v1.IdentityMappingStore].
      * This field can only be set for acl_enabled DataStores with `THIRD_PARTY` or
@@ -179,6 +185,37 @@ class DataStore extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string identity_mapping_store = 31 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     protected $identity_mapping_store = '';
+    /**
+     * Optional. If set, this DataStore is an Infobot FAQ DataStore.
+     *
+     * Generated from protobuf field <code>bool is_infobot_faq_data_store = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $is_infobot_faq_data_store = false;
+    /**
+     * Optional. If set, this DataStore is a federated search DataStore.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig federated_search_config = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $federated_search_config = null;
+    /**
+     * Optional. Configuration for configurable billing approach. See
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DataStore.ConfigurableBillingApproach configurable_billing_approach = 45 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $configurable_billing_approach = 0;
+    /**
+     * Output only. The timestamp when configurable_billing_approach was last
+     * updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp configurable_billing_approach_update_time = 46 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $configurable_billing_approach_update_time = null;
+    /**
+     * Optional. Specifies the data protection policy for the data store.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DataProtectionPolicy data_protection_policy = 48 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $data_protection_policy = null;
 
     /**
      * Constructor.
@@ -272,12 +309,25 @@ class DataStore extends \Google\Protobuf\Internal\Message
      *           doc](https://cloud.google.com/generative-ai-app-builder/docs/provide-schema).
      *     @type \Google\Cloud\DiscoveryEngine\V1\HealthcareFhirConfig $healthcare_fhir_config
      *           Optional. Configuration for `HEALTHCARE_FHIR` vertical.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\DataStore\ServingConfigDataStore $serving_config_data_store
+     *           Optional. Stores serving config at DataStore level.
      *     @type string $identity_mapping_store
      *           Immutable. The fully qualified resource name of the associated
      *           [IdentityMappingStore][google.cloud.discoveryengine.v1.IdentityMappingStore].
      *           This field can only be set for acl_enabled DataStores with `THIRD_PARTY` or
      *           `GSUITE` IdP. Format:
      *           `projects/{project}/locations/{location}/identityMappingStores/{identity_mapping_store}`.
+     *     @type bool $is_infobot_faq_data_store
+     *           Optional. If set, this DataStore is an Infobot FAQ DataStore.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\DataStore\FederatedSearchConfig $federated_search_config
+     *           Optional. If set, this DataStore is a federated search DataStore.
+     *     @type int $configurable_billing_approach
+     *           Optional. Configuration for configurable billing approach. See
+     *     @type \Google\Protobuf\Timestamp $configurable_billing_approach_update_time
+     *           Output only. The timestamp when configurable_billing_approach was last
+     *           updated.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\DataProtectionPolicy $data_protection_policy
+     *           Optional. Specifies the data protection policy for the data store.
      * }
      */
     public function __construct($data = NULL) {
@@ -922,6 +972,42 @@ class DataStore extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Stores serving config at DataStore level.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DataStore.ServingConfigDataStore serving_config_data_store = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\DataStore\ServingConfigDataStore|null
+     */
+    public function getServingConfigDataStore()
+    {
+        return $this->serving_config_data_store;
+    }
+
+    public function hasServingConfigDataStore()
+    {
+        return isset($this->serving_config_data_store);
+    }
+
+    public function clearServingConfigDataStore()
+    {
+        unset($this->serving_config_data_store);
+    }
+
+    /**
+     * Optional. Stores serving config at DataStore level.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DataStore.ServingConfigDataStore serving_config_data_store = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\DataStore\ServingConfigDataStore $var
+     * @return $this
+     */
+    public function setServingConfigDataStore($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\DataStore\ServingConfigDataStore::class);
+        $this->serving_config_data_store = $var;
+
+        return $this;
+    }
+
+    /**
      * Immutable. The fully qualified resource name of the associated
      * [IdentityMappingStore][google.cloud.discoveryengine.v1.IdentityMappingStore].
      * This field can only be set for acl_enabled DataStores with `THIRD_PARTY` or
@@ -951,6 +1037,168 @@ class DataStore extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->identity_mapping_store = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, this DataStore is an Infobot FAQ DataStore.
+     *
+     * Generated from protobuf field <code>bool is_infobot_faq_data_store = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIsInfobotFaqDataStore()
+    {
+        return $this->is_infobot_faq_data_store;
+    }
+
+    /**
+     * Optional. If set, this DataStore is an Infobot FAQ DataStore.
+     *
+     * Generated from protobuf field <code>bool is_infobot_faq_data_store = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIsInfobotFaqDataStore($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->is_infobot_faq_data_store = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, this DataStore is a federated search DataStore.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig federated_search_config = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\DataStore\FederatedSearchConfig|null
+     */
+    public function getFederatedSearchConfig()
+    {
+        return $this->federated_search_config;
+    }
+
+    public function hasFederatedSearchConfig()
+    {
+        return isset($this->federated_search_config);
+    }
+
+    public function clearFederatedSearchConfig()
+    {
+        unset($this->federated_search_config);
+    }
+
+    /**
+     * Optional. If set, this DataStore is a federated search DataStore.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig federated_search_config = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\DataStore\FederatedSearchConfig $var
+     * @return $this
+     */
+    public function setFederatedSearchConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\DataStore\FederatedSearchConfig::class);
+        $this->federated_search_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for configurable billing approach. See
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DataStore.ConfigurableBillingApproach configurable_billing_approach = 45 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getConfigurableBillingApproach()
+    {
+        return $this->configurable_billing_approach;
+    }
+
+    /**
+     * Optional. Configuration for configurable billing approach. See
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DataStore.ConfigurableBillingApproach configurable_billing_approach = 45 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setConfigurableBillingApproach($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DiscoveryEngine\V1\DataStore\ConfigurableBillingApproach::class);
+        $this->configurable_billing_approach = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp when configurable_billing_approach was last
+     * updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp configurable_billing_approach_update_time = 46 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getConfigurableBillingApproachUpdateTime()
+    {
+        return $this->configurable_billing_approach_update_time;
+    }
+
+    public function hasConfigurableBillingApproachUpdateTime()
+    {
+        return isset($this->configurable_billing_approach_update_time);
+    }
+
+    public function clearConfigurableBillingApproachUpdateTime()
+    {
+        unset($this->configurable_billing_approach_update_time);
+    }
+
+    /**
+     * Output only. The timestamp when configurable_billing_approach was last
+     * updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp configurable_billing_approach_update_time = 46 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setConfigurableBillingApproachUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->configurable_billing_approach_update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the data protection policy for the data store.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DataProtectionPolicy data_protection_policy = 48 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\DataProtectionPolicy|null
+     */
+    public function getDataProtectionPolicy()
+    {
+        return $this->data_protection_policy;
+    }
+
+    public function hasDataProtectionPolicy()
+    {
+        return isset($this->data_protection_policy);
+    }
+
+    public function clearDataProtectionPolicy()
+    {
+        unset($this->data_protection_policy);
+    }
+
+    /**
+     * Optional. Specifies the data protection policy for the data store.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DataProtectionPolicy data_protection_policy = 48 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\DataProtectionPolicy $var
+     * @return $this
+     */
+    public function setDataProtectionPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\DataProtectionPolicy::class);
+        $this->data_protection_policy = $var;
 
         return $this;
     }

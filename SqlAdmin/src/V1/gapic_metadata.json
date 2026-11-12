@@ -299,6 +299,40 @@
                 }
             }
         },
+        "BlueGreenDeploymentsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BlueGreenDeploymentsServiceClient",
+                    "rpcs": {
+                        "CreateBlueGreenDeployment": {
+                            "methods": [
+                                "createBlueGreenDeployment"
+                            ]
+                        },
+                        "DeleteBlueGreenDeployment": {
+                            "methods": [
+                                "deleteBlueGreenDeployment"
+                            ]
+                        },
+                        "GetBlueGreenDeployment": {
+                            "methods": [
+                                "getBlueGreenDeployment"
+                            ]
+                        },
+                        "ListBlueGreenDeployments": {
+                            "methods": [
+                                "listBlueGreenDeployments"
+                            ]
+                        },
+                        "SwitchoverBlueGreenDeployment": {
+                            "methods": [
+                                "switchoverBlueGreenDeployment"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "SqlConnectService": {
             "clients": {
                 "grpc": {
@@ -506,6 +540,40 @@
                         "Update": {
                             "methods": [
                                 "update"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SqlWorkloadCapturesService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SqlWorkloadCapturesServiceClient",
+                    "rpcs": {
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "Start": {
+                            "methods": [
+                                "start"
+                            ]
+                        },
+                        "StartReplay": {
+                            "methods": [
+                                "startReplay"
+                            ]
+                        },
+                        "Stop": {
+                            "methods": [
+                                "stop"
+                            ]
+                        },
+                        "StopReplay": {
+                            "methods": [
+                                "stopReplay"
                             ]
                         }
                     }

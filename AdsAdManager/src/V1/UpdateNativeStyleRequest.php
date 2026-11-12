@@ -30,6 +30,23 @@ class UpdateNativeStyleRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Ads\AdManager\V1\NativeStyle $nativeStyle Required. The `NativeStyle` to update.
+     *
+     *                                                          The `NativeStyle`'s `name` is used to identify the `NativeStyle` to update.
+     * @param \Google\Protobuf\FieldMask           $updateMask  Optional. The list of fields to update.
+     *
+     * @return \Google\Ads\AdManager\V1\UpdateNativeStyleRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Ads\AdManager\V1\NativeStyle $nativeStyle, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setNativeStyle($nativeStyle)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

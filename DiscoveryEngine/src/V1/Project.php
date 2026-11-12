@@ -45,6 +45,18 @@ class Project extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.Project.ServiceTerms> service_terms_map = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $service_terms_map;
+    /**
+     * Optional. Customer provided configurations.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig customer_provided_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $customer_provided_config = null;
+    /**
+     * Output only. The current status of the project's configurable billing.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Project.ConfigurableBillingStatus configurable_billing_status = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $configurable_billing_status = null;
 
     /**
      * Constructor.
@@ -66,6 +78,10 @@ class Project extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $service_terms_map
      *           Output only. A map of terms of services. The key is the `id` of
      *           [ServiceTerms][google.cloud.discoveryengine.v1.Project.ServiceTerms].
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Project\CustomerProvidedConfig $customer_provided_config
+     *           Optional. Customer provided configurations.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Project\ConfigurableBillingStatus $configurable_billing_status
+     *           Output only. The current status of the project's configurable billing.
      * }
      */
     public function __construct($data = NULL) {
@@ -205,6 +221,78 @@ class Project extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\Project\ServiceTerms::class);
         $this->service_terms_map = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Customer provided configurations.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig customer_provided_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\Project\CustomerProvidedConfig|null
+     */
+    public function getCustomerProvidedConfig()
+    {
+        return $this->customer_provided_config;
+    }
+
+    public function hasCustomerProvidedConfig()
+    {
+        return isset($this->customer_provided_config);
+    }
+
+    public function clearCustomerProvidedConfig()
+    {
+        unset($this->customer_provided_config);
+    }
+
+    /**
+     * Optional. Customer provided configurations.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig customer_provided_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\Project\CustomerProvidedConfig $var
+     * @return $this
+     */
+    public function setCustomerProvidedConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Project\CustomerProvidedConfig::class);
+        $this->customer_provided_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The current status of the project's configurable billing.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Project.ConfigurableBillingStatus configurable_billing_status = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\Project\ConfigurableBillingStatus|null
+     */
+    public function getConfigurableBillingStatus()
+    {
+        return $this->configurable_billing_status;
+    }
+
+    public function hasConfigurableBillingStatus()
+    {
+        return isset($this->configurable_billing_status);
+    }
+
+    public function clearConfigurableBillingStatus()
+    {
+        unset($this->configurable_billing_status);
+    }
+
+    /**
+     * Output only. The current status of the project's configurable billing.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Project.ConfigurableBillingStatus configurable_billing_status = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\Project\ConfigurableBillingStatus $var
+     * @return $this
+     */
+    public function setConfigurableBillingStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Project\ConfigurableBillingStatus::class);
+        $this->configurable_billing_status = $var;
 
         return $this;
     }

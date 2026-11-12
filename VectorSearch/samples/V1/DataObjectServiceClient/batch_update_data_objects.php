@@ -48,7 +48,7 @@ function batch_update_data_objects_sample(string $formattedParent): void
     $requestsDataObject = new DataObject();
     $updateDataObjectRequest = (new UpdateDataObjectRequest())
         ->setDataObject($requestsDataObject);
-    $requests = [$updateDataObjectRequest,];
+    $requests = [$updateDataObjectRequest];
     $request = (new BatchUpdateDataObjectsRequest())
         ->setParent($formattedParent)
         ->setRequests($requests);

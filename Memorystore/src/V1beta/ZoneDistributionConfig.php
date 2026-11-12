@@ -23,6 +23,21 @@ class ZoneDistributionConfig extends \Google\Protobuf\Internal\Message
      */
     protected $zone = '';
     /**
+     * Optional. Specify the zones of a multi-zone instance where Memorystore
+     * instance allocates resources. This flag isn't applicable for single-zone
+     * instances.
+     *
+     * Generated from protobuf field <code>repeated string zones = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $zones;
+    /**
+     * Output only. The exact list of zones where the instance currently has
+     * active VMs.
+     *
+     * Generated from protobuf field <code>repeated string active_zones = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $active_zones;
+    /**
      * Optional. Current zone distribution mode. Defaults to MULTI_ZONE.
      *
      * Generated from protobuf field <code>.google.cloud.memorystore.v1beta.ZoneDistributionConfig.ZoneDistributionMode mode = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -38,6 +53,13 @@ class ZoneDistributionConfig extends \Google\Protobuf\Internal\Message
      *     @type string $zone
      *           Optional. Defines zone where all resources will be allocated with
      *           SINGLE_ZONE mode. Ignored for MULTI_ZONE mode.
+     *     @type string[] $zones
+     *           Optional. Specify the zones of a multi-zone instance where Memorystore
+     *           instance allocates resources. This flag isn't applicable for single-zone
+     *           instances.
+     *     @type string[] $active_zones
+     *           Output only. The exact list of zones where the instance currently has
+     *           active VMs.
      *     @type int $mode
      *           Optional. Current zone distribution mode. Defaults to MULTI_ZONE.
      * }
@@ -71,6 +93,64 @@ class ZoneDistributionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specify the zones of a multi-zone instance where Memorystore
+     * instance allocates resources. This flag isn't applicable for single-zone
+     * instances.
+     *
+     * Generated from protobuf field <code>repeated string zones = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getZones()
+    {
+        return $this->zones;
+    }
+
+    /**
+     * Optional. Specify the zones of a multi-zone instance where Memorystore
+     * instance allocates resources. This flag isn't applicable for single-zone
+     * instances.
+     *
+     * Generated from protobuf field <code>repeated string zones = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setZones($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->zones = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The exact list of zones where the instance currently has
+     * active VMs.
+     *
+     * Generated from protobuf field <code>repeated string active_zones = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<string>
+     */
+    public function getActiveZones()
+    {
+        return $this->active_zones;
+    }
+
+    /**
+     * Output only. The exact list of zones where the instance currently has
+     * active VMs.
+     *
+     * Generated from protobuf field <code>repeated string active_zones = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setActiveZones($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->active_zones = $arr;
 
         return $this;
     }

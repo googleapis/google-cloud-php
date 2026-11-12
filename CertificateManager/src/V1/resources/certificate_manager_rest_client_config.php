@@ -327,6 +327,22 @@ return [
                     'update_mask',
                 ],
             ],
+            'UpdateCertificateIssuanceConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{certificate_issuance_config.name=projects/*/locations/*/certificateIssuanceConfigs/*}',
+                'body' => 'certificate_issuance_config',
+                'placeholders' => [
+                    'certificate_issuance_config.name' => [
+                        'getters' => [
+                            'getCertificateIssuanceConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
             'UpdateCertificateMap' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{certificate_map.name=projects/*/locations/*/certificateMaps/*}',

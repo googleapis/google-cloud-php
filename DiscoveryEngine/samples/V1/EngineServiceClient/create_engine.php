@@ -32,7 +32,7 @@ use Google\Cloud\DiscoveryEngine\V1\SolutionType;
 use Google\Rpc\Status;
 
 /**
- * Creates a [Engine][google.cloud.discoveryengine.v1.Engine].
+ * Creates an [Engine][google.cloud.discoveryengine.v1.Engine].
  *
  * @param string $formattedParent    The parent resource name, such as
  *                                   `projects/{project}/locations/{location}/collections/{collection}`. Please see

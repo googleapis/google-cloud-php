@@ -99,8 +99,8 @@ function create_report_sample(
     $appOptimizeClient = new AppOptimizeClient();
 
     // Prepare the request message.
-    $reportDimensions = [$reportDimensionsElement,];
-    $reportMetrics = [$reportMetricsElement,];
+    $reportDimensions = [$reportDimensionsElement];
+    $reportMetrics = [$reportMetricsElement];
     $report = (new Report())
         ->setDimensions($reportDimensions)
         ->setMetrics($reportMetrics);

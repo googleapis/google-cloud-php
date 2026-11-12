@@ -49,7 +49,7 @@ function create_tcp_route_sample(string $formattedParent, string $tcpRouteId): v
     $tcpRouteRulesAction = new RouteAction();
     $routeRule = (new RouteRule())
         ->setAction($tcpRouteRulesAction);
-    $tcpRouteRules = [$routeRule,];
+    $tcpRouteRules = [$routeRule];
     $tcpRoute = (new TcpRoute())
         ->setRules($tcpRouteRules);
     $request = (new CreateTcpRouteRequest())

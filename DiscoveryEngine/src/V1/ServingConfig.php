@@ -201,6 +201,12 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string promote_control_ids = 26;</code>
      */
     private $promote_control_ids;
+    /**
+     * Optional. The specification for answer generation.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AnswerGenerationSpec answer_generation_spec = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $answer_generation_spec = null;
     protected $vertical_config;
 
     /**
@@ -328,6 +334,8 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *     @type string[] $promote_control_ids
      *           Condition promote specifications.
      *           Maximum number of specifications is 100.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AnswerGenerationSpec $answer_generation_spec
+     *           Optional. The specification for answer generation.
      * }
      */
     public function __construct($data = NULL) {
@@ -1017,6 +1025,42 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->promote_control_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The specification for answer generation.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AnswerGenerationSpec answer_generation_spec = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\AnswerGenerationSpec|null
+     */
+    public function getAnswerGenerationSpec()
+    {
+        return $this->answer_generation_spec;
+    }
+
+    public function hasAnswerGenerationSpec()
+    {
+        return isset($this->answer_generation_spec);
+    }
+
+    public function clearAnswerGenerationSpec()
+    {
+        unset($this->answer_generation_spec);
+    }
+
+    /**
+     * Optional. The specification for answer generation.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AnswerGenerationSpec answer_generation_spec = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\AnswerGenerationSpec $var
+     * @return $this
+     */
+    public function setAnswerGenerationSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\AnswerGenerationSpec::class);
+        $this->answer_generation_spec = $var;
 
         return $this;
     }

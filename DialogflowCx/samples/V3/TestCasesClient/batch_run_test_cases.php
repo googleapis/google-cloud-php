@@ -57,7 +57,7 @@ function batch_run_test_cases_sample(
     $testCasesClient = new TestCasesClient();
 
     // Prepare the request message.
-    $formattedTestCases = [$formattedTestCasesElement,];
+    $formattedTestCases = [$formattedTestCasesElement];
     $request = (new BatchRunTestCasesRequest())
         ->setParent($formattedParent)
         ->setTestCases($formattedTestCases);

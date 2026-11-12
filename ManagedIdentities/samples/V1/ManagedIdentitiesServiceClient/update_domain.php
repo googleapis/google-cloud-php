@@ -56,7 +56,7 @@ function update_domain_sample(
 
     // Prepare the request message.
     $updateMask = new FieldMask();
-    $domainLocations = [$domainLocationsElement,];
+    $domainLocations = [$domainLocationsElement];
     $domain = (new Domain())
         ->setName($domainName)
         ->setReservedIpRange($domainReservedIpRange)

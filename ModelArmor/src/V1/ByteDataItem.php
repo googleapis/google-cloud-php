@@ -27,6 +27,13 @@ class ByteDataItem extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes byte_data = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $byte_data = '';
+    /**
+     * Optional. Label of the file. This is used to identify the file in the
+     * response.
+     *
+     * Generated from protobuf field <code>string file_label = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $file_label = '';
 
     /**
      * Constructor.
@@ -38,6 +45,9 @@ class ByteDataItem extends \Google\Protobuf\Internal\Message
      *           Required. The type of byte data
      *     @type string $byte_data
      *           Required. Bytes Data
+     *     @type string $file_label
+     *           Optional. Label of the file. This is used to identify the file in the
+     *           response.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +103,34 @@ class ByteDataItem extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->byte_data = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Label of the file. This is used to identify the file in the
+     * response.
+     *
+     * Generated from protobuf field <code>string file_label = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFileLabel()
+    {
+        return $this->file_label;
+    }
+
+    /**
+     * Optional. Label of the file. This is used to identify the file in the
+     * response.
+     *
+     * Generated from protobuf field <code>string file_label = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFileLabel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->file_label = $var;
 
         return $this;
     }

@@ -50,13 +50,13 @@ function update_tls_route_sample(
     $tlsRouteRulesMatches = [new RouteMatch()];
     $routeDestination = (new RouteDestination())
         ->setServiceName($formattedTlsRouteRulesActionDestinationsServiceName);
-    $tlsRouteRulesActionDestinations = [$routeDestination,];
+    $tlsRouteRulesActionDestinations = [$routeDestination];
     $tlsRouteRulesAction = (new RouteAction())
         ->setDestinations($tlsRouteRulesActionDestinations);
     $routeRule = (new RouteRule())
         ->setMatches($tlsRouteRulesMatches)
         ->setAction($tlsRouteRulesAction);
-    $tlsRouteRules = [$routeRule,];
+    $tlsRouteRules = [$routeRule];
     $tlsRoute = (new TlsRoute())
         ->setRules($tlsRouteRules);
     $request = (new UpdateTlsRouteRequest())

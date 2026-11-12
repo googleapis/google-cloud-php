@@ -195,6 +195,26 @@ return [
                     ],
                 ],
             ],
+            'UpdateBoundary' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AppHub\V1\Boundary',
+                    'metadataReturnType' => '\Google\Cloud\AppHub\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'boundary.name',
+                        'fieldAccessors' => [
+                            'getBoundary',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateService' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\AppHub\V1\Service',
@@ -259,6 +279,18 @@ return [
                     ],
                 ],
             ],
+            'GetBoundary' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AppHub\V1\Boundary',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetDiscoveredService' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AppHub\V1\DiscoveredService',
@@ -274,6 +306,18 @@ return [
             'GetDiscoveredWorkload' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AppHub\V1\DiscoveredWorkload',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetExtendedMetadataSchema' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AppHub\V1\ExtendedMetadataSchema',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -370,6 +414,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\AppHub\V1\ListDiscoveredWorkloadsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListExtendedMetadataSchemas' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getExtendedMetadataSchemas',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\AppHub\V1\ListExtendedMetadataSchemasResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -550,8 +614,10 @@ return [
             ],
             'templateMap' => [
                 'application' => 'projects/{project}/locations/{location}/applications/{application}',
+                'boundary' => 'projects/{project}/locations/{location}/boundary',
                 'discoveredService' => 'projects/{project}/locations/{location}/discoveredServices/{discovered_service}',
                 'discoveredWorkload' => 'projects/{project}/locations/{location}/discoveredWorkloads/{discovered_workload}',
+                'extendedMetadataSchema' => 'projects/{project}/locations/{location}/extendedMetadataSchemas/{extended_metadata_schema}',
                 'location' => 'projects/{project}/locations/{location}',
                 'project' => 'projects/{project}',
                 'service' => 'projects/{project}/locations/{location}/applications/{application}/services/{service}',

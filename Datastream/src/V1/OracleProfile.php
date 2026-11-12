@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Oracle database profile.
+ * Profile for connecting to an Oracle source.
  *
  * Generated from protobuf message <code>google.cloud.datastream.v1.OracleProfile</code>
  */

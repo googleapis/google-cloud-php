@@ -805,8 +805,7 @@ class TransactionTest extends TestCase
                         'precommitToken' => $precommitToken
                     ],
                 ],
-                new ResultSetStats(['row_count_exact' => 1]),
-                'transaction-id'
+                new ResultSetStats(['row_count_exact' => 1])
             ));
         $this->spannerClient->commit(
             Argument::that(function ($commitRequest) use ($precommitToken) {
@@ -825,6 +824,94 @@ class TransactionTest extends TestCase
         );
 
         $transaction->executeUpdate('SELECT *');
+        $transaction->commit();
+    }
+
+    public function testPrecommitTokenIsSentInCommitRequestForExecute()
+    {
+        $precommitToken = (new MultiplexedSessionPrecommitToken())
+            ->setPrecommitToken('abc')
+            ->setSeqNum(1);
+
+        $this->spannerClient->executeStreamingSql(
+            Argument::type(ExecuteSqlRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream(
+                [
+                    [
+                        'name' => 'ID',
+                        'type' => Database::TYPE_INT64,
+                        'value' => '10',
+                        'precommitToken' => $precommitToken
+                    ],
+                ],
+                null,
+                self::TRANSACTION
+            ));
+        $this->spannerClient->commit(
+            Argument::that(function ($commitRequest) use ($precommitToken) {
+                $this->assertEquals($precommitToken, $commitRequest->getPrecommitToken());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->commitResponseWithCommitStats());
+
+        $transaction = new Transaction(
+            $this->operation,
+            $this->session->reveal(),
+            null,
+            ['begin' => ['readWrite' => []]]
+        );
+
+        iterator_to_array($transaction->execute('SELECT 1'));
+        $transaction->insert('Posts', ['foo' => 'bar']);
+        $transaction->commit();
+    }
+
+    public function testPrecommitTokenIsSentInCommitRequestForRead()
+    {
+        $precommitToken = new MultiplexedSessionPrecommitToken();
+
+        $this->spannerClient->streamingRead(
+            Argument::type(ReadRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream(
+                [
+                    [
+                        'name' => 'ID',
+                        'type' => Database::TYPE_INT64,
+                        'value' => '10',
+                        'precommitToken' => $precommitToken
+                    ],
+                ],
+                null,
+                self::TRANSACTION
+            ));
+        $this->spannerClient->commit(
+            Argument::that(function ($commitRequest) use ($precommitToken) {
+                $this->assertEquals($precommitToken, $commitRequest->getPrecommitToken());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->commitResponseWithCommitStats());
+
+        $transaction = new Transaction(
+            $this->operation,
+            $this->session->reveal(),
+            null,
+            ['begin' => ['readWrite' => []]]
+        );
+
+        iterator_to_array($transaction->read('Posts', new KeySet(['all' => true]), ['ID']));
+        $transaction->insert('Posts', ['foo' => 'bar']);
         $transaction->commit();
     }
 

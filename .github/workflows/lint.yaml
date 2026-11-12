@@ -1,7 +1,7 @@
 name: CS Test Suite
 on:
-  push:
-    branches: [ main ]
+  release:
+    types: [published]
   pull_request:
   workflow_dispatch:
 
@@ -10,13 +10,13 @@ permissions:
 jobs:
   style_phpcs:
     runs-on: ubuntu-latest
-    name: PHP Style Check
+    name: "Lint: PHPCS Style Check"
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: Setup PHP
-        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: '8.2'
       - name: Install Dependencies
@@ -25,40 +25,30 @@ jobs:
         run: ~/.composer/vendor/bin/phpcs --standard=phpcs-ruleset.xml -p
 
   style_csfixer:
-    name: PHP CS Fixer
-    uses: GoogleCloudPlatform/php-tools/.github/workflows/code-standards.yml@8d707553d2c90c3b614941950814dcc10c19ce47 # main
-    with:
-      config: GoogleCloudPlatform/php-tools/.php-cs-fixer.default.php@main
-      exclude-patterns: |
-        [
-          "#.*/src/V[0-9]+#",
-          "#.*/src/.*/V[0-9]+#",
-          "#.*/(tests|samples|metadata)#",
-          "vendor",
-          "dev",
-          "docs",
-          "AccessContextManager/src/Type",
-          "Asset/external",
-          "BigQueryDataExchange/src/Common",
-          "CommonProtos",
-          "Core/src/Testing",
-          "GSuiteAddOns/external",
-          "OsLogin/src/Common",
-          "LongRunning/src/ApiCore/LongRunning",
-          "LongRunning/src/LongRunning",
-          "Translate/src/Connection",
-          "Translate/src/TranslateClient.php"
-        ]
+    runs-on: ubuntu-latest
+    name: "Lint: PHP CS Fixer"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Setup PHP
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        with:
+          php-version: '8.2'
+      - name: Install Dependencies
+        run: composer global require "friendsofphp/php-cs-fixer:^3.0"
+      - name: Run PHP CS Fixer
+        run: ~/.composer/vendor/bin/php-cs-fixer fix --dry-run --diff
 
   staticanalysis:
     runs-on: ubuntu-latest
-    name: PHPStan Static Analysis
+    name: "Lint: PHPStan Static Analysis"
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: Install PHP
-        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: '8.2'
       - name: "Install dependencies"
@@ -70,7 +60,7 @@ jobs:
           dev/sh/static-analysis
   tidy-check:
     runs-on: ubuntu-latest
-    name: Verify librarian.yaml is tidy
+    name: "Librarian: Tidy Check"
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -78,7 +68,7 @@ jobs:
           persist-credentials: false
       # Version of librarian is pulled from librarian.yaml,
       # action is pinned to commit SHA to satisfy blanket security policy.
-      - uses: googleapis/librarian@45ada77d3adcdf7f54e94b5ea674a5fa48cb6a75 # v0.46.0
+      - uses: googleapis/librarian@3c8cc1528686a089cace64bec5f29642c328e3b8 # v0.51.0
       - name: Run librarian tidy
         run: librarian tidy
       - name: Check for diff
