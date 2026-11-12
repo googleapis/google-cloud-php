@@ -138,12 +138,76 @@ $eachPromise->promise()->wait();
 printf("Published %d messages\n", $publishedCount);
 ```
 
+### Paginating Concurrently
+
+For a single list query, async pagination is no faster than synchronous `foreach` iteration because
+each page requires the `nextPageToken` returned by the previous page. Async pagination is useful
+when listing across **multiple parents** (such as projects or regions) concurrently, or when
+overlapping page fetches with per-item async RPCs.
+
+Inside a `.then()` callback, iterate `$response->getPage()` (the current page only) rather than
+`$response` directly—iterating `$response` calls `Page::getNextPage()`, which blocks synchronously
+via `wait()`—and chain the next `*Async()` call using `$page->getNextPageToken()`:
+
+```php
+use Google\ApiCore\PagedListResponse;
+use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
+use Google\Cloud\SecretManager\V1\ListSecretsRequest;
+use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Promise\Utils;
+
+function listAllSecretsAsync(
+    SecretManagerServiceClient $client,
+    string $parent,
+    string $pageToken = '',
+    array $secrets = []
+): PromiseInterface {
+    $request = (new ListSecretsRequest())
+        ->setParent($parent)
+        ->setPageToken($pageToken);
+
+    return $client->listSecretsAsync($request)->then(
+        function (PagedListResponse $response) use ($client, $parent, $secrets) {
+            // Iterate getPage() (current page only), NOT $response directly
+            $page = $response->getPage();
+            foreach ($page as $secret) {
+                $secrets[] = $secret;
+            }
+
+            if ($page->hasNextPage()) {
+                return listAllSecretsAsync(
+                    $client,
+                    $parent,
+                    $page->getNextPageToken(),
+                    $secrets
+                );
+            }
+
+            return $secrets;
+        }
+    );
+}
+
+$client = new SecretManagerServiceClient();
+$parents = ['projects/proj-a', 'projects/proj-b'];
+
+$promises = [];
+foreach ($parents as $parent) {
+    $promises[$parent] = listAllSecretsAsync($client, $parent);
+}
+
+$secretsByProject = Utils::unwrap($promises);
+foreach ($secretsByProject as $parent => $secrets) {
+    printf("%s: %d secrets\n", $parent, count($secrets));
+}
+```
+
 ## 2. Supported Call Types
 
 * **Unary (`PromiseInterface<Message>`):** Resolves to the protobuf response message.
 * **Paginated (`PromiseInterface<PagedListResponse>`):** Resolves the first page asynchronously.
-  Iterating past the first page via `foreach` fetches subsequent pages synchronously; to paginate
-  asynchronously, pass `pageToken` explicitly to `*Async()`.
+  See [Paginating Concurrently](#paginating-concurrently) for fetching subsequent pages without
+  blocking.
 * **Long-Running Operation (`PromiseInterface<OperationResponse>`):** Resolves once the server
   *starts* the operation. See [Core Concepts][core-concepts] for polling LROs.
 * **Streaming & Resumable Uploads:** Not supported via `*Async()` (throws `ValidationException`).
@@ -183,137 +247,89 @@ foreach ($objects as $name => $object) {
 
 ## 3. Using PHP Fibers with the REST Transport
 
-PHP `Fiber`s allow you to write normal synchronous client code (such as
-`$client->accessSecretVersion($request)`) that suspends the current fiber while waiting on network
-I/O, letting other fibers run on the same thread without chaining `.then()` callbacks.
+In Fiber-based applications (such as [AMPHP][amp]), you can run standard synchronous client methods
+concurrently over the **`rest`** transport without chaining `.then()` callbacks by routing Guzzle
+requests through [`amphp/http-client-guzzle-adapter`][amp-guzzle-adapter]:
 
-Because PHP `Fiber`s do not include a built-in scheduler, you pair them with Guzzle's
-`CurlMultiHandler` (or an event loop like [`revolt/event-loop`][revolt]) and pass a Fiber-aware
-`httpHandler` and `authHttpHandler` to the **`rest`** transport.
+```sh
+composer require amphp/amp amphp/http-client-guzzle-adapter
+```
 
 > [!IMPORTANT]
 > Fiber suspension only works with `'transport' => 'rest'`. Under `'transport' => 'grpc'`,
 > synchronous client calls block inside the `grpc` C extension (`Grpc\UnaryCall::wait()`), which
-> does not expose pollable sockets to PHP's userland event loop. For concurrent gRPC calls, use the
+> does not expose pollable sockets to PHP's event loop. For concurrent gRPC calls, use the
 > `*Async()` methods shown in Section 1.
 
-[revolt]: https://revolt.run/
+[amp]: https://amphp.org/
+[amp-guzzle-adapter]: https://github.com/amphp/http-client-guzzle-adapter
 
-### Driving Fibers with `CurlMultiHandler`
+### 1. Configure the REST Client
 
-The example below uses native PHP `Fiber`s and Guzzle's `CurlMultiHandler` with zero additional
-dependencies. Configuring both `httpHandler` and `authHttpHandler` ensures that both API requests
-and OAuth2 token refreshes suspend the active fiber rather than blocking the thread.
+Build an HTTP handler around `GuzzleHandlerAdapter` with `HttpHandlerFactory::build()` and pass it
+to both `credentialsConfig` (so OAuth2 token refreshes are non-blocking) and `transportConfig`:
 
 ```php
-use Google\Cloud\SecretManager\V1\AccessSecretVersionRequest;
+use Amp\Http\Client\GuzzleAdapter\GuzzleHandlerAdapter;
+use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
 use GuzzleHttp\Client;
-use GuzzleHttp\Handler\CurlMultiHandler;
 use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Promise\Promise;
-use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Promise\Utils;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
 
-$curlMulti = new CurlMultiHandler(['select_timeout' => 0.01]);
-$httpClient = new Client(['handler' => HandlerStack::create($curlMulti)]);
+// Route Guzzle requests through AMPHP's Fiber-native HTTP client
+$httpClient = new Client([
+    'handler' => HandlerStack::create(new GuzzleHandlerAdapter()),
+]);
+$httpHandler = HttpHandlerFactory::build($httpClient);
 
-// Suspends the current Fiber until Guzzle resolves the HTTP transfer
-$asyncFiberHandler = function (
-    RequestInterface $request,
-    array $options = []
-) use ($httpClient): PromiseInterface {
-    $guzzlePromise = $httpClient->sendAsync($request, $options);
-    $fiber = Fiber::getCurrent();
-    if ($fiber === null) {
-        return $guzzlePromise;
-    }
-
-    return $promise = new Promise(function () use (&$promise, $guzzlePromise, $fiber) {
-        $guzzlePromise->then(
-            static fn () => $fiber->isSuspended() && $fiber->resume(),
-            static fn () => $fiber->isSuspended() && $fiber->resume()
-        );
-        if ($guzzlePromise->getState() === PromiseInterface::PENDING) {
-            Fiber::suspend();
-        }
-        try {
-            $promise->resolve($guzzlePromise->wait());
-        } catch (\Throwable $e) {
-            $promise->reject($e);
-        }
-    });
-};
-
-// Wraps the async handler for synchronous OAuth2 token fetches in google/auth
-$syncFiberHandler = static fn (
-    RequestInterface $request,
-    array $options = []
-): ResponseInterface => $asyncFiberHandler($request, $options)->wait();
-
+// Configure both auth token refreshes and REST calls to use the handler
 $client = new SecretManagerServiceClient([
     'transport' => 'rest',
     'credentialsConfig' => [
-        'authHttpHandler' => $syncFiberHandler,
+        'authHttpHandler' => $httpHandler,
     ],
     'transportConfig' => [
         'rest' => [
-            'httpHandler' => $asyncFiberHandler,
+            'httpHandler' => [$httpHandler, 'async'],
         ],
     ],
 ]);
-
-$secretIds = ['db-password', 'api-key', 'jwt-signing-key'];
-$fibers = [];
-
-foreach ($secretIds as $secretId) {
-    $fiber = new Fiber(function () use ($client, $secretId): string {
-        $request = (new AccessSecretVersionRequest())->setName(
-            SecretManagerServiceClient::secretVersionName('my-project', $secretId, 'latest')
-        );
-
-        // Synchronous method call—suspends this Fiber while HTTP I/O is in flight
-        $response = $client->accessSecretVersion($request);
-        return $response->getPayload()->getData();
-    });
-    $fiber->start();
-    $fibers[$secretId] = $fiber;
-}
-
-// Tick Guzzle's curl_multi loop until all fibers complete
-while (array_filter($fibers, static fn (Fiber $f) => !$f->isTerminated())) {
-    $curlMulti->tick();
-    Utils::queue()->run();
-}
-
-foreach ($fibers as $secretId => $fiber) {
-    printf("%s: %s\n", $secretId, $fiber->getReturn());
-}
 ```
 
-### Integrating with an Event Loop (`revolt/event-loop` / Amp)
+### 2. Run Synchronous Calls Concurrently
 
-In long-running async applications built on [`revolt/event-loop`][revolt] or [`amphp/amp`][amp],
-register a periodic timer on the event loop to tick `CurlMultiHandler` while requests are active
-instead of writing a manual `while` loop:
+With the Fiber-backed handler configured, standard synchronous methods (including `foreach`
+pagination across pages) automatically suspend the current Fiber while waiting on HTTP I/O:
 
 ```php
-use Revolt\EventLoop;
-use GuzzleHttp\Promise\Utils;
+use Amp\Future;
+use Google\Cloud\SecretManager\V1\AccessSecretVersionRequest;
+use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
+use function Amp\async;
 
-// Register a periodic callback to advance cURL transfers on the Revolt loop
-$timerId = EventLoop::repeat(0.01, static function () use ($curlMulti): void {
-    $curlMulti->tick();
-    Utils::queue()->run();
-});
+$secretIds = ['db-password', 'api-key', 'jwt-signing-key'];
+$futures = [];
 
-// Unreference the timer so it does not keep the process alive once work finishes
-EventLoop::unreference($timerId);
+foreach ($secretIds as $secretId) {
+    $futures[$secretId] = async(function () use ($client, $secretId): string {
+        $versionName = SecretManagerServiceClient::secretVersionName(
+            'my-project',
+            $secretId,
+            'latest'
+        );
+        $request = (new AccessSecretVersionRequest())->setName($versionName);
+
+        // Suspends the current Fiber automatically while waiting on HTTP I/O
+        return $client->accessSecretVersion($request)->getPayload()->getData();
+    });
+}
+
+// Wait for all Fibers to finish and collect their return values
+$secrets = Future\await($futures);
+foreach ($secrets as $secretId => $value) {
+    printf("%s: %s\n", $secretId, $value);
+}
 ```
-
-[amp]: https://amphp.org/
 
 > [!NOTE]
 > Built-in client retries sleep via `usleep()` between attempts, which pauses the current thread

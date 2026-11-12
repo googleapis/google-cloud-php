@@ -17,29 +17,41 @@
 
 namespace Google\Cloud\Dev\Tests\Snippet;
 
+use Fiber;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
 use Google\ApiCore\Call;
 use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\Transport\TransportInterface;
+use Google\Auth\Credentials\ServiceAccountCredentials;
+use Google\Auth\HttpHandler\Guzzle7HttpHandler;
+use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\PubSub\V1\Client\PublisherClient;
 use Google\Cloud\PubSub\V1\PublishResponse;
 use Google\Cloud\SecretManager\V1\AccessSecretVersionResponse;
 use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
+use Google\Cloud\SecretManager\V1\ListSecretsRequest;
+use Google\Cloud\SecretManager\V1\ListSecretsResponse;
+use Google\Cloud\SecretManager\V1\Secret;
 use Google\Cloud\SecretManager\V1\SecretPayload;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
 use Google\Rpc\Code;
 use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\Promise;
+use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Promise\Utils;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\RequestInterface;
+use ReflectionClass;
+use ReflectionFunction;
 
 /**
  * @group docs
@@ -179,6 +191,75 @@ EOF,
         $this->assertEquals("Published 5 messages\n", $result->output());
     }
 
+    public function testPaginatingConcurrently()
+    {
+        $snippet = $this->snippetFromMarkdown(
+            self::ASYNC_FILE,
+            'Paginating Concurrently'
+        );
+
+        $transport = $this->prophesize(TransportInterface::class);
+        $transport->startUnaryCall(Argument::type(Call::class), Argument::type('array'))
+            ->shouldBeCalledTimes(3)
+            ->will(function (array $args) {
+                /** @var Call $call */
+                $call = $args[0];
+                /** @var ListSecretsRequest $request */
+                $request = $call->getMessage();
+                $parent = $request->getParent();
+                $token = $request->getPageToken();
+
+                if ($parent === 'projects/proj-a' && $token === '') {
+                    return Create::promiseFor(
+                        (new ListSecretsResponse())
+                            ->setSecrets([
+                                (new Secret())->setName('projects/proj-a/secrets/s1'),
+                                (new Secret())->setName('projects/proj-a/secrets/s2'),
+                            ])
+                            ->setNextPageToken('page-2')
+                    );
+                }
+
+                if ($parent === 'projects/proj-a' && $token === 'page-2') {
+                    return Create::promiseFor(
+                        (new ListSecretsResponse())
+                            ->setSecrets([
+                                (new Secret())->setName('projects/proj-a/secrets/s3'),
+                            ])
+                    );
+                }
+
+                return Create::promiseFor(
+                    (new ListSecretsResponse())
+                        ->setSecrets([
+                            (new Secret())->setName('projects/proj-b/secrets/s1'),
+                        ])
+                );
+            });
+
+        $client = new SecretManagerServiceClient([
+            'credentials' => new InsecureCredentialsWrapper(),
+            'transport' => $transport->reveal(),
+        ]);
+
+        $snippet->replace(
+            '$client = new SecretManagerServiceClient();',
+            'global $testClient; $client = $testClient;'
+        );
+        global $testClient;
+        $testClient = $client;
+
+        $result = $snippet->invoke();
+        $this->assertEquals(
+            <<<'EOF'
+projects/proj-a: 3 secrets
+projects/proj-b: 1 secrets
+
+EOF,
+            $result->output()
+        );
+    }
+
     public function testHandwrittenClientHelpers()
     {
         $snippet = $this->snippetFromMarkdown(
@@ -216,60 +297,132 @@ EOF,
         );
     }
 
-    public function testDrivingFibersWithCurlMultiHandler()
+    public function testConfigureRestClientWithFibers()
     {
         $snippet = $this->snippetFromMarkdown(
             self::ASYNC_FILE,
-            'Driving Fibers with `CurlMultiHandler`'
+            '1. Configure the REST Client'
         );
 
+        $creds = $this->prophesize(ServiceAccountCredentials::class);
+        $snippet->addUse(MockHandler::class);
+        $snippet->replace(
+            'use Amp\Http\Client\GuzzleAdapter\GuzzleHandlerAdapter;',
+            ''
+        );
+        $snippet->replace('new GuzzleHandlerAdapter()', 'new MockHandler()');
+        $snippet->replace(
+            "'transport' => 'rest',",
+            "'transport' => 'rest',\n    'credentials' => \$creds,"
+        );
+        $snippet->addLocal('creds', $creds->reveal());
+
+        $res = $snippet->invoke(['client', 'httpHandler']);
+        [$client, $httpHandler] = $res->returnVal();
+
+        $this->assertInstanceOf(SecretManagerServiceClient::class, $client);
+        $this->assertInstanceOf(Guzzle7HttpHandler::class, $httpHandler);
+
+        $cw = (new ReflectionClass($client))
+            ->getProperty('credentialsWrapper')
+            ->getValue($client);
+        $authHttp = (new ReflectionClass($cw))
+            ->getProperty('authHttpHandler')
+            ->getValue($cw);
+        $this->assertSame($httpHandler, $authHttp);
+
+        $transport = (new ReflectionClass($client))
+            ->getProperty('transport')
+            ->getValue($client);
+        $restHttpClosure = (new ReflectionClass($transport))
+            ->getProperty('httpHandler')
+            ->getValue($transport);
+        $this->assertSame(
+            $httpHandler,
+            (new ReflectionFunction($restHttpClosure))->getClosureThis()
+        );
+    }
+
+    public function testRunSynchronousCallsConcurrentlyInFibers()
+    {
+        if (!function_exists('Amp\async')) {
+            eval(<<<'PHP'
+namespace Amp {
+    function async(callable $fn): \Fiber {
+        $fiber = new \Fiber($fn);
+        $fiber->start();
+        return $fiber;
+    }
+}
+namespace Amp\Future {
+    function await(array $futures): array {
+        global $drainFiberResolvers;
+        ($drainFiberResolvers)();
+        return array_map(static fn (\Fiber $f) => $f->getReturn(), $futures);
+    }
+}
+PHP);
+        }
+
         $pendingResolvers = [];
-        $fakeCurlMulti = new class($pendingResolvers) {
-            private array $resolvers;
-
-            public function __construct(array &$resolvers)
-            {
-                $this->resolvers = &$resolvers;
-            }
-
-            public function tick(): void
-            {
-                while ($resolver = array_shift($this->resolvers)) {
-                    $resolver();
-                }
+        global $drainFiberResolvers;
+        $drainFiberResolvers = static function () use (&$pendingResolvers): void {
+            // All 3 Fibers must have started and suspended before any response resolves
+            while ($resolver = array_shift($pendingResolvers)) {
+                $resolver();
+                Utils::queue()->run();
             }
         };
 
-        $mockHandler = function (RequestInterface $request) use (&$pendingResolvers) {
-            $promise = new Promise();
-            $pendingResolvers[] = static function () use ($promise, $request) {
+        $mockAdapter = static function (
+            RequestInterface $request
+        ) use (&$pendingResolvers): PromiseInterface {
+            $guzzlePromise = new Promise();
+            $fiber = Fiber::getCurrent();
+            $pendingResolvers[] = static function () use ($guzzlePromise, $request): void {
                 $parts = explode('/', trim($request->getUri()->getPath(), '/'));
                 $secretId = $parts[4] ?? 'unknown';
                 $body = json_encode([
                     'name' => "projects/my-project/secrets/$secretId/versions/1",
                     'payload' => ['data' => base64_encode("fiber-$secretId")],
                 ]);
-                $promise->resolve(new Response(200, ['Content-Type' => 'application/json'], $body));
+                $guzzlePromise->resolve(
+                    new Response(200, ['Content-Type' => 'application/json'], $body)
+                );
             };
-            return $promise;
+
+            return $promise = new Promise(
+                static function () use (&$promise, $guzzlePromise, $fiber): void {
+                    $guzzlePromise->then(
+                        static fn () => $fiber && $fiber->isSuspended() && $fiber->resume(),
+                        static fn () => $fiber && $fiber->isSuspended() && $fiber->resume()
+                    );
+                    if ($fiber && $guzzlePromise->getState() === PromiseInterface::PENDING) {
+                        Fiber::suspend();
+                    }
+                    $promise->resolve($guzzlePromise->wait());
+                }
+            );
         };
 
-        $httpClient = new Client(['handler' => HandlerStack::create($mockHandler)]);
+        $httpClient = new Client(['handler' => HandlerStack::create($mockAdapter)]);
+        $httpHandler = HttpHandlerFactory::build($httpClient);
 
-        $snippet->addUse(InsecureCredentialsWrapper::class);
-        $snippet->replace(
-            <<<'PHP'
-$curlMulti = new CurlMultiHandler(['select_timeout' => 0.01]);
-$httpClient = new Client(['handler' => HandlerStack::create($curlMulti)]);
-PHP,
-            ''
+        $client = new SecretManagerServiceClient([
+            'transport' => 'rest',
+            'credentials' => new InsecureCredentialsWrapper(),
+            'transportConfig' => [
+                'rest' => [
+                    'httpHandler' => [$httpHandler, 'async'],
+                ],
+            ],
+        ]);
+
+        $snippet = $this->snippetFromMarkdown(
+            self::ASYNC_FILE,
+            '2. Run Synchronous Calls Concurrently'
         );
-        $snippet->replace(
-            "'transport' => 'rest',",
-            "'transport' => 'rest',\n    'credentials' => new InsecureCredentialsWrapper(),"
-        );
-        $snippet->addLocal('curlMulti', $fakeCurlMulti);
-        $snippet->addLocal('httpClient', $httpClient);
+        $snippet->addLocal('client', $client);
 
         $result = $snippet->invoke();
         $this->assertEquals(
