@@ -232,17 +232,11 @@ class OperationResponseTest extends TestCase
     public function testCustomOperation()
     {
         $operationName = 'test-123';
-        $operation = $this->prophesize(CustomOperation::class);
-        $operation->isThisOperationDoneOrWhat()
-            ->shouldBeCalledTimes(2)
-            ->willReturn('Yes, it is!');
-        $operation->getError()
-            ->shouldBeCalledOnce()
-            ->willReturn(null);
+        $operation = new CustomOperation('Yes, it is!', null);
         $operationClient = $this->prophesize(CustomOperationClient::class);
         $operationClient->getMyOperationPlease(Argument::type(Message::class))
             ->shouldBeCalledOnce()
-            ->willReturn($operation->reveal());
+            ->willReturn($operation);
         $operationClient->cancelMyOperationPlease(Argument::type(Message::class))
             ->shouldBeCalledOnce()
             ->willReturn(true);
@@ -286,7 +280,10 @@ class OperationResponseTest extends TestCase
                 $phpunit->assertEquals('test-123', $request->name);
                 $phpunit->assertEquals('arg2', $request->arg2);
                 $phpunit->assertEquals('arg3', $request->arg3);
-                return new class {
+                return new class extends Message {
+                    public function __construct()
+                    {
+                    }
                     public function getDone()
                     {
                         return true;
@@ -365,22 +362,13 @@ class OperationResponseTest extends TestCase
     public function testCustomOperationError($operationClient)
     {
         $operationName = 'test-123';
-        $operation = $this->prophesize(CustomOperationWithErrorAnnotations::class);
-        $operation->isThisOperationDoneOrWhat()
-            ->shouldBeCalledTimes(2)
-            ->willReturn('Yes, it is!');
-        $operation->getTheErrorCode()
-            ->shouldBeCalledTimes(2)
-            ->willReturn(500);
-        $operation->getTheErrorMessage()
-            ->shouldBeCalledOnce()
-            ->willReturn('It failed, sorry :(');
+        $operation = new CustomOperationWithErrorAnnotations('Yes, it is!', 500, 'It failed, sorry :(');
         $options = [
             'operationStatusMethod' => 'isThisOperationDoneOrWhat',
             'operationStatusDoneValue' => 'Yes, it is!',
             'operationErrorCodeMethod' => 'getTheErrorCode',
             'operationErrorMessageMethod' => 'getTheErrorMessage',
-            'lastProtoResponse' => $operation->reveal(),
+            'lastProtoResponse' => $operation,
         ];
         $operationResponse = new OperationResponse($operationName, $operationClient, $options);
 
@@ -399,18 +387,12 @@ class OperationResponseTest extends TestCase
     public function testEmptyCustomOperationErrorIsSuccessful($operationClient)
     {
         $operationName = 'test-123';
-        $operation = $this->prophesize(CustomOperationWithErrorAnnotations::class);
-        $operation->isThisOperationDoneOrWhat()
-            ->shouldBeCalledOnce()
-            ->willReturn('Yes, it is!');
-        $operation->getTheErrorCode()
-            ->shouldBeCalledOnce()
-            ->willReturn(null);
+        $operation = new CustomOperationWithErrorAnnotations('Yes, it is!', null);
         $options = [
             'operationStatusMethod' => 'isThisOperationDoneOrWhat',
             'operationStatusDoneValue' => 'Yes, it is!',
             'operationErrorCodeMethod' => 'getTheErrorCode',
-            'lastProtoResponse' => $operation->reveal(),
+            'lastProtoResponse' => $operation,
         ];
         $operationResponse = new OperationResponse($operationName, $operationClient, $options);
 
@@ -426,15 +408,12 @@ class OperationResponseTest extends TestCase
         $this->expectExceptionMessage('Unable to determine operation error status for this service');
 
         $operationName = 'test-123';
-        $operation = $this->prophesize(CustomOperationWithErrorAnnotations::class);
-        $operation->isThisOperationDoneOrWhat()
-            ->shouldBeCalledOnce()
-            ->willReturn('Yes, it is!');
+        $operation = new CustomOperationWithErrorAnnotations('Yes, it is!');
         $options = [
             'operationStatusMethod' => 'isThisOperationDoneOrWhat',
             'operationStatusDoneValue' => 'Yes, it is!',
             'operationErrorCodeMethod' => null, // The OperationResponse has no way to determine error status
-            'lastProtoResponse' => $operation->reveal(),
+            'lastProtoResponse' => $operation,
         ];
         $operationResponse = new OperationResponse($operationName, $operationClient, $options);
 
@@ -548,18 +527,12 @@ class OperationResponseTest extends TestCase
     public function testCustomOperationsClientDirectly()
     {
         $operationName = 'test-123';
-        $customOp = $this->prophesize(CustomOperation::class);
-        $customOp->isThisOperationDoneOrWhat()
-            ->shouldBeCalledTimes(2)
-            ->willReturn('Yes, it is!');
-        $customOp->getError()
-            ->shouldBeCalledOnce()
-            ->willReturn(null);
+        $customOp = new CustomOperation('Yes, it is!', null);
 
         $rawClient = $this->prophesize(CustomOperationClient::class);
         $rawClient->getMyOperationPlease(Argument::type(Message::class))
             ->shouldBeCalledOnce()
-            ->willReturn($customOp->reveal());
+            ->willReturn($customOp);
 
         $adapter = new CustomOperationsClient($rawClient->reveal(), [
             'getOperationMethod' => 'getMyOperationPlease',
@@ -575,7 +548,7 @@ class OperationResponseTest extends TestCase
         $operationResponse->reload();
         $this->assertTrue($operationResponse->isDone());
         $this->assertTrue($operationResponse->operationSucceeded());
-        $this->assertSame($customOp->reveal(), $operationResponse->getLastProtoResponse());
+        $this->assertSame($customOp, $operationResponse->getLastProtoResponse());
     }
 
     private function createOperationResponse($options, $reloadCount)

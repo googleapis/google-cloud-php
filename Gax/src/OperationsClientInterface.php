@@ -45,7 +45,7 @@ interface OperationsClientInterface
     /**
      * @return Operation|Message
      */
-    public function getOperation(GetOperationRequest $request, array $callOptions = []): object;
+    public function getOperation(GetOperationRequest $request, array $callOptions = []): Message;
 
     public function cancelOperation(CancelOperationRequest $request, array $callOptions = []): void;
 
