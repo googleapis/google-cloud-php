@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -45,16 +47,18 @@ use Psr\Log\LoggerInterface;
  */
 trait HttpUnaryTransportTrait
 {
+    /** @var callable */
     private $httpHandler;
-    private $transportName;
-    private $clientCertSource;
+    private string $transportName;
+    /** @var callable|null */
+    private $clientCertSource = null;
 
     /**
      * {@inheritdoc}
      * @return never
      * @throws \BadMethodCallException
      */
-    public function startClientStreamingCall(Call $call, array $options)
+    public function startClientStreamingCall(Call $call, array $options): never
     {
         $this->throwUnsupportedException();
     }
@@ -64,7 +68,7 @@ trait HttpUnaryTransportTrait
      * @return never
      * @throws \BadMethodCallException
      */
-    public function startBidiStreamingCall(Call $call, array $options)
+    public function startBidiStreamingCall(Call $call, array $options): never
     {
         $this->throwUnsupportedException();
     }
@@ -72,7 +76,7 @@ trait HttpUnaryTransportTrait
     /**
      * {@inheritdoc}
      */
-    public function close()
+    public function close(): void
     {
         // Nothing to do.
     }
@@ -81,7 +85,7 @@ trait HttpUnaryTransportTrait
      * @param array $options
      * @return array
      */
-    private static function buildCommonHeaders(array $options)
+    private static function buildCommonHeaders(array $options): array
     {
         $headers = $options['headers'] ?? [];
 
@@ -117,7 +121,7 @@ trait HttpUnaryTransportTrait
      * @return callable
      * @throws ValidationException
      */
-    private static function buildHttpHandlerAsync(null|false|LoggerInterface $logger = null)
+    private static function buildHttpHandlerAsync(null|false|LoggerInterface $logger = null): callable
     {
         try {
             return [HttpHandlerFactory::build(logger: $logger), 'async'];
@@ -131,7 +135,7 @@ trait HttpUnaryTransportTrait
      *
      * @param callable $clientCertSource
      */
-    private function configureMtlsChannel(callable $clientCertSource)
+    private function configureMtlsChannel(callable $clientCertSource): void
     {
         $this->clientCertSource = $clientCertSource;
     }
@@ -140,14 +144,14 @@ trait HttpUnaryTransportTrait
      * @return never
      * @throws \BadMethodCallException
      */
-    private function throwUnsupportedException()
+    private function throwUnsupportedException(): never
     {
         throw new \BadMethodCallException(
             "Streaming calls are not supported while using the {$this->transportName} transport."
         );
     }
 
-    private static function loadClientCertSource(callable $clientCertSource)
+    private static function loadClientCertSource(callable $clientCertSource): array
     {
         $certFile = tempnam(sys_get_temp_dir(), 'cert');
         $keyFile = tempnam(sys_get_temp_dir(), 'key');

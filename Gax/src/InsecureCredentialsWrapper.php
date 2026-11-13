@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2024 Google LLC
  * All rights reserved.
@@ -37,15 +39,11 @@ namespace Google\ApiCore;
  */
 class InsecureCredentialsWrapper implements HeaderCredentialsInterface
 {
-    public function __construct()
-    {
-    }
-
     /**
-     * @param string $audience
+     * @param string|null $audience
      * @return callable|null Returns null so the gRPC can accept it as an insecure channel.
      */
-    public function getAuthorizationHeaderCallback($audience = null): ?callable
+    public function getAuthorizationHeaderCallback(?string $audience = null): ?callable
     {
         return null;
     }
@@ -54,9 +52,6 @@ class InsecureCredentialsWrapper implements HeaderCredentialsInterface
     {
     }
 
-    /**
-     * @return string|null The quota project associated with the credentials.
-     */
     public function getQuotaProject(): ?string
     {
         return null;

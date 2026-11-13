@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -36,15 +38,12 @@ namespace Google\ApiCore;
  */
 class Version
 {
-    /**
-     * @var ?string
-     */
-    private static $version = null;
+    private static ?string $version = null;
 
     /**
      * @return string The version of the ApiCore library.
      */
-    public static function getApiCoreVersion()
+    public static function getApiCoreVersion(): string
     {
         if (is_null(self::$version)) {
             $versionFile = implode(DIRECTORY_SEPARATOR, [__DIR__, '..', 'VERSION']);
@@ -60,7 +59,7 @@ class Version
      * @param string $file
      * @return string
      */
-    public static function readVersionFile(string $file)
+    public static function readVersionFile(string $file): string
     {
         $versionString = file_exists($file)
             ? (string) file_get_contents($file)

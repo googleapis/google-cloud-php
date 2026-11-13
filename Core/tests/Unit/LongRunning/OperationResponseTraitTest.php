@@ -181,7 +181,7 @@ class Value
     }
 }
 
-class Response
+class Response extends \Google\Protobuf\Internal\Message
 {
     public $metadataType;
     public $metadata;
@@ -219,7 +219,7 @@ class Response
         return $this->error;
     }
 
-    public function serializeToJsonString()
+    public function serializeToJsonString($options = 0)
     {
         $result = [
             'done' => true,

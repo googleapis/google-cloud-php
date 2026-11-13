@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -93,7 +95,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
     /**
      * @inheritdoc
      */
-    public function __toString()
+    public function __toString(): string
     {
         return self::renderSegments($this->segments);
     }
@@ -101,7 +103,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
     /**
      * @inheritdoc
      */
-    public function render(array $bindings, bool $urlEncode = false)
+    public function render(array $bindings, bool $urlEncode = false): string
     {
         $literalSegments = [];
         $keySegmentTuples = self::buildKeySegmentTuples($this->segments);
@@ -129,7 +131,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
                 );
             }
 
-            $encodedValue = $urlEncode ? self::encodeValue($value) : $value;
+            $encodedValue = $urlEncode ? self::encodeValue((string) $value) : (string) $value;
             $literalSegments[] = new Segment(
                 Segment::LITERAL_SEGMENT,
                 $encodedValue,
@@ -197,7 +199,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
     /**
      * @inheritdoc
      */
-    public function matches(string $path)
+    public function matches(string $path): bool
     {
         try {
             $this->match($path);
@@ -210,7 +212,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
     /**
      * @inheritdoc
      */
-    public function match(string $path)
+    public function match(string $path): array
     {
         // High level strategy for matching:
         // - Build a list of Segments from our template, where any variable segments are
@@ -331,12 +333,12 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
         return $collapsedBindings;
     }
 
-    private function matchException(string $path, string $reason)
+    private function matchException(string $path, string $reason): ValidationException
     {
         return new ValidationException("Could not match path '$path' to template '$this': $reason");
     }
 
-    private function renderingException(array $bindings, string $reason)
+    private function renderingException(array $bindings, string $reason): ValidationException
     {
         $bindingsString = print_r($bindings, true);
         return new ValidationException(
@@ -350,7 +352,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
      * @param string|null $separator An optional string separator
      * @return array[] A list of [string, Segment] tuples
      */
-    private static function buildKeySegmentTuples(array $segments, ?string $separator = null)
+    private static function buildKeySegmentTuples(array $segments, ?string $separator = null): array
     {
         $keySegmentTuples = [];
         $positionalArgumentCounter = 0;
@@ -383,7 +385,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
      * @param array[] $keySegmentTuples A list of [string, Segment] tuples
      * @return array[] A list of [string, Segment] tuples
      */
-    private static function flattenKeySegmentTuples(array $keySegmentTuples)
+    private static function flattenKeySegmentTuples(array $keySegmentTuples): array
     {
         $flattenedKeySegmentTuples = [];
         foreach ($keySegmentTuples as list($key, $segment)) {
@@ -417,7 +419,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
      * @param Segment[] $segments
      * @return int
      */
-    private static function countDoubleWildcards(array $segments)
+    private static function countDoubleWildcards(array $segments): int
     {
         $doubleWildcardCount = 0;
         foreach ($segments as $segment) {
@@ -438,7 +440,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
      * @param array $segmentsToRender
      * @return string
      */
-    private static function renderSegments(array $segmentsToRender)
+    private static function renderSegments(array $segmentsToRender): string
     {
         $renderResult = '';
         for ($i = 0; $i < count($segmentsToRender); $i++) {
@@ -456,7 +458,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
      * @param string $value
      * @return string
      */
-    private static function encodeValue(string $value)
+    private static function encodeValue(string $value): string
     {
         $segments = explode('/', $value);
         $encodedSegments = array_map('rawurlencode', $segments);

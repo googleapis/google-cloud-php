@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2016 Google LLC
  * All rights reserved.
@@ -38,7 +40,7 @@ use InvalidArgumentException;
  */
 class PageStreamingDescriptor
 {
-    private $descriptor;
+    private array $descriptor;
 
     /**
      * @param array $descriptor {
@@ -71,7 +73,7 @@ class PageStreamingDescriptor
      * }
      * @return PageStreamingDescriptor
      */
-    public static function createFromFields(array $fields)
+    public static function createFromFields(array $fields): self
     {
         $requestPageToken = $fields['requestPageTokenField'];
         $responsePageToken = $fields['responsePageTokenField'];
@@ -93,12 +95,12 @@ class PageStreamingDescriptor
         return new PageStreamingDescriptor($descriptor);
     }
 
-    private static function getMethod(string $field)
+    private static function getMethod(string $field): string
     {
         return 'get' . ucfirst($field);
     }
 
-    private static function setMethod(string $field)
+    private static function setMethod(string $field): string
     {
         return 'set' . ucfirst($field);
     }
@@ -106,23 +108,23 @@ class PageStreamingDescriptor
     /**
      * @return string The page token get method on the request object
      */
-    public function getRequestPageTokenGetMethod()
+    public function getRequestPageTokenGetMethod(): string
     {
         return $this->descriptor['requestPageTokenGetMethod'];
     }
 
     /**
-     * @return string The page size get method on the request object
+     * @return string|null The page size get method on the request object
      */
-    public function getRequestPageSizeGetMethod()
+    public function getRequestPageSizeGetMethod(): ?string
     {
-        return $this->descriptor['requestPageSizeGetMethod'];
+        return $this->descriptor['requestPageSizeGetMethod'] ?? null;
     }
 
     /**
      * @return bool True if the request object has a page size field
      */
-    public function requestHasPageSizeField()
+    public function requestHasPageSizeField(): bool
     {
         return array_key_exists('requestPageSizeGetMethod', $this->descriptor);
     }
@@ -130,7 +132,7 @@ class PageStreamingDescriptor
     /**
      * @return string The page token get method on the response object
      */
-    public function getResponsePageTokenGetMethod()
+    public function getResponsePageTokenGetMethod(): string
     {
         return $this->descriptor['responsePageTokenGetMethod'];
     }
@@ -138,7 +140,7 @@ class PageStreamingDescriptor
     /**
      * @return string The resources get method on the response object
      */
-    public function getResourcesGetMethod()
+    public function getResourcesGetMethod(): string
     {
         return $this->descriptor['resourcesGetMethod'];
     }
@@ -146,20 +148,20 @@ class PageStreamingDescriptor
     /**
      * @return string The page token set method on the request object
      */
-    public function getRequestPageTokenSetMethod()
+    public function getRequestPageTokenSetMethod(): string
     {
         return $this->descriptor['requestPageTokenSetMethod'];
     }
 
     /**
-     * @return string The page size set method on the request object
+     * @return string|null The page size set method on the request object
      */
-    public function getRequestPageSizeSetMethod()
+    public function getRequestPageSizeSetMethod(): ?string
     {
-        return $this->descriptor['requestPageSizeSetMethod'];
+        return $this->descriptor['requestPageSizeSetMethod'] ?? null;
     }
 
-    private static function validate(array $descriptor)
+    private static function validate(array $descriptor): void
     {
         $requiredFields = [
             'requestPageTokenGetMethod',

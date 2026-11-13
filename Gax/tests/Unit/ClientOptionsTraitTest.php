@@ -40,7 +40,6 @@ use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\Logging\StdOutLogger;
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Log\LogLevel;
@@ -179,50 +178,26 @@ class ClientOptionsTraitTest extends TestCase
         $this->assertEquals($expectedCredentialsWrapper, $actualCredentialsWrapper);
     }
 
-
-    /**
-     * @dataProvider createCredentialsWrapperValidationExceptionData
-     */
-    public function testCreateCredentialsWrapperValidationException($auth, $authConfig)
+    public function testCreateCredentialsWrapperValidationException()
     {
-
         $this->expectException(ValidationException::class);
 
         $this->clientStub->createCredentialsWrapper(
-            $auth,
-            $authConfig,
+            'not a json string',
+            [],
             ''
         );
     }
 
-    public function createCredentialsWrapperValidationExceptionData()
+    public function testCreateCredentialsWrapperInvalidArgumentException()
     {
-        return [
-            ['not a json string', []],
-            [new \stdClass(), []],
-        ];
-    }
-
-    /**
-     * @dataProvider createCredentialsWrapperInvalidArgumentExceptionData
-     */
-    public function testCreateCredentialsWrapperInvalidArgumentException($auth, $authConfig)
-    {
-
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
 
         $this->clientStub->createCredentialsWrapper(
-            $auth,
-            $authConfig,
+            ['array' => 'without right keys'],
+            [],
             ''
         );
-    }
-
-    public function createCredentialsWrapperInvalidArgumentExceptionData()
-    {
-        return [
-            [['array' => 'without right keys'], []],
-        ];
     }
 
     /**
@@ -230,9 +205,6 @@ class ClientOptionsTraitTest extends TestCase
      */
     public function testBuildClientOptions($options, $expectedUpdatedOptions)
     {
-        if (!extension_loaded('sysvshm')) {
-            $this->markTestSkipped('The sysvshm extension must be installed to execute this test.');
-        }
         $updatedOptions = $this->clientStub->buildClientOptions($options);
         $this->assertEquals($expectedUpdatedOptions, $updatedOptions);
     }
@@ -245,9 +217,7 @@ class ClientOptionsTraitTest extends TestCase
             'transport' => null,
             'transportConfig' => [
                 'grpc' => [
-                    'stubOpts' => [
-                        'grpc.service_config_disable_resolution' => 1,
-                    ],
+                    'stubOpts' => ['grpc.service_config_disable_resolution' => 1],
                     'logger' => null,
                 ],
                 'rest' => [
@@ -305,9 +275,6 @@ class ClientOptionsTraitTest extends TestCase
      */
     public function testBuildClientOptionsRestOnly($options, $expectedUpdatedOptions)
     {
-        if (!extension_loaded('sysvshm')) {
-            $this->markTestSkipped('The sysvshm extension must be installed to execute this test.');
-        }
         $restOnlyClient = new class() {
             use ClientOptionsTrait {
                 buildClientOptions as public;

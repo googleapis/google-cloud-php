@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use BadMethodCallException;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
@@ -32,7 +33,6 @@ use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
@@ -414,7 +414,7 @@ class DatabaseTest extends TestCase
             ->willReturn($this->operationResponse->reveal());
 
         new OperationResponse('my-operation', new DatabaseAdminClient([
-            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE()
+            'credentials' => new InsecureCredentialsWrapper()
         ]), [
             'lastProtoResponse' => $this->serializer->decodeMessage(
                 new DatabaseProto(),

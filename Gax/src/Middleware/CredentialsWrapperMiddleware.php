@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -31,8 +33,12 @@
  */
 namespace Google\ApiCore\Middleware;
 
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
+use Google\ApiCore\ClientStream;
 use Google\ApiCore\HeaderCredentialsInterface;
+use Google\ApiCore\ServerStream;
+use GuzzleHttp\Promise\PromiseInterface;
 
 /**
 * Middleware which adds a CredentialsWrapper object to the call options.
@@ -54,8 +60,10 @@ class CredentialsWrapperMiddleware implements MiddlewareInterface
         $this->credentialsWrapper = $credentialsWrapper;
     }
 
-    public function __invoke(Call $call, array $options)
-    {
+    public function __invoke(
+        Call $call,
+        array $options
+    ): PromiseInterface|ClientStream|ServerStream|BidiStream {
         $next = $this->nextHandler;
         return $next(
             $call,

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -58,17 +60,18 @@ interface ResourceTemplateInterface
     /**
      * @return string A string representation of the resource template
      */
-    public function __toString();
+    public function __toString(): string;
 
     /**
      * Renders a resource template using the provided bindings.
      *
      * @param array $bindings An array matching var names to binding strings.
+     * @param bool $urlEncode
      * @return string A rendered representation of this resource template.
      * @throws ValidationException If $bindings does not contain all required keys
      *         or if a sub-template can't be parsed.
      */
-    public function render(array $bindings);
+    public function render(array $bindings, bool $urlEncode = false): string;
 
     /**
      * Check if $path matches a resource string.
@@ -76,7 +79,7 @@ interface ResourceTemplateInterface
      * @param string $path A resource string.
      * @return bool
      */
-    public function matches(string $path);
+    public function matches(string $path): bool;
 
     /**
      * Matches a given $path to a resource template, and returns an array of bindings between
@@ -87,5 +90,5 @@ interface ResourceTemplateInterface
      * @throws ValidationException if path can't be matched to the template.
      * @return array Array matching var names to binding values.
      */
-    public function match(string $path);
+    public function match(string $path): array;
 }

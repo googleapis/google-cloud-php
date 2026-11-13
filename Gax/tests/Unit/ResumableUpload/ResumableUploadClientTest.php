@@ -41,11 +41,13 @@ use Google\ApiCore\ResumableUpload\ResumableUploadTransportInterface;
 use Google\ApiCore\RetrySettings;
 use Google\Protobuf\Internal\Message;
 use Google\Protobuf\Timestamp;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
 class ResumableUploadClientTest extends TestCase
@@ -58,8 +60,10 @@ class ResumableUploadClientTest extends TestCase
             public function __construct(private $requestBuilder, private $httpHandler)
             {
             }
-            public function sendRawRequest(RequestInterface $request, array $options = [])
-            {
+            public function sendRawRequest(
+                RequestInterface $request,
+                array $options = []
+            ): ResponseInterface|PromiseInterface {
                 return ($this->httpHandler)($request, $options);
             }
             public function buildRequest(

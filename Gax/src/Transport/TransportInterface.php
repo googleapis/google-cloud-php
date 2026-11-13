@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -49,7 +51,7 @@ interface TransportInterface
      *
      * @return BidiStream
      */
-    public function startBidiStreamingCall(Call $call, array $options);
+    public function startBidiStreamingCall(Call $call, array $options): BidiStream;
 
     /**
      * Starts a client streaming call.
@@ -59,7 +61,7 @@ interface TransportInterface
      *
      * @return ClientStream
      */
-    public function startClientStreamingCall(Call $call, array $options);
+    public function startClientStreamingCall(Call $call, array $options): ClientStream;
 
     /**
      * Starts a server streaming call.
@@ -69,7 +71,7 @@ interface TransportInterface
      *
      * @return ServerStream
      */
-    public function startServerStreamingCall(Call $call, array $options);
+    public function startServerStreamingCall(Call $call, array $options): ServerStream;
 
     /**
      * Returns a promise used to execute network requests.
@@ -80,12 +82,12 @@ interface TransportInterface
      * @return PromiseInterface
      * @throws ValidationException
      */
-    public function startUnaryCall(Call $call, array $options);
+    public function startUnaryCall(Call $call, array $options): PromiseInterface;
 
     /**
      * Closes the connection, if one exists.
      *
      * @return void
      */
-    public function close();
+    public function close(): void;
 }

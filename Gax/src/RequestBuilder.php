@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -50,8 +52,8 @@ class RequestBuilder
     use UriTrait;
     use ValidationTrait;
 
-    protected $baseUri;
-    private $restConfig;
+    protected string $baseUri;
+    private array $restConfig;
 
     /**
      * @param string $baseUri
@@ -69,7 +71,7 @@ class RequestBuilder
      * @param string $path
      * @return bool
      */
-    public function pathExists(string $path)
+    public function pathExists(string $path): bool
     {
         list($interface, $method) = explode('/', $path);
         return isset($this->restConfig['interfaces'][$interface][$method]);
@@ -82,7 +84,7 @@ class RequestBuilder
      * @return RequestInterface
      * @throws ValidationException
      */
-    public function build(string $path, Message $message, array $headers = [])
+    public function build(string $path, Message $message, array $headers = []): RequestInterface
     {
         list($interface, $method) = explode('/', $path);
 
@@ -142,7 +144,7 @@ class RequestBuilder
      * @param array $config
      * @return array[] An array of configs
      */
-    private function getConfigsForUriTemplates(array $config)
+    private function getConfigsForUriTemplates(array $config): array
     {
         $configs = [$config];
 
@@ -160,7 +162,7 @@ class RequestBuilder
      * @param array $config
      * @return array Tuple [$body, $queryParams]
      */
-    private function constructBodyAndQueryParameters(Message $message, array $config)
+    private function constructBodyAndQueryParameters(Message $message, array $config): array
     {
         $messageDataJson = $message->serializeToJsonString();
 
@@ -227,7 +229,7 @@ class RequestBuilder
      * @param Message $message
      * @return array Bindings from path template fields to values from message
      */
-    private function buildBindings(array $placeholders, Message $message)
+    private function buildBindings(array $placeholders, Message $message): array
     {
         $bindings = [];
         foreach ($placeholders as $placeholder => $metadata) {
@@ -254,7 +256,7 @@ class RequestBuilder
      * @return null|string
      * @throws ValidationException
      */
-    private function tryRenderPathTemplate(string $uriTemplate, array $bindings)
+    private function tryRenderPathTemplate(string $uriTemplate, array $bindings): ?string
     {
         $template = new AbsoluteResourceTemplate($uriTemplate);
 
@@ -270,7 +272,7 @@ class RequestBuilder
      * @param array $queryParams
      * @return UriInterface
      */
-    protected function buildUri(string $path, array $queryParams)
+    protected function buildUri(string $path, array $queryParams): UriInterface
     {
         $uri = Utils::uriFor(
             sprintf(

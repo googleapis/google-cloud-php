@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2016 Google LLC
  * All rights reserved.
@@ -59,7 +61,7 @@ class AgentHeader
      * }
      * @return array Agent header array
      */
-    public static function buildAgentHeader(array $headerInfo)
+    public static function buildAgentHeader(array $headerInfo): array
     {
         $metricsHeaders = [];
 
@@ -118,13 +120,13 @@ class AgentHeader
      * @return string the gapic version
      * @throws \ReflectionException
      */
-    public static function readGapicVersionFromFile(string $callingClass)
+    public static function readGapicVersionFromFile(string $callingClass): string
     {
         $callingClassFile = (new \ReflectionClass($callingClass))->getFileName();
         $versionFile = substr(
             $callingClassFile,
             0,
-            strrpos($callingClassFile, DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR)
+            strrpos($callingClassFile, DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR) ?: 0
         ) . DIRECTORY_SEPARATOR . 'VERSION';
 
         return Version::readVersionFile($versionFile);

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2024 Google LLC
  * All rights reserved.
@@ -32,7 +34,10 @@
 namespace Google\ApiCore\Middleware;
 
 use Google\Api\FieldInfo\Format;
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
+use Google\ApiCore\ClientStream;
+use Google\ApiCore\ServerStream;
 use GuzzleHttp\Promise\PromiseInterface;
 use Ramsey\Uuid\Uuid;
 
@@ -48,8 +53,8 @@ class RequestAutoPopulationMiddleware implements MiddlewareInterface
     /** @var callable */
     private $nextHandler;
 
-    /** @var array<string, string> */
-    private $autoPopulationSettings;
+    /** @var array<string, int> */
+    private array $autoPopulationSettings;
 
     public function __construct(
         callable $nextHandler,
@@ -63,10 +68,12 @@ class RequestAutoPopulationMiddleware implements MiddlewareInterface
      * @param Call $call
      * @param array $options
      *
-     * @return PromiseInterface
+     * @return PromiseInterface|ClientStream|ServerStream|BidiStream
      */
-    public function __invoke(Call $call, array $options)
-    {
+    public function __invoke(
+        Call $call,
+        array $options
+    ): PromiseInterface|ClientStream|ServerStream|BidiStream {
         $next = $this->nextHandler;
 
         if (empty($this->autoPopulationSettings)) {

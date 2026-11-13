@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2016 Google LLC
  * All rights reserved.
@@ -46,10 +48,11 @@ use UnderflowException;
  */
 trait MockStubTrait
 {
-    private $receivedFuncCalls = [];
-    private $responses = [];
-    private $serverStreamingStatus = null;
-    private $callObjects = [];
+    private array $receivedFuncCalls = [];
+    private array $responses = [];
+    private ?stdClass $serverStreamingStatus = null;
+    private array $callObjects = [];
+    /** @var callable|array|null */
     private $deserialize;
 
     public function __construct(?callable $deserialize = null)
@@ -74,7 +77,7 @@ trait MockStubTrait
         $deserialize,
         array $metadata = [],
         array $options = []
-    ) {
+    ): MockUnaryCall {
         $this->receivedFuncCalls[] = new ReceivedRequest($method, $argument, $deserialize, $metadata, $options);
         if (count($this->responses) < 1) {
             throw new UnderflowException('ran out of responses');
@@ -103,7 +106,7 @@ trait MockStubTrait
         $deserialize,
         array $metadata = [],
         array $options = []
-    ) {
+    ): MockClientStreamingCall {
         $this->receivedFuncCalls[] = new ReceivedRequest($method, null, $deserialize, $metadata, $options);
         if (count($this->responses) < 1) {
             throw new UnderflowException('ran out of responses');
@@ -135,7 +138,7 @@ trait MockStubTrait
         $deserialize,
         array $metadata = [],
         array $options = []
-    ) {
+    ): MockServerStreamingCall {
 
         if (is_a($argument, '\Google\Protobuf\Internal\Message')) {
             /** @var Message $newArgument */
@@ -170,7 +173,7 @@ trait MockStubTrait
         $deserialize,
         array $metadata = [],
         array $options = []
-    ) {
+    ): MockBidiStreamingCall {
 
         $this->receivedFuncCalls[] = new ReceivedRequest($method, null, $deserialize, $metadata, $options);
         $responses = self::stripStatusFromResponses($this->responses);
@@ -180,7 +183,7 @@ trait MockStubTrait
         return $call;
     }
 
-    public static function stripStatusFromResponses($responses)
+    public static function stripStatusFromResponses(array $responses): array
     {
         $strippedResponses = [];
         foreach ($responses as $response) {
@@ -193,10 +196,10 @@ trait MockStubTrait
     /**
      * Add a response object, and an optional status, to the list of responses to be returned via
      * _simpleRequest.
-     * @param \Google\Protobuf\Internal\Message $response
-     * @param stdClass $status
+     * @param \Google\Protobuf\Internal\Message|mixed $response
+     * @param stdClass|null $status
      */
-    public function addResponse($response, ?stdClass $status = null)
+    public function addResponse(mixed $response, ?stdClass $status = null): void
     {
         if (!$this->deserialize && $response) {
             $this->deserialize = [get_class($response), 'decode'];
@@ -213,7 +216,7 @@ trait MockStubTrait
      *
      * @param stdClass $status
      */
-    public function setStreamingStatus(stdClass $status)
+    public function setStreamingStatus(stdClass $status): void
     {
         $this->serverStreamingStatus = $status;
     }
@@ -223,7 +226,7 @@ trait MockStubTrait
      *
      * @return ReceivedRequest[] An array of received requests
      */
-    public function popReceivedCalls()
+    public function popReceivedCalls(): array
     {
         $receivedFuncCallsTemp = $this->receivedFuncCalls;
         $this->receivedFuncCalls = [];
@@ -233,7 +236,7 @@ trait MockStubTrait
     /**
      * @return int The number of calls received.
      */
-    public function getReceivedCallCount()
+    public function getReceivedCallCount(): int
     {
         return count($this->receivedFuncCalls);
     }
@@ -241,7 +244,7 @@ trait MockStubTrait
     /**
      * @return mixed[] The call objects created by calls to the stub
      */
-    public function popCallObjects()
+    public function popCallObjects(): array
     {
         $callObjectsTemp = $this->callObjects;
         $this->callObjects = [];
@@ -251,7 +254,7 @@ trait MockStubTrait
     /**
      * @return bool True if $receivedFuncCalls and $response are empty.
      */
-    public function isExhausted()
+    public function isExhausted(): bool
     {
         return count($this->receivedFuncCalls) === 0
             && count($this->responses) === 0;
@@ -260,11 +263,14 @@ trait MockStubTrait
     /**
      * @param mixed $responseObject
      * @param stdClass|null $status
-     * @param callable $deserialize
+     * @param callable|null $deserialize
      * @return static An instance of the current class type.
      */
-    public static function create($responseObject, ?stdClass $status = null, ?callable $deserialize = null)
-    {
+    public static function create(
+        mixed $responseObject,
+        ?stdClass $status = null,
+        ?callable $deserialize = null
+    ): static {
         $stub = new static($deserialize); // @phpstan-ignore-line
         $stub->addResponse($responseObject, $status);
         return $stub;
@@ -273,12 +279,15 @@ trait MockStubTrait
     /**
      * Creates a sequence such that the responses are returned in order.
      * @param mixed[] $sequence
-     * @param callable $deserialize
-     * @param stdClass $finalStatus
+     * @param callable|null $deserialize
+     * @param stdClass|null $finalStatus
      * @return static An instance of the current class type.
      */
-    public static function createWithResponseSequence(array $sequence, ?callable $deserialize = null, ?stdClass $finalStatus = null)
-    {
+    public static function createWithResponseSequence(
+        array $sequence,
+        ?callable $deserialize = null,
+        ?stdClass $finalStatus = null
+    ): static {
         $stub = new static($deserialize); // @phpstan-ignore-line
         foreach ($sequence as $elem) {
             if (count($elem) == 1) {

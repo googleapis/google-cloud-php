@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2022 Google LLC
  * All rights reserved.
@@ -40,8 +42,8 @@ namespace Google\ApiCore;
  */
 trait ResourceHelperTrait
 {
-    /** @var array|null */
-    private static $templateMap;
+    /** @var array<string, PathTemplate>|null */
+    private static ?array $templateMap = null;
 
     /**
      * placeholder for this function like we have in GapicClientTrait
@@ -51,16 +53,15 @@ trait ResourceHelperTrait
         return [];
     }
 
-    private static function registerPathTemplates()
+    private static function registerPathTemplates(): void
     {
         $templateConfigPath = self::getClientDefaults()['descriptorsConfigPath'];
         // self::SERVICE_NAME is a constant set per-client.
         self::loadPathTemplates($templateConfigPath, self::SERVICE_NAME);
     }
 
-    private static function loadPathTemplates(string $configPath, string $serviceName)
+    private static function loadPathTemplates(string $configPath, string $serviceName): void
     {
-        // TODO: Add void return type hint.
         if (!is_null(self::$templateMap)) {
             return;
         }
@@ -73,9 +74,8 @@ trait ResourceHelperTrait
         }
     }
 
-    private static function getPathTemplate(string $key)
+    private static function getPathTemplate(string $key): ?PathTemplate
     {
-        // TODO: Add nullable return type reference once PHP 7.1 is minimum.
         if (is_null(self::$templateMap)) {
             self::registerPathTemplates();
         }

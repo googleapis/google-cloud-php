@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2017 Google LLC
  * All rights reserved.
@@ -39,10 +41,7 @@ class RequestParamsHeaderDescriptor
 {
     const HEADER_KEY = 'x-goog-request-params';
 
-    /**
-     * @var array
-     */
-    private $header;
+    private array $header;
 
     /**
      * RequestParamsHeaderDescriptor constructor.
@@ -71,7 +70,7 @@ class RequestParamsHeaderDescriptor
      *
      * @return array
      */
-    public function getHeader()
+    public function getHeader(): array
     {
         return $this->header;
     }
