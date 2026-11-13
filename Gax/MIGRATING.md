@@ -17,6 +17,7 @@ Update your `google/gax` dependency to `^2.0`:
 ### Removed Classes, Interfaces, and Traits
 
 - **`Google\ApiCore\GPBType` and `Google\ApiCore\GPBLabel`**: Removed. Use `Google\Protobuf\Internal\GPBType` and `Google\Protobuf\Internal\GPBLabel` instead.
+- **`Google\ApiCore\KnownTypes::GRPC_TYPES` and `Google\ApiCore\KnownTypes::JSON_TYPES`**: Removed.
 - **`Google\ApiCore\ServiceAddressTrait`**: Replaced by `Google\ApiCore\ApiEndpointTrait` (`self::normalizeServiceAddress()` is now `self::normalizeApiEndpoint()`).
 - **`Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface`**: Removed. Extend `Grpc\Interceptor` directly instead.
 - **`Google\ApiCore\Testing\MockGrpcTransport`**: Moved to the internal test suite (`Google\ApiCore\Tests\Testing\MockGrpcTransport`) and is no longer distributed with the package.
@@ -35,7 +36,7 @@ Update your `google/gax` dependency to `^2.0`:
 
 - **`CredentialsWrapper::getBearerString()`**: Removed. Use `CredentialsWrapper::getAuthorizationHeaderCallback()` instead.
 - **`ClientOptionsTrait::initGrpcGcpConfig()`**: Removed.
-- **`ClientOptionsTrait::modifyClientOptions()`**: Removed. Instead of mutating the options array in `modifyClientOptions()`, extend `Google\ApiCore\Options\ClientOptions`, pass the `ClientOptions` instance to `buildClientOptions()` / `setClientOptions()` (or override `protected function createClientOptions(array $options): ClientOptions`), and read `$this->getClientOptions()` on the client.
+- **`ClientOptionsTrait::modifyClientOptions()`**: Removed. Instead of mutating the options array in `modifyClientOptions()`, use `ClientOptions::fromArray(array $options): ClientOptions` (or pass a `Google\ApiCore\Options\ClientOptions` instance directly), configure options via fluent setters/getters on `ClientOptions`, and pass the `ClientOptions` instance to `buildClientOptions()` / `setClientOptions()`.
 - **`HttpUnaryTransportTrait::startServerStreamingCall()`**: Removed (along with the `unsupportedServerStreamingCall` trait alias on `RestTransport`).
 - **V1 GAPIC surface backwards-compatibility mode**:
   - Removed `GapicClientTrait::$backwardsCompatibilityMode` and `GapicClientTrait::isBackwardsCompatibilityMode()`.
@@ -46,8 +47,8 @@ Update your `google/gax` dependency to `^2.0`:
 
 - **`Google\ApiCore\InsecureCredentialsWrapper`** now implements `Google\ApiCore\HeaderCredentialsInterface` directly and no longer extends `Google\ApiCore\CredentialsWrapper`.
 - **`Google\ApiCore\HeaderCredentialsInterface`** now extends `Google\Auth\GetQuotaProjectInterface`.
-- **`GapicClientTrait::getCredentialsWrapper()`** now returns `HeaderCredentialsInterface` instead of `CredentialsWrapper`.
-- **`ResumableUploadClient::__construct()`** now accepts `HeaderCredentialsInterface` instead of `CredentialsWrapper`.
+- **`GapicClientTrait::getCredentialsWrapper()`** has been replaced by `GapicClientTrait::getHeaderCredentials()`, returning `HeaderCredentialsInterface` instead of `CredentialsWrapper` (and `ClientOptionsTrait::createCredentialsWrapper()` has been renamed to `ClientOptionsTrait::createHeaderCredentials()`).
+- **`ResumableUploadClient::__construct()`** and **`CredentialsWrapperMiddleware::__construct()`** now accept `HeaderCredentialsInterface` instead of `CredentialsWrapper`.
 
 ### Strict Types and Method Signatures
 
