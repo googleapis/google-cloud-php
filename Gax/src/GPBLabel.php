@@ -34,6 +34,8 @@ namespace Google\ApiCore;
 /**
  * Container class for Protobuf label constants. See FieldDescriptorProto.Label in
  * https://github.com/google/protobuf/blob/master/src/google/protobuf/descriptor.proto
+ *
+ * @deprecated Use {@see \Google\Protobuf\Internal\GPBLabel} instead.
  */
 class GPBLabel
 {
