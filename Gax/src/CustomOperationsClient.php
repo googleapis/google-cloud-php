@@ -37,6 +37,7 @@ namespace Google\ApiCore;
 use Google\LongRunning\CancelOperationRequest;
 use Google\LongRunning\DeleteOperationRequest;
 use Google\LongRunning\GetOperationRequest;
+use Google\Protobuf\Internal\Message;
 use LogicException;
 
 /**
@@ -97,7 +98,7 @@ class CustomOperationsClient implements OperationsClientWrapperInterface
         return false;
     }
 
-    public function getOperation(GetOperationRequest $request, array $callOptions = []): object
+    public function getOperation(GetOperationRequest $request, array $callOptions = []): Message
     {
         return $this->operationsCall(
             $this->getOperationMethod,
