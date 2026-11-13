@@ -26,7 +26,11 @@ namespace Google\LongRunning;
 
 use Google\LongRunning\Gapic\OperationsGapicClient;
 
-/** {@inheritdoc} */
+/**
+ * {@inheritdoc}
+ *
+ * @deprecated Please use the new service client {@see \Google\LongRunning\Client\OperationsClient}.
+ */
 class OperationsClient extends OperationsGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual additions to
