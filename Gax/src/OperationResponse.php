@@ -81,7 +81,8 @@ class OperationResponse
         'totalPollTimeoutMillis' => self::DEFAULT_MAX_POLLING_DURATION,
     ];
 
-    private ?object $lastProtoResponse;
+    /** @var Operation|Message|null */
+    private ?Message $lastProtoResponse;
     private bool $deleted = false;
 
     private array $additionalArgs;
@@ -110,7 +111,7 @@ class OperationResponse
      *     @type int $pollDelayMultiplier Multiplier applied to the polling interval on each retry.
      *     @type int $maxPollDelayMillis The maximum polling interval to use, in milliseconds.
      *     @type int $totalPollTimeoutMillis The maximum amount of time to continue polling.
-     *     @type object $lastProtoResponse A response already received from the server.
+     *     @type Operation|Message $lastProtoResponse A response already received from the server.
      *     @type string $getOperationMethod The method on $operationsClient to get the operation.
      *     @type string $cancelOperationMethod The method on $operationsClient to cancel the operation.
      *     @type string $deleteOperationMethod The method on $operationsClient to delete the operation.
@@ -302,8 +303,9 @@ class OperationResponse
             return null;
         }
 
-        /** @var Any|null $anyResponse */
-        $anyResponse = $this->lastProtoResponse->getResponse();
+        /** @var Operation $lastProtoResponse */
+        $lastProtoResponse = $this->lastProtoResponse;
+        $anyResponse = $lastProtoResponse->getResponse();
         if (is_null($anyResponse)) {
             return null;
         }
@@ -365,9 +367,9 @@ class OperationResponse
     }
 
     /**
-     * @return Operation|object|null The last Operation object received from the server.
+     * @return Operation|Message|null The last Operation object received from the server.
      */
-    public function getLastProtoResponse(): ?object
+    public function getLastProtoResponse(): ?Message
     {
         return $this->lastProtoResponse;
     }
