@@ -185,24 +185,15 @@ trait ClientOptionsTrait
             $options['transportConfig']['grpc-fallback']['logger'] = $options['logger'] ?? null;
         }
 
-        // These calls do not apply to "New Surface" clients.
-        if ($this->isBackwardsCompatibilityMode()) {
-            $preModifiedOptions = $options;
-            $this->modifyClientOptions($options);
-            // NOTE: this is required to ensure backwards compatiblity with $options['apiEndpoint']
-            if ($options['apiEndpoint'] !== $preModifiedOptions['apiEndpoint']) {
-                $apiEndpoint = $options['apiEndpoint'];
-            }
-
-            // serviceAddress is now deprecated and acts as an alias for apiEndpoint
-            if (isset($options['serviceAddress'])) {
-                $apiEndpoint = $this->pluck('serviceAddress', $options, false);
-            }
-        } else {
-            // Ads is using this method in their new surface clients, so we need to call it.
-            // However, this method is not used anywhere else for the new surface clients
-            // @TODO: Remove this in GAX V2
-            $this->modifyClientOptions($options);
+        $preModifiedOptions = $options;
+        $this->modifyClientOptions($options);
+        // NOTE: this is required to ensure backwards compatiblity with $options['apiEndpoint']
+        if ($options['apiEndpoint'] !== $preModifiedOptions['apiEndpoint']) {
+            $apiEndpoint = $options['apiEndpoint'];
+        }
+        // serviceAddress is now deprecated and acts as an alias for apiEndpoint
+        if (isset($options['serviceAddress'])) {
+            $apiEndpoint = $this->pluck('serviceAddress', $options, false);
         }
         // If an API endpoint is different form the default, ensure the "audience" does not conflict
         // with the custom endpoint by setting "user defined" scopes.
@@ -364,14 +355,6 @@ trait ClientOptionsTrait
     protected function modifyClientOptions(array &$options)
     {
         // Do nothing - this method exists to allow option modification by partial veneers.
-    }
-
-    /**
-     * @internal
-     */
-    private function isBackwardsCompatibilityMode(): bool
-    {
-        return false;
     }
 
     /**

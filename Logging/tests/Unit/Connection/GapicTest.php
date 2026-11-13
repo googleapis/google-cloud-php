@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Logging\Tests\Unit\Connection;
 
-use Google\ApiCore\GPBType;
+use Google\Protobuf\Internal\GPBType;
 use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Logging\Connection\Grpc;

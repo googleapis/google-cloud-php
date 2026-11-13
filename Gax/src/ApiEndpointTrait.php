@@ -1,6 +1,8 @@
 <?php
+declare(strict_types=1);
+
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,32 +31,32 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 namespace Google\ApiCore;
 
 /**
- * Container class for Protobuf type constants. See FieldDescriptorProto.Type in
- * https://github.com/google/protobuf/blob/master/src/google/protobuf/descriptor.proto
- *
- * @deprecated Use {@see \Google\Protobuf\Internal\GPBType} instead.
+ * Provides helper methods for service address handling.
  */
-class GPBType
+trait ApiEndpointTrait
 {
-    const DOUBLE   =  1;
-    const FLOAT    =  2;
-    const INT64    =  3;
-    const UINT64   =  4;
-    const INT32    =  5;
-    const FIXED64  =  6;
-    const FIXED32  =  7;
-    const BOOL     =  8;
-    const STRING   =  9;
-    const GROUP    = 10;
-    const MESSAGE  = 11;
-    const BYTES    = 12;
-    const UINT32   = 13;
-    const ENUM     = 14;
-    const SFIXED32 = 15;
-    const SFIXED64 = 16;
-    const SINT32   = 17;
-    const SINT64   = 18;
+    private static $defaultPort = 443;
+
+    /**
+     * @param string $apiEndpoint
+     * @return array
+     * @throws ValidationException
+     */
+    private static function normalizeApiEndpoint(string $apiEndpoint)
+    {
+        $components = explode(':', $apiEndpoint);
+        if (count($components) == 2) {
+            // Port is included in service address
+            return [$components[0], $components[1]];
+        } elseif (count($components) == 1) {
+            // Port is not included - append default port
+            return [$components[0], self::$defaultPort];
+        } else {
+            throw new ValidationException("Invalid apiEndpoint: $apiEndpoint");
+        }
+    }
 }

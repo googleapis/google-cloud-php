@@ -32,7 +32,6 @@
 
 namespace Google\ApiCore;
 
-use Google\ApiCore\LongRunning\OperationsClient as DeprecatedOperationsClient;
 use Google\ApiCore\Middleware\CredentialsWrapperMiddleware;
 use Google\ApiCore\Middleware\FixedHeaderMiddleware;
 use Google\ApiCore\Middleware\OperationsMiddleware;
@@ -85,7 +84,6 @@ trait GapicClientTrait
         Call::CLIENT_STREAMING_CALL => 'startClientStreamingCall',
         Call::SERVER_STREAMING_CALL => 'startServerStreamingCall',
     ];
-    private bool $backwardsCompatibilityMode;
 
     /**
      * Add a middleware to the call stack by providing a callable which will be
@@ -295,20 +293,8 @@ trait GapicClientTrait
         // Therefore, we need to remove it from the $options array before
         // creating the ClientOptions.
         $hasEmulator = $this->pluck('hasEmulator', $options, false) ?? false;
-        if ($this->isBackwardsCompatibilityMode()) {
-            if (is_string($options['clientConfig'])) {
-                // perform validation for V1 surfaces which is done in the
-                // ClientOptions class for v2 surfaces.
-                $options['clientConfig'] = json_decode(
-                    file_get_contents($options['clientConfig']),
-                    true
-                );
-                self::validateFileExists($options['descriptorsConfigPath']);
-            }
-        } else {
-            // cast to ClientOptions for new surfaces only
-            $options = new ClientOptions($options);
-        }
+        // cast to ClientOptions for new surfaces only
+        $options = new ClientOptions($options);
         $this->serviceName = $options['serviceName'];
         $this->retrySettings = RetrySettings::load(
             $this->serviceName,
@@ -330,14 +316,6 @@ trait GapicClientTrait
             $headerInfo['restVersion'] = Version::getApiCoreVersion();
         }
         $this->agentHeader = AgentHeader::buildAgentHeader($headerInfo);
-
-        // Set "client_library_name" depending on client library surface being used
-        $userAgentHeader = sprintf(
-            'gcloud-php-%s/%s',
-            $this->isBackwardsCompatibilityMode() ? 'legacy' : 'new',
-            $options['gapicVersion']
-        );
-        $this->agentHeader['User-Agent'] = [$userAgentHeader];
 
         self::validateFileExists($options['descriptorsConfigPath']);
 
@@ -455,7 +433,7 @@ trait GapicClientTrait
 
     /**
      * @param array $options
-     * @return DeprecatedOperationsClient|OperationsClient|object
+     * @return OperationsClient|object
      */
     private function createOperationsClient(array $options)
     {
@@ -471,12 +449,7 @@ trait GapicClientTrait
         }
 
         // operationsClientClass option
-        $defaultClass = $this->isBackwardsCompatibilityMode()
-            ? DeprecatedOperationsClient::class
-            : OperationsClient::class;
-        $operationsClientClass = $this->pluck('operationsClientClass', $options, false)
-            ?: $defaultClass;
-        return new $operationsClientClass($options);
+        return new OperationsClient($options);
     }
 
     /**
@@ -796,9 +769,6 @@ trait GapicClientTrait
      */
     private function configureCallOptions(array $optionalArgs): array
     {
-        if ($this->isBackwardsCompatibilityMode()) {
-            return $optionalArgs;
-        }
         // cast to CallOptions for new surfaces only
         return (new CallOptions($optionalArgs))->toArray();
     }
@@ -1074,14 +1044,5 @@ trait GapicClientTrait
     protected function modifyStreamingCallable(callable &$callable)
     {
         // Do nothing - this method exists to allow callable modification by partial veneers.
-    }
-
-    /**
-     * @internal
-     */
-    private function isBackwardsCompatibilityMode(): bool
-    {
-        return $this->backwardsCompatibilityMode
-            ?? $this->backwardsCompatibilityMode = substr(__CLASS__, -11) === 'GapicClient';
     }
 }

@@ -31,13 +31,13 @@
  */
 namespace Google\ApiCore\Transport;
 
+use Google\ApiCore\ApiEndpointTrait;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\InsecureRequestBuilder;
 use Google\ApiCore\RequestBuilder;
 use Google\ApiCore\ResumableUpload\ResumableUploadTransportInterface;
 use Google\ApiCore\ServerStream;
-use Google\ApiCore\ServiceAddressTrait;
 use Google\ApiCore\Transport\Rest\RestServerStreamingCall;
 use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
@@ -51,11 +51,9 @@ use Psr\Http\Message\ResponseInterface;
  */
 class RestTransport implements TransportInterface, ResumableUploadTransportInterface
 {
+    use ApiEndpointTrait;
     use ValidationTrait;
-    use ServiceAddressTrait;
-    use HttpUnaryTransportTrait {
-        startServerStreamingCall as protected unsupportedServerStreamingCall;
-    }
+    use HttpUnaryTransportTrait;
 
     private RequestBuilder $requestBuilder;
 
@@ -98,7 +96,7 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
             'hasEmulator' => false,
             'logger' => null,
         ];
-        list($baseUri, $port) = self::normalizeServiceAddress($apiEndpoint);
+        list($baseUri, $port) = self::normalizeApiEndpoint($apiEndpoint);
         $requestBuilder = $config['hasEmulator']
             ? new InsecureRequestBuilder("$baseUri:$port", $restConfigPath)
             : new RequestBuilder("$baseUri:$port", $restConfigPath);
@@ -196,7 +194,7 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
         // Maintain forwards compatibility with older GAPIC clients not configured for REST server streaming
         // @see https://github.com/googleapis/gax-php/issues/370
         if (!$this->requestBuilder->pathExists($call->getMethod())) {
-            $this->unsupportedServerStreamingCall($call, $options);
+            $this->throwUnsupportedException();
         }
 
         $headers = self::buildCommonHeaders($options);

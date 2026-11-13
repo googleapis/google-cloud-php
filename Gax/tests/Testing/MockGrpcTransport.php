@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -30,7 +32,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Google\ApiCore\Testing;
+namespace Google\ApiCore\Tests\Testing;
 
 use Google\ApiCore\Transport\GrpcTransport;
 use Grpc\ChannelCredentials;
@@ -53,6 +55,8 @@ class MockGrpcTransport extends GrpcTransport
         $opts = ['credentials' => ChannelCredentials::createSsl()];
         parent::__construct('', $opts, logger: $logger);
     }
+
+    // phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps,PSR2.Methods.MethodDeclaration.Underscore
 
     /**
      * @param string $method
@@ -113,6 +117,8 @@ class MockGrpcTransport extends GrpcTransport
         $this->logCall($method, $deserialize, $metadata, $options);
         return $this->mockCall;
     }
+
+    // phpcs:enable
 
     /**
      * @param string $method
