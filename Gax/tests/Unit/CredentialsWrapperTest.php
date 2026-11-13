@@ -33,6 +33,8 @@
 namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\HeaderCredentialsInterface;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\ValidationException;
 use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\Cache\MemoryCacheItemPool;
@@ -43,6 +45,7 @@ use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GCECache;
+use Google\Auth\GetQuotaProjectInterface;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Auth\ProjectIdProviderInterface;
@@ -274,39 +277,6 @@ class CredentialsWrapperTest extends TestCase
         $credentialsWrapper->getAuthorizationHeaderCallback()();
     }
 
-    /**
-     * Same test as above, but calls the deprecated CredentialsWrapper::getBearerString method
-     * instead of CredentialsWrapper::getAuthorizationHeaderCallback
-     * @dataProvider provideCheckUniverseDomainFails
-     */
-    public function testCheckUniverseDomainOnGetBearerStringFails(
-        ?string $universeDomain,
-        ?string $credentialsUniverse,
-        ?string $message = null
-    ) {
-        $this->expectException(ValidationException::class);
-        $this->expectExceptionMessage($message ?: sprintf(
-            'The configured universe domain (%s) does not match the credential universe domain (%s)',
-            is_null($universeDomain) ? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN : $universeDomain,
-            is_null($credentialsUniverse) ? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN : $credentialsUniverse,
-        ));
-        $fetcher = $this->prophesize(FetchAuthTokenInterface::class);
-        // When the $credentialsUniverse is null, the fetcher doesn't implement GetUniverseDomainInterface
-        if (!is_null($credentialsUniverse)) {
-            $fetcher->willImplement(GetUniverseDomainInterface::class);
-            $fetcher->getUniverseDomain()->willReturn($credentialsUniverse);
-        }
-        $fetcher->getLastReceivedToken()->willReturn(null);
-        // When $universeDomain is null, it means no $universeDomain argument was provided
-        if (is_null($universeDomain)) {
-            $credentialsWrapper = new CredentialsWrapper($fetcher->reveal());
-        } else {
-            $credentialsWrapper = new CredentialsWrapper($fetcher->reveal(), null, $universeDomain);
-        }
-        // Check getBearerString (deprecated)
-        $credentialsWrapper->getBearerString();
-    }
-
     public function provideCheckUniverseDomainFails()
     {
         return [
@@ -342,11 +312,6 @@ class CredentialsWrapperTest extends TestCase
             ['authorization' => ['Bearer abc']],
             $credentialsWrapper->getAuthorizationHeaderCallback()()
         );
-        // Check getBearerString (deprecated)
-        $this->assertEquals(
-            'Bearer abc',
-            $credentialsWrapper->getBearerString()
-        );
     }
 
     public function provideCheckUniverseDomainPasses()
@@ -370,29 +335,6 @@ class CredentialsWrapperTest extends TestCase
         );
 
         $credentialsWrapper->checkUniverseDomain();
-    }
-
-    /**
-     * @dataProvider getBearerStringData
-     * @runInSeparateProcess
-     */
-    public function testGetBearerString(string $fetcherFunc, $expectedBearerString)
-    {
-        $fetcher = $this->$fetcherFunc();
-        $credentialsWrapper = new CredentialsWrapper($fetcher);
-        $bearerString = $credentialsWrapper->getBearerString();
-        $this->assertSame($expectedBearerString, $bearerString);
-    }
-
-    public function getBearerStringData()
-    {
-        return [
-            ['getExpiredFetcher', 'Bearer 456'],
-            ['getEagerExpiredFetcher', 'Bearer 456'],
-            ['getUnexpiredFetcher', 'Bearer 123'],
-            ['getInsecureFetcher', ''],
-            ['getNullFetcher', ''],
-        ];
     }
 
     /**
@@ -641,6 +583,18 @@ class CredentialsWrapperTest extends TestCase
         ]);
         $serialized = serialize($credentialsWrapper);
         $this->assertIsString($serialized);
+    }
+
+    public function testInsecureCredentialsWrapperImplementsHeaderCredentialsInterface()
+    {
+        $wrapper = new InsecureCredentialsWrapper();
+
+        $this->assertInstanceOf(HeaderCredentialsInterface::class, $wrapper);
+        $this->assertInstanceOf(GetQuotaProjectInterface::class, $wrapper);
+        $this->assertNotInstanceOf(CredentialsWrapper::class, $wrapper);
+        $this->assertNull($wrapper->getQuotaProject());
+        $this->assertNull($wrapper->getAuthorizationHeaderCallback());
+        $wrapper->checkUniverseDomain();
     }
 
     private function setEnv(string $env, ?string $value = null)

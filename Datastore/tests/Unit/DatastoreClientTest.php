@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore\Tests\Unit;
 
 use DateTime;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
@@ -82,7 +83,7 @@ class DatastoreClientTest extends TestCase
     {
         $this->gapicClient = $this->prophesize(GapicClient::class);
         $this->client = new DatastoreClient([
-            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'credentials' => new InsecureCredentialsWrapper(),
             'projectId' => self::PROJECT,
             'databaseId' => self::DATABASE,
             'datastoreClient' => $this->gapicClient->reveal()

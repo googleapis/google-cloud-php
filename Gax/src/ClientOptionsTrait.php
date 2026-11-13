@@ -269,9 +269,9 @@ trait ClientOptionsTrait
     }
 
     /**
-     * @param mixed $credentials
+     * @param string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials
      * @param array $credentialsConfig
-     * @return CredentialsWrapper
+     * @return HeaderCredentialsInterface
      * @throws ValidationException
      */
     private function createCredentialsWrapper($credentials, array $credentialsConfig, string $universeDomain)
@@ -290,7 +290,7 @@ trait ClientOptionsTrait
             return new CredentialsWrapper($credentials, $authHttpHandler, $universeDomain);
         }
 
-        if ($credentials instanceof CredentialsWrapper) {
+        if ($credentials instanceof HeaderCredentialsInterface) {
             return $credentials;
         }
 

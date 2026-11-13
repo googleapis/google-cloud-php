@@ -32,7 +32,6 @@
 namespace Google\ApiCore\Middleware;
 
 use Google\ApiCore\Call;
-use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\HeaderCredentialsInterface;
 
 /**
@@ -45,8 +44,7 @@ class CredentialsWrapperMiddleware implements MiddlewareInterface
     /** @var callable */
     private $nextHandler;
 
-    /** @var HeaderCredentialsInterface */
-    private HeaderCredentialsInterface  $credentialsWrapper;
+    private HeaderCredentialsInterface $credentialsWrapper;
 
     public function __construct(
         callable $nextHandler,

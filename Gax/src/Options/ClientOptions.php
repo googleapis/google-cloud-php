@@ -34,7 +34,7 @@ namespace Google\ApiCore\Options;
 
 use ArrayAccess;
 use Closure;
-use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\HeaderCredentialsInterface;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Auth\FetchAuthTokenInterface;
 use InvalidArgumentException;
@@ -47,11 +47,11 @@ use Psr\Log\LoggerInterface;
  * client constructor:
  *
  * ```
- * use Google\ApiCore\ClientOptions;
+ * use Google\ApiCore\Options\ClientOptions;
  * use Google\Cloud\SecretManager\Client\SecretManagerClient;
  *
  * $options = new ClientOptions([
- *     'credentials' => '/path/to/my/credentials.json'
+ *     'apiEndpoint' => 'my-custom-endpoint.com'
  * ]);
  * $secretManager = new SecretManagerClient($options->toArray());
  * ```
@@ -69,7 +69,7 @@ class ClientOptions implements ArrayAccess, OptionsInterface
 
     private array $clientConfig;
 
-    /** @var string|array|FetchAuthTokenInterface|CredentialsWrapper|null */
+    /** @var string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null */
     private $credentials;
 
     private array $credentialsConfig;
@@ -112,9 +112,9 @@ class ClientOptions implements ArrayAccess, OptionsInterface
      *           path to a JSON file, or a PHP array containing the decoded JSON data.
      *           By default this settings points to the default client config file, which is provided
      *           in the resources folder.
-     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *     @type string|array|FetchAuthTokenInterface|HeaderCredentialsInterface $credentials
      *           This option should only be used with a pre-constructed \Google\Auth\FetchAuthTokenInterface
-     *           object or \Google\ApiCore\CredentialsWrapper object. Note that when one of these objects
+     *           object or \Google\ApiCore\HeaderCredentialsInterface object. Note that when one of these objects
      *           are provided, any settings in $authConfig will be ignored.
      *           **Important**: If you are providing a path to a credentials file, or a decoded credentials
      *           file as a PHP array, this usage is now DEPRECATED. Providing an unvalidated credential
@@ -246,7 +246,7 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     }
 
     /**
-     * @param string|array|FetchAuthTokenInterface|CredentialsWrapper|null $credentials
+     * @param string|array|FetchAuthTokenInterface|HeaderCredentialsInterface|null $credentials
      *
      * @return $this
      */

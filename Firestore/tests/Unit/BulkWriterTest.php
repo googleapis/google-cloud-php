@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
-use Google\Cloud\Core\Testing\Snippet\Fixtures;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\BulkWriter;
@@ -72,7 +72,7 @@ class BulkWriterTest extends TestCase
             'projectId' => self::PROJECT,
             'database' => self::DATABASE,
             'firestoreClient' => $this->gapicClient->reveal(),
-            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE()
+            'credentials' => new InsecureCredentialsWrapper()
         ]);
 
         // avoids sleep during unit tests

@@ -34,7 +34,9 @@ namespace Google\Cloud\Spanner\Middleware;
 
 use Exception;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
+use Google\ApiCore\ClientStream;
 use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Spanner\OpenTelemetry\MetricsContext;
@@ -133,8 +135,10 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
         );
     }
 
-    public function __invoke(Call $call, array $options)
-    {
+    public function __invoke(
+        Call $call,
+        array $options
+    ): PromiseInterface|ClientStream|ServerStream|BidiStream {
         $next = $this->nextHandler;
 
         $startTime = microtime(true);

@@ -219,24 +219,6 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
     }
 
     /**
-     * @deprecated
-     * @return string Bearer string containing access token.
-     */
-    public function getBearerString()
-    {
-        $token = $this->credentialsFetcher->getLastReceivedToken();
-        if (self::isExpired($token)) {
-            $this->checkUniverseDomain();
-
-            $token = $this->credentialsFetcher->fetchAuthToken($this->authHttpHandler);
-            if (!self::isValid($token)) {
-                return '';
-            }
-        }
-        return empty($token['access_token']) ? '' : 'Bearer ' . $token['access_token'];
-    }
-
-    /**
      * @param string $audience optional audience for self-signed JWTs.
      * @return callable Callable function that returns an authorization header.
      */

@@ -39,7 +39,9 @@ use Google\ApiCore\Call;
 use Google\ApiCore\ClientStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\HeaderCredentialsInterface;
 use Google\ApiCore\IamProviderInterface;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\LongRunningOperationProviderInterface;
 use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\ApiCore\OperationResponse;
@@ -970,10 +972,10 @@ class GapicClientTraitTest extends TestCase
         $client = new class() extends StubGapicClient {
             public array $capturedCredentialsConfig = [];
 
-            public function createCredentialsWrapper($credentials, array $credentialsConfig, string $universeDomain)
+            public function createCredentialsWrapper($credentials, array $credentialsConfig, string $universeDomain): HeaderCredentialsInterface
             {
                 $this->capturedCredentialsConfig = $credentialsConfig;
-                return null;
+                return new InsecureCredentialsWrapper();
             }
         };
 
