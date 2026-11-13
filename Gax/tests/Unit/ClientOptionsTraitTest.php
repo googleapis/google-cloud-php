@@ -40,8 +40,6 @@ use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\Logging\StdOutLogger;
-use Grpc\Gcp\ApiConfig;
-use Grpc\Gcp\Config;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -84,7 +82,6 @@ class ClientOptionsTraitTest extends TestCase
             {
                 return [
                     'apiEndpoint' => 'test.address.com:443',
-                    'gcpApiConfigPath' => __DIR__ . '/testdata/resources/test_service_grpc_config.json',
                 ];
             }
         };
@@ -242,21 +239,13 @@ class ClientOptionsTraitTest extends TestCase
 
     public function buildClientOptionsProvider()
     {
-        $apiConfig = new ApiConfig();
-        $apiConfig->mergeFromJsonString(
-            file_get_contents(__DIR__ . '/testdata/resources/test_service_grpc_config.json')
-        );
-        $grpcGcpConfig = new Config('test.address.com:443', $apiConfig);
-
         $defaultOptions = [
             'apiEndpoint' => 'test.address.com:443',
-            'gcpApiConfigPath' => __DIR__ . '/testdata/resources/test_service_grpc_config.json',
             'disableRetries' => false,
             'transport' => null,
             'transportConfig' => [
                 'grpc' => [
                     'stubOpts' => [
-                        'grpc_call_invoker' => $grpcGcpConfig->callInvoker(),
                         'grpc.service_config_disable_resolution' => 1,
                     ],
                     'logger' => null,

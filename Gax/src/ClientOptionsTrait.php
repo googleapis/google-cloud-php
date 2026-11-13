@@ -38,8 +38,6 @@ use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
-use Grpc\Gcp\ApiConfig;
-use Grpc\Gcp\Config;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
@@ -65,14 +63,6 @@ trait ClientOptionsTrait
         return self::$gapicVersionFromFile;
     }
 
-    private static function initGrpcGcpConfig(string $hostName, string $confPath)
-    {
-        $apiConfig = new ApiConfig();
-        $apiConfig->mergeFromJsonString(file_get_contents($confPath));
-        $config = new Config($hostName, $apiConfig);
-        return $config;
-    }
-
     /**
      * Get default options. This function should be "overridden" by clients using late static
      * binding to provide default options to the client.
@@ -93,11 +83,9 @@ trait ClientOptionsTrait
      * 1. Set default client option values
      * 2. Set default logger (and log user-supplied configuration options)
      * 3. Set default transport configuration
-     * 4. Call "modifyClientOptions" (for backwards compatibility)
-     * 5. Use "defaultScopes" when custom endpoint is supplied
-     * 6. Load mTLS from the environment if configured
-     * 7. Resolve endpoint based on universe domain template when possible
-     * 8. Load sysvshm grpc config when possible
+     * 4. Use "defaultScopes" when custom endpoint is supplied
+     * 5. Load mTLS from the environment if configured
+     * 6. Resolve endpoint based on universe domain template when possible
      */
     private function buildClientOptions(array|ClientOptions $options)
     {
@@ -251,25 +239,6 @@ trait ClientOptionsTrait
                 // endpoint instead.
                 $apiEndpoint = $defaultOptions['apiEndpoint'];
             }
-        }
-
-        if (extension_loaded('sysvshm')
-            && isset($options['gcpApiConfigPath'])
-            && file_exists($options['gcpApiConfigPath'])
-            && !empty($apiEndpoint)
-        ) {
-            $grpcGcpConfig = self::initGrpcGcpConfig(
-                $apiEndpoint,
-                $options['gcpApiConfigPath']
-            );
-
-            if (!array_key_exists('stubOpts', $options['transportConfig']['grpc'])) {
-                $options['transportConfig']['grpc']['stubOpts'] = [];
-            }
-
-            $options['transportConfig']['grpc']['stubOpts'] += [
-                'grpc_call_invoker' => $grpcGcpConfig->callInvoker()
-            ];
         }
 
         $options['apiEndpoint'] = $apiEndpoint;
