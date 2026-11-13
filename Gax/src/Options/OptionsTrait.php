@@ -47,7 +47,7 @@ trait OptionsTrait
      * @param string $filePath
      * @throws ValidationException
      */
-    private static function validateFileExists(string $filePath)
+    protected static function validateFileExists(string $filePath)
     {
         if (!file_exists($filePath)) {
             throw new ValidationException("Could not find specified file: $filePath");
@@ -65,7 +65,7 @@ trait OptionsTrait
     #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
-        return $this->$offset;
+        return $this->$offset ?? null;
     }
 
     /**

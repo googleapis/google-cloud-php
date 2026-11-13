@@ -66,7 +66,7 @@ class GrpcFallbackTransportOptions implements ArrayAccess, OptionsInterface
      *          A PSR-3 logger interface instance.
      * }
      */
-    public function __construct(array $options)
+    public function __construct(array $options = [])
     {
         $this->fromArray($options);
     }
@@ -86,9 +86,9 @@ class GrpcFallbackTransportOptions implements ArrayAccess, OptionsInterface
     /**
      * @param ?callable $httpHandler
      *
-     * @return $this
+     * @return static
      */
-    public function setHttpHandler(?callable $httpHandler): self
+    public function setHttpHandler(?callable $httpHandler): static
     {
         if (!is_null($httpHandler)) {
             $httpHandler = Closure::fromCallable($httpHandler);
@@ -101,9 +101,9 @@ class GrpcFallbackTransportOptions implements ArrayAccess, OptionsInterface
     /**
      * @param ?callable $clientCertSource
      *
-     * @return $this
+     * @return static
      */
-    public function setClientCertSource(?callable $clientCertSource): self
+    public function setClientCertSource(?callable $clientCertSource): static
     {
         if (!is_null($clientCertSource)) {
             $clientCertSource = Closure::fromCallable($clientCertSource);
@@ -116,9 +116,9 @@ class GrpcFallbackTransportOptions implements ArrayAccess, OptionsInterface
     /**
      * @param null|false|LoggerInterface $logger
      *
-     * @return $this
+     * @return static
      */
-    public function setLogger(null|false|LoggerInterface $logger): self
+    public function setLogger(null|false|LoggerInterface $logger): static
     {
         $this->logger = $logger;
 
