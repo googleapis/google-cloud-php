@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright 2023 Google LLC
  * All rights reserved.
@@ -38,6 +39,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Auth\FetchAuthTokenInterface;
 use InvalidArgumentException;
+use OpenTelemetry\API\Trace\TracerProviderInterface;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -98,6 +100,8 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     private ?string $apiKey;
 
     private null|false|LoggerInterface $logger;
+
+    private ?TracerProviderInterface $openTelemetryTracerProvider = null;
 
     /**
      * @param array $options {
@@ -200,6 +204,7 @@ class ClientOptions implements ArrayAccess, OptionsInterface
         $this->setUniverseDomain($arr['universeDomain'] ?? null);
         $this->setApiKey($arr['apiKey'] ?? null);
         $this->setLogger($arr['logger'] ?? null);
+        $this->setOpenTelemetryTracerProvider($arr['openTelemetryTracerProvider'] ?? null);
     }
 
     /**
@@ -417,5 +422,34 @@ class ClientOptions implements ArrayAccess, OptionsInterface
         $this->logger = $logger;
 
         return $this;
+    }
+
+    /**
+     * @internal
+     * Sets an explicit OpenTelemetry TracerProvider for this client instance.
+     * When omitted, the client defaults to the globally registered OpenTelemetry
+     * TracerProvider when GOOGLE_SDK_PHP_TRACING_ENABLED=true, or no-ops with zero
+     * overhead when disabled.
+     *
+     * @param TracerProviderInterface|null $openTelemetryTracerProvider
+     *
+     * @return $this
+     */
+    public function setOpenTelemetryTracerProvider(?TracerProviderInterface $openTelemetryTracerProvider): self
+    {
+        $this->openTelemetryTracerProvider = $openTelemetryTracerProvider;
+
+        return $this;
+    }
+
+    /**
+     * @internal
+     * Gets the configured OpenTelemetry TracerProvider for this client instance.
+     *
+     * @return TracerProviderInterface|null
+     */
+    public function getOpenTelemetryTracerProvider(): ?TracerProviderInterface
+    {
+        return $this->openTelemetryTracerProvider;
     }
 }
