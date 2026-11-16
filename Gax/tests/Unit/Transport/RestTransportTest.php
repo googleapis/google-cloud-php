@@ -39,7 +39,9 @@ use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\RequestBuilder;
 use Google\ApiCore\ResumableUpload\ResumableUploadTransportInterface;
+use Google\ApiCore\Telemetry\SpanAttributes;
 use Google\ApiCore\Testing\MockRequest;
+use Google\ApiCore\Testing\MockRequestBody;
 use Google\ApiCore\Testing\MockResponse;
 use Google\ApiCore\Tests\Unit\TestTrait;
 use Google\ApiCore\Transport\RestTransport;
@@ -54,10 +56,17 @@ use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use InvalidArgumentException;
+use OpenTelemetry\API\Trace\SpanBuilderInterface;
+use OpenTelemetry\API\Trace\SpanInterface;
+use OpenTelemetry\API\Trace\SpanKind;
+use OpenTelemetry\API\Trace\StatusCode;
+use OpenTelemetry\API\Trace\TracerInterface;
+use OpenTelemetry\API\Trace\TracerProviderInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
+use ReflectionClass;
 use TypeError;
 use UnexpectedValueException;
 
@@ -83,6 +92,8 @@ class RestTransportTest extends TestCase
         $requestBuilder = $this->prophesize(RequestBuilder::class);
         $requestBuilder->build(Argument::cetera())
             ->willReturn($request);
+        $requestBuilder->getUriTemplate(Argument::cetera())
+            ->willReturn(null);
         $requestBuilder->pathExists(Argument::type('string'))
             ->willReturn(true);
 
@@ -680,5 +691,213 @@ class RestTransportTest extends TestCase
 
         $actualRequest = $transport->buildRequest($method, $message);
         $this->assertSame($expectedRequest, $actualRequest);
+    }
+
+    public function testStartUnaryCallEmitsT4ClientSpanOnSuccess(): void
+    {
+        $tracerProvider = $this->createMock(TracerProviderInterface::class);
+        $tracer = $this->createMock(TracerInterface::class);
+        $spanBuilder = $this->createMock(SpanBuilderInterface::class);
+        $span = $this->createMock(SpanInterface::class);
+
+        $method = 'test.interface.v1.api/MethodWithBodyAndUrlPlaceholder';
+
+        $tracerProvider->expects($this->once())
+            ->method('getTracer')
+            ->with('google-cloud-php', '1.0.0')
+            ->willReturn($tracer);
+
+        $tracer->expects($this->once())
+            ->method('spanBuilder')
+            ->with('POST /v1/{name=message/**}')
+            ->willReturn($spanBuilder);
+
+        $spanBuilder->expects($this->once())
+            ->method('setSpanKind')
+            ->with(SpanKind::KIND_CLIENT)
+            ->willReturnSelf();
+
+        $attributes = [];
+        $spanBuilder->method('setAttribute')
+            ->willReturnCallback(function ($key, $val) use (&$attributes, $spanBuilder) {
+                $attributes[$key] = $val;
+                return $spanBuilder;
+            });
+
+        $spanBuilder->expects($this->once())
+            ->method('startSpan')
+            ->willReturn($span);
+
+        $recordedSpanAttributes = [];
+        $span->method('setAttribute')
+            ->willReturnCallback(function ($key, $val) use (&$recordedSpanAttributes, $span) {
+                $recordedSpanAttributes[$key] = $val;
+                return $span;
+            });
+
+        $span->expects($this->once())
+            ->method('setStatus')
+            ->with(StatusCode::STATUS_OK);
+
+        $span->expects($this->once())
+            ->method('end');
+
+        $body = ['name' => 'hello', 'number' => 15];
+        $httpHandler = fn (RequestInterface $request, array $options = []) => Create::promiseFor(
+            new Response(200, [], json_encode($body))
+        );
+
+        $transport = RestTransport::build(
+            'secretmanager.googleapis.com:443',
+            __DIR__ . '/../testdata/resources/test_service_rest_client_config.php',
+            [
+                'httpHandler' => $httpHandler,
+                'openTelemetryTracerProvider' => $tracerProvider,
+                'clientVersion' => '1.0.0',
+            ]
+        );
+
+        $message = (new MockRequestBody())->setName('message/foo');
+        $call = new Call($method, MockResponse::class, $message);
+        $result = $transport->startUnaryCall($call, ['retryAttempt' => 2])->wait();
+
+        $this->assertSame('hello', $result->getName());
+        $this->assertSame('http', $attributes[SpanAttributes::RPC_SYSTEM_NAME]);
+        $this->assertSame($method, $attributes[SpanAttributes::RPC_METHOD]);
+        $this->assertSame('POST', $attributes[SpanAttributes::HTTP_REQUEST_METHOD]);
+        $this->assertSame('https://secretmanager.googleapis.com/v1/message/foo', $attributes[SpanAttributes::URL_FULL]);
+        $this->assertSame('/v1/{name=message/**}', $attributes[SpanAttributes::URL_TEMPLATE]);
+        $this->assertSame('secretmanager.googleapis.com', $attributes[SpanAttributes::SERVER_ADDRESS]);
+        $this->assertSame(443, $attributes[SpanAttributes::SERVER_PORT]);
+        $this->assertSame(2, $attributes[SpanAttributes::HTTP_REQUEST_RESEND_COUNT]);
+        $this->assertSame(200, $recordedSpanAttributes[SpanAttributes::HTTP_RESPONSE_STATUS_CODE]);
+        $this->assertSame('OK', $recordedSpanAttributes[SpanAttributes::RPC_RESPONSE_STATUS_CODE]);
+    }
+
+    public function testStartUnaryCallEmitsT4ClientSpanOnFailure(): void
+    {
+        $tracerProvider = $this->createMock(TracerProviderInterface::class);
+        $tracer = $this->createMock(TracerInterface::class);
+        $spanBuilder = $this->createMock(SpanBuilderInterface::class);
+        $span = $this->createMock(SpanInterface::class);
+
+        $tracerProvider->method('getTracer')->willReturn($tracer);
+        $tracer->method('spanBuilder')->willReturn($spanBuilder);
+        $spanBuilder->method('setSpanKind')->willReturnSelf();
+        $spanBuilder->method('setAttribute')->willReturnSelf();
+        $spanBuilder->method('startSpan')->willReturn($span);
+
+        $recordedSpanAttributes = [];
+        $span->method('setAttribute')
+            ->willReturnCallback(function ($key, $val) use (&$recordedSpanAttributes, $span) {
+                $recordedSpanAttributes[$key] = $val;
+                return $span;
+            });
+
+        $span->expects($this->once())
+            ->method('setStatus')
+            ->with(StatusCode::STATUS_ERROR, 'Resource not found');
+
+        $span->expects($this->once())
+            ->method('end');
+
+        $httpHandler = fn (RequestInterface $request, array $options = []) => Create::rejectionFor(
+            RequestException::create(
+                $request,
+                new Response(
+                    404,
+                    [],
+                    json_encode([
+                        'error' => [
+                            'status' => 'NOT_FOUND',
+                            'message' => 'Resource not found',
+                        ],
+                    ])
+                )
+            )
+        );
+
+        $transport = $this->getTransport($httpHandler);
+        $this->setTelemetryOptions($transport, [
+            'openTelemetryTracerProvider' => $tracerProvider,
+        ]);
+
+        $this->expectException(ApiException::class);
+
+        try {
+            $transport->startUnaryCall($this->call, [])->wait();
+        } finally {
+            $this->assertSame(404, $recordedSpanAttributes[SpanAttributes::HTTP_RESPONSE_STATUS_CODE]);
+            $this->assertSame('NOT_FOUND', $recordedSpanAttributes[SpanAttributes::RPC_RESPONSE_STATUS_CODE]);
+            $this->assertSame('NOT_FOUND', $recordedSpanAttributes[SpanAttributes::ERROR_TYPE]);
+            $this->assertSame('Resource not found', $recordedSpanAttributes[SpanAttributes::STATUS_MESSAGE]);
+        }
+    }
+
+    public function testStartUnaryCallEndsSpanOnSynchronousException(): void
+    {
+        $tracerProvider = $this->createMock(TracerProviderInterface::class);
+        $tracer = $this->createMock(TracerInterface::class);
+        $spanBuilder = $this->createMock(SpanBuilderInterface::class);
+        $span = $this->createMock(SpanInterface::class);
+
+        $tracerProvider->method('getTracer')->willReturn($tracer);
+        $tracer->method('spanBuilder')->willReturn($spanBuilder);
+        $spanBuilder->method('setSpanKind')->willReturnSelf();
+        $spanBuilder->method('setAttribute')->willReturnSelf();
+        $spanBuilder->method('startSpan')->willReturn($span);
+
+        $span->expects($this->once())
+            ->method('setStatus')
+            ->with(StatusCode::STATUS_ERROR, 'Auth callback failed');
+        $span->expects($this->once())
+            ->method('end');
+
+        $credentialsWrapper = $this->prophesize(CredentialsWrapper::class);
+        $credentialsWrapper->getAuthorizationHeaderCallback(null)
+            ->willThrow(new \RuntimeException('Auth callback failed'));
+
+        $transport = $this->getTransport();
+        $this->setTelemetryOptions($transport, [
+            'openTelemetryTracerProvider' => $tracerProvider,
+        ]);
+
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Auth callback failed');
+
+        $transport->startUnaryCall($this->call, [
+            'credentialsWrapper' => $credentialsWrapper->reveal(),
+        ]);
+    }
+
+    public function testBuildSetsTelemetryOptions(): void
+    {
+        $tracerProvider = $this->createMock(TracerProviderInterface::class);
+
+        $transport = RestTransport::build(
+            'secretmanager.googleapis.com:443',
+            __DIR__ . '/../testdata/resources/test_service_rest_client_config.php',
+            [
+                'openTelemetryTracerProvider' => $tracerProvider,
+                'clientVersion' => '1.0.0',
+            ]
+        );
+
+        $ref = new ReflectionClass($transport);
+        $prop = $ref->getProperty('openTelemetryTracerProvider');
+        $this->assertSame($tracerProvider, $prop->getValue($transport));
+
+        $addrProp = $ref->getProperty('serverAddress');
+        $this->assertSame('secretmanager.googleapis.com', $addrProp->getValue($transport));
+
+        $portProp = $ref->getProperty('serverPort');
+        $this->assertSame(443, $portProp->getValue($transport));
+    }
+
+    private function setTelemetryOptions(RestTransport $transport, array $options): void
+    {
+        (new ReflectionClass(RestTransport::class))
+            ->getMethod('setTelemetryOptions')
+            ->invoke($transport, $options);
     }
 }
