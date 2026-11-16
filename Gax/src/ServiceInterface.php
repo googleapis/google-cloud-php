@@ -37,9 +37,6 @@ namespace Google\ApiCore;
 /**
  * Interface implemented by all GAPIC service clients, defining common lifecycle,
  * scope, and middleware configuration methods.
- *
- * @experimental
- * @internal
  */
 interface ServiceInterface
 {
