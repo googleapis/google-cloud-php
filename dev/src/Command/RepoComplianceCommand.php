@@ -106,7 +106,8 @@ class RepoComplianceCommand extends Command
                 }
                 $repoCheck = $packagistCheck = $webhookCheck = $teamsCheck = true;
                 if (!$this->checkSettingsCompliance($component, $details)) {
-                    $repoCheck = false;
+                    // New components are configured by repo:split on first release.
+                    $repoCheck = $isNewComponent ? 'skipped' : false;
                     $refreshDetails |= $this->askFixSettingsCompliance($input, $output, $component, $details);
                 }
                 if (!$this->checkWebhookCompliance($details)) {
