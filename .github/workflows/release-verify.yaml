@@ -35,19 +35,36 @@ jobs:
           RELEASE_TAG: ${{ inputs.tag }}
         run: |
           CUTOFF=$(date -u -d "-14 days" +"%Y-%m-%dT%H:%M:%SZ")
-          TAGS=${RELEASE_TAG:-$(gh api "repos/$GH_REPO/releases?per_page=20" --jq ".[] | select(.published_at >= \"$CUTOFF\" and ((.body // \"\") | contains(\"## Release Verification: ✅ Verified\") | not)) | .tag_name")}
+          TAGS=${RELEASE_TAG:-$(gh api "repos/$GH_REPO/releases?per_page=20" | jq -r --arg cutoff "$CUTOFF" '.[] | select(.published_at >= $cutoff and ((.body // "") | contains("## Release Verification: ✅ Verified") | not)) | .tag_name')}
           FAILED=0
           for TAG in $TAGS; do
-            ./dev/google-cloud release:verify "$TAG" --update-release -t "$GH_TOKEN" || FAILED=1
+            TITLE="Release verification failed: $TAG"
+            if ./dev/google-cloud release:verify "$TAG" --update-release -t "$GH_TOKEN"; then
+              if [ "$GITHUB_REF" = "refs/heads/main" ]; then
+                OPEN_ISSUE=$(gh issue list --repo "$GH_REPO" --search "\"$TITLE\" in:title" --state open --json number,title | jq -r --arg title "$TITLE" 'first(.[] | select(.title == $title) | .number) // empty')
+                if [ -n "$OPEN_ISSUE" ]; then
+                  IS_VERIFIED=$(gh api "repos/$GH_REPO/releases/tags/$TAG" --jq '(.body // "") | contains("## Release Verification: ✅ Verified")')
+                  if [ "$IS_VERIFIED" = "true" ]; then
+                    gh issue close "$OPEN_ISSUE" --repo "$GH_REPO" --comment "Release $TAG is now verified. Workflow Run: $GITHUB_SERVER_URL/$GH_REPO/actions/runs/$GITHUB_RUN_ID"
+                  fi
+                fi
+              fi
+            else
+              FAILED=1
+              if [ "$GITHUB_REF" = "refs/heads/main" ]; then
+                EXISTING_ISSUE=$(gh issue list --repo "$GH_REPO" --search "\"$TITLE\" in:title" --state all --json number,title | jq -r --arg title "$TITLE" 'first(.[] | select(.title == $title) | .number) // empty')
+                if [ -z "$EXISTING_ISSUE" ]; then
+                  BODY=$(printf '`release:verify` failed for release %s.\n\n- Release: %s/%s/releases/tag/%s\n- Workflow Run: %s/%s/actions/runs/%s\n\n@googleapis/cloud-sdk-php-team' \
+                    "$TAG" "$GITHUB_SERVER_URL" "$GH_REPO" "$TAG" "$GITHUB_SERVER_URL" "$GH_REPO" "$GITHUB_RUN_ID")
+                  gh issue create \
+                    --repo "$GH_REPO" \
+                    --title "$TITLE" \
+                    --label ":rotating_light: critical" \
+                    --body "$BODY"
+                else
+                  echo "Issue #$EXISTING_ISSUE already exists for $TAG; skipping."
+                fi
+              fi
+            fi
           done
           exit $FAILED
-      - name: Create issue if previous step fails
-        if: ${{ failure() && github.ref == 'refs/heads/main' }}
-        uses: googleapis/librarian/.github/actions/create-issue-on-failure@3c8cc1528686a089cace64bec5f29642c328e3b8 # v0.51.0
-        with:
-          title: "Release verification failed"
-          body: |
-            `release:verify` failed for a recent release.
-
-            Please check the logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          mention: "@googleapis/cloud-sdk-php-team"
