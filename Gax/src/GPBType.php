@@ -34,6 +34,8 @@ namespace Google\ApiCore;
 /**
  * Container class for Protobuf type constants. See FieldDescriptorProto.Type in
  * https://github.com/google/protobuf/blob/master/src/google/protobuf/descriptor.proto
+ *
+ * @deprecated Use {@see \Google\Protobuf\Internal\GPBType} instead.
  */
 class GPBType
 {

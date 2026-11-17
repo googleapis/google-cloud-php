@@ -32,7 +32,7 @@
 
 namespace Google\ApiCore;
 
-use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\LongRunning\OperationsClient as DeprecatedOperationsClient;
 use Google\ApiCore\Middleware\CredentialsWrapperMiddleware;
 use Google\ApiCore\Middleware\FixedHeaderMiddleware;
 use Google\ApiCore\Middleware\OperationsMiddleware;
@@ -50,6 +50,7 @@ use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\Transport\RestTransport;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Internal\Message;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -174,7 +175,7 @@ trait GapicClientTrait
      *
      * @experimental
      */
-    public function close()
+    public function close(): void
     {
         $this->transport->close();
     }
@@ -454,7 +455,7 @@ trait GapicClientTrait
 
     /**
      * @param array $options
-     * @return OperationsClient
+     * @return DeprecatedOperationsClient|OperationsClient|object
      */
     private function createOperationsClient(array $options)
     {
@@ -470,8 +471,11 @@ trait GapicClientTrait
         }
 
         // operationsClientClass option
+        $defaultClass = $this->isBackwardsCompatibilityMode()
+            ? DeprecatedOperationsClient::class
+            : OperationsClient::class;
         $operationsClientClass = $this->pluck('operationsClientClass', $options, false)
-            ?: OperationsCLient::class;
+            ?: $defaultClass;
         return new $operationsClientClass($options);
     }
 
