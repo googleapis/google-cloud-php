@@ -42,6 +42,10 @@ class ReleaseVerifyCommand extends Command
     private const TABLE_HEADERS = ['Component', 'Version', 'Packagist', 'Docs'];
     private const VERIFY_MARKER_START = '<!-- RELEASE_VERIFY_START -->';
     private const VERIFY_MARKER_END = '<!-- RELEASE_VERIFY_END -->';
+    private const IGNORED_CHECK_RUNS = [
+        'Split and Release Components',
+        'Verify Releases',
+    ];
 
     private Client $httpClient;
 
@@ -307,6 +311,9 @@ class ReleaseVerifyCommand extends Command
         $checkRuns = $github->getCheckRuns(self::REPO_ID, $tag) ?? [];
         foreach ($checkRuns as $run) {
             $runName = $run['name'] ?? 'Unknown';
+            if (in_array($runName, self::IGNORED_CHECK_RUNS, true)) {
+                continue;
+            }
             $runUrl = $run['html_url'] ?? '';
             $markdownLabel = $runUrl ? sprintf('[%s](%s)', $runName, $runUrl) : $runName;
 
