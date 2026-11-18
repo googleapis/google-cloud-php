@@ -1,5 +1,371 @@
 # Changelog
 
+## 0.353.0
+
+<details><summary>google/cloud-ai-platform 1.68.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9845](https://github.com/googleapis/google-cloud-php/issues/9845)) ([63ba767](https://github.com/googleapis/google-cloud-php/commit/63ba767c12226bcdfbb7fcb0b85631cbe05d7c8d))
+
+</details>
+
+<details><summary>google/apps-chat 0.31.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9845](https://github.com/googleapis/google-cloud-php/issues/9845)) ([63ba767](https://github.com/googleapis/google-cloud-php/commit/63ba767c12226bcdfbb7fcb0b85631cbe05d7c8d))
+
+</details>
+
+<details><summary>google/cloud-auditmanager 0.6.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9845](https://github.com/googleapis/google-cloud-php/issues/9845)) ([63ba767](https://github.com/googleapis/google-cloud-php/commit/63ba767c12226bcdfbb7fcb0b85631cbe05d7c8d))
+
+</details>
+
+<details><summary>google/cloud-backupdr 0.17.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9845](https://github.com/googleapis/google-cloud-php/issues/9845)) ([63ba767](https://github.com/googleapis/google-cloud-php/commit/63ba767c12226bcdfbb7fcb0b85631cbe05d7c8d))
+
+</details>
+
+<details><summary>google/cloud-compute 2.18.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9845](https://github.com/googleapis/google-cloud-php/issues/9845)) ([63ba767](https://github.com/googleapis/google-cloud-php/commit/63ba767c12226bcdfbb7fcb0b85631cbe05d7c8d))
+
+</details>
+
+<details><summary>google/cloud-dataform 0.19.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9845](https://github.com/googleapis/google-cloud-php/issues/9845)) ([63ba767](https://github.com/googleapis/google-cloud-php/commit/63ba767c12226bcdfbb7fcb0b85631cbe05d7c8d))
+
+</details>
+
+<details><summary>google/cloud-developerconnect 0.9.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9845](https://github.com/googleapis/google-cloud-php/issues/9845)) ([63ba767](https://github.com/googleapis/google-cloud-php/commit/63ba767c12226bcdfbb7fcb0b85631cbe05d7c8d))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 1.17.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9845](https://github.com/googleapis/google-cloud-php/issues/9845)) ([63ba767](https://github.com/googleapis/google-cloud-php/commit/63ba767c12226bcdfbb7fcb0b85631cbe05d7c8d))
+
+</details>
+
+<details><summary>google/gax 1.52.0</summary>
+
+
+
+### Features
+
+* **Gax:** add ServiceInterface, LongRunningOperationProviderInterface, and IamProviderInterface ([#9754](https://github.com/googleapis/google-cloud-php/issues/9754)) ([d5d8860](https://github.com/googleapis/google-cloud-php/commit/d5d8860b1033fe1b21ebdcfaae3b843f7945e95e))
+
+</details>
+
+<details><summary>firebase/php-jwt 7.2.2</summary>
+
+
+
+### Documentation
+
+* **Jwt:** document supported RFC specifications in README ([#9836](https://github.com/googleapis/google-cloud-php/issues/9836)) ([7c5d6c9](https://github.com/googleapis/google-cloud-php/commit/7c5d6c990283923bd7cde4f802fcb9b9ed26f780))
+
+</details>
+
+<details><summary>google/cloud-logging 2.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/longrunning 0.9.1</summary>
+
+
+
+### Features
+
+* **Gax:** add ServiceInterface, LongRunningOperationProviderInterface, and IamProviderInterface ([#9754](https://github.com/googleapis/google-cloud-php/issues/9754)) ([d5d8860](https://github.com/googleapis/google-cloud-php/commit/d5d8860b1033fe1b21ebdcfaae3b843f7945e95e))
+
+</details>
+
+<details><summary>google/maps-routeoptimization 0.9.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9845](https://github.com/googleapis/google-cloud-php/issues/9845)) ([63ba767](https://github.com/googleapis/google-cloud-php/commit/63ba767c12226bcdfbb7fcb0b85631cbe05d7c8d))
+
+</details>
+
+<details><summary>google/cloud-memorystore 0.17.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9845](https://github.com/googleapis/google-cloud-php/issues/9845)) ([63ba767](https://github.com/googleapis/google-cloud-php/commit/63ba767c12226bcdfbb7fcb0b85631cbe05d7c8d))
+
+</details>
+
+<details><summary>google/cloud-modelarmor 0.11.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9845](https://github.com/googleapis/google-cloud-php/issues/9845)) ([63ba767](https://github.com/googleapis/google-cloud-php/commit/63ba767c12226bcdfbb7fcb0b85631cbe05d7c8d))
+
+</details>
+
+<details><summary>google/cloud-network-management 2.13.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9845](https://github.com/googleapis/google-cloud-php/issues/9845)) ([63ba767](https://github.com/googleapis/google-cloud-php/commit/63ba767c12226bcdfbb7fcb0b85631cbe05d7c8d))
+
+</details>
+
+<details><summary>google/cloud-saasplatform-saasservicemgmt 0.1.0</summary>
+
+
+
+### Features
+
+* **SaasPlatformSaasServiceMgmt:** add google/cloud/saasplatform/saasservicemgmt/v1 ([#9846](https://github.com/googleapis/google-cloud-php/issues/9846)) ([59246f7](https://github.com/googleapis/google-cloud-php/commit/59246f755fdf7934b9c4b97312ccb798bc589e3b))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 2.7.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9845](https://github.com/googleapis/google-cloud-php/issues/9845)) ([63ba767](https://github.com/googleapis/google-cloud-php/commit/63ba767c12226bcdfbb7fcb0b85631cbe05d7c8d))
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 1.6.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848))
+
+### Bug Fixes
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848)) ([23c1bbd](https://github.com/googleapis/google-cloud-php/commit/23c1bbd92243ad3902553737d275e59ef7b97f5f))
+
+</details>
+
+<details><summary>google/shopping-merchant-conversions 1.4.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848))
+
+### Bug Fixes
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848)) ([23c1bbd](https://github.com/googleapis/google-cloud-php/commit/23c1bbd92243ad3902553737d275e59ef7b97f5f))
+
+</details>
+
+<details><summary>google/shopping-merchant-datasources 1.5.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848))
+
+### Bug Fixes
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848)) ([23c1bbd](https://github.com/googleapis/google-cloud-php/commit/23c1bbd92243ad3902553737d275e59ef7b97f5f))
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 1.7.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848))
+
+### Bug Fixes
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848)) ([23c1bbd](https://github.com/googleapis/google-cloud-php/commit/23c1bbd92243ad3902553737d275e59ef7b97f5f))
+
+</details>
+
+<details><summary>google/shopping-merchant-lfp 1.4.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848))
+
+### Bug Fixes
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848)) ([23c1bbd](https://github.com/googleapis/google-cloud-php/commit/23c1bbd92243ad3902553737d275e59ef7b97f5f))
+
+</details>
+
+<details><summary>google/shopping-merchant-notifications 1.4.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848))
+
+### Bug Fixes
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848)) ([23c1bbd](https://github.com/googleapis/google-cloud-php/commit/23c1bbd92243ad3902553737d275e59ef7b97f5f))
+
+</details>
+
+<details><summary>google/shopping-merchant-ordertracking 1.4.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848))
+
+### Bug Fixes
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848)) ([23c1bbd](https://github.com/googleapis/google-cloud-php/commit/23c1bbd92243ad3902553737d275e59ef7b97f5f))
+
+</details>
+
+<details><summary>google/shopping-merchant-products 1.10.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848))
+
+### Bug Fixes
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848)) ([23c1bbd](https://github.com/googleapis/google-cloud-php/commit/23c1bbd92243ad3902553737d275e59ef7b97f5f))
+
+</details>
+
+<details><summary>google/shopping-merchant-promotions 1.4.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848))
+
+### Bug Fixes
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848)) ([23c1bbd](https://github.com/googleapis/google-cloud-php/commit/23c1bbd92243ad3902553737d275e59ef7b97f5f))
+
+</details>
+
+<details><summary>google/shopping-merchant-quota 1.6.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848))
+
+### Bug Fixes
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848)) ([23c1bbd](https://github.com/googleapis/google-cloud-php/commit/23c1bbd92243ad3902553737d275e59ef7b97f5f))
+
+</details>
+
+<details><summary>google/shopping-merchant-reports 1.6.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848))
+
+### Bug Fixes
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848)) ([23c1bbd](https://github.com/googleapis/google-cloud-php/commit/23c1bbd92243ad3902553737d275e59ef7b97f5f))
+
+</details>
+
+<details><summary>google/shopping-merchant-reviews 0.8.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848))
+
+### Bug Fixes
+
+* remove discontinued Merchant API v1beta ([#9848](https://github.com/googleapis/google-cloud-php/issues/9848)) ([23c1bbd](https://github.com/googleapis/google-cloud-php/commit/23c1bbd92243ad3902553737d275e59ef7b97f5f))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.16.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9845](https://github.com/googleapis/google-cloud-php/issues/9845)) ([63ba767](https://github.com/googleapis/google-cloud-php/commit/63ba767c12226bcdfbb7fcb0b85631cbe05d7c8d))
+
+</details>
+
+<details><summary>google/cloud-storage 2.7.0</summary>
+
+
+
+### Features
+
+* **Storage:** allow bypassing StreamWrapper permissions check to reduce cost/latency ([#9733](https://github.com/googleapis/google-cloud-php/issues/9733)) ([56ed02e](https://github.com/googleapis/google-cloud-php/commit/56ed02ee55ae6f14fa9e1892f928dc8950ba398e))
+
+</details>
+
 ## 0.352.0
 
 <details><summary>google/apps-chat 0.30.0</summary>
