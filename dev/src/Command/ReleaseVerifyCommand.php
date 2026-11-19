@@ -44,9 +44,8 @@ class ReleaseVerifyCommand extends Command
     private const VERIFY_MARKER_END = '<!-- RELEASE_VERIFY_END -->';
 
     /**
-     * Check runs to skip when verifying a release tag.
-     * "Verify Releases" runs on `main` (via schedule or workflow_run) and attaches to the release
-     * commit when it is still HEAD of `main`, where it would otherwise appear as PENDING while running.
+     * Skip the "Verify Releases" check run itself — otherwise it can block verification
+     * by appearing as PENDING while running, or FAILED if an earlier run failed.
      */
     private const IGNORED_CHECK_RUNS = [
         'Verify Releases',
