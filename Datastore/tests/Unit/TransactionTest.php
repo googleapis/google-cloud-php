@@ -102,7 +102,7 @@ class TransactionTest extends TestCase
     {
         $this->gapicClient->lookup(
             Argument::type(LookupRequest::class),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
         )->shouldBeCalled(1)
             ->willReturn(self::generateProto(LookupResponse::class, [
             'found' => [
@@ -126,7 +126,7 @@ class TransactionTest extends TestCase
     {
          $this->gapicClient->lookup(
              Argument::type(LookupRequest::class),
-             Argument::any()
+             Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
          )->shouldBeCalled(1)
             ->willReturn(self::generateProto(LookupResponse::class, [
             'found' => [
@@ -161,7 +161,7 @@ class TransactionTest extends TestCase
     {
         $this->gapicClient->lookup(
             Argument::type(LookupRequest::class),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
         )->shouldBeCalled(1)->willReturn(self::generateProto(LookupResponse::class, [
             'missing' => [
                 [
@@ -184,7 +184,7 @@ class TransactionTest extends TestCase
         $this->gapicClient->lookup(Argument::that(function (LookupRequest $request) {
                 $this->assertEquals(1, count($request->getKeys()));
                 return true;
-        }), Argument::any())
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']]))
         ->shouldBeCalled(1)->willReturn(self::generateProto(LookupResponse::class, [
             'found' => [
                 [
@@ -231,7 +231,9 @@ class TransactionTest extends TestCase
             $this->assertNotNull($request->getGqlQuery());
             $this->assertEquals('SELECT 1=1', $request->getGqlQuery()->getQueryString());
             return true;
-        }), Argument::any())->shouldBeCalled(1)->willReturn(self::generateProto(RunQueryResponse::class, [
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']]))
+            ->shouldBeCalled(1)
+            ->willReturn(self::generateProto(RunQueryResponse::class, [
             'batch' => [
                 'entityResults' => [
                     [
@@ -265,7 +267,7 @@ class TransactionTest extends TestCase
                 $this->assertEquals($expectedQueryString, $request->getGqlQuery()->getQueryString());
                 return true;
             }
-        ), Argument::any())->shouldBeCalled(1)
+        ), Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']]))->shouldBeCalled(1)
             ->willReturn(self::generateProto(RunAggregationQueryResponse::class, [
                 'batch' => [
                         'aggregationResults' => [
@@ -316,7 +318,7 @@ class TransactionTest extends TestCase
         $this->gapicClient->rollback(Argument::that(function (RollbackRequest $request) {
             $this->assertEquals(base64_decode(self::TRANSACTION), $request->getTransaction());
             return true;
-        }))->shouldBeCalled(1)
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']]))->shouldBeCalled(1)
             ->willReturn(new RollbackResponse());
 
         $transaction = $this->$transaction;
@@ -345,7 +347,7 @@ class TransactionTest extends TestCase
                 $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
                 $this->assertNotEmpty($request->getMutations());
                 return true;
-        }), Argument::any())
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']]))
             ->shouldBeCalled(1)
             ->willReturn(self::generateProto(CommitResponse::class, $expectedResult));
 
@@ -367,7 +369,7 @@ class TransactionTest extends TestCase
                 $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
                 $this->assertNotEmpty($request->getMutations());
                 return true;
-        }), Argument::any())
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']]))
             ->shouldBeCalled(1)
             ->willReturn(self::generateProto(CommitResponse::class, $expectedResult));
 
@@ -396,7 +398,7 @@ class TransactionTest extends TestCase
                 $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
                 $this->assertNotEmpty($request->getMutations());
                 return true;
-        }), Argument::any())
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']]))
             ->shouldBeCalled(1)
             ->willReturn(self::generateProto(CommitResponse::class, $expectedResponse));
 
@@ -405,7 +407,9 @@ class TransactionTest extends TestCase
         $this->gapicClient->allocateIds(Argument::that(function (AllocateIdsRequest $request) {
             $this->assertEquals(1, count($request->getKeys()));
             return true;
-        }), Argument::any())->shouldBeCalled()->willReturn(self::generateProto(AllocateIdsResponse::class, [
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(AllocateIdsResponse::class, [
             'keys' => [
                 $keyWithId->keyObject()
             ]
@@ -430,7 +434,7 @@ class TransactionTest extends TestCase
             $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
             $this->assertNotEmpty($request->getMutations());
             return true;
-        }), Argument::any())->shouldBeCalled(1)
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']]))->shouldBeCalled(1)
             ->willReturn(self::generateProto(CommitResponse::class, $expectedResult));
 
         $keyWithId = clone $key;
@@ -438,7 +442,9 @@ class TransactionTest extends TestCase
         $this->gapicClient->allocateIds(Argument::that(function (AllocateIdsRequest $request) {
             $this->assertEquals(1, count($request->getKeys()));
             return true;
-        }), Argument::any())->shouldBeCalled(1)->willReturn(self::generateProto(AllocateIdsResponse::class, [
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
+            ->shouldBeCalled(1)
+            ->willReturn(self::generateProto(AllocateIdsResponse::class, [
             'keys' => [
                 $keyWithId->keyObject()
             ]
@@ -469,7 +475,7 @@ class TransactionTest extends TestCase
                 $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
                 $this->assertNotEmpty($request->getMutations());
                 return true;
-        }), Argument::any())
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']]))
             ->shouldBeCalled(1)
             ->willReturn(self::generateProto(CommitResponse::class, $expectedResult));
 
@@ -488,7 +494,7 @@ class TransactionTest extends TestCase
                 $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
                 $this->assertNotEmpty($request->getMutations());
                 return true;
-        }), Argument::any())
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']]))
             ->shouldBeCalled(1)
             ->willReturn(self::generateProto(CommitResponse::class, $expectedResult));
 
