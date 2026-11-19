@@ -2,7 +2,9 @@ name: Verify Releases
 on:
   schedule:
     - cron: '0 9 * * *'
-  # zizmor: ignore[dangerous-triggers] -- triggered only by maintainer-dispatched Release Components and checks out default branch
+  # Triggered after Release Components completes to verify the release (including Packagist).
+  # Release Components is workflow_dispatch-only (maintainers) and this workflow only checks out the default branch.
+  # zizmor: ignore[dangerous-triggers]
   workflow_run:
     workflows: ["Release Components"]
     types: [completed]
