@@ -42,6 +42,14 @@ class ReleaseVerifyCommand extends Command
     private const TABLE_HEADERS = ['Component', 'Version', 'Packagist', 'Docs'];
     private const VERIFY_MARKER_START = '<!-- RELEASE_VERIFY_START -->';
     private const VERIFY_MARKER_END = '<!-- RELEASE_VERIFY_END -->';
+
+    /**
+     * Workflows that run on `main` (via schedule or workflow_dispatch) rather than on
+     * `release: published`, so they only attach to a release tag when it happens to be
+     * HEAD of `main`:
+     * - "Split and Release Components": split releases are already verified via Packagist.
+     * - "Verify Releases": this verifier itself, which otherwise shows up as PENDING while running.
+     */
     private const IGNORED_CHECK_RUNS = [
         'Split and Release Components',
         'Verify Releases',
