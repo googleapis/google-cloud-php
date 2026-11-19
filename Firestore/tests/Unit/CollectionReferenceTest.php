@@ -127,7 +127,7 @@ class CollectionReferenceTest extends TestCase
 
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
         )->shouldBeCalled()->willReturn(new CommitResponse());
 
         $this->collection->add(['hello' => 'world']);
@@ -168,7 +168,7 @@ class CollectionReferenceTest extends TestCase
 
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
         )->shouldBeCalled()->willReturn($pagedListResponse->reveal());
 
         // Execute the method under test
@@ -180,6 +180,34 @@ class CollectionReferenceTest extends TestCase
         $this->assertCount(1, $docs);
         $this->assertInstanceOf(DocumentReference::class, $docs[0]);
         $this->assertEquals($docName, $docs[0]->name());
+    }
+
+    public function testListDocumentsTransaction()
+    {
+        $docName = self::NAME . '/foo';
+        $documentProto = new Document();
+        $documentProto->setName($docName);
+
+        $page = $this->prophesize(Page::class);
+        $page->getResponseObject()->willReturn(new ListDocumentsResponse([
+            'documents' => [$documentProto],
+            'next_page_token' => ''
+        ]));
+
+        $pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse->getPage()->willReturn($page->reveal());
+
+        $this->gapicClient->listDocuments(
+            Argument::that(function (ListDocumentsRequest $request) {
+                $this->assertEquals('tx-123', $request->getTransaction());
+                return true;
+            }),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
+        )->shouldBeCalled()->willReturn($pagedListResponse->reveal());
+
+        $res = $this->collection->listDocuments(['transaction' => 'tx-123']);
+        $docs = iterator_to_array($res);
+        $this->assertCount(1, $docs);
     }
 
     public function testListDocumentsRaisesAServiceException()

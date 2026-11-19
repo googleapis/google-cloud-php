@@ -116,7 +116,10 @@ class QueryTest extends TestCase
             'readTime' => ['seconds' => 123, 'nanos' => 321]
         ]);
 
-        $this->gapicClient->runQuery(Argument::any(), Argument::any())
+        $this->gapicClient->runQuery(
+            Argument::any(),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )
             ->shouldBeCalled()
             ->willReturn($this->getServerStreamMock([$protoResponse]));
 
@@ -215,7 +218,10 @@ class QueryTest extends TestCase
             ]
         ]);
 
-        $this->gapicClient->runAggregationQuery(Argument::any(), Argument::any())
+        $this->gapicClient->runAggregationQuery(
+            Argument::any(),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )
             ->shouldBeCalled()
             ->willReturn($this->getServerStreamMock([$protoResponse]));
 

@@ -280,6 +280,9 @@ class CollectionReference extends Query
         );
 
         $listDocumentsCall = function (array $callOptions) use ($request) {
+            $isTransaction = $request->getTransaction() !== '';
+            $callOptions['headers']['x-goog-is-transaction'] = [$isTransaction ? 'true' : 'false'];
+
             try {
                 $response = $this->gapicClient->listDocuments($request, $callOptions);
             } catch (ApiException $ex) {
