@@ -67,6 +67,12 @@ class ReleaseVerifyCommandTest extends TestCase
                     'conclusion' => 'success',
                     'html_url' => 'https://github.com/googleapis/google-cloud-php/actions/runs/1/job/1',
                 ],
+                [
+                    'name' => 'Verify Releases',
+                    'status' => 'in_progress',
+                    'conclusion' => null,
+                    'html_url' => 'https://github.com/googleapis/google-cloud-php/actions/runs/2/job/1',
+                ],
             ],
         ])));
 
@@ -125,6 +131,7 @@ class ReleaseVerifyCommandTest extends TestCase
         $display = $commandTester->getDisplay();
         $this->assertStringContainsString('v0.349.0', $display);
         $this->assertStringContainsString('Coding Standards', $display);
+        $this->assertStringNotContainsString('Verify Releases', $display);
         $this->assertStringContainsString('google/cloud-billing-budgets', $display);
         $this->assertStringContainsString('google/cloud-build', $display);
         $this->assertStringContainsString('google/common-protos', $display);

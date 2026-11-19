@@ -2,6 +2,12 @@ name: Verify Releases
 on:
   schedule:
     - cron: '0 9 * * *'
+  # Triggered after Release Components completes to verify the release (including Packagist).
+  # Release Components is workflow_dispatch-only (maintainers) and this workflow only checks out the default branch.
+  # zizmor: ignore[dangerous-triggers]
+  workflow_run:
+    workflows: ["Release Components"]
+    types: [completed]
   workflow_dispatch:
     inputs:
       tag:
@@ -41,13 +47,32 @@ jobs:
             ./dev/google-cloud release:verify "$TAG" --update-release -t "$GH_TOKEN" || FAILED=1
           done
           exit $FAILED
-      - name: Create issue if previous step fails
+      - name: Create or update issue if previous step fails
         if: ${{ failure() && github.ref == 'refs/heads/main' }}
-        uses: googleapis/librarian/.github/actions/create-issue-on-failure@c54791693e09a76a7403f3dc81c7c97782908b3d # v0.53.0
-        with:
-          title: "Release verification failed"
-          body: |
-            `release:verify` failed for a recent release.
-
-            Please check the logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          mention: "@googleapis/cloud-sdk-php-team"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          ROW="| $(date -u +'%Y-%m-%d %H:%M UTC') | [#$GITHUB_RUN_ID]($GITHUB_SERVER_URL/$GH_REPO/actions/runs/$GITHUB_RUN_ID) |"
+          ISSUE=$(gh issue list --repo "$GH_REPO" --search '"Release verification failed" in:title' --state open --json number,body --jq '.[0] // empty')
+          if [ -z "$ISSUE" ]; then
+            BODY=$(printf '`release:verify` failed for a recent release.\n\n@googleapis/cloud-sdk-php-team\n\n| Date | Workflow Run |\n| --- | --- |\n%s' "$ROW")
+            gh issue create \
+              --repo "$GH_REPO" \
+              --title "Release verification failed" \
+              --label ":rotating_light: critical" \
+              --body "$BODY"
+          else
+            NUM=$(jq -r '.number' <<<"$ISSUE")
+            BODY=$(jq -r '.body' <<<"$ISSUE")
+            [[ "$BODY" == *"| Date | Workflow Run |"* ]] || BODY="$BODY"$'\n\n| Date | Workflow Run |\n| --- | --- |'
+            gh api "repos/$GH_REPO/issues/$NUM" -X PATCH -f body="$BODY"$'\n'"$ROW"
+          fi
+      - name: Close issue if previous step succeeds
+        if: ${{ success() && github.ref == 'refs/heads/main' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh issue list --repo "$GH_REPO" --search '"Release verification failed" in:title' --state open --json number --jq '.[0].number // empty' \
+            | xargs -r -I{} gh issue close {} --repo "$GH_REPO" --comment "Release verification passed. Logs: $GITHUB_SERVER_URL/$GH_REPO/actions/runs/$GITHUB_RUN_ID"
