@@ -690,6 +690,34 @@ class CredentialsWrapperTest extends TestCase
         }
     }
 
+    public function testBuildRequiresStrictBooleanForEnableRegionalAccessBoundary()
+    {
+        $serviceAccountKey = [
+            'type' => 'service_account',
+            'client_email' => 'test@example.com',
+            'private_key' => 'fake-key',
+        ];
+        $expectedKeyCreds = new ServiceAccountCredentials(
+            null,
+            $serviceAccountKey,
+            enableRegionalAccessBoundary: false
+        );
+        $expectedKeyCreds->useJwtAccessWithScope();
+
+        foreach (['false', 'true', '1', 1] as $nonBoolValue) {
+            $this->assertEquals(
+                new CredentialsWrapper(
+                    new FetchAuthTokenCache($expectedKeyCreds, [], new MemoryCacheItemPool()),
+                    null
+                ),
+                CredentialsWrapper::build([
+                    'keyFile' => $serviceAccountKey,
+                    'enableRegionalAccessBoundary' => $nonBoolValue,
+                ])
+            );
+        }
+    }
+
     private function setEnv(string $env, ?string $value = null)
     {
         if ($value === null) {

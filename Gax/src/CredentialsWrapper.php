@@ -140,7 +140,7 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
             'enableRegionalAccessBoundary' => false,
         ];
 
-        $enableRegionalAccessBoundary = $args['enableRegionalAccessBoundary']
+        $enableRegionalAccessBoundary = $args['enableRegionalAccessBoundary'] === true
             && $universeDomain === GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
 
         $keyFile = $args['keyFile'];
