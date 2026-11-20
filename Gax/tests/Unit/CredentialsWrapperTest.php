@@ -718,6 +718,38 @@ class CredentialsWrapperTest extends TestCase
         }
     }
 
+    public function testCheckUniverseDomainOnGceCredentialsChecksWhenRegionalAccessBoundaryEnabled()
+    {
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage(
+            'The configured universe domain (example.com) does not match '
+            . 'the credential universe domain (googleapis.com)'
+        );
+
+        $fetcher = new GCECredentials(
+            universeDomain: 'googleapis.com',
+            enableRegionalAccessBoundary: true
+        );
+        $wrapper = new CredentialsWrapper(
+            new FetchAuthTokenCache($fetcher, [], new MemoryCacheItemPool()),
+            null,
+            'example.com'
+        );
+
+        $wrapper->checkUniverseDomain();
+    }
+
+    public function testCheckUniverseDomainOnGceCredentialsUsesAuthHttpHandlerWhenRegionalAccessBoundaryEnabled()
+    {
+        $fetcher = new GCECredentials(enableRegionalAccessBoundary: true);
+        $fetcher->setIsOnGce(true);
+        $httpHandler = fn () => new \GuzzleHttp\Psr7\Response(200, [], 'example.com');
+        $wrapper = new CredentialsWrapper($fetcher, $httpHandler, 'example.com');
+
+        $wrapper->checkUniverseDomain();
+        $this->assertSame('example.com', $fetcher->getUniverseDomain($httpHandler));
+    }
+
     private function setEnv(string $env, ?string $value = null)
     {
         if ($value === null) {

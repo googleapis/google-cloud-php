@@ -125,6 +125,8 @@ class ServiceAccountCredentials extends CredentialsLoader implements
      */
     private string $universeDomain;
 
+    private bool $hasExplicitUniverseDomain = false;
+
     private ?string $tokenUri = null;
 
     /**
@@ -198,6 +200,8 @@ class ServiceAccountCredentials extends CredentialsLoader implements
 
         $this->projectId = $jsonKey['project_id'] ?? null;
         $this->universeDomain = $jsonKey['universe_domain'] ?? self::DEFAULT_UNIVERSE_DOMAIN;
+        $this->hasExplicitUniverseDomain = isset($jsonKey['universe_domain'])
+            && '' !== (string) $jsonKey['universe_domain'];
         $this->tokenUri = isset($jsonKey['token_uri']) ? (string) $jsonKey['token_uri'] : null;
         $this->enableRegionalAccessBoundary = $enableRegionalAccessBoundary;
     }
@@ -341,8 +345,12 @@ class ServiceAccountCredentials extends CredentialsLoader implements
             : parent::updateMetadata($metadata, $authUri, $httpHandler);
 
         if ($this->enableRegionalAccessBoundary
-            && (null === $this->tokenUri
-                || $this->hasAllowedRegionalAccessBoundaryHost($this->tokenUri, self::DEFAULT_TOKEN_HOSTS))
+            && $this->getUniverseDomain() === self::DEFAULT_UNIVERSE_DOMAIN
+            && (
+                (null !== $this->tokenUri
+                    && $this->hasAllowedRegionalAccessBoundaryHost($this->tokenUri, self::DEFAULT_TOKEN_HOSTS))
+                || ($this->hasExplicitUniverseDomain && null === $this->tokenUri)
+            )
         ) {
             $metadata = $this->updateRegionalAccessBoundaryMetadata(
                 $metadata,

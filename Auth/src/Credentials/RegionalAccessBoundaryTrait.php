@@ -22,6 +22,16 @@ trait RegionalAccessBoundaryTrait
     private bool $enableRegionalAccessBoundary = false;
 
     /**
+     * Whether Regional Access Boundary lookups are enabled for this credential.
+     *
+     * @internal
+     */
+    final public function isRegionalAccessBoundaryEnabled(): bool
+    {
+        return $this->enableRegionalAccessBoundary;
+    }
+
+    /**
      * @param array<mixed> $headers
      * @return null|array{locations: array<string>, encodedLocations: string}
      */

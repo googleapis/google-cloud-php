@@ -331,6 +331,16 @@ trait ClientOptionsTrait
         }
 
         if ($credentials instanceof CredentialsWrapper) {
+            if ($credentials->isRegionalAccessBoundaryEnabled() === true
+                && $credentials->getUniverseDomain() !== $universeDomain
+            ) {
+                throw new ValidationException(sprintf(
+                    'The configured universe domain (%s) does not match the credential universe domain (%s)',
+                    $universeDomain,
+                    $credentials->getUniverseDomain()
+                ));
+            }
+
             return $credentials;
         }
 
