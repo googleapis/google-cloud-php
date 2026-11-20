@@ -22,7 +22,8 @@ class AppEngineVersionInfo extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * URI of an App Engine version.
+     * URI of the App Engine version.
+     * Format: `apps/{app_id}/services/{service_id}/versions/{version_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
@@ -49,7 +50,8 @@ class AppEngineVersionInfo extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Name of an App Engine version.
      *     @type string $uri
-     *           URI of an App Engine version.
+     *           URI of the App Engine version.
+     *           Format: `apps/{app_id}/services/{service_id}/versions/{version_id}`
      *     @type string $runtime
      *           Runtime of the App Engine version.
      *     @type string $environment
@@ -88,7 +90,8 @@ class AppEngineVersionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of an App Engine version.
+     * URI of the App Engine version.
+     * Format: `apps/{app_id}/services/{service_id}/versions/{version_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -99,7 +102,8 @@ class AppEngineVersionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of an App Engine version.
+     * URI of the App Engine version.
+     * Format: `apps/{app_id}/services/{service_id}/versions/{version_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var

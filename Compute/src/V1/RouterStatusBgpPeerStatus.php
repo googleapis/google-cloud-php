@@ -25,6 +25,12 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      */
     protected $bfd_status = null;
     /**
+     * Output only. [Output Only] Indicates whether the BGP peer is in a depreferenced state.
+     *
+     * Generated from protobuf field <code>optional bool depreferenced = 182429640;</code>
+     */
+    protected $depreferenced = null;
+    /**
      * Output only. Enable IPv4 traffic over BGP Peer.
      * It is enabled by default if the peerIpAddress is version 4.
      *
@@ -154,6 +160,8 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\Route[] $advertised_routes
      *           Routes that were advertised to the remote BGP peer
      *     @type \Google\Cloud\Compute\V1\BfdStatus $bfd_status
+     *     @type bool $depreferenced
+     *           Output only. [Output Only] Indicates whether the BGP peer is in a depreferenced state.
      *     @type bool $enable_ipv4
      *           Output only. Enable IPv4 traffic over BGP Peer.
      *           It is enabled by default if the peerIpAddress is version 4.
@@ -263,6 +271,42 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\BfdStatus::class);
         $this->bfd_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] Indicates whether the BGP peer is in a depreferenced state.
+     *
+     * Generated from protobuf field <code>optional bool depreferenced = 182429640;</code>
+     * @return bool
+     */
+    public function getDepreferenced()
+    {
+        return isset($this->depreferenced) ? $this->depreferenced : false;
+    }
+
+    public function hasDepreferenced()
+    {
+        return isset($this->depreferenced);
+    }
+
+    public function clearDepreferenced()
+    {
+        unset($this->depreferenced);
+    }
+
+    /**
+     * Output only. [Output Only] Indicates whether the BGP peer is in a depreferenced state.
+     *
+     * Generated from protobuf field <code>optional bool depreferenced = 182429640;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDepreferenced($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->depreferenced = $var;
 
         return $this;
     }

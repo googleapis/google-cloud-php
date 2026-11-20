@@ -34,6 +34,13 @@ class NewOnDemandInstancesConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string machine_type = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $machine_type = '';
+    /**
+     * Optional. Immutable. A list of network tags to attach to the VM instances.
+     * A maximum of 64 network tags are allowed.
+     *
+     * Generated from protobuf field <code>repeated string network_tags = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $network_tags;
 
     /**
      * Constructor.
@@ -49,6 +56,9 @@ class NewOnDemandInstancesConfig extends \Google\Protobuf\Internal\Message
      *           Required. Immutable. Name of the Compute Engine [machine
      *           type](https://cloud.google.com/compute/docs/machine-resource) to use, e.g.
      *           `n2-standard-2`.
+     *     @type string[] $network_tags
+     *           Optional. Immutable. A list of network tags to attach to the VM instances.
+     *           A maximum of 64 network tags are allowed.
      * }
      */
     public function __construct($data = NULL) {
@@ -112,6 +122,34 @@ class NewOnDemandInstancesConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->machine_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. A list of network tags to attach to the VM instances.
+     * A maximum of 64 network tags are allowed.
+     *
+     * Generated from protobuf field <code>repeated string network_tags = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return RepeatedField<string>
+     */
+    public function getNetworkTags()
+    {
+        return $this->network_tags;
+    }
+
+    /**
+     * Optional. Immutable. A list of network tags to attach to the VM instances.
+     * A maximum of 64 network tags are allowed.
+     *
+     * Generated from protobuf field <code>repeated string network_tags = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setNetworkTags($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->network_tags = $arr;
 
         return $this;
     }

@@ -31,9 +31,10 @@ use Google\Cloud\Run\V2\Instance;
 use Google\Rpc\Status;
 
 /**
- * Deletes a Instance
+ * Deletes an Instance
  *
- * @param string $formattedName Please see {@see InstancesClient::instanceName()} for help formatting this field.
+ * @param string $formattedName The name of the Instance to delete. Please see
+ *                              {@see InstancesClient::instanceName()} for help formatting this field.
  */
 function delete_instance_sample(string $formattedName): void
 {

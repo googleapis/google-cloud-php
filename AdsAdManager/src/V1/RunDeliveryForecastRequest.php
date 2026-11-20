@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request object for [RunDeliveryForecast][] method.
+ * Request object for `RunDeliveryForecast` method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.RunDeliveryForecastRequest</code>
  */
@@ -52,6 +52,10 @@ class RunDeliveryForecastRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Ads\AdManager\V1\ExistingLineItemList $existing_line_items
      *           Optional. The resource names of the
      *           [LineItems][google.ads.admanager.v1.LineItem] to be forecasted.
+     *     @type \Google\Ads\AdManager\V1\ForecastingLineItemList $forecasting_line_items
+     *           Optional. The
+     *           [ForecastingLineItems][google.ads.admanager.v1.ForecastingLineItem] to be
+     *           forecasted.
      *     @type string $parent
      *           Required. Format: `networks/{network_code}`
      *     @type \Google\Ads\AdManager\V1\DeliveryForecastOptions $delivery_forecast_options
@@ -92,6 +96,41 @@ class RunDeliveryForecastRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\ExistingLineItemList::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. The
+     * [ForecastingLineItems][google.ads.admanager.v1.ForecastingLineItem] to be
+     * forecasted.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ForecastingLineItemList forecasting_line_items = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\ForecastingLineItemList|null
+     */
+    public function getForecastingLineItems()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasForecastingLineItems()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Optional. The
+     * [ForecastingLineItems][google.ads.admanager.v1.ForecastingLineItem] to be
+     * forecasted.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ForecastingLineItemList forecasting_line_items = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\ForecastingLineItemList $var
+     * @return $this
+     */
+    public function setForecastingLineItems($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\ForecastingLineItemList::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

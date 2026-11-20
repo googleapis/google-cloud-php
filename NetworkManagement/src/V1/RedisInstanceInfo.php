@@ -22,13 +22,15 @@ class RedisInstanceInfo extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * URI of a Cloud Redis Instance.
+     * URI of a Cloud Redis Instance in format
+     * "projects/{project}/locations/{location}/instances/{instance}"
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
     protected $uri = '';
     /**
-     * URI of a Cloud Redis Instance network.
+     * URI of a Cloud Redis Instance network in format
+     * "projects/{project}/global/networks/{network}".
      *
      * Generated from protobuf field <code>string network_uri = 3;</code>
      */
@@ -61,9 +63,11 @@ class RedisInstanceInfo extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Name of a Cloud Redis Instance.
      *     @type string $uri
-     *           URI of a Cloud Redis Instance.
+     *           URI of a Cloud Redis Instance in format
+     *           "projects/{project}/locations/{location}/instances/{instance}"
      *     @type string $network_uri
-     *           URI of a Cloud Redis Instance network.
+     *           URI of a Cloud Redis Instance network in format
+     *           "projects/{project}/global/networks/{network}".
      *     @type string $primary_endpoint_ip
      *           Primary endpoint IP address of a Cloud Redis Instance.
      *     @type string $read_endpoint_ip
@@ -104,7 +108,8 @@ class RedisInstanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Cloud Redis Instance.
+     * URI of a Cloud Redis Instance in format
+     * "projects/{project}/locations/{location}/instances/{instance}"
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -115,7 +120,8 @@ class RedisInstanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Cloud Redis Instance.
+     * URI of a Cloud Redis Instance in format
+     * "projects/{project}/locations/{location}/instances/{instance}"
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var
@@ -130,7 +136,8 @@ class RedisInstanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Cloud Redis Instance network.
+     * URI of a Cloud Redis Instance network in format
+     * "projects/{project}/global/networks/{network}".
      *
      * Generated from protobuf field <code>string network_uri = 3;</code>
      * @return string
@@ -141,7 +148,8 @@ class RedisInstanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Cloud Redis Instance network.
+     * URI of a Cloud Redis Instance network in format
+     * "projects/{project}/global/networks/{network}".
      *
      * Generated from protobuf field <code>string network_uri = 3;</code>
      * @param string $var

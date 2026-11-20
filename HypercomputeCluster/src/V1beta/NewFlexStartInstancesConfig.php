@@ -41,6 +41,13 @@ class NewFlexStartInstancesConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration max_duration = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $max_duration = null;
+    /**
+     * Optional. Immutable. A list of network tags to attach to the VM instances.
+     * A maximum of 64 network tags are allowed.
+     *
+     * Generated from protobuf field <code>repeated string network_tags = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $network_tags;
 
     /**
      * Constructor.
@@ -59,6 +66,9 @@ class NewFlexStartInstancesConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $max_duration
      *           Required. Immutable. Specifies the time limit for created instances.
      *           Instances will be terminated at the end of this duration.
+     *     @type string[] $network_tags
+     *           Optional. Immutable. A list of network tags to attach to the VM instances.
+     *           A maximum of 64 network tags are allowed.
      * }
      */
     public function __construct($data = NULL) {
@@ -160,6 +170,34 @@ class NewFlexStartInstancesConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->max_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. A list of network tags to attach to the VM instances.
+     * A maximum of 64 network tags are allowed.
+     *
+     * Generated from protobuf field <code>repeated string network_tags = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return RepeatedField<string>
+     */
+    public function getNetworkTags()
+    {
+        return $this->network_tags;
+    }
+
+    /**
+     * Optional. Immutable. A list of network tags to attach to the VM instances.
+     * A maximum of 64 network tags are allowed.
+     *
+     * Generated from protobuf field <code>repeated string network_tags = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setNetworkTags($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->network_tags = $arr;
 
         return $this;
     }

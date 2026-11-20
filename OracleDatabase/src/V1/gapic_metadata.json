@@ -30,6 +30,11 @@
                                 "createCloudVmCluster"
                             ]
                         },
+                        "CreateDatabaseConnection": {
+                            "methods": [
+                                "createDatabaseConnection"
+                            ]
+                        },
                         "CreateDbSystem": {
                             "methods": [
                                 "createDbSystem"
@@ -90,6 +95,11 @@
                                 "deleteCloudVmCluster"
                             ]
                         },
+                        "DeleteDatabaseConnection": {
+                            "methods": [
+                                "deleteDatabaseConnection"
+                            ]
+                        },
                         "DeleteDbSystem": {
                             "methods": [
                                 "deleteDbSystem"
@@ -135,6 +145,31 @@
                                 "deleteOdbSubnet"
                             ]
                         },
+                        "DisableCloudVmClusterIdentityConnector": {
+                            "methods": [
+                                "disableCloudVmClusterIdentityConnector"
+                            ]
+                        },
+                        "DisableExadbVmClusterIdentityConnector": {
+                            "methods": [
+                                "disableExadbVmClusterIdentityConnector"
+                            ]
+                        },
+                        "EnableCloudVmClusterIdentityConnector": {
+                            "methods": [
+                                "enableCloudVmClusterIdentityConnector"
+                            ]
+                        },
+                        "EnableExadbVmClusterIdentityConnector": {
+                            "methods": [
+                                "enableExadbVmClusterIdentityConnector"
+                            ]
+                        },
+                        "ExecuteSql": {
+                            "methods": [
+                                "executeSql"
+                            ]
+                        },
                         "FailoverAutonomousDatabase": {
                             "methods": [
                                 "failoverAutonomousDatabase"
@@ -168,6 +203,11 @@
                         "GetDatabase": {
                             "methods": [
                                 "getDatabase"
+                            ]
+                        },
+                        "GetDatabaseConnection": {
+                            "methods": [
+                                "getDatabaseConnection"
                             ]
                         },
                         "GetDbSystem": {
@@ -255,6 +295,11 @@
                                 "listDatabaseCharacterSets"
                             ]
                         },
+                        "ListDatabaseConnections": {
+                            "methods": [
+                                "listDatabaseConnections"
+                            ]
+                        },
                         "ListDatabases": {
                             "methods": [
                                 "listDatabases"
@@ -268,6 +313,11 @@
                         "ListDbServers": {
                             "methods": [
                                 "listDbServers"
+                            ]
+                        },
+                        "ListDbSystemComputePerformances": {
+                            "methods": [
+                                "listDbSystemComputePerformances"
                             ]
                         },
                         "ListDbSystemInitialStorageSizes": {
@@ -303,6 +353,11 @@
                         "ListExascaleDbStorageVaults": {
                             "methods": [
                                 "listExascaleDbStorageVaults"
+                            ]
+                        },
+                        "ListFlexComponents": {
+                            "methods": [
+                                "listFlexComponents"
                             ]
                         },
                         "ListGiVersions": {
@@ -415,6 +470,11 @@
                                 "switchoverAutonomousDatabase"
                             ]
                         },
+                        "TestDatabaseConnection": {
+                            "methods": [
+                                "testDatabaseConnection"
+                            ]
+                        },
                         "TestGoldengateConnectionAssignment": {
                             "methods": [
                                 "testGoldengateConnectionAssignment"
@@ -425,9 +485,59 @@
                                 "updateAutonomousDatabase"
                             ]
                         },
+                        "UpdateCloudExadataInfrastructure": {
+                            "methods": [
+                                "updateCloudExadataInfrastructure"
+                            ]
+                        },
+                        "UpdateCloudVmCluster": {
+                            "methods": [
+                                "updateCloudVmCluster"
+                            ]
+                        },
+                        "UpdateDatabaseConnection": {
+                            "methods": [
+                                "updateDatabaseConnection"
+                            ]
+                        },
+                        "UpdateDbSystem": {
+                            "methods": [
+                                "updateDbSystem"
+                            ]
+                        },
                         "UpdateExadbVmCluster": {
                             "methods": [
                                 "updateExadbVmCluster"
+                            ]
+                        },
+                        "UpdateExascaleDbStorageVault": {
+                            "methods": [
+                                "updateExascaleDbStorageVault"
+                            ]
+                        },
+                        "UpdateGoldengateConnection": {
+                            "methods": [
+                                "updateGoldengateConnection"
+                            ]
+                        },
+                        "UpdateGoldengateConnectionAssignment": {
+                            "methods": [
+                                "updateGoldengateConnectionAssignment"
+                            ]
+                        },
+                        "UpdateGoldengateDeployment": {
+                            "methods": [
+                                "updateGoldengateDeployment"
+                            ]
+                        },
+                        "UpdateOdbNetwork": {
+                            "methods": [
+                                "updateOdbNetwork"
+                            ]
+                        },
+                        "UpdateOdbSubnet": {
+                            "methods": [
+                                "updateOdbSubnet"
                             ]
                         },
                         "GetLocation": {

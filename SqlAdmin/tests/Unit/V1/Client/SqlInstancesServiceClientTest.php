@@ -30,6 +30,7 @@ use Google\Cloud\Sql\V1\Client\SqlInstancesServiceClient;
 use Google\Cloud\Sql\V1\CloneContext;
 use Google\Cloud\Sql\V1\DatabaseInstance;
 use Google\Cloud\Sql\V1\DemoteContext;
+use Google\Cloud\Sql\V1\ExecuteSqlReadOnlyPayload;
 use Google\Cloud\Sql\V1\InstancesAcquireSsrsLeaseRequest;
 use Google\Cloud\Sql\V1\InstancesCloneRequest;
 use Google\Cloud\Sql\V1\InstancesDemoteRequest;
@@ -52,6 +53,8 @@ use Google\Cloud\Sql\V1\SqlInstancesCreateEphemeralCertRequest;
 use Google\Cloud\Sql\V1\SqlInstancesDeleteRequest;
 use Google\Cloud\Sql\V1\SqlInstancesDemoteMasterRequest;
 use Google\Cloud\Sql\V1\SqlInstancesDemoteRequest;
+use Google\Cloud\Sql\V1\SqlInstancesExecuteSqlReadOnlyRequest;
+use Google\Cloud\Sql\V1\SqlInstancesExecuteSqlReadOnlyResponse;
 use Google\Cloud\Sql\V1\SqlInstancesExecuteSqlRequest;
 use Google\Cloud\Sql\V1\SqlInstancesExecuteSqlResponse;
 use Google\Cloud\Sql\V1\SqlInstancesExportRequest;
@@ -72,6 +75,7 @@ use Google\Cloud\Sql\V1\SqlInstancesPerformDiskShrinkRequest;
 use Google\Cloud\Sql\V1\SqlInstancesPointInTimeRestoreRequest;
 use Google\Cloud\Sql\V1\SqlInstancesPreCheckMajorVersionUpgradeRequest;
 use Google\Cloud\Sql\V1\SqlInstancesPromoteReplicaRequest;
+use Google\Cloud\Sql\V1\SqlInstancesReconcileNetworkingRequest;
 use Google\Cloud\Sql\V1\SqlInstancesReencryptRequest;
 use Google\Cloud\Sql\V1\SqlInstancesReleaseSsrsLeaseRequest;
 use Google\Cloud\Sql\V1\SqlInstancesReleaseSsrsLeaseResponse;
@@ -85,7 +89,9 @@ use Google\Cloud\Sql\V1\SqlInstancesRotateServerCaRequest;
 use Google\Cloud\Sql\V1\SqlInstancesRotateServerCertificateRequest;
 use Google\Cloud\Sql\V1\SqlInstancesStartExternalSyncRequest;
 use Google\Cloud\Sql\V1\SqlInstancesStartReplicaRequest;
+use Google\Cloud\Sql\V1\SqlInstancesStartRequest;
 use Google\Cloud\Sql\V1\SqlInstancesStopReplicaRequest;
+use Google\Cloud\Sql\V1\SqlInstancesStopRequest;
 use Google\Cloud\Sql\V1\SqlInstancesSwitchoverRequest;
 use Google\Cloud\Sql\V1\SqlInstancesTruncateLogRequest;
 use Google\Cloud\Sql\V1\SqlInstancesUpdateRequest;
@@ -895,6 +901,87 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $request = (new SqlInstancesExecuteSqlRequest())->setInstance($instance)->setProject($project);
         try {
             $gapicClient->executeSql($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function executeSqlReadOnlyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new SqlInstancesExecuteSqlReadOnlyResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $body = new ExecuteSqlReadOnlyPayload();
+        $bodySqlStatement = 'bodySqlStatement-2009375229';
+        $body->setSqlStatement($bodySqlStatement);
+        $request = (new SqlInstancesExecuteSqlReadOnlyRequest())
+            ->setInstance($instance)
+            ->setProject($project)
+            ->setBody($body);
+        $response = $gapicClient->executeSqlReadOnly($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.sql.v1.SqlInstancesService/ExecuteSqlReadOnly', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstance();
+        $this->assertProtobufEquals($instance, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getBody();
+        $this->assertProtobufEquals($body, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function executeSqlReadOnlyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $body = new ExecuteSqlReadOnlyPayload();
+        $bodySqlStatement = 'bodySqlStatement-2009375229';
+        $body->setSqlStatement($bodySqlStatement);
+        $request = (new SqlInstancesExecuteSqlReadOnlyRequest())
+            ->setInstance($instance)
+            ->setProject($project)
+            ->setBody($body);
+        try {
+            $gapicClient->executeSqlReadOnly($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2085,6 +2172,87 @@ class SqlInstancesServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function reconcileNetworkingTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $kind = 'kind3292052';
+        $targetLink = 'targetLink-2084812312';
+        $user = 'user3599307';
+        $name = 'name3373707';
+        $targetId = 'targetId-815576439';
+        $selfLink = 'selfLink-1691268851';
+        $targetProject = 'targetProject392184427';
+        $expectedResponse = new Operation();
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setTargetLink($targetLink);
+        $expectedResponse->setUser($user);
+        $expectedResponse->setName($name);
+        $expectedResponse->setTargetId($targetId);
+        $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setTargetProject($targetProject);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $request = (new SqlInstancesReconcileNetworkingRequest())->setInstance($instance)->setProject($project);
+        $response = $gapicClient->reconcileNetworking($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.sql.v1.SqlInstancesService/ReconcileNetworking', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstance();
+        $this->assertProtobufEquals($instance, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function reconcileNetworkingExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $request = (new SqlInstancesReconcileNetworkingRequest())->setInstance($instance)->setProject($project);
+        try {
+            $gapicClient->reconcileNetworking($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function reencryptTest()
     {
         $transport = $this->createTransport();
@@ -2813,6 +2981,87 @@ class SqlInstancesServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function startTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $kind = 'kind3292052';
+        $targetLink = 'targetLink-2084812312';
+        $user = 'user3599307';
+        $name = 'name3373707';
+        $targetId = 'targetId-815576439';
+        $selfLink = 'selfLink-1691268851';
+        $targetProject = 'targetProject392184427';
+        $expectedResponse = new Operation();
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setTargetLink($targetLink);
+        $expectedResponse->setUser($user);
+        $expectedResponse->setName($name);
+        $expectedResponse->setTargetId($targetId);
+        $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setTargetProject($targetProject);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $request = (new SqlInstancesStartRequest())->setInstance($instance)->setProject($project);
+        $response = $gapicClient->start($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.sql.v1.SqlInstancesService/Start', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstance();
+        $this->assertProtobufEquals($instance, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function startExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $request = (new SqlInstancesStartRequest())->setInstance($instance)->setProject($project);
+        try {
+            $gapicClient->start($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function startExternalSyncTest()
     {
         $transport = $this->createTransport();
@@ -2943,6 +3192,87 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $request = new SqlInstancesStartReplicaRequest();
         try {
             $gapicClient->startReplica($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function stopTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $kind = 'kind3292052';
+        $targetLink = 'targetLink-2084812312';
+        $user = 'user3599307';
+        $name = 'name3373707';
+        $targetId = 'targetId-815576439';
+        $selfLink = 'selfLink-1691268851';
+        $targetProject = 'targetProject392184427';
+        $expectedResponse = new Operation();
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setTargetLink($targetLink);
+        $expectedResponse->setUser($user);
+        $expectedResponse->setName($name);
+        $expectedResponse->setTargetId($targetId);
+        $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setTargetProject($targetProject);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $request = (new SqlInstancesStopRequest())->setInstance($instance)->setProject($project);
+        $response = $gapicClient->stop($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.sql.v1.SqlInstancesService/Stop', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstance();
+        $this->assertProtobufEquals($instance, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function stopExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $request = (new SqlInstancesStopRequest())->setInstance($instance)->setProject($project);
+        try {
+            $gapicClient->stop($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

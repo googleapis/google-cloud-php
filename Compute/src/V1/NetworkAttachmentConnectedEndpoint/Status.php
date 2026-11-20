@@ -51,6 +51,13 @@ class Status
      */
     const REJECTED = 174130302;
     /**
+     * There is no traffic flowing in this state, only the address is
+     * reserved.
+     *
+     * Generated from protobuf enum <code>RESERVED = 432241448;</code>
+     */
+    const RESERVED = 432241448;
+    /**
      * Generated from protobuf enum <code>STATUS_UNSPECIFIED = 42133066;</code>
      */
     const STATUS_UNSPECIFIED = 42133066;
@@ -62,6 +69,7 @@ class Status
         self::NEEDS_ATTENTION => 'NEEDS_ATTENTION',
         self::PENDING => 'PENDING',
         self::REJECTED => 'REJECTED',
+        self::RESERVED => 'RESERVED',
         self::STATUS_UNSPECIFIED => 'STATUS_UNSPECIFIED',
     ];
 

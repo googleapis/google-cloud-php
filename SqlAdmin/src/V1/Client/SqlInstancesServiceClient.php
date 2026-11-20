@@ -49,6 +49,8 @@ use Google\Cloud\Sql\V1\SqlInstancesCreateEphemeralCertRequest;
 use Google\Cloud\Sql\V1\SqlInstancesDeleteRequest;
 use Google\Cloud\Sql\V1\SqlInstancesDemoteMasterRequest;
 use Google\Cloud\Sql\V1\SqlInstancesDemoteRequest;
+use Google\Cloud\Sql\V1\SqlInstancesExecuteSqlReadOnlyRequest;
+use Google\Cloud\Sql\V1\SqlInstancesExecuteSqlReadOnlyResponse;
 use Google\Cloud\Sql\V1\SqlInstancesExecuteSqlRequest;
 use Google\Cloud\Sql\V1\SqlInstancesExecuteSqlResponse;
 use Google\Cloud\Sql\V1\SqlInstancesExportRequest;
@@ -69,6 +71,7 @@ use Google\Cloud\Sql\V1\SqlInstancesPerformDiskShrinkRequest;
 use Google\Cloud\Sql\V1\SqlInstancesPointInTimeRestoreRequest;
 use Google\Cloud\Sql\V1\SqlInstancesPreCheckMajorVersionUpgradeRequest;
 use Google\Cloud\Sql\V1\SqlInstancesPromoteReplicaRequest;
+use Google\Cloud\Sql\V1\SqlInstancesReconcileNetworkingRequest;
 use Google\Cloud\Sql\V1\SqlInstancesReencryptRequest;
 use Google\Cloud\Sql\V1\SqlInstancesReleaseSsrsLeaseRequest;
 use Google\Cloud\Sql\V1\SqlInstancesReleaseSsrsLeaseResponse;
@@ -82,7 +85,9 @@ use Google\Cloud\Sql\V1\SqlInstancesRotateServerCaRequest;
 use Google\Cloud\Sql\V1\SqlInstancesRotateServerCertificateRequest;
 use Google\Cloud\Sql\V1\SqlInstancesStartExternalSyncRequest;
 use Google\Cloud\Sql\V1\SqlInstancesStartReplicaRequest;
+use Google\Cloud\Sql\V1\SqlInstancesStartRequest;
 use Google\Cloud\Sql\V1\SqlInstancesStopReplicaRequest;
+use Google\Cloud\Sql\V1\SqlInstancesStopRequest;
 use Google\Cloud\Sql\V1\SqlInstancesSwitchoverRequest;
 use Google\Cloud\Sql\V1\SqlInstancesTruncateLogRequest;
 use Google\Cloud\Sql\V1\SqlInstancesUpdateRequest;
@@ -113,6 +118,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Operation> demoteAsync(SqlInstancesDemoteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> demoteMasterAsync(SqlInstancesDemoteMasterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SqlInstancesExecuteSqlResponse> executeSqlAsync(SqlInstancesExecuteSqlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SqlInstancesExecuteSqlReadOnlyResponse> executeSqlReadOnlyAsync(SqlInstancesExecuteSqlReadOnlyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> exportAsync(SqlInstancesExportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> failoverAsync(SqlInstancesFailoverRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DatabaseInstance> getAsync(SqlInstancesGetRequest $request, array $optionalArgs = [])
@@ -129,6 +135,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Operation> pointInTimeRestoreAsync(SqlInstancesPointInTimeRestoreRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> preCheckMajorVersionUpgradeAsync(SqlInstancesPreCheckMajorVersionUpgradeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> promoteReplicaAsync(SqlInstancesPromoteReplicaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> reconcileNetworkingAsync(SqlInstancesReconcileNetworkingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> reencryptAsync(SqlInstancesReencryptRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SqlInstancesReleaseSsrsLeaseResponse> releaseSsrsLeaseAsync(SqlInstancesReleaseSsrsLeaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> rescheduleMaintenanceAsync(SqlInstancesRescheduleMaintenanceRequest $request, array $optionalArgs = [])
@@ -139,8 +146,10 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Operation> rotateEntraIdCertificateAsync(SqlInstancesRotateEntraIdCertificateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> rotateServerCaAsync(SqlInstancesRotateServerCaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> rotateServerCertificateAsync(SqlInstancesRotateServerCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> startAsync(SqlInstancesStartRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> startExternalSyncAsync(SqlInstancesStartExternalSyncRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> startReplicaAsync(SqlInstancesStartReplicaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> stopAsync(SqlInstancesStopRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> stopReplicaAsync(SqlInstancesStopReplicaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> switchoverAsync(SqlInstancesSwitchoverRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> truncateLogAsync(SqlInstancesTruncateLogRequest $request, array $optionalArgs = [])
@@ -263,6 +272,23 @@ final class SqlInstancesServiceClient
             'key_ring' => $keyRing,
             'crypto_key' => $cryptoKey,
             'crypto_key_version' => $cryptoKeyVersion,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a instance
+     * resource.
+     *
+     * @param string $project
+     * @param string $instance
+     *
+     * @return string The formatted instance resource.
+     */
+    public static function instanceName(string $project, string $instance): string
+    {
+        return self::getPathTemplate('instance')->render([
+            'project' => $project,
+            'instance' => $instance,
         ]);
     }
 
@@ -397,6 +423,7 @@ final class SqlInstancesServiceClient
      * - backup: projects/{project}/backups/{backup}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
+     * - instance: projects/{project}/instances/{instance}
      * - network: projects/{project}/global/networks/{network}
      * - networkAttachment: projects/{project}/regions/{region}/networkAttachments/{network_attachment}
      * - projectLocationSecretSecretVersion: projects/{project}/locations/{location}/secrets/{secret}/versions/{secret_version}
@@ -795,6 +822,35 @@ final class SqlInstancesServiceClient
         array $callOptions = []
     ): SqlInstancesExecuteSqlResponse {
         return $this->startApiCall('ExecuteSql', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Execute SQL statements in read-only mode.
+     *
+     * The async variant is {@see SqlInstancesServiceClient::executeSqlReadOnlyAsync()}
+     * .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/execute_sql_read_only.php
+     *
+     * @param SqlInstancesExecuteSqlReadOnlyRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SqlInstancesExecuteSqlReadOnlyResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function executeSqlReadOnly(
+        SqlInstancesExecuteSqlReadOnlyRequest $request,
+        array $callOptions = []
+    ): SqlInstancesExecuteSqlReadOnlyResponse {
+        return $this->startApiCall('ExecuteSqlReadOnly', $request, $callOptions)->wait();
     }
 
     /**
@@ -1260,6 +1316,38 @@ final class SqlInstancesServiceClient
     }
 
     /**
+     * Repairs and recreates networking resources for a Cloud SQL instance. For
+     * Private Service Connect (PSC), this operation recreates PSC DNS write
+     * endpoints on specified VPC networks and reconciles Private Service Connect
+     * connectivity infrastructure for the instance.
+     *
+     * The async variant is
+     * {@see SqlInstancesServiceClient::reconcileNetworkingAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/reconcile_networking.php
+     *
+     * @param SqlInstancesReconcileNetworkingRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Operation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function reconcileNetworking(
+        SqlInstancesReconcileNetworkingRequest $request,
+        array $callOptions = []
+    ): Operation {
+        return $this->startApiCall('ReconcileNetworking', $request, $callOptions)->wait();
+    }
+
+    /**
      * Reencrypt CMEK instance with latest key version.
      *
      * The async variant is {@see SqlInstancesServiceClient::reencryptAsync()} .
@@ -1539,6 +1627,32 @@ final class SqlInstancesServiceClient
     }
 
     /**
+     * Starts a Cloud SQL instance.
+     *
+     * The async variant is {@see SqlInstancesServiceClient::startAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/start.php
+     *
+     * @param SqlInstancesStartRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Operation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function start(SqlInstancesStartRequest $request, array $callOptions = []): Operation
+    {
+        return $this->startApiCall('Start', $request, $callOptions)->wait();
+    }
+
+    /**
      * Start External primary instance migration.
      *
      * The async variant is {@see SqlInstancesServiceClient::startExternalSyncAsync()}
@@ -1589,6 +1703,32 @@ final class SqlInstancesServiceClient
     public function startReplica(SqlInstancesStartReplicaRequest $request, array $callOptions = []): Operation
     {
         return $this->startApiCall('StartReplica', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Stops a Cloud SQL instance.
+     *
+     * The async variant is {@see SqlInstancesServiceClient::stopAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/stop.php
+     *
+     * @param SqlInstancesStopRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Operation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function stop(SqlInstancesStopRequest $request, array $callOptions = []): Operation
+    {
+        return $this->startApiCall('Stop', $request, $callOptions)->wait();
     }
 
     /**

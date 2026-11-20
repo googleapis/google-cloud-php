@@ -47,6 +47,13 @@ class WireProperties extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string fault_response = 353587646;</code>
      */
     protected $fault_response = null;
+    /**
+     * The flow management configuration for the wire.
+     * Check the FlowManagement enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string flow_management = 183886836;</code>
+     */
+    protected $flow_management = null;
 
     /**
      * Constructor.
@@ -74,6 +81,9 @@ class WireProperties extends \Google\Protobuf\Internal\Message
      *              detect a fault. This setting is only permitted on port mode
      *              pseudowires.
      *           Check the FaultResponse enum for the list of possible values.
+     *     @type string $flow_management
+     *           The flow management configuration for the wire.
+     *           Check the FlowManagement enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -213,6 +223,44 @@ class WireProperties extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->fault_response = $var;
+
+        return $this;
+    }
+
+    /**
+     * The flow management configuration for the wire.
+     * Check the FlowManagement enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string flow_management = 183886836;</code>
+     * @return string
+     */
+    public function getFlowManagement()
+    {
+        return isset($this->flow_management) ? $this->flow_management : '';
+    }
+
+    public function hasFlowManagement()
+    {
+        return isset($this->flow_management);
+    }
+
+    public function clearFlowManagement()
+    {
+        unset($this->flow_management);
+    }
+
+    /**
+     * The flow management configuration for the wire.
+     * Check the FlowManagement enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string flow_management = 183886836;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFlowManagement($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->flow_management = $var;
 
         return $this;
     }

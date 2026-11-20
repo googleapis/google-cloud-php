@@ -232,7 +232,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     protected $snapshot_group_name = null;
     /**
-     * Indicates the type of the snapshot.
+     * Indicates the type of the snapshot. Valid values are ARCHIVE
+     * or STANDARD. The default is STANDARD.
      * Check the SnapshotType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string snapshot_type = 124349653;</code>
@@ -458,7 +459,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           Output only. [Output only] The snapshot group that this snapshot belongs to. The usage
      *           of snapshot group feature is restricted.
      *     @type string $snapshot_type
-     *           Indicates the type of the snapshot.
+     *           Indicates the type of the snapshot. Valid values are ARCHIVE
+     *           or STANDARD. The default is STANDARD.
      *           Check the SnapshotType enum for the list of possible values.
      *     @type string $source_disk
      *           The source disk used to create this snapshot.
@@ -1557,7 +1559,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates the type of the snapshot.
+     * Indicates the type of the snapshot. Valid values are ARCHIVE
+     * or STANDARD. The default is STANDARD.
      * Check the SnapshotType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string snapshot_type = 124349653;</code>
@@ -1579,7 +1582,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates the type of the snapshot.
+     * Indicates the type of the snapshot. Valid values are ARCHIVE
+     * or STANDARD. The default is STANDARD.
      * Check the SnapshotType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string snapshot_type = 124349653;</code>

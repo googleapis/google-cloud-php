@@ -25,10 +25,17 @@ class CompressionAlgorithm
      * Generated from protobuf enum <code>ZLIB = 1;</code>
      */
     const ZLIB = 1;
+    /**
+     * Zstd compression.
+     *
+     * Generated from protobuf enum <code>ZSTD = 3;</code>
+     */
+    const ZSTD = 3;
 
     private static $valueToName = [
         self::COMPRESSION_ALGORITHM_UNSPECIFIED => 'COMPRESSION_ALGORITHM_UNSPECIFIED',
         self::ZLIB => 'ZLIB',
+        self::ZSTD => 'ZSTD',
     ];
 
     public static function name($value)

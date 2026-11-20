@@ -36,18 +36,22 @@ use Google\Rpc\Status;
  * cmekConfig to make sure the key is valid and can be used in the
  * selected location.
  *
- * @param string $configName The name of the CmekConfig of the form
- *                           `projects/{project}/locations/{location}/cmekConfig` or
- *                           `projects/{project}/locations/{location}/cmekConfigs/{cmek_config}`.
+ * @param string $configName            The name of the CmekConfig of the form
+ *                                      `projects/{project}/locations/{location}/cmekConfig` or
+ *                                      `projects/{project}/locations/{location}/cmekConfigs/{cmek_config}`.
+ * @param string $formattedConfigKmsKey KMS key resource name which will be used to encrypt resources
+ *                                      `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`. Please see
+ *                                      {@see CmekConfigServiceClient::cryptoKeysName()} for help formatting this field.
  */
-function update_cmek_config_sample(string $configName): void
+function update_cmek_config_sample(string $configName, string $formattedConfigKmsKey): void
 {
     // Create a client.
     $cmekConfigServiceClient = new CmekConfigServiceClient();
 
     // Prepare the request message.
     $config = (new CmekConfig())
-        ->setName($configName);
+        ->setName($configName)
+        ->setKmsKey($formattedConfigKmsKey);
     $request = (new UpdateCmekConfigRequest())
         ->setConfig($config);
 
@@ -83,7 +87,13 @@ function update_cmek_config_sample(string $configName): void
 function callSample(): void
 {
     $configName = '[NAME]';
+    $formattedConfigKmsKey = CmekConfigServiceClient::cryptoKeysName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[KEY_RING]',
+        '[CRYPTO_KEY]'
+    );
 
-    update_cmek_config_sample($configName);
+    update_cmek_config_sample($configName, $formattedConfigKmsKey);
 }
 // [END discoveryengine_v1_generated_CmekConfigService_UpdateCmekConfig_sync]

@@ -63,6 +63,12 @@ class WorkloadCapture extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string backup_id = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $backup_id = null;
+    /**
+     * Output only. The capture mode of the workload capture.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.WorkloadCapture.WorkloadCaptureMode capture_mode = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $capture_mode = 0;
 
     /**
      * Constructor.
@@ -86,6 +92,8 @@ class WorkloadCapture extends \Google\Protobuf\Internal\Message
      *           Output only. The retention period in days for the captured workload.
      *     @type string $backup_id
      *           Output only. The base backup ID associated with the workload capture.
+     *     @type int $capture_mode
+     *           Output only. The capture mode of the workload capture.
      * }
      */
     public function __construct($data = NULL) {
@@ -347,6 +355,32 @@ class WorkloadCapture extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->backup_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The capture mode of the workload capture.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.WorkloadCapture.WorkloadCaptureMode capture_mode = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getCaptureMode()
+    {
+        return $this->capture_mode;
+    }
+
+    /**
+     * Output only. The capture mode of the workload capture.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.WorkloadCapture.WorkloadCaptureMode capture_mode = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCaptureMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\WorkloadCapture\WorkloadCaptureMode::class);
+        $this->capture_mode = $var;
 
         return $this;
     }

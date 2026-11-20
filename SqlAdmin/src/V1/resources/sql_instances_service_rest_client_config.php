@@ -189,6 +189,23 @@ return [
                     ],
                 ],
             ],
+            'ExecuteSqlReadOnly' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/executeSqlReadOnly',
+                'body' => 'body',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'Export' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project}/instances/{instance}/export',
@@ -438,6 +455,23 @@ return [
                     ],
                 ],
             ],
+            'ReconcileNetworking' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}:reconcileNetworking',
+                'body' => '*',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'Reencrypt' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project}/instances/{instance}/reencrypt',
@@ -605,6 +639,22 @@ return [
                     ],
                 ],
             ],
+            'Start' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}:start',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'StartExternalSync' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project}/instances/{instance}/startExternalSync',
@@ -625,6 +675,22 @@ return [
             'StartReplica' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project}/instances/{instance}/startReplica',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Stop' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}:stop',
                 'placeholders' => [
                     'instance' => [
                         'getters' => [

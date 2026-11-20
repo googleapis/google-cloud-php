@@ -17,11 +17,9 @@ use Google\Protobuf\RepeatedField;
 class Instance extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The fully qualified name of this Instance. In CreateInstanceRequest, this
-     * field is ignored, and instead composed from CreateInstanceRequest.parent
-     * and CreateInstanceRequest.instance_id.
-     * Format:
-     * projects/{project}/locations/{location}/instances/{instance_id}
+     * The fully qualified name of this Instance. In `CreateInstanceRequest`, this
+     * field is ignored, and instead composed from `CreateInstanceRequest.parent`
+     * and `CreateInstanceRequest.instance_id`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -44,7 +42,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Output only. A number that monotonically increases every time the user
      * modifies the desired state.
-     * Please note that unlike v1, this is an int64 value. As with most Google
+     * Please note that unlike v1, this is an `int64` value. As with most Google
      * APIs, its JSON representation will be a `string` instead of an `integer`.
      *
      * Generated from protobuf field <code>int64 generation = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -110,14 +108,12 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * The launch stage as defined by [Google Cloud Platform
      *  Launch Stages](https://cloud.google.com/terms/launch-stages).
-     *  Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
-     *  is assumed.
-     *  Set the launch stage to a preview stage on input to allow use of preview
-     *  features in that stage. On read (or output), describes whether the
-     *  resource uses preview features.
-     * <p>
-     *  For example, if ALPHA is provided as input, but only BETA and GA-level
-     *  features are used, this field will be BETA on output.
+     *  Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified,
+     *  `GA` is assumed. Set the launch stage to a preview stage on input to allow
+     *  use of preview features in that stage. On read (or output), describes
+     *  whether the resource uses preview features.
+     *  For example, if `ALPHA` is provided as input, but only `BETA` and
+     *  `GA`-level features are used, this field will be `BETA` on output.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16;</code>
      */
@@ -148,6 +144,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $containers;
     /**
+     * Optional. Configuration for sandboxes.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.SandboxConfiguration sandboxes = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $sandboxes = null;
+    /**
      * A list of Volumes to make available to containers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 21;</code>
@@ -168,7 +170,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $encryption_key_revocation_action = 0;
     /**
-     * If encryption_key_revocation_action is SHUTDOWN, the duration before
+     * If `encryption_key_revocation_action` is `SHUTDOWN`, the duration before
      * shutting down all instances. The minimum increment is 1 hour.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration encryption_key_shutdown_duration = 25;</code>
@@ -189,13 +191,13 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Provides the ingress settings for this Instance. On output,
      * returns the currently observed ingress settings, or
-     * INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.
+     * `INGRESS_TRAFFIC_UNSPECIFIED` if no revision is active.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.IngressTraffic ingress = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $ingress = 0;
     /**
-     * Optional. Disables IAM permission check for run.routes.invoke for callers
+     * Optional. Disables IAM permission check for `run.routes.invoke` for callers
      * of this Instance. For more information, visit
      * https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
      *
@@ -203,15 +205,33 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $invoker_iam_disabled = false;
     /**
+     * Optional. Disables public resolution of the default URI of this Instance.
+     *
+     * Generated from protobuf field <code>bool default_uri_disabled = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $default_uri_disabled = false;
+    /**
      * Optional. IAP settings on the Instance.
      *
      * Generated from protobuf field <code>bool iap_enabled = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $iap_enabled = false;
     /**
+     * Optional. Enables SSH access to the Instance.
+     *
+     * Generated from protobuf field <code>optional bool ssh_enabled = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ssh_enabled = null;
+    /**
+     * Optional. Restart policy for the Instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.Instance.RestartPolicy restart_policy = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $restart_policy = 0;
+    /**
      * Output only. The generation of this Instance currently serving traffic. See
      * comments in `reconciling` for additional information on reconciliation
-     * process in Cloud Run. Please note that unlike v1, this is an int64 value.
+     * process in Cloud Run. Please note that unlike v1, this is an `int64` value.
      * As with most Google APIs, its JSON representation will be a `string`
      * instead of an `integer`.
      *
@@ -262,14 +282,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $urls;
     /**
-     * Output only. Returns true if the Instance is currently being acted upon by
-     * the system to bring it into the desired state.
+     * Output only. Returns `true` if the Instance is currently being acted upon
+     * by the system to bring it into the desired state.
      * When a new Instance is created, or an existing one is updated, Cloud Run
      * will asynchronously perform all necessary steps to bring the Instance to
      * the desired serving state. This process is called reconciliation. While
      * reconciliation is in process, `observed_generation` will have a transient
      * value that might mismatch the intended state.
-     *  Once reconciliation is over (and this field is false), there are two
+     *  Once reconciliation is over (and this field is `false`), there are two
      * possible outcomes: reconciliation succeeded and the serving state matches
      * the Instance, or there was an error, and reconciliation failed. This state
      * can be found in `terminal_condition.state`.
@@ -292,11 +312,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The fully qualified name of this Instance. In CreateInstanceRequest, this
-     *           field is ignored, and instead composed from CreateInstanceRequest.parent
-     *           and CreateInstanceRequest.instance_id.
-     *           Format:
-     *           projects/{project}/locations/{location}/instances/{instance_id}
+     *           The fully qualified name of this Instance. In `CreateInstanceRequest`, this
+     *           field is ignored, and instead composed from `CreateInstanceRequest.parent`
+     *           and `CreateInstanceRequest.instance_id`.
      *     @type string $description
      *           User-provided description of the Instance. This field currently has a
      *           512-character limit.
@@ -307,7 +325,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type int|string $generation
      *           Output only. A number that monotonically increases every time the user
      *           modifies the desired state.
-     *           Please note that unlike v1, this is an int64 value. As with most Google
+     *           Please note that unlike v1, this is an `int64` value. As with most Google
      *           APIs, its JSON representation will be a `string` instead of an `integer`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
@@ -331,14 +349,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type int $launch_stage
      *           The launch stage as defined by [Google Cloud Platform
      *            Launch Stages](https://cloud.google.com/terms/launch-stages).
-     *            Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
-     *            is assumed.
-     *            Set the launch stage to a preview stage on input to allow use of preview
-     *            features in that stage. On read (or output), describes whether the
-     *            resource uses preview features.
-     *           <p>
-     *            For example, if ALPHA is provided as input, but only BETA and GA-level
-     *            features are used, this field will be BETA on output.
+     *            Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified,
+     *            `GA` is assumed. Set the launch stage to a preview stage on input to allow
+     *            use of preview features in that stage. On read (or output), describes
+     *            whether the resource uses preview features.
+     *            For example, if `ALPHA` is provided as input, but only `BETA` and
+     *            `GA`-level features are used, this field will be `BETA` on output.
      *     @type \Google\Cloud\Run\V2\BinaryAuthorization $binary_authorization
      *           Settings for the Binary Authorization feature.
      *     @type \Google\Cloud\Run\V2\VpcAccess $vpc_access
@@ -349,6 +365,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Run\V2\Container[] $containers
      *           Required. Holds the single container that defines the unit of execution for
      *           this Instance.
+     *     @type \Google\Cloud\Run\V2\SandboxConfiguration $sandboxes
+     *           Optional. Configuration for sandboxes.
      *     @type \Google\Cloud\Run\V2\Volume[] $volumes
      *           A list of Volumes to make available to containers.
      *     @type string $encryption_key
@@ -358,7 +376,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type int $encryption_key_revocation_action
      *           The action to take if the encryption key is revoked.
      *     @type \Google\Protobuf\Duration $encryption_key_shutdown_duration
-     *           If encryption_key_revocation_action is SHUTDOWN, the duration before
+     *           If `encryption_key_revocation_action` is `SHUTDOWN`, the duration before
      *           shutting down all instances. The minimum increment is 1 hour.
      *     @type \Google\Cloud\Run\V2\NodeSelector $node_selector
      *           Optional. The node selector for the instance.
@@ -367,17 +385,23 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type int $ingress
      *           Optional. Provides the ingress settings for this Instance. On output,
      *           returns the currently observed ingress settings, or
-     *           INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.
+     *           `INGRESS_TRAFFIC_UNSPECIFIED` if no revision is active.
      *     @type bool $invoker_iam_disabled
-     *           Optional. Disables IAM permission check for run.routes.invoke for callers
+     *           Optional. Disables IAM permission check for `run.routes.invoke` for callers
      *           of this Instance. For more information, visit
      *           https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
+     *     @type bool $default_uri_disabled
+     *           Optional. Disables public resolution of the default URI of this Instance.
      *     @type bool $iap_enabled
      *           Optional. IAP settings on the Instance.
+     *     @type bool $ssh_enabled
+     *           Optional. Enables SSH access to the Instance.
+     *     @type int $restart_policy
+     *           Optional. Restart policy for the Instance.
      *     @type int|string $observed_generation
      *           Output only. The generation of this Instance currently serving traffic. See
      *           comments in `reconciling` for additional information on reconciliation
-     *           process in Cloud Run. Please note that unlike v1, this is an int64 value.
+     *           process in Cloud Run. Please note that unlike v1, this is an `int64` value.
      *           As with most Google APIs, its JSON representation will be a `string`
      *           instead of an `integer`.
      *     @type string $log_uri
@@ -400,14 +424,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type string[] $urls
      *           Output only. All URLs serving traffic for this Instance.
      *     @type bool $reconciling
-     *           Output only. Returns true if the Instance is currently being acted upon by
-     *           the system to bring it into the desired state.
+     *           Output only. Returns `true` if the Instance is currently being acted upon
+     *           by the system to bring it into the desired state.
      *           When a new Instance is created, or an existing one is updated, Cloud Run
      *           will asynchronously perform all necessary steps to bring the Instance to
      *           the desired serving state. This process is called reconciliation. While
      *           reconciliation is in process, `observed_generation` will have a transient
      *           value that might mismatch the intended state.
-     *            Once reconciliation is over (and this field is false), there are two
+     *            Once reconciliation is over (and this field is `false`), there are two
      *           possible outcomes: reconciliation succeeded and the serving state matches
      *           the Instance, or there was an error, and reconciliation failed. This state
      *           can be found in `terminal_condition.state`.
@@ -422,11 +446,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fully qualified name of this Instance. In CreateInstanceRequest, this
-     * field is ignored, and instead composed from CreateInstanceRequest.parent
-     * and CreateInstanceRequest.instance_id.
-     * Format:
-     * projects/{project}/locations/{location}/instances/{instance_id}
+     * The fully qualified name of this Instance. In `CreateInstanceRequest`, this
+     * field is ignored, and instead composed from `CreateInstanceRequest.parent`
+     * and `CreateInstanceRequest.instance_id`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -437,11 +459,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fully qualified name of this Instance. In CreateInstanceRequest, this
-     * field is ignored, and instead composed from CreateInstanceRequest.parent
-     * and CreateInstanceRequest.instance_id.
-     * Format:
-     * projects/{project}/locations/{location}/instances/{instance_id}
+     * The fully qualified name of this Instance. In `CreateInstanceRequest`, this
+     * field is ignored, and instead composed from `CreateInstanceRequest.parent`
+     * and `CreateInstanceRequest.instance_id`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -516,7 +536,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Output only. A number that monotonically increases every time the user
      * modifies the desired state.
-     * Please note that unlike v1, this is an int64 value. As with most Google
+     * Please note that unlike v1, this is an `int64` value. As with most Google
      * APIs, its JSON representation will be a `string` instead of an `integer`.
      *
      * Generated from protobuf field <code>int64 generation = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -530,7 +550,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Output only. A number that monotonically increases every time the user
      * modifies the desired state.
-     * Please note that unlike v1, this is an int64 value. As with most Google
+     * Please note that unlike v1, this is an `int64` value. As with most Google
      * APIs, its JSON representation will be a `string` instead of an `integer`.
      *
      * Generated from protobuf field <code>int64 generation = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -842,14 +862,12 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * The launch stage as defined by [Google Cloud Platform
      *  Launch Stages](https://cloud.google.com/terms/launch-stages).
-     *  Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
-     *  is assumed.
-     *  Set the launch stage to a preview stage on input to allow use of preview
-     *  features in that stage. On read (or output), describes whether the
-     *  resource uses preview features.
-     * <p>
-     *  For example, if ALPHA is provided as input, but only BETA and GA-level
-     *  features are used, this field will be BETA on output.
+     *  Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified,
+     *  `GA` is assumed. Set the launch stage to a preview stage on input to allow
+     *  use of preview features in that stage. On read (or output), describes
+     *  whether the resource uses preview features.
+     *  For example, if `ALPHA` is provided as input, but only `BETA` and
+     *  `GA`-level features are used, this field will be `BETA` on output.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16;</code>
      * @return int
@@ -862,14 +880,12 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * The launch stage as defined by [Google Cloud Platform
      *  Launch Stages](https://cloud.google.com/terms/launch-stages).
-     *  Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
-     *  is assumed.
-     *  Set the launch stage to a preview stage on input to allow use of preview
-     *  features in that stage. On read (or output), describes whether the
-     *  resource uses preview features.
-     * <p>
-     *  For example, if ALPHA is provided as input, but only BETA and GA-level
-     *  features are used, this field will be BETA on output.
+     *  Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified,
+     *  `GA` is assumed. Set the launch stage to a preview stage on input to allow
+     *  use of preview features in that stage. On read (or output), describes
+     *  whether the resource uses preview features.
+     *  For example, if `ALPHA` is provided as input, but only `BETA` and
+     *  `GA`-level features are used, this field will be `BETA` on output.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16;</code>
      * @param int $var
@@ -1010,6 +1026,42 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Configuration for sandboxes.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.SandboxConfiguration sandboxes = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Run\V2\SandboxConfiguration|null
+     */
+    public function getSandboxes()
+    {
+        return $this->sandboxes;
+    }
+
+    public function hasSandboxes()
+    {
+        return isset($this->sandboxes);
+    }
+
+    public function clearSandboxes()
+    {
+        unset($this->sandboxes);
+    }
+
+    /**
+     * Optional. Configuration for sandboxes.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.SandboxConfiguration sandboxes = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Run\V2\SandboxConfiguration $var
+     * @return $this
+     */
+    public function setSandboxes($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\SandboxConfiguration::class);
+        $this->sandboxes = $var;
+
+        return $this;
+    }
+
+    /**
      * A list of Volumes to make available to containers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 21;</code>
@@ -1092,7 +1144,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If encryption_key_revocation_action is SHUTDOWN, the duration before
+     * If `encryption_key_revocation_action` is `SHUTDOWN`, the duration before
      * shutting down all instances. The minimum increment is 1 hour.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration encryption_key_shutdown_duration = 25;</code>
@@ -1114,7 +1166,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If encryption_key_revocation_action is SHUTDOWN, the duration before
+     * If `encryption_key_revocation_action` is `SHUTDOWN`, the duration before
      * shutting down all instances. The minimum increment is 1 hour.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration encryption_key_shutdown_duration = 25;</code>
@@ -1204,7 +1256,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Provides the ingress settings for this Instance. On output,
      * returns the currently observed ingress settings, or
-     * INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.
+     * `INGRESS_TRAFFIC_UNSPECIFIED` if no revision is active.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.IngressTraffic ingress = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -1217,7 +1269,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Provides the ingress settings for this Instance. On output,
      * returns the currently observed ingress settings, or
-     * INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.
+     * `INGRESS_TRAFFIC_UNSPECIFIED` if no revision is active.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.IngressTraffic ingress = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -1232,7 +1284,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Disables IAM permission check for run.routes.invoke for callers
+     * Optional. Disables IAM permission check for `run.routes.invoke` for callers
      * of this Instance. For more information, visit
      * https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
      *
@@ -1245,7 +1297,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Disables IAM permission check for run.routes.invoke for callers
+     * Optional. Disables IAM permission check for `run.routes.invoke` for callers
      * of this Instance. For more information, visit
      * https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
      *
@@ -1257,6 +1309,32 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->invoker_iam_disabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Disables public resolution of the default URI of this Instance.
+     *
+     * Generated from protobuf field <code>bool default_uri_disabled = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDefaultUriDisabled()
+    {
+        return $this->default_uri_disabled;
+    }
+
+    /**
+     * Optional. Disables public resolution of the default URI of this Instance.
+     *
+     * Generated from protobuf field <code>bool default_uri_disabled = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDefaultUriDisabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->default_uri_disabled = $var;
 
         return $this;
     }
@@ -1288,9 +1366,71 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Enables SSH access to the Instance.
+     *
+     * Generated from protobuf field <code>optional bool ssh_enabled = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSshEnabled()
+    {
+        return isset($this->ssh_enabled) ? $this->ssh_enabled : false;
+    }
+
+    public function hasSshEnabled()
+    {
+        return isset($this->ssh_enabled);
+    }
+
+    public function clearSshEnabled()
+    {
+        unset($this->ssh_enabled);
+    }
+
+    /**
+     * Optional. Enables SSH access to the Instance.
+     *
+     * Generated from protobuf field <code>optional bool ssh_enabled = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSshEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ssh_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Restart policy for the Instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.Instance.RestartPolicy restart_policy = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getRestartPolicy()
+    {
+        return $this->restart_policy;
+    }
+
+    /**
+     * Optional. Restart policy for the Instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.Instance.RestartPolicy restart_policy = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRestartPolicy($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Run\V2\Instance\RestartPolicy::class);
+        $this->restart_policy = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. The generation of this Instance currently serving traffic. See
      * comments in `reconciling` for additional information on reconciliation
-     * process in Cloud Run. Please note that unlike v1, this is an int64 value.
+     * process in Cloud Run. Please note that unlike v1, this is an `int64` value.
      * As with most Google APIs, its JSON representation will be a `string`
      * instead of an `integer`.
      *
@@ -1305,7 +1445,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The generation of this Instance currently serving traffic. See
      * comments in `reconciling` for additional information on reconciliation
-     * process in Cloud Run. Please note that unlike v1, this is an int64 value.
+     * process in Cloud Run. Please note that unlike v1, this is an `int64` value.
      * As with most Google APIs, its JSON representation will be a `string`
      * instead of an `integer`.
      *
@@ -1502,14 +1642,14 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Returns true if the Instance is currently being acted upon by
-     * the system to bring it into the desired state.
+     * Output only. Returns `true` if the Instance is currently being acted upon
+     * by the system to bring it into the desired state.
      * When a new Instance is created, or an existing one is updated, Cloud Run
      * will asynchronously perform all necessary steps to bring the Instance to
      * the desired serving state. This process is called reconciliation. While
      * reconciliation is in process, `observed_generation` will have a transient
      * value that might mismatch the intended state.
-     *  Once reconciliation is over (and this field is false), there are two
+     *  Once reconciliation is over (and this field is `false`), there are two
      * possible outcomes: reconciliation succeeded and the serving state matches
      * the Instance, or there was an error, and reconciliation failed. This state
      * can be found in `terminal_condition.state`.
@@ -1523,14 +1663,14 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Returns true if the Instance is currently being acted upon by
-     * the system to bring it into the desired state.
+     * Output only. Returns `true` if the Instance is currently being acted upon
+     * by the system to bring it into the desired state.
      * When a new Instance is created, or an existing one is updated, Cloud Run
      * will asynchronously perform all necessary steps to bring the Instance to
      * the desired serving state. This process is called reconciliation. While
      * reconciliation is in process, `observed_generation` will have a transient
      * value that might mismatch the intended state.
-     *  Once reconciliation is over (and this field is false), there are two
+     *  Once reconciliation is over (and this field is `false`), there are two
      * possible outcomes: reconciliation succeeded and the serving state matches
      * the Instance, or there was an error, and reconciliation failed. This state
      * can be found in `terminal_condition.state`.

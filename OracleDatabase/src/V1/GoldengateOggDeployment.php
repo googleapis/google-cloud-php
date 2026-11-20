@@ -74,7 +74,8 @@ class GoldengateOggDeployment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $admin_password
-     *           Optional. The Goldengate deployment console password in plain text.
+     *           Optional. Input only. The Goldengate deployment console password in plain
+     *           text.
      *     @type string $admin_password_secret_version
      *           Optional. Input only. The Goldengate deployment console password secret
      *           version.
@@ -104,9 +105,10 @@ class GoldengateOggDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Goldengate deployment console password in plain text.
+     * Optional. Input only. The Goldengate deployment console password in plain
+     * text.
      *
-     * Generated from protobuf field <code>string admin_password = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string admin_password = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return string
      */
     public function getAdminPassword()
@@ -120,9 +122,10 @@ class GoldengateOggDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Goldengate deployment console password in plain text.
+     * Optional. Input only. The Goldengate deployment console password in plain
+     * text.
      *
-     * Generated from protobuf field <code>string admin_password = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string admin_password = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

@@ -33,6 +33,9 @@ use Google\Cloud\HypercomputeCluster\V1beta\DeleteClusterRequest;
 use Google\Cloud\HypercomputeCluster\V1beta\GetClusterRequest;
 use Google\Cloud\HypercomputeCluster\V1beta\ListClustersRequest;
 use Google\Cloud\HypercomputeCluster\V1beta\ListClustersResponse;
+use Google\Cloud\HypercomputeCluster\V1beta\ListNodesRequest;
+use Google\Cloud\HypercomputeCluster\V1beta\ListNodesResponse;
+use Google\Cloud\HypercomputeCluster\V1beta\Node;
 use Google\Cloud\HypercomputeCluster\V1beta\UpdateClusterRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
@@ -100,10 +103,12 @@ class HypercomputeClusterClientTest extends GeneratedTest
         $name = 'name3373707';
         $description = 'description-1724546052';
         $reconciling = false;
+        $uid = 'uid115792';
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setUid($uid);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -358,10 +363,12 @@ class HypercomputeClusterClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $description = 'description-1724546052';
         $reconciling = false;
+        $uid = 'uid115792';
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
@@ -487,6 +494,77 @@ class HypercomputeClusterClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listNodesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $nodesElement = new Node();
+        $nodes = [$nodesElement];
+        $expectedResponse = new ListNodesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setNodes($nodes);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+        $request = (new ListNodesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listNodes($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getNodes()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.hypercomputecluster.v1beta.HypercomputeCluster/ListNodes', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listNodesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+        $request = (new ListNodesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listNodes($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function updateClusterTest()
     {
         $operationsTransport = $this->createTransport();
@@ -510,10 +588,12 @@ class HypercomputeClusterClientTest extends GeneratedTest
         $name = 'name3373707';
         $description = 'description-1724546052';
         $reconciling = false;
+        $uid = 'uid115792';
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setUid($uid);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -769,10 +849,12 @@ class HypercomputeClusterClientTest extends GeneratedTest
         $name = 'name3373707';
         $description = 'description-1724546052';
         $reconciling = false;
+        $uid = 'uid115792';
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setUid($uid);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

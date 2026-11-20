@@ -115,7 +115,7 @@ class Execution extends \Google\Protobuf\Internal\Message
      * `ALPHA`, `BETA`, and `GA`.
      * Note that this value might not be what was used
      * as input. For example, if ALPHA was provided as input in the parent
-     * resource, but only BETA and GA-level features are were, this field will be
+     * resource, but only BETA and GA-level features are used, this field will be
      * BETA.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 11;</code>
@@ -219,6 +219,18 @@ class Execution extends \Google\Protobuf\Internal\Message
      */
     protected $satisfies_pzs = false;
     /**
+     * Output only. Arbitrary identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $client = '';
+    /**
+     * Output only. Arbitrary version identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client_version = 34 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $client_version = '';
+    /**
      * Output only. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
@@ -282,7 +294,7 @@ class Execution extends \Google\Protobuf\Internal\Message
      *           `ALPHA`, `BETA`, and `GA`.
      *           Note that this value might not be what was used
      *           as input. For example, if ALPHA was provided as input in the parent
-     *           resource, but only BETA and GA-level features are were, this field will be
+     *           resource, but only BETA and GA-level features are used, this field will be
      *           BETA.
      *     @type string $job
      *           Output only. The name of the parent Job.
@@ -325,6 +337,10 @@ class Execution extends \Google\Protobuf\Internal\Message
      *           Console.
      *     @type bool $satisfies_pzs
      *           Output only. Reserved for future use.
+     *     @type string $client
+     *           Output only. Arbitrary identifier for the API client.
+     *     @type string $client_version
+     *           Output only. Arbitrary version identifier for the API client.
      *     @type string $etag
      *           Output only. A system-generated fingerprint for this version of the
      *           resource. May be used to detect modification conflict during updates.
@@ -752,7 +768,7 @@ class Execution extends \Google\Protobuf\Internal\Message
      * `ALPHA`, `BETA`, and `GA`.
      * Note that this value might not be what was used
      * as input. For example, if ALPHA was provided as input in the parent
-     * resource, but only BETA and GA-level features are were, this field will be
+     * resource, but only BETA and GA-level features are used, this field will be
      * BETA.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 11;</code>
@@ -770,7 +786,7 @@ class Execution extends \Google\Protobuf\Internal\Message
      * `ALPHA`, `BETA`, and `GA`.
      * Note that this value might not be what was used
      * as input. For example, if ALPHA was provided as input in the parent
-     * resource, but only BETA and GA-level features are were, this field will be
+     * resource, but only BETA and GA-level features are used, this field will be
      * BETA.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 11;</code>
@@ -1181,6 +1197,58 @@ class Execution extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Arbitrary identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * Output only. Arbitrary identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setClient($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->client = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Arbitrary version identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client_version = 34 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getClientVersion()
+    {
+        return $this->client_version;
+    }
+
+    /**
+     * Output only. Arbitrary version identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client_version = 34 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setClientVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->client_version = $var;
 
         return $this;
     }

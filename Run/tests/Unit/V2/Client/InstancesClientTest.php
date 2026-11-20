@@ -26,6 +26,11 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Run\V2\Client\InstancesClient;
 use Google\Cloud\Run\V2\CreateInstanceRequest;
 use Google\Cloud\Run\V2\DeleteInstanceRequest;
@@ -35,6 +40,7 @@ use Google\Cloud\Run\V2\ListInstancesRequest;
 use Google\Cloud\Run\V2\ListInstancesResponse;
 use Google\Cloud\Run\V2\StartInstanceRequest;
 use Google\Cloud\Run\V2\StopInstanceRequest;
+use Google\Cloud\Run\V2\UpdateInstanceRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -105,7 +111,9 @@ class InstancesClientTest extends GeneratedTest
         $encryptionKey = 'encryptionKey-1122344029';
         $gpuZonalRedundancyDisabled = true;
         $invokerIamDisabled = false;
+        $defaultUriDisabled = false;
         $iapEnabled = true;
+        $sshEnabled = true;
         $observedGeneration = 900833007;
         $logUri = 'logUri342054385';
         $satisfiesPzs = false;
@@ -124,7 +132,9 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setEncryptionKey($encryptionKey);
         $expectedResponse->setGpuZonalRedundancyDisabled($gpuZonalRedundancyDisabled);
         $expectedResponse->setInvokerIamDisabled($invokerIamDisabled);
+        $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setIapEnabled($iapEnabled);
+        $expectedResponse->setSshEnabled($sshEnabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLogUri($logUri);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
@@ -142,11 +152,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = new Instance();
         $instanceContainers = [];
         $instance->setContainers($instanceContainers);
-        $instanceId = 'instanceId-2101995259';
-        $request = (new CreateInstanceRequest())
-            ->setParent($formattedParent)
-            ->setInstance($instance)
-            ->setInstanceId($instanceId);
+        $request = (new CreateInstanceRequest())->setParent($formattedParent)->setInstance($instance);
         $response = $gapicClient->createInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -161,8 +167,6 @@ class InstancesClientTest extends GeneratedTest
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getInstance();
         $this->assertProtobufEquals($instance, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstanceId();
-        $this->assertProtobufEquals($instanceId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createInstanceTest');
         $response->pollUntilComplete([
@@ -221,11 +225,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = new Instance();
         $instanceContainers = [];
         $instance->setContainers($instanceContainers);
-        $instanceId = 'instanceId-2101995259';
-        $request = (new CreateInstanceRequest())
-            ->setParent($formattedParent)
-            ->setInstance($instance)
-            ->setInstanceId($instanceId);
+        $request = (new CreateInstanceRequest())->setParent($formattedParent)->setInstance($instance);
         $response = $gapicClient->createInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -281,7 +281,9 @@ class InstancesClientTest extends GeneratedTest
         $encryptionKey = 'encryptionKey-1122344029';
         $gpuZonalRedundancyDisabled = true;
         $invokerIamDisabled = false;
+        $defaultUriDisabled = false;
         $iapEnabled = true;
+        $sshEnabled = true;
         $observedGeneration = 900833007;
         $logUri = 'logUri342054385';
         $satisfiesPzs = false;
@@ -300,7 +302,9 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setEncryptionKey($encryptionKey);
         $expectedResponse->setGpuZonalRedundancyDisabled($gpuZonalRedundancyDisabled);
         $expectedResponse->setInvokerIamDisabled($invokerIamDisabled);
+        $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setIapEnabled($iapEnabled);
+        $expectedResponse->setSshEnabled($sshEnabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLogUri($logUri);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
@@ -407,6 +411,73 @@ class InstancesClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $version = 351608024;
+        $etag = '21';
+        $expectedResponse = new Policy();
+        $expectedResponse->setVersion($version);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())->setResource($resource);
+        $response = $gapicClient->getIamPolicy($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.run.v2.Instances/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())->setResource($resource);
+        try {
+            $gapicClient->getIamPolicy($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getInstanceTest()
     {
         $transport = $this->createTransport();
@@ -427,7 +498,9 @@ class InstancesClientTest extends GeneratedTest
         $encryptionKey = 'encryptionKey-1122344029';
         $gpuZonalRedundancyDisabled = true;
         $invokerIamDisabled = false;
+        $defaultUriDisabled = false;
         $iapEnabled = true;
+        $sshEnabled = true;
         $observedGeneration = 900833007;
         $logUri = 'logUri342054385';
         $satisfiesPzs = false;
@@ -446,7 +519,9 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setEncryptionKey($encryptionKey);
         $expectedResponse->setGpuZonalRedundancyDisabled($gpuZonalRedundancyDisabled);
         $expectedResponse->setInvokerIamDisabled($invokerIamDisabled);
+        $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setIapEnabled($iapEnabled);
+        $expectedResponse->setSshEnabled($sshEnabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLogUri($logUri);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
@@ -577,6 +652,77 @@ class InstancesClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function setIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $version = 351608024;
+        $etag = '21';
+        $expectedResponse = new Policy();
+        $expectedResponse->setVersion($version);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
+        $response = $gapicClient->setIamPolicy($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.run.v2.Instances/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function setIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
+        try {
+            $gapicClient->setIamPolicy($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function startInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -609,7 +755,9 @@ class InstancesClientTest extends GeneratedTest
         $encryptionKey = 'encryptionKey-1122344029';
         $gpuZonalRedundancyDisabled = true;
         $invokerIamDisabled = false;
+        $defaultUriDisabled = false;
         $iapEnabled = true;
+        $sshEnabled = true;
         $observedGeneration = 900833007;
         $logUri = 'logUri342054385';
         $satisfiesPzs = false;
@@ -628,7 +776,9 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setEncryptionKey($encryptionKey);
         $expectedResponse->setGpuZonalRedundancyDisabled($gpuZonalRedundancyDisabled);
         $expectedResponse->setInvokerIamDisabled($invokerIamDisabled);
+        $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setIapEnabled($iapEnabled);
+        $expectedResponse->setSshEnabled($sshEnabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLogUri($logUri);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
@@ -767,7 +917,9 @@ class InstancesClientTest extends GeneratedTest
         $encryptionKey = 'encryptionKey-1122344029';
         $gpuZonalRedundancyDisabled = true;
         $invokerIamDisabled = false;
+        $defaultUriDisabled = false;
         $iapEnabled = true;
+        $sshEnabled = true;
         $observedGeneration = 900833007;
         $logUri = 'logUri342054385';
         $satisfiesPzs = false;
@@ -786,7 +938,9 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setEncryptionKey($encryptionKey);
         $expectedResponse->setGpuZonalRedundancyDisabled($gpuZonalRedundancyDisabled);
         $expectedResponse->setInvokerIamDisabled($invokerIamDisabled);
+        $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setIapEnabled($iapEnabled);
+        $expectedResponse->setSshEnabled($sshEnabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLogUri($logUri);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
@@ -893,6 +1047,239 @@ class InstancesClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function testIamPermissionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new TestIamPermissionsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
+        $response = $gapicClient->testIamPermissions($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.run.v2.Instances/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function testIamPermissionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
+        try {
+            $gapicClient->testIamPermissions($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateInstanceTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateInstanceTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $uid = 'uid115792';
+        $generation = 305703192;
+        $creator = 'creator1028554796';
+        $lastModifier = 'lastModifier-28366240';
+        $client = 'client-1357712437';
+        $clientVersion = 'clientVersion-1506231196';
+        $serviceAccount = 'serviceAccount-1948028253';
+        $encryptionKey = 'encryptionKey-1122344029';
+        $gpuZonalRedundancyDisabled = true;
+        $invokerIamDisabled = false;
+        $defaultUriDisabled = false;
+        $iapEnabled = true;
+        $sshEnabled = true;
+        $observedGeneration = 900833007;
+        $logUri = 'logUri342054385';
+        $satisfiesPzs = false;
+        $reconciling = false;
+        $etag = 'etag3123477';
+        $expectedResponse = new Instance();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setGeneration($generation);
+        $expectedResponse->setCreator($creator);
+        $expectedResponse->setLastModifier($lastModifier);
+        $expectedResponse->setClient($client);
+        $expectedResponse->setClientVersion($clientVersion);
+        $expectedResponse->setServiceAccount($serviceAccount);
+        $expectedResponse->setEncryptionKey($encryptionKey);
+        $expectedResponse->setGpuZonalRedundancyDisabled($gpuZonalRedundancyDisabled);
+        $expectedResponse->setInvokerIamDisabled($invokerIamDisabled);
+        $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
+        $expectedResponse->setIapEnabled($iapEnabled);
+        $expectedResponse->setSshEnabled($sshEnabled);
+        $expectedResponse->setObservedGeneration($observedGeneration);
+        $expectedResponse->setLogUri($logUri);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setEtag($etag);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateInstanceTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $instance = new Instance();
+        $instanceContainers = [];
+        $instance->setContainers($instanceContainers);
+        $request = (new UpdateInstanceRequest())->setInstance($instance);
+        $response = $gapicClient->updateInstance($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.run.v2.Instances/UpdateInstance', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstance();
+        $this->assertProtobufEquals($instance, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateInstanceTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateInstanceExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateInstanceTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $instance = new Instance();
+        $instanceContainers = [];
+        $instance->setContainers($instanceContainers);
+        $request = (new UpdateInstanceRequest())->setInstance($instance);
+        $response = $gapicClient->updateInstance($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateInstanceTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function createInstanceAsyncTest()
     {
         $operationsTransport = $this->createTransport();
@@ -925,7 +1312,9 @@ class InstancesClientTest extends GeneratedTest
         $encryptionKey = 'encryptionKey-1122344029';
         $gpuZonalRedundancyDisabled = true;
         $invokerIamDisabled = false;
+        $defaultUriDisabled = false;
         $iapEnabled = true;
+        $sshEnabled = true;
         $observedGeneration = 900833007;
         $logUri = 'logUri342054385';
         $satisfiesPzs = false;
@@ -944,7 +1333,9 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setEncryptionKey($encryptionKey);
         $expectedResponse->setGpuZonalRedundancyDisabled($gpuZonalRedundancyDisabled);
         $expectedResponse->setInvokerIamDisabled($invokerIamDisabled);
+        $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setIapEnabled($iapEnabled);
+        $expectedResponse->setSshEnabled($sshEnabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLogUri($logUri);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
@@ -962,11 +1353,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = new Instance();
         $instanceContainers = [];
         $instance->setContainers($instanceContainers);
-        $instanceId = 'instanceId-2101995259';
-        $request = (new CreateInstanceRequest())
-            ->setParent($formattedParent)
-            ->setInstance($instance)
-            ->setInstanceId($instanceId);
+        $request = (new CreateInstanceRequest())->setParent($formattedParent)->setInstance($instance);
         $response = $gapicClient->createInstanceAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -981,8 +1368,6 @@ class InstancesClientTest extends GeneratedTest
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getInstance();
         $this->assertProtobufEquals($instance, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstanceId();
-        $this->assertProtobufEquals($instanceId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createInstanceTest');
         $response->pollUntilComplete([

@@ -49,12 +49,14 @@ class EndpointInfo extends \Google\Protobuf\Internal\Message
     protected $destination_port = 0;
     /**
      * URI of the network where this packet originates from.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string source_network_uri = 6;</code>
      */
     protected $source_network_uri = '';
     /**
      * URI of the network where this packet is sent to.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string destination_network_uri = 7;</code>
      */
@@ -84,8 +86,10 @@ class EndpointInfo extends \Google\Protobuf\Internal\Message
      *           Destination port. Only valid when protocol is TCP or UDP.
      *     @type string $source_network_uri
      *           URI of the network where this packet originates from.
+     *           Format: `projects/{project_id}/global/networks/{network_id}`
      *     @type string $destination_network_uri
      *           URI of the network where this packet is sent to.
+     *           Format: `projects/{project_id}/global/networks/{network_id}`
      *     @type string $source_agent_uri
      *           URI of the source telemetry agent this packet originates from.
      * }
@@ -227,6 +231,7 @@ class EndpointInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the network where this packet originates from.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string source_network_uri = 6;</code>
      * @return string
@@ -238,6 +243,7 @@ class EndpointInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the network where this packet originates from.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string source_network_uri = 6;</code>
      * @param string $var
@@ -253,6 +259,7 @@ class EndpointInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the network where this packet is sent to.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string destination_network_uri = 7;</code>
      * @return string
@@ -264,6 +271,7 @@ class EndpointInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the network where this packet is sent to.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string destination_network_uri = 7;</code>
      * @param string $var

@@ -93,7 +93,11 @@ final class DataObjectSearchServiceClient
      *
      * @internal
      */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/vectorsearch',
+        'https://www.googleapis.com/auth/vectorsearch.readonly',
+    ];
 
     private static function getClientDefaults()
     {

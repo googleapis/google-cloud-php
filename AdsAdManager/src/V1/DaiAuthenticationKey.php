@@ -25,6 +25,18 @@ class DaiAuthenticationKey extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
+     * Output only. The value of the secure key.
+     *
+     * Generated from protobuf field <code>optional string key = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $key = null;
+    /**
+     * Output only. The date and time this DaiAuthenticationKey was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $create_time = null;
+    /**
      * Output only. The status of this DaiAuthenticationKey.
      * DAI authentication keys are created in the
      * [`ACTIVE`][google.ads.admanager.v1.DaiAuthenticationKeyStatusEnum.DaiAuthenticationKeyStatus.ACTIVE]
@@ -58,6 +70,10 @@ class DaiAuthenticationKey extends \Google\Protobuf\Internal\Message
      *           Identifier. The resource name of the `DaiAuthenticationKey`.
      *           Format:
      *           `networks/{network_code}/daiAuthenticationKeys/{dai_authentication_key}`
+     *     @type string $key
+     *           Output only. The value of the secure key.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. The date and time this DaiAuthenticationKey was created.
      *     @type int $status
      *           Output only. The status of this DaiAuthenticationKey.
      *           DAI authentication keys are created in the
@@ -102,6 +118,78 @@ class DaiAuthenticationKey extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The value of the secure key.
+     *
+     * Generated from protobuf field <code>optional string key = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getKey()
+    {
+        return isset($this->key) ? $this->key : '';
+    }
+
+    public function hasKey()
+    {
+        return isset($this->key);
+    }
+
+    public function clearKey()
+    {
+        unset($this->key);
+    }
+
+    /**
+     * Output only. The value of the secure key.
+     *
+     * Generated from protobuf field <code>optional string key = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKey($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The date and time this DaiAuthenticationKey was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
+    }
+
+    /**
+     * Output only. The date and time this DaiAuthenticationKey was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
 
         return $this;
     }

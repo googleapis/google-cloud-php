@@ -248,8 +248,8 @@ class State
      */
     const DIRECT_VPC_EGRESS_CONNECTION = 35;
     /**
-     * Forwarding state: for packets originating from a serverless endpoint
-     * forwarded through public (external) connectivity.
+     * Forwarding state: for packets originating from a serverless
+     * endpoint forwarded through public (external) connectivity.
      *
      * Generated from protobuf enum <code>SERVERLESS_EXTERNAL_CONNECTION = 36;</code>
      */

@@ -372,6 +372,8 @@ class CmekConfigServiceClientTest extends GeneratedTest
         $config = new CmekConfig();
         $configName = 'configName831324397';
         $config->setName($configName);
+        $configKmsKey = $gapicClient->cryptoKeysName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+        $config->setKmsKey($configKmsKey);
         $request = (new UpdateCmekConfigRequest())->setConfig($config);
         $response = $gapicClient->updateCmekConfig($request);
         $this->assertFalse($response->isDone());
@@ -442,6 +444,8 @@ class CmekConfigServiceClientTest extends GeneratedTest
         $config = new CmekConfig();
         $configName = 'configName831324397';
         $config->setName($configName);
+        $configKmsKey = $gapicClient->cryptoKeysName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+        $config->setKmsKey($configKmsKey);
         $request = (new UpdateCmekConfigRequest())->setConfig($config);
         $response = $gapicClient->updateCmekConfig($request);
         $this->assertFalse($response->isDone());

@@ -23,7 +23,15 @@ class ConfidentialInstanceConfig extends \Google\Protobuf\Internal\Message
      */
     protected $confidential_instance_type = null;
     /**
+     * Defines a set of Confidential Paravisor (SVSM) options.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ConfidentialParavisorConfig confidential_paravisor_config = 99055285;</code>
+     */
+    protected $confidential_paravisor_config = null;
+    /**
      * Defines whether the instance should have confidential compute enabled.
+     * When enabled, the technology used defaults to
+     * AMD SEV unless confidentialInstanceType is specified.
      *
      * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
      */
@@ -38,8 +46,12 @@ class ConfidentialInstanceConfig extends \Google\Protobuf\Internal\Message
      *     @type string $confidential_instance_type
      *           Defines the type of technology used by the confidential instance.
      *           Check the ConfidentialInstanceType enum for the list of possible values.
+     *     @type \Google\Cloud\Compute\V1\ConfidentialParavisorConfig $confidential_paravisor_config
+     *           Defines a set of Confidential Paravisor (SVSM) options.
      *     @type bool $enable_confidential_compute
      *           Defines whether the instance should have confidential compute enabled.
+     *           When enabled, the technology used defaults to
+     *           AMD SEV unless confidentialInstanceType is specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,7 +98,45 @@ class ConfidentialInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Defines a set of Confidential Paravisor (SVSM) options.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ConfidentialParavisorConfig confidential_paravisor_config = 99055285;</code>
+     * @return \Google\Cloud\Compute\V1\ConfidentialParavisorConfig|null
+     */
+    public function getConfidentialParavisorConfig()
+    {
+        return $this->confidential_paravisor_config;
+    }
+
+    public function hasConfidentialParavisorConfig()
+    {
+        return isset($this->confidential_paravisor_config);
+    }
+
+    public function clearConfidentialParavisorConfig()
+    {
+        unset($this->confidential_paravisor_config);
+    }
+
+    /**
+     * Defines a set of Confidential Paravisor (SVSM) options.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ConfidentialParavisorConfig confidential_paravisor_config = 99055285;</code>
+     * @param \Google\Cloud\Compute\V1\ConfidentialParavisorConfig $var
+     * @return $this
+     */
+    public function setConfidentialParavisorConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ConfidentialParavisorConfig::class);
+        $this->confidential_paravisor_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Defines whether the instance should have confidential compute enabled.
+     * When enabled, the technology used defaults to
+     * AMD SEV unless confidentialInstanceType is specified.
      *
      * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
      * @return bool
@@ -108,6 +158,8 @@ class ConfidentialInstanceConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Defines whether the instance should have confidential compute enabled.
+     * When enabled, the technology used defaults to
+     * AMD SEV unless confidentialInstanceType is specified.
      *
      * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
      * @param bool $var

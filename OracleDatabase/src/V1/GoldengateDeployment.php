@@ -24,17 +24,17 @@ class GoldengateDeployment extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Required. The properties of the GoldengateDeployment.
+     * Required. Immutable. The properties of the GoldengateDeployment.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.GoldengateDeploymentProperties properties = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.GoldengateDeploymentProperties properties = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $properties = null;
     /**
-     * Optional. The GCP Oracle zone where Oracle GoldengateDeployment is hosted.
-     * Example: us-east4-b-r2.
-     * If not specified, the system will pick a zone based on availability.
+     * Optional. Immutable. The GCP Oracle zone where Oracle GoldengateDeployment
+     * is hosted. Example: us-east4-b-r2. If not specified, the system will pick a
+     * zone based on availability.
      *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $gcp_oracle_zone = '';
     /**
@@ -44,17 +44,17 @@ class GoldengateDeployment extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Optional. The name of the OdbNetwork associated with the
+     * Optional. Immutable. The name of the OdbNetwork associated with the
      * GoldengateDeployment.
      *
-     * Generated from protobuf field <code>string odb_network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     protected $odb_network = '';
     /**
-     * Required. The name of the OdbSubnet associated with the
+     * Required. Immutable. The name of the OdbSubnet associated with the
      * GoldengateDeployment for IP allocation.
      *
-     * Generated from protobuf field <code>string odb_subnet = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_subnet = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     protected $odb_subnet = '';
     /**
@@ -65,9 +65,9 @@ class GoldengateDeployment extends \Google\Protobuf\Internal\Message
      */
     protected $entitlement_id = '';
     /**
-     * Required. The display name for the GoldengateDeployment.
+     * Required. Immutable. The display name for the GoldengateDeployment.
      *
-     * Generated from protobuf field <code>string display_name = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string display_name = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $display_name = '';
     /**
@@ -95,24 +95,24 @@ class GoldengateDeployment extends \Google\Protobuf\Internal\Message
      *           format:
      *           projects/{project}/locations/{region}/goldengateDeployments/{goldengate_deployment}
      *     @type \Google\Cloud\OracleDatabase\V1\GoldengateDeploymentProperties $properties
-     *           Required. The properties of the GoldengateDeployment.
+     *           Required. Immutable. The properties of the GoldengateDeployment.
      *     @type string $gcp_oracle_zone
-     *           Optional. The GCP Oracle zone where Oracle GoldengateDeployment is hosted.
-     *           Example: us-east4-b-r2.
-     *           If not specified, the system will pick a zone based on availability.
+     *           Optional. Immutable. The GCP Oracle zone where Oracle GoldengateDeployment
+     *           is hosted. Example: us-east4-b-r2. If not specified, the system will pick a
+     *           zone based on availability.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels or tags associated with the GoldengateDeployment.
      *     @type string $odb_network
-     *           Optional. The name of the OdbNetwork associated with the
+     *           Optional. Immutable. The name of the OdbNetwork associated with the
      *           GoldengateDeployment.
      *     @type string $odb_subnet
-     *           Required. The name of the OdbSubnet associated with the
+     *           Required. Immutable. The name of the OdbSubnet associated with the
      *           GoldengateDeployment for IP allocation.
      *     @type string $entitlement_id
      *           Output only. The ID of the subscription entitlement associated with the
      *           GoldengateDeployment
      *     @type string $display_name
-     *           Required. The display name for the GoldengateDeployment.
+     *           Required. Immutable. The display name for the GoldengateDeployment.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The date and time that the GoldengateDeployment was created.
      *     @type string $oci_url
@@ -156,9 +156,9 @@ class GoldengateDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The properties of the GoldengateDeployment.
+     * Required. Immutable. The properties of the GoldengateDeployment.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.GoldengateDeploymentProperties properties = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.GoldengateDeploymentProperties properties = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Cloud\OracleDatabase\V1\GoldengateDeploymentProperties|null
      */
     public function getProperties()
@@ -177,9 +177,9 @@ class GoldengateDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The properties of the GoldengateDeployment.
+     * Required. Immutable. The properties of the GoldengateDeployment.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.GoldengateDeploymentProperties properties = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.GoldengateDeploymentProperties properties = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\OracleDatabase\V1\GoldengateDeploymentProperties $var
      * @return $this
      */
@@ -192,11 +192,11 @@ class GoldengateDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The GCP Oracle zone where Oracle GoldengateDeployment is hosted.
-     * Example: us-east4-b-r2.
-     * If not specified, the system will pick a zone based on availability.
+     * Optional. Immutable. The GCP Oracle zone where Oracle GoldengateDeployment
+     * is hosted. Example: us-east4-b-r2. If not specified, the system will pick a
+     * zone based on availability.
      *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getGcpOracleZone()
@@ -205,11 +205,11 @@ class GoldengateDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The GCP Oracle zone where Oracle GoldengateDeployment is hosted.
-     * Example: us-east4-b-r2.
-     * If not specified, the system will pick a zone based on availability.
+     * Optional. Immutable. The GCP Oracle zone where Oracle GoldengateDeployment
+     * is hosted. Example: us-east4-b-r2. If not specified, the system will pick a
+     * zone based on availability.
      *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -248,10 +248,10 @@ class GoldengateDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the OdbNetwork associated with the
+     * Optional. Immutable. The name of the OdbNetwork associated with the
      * GoldengateDeployment.
      *
-     * Generated from protobuf field <code>string odb_network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getOdbNetwork()
@@ -260,10 +260,10 @@ class GoldengateDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the OdbNetwork associated with the
+     * Optional. Immutable. The name of the OdbNetwork associated with the
      * GoldengateDeployment.
      *
-     * Generated from protobuf field <code>string odb_network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -276,10 +276,10 @@ class GoldengateDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the OdbSubnet associated with the
+     * Required. Immutable. The name of the OdbSubnet associated with the
      * GoldengateDeployment for IP allocation.
      *
-     * Generated from protobuf field <code>string odb_subnet = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_subnet = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getOdbSubnet()
@@ -288,10 +288,10 @@ class GoldengateDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the OdbSubnet associated with the
+     * Required. Immutable. The name of the OdbSubnet associated with the
      * GoldengateDeployment for IP allocation.
      *
-     * Generated from protobuf field <code>string odb_subnet = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_subnet = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -332,9 +332,9 @@ class GoldengateDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The display name for the GoldengateDeployment.
+     * Required. Immutable. The display name for the GoldengateDeployment.
      *
-     * Generated from protobuf field <code>string display_name = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string display_name = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getDisplayName()
@@ -343,9 +343,9 @@ class GoldengateDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The display name for the GoldengateDeployment.
+     * Required. Immutable. The display name for the GoldengateDeployment.
      *
-     * Generated from protobuf field <code>string display_name = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string display_name = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */

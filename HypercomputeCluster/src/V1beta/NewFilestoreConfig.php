@@ -20,7 +20,7 @@ class NewFilestoreConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Immutable. Name of the Filestore instance to create, in the
-     * format `projects/{project}/locations/{location}/instances/{instance}`
+     * format `projects/{project}/locations/{location}/instances/{instance}`.
      *
      * Generated from protobuf field <code>string filestore = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
@@ -61,7 +61,7 @@ class NewFilestoreConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $filestore
      *           Required. Immutable. Name of the Filestore instance to create, in the
-     *           format `projects/{project}/locations/{location}/instances/{instance}`
+     *           format `projects/{project}/locations/{location}/instances/{instance}`.
      *     @type string $description
      *           Optional. Immutable. Description of the instance. Maximum of 2048
      *           characters.
@@ -82,7 +82,7 @@ class NewFilestoreConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Immutable. Name of the Filestore instance to create, in the
-     * format `projects/{project}/locations/{location}/instances/{instance}`
+     * format `projects/{project}/locations/{location}/instances/{instance}`.
      *
      * Generated from protobuf field <code>string filestore = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
@@ -94,7 +94,7 @@ class NewFilestoreConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Immutable. Name of the Filestore instance to create, in the
-     * format `projects/{project}/locations/{location}/instances/{instance}`
+     * format `projects/{project}/locations/{location}/instances/{instance}`.
      *
      * Generated from protobuf field <code>string filestore = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var

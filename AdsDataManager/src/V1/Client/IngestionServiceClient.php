@@ -212,6 +212,15 @@ final class IngestionServiceClient
      *
      * This feature is only available to accounts on an allowlist.
      *
+     * Authorization Headers:
+     *
+     * This method also requires the following header to define how the API
+     * authorizes access for the request:
+     *
+     * * `login-account`: (Required) The resource name of the Data Partner account
+     * where the Google Account of the credentials is a user. Format:
+     * `accountTypes/DATA_PARTNER/accounts/{loginAccountId}`
+     *
      * The async variant is {@see IngestionServiceClient::ingestAdEventsAsync()} .
      *
      * @example samples/V1/IngestionServiceClient/ingest_ad_events.php

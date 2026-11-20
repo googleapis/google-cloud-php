@@ -83,7 +83,11 @@ final class TasksClient
      *
      * @internal
      */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/run',
+        'https://www.googleapis.com/auth/run.readonly',
+    ];
 
     private static function getClientDefaults()
     {

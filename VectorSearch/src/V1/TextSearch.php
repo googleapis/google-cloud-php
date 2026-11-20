@@ -43,10 +43,32 @@ class TextSearch extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A JSON filter expression, e.g. `{"genre": {"$eq": "sci-fi"}}`,
      * represented as a `google.protobuf.Struct`.
+     * An empty filter (`{}`) matches all data objects. Otherwise, each JSON
+     * object in the filter must have exactly one key: either a field name mapped
+     * to one operator (`{"price": {"$lt": 100}}`), or a logical operator: `$and`
+     * or `$or` with a list of filters, or `$not` with one filter. Field
+     * operators and their values: `$eq` and `$ne` take a string, number or bool;
+     * `$lt`, `$lte`, `$gt` and `$gte` take a number; `$in`, `$nin` and `$all`
+     * take a list of strings; `$exists` takes a bool. Several keys in one object
+     * (implicit AND) and implicit equality (`{"genre": "sci-fi"}`) are rejected;
+     * use `$and` and `$eq` instead.
+     * Logical operators can be nested at most 2 levels deep, e.g.
+     * `{"$and": [{"$or": [{"a": {"$eq": 1}}, {"b": {"$eq": 2}}]}]}`. Deeper
+     * filters are rejected with `INVALID_ARGUMENT`.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = null;
+    /**
+     * Optional. Structured query definition. When set, `search_text` and
+     * `data_field_names` must be left empty; otherwise the request will be
+     * rejected with an `INVALID_ARGUMENT` error. Conversely, when
+     * `structured_query` is unset, both `search_text` and `data_field_names`
+     * are required.
+     *
+     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.StructuredQuery structured_query = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $structured_query = null;
 
     /**
      * Constructor.
@@ -66,6 +88,24 @@ class TextSearch extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Struct $filter
      *           Optional. A JSON filter expression, e.g. `{"genre": {"$eq": "sci-fi"}}`,
      *           represented as a `google.protobuf.Struct`.
+     *           An empty filter (`{}`) matches all data objects. Otherwise, each JSON
+     *           object in the filter must have exactly one key: either a field name mapped
+     *           to one operator (`{"price": {"$lt": 100}}`), or a logical operator: `$and`
+     *           or `$or` with a list of filters, or `$not` with one filter. Field
+     *           operators and their values: `$eq` and `$ne` take a string, number or bool;
+     *           `$lt`, `$lte`, `$gt` and `$gte` take a number; `$in`, `$nin` and `$all`
+     *           take a list of strings; `$exists` takes a bool. Several keys in one object
+     *           (implicit AND) and implicit equality (`{"genre": "sci-fi"}`) are rejected;
+     *           use `$and` and `$eq` instead.
+     *           Logical operators can be nested at most 2 levels deep, e.g.
+     *           `{"$and": [{"$or": [{"a": {"$eq": 1}}, {"b": {"$eq": 2}}]}]}`. Deeper
+     *           filters are rejected with `INVALID_ARGUMENT`.
+     *     @type \Google\Cloud\VectorSearch\V1\StructuredQuery $structured_query
+     *           Optional. Structured query definition. When set, `search_text` and
+     *           `data_field_names` must be left empty; otherwise the request will be
+     *           rejected with an `INVALID_ARGUMENT` error. Conversely, when
+     *           `structured_query` is unset, both `search_text` and `data_field_names`
+     *           are required.
      * }
      */
     public function __construct($data = NULL) {
@@ -202,6 +242,18 @@ class TextSearch extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A JSON filter expression, e.g. `{"genre": {"$eq": "sci-fi"}}`,
      * represented as a `google.protobuf.Struct`.
+     * An empty filter (`{}`) matches all data objects. Otherwise, each JSON
+     * object in the filter must have exactly one key: either a field name mapped
+     * to one operator (`{"price": {"$lt": 100}}`), or a logical operator: `$and`
+     * or `$or` with a list of filters, or `$not` with one filter. Field
+     * operators and their values: `$eq` and `$ne` take a string, number or bool;
+     * `$lt`, `$lte`, `$gt` and `$gte` take a number; `$in`, `$nin` and `$all`
+     * take a list of strings; `$exists` takes a bool. Several keys in one object
+     * (implicit AND) and implicit equality (`{"genre": "sci-fi"}`) are rejected;
+     * use `$and` and `$eq` instead.
+     * Logical operators can be nested at most 2 levels deep, e.g.
+     * `{"$and": [{"$or": [{"a": {"$eq": 1}}, {"b": {"$eq": 2}}]}]}`. Deeper
+     * filters are rejected with `INVALID_ARGUMENT`.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Struct|null
@@ -224,6 +276,18 @@ class TextSearch extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A JSON filter expression, e.g. `{"genre": {"$eq": "sci-fi"}}`,
      * represented as a `google.protobuf.Struct`.
+     * An empty filter (`{}`) matches all data objects. Otherwise, each JSON
+     * object in the filter must have exactly one key: either a field name mapped
+     * to one operator (`{"price": {"$lt": 100}}`), or a logical operator: `$and`
+     * or `$or` with a list of filters, or `$not` with one filter. Field
+     * operators and their values: `$eq` and `$ne` take a string, number or bool;
+     * `$lt`, `$lte`, `$gt` and `$gte` take a number; `$in`, `$nin` and `$all`
+     * take a list of strings; `$exists` takes a bool. Several keys in one object
+     * (implicit AND) and implicit equality (`{"genre": "sci-fi"}`) are rejected;
+     * use `$and` and `$eq` instead.
+     * Logical operators can be nested at most 2 levels deep, e.g.
+     * `{"$and": [{"$or": [{"a": {"$eq": 1}}, {"b": {"$eq": 2}}]}]}`. Deeper
+     * filters are rejected with `INVALID_ARGUMENT`.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Struct $var
@@ -233,6 +297,50 @@ class TextSearch extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Structured query definition. When set, `search_text` and
+     * `data_field_names` must be left empty; otherwise the request will be
+     * rejected with an `INVALID_ARGUMENT` error. Conversely, when
+     * `structured_query` is unset, both `search_text` and `data_field_names`
+     * are required.
+     *
+     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.StructuredQuery structured_query = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\VectorSearch\V1\StructuredQuery|null
+     */
+    public function getStructuredQuery()
+    {
+        return $this->structured_query;
+    }
+
+    public function hasStructuredQuery()
+    {
+        return isset($this->structured_query);
+    }
+
+    public function clearStructuredQuery()
+    {
+        unset($this->structured_query);
+    }
+
+    /**
+     * Optional. Structured query definition. When set, `search_text` and
+     * `data_field_names` must be left empty; otherwise the request will be
+     * rejected with an `INVALID_ARGUMENT` error. Conversely, when
+     * `structured_query` is unset, both `search_text` and `data_field_names`
+     * are required.
+     *
+     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.StructuredQuery structured_query = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\VectorSearch\V1\StructuredQuery $var
+     * @return $this
+     */
+    public function setStructuredQuery($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VectorSearch\V1\StructuredQuery::class);
+        $this->structured_query = $var;
 
         return $this;
     }

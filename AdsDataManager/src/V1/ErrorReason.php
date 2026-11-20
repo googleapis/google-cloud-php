@@ -123,7 +123,7 @@ class ErrorReason
      */
     const TOO_MANY_AUDIENCE_MEMBERS = 17;
     /**
-     * Maximum number of user identifiers allowed per audience member is 10.
+     * Maximum number of user identifiers allowed per record is 10.
      *
      * Generated from protobuf enum <code>TOO_MANY_USER_IDENTIFIERS = 18;</code>
      */
@@ -195,6 +195,12 @@ class ErrorReason
      * Generated from protobuf enum <code>INVALID_CONVERSION_ACTION_TYPE = 29;</code>
      */
     const INVALID_CONVERSION_ACTION_TYPE = 29;
+    /**
+     * Encryption is not supported for this request.
+     *
+     * Generated from protobuf enum <code>ENCRYPTION_NOT_SUPPORTED = 132;</code>
+     */
+    const ENCRYPTION_NOT_SUPPORTED = 132;
     /**
      * The currency code is not supported.
      *
@@ -780,10 +786,9 @@ class ErrorReason
      */
     const INSIGHTS_MISSING_FOR_DIMENSION = 123;
     /**
-     * A required prerequisite link (such as a Google Ads link) must exist for
-     * the Google Analytics property to perform this operation.
+     * Deprecated: Error is unused in the Data Manager API.
      *
-     * Generated from protobuf enum <code>REQUIRED_PREREQUISITE_LINK_MISSING = 124;</code>
+     * Generated from protobuf enum <code>REQUIRED_PREREQUISITE_LINK_MISSING = 124 [deprecated = true];</code>
      */
     const REQUIRED_PREREQUISITE_LINK_MISSING = 124;
     /**
@@ -808,16 +813,58 @@ class ErrorReason
     const CONVERSION_ACTION_TOO_RECENTLY_CREATED = 127;
     /**
      * The ad identifier does not belong to the account.
-     * For example, the [`gclid`][google.ads.datamanager.v1.AdIdentifiers.gclid]
+     * For example, the [gclid][google.ads.datamanager.v1.AdIdentifiers.gclid]
      * isn't associated with the
-     * [`operating_account`][google.ads.datamanager.v1.Destination.operating_account]
+     * [operating_account][google.ads.datamanager.v1.Destination.operating_account]
      * and
-     * [`product_destination_id`][google.ads.datamanager.v1.Destination.product_destination_id]
+     * [product_destination_id][google.ads.datamanager.v1.Destination.product_destination_id]
      * of the destination.
      *
      * Generated from protobuf enum <code>INVALID_AD_IDENTIFIER_FOR_ACCOUNT = 128;</code>
      */
     const INVALID_AD_IDENTIFIER_FOR_ACCOUNT = 128;
+    /**
+     * The account type is not a supported `client_account_type` for a
+     * [UserListDirectLicense][google.ads.datamanager.v1.UserListDirectLicense].
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED_ACCOUNT_TYPE_FOR_USER_LIST_DIRECT_LICENSE = 129;</code>
+     */
+    const UNSUPPORTED_ACCOUNT_TYPE_FOR_USER_LIST_DIRECT_LICENSE = 129;
+    /**
+     * Duplicate elements in a list in the request.
+     *
+     * Generated from protobuf enum <code>DUPLICATE_ELEMENTS = 130;</code>
+     */
+    const DUPLICATE_ELEMENTS = 130;
+    /**
+     * The baseline location is not supported for generating insights.
+     * When
+     * [location_auto_detection_enabled][google.ads.datamanager.v1.Baseline.location_auto_detection_enabled]
+     * is set to `true`, this error indicates that the detected majority location
+     * for the audience is not among the supported locations.
+     * To resolve this, explicitly specify a supported location in
+     * [baseline_location][google.ads.datamanager.v1.Baseline.baseline_location],
+     * or retry once the audience list updates with a supported majority location.
+     * See https://support.google.com/google-ads/answer/11161206 for the list of
+     * supported countries.
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED_BASELINE_LOCATION = 131;</code>
+     */
+    const UNSUPPORTED_BASELINE_LOCATION = 131;
+    /**
+     * The [event_timestamp][google.ads.datamanager.v1.Event.event_timestamp]
+     * cannot be earlier than the
+     * [start_timestamp][google.ads.datamanager.v1.CallInfo.start_timestamp].
+     *
+     * Generated from protobuf enum <code>CONVERSION_PRECEDES_CALL = 133;</code>
+     */
+    const CONVERSION_PRECEDES_CALL = 133;
+    /**
+     * The date is not valid.
+     *
+     * Generated from protobuf enum <code>INVALID_DATE = 134;</code>
+     */
+    const INVALID_DATE = 134;
 
     private static $valueToName = [
         self::ERROR_REASON_UNSPECIFIED => 'ERROR_REASON_UNSPECIFIED',
@@ -850,6 +897,7 @@ class ErrorReason
         self::INVALID_NUMBER_FORMAT => 'INVALID_NUMBER_FORMAT',
         self::INVALID_CONVERSION_ACTION_ID => 'INVALID_CONVERSION_ACTION_ID',
         self::INVALID_CONVERSION_ACTION_TYPE => 'INVALID_CONVERSION_ACTION_TYPE',
+        self::ENCRYPTION_NOT_SUPPORTED => 'ENCRYPTION_NOT_SUPPORTED',
         self::INVALID_CURRENCY_CODE => 'INVALID_CURRENCY_CODE',
         self::INVALID_EVENT => 'INVALID_EVENT',
         self::TOO_MANY_EVENTS => 'TOO_MANY_EVENTS',
@@ -949,6 +997,11 @@ class ErrorReason
         self::REQUEST_TOO_OLD => 'REQUEST_TOO_OLD',
         self::CONVERSION_ACTION_TOO_RECENTLY_CREATED => 'CONVERSION_ACTION_TOO_RECENTLY_CREATED',
         self::INVALID_AD_IDENTIFIER_FOR_ACCOUNT => 'INVALID_AD_IDENTIFIER_FOR_ACCOUNT',
+        self::UNSUPPORTED_ACCOUNT_TYPE_FOR_USER_LIST_DIRECT_LICENSE => 'UNSUPPORTED_ACCOUNT_TYPE_FOR_USER_LIST_DIRECT_LICENSE',
+        self::DUPLICATE_ELEMENTS => 'DUPLICATE_ELEMENTS',
+        self::UNSUPPORTED_BASELINE_LOCATION => 'UNSUPPORTED_BASELINE_LOCATION',
+        self::CONVERSION_PRECEDES_CALL => 'CONVERSION_PRECEDES_CALL',
+        self::INVALID_DATE => 'INVALID_DATE',
     ];
 
     public static function name($value)

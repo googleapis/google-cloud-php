@@ -230,6 +230,78 @@ class Dimension
      */
     const AD_LOCATION_NAME = 391;
     /**
+     * The ID of an ad product add-on.
+     * Corresponds to "Ad product add-on ID" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `IDENTIFIER`
+     *
+     * Generated from protobuf enum <code>AD_PRODUCT_ADD_ON_ID = 846;</code>
+     */
+    const AD_PRODUCT_ADD_ON_ID = 846;
+    /**
+     * The list of IDs of ad product add-ons.
+     * Corresponds to "Ad product add-on ID (all)" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `IDENTIFIER_LIST`
+     *
+     * Generated from protobuf enum <code>AD_PRODUCT_ADD_ON_ID_ALL = 847;</code>
+     */
+    const AD_PRODUCT_ADD_ON_ID_ALL = 847;
+    /**
+     * The name of an ad product add-on.
+     * Corresponds to "Ad product add-on" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>AD_PRODUCT_ADD_ON_NAME = 848;</code>
+     */
+    const AD_PRODUCT_ADD_ON_NAME = 848;
+    /**
+     * The list of names of ad product add-ons.
+     * Corresponds to "Ad product add-on (all)" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING_LIST`
+     *
+     * Generated from protobuf enum <code>AD_PRODUCT_ADD_ON_NAME_ALL = 849;</code>
+     */
+    const AD_PRODUCT_ADD_ON_NAME_ALL = 849;
+    /**
+     * The ID of an ad product.
+     * Corresponds to "Ad product ID" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `IDENTIFIER`
+     *
+     * Generated from protobuf enum <code>AD_PRODUCT_ID = 850;</code>
+     */
+    const AD_PRODUCT_ID = 850;
+    /**
+     * The name of an ad product.
+     * Corresponds to "Ad product" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>AD_PRODUCT_NAME = 851;</code>
+     */
+    const AD_PRODUCT_NAME = 851;
+    /**
+     * The ID of an ad product rate card.
+     * Corresponds to "Ad product rate card ID" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `IDENTIFIER`
+     *
+     * Generated from protobuf enum <code>AD_PRODUCT_RATE_CARD_ID = 852;</code>
+     */
+    const AD_PRODUCT_RATE_CARD_ID = 852;
+    /**
+     * The name of an ad product rate card.
+     * Corresponds to "Ad product rate card" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>AD_PRODUCT_RATE_CARD_NAME = 853;</code>
+     */
+    const AD_PRODUCT_RATE_CARD_NAME = 853;
+    /**
      * Multi-size inventory in an ad request.
      * Corresponds to "Ad request sizes" in the Ad Manager UI.
      * Compatible with the following report types: `FUTURE_SELL_THROUGH`
@@ -3362,6 +3434,36 @@ class Dimension
      */
     const LINE_ITEM_TYPE = 193;
     /**
+     * Expanded line item type ENUM value in the Ads traffic navigator report.
+     * Corresponds to "Expanded line item type value" in the Ad Manager UI (when
+     * showing API fields).
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
+     * Data format: `ENUM`
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_TYPE_EXTENDED = 874;</code>
+     */
+    const LINE_ITEM_TYPE_EXTENDED = 874;
+    /**
+     * List of expanded line item types considered at auction in the Ads traffic
+     *  navigator report.
+     * Corresponds to "Expanded line item type (all)" in the Ad Manager UI.
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
+     * Data format: `STRING_LIST`
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_TYPE_EXTENDED_ALL = 875;</code>
+     */
+    const LINE_ITEM_TYPE_EXTENDED_ALL = 875;
+    /**
+     * Localized expanded line item type name in the Ads traffic navigator
+     *  report.
+     * Corresponds to "Expanded line item type" in the Ad Manager UI.
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_TYPE_EXTENDED_NAME = 876;</code>
+     */
+    const LINE_ITEM_TYPE_EXTENDED_NAME = 876;
+    /**
      * Localized line item type name.
      * Corresponds to "Line item type" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`,
@@ -4726,6 +4828,142 @@ class Dimension
      * Generated from protobuf enum <code>SITE = 387;</code>
      */
     const SITE = 387;
+    /**
+     * The brand of the sponsored product.
+     * Corresponds to "Sponsored product brand" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>SPONSORED_PRODUCT_BRAND = 807;</code>
+     */
+    const SPONSORED_PRODUCT_BRAND = 807;
+    /**
+     * The category of the sponsored product.
+     * Corresponds to "Sponsored product category" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>SPONSORED_PRODUCT_CATEGORY = 808;</code>
+     */
+    const SPONSORED_PRODUCT_CATEGORY = 808;
+    /**
+     * The level 1 category of the sponsored product.
+     * Corresponds to "Sponsored product category level 1" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>SPONSORED_PRODUCT_CATEGORY_LEVEL1 = 809;</code>
+     */
+    const SPONSORED_PRODUCT_CATEGORY_LEVEL1 = 809;
+    /**
+     * The level 2 category of the sponsored product.
+     * Corresponds to "Sponsored product category level 2" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>SPONSORED_PRODUCT_CATEGORY_LEVEL2 = 810;</code>
+     */
+    const SPONSORED_PRODUCT_CATEGORY_LEVEL2 = 810;
+    /**
+     * The level 3 category of the sponsored product.
+     * Corresponds to "Sponsored product category level 3" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>SPONSORED_PRODUCT_CATEGORY_LEVEL3 = 811;</code>
+     */
+    const SPONSORED_PRODUCT_CATEGORY_LEVEL3 = 811;
+    /**
+     * The level 4 category of the sponsored product.
+     * Corresponds to "Sponsored product category level 4" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>SPONSORED_PRODUCT_CATEGORY_LEVEL4 = 812;</code>
+     */
+    const SPONSORED_PRODUCT_CATEGORY_LEVEL4 = 812;
+    /**
+     * The level 5 category of the sponsored product.
+     * Corresponds to "Sponsored product category level 5" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>SPONSORED_PRODUCT_CATEGORY_LEVEL5 = 813;</code>
+     */
+    const SPONSORED_PRODUCT_CATEGORY_LEVEL5 = 813;
+    /**
+     * The GTIN of the sponsored product.
+     * Corresponds to "Sponsored product GTIN" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>SPONSORED_PRODUCT_GTIN = 814;</code>
+     */
+    const SPONSORED_PRODUCT_GTIN = 814;
+    /**
+     * The ID of the sponsored product.
+     * Corresponds to "Sponsored product ID" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>SPONSORED_PRODUCT_ID = 815;</code>
+     */
+    const SPONSORED_PRODUCT_ID = 815;
+    /**
+     * Enum value of the sponsored product inventory.
+     * Corresponds to "Sponsored product inventory value" in the Ad Manager UI
+     * (when showing API fields).
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `ENUM`
+     *
+     * Generated from protobuf enum <code>SPONSORED_PRODUCT_INVENTORY = 822;</code>
+     */
+    const SPONSORED_PRODUCT_INVENTORY = 822;
+    /**
+     * The name of the sponsored product inventory.
+     * Corresponds to "Sponsored product inventory" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>SPONSORED_PRODUCT_INVENTORY_NAME = 823;</code>
+     */
+    const SPONSORED_PRODUCT_INVENTORY_NAME = 823;
+    /**
+     * The item group ID of the sponsored product.
+     * Corresponds to "Sponsored product item group ID" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>SPONSORED_PRODUCT_ITEM_GROUP_ID = 816;</code>
+     */
+    const SPONSORED_PRODUCT_ITEM_GROUP_ID = 816;
+    /**
+     * The merchant ID of the sponsored product.
+     * Corresponds to "Sponsored product merchant ID" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `IDENTIFIER`
+     *
+     * Generated from protobuf enum <code>SPONSORED_PRODUCT_MERCHANT_ID = 817;</code>
+     */
+    const SPONSORED_PRODUCT_MERCHANT_ID = 817;
+    /**
+     * The title of the sponsored product.
+     * Corresponds to "Sponsored product title" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>SPONSORED_PRODUCT_TITLE = 818;</code>
+     */
+    const SPONSORED_PRODUCT_TITLE = 818;
+    /**
+     * The update time of the sponsored product.
+     * Corresponds to "Sponsored product update time" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `TIMESTAMP`
+     *
+     * Generated from protobuf enum <code>SPONSORED_PRODUCT_UPDATE_TIME = 819;</code>
+     */
+    const SPONSORED_PRODUCT_UPDATE_TIME = 819;
     /**
      * The ID of the browser, device or other environment into which a line item
      *  or creative was served.
@@ -7359,6 +7597,14 @@ class Dimension
         self::AD_EXPERIENCES_TYPE_NAME => 'AD_EXPERIENCES_TYPE_NAME',
         self::AD_LOCATION => 'AD_LOCATION',
         self::AD_LOCATION_NAME => 'AD_LOCATION_NAME',
+        self::AD_PRODUCT_ADD_ON_ID => 'AD_PRODUCT_ADD_ON_ID',
+        self::AD_PRODUCT_ADD_ON_ID_ALL => 'AD_PRODUCT_ADD_ON_ID_ALL',
+        self::AD_PRODUCT_ADD_ON_NAME => 'AD_PRODUCT_ADD_ON_NAME',
+        self::AD_PRODUCT_ADD_ON_NAME_ALL => 'AD_PRODUCT_ADD_ON_NAME_ALL',
+        self::AD_PRODUCT_ID => 'AD_PRODUCT_ID',
+        self::AD_PRODUCT_NAME => 'AD_PRODUCT_NAME',
+        self::AD_PRODUCT_RATE_CARD_ID => 'AD_PRODUCT_RATE_CARD_ID',
+        self::AD_PRODUCT_RATE_CARD_NAME => 'AD_PRODUCT_RATE_CARD_NAME',
         self::AD_REQUEST_SIZES => 'AD_REQUEST_SIZES',
         self::AD_TECHNOLOGY_PROVIDER_DOMAIN => 'AD_TECHNOLOGY_PROVIDER_DOMAIN',
         self::AD_TECHNOLOGY_PROVIDER_ID => 'AD_TECHNOLOGY_PROVIDER_ID',
@@ -7670,6 +7916,9 @@ class Dimension
         self::LINE_ITEM_START_DATE_TIME => 'LINE_ITEM_START_DATE_TIME',
         self::LINE_ITEM_TRAFFICKER => 'LINE_ITEM_TRAFFICKER',
         self::LINE_ITEM_TYPE => 'LINE_ITEM_TYPE',
+        self::LINE_ITEM_TYPE_EXTENDED => 'LINE_ITEM_TYPE_EXTENDED',
+        self::LINE_ITEM_TYPE_EXTENDED_ALL => 'LINE_ITEM_TYPE_EXTENDED_ALL',
+        self::LINE_ITEM_TYPE_EXTENDED_NAME => 'LINE_ITEM_TYPE_EXTENDED_NAME',
         self::LINE_ITEM_TYPE_NAME => 'LINE_ITEM_TYPE_NAME',
         self::LINE_ITEM_UNLIMITED_END => 'LINE_ITEM_UNLIMITED_END',
         self::LINE_ITEM_VALUE_COST_PER_UNIT => 'LINE_ITEM_VALUE_COST_PER_UNIT',
@@ -7809,6 +8058,21 @@ class Dimension
         self::SERVING_RESTRICTION => 'SERVING_RESTRICTION',
         self::SERVING_RESTRICTION_NAME => 'SERVING_RESTRICTION_NAME',
         self::SITE => 'SITE',
+        self::SPONSORED_PRODUCT_BRAND => 'SPONSORED_PRODUCT_BRAND',
+        self::SPONSORED_PRODUCT_CATEGORY => 'SPONSORED_PRODUCT_CATEGORY',
+        self::SPONSORED_PRODUCT_CATEGORY_LEVEL1 => 'SPONSORED_PRODUCT_CATEGORY_LEVEL1',
+        self::SPONSORED_PRODUCT_CATEGORY_LEVEL2 => 'SPONSORED_PRODUCT_CATEGORY_LEVEL2',
+        self::SPONSORED_PRODUCT_CATEGORY_LEVEL3 => 'SPONSORED_PRODUCT_CATEGORY_LEVEL3',
+        self::SPONSORED_PRODUCT_CATEGORY_LEVEL4 => 'SPONSORED_PRODUCT_CATEGORY_LEVEL4',
+        self::SPONSORED_PRODUCT_CATEGORY_LEVEL5 => 'SPONSORED_PRODUCT_CATEGORY_LEVEL5',
+        self::SPONSORED_PRODUCT_GTIN => 'SPONSORED_PRODUCT_GTIN',
+        self::SPONSORED_PRODUCT_ID => 'SPONSORED_PRODUCT_ID',
+        self::SPONSORED_PRODUCT_INVENTORY => 'SPONSORED_PRODUCT_INVENTORY',
+        self::SPONSORED_PRODUCT_INVENTORY_NAME => 'SPONSORED_PRODUCT_INVENTORY_NAME',
+        self::SPONSORED_PRODUCT_ITEM_GROUP_ID => 'SPONSORED_PRODUCT_ITEM_GROUP_ID',
+        self::SPONSORED_PRODUCT_MERCHANT_ID => 'SPONSORED_PRODUCT_MERCHANT_ID',
+        self::SPONSORED_PRODUCT_TITLE => 'SPONSORED_PRODUCT_TITLE',
+        self::SPONSORED_PRODUCT_UPDATE_TIME => 'SPONSORED_PRODUCT_UPDATE_TIME',
         self::TARGETING_ID => 'TARGETING_ID',
         self::TARGETING_NAME => 'TARGETING_NAME',
         self::TARGETING_TYPE => 'TARGETING_TYPE',

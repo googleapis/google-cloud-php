@@ -406,6 +406,21 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.DatabaseInstance.DatabaseCenterIntegration database_center_integration = 76 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $database_center_integration = null;
+    /**
+     * Output only. The workload replay configuration for this instance. This
+     * field is set only for workload replay instances.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.WorkloadReplayConfig workload_replay_config = 79 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $workload_replay_config = null;
+    /**
+     * Output only. The workload capture configuration for this instance. This
+     * field is set only when an active workload capture is present on the
+     * instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.WorkloadCaptureConfig workload_capture_config = 80 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $workload_capture_config = null;
 
     /**
      * Constructor.
@@ -581,6 +596,13 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *     @type int $database_center_integration
      *           Optional. State of the Database Center integration for this instance.
      *           When unspecified, Database Center integration is enabled by default.
+     *     @type \Google\Cloud\Sql\V1\WorkloadReplayConfig $workload_replay_config
+     *           Output only. The workload replay configuration for this instance. This
+     *           field is set only for workload replay instances.
+     *     @type \Google\Cloud\Sql\V1\WorkloadCaptureConfig $workload_capture_config
+     *           Output only. The workload capture configuration for this instance. This
+     *           field is set only when an active workload capture is present on the
+     *           instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -2690,6 +2712,84 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\DatabaseInstance\DatabaseCenterIntegration::class);
         $this->database_center_integration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The workload replay configuration for this instance. This
+     * field is set only for workload replay instances.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.WorkloadReplayConfig workload_replay_config = 79 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Sql\V1\WorkloadReplayConfig|null
+     */
+    public function getWorkloadReplayConfig()
+    {
+        return $this->workload_replay_config;
+    }
+
+    public function hasWorkloadReplayConfig()
+    {
+        return isset($this->workload_replay_config);
+    }
+
+    public function clearWorkloadReplayConfig()
+    {
+        unset($this->workload_replay_config);
+    }
+
+    /**
+     * Output only. The workload replay configuration for this instance. This
+     * field is set only for workload replay instances.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.WorkloadReplayConfig workload_replay_config = 79 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Sql\V1\WorkloadReplayConfig $var
+     * @return $this
+     */
+    public function setWorkloadReplayConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\WorkloadReplayConfig::class);
+        $this->workload_replay_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The workload capture configuration for this instance. This
+     * field is set only when an active workload capture is present on the
+     * instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.WorkloadCaptureConfig workload_capture_config = 80 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Sql\V1\WorkloadCaptureConfig|null
+     */
+    public function getWorkloadCaptureConfig()
+    {
+        return $this->workload_capture_config;
+    }
+
+    public function hasWorkloadCaptureConfig()
+    {
+        return isset($this->workload_capture_config);
+    }
+
+    public function clearWorkloadCaptureConfig()
+    {
+        unset($this->workload_capture_config);
+    }
+
+    /**
+     * Output only. The workload capture configuration for this instance. This
+     * field is set only when an active workload capture is present on the
+     * instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.WorkloadCaptureConfig workload_capture_config = 80 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Sql\V1\WorkloadCaptureConfig $var
+     * @return $this
+     */
+    public function setWorkloadCaptureConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\WorkloadCaptureConfig::class);
+        $this->workload_capture_config = $var;
 
         return $this;
     }

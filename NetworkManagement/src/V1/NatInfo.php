@@ -28,7 +28,8 @@ class NatInfo extends \Google\Protobuf\Internal\Message
      */
     protected $protocol = '';
     /**
-     * URI of the network where NAT translation takes place.
+     * URI of the VPC network where NAT translation takes place.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string network_uri = 3;</code>
      */
@@ -84,7 +85,8 @@ class NatInfo extends \Google\Protobuf\Internal\Message
      */
     protected $new_destination_port = 0;
     /**
-     * Uri of the Cloud Router. Only valid when type is CLOUD_NAT.
+     * URI of the Cloud Router. Only valid when type is CLOUD_NAT.
+     * Format: `projects/{project_id}/regions/{region}/routers/{router_id}`
      *
      * Generated from protobuf field <code>string router_uri = 12;</code>
      */
@@ -113,7 +115,8 @@ class NatInfo extends \Google\Protobuf\Internal\Message
      *     @type string $protocol
      *           IP protocol in string format, for example: "TCP", "UDP", "ICMP".
      *     @type string $network_uri
-     *           URI of the network where NAT translation takes place.
+     *           URI of the VPC network where NAT translation takes place.
+     *           Format: `projects/{project_id}/global/networks/{network_id}`
      *     @type string $old_source_ip
      *           Source IP address before NAT translation.
      *     @type string $new_source_ip
@@ -133,7 +136,8 @@ class NatInfo extends \Google\Protobuf\Internal\Message
      *           Destination port after NAT translation. Only valid when protocol is TCP or
      *           UDP.
      *     @type string $router_uri
-     *           Uri of the Cloud Router. Only valid when type is CLOUD_NAT.
+     *           URI of the Cloud Router. Only valid when type is CLOUD_NAT.
+     *           Format: `projects/{project_id}/regions/{region}/routers/{router_id}`
      *     @type string $nat_gateway_name
      *           The name of Cloud NAT Gateway. Only valid when type is CLOUD_NAT.
      *     @type int $cloud_nat_gateway_type
@@ -198,7 +202,8 @@ class NatInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the network where NAT translation takes place.
+     * URI of the VPC network where NAT translation takes place.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string network_uri = 3;</code>
      * @return string
@@ -209,7 +214,8 @@ class NatInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the network where NAT translation takes place.
+     * URI of the VPC network where NAT translation takes place.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string network_uri = 3;</code>
      * @param string $var
@@ -436,7 +442,8 @@ class NatInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Uri of the Cloud Router. Only valid when type is CLOUD_NAT.
+     * URI of the Cloud Router. Only valid when type is CLOUD_NAT.
+     * Format: `projects/{project_id}/regions/{region}/routers/{router_id}`
      *
      * Generated from protobuf field <code>string router_uri = 12;</code>
      * @return string
@@ -447,7 +454,8 @@ class NatInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Uri of the Cloud Router. Only valid when type is CLOUD_NAT.
+     * URI of the Cloud Router. Only valid when type is CLOUD_NAT.
+     * Format: `projects/{project_id}/regions/{region}/routers/{router_id}`
      *
      * Generated from protobuf field <code>string router_uri = 12;</code>
      * @param string $var

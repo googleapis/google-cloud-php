@@ -17,13 +17,16 @@ use Google\Protobuf\RepeatedField;
 class DirectVpcEgressConnectionInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * URI of direct access network.
+     * URI of the VPC network for direct egress.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string network_uri = 1;</code>
      */
     protected $network_uri = '';
     /**
-     * URI of direct access subnetwork.
+     * URI of the subnetwork for direct egress.
+     * Format:
+     * `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`
      *
      * Generated from protobuf field <code>string subnetwork_uri = 2;</code>
      */
@@ -54,9 +57,12 @@ class DirectVpcEgressConnectionInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $network_uri
-     *           URI of direct access network.
+     *           URI of the VPC network for direct egress.
+     *           Format: `projects/{project_id}/global/networks/{network_id}`
      *     @type string $subnetwork_uri
-     *           URI of direct access subnetwork.
+     *           URI of the subnetwork for direct egress.
+     *           Format:
+     *           `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`
      *     @type string $selected_ip_range
      *           Selected IP range.
      *     @type string $selected_ip_address
@@ -71,7 +77,8 @@ class DirectVpcEgressConnectionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of direct access network.
+     * URI of the VPC network for direct egress.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string network_uri = 1;</code>
      * @return string
@@ -82,7 +89,8 @@ class DirectVpcEgressConnectionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of direct access network.
+     * URI of the VPC network for direct egress.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string network_uri = 1;</code>
      * @param string $var
@@ -97,7 +105,9 @@ class DirectVpcEgressConnectionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of direct access subnetwork.
+     * URI of the subnetwork for direct egress.
+     * Format:
+     * `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`
      *
      * Generated from protobuf field <code>string subnetwork_uri = 2;</code>
      * @return string
@@ -108,7 +118,9 @@ class DirectVpcEgressConnectionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of direct access subnetwork.
+     * URI of the subnetwork for direct egress.
+     * Format:
+     * `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`
      *
      * Generated from protobuf field <code>string subnetwork_uri = 2;</code>
      * @param string $var

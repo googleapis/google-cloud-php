@@ -24,6 +24,12 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      */
     private $containers;
     /**
+     * Optional. Configuration for sandboxes.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.SandboxConfiguration sandboxes = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $sandboxes = null;
+    /**
      * Optional. A list of Volumes to make available to containers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -81,6 +87,12 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool gpu_zonal_redundancy_disabled = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $gpu_zonal_redundancy_disabled = null;
+    /**
+     * Optional. The Task's workload identity settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.WorkloadIdentityConfig workload_identity_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $workload_identity_config = null;
     protected $retries;
 
     /**
@@ -92,6 +104,8 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Run\V2\Container[] $containers
      *           Holds the single container that defines the unit of execution for this
      *           task.
+     *     @type \Google\Cloud\Run\V2\SandboxConfiguration $sandboxes
+     *           Optional. Configuration for sandboxes.
      *     @type \Google\Cloud\Run\V2\Volume[] $volumes
      *           Optional. A list of Volumes to make available to containers.
      *     @type int $max_retries
@@ -121,6 +135,8 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      *           Optional. The node selector for the task template.
      *     @type bool $gpu_zonal_redundancy_disabled
      *           Optional. True if GPU zonal redundancy is disabled on this task template.
+     *     @type \Google\Cloud\Run\V2\WorkloadIdentityConfig $workload_identity_config
+     *           Optional. The Task's workload identity settings.
      * }
      */
     public function __construct($data = NULL) {
@@ -152,6 +168,42 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Run\V2\Container::class);
         $this->containers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for sandboxes.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.SandboxConfiguration sandboxes = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Run\V2\SandboxConfiguration|null
+     */
+    public function getSandboxes()
+    {
+        return $this->sandboxes;
+    }
+
+    public function hasSandboxes()
+    {
+        return isset($this->sandboxes);
+    }
+
+    public function clearSandboxes()
+    {
+        unset($this->sandboxes);
+    }
+
+    /**
+     * Optional. Configuration for sandboxes.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.SandboxConfiguration sandboxes = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Run\V2\SandboxConfiguration $var
+     * @return $this
+     */
+    public function setSandboxes($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\SandboxConfiguration::class);
+        $this->sandboxes = $var;
 
         return $this;
     }
@@ -453,6 +505,42 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->gpu_zonal_redundancy_disabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Task's workload identity settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.WorkloadIdentityConfig workload_identity_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Run\V2\WorkloadIdentityConfig|null
+     */
+    public function getWorkloadIdentityConfig()
+    {
+        return $this->workload_identity_config;
+    }
+
+    public function hasWorkloadIdentityConfig()
+    {
+        return isset($this->workload_identity_config);
+    }
+
+    public function clearWorkloadIdentityConfig()
+    {
+        unset($this->workload_identity_config);
+    }
+
+    /**
+     * Optional. The Task's workload identity settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.WorkloadIdentityConfig workload_identity_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Run\V2\WorkloadIdentityConfig $var
+     * @return $this
+     */
+    public function setWorkloadIdentityConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\WorkloadIdentityConfig::class);
+        $this->workload_identity_config = $var;
 
         return $this;
     }

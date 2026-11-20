@@ -22,7 +22,8 @@ class CloudRunJobInfo extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * URI of a Cloud Run job.
+     * URI of the Cloud Run job.
+     * Format: `projects/{project_id}/locations/{location}/jobs/{job_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
@@ -43,7 +44,8 @@ class CloudRunJobInfo extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Name of a Cloud Run job.
      *     @type string $uri
-     *           URI of a Cloud Run job.
+     *           URI of the Cloud Run job.
+     *           Format: `projects/{project_id}/locations/{location}/jobs/{job_id}`
      *     @type string $location
      *           Location in which this job is deployed.
      * }
@@ -80,7 +82,8 @@ class CloudRunJobInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Cloud Run job.
+     * URI of the Cloud Run job.
+     * Format: `projects/{project_id}/locations/{location}/jobs/{job_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -91,7 +94,8 @@ class CloudRunJobInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Cloud Run job.
+     * URI of the Cloud Run job.
+     * Format: `projects/{project_id}/locations/{location}/jobs/{job_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var

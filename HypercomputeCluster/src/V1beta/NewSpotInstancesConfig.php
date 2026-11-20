@@ -35,6 +35,20 @@ class NewSpotInstancesConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string machine_type = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $machine_type = '';
+    /**
+     * Optional. Termination action for the instance. If not specified, Compute
+     * Engine sets the termination action to DELETE.
+     *
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.NewSpotInstancesConfig.TerminationAction termination_action = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $termination_action = 0;
+    /**
+     * Optional. Immutable. A list of network tags to attach to the VM instances.
+     * A maximum of 64 network tags are allowed.
+     *
+     * Generated from protobuf field <code>repeated string network_tags = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $network_tags;
 
     /**
      * Constructor.
@@ -50,6 +64,12 @@ class NewSpotInstancesConfig extends \Google\Protobuf\Internal\Message
      *           Required. Immutable. Name of the Compute Engine [machine
      *           type](https://cloud.google.com/compute/docs/machine-resource) to use, e.g.
      *           `n2-standard-2`.
+     *     @type int $termination_action
+     *           Optional. Termination action for the instance. If not specified, Compute
+     *           Engine sets the termination action to DELETE.
+     *     @type string[] $network_tags
+     *           Optional. Immutable. A list of network tags to attach to the VM instances.
+     *           A maximum of 64 network tags are allowed.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +133,62 @@ class NewSpotInstancesConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->machine_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Termination action for the instance. If not specified, Compute
+     * Engine sets the termination action to DELETE.
+     *
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.NewSpotInstancesConfig.TerminationAction termination_action = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getTerminationAction()
+    {
+        return $this->termination_action;
+    }
+
+    /**
+     * Optional. Termination action for the instance. If not specified, Compute
+     * Engine sets the termination action to DELETE.
+     *
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.NewSpotInstancesConfig.TerminationAction termination_action = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTerminationAction($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\HypercomputeCluster\V1beta\NewSpotInstancesConfig\TerminationAction::class);
+        $this->termination_action = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. A list of network tags to attach to the VM instances.
+     * A maximum of 64 network tags are allowed.
+     *
+     * Generated from protobuf field <code>repeated string network_tags = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return RepeatedField<string>
+     */
+    public function getNetworkTags()
+    {
+        return $this->network_tags;
+    }
+
+    /**
+     * Optional. Immutable. A list of network tags to attach to the VM instances.
+     * A maximum of 64 network tags are allowed.
+     *
+     * Generated from protobuf field <code>repeated string network_tags = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setNetworkTags($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->network_tags = $arr;
 
         return $this;
     }

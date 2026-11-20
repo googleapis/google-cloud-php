@@ -22,19 +22,29 @@ class VpnTunnelInfo extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * URI of a VPN tunnel.
+     * URI of the VPN tunnel.
+     * Format: `projects/{project_id}/regions/{region}/vpnTunnels/{vpn_tunnel_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
     protected $uri = '';
     /**
      * URI of the VPN gateway at local end of the tunnel.
+     * Format:
+     * * `projects/{project_id}/regions/{region}/vpnGateways/{vpn_gateway_id}` (HA
+     * VPN gateway)
+     * * `projects/{project_id}/regions/{region}/targetVpnGateways/{target_vpn_gateway_id}` (Classic VPN gateway)
      *
      * Generated from protobuf field <code>string source_gateway = 3;</code>
      */
     protected $source_gateway = '';
     /**
      * URI of a VPN gateway at remote end of the tunnel.
+     * Format:
+     * * `projects/{project_id}/regions/{region}/vpnGateways/{vpn_gateway_id}`
+     * (GCP HA VPN gateway)
+     * * `projects/{project_id}/global/peerVpnGateways/{peer_vpn_gateway_id}` (GCP
+     * peer VPN gateway)
      *
      * Generated from protobuf field <code>string remote_gateway = 4;</code>
      */
@@ -52,7 +62,8 @@ class VpnTunnelInfo extends \Google\Protobuf\Internal\Message
      */
     protected $source_gateway_ip = '';
     /**
-     * URI of a Compute Engine network where the VPN tunnel is configured.
+     * URI of the VPC network where the VPN tunnel is configured.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string network_uri = 7;</code>
      */
@@ -79,17 +90,28 @@ class VpnTunnelInfo extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Name of a VPN tunnel.
      *     @type string $uri
-     *           URI of a VPN tunnel.
+     *           URI of the VPN tunnel.
+     *           Format: `projects/{project_id}/regions/{region}/vpnTunnels/{vpn_tunnel_id}`
      *     @type string $source_gateway
      *           URI of the VPN gateway at local end of the tunnel.
+     *           Format:
+     *           * `projects/{project_id}/regions/{region}/vpnGateways/{vpn_gateway_id}` (HA
+     *           VPN gateway)
+     *           * `projects/{project_id}/regions/{region}/targetVpnGateways/{target_vpn_gateway_id}` (Classic VPN gateway)
      *     @type string $remote_gateway
      *           URI of a VPN gateway at remote end of the tunnel.
+     *           Format:
+     *           * `projects/{project_id}/regions/{region}/vpnGateways/{vpn_gateway_id}`
+     *           (GCP HA VPN gateway)
+     *           * `projects/{project_id}/global/peerVpnGateways/{peer_vpn_gateway_id}` (GCP
+     *           peer VPN gateway)
      *     @type string $remote_gateway_ip
      *           Remote VPN gateway's IP address.
      *     @type string $source_gateway_ip
      *           Local VPN gateway's IP address.
      *     @type string $network_uri
-     *           URI of a Compute Engine network where the VPN tunnel is configured.
+     *           URI of the VPC network where the VPN tunnel is configured.
+     *           Format: `projects/{project_id}/global/networks/{network_id}`
      *     @type string $region
      *           Name of a Google Cloud region where this VPN tunnel is configured.
      *     @type int $routing_type
@@ -128,7 +150,8 @@ class VpnTunnelInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a VPN tunnel.
+     * URI of the VPN tunnel.
+     * Format: `projects/{project_id}/regions/{region}/vpnTunnels/{vpn_tunnel_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -139,7 +162,8 @@ class VpnTunnelInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a VPN tunnel.
+     * URI of the VPN tunnel.
+     * Format: `projects/{project_id}/regions/{region}/vpnTunnels/{vpn_tunnel_id}`
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var
@@ -155,6 +179,10 @@ class VpnTunnelInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the VPN gateway at local end of the tunnel.
+     * Format:
+     * * `projects/{project_id}/regions/{region}/vpnGateways/{vpn_gateway_id}` (HA
+     * VPN gateway)
+     * * `projects/{project_id}/regions/{region}/targetVpnGateways/{target_vpn_gateway_id}` (Classic VPN gateway)
      *
      * Generated from protobuf field <code>string source_gateway = 3;</code>
      * @return string
@@ -166,6 +194,10 @@ class VpnTunnelInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the VPN gateway at local end of the tunnel.
+     * Format:
+     * * `projects/{project_id}/regions/{region}/vpnGateways/{vpn_gateway_id}` (HA
+     * VPN gateway)
+     * * `projects/{project_id}/regions/{region}/targetVpnGateways/{target_vpn_gateway_id}` (Classic VPN gateway)
      *
      * Generated from protobuf field <code>string source_gateway = 3;</code>
      * @param string $var
@@ -181,6 +213,11 @@ class VpnTunnelInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of a VPN gateway at remote end of the tunnel.
+     * Format:
+     * * `projects/{project_id}/regions/{region}/vpnGateways/{vpn_gateway_id}`
+     * (GCP HA VPN gateway)
+     * * `projects/{project_id}/global/peerVpnGateways/{peer_vpn_gateway_id}` (GCP
+     * peer VPN gateway)
      *
      * Generated from protobuf field <code>string remote_gateway = 4;</code>
      * @return string
@@ -192,6 +229,11 @@ class VpnTunnelInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of a VPN gateway at remote end of the tunnel.
+     * Format:
+     * * `projects/{project_id}/regions/{region}/vpnGateways/{vpn_gateway_id}`
+     * (GCP HA VPN gateway)
+     * * `projects/{project_id}/global/peerVpnGateways/{peer_vpn_gateway_id}` (GCP
+     * peer VPN gateway)
      *
      * Generated from protobuf field <code>string remote_gateway = 4;</code>
      * @param string $var
@@ -258,7 +300,8 @@ class VpnTunnelInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Compute Engine network where the VPN tunnel is configured.
+     * URI of the VPC network where the VPN tunnel is configured.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string network_uri = 7;</code>
      * @return string
@@ -269,7 +312,8 @@ class VpnTunnelInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Compute Engine network where the VPN tunnel is configured.
+     * URI of the VPC network where the VPN tunnel is configured.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string network_uri = 7;</code>
      * @param string $var

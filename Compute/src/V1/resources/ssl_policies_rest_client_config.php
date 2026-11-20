@@ -66,6 +66,22 @@ return [
                     ],
                 ],
             ],
+            'GetIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/sslPolicies/{resource}/getIamPolicy',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'Insert' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/sslPolicies',
@@ -113,6 +129,40 @@ return [
                     'ssl_policy' => [
                         'getters' => [
                             'getSslPolicy',
+                        ],
+                    ],
+                ],
+            ],
+            'SetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/sslPolicies/{resource}/setIamPolicy',
+                'body' => 'global_set_policy_request_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/sslPolicies/{resource}/testIamPermissions',
+                'body' => 'test_permissions_request_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],

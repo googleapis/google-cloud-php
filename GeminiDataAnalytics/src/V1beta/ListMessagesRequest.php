@@ -48,6 +48,15 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = '';
+    /**
+     * Optional. If true, the wait for in-flight writes on the most recent turn is
+     * skipped. By default ListMessages waits for those writes to become durable
+     * so a caller reading right after a chat turn does not miss the tail of that
+     * turn's messages.
+     *
+     * Generated from protobuf field <code>bool pending_write_wait_skipped = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $pending_write_wait_skipped = false;
 
     /**
      * @param string $parent Required. The conversation to list messages under.
@@ -88,6 +97,11 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
      *           ListMessages allows filtering by:
      *            * create_time (e.g., `createTime > "2025-01-28T06:51:56-08:00"`)
      *            * update_time
+     *     @type bool $pending_write_wait_skipped
+     *           Optional. If true, the wait for in-flight writes on the most recent turn is
+     *           skipped. By default ListMessages waits for those writes to become durable
+     *           so a caller reading right after a chat turn does not miss the tail of that
+     *           turn's messages.
      * }
      */
     public function __construct($data = NULL) {
@@ -213,6 +227,38 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, the wait for in-flight writes on the most recent turn is
+     * skipped. By default ListMessages waits for those writes to become durable
+     * so a caller reading right after a chat turn does not miss the tail of that
+     * turn's messages.
+     *
+     * Generated from protobuf field <code>bool pending_write_wait_skipped = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getPendingWriteWaitSkipped()
+    {
+        return $this->pending_write_wait_skipped;
+    }
+
+    /**
+     * Optional. If true, the wait for in-flight writes on the most recent turn is
+     * skipped. By default ListMessages waits for those writes to become durable
+     * so a caller reading right after a chat turn does not miss the tail of that
+     * turn's messages.
+     *
+     * Generated from protobuf field <code>bool pending_write_wait_skipped = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPendingWriteWaitSkipped($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->pending_write_wait_skipped = $var;
 
         return $this;
     }

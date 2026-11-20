@@ -38,8 +38,8 @@ class SubmitBuildRequest extends \Google\Protobuf\Internal\Message
      */
     protected $service_account = '';
     /**
-     * Optional. Name of the Cloud Build Custom Worker Pool that should be used to
-     * build the function. The format of this field is
+     * Optional. Name of the Cloud Build private pool that should be used to build
+     * the function. The format of this field is
      * `projects/{project}/locations/{region}/workerPools/{workerPool}` where
      * `{project}` and `{region}` are the project id and region respectively where
      * the worker pool is defined and `{workerPool}` is the short name of the
@@ -100,8 +100,8 @@ class SubmitBuildRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The service account to use for the build. If not set, the default
      *           Cloud Build service account for the project will be used.
      *     @type string $worker_pool
-     *           Optional. Name of the Cloud Build Custom Worker Pool that should be used to
-     *           build the function. The format of this field is
+     *           Optional. Name of the Cloud Build private pool that should be used to build
+     *           the function. The format of this field is
      *           `projects/{project}/locations/{region}/workerPools/{workerPool}` where
      *           `{project}` and `{region}` are the project id and region respectively where
      *           the worker pool is defined and `{workerPool}` is the short name of the
@@ -303,8 +303,8 @@ class SubmitBuildRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the Cloud Build Custom Worker Pool that should be used to
-     * build the function. The format of this field is
+     * Optional. Name of the Cloud Build private pool that should be used to build
+     * the function. The format of this field is
      * `projects/{project}/locations/{region}/workerPools/{workerPool}` where
      * `{project}` and `{region}` are the project id and region respectively where
      * the worker pool is defined and `{workerPool}` is the short name of the
@@ -319,8 +319,8 @@ class SubmitBuildRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the Cloud Build Custom Worker Pool that should be used to
-     * build the function. The format of this field is
+     * Optional. Name of the Cloud Build private pool that should be used to build
+     * the function. The format of this field is
      * `projects/{project}/locations/{region}/workerPools/{workerPool}` where
      * `{project}` and `{region}` are the project id and region respectively where
      * the worker pool is defined and `{workerPool}` is the short name of the

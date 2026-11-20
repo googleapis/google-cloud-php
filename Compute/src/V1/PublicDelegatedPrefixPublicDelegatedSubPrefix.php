@@ -77,6 +77,14 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
      */
     protected $name = null;
     /**
+     * Output only. [Output Only] The purpose of the sub public delegated prefix. Inherited
+     * from parent prefix.
+     * Check the Purpose enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string purpose = 316407070;</code>
+     */
+    protected $purpose = null;
+    /**
      * Output only. [Output Only] The region of the sub public delegated prefix if it is
      * regional. If absent, the sub prefix is global.
      *
@@ -122,6 +130,10 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
      *           Check the Mode enum for the list of possible values.
      *     @type string $name
      *           The name of the sub public delegated prefix.
+     *     @type string $purpose
+     *           Output only. [Output Only] The purpose of the sub public delegated prefix. Inherited
+     *           from parent prefix.
+     *           Check the Purpose enum for the list of possible values.
      *     @type string $region
      *           Output only. [Output Only] The region of the sub public delegated prefix if it is
      *           regional. If absent, the sub prefix is global.
@@ -469,6 +481,46 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] The purpose of the sub public delegated prefix. Inherited
+     * from parent prefix.
+     * Check the Purpose enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string purpose = 316407070;</code>
+     * @return string
+     */
+    public function getPurpose()
+    {
+        return isset($this->purpose) ? $this->purpose : '';
+    }
+
+    public function hasPurpose()
+    {
+        return isset($this->purpose);
+    }
+
+    public function clearPurpose()
+    {
+        unset($this->purpose);
+    }
+
+    /**
+     * Output only. [Output Only] The purpose of the sub public delegated prefix. Inherited
+     * from parent prefix.
+     * Check the Purpose enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string purpose = 316407070;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPurpose($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->purpose = $var;
 
         return $this;
     }

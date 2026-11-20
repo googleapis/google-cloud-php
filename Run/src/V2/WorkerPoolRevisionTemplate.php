@@ -77,6 +77,12 @@ class WorkerPoolRevisionTemplate extends \Google\Protobuf\Internal\Message
      */
     private $containers;
     /**
+     * Optional. Configuration for sandboxes.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.SandboxConfiguration sandboxes = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $sandboxes = null;
+    /**
      * Optional. A list of Volumes to make available to containers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -121,6 +127,18 @@ class WorkerPoolRevisionTemplate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool gpu_zonal_redundancy_disabled = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $gpu_zonal_redundancy_disabled = null;
+    /**
+     * Optional. Arbitrary identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $client = '';
+    /**
+     * Optional. Arbitrary version identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client_version = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $client_version = '';
 
     /**
      * Constructor.
@@ -164,6 +182,8 @@ class WorkerPoolRevisionTemplate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Run\V2\Container[] $containers
      *           Holds list of the containers that defines the unit of execution for this
      *           Revision.
+     *     @type \Google\Cloud\Run\V2\SandboxConfiguration $sandboxes
+     *           Optional. Configuration for sandboxes.
      *     @type \Google\Cloud\Run\V2\Volume[] $volumes
      *           Optional. A list of Volumes to make available to containers.
      *     @type string $encryption_key
@@ -181,6 +201,10 @@ class WorkerPoolRevisionTemplate extends \Google\Protobuf\Internal\Message
      *           Optional. The node selector for the revision template.
      *     @type bool $gpu_zonal_redundancy_disabled
      *           Optional. True if GPU zonal redundancy is disabled on this worker pool.
+     *     @type string $client
+     *           Optional. Arbitrary identifier for the API client.
+     *     @type string $client_version
+     *           Optional. Arbitrary version identifier for the API client.
      * }
      */
     public function __construct($data = NULL) {
@@ -398,6 +422,42 @@ class WorkerPoolRevisionTemplate extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Run\V2\Container::class);
         $this->containers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for sandboxes.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.SandboxConfiguration sandboxes = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Run\V2\SandboxConfiguration|null
+     */
+    public function getSandboxes()
+    {
+        return $this->sandboxes;
+    }
+
+    public function hasSandboxes()
+    {
+        return isset($this->sandboxes);
+    }
+
+    public function clearSandboxes()
+    {
+        unset($this->sandboxes);
+    }
+
+    /**
+     * Optional. Configuration for sandboxes.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.SandboxConfiguration sandboxes = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Run\V2\SandboxConfiguration $var
+     * @return $this
+     */
+    public function setSandboxes($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\SandboxConfiguration::class);
+        $this->sandboxes = $var;
 
         return $this;
     }
@@ -626,6 +686,58 @@ class WorkerPoolRevisionTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->gpu_zonal_redundancy_disabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Arbitrary identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * Optional. Arbitrary identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setClient($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->client = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Arbitrary version identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client_version = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getClientVersion()
+    {
+        return $this->client_version;
+    }
+
+    /**
+     * Optional. Arbitrary version identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client_version = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setClientVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->client_version = $var;
 
         return $this;
     }

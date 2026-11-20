@@ -24,9 +24,9 @@ class GoldengateConnectionAssignment extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Required. The properties of the GoldengateConnectionAssignment.
+     * Required. Immutable. The properties of the GoldengateConnectionAssignment.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.GoldengateConnectionAssignmentProperties properties = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.GoldengateConnectionAssignmentProperties properties = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $properties = null;
     /**
@@ -43,9 +43,10 @@ class GoldengateConnectionAssignment extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Optional. The display name for the GoldengateConnectionAssignment.
+     * Optional. Immutable. The display name for the
+     * GoldengateConnectionAssignment.
      *
-     * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $display_name = '';
     /**
@@ -66,14 +67,15 @@ class GoldengateConnectionAssignment extends \Google\Protobuf\Internal\Message
      *           following format:
      *           projects/{project}/locations/{region}/goldengateConnectionAssignments/{goldengate_connection_assignment}
      *     @type \Google\Cloud\OracleDatabase\V1\GoldengateConnectionAssignmentProperties $properties
-     *           Required. The properties of the GoldengateConnectionAssignment.
+     *           Required. Immutable. The properties of the GoldengateConnectionAssignment.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time when the connection assignment was created.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels or tags associated with the
      *           GoldengateConnectionAssignment.
      *     @type string $display_name
-     *           Optional. The display name for the GoldengateConnectionAssignment.
+     *           Optional. Immutable. The display name for the
+     *           GoldengateConnectionAssignment.
      *     @type string $entitlement_id
      *           Output only. The OCID of the entitlement linked to this resource.
      * }
@@ -114,9 +116,9 @@ class GoldengateConnectionAssignment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The properties of the GoldengateConnectionAssignment.
+     * Required. Immutable. The properties of the GoldengateConnectionAssignment.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.GoldengateConnectionAssignmentProperties properties = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.GoldengateConnectionAssignmentProperties properties = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Cloud\OracleDatabase\V1\GoldengateConnectionAssignmentProperties|null
      */
     public function getProperties()
@@ -135,9 +137,9 @@ class GoldengateConnectionAssignment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The properties of the GoldengateConnectionAssignment.
+     * Required. Immutable. The properties of the GoldengateConnectionAssignment.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.GoldengateConnectionAssignmentProperties properties = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.GoldengateConnectionAssignmentProperties properties = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\OracleDatabase\V1\GoldengateConnectionAssignmentProperties $var
      * @return $this
      */
@@ -214,9 +216,10 @@ class GoldengateConnectionAssignment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The display name for the GoldengateConnectionAssignment.
+     * Optional. Immutable. The display name for the
+     * GoldengateConnectionAssignment.
      *
-     * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getDisplayName()
@@ -225,9 +228,10 @@ class GoldengateConnectionAssignment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The display name for the GoldengateConnectionAssignment.
+     * Optional. Immutable. The display name for the
+     * GoldengateConnectionAssignment.
      *
-     * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */

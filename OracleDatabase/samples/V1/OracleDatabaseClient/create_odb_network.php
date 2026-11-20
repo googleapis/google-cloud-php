@@ -40,7 +40,7 @@ use Google\Rpc\Status;
  *                                           to (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$) and must be a maximum of 63
  *                                           characters in length. The value must start with a letter and end with
  *                                           a letter or a number.
- * @param string $formattedOdbNetworkNetwork The name of the VPC network in the following format:
+ * @param string $formattedOdbNetworkNetwork Immutable. The name of the VPC network in the following format:
  *                                           projects/{project}/global/networks/{network}
  *                                           Please see {@see OracleDatabaseClient::networkName()} for help formatting this field.
  */

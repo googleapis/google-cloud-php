@@ -47,6 +47,30 @@ return [
                     ],
                 ],
             ],
+            'DeleteCustomerManagedCertificate' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Sql\V1\Operation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'instance',
+                        'fieldAccessors' => [
+                            'getInstance',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'certificate_bundle',
+                        'fieldAccessors' => [
+                            'getCertificateBundle',
+                        ],
+                    ],
+                ],
+            ],
             'Get' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Sql\V1\SslCert',
@@ -103,6 +127,48 @@ return [
                         'keyName' => 'instance',
                         'fieldAccessors' => [
                             'getInstance',
+                        ],
+                    ],
+                ],
+            ],
+            'ListCustomerManagedCertificates' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Sql\V1\ListCustomerManagedCertificatesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'instance',
+                        'fieldAccessors' => [
+                            'getInstance',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateCustomerManagedCertificate' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Sql\V1\Operation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'instance',
+                        'fieldAccessors' => [
+                            'getInstance',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'certificate_bundle',
+                        'fieldAccessors' => [
+                            'getCertificateBundle',
                         ],
                     ],
                 ],

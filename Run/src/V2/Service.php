@@ -207,6 +207,12 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     protected $iap_enabled = false;
     /**
+     * Optional. Enables SSH access to the Service.
+     *
+     * Generated from protobuf field <code>optional bool ssh_enabled = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ssh_enabled = null;
+    /**
      * Optional. Settings for multi-region deployment.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Service.MultiRegionSettings multi_region_settings = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -299,6 +305,12 @@ class Service extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.run.v2.BuildConfig build_config = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $build_config = null;
+    /**
+     * Optional. The functional type of the Service.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.FunctionalType functional_type = 42 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $functional_type = 0;
     /**
      * Output only. Returns true if the Service is currently being acted upon by
      * the system to bring it into the desired state.
@@ -428,6 +440,8 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Output only. All URLs serving traffic for this Service.
      *     @type bool $iap_enabled
      *           Optional. IAP settings on the Service.
+     *     @type bool $ssh_enabled
+     *           Optional. Enables SSH access to the Service.
      *     @type \Google\Cloud\Run\V2\Service\MultiRegionSettings $multi_region_settings
      *           Optional. Settings for multi-region deployment.
      *     @type string[] $custom_audiences
@@ -473,6 +487,8 @@ class Service extends \Google\Protobuf\Internal\Message
      *           the parent project of this Service.
      *     @type \Google\Cloud\Run\V2\BuildConfig $build_config
      *           Optional. Configuration for building a Cloud Run function.
+     *     @type int $functional_type
+     *           Optional. The functional type of the Service.
      *     @type bool $reconciling
      *           Output only. Returns true if the Service is currently being acted upon by
      *           the system to bring it into the desired state.
@@ -1284,6 +1300,42 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Enables SSH access to the Service.
+     *
+     * Generated from protobuf field <code>optional bool ssh_enabled = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSshEnabled()
+    {
+        return isset($this->ssh_enabled) ? $this->ssh_enabled : false;
+    }
+
+    public function hasSshEnabled()
+    {
+        return isset($this->ssh_enabled);
+    }
+
+    public function clearSshEnabled()
+    {
+        unset($this->ssh_enabled);
+    }
+
+    /**
+     * Optional. Enables SSH access to the Service.
+     *
+     * Generated from protobuf field <code>optional bool ssh_enabled = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSshEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ssh_enabled = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Settings for multi-region deployment.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Service.MultiRegionSettings multi_region_settings = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -1663,6 +1715,32 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\BuildConfig::class);
         $this->build_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The functional type of the Service.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.FunctionalType functional_type = 42 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getFunctionalType()
+    {
+        return $this->functional_type;
+    }
+
+    /**
+     * Optional. The functional type of the Service.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.FunctionalType functional_type = 42 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFunctionalType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Run\V2\FunctionalType::class);
+        $this->functional_type = $var;
 
         return $this;
     }

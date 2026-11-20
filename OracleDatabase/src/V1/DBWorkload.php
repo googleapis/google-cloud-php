@@ -44,6 +44,12 @@ class DBWorkload
      * Generated from protobuf enum <code>APEX = 4;</code>
      */
     const APEX = 4;
+    /**
+     * Autonomous Database with the Lakehouse workload type.
+     *
+     * Generated from protobuf enum <code>LH = 5;</code>
+     */
+    const LH = 5;
 
     private static $valueToName = [
         self::DB_WORKLOAD_UNSPECIFIED => 'DB_WORKLOAD_UNSPECIFIED',
@@ -51,6 +57,7 @@ class DBWorkload
         self::DW => 'DW',
         self::AJD => 'AJD',
         self::APEX => 'APEX',
+        self::LH => 'LH',
     ];
 
     public static function name($value)

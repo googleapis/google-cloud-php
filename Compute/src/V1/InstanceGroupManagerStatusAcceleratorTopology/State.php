@@ -32,6 +32,12 @@ class State
      */
     const ACTIVE = 314733318;
     /**
+     * The accelerator topology is active but operating in degraded mode.
+     *
+     * Generated from protobuf enum <code>ACTIVE_DEGRADED = 471128135;</code>
+     */
+    const ACTIVE_DEGRADED = 471128135;
+    /**
      * The accelerator topology is being deactivated.
      *
      * Generated from protobuf enum <code>DEACTIVATING = 57182257;</code>
@@ -61,6 +67,7 @@ class State
         self::UNDEFINED_STATE => 'UNDEFINED_STATE',
         self::ACTIVATING => 'ACTIVATING',
         self::ACTIVE => 'ACTIVE',
+        self::ACTIVE_DEGRADED => 'ACTIVE_DEGRADED',
         self::DEACTIVATING => 'DEACTIVATING',
         self::FAILED => 'FAILED',
         self::INCOMPLETE => 'INCOMPLETE',

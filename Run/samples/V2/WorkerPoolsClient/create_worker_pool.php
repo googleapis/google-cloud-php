@@ -39,12 +39,8 @@ use Google\Rpc\Status;
  *                                `{project}` can be project id or number. Only lowercase characters, digits,
  *                                and hyphens. Please see
  *                                {@see WorkerPoolsClient::locationName()} for help formatting this field.
- * @param string $workerPoolId    The unique identifier for the WorkerPool. It must begin with
- *                                letter, and cannot end with hyphen; must contain fewer than 50 characters.
- *                                The name of the worker pool becomes
- *                                `{parent}/workerPools/{worker_pool_id}`.
  */
-function create_worker_pool_sample(string $formattedParent, string $workerPoolId): void
+function create_worker_pool_sample(string $formattedParent): void
 {
     // Create a client.
     $workerPoolsClient = new WorkerPoolsClient();
@@ -55,8 +51,7 @@ function create_worker_pool_sample(string $formattedParent, string $workerPoolId
         ->setTemplate($workerPoolTemplate);
     $request = (new CreateWorkerPoolRequest())
         ->setParent($formattedParent)
-        ->setWorkerPool($workerPool)
-        ->setWorkerPoolId($workerPoolId);
+        ->setWorkerPool($workerPool);
 
     // Call the API and handle any network failures.
     try {
@@ -90,8 +85,7 @@ function create_worker_pool_sample(string $formattedParent, string $workerPoolId
 function callSample(): void
 {
     $formattedParent = WorkerPoolsClient::locationName('[PROJECT]', '[LOCATION]');
-    $workerPoolId = '[WORKER_POOL_ID]';
 
-    create_worker_pool_sample($formattedParent, $workerPoolId);
+    create_worker_pool_sample($formattedParent);
 }
 // [END run_v2_generated_WorkerPools_CreateWorkerPool_sync]

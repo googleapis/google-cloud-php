@@ -30,6 +30,11 @@
                                 "listClusters"
                             ]
                         },
+                        "ListNodes": {
+                            "methods": [
+                                "listNodes"
+                            ]
+                        },
                         "UpdateCluster": {
                             "methods": [
                                 "updateCluster"

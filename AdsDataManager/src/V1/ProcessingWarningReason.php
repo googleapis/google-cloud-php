@@ -77,6 +77,23 @@ class ProcessingWarningReason
      * Generated from protobuf enum <code>PROCESSING_WARNING_REASON_AWS_AUTH_FAILED = 9;</code>
      */
     const PROCESSING_WARNING_REASON_AWS_AUTH_FAILED = 9;
+    /**
+     * A [CustomVariable][google.ads.datamanager.v1.CustomVariable] or
+     * [ItemCustomVariable][google.ads.datamanager.v1.ItemCustomVariable] is not
+     * enabled in the account.
+     *
+     * Generated from protobuf enum <code>PROCESSING_WARNING_REASON_CUSTOM_VARIABLE_NOT_ENABLED = 10;</code>
+     */
+    const PROCESSING_WARNING_REASON_CUSTOM_VARIABLE_NOT_ENABLED = 10;
+    /**
+     * The value of a [CustomVariable][google.ads.datamanager.v1.CustomVariable]
+     * or [ItemCustomVariable][google.ads.datamanager.v1.ItemCustomVariable] is
+     * not among the predefined allowed values configured for the custom variable
+     * on the destination account and will be replaced by an uncategorized value.
+     *
+     * Generated from protobuf enum <code>PROCESSING_WARNING_REASON_CUSTOM_VARIABLE_NOT_PREDEFINED = 11;</code>
+     */
+    const PROCESSING_WARNING_REASON_CUSTOM_VARIABLE_NOT_PREDEFINED = 11;
 
     private static $valueToName = [
         self::PROCESSING_WARNING_REASON_UNSPECIFIED => 'PROCESSING_WARNING_REASON_UNSPECIFIED',
@@ -89,6 +106,8 @@ class ProcessingWarningReason
         self::PROCESSING_WARNING_REASON_USER_IDENTIFIER_DECRYPTION_ERROR => 'PROCESSING_WARNING_REASON_USER_IDENTIFIER_DECRYPTION_ERROR',
         self::PROCESSING_WARNING_REASON_INTERNAL_ERROR => 'PROCESSING_WARNING_REASON_INTERNAL_ERROR',
         self::PROCESSING_WARNING_REASON_AWS_AUTH_FAILED => 'PROCESSING_WARNING_REASON_AWS_AUTH_FAILED',
+        self::PROCESSING_WARNING_REASON_CUSTOM_VARIABLE_NOT_ENABLED => 'PROCESSING_WARNING_REASON_CUSTOM_VARIABLE_NOT_ENABLED',
+        self::PROCESSING_WARNING_REASON_CUSTOM_VARIABLE_NOT_PREDEFINED => 'PROCESSING_WARNING_REASON_CUSTOM_VARIABLE_NOT_PREDEFINED',
     ];
 
     public static function name($value)
