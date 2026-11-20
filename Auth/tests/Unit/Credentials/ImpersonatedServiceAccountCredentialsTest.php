@@ -19,6 +19,7 @@
 namespace Google\Auth\Tests\Credentials;
 
 use Google\Auth\Credentials\ExternalAccountCredentials;
+use Google\Auth\Credentials\GCECredentials;
 use Google\Auth\Credentials\ImpersonatedServiceAccountCredentials;
 use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\Credentials\StaticCredentials;
@@ -727,13 +728,13 @@ class ImpersonatedServiceAccountCredentialsTest extends TestCase
         $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
     }
 
-    public function testUpdateMetadataWithRegionalAccessBoundarySuppressedWithMismatchedSourceUniverse()
+    public function testConstructorThrowsOnMismatchedSourceUniverseDomainArray()
     {
-        $requestCount = 0;
-        $httpHandler = function () use (&$requestCount) {
-            $requestCount++;
-            return new Response(200, [], '{"accessToken": "impersonated-token", "expireTime": "2026-01-01"}');
-        };
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Universe domain foo.com in source credentials does not match '
+            . 'googleapis.com universe domain set for impersonated credentials.'
+        );
 
         $jsonKey = [
             'service_account_impersonation_url' => 'https://iamcredentials.googleapis.com/v1/'
@@ -746,15 +747,73 @@ class ImpersonatedServiceAccountCredentialsTest extends TestCase
                 'universe_domain' => 'foo.com',
             ],
         ];
+        new ImpersonatedServiceAccountCredentials('a-scope', $jsonKey);
+    }
+
+    public function testConstructorThrowsOnMismatchedSourceUniverseDomainObject()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Universe domain foo.com in source credentials does not match '
+            . 'googleapis.com universe domain set for impersonated credentials.'
+        );
+
+        $sourceCreds = new ServiceAccountCredentials('a-scope', [
+            'type' => 'service_account',
+            'private_key' => file_get_contents(__DIR__ . '/../fixtures/fixtures1/private.pem'),
+            'client_email' => 'test@example.com',
+            'universe_domain' => 'foo.com',
+        ]);
+        new ImpersonatedServiceAccountCredentials('a-scope', [
+            'service_account_impersonation_url' => 'https://iamcredentials.googleapis.com/v1/'
+                . 'projects/-/serviceAccounts/test@example.com:generateAccessToken',
+            'universe_domain' => 'googleapis.com',
+            'source_credentials' => $sourceCreds,
+        ]);
+    }
+
+    public function testConstructorAllowsMatchingTopLevelAndSourceUniverseDomain()
+    {
+        $impersonatedCreds = new ImpersonatedServiceAccountCredentials('a-scope', [
+            'service_account_impersonation_url' => 'https://iamcredentials.foo.com/v1/'
+                . 'projects/-/serviceAccounts/test@example.com:generateAccessToken',
+            'universe_domain' => 'foo.com',
+            'source_credentials' => [
+                'type' => 'service_account',
+                'private_key' => file_get_contents(__DIR__ . '/../fixtures/fixtures1/private.pem'),
+                'client_email' => 'test@example.com',
+                'universe_domain' => 'foo.com',
+            ],
+        ]);
+
+        $this->assertSame('foo.com', $impersonatedCreds->getUniverseDomain());
+    }
+
+    public function testUpdateMetadataWithRegionalAccessBoundarySuppressedWithMismatchedGceSource()
+    {
+        $timesCalled = 0;
+        $httpHandler = function () use (&$timesCalled) {
+            return match (++$timesCalled) {
+                1 => new Response(200, [GCECredentials::FLAVOR_HEADER => 'Google']),
+                2 => new Response(200, [], '{"access_token": "source-token", "expires_in": 57}'),
+                3 => new Response(200, [], '{"accessToken": "impersonated-token", "expireTime": "2026-01-01"}'),
+            };
+        };
+
         $impersonatedCreds = new ImpersonatedServiceAccountCredentials(
             'a-scope',
-            $jsonKey,
+            [
+                'service_account_impersonation_url' => 'https://iamcredentials.googleapis.com/v1/'
+                    . 'projects/-/serviceAccounts/test@example.com:generateAccessToken',
+                'universe_domain' => 'googleapis.com',
+                'source_credentials' => new GCECredentials(universeDomain: 'foo.com'),
+            ],
             enableRegionalAccessBoundary: true
         );
 
         $metadata = $impersonatedCreds->updateMetadata([], null, $httpHandler);
 
-        $this->assertEquals(1, $requestCount);
+        $this->assertEquals(3, $timesCalled);
         $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
     }
 

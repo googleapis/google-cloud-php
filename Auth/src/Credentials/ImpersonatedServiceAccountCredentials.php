@@ -20,6 +20,7 @@ namespace Google\Auth\Credentials;
 
 use Google\Auth\CacheTrait;
 use Google\Auth\CredentialsLoader;
+use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\HttpHandler\HttpClientCache;
@@ -145,10 +146,20 @@ class ImpersonatedServiceAccountCredentials extends CredentialsLoader implements
             if (!array_key_exists('type', $jsonKey['source_credentials'])) {
                 throw new InvalidArgumentException('json key source credentials are missing the type field');
             }
-            if (null !== $this->universeDomain
-                && !array_key_exists('universe_domain', $jsonKey['source_credentials'])
-            ) {
-                $jsonKey['source_credentials']['universe_domain'] = $this->universeDomain;
+            if (null !== $this->universeDomain) {
+                if (isset($jsonKey['source_credentials']['universe_domain'])) {
+                    $sourceUniverseDomain = (string) $jsonKey['source_credentials']['universe_domain'];
+                    if ($sourceUniverseDomain !== $this->universeDomain) {
+                        throw new InvalidArgumentException(sprintf(
+                            'Universe domain %s in source credentials does not match '
+                            . '%s universe domain set for impersonated credentials.',
+                            $sourceUniverseDomain,
+                            $this->universeDomain
+                        ));
+                    }
+                } else {
+                    $jsonKey['source_credentials']['universe_domain'] = $this->universeDomain;
+                }
             }
             if ($targetAudience !== null
                 && $jsonKey['source_credentials']['type'] === 'service_account'
@@ -167,6 +178,24 @@ class ImpersonatedServiceAccountCredentials extends CredentialsLoader implements
                 'external_account' => new ExternalAccountCredentials($scope, $jsonKey['source_credentials']),
                 default => throw new \InvalidArgumentException('invalid value in the type field'),
             };
+        } elseif (null !== $this->universeDomain
+            && $jsonKey['source_credentials'] instanceof GetUniverseDomainInterface
+        ) {
+            $unwrapped = $jsonKey['source_credentials'];
+            while ($unwrapped instanceof FetchAuthTokenCache) {
+                $unwrapped = $unwrapped->getFetcher();
+            }
+            if (!$unwrapped instanceof GCECredentials) {
+                $sourceUniverseDomain = $jsonKey['source_credentials']->getUniverseDomain();
+                if ($sourceUniverseDomain !== $this->universeDomain) {
+                    throw new InvalidArgumentException(sprintf(
+                        'Universe domain %s in source credentials does not match '
+                        . '%s universe domain set for impersonated credentials.',
+                        $sourceUniverseDomain,
+                        $this->universeDomain
+                    ));
+                }
+            }
         }
 
         $this->targetScope = $scope ?? [];
@@ -353,9 +382,11 @@ class ImpersonatedServiceAccountCredentials extends CredentialsLoader implements
                 self::DEFAULT_IAM_CREDENTIALS_HOSTS
             )
         ) {
-            $sourceUniverse = $this->sourceCredentials instanceof GetUniverseDomainInterface
-                ? $this->sourceCredentials->getUniverseDomain()
-                : self::DEFAULT_UNIVERSE_DOMAIN;
+            $sourceUniverse = $this->sourceCredentials instanceof GCECredentials
+                ? $this->sourceCredentials->getUniverseDomain($httpHandler)
+                : ($this->sourceCredentials instanceof GetUniverseDomainInterface
+                    ? $this->sourceCredentials->getUniverseDomain()
+                    : self::DEFAULT_UNIVERSE_DOMAIN);
             if ($sourceUniverse === self::DEFAULT_UNIVERSE_DOMAIN) {
                 $metadata = $this->updateRegionalAccessBoundaryMetadata(
                     $metadata,
