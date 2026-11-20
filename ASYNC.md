@@ -10,17 +10,18 @@ multiple API calls concurrently over **both gRPC and REST**.
   immediately dispatches the RPC onto the `grpc` C extension's background network threads over
   multiplexed HTTP/2 streams.
 * **REST (`'transport' => 'rest'`):** Calling `*Async()` registers the HTTP request with Guzzle's
-  `CurlMultiHandler`, multiplexing concurrent transfers on a single thread via `curl_multi`.
+  `GuzzleHttp\Handler\CurlMultiHandler`, multiplexing concurrent transfers on a single thread via
+  `curl_multi`.
 
 [guzzle-promises]: https://github.com/guzzle/promises
 
-## 1. Concurrent Requests with Promises
+## 1. Concurrent Requests with Guzzle Promises
 
-### Waiting on Multiple Requests (`Utils::unwrap`)
+### Waiting on Multiple Requests (`GuzzleHttp\Promise\Utils::unwrap`)
 
 Use `GuzzleHttp\Promise\Utils::unwrap()` to execute an array of `*Async()` promises concurrently
-and return their responses keyed by the same array keys. If any request fails, `Utils::unwrap()`
-throws a `Google\ApiCore\ApiException` immediately.
+and return their responses keyed by the same array keys. If any request fails,
+`GuzzleHttp\Promise\Utils::unwrap()` throws a `Google\ApiCore\ApiException` immediately.
 
 ```php
 use Google\Cloud\SecretManager\V1\AccessSecretVersionRequest;
@@ -55,11 +56,12 @@ foreach ($responses as $secretId => $response) {
 }
 ```
 
-### Handling Partial Failures (`Utils::settle`)
+### Handling Partial Failures (`GuzzleHttp\Promise\Utils::settle`)
 
-When individual requests are allowed to fail without aborting the batch, use `Utils::settle()`.
-Each entry in the settled array contains `'state'` (`PromiseInterface::FULFILLED` or
-`PromiseInterface::REJECTED`) along with either `'value'` or `'reason'`.
+When individual requests are allowed to fail without aborting the batch, use
+`GuzzleHttp\Promise\Utils::settle()`. Each entry in the settled array contains `'state'`
+(`GuzzleHttp\Promise\PromiseInterface::FULFILLED` or
+`GuzzleHttp\Promise\PromiseInterface::REJECTED`) along with either `'value'` or `'reason'`.
 
 ```php
 use Google\ApiCore\ApiException;
@@ -96,7 +98,7 @@ foreach ($results as $key => $result) {
 }
 ```
 
-### Limiting Concurrency (`EachPromise`)
+### Limiting Concurrency (`GuzzleHttp\Promise\EachPromise`)
 
 Avoid creating thousands of `*Async()` promises up front in a loop, which opens excessive
 concurrent streams or hits API rate limits. Yield promises lazily from a generator into
@@ -142,9 +144,9 @@ printf("Published %d messages\n", $publishedCount);
 
 | Call Type | `*Async()` Return Type | Behavior |
 | :--- | :--- | :--- |
-| **Unary** | `PromiseInterface<Message>` | Resolves to the protobuf response message. |
-| **Paginated** | `PromiseInterface<PagedListResponse>` | Resolves the first page asynchronously. Iterating via `foreach` fetches subsequent pages synchronously; to paginate asynchronously, pass `$response->getPage()->getNextPageToken()` via `setPageToken()` to another `*Async()` call. |
-| **Long-Running Operation** | `PromiseInterface<OperationResponse>` | Resolves once the server *starts* the operation. See [Core Concepts][core-concepts] for polling LROs. |
+| **Unary** | `GuzzleHttp\Promise\PromiseInterface<Message>` | Resolves to the protobuf response message. |
+| **Paginated** | `GuzzleHttp\Promise\PromiseInterface<PagedListResponse>` | Resolves the first page asynchronously. Iterating via `foreach` fetches subsequent pages synchronously; to paginate asynchronously, pass `$response->getPage()->getNextPageToken()` via `setPageToken()` to another `*Async()` call. |
+| **Long-Running Operation** | `GuzzleHttp\Promise\PromiseInterface<OperationResponse>` | Resolves once the server *starts* the operation. See [Core Concepts][core-concepts] for polling LROs. |
 | **Streaming & Resumable Uploads** | *Not supported* | Throws `ValidationException`. Use streaming methods (`ServerStream`, `ClientStream`, `BidiStream`) directly. |
 
 [core-concepts]: https://docs.cloud.google.com/php/docs/reference/help/core_concepts
@@ -182,8 +184,9 @@ foreach ($objects as $name => $object) {
 ## 3. Using PHP Fibers with the REST Transport
 
 In Fiber-based applications (such as [AMPHP][amp]), you can run standard synchronous client methods
-concurrently over the **`rest`** transport without chaining `.then()` callbacks by routing Guzzle
-requests through [`amphp/http-client-guzzle-adapter`][amp-guzzle-adapter]:
+concurrently over the **`rest`** transport without chaining
+`GuzzleHttp\Promise\PromiseInterface::then()` callbacks by routing Guzzle requests through
+[`amphp/http-client-guzzle-adapter`][amp-guzzle-adapter]:
 
 ```sh
 composer require amphp/amp amphp/http-client-guzzle-adapter
@@ -200,8 +203,10 @@ composer require amphp/amp amphp/http-client-guzzle-adapter
 
 ### 1. Configure the REST Client
 
-Build an HTTP handler around `GuzzleHandlerAdapter` with `HttpHandlerFactory::build()` and pass it
-to both `credentialsConfig` (so OAuth2 token refreshes are non-blocking) and `transportConfig`:
+Build an HTTP handler around a `GuzzleHttp\Client` backed by
+`Amp\Http\Client\GuzzleAdapter\GuzzleHandlerAdapter` using
+`Google\Auth\HttpHandler\HttpHandlerFactory::build()`, and pass it to both `credentialsConfig`
+(so OAuth2 token refreshes are non-blocking) and `transportConfig`:
 
 ```php
 use Amp\Http\Client\GuzzleAdapter\GuzzleHandlerAdapter;

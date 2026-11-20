@@ -63,7 +63,7 @@ class AsyncTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMarkdown(
             self::ASYNC_FILE,
-            'Waiting on Multiple Requests (`Utils::unwrap`)'
+            'Waiting on Multiple Requests (`GuzzleHttp\Promise\Utils::unwrap`)'
         );
 
         $transport = $this->prophesize(TransportInterface::class);
@@ -112,7 +112,7 @@ EOF,
     {
         $snippet = $this->snippetFromMarkdown(
             self::ASYNC_FILE,
-            'Handling Partial Failures (`Utils::settle`)'
+            'Handling Partial Failures (`GuzzleHttp\Promise\Utils::settle`)'
         );
 
         $transport = $this->prophesize(TransportInterface::class);
@@ -156,7 +156,7 @@ EOF,
     {
         $snippet = $this->snippetFromMarkdown(
             self::ASYNC_FILE,
-            'Limiting Concurrency (`EachPromise`)'
+            'Limiting Concurrency (`GuzzleHttp\Promise\EachPromise`)'
         );
 
         $inFlight = 0;
