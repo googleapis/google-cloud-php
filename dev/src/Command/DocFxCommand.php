@@ -57,6 +57,7 @@ class DocFxCommand extends Command
         'AUTHENTICATION.md' => 'Authentication',
         'CORE_CONCEPTS.md' => 'Core Concepts',
         'CLIENT_CONFIGURATION.md' => 'Client Configuration',
+        'ASYNC.md' => 'Asynchronous Requests',
         'OCC_FOR_IAM.md' => 'OCC for IAM',
         'MIGRATING.md' => 'Migrating to V2',
         'GRPC.md' => 'Installing gRPC and Protobuf',

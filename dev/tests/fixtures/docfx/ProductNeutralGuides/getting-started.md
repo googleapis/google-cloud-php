@@ -104,6 +104,12 @@ See [Authentication](AUTHENTICATION.md) for details and examples.
 
 Please see our [Debugging guide](DEBUG.md) for more information about the debugging tools.
 
+## Asynchronous Requests
+
+Every generated V2 client exposes `*Async()` methods returning Guzzle Promises for concurrent
+requests over both gRPC and REST. See [Asynchronous Requests and Concurrency](ASYNC.md) for
+examples using Promises and PHP Fibers.
+
 ## gRPC and Protobuf
 
 Many clients in Google Cloud PHP offer support for gRPC, either as an option or a requirement. gRPC
