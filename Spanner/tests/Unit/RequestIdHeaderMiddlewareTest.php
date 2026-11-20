@@ -18,11 +18,11 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\Cloud\Spanner\Middleware\RequestIdHeaderMiddleware;
 use Google\ApiCore\Call;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesResponse;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Rpc\Code;
@@ -71,7 +71,7 @@ class RequestIdHeaderMiddlewareTest extends TestCase
             $this->assertEquals(1, (int)$request, 'The request ID part of the header is incorrect.');
             $this->assertEquals(1, (int)$attempt, 'The attempt ID part of the header is incorrect.');
 
-            return 'foo';
+            return new FulfilledPromise('foo');
         };
 
         $middleware = new RequestIdHeaderMiddleware($nextHandler, $channelId);
@@ -90,7 +90,7 @@ class RequestIdHeaderMiddlewareTest extends TestCase
             $parts = explode('.', $headerValue);
             $capturedProcesses[] = $parts[1]; // Capture the process ID
 
-            return 'ok';
+            return new FulfilledPromise('ok');
         };
 
         $middleware = new RequestIdHeaderMiddleware($nextHandler, $channelId);
@@ -130,7 +130,7 @@ class RequestIdHeaderMiddlewareTest extends TestCase
             $parts = explode('.', $headerValue);
             $capturedRequests[] = (int) $parts[4]; // Capture the request ID part
 
-            return 'ok';
+            return new FulfilledPromise('ok');
         };
 
         $middleware = new RequestIdHeaderMiddleware($nextHandler, $channelId);
@@ -161,7 +161,7 @@ class RequestIdHeaderMiddlewareTest extends TestCase
             $this->assertCount(6, $parts, 'Header should have 6 parts.');
             $this->assertEquals($retryAttempt + 1, (int)$parts[5], 'The attempt ID should be retryAttempt + 1.');
 
-            return 'ok';
+            return new FulfilledPromise('ok');
         };
 
         $middleware = new RequestIdHeaderMiddleware($nextHandler, $channelId);
@@ -181,7 +181,7 @@ class RequestIdHeaderMiddlewareTest extends TestCase
         $transport = $this->prophesize(TransportInterface::class);
         $client =  new SpannerClient([
             'projectId' => self::PROJECT,
-            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'credentials' => new InsecureCredentialsWrapper(),
             'transport' => $transport->reveal()
         ]);
 

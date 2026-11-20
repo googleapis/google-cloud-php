@@ -32,7 +32,7 @@
 
 namespace Google\Cloud\Spanner\OpenTelemetry;
 
-use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\HeaderCredentialsInterface;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\HandlerStack;
 use OpenTelemetry\Contrib\Otlp\MetricExporter as OtlpMetricExporter;
@@ -58,13 +58,13 @@ class OtlpMetricsExporter implements PushMetricExporterInterface, AggregationTem
     private PushMetricExporterInterface $otlpExporter;
 
     /**
-     * @param CredentialsWrapper $credentials The credentials wrapper for metric export.
+     * @param HeaderCredentialsInterface $credentials The credentials wrapper for metric export.
      * @param int $timeoutMillis The timeout defined for the metrics client during export.
      * @param array $options Optional configuration parameters.
      * @param PushMetricExporterInterface|null $otlpExporter Optional inner exporter for testing.
      */
     public function __construct(
-        CredentialsWrapper $credentials,
+        HeaderCredentialsInterface $credentials,
         int $timeoutMillis = 100,
         array $options = [],
         ?PushMetricExporterInterface $otlpExporter = null
