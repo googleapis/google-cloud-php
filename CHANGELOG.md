@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.353.1
+
 ## 0.353.0
 
 <details><summary>google/cloud-ai-platform 1.68.0</summary>
