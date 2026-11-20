@@ -33,7 +33,6 @@
 namespace Google\ApiCore\Transport\Grpc;
 
 use Google\ApiCore\ServerStreamingCallInterface;
-use Grpc\Gcp\GCPServerStreamCall;
 use Grpc\ServerStreamingCall;
 
 /**
@@ -43,12 +42,12 @@ use Grpc\ServerStreamingCall;
 class ServerStreamingCallWrapper implements ServerStreamingCallInterface
 {
     /**
-     * @var ServerStreamingCall|GCPServerStreamCall
+     * @var ServerStreamingCall
      */
     private object $stream;
 
     /**
-     * @param ServerStreamingCall|GCPServerStreamCall $stream
+     * @param ServerStreamingCall $stream
      */
     public function __construct($stream)
     {
