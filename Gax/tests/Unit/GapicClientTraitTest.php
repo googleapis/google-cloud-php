@@ -906,7 +906,8 @@ class GapicClientTraitTest extends TestCase
         $operationsClient->getOperation(
             \Google\CustomOperation\GetOperationRequest::build('abc', 100, 'test-123')
         )
-            ->shouldBeCalledOnce();
+            ->shouldBeCalledOnce()
+            ->willReturn($expectedOperation);
 
         $operationResponse = $client->startOperationsCall(
             'method.name',
