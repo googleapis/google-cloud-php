@@ -27,11 +27,12 @@ jobs:
         if: github.event.pull_request.user.login != 'release-please[bot]'
         continue-on-error: ${{ contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
         env:
+          BASE_REF: ${{ github.base_ref }}
           HAS_BC_LABEL: ${{ contains(github.event.pull_request.title, '!:') }}
         run: |
           ./dev/google-cloud component:breaking-changes \
-            --base-ref="$(git merge-base origin/main HEAD)" \
-            --expect-breaking-changes=${HAS_BC_LABEL} \
+            --base-ref="$(git merge-base "origin/${BASE_REF:-main}" HEAD)" \
+            --expect-breaking-changes="${HAS_BC_LABEL}" \
             --ga-only
 
   # Ensure the release PR does not contain an unexpected (e.g. 2.0.0) major version release
