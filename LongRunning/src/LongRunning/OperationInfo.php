@@ -32,7 +32,7 @@ class OperationInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string response_type = 1;</code>
      */
-    private $response_type = '';
+    protected $response_type = '';
     /**
      * Required. The message name of the metadata type for this long-running
      * operation.
@@ -42,7 +42,7 @@ class OperationInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metadata_type = 2;</code>
      */
-    private $metadata_type = '';
+    protected $metadata_type = '';
 
     /**
      * Constructor.
