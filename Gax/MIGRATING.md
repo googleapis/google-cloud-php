@@ -36,6 +36,7 @@ Update your `google/gax` dependency to `^2.0`:
 
 - **`CredentialsWrapper::getBearerString()`**: Removed. Use `CredentialsWrapper::getAuthorizationHeaderCallback()` instead.
 - **`ClientOptionsTrait::initGrpcGcpConfig()`**: Removed.
+- **`ClientOptionsTrait::modifyClientOptions()`**: Removed. Instead of mutating the options array in `modifyClientOptions()`, use `ClientOptions::fromArray(array $options): ClientOptions` (or pass a `Google\ApiCore\Options\ClientOptions` instance directly), configure options via fluent setters/getters on `ClientOptions`, and pass the `ClientOptions` instance to `buildClientOptions()` / `setClientOptions()`.
 - **`HttpUnaryTransportTrait::startServerStreamingCall()`**: Removed (along with the `unsupportedServerStreamingCall` trait alias on `RestTransport`).
 - **V1 GAPIC surface backwards-compatibility mode**:
   - Removed `GapicClientTrait::$backwardsCompatibilityMode` and `GapicClientTrait::isBackwardsCompatibilityMode()`.
