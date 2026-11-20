@@ -829,4 +829,25 @@ class GCECredentialsTest extends BaseTest
 
         $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
     }
+
+    public function testUpdateMetadataWithRegionalAccessBoundarySuppressedWithMdsUniverseDomain()
+    {
+        $timesCalled = 0;
+        $httpHandler = function () use (&$timesCalled) {
+            return match (++$timesCalled) {
+                1 => new Response(200, [GCECredentials::FLAVOR_HEADER => 'Google']),
+                2 => new Response(200, [], '{"access_token": "abc", "expires_in": 57}'),
+                3 => new Response(200, [], 'example.com'),
+            };
+        };
+
+        $gceCreds = new GCECredentials(
+            enableRegionalAccessBoundary: true,
+        );
+
+        $metadata = $gceCreds->updateMetadata([], null, $httpHandler);
+
+        $this->assertEquals(3, $timesCalled);
+        $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
+    }
 }

@@ -55,6 +55,10 @@ class ImpersonatedServiceAccountCredentials extends CredentialsLoader implements
     private const IAM_SCOPE = 'https://www.googleapis.com/auth/iam';
     private const ID_TOKEN_IMPERSONATION_URL =
         'https://iamcredentials.UNIVERSE_DOMAIN/v1/projects/-/serviceAccounts/%s:generateIdToken';
+    private const DEFAULT_IAM_CREDENTIALS_HOSTS = [
+        'iamcredentials.googleapis.com',
+        'iamcredentials.mtls.googleapis.com',
+    ];
 
     /**
      * @var string
@@ -76,6 +80,8 @@ class ImpersonatedServiceAccountCredentials extends CredentialsLoader implements
     private string|array $targetScope;
 
     private int $lifetime;
+
+    private ?string $universeDomain = null;
 
     /**
      * @var array<mixed>|null
@@ -132,9 +138,17 @@ class ImpersonatedServiceAccountCredentials extends CredentialsLoader implements
                 'Scope and targetAudience cannot both be supplied'
             );
         }
+        if (isset($jsonKey['universe_domain'])) {
+            $this->universeDomain = (string) $jsonKey['universe_domain'];
+        }
         if (is_array($jsonKey['source_credentials'])) {
             if (!array_key_exists('type', $jsonKey['source_credentials'])) {
                 throw new InvalidArgumentException('json key source credentials are missing the type field');
+            }
+            if (null !== $this->universeDomain
+                && !array_key_exists('universe_domain', $jsonKey['source_credentials'])
+            ) {
+                $jsonKey['source_credentials']['universe_domain'] = $this->universeDomain;
             }
             if ($targetAudience !== null
                 && $jsonKey['source_credentials']['type'] === 'service_account'
@@ -308,6 +322,10 @@ class ImpersonatedServiceAccountCredentials extends CredentialsLoader implements
 
     public function getUniverseDomain(): string
     {
+        if (null !== $this->universeDomain) {
+            return $this->universeDomain;
+        }
+
         return $this->sourceCredentials instanceof GetUniverseDomainInterface
             ? $this->sourceCredentials->getUniverseDomain()
             : self::DEFAULT_UNIVERSE_DOMAIN;
@@ -326,17 +344,30 @@ class ImpersonatedServiceAccountCredentials extends CredentialsLoader implements
         $authUri = null,
         ?callable $httpHandler = null
     ) {
-        $metatadata = parent::updateMetadata($metadata, $authUri, $httpHandler);
+        $metadata = parent::updateMetadata($metadata, $authUri, $httpHandler);
 
-        $metatadata = $this->updateRegionalAccessBoundaryMetadata(
-            $metatadata,
-            $this->buildRegionalAccessBoundaryLookupUrl(
-                serviceAccountEmail: $this->impersonatedServiceAccountName
-            ),
-            $this->getUniverseDomain(),
-            $httpHandler,
-        );
+        if ($this->enableRegionalAccessBoundary
+            && $this->getUniverseDomain() === self::DEFAULT_UNIVERSE_DOMAIN
+            && $this->hasAllowedRegionalAccessBoundaryHost(
+                $this->serviceAccountImpersonationUrl,
+                self::DEFAULT_IAM_CREDENTIALS_HOSTS
+            )
+        ) {
+            $sourceUniverse = $this->sourceCredentials instanceof GetUniverseDomainInterface
+                ? $this->sourceCredentials->getUniverseDomain()
+                : self::DEFAULT_UNIVERSE_DOMAIN;
+            if ($sourceUniverse === self::DEFAULT_UNIVERSE_DOMAIN) {
+                $metadata = $this->updateRegionalAccessBoundaryMetadata(
+                    $metadata,
+                    $this->buildRegionalAccessBoundaryLookupUrl(
+                        serviceAccountEmail: $this->impersonatedServiceAccountName
+                    ),
+                    $this->getUniverseDomain(),
+                    $httpHandler,
+                );
+            }
+        }
 
-        return $metatadata;
+        return $metadata;
     }
 }

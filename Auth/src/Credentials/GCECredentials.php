@@ -660,7 +660,9 @@ class GCECredentials extends CredentialsLoader implements
     ) {
         $metadata = parent::updateMetadata($metadata, $authUri, $httpHandler);
 
-        if ($this->enableRegionalAccessBoundary) {
+        if ($this->enableRegionalAccessBoundary
+            && $this->getUniverseDomain($httpHandler) === self::DEFAULT_UNIVERSE_DOMAIN
+        ) {
             $serviceAccountEmail = $this->getClientName($httpHandler);
             if (preg_match('/^[^@]+@[^@]+\.[^@]+$/', $serviceAccountEmail)) {
                 $metadata = $this->updateRegionalAccessBoundaryMetadata(

@@ -21,6 +21,7 @@ namespace Google\Auth\Tests\Credentials;
 use Google\Auth\Credentials\ExternalAccountCredentials;
 use Google\Auth\Credentials\ImpersonatedServiceAccountCredentials;
 use Google\Auth\Credentials\ServiceAccountCredentials;
+use Google\Auth\Credentials\StaticCredentials;
 use Google\Auth\Credentials\UserRefreshCredentials;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetUniverseDomainInterface;
@@ -639,5 +640,145 @@ class ImpersonatedServiceAccountCredentialsTest extends TestCase
         $metadata = $impersonatedCreds->updateMetadata([], null, $httpHandler);
 
         $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
+    }
+
+    public function testUpdateMetadataWithRegionalAccessBoundarySuppressedWithTopLevelUniverseDomain()
+    {
+        $requestCount = 0;
+        $httpHandler = function () use (&$requestCount) {
+            $requestCount++;
+            return new Response(200, [], '{"accessToken": "impersonated-token", "expireTime": "2026-01-01"}');
+        };
+
+        $jsonKey = [
+            'service_account_impersonation_url' => 'https://iamcredentials.foo.com/v1/'
+                . 'projects/-/serviceAccounts/test@example.com:generateAccessToken',
+            'universe_domain' => 'foo.com',
+            'source_credentials' => [
+                'type' => 'service_account',
+                'private_key' => file_get_contents(__DIR__ . '/../fixtures/fixtures1/private.pem'),
+                'client_email' => 'test@example.com',
+            ],
+        ];
+        $impersonatedCreds = new ImpersonatedServiceAccountCredentials(
+            'a-scope',
+            $jsonKey,
+            enableRegionalAccessBoundary: true
+        );
+
+        $this->assertEquals('foo.com', $impersonatedCreds->getUniverseDomain());
+
+        $metadata = $impersonatedCreds->updateMetadata([], null, $httpHandler);
+
+        $this->assertEquals(1, $requestCount);
+        $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
+    }
+
+    public function testUpdateMetadataWithRegionalAccessBoundarySuppressedWithStaticSourceAndTopLevelUniverseDomain()
+    {
+        $requestCount = 0;
+        $httpHandler = function () use (&$requestCount) {
+            $requestCount++;
+            return new Response(200, [], '{"accessToken": "impersonated-token", "expireTime": "2026-01-01"}');
+        };
+
+        $jsonKey = [
+            'service_account_impersonation_url' => 'https://iamcredentials.googleapis.com/v1/'
+                . 'projects/-/serviceAccounts/test@example.com:generateAccessToken',
+            'universe_domain' => 'foo.com',
+            'source_credentials' => new StaticCredentials('source-token'),
+        ];
+        $impersonatedCreds = new ImpersonatedServiceAccountCredentials(
+            'a-scope',
+            $jsonKey,
+            enableRegionalAccessBoundary: true
+        );
+
+        $this->assertEquals('foo.com', $impersonatedCreds->getUniverseDomain());
+
+        $metadata = $impersonatedCreds->updateMetadata([], null, $httpHandler);
+
+        $this->assertEquals(1, $requestCount);
+        $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
+    }
+
+    public function testUpdateMetadataWithRegionalAccessBoundarySuppressedWithNonDefaultImpersonationHost()
+    {
+        $requestCount = 0;
+        $httpHandler = function () use (&$requestCount) {
+            $requestCount++;
+            return new Response(200, [], '{"accessToken": "impersonated-token", "expireTime": "2026-01-01"}');
+        };
+
+        $jsonKey = [
+            'service_account_impersonation_url' => 'https://iamcredentials.example.com/v1/'
+                . 'projects/-/serviceAccounts/test@example.com:generateAccessToken',
+            'source_credentials' => new StaticCredentials('source-token'),
+        ];
+        $impersonatedCreds = new ImpersonatedServiceAccountCredentials(
+            'a-scope',
+            $jsonKey,
+            enableRegionalAccessBoundary: true
+        );
+
+        $metadata = $impersonatedCreds->updateMetadata([], null, $httpHandler);
+
+        $this->assertEquals(1, $requestCount);
+        $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
+    }
+
+    public function testUpdateMetadataWithRegionalAccessBoundarySuppressedWithMismatchedSourceUniverse()
+    {
+        $requestCount = 0;
+        $httpHandler = function () use (&$requestCount) {
+            $requestCount++;
+            return new Response(200, [], '{"accessToken": "impersonated-token", "expireTime": "2026-01-01"}');
+        };
+
+        $jsonKey = [
+            'service_account_impersonation_url' => 'https://iamcredentials.googleapis.com/v1/'
+                . 'projects/-/serviceAccounts/test@example.com:generateAccessToken',
+            'universe_domain' => 'googleapis.com',
+            'source_credentials' => [
+                'type' => 'service_account',
+                'private_key' => file_get_contents(__DIR__ . '/../fixtures/fixtures1/private.pem'),
+                'client_email' => 'test@example.com',
+                'universe_domain' => 'foo.com',
+            ],
+        ];
+        $impersonatedCreds = new ImpersonatedServiceAccountCredentials(
+            'a-scope',
+            $jsonKey,
+            enableRegionalAccessBoundary: true
+        );
+
+        $metadata = $impersonatedCreds->updateMetadata([], null, $httpHandler);
+
+        $this->assertEquals(1, $requestCount);
+        $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
+    }
+
+    public function testUpdateMetadataWithRegionalAccessBoundaryWithMtlsImpersonationHost()
+    {
+        $httpHandler = $this->getHandler([
+            new Response(200, [], '{"accessToken": "impersonated-token", "expireTime": "2026-01-01"}'),
+            new Response(200, [], '{"locations": [], "encodedLocations": "foo"}'),
+        ]);
+
+        $jsonKey = [
+            'service_account_impersonation_url' => 'https://iamcredentials.mtls.googleapis.com/v1/'
+                . 'projects/-/serviceAccounts/test@example.com:generateAccessToken',
+            'source_credentials' => new StaticCredentials('source-token'),
+        ];
+        $impersonatedCreds = new ImpersonatedServiceAccountCredentials(
+            'a-scope',
+            $jsonKey,
+            enableRegionalAccessBoundary: true
+        );
+
+        $metadata = $impersonatedCreds->updateMetadata([], null, $httpHandler);
+
+        $this->assertArrayHasKey('x-allowed-locations', $metadata);
+        $this->assertEquals('foo', $metadata['x-allowed-locations']);
     }
 }

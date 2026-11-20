@@ -140,6 +140,9 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
             'enableRegionalAccessBoundary' => false,
         ];
 
+        $enableRegionalAccessBoundary = $args['enableRegionalAccessBoundary']
+            && $universeDomain === GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
+
         $keyFile = $args['keyFile'];
 
         if (is_null($keyFile)) {
@@ -150,7 +153,7 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
                 $args['authCache'],
                 $args['quotaProject'],
                 $args['defaultScopes'],
-                $args['enableRegionalAccessBoundary'],
+                $enableRegionalAccessBoundary,
             );
             if ($loader instanceof FetchAuthTokenCache) {
                 $loader = $loader->getFetcher();
@@ -171,7 +174,7 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
                 $args['scopes'],
                 $keyFile,
                 $args['defaultScopes'],
-                $args['enableRegionalAccessBoundary'],
+                $enableRegionalAccessBoundary,
             );
         }
 
@@ -327,7 +330,7 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
         ?CacheItemPoolInterface $authCache = null,
         $quotaProject = null,
         ?array $defaultScopes = null,
-        bool $enableRegionalAccessBoundary = true,
+        bool $enableRegionalAccessBoundary = false,
     ) {
         try {
             return ApplicationDefaultCredentials::getCredentials(

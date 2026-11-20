@@ -754,4 +754,151 @@ class ExternalAccountCredentialsTest extends TestCase
         $this->assertArrayHasKey('x-allowed-locations', $metadata);
         $this->assertEquals('foo', $metadata['x-allowed-locations']);
     }
+
+    public function testRegionalAccessBoundarySuppressedWithUniverseDomain()
+    {
+        $requestCount = 0;
+        $httpHandler = function () use (&$requestCount) {
+            $requestCount++;
+            return new Response(200, [], '{"access_token": "source-token", "expires_in": 3600}');
+        };
+        $tokenFile = tempnam(sys_get_temp_dir(), 'token');
+        try {
+            $jsonKey = [
+                'type' => 'external_account',
+                'audience' => 'custom-audience',
+                'subject_token_type' => 'urn:ietf:params:oauth:token-type:jwt',
+                'token_url' => 'https://sts.example.com/v1/token',
+                'universe_domain' => 'example.com',
+                'credential_source' => ['file' => $tokenFile],
+            ];
+            $creds = new ExternalAccountCredentials('a-scope', $jsonKey, enableRegionalAccessBoundary: true);
+
+            $metadata = $creds->updateMetadata([], null, $httpHandler);
+
+            $this->assertEquals(1, $requestCount);
+            $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
+        } finally {
+            @unlink($tokenFile);
+        }
+    }
+
+    public function testRegionalAccessBoundarySuppressedWithNonDefaultTokenUrlHost()
+    {
+        $requestCount = 0;
+        $httpHandler = function () use (&$requestCount) {
+            $requestCount++;
+            return new Response(200, [], '{"access_token": "source-token", "expires_in": 3600}');
+        };
+        $tokenFile = tempnam(sys_get_temp_dir(), 'token');
+        try {
+            $jsonKey = [
+                'type' => 'external_account',
+                'audience' => '//iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/'
+                    . 'workloadIdentityPools/POOL_ID/providers/PROJECT_ID',
+                'subject_token_type' => 'urn:ietf:params:oauth:token-type:jwt',
+                'token_url' => 'https://sts.example.com/v1/token',
+                'credential_source' => ['file' => $tokenFile],
+            ];
+            $creds = new ExternalAccountCredentials('a-scope', $jsonKey, enableRegionalAccessBoundary: true);
+
+            $metadata = $creds->updateMetadata([], null, $httpHandler);
+
+            $this->assertEquals(1, $requestCount);
+            $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
+        } finally {
+            @unlink($tokenFile);
+        }
+    }
+
+    public function testRegionalAccessBoundarySuppressedWithNonDefaultImpersonationUrlHost()
+    {
+        $count = 0;
+        $httpHandler = function () use (&$count) {
+            return match ($count++) {
+                0 => new Response(200, [], '{"access_token": "source-token", "expires_in": 3600}'),
+                1 => new Response(200, [], '{"accessToken": "access-token", "expireTime": "2026-01-01"}'),
+            };
+        };
+        $tokenFile = tempnam(sys_get_temp_dir(), 'token');
+        try {
+            $jsonKey = [
+                'type' => 'external_account',
+                'audience' => '//iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/'
+                    . 'workloadIdentityPools/POOL_ID/providers/PROJECT_ID',
+                'subject_token_type' => 'urn:ietf:params:oauth:token-type:jwt',
+                'token_url' => 'https://sts.googleapis.com/v1/token',
+                'credential_source' => ['file' => $tokenFile],
+                'service_account_impersonation_url' => 'https://iamcredentials.example.com/v1/'
+                    . 'projects/-/serviceAccounts/test@example.com:generateAccessToken',
+            ];
+            $creds = new ExternalAccountCredentials('a-scope', $jsonKey, enableRegionalAccessBoundary: true);
+
+            $metadata = $creds->updateMetadata([], null, $httpHandler);
+
+            $this->assertEquals(2, $count);
+            $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
+        } finally {
+            @unlink($tokenFile);
+        }
+    }
+
+    public function testRegionalAccessBoundarySuppressedWithNonDefaultAudienceHost()
+    {
+        $requestCount = 0;
+        $httpHandler = function () use (&$requestCount) {
+            $requestCount++;
+            return new Response(200, [], '{"access_token": "source-token", "expires_in": 3600}');
+        };
+        $tokenFile = tempnam(sys_get_temp_dir(), 'token');
+        try {
+            $jsonKey = [
+                'type' => 'external_account',
+                'audience' => '//iam.example.com/projects/PROJECT_NUMBER/locations/global/'
+                    . 'workloadIdentityPools/POOL_ID/providers/PROJECT_ID',
+                'subject_token_type' => 'urn:ietf:params:oauth:token-type:jwt',
+                'token_url' => 'https://sts.googleapis.com/v1/token',
+                'credential_source' => ['file' => $tokenFile],
+            ];
+            $creds = new ExternalAccountCredentials('a-scope', $jsonKey, enableRegionalAccessBoundary: true);
+
+            $metadata = $creds->updateMetadata([], null, $httpHandler);
+
+            $this->assertEquals(1, $requestCount);
+            $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
+        } finally {
+            @unlink($tokenFile);
+        }
+    }
+
+    public function testRegionalAccessBoundarySuppressedWithUnparseableImpersonationUrl()
+    {
+        $count = 0;
+        $httpHandler = function () use (&$count) {
+            return match ($count++) {
+                0 => new Response(200, [], '{"access_token": "source-token", "expires_in": 3600}'),
+                1 => new Response(200, [], '{"accessToken": "access-token", "expireTime": "2026-01-01"}'),
+            };
+        };
+        $tokenFile = tempnam(sys_get_temp_dir(), 'token');
+        try {
+            $jsonKey = [
+                'type' => 'external_account',
+                'audience' => '//iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/'
+                    . 'workloadIdentityPools/POOL_ID/providers/PROJECT_ID',
+                'subject_token_type' => 'urn:ietf:params:oauth:token-type:jwt',
+                'token_url' => 'https://sts.googleapis.com/v1/token',
+                'credential_source' => ['file' => $tokenFile],
+                'service_account_impersonation_url' => 'https://iamcredentials.googleapis.com/v1/invalid',
+            ];
+            $creds = new ExternalAccountCredentials('a-scope', $jsonKey, enableRegionalAccessBoundary: true);
+
+            $metadata = $creds->updateMetadata([], null, $httpHandler);
+
+            $this->assertEquals(2, $count);
+            $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
+        } finally {
+            @unlink($tokenFile);
+        }
+    }
 }
