@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2021 Google LLC
  * All rights reserved.
@@ -32,12 +34,14 @@
 
 namespace Google\ApiCore;
 
+use Generator;
+use stdClass;
+
 /**
  * @internal
  */
 interface ServerStreamingCallInterface
 {
-
     /**
      * Start the call.
      *
@@ -48,41 +52,41 @@ interface ServerStreamingCallInterface
      *                        'flags' => a number (optional)
      * @return void
      */
-    public function start($data, array $metadata = [], array $options = []);
+    public function start(mixed $data, array $metadata = [], array $options = []): void;
 
     /**
-     * @return mixed An iterator of response values.
+     * @return Generator An iterator of response values.
      */
-    public function responses();
+    public function responses(): Generator;
 
     /**
      * Return the status of the server stream.
      *
-     * @return \stdClass The API status.
+     * @return ?stdClass The API status.
      */
-    public function getStatus();
+    public function getStatus(): ?stdClass;
 
     /**
      * @return mixed The metadata sent by the server.
      */
-    public function getMetadata();
+    public function getMetadata(): mixed;
 
     /**
      * @return mixed The trailing metadata sent by the server.
      */
-    public function getTrailingMetadata();
+    public function getTrailingMetadata(): mixed;
 
     /**
-     * @return string The URI of the endpoint.
+     * @return ?string The URI of the endpoint.
      */
-    public function getPeer();
+    public function getPeer(): ?string;
 
     /**
      * Cancels the call.
      *
      * @return void
      */
-    public function cancel();
+    public function cancel(): void;
 
     /**
      * Set the CallCredentials for the underlying Call.
@@ -91,5 +95,5 @@ interface ServerStreamingCallInterface
      *
      * @return void
      */
-    public function setCallCredentials($call_credentials);
+    public function setCallCredentials(mixed $call_credentials): void;
 }

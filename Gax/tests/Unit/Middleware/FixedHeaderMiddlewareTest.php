@@ -34,6 +34,7 @@ namespace Google\ApiCore\Tests\Unit\Middleware;
 
 use Google\ApiCore\Call;
 use Google\ApiCore\Middleware\FixedHeaderMiddleware;
+use GuzzleHttp\Promise\PromiseInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -51,6 +52,7 @@ class FixedHeaderMiddlewareTest extends TestCase
         $callable = function (Call $call, $options) use ($fixedHeader, &$handlerCalled) {
             $this->assertEquals($fixedHeader, $options['headers']);
             $handlerCalled = true;
+            return $this->createMock(PromiseInterface::class);
         };
         $middleware = new FixedHeaderMiddleware($callable, $fixedHeader);
         $middleware($call->reveal(), []);
@@ -77,6 +79,7 @@ class FixedHeaderMiddlewareTest extends TestCase
         $callable = function (Call $call, $options) use ($expectedHeader, &$handlerCalled) {
             $this->assertEquals($expectedHeader, $options['headers']);
             $handlerCalled = true;
+            return $this->createMock(PromiseInterface::class);
         };
         $middleware = new FixedHeaderMiddleware($callable, $fixedHeader);
         $middleware($call->reveal(), ['headers' => $userHeader]);
@@ -104,6 +107,7 @@ class FixedHeaderMiddlewareTest extends TestCase
         $callable = function (Call $call, $options) use ($expectedHeader, &$handlerCalled) {
             $this->assertEquals($expectedHeader, $options['headers']);
             $handlerCalled = true;
+            return $this->createMock(PromiseInterface::class);
         };
         $middleware = new FixedHeaderMiddleware($callable, $fixedHeader, true);
         $middleware($call->reveal(), ['headers' => $userHeader]);

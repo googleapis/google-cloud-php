@@ -39,9 +39,6 @@ use Google\LongRunning\Client\OperationsClient;
 /**
  * Interface implemented by GAPIC service clients that support standard
  * Google Cloud Long-Running Operations (LROs).
- *
- * @experimental
- * @internal
  */
 interface LongRunningOperationProviderInterface
 {

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2016 Google LLC
  * All rights reserved.
@@ -45,7 +47,7 @@ class ClientStream
 {
     use LoggingTrait;
 
-    private $call;
+    private ClientStreamingCall $call;
     private null|LoggerInterface $logger;
 
     /**
@@ -69,7 +71,7 @@ class ClientStream
      *
      * @param mixed $request The request to write
      */
-    public function write($request)
+    public function write(mixed $request): void
     {
         // In some cases, $request can be a string
         if ($this->logger && $request instanceof Message) {
@@ -91,7 +93,7 @@ class ClientStream
      * @throws ApiException
      * @return mixed The response object from the server
      */
-    public function readResponse()
+    public function readResponse(): mixed
     {
         list($response, $status) = $this->call->wait();
         if ($status->code == Code::OK) {
@@ -123,7 +125,7 @@ class ClientStream
      * @param mixed[] $requests An iterator of request objects to write to the server
      * @return mixed The response object from the server
      */
-    public function writeAllAndReadResponse(array $requests)
+    public function writeAllAndReadResponse(array $requests): mixed
     {
         foreach ($requests as $request) {
             $this->write($request);
@@ -134,9 +136,9 @@ class ClientStream
     /**
      * Return the underlying gRPC call object
      *
-     * @return \Grpc\ClientStreamingCall|mixed
+     * @return ClientStreamingCall
      */
-    public function getClientStreamingCall()
+    public function getClientStreamingCall(): ClientStreamingCall
     {
         return $this->call;
     }

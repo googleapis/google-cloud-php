@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -48,7 +50,7 @@ class Parser
      * @return array
      * @throws ValidationException
      */
-    public static function parseSegments(?string $path = null)
+    public static function parseSegments(?string $path = null): array
     {
         if (empty($path)) {
             throw new ValidationException('Cannot parse empty path');
@@ -74,7 +76,7 @@ class Parser
      * @return Segment
      * @throws ValidationException
      */
-    private static function parseSegmentFromPath(string $path, string &$nextLiteral, int &$index)
+    private static function parseSegmentFromPath(string $path, string &$nextLiteral, int &$index): Segment
     {
         if ($index >= strlen($path)) {
             // A trailing '/' has caused the index to exceed the bounds
@@ -133,7 +135,7 @@ class Parser
      * @return Segment
      * @throws ValidationException
      */
-    private static function parse(string $segmentString, string $path, int $index)
+    private static function parse(string $segmentString, string $path, int $index): Segment
     {
         if ($segmentString === '*') {
             return new Segment(Segment::WILDCARD_SEGMENT);
@@ -158,7 +160,7 @@ class Parser
      * @return Segment
      * @throws ValidationException
      */
-    private static function parseVariableSegment(string $segmentStringWithoutBraces, string $separatorLiteral)
+    private static function parseVariableSegment(string $segmentStringWithoutBraces, string $separatorLiteral): Segment
     {
         // Validate there are no nested braces
         $nestedOpenBracket = strpos($segmentStringWithoutBraces, '{');
@@ -194,7 +196,7 @@ class Parser
      * @return string
      * @throws ValidationException
      */
-    private static function parseLiteralFromPath(string $literal, string $path, int &$index)
+    private static function parseLiteralFromPath(string $literal, string $path, int &$index): string
     {
         $literalLength = strlen($literal);
         if (strlen($path) < ($index + $literalLength)) {
@@ -208,7 +210,7 @@ class Parser
         return $consumedLiteral;
     }
 
-    private static function parseError(string $path, int $index, string $reason)
+    private static function parseError(string $path, int $index, string $reason): ValidationException
     {
         return new ValidationException("Error parsing '$path' at index $index: $reason");
     }
@@ -220,7 +222,7 @@ class Parser
      * @param string $literal
      * @return bool
      */
-    private static function isValidLiteral(string $literal)
+    private static function isValidLiteral(string $literal): bool
     {
         return preg_match('/^[0-9a-zA-Z\\.\\-~_]+$/', $literal) === 1;
     }

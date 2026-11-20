@@ -36,6 +36,7 @@ use Google\Api\FieldInfo\Format;
 use Google\ApiCore\Call;
 use Google\ApiCore\Middleware\RequestAutoPopulationMiddleware;
 use Google\ApiCore\Testing\MockRequest;
+use GuzzleHttp\Promise\PromiseInterface;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
@@ -44,16 +45,17 @@ class RequestAutoPopulationMiddlewareTest extends TestCase
     public function testRequestPopulated()
     {
         $request = new MockRequest();
-        $next = function ($call, $options) {
+        $expectedPromise = $this->createMock(PromiseInterface::class);
+        $next = function ($call, $options) use ($expectedPromise) {
             $this->assertTrue(Uuid::isValid($call->getMessage()->getPageToken()));
-            return true;
+            return $expectedPromise;
         };
         $call = new Call('GetExample', 'Example', $request);
         $middleware = new RequestAutoPopulationMiddleware(
             $next,
             ['pageToken' => Format::UUID4]
         );
-        $this->assertTrue($middleware->__invoke($call, []));
+        $this->assertSame($expectedPromise, $middleware->__invoke($call, []));
     }
 
     public function testRequestAutoPopulatedThrowsForInvalidValueType()
@@ -66,7 +68,7 @@ class RequestAutoPopulationMiddlewareTest extends TestCase
         $request = new MockRequest();
         $next = function ($call, $options) {
             $this->assertTrue(empty($call->getMessage()->getPageToken()));
-            return true;
+            return $this->createMock(PromiseInterface::class);
         };
         $call = new Call('GetExample', 'Example', $request);
         $middleware = new RequestAutoPopulationMiddleware(

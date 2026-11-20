@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -40,6 +42,7 @@ use Google\ApiCore\ValidationTrait;
 use Google\Protobuf\Internal\Message;
 use Google\Rpc\Status;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -82,7 +85,7 @@ class GrpcFallbackTransport implements TransportInterface
      * @return GrpcFallbackTransport
      * @throws ValidationException
      */
-    public static function build(string $apiEndpoint, array $config = [])
+    public static function build(string $apiEndpoint, array $config = []): GrpcFallbackTransport
     {
         $config += [
             'httpHandler'  => null,
@@ -103,7 +106,7 @@ class GrpcFallbackTransport implements TransportInterface
      * @return never
      * @throws \BadMethodCallException
      */
-    public function startServerStreamingCall(Call $call, array $options)
+    public function startServerStreamingCall(Call $call, array $options): never
     {
         $this->throwUnsupportedException();
     }
@@ -111,7 +114,7 @@ class GrpcFallbackTransport implements TransportInterface
     /**
      * {@inheritdoc}
      */
-    public function startUnaryCall(Call $call, array $options)
+    public function startUnaryCall(Call $call, array $options): PromiseInterface
     {
         $httpHandler = $this->httpHandler;
 
@@ -143,7 +146,7 @@ class GrpcFallbackTransport implements TransportInterface
      * @param array $options
      * @return RequestInterface
      */
-    private function buildGrpcFallbackRequest(Call $call, array $options)
+    private function buildGrpcFallbackRequest(Call $call, array $options): RequestInterface
     {
         // Build common headers and set the content type to 'application/x-protobuf'
         $headers = ['Content-Type' => 'application/x-protobuf'] + self::buildCommonHeaders($options);
@@ -169,7 +172,7 @@ class GrpcFallbackTransport implements TransportInterface
      * @param ResponseInterface $response
      * @return Message
      */
-    private function unpackResponse(Call $call, ResponseInterface $response)
+    private function unpackResponse(Call $call, ResponseInterface $response): Message
     {
         $decodeType = $call->getDecodeType();
         /** @var Message $responseMessage */
@@ -182,7 +185,7 @@ class GrpcFallbackTransport implements TransportInterface
      * @param array $options
      * @return array
      */
-    private function getCallOptions(array $options)
+    private function getCallOptions(array $options): array
     {
         $callOptions = $options['transportOptions']['grpcFallbackOptions'] ?? [];
 
@@ -211,7 +214,7 @@ class GrpcFallbackTransport implements TransportInterface
      * @param \Exception $ex
      * @return \Exception
      */
-    private function transformException(\Exception $ex)
+    private function transformException(\Exception $ex): \Exception
     {
         // Guzzle 7 carries the response on RequestException, Guzzle 8 only on
         // its ResponseException subclass, hence the method_exists() check.

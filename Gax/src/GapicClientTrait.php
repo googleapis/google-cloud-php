@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -101,7 +103,10 @@ trait GapicClientTrait
      *         public function __construct(private MiddlewareInterface $handler) {
      *         }
      *
-     *         public function __invoke(Call $call, array $options) {
+     *         public function __invoke(
+     *             Call $call,
+     *             array $options
+     *         ): PromiseInterface|ClientStream|ServerStream|BidiStream {
      *             // modify call and options (pre-request)
      *             $response = ($this->handler)($call, $options);
      *             // modify the response (post-request)
@@ -137,7 +142,10 @@ trait GapicClientTrait
      *         public function __construct(private MiddlewareInterface $handler) {
      *         }
      *
-     *         public function __invoke(Call $call, array $options) {
+     *         public function __invoke(
+     *             Call $call,
+     *             array $options
+     *         ): PromiseInterface|ClientStream|ServerStream|BidiStream {
      *             // modify call and options (pre-request)
      *             $response = ($this->handler)($call, $options);
      *             // modify the response (post-request)
@@ -183,9 +191,9 @@ trait GapicClientTrait
      * use by customized clients.
      *
      * @access private
-     * @return TransportInterface
+     * @return ?TransportInterface
      */
-    protected function getTransport()
+    protected function getTransport(): ?TransportInterface
     {
         return $this->transport;
     }
@@ -195,9 +203,9 @@ trait GapicClientTrait
      * use by customized clients.
      *
      * @access private
-     * @return HeaderCredentialsInterface
+     * @return ?HeaderCredentialsInterface
      */
-    protected function getCredentialsWrapper()
+    protected function getCredentialsWrapper(): ?HeaderCredentialsInterface
     {
         return $this->credentialsWrapper;
     }
@@ -265,7 +273,7 @@ trait GapicClientTrait
      * }
      * @throws ValidationException
      */
-    private function setClientOptions(array $options)
+    private function setClientOptions(array $options): void
     {
         // serviceAddress is now deprecated and acts as an alias for apiEndpoint
         if (isset($options['serviceAddress'])) {
@@ -293,7 +301,6 @@ trait GapicClientTrait
         // Therefore, we need to remove it from the $options array before
         // creating the ClientOptions.
         $hasEmulator = $this->pluck('hasEmulator', $options, false) ?? false;
-        // cast to ClientOptions for new surfaces only
         $options = new ClientOptions($options);
         $this->serviceName = $options['serviceName'];
         $this->retrySettings = RetrySettings::load(
@@ -374,17 +381,11 @@ trait GapicClientTrait
      */
     private function createTransport(
         string $apiEndpoint,
-        $transport,
-        $transportConfig,
+        string $transport,
+        TransportOptions|array $transportConfig,
         ?callable $clientCertSource = null,
         bool $hasEmulator = false
-    ) {
-        if (!is_string($transport)) {
-            throw new ValidationException(
-                "'transport' must be a string, instead got:" .
-                print_r($transport, true)
-            );
-        }
+    ): TransportInterface {
         $supportedTransports = self::supportedTransports();
         if (!in_array($transport, $supportedTransports)) {
             throw new ValidationException(sprintf(
@@ -432,37 +433,39 @@ trait GapicClientTrait
     }
 
     /**
-     * @param array $options
-     * @return OperationsClient|object
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
      */
     private function createOperationsClient(array $options)
     {
-        $this->pluckArray([
-            'serviceName',
-            'clientConfig',
-            'descriptorsConfigPath',
-        ], $options);
+        // Unset client-specific configuration options
+        unset(
+            $options['serviceName'],
+            $options['clientConfig'],
+            $options['descriptorsConfigPath']
+        );
 
-        // User-supplied operations client
-        if ($operationsClient = $this->pluck('operationsClient', $options, false)) {
-            return $operationsClient;
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
         }
 
-        // operationsClientClass option
         return new OperationsClient($options);
     }
 
     /**
      * @return string
      */
-    private static function defaultTransport()
+    private static function defaultTransport(): string
     {
         return self::getGrpcDependencyStatus()
             ? 'grpc'
             : 'rest';
     }
 
-    private function validateCallConfig(string $methodName)
+    private function validateCallConfig(string $methodName): array
     {
         // Ensure a method descriptor exists for the target method.
         if (!isset($this->descriptors[$methodName])) {
@@ -483,8 +486,8 @@ trait GapicClientTrait
                 throw new ValidationException("Requested method '$methodName' does not have a longRunning config " .
                     'in descriptor configuration.');
             }
-            // @TODO: check if the client implements `OperationsClientInterface` instead
-            if (!method_exists($this, 'getOperationsClient')) {
+            if (!$this instanceof LongRunningOperationProviderInterface
+                && !method_exists($this, 'getOperationsClient')) {
                 throw new ValidationException('Client missing required getOperationsClient ' .
                     "for longrunning call '$methodName'");
             }
@@ -527,7 +530,7 @@ trait GapicClientTrait
         string $methodName,
         Message $request,
         array $optionalArgs = []
-    ) {
+    ): PromiseInterface {
         // Convert method name to the UpperCamelCase of RPC names from lowerCamelCase of GAPIC method names
         // in order to find the method in the descriptor config.
         $methodName = ucfirst($methodName);
@@ -570,13 +573,13 @@ trait GapicClientTrait
      *
      * @experimental
      *
-     * @return PromiseInterface|PagedListResponse|BidiStream|ClientStream|ServerStream
+     * @return PromiseInterface|PagedListResponse|BidiStream|ClientStream|ServerStream|ResumableUpload
      */
     private function startApiCall(
         string $methodName,
         ?Message $request = null,
         array $optionalArgs = []
-    ) {
+    ): PromiseInterface|PagedListResponse|BidiStream|ClientStream|ServerStream|ResumableUpload {
         $methodDescriptors = $this->validateCallConfig($methodName);
         $callType = $methodDescriptors['callType'];
 
@@ -643,7 +646,7 @@ trait GapicClientTrait
         ?Message $request = null,
         int $callType = Call::UNARY_CALL,
         ?string $interfaceName = null
-    ) {
+    ): PromiseInterface|BidiStream|ClientStream|ServerStream {
         $optionalArgs = $this->configureCallOptions($optionalArgs);
         $callStack = $this->createCallStack(
             $this->configureCallConstructionOptions($methodName, $optionalArgs)
@@ -686,7 +689,7 @@ trait GapicClientTrait
      *
      * @return callable
      */
-    private function createCallStack(array $callConstructionOptions)
+    private function createCallStack(array $callConstructionOptions): callable
     {
         $fixedHeaders = $this->agentHeader;
         if ($quotaProject = $this->credentialsWrapper->getQuotaProject()) {
@@ -744,7 +747,7 @@ trait GapicClientTrait
      *
      * @return array
      */
-    private function configureCallConstructionOptions(string $methodName, array $optionalArgs)
+    private function configureCallConstructionOptions(string $methodName, array $optionalArgs): array
     {
         $retrySettings = $this->retrySettings[$methodName];
         $autoPopulatedFields = $this->descriptors[$methodName]['autoPopulatedFields'] ?? [];
@@ -769,7 +772,6 @@ trait GapicClientTrait
      */
     private function configureCallOptions(array $optionalArgs): array
     {
-        // cast to CallOptions for new surfaces only
         return (new CallOptions($optionalArgs))->toArray();
     }
 
@@ -794,10 +796,10 @@ trait GapicClientTrait
         string $methodName,
         array $optionalArgs,
         Message $request,
-        $client,
+        object $client,
         ?string $interfaceName = null,
         ?string $operationClass = null
-    ) {
+    ): PromiseInterface {
         $optionalArgs = $this->configureCallOptions($optionalArgs);
         $callStack = $this->createCallStack(
             $this->configureCallConstructionOptions($methodName, $optionalArgs)
@@ -852,7 +854,7 @@ trait GapicClientTrait
         string $decodeType,
         Message $request,
         ?string $interfaceName = null
-    ) {
+    ): PagedListResponse {
         return $this->getPagedListResponseAsync(
             $methodName,
             $optionalArgs,
@@ -877,7 +879,7 @@ trait GapicClientTrait
         string $decodeType,
         ?Message $request,
         ?string $interfaceName = null
-    ) {
+    ): ResumableUpload {
         if (isset($this->retrySettings[$methodName])) {
             $callConstructionOptions = $this->configureCallConstructionOptions($methodName, $optionalArgs);
             $optionalArgs['retrySettings'] = $callConstructionOptions['retrySettings'];
@@ -915,7 +917,7 @@ trait GapicClientTrait
         string $decodeType,
         Message $request,
         ?string $interfaceName = null
-    ) {
+    ): PromiseInterface {
         $optionalArgs = $this->configureCallOptions($optionalArgs);
         $callStack = $this->createCallStack(
             $this->configureCallConstructionOptions($methodName, $optionalArgs)
@@ -945,7 +947,7 @@ trait GapicClientTrait
      *
      * @return string
      */
-    private function buildMethod(?string $interfaceName = null, ?string $methodName = null)
+    private function buildMethod(?string $interfaceName = null, ?string $methodName = null): string
     {
         return sprintf(
             '%s/%s',
@@ -960,7 +962,7 @@ trait GapicClientTrait
      *
      * @return array
      */
-    private function buildRequestParamsHeader(array $headerParams, ?Message $request = null)
+    private function buildRequestParamsHeader(array $headerParams, ?Message $request = null): array
     {
         $headers = [];
 
@@ -1016,7 +1018,7 @@ trait GapicClientTrait
     /**
      * The SERVICE_ADDRESS constant is set by GAPIC clients
      */
-    private static function getDefaultAudience()
+    private static function getDefaultAudience(): ?string
     {
         if (!defined('self::SERVICE_ADDRESS')) {
             return null;
