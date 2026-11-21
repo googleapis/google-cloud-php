@@ -38,10 +38,10 @@ use Google\Cloud\Firestore\V1\Client\FirestoreClient as GapicFirestoreClient;
 use Google\Cloud\Firestore\V1\CommitRequest;
 use Google\Cloud\Firestore\V1\CommitResponse;
 use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\ServiceException;
-use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
 use Google\Cloud\Firestore\V1\BeginTransactionRequest;
@@ -85,7 +85,7 @@ class FirestoreClientTest extends TestCase
             'projectId' => self::PROJECT,
             'database' => self::DATABASE,
             'firestoreClient' => $this->gapicClient->reveal(),
-            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE()
+            'credentials' => new InsecureCredentialsWrapper()
         ]);
     }
 

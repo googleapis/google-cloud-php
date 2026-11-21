@@ -195,7 +195,7 @@ trait GapicClientTrait
      * use by customized clients.
      *
      * @access private
-     * @return CredentialsWrapper
+     * @return HeaderCredentialsInterface
      */
     protected function getCredentialsWrapper()
     {
@@ -219,12 +219,12 @@ trait GapicClientTrait
      *           path to a JSON file, or a PHP array containing the decoded JSON data.
      *           By default this settings points to the default client config file, which is provided
      *           in the resources folder.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *     @type string|array|FetchAuthTokenInterface|HeaderCredentialsInterface $credentials
      *           The credentials to be used by the client to authorize API calls. This option
      *           accepts either a path to a credentials file, or a decoded credentials file as a
      *           PHP array.
      *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           \Google\Auth\FetchAuthTokenInterface object or \Google\ApiCore\CredentialsWrapper
+     *           \Google\Auth\FetchAuthTokenInterface object or \Google\ApiCore\HeaderCredentialsInterface
      *           object. Note that when one of these objects are provided, any settings in
      *           $authConfig will be ignored.
      *     @type array $credentialsConfig
