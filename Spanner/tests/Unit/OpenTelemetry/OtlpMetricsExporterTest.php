@@ -188,4 +188,91 @@ class OtlpMetricsExporterTest extends TestCase
         $result = $exporter->export([$metric]);
         $this->assertFalse($result);
     }
+
+    public function testDisabledWithNonDefaultUniverseDomainOption()
+    {
+        $mockCredentials = $this->prophesize(\Google\ApiCore\CredentialsWrapper::class);
+        $mockOtlpExporter = $this->prophesize(PushMetricExporterInterface::class);
+        $mockOtlpExporter->export(Argument::any())->shouldNotBeCalled();
+        $mockOtlpExporter->forceFlush()->shouldNotBeCalled();
+        $mockOtlpExporter->shutdown()->shouldNotBeCalled();
+
+        $exporter = new OtlpMetricsExporter(
+            $mockCredentials->reveal(),
+            100,
+            ['universeDomain' => 'example.com'],
+            $mockOtlpExporter->reveal()
+        );
+
+        $this->assertFalse($exporter->export([]));
+        $this->assertFalse($exporter->forceFlush());
+        $this->assertFalse($exporter->shutdown());
+    }
+
+    public function testDisabledWithNonDefaultCredentialsWrapperUniverseDomain()
+    {
+        $creds = new \Google\Auth\Credentials\GCECredentials(universeDomain: 'example.com');
+        $wrapper = new \Google\ApiCore\CredentialsWrapper($creds, null, 'example.com');
+        $mockOtlpExporter = $this->prophesize(PushMetricExporterInterface::class);
+        $mockOtlpExporter->export(Argument::any())->shouldNotBeCalled();
+
+        $exporter = new OtlpMetricsExporter(
+            $wrapper,
+            100,
+            [],
+            $mockOtlpExporter->reveal()
+        );
+
+        $this->assertFalse($exporter->export([]));
+        $this->assertFalse($exporter->forceFlush());
+        $this->assertFalse($exporter->shutdown());
+    }
+
+    public function testDisabledWithNonDefaultFetcherUniverseDomain()
+    {
+        $fetcher = new \Google\Auth\Credentials\ServiceAccountCredentials(null, [
+            'type' => 'service_account',
+            'client_email' => 'test@example.com',
+            'private_key' => 'fake-key',
+            'universe_domain' => 'example.com',
+        ]);
+        $wrapper = new \Google\ApiCore\CredentialsWrapper($fetcher);
+        $mockOtlpExporter = $this->prophesize(PushMetricExporterInterface::class);
+        $mockOtlpExporter->export(Argument::any())->shouldNotBeCalled();
+
+        $exporter = new OtlpMetricsExporter(
+            $wrapper,
+            100,
+            [],
+            $mockOtlpExporter->reveal()
+        );
+
+        $this->assertFalse($exporter->export([]));
+    }
+
+    public function testGuzzleMiddlewareSkipsExportForNonDefaultGceCredentials()
+    {
+        $gce = new \Google\Auth\Credentials\GCECredentials(universeDomain: 'example.com');
+        $wrapper = new \Google\ApiCore\CredentialsWrapper($gce);
+
+        $mockHandler = new \GuzzleHttp\Handler\MockHandler([
+            new \GuzzleHttp\Psr7\Response(200, [], ''),
+        ]);
+        $handlerStack = \GuzzleHttp\HandlerStack::create($mockHandler);
+
+        $exporter = new OtlpMetricsExporter(
+            $wrapper,
+            100,
+            ['handlerStack' => $handlerStack]
+        );
+
+        $scope = new InstrumentationScope('google-cloud-spanner', '1.0.0', null, Attributes::create([]));
+        $resource = ResourceInfo::create(Attributes::create([]));
+        $point = new NumberDataPoint(1, Attributes::create([]), 1000, 2000);
+        $sum = new Sum([$point], Temporality::CUMULATIVE, true);
+        $metric = new OTelMetric($scope, $resource, 'attempt_count', '1', 'desc', $sum);
+
+        $this->assertFalse($exporter->export([$metric]));
+        $this->assertNull($mockHandler->getLastRequest());
+    }
 }
