@@ -18,10 +18,14 @@
 namespace Google\Cloud\Core\Tests\Unit\LongRunning;
 
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\OperationsClientInterface;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\LongRunning\Operation;
+use Google\Protobuf\Any;
+use Google\Rpc\Status;
 use Prophecy\Argument;
 use Google\Cloud\Audit\RequestMetadata;
 use Google\Cloud\Audit\AuthorizationInfo;
@@ -43,6 +47,7 @@ class OperationResponseTraitTest extends TestCase
     const OPERATION_NAME = 'test-operation';
 
     private $serializer;
+    private $operationsClient;
     private $lroResponseMappers = [
         [
             'typeUrl' => self::METADATA_TYPE,
@@ -57,10 +62,31 @@ class OperationResponseTraitTest extends TestCase
     {
         $serializer = $this->prophesize(Serializer::class);
         $serializer->encodeMessage(Argument::any())->will(function ($arg) {
+            if ($arg[0] instanceof Operation) {
+                $result = [
+                    'done' => $arg[0]->getDone(),
+                    'metadata' => [
+                        'typeUrl' => $arg[0]->getMetadata()->getTypeUrl(),
+                        'value' => $arg[0]->getMetadata()->getValue(),
+                    ],
+                ];
+                if ($arg[0]->hasResponse()) {
+                    $result['response'] = [
+                        'typeUrl' => $arg[0]->getResponse()->getTypeUrl(),
+                        'value' => $arg[0]->getResponse()->getValue(),
+                    ];
+                }
+                if ($arg[0]->hasError()) {
+                    $result['error'] = $arg[0]->getError();
+                }
+
+                return $result;
+            }
             $json = $arg[0]->serializeToJsonString();
             return json_decode($json, true);
         });
         $this->serializer = $serializer->reveal();
+        $this->operationsClient = $this->prophesize(OperationsClientInterface::class)->reveal();
     }
 
     public function testOperationWithResponse()
@@ -73,8 +99,12 @@ class OperationResponseTraitTest extends TestCase
         $meta = new RequestMetadata([
             'caller_ip' => '127.8.9.10', // Sic(!)
         ]);
-        $response = new Response(self::METADATA_TYPE, $meta, self::RESULT_TYPE, $result);
-        $operation = new OperationResponse(self::OPERATION_NAME, null, ['lastProtoResponse' => $response]);
+        $response = $this->createOperation(self::METADATA_TYPE, $meta, self::RESULT_TYPE, $result);
+        $operation = new OperationResponse(
+            self::OPERATION_NAME,
+            $this->operationsClient,
+            ['lastProtoResponse' => $response]
+        );
         $got = $this->operationToArray($operation, $this->serializer, $this->lroResponseMappers);
 
         $expected = [
@@ -95,17 +125,20 @@ class OperationResponseTraitTest extends TestCase
 
     public function testOperationWithError()
     {
-        $error = new AuthorizationInfo([
-            'resource' => 'any',
-            'permission' => 'all',
-            'granted' => true,
+        $error = new Status([
+            'code' => 1,
+            'message' => 'error',
         ]);
         $meta = new RequestMetadata([
             'caller_ip' => '127.8.9.10', // Sic(!)
         ]);
-        $response = new Response(self::METADATA_TYPE, $meta);
-        $response->error = $error;
-        $operation = new OperationResponse(self::OPERATION_NAME, null, ['lastProtoResponse' => $response]);
+        $response = $this->createOperation(self::METADATA_TYPE, $meta);
+        $response->setError($error);
+        $operation = new OperationResponse(
+            self::OPERATION_NAME,
+            $this->operationsClient,
+            ['lastProtoResponse' => $response]
+        );
         $got = $this->operationToArray($operation, $this->serializer, $this->lroResponseMappers);
 
         $expected = [
@@ -115,9 +148,8 @@ class OperationResponseTraitTest extends TestCase
                 'typeUrl' => self::METADATA_TYPE,
             ],
             'error' => [
-                'resource' => 'any',
-                'permission' => 'all',
-                'granted' => true,
+                'code' => 1,
+                'message' => 'error',
             ],
             'response' => null,
         ];
@@ -126,7 +158,7 @@ class OperationResponseTraitTest extends TestCase
 
     public function testNullProtoResponse()
     {
-        $operation = new OperationResponse(self::OPERATION_NAME, null);
+        $operation = new OperationResponse(self::OPERATION_NAME, $this->operationsClient);
         $got = $this->operationToArray($operation, $this->serializer, $this->lroResponseMappers);
         $this->assertNull($got);
     }
@@ -141,8 +173,12 @@ class OperationResponseTraitTest extends TestCase
         $meta = new RequestMetadata([
             'caller_ip' => '127.8.9.10',
         ]);
-        $response = new Response(self::METADATA_TYPE, $meta, self::RESULT_TYPE, $result);
-        $operation = new OperationResponse(self::OPERATION_NAME, null, ['lastProtoResponse' => $response]);
+        $response = $this->createOperation(self::METADATA_TYPE, $meta, self::RESULT_TYPE, $result);
+        $operation = new OperationResponse(
+            self::OPERATION_NAME,
+            $this->operationsClient,
+            ['lastProtoResponse' => $response]
+        );
 
         $connection = $this->prophesize(LongRunningConnectionInterface::class);
         $t = $this;
@@ -162,81 +198,23 @@ class OperationResponseTraitTest extends TestCase
         $expected = 'any|all|1';
         $this->assertEquals($expected, $got);
     }
-}
 
-//@codingStandardsIgnoreStart
-
-class Value
-{
-    public $value;
-
-    public function __construct($value = null)
+    private function createOperation($metaType, $metadata, $respType = null, $response = null): Operation
     {
-        $this->value = $value;
-    }
-
-    public function getValue()
-    {
-        return $this->value;
-    }
-}
-
-class Response extends \Google\Protobuf\Internal\Message
-{
-    public $metadataType;
-    public $metadata;
-    public $responseType;
-    public $response = null;
-    public $error = null;
-
-    public function __construct($metaType, $metadata, $respType = null, $response = null)
-    {
-        $this->metadataType = $metaType;
-        $this->metadata = $metadata->serializeToString();
-        $this->responseType = $respType;
-        if (isset($response)) {
-            $this->response = $response->serializeToString();
-        }
-    }
-
-    public function getResponse()
-    {
-        return new Value($this->response);
-    }
-
-    public function getMetadata()
-    {
-        return new Value($this->metadata);
-    }
-
-    public function getDone()
-    {
-        return (isset($this->response) or isset($this->error));
-    }
-
-    public function getError()
-    {
-        return $this->error;
-    }
-
-    public function serializeToJsonString($options = 0)
-    {
-        $result = [
+        $operation = new Operation([
             'done' => true,
-            'metadata' => [
-                'typeUrl' => $this->metadataType,
-                'value' => $this->metadata,
-            ],
-        ];
-        if (isset($this->response)) {
-            $result['response'] = [
-                'typeUrl' => $this->responseType,
-                'value' => $this->response,
-            ];
+            'metadata' => new Any([
+                'type_url' => $metaType,
+                'value' => $metadata->serializeToString(),
+            ]),
+        ]);
+        if (isset($response)) {
+            $operation->setResponse(new Any([
+                'type_url' => $respType,
+                'value' => $response->serializeToString(),
+            ]));
         }
 
-        return json_encode($result);
+        return $operation;
     }
 }
-
-//@codingStandardsIgnoreEnd
