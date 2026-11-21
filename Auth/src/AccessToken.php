@@ -43,9 +43,6 @@ use UnexpectedValueException;
 /**
  * Wrapper around Google Access Tokens which provides convenience functions.
  *
- * **IMPORTANT**: Default endpoints on this class target the `googleapis.com` universe domain.
- * {@see AccessToken::revoke()} is not supported outside of the default universe domain.
- *
  * @experimental
  */
 class AccessToken
@@ -270,9 +267,6 @@ class AccessToken
     /**
      * Revoke an OAuth2 access token or refresh token. This method will revoke the current access
      * token, if a token isn't provided.
-     *
-     * **IMPORTANT**: This method is not supported outside of the default universe domain
-     * (`googleapis.com`) and always sends requests to `https://oauth2.googleapis.com/revoke`.
      *
      * @param string|array<mixed> $token The token (access token or a refresh token) that should be revoked.
      * @param array<mixed> $options [optional] Configuration options.
