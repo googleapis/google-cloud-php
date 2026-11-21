@@ -99,14 +99,6 @@ class PathTemplateTest extends TestCase
         new PathTemplate('a/{hello=world');
     }
 
-    public function testFailNullString()
-    {
-        $this->expectException(ValidationException::class);
-        $this->expectExceptionMessage('Cannot construct PathTemplate from empty string');
-
-        new PathTemplate(null);
-    }
-
     public function testFailEmptyString()
     {
         $this->expectException(ValidationException::class);

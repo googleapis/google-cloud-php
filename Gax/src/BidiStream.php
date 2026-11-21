@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2016 Google LLC
  * All rights reserved.
@@ -45,11 +47,11 @@ class BidiStream
 {
     use LoggingTrait;
 
-    private $call;
-    private $isComplete = false;
-    private $writesClosed = false;
-    private $resourcesGetMethod = null;
-    private $pendingResources = [];
+    private BidiStreamingCall $call;
+    private bool $isComplete = false;
+    private bool $writesClosed = false;
+    private ?string $resourcesGetMethod = null;
+    private array $pendingResources = [];
     private null|LoggerInterface $logger = null;
 
     /**
@@ -77,7 +79,7 @@ class BidiStream
      * @param mixed $request The request to write
      * @throws ValidationException
      */
-    public function write($request)
+    public function write(mixed $request): void
     {
         if ($this->isComplete) {
             throw new ValidationException('Cannot call write() after streaming call is complete.');
@@ -107,7 +109,7 @@ class BidiStream
      *
      * @throws ValidationException
      */
-    public function writeAll($requests = [])
+    public function writeAll(iterable $requests = []): void
     {
         foreach ($requests as $request) {
             $this->write($request);
@@ -119,7 +121,7 @@ class BidiStream
      * called after closeWrite() is called.
      * @throws ValidationException
      */
-    public function closeWrite()
+    public function closeWrite(): void
     {
         if ($this->isComplete) {
             throw new ValidationException(
@@ -140,7 +142,7 @@ class BidiStream
      * @throws ApiException
      * @return mixed
      */
-    public function read()
+    public function read(): mixed
     {
         if ($this->isComplete) {
             throw new ValidationException('Cannot call read() after streaming call is complete.');
@@ -193,9 +195,9 @@ class BidiStream
      *
      * @throws ValidationException
      * @throws ApiException
-     * @return \Generator|mixed[]
+     * @return \Generator
      */
-    public function closeWriteAndReadAll()
+    public function closeWriteAndReadAll(): iterable
     {
         $this->closeWrite();
         $response = $this->read();
@@ -208,9 +210,9 @@ class BidiStream
     /**
      * Return the underlying gRPC call object
      *
-     * @return \Grpc\BidiStreamingCall|mixed
+     * @return BidiStreamingCall
      */
-    public function getBidiStreamingCall()
+    public function getBidiStreamingCall(): BidiStreamingCall
     {
         return $this->call;
     }

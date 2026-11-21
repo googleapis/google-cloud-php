@@ -43,9 +43,6 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 /**
  * Interface implemented by GAPIC service clients that expose IAM policy
  * management methods (`getIamPolicy`, `setIamPolicy`, and `testIamPermissions`).
- *
- * @experimental
- * @internal
  */
 interface IamProviderInterface
 {

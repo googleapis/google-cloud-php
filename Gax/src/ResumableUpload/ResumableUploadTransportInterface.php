@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2026 Google LLC
  * All rights reserved.
@@ -51,7 +53,7 @@ interface ResumableUploadTransportInterface
      * @param array            $options
      * @return ResponseInterface|PromiseInterface
      */
-    public function sendRawRequest(RequestInterface $request, array $options = []);
+    public function sendRawRequest(RequestInterface $request, array $options = []): ResponseInterface|PromiseInterface;
 
     /**
      * Builds a PSR-7 request.

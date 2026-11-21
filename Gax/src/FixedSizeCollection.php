@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2016 Google LLC
  * All rights reserved.
@@ -44,8 +46,9 @@ use LengthException;
  */
 class FixedSizeCollection implements IteratorAggregate
 {
-    private $collectionSize;
-    private $pageList;
+    private int $collectionSize;
+    /** @var Page[] */
+    private array $pageList;
 
     /**
      * FixedSizeCollection constructor.
@@ -79,7 +82,7 @@ class FixedSizeCollection implements IteratorAggregate
      *
      * @return int
      */
-    public function getCollectionSize()
+    public function getCollectionSize(): int
     {
         $size = 0;
         foreach ($this->pageList as $page) {
@@ -94,7 +97,7 @@ class FixedSizeCollection implements IteratorAggregate
      *
      * @return bool
      */
-    public function hasNextCollection()
+    public function hasNextCollection(): bool
     {
         return $this->getLastPage()->hasNextPage();
     }
@@ -105,7 +108,7 @@ class FixedSizeCollection implements IteratorAggregate
      *
      * @return string
      */
-    public function getNextPageToken()
+    public function getNextPageToken(): string
     {
         return $this->getLastPage()->getNextPageToken();
     }
@@ -115,7 +118,7 @@ class FixedSizeCollection implements IteratorAggregate
      *
      * @return FixedSizeCollection
      */
-    public function getNextCollection()
+    public function getNextCollection(): self
     {
         $lastPage = $this->getLastPage();
         $nextPage = $lastPage->getNextPage($this->collectionSize);
@@ -127,8 +130,7 @@ class FixedSizeCollection implements IteratorAggregate
      *
      * @return Generator
      */
-    #[\ReturnTypeWillChange]
-    public function getIterator()
+    public function getIterator(): Generator
     {
         foreach ($this->pageList as $page) {
             foreach ($page as $element) {
@@ -142,9 +144,9 @@ class FixedSizeCollection implements IteratorAggregate
      * and making API calls as required until all of the elements have
      * been retrieved.
      *
-     * @return Generator|FixedSizeCollection[]
+     * @return Generator<FixedSizeCollection>
      */
-    public function iterateCollections()
+    public function iterateCollections(): Generator
     {
         $currentCollection = $this;
         yield $this;
@@ -154,7 +156,7 @@ class FixedSizeCollection implements IteratorAggregate
         }
     }
 
-    private function getLastPage()
+    private function getLastPage(): Page
     {
         $pageList = $this->pageList;
         // Get last element in array...
@@ -168,7 +170,7 @@ class FixedSizeCollection implements IteratorAggregate
      * @param int $collectionSize
      * @return Page[]
      */
-    private static function createPageArray(Page $initialPage, int $collectionSize)
+    private static function createPageArray(Page $initialPage, int $collectionSize): array
     {
         $pageList = [$initialPage];
         $currentPage = $initialPage;

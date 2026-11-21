@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -36,6 +38,7 @@ use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\PageStreamingDescriptor;
 use Google\Protobuf\Internal\Message;
+use GuzzleHttp\Promise\PromiseInterface;
 
 /**
 * Middleware which wraps the response in an PagedListResponses object.
@@ -60,7 +63,7 @@ class PagedMiddleware implements MiddlewareInterface
         $this->descriptor = $descriptor;
     }
 
-    public function __invoke(Call $call, array $options)
+    public function __invoke(Call $call, array $options): PromiseInterface
     {
         $next = $this->nextHandler;
         $descriptor = $this->descriptor;

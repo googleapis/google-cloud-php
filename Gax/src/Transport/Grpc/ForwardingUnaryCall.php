@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -47,9 +49,9 @@ class ForwardingUnaryCall extends ForwardingCall
     /**
      * Wait for the server to respond with data and a status.
      *
-     * @return array [response data, status]
+     * @return ?array [response data, status]
      */
-    public function wait()
+    public function wait(): ?array
     {
         return $this->innerCall->wait();
     }

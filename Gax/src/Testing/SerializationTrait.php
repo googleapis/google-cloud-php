@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2017 Google LLC
  * All rights reserved.
@@ -38,11 +40,14 @@ use Google\Protobuf\Internal\Message;
  */
 trait SerializationTrait
 {
+    /** @var callable|array|null */
+    protected $deserialize = null;
+
     /**
      * @param mixed $message
      * @param mixed $deserialize
      */
-    protected function deserializeMessage($message, $deserialize)
+    protected function deserializeMessage(mixed $message, mixed $deserialize): mixed
     {
         if ($message === null) {
             return null;

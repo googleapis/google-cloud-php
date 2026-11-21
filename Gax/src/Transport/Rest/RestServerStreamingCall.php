@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2021 Google LLC
  * All rights reserved.
@@ -32,6 +34,7 @@
 
 namespace Google\ApiCore\Transport\Rest;
 
+use Generator;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
 use Google\ApiCore\ServerStreamingCallInterface;
@@ -57,8 +60,8 @@ class RestServerStreamingCall implements ServerStreamingCallInterface
     private RequestInterface $originalRequest;
     private JsonStreamDecoder $decoder;
     private string $decodeType;
-    private ?ResponseInterface $response;
-    private stdClass $status;
+    private ?ResponseInterface $response = null;
+    private ?stdClass $status = null;
 
     /**
      * @param callable $httpHandler
@@ -75,7 +78,7 @@ class RestServerStreamingCall implements ServerStreamingCallInterface
     /**
      * {@inheritdoc}
      */
-    public function start($request, array $headers = [], array $callOptions = [])
+    public function start(mixed $request, array $headers = [], array $callOptions = []): void
     {
         $this->originalRequest = $this->appendHeaders($request, $headers);
 
@@ -109,7 +112,7 @@ class RestServerStreamingCall implements ServerStreamingCallInterface
      * @param array<mixed> $headers
      * @return RequestInterface
      */
-    private function appendHeaders(RequestInterface $request, array $headers)
+    private function appendHeaders(RequestInterface $request, array $headers): RequestInterface
     {
         foreach ($headers as $key => $value) {
             $request = $request->hasHeader($key) ?
@@ -123,7 +126,7 @@ class RestServerStreamingCall implements ServerStreamingCallInterface
     /**
      * {@inheritdoc}
      */
-    public function responses()
+    public function responses(): Generator
     {
         if (is_null($this->response)) {
             throw new \Exception('Stream has not been started.');
@@ -145,10 +148,10 @@ class RestServerStreamingCall implements ServerStreamingCallInterface
      * Return the status of the server stream. If the call has not been started
      * this will be null.
      *
-     * @return stdClass The status, with integer $code, string
+     * @return ?stdClass The status, with integer $code, string
      *                   $details, and array $metadata members
      */
-    public function getStatus()
+    public function getStatus(): ?stdClass
     {
         return $this->status;
     }
@@ -156,7 +159,7 @@ class RestServerStreamingCall implements ServerStreamingCallInterface
     /**
      * {@inheritdoc}
      */
-    public function getMetadata()
+    public function getMetadata(): ?array
     {
         return is_null($this->response) ? null : $this->response->getHeaders();
     }
@@ -165,7 +168,7 @@ class RestServerStreamingCall implements ServerStreamingCallInterface
      * The Rest transport does not support trailing metadata. This is a
      * passthrough to getMetadata().
      */
-    public function getTrailingMetadata()
+    public function getTrailingMetadata(): ?array
     {
         return $this->getMetadata();
     }
@@ -173,15 +176,15 @@ class RestServerStreamingCall implements ServerStreamingCallInterface
     /**
      * {@inheritdoc}
      */
-    public function getPeer()
+    public function getPeer(): string
     {
-        return $this->originalRequest->getUri();
+        return (string) $this->originalRequest->getUri();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function cancel()
+    public function cancel(): void
     {
         if (isset($this->decoder)) {
             $this->decoder->close();
@@ -192,7 +195,7 @@ class RestServerStreamingCall implements ServerStreamingCallInterface
      * For the REST transport this is a no-op.
      * {@inheritdoc}
      */
-    public function setCallCredentials($call_credentials)
+    public function setCallCredentials(mixed $call_credentials): void
     {
         // Do nothing.
     }

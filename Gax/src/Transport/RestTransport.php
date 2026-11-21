@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -43,6 +45,7 @@ use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
 use Google\Protobuf\Internal\Message;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -88,7 +91,7 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
      * @return RestTransport
      * @throws ValidationException
      */
-    public static function build(string $apiEndpoint, string $restConfigPath, array $config = [])
+    public static function build(string $apiEndpoint, string $restConfigPath, array $config = []): RestTransport
     {
         $config += [
             'httpHandler'  => null,
@@ -111,7 +114,7 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
     /**
      * {@inheritdoc}
      */
-    public function startUnaryCall(Call $call, array $options)
+    public function startUnaryCall(Call $call, array $options): PromiseInterface
     {
         $headers = self::buildCommonHeaders($options);
 
@@ -184,7 +187,7 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
      * {@inheritdoc}
      * @throws \BadMethodCallException for forwards compatibility with older GAPIC clients
      */
-    public function startServerStreamingCall(Call $call, array $options)
+    public function startServerStreamingCall(Call $call, array $options): ServerStream
     {
         $message = $call->getMessage();
         if (!$message) {
@@ -228,9 +231,9 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
      *
      * @param RequestInterface $request
      * @param array            $options
-     * @return \Psr\Http\Message\ResponseInterface|\GuzzleHttp\Promise\PromiseInterface
+     * @return ResponseInterface|PromiseInterface
      */
-    public function sendRawRequest(RequestInterface $request, array $options = [])
+    public function sendRawRequest(RequestInterface $request, array $options = []): ResponseInterface|PromiseInterface
     {
         return ($this->httpHandler)($request, $options);
     }
@@ -261,13 +264,13 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
      * @return RestServerStreamingCall
      */
     private function doServerStreamRequest(
-        $httpHandler,
-        $request,
-        $headers,
-        $decodeType,
-        $callOptions,
-        $decoderOptions = []
-    ) {
+        callable $httpHandler,
+        RequestInterface $request,
+        array $headers,
+        string $decodeType,
+        array $callOptions,
+        array $decoderOptions = []
+    ): RestServerStreamingCall {
         $call = new RestServerStreamingCall(
             $httpHandler,
             $decodeType,
@@ -283,7 +286,7 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
      *
      * @return array<mixed>
      */
-    private function getCallOptions(array $options)
+    private function getCallOptions(array $options): array
     {
         $callOptions = $options['transportOptions']['restOptions'] ?? [];
 
