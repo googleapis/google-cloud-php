@@ -829,4 +829,87 @@ class GCECredentialsTest extends BaseTest
 
         $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
     }
+
+    public function testUpdateMetadataWithRegionalAccessBoundarySuppressedWithMdsUniverseDomain()
+    {
+        $timesCalled = 0;
+        $httpHandler = function () use (&$timesCalled) {
+            return match (++$timesCalled) {
+                1 => new Response(200, [GCECredentials::FLAVOR_HEADER => 'Google']),
+                2 => new Response(200, [], '{"access_token": "abc", "expires_in": 57}'),
+                3 => new Response(200, [], 'example.com'),
+            };
+        };
+
+        $gceCreds = new GCECredentials(
+            enableRegionalAccessBoundary: true,
+        );
+
+        $metadata = $gceCreds->updateMetadata([], null, $httpHandler);
+
+        $this->assertEquals(3, $timesCalled);
+        $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
+    }
+
+    public function testUpdateMetadataWithRegionalAccessBoundaryRunsWithExplicitMdsDefaultUniverse()
+    {
+        $timesCalled = 0;
+        $httpHandler = function () use (&$timesCalled) {
+            return match (++$timesCalled) {
+                1 => new Response(200, [GCECredentials::FLAVOR_HEADER => 'Google']),
+                2 => new Response(200, [], '{"access_token": "abc", "expires_in": 57}'),
+                3 => new Response(200, [], 'googleapis.com'),
+                4 => new Response(200, [], '1234567890-compute@developer.gserviceaccount.com'),
+                5 => new Response(200, [], '{"locations": [], "encodedLocations": "foo"}'),
+            };
+        };
+
+        $gceCreds = new GCECredentials(
+            enableRegionalAccessBoundary: true,
+        );
+
+        $metadata = $gceCreds->updateMetadata([], null, $httpHandler);
+
+        $this->assertEquals(5, $timesCalled);
+        $this->assertEquals('foo', $metadata['x-allowed-locations']);
+    }
+
+    public function testUpdateMetadataWithRegionalAccessBoundarySuppressedOnMdsUniverseNotFound()
+    {
+        $httpHandler = $this->getHandler([
+            new Response(200, [GCECredentials::FLAVOR_HEADER => 'Google']),
+            new Response(200, [], '{"access_token": "abc", "expires_in": 57}'),
+            new Response(404),
+        ]);
+
+        $gceCreds = new GCECredentials(
+            enableRegionalAccessBoundary: true,
+        );
+
+        $metadata = $gceCreds->updateMetadata([], null, $httpHandler);
+
+        $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
+        $this->assertSame(GCECredentials::DEFAULT_UNIVERSE_DOMAIN, $gceCreds->getUniverseDomain($httpHandler));
+    }
+
+    public function testUpdateMetadataWithRegionalAccessBoundarySuppressedOnEmptyMdsUniverse()
+    {
+        $timesCalled = 0;
+        $httpHandler = function () use (&$timesCalled) {
+            return match (++$timesCalled) {
+                1 => new Response(200, [GCECredentials::FLAVOR_HEADER => 'Google']),
+                2 => new Response(200, [], '{"access_token": "abc", "expires_in": 57}'),
+                3 => new Response(200, [], ''),
+            };
+        };
+
+        $gceCreds = new GCECredentials(
+            enableRegionalAccessBoundary: true,
+        );
+
+        $metadata = $gceCreds->updateMetadata([], null, $httpHandler);
+
+        $this->assertEquals(3, $timesCalled);
+        $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
+    }
 }

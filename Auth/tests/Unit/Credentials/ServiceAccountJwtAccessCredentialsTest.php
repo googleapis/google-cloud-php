@@ -566,6 +566,7 @@ class ServiceAccountJwtAccessCredentialsTest extends TestCase
             'type' => 'service_account',
             'private_key' => file_get_contents(__DIR__ . '/../fixtures/fixtures1/private.pem'),
             'client_email' => 'test@example.com',
+            'universe_domain' => 'googleapis.com',
         ];
         $serviceAccountCreds = new ServiceAccountCredentials(
             'a-scope',

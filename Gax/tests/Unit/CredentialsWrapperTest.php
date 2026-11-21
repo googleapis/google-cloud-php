@@ -643,6 +643,113 @@ class CredentialsWrapperTest extends TestCase
         $this->assertIsString($serialized);
     }
 
+    public function testBuildDisablesRegionalAccessBoundaryOutsideDefaultUniverseDomain()
+    {
+        $serviceAccountKey = [
+            'type' => 'service_account',
+            'client_email' => 'test@example.com',
+            'private_key' => 'fake-key',
+        ];
+        $expectedKeyCreds = new ServiceAccountCredentials(
+            null,
+            $serviceAccountKey,
+            enableRegionalAccessBoundary: false
+        );
+        $expectedKeyCreds->useJwtAccessWithScope();
+        $this->assertEquals(
+            new CredentialsWrapper(
+                new FetchAuthTokenCache($expectedKeyCreds, [], new MemoryCacheItemPool()),
+                null,
+                'example.com'
+            ),
+            CredentialsWrapper::build(
+                [
+                    'keyFile' => $serviceAccountKey,
+                    'enableRegionalAccessBoundary' => true,
+                ],
+                'example.com'
+            )
+        );
+
+        $previousEnv = getenv('GOOGLE_APPLICATION_CREDENTIALS');
+        $tmpKeyFile = tempnam(sys_get_temp_dir(), 'sa-key-');
+        file_put_contents($tmpKeyFile, json_encode($serviceAccountKey));
+        try {
+            $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', $tmpKeyFile);
+            $wrapper = CredentialsWrapper::build(
+                ['enableRegionalAccessBoundary' => true, 'enableCaching' => false],
+                'example.com'
+            );
+            $this->assertEquals(
+                new CredentialsWrapper($expectedKeyCreds, null, 'example.com'),
+                $wrapper
+            );
+        } finally {
+            $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', $previousEnv === false ? null : $previousEnv);
+            @unlink($tmpKeyFile);
+        }
+    }
+
+    public function testBuildRequiresStrictBooleanForEnableRegionalAccessBoundary()
+    {
+        $serviceAccountKey = [
+            'type' => 'service_account',
+            'client_email' => 'test@example.com',
+            'private_key' => 'fake-key',
+        ];
+        $expectedKeyCreds = new ServiceAccountCredentials(
+            null,
+            $serviceAccountKey,
+            enableRegionalAccessBoundary: false
+        );
+        $expectedKeyCreds->useJwtAccessWithScope();
+
+        foreach (['false', 'true', '1', 1] as $nonBoolValue) {
+            $this->assertEquals(
+                new CredentialsWrapper(
+                    new FetchAuthTokenCache($expectedKeyCreds, [], new MemoryCacheItemPool()),
+                    null
+                ),
+                CredentialsWrapper::build([
+                    'keyFile' => $serviceAccountKey,
+                    'enableRegionalAccessBoundary' => $nonBoolValue,
+                ])
+            );
+        }
+    }
+
+    public function testCheckUniverseDomainOnGceCredentialsChecksWhenRegionalAccessBoundaryEnabled()
+    {
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage(
+            'The configured universe domain (example.com) does not match '
+            . 'the credential universe domain (googleapis.com)'
+        );
+
+        $fetcher = new GCECredentials(
+            universeDomain: 'googleapis.com',
+            enableRegionalAccessBoundary: true
+        );
+        $wrapper = new CredentialsWrapper(
+            new FetchAuthTokenCache($fetcher, [], new MemoryCacheItemPool()),
+            null,
+            'example.com'
+        );
+
+        $wrapper->checkUniverseDomain();
+    }
+
+    public function testCheckUniverseDomainOnGceCredentialsUsesAuthHttpHandlerWhenRegionalAccessBoundaryEnabled()
+    {
+        $fetcher = new GCECredentials(enableRegionalAccessBoundary: true);
+        $fetcher->setIsOnGce(true);
+        $httpHandler = fn () => new \GuzzleHttp\Psr7\Response(200, [], 'example.com');
+        $wrapper = new CredentialsWrapper($fetcher, $httpHandler, 'example.com');
+
+        $wrapper->checkUniverseDomain();
+        $this->assertSame('example.com', $fetcher->getUniverseDomain($httpHandler));
+    }
+
     private function setEnv(string $env, ?string $value = null)
     {
         if ($value === null) {

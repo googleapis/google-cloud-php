@@ -439,6 +439,7 @@ class ServiceAccountCredentialsTest extends TestCase
             'type' => 'service_account',
             'private_key' => file_get_contents(__DIR__ . '/../fixtures/fixtures1/private.pem'),
             'client_email' => 'test@example.com',
+            'universe_domain' => 'googleapis.com',
         ];
         $serviceAccountCreds = new ServiceAccountCredentials(
             'a-scope',
@@ -468,6 +469,112 @@ class ServiceAccountCredentialsTest extends TestCase
 
         $metadata = $serviceAccountCreds->updateMetadata([]);
 
+        $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
+    }
+
+    public function testUpdateMetadataWithRegionalAccessBoundarySuppressedWithNonDefaultTokenUriHost()
+    {
+        $requestCount = 0;
+        $httpHandler = function () use (&$requestCount) {
+            $requestCount++;
+            return new Response(200, [], '{"access_token": "source-token", "expires_in": 3600}');
+        };
+
+        $jsonKey = [
+            'type' => 'service_account',
+            'private_key' => file_get_contents(__DIR__ . '/../fixtures/fixtures1/private.pem'),
+            'client_email' => 'test@example.com',
+            'token_uri' => 'https://oauth2.example.com/token',
+        ];
+        $serviceAccountCreds = new ServiceAccountCredentials(
+            'a-scope',
+            $jsonKey,
+            enableRegionalAccessBoundary: true
+        );
+        $serviceAccountCreds->useJwtAccessWithScope();
+
+        $metadata = $serviceAccountCreds->updateMetadata([], null, $httpHandler);
+
+        $this->assertEquals(0, $requestCount);
+        $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
+    }
+
+    public function testUpdateMetadataWithRegionalAccessBoundaryWithDefaultTokenUriHost()
+    {
+        $httpHandler = $this->getHandler([
+            new Response(200, [], '{"access_token": "source-token", "expires_in": 3600}'),
+            new Response(200, [], '{"locations": [], "encodedLocations": "foo"}'),
+        ]);
+
+        $jsonKey = [
+            'type' => 'service_account',
+            'private_key' => file_get_contents(__DIR__ . '/../fixtures/fixtures1/private.pem'),
+            'client_email' => 'test@example.com',
+            'token_uri' => 'https://oauth2.googleapis.com/token',
+        ];
+        $serviceAccountCreds = new ServiceAccountCredentials(
+            'a-scope',
+            $jsonKey,
+            enableRegionalAccessBoundary: true
+        );
+
+        $metadata = $serviceAccountCreds->updateMetadata([], null, $httpHandler);
+
+        $this->assertArrayHasKey('x-allowed-locations', $metadata);
+        $this->assertEquals('foo', $metadata['x-allowed-locations']);
+    }
+
+    public function testUpdateMetadataWithRegionalAccessBoundarySuppressedWithoutUniverseDomainOrTokenUri()
+    {
+        $requestCount = 0;
+        $httpHandler = function () use (&$requestCount) {
+            $requestCount++;
+            return new Response(200, [], '{"access_token": "source-token", "expires_in": 3600}');
+        };
+
+        $jsonKey = [
+            'type' => 'service_account',
+            'private_key' => file_get_contents(__DIR__ . '/../fixtures/fixtures1/private.pem'),
+            'client_email' => 'test@example.com',
+        ];
+        $serviceAccountCreds = new ServiceAccountCredentials(
+            'a-scope',
+            $jsonKey,
+            enableRegionalAccessBoundary: true
+        );
+        $serviceAccountCreds->useJwtAccessWithScope();
+
+        $metadata = $serviceAccountCreds->updateMetadata([], null, $httpHandler);
+
+        $this->assertEquals(0, $requestCount);
+        $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
+    }
+
+    public function testUpdateMetadataWithRegionalAccessBoundarySuppressedWithDefaultUniverseAndNonDefaultTokenUri()
+    {
+        $requestCount = 0;
+        $httpHandler = function () use (&$requestCount) {
+            $requestCount++;
+            return new Response(200, [], '{"access_token": "source-token", "expires_in": 3600}');
+        };
+
+        $jsonKey = [
+            'type' => 'service_account',
+            'private_key' => file_get_contents(__DIR__ . '/../fixtures/fixtures1/private.pem'),
+            'client_email' => 'test@example.com',
+            'universe_domain' => 'googleapis.com',
+            'token_uri' => 'https://oauth2.example.com/token',
+        ];
+        $serviceAccountCreds = new ServiceAccountCredentials(
+            'a-scope',
+            $jsonKey,
+            enableRegionalAccessBoundary: true
+        );
+        $serviceAccountCreds->useJwtAccessWithScope();
+
+        $metadata = $serviceAccountCreds->updateMetadata([], null, $httpHandler);
+
+        $this->assertEquals(0, $requestCount);
         $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
     }
 }

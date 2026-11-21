@@ -79,6 +79,12 @@ class ServiceAccountCredentials extends CredentialsLoader implements
      */
     private const CRED_TYPE = 'sa';
     private const IAM_SCOPE = 'https://www.googleapis.com/auth/iam';
+    private const DEFAULT_TOKEN_HOSTS = [
+        'oauth2.googleapis.com',
+        'oauth2.mtls.googleapis.com',
+        'accounts.google.com',
+        'www.googleapis.com',
+    ];
 
     /**
      * The OAuth2 instance used to conduct authorization.
@@ -118,6 +124,10 @@ class ServiceAccountCredentials extends CredentialsLoader implements
      * @var string
      */
     private string $universeDomain;
+
+    private bool $hasExplicitUniverseDomain = false;
+
+    private ?string $tokenUri = null;
 
     /**
      * Whether this is an ID token request or an access token request. Used when
@@ -190,6 +200,9 @@ class ServiceAccountCredentials extends CredentialsLoader implements
 
         $this->projectId = $jsonKey['project_id'] ?? null;
         $this->universeDomain = $jsonKey['universe_domain'] ?? self::DEFAULT_UNIVERSE_DOMAIN;
+        $this->hasExplicitUniverseDomain = isset($jsonKey['universe_domain'])
+            && '' !== (string) $jsonKey['universe_domain'];
+        $this->tokenUri = isset($jsonKey['token_uri']) ? (string) $jsonKey['token_uri'] : null;
         $this->enableRegionalAccessBoundary = $enableRegionalAccessBoundary;
     }
 
@@ -331,14 +344,23 @@ class ServiceAccountCredentials extends CredentialsLoader implements
             ? $this->updateMetadataSelfSignedJwt($metadata, $authUri, $httpHandler)
             : parent::updateMetadata($metadata, $authUri, $httpHandler);
 
-        $metadata = $this->updateRegionalAccessBoundaryMetadata(
-            $metadata,
-            $this->buildRegionalAccessBoundaryLookupUrl(
-                serviceAccountEmail: $this->auth->getIssuer()
-            ),
-            $this->getUniverseDomain(),
-            $httpHandler,
-        );
+        if ($this->enableRegionalAccessBoundary
+            && $this->getUniverseDomain() === self::DEFAULT_UNIVERSE_DOMAIN
+            && (
+                (null !== $this->tokenUri
+                    && $this->hasAllowedRegionalAccessBoundaryHost($this->tokenUri, self::DEFAULT_TOKEN_HOSTS))
+                || ($this->hasExplicitUniverseDomain && null === $this->tokenUri)
+            )
+        ) {
+            $metadata = $this->updateRegionalAccessBoundaryMetadata(
+                $metadata,
+                $this->buildRegionalAccessBoundaryLookupUrl(
+                    serviceAccountEmail: $this->auth->getIssuer()
+                ),
+                $this->getUniverseDomain(),
+                $httpHandler,
+            );
+        }
 
         return $metadata;
     }

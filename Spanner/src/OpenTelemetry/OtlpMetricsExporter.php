@@ -33,6 +33,10 @@
 namespace Google\Cloud\Spanner\OpenTelemetry;
 
 use Google\ApiCore\CredentialsWrapper;
+use Google\Auth\Credentials\GCECredentials;
+use Google\Auth\FetchAuthTokenCache;
+use Google\Auth\FetchAuthTokenInterface;
+use Google\Auth\GetUniverseDomainInterface;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\HandlerStack;
 use OpenTelemetry\Contrib\Otlp\MetricExporter as OtlpMetricExporter;
@@ -43,6 +47,7 @@ use OpenTelemetry\SDK\Metrics\Data\Temporality;
 use OpenTelemetry\SDK\Metrics\MetricMetadataInterface;
 use OpenTelemetry\SDK\Metrics\PushMetricExporterInterface;
 use Psr\Http\Message\RequestInterface;
+use ReflectionProperty;
 use Throwable;
 
 /**
@@ -55,7 +60,12 @@ class OtlpMetricsExporter implements PushMetricExporterInterface, AggregationTem
 {
     private const DEFAULT_ENDPOINT = 'https://telemetry.googleapis.com/v1/metrics';
 
-    private PushMetricExporterInterface $otlpExporter;
+    private ?PushMetricExporterInterface $otlpExporter = null;
+
+    private ?GCECredentials $gceCredentials = null;
+
+    /** @var callable|null */
+    private $authHttpHandler = null;
 
     /**
      * @param CredentialsWrapper $credentials The credentials wrapper for metric export.
@@ -69,6 +79,16 @@ class OtlpMetricsExporter implements PushMetricExporterInterface, AggregationTem
         array $options = [],
         ?PushMetricExporterInterface $otlpExporter = null
     ) {
+        if (!$this->isDefaultUniverseDomain($credentials, $options)) {
+            return;
+        }
+
+        $fetcher = $this->unwrapCredentialsFetcher($credentials);
+        if ($fetcher instanceof GCECredentials) {
+            $this->gceCredentials = $fetcher;
+            $this->authHttpHandler = $this->getAuthHttpHandler($credentials);
+        }
+
         if ($otlpExporter !== null) {
             $this->otlpExporter = $otlpExporter;
             return;
@@ -112,7 +132,18 @@ class OtlpMetricsExporter implements PushMetricExporterInterface, AggregationTem
      */
     public function export(iterable $batch): bool
     {
+        if ($this->otlpExporter === null) {
+            return false;
+        }
+
         try {
+            if ($this->gceCredentials !== null
+                && $this->gceCredentials->getUniverseDomain($this->authHttpHandler)
+                    !== GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
+            ) {
+                return false;
+            }
+
             return $this->otlpExporter->export($batch);
         } catch (Throwable $e) {
             return false;
@@ -126,6 +157,10 @@ class OtlpMetricsExporter implements PushMetricExporterInterface, AggregationTem
      */
     public function forceFlush(): bool
     {
+        if ($this->otlpExporter === null) {
+            return false;
+        }
+
         try {
             return $this->otlpExporter->forceFlush();
         } catch (Throwable $e) {
@@ -140,6 +175,10 @@ class OtlpMetricsExporter implements PushMetricExporterInterface, AggregationTem
      */
     public function shutdown(): bool
     {
+        if ($this->otlpExporter === null) {
+            return false;
+        }
+
         try {
             return $this->otlpExporter->shutdown();
         } catch (Throwable $e) {
@@ -156,5 +195,56 @@ class OtlpMetricsExporter implements PushMetricExporterInterface, AggregationTem
     public function temporality(MetricMetadataInterface $metric): Temporality|string|null
     {
         return Temporality::CUMULATIVE;
+    }
+
+    private function isDefaultUniverseDomain(CredentialsWrapper $credentials, array $options): bool
+    {
+        $universeDomain = $options['universeDomain'] ?? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
+        if ($universeDomain !== GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN) {
+            return false;
+        }
+
+        $wrapperUniverseProp = new ReflectionProperty(CredentialsWrapper::class, 'universeDomain');
+        if ($wrapperUniverseProp->isInitialized($credentials)
+            && $wrapperUniverseProp->getValue($credentials) !== GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
+        ) {
+            return false;
+        }
+
+        $fetcher = $this->unwrapCredentialsFetcher($credentials);
+        if ($fetcher instanceof GetUniverseDomainInterface
+            && !$fetcher instanceof GCECredentials
+            && $fetcher->getUniverseDomain() !== GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
+        ) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private function unwrapCredentialsFetcher(CredentialsWrapper $credentials): ?FetchAuthTokenInterface
+    {
+        $fetcherProp = new ReflectionProperty(CredentialsWrapper::class, 'credentialsFetcher');
+        if (!$fetcherProp->isInitialized($credentials)) {
+            return null;
+        }
+
+        $fetcher = $fetcherProp->getValue($credentials);
+        while ($fetcher instanceof FetchAuthTokenCache) {
+            $fetcher = $fetcher->getFetcher();
+        }
+
+        return $fetcher instanceof FetchAuthTokenInterface ? $fetcher : null;
+    }
+
+    private function getAuthHttpHandler(CredentialsWrapper $credentials): ?callable
+    {
+        $handlerProp = new ReflectionProperty(CredentialsWrapper::class, 'authHttpHandler');
+        if (!$handlerProp->isInitialized($credentials)) {
+            return null;
+        }
+
+        $handler = $handlerProp->getValue($credentials);
+        return is_callable($handler) ? $handler : null;
     }
 }

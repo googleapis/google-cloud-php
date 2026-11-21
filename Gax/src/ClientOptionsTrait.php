@@ -331,6 +331,7 @@ trait ClientOptionsTrait
         }
 
         if ($credentials instanceof CredentialsWrapper) {
+            CredentialsWrapper::validateRegionalAccessBoundaryUniverseDomain($credentials, $universeDomain);
             return $credentials;
         }
 
