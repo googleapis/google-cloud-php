@@ -920,4 +920,57 @@ class SpannerClientTest extends TestCase
         // If it probed the GCE metadata server without a mock, it would take ~1.5s to time out.
         $this->assertLessThan(1.0, $end - $start);
     }
+
+    public function testBuiltInMetricsDisabledOutsideDefaultUniverseDomain()
+    {
+        $gapicSpannerClient = $this->prophesize(GapicSpannerClient::class);
+        $gapicSpannerClient->prependMiddleware(Argument::any())
+            ->shouldBeCalledTimes(1);
+        $gapicSpannerClient->addMiddleware(Argument::any())
+            ->shouldBeCalledTimes(1);
+
+        new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'gapicSpannerClient' => $gapicSpannerClient->reveal(),
+            'enableBuiltInMetrics' => true,
+            'universeDomain' => 'example.com',
+        ]);
+    }
+
+    public function testBuiltInMetricsRequiresStrictBoolean()
+    {
+        $gapicSpannerClient = $this->prophesize(GapicSpannerClient::class);
+        $gapicSpannerClient->prependMiddleware(Argument::any())
+            ->shouldBeCalledTimes(1);
+        $gapicSpannerClient->addMiddleware(Argument::any())
+            ->shouldBeCalledTimes(1);
+
+        new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'gapicSpannerClient' => $gapicSpannerClient->reveal(),
+            'enableBuiltInMetrics' => 'false',
+        ]);
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testBuiltInMetricsDisabledWhenUniverseDomainEnvVarSet()
+    {
+        putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN=example.com');
+        $gapicSpannerClient = $this->prophesize(GapicSpannerClient::class);
+        $gapicSpannerClient->prependMiddleware(Argument::any())
+            ->shouldBeCalledTimes(1);
+        $gapicSpannerClient->addMiddleware(Argument::any())
+            ->shouldBeCalledTimes(1);
+
+        new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'gapicSpannerClient' => $gapicSpannerClient->reveal(),
+            'enableBuiltInMetrics' => true,
+        ]);
+    }
 }

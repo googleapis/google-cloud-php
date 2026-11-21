@@ -1066,7 +1066,12 @@ class SpannerClient
     ): void {
         $timeoutMillis = $this->pluck('metricsTimeoutMillis', $options, false) ?? 100;
 
-        if (!$this->pluck('enableBuiltInMetrics', $options, false)) {
+        if ($this->pluck('enableBuiltInMetrics', $options, false) !== true) {
+            return;
+        }
+
+        $universeDomain = $options['universeDomain'] ?? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
+        if ($universeDomain !== GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN) {
             return;
         }
 
