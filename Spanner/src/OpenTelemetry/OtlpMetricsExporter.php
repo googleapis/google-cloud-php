@@ -50,6 +50,10 @@ use Throwable;
  * OtlpMetricsExporter encapsulates the standard OpenTelemetry OTLP MetricExporter
  * targeting Google Cloud Telemetry endpoint.
  *
+ * Only supported in the default universe domain (`googleapis.com`). When
+ * `$options['universeDomain']` is set to another domain, exporting, flushing,
+ * and shutting down are no-ops returning `false`.
+ *
  * @internal
  */
 class OtlpMetricsExporter implements PushMetricExporterInterface, AggregationTemporalitySelectorInterface
