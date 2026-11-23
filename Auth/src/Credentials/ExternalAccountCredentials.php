@@ -62,17 +62,6 @@ class ExternalAccountCredentials implements
 
     private const EXTERNAL_ACCOUNT_TYPE = 'external_account';
     private const CLOUD_RESOURCE_MANAGER_URL = 'https://cloudresourcemanager.UNIVERSE_DOMAIN/v1/projects/%s';
-    private const DEFAULT_IAM_HOSTS = [
-        'iam.googleapis.com',
-    ];
-    private const DEFAULT_IAM_CREDENTIALS_HOSTS = [
-        'iamcredentials.googleapis.com',
-        'iamcredentials.mtls.googleapis.com',
-    ];
-    private const DEFAULT_STS_HOSTS = [
-        'sts.googleapis.com',
-        'sts.mtls.googleapis.com',
-    ];
 
     private OAuth2 $auth;
     private ?string $quotaProject;
@@ -348,31 +337,10 @@ class ExternalAccountCredentials implements
 
         if ($this->enableRegionalAccessBoundary
             && $this->getUniverseDomain() === GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
-            && $this->hasAllowedRegionalAccessBoundaryHost(
-                (string) $this->auth->getTokenCredentialUri(),
-                self::DEFAULT_STS_HOSTS
-            )
         ) {
-            if ($this->serviceAccountImpersonationUrl) {
-                if (!$this->hasAllowedRegionalAccessBoundaryHost(
-                    $this->serviceAccountImpersonationUrl,
-                    self::DEFAULT_IAM_CREDENTIALS_HOSTS
-                )) {
-                    return $metadata;
-                }
-                $clientName = self::getServiceAccountImpersonationEmail($this->serviceAccountImpersonationUrl);
-                if (null === $clientName) {
-                    return $metadata;
-                }
-            } else {
-                if (!$this->hasAllowedRegionalAccessBoundaryHost(
-                    (string) $this->auth->getAudience(),
-                    self::DEFAULT_IAM_HOSTS
-                )) {
-                    return $metadata;
-                }
-                $clientName = null;
-            }
+            $clientName = $this->serviceAccountImpersonationUrl
+                ? self::getServiceAccountImpersonationEmail($this->serviceAccountImpersonationUrl)
+                : null;
 
             $metadata = $this->updateRegionalAccessBoundaryMetadata(
                 $metadata,

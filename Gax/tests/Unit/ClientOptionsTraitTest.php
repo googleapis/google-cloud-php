@@ -36,7 +36,6 @@ use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\ValidationException;
-use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetUniverseDomainInterface;
@@ -747,39 +746,5 @@ class ClientOptionsTraitTest extends TestCase
             'logger' => 'nonValidOption'
         ];
         $this->clientStub->buildClientOptions($optionsArray);
-    }
-
-    public function testCreateCredentialsWrapperWithMismatchedUniverseDomainAndRegionalAccessBoundaryThrows()
-    {
-        $this->expectException(ValidationException::class);
-        $this->expectExceptionMessage(
-            'The configured universe domain (example.com) does not match '
-            . 'the credential universe domain (googleapis.com)'
-        );
-
-        $wrapper = CredentialsWrapper::build([
-            'keyFile' => [
-                'type' => 'service_account',
-                'client_email' => 'test@example.com',
-                'private_key' => 'fake-key',
-            ],
-            'enableRegionalAccessBoundary' => true,
-        ]);
-
-        $this->clientStub->createCredentialsWrapper($wrapper, [], 'example.com');
-    }
-
-    public function testCreateCredentialsWrapperWithMismatchedUniverseDomainWithoutRegionalAccessBoundaryAllowed()
-    {
-        $wrapper = new CredentialsWrapper(new ServiceAccountCredentials(null, [
-            'type' => 'service_account',
-            'client_email' => 'test@example.com',
-            'private_key' => 'fake-key',
-        ]));
-
-        $this->assertSame(
-            $wrapper,
-            $this->clientStub->createCredentialsWrapper($wrapper, [], 'example.com')
-        );
     }
 }

@@ -60,8 +60,6 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
 
     private bool $hasCheckedUniverse = false;
 
-    private string $universeDomain = GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
-
     /** @var int */
     private static int $eagerRefreshThresholdSeconds = 10;
 
@@ -77,14 +75,13 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
     public function __construct(
         FetchAuthTokenInterface $credentialsFetcher,
         ?callable $authHttpHandler = null,
-        string $universeDomain = GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN,
+        private string $universeDomain = GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN,
     ) {
         $this->credentialsFetcher = $credentialsFetcher;
         $this->authHttpHandler = $authHttpHandler;
         if (empty($universeDomain)) {
             throw new ValidationException('The universe domain cannot be empty');
         }
-        $this->universeDomain = $universeDomain;
     }
 
     /**
@@ -284,12 +281,9 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
     public function checkUniverseDomain(): void
     {
         if (false === $this->hasCheckedUniverse && $this->shouldCheckUniverseDomain()) {
-            $fetcher = $this->unwrapCredentialsFetcher();
-            $credentialsUniverse = $fetcher instanceof GCECredentials && null !== $this->authHttpHandler
-                ? $fetcher->getUniverseDomain($this->authHttpHandler)
-                : ($this->credentialsFetcher instanceof GetUniverseDomainInterface
-                    ? $this->credentialsFetcher->getUniverseDomain()
-                    : GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN);
+            $credentialsUniverse = $this->credentialsFetcher instanceof GetUniverseDomainInterface
+                ? $this->credentialsFetcher->getUniverseDomain()
+                : GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
             if ($credentialsUniverse !== $this->universeDomain) {
                 throw new ValidationException(sprintf(
                     'The configured universe domain (%s) does not match the credential universe domain (%s)',
@@ -302,74 +296,21 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
     }
 
     /**
-     * Validate that a pre-built wrapper's configured universe domain matches the
-     * client's universe domain when Regional Access Boundary lookups are enabled.
-     *
-     * @internal
-     * @throws ValidationException
-     */
-    public static function validateRegionalAccessBoundaryUniverseDomain(
-        self $wrapper,
-        string $universeDomain
-    ): void {
-        if (self::hasRegionalAccessBoundaryEnabled($wrapper->credentialsFetcher)
-            && $wrapper->universeDomain !== $universeDomain
-        ) {
-            throw new ValidationException(sprintf(
-                'The configured universe domain (%s) does not match the credential universe domain (%s)',
-                $universeDomain,
-                $wrapper->universeDomain
-            ));
-        }
-    }
-
-    /**
-     * Skip universe domain check for Metadata server (e.g. GCE) credentials
-     * unless Regional Access Boundary lookups are enabled.
+     * Skip universe domain check for Metadata server (e.g. GCE) credentials.
      *
      * @return bool
      */
     private function shouldCheckUniverseDomain(): bool
     {
-        $fetcher = $this->unwrapCredentialsFetcher();
+        $fetcher = $this->credentialsFetcher instanceof FetchAuthTokenCache
+            ? $this->credentialsFetcher->getFetcher()
+            : $this->credentialsFetcher;
 
         if ($fetcher instanceof GCECredentials) {
-            return self::hasRegionalAccessBoundaryEnabled($fetcher);
-        }
-
-        return true;
-    }
-
-    private static function hasRegionalAccessBoundaryEnabled(?FetchAuthTokenInterface $fetcher): bool
-    {
-        while ($fetcher instanceof FetchAuthTokenCache) {
-            $fetcher = $fetcher->getFetcher();
-        }
-        if (null === $fetcher) {
             return false;
         }
 
-        $reflection = new \ReflectionObject($fetcher);
-        while ($reflection !== false) {
-            if ($reflection->hasProperty('enableRegionalAccessBoundary')) {
-                $property = $reflection->getProperty('enableRegionalAccessBoundary');
-                return $property->isInitialized($fetcher)
-                    && $property->getValue($fetcher) === true;
-            }
-            $reflection = $reflection->getParentClass();
-        }
-
-        return false;
-    }
-
-    private function unwrapCredentialsFetcher(): ?FetchAuthTokenInterface
-    {
-        $fetcher = $this->credentialsFetcher;
-        while ($fetcher instanceof FetchAuthTokenCache) {
-            $fetcher = $fetcher->getFetcher();
-        }
-
-        return $fetcher;
+        return true;
     }
 
     /**

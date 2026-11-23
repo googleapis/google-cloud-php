@@ -20,7 +20,6 @@ namespace Google\Auth\Credentials;
 
 use Google\Auth\CacheTrait;
 use Google\Auth\CredentialsLoader;
-use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\HttpHandler\HttpClientCache;
@@ -56,10 +55,6 @@ class ImpersonatedServiceAccountCredentials extends CredentialsLoader implements
     private const IAM_SCOPE = 'https://www.googleapis.com/auth/iam';
     private const ID_TOKEN_IMPERSONATION_URL =
         'https://iamcredentials.UNIVERSE_DOMAIN/v1/projects/-/serviceAccounts/%s:generateIdToken';
-    private const DEFAULT_IAM_CREDENTIALS_HOSTS = [
-        'iamcredentials.googleapis.com',
-        'iamcredentials.mtls.googleapis.com',
-    ];
 
     /**
      * @var string
@@ -81,8 +76,6 @@ class ImpersonatedServiceAccountCredentials extends CredentialsLoader implements
     private string|array $targetScope;
 
     private int $lifetime;
-
-    private ?string $universeDomain = null;
 
     /**
      * @var array<mixed>|null
@@ -139,27 +132,9 @@ class ImpersonatedServiceAccountCredentials extends CredentialsLoader implements
                 'Scope and targetAudience cannot both be supplied'
             );
         }
-        if (isset($jsonKey['universe_domain'])) {
-            $this->universeDomain = (string) $jsonKey['universe_domain'];
-        }
         if (is_array($jsonKey['source_credentials'])) {
             if (!array_key_exists('type', $jsonKey['source_credentials'])) {
                 throw new InvalidArgumentException('json key source credentials are missing the type field');
-            }
-            if (null !== $this->universeDomain) {
-                if (isset($jsonKey['source_credentials']['universe_domain'])) {
-                    $sourceUniverseDomain = (string) $jsonKey['source_credentials']['universe_domain'];
-                    if ($sourceUniverseDomain !== $this->universeDomain) {
-                        throw new InvalidArgumentException(sprintf(
-                            'Universe domain %s in source credentials does not match '
-                            . '%s universe domain set for impersonated credentials.',
-                            $sourceUniverseDomain,
-                            $this->universeDomain
-                        ));
-                    }
-                } else {
-                    $jsonKey['source_credentials']['universe_domain'] = $this->universeDomain;
-                }
             }
             if ($targetAudience !== null
                 && $jsonKey['source_credentials']['type'] === 'service_account'
@@ -178,24 +153,6 @@ class ImpersonatedServiceAccountCredentials extends CredentialsLoader implements
                 'external_account' => new ExternalAccountCredentials($scope, $jsonKey['source_credentials']),
                 default => throw new \InvalidArgumentException('invalid value in the type field'),
             };
-        } elseif (null !== $this->universeDomain
-            && $jsonKey['source_credentials'] instanceof GetUniverseDomainInterface
-        ) {
-            $unwrapped = $jsonKey['source_credentials'];
-            while ($unwrapped instanceof FetchAuthTokenCache) {
-                $unwrapped = $unwrapped->getFetcher();
-            }
-            if (!$unwrapped instanceof GCECredentials) {
-                $sourceUniverseDomain = $jsonKey['source_credentials']->getUniverseDomain();
-                if ($sourceUniverseDomain !== $this->universeDomain) {
-                    throw new InvalidArgumentException(sprintf(
-                        'Universe domain %s in source credentials does not match '
-                        . '%s universe domain set for impersonated credentials.',
-                        $sourceUniverseDomain,
-                        $this->universeDomain
-                    ));
-                }
-            }
         }
 
         $this->targetScope = $scope ?? [];
@@ -351,10 +308,6 @@ class ImpersonatedServiceAccountCredentials extends CredentialsLoader implements
 
     public function getUniverseDomain(): string
     {
-        if (null !== $this->universeDomain) {
-            return $this->universeDomain;
-        }
-
         return $this->sourceCredentials instanceof GetUniverseDomainInterface
             ? $this->sourceCredentials->getUniverseDomain()
             : self::DEFAULT_UNIVERSE_DOMAIN;
@@ -377,26 +330,15 @@ class ImpersonatedServiceAccountCredentials extends CredentialsLoader implements
 
         if ($this->enableRegionalAccessBoundary
             && $this->getUniverseDomain() === self::DEFAULT_UNIVERSE_DOMAIN
-            && $this->hasAllowedRegionalAccessBoundaryHost(
-                $this->serviceAccountImpersonationUrl,
-                self::DEFAULT_IAM_CREDENTIALS_HOSTS
-            )
         ) {
-            $sourceUniverse = $this->sourceCredentials instanceof GCECredentials
-                ? $this->sourceCredentials->getUniverseDomain($httpHandler)
-                : ($this->sourceCredentials instanceof GetUniverseDomainInterface
-                    ? $this->sourceCredentials->getUniverseDomain()
-                    : self::DEFAULT_UNIVERSE_DOMAIN);
-            if ($sourceUniverse === self::DEFAULT_UNIVERSE_DOMAIN) {
-                $metadata = $this->updateRegionalAccessBoundaryMetadata(
-                    $metadata,
-                    $this->buildRegionalAccessBoundaryLookupUrl(
-                        serviceAccountEmail: $this->impersonatedServiceAccountName
-                    ),
-                    $this->getUniverseDomain(),
-                    $httpHandler,
-                );
-            }
+            $metadata = $this->updateRegionalAccessBoundaryMetadata(
+                $metadata,
+                $this->buildRegionalAccessBoundaryLookupUrl(
+                    serviceAccountEmail: $this->impersonatedServiceAccountName
+                ),
+                $this->getUniverseDomain(),
+                $httpHandler,
+            );
         }
 
         return $metadata;

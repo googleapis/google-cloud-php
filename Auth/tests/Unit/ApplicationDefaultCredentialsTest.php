@@ -864,29 +864,6 @@ class ApplicationDefaultCredentialsTest extends TestCase
             'example-universe2.com'
         );
         $this->assertEquals(CredentialsLoader::DEFAULT_UNIVERSE_DOMAIN, $creds3->getUniverseDomain());
-
-        // Test passing in universe domain applies to "impersonated_service_account"
-        $tmpFile = tempnam(sys_get_temp_dir(), 'impersonated-');
-        file_put_contents($tmpFile, json_encode([
-            'type' => 'impersonated_service_account',
-            'service_account_impersonation_url' => 'https://iamcredentials.example-universe.com/v1/'
-                . 'projects/-/serviceAccounts/test@example.com:generateAccessToken',
-            'source_credentials' => [
-                'type' => 'service_account',
-                'client_email' => 'source@example.com',
-                'private_key' => file_get_contents(__DIR__ . '/fixtures/fixtures1/private.pem'),
-            ],
-        ]));
-        try {
-            putenv(ServiceAccountCredentials::ENV_VAR . '=' . $tmpFile);
-            $creds4 = ApplicationDefaultCredentials::getCredentials(
-                universeDomain: 'example-universe.com',
-                enableRegionalAccessBoundary: true
-            );
-            $this->assertEquals('example-universe.com', $creds4->getUniverseDomain());
-        } finally {
-            @unlink($tmpFile);
-        }
     }
 
     /** @runInSeparateProcess */

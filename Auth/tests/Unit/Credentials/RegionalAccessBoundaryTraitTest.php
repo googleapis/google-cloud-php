@@ -395,33 +395,6 @@ class RegionalAccessBoundaryTraitTest extends TestCase
         $this->assertTrue($this->impl->cooldownIsActive());
     }
 
-    /**
-     * @dataProvider provideHasAllowedRegionalAccessBoundaryHost
-     */
-    public function testHasAllowedRegionalAccessBoundaryHost(string $url, array $allowedHosts, bool $expected)
-    {
-        $this->assertSame($expected, $this->impl->hasAllowedRegionalAccessBoundaryHost($url, $allowedHosts));
-    }
-
-    public function provideHasAllowedRegionalAccessBoundaryHost(): array
-    {
-        $iamCredsHosts = ['iamcredentials.googleapis.com', 'iamcredentials.mtls.googleapis.com'];
-        return [
-            'exact match' => ['https://iamcredentials.googleapis.com/v1/foo', $iamCredsHosts, true],
-            'mtls match' => ['https://iamcredentials.mtls.googleapis.com/v1/foo', $iamCredsHosts, true],
-            'with port' => ['https://iamcredentials.googleapis.com:443/v1/foo', $iamCredsHosts, true],
-            'uppercase host' => ['https://IAMCREDENTIALS.GOOGLEAPIS.COM/v1/foo', $iamCredsHosts, true],
-            'trailing dot' => ['https://iamcredentials.googleapis.com./v1/foo', $iamCredsHosts, true],
-            'schemeless audience match' => ['//iam.googleapis.com/projects/123', ['iam.googleapis.com'], true],
-            'non-default host' => ['https://iamcredentials.example.com/v1/foo', $iamCredsHosts, false],
-            'non-default audience' => ['//iam.example.com/projects/123', ['iam.googleapis.com'], false],
-            'sandbox host' => ['https://iamcredentials.sandbox.googleapis.com/v1/foo', $iamCredsHosts, false],
-            'suffix spoof' => ['https://iamcredentials.googleapis.com.evil.com/v1/foo', $iamCredsHosts, false],
-            'unparseable url' => ['not-a-url', $iamCredsHosts, false],
-            'empty string' => ['', $iamCredsHosts, false],
-        ];
-    }
-
     private function getRegionalAccessBoundaryTraitImpl(array $config = [])
     {
         return new class($config) {
@@ -429,7 +402,6 @@ class RegionalAccessBoundaryTraitTest extends TestCase
                 buildRegionalAccessBoundaryLookupUrl as public;
                 lookupRegionalAccessBoundary as public;
                 getRegionalAccessBoundary as public;
-                hasAllowedRegionalAccessBoundaryHost as public;
             }
 
             private $cache;

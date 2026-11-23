@@ -202,11 +202,9 @@ class GCECredentials extends CredentialsLoader implements
     private $serviceAccountIdentity;
 
     /**
-     * @var string|null
+     * @var string
      */
     private ?string $universeDomain;
-
-    private bool $hasExplicitUniverseDomain = false;
 
     /**
      * @param Iam|null $iam [optional] An IAM instance.
@@ -257,7 +255,6 @@ class GCECredentials extends CredentialsLoader implements
         $this->quotaProject = $quotaProject;
         $this->serviceAccountIdentity = $serviceAccountIdentity;
         $this->universeDomain = $universeDomain;
-        $this->hasExplicitUniverseDomain = null !== $universeDomain && '' !== $universeDomain;
         $this->enableRegionalAccessBoundary = $enableRegionalAccessBoundary;
     }
 
@@ -629,7 +626,6 @@ class GCECredentials extends CredentialsLoader implements
                 $httpHandler,
                 self::getUniverseDomainUri()
             );
-            $this->hasExplicitUniverseDomain = '' !== $this->universeDomain;
         } catch (ClientException $e) {
             // If the metadata server exists, but returns a 404 for the universe domain, the auth
             // libraries should safely assume this is an older metadata server running in GCU, and
@@ -638,7 +634,6 @@ class GCECredentials extends CredentialsLoader implements
                 throw $e;
             }
             $this->universeDomain = self::DEFAULT_UNIVERSE_DOMAIN;
-            $this->hasExplicitUniverseDomain = false;
         }
 
         // We expect in some cases the metadata server will return an empty string for the universe
@@ -667,7 +662,6 @@ class GCECredentials extends CredentialsLoader implements
 
         if ($this->enableRegionalAccessBoundary
             && $this->getUniverseDomain($httpHandler) === self::DEFAULT_UNIVERSE_DOMAIN
-            && $this->hasExplicitUniverseDomain
         ) {
             $serviceAccountEmail = $this->getClientName($httpHandler);
             if (preg_match('/^[^@]+@[^@]+\.[^@]+$/', $serviceAccountEmail)) {

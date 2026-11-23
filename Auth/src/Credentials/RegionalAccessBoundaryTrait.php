@@ -189,22 +189,6 @@ trait RegionalAccessBoundaryTrait
         return $regionalAccessBoundary;
     }
 
-    /**
-     * Check whether a URL's host matches one of the allowed default-universe hosts.
-     *
-     * @param string $url
-     * @param array<string> $allowedHosts Lowercase hostnames without trailing dots.
-     */
-    private function hasAllowedRegionalAccessBoundaryHost(string $url, array $allowedHosts): bool
-    {
-        $host = parse_url($url, PHP_URL_HOST);
-        if (!is_string($host) || '' === $host) {
-            return false;
-        }
-
-        return in_array(strtolower(rtrim($host, '.')), $allowedHosts, true);
-    }
-
     private function initiateCooldown(): void
     {
         $cooldownKey = $this->getCacheKey() . ':rab:cooldown';
