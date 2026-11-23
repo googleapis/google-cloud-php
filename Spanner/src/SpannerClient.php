@@ -209,7 +209,8 @@ class SpannerClient
      *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      *     @type CacheItemPoolInterface $cacheItemPool
      *     @type bool $enableBuiltInMetrics If true, built-in metrics collection will be enabled.
-     *           **Defaults to** false.
+     *           Only supported in the default universe domain (`googleapis.com`); ignored as a no-op
+     *           in other universe domains. **Defaults to** false.
      *     @type int $metricsTimeoutMillis The timeout in milliseconds for exporting metrics.
      *           **Defaults to** 100.
      *     @type MetricServiceClient $metricServiceClient **[DEPRECATED]** An explicit instance of
@@ -1066,7 +1067,12 @@ class SpannerClient
     ): void {
         $timeoutMillis = $this->pluck('metricsTimeoutMillis', $options, false) ?? 100;
 
-        if (!$this->pluck('enableBuiltInMetrics', $options, false)) {
+        if ($this->pluck('enableBuiltInMetrics', $options, false) !== true) {
+            return;
+        }
+
+        $universeDomain = $options['universeDomain'] ?? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
+        if ($universeDomain !== GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN) {
             return;
         }
 

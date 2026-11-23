@@ -33,6 +33,7 @@
 namespace Google\Cloud\Spanner\OpenTelemetry;
 
 use Google\ApiCore\CredentialsWrapper;
+use Google\Auth\GetUniverseDomainInterface;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\HandlerStack;
 use OpenTelemetry\Contrib\Otlp\MetricExporter as OtlpMetricExporter;
@@ -49,13 +50,17 @@ use Throwable;
  * OtlpMetricsExporter encapsulates the standard OpenTelemetry OTLP MetricExporter
  * targeting Google Cloud Telemetry endpoint.
  *
+ * Only supported in the default universe domain (`googleapis.com`). When
+ * `$options['universeDomain']` is set to another domain, exporting, flushing,
+ * and shutting down are no-ops returning `false`.
+ *
  * @internal
  */
 class OtlpMetricsExporter implements PushMetricExporterInterface, AggregationTemporalitySelectorInterface
 {
     private const DEFAULT_ENDPOINT = 'https://telemetry.googleapis.com/v1/metrics';
 
-    private PushMetricExporterInterface $otlpExporter;
+    private ?PushMetricExporterInterface $otlpExporter = null;
 
     /**
      * @param CredentialsWrapper $credentials The credentials wrapper for metric export.
@@ -69,6 +74,11 @@ class OtlpMetricsExporter implements PushMetricExporterInterface, AggregationTem
         array $options = [],
         ?PushMetricExporterInterface $otlpExporter = null
     ) {
+        $universeDomain = $options['universeDomain'] ?? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
+        if ($universeDomain !== GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN) {
+            return;
+        }
+
         if ($otlpExporter !== null) {
             $this->otlpExporter = $otlpExporter;
             return;
@@ -113,7 +123,7 @@ class OtlpMetricsExporter implements PushMetricExporterInterface, AggregationTem
     public function export(iterable $batch): bool
     {
         try {
-            return $this->otlpExporter->export($batch);
+            return $this->otlpExporter?->export($batch) ?? false;
         } catch (Throwable $e) {
             return false;
         }
@@ -127,7 +137,7 @@ class OtlpMetricsExporter implements PushMetricExporterInterface, AggregationTem
     public function forceFlush(): bool
     {
         try {
-            return $this->otlpExporter->forceFlush();
+            return $this->otlpExporter?->forceFlush() ?? false;
         } catch (Throwable $e) {
             return false;
         }
@@ -141,7 +151,7 @@ class OtlpMetricsExporter implements PushMetricExporterInterface, AggregationTem
     public function shutdown(): bool
     {
         try {
-            return $this->otlpExporter->shutdown();
+            return $this->otlpExporter?->shutdown() ?? false;
         } catch (Throwable $e) {
             return false;
         }

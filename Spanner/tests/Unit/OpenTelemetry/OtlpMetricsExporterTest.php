@@ -188,4 +188,55 @@ class OtlpMetricsExporterTest extends TestCase
         $result = $exporter->export([$metric]);
         $this->assertFalse($result);
     }
+
+    public function testDisabledWithNonDefaultUniverseDomainOption()
+    {
+        $mockCredentials = $this->prophesize(\Google\ApiCore\CredentialsWrapper::class);
+        $mockOtlpExporter = $this->prophesize(PushMetricExporterInterface::class);
+        $mockOtlpExporter->export(Argument::any())->shouldNotBeCalled();
+        $mockOtlpExporter->forceFlush()->shouldNotBeCalled();
+        $mockOtlpExporter->shutdown()->shouldNotBeCalled();
+
+        $exporter = new OtlpMetricsExporter(
+            $mockCredentials->reveal(),
+            100,
+            ['universeDomain' => 'example.com'],
+            $mockOtlpExporter->reveal()
+        );
+
+        $this->assertFalse($exporter->export([]));
+        $this->assertFalse($exporter->forceFlush());
+        $this->assertFalse($exporter->shutdown());
+    }
+
+    public function testDisabledDoesNotSendHttpRequestsOutsideDefaultUniverseDomain()
+    {
+        $mockCredentials = $this->prophesize(\Google\ApiCore\CredentialsWrapper::class);
+        $mockCredentials->getAuthorizationHeaderCallback()->shouldNotBeCalled();
+
+        $mockHandler = new \GuzzleHttp\Handler\MockHandler([
+            new \GuzzleHttp\Psr7\Response(200, [], ''),
+        ]);
+        $handlerStack = \GuzzleHttp\HandlerStack::create($mockHandler);
+
+        $exporter = new OtlpMetricsExporter(
+            $mockCredentials->reveal(),
+            100,
+            [
+                'handlerStack' => $handlerStack,
+                'universeDomain' => 'example.com',
+            ]
+        );
+
+        $scope = new InstrumentationScope('google-cloud-spanner', '1.0.0', null, Attributes::create([]));
+        $resource = ResourceInfo::create(Attributes::create([]));
+        $point = new NumberDataPoint(1, Attributes::create([]), 1000, 2000);
+        $sum = new Sum([$point], Temporality::CUMULATIVE, true);
+        $metric = new OTelMetric($scope, $resource, 'attempt_count', '1', 'desc', $sum);
+
+        $this->assertFalse($exporter->export([$metric]));
+        $this->assertFalse($exporter->forceFlush());
+        $this->assertFalse($exporter->shutdown());
+        $this->assertNull($mockHandler->getLastRequest());
+    }
 }
