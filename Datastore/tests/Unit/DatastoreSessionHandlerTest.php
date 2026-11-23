@@ -599,6 +599,89 @@ class DatastoreSessionHandlerTest extends TestCase
         $this->assertFalse($ret);
     }
 
+    public function testCreateSid()
+    {
+        $datastoreSessionHandler = new DatastoreSessionHandler(
+            $this->datastore->reveal()
+        );
+        $sid = $datastoreSessionHandler->create_sid();
+        $this->assertIsString($sid);
+        $this->assertNotEmpty($sid);
+    }
+
+    public function testValidateIdExists()
+    {
+        $key = new Key('projectid');
+        $key->pathElement(self::KIND, 'sessionid');
+        $entity = new Entity($key, ['data' => 'sessiondata']);
+        $this->transaction->lookup($key)
+            ->shouldBeCalledTimes(1)
+            ->willReturn($entity);
+        $this->datastore->transaction(['databaseId' => ''])
+            ->shouldBeCalledTimes(1)
+            ->willReturn($this->transaction->reveal());
+        $this->datastore->key(
+            self::KIND,
+            'sessionid',
+            ['namespaceId' => self::NAMESPACE_ID]
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn($key);
+        $datastoreSessionHandler = new DatastoreSessionHandler(
+            $this->datastore->reveal()
+        );
+        $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
+
+        $this->assertTrue($datastoreSessionHandler->validateId('sessionid'));
+    }
+
+    public function testValidateIdMissing()
+    {
+        $key = new Key('projectid');
+        $key->pathElement(self::KIND, 'sessionid');
+        $this->transaction->lookup($key)
+            ->shouldBeCalledTimes(1)
+            ->willReturn(null);
+        $this->datastore->transaction(['databaseId' => ''])
+            ->shouldBeCalledTimes(1)
+            ->willReturn($this->transaction->reveal());
+        $this->datastore->key(
+            self::KIND,
+            'sessionid',
+            ['namespaceId' => self::NAMESPACE_ID]
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn($key);
+        $datastoreSessionHandler = new DatastoreSessionHandler(
+            $this->datastore->reveal()
+        );
+        $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
+
+        $this->assertFalse($datastoreSessionHandler->validateId('sessionid'));
+    }
+
+    public function testValidateIdWithException()
+    {
+        $this->expectWarningUsingErrorhandler();
+
+        $this->datastore->transaction(['databaseId' => ''])
+            ->shouldBeCalledTimes(1)
+            ->willReturn($this->transaction->reveal());
+        $this->datastore->key(
+            self::KIND,
+            'sessionid',
+            ['namespaceId' => self::NAMESPACE_ID]
+        )
+            ->shouldBeCalledTimes(1)
+            ->willThrow(new Exception());
+        $datastoreSessionHandler = new DatastoreSessionHandler(
+            $this->datastore->reveal()
+        );
+        $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
+
+        $this->assertFalse($datastoreSessionHandler->validateId('sessionid'));
+    }
+
     private function expectWarningUsingErrorhandler()
     {
         set_error_handler(static function (int $errno, string $errstr): never {

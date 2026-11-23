@@ -326,7 +326,9 @@ class Topic
         $updateMaskPaths = $this->pluck('updateMask', $options, false) ?: [];
 
         if (!$updateMaskPaths) {
-            $iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($data));
+            $iterator = new \RecursiveIteratorIterator(
+                new \RecursiveArrayIterator($data, \RecursiveArrayIterator::CHILD_ARRAYS_ONLY)
+            );
             foreach ($iterator as $leafValue) {
                 $excludes = ['name'];
                 $keys = [];

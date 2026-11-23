@@ -131,7 +131,7 @@ class AggregateQueryTest extends FirestoreTestCase
     {
         if (!is_null($expected) && is_nan($expected)) {
             $this->assertNan($actual);
-        } elseif (is_double($expected)) {
+        } elseif (is_float($expected)) {
             $this->assertEqualsWithDelta($expected, $actual, 0.01);
         } else {
             $this->assertEquals($expected, $actual);

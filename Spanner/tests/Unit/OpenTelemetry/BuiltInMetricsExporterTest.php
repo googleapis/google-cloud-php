@@ -63,7 +63,6 @@ class BuiltInMetricsExporterTest extends TestCase
 
         $reflection = new ReflectionClass(MetricsExporter::class);
         $method = $reflection->getMethod('generateClientHash');
-        $method->setAccessible(true);
 
         $result = $method->invoke($exporter, $clientUid);
         $this->assertEquals($expected, $result);

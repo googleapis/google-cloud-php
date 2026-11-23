@@ -154,7 +154,6 @@ class OtlpMetricsExporterTest extends TestCase
         // Access the internal otlpExporter via reflection to trigger HTTP call through transport
         $reflection = new ReflectionClass(OtlpMetricsExporter::class);
         $property = $reflection->getProperty('otlpExporter');
-        $property->setAccessible(true);
         $otlpExporter = $property->getValue($exporter);
 
         $otlpExporter->export([$metric]);

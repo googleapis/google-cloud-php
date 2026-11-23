@@ -46,7 +46,12 @@ trait SysvTrait
         if ($base == PHP_INT_MAX) {
             $base = 1;
         }
-        return $base + $idNum;
+        $sum = $base + $idNum;
+        if (PHP_INT_SIZE >= 8) {
+            // Truncate to a signed 32-bit integer to stay within the platform key_t range.
+            $sum = ($sum << 32) >> 32;
+        }
+        return $sum;
     }
 
     /**

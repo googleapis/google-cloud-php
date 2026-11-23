@@ -618,7 +618,7 @@ class Subscription
         if (!$updateMaskPaths) {
             $excludes = ['name', 'topic'];
             $iterator = new \RecursiveIteratorIterator(
-                new \RecursiveArrayIterator($data),
+                new \RecursiveArrayIterator($data, \RecursiveArrayIterator::CHILD_ARRAYS_ONLY),
                 \RecursiveIteratorIterator::CHILD_FIRST
             );
             foreach ($iterator as $leafValue) {
