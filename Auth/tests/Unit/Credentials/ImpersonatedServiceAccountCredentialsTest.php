@@ -640,4 +640,96 @@ class ImpersonatedServiceAccountCredentialsTest extends TestCase
 
         $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
     }
+
+    public function testTopLevelUniverseDomainPropagatesToSourceCredentials()
+    {
+        $jsonKey = [
+            'service_account_impersonation_url' => 'https://iamcredentials.example.com/v1/'
+                . 'projects/-/serviceAccounts/test@example.com:generateAccessToken',
+            'universe_domain' => 'example.com',
+            'source_credentials' => [
+                'type' => 'service_account',
+                'private_key' => file_get_contents(__DIR__ . '/../fixtures/fixtures1/private.pem'),
+                'client_email' => 'test@example.com',
+            ],
+        ];
+        $creds = new ImpersonatedServiceAccountCredentials('a-scope', $jsonKey);
+
+        $this->assertSame('example.com', $creds->getUniverseDomain());
+    }
+
+    public function testTopLevelUniverseDomainPropagatesToExternalAccountSource()
+    {
+        $jsonKey = [
+            'service_account_impersonation_url' => 'https://iamcredentials.example.com/v1/'
+                . 'projects/-/serviceAccounts/test@example.com:generateAccessToken',
+            'universe_domain' => 'example.com',
+            'source_credentials' => [
+                'type' => 'external_account',
+                'audience' => '//iam.example.com/projects/123/locations/global/workloadIdentityPools/p/providers/id',
+                'subject_token_type' => 'urn:ietf:params:oauth:token-type:jwt',
+                'token_url' => 'https://sts.example.com/v1/token',
+                'credential_source' => ['file' => '/tmp/token'],
+            ],
+        ];
+        $creds = new ImpersonatedServiceAccountCredentials('a-scope', $jsonKey);
+
+        $this->assertSame('example.com', $creds->getUniverseDomain());
+    }
+
+    public function testTopLevelUniverseDomainMatchesSourceCredentials()
+    {
+        $jsonKey = [
+            'service_account_impersonation_url' => 'https://iamcredentials.example.com/v1/'
+                . 'projects/-/serviceAccounts/test@example.com:generateAccessToken',
+            'universe_domain' => 'example.com',
+            'source_credentials' => [
+                'type' => 'service_account',
+                'private_key' => file_get_contents(__DIR__ . '/../fixtures/fixtures1/private.pem'),
+                'client_email' => 'test@example.com',
+                'universe_domain' => 'example.com',
+            ],
+        ];
+        $creds = new ImpersonatedServiceAccountCredentials('a-scope', $jsonKey);
+
+        $this->assertSame('example.com', $creds->getUniverseDomain());
+    }
+
+    public function testTopLevelUniverseDomainThrowsOnMismatchWithSourceCredentials()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Universe domain other.com in source credentials does not match '
+            . 'example.com universe domain set for impersonated credentials.'
+        );
+
+        new ImpersonatedServiceAccountCredentials('a-scope', [
+            'service_account_impersonation_url' => 'https://iamcredentials.example.com/v1/'
+                . 'projects/-/serviceAccounts/test@example.com:generateAccessToken',
+            'universe_domain' => 'example.com',
+            'source_credentials' => [
+                'type' => 'service_account',
+                'private_key' => file_get_contents(__DIR__ . '/../fixtures/fixtures1/private.pem'),
+                'client_email' => 'test@example.com',
+                'universe_domain' => 'other.com',
+            ],
+        ]);
+    }
+
+    public function testTopLevelUniverseDomainThrowsOnEmptyString()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The universe domain must be a non-empty string');
+
+        new ImpersonatedServiceAccountCredentials('a-scope', [
+            'service_account_impersonation_url' => 'https://iamcredentials.example.com/v1/'
+                . 'projects/-/serviceAccounts/test@example.com:generateAccessToken',
+            'universe_domain' => '',
+            'source_credentials' => [
+                'type' => 'service_account',
+                'private_key' => file_get_contents(__DIR__ . '/../fixtures/fixtures1/private.pem'),
+                'client_email' => 'test@example.com',
+            ],
+        ]);
+    }
 }

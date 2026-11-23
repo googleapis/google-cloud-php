@@ -947,4 +947,39 @@ class ApplicationDefaultCredentialsTest extends TestCase
         $this->assertTrue($request->hasHeader('x-allowed-locations'));
         $this->assertEquals('0x80000000000', $request->getHeaderLine('x-allowed-locations'));
     }
+
+    public function testGetCredentialsPropagatesUniverseDomainToImpersonatedCredentials()
+    {
+        $tmpFile = tempnam(sys_get_temp_dir(), 'adc-impersonated-');
+        file_put_contents($tmpFile, json_encode([
+            'type' => 'impersonated_service_account',
+            'service_account_impersonation_url' =>
+                'https://iamcredentials.example.com/v1/projects/-/serviceAccounts/sa@p.iam:generateAccessToken',
+            'source_credentials' => [
+                'type' => 'service_account',
+                'client_email' => 'source@example.com',
+                'private_key' => file_get_contents(__DIR__ . '/fixtures/fixtures1/private.pem'),
+            ],
+        ]));
+        $prev = getenv('GOOGLE_APPLICATION_CREDENTIALS');
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $tmpFile);
+        try {
+            $creds = ApplicationDefaultCredentials::getCredentials(
+                scope: 'https://www.googleapis.com/auth/cloud-platform',
+                universeDomain: 'example.com'
+            );
+            $this->assertInstanceOf(
+                \Google\Auth\Credentials\ImpersonatedServiceAccountCredentials::class,
+                $creds
+            );
+            $this->assertSame('example.com', $creds->getUniverseDomain());
+        } finally {
+            if ($prev === false) {
+                putenv('GOOGLE_APPLICATION_CREDENTIALS');
+            } else {
+                putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $prev);
+            }
+            @unlink($tmpFile);
+        }
+    }
 }
