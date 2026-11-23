@@ -193,7 +193,14 @@ class ApplicationDefaultCredentials
                 $jsonKey['quota_project_id'] = $quotaProject;
             }
             if ($universeDomain) {
-                $jsonKey['universe_domain'] = $universeDomain;
+                if (($jsonKey['type'] ?? null) === 'impersonated_service_account'
+                    && is_array($jsonKey['source_credentials'] ?? null)
+                ) {
+                    // impersonated credentials use the universe domain of their source credentials
+                    $jsonKey['source_credentials']['universe_domain'] = $universeDomain;
+                } else {
+                    $jsonKey['universe_domain'] = $universeDomain;
+                }
             }
             $creds = CredentialsLoader::makeCredentials(
                 $scope,

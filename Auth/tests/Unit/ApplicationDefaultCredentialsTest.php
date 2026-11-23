@@ -951,7 +951,7 @@ class ApplicationDefaultCredentialsTest extends TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testGetCredentialsPropagatesUniverseDomainToImpersonatedCredentials()
+    public function testGetCredentialsOverridesUniverseDomainForImpersonatedCredentials()
     {
         $tmpFile = tempnam(sys_get_temp_dir(), 'adc-impersonated-');
         file_put_contents($tmpFile, json_encode([
@@ -962,18 +962,16 @@ class ApplicationDefaultCredentialsTest extends TestCase
                 'type' => 'service_account',
                 'client_email' => 'source@example.com',
                 'private_key' => file_get_contents(__DIR__ . '/fixtures/fixtures1/private.pem'),
+                'universe_domain' => 'googleapis.com',
             ],
         ]));
-        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $tmpFile);
+        putenv(ServiceAccountCredentials::ENV_VAR . '=' . $tmpFile);
         try {
             $creds = ApplicationDefaultCredentials::getCredentials(
                 scope: 'https://www.googleapis.com/auth/cloud-platform',
                 universeDomain: 'example.com'
             );
-            $this->assertInstanceOf(
-                \Google\Auth\Credentials\ImpersonatedServiceAccountCredentials::class,
-                $creds
-            );
+            $this->assertInstanceOf(ImpersonatedServiceAccountCredentials::class, $creds);
             $this->assertSame('example.com', $creds->getUniverseDomain());
         } finally {
             @unlink($tmpFile);

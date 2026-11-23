@@ -136,19 +136,6 @@ class ImpersonatedServiceAccountCredentials extends CredentialsLoader implements
             if (!array_key_exists('type', $jsonKey['source_credentials'])) {
                 throw new InvalidArgumentException('json key source credentials are missing the type field');
             }
-            if (isset($jsonKey['universe_domain'])) {
-                if (isset($jsonKey['source_credentials']['universe_domain'])
-                    && $jsonKey['source_credentials']['universe_domain'] !== $jsonKey['universe_domain']
-                ) {
-                    throw new InvalidArgumentException(sprintf(
-                        'Universe domain %s in source credentials does not match '
-                        . '%s universe domain set for impersonated credentials.',
-                        $jsonKey['source_credentials']['universe_domain'],
-                        $jsonKey['universe_domain']
-                    ));
-                }
-                $jsonKey['source_credentials']['universe_domain'] = $jsonKey['universe_domain'];
-            }
             if ($targetAudience !== null
                 && $jsonKey['source_credentials']['type'] === 'service_account'
             ) {
