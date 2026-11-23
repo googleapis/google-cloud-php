@@ -715,21 +715,4 @@ class ImpersonatedServiceAccountCredentialsTest extends TestCase
             ],
         ]);
     }
-
-    public function testTopLevelUniverseDomainThrowsOnEmptyString()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('The universe domain must be a non-empty string');
-
-        new ImpersonatedServiceAccountCredentials('a-scope', [
-            'service_account_impersonation_url' => 'https://iamcredentials.example.com/v1/'
-                . 'projects/-/serviceAccounts/test@example.com:generateAccessToken',
-            'universe_domain' => '',
-            'source_credentials' => [
-                'type' => 'service_account',
-                'private_key' => file_get_contents(__DIR__ . '/../fixtures/fixtures1/private.pem'),
-                'client_email' => 'test@example.com',
-            ],
-        ]);
-    }
 }

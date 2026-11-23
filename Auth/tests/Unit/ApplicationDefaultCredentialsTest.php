@@ -948,6 +948,9 @@ class ApplicationDefaultCredentialsTest extends TestCase
         $this->assertEquals('0x80000000000', $request->getHeaderLine('x-allowed-locations'));
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testGetCredentialsPropagatesUniverseDomainToImpersonatedCredentials()
     {
         $tmpFile = tempnam(sys_get_temp_dir(), 'adc-impersonated-');
@@ -961,7 +964,6 @@ class ApplicationDefaultCredentialsTest extends TestCase
                 'private_key' => file_get_contents(__DIR__ . '/fixtures/fixtures1/private.pem'),
             ],
         ]));
-        $prev = getenv('GOOGLE_APPLICATION_CREDENTIALS');
         putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $tmpFile);
         try {
             $creds = ApplicationDefaultCredentials::getCredentials(
@@ -974,11 +976,6 @@ class ApplicationDefaultCredentialsTest extends TestCase
             );
             $this->assertSame('example.com', $creds->getUniverseDomain());
         } finally {
-            if ($prev === false) {
-                putenv('GOOGLE_APPLICATION_CREDENTIALS');
-            } else {
-                putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $prev);
-            }
             @unlink($tmpFile);
         }
     }
