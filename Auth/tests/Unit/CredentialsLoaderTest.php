@@ -211,26 +211,4 @@ class CredentialsLoaderTest extends TestCase
         $this->assertArrayHasKey('type', $json);
         $this->assertEquals('getenv', $json['type']);
     }
-
-    public function testMakeCredentialsWithUniverseDomain(): void
-    {
-        $serviceAccount = [
-            'type' => 'service_account',
-            'client_email' => 'source@example.com',
-            'private_key' => file_get_contents(__DIR__ . '/fixtures/fixtures1/private.pem'),
-            'universe_domain' => 'googleapis.com',
-        ];
-        $impersonated = [
-            'type' => 'impersonated_service_account',
-            'service_account_impersonation_url' =>
-                'https://iamcredentials.example.com/v1/projects/-/serviceAccounts/sa@p.iam:generateAccessToken',
-            'source_credentials' => $serviceAccount,
-        ];
-
-        $creds = CredentialsLoader::makeCredentials('scope', $serviceAccount, universeDomain: 'example.com');
-        $this->assertSame('example.com', $creds->getUniverseDomain());
-
-        $creds = CredentialsLoader::makeCredentials('scope', $impersonated, universeDomain: 'example.com');
-        $this->assertSame('example.com', $creds->getUniverseDomain());
-    }
 }

@@ -154,29 +154,16 @@ abstract class CredentialsLoader implements
      * @param array<mixed> $jsonKey
      * @param string|string[] $defaultScope
      * @param bool $enableRegionalAccessBoundary Lookup and include the regional access boundary header.
-     * @param string|null $universeDomain Overrides the universe domain of the credentials.
      * @return ServiceAccountCredentials|UserRefreshCredentials|ImpersonatedServiceAccountCredentials|ExternalAccountCredentials|ExternalAccountAuthorizedUserCredentials
      */
     public static function makeCredentials(
         $scope,
         array $jsonKey,
         $defaultScope = null,
-        bool $enableRegionalAccessBoundary = false,
-        ?string $universeDomain = null
+        bool $enableRegionalAccessBoundary = false
     ) {
         if (!array_key_exists('type', $jsonKey)) {
             throw new \InvalidArgumentException('json key is missing the type field');
-        }
-
-        if ($universeDomain) {
-            if ($jsonKey['type'] === 'impersonated_service_account'
-                && is_array($jsonKey['source_credentials'] ?? null)
-            ) {
-                // impersonated credentials use the universe domain of their source credentials
-                $jsonKey['source_credentials']['universe_domain'] = $universeDomain;
-            } else {
-                $jsonKey['universe_domain'] = $universeDomain;
-            }
         }
 
         if ($jsonKey['type'] == 'service_account') {
