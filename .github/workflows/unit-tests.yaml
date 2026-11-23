@@ -16,6 +16,11 @@ jobs:
         php: [ "8.2", "8.3", "8.4", "8.5", "8.6" ]
         extensions: ["grpc"]
         variant: [""]
+        # @TODO: Re-enable Windows for PHP 8.6 once grpc Windows PECL DLLs are available.
+        # https://github.com/googleapis/google-cloud-php/issues/9863
+        exclude:
+          - platform: "windows-latest"
+            php: "8.6"
         include:
           - platform: "ubuntu-latest"
             php: "8.2"
@@ -59,7 +64,9 @@ jobs:
         with:
           timeout_minutes: 10
           max_attempts: 3
-          command: composer --no-interaction --no-ansi --no-progress update
+          # @TODO: Remove --ignore-platform-req=php once dev dependencies support PHP 8.6.
+          # https://github.com/googleapis/google-cloud-php/issues/9863
+          command: composer --no-interaction --no-ansi --no-progress update ${{ matrix.php == '8.6' && '--ignore-platform-req=php' || '' }}
 
       - name: Run Unit Test Suite ${{ matrix.platform != 'windows-latest' || '(Windows)' }}
         env:
