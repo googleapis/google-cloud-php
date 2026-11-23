@@ -947,34 +947,4 @@ class ApplicationDefaultCredentialsTest extends TestCase
         $this->assertTrue($request->hasHeader('x-allowed-locations'));
         $this->assertEquals('0x80000000000', $request->getHeaderLine('x-allowed-locations'));
     }
-
-    /**
-     * @runInSeparateProcess
-     */
-    public function testGetCredentialsOverridesUniverseDomainForImpersonatedCredentials()
-    {
-        $tmpFile = tempnam(sys_get_temp_dir(), 'adc-impersonated-');
-        file_put_contents($tmpFile, json_encode([
-            'type' => 'impersonated_service_account',
-            'service_account_impersonation_url' =>
-                'https://iamcredentials.example.com/v1/projects/-/serviceAccounts/sa@p.iam:generateAccessToken',
-            'source_credentials' => [
-                'type' => 'service_account',
-                'client_email' => 'source@example.com',
-                'private_key' => file_get_contents(__DIR__ . '/fixtures/fixtures1/private.pem'),
-                'universe_domain' => 'googleapis.com',
-            ],
-        ]));
-        putenv(ServiceAccountCredentials::ENV_VAR . '=' . $tmpFile);
-        try {
-            $creds = ApplicationDefaultCredentials::getCredentials(
-                scope: 'https://www.googleapis.com/auth/cloud-platform',
-                universeDomain: 'example.com'
-            );
-            $this->assertInstanceOf(ImpersonatedServiceAccountCredentials::class, $creds);
-            $this->assertSame('example.com', $creds->getUniverseDomain());
-        } finally {
-            @unlink($tmpFile);
-        }
-    }
 }

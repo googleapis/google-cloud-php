@@ -192,21 +192,12 @@ class ApplicationDefaultCredentials
             if ($quotaProject) {
                 $jsonKey['quota_project_id'] = $quotaProject;
             }
-            if ($universeDomain) {
-                if (($jsonKey['type'] ?? null) === 'impersonated_service_account'
-                    && is_array($jsonKey['source_credentials'] ?? null)
-                ) {
-                    // impersonated credentials use the universe domain of their source credentials
-                    $jsonKey['source_credentials']['universe_domain'] = $universeDomain;
-                } else {
-                    $jsonKey['universe_domain'] = $universeDomain;
-                }
-            }
             $creds = CredentialsLoader::makeCredentials(
                 $scope,
                 $jsonKey,
                 $defaultScope,
-                $enableRegionalAccessBoundary
+                $enableRegionalAccessBoundary,
+                $universeDomain
             );
         } elseif (AppIdentityCredentials::onAppEngine() && !GCECredentials::onAppEngineFlexible()) {
             $creds = new AppIdentityCredentials($anyScope);
