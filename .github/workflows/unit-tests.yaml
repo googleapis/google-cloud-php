@@ -73,7 +73,7 @@ jobs:
           ZEND_DONT_UNLOAD_MODULES: 1
         run: |
           vendor/bin/phpunit -c phpunit.xml.dist
-      - if: ${{ matrix.platform != 'windows-latest' && matrix.php != '8.5' }}
+      - if: ${{ matrix.platform != 'windows-latest' }}
         name: Run Snippet Test Suite
         env:
           ZEND_DONT_UNLOAD_MODULES: 1
