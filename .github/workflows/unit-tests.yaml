@@ -75,6 +75,8 @@ jobs:
           vendor/bin/phpunit -c phpunit.xml.dist
       - if: ${{ matrix.platform != 'windows-latest' && matrix.php != '8.5' }}
         name: Run Snippet Test Suite
+        env:
+          ZEND_DONT_UNLOAD_MODULES: 1
         run: |
           vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose
 
