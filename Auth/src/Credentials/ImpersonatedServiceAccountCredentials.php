@@ -326,17 +326,21 @@ class ImpersonatedServiceAccountCredentials extends CredentialsLoader implements
         $authUri = null,
         ?callable $httpHandler = null
     ) {
-        $metatadata = parent::updateMetadata($metadata, $authUri, $httpHandler);
+        $metadata = parent::updateMetadata($metadata, $authUri, $httpHandler);
 
-        $metatadata = $this->updateRegionalAccessBoundaryMetadata(
-            $metatadata,
-            $this->buildRegionalAccessBoundaryLookupUrl(
-                serviceAccountEmail: $this->impersonatedServiceAccountName
-            ),
-            $this->getUniverseDomain(),
-            $httpHandler,
-        );
+        if ($this->enableRegionalAccessBoundary
+            && $this->getUniverseDomain() === self::DEFAULT_UNIVERSE_DOMAIN
+        ) {
+            $metadata = $this->updateRegionalAccessBoundaryMetadata(
+                $metadata,
+                $this->buildRegionalAccessBoundaryLookupUrl(
+                    serviceAccountEmail: $this->impersonatedServiceAccountName
+                ),
+                $this->getUniverseDomain(),
+                $httpHandler,
+            );
+        }
 
-        return $metatadata;
+        return $metadata;
     }
 }

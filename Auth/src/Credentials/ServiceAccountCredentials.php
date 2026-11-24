@@ -331,14 +331,18 @@ class ServiceAccountCredentials extends CredentialsLoader implements
             ? $this->updateMetadataSelfSignedJwt($metadata, $authUri, $httpHandler)
             : parent::updateMetadata($metadata, $authUri, $httpHandler);
 
-        $metadata = $this->updateRegionalAccessBoundaryMetadata(
-            $metadata,
-            $this->buildRegionalAccessBoundaryLookupUrl(
-                serviceAccountEmail: $this->auth->getIssuer()
-            ),
-            $this->getUniverseDomain(),
-            $httpHandler,
-        );
+        if ($this->enableRegionalAccessBoundary
+            && $this->getUniverseDomain() === self::DEFAULT_UNIVERSE_DOMAIN
+        ) {
+            $metadata = $this->updateRegionalAccessBoundaryMetadata(
+                $metadata,
+                $this->buildRegionalAccessBoundaryLookupUrl(
+                    serviceAccountEmail: $this->auth->getIssuer()
+                ),
+                $this->getUniverseDomain(),
+                $httpHandler,
+            );
+        }
 
         return $metadata;
     }

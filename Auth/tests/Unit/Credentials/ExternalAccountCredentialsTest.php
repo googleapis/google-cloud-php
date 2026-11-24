@@ -754,4 +754,32 @@ class ExternalAccountCredentialsTest extends TestCase
         $this->assertArrayHasKey('x-allowed-locations', $metadata);
         $this->assertEquals('foo', $metadata['x-allowed-locations']);
     }
+
+    public function testRegionalAccessBoundarySuppressedWithUniverseDomain()
+    {
+        $requestCount = 0;
+        $httpHandler = function () use (&$requestCount) {
+            $requestCount++;
+            return new Response(200, [], '{"access_token": "source-token", "expires_in": 3600}');
+        };
+        $tokenFile = tempnam(sys_get_temp_dir(), 'token');
+        try {
+            $jsonKey = [
+                'type' => 'external_account',
+                'audience' => 'custom-audience',
+                'subject_token_type' => 'urn:ietf:params:oauth:token-type:jwt',
+                'token_url' => 'https://sts.example.com/v1/token',
+                'universe_domain' => 'example.com',
+                'credential_source' => ['file' => $tokenFile],
+            ];
+            $creds = new ExternalAccountCredentials('a-scope', $jsonKey, enableRegionalAccessBoundary: true);
+
+            $metadata = $creds->updateMetadata([], null, $httpHandler);
+
+            $this->assertEquals(1, $requestCount);
+            $this->assertArrayNotHasKey('x-allowed-locations', $metadata);
+        } finally {
+            @unlink($tokenFile);
+        }
+    }
 }

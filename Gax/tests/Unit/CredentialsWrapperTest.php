@@ -643,6 +643,81 @@ class CredentialsWrapperTest extends TestCase
         $this->assertIsString($serialized);
     }
 
+    public function testBuildDisablesRegionalAccessBoundaryOutsideDefaultUniverseDomain()
+    {
+        $serviceAccountKey = [
+            'type' => 'service_account',
+            'client_email' => 'test@example.com',
+            'private_key' => 'fake-key',
+        ];
+        $expectedKeyCreds = new ServiceAccountCredentials(
+            null,
+            $serviceAccountKey,
+            enableRegionalAccessBoundary: false
+        );
+        $expectedKeyCreds->useJwtAccessWithScope();
+        $this->assertEquals(
+            new CredentialsWrapper(
+                new FetchAuthTokenCache($expectedKeyCreds, [], new MemoryCacheItemPool()),
+                null,
+                'example.com'
+            ),
+            CredentialsWrapper::build(
+                [
+                    'keyFile' => $serviceAccountKey,
+                    'enableRegionalAccessBoundary' => true,
+                ],
+                'example.com'
+            )
+        );
+
+        $previousEnv = getenv('GOOGLE_APPLICATION_CREDENTIALS');
+        $tmpKeyFile = tempnam(sys_get_temp_dir(), 'sa-key-');
+        file_put_contents($tmpKeyFile, json_encode($serviceAccountKey));
+        try {
+            $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', $tmpKeyFile);
+            $wrapper = CredentialsWrapper::build(
+                ['enableRegionalAccessBoundary' => true, 'enableCaching' => false],
+                'example.com'
+            );
+            $this->assertEquals(
+                new CredentialsWrapper($expectedKeyCreds, null, 'example.com'),
+                $wrapper
+            );
+        } finally {
+            $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', $previousEnv === false ? null : $previousEnv);
+            @unlink($tmpKeyFile);
+        }
+    }
+
+    public function testBuildRequiresStrictBooleanForEnableRegionalAccessBoundary()
+    {
+        $serviceAccountKey = [
+            'type' => 'service_account',
+            'client_email' => 'test@example.com',
+            'private_key' => 'fake-key',
+        ];
+        $expectedKeyCreds = new ServiceAccountCredentials(
+            null,
+            $serviceAccountKey,
+            enableRegionalAccessBoundary: false
+        );
+        $expectedKeyCreds->useJwtAccessWithScope();
+
+        foreach (['false', 'true', '1', 1] as $nonBoolValue) {
+            $this->assertEquals(
+                new CredentialsWrapper(
+                    new FetchAuthTokenCache($expectedKeyCreds, [], new MemoryCacheItemPool()),
+                    null
+                ),
+                CredentialsWrapper::build([
+                    'keyFile' => $serviceAccountKey,
+                    'enableRegionalAccessBoundary' => $nonBoolValue,
+                ])
+            );
+        }
+    }
+
     private function setEnv(string $env, ?string $value = null)
     {
         if ($value === null) {

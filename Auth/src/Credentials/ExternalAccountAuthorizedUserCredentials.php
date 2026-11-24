@@ -147,7 +147,9 @@ class ExternalAccountAuthorizedUserCredentials extends CredentialsLoader impleme
     ) {
         $metadata = $this->traitUpdateMetadata($metadata, $authUri, $httpHandler);
 
-        if ($this->enableRegionalAccessBoundary) {
+        if ($this->enableRegionalAccessBoundary
+            && $this->getUniverseDomain() === GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
+        ) {
             $metadata = $this->updateRegionalAccessBoundaryMetadata(
                 $metadata,
                 $this->buildRegionalAccessBoundaryLookupUrl(),

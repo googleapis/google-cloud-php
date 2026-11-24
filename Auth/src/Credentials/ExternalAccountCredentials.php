@@ -335,7 +335,9 @@ class ExternalAccountCredentials implements
     ) {
         $metadata = $this->traitUpdateMetadata($metadata, $authUri, $httpHandler);
 
-        if ($this->enableRegionalAccessBoundary) {
+        if ($this->enableRegionalAccessBoundary
+            && $this->getUniverseDomain() === GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
+        ) {
             $clientName = $this->serviceAccountImpersonationUrl
                 ? self::getServiceAccountImpersonationEmail($this->serviceAccountImpersonationUrl)
                 : null;

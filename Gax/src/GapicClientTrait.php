@@ -50,6 +50,7 @@ use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\Transport\RestTransport;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Auth\GetUniverseDomainInterface;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Internal\Message;
@@ -362,12 +363,20 @@ trait GapicClientTrait
                 getenv('GOOGLE_AUTH_TRUST_BOUNDARY_ENABLE_EXPERIMENT'),
                 FILTER_VALIDATE_BOOLEAN
             );
-            $isRegional = str_ends_with($options['apiEndpoint'], '.rep.googleapis.com')
-                || str_ends_with($options['apiEndpoint'], '.rep.sandbox.googleapis.com');
+            $apiEndpoint = (string) $options['apiEndpoint'];
+            $endpointHost = str_contains($apiEndpoint, '://')
+                ? (string) parse_url($apiEndpoint, PHP_URL_HOST)
+                : explode(':', $apiEndpoint, 2)[0];
+            $endpointHost = strtolower(rtrim($endpointHost, '.'));
+            $isRegional = str_ends_with($endpointHost, '.rep.googleapis.com')
+                || str_ends_with($endpointHost, '.rep.sandbox.googleapis.com');
+            $isDefaultUniverse = $options['universeDomain'] === GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
             $this->credentialsWrapper = $this->createCredentialsWrapper(
                 $options['credentials'],
                 $options['credentialsConfig'] + [
-                    'enableRegionalAccessBoundary' => $enableRegionalAccessBoundary && !$isRegional
+                    'enableRegionalAccessBoundary' => $enableRegionalAccessBoundary
+                        && !$isRegional
+                        && $isDefaultUniverse,
                 ],
                 $options['universeDomain'],
             );

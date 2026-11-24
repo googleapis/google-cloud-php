@@ -983,8 +983,12 @@ class GapicClientTraitTest extends TestCase
      * @runInSeparateProcess
      * @preserveGlobalState disabled
      */
-    public function testBuildClientOptionsRegionalEndpoint(?string $apiEndpoint, ?string $envVarValue, bool $rabEnabled)
-    {
+    public function testBuildClientOptionsRegionalEndpoint(
+        ?string $apiEndpoint,
+        ?string $envVarValue,
+        bool $rabEnabled,
+        ?string $universeDomain = null
+    ) {
         if ($envVarValue !== null) {
             putenv('GOOGLE_AUTH_TRUST_BOUNDARY_ENABLE_EXPERIMENT=' . $envVarValue);
         }
@@ -999,9 +1003,14 @@ class GapicClientTraitTest extends TestCase
             }
         };
 
-        $clientOptions = $client->buildClientOptions(
-            $apiEndpoint !== null ? ['apiEndpoint' => $apiEndpoint] : []
-        );
+        $options = [];
+        if ($apiEndpoint !== null) {
+            $options['apiEndpoint'] = $apiEndpoint;
+        }
+        if ($universeDomain !== null) {
+            $options['universeDomain'] = $universeDomain;
+        }
+        $clientOptions = $client->buildClientOptions($options);
         $client->setClientOptions($clientOptions);
 
         $this->assertEquals(
@@ -1015,11 +1024,16 @@ class GapicClientTraitTest extends TestCase
         return [
             ['test.googleapis.com', 'true', true],
             ['test.rep.googleapis.com', 'true', false],
+            ['test.rep.googleapis.com:443', 'true', false],
             ['test.rep.sandbox.googleapis.com', 'true', false],
+            ['test.rep.sandbox.googleapis.com:443', 'true', false],
             ['test.googleapis.com', 'false', false],
             ['test.googleapis.com', null, false],
             ['', 'true', true], // Empty endpoint case
             [null, 'true', true], // Unset endpoint case
+            ['test.googleapis.com', 'true', false, 'example.com'],
+            [null, 'true', false, 'example.com'],
+            [null, 'true', true, 'googleapis.com'],
         ];
     }
 
