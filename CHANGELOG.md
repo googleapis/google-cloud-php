@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.353.1
+
+<details><summary>google/auth 1.55.4</summary>
+
+
+
+### Bug Fixes
+
+* **Auth:** apply ADC universe domain to impersonated source credentials ([#9862](https://github.com/googleapis/google-cloud-php/issues/9862)) ([8bb6105](https://github.com/googleapis/google-cloud-php/commit/8bb61059b0855cbf7a6e07590b0a7ceef9899124))
+
+
+### Documentation
+
+* **Auth:** note default universe domain support for AccessToken::revoke ([#9861](https://github.com/googleapis/google-cloud-php/issues/9861)) ([1b7abb2](https://github.com/googleapis/google-cloud-php/commit/1b7abb28e120115314db11b2b5bf25b58f1bd21c))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.12.1</summary>
+
+
+
+### Bug Fixes
+
+* **Spanner:** disable built-in metrics outside default universe domain ([#9860](https://github.com/googleapis/google-cloud-php/issues/9860)) ([7f3c21c](https://github.com/googleapis/google-cloud-php/commit/7f3c21c4e9f5ec432141f3e7b448d81431f3aa99))
+
+</details>
+
 ## 0.353.0
 
 <details><summary>google/cloud-ai-platform 1.68.0</summary>
