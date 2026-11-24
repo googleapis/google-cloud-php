@@ -60,7 +60,9 @@ class OptionsTraitTest extends TestCase
     public function testInvalidTypesThrowException()
     {
         $this->expectException(TypeError::class);
-        $this->expectExceptionMessage('Cannot assign string to property ArrayAccess@anonymous::$option2 of type ?int');
+        $this->expectExceptionMessageMatches(
+            '/Cannot assign string to property ArrayAccess@anonymous.*::\$option2 of type \?int/'
+        );
 
         $this->newStub([
             'option1' => 123,   // this is okay because it is cast to a string

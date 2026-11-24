@@ -237,7 +237,9 @@ class Routine
         $updateMaskPaths = $this->pluck('updateMask', $options, false) ?: [];
         if (!$updateMaskPaths) {
             $excludes = ['creationTime', 'lastModifiedTime'];
-            $iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($metadata));
+            $iterator = new \RecursiveIteratorIterator(
+                new \RecursiveArrayIterator($metadata, \RecursiveArrayIterator::CHILD_ARRAYS_ONLY)
+            );
             foreach ($iterator as $leafValue) {
                 $keys = [];
                 foreach (range(0, $iterator->getDepth()) as $depth) {

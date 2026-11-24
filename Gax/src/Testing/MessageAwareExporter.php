@@ -39,7 +39,7 @@ class MessageAwareExporter extends Exporter
             return \sprintf(
                 '%s Object (%s)',
                 \get_class($value),
-                \spl_object_hash($value)
+                \spl_object_id($value)
             );
         }
         return parent::shortenedExport($value);

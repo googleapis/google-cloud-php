@@ -77,7 +77,6 @@ class X509SourceTest extends TestCase
             $this->x509Json['credential_source']['certificate']['trust_chain_path'],
         );
         $pemToDerB64 = new ReflectionMethod(X509Source::class, 'pemToDerB64');
-        $pemToDerB64->setAccessible(true);
         $actualDerB64 = $pemToDerB64->invoke($source, $pemContent);
 
         // Assert they are identical
@@ -106,7 +105,6 @@ class X509SourceTest extends TestCase
         $creds = new ExternalAccountCredentials('scope', $this->x509Json);
         $reflection = new \ReflectionClass($creds);
         $authProperty = $reflection->getProperty('auth');
-        $authProperty->setAccessible(true);
         $auth = $authProperty->getValue($creds);
         $actualSubjectToken = $auth->getSubjectTokenFetcher()->fetchSubjectToken();
 

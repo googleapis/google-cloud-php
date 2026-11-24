@@ -630,6 +630,142 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->assertFalse($ret);
     }
 
+    public function testCreateSid()
+    {
+        $firestoreSessionHandler = new FirestoreSessionHandler(
+            $this->gapicClient->reveal(),
+            $this->valueMapper->reveal(),
+            self::PROJECT,
+            self::DATABASE
+        );
+        $sid = $firestoreSessionHandler->create_sid();
+        $this->assertIsString($sid);
+        $this->assertNotEmpty($sid);
+    }
+
+    public function testValidateIdExists()
+    {
+        $serverStream = $this->prophesize(ServerStream::class);
+        $serverStream->readAll()
+            ->willReturn(new ArrayIterator([
+                self::generateProto(BatchGetDocumentsResponse::class, [
+                    'found' => [
+                        'fields' => [
+                            'data' => [
+                                'stringValue' => 'sessiondata'
+                            ]
+                        ]
+                    ]
+                ])
+            ]));
+
+        $this->valueMapper->decodeValues(['data' => ['stringValue' => 'sessiondata']])
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['data' => 'sessiondata']);
+
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => '']));
+
+        $this->gapicClient->batchGetDocuments(
+            Argument::that(function (BatchGetDocumentsRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                $this->assertEquals([$this->documentName()], iterator_to_array($request->getDocuments()));
+                $this->assertEmpty($request->getTransaction());
+                return true;
+            }),
+            Argument::any()
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn($serverStream->reveal());
+
+        $firestoreSessionHandler = new FirestoreSessionHandler(
+            $this->gapicClient->reveal(),
+            $this->valueMapper->reveal(),
+            self::PROJECT,
+            self::DATABASE
+        );
+
+        $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
+        $this->assertTrue($firestoreSessionHandler->validateId('sessionid'));
+    }
+
+    public function testValidateIdMissing()
+    {
+        $serverStream = $this->prophesize(ServerStream::class);
+        $serverStream->readAll()
+            ->willReturn(new ArrayIterator([
+                new BatchGetDocumentsResponse()
+            ]));
+
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => '']));
+
+        $this->gapicClient->batchGetDocuments(
+            Argument::that(function (BatchGetDocumentsRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                $this->assertEquals([$this->documentName()], iterator_to_array($request->getDocuments()));
+                $this->assertEmpty($request->getTransaction());
+                return true;
+            }),
+            Argument::any()
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn($serverStream->reveal());
+
+        $firestoreSessionHandler = new FirestoreSessionHandler(
+            $this->gapicClient->reveal(),
+            $this->valueMapper->reveal(),
+            self::PROJECT,
+            self::DATABASE
+        );
+
+        $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
+        $this->assertFalse($firestoreSessionHandler->validateId('sessionid'));
+    }
+
+    public function testValidateIdWithException()
+    {
+        $this->expectWarningUsingErrorhandler();
+
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => '']));
+
+        $this->gapicClient->batchGetDocuments(Argument::any(), Argument::any())
+            ->shouldBeCalledTimes(1)
+            ->willThrow(new ServiceException(''));
+
+        $firestoreSessionHandler = new FirestoreSessionHandler(
+            $this->gapicClient->reveal(),
+            $this->valueMapper->reveal(),
+            self::PROJECT,
+            self::DATABASE
+        );
+
+        $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
+        $this->assertFalse($firestoreSessionHandler->validateId('sessionid'));
+    }
+
     private function expectWarningUsingErrorhandler()
     {
         set_error_handler(static function (int $errno, string $errstr): never {

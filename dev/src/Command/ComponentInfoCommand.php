@@ -183,9 +183,9 @@ class ComponentInfoCommand extends Command
                 }
             } else {
                 $fp = fopen($csv, 'wa+');
-                fputcsv($fp, $headers);
+                fputcsv($fp, $headers, ',', '"', '\\');
                 foreach ($rows as $row) {
-                    fputcsv($fp, $row);
+                    fputcsv($fp, $row, ',', '"', '\\');
                 }
                 fclose($fp);
                 $output->writeln('Output written to ' . $csv);

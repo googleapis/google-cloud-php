@@ -19,6 +19,7 @@ namespace Google\Cloud\Datastore;
 
 use Exception;
 use InvalidArgumentException;
+use RuntimeException;
 use SessionHandlerInterface;
 
 /**
@@ -343,5 +344,47 @@ class DatastoreSessionHandler implements SessionHandlerInterface
             return false;
         }
         return count($keys);
+    }
+
+    /**
+     * Create a new session ID.
+     *
+     * @return string
+     */
+    // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
+    public function create_sid(): string
+    {
+        $id = session_create_id();
+        if ($id === false) {
+            throw new RuntimeException('Failed to create session ID.');
+        }
+        return $id;
+    }
+
+    /**
+     * Validate a session ID.
+     *
+     * @param string $id Identifier used for the session.
+     * @return bool
+     */
+    public function validateId(string $id): bool
+    {
+        try {
+            $key = $this->datastore->key(
+                $this->kind,
+                $id,
+                array_filter([
+                    'namespaceId' => $this->namespaceId,
+                    'databaseId' => $this->databaseId,
+                ])
+            );
+            return $this->transaction->lookup($key) !== null;
+        } catch (Exception $e) {
+            trigger_error(
+                sprintf('Datastore lookup failed: %s', $e->getMessage()),
+                E_USER_WARNING
+            );
+        }
+        return false;
     }
 }

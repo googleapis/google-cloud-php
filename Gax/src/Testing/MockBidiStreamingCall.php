@@ -137,7 +137,7 @@ class MockBidiStreamingCall extends Grpc\BidiStreamingCall
                 null
             );
         }
-        if (is_a($request, '\Google\Protobuf\Internal\Message')) {
+        if ($request instanceof Message) {
             /** @var Message $newRequest */
             $newRequest = new $request();
             $newRequest->mergeFromString($request->serializeToString());

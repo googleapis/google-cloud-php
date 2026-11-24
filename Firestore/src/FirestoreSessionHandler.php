@@ -22,6 +22,7 @@ use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Firestore\V1\BeginTransactionRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use RuntimeException;
 use SessionHandlerInterface;
 
 /**
@@ -404,6 +405,51 @@ class FirestoreSessionHandler implements SessionHandlerInterface
             return false;
         }
         return $deleteCount;
+    }
+
+    /**
+     * Create a new session ID.
+     *
+     * @return string
+     */
+    // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
+    public function create_sid(): string
+    {
+        $id = session_create_id();
+        if ($id === false) {
+            throw new RuntimeException('Failed to create session ID.');
+        }
+        return $id;
+    }
+
+    /**
+     * Validate a session ID.
+     *
+     * @param string $id Identifier used for the session.
+     * @return bool
+     */
+    public function validateId(string $id): bool
+    {
+        try {
+            $docRef = $this->getDocumentReference(
+                $this->gapicClient,
+                $this->valueMapper,
+                $this->projectId,
+                $this->database,
+                $this->docId($id)
+            );
+            $snapshot = $this->transaction->snapshot(
+                $docRef,
+                $this->options['read']
+            );
+            return $snapshot->exists();
+        } catch (ServiceException $e) {
+            trigger_error(
+                sprintf('Firestore lookup failed: %s', $e->getMessage()),
+                E_USER_WARNING
+            );
+        }
+        return false;
     }
 
     /**

@@ -83,7 +83,6 @@ class ExternalAccountAuthorizedUserCredentialsTest extends TestCase
         $creds = new ExternalAccountAuthorizedUserCredentials($scope, $this->baseJsonKey);
         $credsReflection = new \ReflectionClass(ExternalAccountAuthorizedUserCredentials::class);
         $authProp = $credsReflection->getProperty('auth');
-        $authProp->setAccessible(true);
         $oauth2 = $authProp->getValue($creds);
 
         $expectedAuthToken = ['access_token' => 'new_access_token'];
@@ -146,7 +145,6 @@ class ExternalAccountAuthorizedUserCredentialsTest extends TestCase
         $creds = new ExternalAccountAuthorizedUserCredentials('scope', $this->baseJsonKey);
         $credsReflection = new \ReflectionClass(ExternalAccountAuthorizedUserCredentials::class);
         $authProp = $credsReflection->getProperty('auth');
-        $authProp->setAccessible(true);
         $oauth2 = $authProp->getValue($creds);
 
         $token = [
@@ -179,7 +177,6 @@ class ExternalAccountAuthorizedUserCredentialsTest extends TestCase
         $creds = new ExternalAccountAuthorizedUserCredentials('scope', $this->baseJsonKey);
         $credsReflection = new \ReflectionClass(ExternalAccountAuthorizedUserCredentials::class);
         $authProp = $credsReflection->getProperty('auth');
-        $authProp->setAccessible(true);
         $oauth2 = $authProp->getValue($creds);
         $oauth2->setGrantedScope('granted_scope');
         $this->assertEquals('granted_scope', $creds->getGrantedScope());

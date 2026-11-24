@@ -137,7 +137,7 @@ trait MockStubTrait
         array $options = []
     ) {
 
-        if (is_a($argument, '\Google\Protobuf\Internal\Message')) {
+        if ($argument instanceof Message) {
             /** @var Message $newArgument */
             $newArgument = new $argument();
             $newArgument->mergeFromString($argument->serializeToString());
@@ -202,7 +202,7 @@ trait MockStubTrait
             $this->deserialize = [get_class($response), 'decode'];
         }
 
-        if (is_a($response, '\Google\Protobuf\Internal\Message')) {
+        if ($response instanceof Message) {
             $response = $response->serializeToString();
         }
         $this->responses[] = [$response, $status];

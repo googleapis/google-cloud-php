@@ -45,6 +45,19 @@ class SysvTraitTest extends TestCase
         $this->assertEquals(1, $key2 - $key1);
     }
 
+    public function testGetSysvKeyStaysWithin32BitSignedRange()
+    {
+        if (!$this->impl->call('isSysvIPCLoaded')) {
+            $this->markTestSkipped(
+                'SysV IPC extensions are not available, skipped'
+            );
+        }
+        $key = $this->impl->call('getSysvKey', [crc32('projects/my-project/instances/my-instance/databases/my-db')]);
+        $this->assertIsInt($key);
+        $this->assertGreaterThanOrEqual(-2147483648, $key);
+        $this->assertLessThanOrEqual(2147483647, $key);
+    }
+
     public function testIsSysvIPCLoaded()
     {
         $expected = extension_loaded('sysvmsg')
