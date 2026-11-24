@@ -24,17 +24,17 @@ class GoldengateConnection extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Required. The properties of the GoldengateConnection.
+     * Required. Immutable. The properties of the GoldengateConnection.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.GoldengateConnectionProperties properties = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.GoldengateConnectionProperties properties = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $properties = null;
     /**
-     * Optional. The GCP Oracle zone where Oracle GoldengateConnection is hosted.
-     * Example: us-east4-b-r2.
-     * If not specified, the system will pick a zone based on availability.
+     * Optional. Immutable. The GCP Oracle zone where Oracle GoldengateConnection
+     * is hosted. Example: us-east4-b-r2. If not specified, the system will pick a
+     * zone based on availability.
      *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $gcp_oracle_zone = '';
     /**
@@ -44,21 +44,21 @@ class GoldengateConnection extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Optional. The name of the OdbNetwork associated with the
+     * Optional. Immutable. The name of the OdbNetwork associated with the
      * GoldengateConnection. The format is
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}.
      * It is optional but if specified, this should match the parent ODBNetwork
      * of the OdbSubnet.
      *
-     * Generated from protobuf field <code>string odb_network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     protected $odb_network = '';
     /**
-     * Optional. The name of the OdbSubnet associated with the
+     * Optional. Immutable. The name of the OdbSubnet associated with the
      * GoldengateConnection for IP allocation. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *
-     * Generated from protobuf field <code>string odb_subnet = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_subnet = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     protected $odb_subnet = '';
     /**
@@ -93,21 +93,21 @@ class GoldengateConnection extends \Google\Protobuf\Internal\Message
      *           format:
      *           projects/{project}/locations/{region}/goldengateConnections/{goldengate_connection}
      *     @type \Google\Cloud\OracleDatabase\V1\GoldengateConnectionProperties $properties
-     *           Required. The properties of the GoldengateConnection.
+     *           Required. Immutable. The properties of the GoldengateConnection.
      *     @type string $gcp_oracle_zone
-     *           Optional. The GCP Oracle zone where Oracle GoldengateConnection is hosted.
-     *           Example: us-east4-b-r2.
-     *           If not specified, the system will pick a zone based on availability.
+     *           Optional. Immutable. The GCP Oracle zone where Oracle GoldengateConnection
+     *           is hosted. Example: us-east4-b-r2. If not specified, the system will pick a
+     *           zone based on availability.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels or tags associated with the GoldengateConnection.
      *     @type string $odb_network
-     *           Optional. The name of the OdbNetwork associated with the
+     *           Optional. Immutable. The name of the OdbNetwork associated with the
      *           GoldengateConnection. The format is
      *           projects/{project}/locations/{location}/odbNetworks/{odb_network}.
      *           It is optional but if specified, this should match the parent ODBNetwork
      *           of the OdbSubnet.
      *     @type string $odb_subnet
-     *           Optional. The name of the OdbSubnet associated with the
+     *           Optional. Immutable. The name of the OdbSubnet associated with the
      *           GoldengateConnection for IP allocation. Format:
      *           projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *     @type string $entitlement_id
@@ -156,9 +156,9 @@ class GoldengateConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The properties of the GoldengateConnection.
+     * Required. Immutable. The properties of the GoldengateConnection.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.GoldengateConnectionProperties properties = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.GoldengateConnectionProperties properties = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Cloud\OracleDatabase\V1\GoldengateConnectionProperties|null
      */
     public function getProperties()
@@ -177,9 +177,9 @@ class GoldengateConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The properties of the GoldengateConnection.
+     * Required. Immutable. The properties of the GoldengateConnection.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.GoldengateConnectionProperties properties = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.GoldengateConnectionProperties properties = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\OracleDatabase\V1\GoldengateConnectionProperties $var
      * @return $this
      */
@@ -192,11 +192,11 @@ class GoldengateConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The GCP Oracle zone where Oracle GoldengateConnection is hosted.
-     * Example: us-east4-b-r2.
-     * If not specified, the system will pick a zone based on availability.
+     * Optional. Immutable. The GCP Oracle zone where Oracle GoldengateConnection
+     * is hosted. Example: us-east4-b-r2. If not specified, the system will pick a
+     * zone based on availability.
      *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getGcpOracleZone()
@@ -205,11 +205,11 @@ class GoldengateConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The GCP Oracle zone where Oracle GoldengateConnection is hosted.
-     * Example: us-east4-b-r2.
-     * If not specified, the system will pick a zone based on availability.
+     * Optional. Immutable. The GCP Oracle zone where Oracle GoldengateConnection
+     * is hosted. Example: us-east4-b-r2. If not specified, the system will pick a
+     * zone based on availability.
      *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -248,13 +248,13 @@ class GoldengateConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the OdbNetwork associated with the
+     * Optional. Immutable. The name of the OdbNetwork associated with the
      * GoldengateConnection. The format is
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}.
      * It is optional but if specified, this should match the parent ODBNetwork
      * of the OdbSubnet.
      *
-     * Generated from protobuf field <code>string odb_network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getOdbNetwork()
@@ -263,13 +263,13 @@ class GoldengateConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the OdbNetwork associated with the
+     * Optional. Immutable. The name of the OdbNetwork associated with the
      * GoldengateConnection. The format is
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}.
      * It is optional but if specified, this should match the parent ODBNetwork
      * of the OdbSubnet.
      *
-     * Generated from protobuf field <code>string odb_network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -282,11 +282,11 @@ class GoldengateConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the OdbSubnet associated with the
+     * Optional. Immutable. The name of the OdbSubnet associated with the
      * GoldengateConnection for IP allocation. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *
-     * Generated from protobuf field <code>string odb_subnet = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_subnet = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getOdbSubnet()
@@ -295,11 +295,11 @@ class GoldengateConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the OdbSubnet associated with the
+     * Optional. Immutable. The name of the OdbSubnet associated with the
      * GoldengateConnection for IP allocation. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *
-     * Generated from protobuf field <code>string odb_subnet = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_subnet = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -24,17 +24,17 @@ class DbSystem extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Optional. The properties of the DbSystem.
+     * Optional. Immutable. The properties of the DbSystem.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.DbSystemProperties properties = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.DbSystemProperties properties = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $properties = null;
     /**
-     * Optional. The GCP Oracle zone where Oracle DbSystem is hosted.
+     * Optional. Immutable. The GCP Oracle zone where Oracle DbSystem is hosted.
      * Example: us-east4-b-r2.
      * If not specified, the system will pick a zone based on availability.
      *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $gcp_oracle_zone = '';
     /**
@@ -44,20 +44,21 @@ class DbSystem extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Optional. The name of the OdbNetwork associated with the DbSystem.
-     * Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}
-     * It is optional but if specified, this should match the parent ODBNetwork of
-     * the OdbSubnet.
+     * Optional. Immutable. The name of the OdbNetwork associated with the
+     * DbSystem. Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network} It is
+     * optional but if specified, this should match the parent ODBNetwork of the
+     * OdbSubnet.
      *
-     * Generated from protobuf field <code>string odb_network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     protected $odb_network = '';
     /**
-     * Required. The name of the OdbSubnet associated with the DbSystem for IP
-     * allocation. Format:
+     * Required. Immutable. The name of the OdbSubnet associated with the DbSystem
+     * for IP allocation. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *
-     * Generated from protobuf field <code>string odb_subnet = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_subnet = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     protected $odb_subnet = '';
     /**
@@ -68,10 +69,10 @@ class DbSystem extends \Google\Protobuf\Internal\Message
      */
     protected $entitlement_id = '';
     /**
-     * Required. The display name for the System db. The name does not have to
-     * be unique within your project.
+     * Required. Immutable. The display name for the System db. The name does not
+     * have to be unique within your project.
      *
-     * Generated from protobuf field <code>string display_name = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string display_name = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $display_name = '';
     /**
@@ -98,28 +99,29 @@ class DbSystem extends \Google\Protobuf\Internal\Message
      *           Identifier. The name of the DbSystem resource in the following format:
      *           projects/{project}/locations/{region}/dbSystems/{db_system}
      *     @type \Google\Cloud\OracleDatabase\V1\DbSystemProperties $properties
-     *           Optional. The properties of the DbSystem.
+     *           Optional. Immutable. The properties of the DbSystem.
      *     @type string $gcp_oracle_zone
-     *           Optional. The GCP Oracle zone where Oracle DbSystem is hosted.
+     *           Optional. Immutable. The GCP Oracle zone where Oracle DbSystem is hosted.
      *           Example: us-east4-b-r2.
      *           If not specified, the system will pick a zone based on availability.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels or tags associated with the DbSystem.
      *     @type string $odb_network
-     *           Optional. The name of the OdbNetwork associated with the DbSystem.
-     *           Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}
-     *           It is optional but if specified, this should match the parent ODBNetwork of
-     *           the OdbSubnet.
+     *           Optional. Immutable. The name of the OdbNetwork associated with the
+     *           DbSystem. Format:
+     *           projects/{project}/locations/{location}/odbNetworks/{odb_network} It is
+     *           optional but if specified, this should match the parent ODBNetwork of the
+     *           OdbSubnet.
      *     @type string $odb_subnet
-     *           Required. The name of the OdbSubnet associated with the DbSystem for IP
-     *           allocation. Format:
+     *           Required. Immutable. The name of the OdbSubnet associated with the DbSystem
+     *           for IP allocation. Format:
      *           projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *     @type string $entitlement_id
      *           Output only. The ID of the subscription entitlement associated with the
      *           DbSystem
      *     @type string $display_name
-     *           Required. The display name for the System db. The name does not have to
-     *           be unique within your project.
+     *           Required. Immutable. The display name for the System db. The name does not
+     *           have to be unique within your project.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The date and time that the DbSystem was created.
      *     @type string $oci_url
@@ -161,9 +163,9 @@ class DbSystem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The properties of the DbSystem.
+     * Optional. Immutable. The properties of the DbSystem.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.DbSystemProperties properties = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.DbSystemProperties properties = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Cloud\OracleDatabase\V1\DbSystemProperties|null
      */
     public function getProperties()
@@ -182,9 +184,9 @@ class DbSystem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The properties of the DbSystem.
+     * Optional. Immutable. The properties of the DbSystem.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.DbSystemProperties properties = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.DbSystemProperties properties = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\OracleDatabase\V1\DbSystemProperties $var
      * @return $this
      */
@@ -197,11 +199,11 @@ class DbSystem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The GCP Oracle zone where Oracle DbSystem is hosted.
+     * Optional. Immutable. The GCP Oracle zone where Oracle DbSystem is hosted.
      * Example: us-east4-b-r2.
      * If not specified, the system will pick a zone based on availability.
      *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getGcpOracleZone()
@@ -210,11 +212,11 @@ class DbSystem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The GCP Oracle zone where Oracle DbSystem is hosted.
+     * Optional. Immutable. The GCP Oracle zone where Oracle DbSystem is hosted.
      * Example: us-east4-b-r2.
      * If not specified, the system will pick a zone based on availability.
      *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string gcp_oracle_zone = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -253,12 +255,13 @@ class DbSystem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the OdbNetwork associated with the DbSystem.
-     * Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}
-     * It is optional but if specified, this should match the parent ODBNetwork of
-     * the OdbSubnet.
+     * Optional. Immutable. The name of the OdbNetwork associated with the
+     * DbSystem. Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network} It is
+     * optional but if specified, this should match the parent ODBNetwork of the
+     * OdbSubnet.
      *
-     * Generated from protobuf field <code>string odb_network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getOdbNetwork()
@@ -267,12 +270,13 @@ class DbSystem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the OdbNetwork associated with the DbSystem.
-     * Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}
-     * It is optional but if specified, this should match the parent ODBNetwork of
-     * the OdbSubnet.
+     * Optional. Immutable. The name of the OdbNetwork associated with the
+     * DbSystem. Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network} It is
+     * optional but if specified, this should match the parent ODBNetwork of the
+     * OdbSubnet.
      *
-     * Generated from protobuf field <code>string odb_network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -285,11 +289,11 @@ class DbSystem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the OdbSubnet associated with the DbSystem for IP
-     * allocation. Format:
+     * Required. Immutable. The name of the OdbSubnet associated with the DbSystem
+     * for IP allocation. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *
-     * Generated from protobuf field <code>string odb_subnet = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_subnet = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getOdbSubnet()
@@ -298,11 +302,11 @@ class DbSystem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the OdbSubnet associated with the DbSystem for IP
-     * allocation. Format:
+     * Required. Immutable. The name of the OdbSubnet associated with the DbSystem
+     * for IP allocation. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *
-     * Generated from protobuf field <code>string odb_subnet = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_subnet = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -343,10 +347,10 @@ class DbSystem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The display name for the System db. The name does not have to
-     * be unique within your project.
+     * Required. Immutable. The display name for the System db. The name does not
+     * have to be unique within your project.
      *
-     * Generated from protobuf field <code>string display_name = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string display_name = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getDisplayName()
@@ -355,10 +359,10 @@ class DbSystem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The display name for the System db. The name does not have to
-     * be unique within your project.
+     * Required. Immutable. The display name for the System db. The name does not
+     * have to be unique within your project.
      *
-     * Generated from protobuf field <code>string display_name = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string display_name = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */

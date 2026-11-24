@@ -302,6 +302,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $allPorts = true;
         $allowGlobalAccess = true;
         $allowPscGlobalAccess = false;
+        $availabilityGroup = 'availabilityGroup1136705179';
         $backendService = 'backendService306946058';
         $baseForwardingRule = 'baseForwardingRule524873104';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -320,6 +321,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $network = 'network1843485230';
         $networkTier = 'networkTier-19473069';
         $noAutomateDnsZone = false;
+        $parentForwardingRule = 'parentForwardingRule1403067753';
         $portRange = 'portRange217518079';
         $pscConnectionId = 292082397;
         $pscConnectionStatus = 'pscConnectionStatus-889592652';
@@ -336,6 +338,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $expectedResponse->setAllPorts($allPorts);
         $expectedResponse->setAllowGlobalAccess($allowGlobalAccess);
         $expectedResponse->setAllowPscGlobalAccess($allowPscGlobalAccess);
+        $expectedResponse->setAvailabilityGroup($availabilityGroup);
         $expectedResponse->setBackendService($backendService);
         $expectedResponse->setBaseForwardingRule($baseForwardingRule);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
@@ -356,6 +359,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setNetworkTier($networkTier);
         $expectedResponse->setNoAutomateDnsZone($noAutomateDnsZone);
+        $expectedResponse->setParentForwardingRule($parentForwardingRule);
         $expectedResponse->setPortRange($portRange);
         $expectedResponse->setPscConnectionId($pscConnectionId);
         $expectedResponse->setPscConnectionStatus($pscConnectionStatus);

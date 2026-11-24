@@ -26,10 +26,17 @@ class Medium
      * Generated from protobuf enum <code>MEMORY = 1;</code>
      */
     const MEMORY = 1;
+    /**
+     * Explicitly sets the EmptyDir to be a disk.
+     *
+     * Generated from protobuf enum <code>DISK = 2;</code>
+     */
+    const DISK = 2;
 
     private static $valueToName = [
         self::MEDIUM_UNSPECIFIED => 'MEDIUM_UNSPECIFIED',
         self::MEMORY => 'MEMORY',
+        self::DISK => 'DISK',
     ];
 
     public static function name($value)

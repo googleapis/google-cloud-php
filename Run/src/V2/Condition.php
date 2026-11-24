@@ -77,6 +77,8 @@ class Condition extends \Google\Protobuf\Internal\Message
      *           Output only. A reason for the revision condition.
      *     @type int $execution_reason
      *           Output only. A reason for the execution condition.
+     *     @type int $instance_reason
+     *           Output only. A reason for the instance condition.
      * }
      */
     public function __construct($data = NULL) {
@@ -321,6 +323,37 @@ class Condition extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Run\V2\Condition\ExecutionReason::class);
         $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. A reason for the instance condition.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.Condition.InstanceReason instance_reason = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getInstanceReason()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasInstanceReason()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * Output only. A reason for the instance condition.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.Condition.InstanceReason instance_reason = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setInstanceReason($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Run\V2\Condition\InstanceReason::class);
+        $this->writeOneof(12, $var);
 
         return $this;
     }

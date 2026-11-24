@@ -40,12 +40,12 @@ use Google\Rpc\Status;
  *                                           restricted to (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$) and must be a maximum of
  *                                           63 characters in length. The value must start with a letter and end with a
  *                                           letter or a number.
- * @param string $formattedDbSystemOdbSubnet The name of the OdbSubnet associated with the DbSystem for IP
- *                                           allocation. Format:
+ * @param string $formattedDbSystemOdbSubnet Immutable. The name of the OdbSubnet associated with the DbSystem
+ *                                           for IP allocation. Format:
  *                                           projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
  *                                           Please see {@see OracleDatabaseClient::odbSubnetName()} for help formatting this field.
- * @param string $dbSystemDisplayName        The display name for the System db. The name does not have to
- *                                           be unique within your project.
+ * @param string $dbSystemDisplayName        Immutable. The display name for the System db. The name does not
+ *                                           have to be unique within your project.
  */
 function create_db_system_sample(
     string $formattedParent,

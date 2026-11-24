@@ -23,6 +23,11 @@ class ForwardInfo extends \Google\Protobuf\Internal\Message
     protected $target = 0;
     /**
      * URI of the resource that the packet is forwarded to.
+     * Format:
+     * * `projects/{project_id}/global/networks/{network_id}` (VPC peering
+     * network)
+     * * `projects/{project_id}/regions/{region}/vpnGateways/{vpn_gateway_id}`
+     * (VPN gateway)
      *
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      */
@@ -44,6 +49,11 @@ class ForwardInfo extends \Google\Protobuf\Internal\Message
      *           Target type where this packet is forwarded to.
      *     @type string $resource_uri
      *           URI of the resource that the packet is forwarded to.
+     *           Format:
+     *           * `projects/{project_id}/global/networks/{network_id}` (VPC peering
+     *           network)
+     *           * `projects/{project_id}/regions/{region}/vpnGateways/{vpn_gateway_id}`
+     *           (VPN gateway)
      *     @type string $ip_address
      *           IP address of the target (if applicable).
      * }
@@ -81,6 +91,11 @@ class ForwardInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the resource that the packet is forwarded to.
+     * Format:
+     * * `projects/{project_id}/global/networks/{network_id}` (VPC peering
+     * network)
+     * * `projects/{project_id}/regions/{region}/vpnGateways/{vpn_gateway_id}`
+     * (VPN gateway)
      *
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      * @return string
@@ -92,6 +107,11 @@ class ForwardInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the resource that the packet is forwarded to.
+     * Format:
+     * * `projects/{project_id}/global/networks/{network_id}` (VPC peering
+     * network)
+     * * `projects/{project_id}/regions/{region}/vpnGateways/{vpn_gateway_id}`
+     * (VPN gateway)
      *
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      * @param string $var

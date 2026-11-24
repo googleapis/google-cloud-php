@@ -132,6 +132,57 @@ final class EntitySignalsMappingServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * audience_segment resource.
+     *
+     * @param string $networkCode
+     * @param string $audienceSegment
+     *
+     * @return string The formatted audience_segment resource.
+     */
+    public static function audienceSegmentName(string $networkCode, string $audienceSegment): string
+    {
+        return self::getPathTemplate('audienceSegment')->render([
+            'network_code' => $networkCode,
+            'audience_segment' => $audienceSegment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * content_bundle resource.
+     *
+     * @param string $networkCode
+     * @param string $contentBundle
+     *
+     * @return string The formatted content_bundle resource.
+     */
+    public static function contentBundleName(string $networkCode, string $contentBundle): string
+    {
+        return self::getPathTemplate('contentBundle')->render([
+            'network_code' => $networkCode,
+            'content_bundle' => $contentBundle,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * custom_targeting_value resource.
+     *
+     * @param string $networkCode
+     * @param string $customTargetingValue
+     *
+     * @return string The formatted custom_targeting_value resource.
+     */
+    public static function customTargetingValueName(string $networkCode, string $customTargetingValue): string
+    {
+        return self::getPathTemplate('customTargetingValue')->render([
+            'network_code' => $networkCode,
+            'custom_targeting_value' => $customTargetingValue,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * entity_signals_mapping resource.
      *
      * @param string $networkCode
@@ -163,11 +214,32 @@ final class EntitySignalsMappingServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * taxonomy_category resource.
+     *
+     * @param string $networkCode
+     * @param string $taxonomyCategory
+     *
+     * @return string The formatted taxonomy_category resource.
+     */
+    public static function taxonomyCategoryName(string $networkCode, string $taxonomyCategory): string
+    {
+        return self::getPathTemplate('taxonomyCategory')->render([
+            'network_code' => $networkCode,
+            'taxonomy_category' => $taxonomyCategory,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - audienceSegment: networks/{network_code}/audienceSegments/{audience_segment}
+     * - contentBundle: networks/{network_code}/contentBundles/{content_bundle}
+     * - customTargetingValue: networks/{network_code}/customTargetingValues/{custom_targeting_value}
      * - entitySignalsMapping: networks/{network_code}/entitySignalsMappings/{entity_signals_mapping}
      * - network: networks/{network_code}
+     * - taxonomyCategory: networks/{network_code}/taxonomyCategories/{taxonomy_category}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

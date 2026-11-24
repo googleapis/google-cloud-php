@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * A resource representing a form of persistent storage that is accessible to
- * compute resources in the cluster.
+ * Represents a form of persistent storage that you can mount onto compute
+ * resources in the cluster.
  *
  * Generated from protobuf message <code>google.cloud.hypercomputecluster.v1beta.StorageResource</code>
  */
@@ -35,14 +35,15 @@ class StorageResource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\HypercomputeCluster\V1beta\FilestoreReference $filestore
-     *           Reference to a Filestore instance. Populated if and only if the storage
-     *           resource was configured to use Filestore.
+     *           Output only. A reference to a Filestore instance. Populated if and only
+     *           if the storage resource was configured to use Filestore.
      *     @type \Google\Cloud\HypercomputeCluster\V1beta\BucketReference $bucket
-     *           Reference to a Google Cloud Storage bucket. Populated if and only if the
-     *           storage resource was configured to use Google Cloud Storage.
+     *           Output only. A reference to a Google Cloud Storage bucket. Populated if
+     *           and only if the storage resource was configured to use Google Cloud
+     *           Storage.
      *     @type \Google\Cloud\HypercomputeCluster\V1beta\LustreReference $lustre
-     *           Reference to a Managed Lustre instance. Populated if and only if the
-     *           storage resource was configured to use Managed Lustre.
+     *           Output only. A reference to a Managed Lustre instance. Populated if and
+     *           only if the storage resource was configured to use Managed Lustre.
      *     @type \Google\Cloud\HypercomputeCluster\V1beta\StorageResourceConfig $config
      *           Required. Immutable. Configuration for this storage resource, which
      *           describes how it should be created or imported. This field only controls
@@ -57,10 +58,10 @@ class StorageResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reference to a Filestore instance. Populated if and only if the storage
-     * resource was configured to use Filestore.
+     * Output only. A reference to a Filestore instance. Populated if and only
+     * if the storage resource was configured to use Filestore.
      *
-     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.FilestoreReference filestore = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.FilestoreReference filestore = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\HypercomputeCluster\V1beta\FilestoreReference|null
      */
     public function getFilestore()
@@ -74,10 +75,10 @@ class StorageResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reference to a Filestore instance. Populated if and only if the storage
-     * resource was configured to use Filestore.
+     * Output only. A reference to a Filestore instance. Populated if and only
+     * if the storage resource was configured to use Filestore.
      *
-     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.FilestoreReference filestore = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.FilestoreReference filestore = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\HypercomputeCluster\V1beta\FilestoreReference $var
      * @return $this
      */
@@ -90,10 +91,11 @@ class StorageResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reference to a Google Cloud Storage bucket. Populated if and only if the
-     * storage resource was configured to use Google Cloud Storage.
+     * Output only. A reference to a Google Cloud Storage bucket. Populated if
+     * and only if the storage resource was configured to use Google Cloud
+     * Storage.
      *
-     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.BucketReference bucket = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.BucketReference bucket = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\HypercomputeCluster\V1beta\BucketReference|null
      */
     public function getBucket()
@@ -107,10 +109,11 @@ class StorageResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reference to a Google Cloud Storage bucket. Populated if and only if the
-     * storage resource was configured to use Google Cloud Storage.
+     * Output only. A reference to a Google Cloud Storage bucket. Populated if
+     * and only if the storage resource was configured to use Google Cloud
+     * Storage.
      *
-     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.BucketReference bucket = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.BucketReference bucket = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\HypercomputeCluster\V1beta\BucketReference $var
      * @return $this
      */
@@ -123,10 +126,10 @@ class StorageResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reference to a Managed Lustre instance. Populated if and only if the
-     * storage resource was configured to use Managed Lustre.
+     * Output only. A reference to a Managed Lustre instance. Populated if and
+     * only if the storage resource was configured to use Managed Lustre.
      *
-     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.LustreReference lustre = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.LustreReference lustre = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\HypercomputeCluster\V1beta\LustreReference|null
      */
     public function getLustre()
@@ -140,10 +143,10 @@ class StorageResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reference to a Managed Lustre instance. Populated if and only if the
-     * storage resource was configured to use Managed Lustre.
+     * Output only. A reference to a Managed Lustre instance. Populated if and
+     * only if the storage resource was configured to use Managed Lustre.
      *
-     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.LustreReference lustre = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.LustreReference lustre = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\HypercomputeCluster\V1beta\LustreReference $var
      * @return $this
      */

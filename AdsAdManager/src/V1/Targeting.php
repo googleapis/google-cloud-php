@@ -16,6 +16,12 @@ use Google\Protobuf\RepeatedField;
 class Targeting extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Optional. Used to target/exclude specific websites.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.InventoryUrlTargeting inventory_url_targeting = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $inventory_url_targeting = null;
+    /**
      * Optional. Used to target/exclude various geo targets.
      *
      * Generated from protobuf field <code>.google.ads.admanager.v1.GeoTargeting geo_targeting = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -27,6 +33,12 @@ class Targeting extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.ads.admanager.v1.TechnologyTargeting technology_targeting = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $technology_targeting = null;
+    /**
+     * Optional. Used to target/exclude ad requests for specific ad slot sizes.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.InventorySizeTargeting inventory_size_targeting = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $inventory_size_targeting = null;
     /**
      * Optional. Used to target/exclude various ad units and/or placements.
      *
@@ -47,11 +59,29 @@ class Targeting extends \Google\Protobuf\Internal\Message
      */
     protected $custom_targeting = null;
     /**
+     * Optional. Used to target a datetime range.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.DateTimeRangeTargeting date_time_range_targeting = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $date_time_range_targeting = null;
+    /**
+     * Optional. Used to target publisher provided signals.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.PublisherProvidedSignalsTargeting publisher_provided_signals_targeting = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $publisher_provided_signals_targeting = null;
+    /**
      * Optional. Used to target user domains.
      *
      * Generated from protobuf field <code>.google.ads.admanager.v1.UserDomainTargeting user_domain_targeting = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $user_domain_targeting = null;
+    /**
+     * Optional. Used to target verticals / content labels
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ContextualTargeting contextual_targeting = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $contextual_targeting = null;
     /**
      * Optional. Used to target video positions.
      *
@@ -82,6 +112,18 @@ class Targeting extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.ads.admanager.v1.MobileApplicationTargeting mobile_application_targeting = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $mobile_application_targeting = null;
+    /**
+     * Optional. Used to target day parts.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.DayPartTargeting day_part_targeting = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $day_part_targeting = null;
+    /**
+     * Optional. Used to target buyer user lists.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.BuyerUserListTargeting buyer_user_list_targeting = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $buyer_user_list_targeting = null;
 
     /**
      * Constructor.
@@ -89,10 +131,14 @@ class Targeting extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Ads\AdManager\V1\InventoryUrlTargeting $inventory_url_targeting
+     *           Optional. Used to target/exclude specific websites.
      *     @type \Google\Ads\AdManager\V1\GeoTargeting $geo_targeting
      *           Optional. Used to target/exclude various geo targets.
      *     @type \Google\Ads\AdManager\V1\TechnologyTargeting $technology_targeting
      *           Optional. Used to target various technology targeting dimensions.
+     *     @type \Google\Ads\AdManager\V1\InventorySizeTargeting $inventory_size_targeting
+     *           Optional. Used to target/exclude ad requests for specific ad slot sizes.
      *     @type \Google\Ads\AdManager\V1\InventoryTargeting $inventory_targeting
      *           Optional. Used to target/exclude various ad units and/or placements.
      *     @type \Google\Ads\AdManager\V1\RequestPlatformTargeting $request_platform_targeting
@@ -100,8 +146,14 @@ class Targeting extends \Google\Protobuf\Internal\Message
      *     @type \Google\Ads\AdManager\V1\CustomTargeting $custom_targeting
      *           Optional. Used to target key/values, audience segments, and/or CMS
      *           metadata.
+     *     @type \Google\Ads\AdManager\V1\DateTimeRangeTargeting $date_time_range_targeting
+     *           Optional. Used to target a datetime range.
+     *     @type \Google\Ads\AdManager\V1\PublisherProvidedSignalsTargeting $publisher_provided_signals_targeting
+     *           Optional. Used to target publisher provided signals.
      *     @type \Google\Ads\AdManager\V1\UserDomainTargeting $user_domain_targeting
      *           Optional. Used to target user domains.
+     *     @type \Google\Ads\AdManager\V1\ContextualTargeting $contextual_targeting
+     *           Optional. Used to target verticals / content labels
      *     @type \Google\Ads\AdManager\V1\VideoPositionTargeting $video_position_targeting
      *           Optional. Used to target video positions.
      *     @type \Google\Ads\AdManager\V1\DataSegmentTargeting $data_segment_targeting
@@ -112,11 +164,51 @@ class Targeting extends \Google\Protobuf\Internal\Message
      *           Optional. Used to target content.
      *     @type \Google\Ads\AdManager\V1\MobileApplicationTargeting $mobile_application_targeting
      *           Optional. Used to target mobile applications.
+     *     @type \Google\Ads\AdManager\V1\DayPartTargeting $day_part_targeting
+     *           Optional. Used to target day parts.
+     *     @type \Google\Ads\AdManager\V1\BuyerUserListTargeting $buyer_user_list_targeting
+     *           Optional. Used to target buyer user lists.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Ads\Admanager\V1\Targeting::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. Used to target/exclude specific websites.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.InventoryUrlTargeting inventory_url_targeting = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\InventoryUrlTargeting|null
+     */
+    public function getInventoryUrlTargeting()
+    {
+        return $this->inventory_url_targeting;
+    }
+
+    public function hasInventoryUrlTargeting()
+    {
+        return isset($this->inventory_url_targeting);
+    }
+
+    public function clearInventoryUrlTargeting()
+    {
+        unset($this->inventory_url_targeting);
+    }
+
+    /**
+     * Optional. Used to target/exclude specific websites.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.InventoryUrlTargeting inventory_url_targeting = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\InventoryUrlTargeting $var
+     * @return $this
+     */
+    public function setInventoryUrlTargeting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\InventoryUrlTargeting::class);
+        $this->inventory_url_targeting = $var;
+
+        return $this;
     }
 
     /**
@@ -187,6 +279,42 @@ class Targeting extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\TechnologyTargeting::class);
         $this->technology_targeting = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Used to target/exclude ad requests for specific ad slot sizes.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.InventorySizeTargeting inventory_size_targeting = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\InventorySizeTargeting|null
+     */
+    public function getInventorySizeTargeting()
+    {
+        return $this->inventory_size_targeting;
+    }
+
+    public function hasInventorySizeTargeting()
+    {
+        return isset($this->inventory_size_targeting);
+    }
+
+    public function clearInventorySizeTargeting()
+    {
+        unset($this->inventory_size_targeting);
+    }
+
+    /**
+     * Optional. Used to target/exclude ad requests for specific ad slot sizes.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.InventorySizeTargeting inventory_size_targeting = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\InventorySizeTargeting $var
+     * @return $this
+     */
+    public function setInventorySizeTargeting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\InventorySizeTargeting::class);
+        $this->inventory_size_targeting = $var;
 
         return $this;
     }
@@ -302,6 +430,78 @@ class Targeting extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Used to target a datetime range.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.DateTimeRangeTargeting date_time_range_targeting = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\DateTimeRangeTargeting|null
+     */
+    public function getDateTimeRangeTargeting()
+    {
+        return $this->date_time_range_targeting;
+    }
+
+    public function hasDateTimeRangeTargeting()
+    {
+        return isset($this->date_time_range_targeting);
+    }
+
+    public function clearDateTimeRangeTargeting()
+    {
+        unset($this->date_time_range_targeting);
+    }
+
+    /**
+     * Optional. Used to target a datetime range.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.DateTimeRangeTargeting date_time_range_targeting = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\DateTimeRangeTargeting $var
+     * @return $this
+     */
+    public function setDateTimeRangeTargeting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\DateTimeRangeTargeting::class);
+        $this->date_time_range_targeting = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Used to target publisher provided signals.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.PublisherProvidedSignalsTargeting publisher_provided_signals_targeting = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\PublisherProvidedSignalsTargeting|null
+     */
+    public function getPublisherProvidedSignalsTargeting()
+    {
+        return $this->publisher_provided_signals_targeting;
+    }
+
+    public function hasPublisherProvidedSignalsTargeting()
+    {
+        return isset($this->publisher_provided_signals_targeting);
+    }
+
+    public function clearPublisherProvidedSignalsTargeting()
+    {
+        unset($this->publisher_provided_signals_targeting);
+    }
+
+    /**
+     * Optional. Used to target publisher provided signals.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.PublisherProvidedSignalsTargeting publisher_provided_signals_targeting = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\PublisherProvidedSignalsTargeting $var
+     * @return $this
+     */
+    public function setPublisherProvidedSignalsTargeting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\PublisherProvidedSignalsTargeting::class);
+        $this->publisher_provided_signals_targeting = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Used to target user domains.
      *
      * Generated from protobuf field <code>.google.ads.admanager.v1.UserDomainTargeting user_domain_targeting = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -333,6 +533,42 @@ class Targeting extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\UserDomainTargeting::class);
         $this->user_domain_targeting = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Used to target verticals / content labels
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ContextualTargeting contextual_targeting = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\ContextualTargeting|null
+     */
+    public function getContextualTargeting()
+    {
+        return $this->contextual_targeting;
+    }
+
+    public function hasContextualTargeting()
+    {
+        return isset($this->contextual_targeting);
+    }
+
+    public function clearContextualTargeting()
+    {
+        unset($this->contextual_targeting);
+    }
+
+    /**
+     * Optional. Used to target verticals / content labels
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ContextualTargeting contextual_targeting = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\ContextualTargeting $var
+     * @return $this
+     */
+    public function setContextualTargeting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\ContextualTargeting::class);
+        $this->contextual_targeting = $var;
 
         return $this;
     }
@@ -513,6 +749,78 @@ class Targeting extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\MobileApplicationTargeting::class);
         $this->mobile_application_targeting = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Used to target day parts.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.DayPartTargeting day_part_targeting = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\DayPartTargeting|null
+     */
+    public function getDayPartTargeting()
+    {
+        return $this->day_part_targeting;
+    }
+
+    public function hasDayPartTargeting()
+    {
+        return isset($this->day_part_targeting);
+    }
+
+    public function clearDayPartTargeting()
+    {
+        unset($this->day_part_targeting);
+    }
+
+    /**
+     * Optional. Used to target day parts.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.DayPartTargeting day_part_targeting = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\DayPartTargeting $var
+     * @return $this
+     */
+    public function setDayPartTargeting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\DayPartTargeting::class);
+        $this->day_part_targeting = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Used to target buyer user lists.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.BuyerUserListTargeting buyer_user_list_targeting = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\BuyerUserListTargeting|null
+     */
+    public function getBuyerUserListTargeting()
+    {
+        return $this->buyer_user_list_targeting;
+    }
+
+    public function hasBuyerUserListTargeting()
+    {
+        return isset($this->buyer_user_list_targeting);
+    }
+
+    public function clearBuyerUserListTargeting()
+    {
+        unset($this->buyer_user_list_targeting);
+    }
+
+    /**
+     * Optional. Used to target buyer user lists.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.BuyerUserListTargeting buyer_user_list_targeting = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\BuyerUserListTargeting $var
+     * @return $this
+     */
+    public function setBuyerUserListTargeting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\BuyerUserListTargeting::class);
+        $this->buyer_user_list_targeting = $var;
 
         return $this;
     }

@@ -217,6 +217,7 @@ class GlobalPublicDelegatedPrefixesClientTest extends GeneratedTest
         $mode = 'mode3357091';
         $name = 'name3373707';
         $parentPrefix = 'parentPrefix552104903';
+        $purpose = 'purpose-220463842';
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $status = 'status-892481550';
@@ -235,6 +236,7 @@ class GlobalPublicDelegatedPrefixesClientTest extends GeneratedTest
         $expectedResponse->setMode($mode);
         $expectedResponse->setName($name);
         $expectedResponse->setParentPrefix($parentPrefix);
+        $expectedResponse->setPurpose($purpose);
         $expectedResponse->setRegion($region);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setStatus($status);

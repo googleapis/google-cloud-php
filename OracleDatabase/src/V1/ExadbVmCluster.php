@@ -99,6 +99,16 @@ class ExadbVmCluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.IdentityConnector identity_connector = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $identity_connector = null;
+    /**
+     * Optional. Input only. Immutable. If set to true, disables the automatic
+     * provisioning of the Workload Identity Connector during creation. If set to
+     * false or omitted, the Workload Identity Connector will be automatically
+     * provisioned by default. Note: Provisioning the Workload Identity Connector
+     * is a prerequisite for enabling Google Cloud CMEK.
+     *
+     * Generated from protobuf field <code>bool identity_connector_disabled = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $identity_connector_disabled = false;
 
     /**
      * Constructor.
@@ -144,6 +154,12 @@ class ExadbVmCluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\OracleDatabase\V1\IdentityConnector $identity_connector
      *           Output only. The identity connector details which will allow OCI to
      *           securely access the resources in the customer project.
+     *     @type bool $identity_connector_disabled
+     *           Optional. Input only. Immutable. If set to true, disables the automatic
+     *           provisioning of the Workload Identity Connector during creation. If set to
+     *           false or omitted, the Workload Identity Connector will be automatically
+     *           provisioned by default. Note: Provisioning the Workload Identity Connector
+     *           is a prerequisite for enabling Google Cloud CMEK.
      * }
      */
     public function __construct($data = NULL) {
@@ -495,6 +511,40 @@ class ExadbVmCluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\OracleDatabase\V1\IdentityConnector::class);
         $this->identity_connector = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Immutable. If set to true, disables the automatic
+     * provisioning of the Workload Identity Connector during creation. If set to
+     * false or omitted, the Workload Identity Connector will be automatically
+     * provisioned by default. Note: Provisioning the Workload Identity Connector
+     * is a prerequisite for enabling Google Cloud CMEK.
+     *
+     * Generated from protobuf field <code>bool identity_connector_disabled = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return bool
+     */
+    public function getIdentityConnectorDisabled()
+    {
+        return $this->identity_connector_disabled;
+    }
+
+    /**
+     * Optional. Input only. Immutable. If set to true, disables the automatic
+     * provisioning of the Workload Identity Connector during creation. If set to
+     * false or omitted, the Workload Identity Connector will be automatically
+     * provisioned by default. Note: Provisioning the Workload Identity Connector
+     * is a prerequisite for enabling Google Cloud CMEK.
+     *
+     * Generated from protobuf field <code>bool identity_connector_disabled = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIdentityConnectorDisabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->identity_connector_disabled = $var;
 
         return $this;
     }

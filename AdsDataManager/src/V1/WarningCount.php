@@ -27,6 +27,13 @@ class WarningCount extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.ads.datamanager.v1.ProcessingWarningReason reason = 2;</code>
      */
     protected $reason = 0;
+    /**
+     * The 0-based indices of the records in the original request that had this
+     * warning reason.
+     *
+     * Generated from protobuf field <code>repeated int32 record_indices = 3;</code>
+     */
+    private $record_indices;
 
     /**
      * Constructor.
@@ -38,6 +45,9 @@ class WarningCount extends \Google\Protobuf\Internal\Message
      *           The count of records that have a warning.
      *     @type int $reason
      *           The warning reason.
+     *     @type int[] $record_indices
+     *           The 0-based indices of the records in the original request that had this
+     *           warning reason.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +103,34 @@ class WarningCount extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Ads\DataManager\V1\ProcessingWarningReason::class);
         $this->reason = $var;
+
+        return $this;
+    }
+
+    /**
+     * The 0-based indices of the records in the original request that had this
+     * warning reason.
+     *
+     * Generated from protobuf field <code>repeated int32 record_indices = 3;</code>
+     * @return RepeatedField<int>
+     */
+    public function getRecordIndices()
+    {
+        return $this->record_indices;
+    }
+
+    /**
+     * The 0-based indices of the records in the original request that had this
+     * warning reason.
+     *
+     * Generated from protobuf field <code>repeated int32 record_indices = 3;</code>
+     * @param int[] $var
+     * @return $this
+     */
+    public function setRecordIndices($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT32);
+        $this->record_indices = $arr;
 
         return $this;
     }

@@ -30,6 +30,31 @@ class IdentityConnector extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.IdentityConnector.ConnectionState connection_state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $connection_state = 0;
+    /**
+     * Output only. The resource name of the Workload Identity Pool
+     * configured for identity federation with OCI. This exact pool name can be
+     * used to configure VPC Service Controls (VPC-SC) egress rules.
+     * Format:
+     * `projects/{project}/locations/global/workloadIdentityPools/{workload_identity_pool}`
+     *
+     * Generated from protobuf field <code>string workload_identity_pool = 3 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    protected $workload_identity_pool = '';
+    /**
+     * Output only. The unique partner identifier for the Identity Connector,
+     * used to establish secure cross-cloud access between Google Cloud and OCI.
+     * This corresponds directly to the ID of the OracleDbGcpIdentityConnector
+     * resource in Oracle Cloud Infrastructure (OCI).
+     *
+     * Generated from protobuf field <code>string identity_connector_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $identity_connector_id = '';
+    /**
+     * Output only. Additional information about the current lifecycle state.
+     *
+     * Generated from protobuf field <code>string lifecycle_state_details = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $lifecycle_state_details = '';
 
     /**
      * Constructor.
@@ -43,6 +68,19 @@ class IdentityConnector extends \Google\Protobuf\Internal\Message
      *           `p176944527254-55-75119d87fd8f\@gcp-sa-oci.iam.gserviceaccount.com`
      *     @type int $connection_state
      *           Output only. The connection state of the identity connector.
+     *     @type string $workload_identity_pool
+     *           Output only. The resource name of the Workload Identity Pool
+     *           configured for identity federation with OCI. This exact pool name can be
+     *           used to configure VPC Service Controls (VPC-SC) egress rules.
+     *           Format:
+     *           `projects/{project}/locations/global/workloadIdentityPools/{workload_identity_pool}`
+     *     @type string $identity_connector_id
+     *           Output only. The unique partner identifier for the Identity Connector,
+     *           used to establish secure cross-cloud access between Google Cloud and OCI.
+     *           This corresponds directly to the ID of the OracleDbGcpIdentityConnector
+     *           resource in Oracle Cloud Infrastructure (OCI).
+     *     @type string $lifecycle_state_details
+     *           Output only. Additional information about the current lifecycle state.
      * }
      */
     public function __construct($data = NULL) {
@@ -102,6 +140,98 @@ class IdentityConnector extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\OracleDatabase\V1\IdentityConnector\ConnectionState::class);
         $this->connection_state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The resource name of the Workload Identity Pool
+     * configured for identity federation with OCI. This exact pool name can be
+     * used to configure VPC Service Controls (VPC-SC) egress rules.
+     * Format:
+     * `projects/{project}/locations/global/workloadIdentityPools/{workload_identity_pool}`
+     *
+     * Generated from protobuf field <code>string workload_identity_pool = 3 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getWorkloadIdentityPool()
+    {
+        return $this->workload_identity_pool;
+    }
+
+    /**
+     * Output only. The resource name of the Workload Identity Pool
+     * configured for identity federation with OCI. This exact pool name can be
+     * used to configure VPC Service Controls (VPC-SC) egress rules.
+     * Format:
+     * `projects/{project}/locations/global/workloadIdentityPools/{workload_identity_pool}`
+     *
+     * Generated from protobuf field <code>string workload_identity_pool = 3 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setWorkloadIdentityPool($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->workload_identity_pool = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The unique partner identifier for the Identity Connector,
+     * used to establish secure cross-cloud access between Google Cloud and OCI.
+     * This corresponds directly to the ID of the OracleDbGcpIdentityConnector
+     * resource in Oracle Cloud Infrastructure (OCI).
+     *
+     * Generated from protobuf field <code>string identity_connector_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getIdentityConnectorId()
+    {
+        return $this->identity_connector_id;
+    }
+
+    /**
+     * Output only. The unique partner identifier for the Identity Connector,
+     * used to establish secure cross-cloud access between Google Cloud and OCI.
+     * This corresponds directly to the ID of the OracleDbGcpIdentityConnector
+     * resource in Oracle Cloud Infrastructure (OCI).
+     *
+     * Generated from protobuf field <code>string identity_connector_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIdentityConnectorId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->identity_connector_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Additional information about the current lifecycle state.
+     *
+     * Generated from protobuf field <code>string lifecycle_state_details = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getLifecycleStateDetails()
+    {
+        return $this->lifecycle_state_details;
+    }
+
+    /**
+     * Output only. Additional information about the current lifecycle state.
+     *
+     * Generated from protobuf field <code>string lifecycle_state_details = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLifecycleStateDetails($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->lifecycle_state_details = $var;
 
         return $this;
     }

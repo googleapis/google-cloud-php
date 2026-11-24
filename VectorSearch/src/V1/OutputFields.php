@@ -9,26 +9,37 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Defines a output fields struct for data in DataObject.
+ * Defines an output fields struct for data in DataObject.
+ * Output fields are opt-in. A search or query result contains only the data
+ * object name and ID, plus the fields listed here. If this message is unset or
+ * a list is empty, the corresponding part of the data object (`data`,
+ * `vectors` or metadata) is omitted from the result; it is not an indication
+ * that the stored data object is empty. Use `"*"` in a list to return all
+ * fields of that kind.
  *
  * Generated from protobuf message <code>google.cloud.vectorsearch.v1.OutputFields</code>
  */
 class OutputFields extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The fields from the data fields to include in the output.
+     * Optional. The fields from the data fields to include in the output. Use
+     * `"*"` to include all data fields. If empty, `data` is omitted from results.
      *
      * Generated from protobuf field <code>repeated string data_fields = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $data_fields;
     /**
-     * Optional. The fields from the vector fields to include in the output.
+     * Optional. The fields from the vector fields to include in the output. Use
+     * `"*"` to include all vector fields. If empty, `vectors` is omitted from
+     * results.
      *
      * Generated from protobuf field <code>repeated string vector_fields = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $vector_fields;
     /**
-     * Optional. The fields from the DataObject metadata to include in the output.
+     * Optional. The DataObject metadata fields to include in the output:
+     * `create_time`, `update_time` and `etag`. Use `"*"` to include all metadata
+     * fields. If empty, these fields are omitted from results.
      *
      * Generated from protobuf field <code>repeated string metadata_fields = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -41,11 +52,16 @@ class OutputFields extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[] $data_fields
-     *           Optional. The fields from the data fields to include in the output.
+     *           Optional. The fields from the data fields to include in the output. Use
+     *           `"*"` to include all data fields. If empty, `data` is omitted from results.
      *     @type string[] $vector_fields
-     *           Optional. The fields from the vector fields to include in the output.
+     *           Optional. The fields from the vector fields to include in the output. Use
+     *           `"*"` to include all vector fields. If empty, `vectors` is omitted from
+     *           results.
      *     @type string[] $metadata_fields
-     *           Optional. The fields from the DataObject metadata to include in the output.
+     *           Optional. The DataObject metadata fields to include in the output:
+     *           `create_time`, `update_time` and `etag`. Use `"*"` to include all metadata
+     *           fields. If empty, these fields are omitted from results.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +70,8 @@ class OutputFields extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The fields from the data fields to include in the output.
+     * Optional. The fields from the data fields to include in the output. Use
+     * `"*"` to include all data fields. If empty, `data` is omitted from results.
      *
      * Generated from protobuf field <code>repeated string data_fields = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<string>
@@ -65,7 +82,8 @@ class OutputFields extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The fields from the data fields to include in the output.
+     * Optional. The fields from the data fields to include in the output. Use
+     * `"*"` to include all data fields. If empty, `data` is omitted from results.
      *
      * Generated from protobuf field <code>repeated string data_fields = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[] $var
@@ -80,7 +98,9 @@ class OutputFields extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The fields from the vector fields to include in the output.
+     * Optional. The fields from the vector fields to include in the output. Use
+     * `"*"` to include all vector fields. If empty, `vectors` is omitted from
+     * results.
      *
      * Generated from protobuf field <code>repeated string vector_fields = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<string>
@@ -91,7 +111,9 @@ class OutputFields extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The fields from the vector fields to include in the output.
+     * Optional. The fields from the vector fields to include in the output. Use
+     * `"*"` to include all vector fields. If empty, `vectors` is omitted from
+     * results.
      *
      * Generated from protobuf field <code>repeated string vector_fields = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[] $var
@@ -106,7 +128,9 @@ class OutputFields extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The fields from the DataObject metadata to include in the output.
+     * Optional. The DataObject metadata fields to include in the output:
+     * `create_time`, `update_time` and `etag`. Use `"*"` to include all metadata
+     * fields. If empty, these fields are omitted from results.
      *
      * Generated from protobuf field <code>repeated string metadata_fields = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<string>
@@ -117,7 +141,9 @@ class OutputFields extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The fields from the DataObject metadata to include in the output.
+     * Optional. The DataObject metadata fields to include in the output:
+     * `create_time`, `update_time` and `etag`. Use `"*"` to include all metadata
+     * fields. If empty, these fields are omitted from results.
      *
      * Generated from protobuf field <code>repeated string metadata_fields = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[] $var

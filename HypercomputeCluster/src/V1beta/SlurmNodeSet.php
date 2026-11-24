@@ -18,20 +18,20 @@ use Google\Protobuf\RepeatedField;
 class SlurmNodeSet extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Identifier for the nodeset, which allows it to be referenced by
-     * partitions. Must conform to
-     * [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034) (lower-case,
-     * alphanumeric, and at most 63 characters).
+     * Required. The ID for the nodeset, which allows it to be referenced by
+     * cluster partitions. The nodeset ID must start with a lowercase letter
+     * (`a`-`z`), use only lowercase letters or numbers, and contain up to 15
+     * characters. For example, specify `nodeset001`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $id = '';
     /**
-     * Optional. ID of the compute resource on which this nodeset will run. Must
+     * Required. The ID of the compute resource on which this nodeset runs. Must
      * match a key in the cluster's
-     * [compute_resources](Cluster.compute_resources).
+     * [compute_resources][google.cloud.hypercomputecluster.v1beta.Cluster.compute_resources].
      *
-     * Generated from protobuf field <code>string compute_id = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string compute_id = 16 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $compute_id = '';
     /**
@@ -60,6 +60,12 @@ class SlurmNodeSet extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 max_dynamic_node_count = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $max_dynamic_node_count = 0;
+    /**
+     * Optional. Resource policy configuration for the nodeset.
+     *
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.ResourcePolicyConfig resource_policy_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $resource_policy_config = null;
     protected $type;
 
     /**
@@ -72,14 +78,14 @@ class SlurmNodeSet extends \Google\Protobuf\Internal\Message
      *           Optional. If set, indicates that the nodeset should be backed by Compute
      *           Engine instances.
      *     @type string $id
-     *           Required. Identifier for the nodeset, which allows it to be referenced by
-     *           partitions. Must conform to
-     *           [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034) (lower-case,
-     *           alphanumeric, and at most 63 characters).
+     *           Required. The ID for the nodeset, which allows it to be referenced by
+     *           cluster partitions. The nodeset ID must start with a lowercase letter
+     *           (`a`-`z`), use only lowercase letters or numbers, and contain up to 15
+     *           characters. For example, specify `nodeset001`.
      *     @type string $compute_id
-     *           Optional. ID of the compute resource on which this nodeset will run. Must
+     *           Required. The ID of the compute resource on which this nodeset runs. Must
      *           match a key in the cluster's
-     *           [compute_resources](Cluster.compute_resources).
+     *           [compute_resources][google.cloud.hypercomputecluster.v1beta.Cluster.compute_resources].
      *     @type \Google\Cloud\HypercomputeCluster\V1beta\StorageConfig[] $storage_configs
      *           Optional. How [storage
      *           resources][google.cloud.hypercomputecluster.v1beta.StorageResource] should
@@ -94,6 +100,8 @@ class SlurmNodeSet extends \Google\Protobuf\Internal\Message
      *           the number of additional nodes the cluster can bring online. Leave empty if
      *           you do not want the cluster to create nodes dynamically, and instead rely
      *           only on static nodes.
+     *     @type \Google\Cloud\HypercomputeCluster\V1beta\ResourcePolicyConfig $resource_policy_config
+     *           Optional. Resource policy configuration for the nodeset.
      * }
      */
     public function __construct($data = NULL) {
@@ -135,10 +143,10 @@ class SlurmNodeSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Identifier for the nodeset, which allows it to be referenced by
-     * partitions. Must conform to
-     * [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034) (lower-case,
-     * alphanumeric, and at most 63 characters).
+     * Required. The ID for the nodeset, which allows it to be referenced by
+     * cluster partitions. The nodeset ID must start with a lowercase letter
+     * (`a`-`z`), use only lowercase letters or numbers, and contain up to 15
+     * characters. For example, specify `nodeset001`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -149,10 +157,10 @@ class SlurmNodeSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Identifier for the nodeset, which allows it to be referenced by
-     * partitions. Must conform to
-     * [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034) (lower-case,
-     * alphanumeric, and at most 63 characters).
+     * Required. The ID for the nodeset, which allows it to be referenced by
+     * cluster partitions. The nodeset ID must start with a lowercase letter
+     * (`a`-`z`), use only lowercase letters or numbers, and contain up to 15
+     * characters. For example, specify `nodeset001`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -167,11 +175,11 @@ class SlurmNodeSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. ID of the compute resource on which this nodeset will run. Must
+     * Required. The ID of the compute resource on which this nodeset runs. Must
      * match a key in the cluster's
-     * [compute_resources](Cluster.compute_resources).
+     * [compute_resources][google.cloud.hypercomputecluster.v1beta.Cluster.compute_resources].
      *
-     * Generated from protobuf field <code>string compute_id = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string compute_id = 16 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getComputeId()
@@ -180,11 +188,11 @@ class SlurmNodeSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. ID of the compute resource on which this nodeset will run. Must
+     * Required. The ID of the compute resource on which this nodeset runs. Must
      * match a key in the cluster's
-     * [compute_resources](Cluster.compute_resources).
+     * [compute_resources][google.cloud.hypercomputecluster.v1beta.Cluster.compute_resources].
      *
-     * Generated from protobuf field <code>string compute_id = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string compute_id = 16 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -286,6 +294,42 @@ class SlurmNodeSet extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->max_dynamic_node_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Resource policy configuration for the nodeset.
+     *
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.ResourcePolicyConfig resource_policy_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\HypercomputeCluster\V1beta\ResourcePolicyConfig|null
+     */
+    public function getResourcePolicyConfig()
+    {
+        return $this->resource_policy_config;
+    }
+
+    public function hasResourcePolicyConfig()
+    {
+        return isset($this->resource_policy_config);
+    }
+
+    public function clearResourcePolicyConfig()
+    {
+        unset($this->resource_policy_config);
+    }
+
+    /**
+     * Optional. Resource policy configuration for the nodeset.
+     *
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.ResourcePolicyConfig resource_policy_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\HypercomputeCluster\V1beta\ResourcePolicyConfig $var
+     * @return $this
+     */
+    public function setResourcePolicyConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\HypercomputeCluster\V1beta\ResourcePolicyConfig::class);
+        $this->resource_policy_config = $var;
 
         return $this;
     }

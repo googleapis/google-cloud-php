@@ -23,10 +23,10 @@ class OdbNetwork extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Required. The name of the VPC network in the following format:
+     * Required. Immutable. The name of the VPC network in the following format:
      * projects/{project}/global/networks/{network}
      *
-     * Generated from protobuf field <code>string network = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     protected $network = '';
     /**
@@ -55,13 +55,31 @@ class OdbNetwork extends \Google\Protobuf\Internal\Message
      */
     protected $entitlement_id = '';
     /**
-     * Optional. The GCP Oracle zone where OdbNetwork is hosted.
+     * Optional. Immutable. The GCP Oracle zone where OdbNetwork is hosted.
      * Example: us-east4-b-r2.
      * If not specified, the system will pick a zone based on availability.
      *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string gcp_oracle_zone = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $gcp_oracle_zone = '';
+    /**
+     * Optional. Configuration to enable the service (Oracledatabase\@Google Cloud)
+     * to establish connectivity to the database.
+     * This should be specified if you intend to associate this OdbNetwork with a
+     * DatabaseConnection resource to `ExecuteSQL` on the database, or to create a
+     * ServiceIntegration with the Database.
+     * Please don't specify it otherwise to avoid complicating the network setup.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ServiceConnectivityConfig service_connectivity_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $service_connectivity_config = null;
+    /**
+     * Output only. Indicates whether the OdbNetwork is currently reconciling
+     * changes.
+     *
+     * Generated from protobuf field <code>bool reconciling = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $reconciling = false;
 
     /**
      * Constructor.
@@ -73,7 +91,7 @@ class OdbNetwork extends \Google\Protobuf\Internal\Message
      *           Identifier. The name of the OdbNetwork resource in the following format:
      *           projects/{project}/locations/{region}/odbNetworks/{odb_network}
      *     @type string $network
-     *           Required. The name of the VPC network in the following format:
+     *           Required. Immutable. The name of the VPC network in the following format:
      *           projects/{project}/global/networks/{network}
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels or tags associated with the resource.
@@ -85,9 +103,19 @@ class OdbNetwork extends \Google\Protobuf\Internal\Message
      *           Output only. The ID of the subscription entitlement associated with the
      *           OdbNetwork.
      *     @type string $gcp_oracle_zone
-     *           Optional. The GCP Oracle zone where OdbNetwork is hosted.
+     *           Optional. Immutable. The GCP Oracle zone where OdbNetwork is hosted.
      *           Example: us-east4-b-r2.
      *           If not specified, the system will pick a zone based on availability.
+     *     @type \Google\Cloud\OracleDatabase\V1\ServiceConnectivityConfig $service_connectivity_config
+     *           Optional. Configuration to enable the service (Oracledatabase\@Google Cloud)
+     *           to establish connectivity to the database.
+     *           This should be specified if you intend to associate this OdbNetwork with a
+     *           DatabaseConnection resource to `ExecuteSQL` on the database, or to create a
+     *           ServiceIntegration with the Database.
+     *           Please don't specify it otherwise to avoid complicating the network setup.
+     *     @type bool $reconciling
+     *           Output only. Indicates whether the OdbNetwork is currently reconciling
+     *           changes.
      * }
      */
     public function __construct($data = NULL) {
@@ -124,10 +152,10 @@ class OdbNetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the VPC network in the following format:
+     * Required. Immutable. The name of the VPC network in the following format:
      * projects/{project}/global/networks/{network}
      *
-     * Generated from protobuf field <code>string network = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getNetwork()
@@ -136,10 +164,10 @@ class OdbNetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the VPC network in the following format:
+     * Required. Immutable. The name of the VPC network in the following format:
      * projects/{project}/global/networks/{network}
      *
-     * Generated from protobuf field <code>string network = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -268,11 +296,11 @@ class OdbNetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The GCP Oracle zone where OdbNetwork is hosted.
+     * Optional. Immutable. The GCP Oracle zone where OdbNetwork is hosted.
      * Example: us-east4-b-r2.
      * If not specified, the system will pick a zone based on availability.
      *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string gcp_oracle_zone = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getGcpOracleZone()
@@ -281,11 +309,11 @@ class OdbNetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The GCP Oracle zone where OdbNetwork is hosted.
+     * Optional. Immutable. The GCP Oracle zone where OdbNetwork is hosted.
      * Example: us-east4-b-r2.
      * If not specified, the system will pick a zone based on availability.
      *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string gcp_oracle_zone = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -293,6 +321,80 @@ class OdbNetwork extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->gcp_oracle_zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration to enable the service (Oracledatabase\@Google Cloud)
+     * to establish connectivity to the database.
+     * This should be specified if you intend to associate this OdbNetwork with a
+     * DatabaseConnection resource to `ExecuteSQL` on the database, or to create a
+     * ServiceIntegration with the Database.
+     * Please don't specify it otherwise to avoid complicating the network setup.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ServiceConnectivityConfig service_connectivity_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\OracleDatabase\V1\ServiceConnectivityConfig|null
+     */
+    public function getServiceConnectivityConfig()
+    {
+        return $this->service_connectivity_config;
+    }
+
+    public function hasServiceConnectivityConfig()
+    {
+        return isset($this->service_connectivity_config);
+    }
+
+    public function clearServiceConnectivityConfig()
+    {
+        unset($this->service_connectivity_config);
+    }
+
+    /**
+     * Optional. Configuration to enable the service (Oracledatabase\@Google Cloud)
+     * to establish connectivity to the database.
+     * This should be specified if you intend to associate this OdbNetwork with a
+     * DatabaseConnection resource to `ExecuteSQL` on the database, or to create a
+     * ServiceIntegration with the Database.
+     * Please don't specify it otherwise to avoid complicating the network setup.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ServiceConnectivityConfig service_connectivity_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\OracleDatabase\V1\ServiceConnectivityConfig $var
+     * @return $this
+     */
+    public function setServiceConnectivityConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\OracleDatabase\V1\ServiceConnectivityConfig::class);
+        $this->service_connectivity_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Indicates whether the OdbNetwork is currently reconciling
+     * changes.
+     *
+     * Generated from protobuf field <code>bool reconciling = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getReconciling()
+    {
+        return $this->reconciling;
+    }
+
+    /**
+     * Output only. Indicates whether the OdbNetwork is currently reconciling
+     * changes.
+     *
+     * Generated from protobuf field <code>bool reconciling = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReconciling($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->reconciling = $var;
 
         return $this;
     }

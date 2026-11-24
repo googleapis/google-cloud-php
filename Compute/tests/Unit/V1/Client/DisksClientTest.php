@@ -882,6 +882,9 @@ class DisksClientTest extends GeneratedTest
         $sourceImageId = 'sourceImageId-2092155357';
         $sourceInstantSnapshot = 'sourceInstantSnapshot-317668858';
         $sourceInstantSnapshotId = 'sourceInstantSnapshotId-1859900940';
+        $sourceMachineImage = 'sourceMachineImage-1051972033';
+        $sourceMachineImageDiskDeviceName = 'sourceMachineImageDiskDeviceName-1541989070';
+        $sourceMachineImageId = 'sourceMachineImageId1077618459';
         $sourceSnapshot = 'sourceSnapshot-947679896';
         $sourceSnapshotId = 'sourceSnapshotId-1511650478';
         $sourceStorageObject = 'sourceStorageObject-303818201';
@@ -919,6 +922,9 @@ class DisksClientTest extends GeneratedTest
         $expectedResponse->setSourceImageId($sourceImageId);
         $expectedResponse->setSourceInstantSnapshot($sourceInstantSnapshot);
         $expectedResponse->setSourceInstantSnapshotId($sourceInstantSnapshotId);
+        $expectedResponse->setSourceMachineImage($sourceMachineImage);
+        $expectedResponse->setSourceMachineImageDiskDeviceName($sourceMachineImageDiskDeviceName);
+        $expectedResponse->setSourceMachineImageId($sourceMachineImageId);
         $expectedResponse->setSourceSnapshot($sourceSnapshot);
         $expectedResponse->setSourceSnapshotId($sourceSnapshotId);
         $expectedResponse->setSourceStorageObject($sourceStorageObject);

@@ -56,6 +56,12 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string api_version = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $api_version = '';
+    /**
+     * Output only. Progress of the operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.OperationProgress progress = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $progress = null;
 
     /**
      * Constructor.
@@ -80,6 +86,8 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *           corresponding to `Code.CANCELLED`.
      *     @type string $api_version
      *           Output only. API version used to start the operation.
+     *     @type \Google\Cloud\HypercomputeCluster\V1beta\OperationProgress $progress
+     *           Output only. Progress of the operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -269,6 +277,42 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->api_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Progress of the operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.OperationProgress progress = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\HypercomputeCluster\V1beta\OperationProgress|null
+     */
+    public function getProgress()
+    {
+        return $this->progress;
+    }
+
+    public function hasProgress()
+    {
+        return isset($this->progress);
+    }
+
+    public function clearProgress()
+    {
+        unset($this->progress);
+    }
+
+    /**
+     * Output only. Progress of the operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.hypercomputecluster.v1beta.OperationProgress progress = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\HypercomputeCluster\V1beta\OperationProgress $var
+     * @return $this
+     */
+    public function setProgress($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\HypercomputeCluster\V1beta\OperationProgress::class);
+        $this->progress = $var;
 
         return $this;
     }

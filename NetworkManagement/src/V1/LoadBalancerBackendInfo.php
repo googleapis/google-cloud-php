@@ -24,39 +24,54 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * URI of the backend instance (if applicable). Populated for instance group
-     * backends, and zonal NEG backends.
+     * URI of the backend instance (if applicable) in format
+     * "projects/{project}/zones/{zone}/instances/{instance}". Populated for
+     * instance group backends, and zonal NEG backends.
      *
      * Generated from protobuf field <code>string instance_uri = 2;</code>
      */
     protected $instance_uri = '';
     /**
-     * URI of the backend service this backend belongs to (if applicable).
+     * URI of the backend service this backend belongs to (if applicable) in
+     * format
+     * "projects/{project}/regions/{region}/backendServices/{backend_service}"
+     * (regional) or "projects/{project}/global/backendServices/{backend_service}"
+     * (global).
      *
      * Generated from protobuf field <code>string backend_service_uri = 3;</code>
      */
     protected $backend_service_uri = '';
     /**
-     * URI of the instance group this backend belongs to (if applicable).
+     * URI of the instance group this backend belongs to (if applicable) in
+     * format "projects/{project}/zones/{zone}/instanceGroups/{instance_group}".
      *
      * Generated from protobuf field <code>string instance_group_uri = 4;</code>
      */
     protected $instance_group_uri = '';
     /**
-     * URI of the network endpoint group this backend belongs to (if applicable).
+     * URI of the network endpoint group this backend belongs to (if applicable)
+     * Format:
+     * * `projects/{project_id}/zones/{zone}/networkEndpointGroups/{neg_id}`
+     * (zonal NEG)
+     * * `projects/{project_id}/regions/{region}/networkEndpointGroups/{neg_id}`
+     * (regional NEG)
+     * * `projects/{project_id}/global/networkEndpointGroups/{neg_id}` (global
+     * NEG)
      *
      * Generated from protobuf field <code>string network_endpoint_group_uri = 5;</code>
      */
     protected $network_endpoint_group_uri = '';
     /**
-     * URI of the backend bucket this backend targets (if applicable).
+     * URI of the backend bucket this backend targets (if applicable) in format
+     * "projects/{project}/global/backendBuckets/{backend_bucket}".
      *
      * Generated from protobuf field <code>string backend_bucket_uri = 8;</code>
      */
     protected $backend_bucket_uri = '';
     /**
      * URI of the PSC service attachment this PSC NEG backend targets (if
-     * applicable).
+     * applicable) in format
+     * "projects/{project}/regions/{region}/serviceAttachments/{service_attachment}".
      *
      * Generated from protobuf field <code>string psc_service_attachment_uri = 9;</code>
      */
@@ -69,6 +84,11 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
     protected $psc_google_api_target = '';
     /**
      * URI of the health check attached to this backend (if applicable).
+     * Format:
+     * * `projects/{project_id}/global/healthChecks/{health_check_id}`
+     * * `projects/{project_id}/regions/{region}/healthChecks/{health_check_id}`
+     * * `projects/{project_id}/global/httpHealthChecks/{health_check_id}`
+     * (legacy)
      *
      * Generated from protobuf field <code>string health_check_uri = 6;</code>
      */
@@ -96,23 +116,43 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
      *           the instance group backends, or an IP address and port for zonal network
      *           endpoint group backends.
      *     @type string $instance_uri
-     *           URI of the backend instance (if applicable). Populated for instance group
-     *           backends, and zonal NEG backends.
+     *           URI of the backend instance (if applicable) in format
+     *           "projects/{project}/zones/{zone}/instances/{instance}". Populated for
+     *           instance group backends, and zonal NEG backends.
      *     @type string $backend_service_uri
-     *           URI of the backend service this backend belongs to (if applicable).
+     *           URI of the backend service this backend belongs to (if applicable) in
+     *           format
+     *           "projects/{project}/regions/{region}/backendServices/{backend_service}"
+     *           (regional) or "projects/{project}/global/backendServices/{backend_service}"
+     *           (global).
      *     @type string $instance_group_uri
-     *           URI of the instance group this backend belongs to (if applicable).
+     *           URI of the instance group this backend belongs to (if applicable) in
+     *           format "projects/{project}/zones/{zone}/instanceGroups/{instance_group}".
      *     @type string $network_endpoint_group_uri
-     *           URI of the network endpoint group this backend belongs to (if applicable).
+     *           URI of the network endpoint group this backend belongs to (if applicable)
+     *           Format:
+     *           * `projects/{project_id}/zones/{zone}/networkEndpointGroups/{neg_id}`
+     *           (zonal NEG)
+     *           * `projects/{project_id}/regions/{region}/networkEndpointGroups/{neg_id}`
+     *           (regional NEG)
+     *           * `projects/{project_id}/global/networkEndpointGroups/{neg_id}` (global
+     *           NEG)
      *     @type string $backend_bucket_uri
-     *           URI of the backend bucket this backend targets (if applicable).
+     *           URI of the backend bucket this backend targets (if applicable) in format
+     *           "projects/{project}/global/backendBuckets/{backend_bucket}".
      *     @type string $psc_service_attachment_uri
      *           URI of the PSC service attachment this PSC NEG backend targets (if
-     *           applicable).
+     *           applicable) in format
+     *           "projects/{project}/regions/{region}/serviceAttachments/{service_attachment}".
      *     @type string $psc_google_api_target
      *           PSC Google API target this PSC NEG backend targets (if applicable).
      *     @type string $health_check_uri
      *           URI of the health check attached to this backend (if applicable).
+     *           Format:
+     *           * `projects/{project_id}/global/healthChecks/{health_check_id}`
+     *           * `projects/{project_id}/regions/{region}/healthChecks/{health_check_id}`
+     *           * `projects/{project_id}/global/httpHealthChecks/{health_check_id}`
+     *           (legacy)
      *     @type int $health_check_firewalls_config_state
      *           Output only. Health check firewalls configuration state for the backend.
      *           This is a result of the static firewall analysis (verifying that health
@@ -158,8 +198,9 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the backend instance (if applicable). Populated for instance group
-     * backends, and zonal NEG backends.
+     * URI of the backend instance (if applicable) in format
+     * "projects/{project}/zones/{zone}/instances/{instance}". Populated for
+     * instance group backends, and zonal NEG backends.
      *
      * Generated from protobuf field <code>string instance_uri = 2;</code>
      * @return string
@@ -170,8 +211,9 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the backend instance (if applicable). Populated for instance group
-     * backends, and zonal NEG backends.
+     * URI of the backend instance (if applicable) in format
+     * "projects/{project}/zones/{zone}/instances/{instance}". Populated for
+     * instance group backends, and zonal NEG backends.
      *
      * Generated from protobuf field <code>string instance_uri = 2;</code>
      * @param string $var
@@ -186,7 +228,11 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the backend service this backend belongs to (if applicable).
+     * URI of the backend service this backend belongs to (if applicable) in
+     * format
+     * "projects/{project}/regions/{region}/backendServices/{backend_service}"
+     * (regional) or "projects/{project}/global/backendServices/{backend_service}"
+     * (global).
      *
      * Generated from protobuf field <code>string backend_service_uri = 3;</code>
      * @return string
@@ -197,7 +243,11 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the backend service this backend belongs to (if applicable).
+     * URI of the backend service this backend belongs to (if applicable) in
+     * format
+     * "projects/{project}/regions/{region}/backendServices/{backend_service}"
+     * (regional) or "projects/{project}/global/backendServices/{backend_service}"
+     * (global).
      *
      * Generated from protobuf field <code>string backend_service_uri = 3;</code>
      * @param string $var
@@ -212,7 +262,8 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the instance group this backend belongs to (if applicable).
+     * URI of the instance group this backend belongs to (if applicable) in
+     * format "projects/{project}/zones/{zone}/instanceGroups/{instance_group}".
      *
      * Generated from protobuf field <code>string instance_group_uri = 4;</code>
      * @return string
@@ -223,7 +274,8 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the instance group this backend belongs to (if applicable).
+     * URI of the instance group this backend belongs to (if applicable) in
+     * format "projects/{project}/zones/{zone}/instanceGroups/{instance_group}".
      *
      * Generated from protobuf field <code>string instance_group_uri = 4;</code>
      * @param string $var
@@ -238,7 +290,14 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the network endpoint group this backend belongs to (if applicable).
+     * URI of the network endpoint group this backend belongs to (if applicable)
+     * Format:
+     * * `projects/{project_id}/zones/{zone}/networkEndpointGroups/{neg_id}`
+     * (zonal NEG)
+     * * `projects/{project_id}/regions/{region}/networkEndpointGroups/{neg_id}`
+     * (regional NEG)
+     * * `projects/{project_id}/global/networkEndpointGroups/{neg_id}` (global
+     * NEG)
      *
      * Generated from protobuf field <code>string network_endpoint_group_uri = 5;</code>
      * @return string
@@ -249,7 +308,14 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the network endpoint group this backend belongs to (if applicable).
+     * URI of the network endpoint group this backend belongs to (if applicable)
+     * Format:
+     * * `projects/{project_id}/zones/{zone}/networkEndpointGroups/{neg_id}`
+     * (zonal NEG)
+     * * `projects/{project_id}/regions/{region}/networkEndpointGroups/{neg_id}`
+     * (regional NEG)
+     * * `projects/{project_id}/global/networkEndpointGroups/{neg_id}` (global
+     * NEG)
      *
      * Generated from protobuf field <code>string network_endpoint_group_uri = 5;</code>
      * @param string $var
@@ -264,7 +330,8 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the backend bucket this backend targets (if applicable).
+     * URI of the backend bucket this backend targets (if applicable) in format
+     * "projects/{project}/global/backendBuckets/{backend_bucket}".
      *
      * Generated from protobuf field <code>string backend_bucket_uri = 8;</code>
      * @return string
@@ -275,7 +342,8 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the backend bucket this backend targets (if applicable).
+     * URI of the backend bucket this backend targets (if applicable) in format
+     * "projects/{project}/global/backendBuckets/{backend_bucket}".
      *
      * Generated from protobuf field <code>string backend_bucket_uri = 8;</code>
      * @param string $var
@@ -291,7 +359,8 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the PSC service attachment this PSC NEG backend targets (if
-     * applicable).
+     * applicable) in format
+     * "projects/{project}/regions/{region}/serviceAttachments/{service_attachment}".
      *
      * Generated from protobuf field <code>string psc_service_attachment_uri = 9;</code>
      * @return string
@@ -303,7 +372,8 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the PSC service attachment this PSC NEG backend targets (if
-     * applicable).
+     * applicable) in format
+     * "projects/{project}/regions/{region}/serviceAttachments/{service_attachment}".
      *
      * Generated from protobuf field <code>string psc_service_attachment_uri = 9;</code>
      * @param string $var
@@ -345,6 +415,11 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the health check attached to this backend (if applicable).
+     * Format:
+     * * `projects/{project_id}/global/healthChecks/{health_check_id}`
+     * * `projects/{project_id}/regions/{region}/healthChecks/{health_check_id}`
+     * * `projects/{project_id}/global/httpHealthChecks/{health_check_id}`
+     * (legacy)
      *
      * Generated from protobuf field <code>string health_check_uri = 6;</code>
      * @return string
@@ -356,6 +431,11 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the health check attached to this backend (if applicable).
+     * Format:
+     * * `projects/{project_id}/global/healthChecks/{health_check_id}`
+     * * `projects/{project_id}/regions/{region}/healthChecks/{health_check_id}`
+     * * `projects/{project_id}/global/httpHealthChecks/{health_check_id}`
+     * (legacy)
      *
      * Generated from protobuf field <code>string health_check_uri = 6;</code>
      * @param string $var

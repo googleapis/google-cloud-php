@@ -19,7 +19,8 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. ID of the storage resource to mount, which must match a key in
-     * the cluster's [storage_resources](Cluster.storage_resources).
+     * the cluster's
+     * [storage_resources][google.cloud.hypercomputecluster.v1beta.Cluster.storage_resources].
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -40,7 +41,8 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           Required. ID of the storage resource to mount, which must match a key in
-     *           the cluster's [storage_resources](Cluster.storage_resources).
+     *           the cluster's
+     *           [storage_resources][google.cloud.hypercomputecluster.v1beta.Cluster.storage_resources].
      *     @type string $local_mount
      *           Required. A directory inside the VM instance's file system where the
      *           storage resource should be mounted (e.g., `/mnt/share`).
@@ -53,7 +55,8 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. ID of the storage resource to mount, which must match a key in
-     * the cluster's [storage_resources](Cluster.storage_resources).
+     * the cluster's
+     * [storage_resources][google.cloud.hypercomputecluster.v1beta.Cluster.storage_resources].
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -65,7 +68,8 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. ID of the storage resource to mount, which must match a key in
-     * the cluster's [storage_resources](Cluster.storage_resources).
+     * the cluster's
+     * [storage_resources][google.cloud.hypercomputecluster.v1beta.Cluster.storage_resources].
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

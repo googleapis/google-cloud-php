@@ -1360,6 +1360,7 @@ class OrderServiceClientTest extends GeneratedTest
         $creator = 'creator1028554796';
         $currencyCode = 'currencyCode1108728155';
         $unlimitedEndTime = false;
+        $endTimeUnlimited = false;
         $externalOrderId = 1332092512;
         $archived = true;
         $lastModifiedByApp = 'lastModifiedByApp-1580292922';
@@ -1380,6 +1381,7 @@ class OrderServiceClientTest extends GeneratedTest
         $expectedResponse->setCreator($creator);
         $expectedResponse->setCurrencyCode($currencyCode);
         $expectedResponse->setUnlimitedEndTime($unlimitedEndTime);
+        $expectedResponse->setEndTimeUnlimited($endTimeUnlimited);
         $expectedResponse->setExternalOrderId($externalOrderId);
         $expectedResponse->setArchived($archived);
         $expectedResponse->setLastModifiedByApp($lastModifiedByApp);

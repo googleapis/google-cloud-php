@@ -27,6 +27,11 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Sql\V1\Client\SqlSslCertsServiceClient;
+use Google\Cloud\Sql\V1\CustomerManagedCertificateConfig;
+use Google\Cloud\Sql\V1\DeleteCustomerManagedCertificateRequest;
+use Google\Cloud\Sql\V1\Intent;
+use Google\Cloud\Sql\V1\ListCustomerManagedCertificatesRequest;
+use Google\Cloud\Sql\V1\ListCustomerManagedCertificatesResponse;
 use Google\Cloud\Sql\V1\Operation;
 use Google\Cloud\Sql\V1\SqlSslCertsDeleteRequest;
 use Google\Cloud\Sql\V1\SqlSslCertsGetRequest;
@@ -35,6 +40,7 @@ use Google\Cloud\Sql\V1\SqlSslCertsListRequest;
 use Google\Cloud\Sql\V1\SslCert;
 use Google\Cloud\Sql\V1\SslCertsInsertResponse;
 use Google\Cloud\Sql\V1\SslCertsListResponse;
+use Google\Cloud\Sql\V1\UpdateCustomerManagedCertificateRequest;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -128,6 +134,97 @@ class SqlSslCertsServiceClientTest extends GeneratedTest
         $request = new SqlSslCertsDeleteRequest();
         try {
             $gapicClient->delete($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteCustomerManagedCertificateTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $kind = 'kind3292052';
+        $targetLink = 'targetLink-2084812312';
+        $user = 'user3599307';
+        $name = 'name3373707';
+        $targetId = 'targetId-815576439';
+        $selfLink = 'selfLink-1691268851';
+        $targetProject = 'targetProject392184427';
+        $expectedResponse = new Operation();
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setTargetLink($targetLink);
+        $expectedResponse->setUser($user);
+        $expectedResponse->setName($name);
+        $expectedResponse->setTargetId($targetId);
+        $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setTargetProject($targetProject);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $certificateBundle = 'certificateBundle1950762026';
+        $request = (new DeleteCustomerManagedCertificateRequest())
+            ->setInstance($instance)
+            ->setProject($project)
+            ->setCertificateBundle($certificateBundle);
+        $response = $gapicClient->deleteCustomerManagedCertificate($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.sql.v1.SqlSslCertsService/DeleteCustomerManagedCertificate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstance();
+        $this->assertProtobufEquals($instance, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getCertificateBundle();
+        $this->assertProtobufEquals($certificateBundle, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteCustomerManagedCertificateExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $certificateBundle = 'certificateBundle1950762026';
+        $request = (new DeleteCustomerManagedCertificateRequest())
+            ->setInstance($instance)
+            ->setProject($project)
+            ->setCertificateBundle($certificateBundle);
+        try {
+            $gapicClient->deleteCustomerManagedCertificate($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -317,6 +414,182 @@ class SqlSslCertsServiceClientTest extends GeneratedTest
         $request = new SqlSslCertsListRequest();
         try {
             $gapicClient->list($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listCustomerManagedCertificatesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ListCustomerManagedCertificatesResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $request = (new ListCustomerManagedCertificatesRequest())->setInstance($instance)->setProject($project);
+        $response = $gapicClient->listCustomerManagedCertificates($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.sql.v1.SqlSslCertsService/ListCustomerManagedCertificates', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstance();
+        $this->assertProtobufEquals($instance, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listCustomerManagedCertificatesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $request = (new ListCustomerManagedCertificatesRequest())->setInstance($instance)->setProject($project);
+        try {
+            $gapicClient->listCustomerManagedCertificates($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateCustomerManagedCertificateTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $kind = 'kind3292052';
+        $targetLink = 'targetLink-2084812312';
+        $user = 'user3599307';
+        $name = 'name3373707';
+        $targetId = 'targetId-815576439';
+        $selfLink = 'selfLink-1691268851';
+        $targetProject = 'targetProject392184427';
+        $expectedResponse = new Operation();
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setTargetLink($targetLink);
+        $expectedResponse->setUser($user);
+        $expectedResponse->setName($name);
+        $expectedResponse->setTargetId($targetId);
+        $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setTargetProject($targetProject);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $customerManagedCertificateConfig = new CustomerManagedCertificateConfig();
+        $customerManagedCertificateConfigIntent = Intent::INTENT_UNSPECIFIED;
+        $customerManagedCertificateConfig->setIntent($customerManagedCertificateConfigIntent);
+        $customerManagedCertificateConfigCustomerManagedCertificates = [];
+        $customerManagedCertificateConfig->setCustomerManagedCertificates(
+            $customerManagedCertificateConfigCustomerManagedCertificates
+        );
+        $certificateBundle = 'certificateBundle1950762026';
+        $request = (new UpdateCustomerManagedCertificateRequest())
+            ->setInstance($instance)
+            ->setProject($project)
+            ->setCustomerManagedCertificateConfig($customerManagedCertificateConfig)
+            ->setCertificateBundle($certificateBundle);
+        $response = $gapicClient->updateCustomerManagedCertificate($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.sql.v1.SqlSslCertsService/UpdateCustomerManagedCertificate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstance();
+        $this->assertProtobufEquals($instance, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getCustomerManagedCertificateConfig();
+        $this->assertProtobufEquals($customerManagedCertificateConfig, $actualValue);
+        $actualValue = $actualRequestObject->getCertificateBundle();
+        $this->assertProtobufEquals($certificateBundle, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateCustomerManagedCertificateExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $customerManagedCertificateConfig = new CustomerManagedCertificateConfig();
+        $customerManagedCertificateConfigIntent = Intent::INTENT_UNSPECIFIED;
+        $customerManagedCertificateConfig->setIntent($customerManagedCertificateConfigIntent);
+        $customerManagedCertificateConfigCustomerManagedCertificates = [];
+        $customerManagedCertificateConfig->setCustomerManagedCertificates(
+            $customerManagedCertificateConfigCustomerManagedCertificates
+        );
+        $certificateBundle = 'certificateBundle1950762026';
+        $request = (new UpdateCustomerManagedCertificateRequest())
+            ->setInstance($instance)
+            ->setProject($project)
+            ->setCustomerManagedCertificateConfig($customerManagedCertificateConfig)
+            ->setCertificateBundle($certificateBundle);
+        try {
+            $gapicClient->updateCustomerManagedCertificate($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

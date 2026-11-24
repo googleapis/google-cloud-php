@@ -38,29 +38,32 @@ class LineItemDeliveryForecast extends \Google\Protobuf\Internal\Message
     protected $order = null;
     /**
      * The unit with which the goal or cap of the LineItem is defined. Will be the
-     * same value as [Goal.unitType][] for both a set line item or a prospective
-     * one.
+     * same value as [Goal.unitType][google.ads.admanager.v1.Goal.unit_type] for
+     * both a set line item or a prospective one.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.UnitTypeEnum.UnitType unit_type = 3;</code>
      */
     protected $unit_type = null;
     /**
-     * The number of units, defined by [Goal.unitType][], that will be delivered
-     * by the line item. Delivery of existing line items that are of same or lower
-     * priorities may be impacted.
+     * The number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that will be
+     * delivered by the line item. Delivery of existing line items that are of
+     * same or lower priorities may be impacted.
      *
      * Generated from protobuf field <code>optional int64 predicted_delivery_units = 4;</code>
      */
     protected $predicted_delivery_units = null;
     /**
-     * The number of units, defined by [Goal.unitType][], that have already been
-     * served if the reservation is already running.
+     * The number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that have already
+     * been served if the reservation is already running.
      *
      * Generated from protobuf field <code>optional int64 delivered_units = 5;</code>
      */
     protected $delivered_units = null;
     /**
-     * The number of units, defined by [Goal.unitType][], that match the
+     * The number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that match the
      * specified LineItem#targeting and delivery settings.
      *
      * Generated from protobuf field <code>optional int64 matched_units = 6;</code>
@@ -87,17 +90,20 @@ class LineItemDeliveryForecast extends \Google\Protobuf\Internal\Message
      *           Format: `networks/{network_code}/orders/{order_id}`
      *     @type int $unit_type
      *           The unit with which the goal or cap of the LineItem is defined. Will be the
-     *           same value as [Goal.unitType][] for both a set line item or a prospective
-     *           one.
+     *           same value as [Goal.unitType][google.ads.admanager.v1.Goal.unit_type] for
+     *           both a set line item or a prospective one.
      *     @type int|string $predicted_delivery_units
-     *           The number of units, defined by [Goal.unitType][], that will be delivered
-     *           by the line item. Delivery of existing line items that are of same or lower
-     *           priorities may be impacted.
+     *           The number of units, defined by
+     *           [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that will be
+     *           delivered by the line item. Delivery of existing line items that are of
+     *           same or lower priorities may be impacted.
      *     @type int|string $delivered_units
-     *           The number of units, defined by [Goal.unitType][], that have already been
-     *           served if the reservation is already running.
+     *           The number of units, defined by
+     *           [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that have already
+     *           been served if the reservation is already running.
      *     @type int|string $matched_units
-     *           The number of units, defined by [Goal.unitType][], that match the
+     *           The number of units, defined by
+     *           [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that match the
      *           specified LineItem#targeting and delivery settings.
      * }
      */
@@ -196,8 +202,8 @@ class LineItemDeliveryForecast extends \Google\Protobuf\Internal\Message
 
     /**
      * The unit with which the goal or cap of the LineItem is defined. Will be the
-     * same value as [Goal.unitType][] for both a set line item or a prospective
-     * one.
+     * same value as [Goal.unitType][google.ads.admanager.v1.Goal.unit_type] for
+     * both a set line item or a prospective one.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.UnitTypeEnum.UnitType unit_type = 3;</code>
      * @return int
@@ -219,8 +225,8 @@ class LineItemDeliveryForecast extends \Google\Protobuf\Internal\Message
 
     /**
      * The unit with which the goal or cap of the LineItem is defined. Will be the
-     * same value as [Goal.unitType][] for both a set line item or a prospective
-     * one.
+     * same value as [Goal.unitType][google.ads.admanager.v1.Goal.unit_type] for
+     * both a set line item or a prospective one.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.UnitTypeEnum.UnitType unit_type = 3;</code>
      * @param int $var
@@ -235,9 +241,10 @@ class LineItemDeliveryForecast extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of units, defined by [Goal.unitType][], that will be delivered
-     * by the line item. Delivery of existing line items that are of same or lower
-     * priorities may be impacted.
+     * The number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that will be
+     * delivered by the line item. Delivery of existing line items that are of
+     * same or lower priorities may be impacted.
      *
      * Generated from protobuf field <code>optional int64 predicted_delivery_units = 4;</code>
      * @return int|string
@@ -258,9 +265,10 @@ class LineItemDeliveryForecast extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of units, defined by [Goal.unitType][], that will be delivered
-     * by the line item. Delivery of existing line items that are of same or lower
-     * priorities may be impacted.
+     * The number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that will be
+     * delivered by the line item. Delivery of existing line items that are of
+     * same or lower priorities may be impacted.
      *
      * Generated from protobuf field <code>optional int64 predicted_delivery_units = 4;</code>
      * @param int|string $var
@@ -275,8 +283,9 @@ class LineItemDeliveryForecast extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of units, defined by [Goal.unitType][], that have already been
-     * served if the reservation is already running.
+     * The number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that have already
+     * been served if the reservation is already running.
      *
      * Generated from protobuf field <code>optional int64 delivered_units = 5;</code>
      * @return int|string
@@ -297,8 +306,9 @@ class LineItemDeliveryForecast extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of units, defined by [Goal.unitType][], that have already been
-     * served if the reservation is already running.
+     * The number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that have already
+     * been served if the reservation is already running.
      *
      * Generated from protobuf field <code>optional int64 delivered_units = 5;</code>
      * @param int|string $var
@@ -313,7 +323,8 @@ class LineItemDeliveryForecast extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of units, defined by [Goal.unitType][], that match the
+     * The number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that match the
      * specified LineItem#targeting and delivery settings.
      *
      * Generated from protobuf field <code>optional int64 matched_units = 6;</code>
@@ -335,7 +346,8 @@ class LineItemDeliveryForecast extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of units, defined by [Goal.unitType][], that match the
+     * The number of units, defined by
+     * [Goal.unitType][google.ads.admanager.v1.Goal.unit_type], that match the
      * specified LineItem#targeting and delivery settings.
      *
      * Generated from protobuf field <code>optional int64 matched_units = 6;</code>

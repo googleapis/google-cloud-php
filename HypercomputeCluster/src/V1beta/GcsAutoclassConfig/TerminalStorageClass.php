@@ -19,9 +19,23 @@ class TerminalStorageClass
      * Generated from protobuf enum <code>TERMINAL_STORAGE_CLASS_UNSPECIFIED = 0;</code>
      */
     const TERMINAL_STORAGE_CLASS_UNSPECIFIED = 0;
+    /**
+     * Nearline terminal storage class
+     *
+     * Generated from protobuf enum <code>NEARLINE = 1;</code>
+     */
+    const NEARLINE = 1;
+    /**
+     * Archive terminal storage class
+     *
+     * Generated from protobuf enum <code>ARCHIVE = 2;</code>
+     */
+    const ARCHIVE = 2;
 
     private static $valueToName = [
         self::TERMINAL_STORAGE_CLASS_UNSPECIFIED => 'TERMINAL_STORAGE_CLASS_UNSPECIFIED',
+        self::NEARLINE => 'NEARLINE',
+        self::ARCHIVE => 'ARCHIVE',
     ];
 
     public static function name($value)

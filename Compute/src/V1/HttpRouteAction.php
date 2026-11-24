@@ -34,6 +34,13 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      */
     protected $cors_policy = null;
     /**
+     * Dynamic compression policy for this URL Map's route. Available only for
+     * Global EXTERNAL_MANAGED load balancer schemes.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DynamicCompressionPolicy dynamic_compression_policy = 356626987;</code>
+     */
+    protected $dynamic_compression_policy = null;
+    /**
      * The specification for fault injection introduced into traffic to test
      * the resiliency of clients to backend service failure. As part of fault
      * injection, when clients send requests to a backend service, delays can be
@@ -51,6 +58,15 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpFaultInjection fault_injection_policy = 412781079;</code>
      */
     protected $fault_injection_policy = null;
+    /**
+     * Image optimization policy for this URL Map's route. Available only for
+     * Global EXTERNAL_MANAGED load balancer schemes.
+     * Either Cloud CDN must be enabled on the backend service or backend bucket
+     * serving the route, or cache policy must be configured on the same route
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ImageOptimizationPolicy image_optimization_policy = 86640480;</code>
+     */
+    protected $image_optimization_policy = null;
     /**
      * Specifies the maximum duration (timeout) for streams on the selected route.
      * Unlike the timeout field where the timeout duration starts
@@ -139,6 +155,9 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      *           (CORS), see Fetch API Living
      *           Standard.
      *           Not supported when the URL map is bound to a target gRPC proxy.
+     *     @type \Google\Cloud\Compute\V1\DynamicCompressionPolicy $dynamic_compression_policy
+     *           Dynamic compression policy for this URL Map's route. Available only for
+     *           Global EXTERNAL_MANAGED load balancer schemes.
      *     @type \Google\Cloud\Compute\V1\HttpFaultInjection $fault_injection_policy
      *           The specification for fault injection introduced into traffic to test
      *           the resiliency of clients to backend service failure. As part of fault
@@ -153,6 +172,11 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      *           . To see which load balancers support fault injection,
      *           see Load
      *           balancing: Routing and traffic management features.
+     *     @type \Google\Cloud\Compute\V1\ImageOptimizationPolicy $image_optimization_policy
+     *           Image optimization policy for this URL Map's route. Available only for
+     *           Global EXTERNAL_MANAGED load balancer schemes.
+     *           Either Cloud CDN must be enabled on the backend service or backend bucket
+     *           serving the route, or cache policy must be configured on the same route
      *     @type \Google\Cloud\Compute\V1\Duration $max_stream_duration
      *           Specifies the maximum duration (timeout) for streams on the selected route.
      *           Unlike the timeout field where the timeout duration starts
@@ -293,6 +317,44 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Dynamic compression policy for this URL Map's route. Available only for
+     * Global EXTERNAL_MANAGED load balancer schemes.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DynamicCompressionPolicy dynamic_compression_policy = 356626987;</code>
+     * @return \Google\Cloud\Compute\V1\DynamicCompressionPolicy|null
+     */
+    public function getDynamicCompressionPolicy()
+    {
+        return $this->dynamic_compression_policy;
+    }
+
+    public function hasDynamicCompressionPolicy()
+    {
+        return isset($this->dynamic_compression_policy);
+    }
+
+    public function clearDynamicCompressionPolicy()
+    {
+        unset($this->dynamic_compression_policy);
+    }
+
+    /**
+     * Dynamic compression policy for this URL Map's route. Available only for
+     * Global EXTERNAL_MANAGED load balancer schemes.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DynamicCompressionPolicy dynamic_compression_policy = 356626987;</code>
+     * @param \Google\Cloud\Compute\V1\DynamicCompressionPolicy $var
+     * @return $this
+     */
+    public function setDynamicCompressionPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\DynamicCompressionPolicy::class);
+        $this->dynamic_compression_policy = $var;
+
+        return $this;
+    }
+
+    /**
      * The specification for fault injection introduced into traffic to test
      * the resiliency of clients to backend service failure. As part of fault
      * injection, when clients send requests to a backend service, delays can be
@@ -348,6 +410,48 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\HttpFaultInjection::class);
         $this->fault_injection_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Image optimization policy for this URL Map's route. Available only for
+     * Global EXTERNAL_MANAGED load balancer schemes.
+     * Either Cloud CDN must be enabled on the backend service or backend bucket
+     * serving the route, or cache policy must be configured on the same route
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ImageOptimizationPolicy image_optimization_policy = 86640480;</code>
+     * @return \Google\Cloud\Compute\V1\ImageOptimizationPolicy|null
+     */
+    public function getImageOptimizationPolicy()
+    {
+        return $this->image_optimization_policy;
+    }
+
+    public function hasImageOptimizationPolicy()
+    {
+        return isset($this->image_optimization_policy);
+    }
+
+    public function clearImageOptimizationPolicy()
+    {
+        unset($this->image_optimization_policy);
+    }
+
+    /**
+     * Image optimization policy for this URL Map's route. Available only for
+     * Global EXTERNAL_MANAGED load balancer schemes.
+     * Either Cloud CDN must be enabled on the backend service or backend bucket
+     * serving the route, or cache policy must be configured on the same route
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ImageOptimizationPolicy image_optimization_policy = 86640480;</code>
+     * @param \Google\Cloud\Compute\V1\ImageOptimizationPolicy $var
+     * @return $this
+     */
+    public function setImageOptimizationPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ImageOptimizationPolicy::class);
+        $this->image_optimization_policy = $var;
 
         return $this;
     }

@@ -26,18 +26,19 @@ class SlurmOrchestrator extends \Google\Protobuf\Internal\Message
      */
     protected $login_nodes = null;
     /**
-     * Required. Configuration of Slurm nodesets, which define groups of compute
-     * resources that can be used by Slurm. At least one compute node is required.
+     * Optional. Compute resource configuration for the Slurm nodesets in your
+     * cluster. If not specified, the cluster won't create any nodes.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.SlurmNodeSet node_sets = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.SlurmNodeSet node_sets = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $node_sets;
     /**
-     * Required. Configuration of Slurm partitions, which group one or more
-     * nodesets. Acts as a queue against which jobs can be submitted. At least one
-     * partition is required.
+     * Optional. Configuration for the Slurm partitions in your cluster. Each
+     * partition can contain one or more nodesets, and you can submit separate
+     * jobs on each partition. If you don't specify at least one partition in your
+     * cluster, you can't submit jobs to the cluster.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.SlurmPartition partitions = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.SlurmPartition partitions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $partitions;
     /**
@@ -77,12 +78,13 @@ class SlurmOrchestrator extends \Google\Protobuf\Internal\Message
      *           Required. Configuration for login nodes, which allow users to access the
      *           cluster over SSH.
      *     @type \Google\Cloud\HypercomputeCluster\V1beta\SlurmNodeSet[] $node_sets
-     *           Required. Configuration of Slurm nodesets, which define groups of compute
-     *           resources that can be used by Slurm. At least one compute node is required.
+     *           Optional. Compute resource configuration for the Slurm nodesets in your
+     *           cluster. If not specified, the cluster won't create any nodes.
      *     @type \Google\Cloud\HypercomputeCluster\V1beta\SlurmPartition[] $partitions
-     *           Required. Configuration of Slurm partitions, which group one or more
-     *           nodesets. Acts as a queue against which jobs can be submitted. At least one
-     *           partition is required.
+     *           Optional. Configuration for the Slurm partitions in your cluster. Each
+     *           partition can contain one or more nodesets, and you can submit separate
+     *           jobs on each partition. If you don't specify at least one partition in your
+     *           cluster, you can't submit jobs to the cluster.
      *     @type string $default_partition
      *           Optional. Default partition to use for submitted jobs that do not
      *           explicitly specify a partition. Required if and only if there is more than
@@ -143,10 +145,10 @@ class SlurmOrchestrator extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Configuration of Slurm nodesets, which define groups of compute
-     * resources that can be used by Slurm. At least one compute node is required.
+     * Optional. Compute resource configuration for the Slurm nodesets in your
+     * cluster. If not specified, the cluster won't create any nodes.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.SlurmNodeSet node_sets = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.SlurmNodeSet node_sets = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<\Google\Cloud\HypercomputeCluster\V1beta\SlurmNodeSet>
      */
     public function getNodeSets()
@@ -155,10 +157,10 @@ class SlurmOrchestrator extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Configuration of Slurm nodesets, which define groups of compute
-     * resources that can be used by Slurm. At least one compute node is required.
+     * Optional. Compute resource configuration for the Slurm nodesets in your
+     * cluster. If not specified, the cluster won't create any nodes.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.SlurmNodeSet node_sets = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.SlurmNodeSet node_sets = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\HypercomputeCluster\V1beta\SlurmNodeSet[] $var
      * @return $this
      */
@@ -171,11 +173,12 @@ class SlurmOrchestrator extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Configuration of Slurm partitions, which group one or more
-     * nodesets. Acts as a queue against which jobs can be submitted. At least one
-     * partition is required.
+     * Optional. Configuration for the Slurm partitions in your cluster. Each
+     * partition can contain one or more nodesets, and you can submit separate
+     * jobs on each partition. If you don't specify at least one partition in your
+     * cluster, you can't submit jobs to the cluster.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.SlurmPartition partitions = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.SlurmPartition partitions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<\Google\Cloud\HypercomputeCluster\V1beta\SlurmPartition>
      */
     public function getPartitions()
@@ -184,11 +187,12 @@ class SlurmOrchestrator extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Configuration of Slurm partitions, which group one or more
-     * nodesets. Acts as a queue against which jobs can be submitted. At least one
-     * partition is required.
+     * Optional. Configuration for the Slurm partitions in your cluster. Each
+     * partition can contain one or more nodesets, and you can submit separate
+     * jobs on each partition. If you don't specify at least one partition in your
+     * cluster, you can't submit jobs to the cluster.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.SlurmPartition partitions = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.SlurmPartition partitions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\HypercomputeCluster\V1beta\SlurmPartition[] $var
      * @return $this
      */

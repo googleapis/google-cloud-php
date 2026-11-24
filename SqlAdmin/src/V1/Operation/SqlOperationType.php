@@ -368,6 +368,13 @@ class SqlOperationType
      * Generated from protobuf enum <code>DELETE_BLUE_GREEN_DEPLOYMENT = 58;</code>
      */
     const DELETE_BLUE_GREEN_DEPLOYMENT = 58;
+    /**
+     * Reconciles network infrastructure (e.g. Private Service Connect,
+     * Automated DNS Records).
+     *
+     * Generated from protobuf enum <code>RECONCILE_NETWORKING = 64;</code>
+     */
+    const RECONCILE_NETWORKING = 64;
 
     private static $valueToName = [
         self::SQL_OPERATION_TYPE_UNSPECIFIED => 'SQL_OPERATION_TYPE_UNSPECIFIED',
@@ -427,6 +434,7 @@ class SqlOperationType
         self::CREATE_BLUE_GREEN_DEPLOYMENT => 'CREATE_BLUE_GREEN_DEPLOYMENT',
         self::SWITCHOVER_BLUE_GREEN_DEPLOYMENT => 'SWITCHOVER_BLUE_GREEN_DEPLOYMENT',
         self::DELETE_BLUE_GREEN_DEPLOYMENT => 'DELETE_BLUE_GREEN_DEPLOYMENT',
+        self::RECONCILE_NETWORKING => 'RECONCILE_NETWORKING',
     ];
 
     public static function name($value)

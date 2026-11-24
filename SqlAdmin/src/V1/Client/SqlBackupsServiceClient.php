@@ -181,6 +181,23 @@ final class SqlBackupsServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a instance
+     * resource.
+     *
+     * @param string $project
+     * @param string $instance
+     *
+     * @return string The formatted instance resource.
+     */
+    public static function instanceName(string $project, string $instance): string
+    {
+        return self::getPathTemplate('instance')->render([
+            'project' => $project,
+            'instance' => $instance,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * network_attachment resource.
      *
@@ -243,6 +260,7 @@ final class SqlBackupsServiceClient
      * - backup: projects/{project}/backups/{backup}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
+     * - instance: projects/{project}/instances/{instance}
      * - networkAttachment: projects/{project}/regions/{region}/networkAttachments/{network_attachment}
      * - project: projects/{project}
      * - serviceConnectionPolicy: projects/{project}/regions/{region}/serviceConnectionPolicies/{service_connection_policy}

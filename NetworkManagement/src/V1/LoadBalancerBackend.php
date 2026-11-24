@@ -22,7 +22,15 @@ class LoadBalancerBackend extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * URI of a Compute Engine instance or network endpoint.
+     * URI of the backend instance or network endpoint.
+     * Format:
+     * * `projects/{project_id}/zones/{zone}/instances/{instance_id}` (instance)
+     * * `projects/{project_id}/zones/{zone}/networkEndpointGroups/{neg_id}`
+     * (zonal NEG)
+     * * `projects/{project_id}/regions/{region}/networkEndpointGroups/{neg_id}`
+     * (regional NEG)
+     * * `projects/{project_id}/global/networkEndpointGroups/{neg_id}` (global
+     * NEG)
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
@@ -55,7 +63,15 @@ class LoadBalancerBackend extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Name of a Compute Engine instance or network endpoint.
      *     @type string $uri
-     *           URI of a Compute Engine instance or network endpoint.
+     *           URI of the backend instance or network endpoint.
+     *           Format:
+     *           * `projects/{project_id}/zones/{zone}/instances/{instance_id}` (instance)
+     *           * `projects/{project_id}/zones/{zone}/networkEndpointGroups/{neg_id}`
+     *           (zonal NEG)
+     *           * `projects/{project_id}/regions/{region}/networkEndpointGroups/{neg_id}`
+     *           (regional NEG)
+     *           * `projects/{project_id}/global/networkEndpointGroups/{neg_id}` (global
+     *           NEG)
      *     @type int $health_check_firewall_state
      *           State of the health check firewall configuration.
      *     @type string[] $health_check_allowing_firewall_rules
@@ -96,7 +112,15 @@ class LoadBalancerBackend extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Compute Engine instance or network endpoint.
+     * URI of the backend instance or network endpoint.
+     * Format:
+     * * `projects/{project_id}/zones/{zone}/instances/{instance_id}` (instance)
+     * * `projects/{project_id}/zones/{zone}/networkEndpointGroups/{neg_id}`
+     * (zonal NEG)
+     * * `projects/{project_id}/regions/{region}/networkEndpointGroups/{neg_id}`
+     * (regional NEG)
+     * * `projects/{project_id}/global/networkEndpointGroups/{neg_id}` (global
+     * NEG)
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -107,7 +131,15 @@ class LoadBalancerBackend extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Compute Engine instance or network endpoint.
+     * URI of the backend instance or network endpoint.
+     * Format:
+     * * `projects/{project_id}/zones/{zone}/instances/{instance_id}` (instance)
+     * * `projects/{project_id}/zones/{zone}/networkEndpointGroups/{neg_id}`
+     * (zonal NEG)
+     * * `projects/{project_id}/regions/{region}/networkEndpointGroups/{neg_id}`
+     * (regional NEG)
+     * * `projects/{project_id}/global/networkEndpointGroups/{neg_id}` (global
+     * NEG)
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * In memory (tmpfs) ephemeral storage.
+ * Represents in-memory (tmpfs) or disk-backed ephemeral storage.
  * It is ephemeral in the sense that when the sandbox is taken down, the data is
  * destroyed with it (it does not persist across sandbox runs).
  *
@@ -18,9 +18,9 @@ use Google\Protobuf\RepeatedField;
 class EmptyDirVolumeSource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The medium on which the data is stored. Acceptable values today is only
-     * MEMORY or none. When none, the default will currently be backed by memory
-     * but could change over time. +optional
+     * The medium on which the data is stored. Acceptable values are `MEMORY`,
+     * `DISK`, or unset (`MEDIUM_UNSPECIFIED`). When unset, the default is
+     * currently memory-backed but could change over time.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.EmptyDirVolumeSource.Medium medium = 1;</code>
      */
@@ -31,10 +31,11 @@ class EmptyDirVolumeSource extends \Google\Protobuf\Internal\Message
      * The maximum usage on memory medium EmptyDir would be the minimum value
      * between the SizeLimit specified here and the sum of memory limits of all
      * containers. The default is nil which means that the limit is undefined.
-     * More info:
-     * https://cloud.google.com/run/docs/configuring/in-memory-volumes#configure-volume.
-     * Info in Kubernetes:
-     * https://kubernetes.io/docs/concepts/storage/volumes/#emptydir
+     * For more information, see
+     * [Configure in-memory volume
+     * mounts](https://cloud.google.com/run/docs/configuring/in-memory-volumes#configure-volume)
+     * and the [Kubernetes `emptyDir` volume
+     * documentation](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir).
      *
      * Generated from protobuf field <code>string size_limit = 2;</code>
      */
@@ -47,19 +48,20 @@ class EmptyDirVolumeSource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $medium
-     *           The medium on which the data is stored. Acceptable values today is only
-     *           MEMORY or none. When none, the default will currently be backed by memory
-     *           but could change over time. +optional
+     *           The medium on which the data is stored. Acceptable values are `MEMORY`,
+     *           `DISK`, or unset (`MEDIUM_UNSPECIFIED`). When unset, the default is
+     *           currently memory-backed but could change over time.
      *     @type string $size_limit
      *           Limit on the storage usable by this EmptyDir volume.
      *           The size limit is also applicable for memory medium.
      *           The maximum usage on memory medium EmptyDir would be the minimum value
      *           between the SizeLimit specified here and the sum of memory limits of all
      *           containers. The default is nil which means that the limit is undefined.
-     *           More info:
-     *           https://cloud.google.com/run/docs/configuring/in-memory-volumes#configure-volume.
-     *           Info in Kubernetes:
-     *           https://kubernetes.io/docs/concepts/storage/volumes/#emptydir
+     *           For more information, see
+     *           [Configure in-memory volume
+     *           mounts](https://cloud.google.com/run/docs/configuring/in-memory-volumes#configure-volume)
+     *           and the [Kubernetes `emptyDir` volume
+     *           documentation](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir).
      * }
      */
     public function __construct($data = NULL) {
@@ -68,9 +70,9 @@ class EmptyDirVolumeSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The medium on which the data is stored. Acceptable values today is only
-     * MEMORY or none. When none, the default will currently be backed by memory
-     * but could change over time. +optional
+     * The medium on which the data is stored. Acceptable values are `MEMORY`,
+     * `DISK`, or unset (`MEDIUM_UNSPECIFIED`). When unset, the default is
+     * currently memory-backed but could change over time.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.EmptyDirVolumeSource.Medium medium = 1;</code>
      * @return int
@@ -81,9 +83,9 @@ class EmptyDirVolumeSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The medium on which the data is stored. Acceptable values today is only
-     * MEMORY or none. When none, the default will currently be backed by memory
-     * but could change over time. +optional
+     * The medium on which the data is stored. Acceptable values are `MEMORY`,
+     * `DISK`, or unset (`MEDIUM_UNSPECIFIED`). When unset, the default is
+     * currently memory-backed but could change over time.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.EmptyDirVolumeSource.Medium medium = 1;</code>
      * @param int $var
@@ -103,10 +105,11 @@ class EmptyDirVolumeSource extends \Google\Protobuf\Internal\Message
      * The maximum usage on memory medium EmptyDir would be the minimum value
      * between the SizeLimit specified here and the sum of memory limits of all
      * containers. The default is nil which means that the limit is undefined.
-     * More info:
-     * https://cloud.google.com/run/docs/configuring/in-memory-volumes#configure-volume.
-     * Info in Kubernetes:
-     * https://kubernetes.io/docs/concepts/storage/volumes/#emptydir
+     * For more information, see
+     * [Configure in-memory volume
+     * mounts](https://cloud.google.com/run/docs/configuring/in-memory-volumes#configure-volume)
+     * and the [Kubernetes `emptyDir` volume
+     * documentation](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir).
      *
      * Generated from protobuf field <code>string size_limit = 2;</code>
      * @return string
@@ -122,10 +125,11 @@ class EmptyDirVolumeSource extends \Google\Protobuf\Internal\Message
      * The maximum usage on memory medium EmptyDir would be the minimum value
      * between the SizeLimit specified here and the sum of memory limits of all
      * containers. The default is nil which means that the limit is undefined.
-     * More info:
-     * https://cloud.google.com/run/docs/configuring/in-memory-volumes#configure-volume.
-     * Info in Kubernetes:
-     * https://kubernetes.io/docs/concepts/storage/volumes/#emptydir
+     * For more information, see
+     * [Configure in-memory volume
+     * mounts](https://cloud.google.com/run/docs/configuring/in-memory-volumes#configure-volume)
+     * and the [Kubernetes `emptyDir` volume
+     * documentation](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir).
      *
      * Generated from protobuf field <code>string size_limit = 2;</code>
      * @param string $var

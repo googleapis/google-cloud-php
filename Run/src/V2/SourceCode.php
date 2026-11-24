@@ -25,6 +25,10 @@ class SourceCode extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Run\V2\SourceCode\CloudStorageSource $cloud_storage_source
      *           The source is a Cloud Storage bucket.
+     *     @type \Google\Cloud\Run\V2\SourceCode\InlinedSource $inlined_source
+     *           Optional. Input only. Source code inlined in the request. Cloud Run will
+     *           store the inlined_source to Cloud Storage and replace the field with
+     *           cloud_storage_source. This field is only supported in Cloud Run Service.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +63,41 @@ class SourceCode extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\SourceCode\CloudStorageSource::class);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Source code inlined in the request. Cloud Run will
+     * store the inlined_source to Cloud Storage and replace the field with
+     * cloud_storage_source. This field is only supported in Cloud Run Service.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.SourceCode.InlinedSource inlined_source = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return \Google\Cloud\Run\V2\SourceCode\InlinedSource|null
+     */
+    public function getInlinedSource()
+    {
+        return $this->readOneof(2);
+    }
+
+    public function hasInlinedSource()
+    {
+        return $this->hasOneof(2);
+    }
+
+    /**
+     * Optional. Input only. Source code inlined in the request. Cloud Run will
+     * store the inlined_source to Cloud Storage and replace the field with
+     * cloud_storage_source. This field is only supported in Cloud Run Service.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.SourceCode.InlinedSource inlined_source = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param \Google\Cloud\Run\V2\SourceCode\InlinedSource $var
+     * @return $this
+     */
+    public function setInlinedSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\SourceCode\InlinedSource::class);
+        $this->writeOneof(2, $var);
 
         return $this;
     }

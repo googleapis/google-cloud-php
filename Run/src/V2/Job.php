@@ -211,6 +211,12 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     protected $satisfies_pzs = false;
     /**
+     * Optional. The functional type of the Job.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.FunctionalType functional_type = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $functional_type = 0;
+    /**
      * Optional. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
@@ -335,6 +341,8 @@ class Job extends \Google\Protobuf\Internal\Message
      *           A unique string used as a suffix for creating a new execution. The Job
      *           will become ready when the execution is successfully completed.
      *           The sum of job name and token length must be fewer than 63 characters.
+     *     @type int $functional_type
+     *           Optional. The functional type of the Job.
      *     @type string $etag
      *           Optional. A system-generated fingerprint for this version of the
      *           resource. May be used to detect modification conflict during updates.
@@ -1201,6 +1209,32 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(27, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. The functional type of the Job.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.FunctionalType functional_type = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getFunctionalType()
+    {
+        return $this->functional_type;
+    }
+
+    /**
+     * Optional. The functional type of the Job.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.FunctionalType functional_type = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFunctionalType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Run\V2\FunctionalType::class);
+        $this->functional_type = $var;
 
         return $this;
     }

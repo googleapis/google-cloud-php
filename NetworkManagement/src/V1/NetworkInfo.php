@@ -22,13 +22,15 @@ class NetworkInfo extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * URI of a Compute Engine network.
+     * URI of a Compute Engine network in format
+     * "projects/{project}/global/networks/{network}"
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
     protected $uri = '';
     /**
-     * URI of the subnet matching the source IP address of the test.
+     * URI of the subnet matching the source IP address of the test in format
+     * "projects/{project}/regions/{region}/subnetworks/{subnetwork}"
      *
      * Generated from protobuf field <code>string matched_subnet_uri = 5;</code>
      */
@@ -55,9 +57,11 @@ class NetworkInfo extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Name of a Compute Engine network.
      *     @type string $uri
-     *           URI of a Compute Engine network.
+     *           URI of a Compute Engine network in format
+     *           "projects/{project}/global/networks/{network}"
      *     @type string $matched_subnet_uri
-     *           URI of the subnet matching the source IP address of the test.
+     *           URI of the subnet matching the source IP address of the test in format
+     *           "projects/{project}/regions/{region}/subnetworks/{subnetwork}"
      *     @type string $matched_ip_range
      *           The IP range of the subnet matching the source IP address of the test.
      *     @type string $region
@@ -96,7 +100,8 @@ class NetworkInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Compute Engine network.
+     * URI of a Compute Engine network in format
+     * "projects/{project}/global/networks/{network}"
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -107,7 +112,8 @@ class NetworkInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Compute Engine network.
+     * URI of a Compute Engine network in format
+     * "projects/{project}/global/networks/{network}"
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var
@@ -122,7 +128,8 @@ class NetworkInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the subnet matching the source IP address of the test.
+     * URI of the subnet matching the source IP address of the test in format
+     * "projects/{project}/regions/{region}/subnetworks/{subnetwork}"
      *
      * Generated from protobuf field <code>string matched_subnet_uri = 5;</code>
      * @return string
@@ -133,7 +140,8 @@ class NetworkInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the subnet matching the source IP address of the test.
+     * URI of the subnet matching the source IP address of the test in format
+     * "projects/{project}/regions/{region}/subnetworks/{subnetwork}"
      *
      * Generated from protobuf field <code>string matched_subnet_uri = 5;</code>
      * @param string $var

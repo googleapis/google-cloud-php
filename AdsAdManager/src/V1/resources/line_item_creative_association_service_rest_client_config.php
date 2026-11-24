@@ -23,6 +23,78 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.LineItemCreativeAssociationService' => [
+            'BatchActivateLineItemCreativeAssociations' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*/lineItems/*}/creatives:batchActivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchCreateLineItemCreativeAssociations' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*/lineItems/*}/creatives:batchCreate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeactivateLineItemCreativeAssociations' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*/lineItems/*}/creatives:batchDeactivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeleteLineItemCreativeAssociations' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*/lineItems/*}/creatives:batchDelete',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateLineItemCreativeAssociations' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*/lineItems/*}/creatives:batchUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateLineItemCreativeAssociation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*/lineItems/*}/creatives',
+                'body' => 'line_item_creative_association',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetLineItemCreativeAssociation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/lineItems/*/creatives/*}',
@@ -41,6 +113,31 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'PreviewLineItemCreativeAssociation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=networks/*/lineItems/*/creatives/*}:preview',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateLineItemCreativeAssociation' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{line_item_creative_association.name=networks/*/lineItems/*/creatives/*}',
+                'body' => 'line_item_creative_association',
+                'placeholders' => [
+                    'line_item_creative_association.name' => [
+                        'getters' => [
+                            'getLineItemCreativeAssociation',
+                            'getName',
                         ],
                     ],
                 ],

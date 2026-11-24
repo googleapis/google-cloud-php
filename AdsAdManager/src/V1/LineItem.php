@@ -542,6 +542,12 @@ class LineItem extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.LineItemAllowedFormatEnum.LineItemAllowedFormat allowed_formats = 112 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $allowed_formats;
+    /**
+     * Optional. The allocation delivery profile for the line item.
+     *
+     * Generated from protobuf field <code>optional string allocation_delivery_profile = 131 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $allocation_delivery_profile = null;
 
     /**
      * Constructor.
@@ -822,6 +828,8 @@ class LineItem extends \Google\Protobuf\Internal\Message
      *           Optional. The set of allowed formats for this line item.
      *           If empty, all formats are allowed. This property only applies
      *           to programmatic video line items.
+     *     @type string $allocation_delivery_profile
+     *           Optional. The allocation delivery profile for the line item.
      * }
      */
     public function __construct($data = NULL) {
@@ -3287,6 +3295,42 @@ class LineItem extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Ads\AdManager\V1\LineItemAllowedFormatEnum\LineItemAllowedFormat::class);
         $this->allowed_formats = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The allocation delivery profile for the line item.
+     *
+     * Generated from protobuf field <code>optional string allocation_delivery_profile = 131 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getAllocationDeliveryProfile()
+    {
+        return isset($this->allocation_delivery_profile) ? $this->allocation_delivery_profile : '';
+    }
+
+    public function hasAllocationDeliveryProfile()
+    {
+        return isset($this->allocation_delivery_profile);
+    }
+
+    public function clearAllocationDeliveryProfile()
+    {
+        unset($this->allocation_delivery_profile);
+    }
+
+    /**
+     * Optional. The allocation delivery profile for the line item.
+     *
+     * Generated from protobuf field <code>optional string allocation_delivery_profile = 131 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAllocationDeliveryProfile($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->allocation_delivery_profile = $var;
 
         return $this;
     }

@@ -35,6 +35,7 @@ class GkePodInfo extends \Google\Protobuf\Internal\Message
     protected $ip_address = '';
     /**
      * URI of the network containing the GKE Pod.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string network_uri = 3;</code>
      */
@@ -57,6 +58,7 @@ class GkePodInfo extends \Google\Protobuf\Internal\Message
      *           relevant to the trace.
      *     @type string $network_uri
      *           URI of the network containing the GKE Pod.
+     *           Format: `projects/{project_id}/global/networks/{network_id}`
      * }
      */
     public function __construct($data = NULL) {
@@ -128,6 +130,7 @@ class GkePodInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the network containing the GKE Pod.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string network_uri = 3;</code>
      * @return string
@@ -139,6 +142,7 @@ class GkePodInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * URI of the network containing the GKE Pod.
+     * Format: `projects/{project_id}/global/networks/{network_id}`
      *
      * Generated from protobuf field <code>string network_uri = 3;</code>
      * @param string $var

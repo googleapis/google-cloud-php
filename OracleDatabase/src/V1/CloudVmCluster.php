@@ -24,23 +24,23 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Required. The name of the Exadata Infrastructure resource on which VM
-     * cluster resource is created, in the following format:
+     * Required. Immutable. The name of the Exadata Infrastructure resource on
+     * which VM cluster resource is created, in the following format:
      * projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}
      *
-     * Generated from protobuf field <code>string exadata_infrastructure = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string exadata_infrastructure = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     protected $exadata_infrastructure = '';
     /**
-     * Optional. User friendly name for this resource.
+     * Optional. Immutable. User friendly name for this resource.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $display_name = '';
     /**
-     * Optional. Various properties of the VM Cluster.
+     * Optional. Immutable. Various properties of the VM Cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties properties = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties properties = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $properties = null;
     /**
@@ -56,22 +56,23 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
      */
     protected $create_time = null;
     /**
-     * Optional. Network settings. CIDR to use for cluster IP allocation.
+     * Optional. Immutable. Network settings. CIDR to use for cluster IP
+     * allocation.
      *
-     * Generated from protobuf field <code>string cidr = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string cidr = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $cidr = '';
     /**
-     * Optional. CIDR range of the backup subnet.
+     * Optional. Immutable. CIDR range of the backup subnet.
      *
-     * Generated from protobuf field <code>string backup_subnet_cidr = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string backup_subnet_cidr = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $backup_subnet_cidr = '';
     /**
-     * Optional. The name of the VPC network.
+     * Optional. Immutable. The name of the VPC network.
      * Format: projects/{project}/global/networks/{network}
      *
-     * Generated from protobuf field <code>string network = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     protected $network = '';
     /**
@@ -83,29 +84,29 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
      */
     protected $gcp_oracle_zone = '';
     /**
-     * Optional. The name of the OdbNetwork associated with the VM Cluster.
-     * Format:
+     * Optional. Immutable. The name of the OdbNetwork associated with the VM
+     * Cluster. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}
      * It is optional but if specified, this should match the parent ODBNetwork of
      * the odb_subnet and backup_odb_subnet.
      *
-     * Generated from protobuf field <code>string odb_network = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_network = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     protected $odb_network = '';
     /**
-     * Optional. The name of the OdbSubnet associated with the VM Cluster for
-     * IP allocation. Format:
+     * Optional. Immutable. The name of the OdbSubnet associated with the VM
+     * Cluster for IP allocation. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *
-     * Generated from protobuf field <code>string odb_subnet = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_subnet = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     protected $odb_subnet = '';
     /**
-     * Optional. The name of the backup OdbSubnet associated with the VM Cluster.
-     * Format:
+     * Optional. Immutable. The name of the backup OdbSubnet associated with the
+     * VM Cluster. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *
-     * Generated from protobuf field <code>string backup_odb_subnet = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string backup_odb_subnet = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     protected $backup_odb_subnet = '';
     /**
@@ -124,13 +125,23 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
      */
     protected $identity_connector = null;
     /**
-     * Optional. The name of ExascaleDbStorageVault associated with the VM
-     * Cluster. Format:
+     * Optional. Immutable. The name of ExascaleDbStorageVault associated with the
+     * VM Cluster. Format:
      * projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}
      *
-     * Generated from protobuf field <code>string exascale_db_storage_vault = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string exascale_db_storage_vault = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     protected $exascale_db_storage_vault = '';
+    /**
+     * Optional. Input only. Immutable. If set to true, disables the automatic
+     * provisioning of the Workload Identity Connector during creation. If set to
+     * false or omitted, the Workload Identity Connector will be automatically
+     * provisioned by default. Note: Provisioning the Workload Identity Connector
+     * is a prerequisite for enabling Google Cloud CMEK.
+     *
+     * Generated from protobuf field <code>bool identity_connector_disabled = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $identity_connector_disabled = false;
 
     /**
      * Constructor.
@@ -142,41 +153,42 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
      *           Identifier. The name of the VM Cluster resource with the format:
      *           projects/{project}/locations/{region}/cloudVmClusters/{cloud_vm_cluster}
      *     @type string $exadata_infrastructure
-     *           Required. The name of the Exadata Infrastructure resource on which VM
-     *           cluster resource is created, in the following format:
+     *           Required. Immutable. The name of the Exadata Infrastructure resource on
+     *           which VM cluster resource is created, in the following format:
      *           projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}
      *     @type string $display_name
-     *           Optional. User friendly name for this resource.
+     *           Optional. Immutable. User friendly name for this resource.
      *     @type \Google\Cloud\OracleDatabase\V1\CloudVmClusterProperties $properties
-     *           Optional. Various properties of the VM Cluster.
+     *           Optional. Immutable. Various properties of the VM Cluster.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels or tags associated with the VM Cluster.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The date and time that the VM cluster was created.
      *     @type string $cidr
-     *           Optional. Network settings. CIDR to use for cluster IP allocation.
+     *           Optional. Immutable. Network settings. CIDR to use for cluster IP
+     *           allocation.
      *     @type string $backup_subnet_cidr
-     *           Optional. CIDR range of the backup subnet.
+     *           Optional. Immutable. CIDR range of the backup subnet.
      *     @type string $network
-     *           Optional. The name of the VPC network.
+     *           Optional. Immutable. The name of the VPC network.
      *           Format: projects/{project}/global/networks/{network}
      *     @type string $gcp_oracle_zone
      *           Output only. The GCP Oracle zone where Oracle CloudVmCluster is hosted.
      *           This will be the same as the gcp_oracle_zone of the
      *           CloudExadataInfrastructure. Example: us-east4-b-r2.
      *     @type string $odb_network
-     *           Optional. The name of the OdbNetwork associated with the VM Cluster.
-     *           Format:
+     *           Optional. Immutable. The name of the OdbNetwork associated with the VM
+     *           Cluster. Format:
      *           projects/{project}/locations/{location}/odbNetworks/{odb_network}
      *           It is optional but if specified, this should match the parent ODBNetwork of
      *           the odb_subnet and backup_odb_subnet.
      *     @type string $odb_subnet
-     *           Optional. The name of the OdbSubnet associated with the VM Cluster for
-     *           IP allocation. Format:
+     *           Optional. Immutable. The name of the OdbSubnet associated with the VM
+     *           Cluster for IP allocation. Format:
      *           projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *     @type string $backup_odb_subnet
-     *           Optional. The name of the backup OdbSubnet associated with the VM Cluster.
-     *           Format:
+     *           Optional. Immutable. The name of the backup OdbSubnet associated with the
+     *           VM Cluster. Format:
      *           projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *     @type string $odb_dns_zone
      *           Optional. Immutable. The name of the OdbDnsZone for using custom domain
@@ -186,9 +198,15 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
      *           Output only. The identity connector details which will allow OCI to
      *           securely access the resources in the customer project.
      *     @type string $exascale_db_storage_vault
-     *           Optional. The name of ExascaleDbStorageVault associated with the VM
-     *           Cluster. Format:
+     *           Optional. Immutable. The name of ExascaleDbStorageVault associated with the
+     *           VM Cluster. Format:
      *           projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}
+     *     @type bool $identity_connector_disabled
+     *           Optional. Input only. Immutable. If set to true, disables the automatic
+     *           provisioning of the Workload Identity Connector during creation. If set to
+     *           false or omitted, the Workload Identity Connector will be automatically
+     *           provisioned by default. Note: Provisioning the Workload Identity Connector
+     *           is a prerequisite for enabling Google Cloud CMEK.
      * }
      */
     public function __construct($data = NULL) {
@@ -225,11 +243,11 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the Exadata Infrastructure resource on which VM
-     * cluster resource is created, in the following format:
+     * Required. Immutable. The name of the Exadata Infrastructure resource on
+     * which VM cluster resource is created, in the following format:
      * projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}
      *
-     * Generated from protobuf field <code>string exadata_infrastructure = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string exadata_infrastructure = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getExadataInfrastructure()
@@ -238,11 +256,11 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the Exadata Infrastructure resource on which VM
-     * cluster resource is created, in the following format:
+     * Required. Immutable. The name of the Exadata Infrastructure resource on
+     * which VM cluster resource is created, in the following format:
      * projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}
      *
-     * Generated from protobuf field <code>string exadata_infrastructure = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string exadata_infrastructure = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -255,9 +273,9 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User friendly name for this resource.
+     * Optional. Immutable. User friendly name for this resource.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getDisplayName()
@@ -266,9 +284,9 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User friendly name for this resource.
+     * Optional. Immutable. User friendly name for this resource.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -281,9 +299,9 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Various properties of the VM Cluster.
+     * Optional. Immutable. Various properties of the VM Cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties properties = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties properties = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Cloud\OracleDatabase\V1\CloudVmClusterProperties|null
      */
     public function getProperties()
@@ -302,9 +320,9 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Various properties of the VM Cluster.
+     * Optional. Immutable. Various properties of the VM Cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties properties = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties properties = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\OracleDatabase\V1\CloudVmClusterProperties $var
      * @return $this
      */
@@ -379,9 +397,10 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Network settings. CIDR to use for cluster IP allocation.
+     * Optional. Immutable. Network settings. CIDR to use for cluster IP
+     * allocation.
      *
-     * Generated from protobuf field <code>string cidr = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string cidr = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getCidr()
@@ -390,9 +409,10 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Network settings. CIDR to use for cluster IP allocation.
+     * Optional. Immutable. Network settings. CIDR to use for cluster IP
+     * allocation.
      *
-     * Generated from protobuf field <code>string cidr = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string cidr = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -405,9 +425,9 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. CIDR range of the backup subnet.
+     * Optional. Immutable. CIDR range of the backup subnet.
      *
-     * Generated from protobuf field <code>string backup_subnet_cidr = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string backup_subnet_cidr = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getBackupSubnetCidr()
@@ -416,9 +436,9 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. CIDR range of the backup subnet.
+     * Optional. Immutable. CIDR range of the backup subnet.
      *
-     * Generated from protobuf field <code>string backup_subnet_cidr = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string backup_subnet_cidr = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -431,10 +451,10 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the VPC network.
+     * Optional. Immutable. The name of the VPC network.
      * Format: projects/{project}/global/networks/{network}
      *
-     * Generated from protobuf field <code>string network = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getNetwork()
@@ -443,10 +463,10 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the VPC network.
+     * Optional. Immutable. The name of the VPC network.
      * Format: projects/{project}/global/networks/{network}
      *
-     * Generated from protobuf field <code>string network = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -489,13 +509,13 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the OdbNetwork associated with the VM Cluster.
-     * Format:
+     * Optional. Immutable. The name of the OdbNetwork associated with the VM
+     * Cluster. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}
      * It is optional but if specified, this should match the parent ODBNetwork of
      * the odb_subnet and backup_odb_subnet.
      *
-     * Generated from protobuf field <code>string odb_network = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_network = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getOdbNetwork()
@@ -504,13 +524,13 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the OdbNetwork associated with the VM Cluster.
-     * Format:
+     * Optional. Immutable. The name of the OdbNetwork associated with the VM
+     * Cluster. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}
      * It is optional but if specified, this should match the parent ODBNetwork of
      * the odb_subnet and backup_odb_subnet.
      *
-     * Generated from protobuf field <code>string odb_network = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_network = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -523,11 +543,11 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the OdbSubnet associated with the VM Cluster for
-     * IP allocation. Format:
+     * Optional. Immutable. The name of the OdbSubnet associated with the VM
+     * Cluster for IP allocation. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *
-     * Generated from protobuf field <code>string odb_subnet = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_subnet = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getOdbSubnet()
@@ -536,11 +556,11 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the OdbSubnet associated with the VM Cluster for
-     * IP allocation. Format:
+     * Optional. Immutable. The name of the OdbSubnet associated with the VM
+     * Cluster for IP allocation. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *
-     * Generated from protobuf field <code>string odb_subnet = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_subnet = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -553,11 +573,11 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the backup OdbSubnet associated with the VM Cluster.
-     * Format:
+     * Optional. Immutable. The name of the backup OdbSubnet associated with the
+     * VM Cluster. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *
-     * Generated from protobuf field <code>string backup_odb_subnet = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string backup_odb_subnet = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getBackupOdbSubnet()
@@ -566,11 +586,11 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the backup OdbSubnet associated with the VM Cluster.
-     * Format:
+     * Optional. Immutable. The name of the backup OdbSubnet associated with the
+     * VM Cluster. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *
-     * Generated from protobuf field <code>string backup_odb_subnet = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string backup_odb_subnet = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -651,11 +671,11 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of ExascaleDbStorageVault associated with the VM
-     * Cluster. Format:
+     * Optional. Immutable. The name of ExascaleDbStorageVault associated with the
+     * VM Cluster. Format:
      * projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}
      *
-     * Generated from protobuf field <code>string exascale_db_storage_vault = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string exascale_db_storage_vault = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getExascaleDbStorageVault()
@@ -664,11 +684,11 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of ExascaleDbStorageVault associated with the VM
-     * Cluster. Format:
+     * Optional. Immutable. The name of ExascaleDbStorageVault associated with the
+     * VM Cluster. Format:
      * projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}
      *
-     * Generated from protobuf field <code>string exascale_db_storage_vault = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string exascale_db_storage_vault = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -676,6 +696,40 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->exascale_db_storage_vault = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Immutable. If set to true, disables the automatic
+     * provisioning of the Workload Identity Connector during creation. If set to
+     * false or omitted, the Workload Identity Connector will be automatically
+     * provisioned by default. Note: Provisioning the Workload Identity Connector
+     * is a prerequisite for enabling Google Cloud CMEK.
+     *
+     * Generated from protobuf field <code>bool identity_connector_disabled = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return bool
+     */
+    public function getIdentityConnectorDisabled()
+    {
+        return $this->identity_connector_disabled;
+    }
+
+    /**
+     * Optional. Input only. Immutable. If set to true, disables the automatic
+     * provisioning of the Workload Identity Connector during creation. If set to
+     * false or omitted, the Workload Identity Connector will be automatically
+     * provisioned by default. Note: Provisioning the Workload Identity Connector
+     * is a prerequisite for enabling Google Cloud CMEK.
+     *
+     * Generated from protobuf field <code>bool identity_connector_disabled = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIdentityConnectorDisabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->identity_connector_disabled = $var;
 
         return $this;
     }

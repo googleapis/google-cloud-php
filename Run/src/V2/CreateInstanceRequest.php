@@ -14,6 +14,9 @@ use Google\Protobuf\RepeatedField;
 class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Required. The location and project in which this Instance should be
+     * created.
+     *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
@@ -22,11 +25,12 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     protected $instance = null;
     /**
-     * Required. The unique identifier for the Instance. It must begin with
+     * Optional. The unique identifier for the Instance. It must begin with
      * letter, and cannot end with hyphen; must contain fewer than 50 characters.
      * The name of the instance becomes {parent}/instances/{instance_id}.
+     * If not provided, the server will generate a unique `instance_id`.
      *
-     * Generated from protobuf field <code>string instance_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string instance_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $instance_id = '';
     /**
@@ -38,7 +42,9 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     protected $validate_only = false;
 
     /**
-     * @param string                        $parent   Please see {@see InstancesClient::locationName()} for help formatting this field.
+     * @param string                        $parent   Required. The location and project in which this Instance should be
+     *                                                created. Please see
+     *                                                {@see InstancesClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Run\V2\Instance $instance
      *
      * @return \Google\Cloud\Run\V2\CreateInstanceRequest
@@ -59,11 +65,14 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
+     *           Required. The location and project in which this Instance should be
+     *           created.
      *     @type \Google\Cloud\Run\V2\Instance $instance
      *     @type string $instance_id
-     *           Required. The unique identifier for the Instance. It must begin with
+     *           Optional. The unique identifier for the Instance. It must begin with
      *           letter, and cannot end with hyphen; must contain fewer than 50 characters.
      *           The name of the instance becomes {parent}/instances/{instance_id}.
+     *           If not provided, the server will generate a unique `instance_id`.
      *     @type bool $validate_only
      *           Optional. Indicates that the request should be validated and default values
      *           populated, without persisting the request or creating any resources.
@@ -75,6 +84,9 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Required. The location and project in which this Instance should be
+     * created.
+     *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
@@ -84,6 +96,9 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Required. The location and project in which this Instance should be
+     * created.
+     *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
@@ -129,11 +144,12 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique identifier for the Instance. It must begin with
+     * Optional. The unique identifier for the Instance. It must begin with
      * letter, and cannot end with hyphen; must contain fewer than 50 characters.
      * The name of the instance becomes {parent}/instances/{instance_id}.
+     * If not provided, the server will generate a unique `instance_id`.
      *
-     * Generated from protobuf field <code>string instance_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string instance_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getInstanceId()
@@ -142,11 +158,12 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique identifier for the Instance. It must begin with
+     * Optional. The unique identifier for the Instance. It must begin with
      * letter, and cannot end with hyphen; must contain fewer than 50 characters.
      * The name of the instance becomes {parent}/instances/{instance_id}.
+     * If not provided, the server will generate a unique `instance_id`.
      *
-     * Generated from protobuf field <code>string instance_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string instance_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

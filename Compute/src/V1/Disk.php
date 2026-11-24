@@ -395,6 +395,43 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     protected $source_instant_snapshot_id = null;
     /**
+     * The machine image to create the disk from. You can provide this as a
+     * partial or full URL to the resource. For example, the following are valid
+     * values:
+     *      - https://www.googleapis.com/compute/v1/projects/project/global/machineImages/machineImage
+     *    - projects/project/global/machineImages/machineImage
+     *      - global/machineImages/machineImage
+     *
+     * Generated from protobuf field <code>optional string source_machine_image = 21769791;</code>
+     */
+    protected $source_machine_image = null;
+    /**
+     * The device name of a disk within a given machine image. The
+     * source_machine_image must be specified.
+     *
+     * Generated from protobuf field <code>optional string source_machine_image_disk_device_name = 68623666;</code>
+     */
+    protected $source_machine_image_disk_device_name = null;
+    /**
+     * Thecustomer-supplied
+     * encryption key of the source machine image. Required if the source
+     * machine image is protected by a customer-supplied encryption key.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_machine_image_encryption_key = 192839075;</code>
+     */
+    protected $source_machine_image_encryption_key = null;
+    /**
+     * Output only. [Output Only] The unique ID of the machine image used to create this disk.
+     * This value identifies the exact machine image that was used to create this
+     * persistent disk. For example, if you created the persistent disk from a
+     * machine image that was later deleted and recreated under the same name, the
+     * source machine image ID would identify the exact version of the machine
+     * image that was used.
+     *
+     * Generated from protobuf field <code>optional string source_machine_image_id = 3876635;</code>
+     */
+    protected $source_machine_image_id = null;
+    /**
      * The source snapshot used to create this disk. You can provide this as a
      * partial or full URL to the resource. For example, the following are valid
      * values:
@@ -692,6 +729,27 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           disk from an instant snapshot that was later deleted and recreated under
      *           the same name, the source instant snapshot ID would identify the exact
      *           version of the instant snapshot that was used.
+     *     @type string $source_machine_image
+     *           The machine image to create the disk from. You can provide this as a
+     *           partial or full URL to the resource. For example, the following are valid
+     *           values:
+     *                - https://www.googleapis.com/compute/v1/projects/project/global/machineImages/machineImage
+     *              - projects/project/global/machineImages/machineImage
+     *                - global/machineImages/machineImage
+     *     @type string $source_machine_image_disk_device_name
+     *           The device name of a disk within a given machine image. The
+     *           source_machine_image must be specified.
+     *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $source_machine_image_encryption_key
+     *           Thecustomer-supplied
+     *           encryption key of the source machine image. Required if the source
+     *           machine image is protected by a customer-supplied encryption key.
+     *     @type string $source_machine_image_id
+     *           Output only. [Output Only] The unique ID of the machine image used to create this disk.
+     *           This value identifies the exact machine image that was used to create this
+     *           persistent disk. For example, if you created the persistent disk from a
+     *           machine image that was later deleted and recreated under the same name, the
+     *           source machine image ID would identify the exact version of the machine
+     *           image that was used.
      *     @type string $source_snapshot
      *           The source snapshot used to create this disk. You can provide this as a
      *           partial or full URL to the resource. For example, the following are valid
@@ -2395,6 +2453,176 @@ class Disk extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->source_instant_snapshot_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The machine image to create the disk from. You can provide this as a
+     * partial or full URL to the resource. For example, the following are valid
+     * values:
+     *      - https://www.googleapis.com/compute/v1/projects/project/global/machineImages/machineImage
+     *    - projects/project/global/machineImages/machineImage
+     *      - global/machineImages/machineImage
+     *
+     * Generated from protobuf field <code>optional string source_machine_image = 21769791;</code>
+     * @return string
+     */
+    public function getSourceMachineImage()
+    {
+        return isset($this->source_machine_image) ? $this->source_machine_image : '';
+    }
+
+    public function hasSourceMachineImage()
+    {
+        return isset($this->source_machine_image);
+    }
+
+    public function clearSourceMachineImage()
+    {
+        unset($this->source_machine_image);
+    }
+
+    /**
+     * The machine image to create the disk from. You can provide this as a
+     * partial or full URL to the resource. For example, the following are valid
+     * values:
+     *      - https://www.googleapis.com/compute/v1/projects/project/global/machineImages/machineImage
+     *    - projects/project/global/machineImages/machineImage
+     *      - global/machineImages/machineImage
+     *
+     * Generated from protobuf field <code>optional string source_machine_image = 21769791;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceMachineImage($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_machine_image = $var;
+
+        return $this;
+    }
+
+    /**
+     * The device name of a disk within a given machine image. The
+     * source_machine_image must be specified.
+     *
+     * Generated from protobuf field <code>optional string source_machine_image_disk_device_name = 68623666;</code>
+     * @return string
+     */
+    public function getSourceMachineImageDiskDeviceName()
+    {
+        return isset($this->source_machine_image_disk_device_name) ? $this->source_machine_image_disk_device_name : '';
+    }
+
+    public function hasSourceMachineImageDiskDeviceName()
+    {
+        return isset($this->source_machine_image_disk_device_name);
+    }
+
+    public function clearSourceMachineImageDiskDeviceName()
+    {
+        unset($this->source_machine_image_disk_device_name);
+    }
+
+    /**
+     * The device name of a disk within a given machine image. The
+     * source_machine_image must be specified.
+     *
+     * Generated from protobuf field <code>optional string source_machine_image_disk_device_name = 68623666;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceMachineImageDiskDeviceName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_machine_image_disk_device_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Thecustomer-supplied
+     * encryption key of the source machine image. Required if the source
+     * machine image is protected by a customer-supplied encryption key.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_machine_image_encryption_key = 192839075;</code>
+     * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey|null
+     */
+    public function getSourceMachineImageEncryptionKey()
+    {
+        return $this->source_machine_image_encryption_key;
+    }
+
+    public function hasSourceMachineImageEncryptionKey()
+    {
+        return isset($this->source_machine_image_encryption_key);
+    }
+
+    public function clearSourceMachineImageEncryptionKey()
+    {
+        unset($this->source_machine_image_encryption_key);
+    }
+
+    /**
+     * Thecustomer-supplied
+     * encryption key of the source machine image. Required if the source
+     * machine image is protected by a customer-supplied encryption key.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_machine_image_encryption_key = 192839075;</code>
+     * @param \Google\Cloud\Compute\V1\CustomerEncryptionKey $var
+     * @return $this
+     */
+    public function setSourceMachineImageEncryptionKey($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\CustomerEncryptionKey::class);
+        $this->source_machine_image_encryption_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] The unique ID of the machine image used to create this disk.
+     * This value identifies the exact machine image that was used to create this
+     * persistent disk. For example, if you created the persistent disk from a
+     * machine image that was later deleted and recreated under the same name, the
+     * source machine image ID would identify the exact version of the machine
+     * image that was used.
+     *
+     * Generated from protobuf field <code>optional string source_machine_image_id = 3876635;</code>
+     * @return string
+     */
+    public function getSourceMachineImageId()
+    {
+        return isset($this->source_machine_image_id) ? $this->source_machine_image_id : '';
+    }
+
+    public function hasSourceMachineImageId()
+    {
+        return isset($this->source_machine_image_id);
+    }
+
+    public function clearSourceMachineImageId()
+    {
+        unset($this->source_machine_image_id);
+    }
+
+    /**
+     * Output only. [Output Only] The unique ID of the machine image used to create this disk.
+     * This value identifies the exact machine image that was used to create this
+     * persistent disk. For example, if you created the persistent disk from a
+     * machine image that was later deleted and recreated under the same name, the
+     * source machine image ID would identify the exact version of the machine
+     * image that was used.
+     *
+     * Generated from protobuf field <code>optional string source_machine_image_id = 3876635;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceMachineImageId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_machine_image_id = $var;
 
         return $this;
     }

@@ -35,10 +35,46 @@ return [
                     ],
                 ],
             ],
+            'BatchCreateCreatives' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/creatives:batchCreate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'BatchDeactivateCreatives' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=networks/*}/creatives:batchDeactivate',
                 'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateCreatives' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/creatives:batchUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateCreative' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/creatives',
+                'body' => 'creative',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -65,6 +101,19 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateCreative' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{creative.name=networks/*/creatives/*}',
+                'body' => 'creative',
+                'placeholders' => [
+                    'creative.name' => [
+                        'getters' => [
+                            'getCreative',
+                            'getName',
                         ],
                     ],
                 ],

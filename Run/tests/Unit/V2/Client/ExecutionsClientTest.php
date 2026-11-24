@@ -107,6 +107,8 @@ class ExecutionsClientTest extends GeneratedTest
         $retriedCount = 1654679545;
         $logUri = 'logUri342054385';
         $satisfiesPzs = false;
+        $client = 'client-1357712437';
+        $clientVersion = 'clientVersion-1506231196';
         $etag2 = 'etag2-1293302904';
         $expectedResponse = new Execution();
         $expectedResponse->setName($name2);
@@ -125,6 +127,8 @@ class ExecutionsClientTest extends GeneratedTest
         $expectedResponse->setRetriedCount($retriedCount);
         $expectedResponse->setLogUri($logUri);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setClient($client);
+        $expectedResponse->setClientVersion($clientVersion);
         $expectedResponse->setEtag($etag2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -263,6 +267,8 @@ class ExecutionsClientTest extends GeneratedTest
         $retriedCount = 1654679545;
         $logUri = 'logUri342054385';
         $satisfiesPzs = false;
+        $client = 'client-1357712437';
+        $clientVersion = 'clientVersion-1506231196';
         $etag2 = 'etag2-1293302904';
         $expectedResponse = new Execution();
         $expectedResponse->setName($name2);
@@ -281,6 +287,8 @@ class ExecutionsClientTest extends GeneratedTest
         $expectedResponse->setRetriedCount($retriedCount);
         $expectedResponse->setLogUri($logUri);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setClient($client);
+        $expectedResponse->setClientVersion($clientVersion);
         $expectedResponse->setEtag($etag2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -407,6 +415,8 @@ class ExecutionsClientTest extends GeneratedTest
         $retriedCount = 1654679545;
         $logUri = 'logUri342054385';
         $satisfiesPzs = false;
+        $client = 'client-1357712437';
+        $clientVersion = 'clientVersion-1506231196';
         $etag = 'etag3123477';
         $expectedResponse = new Execution();
         $expectedResponse->setName($name2);
@@ -425,6 +435,8 @@ class ExecutionsClientTest extends GeneratedTest
         $expectedResponse->setRetriedCount($retriedCount);
         $expectedResponse->setLogUri($logUri);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setClient($client);
+        $expectedResponse->setClientVersion($clientVersion);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -587,6 +599,8 @@ class ExecutionsClientTest extends GeneratedTest
         $retriedCount = 1654679545;
         $logUri = 'logUri342054385';
         $satisfiesPzs = false;
+        $client = 'client-1357712437';
+        $clientVersion = 'clientVersion-1506231196';
         $etag2 = 'etag2-1293302904';
         $expectedResponse = new Execution();
         $expectedResponse->setName($name2);
@@ -605,6 +619,8 @@ class ExecutionsClientTest extends GeneratedTest
         $expectedResponse->setRetriedCount($retriedCount);
         $expectedResponse->setLogUri($logUri);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setClient($client);
+        $expectedResponse->setClientVersion($clientVersion);
         $expectedResponse->setEtag($etag2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());

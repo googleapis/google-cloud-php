@@ -42,7 +42,7 @@ class Item extends \Google\Protobuf\Internal\Message
     protected $item_id = '';
     /**
      * Optional. A bucket of any [event parameters related to an
-     * item](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events)
+     * item](https://developers.google.com/data-manager/api/reference/analytics/recommended-events)
      * to be included within the event that were not already specified using other
      * structured fields.
      *
@@ -107,7 +107,7 @@ class Item extends \Google\Protobuf\Internal\Message
      *           Optional. A unique identifier to reference the item.
      *     @type \Google\Ads\DataManager\V1\ItemParameter[] $additional_item_parameters
      *           Optional. A bucket of any [event parameters related to an
-     *           item](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events)
+     *           item](https://developers.google.com/data-manager/api/reference/analytics/recommended-events)
      *           to be included within the event that were not already specified using other
      *           structured fields.
      *     @type string $merchant_id
@@ -245,7 +245,7 @@ class Item extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A bucket of any [event parameters related to an
-     * item](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events)
+     * item](https://developers.google.com/data-manager/api/reference/analytics/recommended-events)
      * to be included within the event that were not already specified using other
      * structured fields.
      *
@@ -259,7 +259,7 @@ class Item extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A bucket of any [event parameters related to an
-     * item](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events)
+     * item](https://developers.google.com/data-manager/api/reference/analytics/recommended-events)
      * to be included within the event that were not already specified using other
      * structured fields.
      *

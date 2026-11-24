@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request object for [RunAvailabilityForecast][] method.
+ * Request object for `RunAvailabilityForecast` method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.RunAvailabilityForecastRequest</code>
  */
@@ -53,6 +53,10 @@ class RunAvailabilityForecastRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The resource name of the
      *           [LineItem][google.ads.admanager.v1.LineItem] to be forecasted. Format:
      *           `networks/{network_code}/lineItems/{line_item_id}`
+     *     @type \Google\Ads\AdManager\V1\ForecastingLineItem $forecasting_line_item
+     *           Optional. The
+     *           [ForecastingLineItem][google.ads.admanager.v1.ForecastingLineItem] to be
+     *           forecasted.
      *     @type string $parent
      *           Required. Format: `networks/{network_code}`
      *     @type \Google\Ads\AdManager\V1\AvailabilityForecastOptions $availability_forecast_options
@@ -95,6 +99,41 @@ class RunAvailabilityForecastRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. The
+     * [ForecastingLineItem][google.ads.admanager.v1.ForecastingLineItem] to be
+     * forecasted.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ForecastingLineItem forecasting_line_item = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\ForecastingLineItem|null
+     */
+    public function getForecastingLineItem()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasForecastingLineItem()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Optional. The
+     * [ForecastingLineItem][google.ads.admanager.v1.ForecastingLineItem] to be
+     * forecasted.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ForecastingLineItem forecasting_line_item = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\ForecastingLineItem $var
+     * @return $this
+     */
+    public function setForecastingLineItem($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\ForecastingLineItem::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

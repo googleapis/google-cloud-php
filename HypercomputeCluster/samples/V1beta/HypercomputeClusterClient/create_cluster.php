@@ -36,9 +36,10 @@ use Google\Rpc\Status;
  * @param string $formattedParent Parent location in which the cluster should be created, in the
  *                                format `projects/{project}/locations/{location}`. Please see
  *                                {@see HypercomputeClusterClient::locationName()} for help formatting this field.
- * @param string $clusterId       ID of the cluster to create. Must conform to
- *                                [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034) (lower-case,
- *                                alphanumeric, and at most 63 characters).
+ * @param string $clusterId       The ID of the cluster to create.
+ *                                The cluster ID must start with a lowercase letter (`a`-`z`), use only
+ *                                lowercase letters or numbers, and contain up to 10 characters. For example,
+ *                                specify `cluster001`.
  */
 function create_cluster_sample(string $formattedParent, string $clusterId): void
 {

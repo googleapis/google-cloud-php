@@ -38,11 +38,8 @@ use Google\Rpc\Status;
  *                                Format: projects/{project}/locations/{location}, where {project} can be
  *                                project id or number. Only lowercase characters, digits, and hyphens. Please see
  *                                {@see ServicesClient::locationName()} for help formatting this field.
- * @param string $serviceId       The unique identifier for the Service. It must begin with letter,
- *                                and cannot end with hyphen; must contain fewer than 50 characters.
- *                                The name of the service becomes {parent}/services/{service_id}.
  */
-function create_service_sample(string $formattedParent, string $serviceId): void
+function create_service_sample(string $formattedParent): void
 {
     // Create a client.
     $servicesClient = new ServicesClient();
@@ -53,8 +50,7 @@ function create_service_sample(string $formattedParent, string $serviceId): void
         ->setTemplate($serviceTemplate);
     $request = (new CreateServiceRequest())
         ->setParent($formattedParent)
-        ->setService($service)
-        ->setServiceId($serviceId);
+        ->setService($service);
 
     // Call the API and handle any network failures.
     try {
@@ -88,8 +84,7 @@ function create_service_sample(string $formattedParent, string $serviceId): void
 function callSample(): void
 {
     $formattedParent = ServicesClient::locationName('[PROJECT]', '[LOCATION]');
-    $serviceId = '[SERVICE_ID]';
 
-    create_service_sample($formattedParent, $serviceId);
+    create_service_sample($formattedParent);
 }
 // [END run_v2_generated_Services_CreateService_sync]

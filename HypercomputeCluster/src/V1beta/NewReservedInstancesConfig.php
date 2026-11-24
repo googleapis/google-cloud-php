@@ -18,6 +18,13 @@ use Google\Protobuf\RepeatedField;
  */
 class NewReservedInstancesConfig extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Optional. Immutable. A list of network tags to attach to the VM instances.
+     * A maximum of 64 network tags are allowed.
+     *
+     * Generated from protobuf field <code>repeated string network_tags = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $network_tags;
     protected $source;
 
     /**
@@ -30,6 +37,17 @@ class NewReservedInstancesConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Immutable. Name of the reservation from which VM instances
      *           should be created, in the format
      *           `projects/{project}/zones/{zone}/reservations/{reservation}`.
+     *     @type string $reservation_block
+     *           Optional. Immutable. Name of the reservation block from which VM
+     *           instances should be created, in the format
+     *           `projects/{project}/zones/{zone}/reservations/{reservation}/reservationBlocks/{reservation_block}`.
+     *     @type string $reservation_sub_block
+     *           Optional. Immutable. Name of the reservation sub block from which VM
+     *           instances should be created, in the format
+     *           `projects/{project}/zones/{zone}/reservations/{reservation}/reservationBlocks/{reservation_block}/reservationSubBlocks/{reservation_sub_block}`.
+     *     @type string[] $network_tags
+     *           Optional. Immutable. A list of network tags to attach to the VM instances.
+     *           A maximum of 64 network tags are allowed.
      * }
      */
     public function __construct($data = NULL) {
@@ -68,6 +86,104 @@ class NewReservedInstancesConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. Name of the reservation block from which VM
+     * instances should be created, in the format
+     * `projects/{project}/zones/{zone}/reservations/{reservation}/reservationBlocks/{reservation_block}`.
+     *
+     * Generated from protobuf field <code>string reservation_block = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getReservationBlock()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasReservationBlock()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Optional. Immutable. Name of the reservation block from which VM
+     * instances should be created, in the format
+     * `projects/{project}/zones/{zone}/reservations/{reservation}/reservationBlocks/{reservation_block}`.
+     *
+     * Generated from protobuf field <code>string reservation_block = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setReservationBlock($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. Name of the reservation sub block from which VM
+     * instances should be created, in the format
+     * `projects/{project}/zones/{zone}/reservations/{reservation}/reservationBlocks/{reservation_block}/reservationSubBlocks/{reservation_sub_block}`.
+     *
+     * Generated from protobuf field <code>string reservation_sub_block = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getReservationSubBlock()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasReservationSubBlock()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * Optional. Immutable. Name of the reservation sub block from which VM
+     * instances should be created, in the format
+     * `projects/{project}/zones/{zone}/reservations/{reservation}/reservationBlocks/{reservation_block}/reservationSubBlocks/{reservation_sub_block}`.
+     *
+     * Generated from protobuf field <code>string reservation_sub_block = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setReservationSubBlock($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. A list of network tags to attach to the VM instances.
+     * A maximum of 64 network tags are allowed.
+     *
+     * Generated from protobuf field <code>repeated string network_tags = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return RepeatedField<string>
+     */
+    public function getNetworkTags()
+    {
+        return $this->network_tags;
+    }
+
+    /**
+     * Optional. Immutable. A list of network tags to attach to the VM instances.
+     * A maximum of 64 network tags are allowed.
+     *
+     * Generated from protobuf field <code>repeated string network_tags = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setNetworkTags($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->network_tags = $arr;
 
         return $this;
     }

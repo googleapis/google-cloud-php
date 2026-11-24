@@ -22,7 +22,8 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * URI of a Compute Engine instance.
+     * URI of a Compute Engine instance in format
+     * "projects/{project}/zones/{zone}/instances/{instance}"
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
@@ -34,7 +35,8 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
      */
     protected $interface = '';
     /**
-     * URI of a Compute Engine network.
+     * URI of a Compute Engine network in format
+     * "projects/{project}/global/networks/{network}"
      *
      * Generated from protobuf field <code>string network_uri = 4;</code>
      */
@@ -65,7 +67,9 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
      */
     protected $service_account = '';
     /**
-     * URI of the PSC network attachment the NIC is attached to (if relevant).
+     * URI of the PSC network attachment the NIC is attached to (if relevant) in
+     * format
+     * "projects/{project}/regions/{region}/networkAttachments/{network_attachment}"
      *
      * Generated from protobuf field <code>string psc_network_attachment_uri = 9;</code>
      */
@@ -94,11 +98,13 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Name of a Compute Engine instance.
      *     @type string $uri
-     *           URI of a Compute Engine instance.
+     *           URI of a Compute Engine instance in format
+     *           "projects/{project}/zones/{zone}/instances/{instance}"
      *     @type string $interface
      *           Name of the network interface of a Compute Engine instance.
      *     @type string $network_uri
-     *           URI of a Compute Engine network.
+     *           URI of a Compute Engine network in format
+     *           "projects/{project}/global/networks/{network}"
      *     @type string $internal_ip
      *           Internal IP address of the network interface.
      *     @type string $external_ip
@@ -108,7 +114,9 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
      *     @type string $service_account
      *           Service account authorized for the instance.
      *     @type string $psc_network_attachment_uri
-     *           URI of the PSC network attachment the NIC is attached to (if relevant).
+     *           URI of the PSC network attachment the NIC is attached to (if relevant) in
+     *           format
+     *           "projects/{project}/regions/{region}/networkAttachments/{network_attachment}"
      *     @type bool $running
      *           Indicates whether the Compute Engine instance is running.
      *           Deprecated: use the `status` field instead.
@@ -148,7 +156,8 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Compute Engine instance.
+     * URI of a Compute Engine instance in format
+     * "projects/{project}/zones/{zone}/instances/{instance}"
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -159,7 +168,8 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Compute Engine instance.
+     * URI of a Compute Engine instance in format
+     * "projects/{project}/zones/{zone}/instances/{instance}"
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var
@@ -200,7 +210,8 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Compute Engine network.
+     * URI of a Compute Engine network in format
+     * "projects/{project}/global/networks/{network}"
      *
      * Generated from protobuf field <code>string network_uri = 4;</code>
      * @return string
@@ -211,7 +222,8 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Compute Engine network.
+     * URI of a Compute Engine network in format
+     * "projects/{project}/global/networks/{network}"
      *
      * Generated from protobuf field <code>string network_uri = 4;</code>
      * @param string $var
@@ -336,7 +348,9 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the PSC network attachment the NIC is attached to (if relevant).
+     * URI of the PSC network attachment the NIC is attached to (if relevant) in
+     * format
+     * "projects/{project}/regions/{region}/networkAttachments/{network_attachment}"
      *
      * Generated from protobuf field <code>string psc_network_attachment_uri = 9;</code>
      * @return string
@@ -347,7 +361,9 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the PSC network attachment the NIC is attached to (if relevant).
+     * URI of the PSC network attachment the NIC is attached to (if relevant) in
+     * format
+     * "projects/{project}/regions/{region}/networkAttachments/{network_attachment}"
      *
      * Generated from protobuf field <code>string psc_network_attachment_uri = 9;</code>
      * @param string $var

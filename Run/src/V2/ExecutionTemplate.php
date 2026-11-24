@@ -72,6 +72,25 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.run.v2.TaskTemplate template = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $template = null;
+    /**
+     * Optional. If true, the system will start the execution within the next 12
+     * hours depending on available capacity.
+     *
+     * Generated from protobuf field <code>optional bool delay_execution = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $delay_execution = null;
+    /**
+     * Optional. Arbitrary identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $client = '';
+    /**
+     * Optional. Arbitrary version identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client_version = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $client_version = '';
 
     /**
      * Constructor.
@@ -115,6 +134,13 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Run\V2\TaskTemplate $template
      *           Required. Describes the task(s) that will be created when executing an
      *           execution.
+     *     @type bool $delay_execution
+     *           Optional. If true, the system will start the execution within the next 12
+     *           hours depending on available capacity.
+     *     @type string $client
+     *           Optional. Arbitrary identifier for the API client.
+     *     @type string $client_version
+     *           Optional. Arbitrary version identifier for the API client.
      * }
      */
     public function __construct($data = NULL) {
@@ -310,6 +336,96 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\TaskTemplate::class);
         $this->template = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, the system will start the execution within the next 12
+     * hours depending on available capacity.
+     *
+     * Generated from protobuf field <code>optional bool delay_execution = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDelayExecution()
+    {
+        return isset($this->delay_execution) ? $this->delay_execution : false;
+    }
+
+    public function hasDelayExecution()
+    {
+        return isset($this->delay_execution);
+    }
+
+    public function clearDelayExecution()
+    {
+        unset($this->delay_execution);
+    }
+
+    /**
+     * Optional. If true, the system will start the execution within the next 12
+     * hours depending on available capacity.
+     *
+     * Generated from protobuf field <code>optional bool delay_execution = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDelayExecution($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->delay_execution = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Arbitrary identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * Optional. Arbitrary identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setClient($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->client = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Arbitrary version identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client_version = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getClientVersion()
+    {
+        return $this->client_version;
+    }
+
+    /**
+     * Optional. Arbitrary version identifier for the API client.
+     *
+     * Generated from protobuf field <code>string client_version = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setClientVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->client_version = $var;
 
         return $this;
     }

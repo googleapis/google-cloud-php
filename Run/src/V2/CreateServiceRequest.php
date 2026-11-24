@@ -30,11 +30,12 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
      */
     protected $service = null;
     /**
-     * Required. The unique identifier for the Service. It must begin with letter,
+     * Optional. The unique identifier for the Service. It must begin with letter,
      * and cannot end with hyphen; must contain fewer than 50 characters.
      * The name of the service becomes {parent}/services/{service_id}.
+     * If not provided, the server will generate a unique `service_id`.
      *
-     * Generated from protobuf field <code>string service_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string service_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $service_id = '';
     /**
@@ -51,9 +52,10 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
      *                                                project id or number. Only lowercase characters, digits, and hyphens. Please see
      *                                                {@see ServicesClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Run\V2\Service $service   Required. The Service instance to create.
-     * @param string                       $serviceId Required. The unique identifier for the Service. It must begin with letter,
+     * @param string                       $serviceId Optional. The unique identifier for the Service. It must begin with letter,
      *                                                and cannot end with hyphen; must contain fewer than 50 characters.
      *                                                The name of the service becomes {parent}/services/{service_id}.
+     *                                                If not provided, the server will generate a unique `service_id`.
      *
      * @return \Google\Cloud\Run\V2\CreateServiceRequest
      *
@@ -80,9 +82,10 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Run\V2\Service $service
      *           Required. The Service instance to create.
      *     @type string $service_id
-     *           Required. The unique identifier for the Service. It must begin with letter,
+     *           Optional. The unique identifier for the Service. It must begin with letter,
      *           and cannot end with hyphen; must contain fewer than 50 characters.
      *           The name of the service becomes {parent}/services/{service_id}.
+     *           If not provided, the server will generate a unique `service_id`.
      *     @type bool $validate_only
      *           Indicates that the request should be validated and default values
      *           populated, without persisting the request or creating any resources.
@@ -160,11 +163,12 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique identifier for the Service. It must begin with letter,
+     * Optional. The unique identifier for the Service. It must begin with letter,
      * and cannot end with hyphen; must contain fewer than 50 characters.
      * The name of the service becomes {parent}/services/{service_id}.
+     * If not provided, the server will generate a unique `service_id`.
      *
-     * Generated from protobuf field <code>string service_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string service_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getServiceId()
@@ -173,11 +177,12 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique identifier for the Service. It must begin with letter,
+     * Optional. The unique identifier for the Service. It must begin with letter,
      * and cannot end with hyphen; must contain fewer than 50 characters.
      * The name of the service becomes {parent}/services/{service_id}.
+     * If not provided, the server will generate a unique `service_id`.
      *
-     * Generated from protobuf field <code>string service_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string service_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

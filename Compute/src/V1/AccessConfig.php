@@ -35,6 +35,22 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      */
     protected $external_ipv6_prefix_length = null;
     /**
+     * Reference to the source of external IPv4 addresses,
+     * like a PublicDelegatedPrefix (PDP) for BYOIP.
+     * The PDP must support enhanced IPv4 allocations.
+     * Use one of the following formats to specify a PDP when allocating an
+     * external IPv4 address using BYOIP.
+     *    -
+     *    Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *    -
+     *    Partial URL, as in
+     *           - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *           - regions/region/publicDelegatedPrefixes/pdp-name
+     *
+     * Generated from protobuf field <code>optional string ip_collection = 176818358;</code>
+     */
+    protected $ip_collection = null;
+    /**
      * Output only. [Output Only] Type of the resource. Alwayscompute#accessConfig for access configs.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -122,6 +138,18 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      *     @type int $external_ipv6_prefix_length
      *           Applies to ipv6AccessConfigs only. The prefix length of the
      *           external IPv6 range.
+     *     @type string $ip_collection
+     *           Reference to the source of external IPv4 addresses,
+     *           like a PublicDelegatedPrefix (PDP) for BYOIP.
+     *           The PDP must support enhanced IPv4 allocations.
+     *           Use one of the following formats to specify a PDP when allocating an
+     *           external IPv4 address using BYOIP.
+     *              -
+     *              Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *              -
+     *              Partial URL, as in
+     *                     - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *                     - regions/region/publicDelegatedPrefixes/pdp-name
      *     @type string $kind
      *           Output only. [Output Only] Type of the resource. Alwayscompute#accessConfig for access configs.
      *     @type string $name
@@ -248,6 +276,62 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->external_ipv6_prefix_length = $var;
+
+        return $this;
+    }
+
+    /**
+     * Reference to the source of external IPv4 addresses,
+     * like a PublicDelegatedPrefix (PDP) for BYOIP.
+     * The PDP must support enhanced IPv4 allocations.
+     * Use one of the following formats to specify a PDP when allocating an
+     * external IPv4 address using BYOIP.
+     *    -
+     *    Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *    -
+     *    Partial URL, as in
+     *           - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *           - regions/region/publicDelegatedPrefixes/pdp-name
+     *
+     * Generated from protobuf field <code>optional string ip_collection = 176818358;</code>
+     * @return string
+     */
+    public function getIpCollection()
+    {
+        return isset($this->ip_collection) ? $this->ip_collection : '';
+    }
+
+    public function hasIpCollection()
+    {
+        return isset($this->ip_collection);
+    }
+
+    public function clearIpCollection()
+    {
+        unset($this->ip_collection);
+    }
+
+    /**
+     * Reference to the source of external IPv4 addresses,
+     * like a PublicDelegatedPrefix (PDP) for BYOIP.
+     * The PDP must support enhanced IPv4 allocations.
+     * Use one of the following formats to specify a PDP when allocating an
+     * external IPv4 address using BYOIP.
+     *    -
+     *    Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *    -
+     *    Partial URL, as in
+     *           - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *           - regions/region/publicDelegatedPrefixes/pdp-name
+     *
+     * Generated from protobuf field <code>optional string ip_collection = 176818358;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpCollection($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ip_collection = $var;
 
         return $this;
     }

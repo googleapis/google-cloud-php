@@ -17,16 +17,22 @@ class UpdateAutonomousDatabaseRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Field mask is used to specify the fields to be overwritten in the
-     * Exadata resource by the update. The fields specified in the update_mask are
-     * relative to the resource, not the full request. A field will be overwritten
-     * if it is in the mask. If the user does not provide a mask then all fields
-     * will be overwritten.
+     * Exadata resource by the update. The fields specified in the `update_mask`
+     * are relative to the resource, not the full request. A field will be
+     * overwritten if it is in the mask. If the user does not provide a mask then
+     * the service treats this as an implied field mask equivalent to
+     * all fields that are populated (have a non-empty value). To clear or unset
+     * a field, the field must be explicitly specified in the `update_mask`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $update_mask = null;
     /**
-     * Required. The resource being updated
+     * Required. The Autonomous Database resource being updated.
+     * For `labels`, the provided map completely replaces existing labels; any
+     * existing keys not included will be deleted. To clear all labels, specify
+     * `labels` in the `update_mask` and omit or leave the `labels` field empty in
+     * the update request.
      *
      * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabase autonomous_database = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -45,12 +51,18 @@ class UpdateAutonomousDatabaseRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
-     * @param \Google\Cloud\OracleDatabase\V1\AutonomousDatabase $autonomousDatabase Required. The resource being updated
+     * @param \Google\Cloud\OracleDatabase\V1\AutonomousDatabase $autonomousDatabase Required. The Autonomous Database resource being updated.
+     *                                                                               For `labels`, the provided map completely replaces existing labels; any
+     *                                                                               existing keys not included will be deleted. To clear all labels, specify
+     *                                                                               `labels` in the `update_mask` and omit or leave the `labels` field empty in
+     *                                                                               the update request.
      * @param \Google\Protobuf\FieldMask                         $updateMask         Optional. Field mask is used to specify the fields to be overwritten in the
-     *                                                                               Exadata resource by the update. The fields specified in the update_mask are
-     *                                                                               relative to the resource, not the full request. A field will be overwritten
-     *                                                                               if it is in the mask. If the user does not provide a mask then all fields
-     *                                                                               will be overwritten.
+     *                                                                               Exadata resource by the update. The fields specified in the `update_mask`
+     *                                                                               are relative to the resource, not the full request. A field will be
+     *                                                                               overwritten if it is in the mask. If the user does not provide a mask then
+     *                                                                               the service treats this as an implied field mask equivalent to
+     *                                                                               all fields that are populated (have a non-empty value). To clear or unset
+     *                                                                               a field, the field must be explicitly specified in the `update_mask`.
      *
      * @return \Google\Cloud\OracleDatabase\V1\UpdateAutonomousDatabaseRequest
      *
@@ -71,12 +83,18 @@ class UpdateAutonomousDatabaseRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. Field mask is used to specify the fields to be overwritten in the
-     *           Exadata resource by the update. The fields specified in the update_mask are
-     *           relative to the resource, not the full request. A field will be overwritten
-     *           if it is in the mask. If the user does not provide a mask then all fields
-     *           will be overwritten.
+     *           Exadata resource by the update. The fields specified in the `update_mask`
+     *           are relative to the resource, not the full request. A field will be
+     *           overwritten if it is in the mask. If the user does not provide a mask then
+     *           the service treats this as an implied field mask equivalent to
+     *           all fields that are populated (have a non-empty value). To clear or unset
+     *           a field, the field must be explicitly specified in the `update_mask`.
      *     @type \Google\Cloud\OracleDatabase\V1\AutonomousDatabase $autonomous_database
-     *           Required. The resource being updated
+     *           Required. The Autonomous Database resource being updated.
+     *           For `labels`, the provided map completely replaces existing labels; any
+     *           existing keys not included will be deleted. To clear all labels, specify
+     *           `labels` in the `update_mask` and omit or leave the `labels` field empty in
+     *           the update request.
      *     @type string $request_id
      *           Optional. An optional ID to identify the request. This value is used to
      *           identify duplicate requests. If you make a request with the same request ID
@@ -94,10 +112,12 @@ class UpdateAutonomousDatabaseRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Field mask is used to specify the fields to be overwritten in the
-     * Exadata resource by the update. The fields specified in the update_mask are
-     * relative to the resource, not the full request. A field will be overwritten
-     * if it is in the mask. If the user does not provide a mask then all fields
-     * will be overwritten.
+     * Exadata resource by the update. The fields specified in the `update_mask`
+     * are relative to the resource, not the full request. A field will be
+     * overwritten if it is in the mask. If the user does not provide a mask then
+     * the service treats this as an implied field mask equivalent to
+     * all fields that are populated (have a non-empty value). To clear or unset
+     * a field, the field must be explicitly specified in the `update_mask`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -119,10 +139,12 @@ class UpdateAutonomousDatabaseRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Field mask is used to specify the fields to be overwritten in the
-     * Exadata resource by the update. The fields specified in the update_mask are
-     * relative to the resource, not the full request. A field will be overwritten
-     * if it is in the mask. If the user does not provide a mask then all fields
-     * will be overwritten.
+     * Exadata resource by the update. The fields specified in the `update_mask`
+     * are relative to the resource, not the full request. A field will be
+     * overwritten if it is in the mask. If the user does not provide a mask then
+     * the service treats this as an implied field mask equivalent to
+     * all fields that are populated (have a non-empty value). To clear or unset
+     * a field, the field must be explicitly specified in the `update_mask`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
@@ -137,7 +159,11 @@ class UpdateAutonomousDatabaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource being updated
+     * Required. The Autonomous Database resource being updated.
+     * For `labels`, the provided map completely replaces existing labels; any
+     * existing keys not included will be deleted. To clear all labels, specify
+     * `labels` in the `update_mask` and omit or leave the `labels` field empty in
+     * the update request.
      *
      * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabase autonomous_database = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\OracleDatabase\V1\AutonomousDatabase|null
@@ -158,7 +184,11 @@ class UpdateAutonomousDatabaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource being updated
+     * Required. The Autonomous Database resource being updated.
+     * For `labels`, the provided map completely replaces existing labels; any
+     * existing keys not included will be deleted. To clear all labels, specify
+     * `labels` in the `update_mask` and omit or leave the `labels` field empty in
+     * the update request.
      *
      * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabase autonomous_database = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\OracleDatabase\V1\AutonomousDatabase $var

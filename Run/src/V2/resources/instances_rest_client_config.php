@@ -34,9 +34,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'instance_id',
-                ],
             ],
             'DeleteInstance' => [
                 'method' => 'delete',
@@ -45,6 +42,17 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{resource=projects/*/locations/*/instances/*}:getIamPolicy',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],
@@ -71,6 +79,18 @@ return [
                     ],
                 ],
             ],
+            'SetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{resource=projects/*/locations/*/instances/*}:setIamPolicy',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'StartInstance' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{name=projects/*/locations/*/instances/*}:start',
@@ -90,6 +110,31 @@ return [
                 'placeholders' => [
                     'name' => [
                         'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{resource=projects/*/locations/*/instances/*}:testIamPermissions',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateInstance' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{instance.name=projects/*/locations/*/instances/*}',
+                'body' => 'instance',
+                'placeholders' => [
+                    'instance.name' => [
+                        'getters' => [
+                            'getInstance',
                             'getName',
                         ],
                     ],

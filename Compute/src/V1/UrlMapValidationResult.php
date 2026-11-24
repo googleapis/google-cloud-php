@@ -27,6 +27,12 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
      */
     protected $load_succeeded = null;
     /**
+     * Output only. Summary of quota usage for given UrlMap.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UrlMapQuotaUsage quota_usage = 238511386;</code>
+     */
+    protected $quota_usage = null;
+    /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TestFailure test_failures = 505934134;</code>
      */
     private $test_failures;
@@ -48,6 +54,8 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
      *     @type bool $load_succeeded
      *           Whether the given UrlMap can be successfully loaded.
      *           If false, 'loadErrors' indicates the reasons.
+     *     @type \Google\Cloud\Compute\V1\UrlMapQuotaUsage $quota_usage
+     *           Output only. Summary of quota usage for given UrlMap.
      *     @type \Google\Cloud\Compute\V1\TestFailure[] $test_failures
      *     @type bool $test_passed
      *           If successfully loaded, this field indicates whether the test passed.
@@ -115,6 +123,42 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->load_succeeded = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Summary of quota usage for given UrlMap.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UrlMapQuotaUsage quota_usage = 238511386;</code>
+     * @return \Google\Cloud\Compute\V1\UrlMapQuotaUsage|null
+     */
+    public function getQuotaUsage()
+    {
+        return $this->quota_usage;
+    }
+
+    public function hasQuotaUsage()
+    {
+        return isset($this->quota_usage);
+    }
+
+    public function clearQuotaUsage()
+    {
+        unset($this->quota_usage);
+    }
+
+    /**
+     * Output only. Summary of quota usage for given UrlMap.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UrlMapQuotaUsage quota_usage = 238511386;</code>
+     * @param \Google\Cloud\Compute\V1\UrlMapQuotaUsage $var
+     * @return $this
+     */
+    public function setQuotaUsage($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\UrlMapQuotaUsage::class);
+        $this->quota_usage = $var;
 
         return $this;
     }

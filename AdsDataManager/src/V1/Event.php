@@ -147,7 +147,7 @@ class Event extends \Google\Protobuf\Internal\Message
     protected $user_id = '';
     /**
      * Optional. A bucket of any [event
-     * parameters](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events)
+     * parameters](https://developers.google.com/data-manager/api/reference/analytics/recommended-events)
      * to be included within the event that were not already specified using other
      * structured fields.
      *
@@ -176,6 +176,13 @@ class Event extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string app_instance_id = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $app_instance_id = '';
+    /**
+     * Optional. Information gathered about the call (if any) which led to this
+     * event.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.CallInfo call_info = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $call_info = null;
 
     /**
      * Constructor.
@@ -239,7 +246,7 @@ class Event extends \Google\Protobuf\Internal\Message
      *           Optional. A unique identifier for a user, as defined by the advertiser.
      *     @type \Google\Ads\DataManager\V1\EventParameter[] $additional_event_parameters
      *           Optional. A bucket of any [event
-     *           parameters](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events)
+     *           parameters](https://developers.google.com/data-manager/api/reference/analytics/recommended-events)
      *           to be included within the event that were not already specified using other
      *           structured fields.
      *     @type \Google\Ads\DataManager\V1\UserData $third_party_user_data
@@ -252,6 +259,9 @@ class Event extends \Google\Protobuf\Internal\Message
      *     @type string $app_instance_id
      *           Optional. A unique identifier for the user instance of an app client for
      *           this GA4 app stream.
+     *     @type \Google\Ads\DataManager\V1\CallInfo $call_info
+     *           Optional. Information gathered about the call (if any) which led to this
+     *           event.
      * }
      */
     public function __construct($data = NULL) {
@@ -887,7 +897,7 @@ class Event extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A bucket of any [event
-     * parameters](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events)
+     * parameters](https://developers.google.com/data-manager/api/reference/analytics/recommended-events)
      * to be included within the event that were not already specified using other
      * structured fields.
      *
@@ -901,7 +911,7 @@ class Event extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A bucket of any [event
-     * parameters](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events)
+     * parameters](https://developers.google.com/data-manager/api/reference/analytics/recommended-events)
      * to be included within the event that were not already specified using other
      * structured fields.
      *
@@ -1019,6 +1029,44 @@ class Event extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->app_instance_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Information gathered about the call (if any) which led to this
+     * event.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.CallInfo call_info = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\DataManager\V1\CallInfo|null
+     */
+    public function getCallInfo()
+    {
+        return $this->call_info;
+    }
+
+    public function hasCallInfo()
+    {
+        return isset($this->call_info);
+    }
+
+    public function clearCallInfo()
+    {
+        unset($this->call_info);
+    }
+
+    /**
+     * Optional. Information gathered about the call (if any) which led to this
+     * event.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.CallInfo call_info = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\DataManager\V1\CallInfo $var
+     * @return $this
+     */
+    public function setCallInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\CallInfo::class);
+        $this->call_info = $var;
 
         return $this;
     }

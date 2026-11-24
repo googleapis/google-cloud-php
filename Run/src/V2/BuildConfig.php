@@ -58,8 +58,8 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      */
     protected $enable_automatic_updates = false;
     /**
-     * Optional. Name of the Cloud Build Custom Worker Pool that should be used to
-     * build the Cloud Run function. The format of this field is
+     * Optional. Name of the Cloud Build private pool that should be used to build
+     * the Cloud Run function. The format of this field is
      * `projects/{project}/locations/{region}/workerPools/{workerPool}` where
      * `{project}` and `{region}` are the project id and region respectively where
      * the worker pool is defined and `{workerPool}` is the short name of the
@@ -107,8 +107,8 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Sets whether the function will receive automatic base image
      *           updates.
      *     @type string $worker_pool
-     *           Optional. Name of the Cloud Build Custom Worker Pool that should be used to
-     *           build the Cloud Run function. The format of this field is
+     *           Optional. Name of the Cloud Build private pool that should be used to build
+     *           the Cloud Run function. The format of this field is
      *           `projects/{project}/locations/{region}/workerPools/{workerPool}` where
      *           `{project}` and `{region}` are the project id and region respectively where
      *           the worker pool is defined and `{workerPool}` is the short name of the
@@ -293,8 +293,8 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the Cloud Build Custom Worker Pool that should be used to
-     * build the Cloud Run function. The format of this field is
+     * Optional. Name of the Cloud Build private pool that should be used to build
+     * the Cloud Run function. The format of this field is
      * `projects/{project}/locations/{region}/workerPools/{workerPool}` where
      * `{project}` and `{region}` are the project id and region respectively where
      * the worker pool is defined and `{workerPool}` is the short name of the
@@ -309,8 +309,8 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the Cloud Build Custom Worker Pool that should be used to
-     * build the Cloud Run function. The format of this field is
+     * Optional. Name of the Cloud Build private pool that should be used to build
+     * the Cloud Run function. The format of this field is
      * `projects/{project}/locations/{region}/workerPools/{workerPool}` where
      * `{project}` and `{region}` are the project id and region respectively where
      * the worker pool is defined and `{workerPool}` is the short name of the
