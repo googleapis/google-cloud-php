@@ -43,7 +43,6 @@ class RepoSplitCommand extends Command
     const PARENT_TAG_NAME = 'https://github.com/%s/releases/tag/%s';
     const EXEC_DIR = '.split';
     const TOKEN_ENV = 'GH_OAUTH_TOKEN';
-    private const PHP_TEAM = RepoComplianceCommand::PHP_TEAM;
 
     private string $rootPath;
 
@@ -173,17 +172,7 @@ class RepoSplitCommand extends Command
         $releaseNotes = new ReleaseNotes($changelog);
         $branchToPush = $input->getOption('component-branch');
 
-        if ($componentId = $input->getOption('component')) {
-            $components = [new Component($componentId)];
-        } else {
-            // Build a list of components to update based on the release notes
-            $components = [];
-            foreach (Component::getComponents() as $component) {
-                if ($releaseNotes->get($component->getId())) {
-                    $components[] = $component;
-                }
-            }
-        }
+        $components = $this->getComponents($releaseNotes, $input->getOption('component'));
 
         $parentTagSource = sprintf(
             self::PARENT_TAG_NAME,
@@ -349,19 +338,13 @@ class RepoSplitCommand extends Command
 
         // This is the first release!
         if ($tagName === 'v0.1.0') {
-            // Ensure issues/projects/wiki/pages/discussion are disabled and the repo is public
+            // Disable pull requests for the first release
             $ret = $github->updateRepoDetails($repoName, [
-                'has_issues' => false,
-                'has_projects' => false,
-                'has_wiki' => false,
-                'has_pages' => false,
-                'has_discussions' => false,
                 'has_pull_requests' => false,
-                'visibility' => 'public',
             ]);
 
             if ($ret) {
-                $output->writeln(sprintf('<comment>%s</comment>: Disabled repo issues/projects/etc for first release.', $componentId));
+                $output->writeln(sprintf('<comment>%s</comment>: Disabled pull requests for first release.', $componentId));
             } else {
                 $output->writeln(sprintf('<error>%s</error>: Unable to update repo details.', $componentId));
 
@@ -392,17 +375,6 @@ class RepoSplitCommand extends Command
                     return false;
                 }
             }
-
-            // Add team permission
-            $ret = $github->updateTeamPermission('googleapis', self::PHP_TEAM, $repoName, 'admin');
-
-            if ($ret) {
-                $output->writeln(sprintf('<comment>%s</comment>: Added "%s" as admin.', $componentId, self::PHP_TEAM));
-            } else {
-                $output->writeln(sprintf('<error>%s</error>: Unable to add "%s" as admin.', $componentId, self::PHP_TEAM));
-
-                return false;
-            }
         }
 
         return true;
@@ -429,6 +401,32 @@ class RepoSplitCommand extends Command
         }
 
         return $token;
+    }
+
+    /**
+     * Resolve the components to split and release.
+     *
+     * You can override this method in unit tests.
+     *
+     * @param ReleaseNotes $releaseNotes The parsed release notes.
+     * @param string|null $componentId A single component name, if specified.
+     * @return Component[]
+     */
+    protected function getComponents(ReleaseNotes $releaseNotes, ?string $componentId): array
+    {
+        if ($componentId) {
+            return [new Component($componentId)];
+        }
+
+        // Build a list of components to update based on the release notes
+        $components = [];
+        foreach (Component::getComponents() as $component) {
+            if ($releaseNotes->get($component->getId())) {
+                $components[] = $component;
+            }
+        }
+
+        return $components;
     }
 
     /**
