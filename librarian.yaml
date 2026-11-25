@@ -405,6 +405,7 @@ libraries:
             - google/iam/v1/iam_policy.proto
     copyright_year: "2026"
     output: BeyondCorpAppConnections
+    skip_generate: true
   - name: beyondcorp-appconnectors
     version: 1.2.1
     apis:
@@ -415,6 +416,7 @@ libraries:
             - google/iam/v1/iam_policy.proto
     copyright_year: "2026"
     output: BeyondCorpAppConnectors
+    skip_generate: true
   - name: beyondcorp-appgateways
     version: 1.2.1
     apis:
@@ -425,6 +427,7 @@ libraries:
             - google/iam/v1/iam_policy.proto
     copyright_year: "2026"
     output: BeyondCorpAppGateways
+    skip_generate: true
   - name: beyondcorp-clientconnectorservices
     version: 1.2.1
     apis:
@@ -435,6 +438,7 @@ libraries:
             - google/iam/v1/iam_policy.proto
     copyright_year: "2026"
     output: BeyondCorpClientConnectorServices
+    skip_generate: true
   - name: beyondcorp-clientgateways
     version: 1.2.1
     apis:
@@ -445,6 +449,7 @@ libraries:
             - google/iam/v1/iam_policy.proto
     copyright_year: "2026"
     output: BeyondCorpClientGateways
+    skip_generate: true
   - name: bigquery-analyticshub
     version: 1.6.1
     apis:
