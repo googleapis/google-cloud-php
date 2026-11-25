@@ -183,7 +183,7 @@ $spanner = new SpannerClient([
 ]);
 ```
 
-All captured metrics are aggregated in-memory and exported synchronously during the PHP process shutdown phase. Built-in metrics are only exported in the default universe domain (`googleapis.com`); when another `universeDomain` is configured, enabling `enableBuiltInMetrics` is a no-op.
+All captured metrics are aggregated in-memory and exported synchronously during the PHP process shutdown phase. Built-in metrics are only exported in the default universe domain (`googleapis.com`) using the default endpoint; when another `universeDomain`, a custom `apiEndpoint`, or the Spanner emulator (`SPANNER_EMULATOR_HOST`) is configured, enabling `enableBuiltInMetrics` is a no-op.
 
 > [!WARNING]
 > **Performance Caveat**: Because PHP has a share-nothing architecture, exporting metrics synchronously at shutdown will add to the total request execution latency of the PHP process. For this reason, it is advised to enable built-in metrics primarily for debugging and active performance monitoring. 

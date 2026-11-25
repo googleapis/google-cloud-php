@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit\OpenTelemetry;
 
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\Cloud\Spanner\OpenTelemetry\OtlpMetricsExporter;
 use OpenTelemetry\SDK\Common\Attribute\Attributes;
 use OpenTelemetry\SDK\Common\Instrumentation\InstrumentationScope;
@@ -238,5 +239,122 @@ class OtlpMetricsExporterTest extends TestCase
         $this->assertFalse($exporter->forceFlush());
         $this->assertFalse($exporter->shutdown());
         $this->assertNull($mockHandler->getLastRequest());
+    }
+
+    public function testDisabledWithUniverseDomainEnvVar()
+    {
+        $previousUniverse = getenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN');
+        putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN=example.com');
+
+        try {
+            $mockCredentials = $this->prophesize(\Google\ApiCore\CredentialsWrapper::class);
+            $mockOtlpExporter = $this->prophesize(PushMetricExporterInterface::class);
+            $mockOtlpExporter->export(Argument::any())->shouldNotBeCalled();
+            $mockOtlpExporter->forceFlush()->shouldNotBeCalled();
+            $mockOtlpExporter->shutdown()->shouldNotBeCalled();
+
+            $exporter = new OtlpMetricsExporter(
+                $mockCredentials->reveal(),
+                100,
+                [],
+                $mockOtlpExporter->reveal()
+            );
+
+            $this->assertFalse($exporter->export([]));
+            $this->assertFalse($exporter->forceFlush());
+            $this->assertFalse($exporter->shutdown());
+        } finally {
+            if ($previousUniverse === false) {
+                putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN');
+            } else {
+                putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN=' . $previousUniverse);
+            }
+        }
+    }
+
+    public function testUniverseDomainOptionOverridesEnvVar()
+    {
+        $previousUniverse = getenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN');
+        putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN=example.com');
+
+        try {
+            $mockCredentials = $this->prophesize(\Google\ApiCore\CredentialsWrapper::class);
+            $mockOtlpExporter = $this->prophesize(PushMetricExporterInterface::class);
+            $mockOtlpExporter->export(Argument::any())->shouldBeCalled()->willReturn(true);
+
+            $exporter = new OtlpMetricsExporter(
+                $mockCredentials->reveal(),
+                100,
+                ['universeDomain' => 'googleapis.com'],
+                $mockOtlpExporter->reveal()
+            );
+
+            $this->assertTrue($exporter->export([]));
+        } finally {
+            if ($previousUniverse === false) {
+                putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN');
+            } else {
+                putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN=' . $previousUniverse);
+            }
+        }
+    }
+
+    public function testDisabledWithCustomApiEndpoint()
+    {
+        $mockCredentials = $this->prophesize(\Google\ApiCore\CredentialsWrapper::class);
+        $mockOtlpExporter = $this->prophesize(PushMetricExporterInterface::class);
+        $mockOtlpExporter->export(Argument::any())->shouldNotBeCalled();
+        $mockOtlpExporter->forceFlush()->shouldNotBeCalled();
+        $mockOtlpExporter->shutdown()->shouldNotBeCalled();
+
+        $exporter = new OtlpMetricsExporter(
+            $mockCredentials->reveal(),
+            100,
+            ['apiEndpoint' => 'spanner.example.com:443'],
+            $mockOtlpExporter->reveal()
+        );
+
+        $this->assertFalse($exporter->export([]));
+        $this->assertFalse($exporter->forceFlush());
+        $this->assertFalse($exporter->shutdown());
+    }
+
+    public function testDisabledWithHasEmulatorOption()
+    {
+        $mockCredentials = $this->prophesize(\Google\ApiCore\CredentialsWrapper::class);
+        $mockOtlpExporter = $this->prophesize(PushMetricExporterInterface::class);
+        $mockOtlpExporter->export(Argument::any())->shouldNotBeCalled();
+        $mockOtlpExporter->forceFlush()->shouldNotBeCalled();
+        $mockOtlpExporter->shutdown()->shouldNotBeCalled();
+
+        $exporter = new OtlpMetricsExporter(
+            $mockCredentials->reveal(),
+            100,
+            ['hasEmulator' => true],
+            $mockOtlpExporter->reveal()
+        );
+
+        $this->assertFalse($exporter->export([]));
+        $this->assertFalse($exporter->forceFlush());
+        $this->assertFalse($exporter->shutdown());
+    }
+
+    public function testDisabledWithInsecureCredentials()
+    {
+        $mockOtlpExporter = $this->prophesize(PushMetricExporterInterface::class);
+        $mockOtlpExporter->export(Argument::any())->shouldNotBeCalled();
+        $mockOtlpExporter->forceFlush()->shouldNotBeCalled();
+        $mockOtlpExporter->shutdown()->shouldNotBeCalled();
+
+        $exporter = new OtlpMetricsExporter(
+            new InsecureCredentialsWrapper(),
+            100,
+            [],
+            $mockOtlpExporter->reveal()
+        );
+
+        $this->assertFalse($exporter->export([]));
+        $this->assertFalse($exporter->forceFlush());
+        $this->assertFalse($exporter->shutdown());
     }
 }
