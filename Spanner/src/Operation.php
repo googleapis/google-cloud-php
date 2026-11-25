@@ -42,6 +42,7 @@ use Google\Cloud\Spanner\V1\PartitionQueryRequest;
 use Google\Cloud\Spanner\V1\PartitionReadRequest;
 use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\RequestOptions;
+use Google\Cloud\Spanner\V1\RequestOptions\ClientContext;
 use Google\Cloud\Spanner\V1\RollbackRequest;
 use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
 use Google\Cloud\Spanner\V1\TransactionOptions;
@@ -79,6 +80,7 @@ class Operation
     private ValueMapper $mapper;
     private bool $routeToLeader;
     private array $defaultQueryOptions;
+    private ?ClientContext $defaultClientContext = null;
 
     /**
      * @param SpannerClient $spannerClient The Spanner client used to make requests.
@@ -89,6 +91,8 @@ class Operation
      *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
      *         **Defaults to** `true` (enabled).
      *     @type array $defaultQueryOptions
+     *     @type array $defaultClientContext Client-level default client context.
+     *     @type array $clientContext Database- or batch-level client context.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *        returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility.
@@ -100,14 +104,24 @@ class Operation
         array $options = []
     ) {
         /** @var array $options */
-        $options = $this->validateOptions(
+        [$options] = $this->validateOptions(
             $options,
-            ['returnInt64AsObject', 'routeToLeader', 'defaultQueryOptions']
+            [
+                'returnInt64AsObject',
+                'routeToLeader',
+                'defaultQueryOptions',
+                'defaultClientContext',
+                'clientContext',
+            ]
         );
         $this->mapper = new ValueMapper($options['returnInt64AsObject'] ?? false);
         $this->routeToLeader = $options['routeToLeader'] ?? true;
         $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
         $this->optionsValidator = new OptionsValidator($serializer);
+        $this->defaultClientContext = $this->mergeClientContext(
+            $options['defaultClientContext'] ?? null,
+            $options['clientContext'] ?? null
+        );
     }
 
     /**
@@ -139,6 +153,7 @@ class Operation
      */
     public function commit(SessionCache $session, array $mutations, array $options = []): CommitResponse
     {
+        $options = $this->mergeRequestOptions($options);
         $options += [
             'session' => $session->name(),
             'mutations' => $mutations,
@@ -268,6 +283,7 @@ class Operation
         $options = $this->formatSqlParams($options);
         $options['transaction'] = $options['transaction'] ?? [];
         $options['queryOptions'] = $this->createQueryOptions($options);
+        $options = $this->mergeRequestOptions($options);
 
         /**
          * @var ExecuteSqlRequest $executeSqlRequest
@@ -472,6 +488,7 @@ class Operation
         array $statements,
         array $options = []
     ): BatchDmlResult {
+        $options = $this->mergeRequestOptions($options);
         $options += [
             'session' => $session->name(),
             'statements' => $this->formatStatements($statements),
@@ -552,6 +569,7 @@ class Operation
         array $columns,
         array $options = []
     ): Result {
+        $options = $this->mergeRequestOptions($options);
         $options['transaction'] = $options['transaction'] ?? [];
         $options['keySet'] = $this->flattenKeySet($keySet);
 
@@ -695,6 +713,7 @@ class Operation
         if (isset($options['transactionOptions'])) {
             $options['options'] = $options['transactionOptions'];
         }
+        $options = $this->mergeRequestOptions($options);
 
         /**
          * @var array $options
@@ -790,6 +809,7 @@ class Operation
             $options['options'] = $options['transactionOptions'];
             unset($options['transactionOptions']);
         }
+        $options = $this->mergeRequestOptions($options);
 
         /**
          * @var BeginTransactionRequest $beginTransaction
@@ -829,6 +849,7 @@ class Operation
             'readTimestamp' => $readTimestamp,
             'singleUse' => $singleUse,
             'directedReadOptions' => $options['directedReadOptions'] ?? null,
+            'requestOptions' => $beginTransaction->getRequestOptions(),
             'transactionOptions' => $beginTransaction->getOptions(),
         ]);
     }
@@ -915,7 +936,7 @@ class Operation
         $partitions = [];
         $queryPartitionOptions = $this->optionsValidator->stripUnknownOptions(
             $options,
-            ['parameters', 'types', 'maxPartitions', 'partitionSizeBytes', 'dataBoostEnabled'],
+            ['parameters', 'types', 'maxPartitions', 'partitionSizeBytes', 'dataBoostEnabled', 'requestOptions'],
             CallOptions::class
         );
 
@@ -1001,7 +1022,7 @@ class Operation
         $partitions = [];
         $readPartitionOptions = $this->optionsValidator->stripUnknownOptions(
             $options,
-            ['index', 'maxPartitions', 'partitionSizeBytes', 'dataBoostEnabled'],
+            ['index', 'maxPartitions', 'partitionSizeBytes', 'dataBoostEnabled', 'requestOptions'],
             CallOptions::class
         );
         /** @var RepeatedField<Partition> $protoPartitions */
@@ -1213,6 +1234,96 @@ class Operation
         ]);
 
         return $this->handleResponse($response);
+    }
+
+    /**
+     * Merge one or more ClientContext layers (array or proto) into a new
+     * immutable ClientContext instance using Protobuf mergeFrom().
+     *
+     * @internal
+     *
+     * @param array|ClientContext|null ...$contexts
+     * @return ClientContext|null
+     */
+    public function mergeClientContext(array|ClientContext|null ...$contexts): ?ClientContext
+    {
+        $merged = null;
+        foreach ($contexts as $ctx) {
+            if (empty($ctx)) {
+                continue;
+            }
+            $proto = $ctx instanceof ClientContext
+                ? $ctx
+                : $this->serializer->decodeMessage(new ClientContext(), $ctx);
+            if ($merged === null) {
+                $merged = new ClientContext();
+            }
+            $merged->mergeFrom($proto);
+        }
+
+        return $merged;
+    }
+
+    /**
+     * Merge client/database default clientContext, optional transaction/snapshot
+     * scoped requestOptions, and per-request options['requestOptions'].
+     *
+     * @internal
+     *
+     * @param array $options Per-request options array.
+     * @param array|RequestOptions|null $scopedRequestOptions Transaction/snapshot-scoped request options.
+     * @return array
+     */
+    public function mergeRequestOptions(
+        array $options,
+        array|RequestOptions|null $scopedRequestOptions = null
+    ): array {
+        $scopedClientContext = $this->extractClientContext($scopedRequestOptions);
+        $requestOptions = $options['requestOptions'] ?? null;
+        $requestClientContext = $this->extractClientContext($requestOptions);
+
+        $mergedClientContext = $this->mergeClientContext(
+            $this->defaultClientContext,
+            $scopedClientContext,
+            $requestClientContext
+        );
+
+        if ($mergedClientContext === null) {
+            return $options;
+        }
+
+        if ($requestOptions instanceof RequestOptions) {
+            $mergedRequestOptions = new RequestOptions();
+            $mergedRequestOptions->mergeFrom($requestOptions);
+            $mergedRequestOptions->setClientContext($mergedClientContext);
+            $options['requestOptions'] = $mergedRequestOptions;
+        } else {
+            $options['requestOptions'] = $requestOptions ?? [];
+            $options['requestOptions']['clientContext'] = $mergedClientContext;
+        }
+
+        return $options;
+    }
+
+    /**
+     * Extract clientContext from a RequestOptions message or associative array.
+     *
+     * @param array|RequestOptions|null $requestOptions
+     * @return array|ClientContext|null
+     */
+    private function extractClientContext(array|RequestOptions|null $requestOptions): array|ClientContext|null
+    {
+        if ($requestOptions instanceof RequestOptions) {
+            return $requestOptions->hasClientContext()
+                ? $requestOptions->getClientContext()
+                : null;
+        }
+
+        if (is_array($requestOptions) && isset($requestOptions['clientContext'])) {
+            return $requestOptions['clientContext'];
+        }
+
+        return null;
     }
 
     /**

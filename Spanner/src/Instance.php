@@ -75,6 +75,7 @@ class Instance
     private IamManager|null $iam = null;
     private array $directedReadOptions;
     private array $defaultQueryOptions;
+    private array $defaultClientContext;
     private bool $routeToLeader;
     private string $projectName;
     private bool $returnInt64AsObject;
@@ -127,6 +128,7 @@ class Instance
         $this->readLockMode = $options['readLockMode'] ?? ReadLockMode::READ_LOCK_MODE_UNSPECIFIED;
         $this->routeToLeader = $options['routeToLeader'] ?? true;
         $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
+        $this->defaultClientContext = $options['defaultClientContext'] ?? [];
         $this->returnInt64AsObject = $options['returnInt64AsObject'] ?? false;
         $this->cacheItemPool = $options['cacheItemPool'] ?? null;
         $this->info = $options['instance'] ?? [];
@@ -532,6 +534,8 @@ class Instance
      *     @type LockInterface $lock
      *     @type int $isolationLevel The IsolationLevel set for the transaction.
      *           Check {@see IsolationLevel} for more details.
+     *     @type array $clientContext Database-scoped client context merged over the SpannerClient default.
+     *           {@see \Google\Cloud\Spanner\V1\RequestOptions\ClientContext}
      * }
      * @return Database
      */
@@ -540,6 +544,8 @@ class Instance
         [$options] = $this->validateOptions($options, [
             'routeToLeader',
             'defaultQueryOptions',
+            'defaultClientContext',
+            'clientContext',
             'returnint64AsObject',
             'databaseRole',
             'database',
@@ -572,6 +578,7 @@ class Instance
             $options + [
                 'routeToLeader' => $this->routeToLeader,
                 'defaultQueryOptions' => $this->defaultQueryOptions,
+                'defaultClientContext' => $this->defaultClientContext,
                 'returnInt64AsObject' => $this->returnInt64AsObject,
                 'isolationLevel' => $this->isolationLevel,
                 'readLockMode' => $this->readLockMode,

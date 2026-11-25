@@ -76,6 +76,47 @@ class QueryTest extends SystemTestCase
         $this->assertEquals(1, $row[0]);
     }
 
+    public function testSelectWithClientContext()
+    {
+        if (self::isEmulatorUsed()) {
+            $this->markTestSkipped('SECURE_CONTEXT() is not supported on the Spanner Emulator.');
+        }
+
+        $database = self::$client->connect(self::$instance->name(), self::$database->name(), [
+            'clientContext' => [
+                'secureContext' => [
+                    'env' => 'system-test',
+                    'user_id' => 'default-user',
+                ],
+            ],
+        ]);
+
+        $res = $database->execute(
+            "SELECT SECURE_CONTEXT('env') AS env, SECURE_CONTEXT('user_id') AS user_id"
+        );
+        $row = $res->rows()->current();
+
+        $this->assertEquals('system-test', $row['env']);
+        $this->assertEquals('default-user', $row['user_id']);
+
+        $overrideRes = $database->execute(
+            "SELECT SECURE_CONTEXT('env') AS env, SECURE_CONTEXT('user_id') AS user_id",
+            [
+                'requestOptions' => [
+                    'clientContext' => [
+                        'secureContext' => [
+                            'user_id' => 'override-user',
+                        ],
+                    ],
+                ],
+            ]
+        );
+        $overrideRow = $overrideRes->rows()->current();
+
+        $this->assertEquals('system-test', $overrideRow['env']);
+        $this->assertEquals('override-user', $overrideRow['user_id']);
+    }
+
     /**
      * covers 20
      */

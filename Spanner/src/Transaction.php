@@ -80,7 +80,6 @@ class Transaction implements TransactionalReadInterface
     private CommitStats|null $commitStats = null;
     private array $mutations = [];
     private bool $isRetry;
-    private array|RequestOptions $requestOptions;
     private MultiplexedSessionPrecommitToken|null $precommitToken = null;
 
     /**
@@ -500,14 +499,31 @@ class Transaction implements TransactionalReadInterface
             $commitOptions['precommitToken'] = $this->precommitToken;
         }
         if (isset($commitOptions['requestOptions'])) {
-            unset($commitOptions['requestOptions']['requestTag']);
-            if (0 === count($commitOptions['requestOptions'])) {
-                unset($commitOptions['requestOptions']);
+            if ($commitOptions['requestOptions'] instanceof RequestOptions) {
+                $commitRequestOptions = new RequestOptions();
+                $commitRequestOptions->mergeFrom($commitOptions['requestOptions']);
+                $commitRequestOptions->setRequestTag('');
+                $commitOptions['requestOptions'] = $commitRequestOptions;
+            } else {
+                unset($commitOptions['requestOptions']['requestTag']);
+                if (0 === count($commitOptions['requestOptions'])) {
+                    unset($commitOptions['requestOptions']);
+                }
             }
         }
         // set the transaction tag if it exists
         if ($this->tag) {
-            $commitOptions['requestOptions']['transactionTag'] = $this->tag;
+            if (isset($commitOptions['requestOptions']) && $commitOptions['requestOptions'] instanceof RequestOptions) {
+                $commitOptions['requestOptions']->setTransactionTag($this->tag);
+            } else {
+                $commitOptions['requestOptions']['transactionTag'] = $this->tag;
+            }
+        }
+        if (!empty($this->requestOptions)) {
+            $commitOptions = $this->operation->mergeRequestOptions(
+                $commitOptions,
+                $this->requestOptions
+            );
         }
 
         [$txnOptions, $selector] = $this->transactionOptionsBuilder->transactionOptions(
@@ -616,6 +632,12 @@ class Transaction implements TransactionalReadInterface
 
         if ($this->tag) {
             $updateOptions['requestOptions']['transactionTag'] = $this->tag;
+        }
+        if (!empty($this->requestOptions)) {
+            $updateOptions = $this->operation->mergeRequestOptions(
+                $updateOptions,
+                $this->requestOptions
+            );
         }
 
         return $updateOptions;

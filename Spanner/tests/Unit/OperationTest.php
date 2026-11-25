@@ -42,7 +42,12 @@ use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
 use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\Partition;
+use Google\Cloud\Spanner\V1\PartitionQueryRequest;
+use Google\Cloud\Spanner\V1\PartitionReadRequest;
 use Google\Cloud\Spanner\V1\PartitionResponse;
+use Google\Cloud\Spanner\V1\RequestOptions;
+use Google\Cloud\Spanner\V1\RequestOptions\ClientContext;
+use Google\Cloud\Spanner\V1\RequestOptions\Priority;
 use Google\Cloud\Spanner\V1\ResultSet;
 use Google\Cloud\Spanner\V1\ResultSetMetadata;
 use Google\Cloud\Spanner\V1\ResultSetStats;
@@ -772,6 +777,156 @@ class OperationTest extends TestCase
         $mutation = $this->operation->mutation(Operation::OP_INSERT, 'Posts', ['foo' => 'bar']);
         $response = $this->operation->commit($this->session, [$mutation]);
         $this->assertInstanceOf(CommitResponse::class, $response);
+    }
+
+    public function testMergeClientContextMergesLayersImmutably()
+    {
+        $base = $this->operation->mergeClientContext([
+            'secureContext' => [
+                'env' => 'prod',
+                'user_id' => 'default-user',
+                'level' => 1,
+                'active' => true,
+            ],
+        ]);
+        $this->assertInstanceOf(ClientContext::class, $base);
+
+        $merged = $this->operation->mergeClientContext($base, [
+            'secureContext' => [
+                'user_id' => 'override-user',
+                'role' => 'admin',
+            ],
+        ]);
+        $this->assertInstanceOf(ClientContext::class, $merged);
+
+        // Ensure $base MapField was not mutated by merging $override.
+        $baseEncoded = $this->serializer->encodeMessage($base);
+        $this->assertEquals([
+            'secureContext' => [
+                'env' => 'prod',
+                'user_id' => 'default-user',
+                'level' => 1,
+                'active' => true,
+            ],
+        ], $baseEncoded);
+
+        $mergedEncoded = $this->serializer->encodeMessage($merged);
+        $this->assertEquals([
+            'secureContext' => [
+                'env' => 'prod',
+                'user_id' => 'override-user',
+                'level' => 1,
+                'active' => true,
+                'role' => 'admin',
+            ],
+        ], $mergedEncoded);
+    }
+
+    public function testMergeRequestOptionsPrecedenceAndImmutability()
+    {
+        $operation = new Operation(
+            $this->spannerClient->reveal(),
+            $this->serializer,
+            [
+                'defaultClientContext' => [
+                    'secureContext' => [
+                        'env' => 'prod',
+                        'tenant_id' => 'client-tenant',
+                        'role' => 'guest',
+                    ],
+                ],
+                'clientContext' => [
+                    'secureContext' => [
+                        'tenant_id' => 'db-tenant',
+                        'user_id' => 'db-user',
+                    ],
+                ],
+            ]
+        );
+
+        $scopedRequestOptions = $this->serializer->decodeMessage(new RequestOptions(), [
+            'clientContext' => [
+                'secureContext' => ['role' => 'editor'],
+            ],
+        ]);
+
+        // First call overrides role and adds an ephemeral key while preserving sibling options.
+        $mergedFirst = $operation->mergeRequestOptions([
+            'requestOptions' => [
+                'requestTag' => 'q-tag',
+                'priority' => Priority::PRIORITY_HIGH,
+                'clientContext' => [
+                    'secureContext' => [
+                        'role' => 'admin',
+                        'ephemeral' => 'only-first',
+                    ],
+                ],
+            ],
+        ], $scopedRequestOptions);
+
+        $this->assertEquals('q-tag', $mergedFirst['requestOptions']['requestTag']);
+        $this->assertEquals(Priority::PRIORITY_HIGH, $mergedFirst['requestOptions']['priority']);
+        $this->assertEquals([
+            'secureContext' => [
+                'env' => 'prod',
+                'tenant_id' => 'db-tenant',
+                'user_id' => 'db-user',
+                'role' => 'admin',
+                'ephemeral' => 'only-first',
+            ],
+        ], $this->serializer->encodeMessage($mergedFirst['requestOptions']['clientContext']));
+
+        // Second call with no per-request or scoped context must still see unmodified defaults.
+        $mergedSecond = $operation->mergeRequestOptions([]);
+        $this->assertEquals([
+            'secureContext' => [
+                'env' => 'prod',
+                'tenant_id' => 'db-tenant',
+                'user_id' => 'db-user',
+                'role' => 'guest',
+            ],
+        ], $this->serializer->encodeMessage($mergedSecond['requestOptions']['clientContext']));
+    }
+
+    public function testPartitionQueryAndReadPreserveRequestOptions()
+    {
+        $requestOptions = [
+            'clientContext' => [
+                'secureContext' => ['worker' => 'batch-1'],
+            ],
+        ];
+
+        $this->spannerClient->partitionQuery(
+            Argument::type(PartitionQueryRequest::class),
+            Argument::any()
+        )->shouldBeCalledOnce()->willReturn(new PartitionResponse([
+            'partitions' => [new Partition(['partition_token' => 'q-tok'])],
+        ]));
+
+        $this->spannerClient->partitionRead(
+            Argument::type(PartitionReadRequest::class),
+            Argument::any()
+        )->shouldBeCalledOnce()->willReturn(new PartitionResponse([
+            'partitions' => [new Partition(['partition_token' => 'r-tok'])],
+        ]));
+
+        $queryPartitions = $this->operation->partitionQuery(
+            $this->session,
+            self::TRANSACTION,
+            'SELECT 1',
+            ['requestOptions' => $requestOptions]
+        );
+        $this->assertEquals($requestOptions, $queryPartitions[0]->options()['requestOptions']);
+
+        $readPartitions = $this->operation->partitionRead(
+            $this->session,
+            self::TRANSACTION,
+            'Users',
+            new KeySet(['all' => true]),
+            ['id'],
+            ['requestOptions' => $requestOptions]
+        );
+        $this->assertEquals($requestOptions, $readPartitions[0]->options()['requestOptions']);
     }
 
     private function executeAndReadResponseStream(?string $transactionId = null)

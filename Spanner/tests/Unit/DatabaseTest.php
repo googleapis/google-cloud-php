@@ -55,6 +55,7 @@ use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\BatchWriteRequest;
 use Google\Cloud\Spanner\V1\BatchWriteRequest\MutationGroup;
+use Google\Cloud\Spanner\V1\BatchWriteResponse;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CommitRequest;
@@ -2897,5 +2898,462 @@ class DatabaseTest extends TestCase
                     ])])
                 ]
             ]));
+    }
+
+    public function testClientContextAcrossDataPlaneRpcs()
+    {
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn($this->sessionName);
+
+        $database = new Database(
+            $this->spannerClient->reveal(),
+            $this->databaseAdminClient->reveal(),
+            $this->serializer,
+            $this->instance,
+            self::PROJECT,
+            self::DATABASE,
+            $session->reveal(),
+            [
+                'defaultClientContext' => [
+                    'secureContext' => ['env' => 'prod', 'tenant_id' => 'client-tenant'],
+                ],
+                'clientContext' => [
+                    'secureContext' => ['tenant_id' => 'db-tenant'],
+                ],
+            ]
+        );
+
+        // 1. execute() & read()
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function (ExecuteSqlRequest $request) {
+                $encoded = $this->serializer->encodeMessage($request->getRequestOptions()->getClientContext());
+                $this->assertEquals([
+                    'secureContext' => [
+                        'env' => 'prod',
+                        'tenant_id' => 'db-tenant',
+                        'user_id' => 'u1',
+                    ],
+                ], $encoded);
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledOnce()->willReturn($this->resultGeneratorStream());
+
+        iterator_to_array($database->execute('SELECT 1', [
+            'requestOptions' => [
+                'clientContext' => [
+                    'secureContext' => ['user_id' => 'u1'],
+                ],
+            ],
+        ])->rows());
+
+        $this->spannerClient->streamingRead(
+            Argument::that(function (ReadRequest $request) {
+                $encoded = $this->serializer->encodeMessage($request->getRequestOptions()->getClientContext());
+                $this->assertEquals([
+                    'secureContext' => [
+                        'env' => 'prod',
+                        'tenant_id' => 'db-tenant',
+                    ],
+                ], $encoded);
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledOnce()->willReturn($this->resultGeneratorStream());
+
+        iterator_to_array($database->read(self::TEST_TABLE_NAME, new KeySet(['all' => true]), ['id'])->rows());
+
+        // 2. Single-use insert() -> CommitRequest
+        $this->spannerClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                $encoded = $this->serializer->encodeMessage($request->getRequestOptions()->getClientContext());
+                $this->assertEquals([
+                    'secureContext' => [
+                        'env' => 'prod',
+                        'tenant_id' => 'db-tenant',
+                        'user_id' => 'u2',
+                    ],
+                ], $encoded);
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledOnce()->willReturn(new CommitResponse([
+            'commit_timestamp' => new TimestampProto(['seconds' => time()]),
+        ]));
+
+        $database->insert(self::TEST_TABLE_NAME, ['id' => 1], [
+            'requestOptions' => [
+                'clientContext' => [
+                    'secureContext' => ['user_id' => 'u2'],
+                ],
+            ],
+        ]);
+
+        // 3. batchWrite() -> BatchWriteRequest
+        $batchWriteStream = $this->prophesize(ServerStream::class);
+        $batchWriteStream->readAll()->will(function () {
+            yield new BatchWriteResponse([
+                'indexes' => [0],
+                'status' => new Status(['code' => Code::OK]),
+            ]);
+        });
+        $this->spannerClient->batchWrite(
+            Argument::that(function (BatchWriteRequest $request) {
+                $encoded = $this->serializer->encodeMessage($request->getRequestOptions()->getClientContext());
+                $this->assertEquals([
+                    'secureContext' => [
+                        'env' => 'prod',
+                        'tenant_id' => 'db-tenant',
+                        'job' => 'backfill',
+                    ],
+                ], $encoded);
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledOnce()->willReturn($batchWriteStream->reveal());
+
+        $group = $database->mutationGroup()->insert(self::TEST_TABLE_NAME, ['id' => 1]);
+        iterator_to_array($database->batchWrite([$group], [
+            'requestOptions' => [
+                'clientContext' => [
+                    'secureContext' => ['job' => 'backfill'],
+                ],
+            ],
+        ]));
+    }
+
+    public function testSnapshotForwardsAndMergesClientContext()
+    {
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn($this->sessionName);
+
+        $database = new Database(
+            $this->spannerClient->reveal(),
+            $this->databaseAdminClient->reveal(),
+            $this->serializer,
+            $this->instance,
+            self::PROJECT,
+            self::DATABASE,
+            $session->reveal(),
+            [
+                'defaultClientContext' => [
+                    'secureContext' => ['env' => 'prod'],
+                ],
+            ]
+        );
+
+        $this->spannerClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $encoded = $this->serializer->encodeMessage($request->getRequestOptions()->getClientContext());
+                $this->assertEquals([
+                    'secureContext' => [
+                        'env' => 'prod',
+                        'snap_key' => 'snap-val',
+                    ],
+                ], $encoded);
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledOnce()->willReturn(new TransactionProto([
+            'id' => self::TRANSACTION,
+        ]));
+
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function (ExecuteSqlRequest $request) {
+                $encoded = $this->serializer->encodeMessage($request->getRequestOptions()->getClientContext());
+                $this->assertEquals([
+                    'secureContext' => [
+                        'env' => 'prod',
+                        'snap_key' => 'snap-val',
+                        'req_key' => 'req-val',
+                    ],
+                ], $encoded);
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledOnce()->willReturn($this->resultGeneratorStream());
+
+        $this->spannerClient->streamingRead(
+            Argument::that(function (ReadRequest $request) {
+                $encoded = $this->serializer->encodeMessage($request->getRequestOptions()->getClientContext());
+                $this->assertEquals([
+                    'secureContext' => [
+                        'env' => 'prod',
+                        'snap_key' => 'snap-val',
+                    ],
+                ], $encoded);
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledOnce()->willReturn($this->resultGeneratorStream());
+
+        $snapshot = $database->snapshot([
+            'requestOptions' => [
+                'clientContext' => [
+                    'secureContext' => ['snap_key' => 'snap-val'],
+                ],
+            ],
+        ]);
+
+        iterator_to_array($snapshot->execute('SELECT 1', [
+            'requestOptions' => [
+                'clientContext' => [
+                    'secureContext' => ['req_key' => 'req-val'],
+                ],
+            ],
+        ])->rows());
+        iterator_to_array($snapshot->read(self::TEST_TABLE_NAME, new KeySet(['all' => true]), ['id'])->rows());
+    }
+
+    public function testExecutePartitionedUpdateForwardsClientContext()
+    {
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn($this->sessionName);
+
+        $database = new Database(
+            $this->spannerClient->reveal(),
+            $this->databaseAdminClient->reveal(),
+            $this->serializer,
+            $this->instance,
+            self::PROJECT,
+            self::DATABASE,
+            $session->reveal(),
+            [
+                'defaultClientContext' => [
+                    'secureContext' => ['env' => 'prod'],
+                ],
+            ]
+        );
+
+        $this->spannerClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $encoded = $this->serializer->encodeMessage($request->getRequestOptions()->getClientContext());
+                $this->assertEquals([
+                    'secureContext' => [
+                        'env' => 'prod',
+                        'tenant_id' => 'acme',
+                    ],
+                ], $encoded);
+                $this->assertEquals('', $request->getRequestOptions()->getTransactionTag());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledOnce()->willReturn(new TransactionProto([
+            'id' => self::TRANSACTION,
+        ]));
+
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function (ExecuteSqlRequest $request) {
+                $encoded = $this->serializer->encodeMessage($request->getRequestOptions()->getClientContext());
+                $this->assertEquals([
+                    'secureContext' => [
+                        'env' => 'prod',
+                        'tenant_id' => 'acme',
+                    ],
+                ], $encoded);
+                $this->assertEquals('', $request->getRequestOptions()->getTransactionTag());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledOnce()->willReturn(
+            $this->resultGeneratorStream(null, new ResultSetStats(['row_count_lower_bound' => 5]))
+        );
+
+        $count = $database->executePartitionedUpdate('DELETE FROM Users WHERE active = false', [
+            'requestOptions' => [
+                'transactionTag' => 'ignored-on-pdml',
+                'clientContext' => [
+                    'secureContext' => ['tenant_id' => 'acme'],
+                ],
+            ],
+        ]);
+        $this->assertEquals(5, $count);
+    }
+
+    public function testTransactionAndRunTransactionClientContextPrecedence()
+    {
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn($this->sessionName);
+
+        $database = new Database(
+            $this->spannerClient->reveal(),
+            $this->databaseAdminClient->reveal(),
+            $this->serializer,
+            $this->instance,
+            self::PROJECT,
+            self::DATABASE,
+            $session->reveal(),
+            [
+                'defaultClientContext' => [
+                    'secureContext' => ['env' => 'prod', 'role' => 'guest'],
+                ],
+                'clientContext' => [
+                    'secureContext' => ['tenant_id' => 'db-tenant'],
+                ],
+            ]
+        );
+
+        // Explicit transaction()
+        $this->spannerClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $encoded = $this->serializer->encodeMessage($request->getRequestOptions()->getClientContext());
+                $this->assertEquals([
+                    'secureContext' => [
+                        'env' => 'prod',
+                        'tenant_id' => 'db-tenant',
+                        'role' => 'editor',
+                    ],
+                ], $encoded);
+                $this->assertEquals(self::TRANSACTION_TAG, $request->getRequestOptions()->getTransactionTag());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledOnce()->willReturn(new TransactionProto([
+            'id' => self::TRANSACTION,
+        ]));
+
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function (ExecuteSqlRequest $request) {
+                $encoded = $this->serializer->encodeMessage($request->getRequestOptions()->getClientContext());
+                $sql = $request->getSql();
+                if ($sql === 'SELECT 1') {
+                    $this->assertEquals([
+                        'secureContext' => [
+                            'env' => 'prod',
+                            'tenant_id' => 'db-tenant',
+                            'role' => 'admin',
+                        ],
+                    ], $encoded);
+                    $this->assertEquals('exec-tag', $request->getRequestOptions()->getRequestTag());
+                } elseif ($sql === 'SELECT 2') {
+                    // runTransaction inline-begin path
+                    $this->assertTrue($request->getTransaction()->hasBegin());
+                    $this->assertEquals([
+                        'secureContext' => [
+                            'env' => 'prod',
+                            'tenant_id' => 'db-tenant',
+                            'role' => 'inline-role',
+                        ],
+                    ], $encoded);
+                } else {
+                    $this->assertEquals([
+                        'secureContext' => [
+                            'env' => 'prod',
+                            'tenant_id' => 'db-tenant',
+                            'role' => 'editor',
+                        ],
+                    ], $encoded);
+                }
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(3)->willReturn(
+            $this->resultGeneratorStream(),
+            $this->resultGeneratorStream(null, new ResultSetStats(['row_count_exact' => 1])),
+            $this->resultGeneratorStream(null, null, self::TRANSACTION)
+        );
+
+        $this->spannerClient->streamingRead(
+            Argument::that(function (ReadRequest $request) {
+                $encoded = $this->serializer->encodeMessage($request->getRequestOptions()->getClientContext());
+                $this->assertEquals([
+                    'secureContext' => [
+                        'env' => 'prod',
+                        'tenant_id' => 'db-tenant',
+                        'role' => 'editor',
+                    ],
+                ], $encoded);
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledOnce()->willReturn($this->resultGeneratorStream());
+
+        $this->spannerClient->executeBatchDml(
+            Argument::that(function (ExecuteBatchDmlRequest $request) {
+                $encoded = $this->serializer->encodeMessage($request->getRequestOptions()->getClientContext());
+                $this->assertEquals([
+                    'secureContext' => [
+                        'env' => 'prod',
+                        'tenant_id' => 'db-tenant',
+                        'role' => 'editor',
+                    ],
+                ], $encoded);
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledOnce()->willReturn(new ExecuteBatchDmlResponse([
+            'result_sets' => [new ResultSet(['stats' => new ResultSetStats(['row_count_exact' => 1])])],
+            'status' => new Status(['code' => Code::OK]),
+        ]));
+
+        $commitCalls = 0;
+        $this->spannerClient->commit(
+            Argument::that(function (CommitRequest $request) use (&$commitCalls) {
+                $commitCalls++;
+                $encoded = $this->serializer->encodeMessage($request->getRequestOptions()->getClientContext());
+                if ($commitCalls === 1) {
+                    $this->assertEquals([
+                        'secureContext' => [
+                            'env' => 'prod',
+                            'tenant_id' => 'db-tenant',
+                            'role' => 'committer',
+                        ],
+                    ], $encoded);
+                    $this->assertEquals(self::TRANSACTION_TAG, $request->getRequestOptions()->getTransactionTag());
+                    $this->assertEquals('', $request->getRequestOptions()->getRequestTag());
+                } else {
+                    $this->assertEquals([
+                        'secureContext' => [
+                            'env' => 'prod',
+                            'tenant_id' => 'db-tenant',
+                            'role' => 'inline-role',
+                        ],
+                    ], $encoded);
+                }
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(2)->willReturn(new CommitResponse([
+            'commit_timestamp' => new TimestampProto(['seconds' => time()]),
+        ]));
+
+        $t = $database->transaction([
+            'tag' => self::TRANSACTION_TAG,
+            'requestOptions' => [
+                'clientContext' => [
+                    'secureContext' => ['role' => 'editor'],
+                ],
+            ],
+        ]);
+        iterator_to_array($t->execute('SELECT 1', [
+            'requestOptions' => [
+                'requestTag' => 'exec-tag',
+                'clientContext' => [
+                    'secureContext' => ['role' => 'admin'],
+                ],
+            ],
+        ])->rows());
+        iterator_to_array($t->read(self::TEST_TABLE_NAME, new KeySet(['all' => true]), ['id'])->rows());
+        $t->executeUpdate('UPDATE Users SET name = "x" WHERE id = 1');
+        $t->executeUpdateBatch([['sql' => 'UPDATE Users SET name = "y" WHERE id = 1']]);
+        $t->commit([
+            'requestOptions' => [
+                'requestTag' => 'should-be-stripped',
+                'clientContext' => [
+                    'secureContext' => ['role' => 'committer'],
+                ],
+            ],
+        ]);
+
+        $database->runTransaction(function (Transaction $tx) {
+            iterator_to_array($tx->execute('SELECT 2')->rows());
+            $tx->commit();
+        }, [
+            'requestOptions' => [
+                'clientContext' => [
+                    'secureContext' => ['role' => 'inline-role'],
+                ],
+            ],
+        ]);
     }
 }

@@ -33,6 +33,7 @@ use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
@@ -40,6 +41,7 @@ use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
 use Google\Cloud\Spanner\V1\ReadRequest;
+use Google\Cloud\Spanner\V1\RequestOptions;
 use Google\Cloud\Spanner\V1\ResultSet;
 use Google\Cloud\Spanner\V1\ResultSetStats;
 use Google\Cloud\Spanner\V1\RollbackRequest;
@@ -983,6 +985,125 @@ class TransactionTest extends TestCase
         // setting a precommit token with a lower sequence number does not update the token
         $transaction->setPrecommitToken($precommitToken3);
         $this->assertEquals($precommitToken2, $precommitTokenProp->getValue($transaction));
+    }
+
+    public function testClientContextMergesAcrossTransactionOperations()
+    {
+        $scopedRequestOptions = [
+            'clientContext' => [
+                'secureContext' => [
+                    'tenant_id' => 't1',
+                    'role' => 'tx-role',
+                ],
+            ],
+        ];
+
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function (ExecuteSqlRequest $request) {
+                $encoded = $this->serializer->encodeMessage($request->getRequestOptions()->getClientContext());
+                if ($request->getSql() === 'SELECT 1') {
+                    $this->assertEquals([
+                        'secureContext' => [
+                            'tenant_id' => 't1',
+                            'role' => 'exec-role',
+                        ],
+                    ], $encoded);
+                } else {
+                    $this->assertEquals([
+                        'secureContext' => [
+                            'tenant_id' => 't1',
+                            'role' => 'tx-role',
+                        ],
+                    ], $encoded);
+                }
+                $this->assertEquals(self::TRANSACTION_TAG, $request->getRequestOptions()->getTransactionTag());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(2)->willReturn(
+            $this->resultGeneratorStream(),
+            $this->resultGeneratorStream(null, new ResultSetStats(['row_count_exact' => 1]))
+        );
+
+        $this->spannerClient->streamingRead(
+            Argument::that(function (ReadRequest $request) {
+                $encoded = $this->serializer->encodeMessage($request->getRequestOptions()->getClientContext());
+                $this->assertEquals([
+                    'secureContext' => [
+                        'tenant_id' => 't1',
+                        'role' => 'tx-role',
+                    ],
+                ], $encoded);
+                $this->assertEquals(self::TRANSACTION_TAG, $request->getRequestOptions()->getTransactionTag());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledOnce()->willReturn($this->resultGeneratorStream());
+
+        $this->spannerClient->executeBatchDml(
+            Argument::that(function (ExecuteBatchDmlRequest $request) {
+                $encoded = $this->serializer->encodeMessage($request->getRequestOptions()->getClientContext());
+                $this->assertEquals([
+                    'secureContext' => [
+                        'tenant_id' => 't1',
+                        'role' => 'tx-role',
+                    ],
+                ], $encoded);
+                $this->assertEquals(self::TRANSACTION_TAG, $request->getRequestOptions()->getTransactionTag());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledOnce()->willReturn(new ExecuteBatchDmlResponse([
+            'result_sets' => [new ResultSet(['stats' => new ResultSetStats(['row_count_exact' => 1])])],
+            'status' => new Status(['code' => 0]),
+        ]));
+
+        $this->spannerClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                $encoded = $this->serializer->encodeMessage($request->getRequestOptions()->getClientContext());
+                $this->assertEquals([
+                    'secureContext' => [
+                        'tenant_id' => 't1',
+                        'role' => 'commit-role',
+                    ],
+                ], $encoded);
+                $this->assertEquals(self::TRANSACTION_TAG, $request->getRequestOptions()->getTransactionTag());
+                $this->assertEquals('', $request->getRequestOptions()->getRequestTag());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledOnce()->willReturn($this->commitResponseWithCommitStats());
+
+        $transaction = new Transaction(
+            $this->operation,
+            $this->session->reveal(),
+            self::TRANSACTION,
+            [
+                'tag' => self::TRANSACTION_TAG,
+                'requestOptions' => $scopedRequestOptions,
+            ]
+        );
+
+        iterator_to_array($transaction->execute('SELECT 1', [
+            'requestOptions' => [
+                'clientContext' => [
+                    'secureContext' => ['role' => 'exec-role'],
+                ],
+            ],
+        ])->rows());
+        iterator_to_array($transaction->read('Users', new KeySet(['all' => true]), ['id'])->rows());
+        $transaction->executeUpdate('UPDATE Users SET name = "a" WHERE id = 1');
+        $transaction->executeUpdateBatch([['sql' => 'UPDATE Users SET name = "b" WHERE id = 1']]);
+
+        $commitRequestOptions = $this->serializer->decodeMessage(new RequestOptions(), [
+            'requestTag' => 'must-be-stripped',
+            'clientContext' => [
+                'secureContext' => ['role' => 'commit-role'],
+            ],
+        ]);
+        $transaction->commit(['requestOptions' => $commitRequestOptions]);
+        // Caller's RequestOptions proto must not be mutated.
+        $this->assertEquals('must-be-stripped', $commitRequestOptions->getRequestTag());
     }
 
     // *******

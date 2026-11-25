@@ -23,6 +23,7 @@ use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\ReadRequest;
+use Google\Cloud\Spanner\V1\RequestOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 
 /**
@@ -57,6 +58,7 @@ trait TransactionalReadTrait
     private int $seqno = 1;
     private string|null $tag = null;
     private array $directedReadOptions = [];
+    private array|RequestOptions|null $requestOptions = null;
 
     /**
      * Run a query.
@@ -289,6 +291,12 @@ trait TransactionalReadTrait
         if ($this->tag) {
             $executeSqlOptions['requestOptions']['transactionTag'] = $this->tag;
         }
+        if (!empty($this->requestOptions)) {
+            $executeSqlOptions = $this->operation->mergeRequestOptions(
+                $executeSqlOptions,
+                $this->requestOptions
+            );
+        }
 
         $executeSqlOptions['route-to-leader'] = $this->context === Database::CONTEXT_READWRITE;
         $result = $this->operation->execute($this->session, $sql, $executeSqlOptions);
@@ -378,6 +386,12 @@ trait TransactionalReadTrait
 
         if (isset($this->tag)) {
             $readOptions['requestOptions']['transactionTag'] = $this->tag;
+        }
+        if (!empty($this->requestOptions)) {
+            $readOptions = $this->operation->mergeRequestOptions(
+                $readOptions,
+                $this->requestOptions
+            );
         }
         $readOptions['directedReadOptions'] = $this->transactionOptionsBuilder->configureDirectedReadOptions(
             $readOptions,

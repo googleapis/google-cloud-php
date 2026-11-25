@@ -50,6 +50,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\BatchWriteRequest;
+use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\Mutation;
@@ -186,6 +187,8 @@ class Database
             [
                 'routeToLeader' => $this->routeToLeader,
                 'defaultQueryOptions' => $this->defaultQueryOptions,
+                'defaultClientContext' => $options['defaultClientContext'] ?? [],
+                'clientContext' => $options['clientContext'] ?? [],
                 'returnInt64AsObject' => $this->returnInt64AsObject,
             ]
         );
@@ -755,11 +758,13 @@ class Database
             throw new BadMethodCallException('Nested transactions are not supported by this client.');
         }
 
-        // Forward call options (e.g. `timeoutMillis`) explicitly: the remaining
-        // options are read-only transaction settings consumed by the builder below.
+        // Forward call options (e.g. `timeoutMillis`) and BeginTransactionRequest
+        // fields (e.g. `requestOptions`) explicitly: the remaining options are
+        // read-only transaction settings consumed by the builder below.
         $snapshotOptions = $this->optionsValidator->stripUnknownOptions(
             $options,
-            CallOptions::class
+            CallOptions::class,
+            BeginTransactionRequest::class
         );
         $snapshotOptions['singleUse'] = $options['singleUse'] ?? false;
         $snapshotOptions['transactionOptions'] = $this->transactionOptionsBuilder
@@ -1812,6 +1817,7 @@ class Database
         $this->isRunningTransaction = true;
 
         try {
+            $options = $this->operation->mergeRequestOptions($options);
             $options += [
                 'session' => $this->session->name(),
                 'mutationGroups' => $mutationGroups
@@ -1970,6 +1976,9 @@ class Database
         ];
 
         unset($options['requestOptions']['transactionTag']);
+        if (!empty($options['requestOptions'])) {
+            $beginTransactionOptions['requestOptions'] = $options['requestOptions'];
+        }
         if (isset($options['transactionOptions']['excludeTxnFromChangeStreams'])) {
             $beginTransactionOptions['transactionOptions']['excludeTxnFromChangeStreams'] =
                 $options['transactionOptions']['excludeTxnFromChangeStreams'];
