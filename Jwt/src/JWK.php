@@ -28,12 +28,11 @@ class JWK
         'P-256' => '1.2.840.10045.3.1.7', // Len: 64
         'secp256k1' => '1.3.132.0.10', // Len: 64
         'P-384' => '1.3.132.0.34', // Len: 96
-        // 'P-521' => '1.3.132.0.35', // Len: 132 (not supported)
+        'P-521' => '1.3.132.0.35', // Len: 132
     ];
 
     // Known standard curves from the IANA JOSE registry which are not supported
     private const KNOWN_UNSUPPORTED_EC_CURVES = [
-        'P-521',   // RFC 7518
         'Ed25519', // RFC 8037
         'Ed448',   // RFC 8037
         'X25519',  // RFC 8037
@@ -200,7 +199,7 @@ class JWK
     /**
      * Converts the EC JWK values to pem format.
      *
-     * @param   string  $crv The EC curve (only P-256 & P-384 is supported)
+     * @param   string  $crv The EC curve (only P-256, secp256k1, P-384 & P-521 are supported)
      * @param   string  $x   The EC x-coordinate
      * @param   string  $y   The EC y-coordinate
      *
@@ -329,7 +328,7 @@ class JWK
         $der = \chr($tag_header | $type);
 
         // Length
-        $der .= \chr(\strlen($value));
+        $der .= self::encodeLength(\strlen($value));
 
         return $der . $value;
     }
