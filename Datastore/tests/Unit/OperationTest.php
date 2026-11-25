@@ -26,6 +26,7 @@ use Google\Cloud\Datastore\EntityIterator;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
+use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
@@ -37,13 +38,14 @@ use Google\Cloud\Datastore\V1\Client\DatastoreClient;
 use Google\Cloud\Datastore\V1\CommitRequest;
 use Google\Cloud\Datastore\V1\CommitRequest\Mode;
 use Google\Cloud\Datastore\V1\CommitResponse;
-use Google\Cloud\Datastore\V1\Key as V1Key;
 use Google\Cloud\Datastore\V1\LookupRequest;
 use Google\Cloud\Datastore\V1\LookupResponse;
 use Google\Cloud\Datastore\V1\MutationResult;
 use Google\Cloud\Datastore\V1\ReadOptions\ReadConsistency;
 use Google\Cloud\Datastore\V1\RollbackRequest;
 use Google\Cloud\Datastore\V1\RollbackResponse;
+use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Datastore\V1\RunAggregationQueryResponse;
 use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Google\Cloud\Datastore\V1\RunQueryResponse;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
@@ -255,7 +257,10 @@ class OperationTest extends TestCase
             ],
         ];
 
-        $this->gapicClient->allocateIds(Argument::type(AllocateIdsRequest::class), Argument::any())
+        $this->gapicClient->allocateIds(
+            Argument::type(AllocateIdsRequest::class),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )
             ->shouldBeCalled()
             ->willReturn(self::generateProto(AllocateIdsResponse::class, $responseData));
 
@@ -278,7 +283,10 @@ class OperationTest extends TestCase
     {
         $key = $this->operation->key('foo', 'Bar');
 
-        $this->gapicClient->lookup(Argument::type(LookupRequest::class), Argument::any())
+        $this->gapicClient->lookup(
+            Argument::type(LookupRequest::class),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )
             ->shouldBeCalled()
             ->willReturn(new LookupResponse());
 
@@ -295,7 +303,10 @@ class OperationTest extends TestCase
             'found' => $body,
         ];
 
-        $this->gapicClient->lookup(Argument::any(), Argument::any())
+        $this->gapicClient->lookup(
+            Argument::any(),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )
             ->willReturn(self::generateProto(LookupResponse::class, $responseData));
 
         $key = $this->operation->key('Kind', 'ID');
@@ -314,7 +325,10 @@ class OperationTest extends TestCase
     public function testLookupMissing()
     {
         $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
-        $this->gapicClient->lookup(Argument::any(), Argument::any())->willReturn(
+        $this->gapicClient->lookup(
+            Argument::any(),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )->willReturn(
             self::generateProto(LookupResponse::class, ['missing' => $body])
         );
 
@@ -332,7 +346,10 @@ class OperationTest extends TestCase
     public function testLookupDeferred()
     {
         $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
-        $this->gapicClient->lookup(Argument::any(), Argument::any())
+        $this->gapicClient->lookup(
+            Argument::any(),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )
             ->willReturn(self::generateProto(LookupResponse::class, [
                 'deferred' => [$body[0]['entity']['key']],
             ]));
@@ -348,7 +365,10 @@ class OperationTest extends TestCase
 
     public function testLookupWithReadOptionsFromTransaction()
     {
-        $this->gapicClient->lookup(Argument::type(LookupRequest::class), Argument::any())
+        $this->gapicClient->lookup(
+            Argument::type(LookupRequest::class),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
+        )
             ->shouldBeCalled()
             ->willReturn(self::generateProto(LookupResponse::class, []));
 
@@ -363,7 +383,7 @@ class OperationTest extends TestCase
     {
         $this->gapicClient->lookup(Argument::that(function (LookupRequest $request) {
             return $request->getReadOptions()->getReadConsistency() === ReadConsistency::STRONG;
-        }), Argument::any())
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
             ->shouldBeCalled()
             ->willReturn(self::generateProto(LookupResponse::class, []));
 
@@ -378,7 +398,9 @@ class OperationTest extends TestCase
     {
         $this->gapicClient->lookup(Argument::that(function (LookupRequest $request) {
             return is_null($request->getReadOptions());
-        }), Argument::any())->shouldBeCalled()->willReturn(self::generateProto(LookupResponse::class, []));
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(LookupResponse::class, []));
 
         $k = new Key('test-project', [
             'path' => [['kind' => 'kind', 'id' => '123']],
@@ -398,7 +420,10 @@ class OperationTest extends TestCase
             ]);
         }
 
-        $this->gapicClient->lookup(Argument::any(), Argument::any())
+        $this->gapicClient->lookup(
+            Argument::any(),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )
             ->willReturn(self::generateProto(LookupResponse::class, [
                 'found' => $data['entities'],
             ]));
@@ -425,7 +450,10 @@ class OperationTest extends TestCase
             ]);
         }
 
-        $this->gapicClient->lookup(Argument::any(), Argument::any())
+        $this->gapicClient->lookup(
+            Argument::any(),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )
             ->willReturn(self::generateProto(LookupResponse::class, [
                 'found' => $data['entities'],
                 'missing' => $data['missing'],
@@ -456,7 +484,10 @@ class OperationTest extends TestCase
             ]);
         }
 
-        $this->gapicClient->lookup(Argument::any(), Argument::any())
+        $this->gapicClient->lookup(
+            Argument::any(),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )
             ->willReturn(self::generateProto(LookupResponse::class, [
                 'found' => $data['entities'],
             ]));
@@ -491,7 +522,10 @@ class OperationTest extends TestCase
     public function testRunQuery()
     {
         $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
-        $this->gapicClient->runQuery(Argument::type(RunQueryRequest::class), Argument::any())
+        $this->gapicClient->runQuery(
+            Argument::type(RunQueryRequest::class),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )
             ->willReturn(self::generateProto(RunQueryResponse::class, $queryResult['notPaged']));
 
         $q = $this->prophesize(QueryInterface::class);
@@ -515,7 +549,10 @@ class OperationTest extends TestCase
     // public function testRunQueryPaged($query)
     // {
     //     $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
-    //     $this->gapicClient->runQuery(Argument::type(RunQueryRequest::class), Argument::any())
+    //     $this->gapicClient->runQuery(
+    //         Argument::type(RunQueryRequest::class),
+    //         Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+    //     )
     //         ->will(function ($args, $mock) use ($queryResult) {
     //             // The 2nd call will return the 2nd page of results!
     //             $mock->runQuery(Argument::that(function ($arg) use ($queryResult) {
@@ -550,7 +587,10 @@ class OperationTest extends TestCase
     public function testRunQueryNoResults()
     {
         $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
-        $this->gapicClient->runQuery(Argument::type(RunQueryRequest::class), Argument::any())
+        $this->gapicClient->runQuery(
+            Argument::type(RunQueryRequest::class),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )
             ->willReturn(self::generateProto(RunQueryResponse::class, $queryResult['noResults']));
 
         $q = $this->prophesize(QueryInterface::class);
@@ -570,7 +610,8 @@ class OperationTest extends TestCase
     {
         $this->gapicClient->runQuery(Argument::that(function (RunQueryRequest $request) {
             return !is_null($request->getReadOptions());
-        }), Argument::any())->willReturn(self::generateProto(RunQueryResponse::class, []))
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']]))
+            ->willReturn(self::generateProto(RunQueryResponse::class, []))
             ->shouldBeCalled()
             ->willReturn(self::generateProto(RunQueryResponse::class, []));
 
@@ -586,7 +627,8 @@ class OperationTest extends TestCase
     {
         $this->gapicClient->runQuery(Argument::that(function (RunQueryRequest $request) {
             return !is_null($request->getReadOptions()->getReadConsistency());
-        }), Argument::any())->willReturn(self::generateProto(RunQueryResponse::class, []))
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
+            ->willReturn(self::generateProto(RunQueryResponse::class, []))
             ->shouldBeCalled()
             ->willReturn(self::generateProto(RunQueryResponse::class, []));
 
@@ -602,7 +644,8 @@ class OperationTest extends TestCase
     {
         $this->gapicClient->runQuery(Argument::that(function (RunQueryRequest $request) {
             return is_null($request->getReadOptions());
-        }), Argument::any())->willReturn(self::generateProto(RunQueryResponse::class, []))
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
+            ->willReturn(self::generateProto(RunQueryResponse::class, []))
             ->shouldBeCalled()
             ->willReturn(self::generateProto(RunQueryResponse::class, []));
 
@@ -620,7 +663,7 @@ class OperationTest extends TestCase
             ->runQuery(Argument::that(function (RunQueryRequest $request) {
                 $this->assertEquals('otherDatabaseId', $request->getDatabaseId());
                 return true;
-            }), Argument::any())
+            }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
             ->shouldBeCalledTimes(1)
             ->willReturn(self::generateProto(RunQueryResponse::class, []));
 
@@ -639,7 +682,7 @@ class OperationTest extends TestCase
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
             return ($request->getMode() === Mode::NON_TRANSACTIONAL &&
                 count($request->getMutations()) === 0);
-        }), Argument::any())->shouldBeCalled()
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))->shouldBeCalled()
             ->willReturn(self::generateProto(CommitResponse::class, []));
 
         $expectedResult = [
@@ -655,7 +698,7 @@ class OperationTest extends TestCase
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
             return ($request->getMode() === Mode::TRANSACTIONAL &&
                 count($request->getMutations()) === 0);
-        }), Argument::any())->shouldBeCalled()
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']]))->shouldBeCalled()
             ->willReturn(self::generateProto(CommitResponse::class, []));
 
         $response = $this->operation->commit([], [
@@ -693,7 +736,7 @@ class OperationTest extends TestCase
 
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
             return count($request->getMutations()) === 1;
-        }), Argument::any())
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
             ->shouldBeCalled()
             ->willReturn(self::generateProto(CommitResponse::class, $commitResponseData));
 
@@ -710,7 +753,7 @@ class OperationTest extends TestCase
         $this->gapicClient
             ->commit(Argument::that(function (CommitRequest $request) {
                 return $request->getDatabaseId() === 'otherDatabaseId';
-            }), Argument::any())
+            }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
             ->shouldBeCalledTimes(1)
             ->willReturn(self::generateProto(CommitResponse::class, []));
 
@@ -728,7 +771,9 @@ class OperationTest extends TestCase
         $this->gapicClient->rollback(Argument::that(function (RollbackRequest $request) use ($decodedId) {
             return $request->getProjectId() === self::PROJECT &&
                 $request->getTransaction() === $decodedId;
-        }), Argument::any())->shouldBeCalled()->willReturn(self::generateProto(RollbackResponse::class, []));
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']]))
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(RollbackResponse::class, []));
 
         $this->operation->rollback($rawTransactionId);
     }
@@ -744,7 +789,7 @@ class OperationTest extends TestCase
 
         $this->gapicClient->allocateIds(Argument::that(function (AllocateIdsRequest $request) {
             return count($request->getKeys()) === 1;
-        }), Argument::any())->shouldBeCalled()
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))->shouldBeCalled()
             ->willReturn(self::generateProto(AllocateIdsResponse::class, [
                 'keys' => [
                     $keyWithId->keyObject(),
@@ -789,7 +834,7 @@ class OperationTest extends TestCase
             }
 
             return true;
-        }), Argument::any())
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
             ->shouldBeCalled()
             ->willReturn(self::generateProto(CommitResponse::class, $commitResponseData));
 
@@ -826,7 +871,8 @@ class OperationTest extends TestCase
 
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
             return $request->getMutations()[0]->getBaseVersion() === 1;
-        }), Argument::any())->willReturn(self::generateProto(CommitResponse::class, $commitResponseData));
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
+            ->willReturn(self::generateProto(CommitResponse::class, $commitResponseData));
 
         $key = $this->operation->key('Person', 'Bob');
         $e = new Entity($key, [], [
@@ -878,7 +924,8 @@ class OperationTest extends TestCase
             }
 
             return true;
-        }), Argument::any())->willReturn(self::generateProto(CommitResponse::class, $commitResponseData));
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
+            ->willReturn(self::generateProto(CommitResponse::class, $commitResponseData));
 
         $key = new Key('foo', [
             'path' => [['kind' => 'foo', 'id' => 1]],
@@ -936,7 +983,10 @@ class OperationTest extends TestCase
         // Cursors are not returned on lookups, so remove it from the test fixture.
         unset($res[0]['cursor']);
 
-        $this->gapicClient->lookup(Argument::type(LookupRequest::class), Argument::any())
+        $this->gapicClient->lookup(
+            Argument::type(LookupRequest::class),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )
             ->willReturn(self::generateProto(LookupResponse::class, [
                 'found' => $res,
             ]));
@@ -955,7 +1005,10 @@ class OperationTest extends TestCase
     {
         $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
 
-        $this->gapicClient->runQuery(Argument::type(RunQueryRequest::class), Argument::any())
+        $this->gapicClient->runQuery(
+            Argument::type(RunQueryRequest::class),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )
             ->willReturn(self::generateProto(RunQueryResponse::class, [
                 'batch' => ['entityResults' => $res]
             ]));
@@ -978,7 +1031,10 @@ class OperationTest extends TestCase
         // Cursors are not returned on lookups, so remove it from the test fixture.
         unset($res[0]['cursor']);
 
-        $this->gapicClient->lookup(Argument::type(LookupRequest::class), Argument::any())
+        $this->gapicClient->lookup(
+            Argument::type(LookupRequest::class),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )
             ->willReturn(self::generateProto(LookupResponse::class, [
                 'found' => $res,
             ]));
@@ -996,7 +1052,10 @@ class OperationTest extends TestCase
     {
         $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
 
-        $this->gapicClient->lookup(Argument::type(LookupRequest::class), Argument::any())
+        $this->gapicClient->lookup(
+            Argument::type(LookupRequest::class),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )
             ->willReturn(self::generateProto(LookupResponse::class, [
                 'found' => $res,
             ]));
@@ -1018,7 +1077,10 @@ class OperationTest extends TestCase
 
         $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
 
-        $this->gapicClient->lookup(Argument::type(LookupRequest::class), Argument::any())
+        $this->gapicClient->lookup(
+            Argument::type(LookupRequest::class),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )
             ->willReturn(self::generateProto(LookupResponse::class, [
                 'found' => $res,
             ]));
@@ -1036,7 +1098,7 @@ class OperationTest extends TestCase
     {
         $this->gapicClient->lookup(Argument::that(function (LookupRequest $request) {
             return !is_null($request->getReadOptions()->getTransaction());
-        }), Argument::any())
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']]))
             ->willReturn(self::generateProto(LookupResponse::class, []))
             ->shouldBeCalled();
 
@@ -1050,7 +1112,7 @@ class OperationTest extends TestCase
     {
         $this->gapicClient->lookup(Argument::that(function (LookupRequest $request) {
             return is_null($request->getReadOptions());
-        }), Argument::any())
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))
             ->willReturn(self::generateProto(LookupResponse::class, []))
             ->shouldBeCalled();
 
@@ -1062,7 +1124,7 @@ class OperationTest extends TestCase
     {
         $this->gapicClient->lookup(Argument::that(function (LookupRequest $request) {
             return $request->getReadOptions()->getReadConsistency() === ReadConsistency::STRONG;
-        }), Argument::any())->shouldBeCalled()
+        }), Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']]))->shouldBeCalled()
             ->willReturn(self::generateProto(LookupResponse::class, []));
 
         $key = $this->operation->key('Person', 12345);
@@ -1087,7 +1149,7 @@ class OperationTest extends TestCase
                 Argument::that(function (BeginTransactionRequest $request) {
                     return $request->getDatabaseId() === 'otherDatabaseId';
                 }),
-                Argument::any()
+                Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
             )
             ->willReturn(self::generateProto(BeginTransactionResponse::class, [
                 'transaction' => base64_encode($rawTransactionId)
@@ -1108,7 +1170,7 @@ class OperationTest extends TestCase
                 Argument::that(function (AllocateIdsRequest $request) {
                     return $request->getDatabaseId() === 'otherDatabaseId';
                 }),
-                Argument::any()
+                Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
             )
             ->shouldBeCalledTimes(1)
             ->willReturn(self::generateProto(AllocateIdsResponse::class, []));
@@ -1126,7 +1188,7 @@ class OperationTest extends TestCase
                 Argument::that(function (LookupRequest $request) {
                     return $request->getDatabaseId() === 'otherDatabaseId';
                 }),
-                Argument::any()
+                Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
             )
             ->shouldBeCalledTimes(1)
             ->willReturn(self::generateProto(LookupResponse::class, []));
@@ -1158,5 +1220,96 @@ class OperationTest extends TestCase
         $iterator = $this->operation->runQuery($query->reveal());
         // The exception is thrown when we iterate
         $iterator->current();
+    }
+
+    public function testTransactionHeaders()
+    {
+        $this->gapicClient->beginTransaction(
+            Argument::type(BeginTransactionRequest::class),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
+        )->shouldBeCalled()->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => 'foo']));
+
+        $this->operation->beginTransaction([]);
+
+        $this->gapicClient->rollback(
+            Argument::type(RollbackRequest::class),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
+        )->shouldBeCalled()->willReturn(self::generateProto(RollbackResponse::class, []));
+
+        $this->operation->rollback(base64_encode('foo'));
+
+        $this->gapicClient->commit(
+            Argument::type(CommitRequest::class),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
+        )->shouldBeCalled()->willReturn(self::generateProto(CommitResponse::class, []));
+
+        $this->operation->commit([], ['transaction' => base64_encode('foo')]);
+
+        $key = new Key('test-project', [
+            'path' => [['kind' => 'kind', 'id' => '123']],
+        ]);
+
+        $this->gapicClient->lookup(
+            Argument::type(LookupRequest::class),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
+        )->shouldBeCalledTimes(2)->willReturn(self::generateProto(LookupResponse::class, []));
+
+        $this->operation->lookup([$key], ['transaction' => base64_encode('foo')]);
+
+        $query = $this->prophesize(QueryInterface::class);
+        $query->queryObject()->willReturn([]);
+        $query->queryKey()->willReturn('query');
+        $query->canPaginate()->willReturn(false);
+
+        $this->gapicClient->runQuery(
+            Argument::type(RunQueryRequest::class),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
+        )->shouldBeCalled()->willReturn(self::generateProto(RunQueryResponse::class, []));
+
+        $iterator = $this->operation->runQuery($query->reveal(), ['transaction' => base64_encode('foo')]);
+        $iterator->current();
+
+        $aggQuery = $this->prophesize(AggregationQuery::class);
+        $aggQuery->queryObject()->willReturn([]);
+        $this->gapicClient->runAggregationQuery(
+            Argument::type(RunAggregationQueryRequest::class),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
+        )->shouldBeCalled()->willReturn(self::generateProto(RunAggregationQueryResponse::class, []));
+
+        $this->operation->runAggregationQuery($aggQuery->reveal(), ['transaction' => base64_encode('foo')]);
+
+        $this->operation->lookup([$key], [
+            'readOptions' => ['newTransaction' => []],
+        ]);
+    }
+
+    public function testNonTransactionHeaders()
+    {
+        $this->gapicClient->commit(
+            Argument::type(CommitRequest::class),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )->shouldBeCalled()->willReturn(self::generateProto(CommitResponse::class, []));
+
+        $this->operation->commit([]);
+
+        $key = new Key('test-project', [
+            'path' => [['kind' => 'kind', 'id' => '123']],
+        ]);
+
+        $this->gapicClient->lookup(
+            Argument::type(LookupRequest::class),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )->shouldBeCalled()->willReturn(self::generateProto(LookupResponse::class, []));
+
+        $this->operation->lookup([$key], []);
+
+        $aggQuery = $this->prophesize(AggregationQuery::class);
+        $aggQuery->queryObject()->willReturn([]);
+        $this->gapicClient->runAggregationQuery(
+            Argument::type(RunAggregationQueryRequest::class),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )->shouldBeCalled()->willReturn(self::generateProto(RunAggregationQueryResponse::class, []));
+
+        $this->operation->runAggregationQuery($aggQuery->reveal(), []);
     }
 }
