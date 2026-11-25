@@ -140,12 +140,54 @@ class SnapshotTraitTest extends TestCase
                 $this->assertEquals([self::NAME], iterator_to_array($request->getDocuments()));
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
         )->shouldBeCalled()->willReturn($this->getServerStreamMock([$protoResponse]));
 
         $response = $this->traitClass->getSnapshot(
             $this->gapicClient->reveal(),
             self::NAME
+        );
+
+        $this->assertEquals('foo', $response['name']);
+    }
+
+    public function testGetSnapshotTransaction()
+    {
+        $protoResponse = self::generateProto(BatchGetDocumentsResponse::class, ['found' => ['name' => 'foo']]);
+
+        $this->gapicClient->batchGetDocuments(
+            Argument::that(function (BatchGetDocumentsRequest $request) {
+                $this->assertEquals('tx-123', $request->getTransaction());
+                return true;
+            }),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
+        )->shouldBeCalled()->willReturn($this->getServerStreamMock([$protoResponse]));
+
+        $response = $this->traitClass->getSnapshot(
+            $this->gapicClient->reveal(),
+            self::NAME,
+            ['transaction' => 'tx-123']
+        );
+
+        $this->assertEquals('foo', $response['name']);
+    }
+
+    public function testGetSnapshotNewTransaction()
+    {
+        $protoResponse = self::generateProto(BatchGetDocumentsResponse::class, ['found' => ['name' => 'foo']]);
+
+        $this->gapicClient->batchGetDocuments(
+            Argument::that(function (BatchGetDocumentsRequest $request) {
+                $this->assertTrue($request->hasNewTransaction());
+                return true;
+            }),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
+        )->shouldBeCalled()->willReturn($this->getServerStreamMock([$protoResponse]));
+
+        $response = $this->traitClass->getSnapshot(
+            $this->gapicClient->reveal(),
+            self::NAME,
+            ['newTransaction' => ['readOnly' => []]]
         );
 
         $this->assertEquals('foo', $response['name']);

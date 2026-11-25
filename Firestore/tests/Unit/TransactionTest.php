@@ -100,7 +100,7 @@ class TransactionTest extends TestCase
 
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
         )->shouldBeCalled()->willReturn($this->getServerStreamMock([$protoResponse]));
 
         $res = $this->transaction->snapshot($this->ref->reveal());
@@ -116,7 +116,7 @@ class TransactionTest extends TestCase
                 $this->assertEquals(self::TRANSACTION, $request->getTransaction());
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
         )->shouldBeCalled()
             ->willReturn($this->getServerStreamMock([new RunQueryResponse()]));
 
@@ -131,7 +131,10 @@ class TransactionTest extends TestCase
      */
     public function testRunAggregateQuery($type, $arg)
     {
-        $this->gapicClient->runAggregationQuery(Argument::any(), Argument::any())
+        $this->gapicClient->runAggregationQuery(
+            Argument::any(),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
+        )
             ->shouldBeCalled()
             ->willReturn($this->getServerStreamMock([new RunAggregationQueryResponse()]));
 
@@ -349,7 +352,7 @@ class TransactionTest extends TestCase
                 $this->assertEquals(self::TRANSACTION, $request->getTransaction());
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
         )->shouldBeCalled()->willReturn($this->getServerStreamMock($protoResponseArray));
 
         $res = $this->transaction->documents($input);
@@ -473,7 +476,7 @@ class TransactionTest extends TestCase
 
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
         )->shouldBeCalled()->willReturn(new CommitResponse());
         $this->transaction->writer()->commit();
     }

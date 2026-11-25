@@ -125,7 +125,7 @@ class DocumentReferenceTest extends TestCase
                 $this->assertEquals($expectedRequest, $request);
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
         )->shouldBeCalled()->willReturn(self::generateProto(CommitResponse::class, [
             'writeResults' => [[]]
         ]));
@@ -155,7 +155,7 @@ class DocumentReferenceTest extends TestCase
                 $this->assertEquals($expectedRequest, $request);
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
         )->shouldBeCalled()->willReturn(self::generateProto(CommitResponse::class, [
             'writeResults' => [[]]
         ]));
@@ -206,7 +206,7 @@ class DocumentReferenceTest extends TestCase
                 $this->assertEquals($expectedRequest, $request);
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
         )->shouldBeCalled(1)->willReturn(self::generateProto(CommitResponse::class, [
             'writeResults' => [[]]
         ]));
@@ -234,7 +234,7 @@ class DocumentReferenceTest extends TestCase
                 $this->assertEquals($expectedRequest, $request);
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
         )->shouldBeCalled()->willReturn(self::generateProto(CommitResponse::class, [
             'writeResults' => [[]]
         ]));
@@ -265,7 +265,7 @@ class DocumentReferenceTest extends TestCase
                 $this->assertEquals([self::NAME], iterator_to_array($request->getDocuments()));
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
         )->shouldBeCalled()->willReturn($stream->reveal());
 
         $snapshot = $this->document->snapshot();
@@ -320,7 +320,7 @@ class DocumentReferenceTest extends TestCase
                 $this->assertEquals(self::NAME, $request->getParent());
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
         )->shouldBeCalled()->willReturn($pagedListResponse->reveal());
 
         $collections = iterator_to_array($this->document->collections());

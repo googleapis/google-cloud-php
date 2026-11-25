@@ -398,6 +398,8 @@ class DocumentReference
         );
 
         $listCollectionCall = function (array $callOptions) use ($request) {
+            $callOptions['headers']['x-goog-is-transaction'] = ['false'];
+
             try {
                 $response = $this->gapicClient->listCollectionIds($request, $callOptions);
             } catch (ApiException $ex) {

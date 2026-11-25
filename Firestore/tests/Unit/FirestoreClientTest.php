@@ -119,7 +119,10 @@ class FirestoreClientTest extends TestCase
             ->shouldBeCalled()
             ->willReturn($page->reveal());
 
-        $this->gapicClient->listCollectionIds(Argument::type(ListCollectionIdsRequest::class), Argument::any())
+        $this->gapicClient->listCollectionIds(
+            Argument::type(ListCollectionIdsRequest::class),
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
+        )
             ->shouldBeCalledTimes(1)
             ->willReturn($pagedListResponse->reveal());
 
@@ -270,7 +273,7 @@ class FirestoreClientTest extends TestCase
                 $this->assertEquals($names, iterator_to_array($request->getDocuments()));
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
         )
             ->shouldBeCalled()
             ->willReturn($stream->reveal());
@@ -369,7 +372,7 @@ class FirestoreClientTest extends TestCase
                 $this->assertEquals($names, iterator_to_array($request->getDocuments()));
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['false']])
         )
             ->shouldBeCalled()
             ->willReturn($stream->reveal());
@@ -437,7 +440,7 @@ class FirestoreClientTest extends TestCase
                 $this->assertEquals($expectedDatabase, $request->getDatabase());
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
         )->shouldBeCalled()->willReturn(self::generateProto(BeginTransactionResponse::class, [
             'transaction' => $transactionId
         ]));
@@ -448,7 +451,7 @@ class FirestoreClientTest extends TestCase
                 $this->assertEquals($expectedDatabase, $request->getDatabase());
                 return true;
             }),
-            Argument::any()
+            Argument::withEntry('headers', ['x-goog-is-transaction' => ['true']])
         )->shouldBeCalled();
 
         $this->client->runTransaction($this->noop());

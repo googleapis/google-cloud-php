@@ -341,6 +341,9 @@ class Query
                 CallOptions::class
             );
 
+            $isTransaction = $request->getTransaction() !== '' || $request->hasNewTransaction();
+            $callOptions['headers']['x-goog-is-transaction'] = [$isTransaction ? 'true' : 'false'];
+
             try {
                 $generator = $this->gapicClient->runQuery($request, $callOptions)->readAll();
             } catch (ApiException $ex) {

@@ -680,11 +680,14 @@ class BulkWriter
             [
                 'database' => $this->database,
                 'writes' => $this->writes,
-                'transaction' => $this->transaction
+                'transaction' => $this->transaction ?? ($options['transaction'] ?? null)
             ] + $options,
             new CommitRequest(),
             CallOptions::class
         );
+
+        $isTransaction = $request->getTransaction() !== '';
+        $callOptions['headers']['x-goog-is-transaction'] = [$isTransaction ? 'true' : 'false'];
 
         try {
             $response = $this->gapicClient->commit($request, $callOptions);
@@ -745,6 +748,8 @@ class BulkWriter
             new RollbackRequest(),
             CallOptions::class
         );
+
+        $callOptions['headers']['x-goog-is-transaction'] = ['true'];
 
         try {
             $this->gapicClient->rollback($request, $callOptions);
@@ -962,6 +967,8 @@ class BulkWriter
             new BatchWriteRequest(),
             CallOptions::class,
         );
+
+        $callOptions['headers']['x-goog-is-transaction'] = ['false'];
 
         try {
             $response = $this->gapicClient->batchWrite($request, $callOptions);

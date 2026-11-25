@@ -129,6 +129,9 @@ trait SnapshotTrait
             CallOptions::class,
         );
 
+        $isTransaction = $request->getTransaction() !== '' || $request->hasNewTransaction();
+        $callOptions['headers']['x-goog-is-transaction'] = [$isTransaction ? 'true' : 'false'];
+
         try {
             $stream = $gapicClient->batchGetDocuments($request, $callOptions);
         } catch (ApiException $ex) {
@@ -202,6 +205,9 @@ trait SnapshotTrait
             new BatchGetDocumentsRequest(),
             CallOptions::class
         );
+
+        $isTransaction = $request->getTransaction() !== '' || $request->hasNewTransaction();
+        $callOptions['headers']['x-goog-is-transaction'] = [$isTransaction ? 'true' : 'false'];
 
         try {
             $stream = $gapicClient->batchGetDocuments($request, $callOptions);
