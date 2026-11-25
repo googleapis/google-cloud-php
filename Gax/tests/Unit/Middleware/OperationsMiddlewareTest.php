@@ -33,9 +33,9 @@
 namespace Google\ApiCore\Tests\Unit\Middleware;
 
 use Google\ApiCore\Call;
-use Google\ApiCore\LongRunning\OperationsClient;
+use Google\LongRunning\Client\OperationsClient;
 use Google\ApiCore\Middleware\OperationsMiddleware;
-use Google\ApiCore\Testing\MockResponse;
+use Google\ApiCore\Testing\MockRequest;
 use GuzzleHttp\Promise\Promise;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -50,11 +50,11 @@ class OperationsMiddlewareTest extends TestCase
         $operationsClient = $this->prophesize(OperationsClient::class);
 
         $descriptor = [
-            'operationNameMethod' => 'getNumber'
+            'operationNameMethod' => 'getPageToken'
         ];
         $handler = function (Call $call, $options) use (&$callCount) {
             return $promise = new Promise(function () use (&$promise) {
-                $response = new MockResponse(['number' => 123]);
+                $response = new MockRequest(['page_token' => 'abc']);
                 $promise->resolve($response);
             });
         };
@@ -64,6 +64,6 @@ class OperationsMiddlewareTest extends TestCase
             []
         )->wait();
 
-        $this->assertEquals(123, $response->getName());
+        $this->assertEquals('abc', $response->getName());
     }
 }

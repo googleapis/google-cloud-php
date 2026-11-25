@@ -64,16 +64,6 @@ trait HttpUnaryTransportTrait
      * @return never
      * @throws \BadMethodCallException
      */
-    public function startServerStreamingCall(Call $call, array $options)
-    {
-        $this->throwUnsupportedException();
-    }
-
-    /**
-     * {@inheritdoc}
-     * @return never
-     * @throws \BadMethodCallException
-     */
     public function startBidiStreamingCall(Call $call, array $options)
     {
         $this->throwUnsupportedException();
