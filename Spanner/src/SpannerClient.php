@@ -21,6 +21,7 @@ namespace Google\Cloud\Spanner;
 use Exception;
 use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\ValidationException;
@@ -209,8 +210,9 @@ class SpannerClient
      *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      *     @type CacheItemPoolInterface $cacheItemPool
      *     @type bool $enableBuiltInMetrics If true, built-in metrics collection will be enabled.
-     *           Only supported in the default universe domain (`googleapis.com`); ignored as a no-op
-     *           in other universe domains. **Defaults to** false.
+     *           Only supported in the default universe domain (`googleapis.com`) with the default
+     *           endpoint; ignored as a no-op for other universe domains, custom `apiEndpoint`
+     *           values, or the emulator. **Defaults to** false.
      *     @type int $metricsTimeoutMillis The timeout in milliseconds for exporting metrics.
      *           **Defaults to** 100.
      *     @type MetricServiceClient $metricServiceClient **[DEPRECATED]** An explicit instance of
@@ -1076,6 +1078,13 @@ class SpannerClient
             return;
         }
 
+        if (!empty($options['apiEndpoint'])
+            || !empty($options['hasEmulator'])
+            || ($options['credentials'] ?? null) instanceof InsecureCredentialsWrapper
+        ) {
+            return;
+        }
+
         $location = $this->getLocation();
         $metricsClientId = RUUID::uuid4()->toString() . '-' . getmypid();
         $clientHash = $this->generateClientHash($metricsClientId);
@@ -1195,11 +1204,11 @@ class SpannerClient
         string|array|FetchAuthTokenInterface|CredentialsWrapper|null $credentials,
         array $options
     ): CredentialsWrapper {
-        $credentialsConfig = [
-            'scopes' => [
-                self::MONITORING_WRITE_SCOPE
-            ]
+        $credentialsConfig = $options['credentialsConfig'] ?? [];
+        $credentialsConfig['scopes'] = [
+            self::MONITORING_WRITE_SCOPE,
         ];
+        unset($credentialsConfig['defaultScopes']);
 
         $universeDomain = $options['universeDomain'] ?? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
 

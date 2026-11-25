@@ -17,10 +17,14 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
 use Google\Auth\Cache\MemoryCacheItemPool;
+use Google\Auth\Credentials\ServiceAccountCredentials;
+use Google\Auth\FetchAuthTokenCache;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
@@ -972,5 +976,128 @@ class SpannerClientTest extends TestCase
             'gapicSpannerClient' => $gapicSpannerClient->reveal(),
             'enableBuiltInMetrics' => true,
         ]);
+    }
+
+    public function testBuiltInMetricsDisabledWithCustomApiEndpoint()
+    {
+        $gapicSpannerClient = $this->prophesize(GapicSpannerClient::class);
+        $gapicSpannerClient->prependMiddleware(Argument::any())
+            ->shouldBeCalledTimes(1);
+        $gapicSpannerClient->addMiddleware(Argument::any())
+            ->shouldBeCalledTimes(1);
+
+        new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'gapicSpannerClient' => $gapicSpannerClient->reveal(),
+            'apiEndpoint' => 'spanner.example.com:443',
+            'enableBuiltInMetrics' => true,
+        ]);
+    }
+
+    public function testBuiltInMetricsDisabledWithEmulatorEnvVar()
+    {
+        $previousEmulatorHost = getenv('SPANNER_EMULATOR_HOST');
+        putenv('SPANNER_EMULATOR_HOST=localhost:9010');
+
+        try {
+            $gapicSpannerClient = $this->prophesize(GapicSpannerClient::class);
+            $gapicSpannerClient->prependMiddleware(Argument::any())
+                ->shouldBeCalledTimes(1);
+            $gapicSpannerClient->addMiddleware(Argument::any())
+                ->shouldBeCalledTimes(1);
+
+            new SpannerClient([
+                'projectId' => self::PROJECT,
+                'gapicSpannerClient' => $gapicSpannerClient->reveal(),
+                'enableBuiltInMetrics' => true,
+            ]);
+        } finally {
+            if ($previousEmulatorHost === false) {
+                putenv('SPANNER_EMULATOR_HOST');
+            } else {
+                putenv('SPANNER_EMULATOR_HOST=' . $previousEmulatorHost);
+            }
+        }
+    }
+
+    public function testBuiltInMetricsDisabledWithHasEmulatorOption()
+    {
+        $gapicSpannerClient = $this->prophesize(GapicSpannerClient::class);
+        $gapicSpannerClient->prependMiddleware(Argument::any())
+            ->shouldBeCalledTimes(1);
+        $gapicSpannerClient->addMiddleware(Argument::any())
+            ->shouldBeCalledTimes(1);
+
+        new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'gapicSpannerClient' => $gapicSpannerClient->reveal(),
+            'hasEmulator' => true,
+            'enableBuiltInMetrics' => true,
+        ]);
+    }
+
+    public function testBuiltInMetricsDisabledWithInsecureCredentials()
+    {
+        $gapicSpannerClient = $this->prophesize(GapicSpannerClient::class);
+        $gapicSpannerClient->prependMiddleware(Argument::any())
+            ->shouldBeCalledTimes(1);
+        $gapicSpannerClient->addMiddleware(Argument::any())
+            ->shouldBeCalledTimes(1);
+
+        new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => new InsecureCredentialsWrapper(),
+            'gapicSpannerClient' => $gapicSpannerClient->reveal(),
+            'enableBuiltInMetrics' => true,
+        ]);
+    }
+
+    public function testBuildMetricsCredentialsPreservesCredentialsConfig()
+    {
+        $keyFile = json_decode(file_get_contents(Fixtures::KEYFILE_STUB_FIXTURE()), true);
+        $authHttpHandler = static fn () => null;
+        $authCache = new MemoryCacheItemPool();
+
+        $client = new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => $keyFile,
+        ]);
+
+        $reflection = new ReflectionClass($client);
+        $method = $reflection->getMethod('buildMetricsCredentials');
+
+        /** @var CredentialsWrapper $wrapper */
+        $wrapper = $method->invoke($client, null, [
+            'credentialsConfig' => [
+                'keyFile' => $keyFile,
+                'quotaProject' => 'custom-quota-project',
+                'authHttpHandler' => $authHttpHandler,
+                'authCache' => $authCache,
+                'scopes' => [SpannerClient::FULL_CONTROL_SCOPE],
+                'defaultScopes' => [SpannerClient::ADMIN_SCOPE],
+            ],
+        ]);
+
+        $this->assertSame('custom-quota-project', $wrapper->getQuotaProject());
+
+        $wrapperRef = new ReflectionClass(CredentialsWrapper::class);
+        $handlerProp = $wrapperRef->getProperty('authHttpHandler');
+        $this->assertSame($authHttpHandler, $handlerProp->getValue($wrapper));
+
+        $fetcherProp = $wrapperRef->getProperty('credentialsFetcher');
+        $cachedFetcher = $fetcherProp->getValue($wrapper);
+        $this->assertInstanceOf(FetchAuthTokenCache::class, $cachedFetcher);
+
+        $cacheProp = (new ReflectionClass(FetchAuthTokenCache::class))->getProperty('cache');
+        $this->assertSame($authCache, $cacheProp->getValue($cachedFetcher));
+
+        $innerFetcher = $cachedFetcher->getFetcher();
+        $this->assertInstanceOf(ServiceAccountCredentials::class, $innerFetcher);
+        $this->assertSame(
+            $keyFile['client_email'] . '.https://www.googleapis.com/auth/monitoring.write',
+            $innerFetcher->getCacheKey()
+        );
     }
 }

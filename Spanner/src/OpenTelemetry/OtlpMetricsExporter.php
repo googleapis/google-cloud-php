@@ -33,6 +33,7 @@
 namespace Google\Cloud\Spanner\OpenTelemetry;
 
 use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\Auth\GetUniverseDomainInterface;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\HandlerStack;
@@ -50,9 +51,10 @@ use Throwable;
  * OtlpMetricsExporter encapsulates the standard OpenTelemetry OTLP MetricExporter
  * targeting Google Cloud Telemetry endpoint.
  *
- * Only supported in the default universe domain (`googleapis.com`). When
- * `$options['universeDomain']` is set to another domain, exporting, flushing,
- * and shutting down are no-ops returning `false`.
+ * Only supported in the default universe domain (`googleapis.com`) with the
+ * default endpoint. When a non-default universe domain, custom `apiEndpoint`,
+ * emulator, or insecure credentials are configured, exporting, flushing, and
+ * shutting down are no-ops returning `false`.
  *
  * @internal
  */
@@ -74,8 +76,13 @@ class OtlpMetricsExporter implements PushMetricExporterInterface, AggregationTem
         array $options = [],
         ?PushMetricExporterInterface $otlpExporter = null
     ) {
-        $universeDomain = $options['universeDomain'] ?? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
-        if ($universeDomain !== GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN) {
+        $universeDomain = $options['universeDomain']
+            ?? (getenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN') ?: GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN);
+        if ($universeDomain !== GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
+            || !empty($options['apiEndpoint'])
+            || !empty($options['hasEmulator'])
+            || $credentials instanceof InsecureCredentialsWrapper
+        ) {
             return;
         }
 
