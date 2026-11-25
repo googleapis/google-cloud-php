@@ -149,6 +149,7 @@ class SpannerClient
     private array $directedReadOptions;
     private bool $routeToLeader;
     private array $defaultQueryOptions;
+    private array $defaultClientContext;
     private int $isolationLevel;
     private int $readLockMode;
     private CacheItemPoolInterface|null $cacheItemPool;
@@ -201,6 +202,8 @@ class SpannerClient
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     *     @type array $clientContext Default client context to attach to data-plane requests.
+     *           {@see \Google\Cloud\Spanner\V1\RequestOptions\ClientContext}
      *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
      *           **Defaults to** `true` (enabled).
      *     @type string $universeDomain The expected universe of the credentials. Defaults to
@@ -230,6 +233,7 @@ class SpannerClient
             'hasEmulator' => (bool) $emulatorHost,
             'queryOptions' => [],
             'directedReadOptions' => [],
+            'clientContext' => [],
             'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED,
             'readLockMode' => ReadLockMode::READ_LOCK_MODE_UNSPECIFIED,
             'routeToLeader' => true,
@@ -242,6 +246,7 @@ class SpannerClient
         $this->directedReadOptions = $options['directedReadOptions'];
         $this->routeToLeader = $options['routeToLeader'];
         $this->defaultQueryOptions = $options['queryOptions'];
+        $this->defaultClientContext = $options['clientContext'];
         $this->isolationLevel = $options['isolationLevel'];
         $this->readLockMode = $options['readLockMode'];
 
@@ -336,6 +341,8 @@ class SpannerClient
      *     Configuration options.
      *
      *     @type string $databaseRole The user created database role which creates the session.
+     *     @type array $clientContext Batch-scoped client context merged over the SpannerClient default.
+     *           {@see \Google\Cloud\Spanner\V1\RequestOptions\ClientContext}
      * }
      * @return BatchClient
      */
@@ -347,6 +354,8 @@ class SpannerClient
             [
                 'routeToLeader' => $this->routeToLeader,
                 'defaultQueryOptions' => $this->defaultQueryOptions,
+                'defaultClientContext' => $this->defaultClientContext,
+                'clientContext' => $options['clientContext'] ?? [],
                 'returnInt64AsObject' => $this->returnInt64AsObject,
             ]
         );
@@ -624,6 +633,7 @@ class SpannerClient
                 'directedReadOptions' => $this->directedReadOptions,
                 'routeToLeader' => $this->routeToLeader,
                 'defaultQueryOptions' => $this->defaultQueryOptions,
+                'defaultClientContext' => $this->defaultClientContext,
                 'returnInt64AsObject' => $this->returnInt64AsObject,
                 'isolationLevel' => $this->isolationLevel,
                 'readLockMode' => $this->readLockMode,
@@ -710,6 +720,8 @@ class SpannerClient
      *     Configuration options.
      *
      *     @type string $databaseRole The user created database role which creates the session.
+     *     @type array $clientContext Database-scoped client context merged over the SpannerClient default.
+     *           {@see \Google\Cloud\Spanner\V1\RequestOptions\ClientContext}
      * }
      * @return Database
      */

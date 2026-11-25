@@ -66,6 +66,7 @@ trait SnapshotTrait
 
         $this->context = Database::CONTEXT_READ;
         $this->directedReadOptions = $options['directedReadOptions'] ?? [];
+        $this->requestOptions = $options['requestOptions'] ?? null;
         $this->transactionSelector = $this->pluckArray(
             ['singleUse', 'begin'],
             $options,

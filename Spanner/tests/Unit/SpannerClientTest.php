@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\ServerStream;
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -48,12 +49,25 @@ use Google\Cloud\Spanner\PgOid;
 use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\PartialResultSet;
+use Google\Cloud\Spanner\V1\Partition;
+use Google\Cloud\Spanner\V1\PartitionQueryRequest;
+use Google\Cloud\Spanner\V1\PartitionResponse;
+use Google\Cloud\Spanner\V1\ResultSetMetadata;
 use Google\Cloud\Spanner\V1\Session;
+use Google\Cloud\Spanner\V1\StructType;
+use Google\Cloud\Spanner\V1\StructType\Field;
+use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode;
+use Google\Cloud\Spanner\V1\Type;
+use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Protobuf\Duration;
 use Google\Protobuf\Timestamp as TimestampProto;
+use Google\Protobuf\Value;
 use Grpc\Channel;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -972,5 +986,134 @@ class SpannerClientTest extends TestCase
             'gapicSpannerClient' => $gapicSpannerClient->reveal(),
             'enableBuiltInMetrics' => true,
         ]);
+    }
+
+    public function testConnectAndBatchForwardClientContext()
+    {
+        $this->gapicSpannerClient->createSession(Argument::cetera())->willReturn(new Session([
+            'name' => GapicSpannerClient::sessionName(
+                self::PROJECT,
+                self::INSTANCE,
+                self::DATABASE,
+                self::SESSION
+            ),
+            'multiplexed' => true,
+            'create_time' => new TimestampProto(['seconds' => time()]),
+        ]));
+
+        $client = new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'clientContext' => [
+                'secureContext' => [
+                    'env' => 'prod',
+                    'tenant_id' => 'client-tenant',
+                ],
+            ],
+            'gapicSpannerClient' => $this->gapicSpannerClient->reveal(),
+            'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal(),
+            'cacheItemPool' => new MemoryCacheItemPool(),
+        ]);
+
+        $partial = new PartialResultSet([
+            'metadata' => new ResultSetMetadata([
+                'row_type' => new StructType([
+                    'fields' => [
+                        new Field([
+                            'name' => 'col',
+                            'type' => new Type(['code' => TypeCode::STRING]),
+                        ]),
+                    ],
+                ]),
+            ]),
+            'values' => [new Value(['string_value' => 'ok'])],
+        ]);
+        $makeStream = function () use ($partial) {
+            $stream = $this->prophesize(ServerStream::class);
+            $stream->readAll()->will(function () use ($partial) {
+                yield $partial;
+            });
+            return $stream->reveal();
+        };
+
+        // connect() merges client + database + per-request clientContext.
+        $this->gapicSpannerClient->executeStreamingSql(
+            Argument::that(function (ExecuteSqlRequest $request) {
+                $encoded = $this->serializer->encodeMessage($request->getRequestOptions()->getClientContext());
+                $sql = $request->getSql();
+                if ($sql === 'SELECT 1') {
+                    $this->assertEquals([
+                        'secureContext' => [
+                            'env' => 'prod',
+                            'tenant_id' => 'db-tenant',
+                            'user_id' => 'u1',
+                        ],
+                    ], $encoded);
+                } else {
+                    $this->assertEquals([
+                        'secureContext' => [
+                            'env' => 'prod',
+                            'tenant_id' => 'batch-tenant',
+                            'worker' => 'w1',
+                        ],
+                    ], $encoded);
+                }
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(2)->willReturn($makeStream(), $makeStream());
+
+        $database = $client->connect(self::INSTANCE, self::DATABASE, [
+            'clientContext' => [
+                'secureContext' => ['tenant_id' => 'db-tenant'],
+            ],
+        ]);
+        iterator_to_array($database->execute('SELECT 1', [
+            'requestOptions' => [
+                'clientContext' => [
+                    'secureContext' => ['user_id' => 'u1'],
+                ],
+            ],
+        ])->rows());
+
+        // batch() merges client + batch + partition clientContext.
+        $this->gapicSpannerClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $encoded = $this->serializer->encodeMessage($request->getRequestOptions()->getClientContext());
+                $this->assertEquals([
+                    'secureContext' => [
+                        'env' => 'prod',
+                        'tenant_id' => 'batch-tenant',
+                    ],
+                ], $encoded);
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledOnce()->willReturn(new TransactionProto([
+            'id' => 'batch-txn',
+            'read_timestamp' => new TimestampProto(['seconds' => time()]),
+        ]));
+
+        $this->gapicSpannerClient->partitionQuery(
+            Argument::type(PartitionQueryRequest::class),
+            Argument::any()
+        )->shouldBeCalledOnce()->willReturn(new PartitionResponse([
+            'partitions' => [new Partition(['partition_token' => 'tok-1'])],
+        ]));
+
+        $batch = $client->batch(self::INSTANCE, self::DATABASE, [
+            'clientContext' => [
+                'secureContext' => ['tenant_id' => 'batch-tenant'],
+            ],
+        ]);
+        $snapshot = $batch->snapshot();
+        $partitions = $snapshot->partitionQuery('SELECT 2', [
+            'requestOptions' => [
+                'clientContext' => [
+                    'secureContext' => ['worker' => 'w1'],
+                ],
+            ],
+        ]);
+        iterator_to_array($snapshot->executePartition($partitions[0])->rows());
     }
 }

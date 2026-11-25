@@ -168,4 +168,54 @@ class SnapshotTest extends TestCase
 
         $snapshot->read('foo', $keySet, $columns);
     }
+
+    public function testExecuteAndReadMergeSnapshotRequestOptions()
+    {
+        $scopedRequestOptions = [
+            'clientContext' => [
+                'secureContext' => ['snap' => 'val'],
+            ],
+        ];
+        $mergedOptions = [
+            'requestOptions' => [
+                'clientContext' => [
+                    'secureContext' => ['snap' => 'val'],
+                ],
+            ],
+        ];
+
+        $operation = $this->prophesize(Operation::class);
+        $result = $this->prophesize(Result::class);
+        $operation->mergeRequestOptions(Argument::type('array'), $scopedRequestOptions)
+            ->shouldBeCalledTimes(2)
+            ->will(function (array $args) use ($mergedOptions) {
+                return $mergedOptions + $args[0];
+            });
+
+        $operation->execute(
+            Argument::any(),
+            'SELECT 1',
+            Argument::withEntry('requestOptions', $mergedOptions['requestOptions'])
+        )->shouldBeCalledOnce()->willReturn($result->reveal());
+
+        $operation->read(
+            Argument::any(),
+            'Users',
+            Argument::any(),
+            ['id'],
+            Argument::withEntry('requestOptions', $mergedOptions['requestOptions'])
+        )->shouldBeCalledOnce()->willReturn($result->reveal());
+
+        $snapshot = new Snapshot(
+            $operation->reveal(),
+            $this->prophesize(SessionCache::class)->reveal(),
+            [
+                'id' => 'snap-txn-1',
+                'requestOptions' => $scopedRequestOptions,
+            ]
+        );
+
+        $snapshot->execute('SELECT 1');
+        $snapshot->read('Users', new KeySet(['all' => true]), ['id']);
+    }
 }
