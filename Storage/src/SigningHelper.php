@@ -382,6 +382,7 @@ class SigningHelper
      *        {@see Bucket::generateSignedPostPolicyV4()} for details.
      * @return array An associative array, containing (string) `uri` and
      *        (array) `fields` keys.
+     * @throws \InvalidArgumentException If the policy cannot be JSON encoded.
      */
     public function v4PostPolicy(
         ConnectionInterface $connection,
@@ -454,7 +455,7 @@ class SigningHelper
             'expiration' => $expirationTimestamp
         ];
 
-        $json = str_replace('\\\u', '\\u', json_encode($policy, JSON_UNESCAPED_SLASHES));
+        $json = self::jsonEncode($policy, JSON_UNESCAPED_SLASHES);
         $stringToSign = base64_encode($json);
 
         $signature = bin2hex(base64_decode($credentials->signBlob($stringToSign, [

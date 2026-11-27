@@ -428,6 +428,33 @@ class SigningHelperTest extends TestCase
         );
     }
 
+    public function testV4PostPolicyJsonEncoding()
+    {
+        $value = 'prefix\u0041suffix';
+        $credentials = $this->createCredentialsMock();
+        $now = new \DateTimeImmutable('2020-01-23T04:35:30Z', new \DateTimeZone('UTC'));
+        $expires = (int) $now->format('U') + 10;
+
+        $credentials->signBlob(Argument::type('string'), Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn(base64_encode('SIGNATURE'));
+
+        $res = $this->helper->v4PostPolicy(
+            $this->mockConnection($credentials->reveal()),
+            $expires,
+            $this->createResource(self::BUCKET, $value),
+            [
+                'timestamp' => $now,
+                'fields' => ['x-goog-meta-example' => $value],
+            ]
+        );
+
+        $policy = json_decode(base64_decode($res['fields']['policy']), true);
+        $this->assertIsArray($policy);
+        $this->assertContains(['key' => $value], $policy['conditions']);
+        $this->assertContains(['x-goog-meta-example' => $value], $policy['conditions']);
+    }
+
     /**
      * @dataProvider expirations
      */
