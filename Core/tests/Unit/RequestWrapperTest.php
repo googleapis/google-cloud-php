@@ -21,6 +21,7 @@ namespace Google\Cloud\Core\Tests\Unit;
 use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Auth\GetQuotaProjectInterface;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\UpdateMetadataInterface;
 use Google\Cloud\Core\AnonymousCredentials;
@@ -875,6 +876,98 @@ class RequestWrapperTest extends TestCase
             $property->getValue($wrapper),
             'The retryListener should be the same as the one passed via options.'
         );
+    }
+
+    public function testDisablesRequestSigningPerRequestWithCustomUniverseDomain()
+    {
+        $credentialsFetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        $credentialsFetcher->willImplement(GetUniverseDomainInterface::class);
+        $credentialsFetcher->willImplement(GetQuotaProjectInterface::class);
+        $credentialsFetcher->getUniverseDomain()->willReturn('my-universe.example');
+        $credentialsFetcher->getQuotaProject()->willReturn('my-quota-project');
+        $credentialsFetcher->getCacheKey()->willReturn(null);
+        $credentialsFetcher->fetchAuthToken(Argument::any())
+            ->shouldBeCalledOnce()
+            ->willReturn(['access_token' => 'secret-token']);
+
+        $sentRequests = [];
+        $requestWrapper = new RequestWrapper([
+            'credentialsFetcher' => $credentialsFetcher->reveal(),
+            'quotaProject' => 'my-quota-project',
+            'universeDomain' => 'my-universe.example',
+            'httpHandler' => function ($request) use (&$sentRequests) {
+                $sentRequests[] = $request;
+                return new Response(200);
+            },
+        ]);
+
+        // Per-request unsigned call skips auth, quota project, and default-universe check.
+        $requestWrapper->send(
+            new Request('POST', 'https://storage.my-universe.example/signed-upload'),
+            ['shouldSignRequest' => false]
+        );
+
+        // Subsequent default call on the same wrapper still signs and validates universe domain.
+        $requestWrapper->send(
+            new Request('GET', 'https://storage.my-universe.example/storage/v1/b')
+        );
+
+        $this->assertCount(2, $sentRequests);
+        $this->assertFalse($sentRequests[0]->hasHeader('Authorization'));
+        $this->assertFalse($sentRequests[0]->hasHeader('X-Goog-User-Project'));
+        $this->assertSame('Bearer secret-token', $sentRequests[1]->getHeaderLine('Authorization'));
+        $this->assertSame('my-quota-project', $sentRequests[1]->getHeaderLine('X-Goog-User-Project'));
+    }
+
+    public function testDisablesRequestSigningPerRequestWithAccessTokenAndSendAsync()
+    {
+        $sentRequests = [];
+        $requestWrapper = new RequestWrapper([
+            'accessToken' => 'secret-token',
+            'quotaProject' => 'my-quota-project',
+            'httpHandler' => function ($request) use (&$sentRequests) {
+                $sentRequests[] = $request;
+                return new Response(200);
+            },
+            'asyncHttpHandler' => function ($request) use (&$sentRequests) {
+                $sentRequests[] = $request;
+                return Create::promiseFor(new Response(200));
+            },
+        ]);
+
+        $requestWrapper->send(
+            new Request('POST', 'https://example.invalid/signed-upload'),
+            ['shouldSignRequest' => false]
+        );
+        $requestWrapper->sendAsync(
+            new Request('PUT', 'https://example.invalid/signed-upload'),
+            ['shouldSignRequest' => false]
+        )->wait();
+
+        $this->assertCount(2, $sentRequests);
+        foreach ($sentRequests as $request) {
+            $this->assertFalse($request->hasHeader('Authorization'));
+            $this->assertFalse($request->hasHeader('X-Goog-User-Project'));
+        }
+    }
+
+    public function testPerRequestShouldSignRequestTrueDoesNotOverrideDisabledWrapper()
+    {
+        $sentHeaders = [];
+        $requestWrapper = new RequestWrapper([
+            'credentialsFetcher' => new AnonymousCredentials(),
+            'httpHandler' => function ($request) use (&$sentHeaders) {
+                $sentHeaders = $request->getHeaders();
+                return new Response(200);
+            },
+        ]);
+
+        $requestWrapper->send(
+            new Request('GET', 'https://storage.googleapis.com/storage/v1/b'),
+            ['shouldSignRequest' => true]
+        );
+
+        $this->assertArrayNotHasKey('authorization', array_change_key_case($sentHeaders, CASE_LOWER));
     }
 
     public function provideCheckUniverseDomainPasses()

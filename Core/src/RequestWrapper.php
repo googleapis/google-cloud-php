@@ -210,6 +210,9 @@ class RequestWrapper
      *           determining how long to wait between attempts to retry. Function
      *           signature should match: `function (int $attempt) : int`.
      *     @type array $restOptions HTTP client specific configuration options.
+     *     @type bool $shouldSignRequest Whether to enable request signing for
+     *           this request. Setting to `false` disables signing for this
+     *           request.
      * }
      * @return ResponseInterface
      * @throws ServiceException
@@ -262,6 +265,9 @@ class RequestWrapper
      *           determining how long to wait between attempts to retry. Function
      *           signature should match: `function (int $attempt) : int`.
      *     @type array $restOptions HTTP client specific configuration options.
+     *     @type bool $shouldSignRequest Whether to enable request signing for
+     *           this request. Setting to `false` disables signing for this
+     *           request.
      * }
      * @return PromiseInterface<ResponseInterface>
      * @throws ServiceException
@@ -332,7 +338,9 @@ class RequestWrapper
 
         $request = Utils::modifyRequest($request, ['set_headers' => $headers]);
 
-        if ($this->shouldSignRequest) {
+        $shouldSignRequest = $this->shouldSignRequest && ($options['shouldSignRequest'] ?? true);
+
+        if ($shouldSignRequest) {
             $quotaProject = $this->quotaProject;
 
             if ($this->accessToken) {
@@ -354,7 +362,7 @@ class RequestWrapper
             if ($quotaProject) {
                 $request = $request->withHeader('X-Goog-User-Project', $quotaProject);
             }
-        } else {
+        } elseif (!$this->shouldSignRequest) {
             // If we are not signing the request, check the universe domain against "googleapis.com"
             $this->checkUniverseDomain(null);
         }

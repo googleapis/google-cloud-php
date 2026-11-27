@@ -17,10 +17,13 @@
 
 namespace Google\Cloud\Core\Upload;
 
+use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\RequestWrapper;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
+use Psr\Http\Message\UriInterface;
 
 /**
  * Upload data to Cloud Storage using a Signed URL
@@ -60,15 +63,25 @@ class SignedUrlUploader extends ResumableUploader
         }
 
         parent::__construct($requestWrapper, $data, $uri, $options);
+
+        // Signed URLs are pre-authorized via their query-string signature and
+        // must not attach ambient OAuth bearer tokens or quota project headers.
+        $this->requestOptions['shouldSignRequest'] = false;
     }
 
     /**
      * Creates the resume URI.
      *
      * @return string
+     * @throws \InvalidArgumentException When the configured signed upload URI is
+     *         invalid.
+     * @throws GoogleException When the response Location header is missing,
+     *         invalid, or does not match the configured upload endpoint origin.
      */
     protected function createResumeUri()
     {
+        $expectedUri = $this->parseEndpointUri($this->uri, 'Configured upload endpoint');
+
         $headers = $this->headers + [
             'Content-Type' => $this->contentType,
             'Content-Length' => '0',
@@ -77,13 +90,16 @@ class SignedUrlUploader extends ResumableUploader
 
         $request = new Request(
             'POST',
-            $this->uri,
+            (string) $expectedUri,
             $headers
         );
 
         $response = $this->requestWrapper->send($request, $this->requestOptions);
 
-        return $this->resumeUri = $response->getHeaderLine('Location');
+        return $this->resumeUri = $this->validateLocationUri(
+            $response->getHeaderLine('Location'),
+            $expectedUri
+        );
     }
 
     /**
@@ -95,5 +111,86 @@ class SignedUrlUploader extends ResumableUploader
     protected function decodeResponse(ResponseInterface $response)
     {
         return $response->getBody();
+    }
+
+    /**
+     * Validates that the response Location header matches the configured signed
+     * upload URI's scheme, host, port, and userinfo, and returns its canonical
+     * string representation.
+     *
+     * @param string $location
+     * @param Uri $expectedUri
+     * @return string
+     * @throws GoogleException
+     */
+    private function validateLocationUri(string $location, Uri $expectedUri): string
+    {
+        try {
+            $parsedLocation = $this->parseEndpointUri($location, 'Resume Location URI');
+        } catch (\InvalidArgumentException $e) {
+            throw new GoogleException($e->getMessage());
+        }
+
+        if ($parsedLocation->getScheme() !== $expectedUri->getScheme()
+            || $parsedLocation->getHost() !== $expectedUri->getHost()
+            || $parsedLocation->getPort() !== $expectedUri->getPort()
+        ) {
+            $expectedOrigin = $expectedUri->getScheme() . '://' . $expectedUri->getHost();
+            if ($expectedUri->getPort() !== null) {
+                $expectedOrigin .= ':' . $expectedUri->getPort();
+            }
+
+            throw new GoogleException(sprintf(
+                'Resume Location URI origin does not match the configured upload endpoint origin (%s).',
+                $expectedOrigin
+            ));
+        }
+
+        if ($parsedLocation->getUserInfo() !== $expectedUri->getUserInfo()) {
+            throw new GoogleException(
+                'Resume Location URI userinfo does not match the configured upload endpoint.'
+            );
+        }
+
+        return (string) $parsedLocation;
+    }
+
+    /**
+     * Parses and validates an HTTP(S) URI without leaking raw URI values in
+     * exception messages.
+     *
+     * @param mixed $uri
+     * @param string $label
+     * @return Uri
+     * @throws \InvalidArgumentException
+     */
+    private function parseEndpointUri($uri, string $label): Uri
+    {
+        $uriString = (is_string($uri) || $uri instanceof UriInterface) ? (string) $uri : '';
+        if ($uriString === '') {
+            throw new \InvalidArgumentException(sprintf('%s must be a non-empty string or UriInterface.', $label));
+        }
+
+        if (preg_match('/[\x00-\x1F\x7F]/', $uriString) !== 0) {
+            throw new \InvalidArgumentException(sprintf('%s must not contain control characters.', $label));
+        }
+
+        $invalidSchemeOrHostMsg = sprintf('%s must include a valid HTTP(S) scheme and host.', $label);
+        if (preg_match('/\Ahttps?:\/\//i', $uriString) !== 1) {
+            throw new \InvalidArgumentException($invalidSchemeOrHostMsg);
+        }
+
+        try {
+            $parsedUri = new Uri($uriString);
+        } catch (\InvalidArgumentException) {
+            // Intentionally drop Guzzle's MalformedUriException to avoid leaking raw URIs/tokens via $previous.
+            throw new \InvalidArgumentException(sprintf('%s is not a valid URI.', $label));
+        }
+
+        if (!in_array($parsedUri->getScheme(), ['http', 'https'], true) || $parsedUri->getHost() === '') {
+            throw new \InvalidArgumentException($invalidSchemeOrHostMsg);
+        }
+
+        return $parsedUri;
     }
 }

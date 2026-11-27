@@ -661,7 +661,7 @@ class StorageObjectTest extends SnippetTestCase
         $creds->getClientName()->willReturn($kf['client_email']);
         $rw->getCredentialsFetcher()->willReturn($creds->reveal());
 
-        $resumeUri = 'theResumeUri';
+        $resumeUri = 'https://storage.googleapis.com/my-bucket/my-object?upload_id=theResumeUri';
         $response = new Response(200, ['Location' => $resumeUri]);
 
         $rw->send(
