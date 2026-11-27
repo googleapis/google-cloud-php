@@ -564,6 +564,169 @@ class StreamWrapperTest extends TestCase
         fclose($fp);
     }
 
+    /**
+     * @group storageWrite
+     * @dataProvider appendComposeOptionsProvider
+     */
+    public function testAppendForwardsContextOptionsToCompose(
+        ?array $contextOptions,
+        array $objectInfo,
+        int $expectedInfoCalls,
+        array $expectedComposeOptions
+    ) {
+        $object = $this->prophesize(StorageObject::class);
+        $object->info()->shouldBeCalledTimes($expectedInfoCalls)->willReturn($objectInfo);
+        $this->bucket->object('file.txt')->willReturn($object->reveal());
+
+        $tailObject = $this->prophesize(StorageObject::class);
+        $tailObject->delete()->shouldBeCalledTimes(1);
+        $this->bucket->object('file.txt~')->willReturn($tailObject->reveal());
+
+        $uploader = $this->prophesize(StreamableUploader::class);
+        $uploader->getResumeUri()->willReturn('https://resume-uri/');
+        $uploader->upload()->shouldBeCalledTimes(1);
+        $this->bucket->getStreamableUploader(
+            Argument::any(),
+            ($contextOptions ?? []) + ['name' => 'file.txt~']
+        )->shouldBeCalledTimes(1)->willReturn($uploader->reveal());
+
+        $this->bucket->compose(['file.txt', 'file.txt~'], 'file.txt', $expectedComposeOptions)
+            ->shouldBeCalledTimes(1);
+
+        $fp = $contextOptions === null
+            ? fopen('gs://my_bucket/file.txt', 'a')
+            : fopen('gs://my_bucket/file.txt', 'a', false, stream_context_create(['gs' => $contextOptions]));
+        $this->assertEquals(8, fwrite($fp, 'appended'));
+        $this->assertTrue(fclose($fp));
+    }
+
+    public function appendComposeOptionsProvider()
+    {
+        return [
+            'no context options' => [
+                null,
+                ['size' => 10, 'contentType' => 'text/plain'],
+                2,
+                ['metadata' => ['contentType' => 'text/plain']],
+            ],
+            'context options and metadata without contentType' => [
+                [
+                    'userProject' => 'example-project',
+                    'metadata' => ['cacheControl' => 'no-cache'],
+                ],
+                ['size' => 10, 'contentType' => 'text/plain'],
+                2,
+                [
+                    'userProject' => 'example-project',
+                    'metadata' => [
+                        'cacheControl' => 'no-cache',
+                        'contentType' => 'text/plain',
+                    ],
+                ],
+            ],
+            'context metadata contentType takes precedence' => [
+                [
+                    'userProject' => 'example-project',
+                    'metadata' => [
+                        'contentType' => 'application/json',
+                        'cacheControl' => 'no-cache',
+                    ],
+                ],
+                ['size' => 10, 'contentType' => 'text/plain'],
+                1,
+                [
+                    'userProject' => 'example-project',
+                    'metadata' => [
+                        'contentType' => 'application/json',
+                        'cacheControl' => 'no-cache',
+                    ],
+                ],
+            ],
+            'preconditions and destination removed before compose' => [
+                [
+                    'userProject' => 'example-project',
+                    'destination' => ['contentType' => 'text/csv'],
+                    'ifGenerationMatch' => 0,
+                    'ifGenerationNotMatch' => 1,
+                    'ifMetagenerationMatch' => 2,
+                    'ifMetagenerationNotMatch' => 3,
+                    'metadata' => ['cacheControl' => 'no-cache'],
+                ],
+                ['size' => 10, 'contentType' => 'text/plain'],
+                2,
+                [
+                    'userProject' => 'example-project',
+                    'metadata' => [
+                        'cacheControl' => 'no-cache',
+                        'contentType' => 'text/plain',
+                    ],
+                ],
+            ],
+            'empty stored contentType falls back to octet-stream' => [
+                ['userProject' => 'example-project'],
+                ['size' => 10],
+                2,
+                [
+                    'userProject' => 'example-project',
+                    'metadata' => ['contentType' => 'application/octet-stream'],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @group storageWrite
+     */
+    public function testFlushForwardsContextOptionsToCompose()
+    {
+        $contextOptions = [
+            'userProject' => 'example-project',
+            'ifGenerationMatch' => 0,
+            'metadata' => [
+                'contentType' => 'application/json',
+                'cacheControl' => 'no-cache',
+            ],
+        ];
+        $this->bucket->object('file.txt')->shouldNotBeCalled();
+
+        $tailObject = $this->prophesize(StorageObject::class);
+        $tailObject->delete()->shouldBeCalledTimes(1);
+        $this->bucket->object('file.txt~')->willReturn($tailObject->reveal());
+
+        $uploader1 = $this->prophesize(StreamableUploader::class);
+        $uploader1->getResumeUri()->willReturn('https://resume-uri-1/');
+        $uploader1->upload()->shouldBeCalledTimes(1);
+        $this->bucket->getStreamableUploader(
+            Argument::any(),
+            $contextOptions + ['name' => 'file.txt']
+        )->shouldBeCalledTimes(1)->willReturn($uploader1->reveal());
+
+        $uploader2 = $this->prophesize(StreamableUploader::class);
+        $uploader2->getResumeUri()->willReturn('https://resume-uri-2/');
+        $uploader2->upload()->shouldBeCalledTimes(1);
+
+        $uploader3 = $this->prophesize(StreamableUploader::class);
+        $this->bucket->getStreamableUploader(
+            Argument::any(),
+            $contextOptions + ['name' => 'file.txt~']
+        )->shouldBeCalledTimes(2)->willReturn($uploader2->reveal(), $uploader3->reveal());
+
+        $expectedComposeOptions = $contextOptions;
+        unset($expectedComposeOptions['ifGenerationMatch']);
+        $this->bucket->compose(['file.txt', 'file.txt~'], 'file.txt', $expectedComposeOptions)
+            ->shouldBeCalledTimes(1);
+
+        $context = stream_context_create([
+            'gs' => ['flush' => true] + $contextOptions,
+        ]);
+        $fp = fopen('gs://my_bucket/file.txt', 'w', false, $context);
+        $this->assertEquals(5, fwrite($fp, 'part1'));
+        $this->assertTrue(fflush($fp));
+        $this->assertEquals(5, fwrite($fp, 'part2'));
+        $this->assertTrue(fflush($fp));
+        $this->assertTrue(fclose($fp));
+    }
+
     private function mockObjectData($file, $data, $bucket = null)
     {
         $bucket = $bucket ?: $this->bucket;
