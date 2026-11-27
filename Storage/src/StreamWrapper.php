@@ -907,11 +907,23 @@ class StreamWrapper
 
     private function compose()
     {
-        if (!isset($this->contentType)) {
-            $info = $this->bucket->object($this->file)->info();
-            $this->contentType = $info['contentType'] ?: 'application/octet-stream';
+        $options = $this->options;
+        unset(
+            $options['destination'],
+            $options['ifGenerationMatch'],
+            $options['ifGenerationNotMatch'],
+            $options['ifMetagenerationMatch'],
+            $options['ifMetagenerationNotMatch']
+        );
+        if (!isset($options['metadata']['contentType'])) {
+            if (!isset($this->contentType)) {
+                $info = $this->bucket->object($this->file)->info();
+                $this->contentType = !empty($info['contentType'])
+                    ? $info['contentType']
+                    : 'application/octet-stream';
+            }
+            $options['metadata']['contentType'] = $this->contentType;
         }
-        $options = ['destination' => ['contentType' => $this->contentType]];
         $this->bucket->compose([$this->file, $this->file . self::TAIL_NAME_SUFFIX], $this->file, $options);
     }
 }
